@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:portal-layout:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:portal-layout:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:portal-layout:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:portal-layout:destroyed"), false);
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:portal-layout:initialized"), false);
@@ -28,57 +27,47 @@ java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:port
 java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:onDestroyedChange");
 java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:portal-layout:onInit");
 java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:portal-layout:onInitializedChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:portal-layout:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:portal-layout:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:portal-layout:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:portal-layout:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:portal-layout:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:portal-layout:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:portal-layout:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:portal-layout:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:portal-layout:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:portal-layout:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

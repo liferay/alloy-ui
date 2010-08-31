@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-node-task:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-node-task:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:tree-node-task:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _alwaysShowHitArea = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:alwaysShowHitArea"), true);
 java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:tree-node-task:cache"), true);
@@ -100,345 +99,119 @@ java.lang.Object _onNextSiblingChange = (java.lang.Object)request.getAttribute("
 java.lang.Object _onOwnerTreeChange = (java.lang.Object)request.getAttribute("alloy:tree-node-task:onOwnerTreeChange");
 java.lang.Object _onParentNodeChange = (java.lang.Object)request.getAttribute("alloy:tree-node-task:onParentNodeChange");
 java.lang.Object _onPrevSiblingChange = (java.lang.Object)request.getAttribute("alloy:tree-node-task:onPrevSiblingChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:tree-node-task:alwaysShowHitArea") != null) {
-	scopedAttributes.put("alwaysShowHitArea", _alwaysShowHitArea);
-}
-
-if (request.getAttribute("alloy:tree-node-task:cache") != null) {
-	scopedAttributes.put("cache", _cache);
-}
-
-if (request.getAttribute("alloy:tree-node-task:checkContainerEl") != null) {
-	scopedAttributes.put("checkContainerEl", _checkContainerEl);
-}
-
-if (request.getAttribute("alloy:tree-node-task:checkEl") != null) {
-	scopedAttributes.put("checkEl", _checkEl);
-}
-
-if (request.getAttribute("alloy:tree-node-task:checkName") != null) {
-	scopedAttributes.put("checkName", _checkName);
-}
-
-if (request.getAttribute("alloy:tree-node-task:checked") != null) {
-	scopedAttributes.put("checked", _checked);
-}
-
-if (request.getAttribute("alloy:tree-node-task:children") != null) {
-	scopedAttributes.put("children", _children);
-}
-
-if (request.getAttribute("alloy:tree-node-task:container") != null) {
-	scopedAttributes.put("container", _container);
-}
-
-if (request.getAttribute("alloy:tree-node-task:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:tree-node-task:draggable") != null) {
-	scopedAttributes.put("draggable", _draggable);
-}
-
-if (request.getAttribute("alloy:tree-node-task:expanded") != null) {
-	scopedAttributes.put("expanded", _expanded);
-}
-
-if (request.getAttribute("alloy:tree-node-task:hitAreaEl") != null) {
-	scopedAttributes.put("hitAreaEl", _hitAreaEl);
-}
-
-if (request.getAttribute("alloy:tree-node-task:iconEl") != null) {
-	scopedAttributes.put("iconEl", _iconEl);
-}
-
-if (request.getAttribute("alloy:tree-node-task:treenodetaskId") != null) {
-	scopedAttributes.put("treenodetaskId", _treenodetaskId);
-}
-
-if (request.getAttribute("alloy:tree-node-task:index") != null) {
-	scopedAttributes.put("index", _index);
-}
-
-if (request.getAttribute("alloy:tree-node-task:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:tree-node-task:io") != null) {
-	scopedAttributes.put("io", _io);
-}
-
-if (request.getAttribute("alloy:tree-node-task:label") != null) {
-	scopedAttributes.put("label", _label);
-}
-
-if (request.getAttribute("alloy:tree-node-task:labelEl") != null) {
-	scopedAttributes.put("labelEl", _labelEl);
-}
-
-if (request.getAttribute("alloy:tree-node-task:leaf") != null) {
-	scopedAttributes.put("leaf", _leaf);
-}
-
-if (request.getAttribute("alloy:tree-node-task:loaded") != null) {
-	scopedAttributes.put("loaded", _loaded);
-}
-
-if (request.getAttribute("alloy:tree-node-task:loading") != null) {
-	scopedAttributes.put("loading", _loading);
-}
-
-if (request.getAttribute("alloy:tree-node-task:nextSibling") != null) {
-	scopedAttributes.put("nextSibling", _nextSibling);
-}
-
-if (request.getAttribute("alloy:tree-node-task:ownerTree") != null) {
-	scopedAttributes.put("ownerTree", _ownerTree);
-}
-
-if (request.getAttribute("alloy:tree-node-task:parentNode") != null) {
-	scopedAttributes.put("parentNode", _parentNode);
-}
-
-if (request.getAttribute("alloy:tree-node-task:prevSibling") != null) {
-	scopedAttributes.put("prevSibling", _prevSibling);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterAlwaysShowHitAreaChange") != null) {
-	scopedAttributes.put("afterAlwaysShowHitAreaChange", _afterAlwaysShowHitAreaChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterCacheChange") != null) {
-	scopedAttributes.put("afterCacheChange", _afterCacheChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterCheckContainerElChange") != null) {
-	scopedAttributes.put("afterCheckContainerElChange", _afterCheckContainerElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterCheckElChange") != null) {
-	scopedAttributes.put("afterCheckElChange", _afterCheckElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterCheckNameChange") != null) {
-	scopedAttributes.put("afterCheckNameChange", _afterCheckNameChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterCheckedChange") != null) {
-	scopedAttributes.put("afterCheckedChange", _afterCheckedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterChildrenChange") != null) {
-	scopedAttributes.put("afterChildrenChange", _afterChildrenChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterContainerChange") != null) {
-	scopedAttributes.put("afterContainerChange", _afterContainerChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterDraggableChange") != null) {
-	scopedAttributes.put("afterDraggableChange", _afterDraggableChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterExpandedChange") != null) {
-	scopedAttributes.put("afterExpandedChange", _afterExpandedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterHitAreaElChange") != null) {
-	scopedAttributes.put("afterHitAreaElChange", _afterHitAreaElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterIconElChange") != null) {
-	scopedAttributes.put("afterIconElChange", _afterIconElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterIndexChange") != null) {
-	scopedAttributes.put("afterIndexChange", _afterIndexChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterIoChange") != null) {
-	scopedAttributes.put("afterIoChange", _afterIoChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterLabelChange") != null) {
-	scopedAttributes.put("afterLabelChange", _afterLabelChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterLabelElChange") != null) {
-	scopedAttributes.put("afterLabelElChange", _afterLabelElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterLeafChange") != null) {
-	scopedAttributes.put("afterLeafChange", _afterLeafChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterLoadedChange") != null) {
-	scopedAttributes.put("afterLoadedChange", _afterLoadedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterLoadingChange") != null) {
-	scopedAttributes.put("afterLoadingChange", _afterLoadingChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterNextSiblingChange") != null) {
-	scopedAttributes.put("afterNextSiblingChange", _afterNextSiblingChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterOwnerTreeChange") != null) {
-	scopedAttributes.put("afterOwnerTreeChange", _afterOwnerTreeChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterParentNodeChange") != null) {
-	scopedAttributes.put("afterParentNodeChange", _afterParentNodeChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:afterPrevSiblingChange") != null) {
-	scopedAttributes.put("afterPrevSiblingChange", _afterPrevSiblingChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onAlwaysShowHitAreaChange") != null) {
-	scopedAttributes.put("onAlwaysShowHitAreaChange", _onAlwaysShowHitAreaChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onCacheChange") != null) {
-	scopedAttributes.put("onCacheChange", _onCacheChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onCheckContainerElChange") != null) {
-	scopedAttributes.put("onCheckContainerElChange", _onCheckContainerElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onCheckElChange") != null) {
-	scopedAttributes.put("onCheckElChange", _onCheckElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onCheckNameChange") != null) {
-	scopedAttributes.put("onCheckNameChange", _onCheckNameChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onCheckedChange") != null) {
-	scopedAttributes.put("onCheckedChange", _onCheckedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onChildrenChange") != null) {
-	scopedAttributes.put("onChildrenChange", _onChildrenChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onContainerChange") != null) {
-	scopedAttributes.put("onContainerChange", _onContainerChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onDraggableChange") != null) {
-	scopedAttributes.put("onDraggableChange", _onDraggableChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onExpandedChange") != null) {
-	scopedAttributes.put("onExpandedChange", _onExpandedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onHitAreaElChange") != null) {
-	scopedAttributes.put("onHitAreaElChange", _onHitAreaElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onIconElChange") != null) {
-	scopedAttributes.put("onIconElChange", _onIconElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onIndexChange") != null) {
-	scopedAttributes.put("onIndexChange", _onIndexChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onIoChange") != null) {
-	scopedAttributes.put("onIoChange", _onIoChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onLabelChange") != null) {
-	scopedAttributes.put("onLabelChange", _onLabelChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onLabelElChange") != null) {
-	scopedAttributes.put("onLabelElChange", _onLabelElChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onLeafChange") != null) {
-	scopedAttributes.put("onLeafChange", _onLeafChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onLoadedChange") != null) {
-	scopedAttributes.put("onLoadedChange", _onLoadedChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onLoadingChange") != null) {
-	scopedAttributes.put("onLoadingChange", _onLoadingChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onNextSiblingChange") != null) {
-	scopedAttributes.put("onNextSiblingChange", _onNextSiblingChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onOwnerTreeChange") != null) {
-	scopedAttributes.put("onOwnerTreeChange", _onOwnerTreeChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onParentNodeChange") != null) {
-	scopedAttributes.put("onParentNodeChange", _onParentNodeChange);
-}
-
-if (request.getAttribute("alloy:tree-node-task:onPrevSiblingChange") != null) {
-	scopedAttributes.put("onPrevSiblingChange", _onPrevSiblingChange);
-}
-
+_updateOptions(options, "alwaysShowHitArea", _alwaysShowHitArea);
+_updateOptions(options, "cache", _cache);
+_updateOptions(options, "checkContainerEl", _checkContainerEl);
+_updateOptions(options, "checkEl", _checkEl);
+_updateOptions(options, "checkName", _checkName);
+_updateOptions(options, "checked", _checked);
+_updateOptions(options, "children", _children);
+_updateOptions(options, "container", _container);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "draggable", _draggable);
+_updateOptions(options, "expanded", _expanded);
+_updateOptions(options, "hitAreaEl", _hitAreaEl);
+_updateOptions(options, "iconEl", _iconEl);
+_updateOptions(options, "treenodetaskId", _treenodetaskId);
+_updateOptions(options, "index", _index);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "io", _io);
+_updateOptions(options, "label", _label);
+_updateOptions(options, "labelEl", _labelEl);
+_updateOptions(options, "leaf", _leaf);
+_updateOptions(options, "loaded", _loaded);
+_updateOptions(options, "loading", _loading);
+_updateOptions(options, "nextSibling", _nextSibling);
+_updateOptions(options, "ownerTree", _ownerTree);
+_updateOptions(options, "parentNode", _parentNode);
+_updateOptions(options, "prevSibling", _prevSibling);
+_updateOptions(options, "afterAlwaysShowHitAreaChange", _afterAlwaysShowHitAreaChange);
+_updateOptions(options, "afterCacheChange", _afterCacheChange);
+_updateOptions(options, "afterCheckContainerElChange", _afterCheckContainerElChange);
+_updateOptions(options, "afterCheckElChange", _afterCheckElChange);
+_updateOptions(options, "afterCheckNameChange", _afterCheckNameChange);
+_updateOptions(options, "afterCheckedChange", _afterCheckedChange);
+_updateOptions(options, "afterChildrenChange", _afterChildrenChange);
+_updateOptions(options, "afterContainerChange", _afterContainerChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDraggableChange", _afterDraggableChange);
+_updateOptions(options, "afterExpandedChange", _afterExpandedChange);
+_updateOptions(options, "afterHitAreaElChange", _afterHitAreaElChange);
+_updateOptions(options, "afterIconElChange", _afterIconElChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterIndexChange", _afterIndexChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterIoChange", _afterIoChange);
+_updateOptions(options, "afterLabelChange", _afterLabelChange);
+_updateOptions(options, "afterLabelElChange", _afterLabelElChange);
+_updateOptions(options, "afterLeafChange", _afterLeafChange);
+_updateOptions(options, "afterLoadedChange", _afterLoadedChange);
+_updateOptions(options, "afterLoadingChange", _afterLoadingChange);
+_updateOptions(options, "afterNextSiblingChange", _afterNextSiblingChange);
+_updateOptions(options, "afterOwnerTreeChange", _afterOwnerTreeChange);
+_updateOptions(options, "afterParentNodeChange", _afterParentNodeChange);
+_updateOptions(options, "afterPrevSiblingChange", _afterPrevSiblingChange);
+_updateOptions(options, "onAlwaysShowHitAreaChange", _onAlwaysShowHitAreaChange);
+_updateOptions(options, "onCacheChange", _onCacheChange);
+_updateOptions(options, "onCheckContainerElChange", _onCheckContainerElChange);
+_updateOptions(options, "onCheckElChange", _onCheckElChange);
+_updateOptions(options, "onCheckNameChange", _onCheckNameChange);
+_updateOptions(options, "onCheckedChange", _onCheckedChange);
+_updateOptions(options, "onChildrenChange", _onChildrenChange);
+_updateOptions(options, "onContainerChange", _onContainerChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDraggableChange", _onDraggableChange);
+_updateOptions(options, "onExpandedChange", _onExpandedChange);
+_updateOptions(options, "onHitAreaElChange", _onHitAreaElChange);
+_updateOptions(options, "onIconElChange", _onIconElChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onIndexChange", _onIndexChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onIoChange", _onIoChange);
+_updateOptions(options, "onLabelChange", _onLabelChange);
+_updateOptions(options, "onLabelElChange", _onLabelElChange);
+_updateOptions(options, "onLeafChange", _onLeafChange);
+_updateOptions(options, "onLoadedChange", _onLoadedChange);
+_updateOptions(options, "onLoadingChange", _onLoadingChange);
+_updateOptions(options, "onNextSiblingChange", _onNextSiblingChange);
+_updateOptions(options, "onOwnerTreeChange", _onOwnerTreeChange);
+_updateOptions(options, "onParentNodeChange", _onParentNodeChange);
+_updateOptions(options, "onPrevSiblingChange", _onPrevSiblingChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

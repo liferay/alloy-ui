@@ -4,31 +4,50 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:a-io:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:a-io:scopedAttributes");
 
+Map<String, Object> options = new HashMap<String, Object>();
+
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
+
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
+
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+
+
 String uniqueId = StringPool.BLANK;
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
 
-	if ((String)request.getAttribute("alloy:a-io:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+	String prefix = StringPool.POUND.concat(uniqueId);
 
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

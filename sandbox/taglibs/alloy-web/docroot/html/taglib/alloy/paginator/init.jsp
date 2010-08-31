@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:paginator:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:paginator:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:paginator:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _alwaysVisible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:paginator:alwaysVisible"), true);
 java.lang.Object _containers = (java.lang.Object)request.getAttribute("alloy:paginator:containers");
@@ -106,369 +105,125 @@ java.lang.Object _onTotalChange = (java.lang.Object)request.getAttribute("alloy:
 java.lang.Object _onTotalElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalElChange");
 java.lang.Object _onTotalLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalLabelChange");
 java.lang.Object _onTotalPagesChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalPagesChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:paginator:alwaysVisible") != null) {
-	scopedAttributes.put("alwaysVisible", _alwaysVisible);
-}
-
-if (request.getAttribute("alloy:paginator:containers") != null) {
-	scopedAttributes.put("containers", _containers);
-}
-
-if (request.getAttribute("alloy:paginator:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:paginator:firstPageLink") != null) {
-	scopedAttributes.put("firstPageLink", _firstPageLink);
-}
-
-if (request.getAttribute("alloy:paginator:firstPageLinkLabel") != null) {
-	scopedAttributes.put("firstPageLinkLabel", _firstPageLinkLabel);
-}
-
-if (request.getAttribute("alloy:paginator:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:paginator:lastPageLink") != null) {
-	scopedAttributes.put("lastPageLink", _lastPageLink);
-}
-
-if (request.getAttribute("alloy:paginator:lastPageLinkLabel") != null) {
-	scopedAttributes.put("lastPageLinkLabel", _lastPageLinkLabel);
-}
-
-if (request.getAttribute("alloy:paginator:maxPageLinks") != null) {
-	scopedAttributes.put("maxPageLinks", _maxPageLinks);
-}
-
-if (request.getAttribute("alloy:paginator:nextPageLink") != null) {
-	scopedAttributes.put("nextPageLink", _nextPageLink);
-}
-
-if (request.getAttribute("alloy:paginator:nextPageLinkLabel") != null) {
-	scopedAttributes.put("nextPageLinkLabel", _nextPageLinkLabel);
-}
-
-if (request.getAttribute("alloy:paginator:page") != null) {
-	scopedAttributes.put("page", _page);
-}
-
-if (request.getAttribute("alloy:paginator:pageContainerTemplate") != null) {
-	scopedAttributes.put("pageContainerTemplate", _pageContainerTemplate);
-}
-
-if (request.getAttribute("alloy:paginator:pageLinkContent") != null) {
-	scopedAttributes.put("pageLinkContent", _pageLinkContent);
-}
-
-if (request.getAttribute("alloy:paginator:pageLinkTemplate") != null) {
-	scopedAttributes.put("pageLinkTemplate", _pageLinkTemplate);
-}
-
-if (request.getAttribute("alloy:paginator:pageReportEl") != null) {
-	scopedAttributes.put("pageReportEl", _pageReportEl);
-}
-
-if (request.getAttribute("alloy:paginator:pageReportLabelTemplate") != null) {
-	scopedAttributes.put("pageReportLabelTemplate", _pageReportLabelTemplate);
-}
-
-if (request.getAttribute("alloy:paginator:prevPageLink") != null) {
-	scopedAttributes.put("prevPageLink", _prevPageLink);
-}
-
-if (request.getAttribute("alloy:paginator:prevPageLinkLabel") != null) {
-	scopedAttributes.put("prevPageLinkLabel", _prevPageLinkLabel);
-}
-
-if (request.getAttribute("alloy:paginator:rowsPerPage") != null) {
-	scopedAttributes.put("rowsPerPage", _rowsPerPage);
-}
-
-if (request.getAttribute("alloy:paginator:rowsPerPageEl") != null) {
-	scopedAttributes.put("rowsPerPageEl", _rowsPerPageEl);
-}
-
-if (request.getAttribute("alloy:paginator:rowsPerPageOptions") != null) {
-	scopedAttributes.put("rowsPerPageOptions", _rowsPerPageOptions);
-}
-
-if (request.getAttribute("alloy:paginator:state") != null) {
-	scopedAttributes.put("state", _state);
-}
-
-if (request.getAttribute("alloy:paginator:template") != null) {
-	scopedAttributes.put("template", _template);
-}
-
-if (request.getAttribute("alloy:paginator:total") != null) {
-	scopedAttributes.put("total", _total);
-}
-
-if (request.getAttribute("alloy:paginator:totalEl") != null) {
-	scopedAttributes.put("totalEl", _totalEl);
-}
-
-if (request.getAttribute("alloy:paginator:totalLabel") != null) {
-	scopedAttributes.put("totalLabel", _totalLabel);
-}
-
-if (request.getAttribute("alloy:paginator:totalPages") != null) {
-	scopedAttributes.put("totalPages", _totalPages);
-}
-
-if (request.getAttribute("alloy:paginator:afterAlwaysVisibleChange") != null) {
-	scopedAttributes.put("afterAlwaysVisibleChange", _afterAlwaysVisibleChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterContainersChange") != null) {
-	scopedAttributes.put("afterContainersChange", _afterContainersChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:paginator:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterFirstPageLinkChange") != null) {
-	scopedAttributes.put("afterFirstPageLinkChange", _afterFirstPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterFirstPageLinkLabelChange") != null) {
-	scopedAttributes.put("afterFirstPageLinkLabelChange", _afterFirstPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:paginator:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterLastPageLinkChange") != null) {
-	scopedAttributes.put("afterLastPageLinkChange", _afterLastPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterLastPageLinkLabelChange") != null) {
-	scopedAttributes.put("afterLastPageLinkLabelChange", _afterLastPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterMaxPageLinksChange") != null) {
-	scopedAttributes.put("afterMaxPageLinksChange", _afterMaxPageLinksChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterNextPageLinkChange") != null) {
-	scopedAttributes.put("afterNextPageLinkChange", _afterNextPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterNextPageLinkLabelChange") != null) {
-	scopedAttributes.put("afterNextPageLinkLabelChange", _afterNextPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageChange") != null) {
-	scopedAttributes.put("afterPageChange", _afterPageChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageContainerTemplateChange") != null) {
-	scopedAttributes.put("afterPageContainerTemplateChange", _afterPageContainerTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageLinkContentChange") != null) {
-	scopedAttributes.put("afterPageLinkContentChange", _afterPageLinkContentChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageLinkTemplateChange") != null) {
-	scopedAttributes.put("afterPageLinkTemplateChange", _afterPageLinkTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageReportElChange") != null) {
-	scopedAttributes.put("afterPageReportElChange", _afterPageReportElChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPageReportLabelTemplateChange") != null) {
-	scopedAttributes.put("afterPageReportLabelTemplateChange", _afterPageReportLabelTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPrevPageLinkChange") != null) {
-	scopedAttributes.put("afterPrevPageLinkChange", _afterPrevPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterPrevPageLinkLabelChange") != null) {
-	scopedAttributes.put("afterPrevPageLinkLabelChange", _afterPrevPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterRowsPerPageChange") != null) {
-	scopedAttributes.put("afterRowsPerPageChange", _afterRowsPerPageChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterRowsPerPageElChange") != null) {
-	scopedAttributes.put("afterRowsPerPageElChange", _afterRowsPerPageElChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterRowsPerPageOptionsChange") != null) {
-	scopedAttributes.put("afterRowsPerPageOptionsChange", _afterRowsPerPageOptionsChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterStateChange") != null) {
-	scopedAttributes.put("afterStateChange", _afterStateChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterTemplateChange") != null) {
-	scopedAttributes.put("afterTemplateChange", _afterTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterTotalChange") != null) {
-	scopedAttributes.put("afterTotalChange", _afterTotalChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterTotalElChange") != null) {
-	scopedAttributes.put("afterTotalElChange", _afterTotalElChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterTotalLabelChange") != null) {
-	scopedAttributes.put("afterTotalLabelChange", _afterTotalLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:afterTotalPagesChange") != null) {
-	scopedAttributes.put("afterTotalPagesChange", _afterTotalPagesChange);
-}
-
-if (request.getAttribute("alloy:paginator:onAlwaysVisibleChange") != null) {
-	scopedAttributes.put("onAlwaysVisibleChange", _onAlwaysVisibleChange);
-}
-
-if (request.getAttribute("alloy:paginator:onContainersChange") != null) {
-	scopedAttributes.put("onContainersChange", _onContainersChange);
-}
-
-if (request.getAttribute("alloy:paginator:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:paginator:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:paginator:onFirstPageLinkChange") != null) {
-	scopedAttributes.put("onFirstPageLinkChange", _onFirstPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:onFirstPageLinkLabelChange") != null) {
-	scopedAttributes.put("onFirstPageLinkLabelChange", _onFirstPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:paginator:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:paginator:onLastPageLinkChange") != null) {
-	scopedAttributes.put("onLastPageLinkChange", _onLastPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:onLastPageLinkLabelChange") != null) {
-	scopedAttributes.put("onLastPageLinkLabelChange", _onLastPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:onMaxPageLinksChange") != null) {
-	scopedAttributes.put("onMaxPageLinksChange", _onMaxPageLinksChange);
-}
-
-if (request.getAttribute("alloy:paginator:onNextPageLinkChange") != null) {
-	scopedAttributes.put("onNextPageLinkChange", _onNextPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:onNextPageLinkLabelChange") != null) {
-	scopedAttributes.put("onNextPageLinkLabelChange", _onNextPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageChange") != null) {
-	scopedAttributes.put("onPageChange", _onPageChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageContainerTemplateChange") != null) {
-	scopedAttributes.put("onPageContainerTemplateChange", _onPageContainerTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageLinkContentChange") != null) {
-	scopedAttributes.put("onPageLinkContentChange", _onPageLinkContentChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageLinkTemplateChange") != null) {
-	scopedAttributes.put("onPageLinkTemplateChange", _onPageLinkTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageReportElChange") != null) {
-	scopedAttributes.put("onPageReportElChange", _onPageReportElChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPageReportLabelTemplateChange") != null) {
-	scopedAttributes.put("onPageReportLabelTemplateChange", _onPageReportLabelTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPrevPageLinkChange") != null) {
-	scopedAttributes.put("onPrevPageLinkChange", _onPrevPageLinkChange);
-}
-
-if (request.getAttribute("alloy:paginator:onPrevPageLinkLabelChange") != null) {
-	scopedAttributes.put("onPrevPageLinkLabelChange", _onPrevPageLinkLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:onRowsPerPageChange") != null) {
-	scopedAttributes.put("onRowsPerPageChange", _onRowsPerPageChange);
-}
-
-if (request.getAttribute("alloy:paginator:onRowsPerPageElChange") != null) {
-	scopedAttributes.put("onRowsPerPageElChange", _onRowsPerPageElChange);
-}
-
-if (request.getAttribute("alloy:paginator:onRowsPerPageOptionsChange") != null) {
-	scopedAttributes.put("onRowsPerPageOptionsChange", _onRowsPerPageOptionsChange);
-}
-
-if (request.getAttribute("alloy:paginator:onStateChange") != null) {
-	scopedAttributes.put("onStateChange", _onStateChange);
-}
-
-if (request.getAttribute("alloy:paginator:onTemplateChange") != null) {
-	scopedAttributes.put("onTemplateChange", _onTemplateChange);
-}
-
-if (request.getAttribute("alloy:paginator:onTotalChange") != null) {
-	scopedAttributes.put("onTotalChange", _onTotalChange);
-}
-
-if (request.getAttribute("alloy:paginator:onTotalElChange") != null) {
-	scopedAttributes.put("onTotalElChange", _onTotalElChange);
-}
-
-if (request.getAttribute("alloy:paginator:onTotalLabelChange") != null) {
-	scopedAttributes.put("onTotalLabelChange", _onTotalLabelChange);
-}
-
-if (request.getAttribute("alloy:paginator:onTotalPagesChange") != null) {
-	scopedAttributes.put("onTotalPagesChange", _onTotalPagesChange);
-}
-
+_updateOptions(options, "alwaysVisible", _alwaysVisible);
+_updateOptions(options, "containers", _containers);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "firstPageLink", _firstPageLink);
+_updateOptions(options, "firstPageLinkLabel", _firstPageLinkLabel);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "lastPageLink", _lastPageLink);
+_updateOptions(options, "lastPageLinkLabel", _lastPageLinkLabel);
+_updateOptions(options, "maxPageLinks", _maxPageLinks);
+_updateOptions(options, "nextPageLink", _nextPageLink);
+_updateOptions(options, "nextPageLinkLabel", _nextPageLinkLabel);
+_updateOptions(options, "page", _page);
+_updateOptions(options, "pageContainerTemplate", _pageContainerTemplate);
+_updateOptions(options, "pageLinkContent", _pageLinkContent);
+_updateOptions(options, "pageLinkTemplate", _pageLinkTemplate);
+_updateOptions(options, "pageReportEl", _pageReportEl);
+_updateOptions(options, "pageReportLabelTemplate", _pageReportLabelTemplate);
+_updateOptions(options, "prevPageLink", _prevPageLink);
+_updateOptions(options, "prevPageLinkLabel", _prevPageLinkLabel);
+_updateOptions(options, "rowsPerPage", _rowsPerPage);
+_updateOptions(options, "rowsPerPageEl", _rowsPerPageEl);
+_updateOptions(options, "rowsPerPageOptions", _rowsPerPageOptions);
+_updateOptions(options, "state", _state);
+_updateOptions(options, "template", _template);
+_updateOptions(options, "total", _total);
+_updateOptions(options, "totalEl", _totalEl);
+_updateOptions(options, "totalLabel", _totalLabel);
+_updateOptions(options, "totalPages", _totalPages);
+_updateOptions(options, "afterAlwaysVisibleChange", _afterAlwaysVisibleChange);
+_updateOptions(options, "afterContainersChange", _afterContainersChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterFirstPageLinkChange", _afterFirstPageLinkChange);
+_updateOptions(options, "afterFirstPageLinkLabelChange", _afterFirstPageLinkLabelChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterLastPageLinkChange", _afterLastPageLinkChange);
+_updateOptions(options, "afterLastPageLinkLabelChange", _afterLastPageLinkLabelChange);
+_updateOptions(options, "afterMaxPageLinksChange", _afterMaxPageLinksChange);
+_updateOptions(options, "afterNextPageLinkChange", _afterNextPageLinkChange);
+_updateOptions(options, "afterNextPageLinkLabelChange", _afterNextPageLinkLabelChange);
+_updateOptions(options, "afterPageChange", _afterPageChange);
+_updateOptions(options, "afterPageContainerTemplateChange", _afterPageContainerTemplateChange);
+_updateOptions(options, "afterPageLinkContentChange", _afterPageLinkContentChange);
+_updateOptions(options, "afterPageLinkTemplateChange", _afterPageLinkTemplateChange);
+_updateOptions(options, "afterPageReportElChange", _afterPageReportElChange);
+_updateOptions(options, "afterPageReportLabelTemplateChange", _afterPageReportLabelTemplateChange);
+_updateOptions(options, "afterPrevPageLinkChange", _afterPrevPageLinkChange);
+_updateOptions(options, "afterPrevPageLinkLabelChange", _afterPrevPageLinkLabelChange);
+_updateOptions(options, "afterRowsPerPageChange", _afterRowsPerPageChange);
+_updateOptions(options, "afterRowsPerPageElChange", _afterRowsPerPageElChange);
+_updateOptions(options, "afterRowsPerPageOptionsChange", _afterRowsPerPageOptionsChange);
+_updateOptions(options, "afterStateChange", _afterStateChange);
+_updateOptions(options, "afterTemplateChange", _afterTemplateChange);
+_updateOptions(options, "afterTotalChange", _afterTotalChange);
+_updateOptions(options, "afterTotalElChange", _afterTotalElChange);
+_updateOptions(options, "afterTotalLabelChange", _afterTotalLabelChange);
+_updateOptions(options, "afterTotalPagesChange", _afterTotalPagesChange);
+_updateOptions(options, "onAlwaysVisibleChange", _onAlwaysVisibleChange);
+_updateOptions(options, "onContainersChange", _onContainersChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onFirstPageLinkChange", _onFirstPageLinkChange);
+_updateOptions(options, "onFirstPageLinkLabelChange", _onFirstPageLinkLabelChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onLastPageLinkChange", _onLastPageLinkChange);
+_updateOptions(options, "onLastPageLinkLabelChange", _onLastPageLinkLabelChange);
+_updateOptions(options, "onMaxPageLinksChange", _onMaxPageLinksChange);
+_updateOptions(options, "onNextPageLinkChange", _onNextPageLinkChange);
+_updateOptions(options, "onNextPageLinkLabelChange", _onNextPageLinkLabelChange);
+_updateOptions(options, "onPageChange", _onPageChange);
+_updateOptions(options, "onPageContainerTemplateChange", _onPageContainerTemplateChange);
+_updateOptions(options, "onPageLinkContentChange", _onPageLinkContentChange);
+_updateOptions(options, "onPageLinkTemplateChange", _onPageLinkTemplateChange);
+_updateOptions(options, "onPageReportElChange", _onPageReportElChange);
+_updateOptions(options, "onPageReportLabelTemplateChange", _onPageReportLabelTemplateChange);
+_updateOptions(options, "onPrevPageLinkChange", _onPrevPageLinkChange);
+_updateOptions(options, "onPrevPageLinkLabelChange", _onPrevPageLinkLabelChange);
+_updateOptions(options, "onRowsPerPageChange", _onRowsPerPageChange);
+_updateOptions(options, "onRowsPerPageElChange", _onRowsPerPageElChange);
+_updateOptions(options, "onRowsPerPageOptionsChange", _onRowsPerPageOptionsChange);
+_updateOptions(options, "onStateChange", _onStateChange);
+_updateOptions(options, "onTemplateChange", _onTemplateChange);
+_updateOptions(options, "onTotalChange", _onTotalChange);
+_updateOptions(options, "onTotalElChange", _onTotalElChange);
+_updateOptions(options, "onTotalLabelChange", _onTotalLabelChange);
+_updateOptions(options, "onTotalPagesChange", _onTotalPagesChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:resize:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _activeHandle = (java.lang.Object)request.getAttribute("alloy:resize:activeHandle");
 java.lang.Object _activeHandleEl = (java.lang.Object)request.getAttribute("alloy:resize:activeHandleEl");
@@ -95,325 +94,114 @@ java.lang.Object _onTickYChange = (java.lang.Object)request.getAttribute("alloy:
 java.lang.Object _onWrapChange = (java.lang.Object)request.getAttribute("alloy:resize:onWrapChange");
 java.lang.Object _onWrapTypesChange = (java.lang.Object)request.getAttribute("alloy:resize:onWrapTypesChange");
 java.lang.Object _onWrapperChange = (java.lang.Object)request.getAttribute("alloy:resize:onWrapperChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:resize:activeHandle") != null) {
-	scopedAttributes.put("activeHandle", _activeHandle);
-}
-
-if (request.getAttribute("alloy:resize:activeHandleEl") != null) {
-	scopedAttributes.put("activeHandleEl", _activeHandleEl);
-}
-
-if (request.getAttribute("alloy:resize:autoHide") != null) {
-	scopedAttributes.put("autoHide", _autoHide);
-}
-
-if (request.getAttribute("alloy:resize:constrain") != null) {
-	scopedAttributes.put("constrain", _constrain);
-}
-
-if (request.getAttribute("alloy:resize:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:resize:handles") != null) {
-	scopedAttributes.put("handles", _handles);
-}
-
-if (request.getAttribute("alloy:resize:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:resize:maxHeight") != null) {
-	scopedAttributes.put("maxHeight", _maxHeight);
-}
-
-if (request.getAttribute("alloy:resize:maxWidth") != null) {
-	scopedAttributes.put("maxWidth", _maxWidth);
-}
-
-if (request.getAttribute("alloy:resize:minHeight") != null) {
-	scopedAttributes.put("minHeight", _minHeight);
-}
-
-if (request.getAttribute("alloy:resize:minWidth") != null) {
-	scopedAttributes.put("minWidth", _minWidth);
-}
-
-if (request.getAttribute("alloy:resize:node") != null) {
-	scopedAttributes.put("node", _node);
-}
-
-if (request.getAttribute("alloy:resize:preserveRatio") != null) {
-	scopedAttributes.put("preserveRatio", _preserveRatio);
-}
-
-if (request.getAttribute("alloy:resize:proxy") != null) {
-	scopedAttributes.put("proxy", _proxy);
-}
-
-if (request.getAttribute("alloy:resize:proxyEl") != null) {
-	scopedAttributes.put("proxyEl", _proxyEl);
-}
-
-if (request.getAttribute("alloy:resize:resizing") != null) {
-	scopedAttributes.put("resizing", _resizing);
-}
-
-if (request.getAttribute("alloy:resize:tickX") != null) {
-	scopedAttributes.put("tickX", _tickX);
-}
-
-if (request.getAttribute("alloy:resize:tickY") != null) {
-	scopedAttributes.put("tickY", _tickY);
-}
-
-if (request.getAttribute("alloy:resize:wrap") != null) {
-	scopedAttributes.put("wrap", _wrap);
-}
-
-if (request.getAttribute("alloy:resize:wrapTypes") != null) {
-	scopedAttributes.put("wrapTypes", _wrapTypes);
-}
-
-if (request.getAttribute("alloy:resize:wrapper") != null) {
-	scopedAttributes.put("wrapper", _wrapper);
-}
-
-if (request.getAttribute("alloy:resize:afterActiveHandleChange") != null) {
-	scopedAttributes.put("afterActiveHandleChange", _afterActiveHandleChange);
-}
-
-if (request.getAttribute("alloy:resize:afterActiveHandleElChange") != null) {
-	scopedAttributes.put("afterActiveHandleElChange", _afterActiveHandleElChange);
-}
-
-if (request.getAttribute("alloy:resize:afterAutoHideChange") != null) {
-	scopedAttributes.put("afterAutoHideChange", _afterAutoHideChange);
-}
-
-if (request.getAttribute("alloy:resize:afterConstrainChange") != null) {
-	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
-}
-
-if (request.getAttribute("alloy:resize:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:resize:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:resize:afterHandlesChange") != null) {
-	scopedAttributes.put("afterHandlesChange", _afterHandlesChange);
-}
-
-if (request.getAttribute("alloy:resize:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:resize:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:resize:afterMaxHeightChange") != null) {
-	scopedAttributes.put("afterMaxHeightChange", _afterMaxHeightChange);
-}
-
-if (request.getAttribute("alloy:resize:afterMaxWidthChange") != null) {
-	scopedAttributes.put("afterMaxWidthChange", _afterMaxWidthChange);
-}
-
-if (request.getAttribute("alloy:resize:afterMinHeightChange") != null) {
-	scopedAttributes.put("afterMinHeightChange", _afterMinHeightChange);
-}
-
-if (request.getAttribute("alloy:resize:afterMinWidthChange") != null) {
-	scopedAttributes.put("afterMinWidthChange", _afterMinWidthChange);
-}
-
-if (request.getAttribute("alloy:resize:afterNodeChange") != null) {
-	scopedAttributes.put("afterNodeChange", _afterNodeChange);
-}
-
-if (request.getAttribute("alloy:resize:afterPreserveRatioChange") != null) {
-	scopedAttributes.put("afterPreserveRatioChange", _afterPreserveRatioChange);
-}
-
-if (request.getAttribute("alloy:resize:afterProxyChange") != null) {
-	scopedAttributes.put("afterProxyChange", _afterProxyChange);
-}
-
-if (request.getAttribute("alloy:resize:afterProxyElChange") != null) {
-	scopedAttributes.put("afterProxyElChange", _afterProxyElChange);
-}
-
-if (request.getAttribute("alloy:resize:afterAlign") != null) {
-	scopedAttributes.put("afterAlign", _afterAlign);
-}
-
-if (request.getAttribute("alloy:resize:afterEnd") != null) {
-	scopedAttributes.put("afterEnd", _afterEnd);
-}
-
-if (request.getAttribute("alloy:resize:afterMouseUp") != null) {
-	scopedAttributes.put("afterMouseUp", _afterMouseUp);
-}
-
-if (request.getAttribute("alloy:resize:afterResize") != null) {
-	scopedAttributes.put("afterResize", _afterResize);
-}
-
-if (request.getAttribute("alloy:resize:afterStart") != null) {
-	scopedAttributes.put("afterStart", _afterStart);
-}
-
-if (request.getAttribute("alloy:resize:afterResizingChange") != null) {
-	scopedAttributes.put("afterResizingChange", _afterResizingChange);
-}
-
-if (request.getAttribute("alloy:resize:afterTickXChange") != null) {
-	scopedAttributes.put("afterTickXChange", _afterTickXChange);
-}
-
-if (request.getAttribute("alloy:resize:afterTickYChange") != null) {
-	scopedAttributes.put("afterTickYChange", _afterTickYChange);
-}
-
-if (request.getAttribute("alloy:resize:afterWrapChange") != null) {
-	scopedAttributes.put("afterWrapChange", _afterWrapChange);
-}
-
-if (request.getAttribute("alloy:resize:afterWrapTypesChange") != null) {
-	scopedAttributes.put("afterWrapTypesChange", _afterWrapTypesChange);
-}
-
-if (request.getAttribute("alloy:resize:afterWrapperChange") != null) {
-	scopedAttributes.put("afterWrapperChange", _afterWrapperChange);
-}
-
-if (request.getAttribute("alloy:resize:onActiveHandleChange") != null) {
-	scopedAttributes.put("onActiveHandleChange", _onActiveHandleChange);
-}
-
-if (request.getAttribute("alloy:resize:onActiveHandleElChange") != null) {
-	scopedAttributes.put("onActiveHandleElChange", _onActiveHandleElChange);
-}
-
-if (request.getAttribute("alloy:resize:onAutoHideChange") != null) {
-	scopedAttributes.put("onAutoHideChange", _onAutoHideChange);
-}
-
-if (request.getAttribute("alloy:resize:onConstrainChange") != null) {
-	scopedAttributes.put("onConstrainChange", _onConstrainChange);
-}
-
-if (request.getAttribute("alloy:resize:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:resize:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:resize:onHandlesChange") != null) {
-	scopedAttributes.put("onHandlesChange", _onHandlesChange);
-}
-
-if (request.getAttribute("alloy:resize:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:resize:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:resize:onMaxHeightChange") != null) {
-	scopedAttributes.put("onMaxHeightChange", _onMaxHeightChange);
-}
-
-if (request.getAttribute("alloy:resize:onMaxWidthChange") != null) {
-	scopedAttributes.put("onMaxWidthChange", _onMaxWidthChange);
-}
-
-if (request.getAttribute("alloy:resize:onMinHeightChange") != null) {
-	scopedAttributes.put("onMinHeightChange", _onMinHeightChange);
-}
-
-if (request.getAttribute("alloy:resize:onMinWidthChange") != null) {
-	scopedAttributes.put("onMinWidthChange", _onMinWidthChange);
-}
-
-if (request.getAttribute("alloy:resize:onNodeChange") != null) {
-	scopedAttributes.put("onNodeChange", _onNodeChange);
-}
-
-if (request.getAttribute("alloy:resize:onPreserveRatioChange") != null) {
-	scopedAttributes.put("onPreserveRatioChange", _onPreserveRatioChange);
-}
-
-if (request.getAttribute("alloy:resize:onProxyChange") != null) {
-	scopedAttributes.put("onProxyChange", _onProxyChange);
-}
-
-if (request.getAttribute("alloy:resize:onProxyElChange") != null) {
-	scopedAttributes.put("onProxyElChange", _onProxyElChange);
-}
-
-if (request.getAttribute("alloy:resize:onAlign") != null) {
-	scopedAttributes.put("onAlign", _onAlign);
-}
-
-if (request.getAttribute("alloy:resize:onEnd") != null) {
-	scopedAttributes.put("onEnd", _onEnd);
-}
-
-if (request.getAttribute("alloy:resize:onMouseUp") != null) {
-	scopedAttributes.put("onMouseUp", _onMouseUp);
-}
-
-if (request.getAttribute("alloy:resize:onResize") != null) {
-	scopedAttributes.put("onResize", _onResize);
-}
-
-if (request.getAttribute("alloy:resize:onStart") != null) {
-	scopedAttributes.put("onStart", _onStart);
-}
-
-if (request.getAttribute("alloy:resize:onResizingChange") != null) {
-	scopedAttributes.put("onResizingChange", _onResizingChange);
-}
-
-if (request.getAttribute("alloy:resize:onTickXChange") != null) {
-	scopedAttributes.put("onTickXChange", _onTickXChange);
-}
-
-if (request.getAttribute("alloy:resize:onTickYChange") != null) {
-	scopedAttributes.put("onTickYChange", _onTickYChange);
-}
-
-if (request.getAttribute("alloy:resize:onWrapChange") != null) {
-	scopedAttributes.put("onWrapChange", _onWrapChange);
-}
-
-if (request.getAttribute("alloy:resize:onWrapTypesChange") != null) {
-	scopedAttributes.put("onWrapTypesChange", _onWrapTypesChange);
-}
-
-if (request.getAttribute("alloy:resize:onWrapperChange") != null) {
-	scopedAttributes.put("onWrapperChange", _onWrapperChange);
-}
-
+_updateOptions(options, "activeHandle", _activeHandle);
+_updateOptions(options, "activeHandleEl", _activeHandleEl);
+_updateOptions(options, "autoHide", _autoHide);
+_updateOptions(options, "constrain", _constrain);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "handles", _handles);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "maxHeight", _maxHeight);
+_updateOptions(options, "maxWidth", _maxWidth);
+_updateOptions(options, "minHeight", _minHeight);
+_updateOptions(options, "minWidth", _minWidth);
+_updateOptions(options, "node", _node);
+_updateOptions(options, "preserveRatio", _preserveRatio);
+_updateOptions(options, "proxy", _proxy);
+_updateOptions(options, "proxyEl", _proxyEl);
+_updateOptions(options, "resizing", _resizing);
+_updateOptions(options, "tickX", _tickX);
+_updateOptions(options, "tickY", _tickY);
+_updateOptions(options, "wrap", _wrap);
+_updateOptions(options, "wrapTypes", _wrapTypes);
+_updateOptions(options, "wrapper", _wrapper);
+_updateOptions(options, "afterActiveHandleChange", _afterActiveHandleChange);
+_updateOptions(options, "afterActiveHandleElChange", _afterActiveHandleElChange);
+_updateOptions(options, "afterAutoHideChange", _afterAutoHideChange);
+_updateOptions(options, "afterConstrainChange", _afterConstrainChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterHandlesChange", _afterHandlesChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterMaxHeightChange", _afterMaxHeightChange);
+_updateOptions(options, "afterMaxWidthChange", _afterMaxWidthChange);
+_updateOptions(options, "afterMinHeightChange", _afterMinHeightChange);
+_updateOptions(options, "afterMinWidthChange", _afterMinWidthChange);
+_updateOptions(options, "afterNodeChange", _afterNodeChange);
+_updateOptions(options, "afterPreserveRatioChange", _afterPreserveRatioChange);
+_updateOptions(options, "afterProxyChange", _afterProxyChange);
+_updateOptions(options, "afterProxyElChange", _afterProxyElChange);
+_updateOptions(options, "afterAlign", _afterAlign);
+_updateOptions(options, "afterEnd", _afterEnd);
+_updateOptions(options, "afterMouseUp", _afterMouseUp);
+_updateOptions(options, "afterResize", _afterResize);
+_updateOptions(options, "afterStart", _afterStart);
+_updateOptions(options, "afterResizingChange", _afterResizingChange);
+_updateOptions(options, "afterTickXChange", _afterTickXChange);
+_updateOptions(options, "afterTickYChange", _afterTickYChange);
+_updateOptions(options, "afterWrapChange", _afterWrapChange);
+_updateOptions(options, "afterWrapTypesChange", _afterWrapTypesChange);
+_updateOptions(options, "afterWrapperChange", _afterWrapperChange);
+_updateOptions(options, "onActiveHandleChange", _onActiveHandleChange);
+_updateOptions(options, "onActiveHandleElChange", _onActiveHandleElChange);
+_updateOptions(options, "onAutoHideChange", _onAutoHideChange);
+_updateOptions(options, "onConstrainChange", _onConstrainChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onHandlesChange", _onHandlesChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onMaxHeightChange", _onMaxHeightChange);
+_updateOptions(options, "onMaxWidthChange", _onMaxWidthChange);
+_updateOptions(options, "onMinHeightChange", _onMinHeightChange);
+_updateOptions(options, "onMinWidthChange", _onMinWidthChange);
+_updateOptions(options, "onNodeChange", _onNodeChange);
+_updateOptions(options, "onPreserveRatioChange", _onPreserveRatioChange);
+_updateOptions(options, "onProxyChange", _onProxyChange);
+_updateOptions(options, "onProxyElChange", _onProxyElChange);
+_updateOptions(options, "onAlign", _onAlign);
+_updateOptions(options, "onEnd", _onEnd);
+_updateOptions(options, "onMouseUp", _onMouseUp);
+_updateOptions(options, "onResize", _onResize);
+_updateOptions(options, "onStart", _onStart);
+_updateOptions(options, "onResizingChange", _onResizingChange);
+_updateOptions(options, "onTickXChange", _onTickXChange);
+_updateOptions(options, "onTickYChange", _onTickYChange);
+_updateOptions(options, "onWrapChange", _onWrapChange);
+_updateOptions(options, "onWrapTypesChange", _onWrapTypesChange);
+_updateOptions(options, "onWrapperChange", _onWrapperChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

@@ -4,23 +4,20 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:editable:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:editable:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:editable:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:editable:boundingBox");
 java.lang.Object _cancelButton = (java.lang.Object)request.getAttribute("alloy:editable:cancelButton");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:editable:contentBox");
 java.lang.Object _contentText = (java.lang.Object)request.getAttribute("alloy:editable:contentText");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:editable:cssClass");
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:destroyed"), false);
@@ -40,7 +37,6 @@ java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getA
 java.lang.Object _renderTo = (java.lang.Object)request.getAttribute("alloy:editable:renderTo");
 java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:rendered"), false);
 java.lang.Object _saveButton = (java.lang.Object)request.getAttribute("alloy:editable:saveButton");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:editable:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:editable:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:editable:tabIndex"), 0);
 java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:editable:visible"), true);
@@ -115,405 +111,134 @@ java.lang.Object _onVisibleChange = (java.lang.Object)request.getAttribute("allo
 java.lang.Object _onContentUpdate = (java.lang.Object)request.getAttribute("alloy:editable:onContentUpdate");
 java.lang.Object _onRender = (java.lang.Object)request.getAttribute("alloy:editable:onRender");
 java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:editable:onWidthChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:editable:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:editable:cancelButton") != null) {
-	scopedAttributes.put("cancelButton", _cancelButton);
-}
-
-if (request.getAttribute("alloy:editable:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:editable:contentText") != null) {
-	scopedAttributes.put("contentText", _contentText);
-}
-
-if (request.getAttribute("alloy:editable:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:editable:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:editable:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:editable:eventType") != null) {
-	scopedAttributes.put("eventType", _eventType);
-}
-
-if (request.getAttribute("alloy:editable:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:editable:formatInput") != null) {
-	scopedAttributes.put("formatInput", _formatInput);
-}
-
-if (request.getAttribute("alloy:editable:formatOutput") != null) {
-	scopedAttributes.put("formatOutput", _formatOutput);
-}
-
-if (request.getAttribute("alloy:editable:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:editable:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:editable:icons") != null) {
-	scopedAttributes.put("icons", _icons);
-}
-
-if (request.getAttribute("alloy:editable:editableId") != null) {
-	scopedAttributes.put("editableId", _editableId);
-}
-
-if (request.getAttribute("alloy:editable:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:editable:inputType") != null) {
-	scopedAttributes.put("inputType", _inputType);
-}
-
-if (request.getAttribute("alloy:editable:node") != null) {
-	scopedAttributes.put("node", _node);
-}
-
-if (request.getAttribute("alloy:editable:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:editable:renderTo") != null) {
-	scopedAttributes.put("renderTo", _renderTo);
-}
-
-if (request.getAttribute("alloy:editable:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:editable:saveButton") != null) {
-	scopedAttributes.put("saveButton", _saveButton);
-}
-
-if (request.getAttribute("alloy:editable:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:editable:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:editable:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:editable:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:editable:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:editable:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:editable:afterCancel") != null) {
-	scopedAttributes.put("afterCancel", _afterCancel);
-}
-
-if (request.getAttribute("alloy:editable:afterCancelButtonChange") != null) {
-	scopedAttributes.put("afterCancelButtonChange", _afterCancelButtonChange);
-}
-
-if (request.getAttribute("alloy:editable:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:editable:afterContentTextChange") != null) {
-	scopedAttributes.put("afterContentTextChange", _afterContentTextChange);
-}
-
-if (request.getAttribute("alloy:editable:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:editable:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:editable:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:editable:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:editable:afterEventTypeChange") != null) {
-	scopedAttributes.put("afterEventTypeChange", _afterEventTypeChange);
-}
-
-if (request.getAttribute("alloy:editable:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:editable:afterFormatInputChange") != null) {
-	scopedAttributes.put("afterFormatInputChange", _afterFormatInputChange);
-}
-
-if (request.getAttribute("alloy:editable:afterFormatOutputChange") != null) {
-	scopedAttributes.put("afterFormatOutputChange", _afterFormatOutputChange);
-}
-
-if (request.getAttribute("alloy:editable:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:editable:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:editable:afterIconsChange") != null) {
-	scopedAttributes.put("afterIconsChange", _afterIconsChange);
-}
-
-if (request.getAttribute("alloy:editable:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:editable:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:editable:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:editable:afterInputTypeChange") != null) {
-	scopedAttributes.put("afterInputTypeChange", _afterInputTypeChange);
-}
-
-if (request.getAttribute("alloy:editable:afterNodeChange") != null) {
-	scopedAttributes.put("afterNodeChange", _afterNodeChange);
-}
-
-if (request.getAttribute("alloy:editable:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:editable:afterRenderToChange") != null) {
-	scopedAttributes.put("afterRenderToChange", _afterRenderToChange);
-}
-
-if (request.getAttribute("alloy:editable:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:editable:afterSave") != null) {
-	scopedAttributes.put("afterSave", _afterSave);
-}
-
-if (request.getAttribute("alloy:editable:afterSaveButtonChange") != null) {
-	scopedAttributes.put("afterSaveButtonChange", _afterSaveButtonChange);
-}
-
-if (request.getAttribute("alloy:editable:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:editable:afterStartEditing") != null) {
-	scopedAttributes.put("afterStartEditing", _afterStartEditing);
-}
-
-if (request.getAttribute("alloy:editable:afterStopEditing") != null) {
-	scopedAttributes.put("afterStopEditing", _afterStopEditing);
-}
-
-if (request.getAttribute("alloy:editable:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:editable:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:editable:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:editable:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:editable:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:editable:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:editable:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:editable:onCancel") != null) {
-	scopedAttributes.put("onCancel", _onCancel);
-}
-
-if (request.getAttribute("alloy:editable:onCancelButtonChange") != null) {
-	scopedAttributes.put("onCancelButtonChange", _onCancelButtonChange);
-}
-
-if (request.getAttribute("alloy:editable:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:editable:onContentTextChange") != null) {
-	scopedAttributes.put("onContentTextChange", _onContentTextChange);
-}
-
-if (request.getAttribute("alloy:editable:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:editable:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:editable:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:editable:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:editable:onEventTypeChange") != null) {
-	scopedAttributes.put("onEventTypeChange", _onEventTypeChange);
-}
-
-if (request.getAttribute("alloy:editable:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:editable:onFormatInputChange") != null) {
-	scopedAttributes.put("onFormatInputChange", _onFormatInputChange);
-}
-
-if (request.getAttribute("alloy:editable:onFormatOutputChange") != null) {
-	scopedAttributes.put("onFormatOutputChange", _onFormatOutputChange);
-}
-
-if (request.getAttribute("alloy:editable:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:editable:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:editable:onIconsChange") != null) {
-	scopedAttributes.put("onIconsChange", _onIconsChange);
-}
-
-if (request.getAttribute("alloy:editable:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:editable:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:editable:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:editable:onInputTypeChange") != null) {
-	scopedAttributes.put("onInputTypeChange", _onInputTypeChange);
-}
-
-if (request.getAttribute("alloy:editable:onNodeChange") != null) {
-	scopedAttributes.put("onNodeChange", _onNodeChange);
-}
-
-if (request.getAttribute("alloy:editable:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:editable:onRenderToChange") != null) {
-	scopedAttributes.put("onRenderToChange", _onRenderToChange);
-}
-
-if (request.getAttribute("alloy:editable:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:editable:onSave") != null) {
-	scopedAttributes.put("onSave", _onSave);
-}
-
-if (request.getAttribute("alloy:editable:onSaveButtonChange") != null) {
-	scopedAttributes.put("onSaveButtonChange", _onSaveButtonChange);
-}
-
-if (request.getAttribute("alloy:editable:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:editable:onStartEditing") != null) {
-	scopedAttributes.put("onStartEditing", _onStartEditing);
-}
-
-if (request.getAttribute("alloy:editable:onStopEditing") != null) {
-	scopedAttributes.put("onStopEditing", _onStopEditing);
-}
-
-if (request.getAttribute("alloy:editable:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:editable:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:editable:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:editable:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:editable:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:editable:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "cancelButton", _cancelButton);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "contentText", _contentText);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "eventType", _eventType);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "formatInput", _formatInput);
+_updateOptions(options, "formatOutput", _formatOutput);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "icons", _icons);
+_updateOptions(options, "editableId", _editableId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "inputType", _inputType);
+_updateOptions(options, "node", _node);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "renderTo", _renderTo);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "saveButton", _saveButton);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterCancel", _afterCancel);
+_updateOptions(options, "afterCancelButtonChange", _afterCancelButtonChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterContentTextChange", _afterContentTextChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterEventTypeChange", _afterEventTypeChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterFormatInputChange", _afterFormatInputChange);
+_updateOptions(options, "afterFormatOutputChange", _afterFormatOutputChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIconsChange", _afterIconsChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterInputTypeChange", _afterInputTypeChange);
+_updateOptions(options, "afterNodeChange", _afterNodeChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderToChange", _afterRenderToChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSave", _afterSave);
+_updateOptions(options, "afterSaveButtonChange", _afterSaveButtonChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStartEditing", _afterStartEditing);
+_updateOptions(options, "afterStopEditing", _afterStopEditing);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onCancel", _onCancel);
+_updateOptions(options, "onCancelButtonChange", _onCancelButtonChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onContentTextChange", _onContentTextChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onEventTypeChange", _onEventTypeChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onFormatInputChange", _onFormatInputChange);
+_updateOptions(options, "onFormatOutputChange", _onFormatOutputChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIconsChange", _onIconsChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onInputTypeChange", _onInputTypeChange);
+_updateOptions(options, "onNodeChange", _onNodeChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderToChange", _onRenderToChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSave", _onSave);
+_updateOptions(options, "onSaveButtonChange", _onSaveButtonChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStartEditing", _onStartEditing);
+_updateOptions(options, "onStopEditing", _onStopEditing);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

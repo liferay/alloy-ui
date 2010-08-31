@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:live-search:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _data = (java.lang.Object)request.getAttribute("alloy:live-search:data");
 java.lang.Number _delay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:live-search:delay"), 250);
@@ -52,153 +51,71 @@ java.lang.Object _onInputChange = (java.lang.Object)request.getAttribute("alloy:
 java.lang.Object _onMatchRegexChange = (java.lang.Object)request.getAttribute("alloy:live-search:onMatchRegexChange");
 java.lang.Object _onNodesChange = (java.lang.Object)request.getAttribute("alloy:live-search:onNodesChange");
 java.lang.Object _onShowChange = (java.lang.Object)request.getAttribute("alloy:live-search:onShowChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:live-search:data") != null) {
-	scopedAttributes.put("data", _data);
-}
-
-if (request.getAttribute("alloy:live-search:delay") != null) {
-	scopedAttributes.put("delay", _delay);
-}
-
-if (request.getAttribute("alloy:live-search:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:live-search:hide") != null) {
-	scopedAttributes.put("hide", _hide);
-}
-
-if (request.getAttribute("alloy:live-search:index") != null) {
-	scopedAttributes.put("index", _index);
-}
-
-if (request.getAttribute("alloy:live-search:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:live-search:input") != null) {
-	scopedAttributes.put("input", _input);
-}
-
-if (request.getAttribute("alloy:live-search:matchRegex") != null) {
-	scopedAttributes.put("matchRegex", _matchRegex);
-}
-
-if (request.getAttribute("alloy:live-search:nodes") != null) {
-	scopedAttributes.put("nodes", _nodes);
-}
-
-if (request.getAttribute("alloy:live-search:show") != null) {
-	scopedAttributes.put("show", _show);
-}
-
-if (request.getAttribute("alloy:live-search:afterDataChange") != null) {
-	scopedAttributes.put("afterDataChange", _afterDataChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterDelayChange") != null) {
-	scopedAttributes.put("afterDelayChange", _afterDelayChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:live-search:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterHideChange") != null) {
-	scopedAttributes.put("afterHideChange", _afterHideChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterIndexChange") != null) {
-	scopedAttributes.put("afterIndexChange", _afterIndexChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:live-search:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterInputChange") != null) {
-	scopedAttributes.put("afterInputChange", _afterInputChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterMatchRegexChange") != null) {
-	scopedAttributes.put("afterMatchRegexChange", _afterMatchRegexChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterNodesChange") != null) {
-	scopedAttributes.put("afterNodesChange", _afterNodesChange);
-}
-
-if (request.getAttribute("alloy:live-search:afterShowChange") != null) {
-	scopedAttributes.put("afterShowChange", _afterShowChange);
-}
-
-if (request.getAttribute("alloy:live-search:onDataChange") != null) {
-	scopedAttributes.put("onDataChange", _onDataChange);
-}
-
-if (request.getAttribute("alloy:live-search:onDelayChange") != null) {
-	scopedAttributes.put("onDelayChange", _onDelayChange);
-}
-
-if (request.getAttribute("alloy:live-search:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:live-search:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:live-search:onHideChange") != null) {
-	scopedAttributes.put("onHideChange", _onHideChange);
-}
-
-if (request.getAttribute("alloy:live-search:onIndexChange") != null) {
-	scopedAttributes.put("onIndexChange", _onIndexChange);
-}
-
-if (request.getAttribute("alloy:live-search:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:live-search:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:live-search:onInputChange") != null) {
-	scopedAttributes.put("onInputChange", _onInputChange);
-}
-
-if (request.getAttribute("alloy:live-search:onMatchRegexChange") != null) {
-	scopedAttributes.put("onMatchRegexChange", _onMatchRegexChange);
-}
-
-if (request.getAttribute("alloy:live-search:onNodesChange") != null) {
-	scopedAttributes.put("onNodesChange", _onNodesChange);
-}
-
-if (request.getAttribute("alloy:live-search:onShowChange") != null) {
-	scopedAttributes.put("onShowChange", _onShowChange);
-}
-
+_updateOptions(options, "data", _data);
+_updateOptions(options, "delay", _delay);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "hide", _hide);
+_updateOptions(options, "index", _index);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "input", _input);
+_updateOptions(options, "matchRegex", _matchRegex);
+_updateOptions(options, "nodes", _nodes);
+_updateOptions(options, "show", _show);
+_updateOptions(options, "afterDataChange", _afterDataChange);
+_updateOptions(options, "afterDelayChange", _afterDelayChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterHideChange", _afterHideChange);
+_updateOptions(options, "afterIndexChange", _afterIndexChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterInputChange", _afterInputChange);
+_updateOptions(options, "afterMatchRegexChange", _afterMatchRegexChange);
+_updateOptions(options, "afterNodesChange", _afterNodesChange);
+_updateOptions(options, "afterShowChange", _afterShowChange);
+_updateOptions(options, "onDataChange", _onDataChange);
+_updateOptions(options, "onDelayChange", _onDelayChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onHideChange", _onHideChange);
+_updateOptions(options, "onIndexChange", _onIndexChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onInputChange", _onInputChange);
+_updateOptions(options, "onMatchRegexChange", _onMatchRegexChange);
+_updateOptions(options, "onNodesChange", _onNodesChange);
+_updateOptions(options, "onShowChange", _onShowChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

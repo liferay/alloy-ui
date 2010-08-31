@@ -4,24 +4,21 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:button-item:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:activeState"), false);
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:button-item:boundingBox");
 java.lang.Object _classNames = (java.lang.Object)request.getAttribute("alloy:button-item:classNames");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:button-item:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:button-item:cssClass");
 java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:defaultState"), true);
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:destroyed"), false);
@@ -39,7 +36,6 @@ java.lang.Object _label = (java.lang.Object)request.getAttribute("alloy:button-i
 java.lang.Object _labelNode = (java.lang.Object)request.getAttribute("alloy:button-item:labelNode");
 java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:render"), false);
 java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:button-item:rendered"), false);
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:button-item:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:button-item:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:button-item:tabIndex"), 0);
 java.lang.Object _title = (java.lang.Object)request.getAttribute("alloy:button-item:title");
@@ -107,373 +103,126 @@ java.lang.Object _onVisibleChange = (java.lang.Object)request.getAttribute("allo
 java.lang.Object _onContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:onContentUpdate");
 java.lang.Object _onRender = (java.lang.Object)request.getAttribute("alloy:button-item:onRender");
 java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:button-item:onWidthChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:button-item:activeState") != null) {
-	scopedAttributes.put("activeState", _activeState);
-}
-
-if (request.getAttribute("alloy:button-item:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:button-item:classNames") != null) {
-	scopedAttributes.put("classNames", _classNames);
-}
-
-if (request.getAttribute("alloy:button-item:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:button-item:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:button-item:defaultState") != null) {
-	scopedAttributes.put("defaultState", _defaultState);
-}
-
-if (request.getAttribute("alloy:button-item:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:button-item:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:button-item:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:button-item:handler") != null) {
-	scopedAttributes.put("handler", _handler);
-}
-
-if (request.getAttribute("alloy:button-item:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:button-item:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:button-item:hoverState") != null) {
-	scopedAttributes.put("hoverState", _hoverState);
-}
-
-if (request.getAttribute("alloy:button-item:icon") != null) {
-	scopedAttributes.put("icon", _icon);
-}
-
-if (request.getAttribute("alloy:button-item:iconNode") != null) {
-	scopedAttributes.put("iconNode", _iconNode);
-}
-
-if (request.getAttribute("alloy:button-item:buttonitemId") != null) {
-	scopedAttributes.put("buttonitemId", _buttonitemId);
-}
-
-if (request.getAttribute("alloy:button-item:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:button-item:label") != null) {
-	scopedAttributes.put("label", _label);
-}
-
-if (request.getAttribute("alloy:button-item:labelNode") != null) {
-	scopedAttributes.put("labelNode", _labelNode);
-}
-
-if (request.getAttribute("alloy:button-item:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:button-item:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:button-item:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:button-item:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:button-item:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:button-item:title") != null) {
-	scopedAttributes.put("title", _title);
-}
-
-if (request.getAttribute("alloy:button-item:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:button-item:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:button-item:afterActiveStateChange") != null) {
-	scopedAttributes.put("afterActiveStateChange", _afterActiveStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterClassNamesChange") != null) {
-	scopedAttributes.put("afterClassNamesChange", _afterClassNamesChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterDefaultStateChange") != null) {
-	scopedAttributes.put("afterDefaultStateChange", _afterDefaultStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:button-item:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterHandlerChange") != null) {
-	scopedAttributes.put("afterHandlerChange", _afterHandlerChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterHoverStateChange") != null) {
-	scopedAttributes.put("afterHoverStateChange", _afterHoverStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterIconChange") != null) {
-	scopedAttributes.put("afterIconChange", _afterIconChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterIconNodeChange") != null) {
-	scopedAttributes.put("afterIconNodeChange", _afterIconNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:button-item:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterLabelChange") != null) {
-	scopedAttributes.put("afterLabelChange", _afterLabelChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterLabelNodeChange") != null) {
-	scopedAttributes.put("afterLabelNodeChange", _afterLabelNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterTitleChange") != null) {
-	scopedAttributes.put("afterTitleChange", _afterTitleChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:button-item:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:button-item:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:button-item:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:button-item:onActiveStateChange") != null) {
-	scopedAttributes.put("onActiveStateChange", _onActiveStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:button-item:onClassNamesChange") != null) {
-	scopedAttributes.put("onClassNamesChange", _onClassNamesChange);
-}
-
-if (request.getAttribute("alloy:button-item:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:button-item:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:button-item:onDefaultStateChange") != null) {
-	scopedAttributes.put("onDefaultStateChange", _onDefaultStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:button-item:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:button-item:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:button-item:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:button-item:onHandlerChange") != null) {
-	scopedAttributes.put("onHandlerChange", _onHandlerChange);
-}
-
-if (request.getAttribute("alloy:button-item:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:button-item:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:button-item:onHoverStateChange") != null) {
-	scopedAttributes.put("onHoverStateChange", _onHoverStateChange);
-}
-
-if (request.getAttribute("alloy:button-item:onIconChange") != null) {
-	scopedAttributes.put("onIconChange", _onIconChange);
-}
-
-if (request.getAttribute("alloy:button-item:onIconNodeChange") != null) {
-	scopedAttributes.put("onIconNodeChange", _onIconNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:button-item:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:button-item:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:button-item:onLabelChange") != null) {
-	scopedAttributes.put("onLabelChange", _onLabelChange);
-}
-
-if (request.getAttribute("alloy:button-item:onLabelNodeChange") != null) {
-	scopedAttributes.put("onLabelNodeChange", _onLabelNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:button-item:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:button-item:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:button-item:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:button-item:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:button-item:onTitleChange") != null) {
-	scopedAttributes.put("onTitleChange", _onTitleChange);
-}
-
-if (request.getAttribute("alloy:button-item:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:button-item:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:button-item:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:button-item:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
+_updateOptions(options, "activeState", _activeState);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "classNames", _classNames);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "defaultState", _defaultState);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "handler", _handler);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "hoverState", _hoverState);
+_updateOptions(options, "icon", _icon);
+_updateOptions(options, "iconNode", _iconNode);
+_updateOptions(options, "buttonitemId", _buttonitemId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "label", _label);
+_updateOptions(options, "labelNode", _labelNode);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "title", _title);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "afterActiveStateChange", _afterActiveStateChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterClassNamesChange", _afterClassNamesChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDefaultStateChange", _afterDefaultStateChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterHandlerChange", _afterHandlerChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterHoverStateChange", _afterHoverStateChange);
+_updateOptions(options, "afterIconChange", _afterIconChange);
+_updateOptions(options, "afterIconNodeChange", _afterIconNodeChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterLabelChange", _afterLabelChange);
+_updateOptions(options, "afterLabelNodeChange", _afterLabelNodeChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTitleChange", _afterTitleChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "onActiveStateChange", _onActiveStateChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onClassNamesChange", _onClassNamesChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDefaultStateChange", _onDefaultStateChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onHandlerChange", _onHandlerChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onHoverStateChange", _onHoverStateChange);
+_updateOptions(options, "onIconChange", _onIconChange);
+_updateOptions(options, "onIconNodeChange", _onIconNodeChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onLabelChange", _onLabelChange);
+_updateOptions(options, "onLabelNodeChange", _onLabelNodeChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTitleChange", _onTitleChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

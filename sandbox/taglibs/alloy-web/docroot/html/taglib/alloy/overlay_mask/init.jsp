@@ -4,28 +4,25 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-mask:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-mask:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:overlay-mask:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:overlay-mask:align");
 java.lang.Object _alignPoints = (java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints");
 java.lang.Object _background = (java.lang.Object)request.getAttribute("alloy:overlay-mask:background");
 java.lang.Object _overlaymaskBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent");
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:overlay-mask:boundingBox");
 java.lang.Object _centered = (java.lang.Object)request.getAttribute("alloy:overlay-mask:centered");
 java.lang.Object _constrain = (java.lang.Object)request.getAttribute("alloy:overlay-mask:constrain");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:overlay-mask:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:overlay-mask:cssClass");
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:destroyed"), false);
 java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:disabled"), false);
@@ -42,7 +39,6 @@ java.lang.Boolean _preventOverlap = GetterUtil.getBoolean((java.lang.String)requ
 java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:render"), false);
 java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:rendered"), false);
 java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:overlay-mask:shim"), false);
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:overlay-mask:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:overlay-mask:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:overlay-mask:tabIndex"), 0);
 java.lang.Object _target = (java.lang.Object)request.getAttribute("alloy:overlay-mask:target");
@@ -128,457 +124,147 @@ java.lang.Object _onXChange = (java.lang.Object)request.getAttribute("alloy:over
 java.lang.Object _onXyChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onXyChange");
 java.lang.Object _onYChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onYChange");
 java.lang.Object _onZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onZIndexChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:overlay-mask:align") != null) {
-	scopedAttributes.put("align", _align);
-}
-
-if (request.getAttribute("alloy:overlay-mask:alignPoints") != null) {
-	scopedAttributes.put("alignPoints", _alignPoints);
-}
-
-if (request.getAttribute("alloy:overlay-mask:background") != null) {
-	scopedAttributes.put("background", _background);
-}
-
-if (request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent") != null) {
-	scopedAttributes.put("overlaymaskBodyContent", _overlaymaskBodyContent);
-}
-
-if (request.getAttribute("alloy:overlay-mask:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:overlay-mask:centered") != null) {
-	scopedAttributes.put("centered", _centered);
-}
-
-if (request.getAttribute("alloy:overlay-mask:constrain") != null) {
-	scopedAttributes.put("constrain", _constrain);
-}
-
-if (request.getAttribute("alloy:overlay-mask:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:overlay-mask:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:overlay-mask:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:overlay-mask:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:overlay-mask:fillHeight") != null) {
-	scopedAttributes.put("fillHeight", _fillHeight);
-}
-
-if (request.getAttribute("alloy:overlay-mask:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:overlay-mask:footerContent") != null) {
-	scopedAttributes.put("footerContent", _footerContent);
-}
-
-if (request.getAttribute("alloy:overlay-mask:headerContent") != null) {
-	scopedAttributes.put("headerContent", _headerContent);
-}
-
-if (request.getAttribute("alloy:overlay-mask:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:overlay-mask:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:overlay-mask:overlaymaskId") != null) {
-	scopedAttributes.put("overlaymaskId", _overlaymaskId);
-}
-
-if (request.getAttribute("alloy:overlay-mask:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:overlay-mask:opacity") != null) {
-	scopedAttributes.put("opacity", _opacity);
-}
-
-if (request.getAttribute("alloy:overlay-mask:preventOverlap") != null) {
-	scopedAttributes.put("preventOverlap", _preventOverlap);
-}
-
-if (request.getAttribute("alloy:overlay-mask:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:overlay-mask:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:overlay-mask:shim") != null) {
-	scopedAttributes.put("shim", _shim);
-}
-
-if (request.getAttribute("alloy:overlay-mask:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:overlay-mask:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:overlay-mask:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:overlay-mask:target") != null) {
-	scopedAttributes.put("target", _target);
-}
-
-if (request.getAttribute("alloy:overlay-mask:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:overlay-mask:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:overlay-mask:x") != null) {
-	scopedAttributes.put("x", _x);
-}
-
-if (request.getAttribute("alloy:overlay-mask:xy") != null) {
-	scopedAttributes.put("xy", _xy);
-}
-
-if (request.getAttribute("alloy:overlay-mask:y") != null) {
-	scopedAttributes.put("y", _y);
-}
-
-if (request.getAttribute("alloy:overlay-mask:zIndex") != null) {
-	scopedAttributes.put("zIndex", _zIndex);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterAlignChange") != null) {
-	scopedAttributes.put("afterAlignChange", _afterAlignChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterAlignPointsChange") != null) {
-	scopedAttributes.put("afterAlignPointsChange", _afterAlignPointsChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterBackgroundChange") != null) {
-	scopedAttributes.put("afterBackgroundChange", _afterBackgroundChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterBodyContentChange") != null) {
-	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterCenteredChange") != null) {
-	scopedAttributes.put("afterCenteredChange", _afterCenteredChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterConstrainChange") != null) {
-	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterFillHeightChange") != null) {
-	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterFooterContentChange") != null) {
-	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterHeaderContentChange") != null) {
-	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterOpacityChange") != null) {
-	scopedAttributes.put("afterOpacityChange", _afterOpacityChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterPreventOverlapChange") != null) {
-	scopedAttributes.put("afterPreventOverlapChange", _afterPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterShimChange") != null) {
-	scopedAttributes.put("afterShimChange", _afterShimChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterTargetChange") != null) {
-	scopedAttributes.put("afterTargetChange", _afterTargetChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterXChange") != null) {
-	scopedAttributes.put("afterXChange", _afterXChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterXyChange") != null) {
-	scopedAttributes.put("afterXyChange", _afterXyChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterYChange") != null) {
-	scopedAttributes.put("afterYChange", _afterYChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:afterZIndexChange") != null) {
-	scopedAttributes.put("afterZIndexChange", _afterZIndexChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onAlignChange") != null) {
-	scopedAttributes.put("onAlignChange", _onAlignChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onAlignPointsChange") != null) {
-	scopedAttributes.put("onAlignPointsChange", _onAlignPointsChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onBackgroundChange") != null) {
-	scopedAttributes.put("onBackgroundChange", _onBackgroundChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onBodyContentChange") != null) {
-	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onCenteredChange") != null) {
-	scopedAttributes.put("onCenteredChange", _onCenteredChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onConstrainChange") != null) {
-	scopedAttributes.put("onConstrainChange", _onConstrainChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onFillHeightChange") != null) {
-	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onFooterContentChange") != null) {
-	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onHeaderContentChange") != null) {
-	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onOpacityChange") != null) {
-	scopedAttributes.put("onOpacityChange", _onOpacityChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onPreventOverlapChange") != null) {
-	scopedAttributes.put("onPreventOverlapChange", _onPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onShimChange") != null) {
-	scopedAttributes.put("onShimChange", _onShimChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onTargetChange") != null) {
-	scopedAttributes.put("onTargetChange", _onTargetChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onXChange") != null) {
-	scopedAttributes.put("onXChange", _onXChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onXyChange") != null) {
-	scopedAttributes.put("onXyChange", _onXyChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onYChange") != null) {
-	scopedAttributes.put("onYChange", _onYChange);
-}
-
-if (request.getAttribute("alloy:overlay-mask:onZIndexChange") != null) {
-	scopedAttributes.put("onZIndexChange", _onZIndexChange);
-}
-
+_updateOptions(options, "align", _align);
+_updateOptions(options, "alignPoints", _alignPoints);
+_updateOptions(options, "background", _background);
+_updateOptions(options, "overlaymaskBodyContent", _overlaymaskBodyContent);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "centered", _centered);
+_updateOptions(options, "constrain", _constrain);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "fillHeight", _fillHeight);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "footerContent", _footerContent);
+_updateOptions(options, "headerContent", _headerContent);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "overlaymaskId", _overlaymaskId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "opacity", _opacity);
+_updateOptions(options, "preventOverlap", _preventOverlap);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "shim", _shim);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "target", _target);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "x", _x);
+_updateOptions(options, "xy", _xy);
+_updateOptions(options, "y", _y);
+_updateOptions(options, "zIndex", _zIndex);
+_updateOptions(options, "afterAlignChange", _afterAlignChange);
+_updateOptions(options, "afterAlignPointsChange", _afterAlignPointsChange);
+_updateOptions(options, "afterBackgroundChange", _afterBackgroundChange);
+_updateOptions(options, "afterBodyContentChange", _afterBodyContentChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterCenteredChange", _afterCenteredChange);
+_updateOptions(options, "afterConstrainChange", _afterConstrainChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFillHeightChange", _afterFillHeightChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterFooterContentChange", _afterFooterContentChange);
+_updateOptions(options, "afterHeaderContentChange", _afterHeaderContentChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterOpacityChange", _afterOpacityChange);
+_updateOptions(options, "afterPreventOverlapChange", _afterPreventOverlapChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterShimChange", _afterShimChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTargetChange", _afterTargetChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "afterXChange", _afterXChange);
+_updateOptions(options, "afterXyChange", _afterXyChange);
+_updateOptions(options, "afterYChange", _afterYChange);
+_updateOptions(options, "afterZIndexChange", _afterZIndexChange);
+_updateOptions(options, "onAlignChange", _onAlignChange);
+_updateOptions(options, "onAlignPointsChange", _onAlignPointsChange);
+_updateOptions(options, "onBackgroundChange", _onBackgroundChange);
+_updateOptions(options, "onBodyContentChange", _onBodyContentChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onCenteredChange", _onCenteredChange);
+_updateOptions(options, "onConstrainChange", _onConstrainChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFillHeightChange", _onFillHeightChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onFooterContentChange", _onFooterContentChange);
+_updateOptions(options, "onHeaderContentChange", _onHeaderContentChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onOpacityChange", _onOpacityChange);
+_updateOptions(options, "onPreventOverlapChange", _onPreventOverlapChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onShimChange", _onShimChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTargetChange", _onTargetChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
+_updateOptions(options, "onXChange", _onXChange);
+_updateOptions(options, "onXyChange", _onXyChange);
+_updateOptions(options, "onYChange", _onYChange);
+_updateOptions(options, "onZIndexChange", _onZIndexChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

@@ -4,27 +4,24 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:calendar:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:calendar:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:calendar:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:calendar:align");
 java.lang.Object _calendarBodyContent = (java.lang.Object)request.getAttribute("alloy:calendar:calendarBodyContent");
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:calendar:boundingBox");
 java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:calendar:cancellableHide"), true);
 java.lang.Object _centered = (java.lang.Object)request.getAttribute("alloy:calendar:centered");
 java.lang.Object _constrain = (java.lang.Object)request.getAttribute("alloy:calendar:constrain");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:calendar:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:calendar:cssClass");
 java.lang.Number _currentDay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:calendar:currentDay"), 0);
 java.lang.Number _currentMonth = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:calendar:currentMonth"), 0);
@@ -56,7 +53,6 @@ java.lang.Boolean _setValue = GetterUtil.getBoolean((java.lang.String)request.ge
 java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:calendar:shim"), false);
 java.lang.Number _showDelay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:calendar:showDelay"), 0);
 java.lang.Object _showOn = (java.lang.Object)request.getAttribute("alloy:calendar:showOn");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:calendar:srcNode");
 java.lang.Boolean _stack = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:calendar:stack"), true);
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:calendar:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:calendar:tabIndex"), 0);
@@ -173,637 +169,192 @@ java.lang.Object _onXChange = (java.lang.Object)request.getAttribute("alloy:cale
 java.lang.Object _onXyChange = (java.lang.Object)request.getAttribute("alloy:calendar:onXyChange");
 java.lang.Object _onYChange = (java.lang.Object)request.getAttribute("alloy:calendar:onYChange");
 java.lang.Object _onZIndexChange = (java.lang.Object)request.getAttribute("alloy:calendar:onZIndexChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:calendar:align") != null) {
-	scopedAttributes.put("align", _align);
-}
-
-if (request.getAttribute("alloy:calendar:calendarBodyContent") != null) {
-	scopedAttributes.put("calendarBodyContent", _calendarBodyContent);
-}
-
-if (request.getAttribute("alloy:calendar:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:calendar:cancellableHide") != null) {
-	scopedAttributes.put("cancellableHide", _cancellableHide);
-}
-
-if (request.getAttribute("alloy:calendar:centered") != null) {
-	scopedAttributes.put("centered", _centered);
-}
-
-if (request.getAttribute("alloy:calendar:constrain") != null) {
-	scopedAttributes.put("constrain", _constrain);
-}
-
-if (request.getAttribute("alloy:calendar:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:calendar:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:calendar:currentDay") != null) {
-	scopedAttributes.put("currentDay", _currentDay);
-}
-
-if (request.getAttribute("alloy:calendar:currentMonth") != null) {
-	scopedAttributes.put("currentMonth", _currentMonth);
-}
-
-if (request.getAttribute("alloy:calendar:currentNode") != null) {
-	scopedAttributes.put("currentNode", _currentNode);
-}
-
-if (request.getAttribute("alloy:calendar:currentYear") != null) {
-	scopedAttributes.put("currentYear", _currentYear);
-}
-
-if (request.getAttribute("alloy:calendar:dateFormat") != null) {
-	scopedAttributes.put("dateFormat", _dateFormat);
-}
-
-if (request.getAttribute("alloy:calendar:dates") != null) {
-	scopedAttributes.put("dates", _dates);
-}
-
-if (request.getAttribute("alloy:calendar:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:calendar:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:calendar:fillHeight") != null) {
-	scopedAttributes.put("fillHeight", _fillHeight);
-}
-
-if (request.getAttribute("alloy:calendar:firstDayOfWeek") != null) {
-	scopedAttributes.put("firstDayOfWeek", _firstDayOfWeek);
-}
-
-if (request.getAttribute("alloy:calendar:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:calendar:footerContent") != null) {
-	scopedAttributes.put("footerContent", _footerContent);
-}
-
-if (request.getAttribute("alloy:calendar:headerContent") != null) {
-	scopedAttributes.put("headerContent", _headerContent);
-}
-
-if (request.getAttribute("alloy:calendar:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:calendar:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:calendar:hideDelay") != null) {
-	scopedAttributes.put("hideDelay", _hideDelay);
-}
-
-if (request.getAttribute("alloy:calendar:hideOn") != null) {
-	scopedAttributes.put("hideOn", _hideOn);
-}
-
-if (request.getAttribute("alloy:calendar:hideOnDocumentClick") != null) {
-	scopedAttributes.put("hideOnDocumentClick", _hideOnDocumentClick);
-}
-
-if (request.getAttribute("alloy:calendar:calendarId") != null) {
-	scopedAttributes.put("calendarId", _calendarId);
-}
-
-if (request.getAttribute("alloy:calendar:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:calendar:maxDate") != null) {
-	scopedAttributes.put("maxDate", _maxDate);
-}
-
-if (request.getAttribute("alloy:calendar:minDate") != null) {
-	scopedAttributes.put("minDate", _minDate);
-}
-
-if (request.getAttribute("alloy:calendar:preventOverlap") != null) {
-	scopedAttributes.put("preventOverlap", _preventOverlap);
-}
-
-if (request.getAttribute("alloy:calendar:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:calendar:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:calendar:selectMultipleDates") != null) {
-	scopedAttributes.put("selectMultipleDates", _selectMultipleDates);
-}
-
-if (request.getAttribute("alloy:calendar:setValue") != null) {
-	scopedAttributes.put("setValue", _setValue);
-}
-
-if (request.getAttribute("alloy:calendar:shim") != null) {
-	scopedAttributes.put("shim", _shim);
-}
-
-if (request.getAttribute("alloy:calendar:showDelay") != null) {
-	scopedAttributes.put("showDelay", _showDelay);
-}
-
-if (request.getAttribute("alloy:calendar:showOn") != null) {
-	scopedAttributes.put("showOn", _showOn);
-}
-
-if (request.getAttribute("alloy:calendar:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:calendar:stack") != null) {
-	scopedAttributes.put("stack", _stack);
-}
-
-if (request.getAttribute("alloy:calendar:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:calendar:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:calendar:trigger") != null) {
-	scopedAttributes.put("trigger", _trigger);
-}
-
-if (request.getAttribute("alloy:calendar:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:calendar:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:calendar:x") != null) {
-	scopedAttributes.put("x", _x);
-}
-
-if (request.getAttribute("alloy:calendar:xy") != null) {
-	scopedAttributes.put("xy", _xy);
-}
-
-if (request.getAttribute("alloy:calendar:y") != null) {
-	scopedAttributes.put("y", _y);
-}
-
-if (request.getAttribute("alloy:calendar:zIndex") != null) {
-	scopedAttributes.put("zIndex", _zIndex);
-}
-
-if (request.getAttribute("alloy:calendar:afterAlignChange") != null) {
-	scopedAttributes.put("afterAlignChange", _afterAlignChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterBodyContentChange") != null) {
-	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCancellableHideChange") != null) {
-	scopedAttributes.put("afterCancellableHideChange", _afterCancellableHideChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCenteredChange") != null) {
-	scopedAttributes.put("afterCenteredChange", _afterCenteredChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterConstrainChange") != null) {
-	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCurrentDayChange") != null) {
-	scopedAttributes.put("afterCurrentDayChange", _afterCurrentDayChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCurrentMonthChange") != null) {
-	scopedAttributes.put("afterCurrentMonthChange", _afterCurrentMonthChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCurrentNodeChange") != null) {
-	scopedAttributes.put("afterCurrentNodeChange", _afterCurrentNodeChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterCurrentYearChange") != null) {
-	scopedAttributes.put("afterCurrentYearChange", _afterCurrentYearChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterDateFormatChange") != null) {
-	scopedAttributes.put("afterDateFormatChange", _afterDateFormatChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterDatesChange") != null) {
-	scopedAttributes.put("afterDatesChange", _afterDatesChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:calendar:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterFillHeightChange") != null) {
-	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterFirstDayOfWeekChange") != null) {
-	scopedAttributes.put("afterFirstDayOfWeekChange", _afterFirstDayOfWeekChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterFooterContentChange") != null) {
-	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHeaderContentChange") != null) {
-	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHideDelayChange") != null) {
-	scopedAttributes.put("afterHideDelayChange", _afterHideDelayChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHideOnChange") != null) {
-	scopedAttributes.put("afterHideOnChange", _afterHideOnChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterHideOnDocumentClickChange") != null) {
-	scopedAttributes.put("afterHideOnDocumentClickChange", _afterHideOnDocumentClickChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:calendar:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterMaxDateChange") != null) {
-	scopedAttributes.put("afterMaxDateChange", _afterMaxDateChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterMinDateChange") != null) {
-	scopedAttributes.put("afterMinDateChange", _afterMinDateChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterPreventOverlapChange") != null) {
-	scopedAttributes.put("afterPreventOverlapChange", _afterPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterSelectMultipleDatesChange") != null) {
-	scopedAttributes.put("afterSelectMultipleDatesChange", _afterSelectMultipleDatesChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterSetValueChange") != null) {
-	scopedAttributes.put("afterSetValueChange", _afterSetValueChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterShimChange") != null) {
-	scopedAttributes.put("afterShimChange", _afterShimChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterShowDelayChange") != null) {
-	scopedAttributes.put("afterShowDelayChange", _afterShowDelayChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterShowOnChange") != null) {
-	scopedAttributes.put("afterShowOnChange", _afterShowOnChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterStackChange") != null) {
-	scopedAttributes.put("afterStackChange", _afterStackChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterTriggerChange") != null) {
-	scopedAttributes.put("afterTriggerChange", _afterTriggerChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:calendar:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:calendar:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterXChange") != null) {
-	scopedAttributes.put("afterXChange", _afterXChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterXyChange") != null) {
-	scopedAttributes.put("afterXyChange", _afterXyChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterYChange") != null) {
-	scopedAttributes.put("afterYChange", _afterYChange);
-}
-
-if (request.getAttribute("alloy:calendar:afterZIndexChange") != null) {
-	scopedAttributes.put("afterZIndexChange", _afterZIndexChange);
-}
-
-if (request.getAttribute("alloy:calendar:onAlignChange") != null) {
-	scopedAttributes.put("onAlignChange", _onAlignChange);
-}
-
-if (request.getAttribute("alloy:calendar:onBodyContentChange") != null) {
-	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCancellableHideChange") != null) {
-	scopedAttributes.put("onCancellableHideChange", _onCancellableHideChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCenteredChange") != null) {
-	scopedAttributes.put("onCenteredChange", _onCenteredChange);
-}
-
-if (request.getAttribute("alloy:calendar:onConstrainChange") != null) {
-	scopedAttributes.put("onConstrainChange", _onConstrainChange);
-}
-
-if (request.getAttribute("alloy:calendar:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCurrentDayChange") != null) {
-	scopedAttributes.put("onCurrentDayChange", _onCurrentDayChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCurrentMonthChange") != null) {
-	scopedAttributes.put("onCurrentMonthChange", _onCurrentMonthChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCurrentNodeChange") != null) {
-	scopedAttributes.put("onCurrentNodeChange", _onCurrentNodeChange);
-}
-
-if (request.getAttribute("alloy:calendar:onCurrentYearChange") != null) {
-	scopedAttributes.put("onCurrentYearChange", _onCurrentYearChange);
-}
-
-if (request.getAttribute("alloy:calendar:onDateFormatChange") != null) {
-	scopedAttributes.put("onDateFormatChange", _onDateFormatChange);
-}
-
-if (request.getAttribute("alloy:calendar:onDatesChange") != null) {
-	scopedAttributes.put("onDatesChange", _onDatesChange);
-}
-
-if (request.getAttribute("alloy:calendar:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:calendar:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:calendar:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:calendar:onFillHeightChange") != null) {
-	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
-}
-
-if (request.getAttribute("alloy:calendar:onFirstDayOfWeekChange") != null) {
-	scopedAttributes.put("onFirstDayOfWeekChange", _onFirstDayOfWeekChange);
-}
-
-if (request.getAttribute("alloy:calendar:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:calendar:onFooterContentChange") != null) {
-	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHeaderContentChange") != null) {
-	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHideDelayChange") != null) {
-	scopedAttributes.put("onHideDelayChange", _onHideDelayChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHideOnChange") != null) {
-	scopedAttributes.put("onHideOnChange", _onHideOnChange);
-}
-
-if (request.getAttribute("alloy:calendar:onHideOnDocumentClickChange") != null) {
-	scopedAttributes.put("onHideOnDocumentClickChange", _onHideOnDocumentClickChange);
-}
-
-if (request.getAttribute("alloy:calendar:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:calendar:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:calendar:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:calendar:onMaxDateChange") != null) {
-	scopedAttributes.put("onMaxDateChange", _onMaxDateChange);
-}
-
-if (request.getAttribute("alloy:calendar:onMinDateChange") != null) {
-	scopedAttributes.put("onMinDateChange", _onMinDateChange);
-}
-
-if (request.getAttribute("alloy:calendar:onPreventOverlapChange") != null) {
-	scopedAttributes.put("onPreventOverlapChange", _onPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:calendar:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:calendar:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:calendar:onSelectMultipleDatesChange") != null) {
-	scopedAttributes.put("onSelectMultipleDatesChange", _onSelectMultipleDatesChange);
-}
-
-if (request.getAttribute("alloy:calendar:onSetValueChange") != null) {
-	scopedAttributes.put("onSetValueChange", _onSetValueChange);
-}
-
-if (request.getAttribute("alloy:calendar:onShimChange") != null) {
-	scopedAttributes.put("onShimChange", _onShimChange);
-}
-
-if (request.getAttribute("alloy:calendar:onShowDelayChange") != null) {
-	scopedAttributes.put("onShowDelayChange", _onShowDelayChange);
-}
-
-if (request.getAttribute("alloy:calendar:onShowOnChange") != null) {
-	scopedAttributes.put("onShowOnChange", _onShowOnChange);
-}
-
-if (request.getAttribute("alloy:calendar:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:calendar:onStackChange") != null) {
-	scopedAttributes.put("onStackChange", _onStackChange);
-}
-
-if (request.getAttribute("alloy:calendar:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:calendar:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:calendar:onTriggerChange") != null) {
-	scopedAttributes.put("onTriggerChange", _onTriggerChange);
-}
-
-if (request.getAttribute("alloy:calendar:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:calendar:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:calendar:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:calendar:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
-if (request.getAttribute("alloy:calendar:onXChange") != null) {
-	scopedAttributes.put("onXChange", _onXChange);
-}
-
-if (request.getAttribute("alloy:calendar:onXyChange") != null) {
-	scopedAttributes.put("onXyChange", _onXyChange);
-}
-
-if (request.getAttribute("alloy:calendar:onYChange") != null) {
-	scopedAttributes.put("onYChange", _onYChange);
-}
-
-if (request.getAttribute("alloy:calendar:onZIndexChange") != null) {
-	scopedAttributes.put("onZIndexChange", _onZIndexChange);
-}
-
+_updateOptions(options, "align", _align);
+_updateOptions(options, "calendarBodyContent", _calendarBodyContent);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "cancellableHide", _cancellableHide);
+_updateOptions(options, "centered", _centered);
+_updateOptions(options, "constrain", _constrain);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "currentDay", _currentDay);
+_updateOptions(options, "currentMonth", _currentMonth);
+_updateOptions(options, "currentNode", _currentNode);
+_updateOptions(options, "currentYear", _currentYear);
+_updateOptions(options, "dateFormat", _dateFormat);
+_updateOptions(options, "dates", _dates);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "fillHeight", _fillHeight);
+_updateOptions(options, "firstDayOfWeek", _firstDayOfWeek);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "footerContent", _footerContent);
+_updateOptions(options, "headerContent", _headerContent);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "hideDelay", _hideDelay);
+_updateOptions(options, "hideOn", _hideOn);
+_updateOptions(options, "hideOnDocumentClick", _hideOnDocumentClick);
+_updateOptions(options, "calendarId", _calendarId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "maxDate", _maxDate);
+_updateOptions(options, "minDate", _minDate);
+_updateOptions(options, "preventOverlap", _preventOverlap);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "selectMultipleDates", _selectMultipleDates);
+_updateOptions(options, "setValue", _setValue);
+_updateOptions(options, "shim", _shim);
+_updateOptions(options, "showDelay", _showDelay);
+_updateOptions(options, "showOn", _showOn);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "stack", _stack);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "trigger", _trigger);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "x", _x);
+_updateOptions(options, "xy", _xy);
+_updateOptions(options, "y", _y);
+_updateOptions(options, "zIndex", _zIndex);
+_updateOptions(options, "afterAlignChange", _afterAlignChange);
+_updateOptions(options, "afterBodyContentChange", _afterBodyContentChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterCancellableHideChange", _afterCancellableHideChange);
+_updateOptions(options, "afterCenteredChange", _afterCenteredChange);
+_updateOptions(options, "afterConstrainChange", _afterConstrainChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterCurrentDayChange", _afterCurrentDayChange);
+_updateOptions(options, "afterCurrentMonthChange", _afterCurrentMonthChange);
+_updateOptions(options, "afterCurrentNodeChange", _afterCurrentNodeChange);
+_updateOptions(options, "afterCurrentYearChange", _afterCurrentYearChange);
+_updateOptions(options, "afterDateFormatChange", _afterDateFormatChange);
+_updateOptions(options, "afterDatesChange", _afterDatesChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFillHeightChange", _afterFillHeightChange);
+_updateOptions(options, "afterFirstDayOfWeekChange", _afterFirstDayOfWeekChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterFooterContentChange", _afterFooterContentChange);
+_updateOptions(options, "afterHeaderContentChange", _afterHeaderContentChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterHideDelayChange", _afterHideDelayChange);
+_updateOptions(options, "afterHideOnChange", _afterHideOnChange);
+_updateOptions(options, "afterHideOnDocumentClickChange", _afterHideOnDocumentClickChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterMaxDateChange", _afterMaxDateChange);
+_updateOptions(options, "afterMinDateChange", _afterMinDateChange);
+_updateOptions(options, "afterPreventOverlapChange", _afterPreventOverlapChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSelectMultipleDatesChange", _afterSelectMultipleDatesChange);
+_updateOptions(options, "afterSetValueChange", _afterSetValueChange);
+_updateOptions(options, "afterShimChange", _afterShimChange);
+_updateOptions(options, "afterShowDelayChange", _afterShowDelayChange);
+_updateOptions(options, "afterShowOnChange", _afterShowOnChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStackChange", _afterStackChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTriggerChange", _afterTriggerChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "afterXChange", _afterXChange);
+_updateOptions(options, "afterXyChange", _afterXyChange);
+_updateOptions(options, "afterYChange", _afterYChange);
+_updateOptions(options, "afterZIndexChange", _afterZIndexChange);
+_updateOptions(options, "onAlignChange", _onAlignChange);
+_updateOptions(options, "onBodyContentChange", _onBodyContentChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onCancellableHideChange", _onCancellableHideChange);
+_updateOptions(options, "onCenteredChange", _onCenteredChange);
+_updateOptions(options, "onConstrainChange", _onConstrainChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onCurrentDayChange", _onCurrentDayChange);
+_updateOptions(options, "onCurrentMonthChange", _onCurrentMonthChange);
+_updateOptions(options, "onCurrentNodeChange", _onCurrentNodeChange);
+_updateOptions(options, "onCurrentYearChange", _onCurrentYearChange);
+_updateOptions(options, "onDateFormatChange", _onDateFormatChange);
+_updateOptions(options, "onDatesChange", _onDatesChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFillHeightChange", _onFillHeightChange);
+_updateOptions(options, "onFirstDayOfWeekChange", _onFirstDayOfWeekChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onFooterContentChange", _onFooterContentChange);
+_updateOptions(options, "onHeaderContentChange", _onHeaderContentChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onHideDelayChange", _onHideDelayChange);
+_updateOptions(options, "onHideOnChange", _onHideOnChange);
+_updateOptions(options, "onHideOnDocumentClickChange", _onHideOnDocumentClickChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onMaxDateChange", _onMaxDateChange);
+_updateOptions(options, "onMinDateChange", _onMinDateChange);
+_updateOptions(options, "onPreventOverlapChange", _onPreventOverlapChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSelectMultipleDatesChange", _onSelectMultipleDatesChange);
+_updateOptions(options, "onSetValueChange", _onSetValueChange);
+_updateOptions(options, "onShimChange", _onShimChange);
+_updateOptions(options, "onShowDelayChange", _onShowDelayChange);
+_updateOptions(options, "onShowOnChange", _onShowOnChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStackChange", _onStackChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTriggerChange", _onTriggerChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
+_updateOptions(options, "onXChange", _onXChange);
+_updateOptions(options, "onXyChange", _onXyChange);
+_updateOptions(options, "onYChange", _onYChange);
+_updateOptions(options, "onZIndexChange", _onZIndexChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

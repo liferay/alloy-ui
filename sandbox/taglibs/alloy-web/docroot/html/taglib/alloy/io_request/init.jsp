@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:io-request:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _active = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:io-request:active"), false);
 java.lang.Object _arguments = (java.lang.Object)request.getAttribute("alloy:io-request:arguments");
@@ -94,321 +93,113 @@ java.lang.Object _onTimeoutChange = (java.lang.Object)request.getAttribute("allo
 java.lang.Object _onTransactionChange = (java.lang.Object)request.getAttribute("alloy:io-request:onTransactionChange");
 java.lang.Object _onUriChange = (java.lang.Object)request.getAttribute("alloy:io-request:onUriChange");
 java.lang.Object _onXdrChange = (java.lang.Object)request.getAttribute("alloy:io-request:onXdrChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:io-request:active") != null) {
-	scopedAttributes.put("active", _active);
-}
-
-if (request.getAttribute("alloy:io-request:arguments") != null) {
-	scopedAttributes.put("arguments", _arguments);
-}
-
-if (request.getAttribute("alloy:io-request:autoLoad") != null) {
-	scopedAttributes.put("autoLoad", _autoLoad);
-}
-
-if (request.getAttribute("alloy:io-request:cache") != null) {
-	scopedAttributes.put("cache", _cache);
-}
-
-if (request.getAttribute("alloy:io-request:cfg") != null) {
-	scopedAttributes.put("cfg", _cfg);
-}
-
-if (request.getAttribute("alloy:io-request:context") != null) {
-	scopedAttributes.put("context", _context);
-}
-
-if (request.getAttribute("alloy:io-request:data") != null) {
-	scopedAttributes.put("data", _data);
-}
-
-if (request.getAttribute("alloy:io-request:dataType") != null) {
-	scopedAttributes.put("dataType", _dataType);
-}
-
-if (request.getAttribute("alloy:io-request:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:io-request:form") != null) {
-	scopedAttributes.put("form", _form);
-}
-
-if (request.getAttribute("alloy:io-request:headers") != null) {
-	scopedAttributes.put("headers", _headers);
-}
-
-if (request.getAttribute("alloy:io-request:host") != null) {
-	scopedAttributes.put("host", _host);
-}
-
-if (request.getAttribute("alloy:io-request:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:io-request:method") != null) {
-	scopedAttributes.put("method", _method);
-}
-
-if (request.getAttribute("alloy:io-request:responseData") != null) {
-	scopedAttributes.put("responseData", _responseData);
-}
-
-if (request.getAttribute("alloy:io-request:sync") != null) {
-	scopedAttributes.put("sync", _sync);
-}
-
-if (request.getAttribute("alloy:io-request:timeout") != null) {
-	scopedAttributes.put("timeout", _timeout);
-}
-
-if (request.getAttribute("alloy:io-request:transaction") != null) {
-	scopedAttributes.put("transaction", _transaction);
-}
-
-if (request.getAttribute("alloy:io-request:uri") != null) {
-	scopedAttributes.put("uri", _uri);
-}
-
-if (request.getAttribute("alloy:io-request:xdr") != null) {
-	scopedAttributes.put("xdr", _xdr);
-}
-
-if (request.getAttribute("alloy:io-request:afterActiveChange") != null) {
-	scopedAttributes.put("afterActiveChange", _afterActiveChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterArgumentsChange") != null) {
-	scopedAttributes.put("afterArgumentsChange", _afterArgumentsChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterAutoLoadChange") != null) {
-	scopedAttributes.put("afterAutoLoadChange", _afterAutoLoadChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterCacheChange") != null) {
-	scopedAttributes.put("afterCacheChange", _afterCacheChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterCfgChange") != null) {
-	scopedAttributes.put("afterCfgChange", _afterCfgChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterContextChange") != null) {
-	scopedAttributes.put("afterContextChange", _afterContextChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterDataChange") != null) {
-	scopedAttributes.put("afterDataChange", _afterDataChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterDataTypeChange") != null) {
-	scopedAttributes.put("afterDataTypeChange", _afterDataTypeChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:io-request:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterFormChange") != null) {
-	scopedAttributes.put("afterFormChange", _afterFormChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterHeadersChange") != null) {
-	scopedAttributes.put("afterHeadersChange", _afterHeadersChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterHostChange") != null) {
-	scopedAttributes.put("afterHostChange", _afterHostChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:io-request:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterComplete") != null) {
-	scopedAttributes.put("afterComplete", _afterComplete);
-}
-
-if (request.getAttribute("alloy:io-request:afterEnd") != null) {
-	scopedAttributes.put("afterEnd", _afterEnd);
-}
-
-if (request.getAttribute("alloy:io-request:afterFailure") != null) {
-	scopedAttributes.put("afterFailure", _afterFailure);
-}
-
-if (request.getAttribute("alloy:io-request:afterStart") != null) {
-	scopedAttributes.put("afterStart", _afterStart);
-}
-
-if (request.getAttribute("alloy:io-request:afterSuccess") != null) {
-	scopedAttributes.put("afterSuccess", _afterSuccess);
-}
-
-if (request.getAttribute("alloy:io-request:afterXdrReady") != null) {
-	scopedAttributes.put("afterXdrReady", _afterXdrReady);
-}
-
-if (request.getAttribute("alloy:io-request:afterMethodChange") != null) {
-	scopedAttributes.put("afterMethodChange", _afterMethodChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterResponseDataChange") != null) {
-	scopedAttributes.put("afterResponseDataChange", _afterResponseDataChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterSyncChange") != null) {
-	scopedAttributes.put("afterSyncChange", _afterSyncChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterTimeoutChange") != null) {
-	scopedAttributes.put("afterTimeoutChange", _afterTimeoutChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterTransactionChange") != null) {
-	scopedAttributes.put("afterTransactionChange", _afterTransactionChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterUriChange") != null) {
-	scopedAttributes.put("afterUriChange", _afterUriChange);
-}
-
-if (request.getAttribute("alloy:io-request:afterXdrChange") != null) {
-	scopedAttributes.put("afterXdrChange", _afterXdrChange);
-}
-
-if (request.getAttribute("alloy:io-request:onActiveChange") != null) {
-	scopedAttributes.put("onActiveChange", _onActiveChange);
-}
-
-if (request.getAttribute("alloy:io-request:onArgumentsChange") != null) {
-	scopedAttributes.put("onArgumentsChange", _onArgumentsChange);
-}
-
-if (request.getAttribute("alloy:io-request:onAutoLoadChange") != null) {
-	scopedAttributes.put("onAutoLoadChange", _onAutoLoadChange);
-}
-
-if (request.getAttribute("alloy:io-request:onCacheChange") != null) {
-	scopedAttributes.put("onCacheChange", _onCacheChange);
-}
-
-if (request.getAttribute("alloy:io-request:onCfgChange") != null) {
-	scopedAttributes.put("onCfgChange", _onCfgChange);
-}
-
-if (request.getAttribute("alloy:io-request:onContextChange") != null) {
-	scopedAttributes.put("onContextChange", _onContextChange);
-}
-
-if (request.getAttribute("alloy:io-request:onDataChange") != null) {
-	scopedAttributes.put("onDataChange", _onDataChange);
-}
-
-if (request.getAttribute("alloy:io-request:onDataTypeChange") != null) {
-	scopedAttributes.put("onDataTypeChange", _onDataTypeChange);
-}
-
-if (request.getAttribute("alloy:io-request:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:io-request:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:io-request:onFormChange") != null) {
-	scopedAttributes.put("onFormChange", _onFormChange);
-}
-
-if (request.getAttribute("alloy:io-request:onHeadersChange") != null) {
-	scopedAttributes.put("onHeadersChange", _onHeadersChange);
-}
-
-if (request.getAttribute("alloy:io-request:onHostChange") != null) {
-	scopedAttributes.put("onHostChange", _onHostChange);
-}
-
-if (request.getAttribute("alloy:io-request:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:io-request:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:io-request:onComplete") != null) {
-	scopedAttributes.put("onComplete", _onComplete);
-}
-
-if (request.getAttribute("alloy:io-request:onEnd") != null) {
-	scopedAttributes.put("onEnd", _onEnd);
-}
-
-if (request.getAttribute("alloy:io-request:onFailure") != null) {
-	scopedAttributes.put("onFailure", _onFailure);
-}
-
-if (request.getAttribute("alloy:io-request:onStart") != null) {
-	scopedAttributes.put("onStart", _onStart);
-}
-
-if (request.getAttribute("alloy:io-request:onSuccess") != null) {
-	scopedAttributes.put("onSuccess", _onSuccess);
-}
-
-if (request.getAttribute("alloy:io-request:onXdrReady") != null) {
-	scopedAttributes.put("onXdrReady", _onXdrReady);
-}
-
-if (request.getAttribute("alloy:io-request:onMethodChange") != null) {
-	scopedAttributes.put("onMethodChange", _onMethodChange);
-}
-
-if (request.getAttribute("alloy:io-request:onResponseDataChange") != null) {
-	scopedAttributes.put("onResponseDataChange", _onResponseDataChange);
-}
-
-if (request.getAttribute("alloy:io-request:onSyncChange") != null) {
-	scopedAttributes.put("onSyncChange", _onSyncChange);
-}
-
-if (request.getAttribute("alloy:io-request:onTimeoutChange") != null) {
-	scopedAttributes.put("onTimeoutChange", _onTimeoutChange);
-}
-
-if (request.getAttribute("alloy:io-request:onTransactionChange") != null) {
-	scopedAttributes.put("onTransactionChange", _onTransactionChange);
-}
-
-if (request.getAttribute("alloy:io-request:onUriChange") != null) {
-	scopedAttributes.put("onUriChange", _onUriChange);
-}
-
-if (request.getAttribute("alloy:io-request:onXdrChange") != null) {
-	scopedAttributes.put("onXdrChange", _onXdrChange);
-}
-
+_updateOptions(options, "active", _active);
+_updateOptions(options, "arguments", _arguments);
+_updateOptions(options, "autoLoad", _autoLoad);
+_updateOptions(options, "cache", _cache);
+_updateOptions(options, "cfg", _cfg);
+_updateOptions(options, "context", _context);
+_updateOptions(options, "data", _data);
+_updateOptions(options, "dataType", _dataType);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "form", _form);
+_updateOptions(options, "headers", _headers);
+_updateOptions(options, "host", _host);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "method", _method);
+_updateOptions(options, "responseData", _responseData);
+_updateOptions(options, "sync", _sync);
+_updateOptions(options, "timeout", _timeout);
+_updateOptions(options, "transaction", _transaction);
+_updateOptions(options, "uri", _uri);
+_updateOptions(options, "xdr", _xdr);
+_updateOptions(options, "afterActiveChange", _afterActiveChange);
+_updateOptions(options, "afterArgumentsChange", _afterArgumentsChange);
+_updateOptions(options, "afterAutoLoadChange", _afterAutoLoadChange);
+_updateOptions(options, "afterCacheChange", _afterCacheChange);
+_updateOptions(options, "afterCfgChange", _afterCfgChange);
+_updateOptions(options, "afterContextChange", _afterContextChange);
+_updateOptions(options, "afterDataChange", _afterDataChange);
+_updateOptions(options, "afterDataTypeChange", _afterDataTypeChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterFormChange", _afterFormChange);
+_updateOptions(options, "afterHeadersChange", _afterHeadersChange);
+_updateOptions(options, "afterHostChange", _afterHostChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterComplete", _afterComplete);
+_updateOptions(options, "afterEnd", _afterEnd);
+_updateOptions(options, "afterFailure", _afterFailure);
+_updateOptions(options, "afterStart", _afterStart);
+_updateOptions(options, "afterSuccess", _afterSuccess);
+_updateOptions(options, "afterXdrReady", _afterXdrReady);
+_updateOptions(options, "afterMethodChange", _afterMethodChange);
+_updateOptions(options, "afterResponseDataChange", _afterResponseDataChange);
+_updateOptions(options, "afterSyncChange", _afterSyncChange);
+_updateOptions(options, "afterTimeoutChange", _afterTimeoutChange);
+_updateOptions(options, "afterTransactionChange", _afterTransactionChange);
+_updateOptions(options, "afterUriChange", _afterUriChange);
+_updateOptions(options, "afterXdrChange", _afterXdrChange);
+_updateOptions(options, "onActiveChange", _onActiveChange);
+_updateOptions(options, "onArgumentsChange", _onArgumentsChange);
+_updateOptions(options, "onAutoLoadChange", _onAutoLoadChange);
+_updateOptions(options, "onCacheChange", _onCacheChange);
+_updateOptions(options, "onCfgChange", _onCfgChange);
+_updateOptions(options, "onContextChange", _onContextChange);
+_updateOptions(options, "onDataChange", _onDataChange);
+_updateOptions(options, "onDataTypeChange", _onDataTypeChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onFormChange", _onFormChange);
+_updateOptions(options, "onHeadersChange", _onHeadersChange);
+_updateOptions(options, "onHostChange", _onHostChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onComplete", _onComplete);
+_updateOptions(options, "onEnd", _onEnd);
+_updateOptions(options, "onFailure", _onFailure);
+_updateOptions(options, "onStart", _onStart);
+_updateOptions(options, "onSuccess", _onSuccess);
+_updateOptions(options, "onXdrReady", _onXdrReady);
+_updateOptions(options, "onMethodChange", _onMethodChange);
+_updateOptions(options, "onResponseDataChange", _onResponseDataChange);
+_updateOptions(options, "onSyncChange", _onSyncChange);
+_updateOptions(options, "onTimeoutChange", _onTimeoutChange);
+_updateOptions(options, "onTransactionChange", _onTransactionChange);
+_updateOptions(options, "onUriChange", _onUriChange);
+_updateOptions(options, "onXdrChange", _onXdrChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

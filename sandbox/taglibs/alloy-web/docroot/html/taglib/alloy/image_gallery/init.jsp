@@ -4,19 +4,18 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:image-gallery:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:image-gallery:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:image-gallery:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _align = (java.lang.Object)request.getAttribute("alloy:image-gallery:align");
 java.lang.Boolean _anim = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:anim"), true);
@@ -24,14 +23,12 @@ java.lang.Object _arrowLeftEl = (java.lang.Object)request.getAttribute("alloy:im
 java.lang.Object _arrowRightEl = (java.lang.Object)request.getAttribute("alloy:image-gallery:arrowRightEl");
 java.lang.Boolean _autoPlay = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:autoPlay"), false);
 java.lang.Object _imagegalleryBodyContent = (java.lang.Object)request.getAttribute("alloy:image-gallery:imagegalleryBodyContent");
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:image-gallery:boundingBox");
 java.lang.Object _caption = (java.lang.Object)request.getAttribute("alloy:image-gallery:caption");
 java.lang.Object _captionEl = (java.lang.Object)request.getAttribute("alloy:image-gallery:captionEl");
 java.lang.Boolean _captionFromTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:captionFromTitle"), true);
 java.lang.Boolean _centered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:centered"), true);
 java.lang.Object _closeEl = (java.lang.Object)request.getAttribute("alloy:image-gallery:closeEl");
 java.lang.Object _constrain = (java.lang.Object)request.getAttribute("alloy:image-gallery:constrain");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:image-gallery:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:image-gallery:cssClass");
 java.lang.Number _currentIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-gallery:currentIndex"), 0);
 java.lang.Number _delay = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-gallery:delay"), 7000);
@@ -72,7 +69,6 @@ java.lang.Boolean _shim = GetterUtil.getBoolean((java.lang.String)request.getAtt
 java.lang.Boolean _showArrows = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:showArrows"), true);
 java.lang.Boolean _showClose = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:showClose"), true);
 java.lang.Boolean _showPlayer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:image-gallery:showPlayer"), true);
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:image-gallery:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:image-gallery:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:image-gallery:tabIndex"), 0);
 java.lang.Object _toolbar = (java.lang.Object)request.getAttribute("alloy:image-gallery:toolbar");
@@ -230,865 +226,249 @@ java.lang.Object _onXChange = (java.lang.Object)request.getAttribute("alloy:imag
 java.lang.Object _onXyChange = (java.lang.Object)request.getAttribute("alloy:image-gallery:onXyChange");
 java.lang.Object _onYChange = (java.lang.Object)request.getAttribute("alloy:image-gallery:onYChange");
 java.lang.Object _onZIndexChange = (java.lang.Object)request.getAttribute("alloy:image-gallery:onZIndexChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:image-gallery:align") != null) {
-	scopedAttributes.put("align", _align);
-}
-
-if (request.getAttribute("alloy:image-gallery:anim") != null) {
-	scopedAttributes.put("anim", _anim);
-}
-
-if (request.getAttribute("alloy:image-gallery:arrowLeftEl") != null) {
-	scopedAttributes.put("arrowLeftEl", _arrowLeftEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:arrowRightEl") != null) {
-	scopedAttributes.put("arrowRightEl", _arrowRightEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:autoPlay") != null) {
-	scopedAttributes.put("autoPlay", _autoPlay);
-}
-
-if (request.getAttribute("alloy:image-gallery:imagegalleryBodyContent") != null) {
-	scopedAttributes.put("imagegalleryBodyContent", _imagegalleryBodyContent);
-}
-
-if (request.getAttribute("alloy:image-gallery:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:image-gallery:caption") != null) {
-	scopedAttributes.put("caption", _caption);
-}
-
-if (request.getAttribute("alloy:image-gallery:captionEl") != null) {
-	scopedAttributes.put("captionEl", _captionEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:captionFromTitle") != null) {
-	scopedAttributes.put("captionFromTitle", _captionFromTitle);
-}
-
-if (request.getAttribute("alloy:image-gallery:centered") != null) {
-	scopedAttributes.put("centered", _centered);
-}
-
-if (request.getAttribute("alloy:image-gallery:closeEl") != null) {
-	scopedAttributes.put("closeEl", _closeEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:constrain") != null) {
-	scopedAttributes.put("constrain", _constrain);
-}
-
-if (request.getAttribute("alloy:image-gallery:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:image-gallery:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:image-gallery:currentIndex") != null) {
-	scopedAttributes.put("currentIndex", _currentIndex);
-}
-
-if (request.getAttribute("alloy:image-gallery:delay") != null) {
-	scopedAttributes.put("delay", _delay);
-}
-
-if (request.getAttribute("alloy:image-gallery:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:image-gallery:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:image-gallery:fillHeight") != null) {
-	scopedAttributes.put("fillHeight", _fillHeight);
-}
-
-if (request.getAttribute("alloy:image-gallery:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:image-gallery:footerContent") != null) {
-	scopedAttributes.put("footerContent", _footerContent);
-}
-
-if (request.getAttribute("alloy:image-gallery:headerContent") != null) {
-	scopedAttributes.put("headerContent", _headerContent);
-}
-
-if (request.getAttribute("alloy:image-gallery:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:image-gallery:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:image-gallery:imagegalleryId") != null) {
-	scopedAttributes.put("imagegalleryId", _imagegalleryId);
-}
-
-if (request.getAttribute("alloy:image-gallery:image") != null) {
-	scopedAttributes.put("image", _image);
-}
-
-if (request.getAttribute("alloy:image-gallery:imageAnim") != null) {
-	scopedAttributes.put("imageAnim", _imageAnim);
-}
-
-if (request.getAttribute("alloy:image-gallery:infoEl") != null) {
-	scopedAttributes.put("infoEl", _infoEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:infoTemplate") != null) {
-	scopedAttributes.put("infoTemplate", _infoTemplate);
-}
-
-if (request.getAttribute("alloy:image-gallery:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:image-gallery:links") != null) {
-	scopedAttributes.put("links", _links);
-}
-
-if (request.getAttribute("alloy:image-gallery:loader") != null) {
-	scopedAttributes.put("loader", _loader);
-}
-
-if (request.getAttribute("alloy:image-gallery:loading") != null) {
-	scopedAttributes.put("loading", _loading);
-}
-
-if (request.getAttribute("alloy:image-gallery:loadingEl") != null) {
-	scopedAttributes.put("loadingEl", _loadingEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:maxHeight") != null) {
-	scopedAttributes.put("maxHeight", _maxHeight);
-}
-
-if (request.getAttribute("alloy:image-gallery:maxWidth") != null) {
-	scopedAttributes.put("maxWidth", _maxWidth);
-}
-
-if (request.getAttribute("alloy:image-gallery:modal") != null) {
-	scopedAttributes.put("modal", _modal);
-}
-
-if (request.getAttribute("alloy:image-gallery:paginator") != null) {
-	scopedAttributes.put("paginator", _paginator);
-}
-
-if (request.getAttribute("alloy:image-gallery:paginatorEl") != null) {
-	scopedAttributes.put("paginatorEl", _paginatorEl);
-}
-
-if (request.getAttribute("alloy:image-gallery:paginatorInstance") != null) {
-	scopedAttributes.put("paginatorInstance", _paginatorInstance);
-}
-
-if (request.getAttribute("alloy:image-gallery:paused") != null) {
-	scopedAttributes.put("paused", _paused);
-}
-
-if (request.getAttribute("alloy:image-gallery:pausedLabel") != null) {
-	scopedAttributes.put("pausedLabel", _pausedLabel);
-}
-
-if (request.getAttribute("alloy:image-gallery:playing") != null) {
-	scopedAttributes.put("playing", _playing);
-}
-
-if (request.getAttribute("alloy:image-gallery:playingLabel") != null) {
-	scopedAttributes.put("playingLabel", _playingLabel);
-}
-
-if (request.getAttribute("alloy:image-gallery:preloadAllImages") != null) {
-	scopedAttributes.put("preloadAllImages", _preloadAllImages);
-}
-
-if (request.getAttribute("alloy:image-gallery:preventOverlap") != null) {
-	scopedAttributes.put("preventOverlap", _preventOverlap);
-}
-
-if (request.getAttribute("alloy:image-gallery:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:image-gallery:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:image-gallery:repeat") != null) {
-	scopedAttributes.put("repeat", _repeat);
-}
-
-if (request.getAttribute("alloy:image-gallery:shim") != null) {
-	scopedAttributes.put("shim", _shim);
-}
-
-if (request.getAttribute("alloy:image-gallery:showArrows") != null) {
-	scopedAttributes.put("showArrows", _showArrows);
-}
-
-if (request.getAttribute("alloy:image-gallery:showClose") != null) {
-	scopedAttributes.put("showClose", _showClose);
-}
-
-if (request.getAttribute("alloy:image-gallery:showPlayer") != null) {
-	scopedAttributes.put("showPlayer", _showPlayer);
-}
-
-if (request.getAttribute("alloy:image-gallery:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:image-gallery:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:image-gallery:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:image-gallery:toolbar") != null) {
-	scopedAttributes.put("toolbar", _toolbar);
-}
-
-if (request.getAttribute("alloy:image-gallery:totalLinks") != null) {
-	scopedAttributes.put("totalLinks", _totalLinks);
-}
-
-if (request.getAttribute("alloy:image-gallery:useOriginalImage") != null) {
-	scopedAttributes.put("useOriginalImage", _useOriginalImage);
-}
-
-if (request.getAttribute("alloy:image-gallery:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:image-gallery:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:image-gallery:x") != null) {
-	scopedAttributes.put("x", _x);
-}
-
-if (request.getAttribute("alloy:image-gallery:xy") != null) {
-	scopedAttributes.put("xy", _xy);
-}
-
-if (request.getAttribute("alloy:image-gallery:y") != null) {
-	scopedAttributes.put("y", _y);
-}
-
-if (request.getAttribute("alloy:image-gallery:zIndex") != null) {
-	scopedAttributes.put("zIndex", _zIndex);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterAlignChange") != null) {
-	scopedAttributes.put("afterAlignChange", _afterAlignChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterAnim") != null) {
-	scopedAttributes.put("afterAnim", _afterAnim);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterAnimChange") != null) {
-	scopedAttributes.put("afterAnimChange", _afterAnimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterArrowLeftElChange") != null) {
-	scopedAttributes.put("afterArrowLeftElChange", _afterArrowLeftElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterArrowRightElChange") != null) {
-	scopedAttributes.put("afterArrowRightElChange", _afterArrowRightElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterAutoPlayChange") != null) {
-	scopedAttributes.put("afterAutoPlayChange", _afterAutoPlayChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterBodyContentChange") != null) {
-	scopedAttributes.put("afterBodyContentChange", _afterBodyContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCaptionChange") != null) {
-	scopedAttributes.put("afterCaptionChange", _afterCaptionChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCaptionElChange") != null) {
-	scopedAttributes.put("afterCaptionElChange", _afterCaptionElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCaptionFromTitleChange") != null) {
-	scopedAttributes.put("afterCaptionFromTitleChange", _afterCaptionFromTitleChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCenteredChange") != null) {
-	scopedAttributes.put("afterCenteredChange", _afterCenteredChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCloseElChange") != null) {
-	scopedAttributes.put("afterCloseElChange", _afterCloseElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterConstrainChange") != null) {
-	scopedAttributes.put("afterConstrainChange", _afterConstrainChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterCurrentIndexChange") != null) {
-	scopedAttributes.put("afterCurrentIndexChange", _afterCurrentIndexChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterDelayChange") != null) {
-	scopedAttributes.put("afterDelayChange", _afterDelayChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterFillHeightChange") != null) {
-	scopedAttributes.put("afterFillHeightChange", _afterFillHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterFooterContentChange") != null) {
-	scopedAttributes.put("afterFooterContentChange", _afterFooterContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterHeaderContentChange") != null) {
-	scopedAttributes.put("afterHeaderContentChange", _afterHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterImageAnimChange") != null) {
-	scopedAttributes.put("afterImageAnimChange", _afterImageAnimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterImageChange") != null) {
-	scopedAttributes.put("afterImageChange", _afterImageChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterInfoElChange") != null) {
-	scopedAttributes.put("afterInfoElChange", _afterInfoElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterInfoTemplateChange") != null) {
-	scopedAttributes.put("afterInfoTemplateChange", _afterInfoTemplateChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterLinksChange") != null) {
-	scopedAttributes.put("afterLinksChange", _afterLinksChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterLoad") != null) {
-	scopedAttributes.put("afterLoad", _afterLoad);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterLoaderChange") != null) {
-	scopedAttributes.put("afterLoaderChange", _afterLoaderChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterLoadingChange") != null) {
-	scopedAttributes.put("afterLoadingChange", _afterLoadingChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterLoadingElChange") != null) {
-	scopedAttributes.put("afterLoadingElChange", _afterLoadingElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterMaxHeightChange") != null) {
-	scopedAttributes.put("afterMaxHeightChange", _afterMaxHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterMaxWidthChange") != null) {
-	scopedAttributes.put("afterMaxWidthChange", _afterMaxWidthChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterModalChange") != null) {
-	scopedAttributes.put("afterModalChange", _afterModalChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPaginatorChange") != null) {
-	scopedAttributes.put("afterPaginatorChange", _afterPaginatorChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPaginatorElChange") != null) {
-	scopedAttributes.put("afterPaginatorElChange", _afterPaginatorElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPaginatorInstanceChange") != null) {
-	scopedAttributes.put("afterPaginatorInstanceChange", _afterPaginatorInstanceChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPausedChange") != null) {
-	scopedAttributes.put("afterPausedChange", _afterPausedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPausedLabelChange") != null) {
-	scopedAttributes.put("afterPausedLabelChange", _afterPausedLabelChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPlayingChange") != null) {
-	scopedAttributes.put("afterPlayingChange", _afterPlayingChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPlayingLabelChange") != null) {
-	scopedAttributes.put("afterPlayingLabelChange", _afterPlayingLabelChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPreloadAllImagesChange") != null) {
-	scopedAttributes.put("afterPreloadAllImagesChange", _afterPreloadAllImagesChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterPreventOverlapChange") != null) {
-	scopedAttributes.put("afterPreventOverlapChange", _afterPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterRepeatChange") != null) {
-	scopedAttributes.put("afterRepeatChange", _afterRepeatChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterRequest") != null) {
-	scopedAttributes.put("afterRequest", _afterRequest);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterShimChange") != null) {
-	scopedAttributes.put("afterShimChange", _afterShimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterShowArrowsChange") != null) {
-	scopedAttributes.put("afterShowArrowsChange", _afterShowArrowsChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterShowCloseChange") != null) {
-	scopedAttributes.put("afterShowCloseChange", _afterShowCloseChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterShowPlayerChange") != null) {
-	scopedAttributes.put("afterShowPlayerChange", _afterShowPlayerChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterToolbarChange") != null) {
-	scopedAttributes.put("afterToolbarChange", _afterToolbarChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterTotalLinksChange") != null) {
-	scopedAttributes.put("afterTotalLinksChange", _afterTotalLinksChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterUseOriginalImageChange") != null) {
-	scopedAttributes.put("afterUseOriginalImageChange", _afterUseOriginalImageChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterXChange") != null) {
-	scopedAttributes.put("afterXChange", _afterXChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterXyChange") != null) {
-	scopedAttributes.put("afterXyChange", _afterXyChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterYChange") != null) {
-	scopedAttributes.put("afterYChange", _afterYChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:afterZIndexChange") != null) {
-	scopedAttributes.put("afterZIndexChange", _afterZIndexChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onAlignChange") != null) {
-	scopedAttributes.put("onAlignChange", _onAlignChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onAnim") != null) {
-	scopedAttributes.put("onAnim", _onAnim);
-}
-
-if (request.getAttribute("alloy:image-gallery:onAnimChange") != null) {
-	scopedAttributes.put("onAnimChange", _onAnimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onArrowLeftElChange") != null) {
-	scopedAttributes.put("onArrowLeftElChange", _onArrowLeftElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onArrowRightElChange") != null) {
-	scopedAttributes.put("onArrowRightElChange", _onArrowRightElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onAutoPlayChange") != null) {
-	scopedAttributes.put("onAutoPlayChange", _onAutoPlayChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onBodyContentChange") != null) {
-	scopedAttributes.put("onBodyContentChange", _onBodyContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCaptionChange") != null) {
-	scopedAttributes.put("onCaptionChange", _onCaptionChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCaptionElChange") != null) {
-	scopedAttributes.put("onCaptionElChange", _onCaptionElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCaptionFromTitleChange") != null) {
-	scopedAttributes.put("onCaptionFromTitleChange", _onCaptionFromTitleChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCenteredChange") != null) {
-	scopedAttributes.put("onCenteredChange", _onCenteredChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCloseElChange") != null) {
-	scopedAttributes.put("onCloseElChange", _onCloseElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onConstrainChange") != null) {
-	scopedAttributes.put("onConstrainChange", _onConstrainChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onCurrentIndexChange") != null) {
-	scopedAttributes.put("onCurrentIndexChange", _onCurrentIndexChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onDelayChange") != null) {
-	scopedAttributes.put("onDelayChange", _onDelayChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:image-gallery:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onFillHeightChange") != null) {
-	scopedAttributes.put("onFillHeightChange", _onFillHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onFooterContentChange") != null) {
-	scopedAttributes.put("onFooterContentChange", _onFooterContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onHeaderContentChange") != null) {
-	scopedAttributes.put("onHeaderContentChange", _onHeaderContentChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onImageAnimChange") != null) {
-	scopedAttributes.put("onImageAnimChange", _onImageAnimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onImageChange") != null) {
-	scopedAttributes.put("onImageChange", _onImageChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onInfoElChange") != null) {
-	scopedAttributes.put("onInfoElChange", _onInfoElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onInfoTemplateChange") != null) {
-	scopedAttributes.put("onInfoTemplateChange", _onInfoTemplateChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:image-gallery:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onLinksChange") != null) {
-	scopedAttributes.put("onLinksChange", _onLinksChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onLoad") != null) {
-	scopedAttributes.put("onLoad", _onLoad);
-}
-
-if (request.getAttribute("alloy:image-gallery:onLoaderChange") != null) {
-	scopedAttributes.put("onLoaderChange", _onLoaderChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onLoadingChange") != null) {
-	scopedAttributes.put("onLoadingChange", _onLoadingChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onLoadingElChange") != null) {
-	scopedAttributes.put("onLoadingElChange", _onLoadingElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onMaxHeightChange") != null) {
-	scopedAttributes.put("onMaxHeightChange", _onMaxHeightChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onMaxWidthChange") != null) {
-	scopedAttributes.put("onMaxWidthChange", _onMaxWidthChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onModalChange") != null) {
-	scopedAttributes.put("onModalChange", _onModalChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPaginatorChange") != null) {
-	scopedAttributes.put("onPaginatorChange", _onPaginatorChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPaginatorElChange") != null) {
-	scopedAttributes.put("onPaginatorElChange", _onPaginatorElChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPaginatorInstanceChange") != null) {
-	scopedAttributes.put("onPaginatorInstanceChange", _onPaginatorInstanceChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPausedChange") != null) {
-	scopedAttributes.put("onPausedChange", _onPausedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPausedLabelChange") != null) {
-	scopedAttributes.put("onPausedLabelChange", _onPausedLabelChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPlayingChange") != null) {
-	scopedAttributes.put("onPlayingChange", _onPlayingChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPlayingLabelChange") != null) {
-	scopedAttributes.put("onPlayingLabelChange", _onPlayingLabelChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPreloadAllImagesChange") != null) {
-	scopedAttributes.put("onPreloadAllImagesChange", _onPreloadAllImagesChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onPreventOverlapChange") != null) {
-	scopedAttributes.put("onPreventOverlapChange", _onPreventOverlapChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onRepeatChange") != null) {
-	scopedAttributes.put("onRepeatChange", _onRepeatChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onRequest") != null) {
-	scopedAttributes.put("onRequest", _onRequest);
-}
-
-if (request.getAttribute("alloy:image-gallery:onShimChange") != null) {
-	scopedAttributes.put("onShimChange", _onShimChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onShowArrowsChange") != null) {
-	scopedAttributes.put("onShowArrowsChange", _onShowArrowsChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onShowCloseChange") != null) {
-	scopedAttributes.put("onShowCloseChange", _onShowCloseChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onShowPlayerChange") != null) {
-	scopedAttributes.put("onShowPlayerChange", _onShowPlayerChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onToolbarChange") != null) {
-	scopedAttributes.put("onToolbarChange", _onToolbarChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onTotalLinksChange") != null) {
-	scopedAttributes.put("onTotalLinksChange", _onTotalLinksChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onUseOriginalImageChange") != null) {
-	scopedAttributes.put("onUseOriginalImageChange", _onUseOriginalImageChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:image-gallery:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:image-gallery:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onXChange") != null) {
-	scopedAttributes.put("onXChange", _onXChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onXyChange") != null) {
-	scopedAttributes.put("onXyChange", _onXyChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onYChange") != null) {
-	scopedAttributes.put("onYChange", _onYChange);
-}
-
-if (request.getAttribute("alloy:image-gallery:onZIndexChange") != null) {
-	scopedAttributes.put("onZIndexChange", _onZIndexChange);
-}
-
+_updateOptions(options, "align", _align);
+_updateOptions(options, "anim", _anim);
+_updateOptions(options, "arrowLeftEl", _arrowLeftEl);
+_updateOptions(options, "arrowRightEl", _arrowRightEl);
+_updateOptions(options, "autoPlay", _autoPlay);
+_updateOptions(options, "imagegalleryBodyContent", _imagegalleryBodyContent);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "caption", _caption);
+_updateOptions(options, "captionEl", _captionEl);
+_updateOptions(options, "captionFromTitle", _captionFromTitle);
+_updateOptions(options, "centered", _centered);
+_updateOptions(options, "closeEl", _closeEl);
+_updateOptions(options, "constrain", _constrain);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "currentIndex", _currentIndex);
+_updateOptions(options, "delay", _delay);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "fillHeight", _fillHeight);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "footerContent", _footerContent);
+_updateOptions(options, "headerContent", _headerContent);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "imagegalleryId", _imagegalleryId);
+_updateOptions(options, "image", _image);
+_updateOptions(options, "imageAnim", _imageAnim);
+_updateOptions(options, "infoEl", _infoEl);
+_updateOptions(options, "infoTemplate", _infoTemplate);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "links", _links);
+_updateOptions(options, "loader", _loader);
+_updateOptions(options, "loading", _loading);
+_updateOptions(options, "loadingEl", _loadingEl);
+_updateOptions(options, "maxHeight", _maxHeight);
+_updateOptions(options, "maxWidth", _maxWidth);
+_updateOptions(options, "modal", _modal);
+_updateOptions(options, "paginator", _paginator);
+_updateOptions(options, "paginatorEl", _paginatorEl);
+_updateOptions(options, "paginatorInstance", _paginatorInstance);
+_updateOptions(options, "paused", _paused);
+_updateOptions(options, "pausedLabel", _pausedLabel);
+_updateOptions(options, "playing", _playing);
+_updateOptions(options, "playingLabel", _playingLabel);
+_updateOptions(options, "preloadAllImages", _preloadAllImages);
+_updateOptions(options, "preventOverlap", _preventOverlap);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "repeat", _repeat);
+_updateOptions(options, "shim", _shim);
+_updateOptions(options, "showArrows", _showArrows);
+_updateOptions(options, "showClose", _showClose);
+_updateOptions(options, "showPlayer", _showPlayer);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "toolbar", _toolbar);
+_updateOptions(options, "totalLinks", _totalLinks);
+_updateOptions(options, "useOriginalImage", _useOriginalImage);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "x", _x);
+_updateOptions(options, "xy", _xy);
+_updateOptions(options, "y", _y);
+_updateOptions(options, "zIndex", _zIndex);
+_updateOptions(options, "afterAlignChange", _afterAlignChange);
+_updateOptions(options, "afterAnim", _afterAnim);
+_updateOptions(options, "afterAnimChange", _afterAnimChange);
+_updateOptions(options, "afterArrowLeftElChange", _afterArrowLeftElChange);
+_updateOptions(options, "afterArrowRightElChange", _afterArrowRightElChange);
+_updateOptions(options, "afterAutoPlayChange", _afterAutoPlayChange);
+_updateOptions(options, "afterBodyContentChange", _afterBodyContentChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterCaptionChange", _afterCaptionChange);
+_updateOptions(options, "afterCaptionElChange", _afterCaptionElChange);
+_updateOptions(options, "afterCaptionFromTitleChange", _afterCaptionFromTitleChange);
+_updateOptions(options, "afterCenteredChange", _afterCenteredChange);
+_updateOptions(options, "afterCloseElChange", _afterCloseElChange);
+_updateOptions(options, "afterConstrainChange", _afterConstrainChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterCurrentIndexChange", _afterCurrentIndexChange);
+_updateOptions(options, "afterDelayChange", _afterDelayChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFillHeightChange", _afterFillHeightChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterFooterContentChange", _afterFooterContentChange);
+_updateOptions(options, "afterHeaderContentChange", _afterHeaderContentChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterImageAnimChange", _afterImageAnimChange);
+_updateOptions(options, "afterImageChange", _afterImageChange);
+_updateOptions(options, "afterInfoElChange", _afterInfoElChange);
+_updateOptions(options, "afterInfoTemplateChange", _afterInfoTemplateChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterLinksChange", _afterLinksChange);
+_updateOptions(options, "afterLoad", _afterLoad);
+_updateOptions(options, "afterLoaderChange", _afterLoaderChange);
+_updateOptions(options, "afterLoadingChange", _afterLoadingChange);
+_updateOptions(options, "afterLoadingElChange", _afterLoadingElChange);
+_updateOptions(options, "afterMaxHeightChange", _afterMaxHeightChange);
+_updateOptions(options, "afterMaxWidthChange", _afterMaxWidthChange);
+_updateOptions(options, "afterModalChange", _afterModalChange);
+_updateOptions(options, "afterPaginatorChange", _afterPaginatorChange);
+_updateOptions(options, "afterPaginatorElChange", _afterPaginatorElChange);
+_updateOptions(options, "afterPaginatorInstanceChange", _afterPaginatorInstanceChange);
+_updateOptions(options, "afterPausedChange", _afterPausedChange);
+_updateOptions(options, "afterPausedLabelChange", _afterPausedLabelChange);
+_updateOptions(options, "afterPlayingChange", _afterPlayingChange);
+_updateOptions(options, "afterPlayingLabelChange", _afterPlayingLabelChange);
+_updateOptions(options, "afterPreloadAllImagesChange", _afterPreloadAllImagesChange);
+_updateOptions(options, "afterPreventOverlapChange", _afterPreventOverlapChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterRepeatChange", _afterRepeatChange);
+_updateOptions(options, "afterRequest", _afterRequest);
+_updateOptions(options, "afterShimChange", _afterShimChange);
+_updateOptions(options, "afterShowArrowsChange", _afterShowArrowsChange);
+_updateOptions(options, "afterShowCloseChange", _afterShowCloseChange);
+_updateOptions(options, "afterShowPlayerChange", _afterShowPlayerChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterToolbarChange", _afterToolbarChange);
+_updateOptions(options, "afterTotalLinksChange", _afterTotalLinksChange);
+_updateOptions(options, "afterUseOriginalImageChange", _afterUseOriginalImageChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "afterXChange", _afterXChange);
+_updateOptions(options, "afterXyChange", _afterXyChange);
+_updateOptions(options, "afterYChange", _afterYChange);
+_updateOptions(options, "afterZIndexChange", _afterZIndexChange);
+_updateOptions(options, "onAlignChange", _onAlignChange);
+_updateOptions(options, "onAnim", _onAnim);
+_updateOptions(options, "onAnimChange", _onAnimChange);
+_updateOptions(options, "onArrowLeftElChange", _onArrowLeftElChange);
+_updateOptions(options, "onArrowRightElChange", _onArrowRightElChange);
+_updateOptions(options, "onAutoPlayChange", _onAutoPlayChange);
+_updateOptions(options, "onBodyContentChange", _onBodyContentChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onCaptionChange", _onCaptionChange);
+_updateOptions(options, "onCaptionElChange", _onCaptionElChange);
+_updateOptions(options, "onCaptionFromTitleChange", _onCaptionFromTitleChange);
+_updateOptions(options, "onCenteredChange", _onCenteredChange);
+_updateOptions(options, "onCloseElChange", _onCloseElChange);
+_updateOptions(options, "onConstrainChange", _onConstrainChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onCurrentIndexChange", _onCurrentIndexChange);
+_updateOptions(options, "onDelayChange", _onDelayChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFillHeightChange", _onFillHeightChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onFooterContentChange", _onFooterContentChange);
+_updateOptions(options, "onHeaderContentChange", _onHeaderContentChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onImageAnimChange", _onImageAnimChange);
+_updateOptions(options, "onImageChange", _onImageChange);
+_updateOptions(options, "onInfoElChange", _onInfoElChange);
+_updateOptions(options, "onInfoTemplateChange", _onInfoTemplateChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onLinksChange", _onLinksChange);
+_updateOptions(options, "onLoad", _onLoad);
+_updateOptions(options, "onLoaderChange", _onLoaderChange);
+_updateOptions(options, "onLoadingChange", _onLoadingChange);
+_updateOptions(options, "onLoadingElChange", _onLoadingElChange);
+_updateOptions(options, "onMaxHeightChange", _onMaxHeightChange);
+_updateOptions(options, "onMaxWidthChange", _onMaxWidthChange);
+_updateOptions(options, "onModalChange", _onModalChange);
+_updateOptions(options, "onPaginatorChange", _onPaginatorChange);
+_updateOptions(options, "onPaginatorElChange", _onPaginatorElChange);
+_updateOptions(options, "onPaginatorInstanceChange", _onPaginatorInstanceChange);
+_updateOptions(options, "onPausedChange", _onPausedChange);
+_updateOptions(options, "onPausedLabelChange", _onPausedLabelChange);
+_updateOptions(options, "onPlayingChange", _onPlayingChange);
+_updateOptions(options, "onPlayingLabelChange", _onPlayingLabelChange);
+_updateOptions(options, "onPreloadAllImagesChange", _onPreloadAllImagesChange);
+_updateOptions(options, "onPreventOverlapChange", _onPreventOverlapChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onRepeatChange", _onRepeatChange);
+_updateOptions(options, "onRequest", _onRequest);
+_updateOptions(options, "onShimChange", _onShimChange);
+_updateOptions(options, "onShowArrowsChange", _onShowArrowsChange);
+_updateOptions(options, "onShowCloseChange", _onShowCloseChange);
+_updateOptions(options, "onShowPlayerChange", _onShowPlayerChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onToolbarChange", _onToolbarChange);
+_updateOptions(options, "onTotalLinksChange", _onTotalLinksChange);
+_updateOptions(options, "onUseOriginalImageChange", _onUseOriginalImageChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
+_updateOptions(options, "onXChange", _onXChange);
+_updateOptions(options, "onXyChange", _onXyChange);
+_updateOptions(options, "onYChange", _onYChange);
+_updateOptions(options, "onZIndexChange", _onZIndexChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

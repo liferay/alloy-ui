@@ -4,25 +4,22 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:date-picker-select:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Object _appendOrder = (java.lang.Object)request.getAttribute("alloy:date-picker-select:appendOrder");
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
 java.lang.Object _buttonNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:buttonNode");
 java.lang.Object _calendar = (java.lang.Object)request.getAttribute("alloy:date-picker-select:calendar");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:date-picker-select:cssClass");
 java.lang.Object _dayNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:dayNode");
 java.lang.Object _dayNodeName = (java.lang.Object)request.getAttribute("alloy:date-picker-select:dayNodeName");
@@ -41,7 +38,6 @@ java.lang.Boolean _populateYear = GetterUtil.getBoolean((java.lang.String)reques
 java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:date-picker-select:render"), false);
 java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:date-picker-select:rendered"), false);
 java.lang.Object _selectWrapperNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:selectWrapperNode");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:date-picker-select:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:date-picker-select:tabIndex"), 0);
 java.lang.Object _trigger = (java.lang.Object)request.getAttribute("alloy:date-picker-select:trigger");
@@ -122,433 +118,141 @@ java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:
 java.lang.Object _onYearNodeChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearNodeChange");
 java.lang.Object _onYearNodeNameChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearNodeNameChange");
 java.lang.Object _onYearRangeChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearRangeChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:date-picker-select:appendOrder") != null) {
-	scopedAttributes.put("appendOrder", _appendOrder);
-}
-
-if (request.getAttribute("alloy:date-picker-select:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:date-picker-select:buttonNode") != null) {
-	scopedAttributes.put("buttonNode", _buttonNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:calendar") != null) {
-	scopedAttributes.put("calendar", _calendar);
-}
-
-if (request.getAttribute("alloy:date-picker-select:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:date-picker-select:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:date-picker-select:dayNode") != null) {
-	scopedAttributes.put("dayNode", _dayNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:dayNodeName") != null) {
-	scopedAttributes.put("dayNodeName", _dayNodeName);
-}
-
-if (request.getAttribute("alloy:date-picker-select:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:date-picker-select:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:date-picker-select:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:date-picker-select:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:date-picker-select:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:date-picker-select:datepickerselectId") != null) {
-	scopedAttributes.put("datepickerselectId", _datepickerselectId);
-}
-
-if (request.getAttribute("alloy:date-picker-select:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:date-picker-select:monthNode") != null) {
-	scopedAttributes.put("monthNode", _monthNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:monthNodeName") != null) {
-	scopedAttributes.put("monthNodeName", _monthNodeName);
-}
-
-if (request.getAttribute("alloy:date-picker-select:populateDay") != null) {
-	scopedAttributes.put("populateDay", _populateDay);
-}
-
-if (request.getAttribute("alloy:date-picker-select:populateMonth") != null) {
-	scopedAttributes.put("populateMonth", _populateMonth);
-}
-
-if (request.getAttribute("alloy:date-picker-select:populateYear") != null) {
-	scopedAttributes.put("populateYear", _populateYear);
-}
-
-if (request.getAttribute("alloy:date-picker-select:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:date-picker-select:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:date-picker-select:selectWrapperNode") != null) {
-	scopedAttributes.put("selectWrapperNode", _selectWrapperNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:date-picker-select:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:date-picker-select:trigger") != null) {
-	scopedAttributes.put("trigger", _trigger);
-}
-
-if (request.getAttribute("alloy:date-picker-select:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:date-picker-select:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:date-picker-select:yearNode") != null) {
-	scopedAttributes.put("yearNode", _yearNode);
-}
-
-if (request.getAttribute("alloy:date-picker-select:yearNodeName") != null) {
-	scopedAttributes.put("yearNodeName", _yearNodeName);
-}
-
-if (request.getAttribute("alloy:date-picker-select:yearRange") != null) {
-	scopedAttributes.put("yearRange", _yearRange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterAppendOrderChange") != null) {
-	scopedAttributes.put("afterAppendOrderChange", _afterAppendOrderChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterButtonNodeChange") != null) {
-	scopedAttributes.put("afterButtonNodeChange", _afterButtonNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterCalendarChange") != null) {
-	scopedAttributes.put("afterCalendarChange", _afterCalendarChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterDayNodeChange") != null) {
-	scopedAttributes.put("afterDayNodeChange", _afterDayNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterDayNodeNameChange") != null) {
-	scopedAttributes.put("afterDayNodeNameChange", _afterDayNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterMonthNodeChange") != null) {
-	scopedAttributes.put("afterMonthNodeChange", _afterMonthNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterMonthNodeNameChange") != null) {
-	scopedAttributes.put("afterMonthNodeNameChange", _afterMonthNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterPopulateDayChange") != null) {
-	scopedAttributes.put("afterPopulateDayChange", _afterPopulateDayChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterPopulateMonthChange") != null) {
-	scopedAttributes.put("afterPopulateMonthChange", _afterPopulateMonthChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterPopulateYearChange") != null) {
-	scopedAttributes.put("afterPopulateYearChange", _afterPopulateYearChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterSelectWrapperNodeChange") != null) {
-	scopedAttributes.put("afterSelectWrapperNodeChange", _afterSelectWrapperNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterTriggerChange") != null) {
-	scopedAttributes.put("afterTriggerChange", _afterTriggerChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterYearNodeChange") != null) {
-	scopedAttributes.put("afterYearNodeChange", _afterYearNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterYearNodeNameChange") != null) {
-	scopedAttributes.put("afterYearNodeNameChange", _afterYearNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:afterYearRangeChange") != null) {
-	scopedAttributes.put("afterYearRangeChange", _afterYearRangeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onAppendOrderChange") != null) {
-	scopedAttributes.put("onAppendOrderChange", _onAppendOrderChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onButtonNodeChange") != null) {
-	scopedAttributes.put("onButtonNodeChange", _onButtonNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onCalendarChange") != null) {
-	scopedAttributes.put("onCalendarChange", _onCalendarChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onDayNodeChange") != null) {
-	scopedAttributes.put("onDayNodeChange", _onDayNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onDayNodeNameChange") != null) {
-	scopedAttributes.put("onDayNodeNameChange", _onDayNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onMonthNodeChange") != null) {
-	scopedAttributes.put("onMonthNodeChange", _onMonthNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onMonthNodeNameChange") != null) {
-	scopedAttributes.put("onMonthNodeNameChange", _onMonthNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onPopulateDayChange") != null) {
-	scopedAttributes.put("onPopulateDayChange", _onPopulateDayChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onPopulateMonthChange") != null) {
-	scopedAttributes.put("onPopulateMonthChange", _onPopulateMonthChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onPopulateYearChange") != null) {
-	scopedAttributes.put("onPopulateYearChange", _onPopulateYearChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onSelectWrapperNodeChange") != null) {
-	scopedAttributes.put("onSelectWrapperNodeChange", _onSelectWrapperNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onTriggerChange") != null) {
-	scopedAttributes.put("onTriggerChange", _onTriggerChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onYearNodeChange") != null) {
-	scopedAttributes.put("onYearNodeChange", _onYearNodeChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onYearNodeNameChange") != null) {
-	scopedAttributes.put("onYearNodeNameChange", _onYearNodeNameChange);
-}
-
-if (request.getAttribute("alloy:date-picker-select:onYearRangeChange") != null) {
-	scopedAttributes.put("onYearRangeChange", _onYearRangeChange);
-}
-
+_updateOptions(options, "appendOrder", _appendOrder);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "buttonNode", _buttonNode);
+_updateOptions(options, "calendar", _calendar);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "dayNode", _dayNode);
+_updateOptions(options, "dayNodeName", _dayNodeName);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "datepickerselectId", _datepickerselectId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "monthNode", _monthNode);
+_updateOptions(options, "monthNodeName", _monthNodeName);
+_updateOptions(options, "populateDay", _populateDay);
+_updateOptions(options, "populateMonth", _populateMonth);
+_updateOptions(options, "populateYear", _populateYear);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "selectWrapperNode", _selectWrapperNode);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "trigger", _trigger);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "yearNode", _yearNode);
+_updateOptions(options, "yearNodeName", _yearNodeName);
+_updateOptions(options, "yearRange", _yearRange);
+_updateOptions(options, "afterAppendOrderChange", _afterAppendOrderChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterButtonNodeChange", _afterButtonNodeChange);
+_updateOptions(options, "afterCalendarChange", _afterCalendarChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDayNodeChange", _afterDayNodeChange);
+_updateOptions(options, "afterDayNodeNameChange", _afterDayNodeNameChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterMonthNodeChange", _afterMonthNodeChange);
+_updateOptions(options, "afterMonthNodeNameChange", _afterMonthNodeNameChange);
+_updateOptions(options, "afterPopulateDayChange", _afterPopulateDayChange);
+_updateOptions(options, "afterPopulateMonthChange", _afterPopulateMonthChange);
+_updateOptions(options, "afterPopulateYearChange", _afterPopulateYearChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSelectWrapperNodeChange", _afterSelectWrapperNodeChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTriggerChange", _afterTriggerChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "afterYearNodeChange", _afterYearNodeChange);
+_updateOptions(options, "afterYearNodeNameChange", _afterYearNodeNameChange);
+_updateOptions(options, "afterYearRangeChange", _afterYearRangeChange);
+_updateOptions(options, "onAppendOrderChange", _onAppendOrderChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onButtonNodeChange", _onButtonNodeChange);
+_updateOptions(options, "onCalendarChange", _onCalendarChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDayNodeChange", _onDayNodeChange);
+_updateOptions(options, "onDayNodeNameChange", _onDayNodeNameChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onMonthNodeChange", _onMonthNodeChange);
+_updateOptions(options, "onMonthNodeNameChange", _onMonthNodeNameChange);
+_updateOptions(options, "onPopulateDayChange", _onPopulateDayChange);
+_updateOptions(options, "onPopulateMonthChange", _onPopulateMonthChange);
+_updateOptions(options, "onPopulateYearChange", _onPopulateYearChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSelectWrapperNodeChange", _onSelectWrapperNodeChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTriggerChange", _onTriggerChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
+_updateOptions(options, "onYearNodeChange", _onYearNodeChange);
+_updateOptions(options, "onYearNodeNameChange", _onYearNodeNameChange);
+_updateOptions(options, "onYearRangeChange", _onYearRangeChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

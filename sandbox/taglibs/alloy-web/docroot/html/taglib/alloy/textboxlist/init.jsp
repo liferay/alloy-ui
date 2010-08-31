@@ -4,26 +4,23 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:textboxlist:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:textboxlist:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:textboxlist:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.lang.Boolean _alwaysShowContainer = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:alwaysShowContainer"), false);
 java.lang.Boolean _applyLocalFilter = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:applyLocalFilter"), true);
 java.lang.Boolean _autoHighlight = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:autoHighlight"), true);
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:textboxlist:boundingBox");
 java.lang.Boolean _button = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:button"), true);
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:textboxlist:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:textboxlist:cssClass");
 java.lang.Object _dataSource = (java.lang.Object)request.getAttribute("alloy:textboxlist:dataSource");
 java.lang.Object _dataSourceType = (java.lang.Object)request.getAttribute("alloy:textboxlist:dataSourceType");
@@ -49,7 +46,6 @@ java.lang.Boolean _render = GetterUtil.getBoolean((java.lang.String)request.getA
 java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:rendered"), false);
 java.lang.Object _schema = (java.lang.Object)request.getAttribute("alloy:textboxlist:schema");
 java.lang.Object _schemaType = (java.lang.Object)request.getAttribute("alloy:textboxlist:schemaType");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:textboxlist:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:textboxlist:strings");
 java.lang.Boolean _suppressInputUpdate = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:textboxlist:suppressInputUpdate"), false);
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:textboxlist:tabIndex"), 0);
@@ -182,673 +178,201 @@ java.lang.Object _onVisibleChange = (java.lang.Object)request.getAttribute("allo
 java.lang.Object _onContentUpdate = (java.lang.Object)request.getAttribute("alloy:textboxlist:onContentUpdate");
 java.lang.Object _onRender = (java.lang.Object)request.getAttribute("alloy:textboxlist:onRender");
 java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:textboxlist:onWidthChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:textboxlist:alwaysShowContainer") != null) {
-	scopedAttributes.put("alwaysShowContainer", _alwaysShowContainer);
-}
-
-if (request.getAttribute("alloy:textboxlist:applyLocalFilter") != null) {
-	scopedAttributes.put("applyLocalFilter", _applyLocalFilter);
-}
-
-if (request.getAttribute("alloy:textboxlist:autoHighlight") != null) {
-	scopedAttributes.put("autoHighlight", _autoHighlight);
-}
-
-if (request.getAttribute("alloy:textboxlist:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:textboxlist:button") != null) {
-	scopedAttributes.put("button", _button);
-}
-
-if (request.getAttribute("alloy:textboxlist:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:textboxlist:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:textboxlist:dataSource") != null) {
-	scopedAttributes.put("dataSource", _dataSource);
-}
-
-if (request.getAttribute("alloy:textboxlist:dataSourceType") != null) {
-	scopedAttributes.put("dataSourceType", _dataSourceType);
-}
-
-if (request.getAttribute("alloy:textboxlist:delimChar") != null) {
-	scopedAttributes.put("delimChar", _delimChar);
-}
-
-if (request.getAttribute("alloy:textboxlist:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:textboxlist:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:textboxlist:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:textboxlist:forceSelection") != null) {
-	scopedAttributes.put("forceSelection", _forceSelection);
-}
-
-if (request.getAttribute("alloy:textboxlist:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:textboxlist:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:textboxlist:textboxlistId") != null) {
-	scopedAttributes.put("textboxlistId", _textboxlistId);
-}
-
-if (request.getAttribute("alloy:textboxlist:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:textboxlist:input") != null) {
-	scopedAttributes.put("input", _input);
-}
-
-if (request.getAttribute("alloy:textboxlist:matchKey") != null) {
-	scopedAttributes.put("matchKey", _matchKey);
-}
-
-if (request.getAttribute("alloy:textboxlist:maxResultsDisplayed") != null) {
-	scopedAttributes.put("maxResultsDisplayed", _maxResultsDisplayed);
-}
-
-if (request.getAttribute("alloy:textboxlist:minQueryLength") != null) {
-	scopedAttributes.put("minQueryLength", _minQueryLength);
-}
-
-if (request.getAttribute("alloy:textboxlist:queryDelay") != null) {
-	scopedAttributes.put("queryDelay", _queryDelay);
-}
-
-if (request.getAttribute("alloy:textboxlist:queryInterval") != null) {
-	scopedAttributes.put("queryInterval", _queryInterval);
-}
-
-if (request.getAttribute("alloy:textboxlist:queryMatchCase") != null) {
-	scopedAttributes.put("queryMatchCase", _queryMatchCase);
-}
-
-if (request.getAttribute("alloy:textboxlist:queryMatchContains") != null) {
-	scopedAttributes.put("queryMatchContains", _queryMatchContains);
-}
-
-if (request.getAttribute("alloy:textboxlist:queryQuestionMark") != null) {
-	scopedAttributes.put("queryQuestionMark", _queryQuestionMark);
-}
-
-if (request.getAttribute("alloy:textboxlist:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:textboxlist:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:textboxlist:schema") != null) {
-	scopedAttributes.put("schema", _schema);
-}
-
-if (request.getAttribute("alloy:textboxlist:schemaType") != null) {
-	scopedAttributes.put("schemaType", _schemaType);
-}
-
-if (request.getAttribute("alloy:textboxlist:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:textboxlist:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:textboxlist:suppressInputUpdate") != null) {
-	scopedAttributes.put("suppressInputUpdate", _suppressInputUpdate);
-}
-
-if (request.getAttribute("alloy:textboxlist:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:textboxlist:typeAhead") != null) {
-	scopedAttributes.put("typeAhead", _typeAhead);
-}
-
-if (request.getAttribute("alloy:textboxlist:typeAheadDelay") != null) {
-	scopedAttributes.put("typeAheadDelay", _typeAheadDelay);
-}
-
-if (request.getAttribute("alloy:textboxlist:uniqueName") != null) {
-	scopedAttributes.put("uniqueName", _uniqueName);
-}
-
-if (request.getAttribute("alloy:textboxlist:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:textboxlist:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterAlwaysShowContainerChange") != null) {
-	scopedAttributes.put("afterAlwaysShowContainerChange", _afterAlwaysShowContainerChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterApplyLocalFilterChange") != null) {
-	scopedAttributes.put("afterApplyLocalFilterChange", _afterApplyLocalFilterChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterAutoHighlightChange") != null) {
-	scopedAttributes.put("afterAutoHighlightChange", _afterAutoHighlightChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterButtonChange") != null) {
-	scopedAttributes.put("afterButtonChange", _afterButtonChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterContainerCollapse") != null) {
-	scopedAttributes.put("afterContainerCollapse", _afterContainerCollapse);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterContainerExpand") != null) {
-	scopedAttributes.put("afterContainerExpand", _afterContainerExpand);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterContainerPopulate") != null) {
-	scopedAttributes.put("afterContainerPopulate", _afterContainerPopulate);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDataError") != null) {
-	scopedAttributes.put("afterDataError", _afterDataError);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDataRequest") != null) {
-	scopedAttributes.put("afterDataRequest", _afterDataRequest);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDataReturn") != null) {
-	scopedAttributes.put("afterDataReturn", _afterDataReturn);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDataSourceChange") != null) {
-	scopedAttributes.put("afterDataSourceChange", _afterDataSourceChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDataSourceTypeChange") != null) {
-	scopedAttributes.put("afterDataSourceTypeChange", _afterDataSourceTypeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDelimCharChange") != null) {
-	scopedAttributes.put("afterDelimCharChange", _afterDelimCharChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterForceSelectionChange") != null) {
-	scopedAttributes.put("afterForceSelectionChange", _afterForceSelectionChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterInputChange") != null) {
-	scopedAttributes.put("afterInputChange", _afterInputChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterItemArrowFrom") != null) {
-	scopedAttributes.put("afterItemArrowFrom", _afterItemArrowFrom);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterItemArrowTo") != null) {
-	scopedAttributes.put("afterItemArrowTo", _afterItemArrowTo);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterItemMouseOut") != null) {
-	scopedAttributes.put("afterItemMouseOut", _afterItemMouseOut);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterItemMouseOver") != null) {
-	scopedAttributes.put("afterItemMouseOver", _afterItemMouseOver);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterItemSelect") != null) {
-	scopedAttributes.put("afterItemSelect", _afterItemSelect);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterMatchKeyChange") != null) {
-	scopedAttributes.put("afterMatchKeyChange", _afterMatchKeyChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterMaxResultsDisplayedChange") != null) {
-	scopedAttributes.put("afterMaxResultsDisplayedChange", _afterMaxResultsDisplayedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterMinQueryLengthChange") != null) {
-	scopedAttributes.put("afterMinQueryLengthChange", _afterMinQueryLengthChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterQueryDelayChange") != null) {
-	scopedAttributes.put("afterQueryDelayChange", _afterQueryDelayChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterQueryIntervalChange") != null) {
-	scopedAttributes.put("afterQueryIntervalChange", _afterQueryIntervalChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterQueryMatchCaseChange") != null) {
-	scopedAttributes.put("afterQueryMatchCaseChange", _afterQueryMatchCaseChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterQueryMatchContainsChange") != null) {
-	scopedAttributes.put("afterQueryMatchContainsChange", _afterQueryMatchContainsChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterQueryQuestionMarkChange") != null) {
-	scopedAttributes.put("afterQueryQuestionMarkChange", _afterQueryQuestionMarkChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterSchemaChange") != null) {
-	scopedAttributes.put("afterSchemaChange", _afterSchemaChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterSchemaTypeChange") != null) {
-	scopedAttributes.put("afterSchemaTypeChange", _afterSchemaTypeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterSelectionEnforce") != null) {
-	scopedAttributes.put("afterSelectionEnforce", _afterSelectionEnforce);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterSuppressInputUpdateChange") != null) {
-	scopedAttributes.put("afterSuppressInputUpdateChange", _afterSuppressInputUpdateChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTextboxBlur") != null) {
-	scopedAttributes.put("afterTextboxBlur", _afterTextboxBlur);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTextboxChange") != null) {
-	scopedAttributes.put("afterTextboxChange", _afterTextboxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTextboxFocus") != null) {
-	scopedAttributes.put("afterTextboxFocus", _afterTextboxFocus);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTextboxKey") != null) {
-	scopedAttributes.put("afterTextboxKey", _afterTextboxKey);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTypeAhead") != null) {
-	scopedAttributes.put("afterTypeAhead", _afterTypeAhead);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTypeAheadChange") != null) {
-	scopedAttributes.put("afterTypeAheadChange", _afterTypeAheadChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterTypeAheadDelayChange") != null) {
-	scopedAttributes.put("afterTypeAheadDelayChange", _afterTypeAheadDelayChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterUniqueNameChange") != null) {
-	scopedAttributes.put("afterUniqueNameChange", _afterUniqueNameChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterUnmatchedItemSelect") != null) {
-	scopedAttributes.put("afterUnmatchedItemSelect", _afterUnmatchedItemSelect);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:textboxlist:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onAlwaysShowContainerChange") != null) {
-	scopedAttributes.put("onAlwaysShowContainerChange", _onAlwaysShowContainerChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onApplyLocalFilterChange") != null) {
-	scopedAttributes.put("onApplyLocalFilterChange", _onApplyLocalFilterChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onAutoHighlightChange") != null) {
-	scopedAttributes.put("onAutoHighlightChange", _onAutoHighlightChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onButtonChange") != null) {
-	scopedAttributes.put("onButtonChange", _onButtonChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onContainerCollapse") != null) {
-	scopedAttributes.put("onContainerCollapse", _onContainerCollapse);
-}
-
-if (request.getAttribute("alloy:textboxlist:onContainerExpand") != null) {
-	scopedAttributes.put("onContainerExpand", _onContainerExpand);
-}
-
-if (request.getAttribute("alloy:textboxlist:onContainerPopulate") != null) {
-	scopedAttributes.put("onContainerPopulate", _onContainerPopulate);
-}
-
-if (request.getAttribute("alloy:textboxlist:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDataError") != null) {
-	scopedAttributes.put("onDataError", _onDataError);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDataRequest") != null) {
-	scopedAttributes.put("onDataRequest", _onDataRequest);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDataReturn") != null) {
-	scopedAttributes.put("onDataReturn", _onDataReturn);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDataSourceChange") != null) {
-	scopedAttributes.put("onDataSourceChange", _onDataSourceChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDataSourceTypeChange") != null) {
-	scopedAttributes.put("onDataSourceTypeChange", _onDataSourceTypeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDelimCharChange") != null) {
-	scopedAttributes.put("onDelimCharChange", _onDelimCharChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onForceSelectionChange") != null) {
-	scopedAttributes.put("onForceSelectionChange", _onForceSelectionChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:textboxlist:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onInputChange") != null) {
-	scopedAttributes.put("onInputChange", _onInputChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onItemArrowFrom") != null) {
-	scopedAttributes.put("onItemArrowFrom", _onItemArrowFrom);
-}
-
-if (request.getAttribute("alloy:textboxlist:onItemArrowTo") != null) {
-	scopedAttributes.put("onItemArrowTo", _onItemArrowTo);
-}
-
-if (request.getAttribute("alloy:textboxlist:onItemMouseOut") != null) {
-	scopedAttributes.put("onItemMouseOut", _onItemMouseOut);
-}
-
-if (request.getAttribute("alloy:textboxlist:onItemMouseOver") != null) {
-	scopedAttributes.put("onItemMouseOver", _onItemMouseOver);
-}
-
-if (request.getAttribute("alloy:textboxlist:onItemSelect") != null) {
-	scopedAttributes.put("onItemSelect", _onItemSelect);
-}
-
-if (request.getAttribute("alloy:textboxlist:onMatchKeyChange") != null) {
-	scopedAttributes.put("onMatchKeyChange", _onMatchKeyChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onMaxResultsDisplayedChange") != null) {
-	scopedAttributes.put("onMaxResultsDisplayedChange", _onMaxResultsDisplayedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onMinQueryLengthChange") != null) {
-	scopedAttributes.put("onMinQueryLengthChange", _onMinQueryLengthChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onQueryDelayChange") != null) {
-	scopedAttributes.put("onQueryDelayChange", _onQueryDelayChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onQueryIntervalChange") != null) {
-	scopedAttributes.put("onQueryIntervalChange", _onQueryIntervalChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onQueryMatchCaseChange") != null) {
-	scopedAttributes.put("onQueryMatchCaseChange", _onQueryMatchCaseChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onQueryMatchContainsChange") != null) {
-	scopedAttributes.put("onQueryMatchContainsChange", _onQueryMatchContainsChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onQueryQuestionMarkChange") != null) {
-	scopedAttributes.put("onQueryQuestionMarkChange", _onQueryQuestionMarkChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onSchemaChange") != null) {
-	scopedAttributes.put("onSchemaChange", _onSchemaChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onSchemaTypeChange") != null) {
-	scopedAttributes.put("onSchemaTypeChange", _onSchemaTypeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onSelectionEnforce") != null) {
-	scopedAttributes.put("onSelectionEnforce", _onSelectionEnforce);
-}
-
-if (request.getAttribute("alloy:textboxlist:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onSuppressInputUpdateChange") != null) {
-	scopedAttributes.put("onSuppressInputUpdateChange", _onSuppressInputUpdateChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTextboxBlur") != null) {
-	scopedAttributes.put("onTextboxBlur", _onTextboxBlur);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTextboxChange") != null) {
-	scopedAttributes.put("onTextboxChange", _onTextboxChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTextboxFocus") != null) {
-	scopedAttributes.put("onTextboxFocus", _onTextboxFocus);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTextboxKey") != null) {
-	scopedAttributes.put("onTextboxKey", _onTextboxKey);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTypeAhead") != null) {
-	scopedAttributes.put("onTypeAhead", _onTypeAhead);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTypeAheadChange") != null) {
-	scopedAttributes.put("onTypeAheadChange", _onTypeAheadChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onTypeAheadDelayChange") != null) {
-	scopedAttributes.put("onTypeAheadDelayChange", _onTypeAheadDelayChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onUniqueNameChange") != null) {
-	scopedAttributes.put("onUniqueNameChange", _onUniqueNameChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onUnmatchedItemSelect") != null) {
-	scopedAttributes.put("onUnmatchedItemSelect", _onUnmatchedItemSelect);
-}
-
-if (request.getAttribute("alloy:textboxlist:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:textboxlist:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:textboxlist:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:textboxlist:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
+_updateOptions(options, "alwaysShowContainer", _alwaysShowContainer);
+_updateOptions(options, "applyLocalFilter", _applyLocalFilter);
+_updateOptions(options, "autoHighlight", _autoHighlight);
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "button", _button);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "dataSource", _dataSource);
+_updateOptions(options, "dataSourceType", _dataSourceType);
+_updateOptions(options, "delimChar", _delimChar);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "forceSelection", _forceSelection);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "textboxlistId", _textboxlistId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "input", _input);
+_updateOptions(options, "matchKey", _matchKey);
+_updateOptions(options, "maxResultsDisplayed", _maxResultsDisplayed);
+_updateOptions(options, "minQueryLength", _minQueryLength);
+_updateOptions(options, "queryDelay", _queryDelay);
+_updateOptions(options, "queryInterval", _queryInterval);
+_updateOptions(options, "queryMatchCase", _queryMatchCase);
+_updateOptions(options, "queryMatchContains", _queryMatchContains);
+_updateOptions(options, "queryQuestionMark", _queryQuestionMark);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "schema", _schema);
+_updateOptions(options, "schemaType", _schemaType);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "suppressInputUpdate", _suppressInputUpdate);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "typeAhead", _typeAhead);
+_updateOptions(options, "typeAheadDelay", _typeAheadDelay);
+_updateOptions(options, "uniqueName", _uniqueName);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "afterAlwaysShowContainerChange", _afterAlwaysShowContainerChange);
+_updateOptions(options, "afterApplyLocalFilterChange", _afterApplyLocalFilterChange);
+_updateOptions(options, "afterAutoHighlightChange", _afterAutoHighlightChange);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterButtonChange", _afterButtonChange);
+_updateOptions(options, "afterContainerCollapse", _afterContainerCollapse);
+_updateOptions(options, "afterContainerExpand", _afterContainerExpand);
+_updateOptions(options, "afterContainerPopulate", _afterContainerPopulate);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDataError", _afterDataError);
+_updateOptions(options, "afterDataRequest", _afterDataRequest);
+_updateOptions(options, "afterDataReturn", _afterDataReturn);
+_updateOptions(options, "afterDataSourceChange", _afterDataSourceChange);
+_updateOptions(options, "afterDataSourceTypeChange", _afterDataSourceTypeChange);
+_updateOptions(options, "afterDelimCharChange", _afterDelimCharChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterForceSelectionChange", _afterForceSelectionChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterInputChange", _afterInputChange);
+_updateOptions(options, "afterItemArrowFrom", _afterItemArrowFrom);
+_updateOptions(options, "afterItemArrowTo", _afterItemArrowTo);
+_updateOptions(options, "afterItemMouseOut", _afterItemMouseOut);
+_updateOptions(options, "afterItemMouseOver", _afterItemMouseOver);
+_updateOptions(options, "afterItemSelect", _afterItemSelect);
+_updateOptions(options, "afterMatchKeyChange", _afterMatchKeyChange);
+_updateOptions(options, "afterMaxResultsDisplayedChange", _afterMaxResultsDisplayedChange);
+_updateOptions(options, "afterMinQueryLengthChange", _afterMinQueryLengthChange);
+_updateOptions(options, "afterQueryDelayChange", _afterQueryDelayChange);
+_updateOptions(options, "afterQueryIntervalChange", _afterQueryIntervalChange);
+_updateOptions(options, "afterQueryMatchCaseChange", _afterQueryMatchCaseChange);
+_updateOptions(options, "afterQueryMatchContainsChange", _afterQueryMatchContainsChange);
+_updateOptions(options, "afterQueryQuestionMarkChange", _afterQueryQuestionMarkChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSchemaChange", _afterSchemaChange);
+_updateOptions(options, "afterSchemaTypeChange", _afterSchemaTypeChange);
+_updateOptions(options, "afterSelectionEnforce", _afterSelectionEnforce);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterSuppressInputUpdateChange", _afterSuppressInputUpdateChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTextboxBlur", _afterTextboxBlur);
+_updateOptions(options, "afterTextboxChange", _afterTextboxChange);
+_updateOptions(options, "afterTextboxFocus", _afterTextboxFocus);
+_updateOptions(options, "afterTextboxKey", _afterTextboxKey);
+_updateOptions(options, "afterTypeAhead", _afterTypeAhead);
+_updateOptions(options, "afterTypeAheadChange", _afterTypeAheadChange);
+_updateOptions(options, "afterTypeAheadDelayChange", _afterTypeAheadDelayChange);
+_updateOptions(options, "afterUniqueNameChange", _afterUniqueNameChange);
+_updateOptions(options, "afterUnmatchedItemSelect", _afterUnmatchedItemSelect);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "onAlwaysShowContainerChange", _onAlwaysShowContainerChange);
+_updateOptions(options, "onApplyLocalFilterChange", _onApplyLocalFilterChange);
+_updateOptions(options, "onAutoHighlightChange", _onAutoHighlightChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onButtonChange", _onButtonChange);
+_updateOptions(options, "onContainerCollapse", _onContainerCollapse);
+_updateOptions(options, "onContainerExpand", _onContainerExpand);
+_updateOptions(options, "onContainerPopulate", _onContainerPopulate);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDataError", _onDataError);
+_updateOptions(options, "onDataRequest", _onDataRequest);
+_updateOptions(options, "onDataReturn", _onDataReturn);
+_updateOptions(options, "onDataSourceChange", _onDataSourceChange);
+_updateOptions(options, "onDataSourceTypeChange", _onDataSourceTypeChange);
+_updateOptions(options, "onDelimCharChange", _onDelimCharChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onForceSelectionChange", _onForceSelectionChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onInputChange", _onInputChange);
+_updateOptions(options, "onItemArrowFrom", _onItemArrowFrom);
+_updateOptions(options, "onItemArrowTo", _onItemArrowTo);
+_updateOptions(options, "onItemMouseOut", _onItemMouseOut);
+_updateOptions(options, "onItemMouseOver", _onItemMouseOver);
+_updateOptions(options, "onItemSelect", _onItemSelect);
+_updateOptions(options, "onMatchKeyChange", _onMatchKeyChange);
+_updateOptions(options, "onMaxResultsDisplayedChange", _onMaxResultsDisplayedChange);
+_updateOptions(options, "onMinQueryLengthChange", _onMinQueryLengthChange);
+_updateOptions(options, "onQueryDelayChange", _onQueryDelayChange);
+_updateOptions(options, "onQueryIntervalChange", _onQueryIntervalChange);
+_updateOptions(options, "onQueryMatchCaseChange", _onQueryMatchCaseChange);
+_updateOptions(options, "onQueryMatchContainsChange", _onQueryMatchContainsChange);
+_updateOptions(options, "onQueryQuestionMarkChange", _onQueryQuestionMarkChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSchemaChange", _onSchemaChange);
+_updateOptions(options, "onSchemaTypeChange", _onSchemaTypeChange);
+_updateOptions(options, "onSelectionEnforce", _onSelectionEnforce);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onSuppressInputUpdateChange", _onSuppressInputUpdateChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTextboxBlur", _onTextboxBlur);
+_updateOptions(options, "onTextboxChange", _onTextboxChange);
+_updateOptions(options, "onTextboxFocus", _onTextboxFocus);
+_updateOptions(options, "onTextboxKey", _onTextboxKey);
+_updateOptions(options, "onTypeAhead", _onTypeAhead);
+_updateOptions(options, "onTypeAheadChange", _onTypeAheadChange);
+_updateOptions(options, "onTypeAheadDelayChange", _onTypeAheadDelayChange);
+_updateOptions(options, "onUniqueNameChange", _onUniqueNameChange);
+_updateOptions(options, "onUnmatchedItemSelect", _onUnmatchedItemSelect);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>

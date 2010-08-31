@@ -4,23 +4,20 @@
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:scopedAttributes");
 
-String uniqueId = StringPool.BLANK;
+Map<String, Object> options = new HashMap<String, Object>();
 
-boolean useMarkup = Boolean.valueOf((String)dynamicAttributes.get("useMarkup"));
+options.putAll(scopedAttributes);
+options.putAll(dynamicAttributes);
 
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
+java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
+java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
+java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
 
-	if ((String)request.getAttribute("alloy:thumb-rating:boundingBox") == null) {
-		scopedAttributes.put("boundingBox", StringPool.POUND.concat(uniqueId).concat("BoundingBox"));
-	}
-	
-	scopedAttributes.put("srcNode", StringPool.POUND.concat(uniqueId).concat("SrcNode"));
-}
+boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
+boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
+boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:thumb-rating:boundingBox");
 java.lang.Boolean _canReset = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:canReset"), true);
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:thumb-rating:contentBox");
 java.lang.Object _cssClass = (java.lang.Object)request.getAttribute("alloy:thumb-rating:cssClass");
 java.lang.Number _defaultSelected = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:defaultSelected"), 0);
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:destroyed"), false);
@@ -40,7 +37,6 @@ java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.String)request.ge
 java.lang.Number _selectedIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:selectedIndex"), -1);
 java.lang.Boolean _showTitle = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:thumb-rating:showTitle"), true);
 java.lang.Number _size = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:size"), 2);
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:thumb-rating:srcNode");
 java.lang.Object _strings = (java.lang.Object)request.getAttribute("alloy:thumb-rating:strings");
 java.lang.Number _tabIndex = GetterUtil.getNumber((java.lang.String)request.getAttribute("alloy:thumb-rating:tabIndex"), 0);
 java.lang.Object _title = (java.lang.Object)request.getAttribute("alloy:thumb-rating:title");
@@ -119,421 +115,138 @@ java.lang.Object _onVisibleChange = (java.lang.Object)request.getAttribute("allo
 java.lang.Object _onContentUpdate = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onContentUpdate");
 java.lang.Object _onRender = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onRender");
 java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onWidthChange");
+
+String uniqueId = StringPool.BLANK;
+
+boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+
+if (useMarkup) {
+	uniqueId = MarkupUtil.getUniqueId();
+
+	String prefix = StringPool.POUND.concat(uniqueId);
+
+	if (!hasBoundingBox) {
+		_boundingBox = prefix.concat("BoundingBox");
+
+		options.put("boundingBox", _boundingBox);
+	}
+
+	if (!hasSrcNode && !hasContentBox) {
+		_srcNode = prefix.concat("SrcNode");
+
+		options.put("srcNode", _srcNode);
+	}
+
+	if (!hasSrcNode && hasContentBox) {
+		_contentBox = prefix.concat("ContentBox");
+
+		options.put("contentBox", _contentBox);
+	}
+}
 %>
 
 <%@ include file="init-ext.jsp" %>
 
 <%
-if (request.getAttribute("alloy:thumb-rating:boundingBox") != null) {
-	scopedAttributes.put("boundingBox", _boundingBox);
-}
-
-if (request.getAttribute("alloy:thumb-rating:canReset") != null) {
-	scopedAttributes.put("canReset", _canReset);
-}
-
-if (request.getAttribute("alloy:thumb-rating:contentBox") != null) {
-	scopedAttributes.put("contentBox", _contentBox);
-}
-
-if (request.getAttribute("alloy:thumb-rating:cssClass") != null) {
-	scopedAttributes.put("cssClass", _cssClass);
-}
-
-if (request.getAttribute("alloy:thumb-rating:defaultSelected") != null) {
-	scopedAttributes.put("defaultSelected", _defaultSelected);
-}
-
-if (request.getAttribute("alloy:thumb-rating:destroyed") != null) {
-	scopedAttributes.put("destroyed", _destroyed);
-}
-
-if (request.getAttribute("alloy:thumb-rating:disabled") != null) {
-	scopedAttributes.put("disabled", _disabled);
-}
-
-if (request.getAttribute("alloy:thumb-rating:elements") != null) {
-	scopedAttributes.put("elements", _elements);
-}
-
-if (request.getAttribute("alloy:thumb-rating:focused") != null) {
-	scopedAttributes.put("focused", _focused);
-}
-
-if (request.getAttribute("alloy:thumb-rating:height") != null) {
-	scopedAttributes.put("height", _height);
-}
-
-if (request.getAttribute("alloy:thumb-rating:hiddenInput") != null) {
-	scopedAttributes.put("hiddenInput", _hiddenInput);
-}
-
-if (request.getAttribute("alloy:thumb-rating:hideClass") != null) {
-	scopedAttributes.put("hideClass", _hideClass);
-}
-
-if (request.getAttribute("alloy:thumb-rating:thumbratingId") != null) {
-	scopedAttributes.put("thumbratingId", _thumbratingId);
-}
-
-if (request.getAttribute("alloy:thumb-rating:initialized") != null) {
-	scopedAttributes.put("initialized", _initialized);
-}
-
-if (request.getAttribute("alloy:thumb-rating:inputName") != null) {
-	scopedAttributes.put("inputName", _inputName);
-}
-
-if (request.getAttribute("alloy:thumb-rating:label") != null) {
-	scopedAttributes.put("label", _label);
-}
-
-if (request.getAttribute("alloy:thumb-rating:labelNode") != null) {
-	scopedAttributes.put("labelNode", _labelNode);
-}
-
-if (request.getAttribute("alloy:thumb-rating:render") != null) {
-	scopedAttributes.put("render", _render);
-}
-
-if (request.getAttribute("alloy:thumb-rating:rendered") != null) {
-	scopedAttributes.put("rendered", _rendered);
-}
-
-if (request.getAttribute("alloy:thumb-rating:selectedIndex") != null) {
-	scopedAttributes.put("selectedIndex", _selectedIndex);
-}
-
-if (request.getAttribute("alloy:thumb-rating:showTitle") != null) {
-	scopedAttributes.put("showTitle", _showTitle);
-}
-
-if (request.getAttribute("alloy:thumb-rating:size") != null) {
-	scopedAttributes.put("size", _size);
-}
-
-if (request.getAttribute("alloy:thumb-rating:srcNode") != null) {
-	scopedAttributes.put("srcNode", _srcNode);
-}
-
-if (request.getAttribute("alloy:thumb-rating:strings") != null) {
-	scopedAttributes.put("strings", _strings);
-}
-
-if (request.getAttribute("alloy:thumb-rating:tabIndex") != null) {
-	scopedAttributes.put("tabIndex", _tabIndex);
-}
-
-if (request.getAttribute("alloy:thumb-rating:title") != null) {
-	scopedAttributes.put("title", _title);
-}
-
-if (request.getAttribute("alloy:thumb-rating:thumbratingValue") != null) {
-	scopedAttributes.put("thumbratingValue", _thumbratingValue);
-}
-
-if (request.getAttribute("alloy:thumb-rating:visible") != null) {
-	scopedAttributes.put("visible", _visible);
-}
-
-if (request.getAttribute("alloy:thumb-rating:width") != null) {
-	scopedAttributes.put("width", _width);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterBoundingBoxChange") != null) {
-	scopedAttributes.put("afterBoundingBoxChange", _afterBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterCanResetChange") != null) {
-	scopedAttributes.put("afterCanResetChange", _afterCanResetChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterContentBoxChange") != null) {
-	scopedAttributes.put("afterContentBoxChange", _afterContentBoxChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterCssClassChange") != null) {
-	scopedAttributes.put("afterCssClassChange", _afterCssClassChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterDefaultSelectedChange") != null) {
-	scopedAttributes.put("afterDefaultSelectedChange", _afterDefaultSelectedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterDestroy") != null) {
-	scopedAttributes.put("afterDestroy", _afterDestroy);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterDestroyedChange") != null) {
-	scopedAttributes.put("afterDestroyedChange", _afterDestroyedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterDisabledChange") != null) {
-	scopedAttributes.put("afterDisabledChange", _afterDisabledChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterElementsChange") != null) {
-	scopedAttributes.put("afterElementsChange", _afterElementsChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterFocusedChange") != null) {
-	scopedAttributes.put("afterFocusedChange", _afterFocusedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterHeightChange") != null) {
-	scopedAttributes.put("afterHeightChange", _afterHeightChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterHiddenInputChange") != null) {
-	scopedAttributes.put("afterHiddenInputChange", _afterHiddenInputChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterHideClassChange") != null) {
-	scopedAttributes.put("afterHideClassChange", _afterHideClassChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterIdChange") != null) {
-	scopedAttributes.put("afterIdChange", _afterIdChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterInit") != null) {
-	scopedAttributes.put("afterInit", _afterInit);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterInitializedChange") != null) {
-	scopedAttributes.put("afterInitializedChange", _afterInitializedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterInputNameChange") != null) {
-	scopedAttributes.put("afterInputNameChange", _afterInputNameChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterItemClick") != null) {
-	scopedAttributes.put("afterItemClick", _afterItemClick);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterItemOut") != null) {
-	scopedAttributes.put("afterItemOut", _afterItemOut);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterItemSelect") != null) {
-	scopedAttributes.put("afterItemSelect", _afterItemSelect);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterLabelChange") != null) {
-	scopedAttributes.put("afterLabelChange", _afterLabelChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterLabelNodeChange") != null) {
-	scopedAttributes.put("afterLabelNodeChange", _afterLabelNodeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterRenderChange") != null) {
-	scopedAttributes.put("afterRenderChange", _afterRenderChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterRenderedChange") != null) {
-	scopedAttributes.put("afterRenderedChange", _afterRenderedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterSelectedIndexChange") != null) {
-	scopedAttributes.put("afterSelectedIndexChange", _afterSelectedIndexChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterShowTitleChange") != null) {
-	scopedAttributes.put("afterShowTitleChange", _afterShowTitleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterSizeChange") != null) {
-	scopedAttributes.put("afterSizeChange", _afterSizeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterSrcNodeChange") != null) {
-	scopedAttributes.put("afterSrcNodeChange", _afterSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterStringsChange") != null) {
-	scopedAttributes.put("afterStringsChange", _afterStringsChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterTabIndexChange") != null) {
-	scopedAttributes.put("afterTabIndexChange", _afterTabIndexChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterTitleChange") != null) {
-	scopedAttributes.put("afterTitleChange", _afterTitleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterValueChange") != null) {
-	scopedAttributes.put("afterValueChange", _afterValueChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterVisibleChange") != null) {
-	scopedAttributes.put("afterVisibleChange", _afterVisibleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterContentUpdate") != null) {
-	scopedAttributes.put("afterContentUpdate", _afterContentUpdate);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterRender") != null) {
-	scopedAttributes.put("afterRender", _afterRender);
-}
-
-if (request.getAttribute("alloy:thumb-rating:afterWidthChange") != null) {
-	scopedAttributes.put("afterWidthChange", _afterWidthChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onBoundingBoxChange") != null) {
-	scopedAttributes.put("onBoundingBoxChange", _onBoundingBoxChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onCanResetChange") != null) {
-	scopedAttributes.put("onCanResetChange", _onCanResetChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onContentBoxChange") != null) {
-	scopedAttributes.put("onContentBoxChange", _onContentBoxChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onCssClassChange") != null) {
-	scopedAttributes.put("onCssClassChange", _onCssClassChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onDefaultSelectedChange") != null) {
-	scopedAttributes.put("onDefaultSelectedChange", _onDefaultSelectedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onDestroy") != null) {
-	scopedAttributes.put("onDestroy", _onDestroy);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onDestroyedChange") != null) {
-	scopedAttributes.put("onDestroyedChange", _onDestroyedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onDisabledChange") != null) {
-	scopedAttributes.put("onDisabledChange", _onDisabledChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onElementsChange") != null) {
-	scopedAttributes.put("onElementsChange", _onElementsChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onFocusedChange") != null) {
-	scopedAttributes.put("onFocusedChange", _onFocusedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onHeightChange") != null) {
-	scopedAttributes.put("onHeightChange", _onHeightChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onHiddenInputChange") != null) {
-	scopedAttributes.put("onHiddenInputChange", _onHiddenInputChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onHideClassChange") != null) {
-	scopedAttributes.put("onHideClassChange", _onHideClassChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onIdChange") != null) {
-	scopedAttributes.put("onIdChange", _onIdChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onInit") != null) {
-	scopedAttributes.put("onInit", _onInit);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onInitializedChange") != null) {
-	scopedAttributes.put("onInitializedChange", _onInitializedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onInputNameChange") != null) {
-	scopedAttributes.put("onInputNameChange", _onInputNameChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onItemClick") != null) {
-	scopedAttributes.put("onItemClick", _onItemClick);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onItemOut") != null) {
-	scopedAttributes.put("onItemOut", _onItemOut);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onItemSelect") != null) {
-	scopedAttributes.put("onItemSelect", _onItemSelect);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onLabelChange") != null) {
-	scopedAttributes.put("onLabelChange", _onLabelChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onLabelNodeChange") != null) {
-	scopedAttributes.put("onLabelNodeChange", _onLabelNodeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onRenderChange") != null) {
-	scopedAttributes.put("onRenderChange", _onRenderChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onRenderedChange") != null) {
-	scopedAttributes.put("onRenderedChange", _onRenderedChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onSelectedIndexChange") != null) {
-	scopedAttributes.put("onSelectedIndexChange", _onSelectedIndexChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onShowTitleChange") != null) {
-	scopedAttributes.put("onShowTitleChange", _onShowTitleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onSizeChange") != null) {
-	scopedAttributes.put("onSizeChange", _onSizeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onSrcNodeChange") != null) {
-	scopedAttributes.put("onSrcNodeChange", _onSrcNodeChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onStringsChange") != null) {
-	scopedAttributes.put("onStringsChange", _onStringsChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onTabIndexChange") != null) {
-	scopedAttributes.put("onTabIndexChange", _onTabIndexChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onTitleChange") != null) {
-	scopedAttributes.put("onTitleChange", _onTitleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onValueChange") != null) {
-	scopedAttributes.put("onValueChange", _onValueChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onVisibleChange") != null) {
-	scopedAttributes.put("onVisibleChange", _onVisibleChange);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onContentUpdate") != null) {
-	scopedAttributes.put("onContentUpdate", _onContentUpdate);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onRender") != null) {
-	scopedAttributes.put("onRender", _onRender);
-}
-
-if (request.getAttribute("alloy:thumb-rating:onWidthChange") != null) {
-	scopedAttributes.put("onWidthChange", _onWidthChange);
-}
-
+_updateOptions(options, "boundingBox", _boundingBox);
+_updateOptions(options, "canReset", _canReset);
+_updateOptions(options, "contentBox", _contentBox);
+_updateOptions(options, "cssClass", _cssClass);
+_updateOptions(options, "defaultSelected", _defaultSelected);
+_updateOptions(options, "destroyed", _destroyed);
+_updateOptions(options, "disabled", _disabled);
+_updateOptions(options, "elements", _elements);
+_updateOptions(options, "focused", _focused);
+_updateOptions(options, "height", _height);
+_updateOptions(options, "hiddenInput", _hiddenInput);
+_updateOptions(options, "hideClass", _hideClass);
+_updateOptions(options, "thumbratingId", _thumbratingId);
+_updateOptions(options, "initialized", _initialized);
+_updateOptions(options, "inputName", _inputName);
+_updateOptions(options, "label", _label);
+_updateOptions(options, "labelNode", _labelNode);
+_updateOptions(options, "render", _render);
+_updateOptions(options, "rendered", _rendered);
+_updateOptions(options, "selectedIndex", _selectedIndex);
+_updateOptions(options, "showTitle", _showTitle);
+_updateOptions(options, "size", _size);
+_updateOptions(options, "srcNode", _srcNode);
+_updateOptions(options, "strings", _strings);
+_updateOptions(options, "tabIndex", _tabIndex);
+_updateOptions(options, "title", _title);
+_updateOptions(options, "thumbratingValue", _thumbratingValue);
+_updateOptions(options, "visible", _visible);
+_updateOptions(options, "width", _width);
+_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
+_updateOptions(options, "afterCanResetChange", _afterCanResetChange);
+_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
+_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
+_updateOptions(options, "afterDefaultSelectedChange", _afterDefaultSelectedChange);
+_updateOptions(options, "afterDestroy", _afterDestroy);
+_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
+_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
+_updateOptions(options, "afterElementsChange", _afterElementsChange);
+_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
+_updateOptions(options, "afterHeightChange", _afterHeightChange);
+_updateOptions(options, "afterHiddenInputChange", _afterHiddenInputChange);
+_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
+_updateOptions(options, "afterIdChange", _afterIdChange);
+_updateOptions(options, "afterInit", _afterInit);
+_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
+_updateOptions(options, "afterInputNameChange", _afterInputNameChange);
+_updateOptions(options, "afterItemClick", _afterItemClick);
+_updateOptions(options, "afterItemOut", _afterItemOut);
+_updateOptions(options, "afterItemSelect", _afterItemSelect);
+_updateOptions(options, "afterLabelChange", _afterLabelChange);
+_updateOptions(options, "afterLabelNodeChange", _afterLabelNodeChange);
+_updateOptions(options, "afterRenderChange", _afterRenderChange);
+_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
+_updateOptions(options, "afterSelectedIndexChange", _afterSelectedIndexChange);
+_updateOptions(options, "afterShowTitleChange", _afterShowTitleChange);
+_updateOptions(options, "afterSizeChange", _afterSizeChange);
+_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
+_updateOptions(options, "afterStringsChange", _afterStringsChange);
+_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
+_updateOptions(options, "afterTitleChange", _afterTitleChange);
+_updateOptions(options, "afterValueChange", _afterValueChange);
+_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
+_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
+_updateOptions(options, "afterRender", _afterRender);
+_updateOptions(options, "afterWidthChange", _afterWidthChange);
+_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
+_updateOptions(options, "onCanResetChange", _onCanResetChange);
+_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
+_updateOptions(options, "onCssClassChange", _onCssClassChange);
+_updateOptions(options, "onDefaultSelectedChange", _onDefaultSelectedChange);
+_updateOptions(options, "onDestroy", _onDestroy);
+_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
+_updateOptions(options, "onDisabledChange", _onDisabledChange);
+_updateOptions(options, "onElementsChange", _onElementsChange);
+_updateOptions(options, "onFocusedChange", _onFocusedChange);
+_updateOptions(options, "onHeightChange", _onHeightChange);
+_updateOptions(options, "onHiddenInputChange", _onHiddenInputChange);
+_updateOptions(options, "onHideClassChange", _onHideClassChange);
+_updateOptions(options, "onIdChange", _onIdChange);
+_updateOptions(options, "onInit", _onInit);
+_updateOptions(options, "onInitializedChange", _onInitializedChange);
+_updateOptions(options, "onInputNameChange", _onInputNameChange);
+_updateOptions(options, "onItemClick", _onItemClick);
+_updateOptions(options, "onItemOut", _onItemOut);
+_updateOptions(options, "onItemSelect", _onItemSelect);
+_updateOptions(options, "onLabelChange", _onLabelChange);
+_updateOptions(options, "onLabelNodeChange", _onLabelNodeChange);
+_updateOptions(options, "onRenderChange", _onRenderChange);
+_updateOptions(options, "onRenderedChange", _onRenderedChange);
+_updateOptions(options, "onSelectedIndexChange", _onSelectedIndexChange);
+_updateOptions(options, "onShowTitleChange", _onShowTitleChange);
+_updateOptions(options, "onSizeChange", _onSizeChange);
+_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
+_updateOptions(options, "onStringsChange", _onStringsChange);
+_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
+_updateOptions(options, "onTitleChange", _onTitleChange);
+_updateOptions(options, "onValueChange", _onValueChange);
+_updateOptions(options, "onVisibleChange", _onVisibleChange);
+_updateOptions(options, "onContentUpdate", _onContentUpdate);
+_updateOptions(options, "onRender", _onRender);
+_updateOptions(options, "onWidthChange", _onWidthChange);
 %>
-
-<alloy:createConfig
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	tagDynamicAttributes="<%= dynamicAttributes %>"
-	tagScopedAttributes="<%= scopedAttributes %>"
-	var="options"
-/>
