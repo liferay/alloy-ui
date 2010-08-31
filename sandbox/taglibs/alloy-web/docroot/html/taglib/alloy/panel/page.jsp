@@ -27,7 +27,7 @@
 	final String TOOLBAR_CLASS = StringUtil.merge(new String[] { CSS_WIDGET, CSS_COMPONENT, CSS_TOOLBAR, CSS_TOOLBAR_HORIZONTAL, CSS_PANEL_ICONS }, StringPool.SPACE);
 	%>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		<div class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
 	</c:if>
 
@@ -47,7 +47,7 @@
 		</div>
 	</div>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		</div>
 	</c:if>
 

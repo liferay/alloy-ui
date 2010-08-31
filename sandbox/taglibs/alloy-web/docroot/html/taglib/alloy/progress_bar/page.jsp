@@ -16,7 +16,7 @@
 	final String CONTENT_BOX_CLASS = StringUtil.merge(new String[] { CSS_PROGRESS_BAR_CONTENT, CSS_WIDGET_CONTENT_EXPANDED }, StringPool.SPACE);
 	%>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		<div id="<%= uniqueId %>BoundingBox" class="<%= BOUNDING_BOX_CLASS %>" style="width: <%= _width %>px">
 	</c:if>
 
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		</div>
 	</c:if>
 

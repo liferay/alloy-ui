@@ -17,7 +17,7 @@
 	final String CONTENT_BOX_CLASS = StringUtil.merge(new String[] { CSS_RATING_CONTENT, CSS_CLEAR_FIX }, StringPool.SPACE);
 	%>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		<div id="<%= uniqueId %>BoundingBox" class="<%= BOUNDING_BOX_CLASS %>">
 	</c:if>
 
@@ -38,7 +38,7 @@
 		%>
     </div>
 
-	<c:if test="<%= Validator.isNull(_boundingBox) %>">
+	<c:if test="<%= !hasBoundingBox %>">
 		</div>
 	</c:if>
 
