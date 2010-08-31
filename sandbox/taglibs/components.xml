@@ -2311,6 +2311,12 @@ it displays from -10 to +10 years from the current year.]]></description>
   <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false">
     <attributes>
       <attribute>
+        <name>align</name>
+        <type>java.lang.Object</type>
+        <defaultValue></defaultValue>
+        <description><![CDATA[]]></description>
+      </attribute>
+      <attribute>
         <name>bodyContent</name>
         <type>java.lang.Object</type>
         <defaultValue></defaultValue>
@@ -2345,6 +2351,14 @@ A reference to a function that should fire when the button is clicked.
 </dl>]]></description>
       </attribute>
       <attribute>
+        <name>centered</name>
+        <type>java.lang.Object</type>
+        <defaultValue>false</defaultValue>
+        <description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
+If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
+the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
+      </attribute>
+      <attribute>
         <name>close</name>
         <type>java.lang.Boolean</type>
         <defaultValue>true</defaultValue>
@@ -2362,6 +2376,13 @@ Dialog header.]]></description>
         <type>java.lang.Boolean</type>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the panel is able to be collapsed.]]></description>
+      </attribute>
+      <attribute>
+        <name>constrain</name>
+        <type>java.lang.Object</type>
+        <defaultValue></defaultValue>
+        <description><![CDATA[The node to constrain the widget's bounding box to, when setting xy. Can also be
+set to true, to constrain to the viewport.]]></description>
       </attribute>
       <attribute>
         <name>constrain2view</name>
@@ -2496,6 +2517,15 @@ will not be removed until the Dialog is dismissed. Uses
 <a href="OverlayMask.html">OverlayMask</a>.]]></description>
       </attribute>
       <attribute>
+        <name>preventOverlap</name>
+        <type>java.lang.Boolean</type>
+        <defaultValue>false</defaultValue>
+        <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
+constrained positioning will attempt to prevent the widget's bounding box from overlapping 
+the element to which it has been aligned, by flipping the orientation of the alignment
+for corner based alignments]]></description>
+      </attribute>
+      <attribute>
         <name>render</name>
         <type>java.lang.Boolean</type>
         <defaultValue>false</defaultValue>
@@ -2521,6 +2551,13 @@ has been through the render lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[Stores the Drag instance for the
 <a href="Resize.html">Resize</a> used by this Dialog.]]></description>
+      </attribute>
+      <attribute>
+        <name>shim</name>
+        <type>java.lang.Boolean</type>
+        <defaultValue>false</defaultValue>
+        <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
+boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>srcNode</name>
@@ -2570,8 +2607,39 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
         <description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
 the default unit, defined by the Widgets DEF_UNIT, property is used.]]></description>
       </attribute>
+      <attribute>
+        <name>x</name>
+        <type>java.lang.Number</type>
+        <defaultValue>0</defaultValue>
+        <description><![CDATA[Page X co-ordinate for the widget. This attribute acts as a facade for the 
+xy attribute. Changes in position can be monitored by listening for xyChange events.]]></description>
+      </attribute>
+      <attribute>
+        <name>xy</name>
+        <type>java.lang.Object</type>
+        <defaultValue>[0,0]</defaultValue>
+        <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
+      </attribute>
+      <attribute>
+        <name>y</name>
+        <type>java.lang.Number</type>
+        <defaultValue>0</defaultValue>
+        <description><![CDATA[Page Y co-ordinate for the widget. This attribute acts as a facade for the 
+xy attribute. Changes in position can be monitored by listening for xyChange events.]]></description>
+      </attribute>
+      <attribute>
+        <name>zIndex</name>
+        <type>java.lang.Number</type>
+        <defaultValue>0</defaultValue>
+        <description><![CDATA[The z-index to apply to the Widgets boundingBox. Non-numerical values for 
+zIndex will be converted to 0]]></description>
+      </attribute>
     </attributes>
     <events>
+      <event>
+        <name>alignChange</name>
+        <type>java.lang.Object</type>
+      </event>
       <event>
         <name>bodyContentChange</name>
         <type>java.lang.Object</type>
@@ -2582,6 +2650,10 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
       <event>
         <name>buttonsChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>centeredChange</name>
         <type>java.lang.Object</type>
       </event>
       <event>
@@ -2598,6 +2670,10 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
       <event>
         <name>constrain2viewChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>constrainChange</name>
         <type>java.lang.Object</type>
       </event>
       <event>
@@ -2677,6 +2753,10 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <type>java.lang.Object</type>
       </event>
       <event>
+        <name>preventOverlapChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
         <name>renderChange</name>
         <type>java.lang.Object</type>
       </event>
@@ -2690,6 +2770,10 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
       <event>
         <name>resizableInstanceChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>shimChange</name>
         <type>java.lang.Object</type>
       </event>
       <event>
@@ -2726,6 +2810,22 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
       <event>
         <name>widthChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>xChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>xyChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>yChange</name>
+        <type>java.lang.Object</type>
+      </event>
+      <event>
+        <name>zIndexChange</name>
         <type>java.lang.Object</type>
       </event>
     </events>

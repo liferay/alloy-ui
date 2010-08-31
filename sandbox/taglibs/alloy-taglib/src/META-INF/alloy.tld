@@ -4416,6 +4416,13 @@ it displays from -10 to +10 years from the current year.]]></description>
 		<tag-class>com.liferay.alloy.taglib.alloy.DialogTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
+			<description><![CDATA[]]></description>
+			<name>align</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[See <a href="WidgetStdMod.html#config_bodyContent">WidgetStdMod bodyContent</a>.]]></description>
 			<name>dialogBodyContent</name>
 			<required>false</required>
@@ -4453,6 +4460,15 @@ A reference to a function that should fire when the button is clicked.
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
+If set to true, the Widget is centered in the viewport. If set to a node reference or valid selector string,
+the Widget will be centered within the node. If set the false, no center positioning is applied.]]></description>
+			<name>centered</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[If <code>true</code> the close icon will be displayed on the
 Dialog header.]]></description>
 			<name>close</name>
@@ -4473,6 +4489,14 @@ Dialog header.]]></description>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The node to constrain the widget's bounding box to, when setting xy. Can also be
+set to true, to constrain to the viewport.]]></description>
+			<name>constrain</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Will attempt to constrain the dialog to the boundaries of the
@@ -4625,6 +4649,16 @@ will not be removed until the Dialog is dismissed. Uses
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
+constrained positioning will attempt to prevent the widget's bounding box from overlapping 
+the element to which it has been aligned, by flipping the orientation of the alignment
+for corner based alignments]]></description>
+			<name>preventOverlap</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
@@ -4654,6 +4688,14 @@ has been through the render lifecycle phase.]]></description>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
+boundingBox, to protect it from select box bleedthrough.]]></description>
+			<name>shim</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -4711,6 +4753,43 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Page X co-ordinate for the widget. This attribute acts as a facade for the 
+xy attribute. Changes in position can be monitored by listening for xyChange events.]]></description>
+			<name>x</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
+			<name>xy</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Page Y co-ordinate for the widget. This attribute acts as a facade for the 
+xy attribute. Changes in position can be monitored by listening for xyChange events.]]></description>
+			<name>y</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The z-index to apply to the Widgets boundingBox. Non-numerical values for 
+zIndex will be converted to 0]]></description>
+			<name>zIndex</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<name>afterAlignChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>afterBodyContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4724,6 +4803,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>afterButtonsChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterCenteredChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -4748,6 +4833,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>afterConstrain2viewChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterConstrainChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -4867,6 +4958,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<name>afterPreventOverlapChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>afterRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4886,6 +4983,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>afterResizableInstanceChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterShimChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -4945,6 +5048,36 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<name>afterXChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterXyChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterYChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>afterZIndexChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onAlignChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>onBodyContentChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4958,6 +5091,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>onButtonsChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onCenteredChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -4982,6 +5121,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>onConstrain2viewChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onConstrainChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -5101,6 +5246,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<name>onPreventOverlapChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 			<name>onRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5120,6 +5271,12 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>onResizableInstanceChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onShimChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -5174,6 +5331,30 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<name>onWidthChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onXChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onXyChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onYChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<name>onZIndexChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
