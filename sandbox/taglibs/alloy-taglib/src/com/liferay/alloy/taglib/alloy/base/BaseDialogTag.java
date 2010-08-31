@@ -24,6 +24,10 @@ public class BaseDialogTag extends IncludeTag {
 		return _PAGE;
 	}
 
+	public java.lang.Object getAlign() {
+		return _align;
+	}
+
 	public java.lang.Object getDialogBodyContent() {
 		return _dialogBodyContent;
 	}
@@ -36,6 +40,10 @@ public class BaseDialogTag extends IncludeTag {
 		return _buttons;
 	}
 
+	public java.lang.Object getCentered() {
+		return _centered;
+	}
+
 	public java.lang.String getClose() {
 		return _close;
 	}
@@ -46,6 +54,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.String getCollapsible() {
 		return _collapsible;
+	}
+
+	public java.lang.Object getConstrain() {
+		return _constrain;
 	}
 
 	public java.lang.Object getConstrain2view() {
@@ -120,6 +132,10 @@ public class BaseDialogTag extends IncludeTag {
 		return _modal;
 	}
 
+	public java.lang.String getPreventOverlap() {
+		return _preventOverlap;
+	}
+
 	public java.lang.String getRender() {
 		return _render;
 	}
@@ -134,6 +150,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getResizableInstance() {
 		return _resizableInstance;
+	}
+
+	public java.lang.String getShim() {
+		return _shim;
 	}
 
 	public java.lang.Object getSrcNode() {
@@ -164,6 +184,26 @@ public class BaseDialogTag extends IncludeTag {
 		return _width;
 	}
 
+	public java.lang.String getX() {
+		return _x;
+	}
+
+	public java.lang.Object getXy() {
+		return _xy;
+	}
+
+	public java.lang.String getY() {
+		return _y;
+	}
+
+	public java.lang.String getZIndex() {
+		return _zIndex;
+	}
+
+	public java.lang.Object getAfterAlignChange() {
+		return _afterAlignChange;
+	}
+
 	public java.lang.Object getAfterBodyContentChange() {
 		return _afterBodyContentChange;
 	}
@@ -174,6 +214,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getAfterButtonsChange() {
 		return _afterButtonsChange;
+	}
+
+	public java.lang.Object getAfterCenteredChange() {
+		return _afterCenteredChange;
 	}
 
 	public java.lang.Object getAfterCloseChange() {
@@ -190,6 +234,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getAfterConstrain2viewChange() {
 		return _afterConstrain2viewChange;
+	}
+
+	public java.lang.Object getAfterConstrainChange() {
+		return _afterConstrainChange;
 	}
 
 	public java.lang.Object getAfterContentBoxChange() {
@@ -268,6 +316,10 @@ public class BaseDialogTag extends IncludeTag {
 		return _afterModalChange;
 	}
 
+	public java.lang.Object getAfterPreventOverlapChange() {
+		return _afterPreventOverlapChange;
+	}
+
 	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
@@ -282,6 +334,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getAfterResizableInstanceChange() {
 		return _afterResizableInstanceChange;
+	}
+
+	public java.lang.Object getAfterShimChange() {
+		return _afterShimChange;
 	}
 
 	public java.lang.Object getAfterSrcNodeChange() {
@@ -320,6 +376,26 @@ public class BaseDialogTag extends IncludeTag {
 		return _afterWidthChange;
 	}
 
+	public java.lang.Object getAfterXChange() {
+		return _afterXChange;
+	}
+
+	public java.lang.Object getAfterXyChange() {
+		return _afterXyChange;
+	}
+
+	public java.lang.Object getAfterYChange() {
+		return _afterYChange;
+	}
+
+	public java.lang.Object getAfterZIndexChange() {
+		return _afterZIndexChange;
+	}
+
+	public java.lang.Object getOnAlignChange() {
+		return _onAlignChange;
+	}
+
 	public java.lang.Object getOnBodyContentChange() {
 		return _onBodyContentChange;
 	}
@@ -330,6 +406,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getOnButtonsChange() {
 		return _onButtonsChange;
+	}
+
+	public java.lang.Object getOnCenteredChange() {
+		return _onCenteredChange;
 	}
 
 	public java.lang.Object getOnCloseChange() {
@@ -346,6 +426,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getOnConstrain2viewChange() {
 		return _onConstrain2viewChange;
+	}
+
+	public java.lang.Object getOnConstrainChange() {
+		return _onConstrainChange;
 	}
 
 	public java.lang.Object getOnContentBoxChange() {
@@ -424,6 +508,10 @@ public class BaseDialogTag extends IncludeTag {
 		return _onModalChange;
 	}
 
+	public java.lang.Object getOnPreventOverlapChange() {
+		return _onPreventOverlapChange;
+	}
+
 	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
@@ -438,6 +526,10 @@ public class BaseDialogTag extends IncludeTag {
 
 	public java.lang.Object getOnResizableInstanceChange() {
 		return _onResizableInstanceChange;
+	}
+
+	public java.lang.Object getOnShimChange() {
+		return _onShimChange;
 	}
 
 	public java.lang.Object getOnSrcNodeChange() {
@@ -476,6 +568,28 @@ public class BaseDialogTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
+	public java.lang.Object getOnXChange() {
+		return _onXChange;
+	}
+
+	public java.lang.Object getOnXyChange() {
+		return _onXyChange;
+	}
+
+	public java.lang.Object getOnYChange() {
+		return _onYChange;
+	}
+
+	public java.lang.Object getOnZIndexChange() {
+		return _onZIndexChange;
+	}
+
+	public void setAlign(java.lang.Object align) {
+		_align = align;
+
+		setScopedAttribute("align", align);
+	}
+
 	public void setDialogBodyContent(java.lang.Object dialogBodyContent) {
 		_dialogBodyContent = dialogBodyContent;
 
@@ -494,6 +608,12 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("buttons", buttons);
 	}
 
+	public void setCentered(java.lang.Object centered) {
+		_centered = centered;
+
+		setScopedAttribute("centered", centered);
+	}
+
 	public void setClose(java.lang.String close) {
 		_close = close;
 
@@ -510,6 +630,12 @@ public class BaseDialogTag extends IncludeTag {
 		_collapsible = collapsible;
 
 		setScopedAttribute("collapsible", collapsible);
+	}
+
+	public void setConstrain(java.lang.Object constrain) {
+		_constrain = constrain;
+
+		setScopedAttribute("constrain", constrain);
 	}
 
 	public void setConstrain2view(java.lang.Object constrain2view) {
@@ -620,6 +746,12 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("modal", modal);
 	}
 
+	public void setPreventOverlap(java.lang.String preventOverlap) {
+		_preventOverlap = preventOverlap;
+
+		setScopedAttribute("preventOverlap", preventOverlap);
+	}
+
 	public void setRender(java.lang.String render) {
 		_render = render;
 
@@ -642,6 +774,12 @@ public class BaseDialogTag extends IncludeTag {
 		_resizableInstance = resizableInstance;
 
 		setScopedAttribute("resizableInstance", resizableInstance);
+	}
+
+	public void setShim(java.lang.String shim) {
+		_shim = shim;
+
+		setScopedAttribute("shim", shim);
 	}
 
 	public void setSrcNode(java.lang.Object srcNode) {
@@ -686,6 +824,36 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
+	public void setX(java.lang.String x) {
+		_x = x;
+
+		setScopedAttribute("x", x);
+	}
+
+	public void setXy(java.lang.Object xy) {
+		_xy = xy;
+
+		setScopedAttribute("xy", xy);
+	}
+
+	public void setY(java.lang.String y) {
+		_y = y;
+
+		setScopedAttribute("y", y);
+	}
+
+	public void setZIndex(java.lang.String zIndex) {
+		_zIndex = zIndex;
+
+		setScopedAttribute("zIndex", zIndex);
+	}
+
+	public void setAfterAlignChange(java.lang.Object afterAlignChange) {
+		_afterAlignChange = afterAlignChange;
+
+		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
 	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
 		_afterBodyContentChange = afterBodyContentChange;
 
@@ -702,6 +870,12 @@ public class BaseDialogTag extends IncludeTag {
 		_afterButtonsChange = afterButtonsChange;
 
 		setScopedAttribute("afterButtonsChange", afterButtonsChange);
+	}
+
+	public void setAfterCenteredChange(java.lang.Object afterCenteredChange) {
+		_afterCenteredChange = afterCenteredChange;
+
+		setScopedAttribute("afterCenteredChange", afterCenteredChange);
 	}
 
 	public void setAfterCloseChange(java.lang.Object afterCloseChange) {
@@ -726,6 +900,12 @@ public class BaseDialogTag extends IncludeTag {
 		_afterConstrain2viewChange = afterConstrain2viewChange;
 
 		setScopedAttribute("afterConstrain2viewChange", afterConstrain2viewChange);
+	}
+
+	public void setAfterConstrainChange(java.lang.Object afterConstrainChange) {
+		_afterConstrainChange = afterConstrainChange;
+
+		setScopedAttribute("afterConstrainChange", afterConstrainChange);
 	}
 
 	public void setAfterContentBoxChange(java.lang.Object afterContentBoxChange) {
@@ -842,6 +1022,12 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("afterModalChange", afterModalChange);
 	}
 
+	public void setAfterPreventOverlapChange(java.lang.Object afterPreventOverlapChange) {
+		_afterPreventOverlapChange = afterPreventOverlapChange;
+
+		setScopedAttribute("afterPreventOverlapChange", afterPreventOverlapChange);
+	}
+
 	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -864,6 +1050,12 @@ public class BaseDialogTag extends IncludeTag {
 		_afterResizableInstanceChange = afterResizableInstanceChange;
 
 		setScopedAttribute("afterResizableInstanceChange", afterResizableInstanceChange);
+	}
+
+	public void setAfterShimChange(java.lang.Object afterShimChange) {
+		_afterShimChange = afterShimChange;
+
+		setScopedAttribute("afterShimChange", afterShimChange);
 	}
 
 	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
@@ -920,6 +1112,36 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("afterWidthChange", afterWidthChange);
 	}
 
+	public void setAfterXChange(java.lang.Object afterXChange) {
+		_afterXChange = afterXChange;
+
+		setScopedAttribute("afterXChange", afterXChange);
+	}
+
+	public void setAfterXyChange(java.lang.Object afterXyChange) {
+		_afterXyChange = afterXyChange;
+
+		setScopedAttribute("afterXyChange", afterXyChange);
+	}
+
+	public void setAfterYChange(java.lang.Object afterYChange) {
+		_afterYChange = afterYChange;
+
+		setScopedAttribute("afterYChange", afterYChange);
+	}
+
+	public void setAfterZIndexChange(java.lang.Object afterZIndexChange) {
+		_afterZIndexChange = afterZIndexChange;
+
+		setScopedAttribute("afterZIndexChange", afterZIndexChange);
+	}
+
+	public void setOnAlignChange(java.lang.Object onAlignChange) {
+		_onAlignChange = onAlignChange;
+
+		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
 	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
 		_onBodyContentChange = onBodyContentChange;
 
@@ -936,6 +1158,12 @@ public class BaseDialogTag extends IncludeTag {
 		_onButtonsChange = onButtonsChange;
 
 		setScopedAttribute("onButtonsChange", onButtonsChange);
+	}
+
+	public void setOnCenteredChange(java.lang.Object onCenteredChange) {
+		_onCenteredChange = onCenteredChange;
+
+		setScopedAttribute("onCenteredChange", onCenteredChange);
 	}
 
 	public void setOnCloseChange(java.lang.Object onCloseChange) {
@@ -960,6 +1188,12 @@ public class BaseDialogTag extends IncludeTag {
 		_onConstrain2viewChange = onConstrain2viewChange;
 
 		setScopedAttribute("onConstrain2viewChange", onConstrain2viewChange);
+	}
+
+	public void setOnConstrainChange(java.lang.Object onConstrainChange) {
+		_onConstrainChange = onConstrainChange;
+
+		setScopedAttribute("onConstrainChange", onConstrainChange);
 	}
 
 	public void setOnContentBoxChange(java.lang.Object onContentBoxChange) {
@@ -1076,6 +1310,12 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("onModalChange", onModalChange);
 	}
 
+	public void setOnPreventOverlapChange(java.lang.Object onPreventOverlapChange) {
+		_onPreventOverlapChange = onPreventOverlapChange;
+
+		setScopedAttribute("onPreventOverlapChange", onPreventOverlapChange);
+	}
+
 	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -1098,6 +1338,12 @@ public class BaseDialogTag extends IncludeTag {
 		_onResizableInstanceChange = onResizableInstanceChange;
 
 		setScopedAttribute("onResizableInstanceChange", onResizableInstanceChange);
+	}
+
+	public void setOnShimChange(java.lang.Object onShimChange) {
+		_onShimChange = onShimChange;
+
+		setScopedAttribute("onShimChange", onShimChange);
 	}
 
 	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
@@ -1154,13 +1400,40 @@ public class BaseDialogTag extends IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+	public void setOnXChange(java.lang.Object onXChange) {
+		_onXChange = onXChange;
+
+		setScopedAttribute("onXChange", onXChange);
+	}
+
+	public void setOnXyChange(java.lang.Object onXyChange) {
+		_onXyChange = onXyChange;
+
+		setScopedAttribute("onXyChange", onXyChange);
+	}
+
+	public void setOnYChange(java.lang.Object onYChange) {
+		_onYChange = onYChange;
+
+		setScopedAttribute("onYChange", onYChange);
+	}
+
+	public void setOnZIndexChange(java.lang.Object onZIndexChange) {
+		_onZIndexChange = onZIndexChange;
+
+		setScopedAttribute("onZIndexChange", onZIndexChange);
+	}
+
 	protected void _setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "dialogBodyContent", _dialogBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "buttons", _buttons);
+		setNamespacedAttribute(request, "centered", _centered);
 		setNamespacedAttribute(request, "close", _close);
 		setNamespacedAttribute(request, "collapsed", _collapsed);
 		setNamespacedAttribute(request, "collapsible", _collapsible);
+		setNamespacedAttribute(request, "constrain", _constrain);
 		setNamespacedAttribute(request, "constrain2view", _constrain2view);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
@@ -1179,10 +1452,12 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "dialogId", _dialogId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "modal", _modal);
+		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "resizable", _resizable);
 		setNamespacedAttribute(request, "resizableInstance", _resizableInstance);
+		setNamespacedAttribute(request, "shim", _shim);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
 		setNamespacedAttribute(request, "stack", _stack);
 		setNamespacedAttribute(request, "strings", _strings);
@@ -1190,13 +1465,20 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "title", _title);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
+		setNamespacedAttribute(request, "x", _x);
+		setNamespacedAttribute(request, "xy", _xy);
+		setNamespacedAttribute(request, "y", _y);
+		setNamespacedAttribute(request, "zIndex", _zIndex);
+		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterButtonsChange", _afterButtonsChange);
+		setNamespacedAttribute(request, "afterCenteredChange", _afterCenteredChange);
 		setNamespacedAttribute(request, "afterCloseChange", _afterCloseChange);
 		setNamespacedAttribute(request, "afterCollapsedChange", _afterCollapsedChange);
 		setNamespacedAttribute(request, "afterCollapsibleChange", _afterCollapsibleChange);
 		setNamespacedAttribute(request, "afterConstrain2viewChange", _afterConstrain2viewChange);
+		setNamespacedAttribute(request, "afterConstrainChange", _afterConstrainChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
@@ -1216,10 +1498,12 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
+		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterResizableChange", _afterResizableChange);
 		setNamespacedAttribute(request, "afterResizableInstanceChange", _afterResizableInstanceChange);
+		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
 		setNamespacedAttribute(request, "afterStackChange", _afterStackChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
@@ -1229,13 +1513,20 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
+		setNamespacedAttribute(request, "afterXChange", _afterXChange);
+		setNamespacedAttribute(request, "afterXyChange", _afterXyChange);
+		setNamespacedAttribute(request, "afterYChange", _afterYChange);
+		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
+		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
 		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onButtonsChange", _onButtonsChange);
+		setNamespacedAttribute(request, "onCenteredChange", _onCenteredChange);
 		setNamespacedAttribute(request, "onCloseChange", _onCloseChange);
 		setNamespacedAttribute(request, "onCollapsedChange", _onCollapsedChange);
 		setNamespacedAttribute(request, "onCollapsibleChange", _onCollapsibleChange);
 		setNamespacedAttribute(request, "onConstrain2viewChange", _onConstrain2viewChange);
+		setNamespacedAttribute(request, "onConstrainChange", _onConstrainChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
@@ -1255,10 +1546,12 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
+		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onResizableChange", _onResizableChange);
 		setNamespacedAttribute(request, "onResizableInstanceChange", _onResizableInstanceChange);
+		setNamespacedAttribute(request, "onShimChange", _onShimChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
 		setNamespacedAttribute(request, "onStackChange", _onStackChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
@@ -1268,6 +1561,10 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
+		setNamespacedAttribute(request, "onXChange", _onXChange);
+		setNamespacedAttribute(request, "onXyChange", _onXyChange);
+		setNamespacedAttribute(request, "onYChange", _onYChange);
+		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "alloy:dialog:";
@@ -1275,12 +1572,15 @@ public class BaseDialogTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/dialog/page.jsp";
 
+	private java.lang.Object _align;
 	private java.lang.Object _dialogBodyContent;
 	private java.lang.Object _boundingBox;
 	private java.lang.Object _buttons;
+	private java.lang.Object _centered;
 	private java.lang.String _close;
 	private java.lang.String _collapsed;
 	private java.lang.String _collapsible;
+	private java.lang.Object _constrain;
 	private java.lang.Object _constrain2view;
 	private java.lang.Object _contentBox;
 	private java.lang.Object _cssClass;
@@ -1299,10 +1599,12 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _dialogId;
 	private java.lang.String _initialized;
 	private java.lang.String _modal;
+	private java.lang.String _preventOverlap;
 	private java.lang.String _render;
 	private java.lang.String _rendered;
 	private java.lang.String _resizable;
 	private java.lang.Object _resizableInstance;
+	private java.lang.String _shim;
 	private java.lang.Object _srcNode;
 	private java.lang.String _stack;
 	private java.lang.Object _strings;
@@ -1310,13 +1612,20 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _title;
 	private java.lang.String _visible;
 	private java.lang.Object _width;
+	private java.lang.String _x;
+	private java.lang.Object _xy;
+	private java.lang.String _y;
+	private java.lang.String _zIndex;
+	private java.lang.Object _afterAlignChange;
 	private java.lang.Object _afterBodyContentChange;
 	private java.lang.Object _afterBoundingBoxChange;
 	private java.lang.Object _afterButtonsChange;
+	private java.lang.Object _afterCenteredChange;
 	private java.lang.Object _afterCloseChange;
 	private java.lang.Object _afterCollapsedChange;
 	private java.lang.Object _afterCollapsibleChange;
 	private java.lang.Object _afterConstrain2viewChange;
+	private java.lang.Object _afterConstrainChange;
 	private java.lang.Object _afterContentBoxChange;
 	private java.lang.Object _afterCssClassChange;
 	private java.lang.Object _afterDestroy;
@@ -1336,10 +1645,12 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _afterInit;
 	private java.lang.Object _afterInitializedChange;
 	private java.lang.Object _afterModalChange;
+	private java.lang.Object _afterPreventOverlapChange;
 	private java.lang.Object _afterRenderChange;
 	private java.lang.Object _afterRenderedChange;
 	private java.lang.Object _afterResizableChange;
 	private java.lang.Object _afterResizableInstanceChange;
+	private java.lang.Object _afterShimChange;
 	private java.lang.Object _afterSrcNodeChange;
 	private java.lang.Object _afterStackChange;
 	private java.lang.Object _afterStringsChange;
@@ -1349,13 +1660,20 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _afterContentUpdate;
 	private java.lang.Object _afterRender;
 	private java.lang.Object _afterWidthChange;
+	private java.lang.Object _afterXChange;
+	private java.lang.Object _afterXyChange;
+	private java.lang.Object _afterYChange;
+	private java.lang.Object _afterZIndexChange;
+	private java.lang.Object _onAlignChange;
 	private java.lang.Object _onBodyContentChange;
 	private java.lang.Object _onBoundingBoxChange;
 	private java.lang.Object _onButtonsChange;
+	private java.lang.Object _onCenteredChange;
 	private java.lang.Object _onCloseChange;
 	private java.lang.Object _onCollapsedChange;
 	private java.lang.Object _onCollapsibleChange;
 	private java.lang.Object _onConstrain2viewChange;
+	private java.lang.Object _onConstrainChange;
 	private java.lang.Object _onContentBoxChange;
 	private java.lang.Object _onCssClassChange;
 	private java.lang.Object _onDestroy;
@@ -1375,10 +1693,12 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _onInit;
 	private java.lang.Object _onInitializedChange;
 	private java.lang.Object _onModalChange;
+	private java.lang.Object _onPreventOverlapChange;
 	private java.lang.Object _onRenderChange;
 	private java.lang.Object _onRenderedChange;
 	private java.lang.Object _onResizableChange;
 	private java.lang.Object _onResizableInstanceChange;
+	private java.lang.Object _onShimChange;
 	private java.lang.Object _onSrcNodeChange;
 	private java.lang.Object _onStackChange;
 	private java.lang.Object _onStringsChange;
@@ -1388,5 +1708,9 @@ public class BaseDialogTag extends IncludeTag {
 	private java.lang.Object _onContentUpdate;
 	private java.lang.Object _onRender;
 	private java.lang.Object _onWidthChange;
+	private java.lang.Object _onXChange;
+	private java.lang.Object _onXyChange;
+	private java.lang.Object _onYChange;
+	private java.lang.Object _onZIndexChange;
 
 }

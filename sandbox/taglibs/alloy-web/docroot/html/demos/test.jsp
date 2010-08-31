@@ -95,4 +95,5 @@ body {
 	dialogBodyContent="asdasdasdddddddd"
 	width="300"
 	height="300"
+	xy="<%= new Object[] { 400, 200 } %>"
 />

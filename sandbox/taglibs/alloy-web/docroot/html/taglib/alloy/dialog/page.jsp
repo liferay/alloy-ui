@@ -1,6 +1,7 @@
 <%@ include file="init.jsp" %>
 
 <alloy:component
+	javaScriptAttributes="xy"
 	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
