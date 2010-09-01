@@ -17,10 +17,10 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.util.ArrayList _children = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children")));
+java.util.ArrayList _children = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children"), "[]"));
 java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:destroyed"), false);
-java.util.HashMap _index = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index")));
+java.util.HashMap _index = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index"), "{}"));
 java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:initialized"), false);
 java.util.HashMap _io = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:io")));
 java.lang.Object _lastSelected = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:lastSelected"));

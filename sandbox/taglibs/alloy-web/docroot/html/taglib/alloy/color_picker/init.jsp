@@ -17,7 +17,7 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:align")));
+java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object _colorpickerBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:colorpickerBodyContent"));
 java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:color-picker:cancellableHide"), true);
 java.lang.Object _centered = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:centered"), false);
@@ -49,7 +49,7 @@ java.lang.Object _trigger = GetterUtil.getObject((java.lang.Object)request.getAt
 java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:color-picker:visible"), false);
 java.lang.Object _width = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:width"));
 java.lang.Number _x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:x")), 0);
-java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:xy")));
+java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:xy"), "[0,0]"));
 java.lang.Number _y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:y")), 0);
 java.lang.Number _zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:zIndex")), 0);
 java.lang.Object _afterAlignChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:afterAlignChange"));

@@ -18,7 +18,7 @@ boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:align")));
-java.util.ArrayList _alignPoints = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints")));
+java.util.ArrayList _alignPoints = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints"), "[ 'tl', 'tl' ]"));
 java.lang.String _background = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:background"));
 java.lang.Object _overlaymaskBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent"));
 java.lang.Object _centered = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:centered"), false);
@@ -45,7 +45,7 @@ java.lang.String _target = GetterUtil.getString((java.lang.String)request.getAtt
 java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:overlay-mask:visible"), false);
 java.lang.Object _width = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:width"));
 java.lang.Number _x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:x")), 0);
-java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:xy")));
+java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:xy"), "[0,0]"));
 java.lang.Number _y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:y")), 0);
 java.lang.Number _zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:zIndex")), 1000);
 java.lang.Object _afterAlignChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:afterAlignChange"));

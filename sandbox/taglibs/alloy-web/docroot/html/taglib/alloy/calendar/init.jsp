@@ -17,7 +17,7 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:align")));
+java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object _calendarBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:calendarBodyContent"));
 java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:calendar:cancellableHide"), true);
 java.lang.Object _centered = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:centered"), false);
@@ -60,7 +60,7 @@ java.lang.Object _trigger = GetterUtil.getObject((java.lang.Object)request.getAt
 java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:calendar:visible"), false);
 java.lang.Object _width = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:width"));
 java.lang.Number _x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:x")), 0);
-java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:xy")));
+java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:xy"), "[0,0]"));
 java.lang.Number _y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:y")), 0);
 java.lang.Number _zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:zIndex")), 0);
 java.lang.Object _afterAlignChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:afterAlignChange"));

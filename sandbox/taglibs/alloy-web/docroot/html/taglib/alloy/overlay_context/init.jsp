@@ -17,7 +17,7 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:align")));
+java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object _overlaycontextBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:overlaycontextBodyContent"));
 java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:overlay-context:cancellableHide"), true);
 java.lang.Object _centered = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:centered"), false);
@@ -49,7 +49,7 @@ java.lang.Object _trigger = GetterUtil.getObject((java.lang.Object)request.getAt
 java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:overlay-context:visible"), false);
 java.lang.Object _width = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:width"));
 java.lang.Number _x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context:x")), 0);
-java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:xy")));
+java.util.ArrayList _xy = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:xy"), "[0,0]"));
 java.lang.Number _y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context:y")), 0);
 java.lang.Number _zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context:zIndex")), 0);
 java.lang.Object _afterAlignChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:afterAlignChange"));
