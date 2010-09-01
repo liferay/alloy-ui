@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
+import com.liferay.alloy.util.JSONFactoryUtil;
 import com.liferay.alloy.util.ReservedAttributeUtil;
 import com.liferay.alloy.util.StringUtil;
 import com.liferay.alloy.util.json.StringTransformer;
@@ -120,7 +121,7 @@ public class ComponentTag extends IncludeTag {
 		setNamespacedAttribute(request, "var", _var);
 		setNamespacedAttribute(request, "module", _module);
 		setNamespacedAttribute(request, "name", _name);
-		setNamespacedAttribute(request, "options", _getJSON(newOptions));
+		setNamespacedAttribute(request, "options", _serialize(newOptions));
 		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 
@@ -137,19 +138,6 @@ public class ComponentTag extends IncludeTag {
 
 	protected boolean isCleanUpSetAttributes() {
 		return _CLEAN_UP_SET_ATTRIBUTES;
-	}
-
-	private String _getJSON(Object value) {
-		return _getJSONSerializer().deepSerialize(value);
-	}
-
-	private JSONSerializer _getJSONSerializer() {
-		StringTransformer stringTransformer = new StringTransformer();
-
-		stringTransformer.setJavaScriptAttributes(
-			Arrays.asList(StringUtil.split(_javaScriptAttributes)));
-
-		return new JSONSerializer().transform(stringTransformer, String.class);
 	}
 
 	private boolean _isEventAttribute(String key) {
@@ -233,6 +221,15 @@ public class ComponentTag extends IncludeTag {
 
 			onEventsOptionsMap.put(event, value);
 		}
+	}
+
+	private String _serialize(Object value) {
+		StringTransformer stringTransformer = new StringTransformer();
+
+		stringTransformer.setJavaScriptAttributes(
+			Arrays.asList(StringUtil.split(_javaScriptAttributes)));
+
+		return JSONFactoryUtil.serialize(value, stringTransformer, String.class);
 	}
 
 	private static final String _AFTER = "after";
