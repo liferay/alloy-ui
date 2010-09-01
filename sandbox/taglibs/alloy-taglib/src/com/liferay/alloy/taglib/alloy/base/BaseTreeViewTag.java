@@ -28,11 +28,11 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.Object getContainer() {
+	public java.lang.String getContainer() {
 		return _container;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -40,7 +40,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -52,7 +52,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		return _lastSelected;
 	}
 
-	public java.lang.Object getType() {
+	public java.lang.String getType() {
 		return _type;
 	}
 
@@ -142,13 +142,13 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContainer(java.lang.Object container) {
+	public void setContainer(java.lang.String container) {
 		_container = container;
 
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -160,7 +160,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -178,7 +178,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setScopedAttribute("lastSelected", lastSelected);
 	}
 
-	public void setType(java.lang.Object type) {
+	public void setType(java.lang.String type) {
 		_type = type;
 
 		setScopedAttribute("type", type);
@@ -341,13 +341,13 @@ public class BaseTreeViewTag extends IncludeTag {
 		"/html/taglib/alloy/tree_view/page.jsp";
 
 	private java.lang.Object _children;
-	private java.lang.Object _container;
-	private java.lang.String _destroyed;
+	private java.lang.String _container;
+	private java.lang.Boolean _destroyed;
 	private java.lang.Object _index;
-	private java.lang.String _initialized;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _io;
 	private java.lang.Object _lastSelected;
-	private java.lang.Object _type;
+	private java.lang.String _type;
 	private java.lang.Object _afterChildrenChange;
 	private java.lang.Object _afterContainerChange;
 	private java.lang.Object _afterDestroy;

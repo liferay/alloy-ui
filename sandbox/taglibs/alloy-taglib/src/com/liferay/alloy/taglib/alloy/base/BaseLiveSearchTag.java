@@ -28,11 +28,11 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _data;
 	}
 
-	public java.lang.String getDelay() {
+	public java.lang.Object getDelay() {
 		return _delay;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -44,11 +44,11 @@ public class BaseLiveSearchTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getInput() {
+	public java.lang.String getInput() {
 		return _input;
 	}
 
@@ -166,13 +166,13 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("data", data);
 	}
 
-	public void setDelay(java.lang.String delay) {
+	public void setDelay(java.lang.Object delay) {
 		_delay = delay;
 
 		setScopedAttribute("delay", delay);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -190,13 +190,13 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setInput(java.lang.Object input) {
+	public void setInput(java.lang.String input) {
 		_input = input;
 
 		setScopedAttribute("input", input);
@@ -407,12 +407,12 @@ public class BaseLiveSearchTag extends IncludeTag {
 		"/html/taglib/alloy/live_search/page.jsp";
 
 	private java.lang.Object _data;
-	private java.lang.String _delay;
-	private java.lang.String _destroyed;
+	private java.lang.Object _delay;
+	private java.lang.Boolean _destroyed;
 	private java.lang.Object _hide;
 	private java.lang.Object _index;
-	private java.lang.String _initialized;
-	private java.lang.Object _input;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _input;
 	private java.lang.Object _matchRegex;
 	private java.lang.Object _nodes;
 	private java.lang.Object _show;

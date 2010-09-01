@@ -24,19 +24,19 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Object getCheckContainerEl() {
+	public java.lang.String getCheckContainerEl() {
 		return _checkContainerEl;
 	}
 
-	public java.lang.Object getCheckEl() {
+	public java.lang.String getCheckEl() {
 		return _checkEl;
 	}
 
-	public java.lang.Object getCheckName() {
+	public java.lang.String getCheckName() {
 		return _checkName;
 	}
 
-	public java.lang.String getChecked() {
+	public java.lang.Boolean getChecked() {
 		return _checked;
 	}
 
@@ -44,19 +44,19 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.Object getContainer() {
+	public java.lang.String getContainer() {
 		return _container;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Object getDropAction() {
+	public java.lang.String getDropAction() {
 		return _dropAction;
 	}
 
-	public java.lang.Object getHelper() {
+	public java.lang.String getHelper() {
 		return _helper;
 	}
 
@@ -64,7 +64,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -76,7 +76,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _lastSelected;
 	}
 
-	public java.lang.String getLastY() {
+	public java.lang.Object getLastY() {
 		return _lastY;
 	}
 
@@ -84,11 +84,11 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _nodeContent;
 	}
 
-	public java.lang.String getScrollDelay() {
+	public java.lang.Object getScrollDelay() {
 		return _scrollDelay;
 	}
 
-	public java.lang.Object getType() {
+	public java.lang.String getType() {
 		return _type;
 	}
 
@@ -244,25 +244,25 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		return _onTypeChange;
 	}
 
-	public void setCheckContainerEl(java.lang.Object checkContainerEl) {
+	public void setCheckContainerEl(java.lang.String checkContainerEl) {
 		_checkContainerEl = checkContainerEl;
 
 		setScopedAttribute("checkContainerEl", checkContainerEl);
 	}
 
-	public void setCheckEl(java.lang.Object checkEl) {
+	public void setCheckEl(java.lang.String checkEl) {
 		_checkEl = checkEl;
 
 		setScopedAttribute("checkEl", checkEl);
 	}
 
-	public void setCheckName(java.lang.Object checkName) {
+	public void setCheckName(java.lang.String checkName) {
 		_checkName = checkName;
 
 		setScopedAttribute("checkName", checkName);
 	}
 
-	public void setChecked(java.lang.String checked) {
+	public void setChecked(java.lang.Boolean checked) {
 		_checked = checked;
 
 		setScopedAttribute("checked", checked);
@@ -274,25 +274,25 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContainer(java.lang.Object container) {
+	public void setContainer(java.lang.String container) {
 		_container = container;
 
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDropAction(java.lang.Object dropAction) {
+	public void setDropAction(java.lang.String dropAction) {
 		_dropAction = dropAction;
 
 		setScopedAttribute("dropAction", dropAction);
 	}
 
-	public void setHelper(java.lang.Object helper) {
+	public void setHelper(java.lang.String helper) {
 		_helper = helper;
 
 		setScopedAttribute("helper", helper);
@@ -304,7 +304,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -322,7 +322,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("lastSelected", lastSelected);
 	}
 
-	public void setLastY(java.lang.String lastY) {
+	public void setLastY(java.lang.Object lastY) {
 		_lastY = lastY;
 
 		setScopedAttribute("lastY", lastY);
@@ -334,13 +334,13 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setScopedAttribute("nodeContent", nodeContent);
 	}
 
-	public void setScrollDelay(java.lang.String scrollDelay) {
+	public void setScrollDelay(java.lang.Object scrollDelay) {
 		_scrollDelay = scrollDelay;
 
 		setScopedAttribute("scrollDelay", scrollDelay);
 	}
 
-	public void setType(java.lang.Object type) {
+	public void setType(java.lang.String type) {
 		_type = type;
 
 		setScopedAttribute("type", type);
@@ -637,23 +637,23 @@ public class BaseTreeViewDDTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_view_dd/page.jsp";
 
-	private java.lang.Object _checkContainerEl;
-	private java.lang.Object _checkEl;
-	private java.lang.Object _checkName;
-	private java.lang.String _checked;
+	private java.lang.String _checkContainerEl;
+	private java.lang.String _checkEl;
+	private java.lang.String _checkName;
+	private java.lang.Boolean _checked;
 	private java.lang.Object _children;
-	private java.lang.Object _container;
-	private java.lang.String _destroyed;
-	private java.lang.Object _dropAction;
-	private java.lang.Object _helper;
+	private java.lang.String _container;
+	private java.lang.Boolean _destroyed;
+	private java.lang.String _dropAction;
+	private java.lang.String _helper;
 	private java.lang.Object _index;
-	private java.lang.String _initialized;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _io;
 	private java.lang.Object _lastSelected;
-	private java.lang.String _lastY;
+	private java.lang.Object _lastY;
 	private java.lang.Object _nodeContent;
-	private java.lang.String _scrollDelay;
-	private java.lang.Object _type;
+	private java.lang.Object _scrollDelay;
+	private java.lang.String _type;
 	private java.lang.Object _afterCheckContainerElChange;
 	private java.lang.Object _afterCheckElChange;
 	private java.lang.Object _afterCheckNameChange;

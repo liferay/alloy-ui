@@ -24,7 +24,7 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -32,11 +32,11 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		return _host;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getMessageEl() {
+	public java.lang.String getMessageEl() {
 		return _messageEl;
 	}
 
@@ -112,7 +112,7 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		return _onTargetChange;
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -124,13 +124,13 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMessageEl(java.lang.Object messageEl) {
+	public void setMessageEl(java.lang.String messageEl) {
 		_messageEl = messageEl;
 
 		setScopedAttribute("messageEl", messageEl);
@@ -274,10 +274,10 @@ public class BaseLoadingMaskTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/loading_mask/page.jsp";
 
-	private java.lang.String _destroyed;
+	private java.lang.Boolean _destroyed;
 	private java.lang.Object _host;
-	private java.lang.String _initialized;
-	private java.lang.Object _messageEl;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _messageEl;
 	private java.lang.Object _strings;
 	private java.lang.Object _target;
 	private java.lang.Object _afterDestroy;

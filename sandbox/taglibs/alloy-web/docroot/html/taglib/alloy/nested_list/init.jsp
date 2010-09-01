@@ -17,16 +17,16 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:nested-list:destroyed"), false);
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:nested-list:initialized"), false);
-java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroy");
-java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroyedChange");
-java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:nested-list:afterInit");
-java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:afterInitializedChange");
-java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:nested-list:onDestroy");
-java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:onDestroyedChange");
-java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:nested-list:onInit");
-java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:onInitializedChange");
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:nested-list:destroyed"), false);
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:nested-list:initialized"), false);
+java.lang.Object _afterDestroy = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroy"));
+java.lang.Object _afterDestroyedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroyedChange"));
+java.lang.Object _afterInit = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:afterInit"));
+java.lang.Object _afterInitializedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:afterInitializedChange"));
+java.lang.Object _onDestroy = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:onDestroy"));
+java.lang.Object _onDestroyedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:onDestroyedChange"));
+java.lang.Object _onInit = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:onInit"));
+java.lang.Object _onInitializedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:nested-list:onInitializedChange"));
 
 String uniqueId = StringPool.BLANK;
 

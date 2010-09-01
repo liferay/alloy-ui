@@ -28,7 +28,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _align;
 	}
 
-	public java.lang.String getAnim() {
+	public java.lang.Boolean getAnim() {
 		return _anim;
 	}
 
@@ -40,7 +40,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _arrowRightEl;
 	}
 
-	public java.lang.String getAutoPlay() {
+	public java.lang.Boolean getAutoPlay() {
 		return _autoPlay;
 	}
 
@@ -48,11 +48,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _imagegalleryBodyContent;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.Object getCaption() {
+	public java.lang.String getCaption() {
 		return _caption;
 	}
 
@@ -60,11 +60,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _captionEl;
 	}
 
-	public java.lang.String getCaptionFromTitle() {
+	public java.lang.Boolean getCaptionFromTitle() {
 		return _captionFromTitle;
 	}
 
-	public java.lang.String getCentered() {
+	public java.lang.Boolean getCentered() {
 		return _centered;
 	}
 
@@ -76,27 +76,27 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getCurrentIndex() {
+	public java.lang.Object getCurrentIndex() {
 		return _currentIndex;
 	}
 
-	public java.lang.String getDelay() {
+	public java.lang.Object getDelay() {
 		return _delay;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -104,7 +104,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -120,11 +120,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.Object getImagegalleryId() {
+	public java.lang.String getImagegalleryId() {
 		return _imagegalleryId;
 	}
 
@@ -140,11 +140,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _infoEl;
 	}
 
-	public java.lang.Object getInfoTemplate() {
+	public java.lang.String getInfoTemplate() {
 		return _infoTemplate;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -156,7 +156,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _loader;
 	}
 
-	public java.lang.String getLoading() {
+	public java.lang.Boolean getLoading() {
 		return _loading;
 	}
 
@@ -164,11 +164,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _loadingEl;
 	}
 
-	public java.lang.String getMaxHeight() {
+	public java.lang.Object getMaxHeight() {
 		return _maxHeight;
 	}
 
-	public java.lang.String getMaxWidth() {
+	public java.lang.Object getMaxWidth() {
 		return _maxWidth;
 	}
 
@@ -188,59 +188,59 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _paginatorInstance;
 	}
 
-	public java.lang.String getPaused() {
+	public java.lang.Boolean getPaused() {
 		return _paused;
 	}
 
-	public java.lang.Object getPausedLabel() {
+	public java.lang.String getPausedLabel() {
 		return _pausedLabel;
 	}
 
-	public java.lang.String getPlaying() {
+	public java.lang.Boolean getPlaying() {
 		return _playing;
 	}
 
-	public java.lang.Object getPlayingLabel() {
+	public java.lang.String getPlayingLabel() {
 		return _playingLabel;
 	}
 
-	public java.lang.String getPreloadAllImages() {
+	public java.lang.Boolean getPreloadAllImages() {
 		return _preloadAllImages;
 	}
 
-	public java.lang.String getPreventOverlap() {
+	public java.lang.Boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.String getRepeat() {
+	public java.lang.Boolean getRepeat() {
 		return _repeat;
 	}
 
-	public java.lang.String getShim() {
+	public java.lang.Boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.String getShowArrows() {
+	public java.lang.Boolean getShowArrows() {
 		return _showArrows;
 	}
 
-	public java.lang.String getShowClose() {
+	public java.lang.Boolean getShowClose() {
 		return _showClose;
 	}
 
-	public java.lang.String getShowPlayer() {
+	public java.lang.Boolean getShowPlayer() {
 		return _showPlayer;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -248,7 +248,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -256,15 +256,15 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _toolbar;
 	}
 
-	public java.lang.String getTotalLinks() {
+	public java.lang.Boolean getTotalLinks() {
 		return _totalLinks;
 	}
 
-	public java.lang.String getUseOriginalImage() {
+	public java.lang.Boolean getUseOriginalImage() {
 		return _useOriginalImage;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -272,7 +272,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.String getX() {
+	public java.lang.Object getX() {
 		return _x;
 	}
 
@@ -280,11 +280,11 @@ public class BaseImageGalleryTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.String getY() {
+	public java.lang.Object getY() {
 		return _y;
 	}
 
-	public java.lang.String getZIndex() {
+	public java.lang.Object getZIndex() {
 		return _zIndex;
 	}
 
@@ -878,7 +878,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
-	public void setAnim(java.lang.String anim) {
+	public void setAnim(java.lang.Boolean anim) {
 		_anim = anim;
 
 		setScopedAttribute("anim", anim);
@@ -896,7 +896,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("arrowRightEl", arrowRightEl);
 	}
 
-	public void setAutoPlay(java.lang.String autoPlay) {
+	public void setAutoPlay(java.lang.Boolean autoPlay) {
 		_autoPlay = autoPlay;
 
 		setScopedAttribute("autoPlay", autoPlay);
@@ -908,13 +908,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("imagegalleryBodyContent", imagegalleryBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCaption(java.lang.Object caption) {
+	public void setCaption(java.lang.String caption) {
 		_caption = caption;
 
 		setScopedAttribute("caption", caption);
@@ -926,13 +926,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("captionEl", captionEl);
 	}
 
-	public void setCaptionFromTitle(java.lang.String captionFromTitle) {
+	public void setCaptionFromTitle(java.lang.Boolean captionFromTitle) {
 		_captionFromTitle = captionFromTitle;
 
 		setScopedAttribute("captionFromTitle", captionFromTitle);
 	}
 
-	public void setCentered(java.lang.String centered) {
+	public void setCentered(java.lang.Boolean centered) {
 		_centered = centered;
 
 		setScopedAttribute("centered", centered);
@@ -950,37 +950,37 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setCurrentIndex(java.lang.String currentIndex) {
+	public void setCurrentIndex(java.lang.Object currentIndex) {
 		_currentIndex = currentIndex;
 
 		setScopedAttribute("currentIndex", currentIndex);
 	}
 
-	public void setDelay(java.lang.String delay) {
+	public void setDelay(java.lang.Object delay) {
 		_delay = delay;
 
 		setScopedAttribute("delay", delay);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -992,7 +992,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -1016,13 +1016,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setImagegalleryId(java.lang.Object imagegalleryId) {
+	public void setImagegalleryId(java.lang.String imagegalleryId) {
 		_imagegalleryId = imagegalleryId;
 
 		setScopedAttribute("imagegalleryId", imagegalleryId);
@@ -1046,13 +1046,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("infoEl", infoEl);
 	}
 
-	public void setInfoTemplate(java.lang.Object infoTemplate) {
+	public void setInfoTemplate(java.lang.String infoTemplate) {
 		_infoTemplate = infoTemplate;
 
 		setScopedAttribute("infoTemplate", infoTemplate);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -1070,7 +1070,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("loader", loader);
 	}
 
-	public void setLoading(java.lang.String loading) {
+	public void setLoading(java.lang.Boolean loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -1082,13 +1082,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("loadingEl", loadingEl);
 	}
 
-	public void setMaxHeight(java.lang.String maxHeight) {
+	public void setMaxHeight(java.lang.Object maxHeight) {
 		_maxHeight = maxHeight;
 
 		setScopedAttribute("maxHeight", maxHeight);
 	}
 
-	public void setMaxWidth(java.lang.String maxWidth) {
+	public void setMaxWidth(java.lang.Object maxWidth) {
 		_maxWidth = maxWidth;
 
 		setScopedAttribute("maxWidth", maxWidth);
@@ -1118,85 +1118,85 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("paginatorInstance", paginatorInstance);
 	}
 
-	public void setPaused(java.lang.String paused) {
+	public void setPaused(java.lang.Boolean paused) {
 		_paused = paused;
 
 		setScopedAttribute("paused", paused);
 	}
 
-	public void setPausedLabel(java.lang.Object pausedLabel) {
+	public void setPausedLabel(java.lang.String pausedLabel) {
 		_pausedLabel = pausedLabel;
 
 		setScopedAttribute("pausedLabel", pausedLabel);
 	}
 
-	public void setPlaying(java.lang.String playing) {
+	public void setPlaying(java.lang.Boolean playing) {
 		_playing = playing;
 
 		setScopedAttribute("playing", playing);
 	}
 
-	public void setPlayingLabel(java.lang.Object playingLabel) {
+	public void setPlayingLabel(java.lang.String playingLabel) {
 		_playingLabel = playingLabel;
 
 		setScopedAttribute("playingLabel", playingLabel);
 	}
 
-	public void setPreloadAllImages(java.lang.String preloadAllImages) {
+	public void setPreloadAllImages(java.lang.Boolean preloadAllImages) {
 		_preloadAllImages = preloadAllImages;
 
 		setScopedAttribute("preloadAllImages", preloadAllImages);
 	}
 
-	public void setPreventOverlap(java.lang.String preventOverlap) {
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setRepeat(java.lang.String repeat) {
+	public void setRepeat(java.lang.Boolean repeat) {
 		_repeat = repeat;
 
 		setScopedAttribute("repeat", repeat);
 	}
 
-	public void setShim(java.lang.String shim) {
+	public void setShim(java.lang.Boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowArrows(java.lang.String showArrows) {
+	public void setShowArrows(java.lang.Boolean showArrows) {
 		_showArrows = showArrows;
 
 		setScopedAttribute("showArrows", showArrows);
 	}
 
-	public void setShowClose(java.lang.String showClose) {
+	public void setShowClose(java.lang.Boolean showClose) {
 		_showClose = showClose;
 
 		setScopedAttribute("showClose", showClose);
 	}
 
-	public void setShowPlayer(java.lang.String showPlayer) {
+	public void setShowPlayer(java.lang.Boolean showPlayer) {
 		_showPlayer = showPlayer;
 
 		setScopedAttribute("showPlayer", showPlayer);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -1208,7 +1208,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -1220,19 +1220,19 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("toolbar", toolbar);
 	}
 
-	public void setTotalLinks(java.lang.String totalLinks) {
+	public void setTotalLinks(java.lang.Boolean totalLinks) {
 		_totalLinks = totalLinks;
 
 		setScopedAttribute("totalLinks", totalLinks);
 	}
 
-	public void setUseOriginalImage(java.lang.String useOriginalImage) {
+	public void setUseOriginalImage(java.lang.Boolean useOriginalImage) {
 		_useOriginalImage = useOriginalImage;
 
 		setScopedAttribute("useOriginalImage", useOriginalImage);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1244,7 +1244,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.String x) {
+	public void setX(java.lang.Object x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -1256,13 +1256,13 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.String y) {
+	public void setY(java.lang.Object y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.String zIndex) {
+	public void setZIndex(java.lang.Object zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -2365,71 +2365,71 @@ public class BaseImageGalleryTag extends IncludeTag {
 		"/html/taglib/alloy/image_gallery/page.jsp";
 
 	private java.lang.Object _align;
-	private java.lang.String _anim;
+	private java.lang.Boolean _anim;
 	private java.lang.Object _arrowLeftEl;
 	private java.lang.Object _arrowRightEl;
-	private java.lang.String _autoPlay;
+	private java.lang.Boolean _autoPlay;
 	private java.lang.Object _imagegalleryBodyContent;
-	private java.lang.Object _boundingBox;
-	private java.lang.Object _caption;
+	private java.lang.String _boundingBox;
+	private java.lang.String _caption;
 	private java.lang.Object _captionEl;
-	private java.lang.String _captionFromTitle;
-	private java.lang.String _centered;
+	private java.lang.Boolean _captionFromTitle;
+	private java.lang.Boolean _centered;
 	private java.lang.Object _closeEl;
 	private java.lang.Object _constrain;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.String _currentIndex;
-	private java.lang.String _delay;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.Object _currentIndex;
+	private java.lang.Object _delay;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
 	private java.lang.Object _fillHeight;
-	private java.lang.String _focused;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _footerContent;
 	private java.lang.Object _headerContent;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.Object _imagegalleryId;
+	private java.lang.String _hideClass;
+	private java.lang.String _imagegalleryId;
 	private java.lang.Object _image;
 	private java.lang.Object _imageAnim;
 	private java.lang.Object _infoEl;
-	private java.lang.Object _infoTemplate;
-	private java.lang.String _initialized;
+	private java.lang.String _infoTemplate;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _links;
 	private java.lang.Object _loader;
-	private java.lang.String _loading;
+	private java.lang.Boolean _loading;
 	private java.lang.Object _loadingEl;
-	private java.lang.String _maxHeight;
-	private java.lang.String _maxWidth;
+	private java.lang.Object _maxHeight;
+	private java.lang.Object _maxWidth;
 	private java.lang.Object _modal;
 	private java.lang.Object _paginator;
 	private java.lang.Object _paginatorEl;
 	private java.lang.Object _paginatorInstance;
-	private java.lang.String _paused;
-	private java.lang.Object _pausedLabel;
-	private java.lang.String _playing;
-	private java.lang.Object _playingLabel;
-	private java.lang.String _preloadAllImages;
-	private java.lang.String _preventOverlap;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.String _repeat;
-	private java.lang.String _shim;
-	private java.lang.String _showArrows;
-	private java.lang.String _showClose;
-	private java.lang.String _showPlayer;
-	private java.lang.Object _srcNode;
+	private java.lang.Boolean _paused;
+	private java.lang.String _pausedLabel;
+	private java.lang.Boolean _playing;
+	private java.lang.String _playingLabel;
+	private java.lang.Boolean _preloadAllImages;
+	private java.lang.Boolean _preventOverlap;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _repeat;
+	private java.lang.Boolean _shim;
+	private java.lang.Boolean _showArrows;
+	private java.lang.Boolean _showClose;
+	private java.lang.Boolean _showPlayer;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
+	private java.lang.Object _tabIndex;
 	private java.lang.Object _toolbar;
-	private java.lang.String _totalLinks;
-	private java.lang.String _useOriginalImage;
-	private java.lang.String _visible;
+	private java.lang.Boolean _totalLinks;
+	private java.lang.Boolean _useOriginalImage;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
-	private java.lang.String _x;
+	private java.lang.Object _x;
 	private java.lang.Object _xy;
-	private java.lang.String _y;
-	private java.lang.String _zIndex;
+	private java.lang.Object _y;
+	private java.lang.Object _zIndex;
 	private java.lang.Object _afterAlignChange;
 	private java.lang.Object _afterAnim;
 	private java.lang.Object _afterAnimChange;

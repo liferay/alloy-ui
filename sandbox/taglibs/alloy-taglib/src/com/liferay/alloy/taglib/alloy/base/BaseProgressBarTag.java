@@ -24,83 +24,83 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
-	public java.lang.String getHeight() {
+	public java.lang.Object getHeight() {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.Object getProgressbarId() {
+	public java.lang.String getProgressbarId() {
 		return _progressbarId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getLabel() {
+	public java.lang.String getLabel() {
 		return _label;
 	}
 
-	public java.lang.String getMax() {
+	public java.lang.Object getMax() {
 		return _max;
 	}
 
-	public java.lang.String getMin() {
+	public java.lang.Object getMin() {
 		return _min;
 	}
 
-	public java.lang.Object getOrientation() {
+	public java.lang.String getOrientation() {
 		return _orientation;
 	}
 
-	public java.lang.String getRatio() {
+	public java.lang.Object getRatio() {
 		return _ratio;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
-	public java.lang.Object getStatusNode() {
+	public java.lang.String getStatusNode() {
 		return _statusNode;
 	}
 
-	public java.lang.String getStep() {
+	public java.lang.Object getStep() {
 		return _step;
 	}
 
@@ -108,19 +108,19 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.Object getTextNode() {
+	public java.lang.String getTextNode() {
 		return _textNode;
 	}
 
-	public java.lang.String getProgressbarValue() {
+	public java.lang.Object getProgressbarValue() {
 		return _progressbarValue;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -368,121 +368,121 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setHeight(java.lang.String height) {
+	public void setHeight(java.lang.Object height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setProgressbarId(java.lang.Object progressbarId) {
+	public void setProgressbarId(java.lang.String progressbarId) {
 		_progressbarId = progressbarId;
 
 		setScopedAttribute("progressbarId", progressbarId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLabel(java.lang.Object label) {
+	public void setLabel(java.lang.String label) {
 		_label = label;
 
 		setScopedAttribute("label", label);
 	}
 
-	public void setMax(java.lang.String max) {
+	public void setMax(java.lang.Object max) {
 		_max = max;
 
 		setScopedAttribute("max", max);
 	}
 
-	public void setMin(java.lang.String min) {
+	public void setMin(java.lang.Object min) {
 		_min = min;
 
 		setScopedAttribute("min", min);
 	}
 
-	public void setOrientation(java.lang.Object orientation) {
+	public void setOrientation(java.lang.String orientation) {
 		_orientation = orientation;
 
 		setScopedAttribute("orientation", orientation);
 	}
 
-	public void setRatio(java.lang.String ratio) {
+	public void setRatio(java.lang.Object ratio) {
 		_ratio = ratio;
 
 		setScopedAttribute("ratio", ratio);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStatusNode(java.lang.Object statusNode) {
+	public void setStatusNode(java.lang.String statusNode) {
 		_statusNode = statusNode;
 
 		setScopedAttribute("statusNode", statusNode);
 	}
 
-	public void setStep(java.lang.String step) {
+	public void setStep(java.lang.Object step) {
 		_step = step;
 
 		setScopedAttribute("step", step);
@@ -494,25 +494,25 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTextNode(java.lang.Object textNode) {
+	public void setTextNode(java.lang.String textNode) {
 		_textNode = textNode;
 
 		setScopedAttribute("textNode", textNode);
 	}
 
-	public void setProgressbarValue(java.lang.String progressbarValue) {
+	public void setProgressbarValue(java.lang.Object progressbarValue) {
 		_progressbarValue = progressbarValue;
 
 		setScopedAttribute("progressbarValue", progressbarValue);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -978,31 +978,31 @@ public class BaseProgressBarTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/progress_bar/page.jsp";
 
-	private java.lang.Object _boundingBox;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
-	private java.lang.String _focused;
-	private java.lang.String _height;
-	private java.lang.Object _hideClass;
-	private java.lang.Object _progressbarId;
-	private java.lang.String _initialized;
-	private java.lang.Object _label;
-	private java.lang.String _max;
-	private java.lang.String _min;
-	private java.lang.Object _orientation;
-	private java.lang.String _ratio;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.Object _srcNode;
-	private java.lang.Object _statusNode;
-	private java.lang.String _step;
+	private java.lang.String _boundingBox;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
+	private java.lang.Boolean _focused;
+	private java.lang.Object _height;
+	private java.lang.String _hideClass;
+	private java.lang.String _progressbarId;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _label;
+	private java.lang.Object _max;
+	private java.lang.Object _min;
+	private java.lang.String _orientation;
+	private java.lang.Object _ratio;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.String _srcNode;
+	private java.lang.String _statusNode;
+	private java.lang.Object _step;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
-	private java.lang.Object _textNode;
-	private java.lang.String _progressbarValue;
-	private java.lang.String _visible;
+	private java.lang.Object _tabIndex;
+	private java.lang.String _textNode;
+	private java.lang.Object _progressbarValue;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
 	private java.lang.Object _afterBoundingBoxChange;
 	private java.lang.Object _afterContentBoxChange;

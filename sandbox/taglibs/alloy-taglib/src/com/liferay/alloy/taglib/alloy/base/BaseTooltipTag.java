@@ -32,7 +32,7 @@ public class BaseTooltipTag extends IncludeTag {
 		return _anim;
 	}
 
-	public java.lang.Object getArrow() {
+	public java.lang.String getArrow() {
 		return _arrow;
 	}
 
@@ -40,11 +40,11 @@ public class BaseTooltipTag extends IncludeTag {
 		return _tooltipBodyContent;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getCancellableHide() {
+	public java.lang.Boolean getCancellableHide() {
 		return _cancellableHide;
 	}
 
@@ -56,11 +56,11 @@ public class BaseTooltipTag extends IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
@@ -68,11 +68,11 @@ public class BaseTooltipTag extends IncludeTag {
 		return _currentNode;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -80,7 +80,7 @@ public class BaseTooltipTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -96,63 +96,63 @@ public class BaseTooltipTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getHideDelay() {
+	public java.lang.Object getHideDelay() {
 		return _hideDelay;
 	}
 
-	public java.lang.Object getHideOn() {
+	public java.lang.String getHideOn() {
 		return _hideOn;
 	}
 
-	public java.lang.String getHideOnDocumentClick() {
+	public java.lang.Boolean getHideOnDocumentClick() {
 		return _hideOnDocumentClick;
 	}
 
-	public java.lang.Object getTooltipId() {
+	public java.lang.String getTooltipId() {
 		return _tooltipId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.String getPreventOverlap() {
+	public java.lang.Boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.String getShim() {
+	public java.lang.Boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.String getShowArrow() {
+	public java.lang.Boolean getShowArrow() {
 		return _showArrow;
 	}
 
-	public java.lang.String getShowDelay() {
+	public java.lang.Object getShowDelay() {
 		return _showDelay;
 	}
 
-	public java.lang.Object getShowOn() {
+	public java.lang.String getShowOn() {
 		return _showOn;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
-	public java.lang.String getStack() {
+	public java.lang.Boolean getStack() {
 		return _stack;
 	}
 
@@ -160,11 +160,11 @@ public class BaseTooltipTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.String getTitle() {
+	public java.lang.Boolean getTitle() {
 		return _title;
 	}
 
@@ -172,7 +172,7 @@ public class BaseTooltipTag extends IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -180,7 +180,7 @@ public class BaseTooltipTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.String getX() {
+	public java.lang.Object getX() {
 		return _x;
 	}
 
@@ -188,11 +188,11 @@ public class BaseTooltipTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.String getY() {
+	public java.lang.Object getY() {
 		return _y;
 	}
 
-	public java.lang.String getZIndex() {
+	public java.lang.Object getZIndex() {
 		return _zIndex;
 	}
 
@@ -584,7 +584,7 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("anim", anim);
 	}
 
-	public void setArrow(java.lang.Object arrow) {
+	public void setArrow(java.lang.String arrow) {
 		_arrow = arrow;
 
 		setScopedAttribute("arrow", arrow);
@@ -596,13 +596,13 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("tooltipBodyContent", tooltipBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCancellableHide(java.lang.String cancellableHide) {
+	public void setCancellableHide(java.lang.Boolean cancellableHide) {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
@@ -620,13 +620,13 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -638,13 +638,13 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("currentNode", currentNode);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -656,7 +656,7 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -680,91 +680,91 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHideDelay(java.lang.String hideDelay) {
+	public void setHideDelay(java.lang.Object hideDelay) {
 		_hideDelay = hideDelay;
 
 		setScopedAttribute("hideDelay", hideDelay);
 	}
 
-	public void setHideOn(java.lang.Object hideOn) {
+	public void setHideOn(java.lang.String hideOn) {
 		_hideOn = hideOn;
 
 		setScopedAttribute("hideOn", hideOn);
 	}
 
-	public void setHideOnDocumentClick(java.lang.String hideOnDocumentClick) {
+	public void setHideOnDocumentClick(java.lang.Boolean hideOnDocumentClick) {
 		_hideOnDocumentClick = hideOnDocumentClick;
 
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
 	}
 
-	public void setTooltipId(java.lang.Object tooltipId) {
+	public void setTooltipId(java.lang.String tooltipId) {
 		_tooltipId = tooltipId;
 
 		setScopedAttribute("tooltipId", tooltipId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setPreventOverlap(java.lang.String preventOverlap) {
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setShim(java.lang.String shim) {
+	public void setShim(java.lang.Boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowArrow(java.lang.String showArrow) {
+	public void setShowArrow(java.lang.Boolean showArrow) {
 		_showArrow = showArrow;
 
 		setScopedAttribute("showArrow", showArrow);
 	}
 
-	public void setShowDelay(java.lang.String showDelay) {
+	public void setShowDelay(java.lang.Object showDelay) {
 		_showDelay = showDelay;
 
 		setScopedAttribute("showDelay", showDelay);
 	}
 
-	public void setShowOn(java.lang.Object showOn) {
+	public void setShowOn(java.lang.String showOn) {
 		_showOn = showOn;
 
 		setScopedAttribute("showOn", showOn);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.String stack) {
+	public void setStack(java.lang.Boolean stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -776,13 +776,13 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTitle(java.lang.String title) {
+	public void setTitle(java.lang.Boolean title) {
 		_title = title;
 
 		setScopedAttribute("title", title);
@@ -794,7 +794,7 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -806,7 +806,7 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.String x) {
+	public void setX(java.lang.Object x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -818,13 +818,13 @@ public class BaseTooltipTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.String y) {
+	public void setY(java.lang.Object y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.String zIndex) {
+	public void setZIndex(java.lang.Object zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -1541,47 +1541,47 @@ public class BaseTooltipTag extends IncludeTag {
 
 	private java.lang.Object _align;
 	private java.lang.Object _anim;
-	private java.lang.Object _arrow;
+	private java.lang.String _arrow;
 	private java.lang.Object _tooltipBodyContent;
-	private java.lang.Object _boundingBox;
-	private java.lang.String _cancellableHide;
+	private java.lang.String _boundingBox;
+	private java.lang.Boolean _cancellableHide;
 	private java.lang.Object _centered;
 	private java.lang.Object _constrain;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
 	private java.lang.Object _currentNode;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
 	private java.lang.Object _fillHeight;
-	private java.lang.String _focused;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _footerContent;
 	private java.lang.Object _headerContent;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.String _hideDelay;
-	private java.lang.Object _hideOn;
-	private java.lang.String _hideOnDocumentClick;
-	private java.lang.Object _tooltipId;
-	private java.lang.String _initialized;
-	private java.lang.String _preventOverlap;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.String _shim;
-	private java.lang.String _showArrow;
-	private java.lang.String _showDelay;
-	private java.lang.Object _showOn;
-	private java.lang.Object _srcNode;
-	private java.lang.String _stack;
+	private java.lang.String _hideClass;
+	private java.lang.Object _hideDelay;
+	private java.lang.String _hideOn;
+	private java.lang.Boolean _hideOnDocumentClick;
+	private java.lang.String _tooltipId;
+	private java.lang.Boolean _initialized;
+	private java.lang.Boolean _preventOverlap;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _shim;
+	private java.lang.Boolean _showArrow;
+	private java.lang.Object _showDelay;
+	private java.lang.String _showOn;
+	private java.lang.String _srcNode;
+	private java.lang.Boolean _stack;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
-	private java.lang.String _title;
+	private java.lang.Object _tabIndex;
+	private java.lang.Boolean _title;
 	private java.lang.Object _trigger;
-	private java.lang.String _visible;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
-	private java.lang.String _x;
+	private java.lang.Object _x;
 	private java.lang.Object _xy;
-	private java.lang.String _y;
-	private java.lang.String _zIndex;
+	private java.lang.Object _y;
+	private java.lang.Object _zIndex;
 	private java.lang.Object _afterAlignChange;
 	private java.lang.Object _afterAnimChange;
 	private java.lang.Object _afterArrowChange;

@@ -24,27 +24,27 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getAlwaysShowHitArea() {
+	public java.lang.Boolean getAlwaysShowHitArea() {
 		return _alwaysShowHitArea;
 	}
 
-	public java.lang.String getCache() {
+	public java.lang.Boolean getCache() {
 		return _cache;
 	}
 
-	public java.lang.Object getCheckContainerEl() {
+	public java.lang.String getCheckContainerEl() {
 		return _checkContainerEl;
 	}
 
-	public java.lang.Object getCheckEl() {
+	public java.lang.String getCheckEl() {
 		return _checkEl;
 	}
 
-	public java.lang.Object getCheckName() {
+	public java.lang.String getCheckName() {
 		return _checkName;
 	}
 
-	public java.lang.String getChecked() {
+	public java.lang.Boolean getChecked() {
 		return _checked;
 	}
 
@@ -52,31 +52,31 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.Object getContainer() {
+	public java.lang.String getContainer() {
 		return _container;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDraggable() {
+	public java.lang.Boolean getDraggable() {
 		return _draggable;
 	}
 
-	public java.lang.String getExpanded() {
+	public java.lang.Boolean getExpanded() {
 		return _expanded;
 	}
 
-	public java.lang.Object getHitAreaEl() {
+	public java.lang.String getHitAreaEl() {
 		return _hitAreaEl;
 	}
 
-	public java.lang.Object getIconEl() {
+	public java.lang.String getIconEl() {
 		return _iconEl;
 	}
 
-	public java.lang.Object getTreenodetaskId() {
+	public java.lang.String getTreenodetaskId() {
 		return _treenodetaskId;
 	}
 
@@ -84,7 +84,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _index;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -92,23 +92,23 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _io;
 	}
 
-	public java.lang.Object getLabel() {
+	public java.lang.String getLabel() {
 		return _label;
 	}
 
-	public java.lang.Object getLabelEl() {
+	public java.lang.String getLabelEl() {
 		return _labelEl;
 	}
 
-	public java.lang.String getLeaf() {
+	public java.lang.Boolean getLeaf() {
 		return _leaf;
 	}
 
-	public java.lang.String getLoaded() {
+	public java.lang.Boolean getLoaded() {
 		return _loaded;
 	}
 
-	public java.lang.String getLoading() {
+	public java.lang.Boolean getLoading() {
 		return _loading;
 	}
 
@@ -352,37 +352,37 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		return _onPrevSiblingChange;
 	}
 
-	public void setAlwaysShowHitArea(java.lang.String alwaysShowHitArea) {
+	public void setAlwaysShowHitArea(java.lang.Boolean alwaysShowHitArea) {
 		_alwaysShowHitArea = alwaysShowHitArea;
 
 		setScopedAttribute("alwaysShowHitArea", alwaysShowHitArea);
 	}
 
-	public void setCache(java.lang.String cache) {
+	public void setCache(java.lang.Boolean cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
 	}
 
-	public void setCheckContainerEl(java.lang.Object checkContainerEl) {
+	public void setCheckContainerEl(java.lang.String checkContainerEl) {
 		_checkContainerEl = checkContainerEl;
 
 		setScopedAttribute("checkContainerEl", checkContainerEl);
 	}
 
-	public void setCheckEl(java.lang.Object checkEl) {
+	public void setCheckEl(java.lang.String checkEl) {
 		_checkEl = checkEl;
 
 		setScopedAttribute("checkEl", checkEl);
 	}
 
-	public void setCheckName(java.lang.Object checkName) {
+	public void setCheckName(java.lang.String checkName) {
 		_checkName = checkName;
 
 		setScopedAttribute("checkName", checkName);
 	}
 
-	public void setChecked(java.lang.String checked) {
+	public void setChecked(java.lang.Boolean checked) {
 		_checked = checked;
 
 		setScopedAttribute("checked", checked);
@@ -394,43 +394,43 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContainer(java.lang.Object container) {
+	public void setContainer(java.lang.String container) {
 		_container = container;
 
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDraggable(java.lang.String draggable) {
+	public void setDraggable(java.lang.Boolean draggable) {
 		_draggable = draggable;
 
 		setScopedAttribute("draggable", draggable);
 	}
 
-	public void setExpanded(java.lang.String expanded) {
+	public void setExpanded(java.lang.Boolean expanded) {
 		_expanded = expanded;
 
 		setScopedAttribute("expanded", expanded);
 	}
 
-	public void setHitAreaEl(java.lang.Object hitAreaEl) {
+	public void setHitAreaEl(java.lang.String hitAreaEl) {
 		_hitAreaEl = hitAreaEl;
 
 		setScopedAttribute("hitAreaEl", hitAreaEl);
 	}
 
-	public void setIconEl(java.lang.Object iconEl) {
+	public void setIconEl(java.lang.String iconEl) {
 		_iconEl = iconEl;
 
 		setScopedAttribute("iconEl", iconEl);
 	}
 
-	public void setTreenodetaskId(java.lang.Object treenodetaskId) {
+	public void setTreenodetaskId(java.lang.String treenodetaskId) {
 		_treenodetaskId = treenodetaskId;
 
 		setScopedAttribute("treenodetaskId", treenodetaskId);
@@ -442,7 +442,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -454,31 +454,31 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setScopedAttribute("io", io);
 	}
 
-	public void setLabel(java.lang.Object label) {
+	public void setLabel(java.lang.String label) {
 		_label = label;
 
 		setScopedAttribute("label", label);
 	}
 
-	public void setLabelEl(java.lang.Object labelEl) {
+	public void setLabelEl(java.lang.String labelEl) {
 		_labelEl = labelEl;
 
 		setScopedAttribute("labelEl", labelEl);
 	}
 
-	public void setLeaf(java.lang.String leaf) {
+	public void setLeaf(java.lang.Boolean leaf) {
 		_leaf = leaf;
 
 		setScopedAttribute("leaf", leaf);
 	}
 
-	public void setLoaded(java.lang.String loaded) {
+	public void setLoaded(java.lang.Boolean loaded) {
 		_loaded = loaded;
 
 		setScopedAttribute("loaded", loaded);
 	}
 
-	public void setLoading(java.lang.String loading) {
+	public void setLoading(java.lang.Boolean loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -934,28 +934,28 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_node_task/page.jsp";
 
-	private java.lang.String _alwaysShowHitArea;
-	private java.lang.String _cache;
-	private java.lang.Object _checkContainerEl;
-	private java.lang.Object _checkEl;
-	private java.lang.Object _checkName;
-	private java.lang.String _checked;
+	private java.lang.Boolean _alwaysShowHitArea;
+	private java.lang.Boolean _cache;
+	private java.lang.String _checkContainerEl;
+	private java.lang.String _checkEl;
+	private java.lang.String _checkName;
+	private java.lang.Boolean _checked;
 	private java.lang.Object _children;
-	private java.lang.Object _container;
-	private java.lang.String _destroyed;
-	private java.lang.String _draggable;
-	private java.lang.String _expanded;
-	private java.lang.Object _hitAreaEl;
-	private java.lang.Object _iconEl;
-	private java.lang.Object _treenodetaskId;
+	private java.lang.String _container;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _draggable;
+	private java.lang.Boolean _expanded;
+	private java.lang.String _hitAreaEl;
+	private java.lang.String _iconEl;
+	private java.lang.String _treenodetaskId;
 	private java.lang.Object _index;
-	private java.lang.String _initialized;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _io;
-	private java.lang.Object _label;
-	private java.lang.Object _labelEl;
-	private java.lang.String _leaf;
-	private java.lang.String _loaded;
-	private java.lang.String _loading;
+	private java.lang.String _label;
+	private java.lang.String _labelEl;
+	private java.lang.Boolean _leaf;
+	private java.lang.Boolean _loaded;
+	private java.lang.Boolean _loading;
 	private java.lang.Object _nextSibling;
 	private java.lang.Object _ownerTree;
 	private java.lang.Object _parentNode;

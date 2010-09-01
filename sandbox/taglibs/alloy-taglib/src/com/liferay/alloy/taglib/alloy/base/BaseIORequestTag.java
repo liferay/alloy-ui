@@ -24,7 +24,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getActive() {
+	public java.lang.Boolean getActive() {
 		return _active;
 	}
 
@@ -32,15 +32,15 @@ public class BaseIORequestTag extends IncludeTag {
 		return _arguments;
 	}
 
-	public java.lang.String getAutoLoad() {
+	public java.lang.Boolean getAutoLoad() {
 		return _autoLoad;
 	}
 
-	public java.lang.String getCache() {
+	public java.lang.Boolean getCache() {
 		return _cache;
 	}
 
-	public java.lang.Object getCfg() {
+	public java.lang.String getCfg() {
 		return _cfg;
 	}
 
@@ -52,11 +52,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _data;
 	}
 
-	public java.lang.Object getDataType() {
+	public java.lang.String getDataType() {
 		return _dataType;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -72,11 +72,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _host;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getMethod() {
+	public java.lang.String getMethod() {
 		return _method;
 	}
 
@@ -84,11 +84,11 @@ public class BaseIORequestTag extends IncludeTag {
 		return _responseData;
 	}
 
-	public java.lang.String getSync() {
+	public java.lang.Boolean getSync() {
 		return _sync;
 	}
 
-	public java.lang.String getTimeout() {
+	public java.lang.Object getTimeout() {
 		return _timeout;
 	}
 
@@ -96,7 +96,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _transaction;
 	}
 
-	public java.lang.Object getUri() {
+	public java.lang.String getUri() {
 		return _uri;
 	}
 
@@ -328,7 +328,7 @@ public class BaseIORequestTag extends IncludeTag {
 		return _onXdrChange;
 	}
 
-	public void setActive(java.lang.String active) {
+	public void setActive(java.lang.Boolean active) {
 		_active = active;
 
 		setScopedAttribute("active", active);
@@ -340,19 +340,19 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("arguments", arguments);
 	}
 
-	public void setAutoLoad(java.lang.String autoLoad) {
+	public void setAutoLoad(java.lang.Boolean autoLoad) {
 		_autoLoad = autoLoad;
 
 		setScopedAttribute("autoLoad", autoLoad);
 	}
 
-	public void setCache(java.lang.String cache) {
+	public void setCache(java.lang.Boolean cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
 	}
 
-	public void setCfg(java.lang.Object cfg) {
+	public void setCfg(java.lang.String cfg) {
 		_cfg = cfg;
 
 		setScopedAttribute("cfg", cfg);
@@ -370,13 +370,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("data", data);
 	}
 
-	public void setDataType(java.lang.Object dataType) {
+	public void setDataType(java.lang.String dataType) {
 		_dataType = dataType;
 
 		setScopedAttribute("dataType", dataType);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -400,13 +400,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMethod(java.lang.Object method) {
+	public void setMethod(java.lang.String method) {
 		_method = method;
 
 		setScopedAttribute("method", method);
@@ -418,13 +418,13 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("responseData", responseData);
 	}
 
-	public void setSync(java.lang.String sync) {
+	public void setSync(java.lang.Boolean sync) {
 		_sync = sync;
 
 		setScopedAttribute("sync", sync);
 	}
 
-	public void setTimeout(java.lang.String timeout) {
+	public void setTimeout(java.lang.Object timeout) {
 		_timeout = timeout;
 
 		setScopedAttribute("timeout", timeout);
@@ -436,7 +436,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setScopedAttribute("transaction", transaction);
 	}
 
-	public void setUri(java.lang.Object uri) {
+	public void setUri(java.lang.String uri) {
 		_uri = uri;
 
 		setScopedAttribute("uri", uri);
@@ -868,25 +868,25 @@ public class BaseIORequestTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/io_request/page.jsp";
 
-	private java.lang.String _active;
+	private java.lang.Boolean _active;
 	private java.lang.Object _arguments;
-	private java.lang.String _autoLoad;
-	private java.lang.String _cache;
-	private java.lang.Object _cfg;
+	private java.lang.Boolean _autoLoad;
+	private java.lang.Boolean _cache;
+	private java.lang.String _cfg;
 	private java.lang.Object _context;
 	private java.lang.Object _data;
-	private java.lang.Object _dataType;
-	private java.lang.String _destroyed;
+	private java.lang.String _dataType;
+	private java.lang.Boolean _destroyed;
 	private java.lang.Object _form;
 	private java.lang.Object _headers;
 	private java.lang.Object _host;
-	private java.lang.String _initialized;
-	private java.lang.Object _method;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _method;
 	private java.lang.Object _responseData;
-	private java.lang.String _sync;
-	private java.lang.String _timeout;
+	private java.lang.Boolean _sync;
+	private java.lang.Object _timeout;
 	private java.lang.Object _transaction;
-	private java.lang.Object _uri;
+	private java.lang.String _uri;
 	private java.lang.Object _xdr;
 	private java.lang.Object _afterActiveChange;
 	private java.lang.Object _afterArgumentsChange;

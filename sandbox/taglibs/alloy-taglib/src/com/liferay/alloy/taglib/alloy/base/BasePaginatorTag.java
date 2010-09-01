@@ -24,55 +24,55 @@ public class BasePaginatorTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getAlwaysVisible() {
+	public java.lang.Boolean getAlwaysVisible() {
 		return _alwaysVisible;
 	}
 
-	public java.lang.Object getContainers() {
+	public java.lang.String getContainers() {
 		return _containers;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Object getFirstPageLink() {
+	public java.lang.String getFirstPageLink() {
 		return _firstPageLink;
 	}
 
-	public java.lang.Object getFirstPageLinkLabel() {
+	public java.lang.String getFirstPageLinkLabel() {
 		return _firstPageLinkLabel;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getLastPageLink() {
+	public java.lang.String getLastPageLink() {
 		return _lastPageLink;
 	}
 
-	public java.lang.Object getLastPageLinkLabel() {
+	public java.lang.String getLastPageLinkLabel() {
 		return _lastPageLinkLabel;
 	}
 
-	public java.lang.String getMaxPageLinks() {
+	public java.lang.Object getMaxPageLinks() {
 		return _maxPageLinks;
 	}
 
-	public java.lang.Object getNextPageLink() {
+	public java.lang.String getNextPageLink() {
 		return _nextPageLink;
 	}
 
-	public java.lang.Object getNextPageLinkLabel() {
+	public java.lang.String getNextPageLinkLabel() {
 		return _nextPageLinkLabel;
 	}
 
-	public java.lang.String getPage() {
+	public java.lang.Object getPage() {
 		return _page;
 	}
 
-	public java.lang.Object getPageContainerTemplate() {
+	public java.lang.String getPageContainerTemplate() {
 		return _pageContainerTemplate;
 	}
 
@@ -80,31 +80,31 @@ public class BasePaginatorTag extends IncludeTag {
 		return _pageLinkContent;
 	}
 
-	public java.lang.Object getPageLinkTemplate() {
+	public java.lang.String getPageLinkTemplate() {
 		return _pageLinkTemplate;
 	}
 
-	public java.lang.Object getPageReportEl() {
+	public java.lang.String getPageReportEl() {
 		return _pageReportEl;
 	}
 
-	public java.lang.Object getPageReportLabelTemplate() {
+	public java.lang.String getPageReportLabelTemplate() {
 		return _pageReportLabelTemplate;
 	}
 
-	public java.lang.Object getPrevPageLink() {
+	public java.lang.String getPrevPageLink() {
 		return _prevPageLink;
 	}
 
-	public java.lang.Object getPrevPageLinkLabel() {
+	public java.lang.String getPrevPageLinkLabel() {
 		return _prevPageLinkLabel;
 	}
 
-	public java.lang.String getRowsPerPage() {
+	public java.lang.Object getRowsPerPage() {
 		return _rowsPerPage;
 	}
 
-	public java.lang.Object getRowsPerPageEl() {
+	public java.lang.String getRowsPerPageEl() {
 		return _rowsPerPageEl;
 	}
 
@@ -116,23 +116,23 @@ public class BasePaginatorTag extends IncludeTag {
 		return _state;
 	}
 
-	public java.lang.Object getTemplate() {
+	public java.lang.String getTemplate() {
 		return _template;
 	}
 
-	public java.lang.String getTotal() {
+	public java.lang.Object getTotal() {
 		return _total;
 	}
 
-	public java.lang.Object getTotalEl() {
+	public java.lang.String getTotalEl() {
 		return _totalEl;
 	}
 
-	public java.lang.Object getTotalLabel() {
+	public java.lang.String getTotalLabel() {
 		return _totalLabel;
 	}
 
-	public java.lang.String getTotalPages() {
+	public java.lang.Object getTotalPages() {
 		return _totalPages;
 	}
 
@@ -376,79 +376,79 @@ public class BasePaginatorTag extends IncludeTag {
 		return _onTotalPagesChange;
 	}
 
-	public void setAlwaysVisible(java.lang.String alwaysVisible) {
+	public void setAlwaysVisible(java.lang.Boolean alwaysVisible) {
 		_alwaysVisible = alwaysVisible;
 
 		setScopedAttribute("alwaysVisible", alwaysVisible);
 	}
 
-	public void setContainers(java.lang.Object containers) {
+	public void setContainers(java.lang.String containers) {
 		_containers = containers;
 
 		setScopedAttribute("containers", containers);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setFirstPageLink(java.lang.Object firstPageLink) {
+	public void setFirstPageLink(java.lang.String firstPageLink) {
 		_firstPageLink = firstPageLink;
 
 		setScopedAttribute("firstPageLink", firstPageLink);
 	}
 
-	public void setFirstPageLinkLabel(java.lang.Object firstPageLinkLabel) {
+	public void setFirstPageLinkLabel(java.lang.String firstPageLinkLabel) {
 		_firstPageLinkLabel = firstPageLinkLabel;
 
 		setScopedAttribute("firstPageLinkLabel", firstPageLinkLabel);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLastPageLink(java.lang.Object lastPageLink) {
+	public void setLastPageLink(java.lang.String lastPageLink) {
 		_lastPageLink = lastPageLink;
 
 		setScopedAttribute("lastPageLink", lastPageLink);
 	}
 
-	public void setLastPageLinkLabel(java.lang.Object lastPageLinkLabel) {
+	public void setLastPageLinkLabel(java.lang.String lastPageLinkLabel) {
 		_lastPageLinkLabel = lastPageLinkLabel;
 
 		setScopedAttribute("lastPageLinkLabel", lastPageLinkLabel);
 	}
 
-	public void setMaxPageLinks(java.lang.String maxPageLinks) {
+	public void setMaxPageLinks(java.lang.Object maxPageLinks) {
 		_maxPageLinks = maxPageLinks;
 
 		setScopedAttribute("maxPageLinks", maxPageLinks);
 	}
 
-	public void setNextPageLink(java.lang.Object nextPageLink) {
+	public void setNextPageLink(java.lang.String nextPageLink) {
 		_nextPageLink = nextPageLink;
 
 		setScopedAttribute("nextPageLink", nextPageLink);
 	}
 
-	public void setNextPageLinkLabel(java.lang.Object nextPageLinkLabel) {
+	public void setNextPageLinkLabel(java.lang.String nextPageLinkLabel) {
 		_nextPageLinkLabel = nextPageLinkLabel;
 
 		setScopedAttribute("nextPageLinkLabel", nextPageLinkLabel);
 	}
 
-	public void setPage(java.lang.String page) {
+	public void setPage(java.lang.Object page) {
 		_page = page;
 
 		setScopedAttribute("page", page);
 	}
 
-	public void setPageContainerTemplate(java.lang.Object pageContainerTemplate) {
+	public void setPageContainerTemplate(java.lang.String pageContainerTemplate) {
 		_pageContainerTemplate = pageContainerTemplate;
 
 		setScopedAttribute("pageContainerTemplate", pageContainerTemplate);
@@ -460,43 +460,43 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("pageLinkContent", pageLinkContent);
 	}
 
-	public void setPageLinkTemplate(java.lang.Object pageLinkTemplate) {
+	public void setPageLinkTemplate(java.lang.String pageLinkTemplate) {
 		_pageLinkTemplate = pageLinkTemplate;
 
 		setScopedAttribute("pageLinkTemplate", pageLinkTemplate);
 	}
 
-	public void setPageReportEl(java.lang.Object pageReportEl) {
+	public void setPageReportEl(java.lang.String pageReportEl) {
 		_pageReportEl = pageReportEl;
 
 		setScopedAttribute("pageReportEl", pageReportEl);
 	}
 
-	public void setPageReportLabelTemplate(java.lang.Object pageReportLabelTemplate) {
+	public void setPageReportLabelTemplate(java.lang.String pageReportLabelTemplate) {
 		_pageReportLabelTemplate = pageReportLabelTemplate;
 
 		setScopedAttribute("pageReportLabelTemplate", pageReportLabelTemplate);
 	}
 
-	public void setPrevPageLink(java.lang.Object prevPageLink) {
+	public void setPrevPageLink(java.lang.String prevPageLink) {
 		_prevPageLink = prevPageLink;
 
 		setScopedAttribute("prevPageLink", prevPageLink);
 	}
 
-	public void setPrevPageLinkLabel(java.lang.Object prevPageLinkLabel) {
+	public void setPrevPageLinkLabel(java.lang.String prevPageLinkLabel) {
 		_prevPageLinkLabel = prevPageLinkLabel;
 
 		setScopedAttribute("prevPageLinkLabel", prevPageLinkLabel);
 	}
 
-	public void setRowsPerPage(java.lang.String rowsPerPage) {
+	public void setRowsPerPage(java.lang.Object rowsPerPage) {
 		_rowsPerPage = rowsPerPage;
 
 		setScopedAttribute("rowsPerPage", rowsPerPage);
 	}
 
-	public void setRowsPerPageEl(java.lang.Object rowsPerPageEl) {
+	public void setRowsPerPageEl(java.lang.String rowsPerPageEl) {
 		_rowsPerPageEl = rowsPerPageEl;
 
 		setScopedAttribute("rowsPerPageEl", rowsPerPageEl);
@@ -514,31 +514,31 @@ public class BasePaginatorTag extends IncludeTag {
 		setScopedAttribute("state", state);
 	}
 
-	public void setTemplate(java.lang.Object template) {
+	public void setTemplate(java.lang.String template) {
 		_template = template;
 
 		setScopedAttribute("template", template);
 	}
 
-	public void setTotal(java.lang.String total) {
+	public void setTotal(java.lang.Object total) {
 		_total = total;
 
 		setScopedAttribute("total", total);
 	}
 
-	public void setTotalEl(java.lang.Object totalEl) {
+	public void setTotalEl(java.lang.String totalEl) {
 		_totalEl = totalEl;
 
 		setScopedAttribute("totalEl", totalEl);
 	}
 
-	public void setTotalLabel(java.lang.Object totalLabel) {
+	public void setTotalLabel(java.lang.String totalLabel) {
 		_totalLabel = totalLabel;
 
 		setScopedAttribute("totalLabel", totalLabel);
 	}
 
-	public void setTotalPages(java.lang.String totalPages) {
+	public void setTotalPages(java.lang.Object totalPages) {
 		_totalPages = totalPages;
 
 		setScopedAttribute("totalPages", totalPages);
@@ -1000,34 +1000,34 @@ public class BasePaginatorTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/paginator/page.jsp";
 
-	private java.lang.String _alwaysVisible;
-	private java.lang.Object _containers;
-	private java.lang.String _destroyed;
-	private java.lang.Object _firstPageLink;
-	private java.lang.Object _firstPageLinkLabel;
-	private java.lang.String _initialized;
-	private java.lang.Object _lastPageLink;
-	private java.lang.Object _lastPageLinkLabel;
-	private java.lang.String _maxPageLinks;
-	private java.lang.Object _nextPageLink;
-	private java.lang.Object _nextPageLinkLabel;
-	private java.lang.String _page;
-	private java.lang.Object _pageContainerTemplate;
+	private java.lang.Boolean _alwaysVisible;
+	private java.lang.String _containers;
+	private java.lang.Boolean _destroyed;
+	private java.lang.String _firstPageLink;
+	private java.lang.String _firstPageLinkLabel;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _lastPageLink;
+	private java.lang.String _lastPageLinkLabel;
+	private java.lang.Object _maxPageLinks;
+	private java.lang.String _nextPageLink;
+	private java.lang.String _nextPageLinkLabel;
+	private java.lang.Object _page;
+	private java.lang.String _pageContainerTemplate;
 	private java.lang.Object _pageLinkContent;
-	private java.lang.Object _pageLinkTemplate;
-	private java.lang.Object _pageReportEl;
-	private java.lang.Object _pageReportLabelTemplate;
-	private java.lang.Object _prevPageLink;
-	private java.lang.Object _prevPageLinkLabel;
-	private java.lang.String _rowsPerPage;
-	private java.lang.Object _rowsPerPageEl;
+	private java.lang.String _pageLinkTemplate;
+	private java.lang.String _pageReportEl;
+	private java.lang.String _pageReportLabelTemplate;
+	private java.lang.String _prevPageLink;
+	private java.lang.String _prevPageLinkLabel;
+	private java.lang.Object _rowsPerPage;
+	private java.lang.String _rowsPerPageEl;
 	private java.lang.Object _rowsPerPageOptions;
 	private java.lang.Object _state;
-	private java.lang.Object _template;
-	private java.lang.String _total;
-	private java.lang.Object _totalEl;
-	private java.lang.Object _totalLabel;
-	private java.lang.String _totalPages;
+	private java.lang.String _template;
+	private java.lang.Object _total;
+	private java.lang.String _totalEl;
+	private java.lang.String _totalLabel;
+	private java.lang.Object _totalPages;
 	private java.lang.Object _afterAlwaysVisibleChange;
 	private java.lang.Object _afterContainersChange;
 	private java.lang.Object _afterDestroy;

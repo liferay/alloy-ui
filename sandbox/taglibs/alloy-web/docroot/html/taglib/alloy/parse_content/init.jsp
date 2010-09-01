@@ -17,19 +17,19 @@ boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
 boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
 boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:destroyed"), false);
-java.lang.Object _host = (java.lang.Object)request.getAttribute("alloy:parse-content:host");
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.String)request.getAttribute("alloy:parse-content:initialized"), false);
-java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroy");
-java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroyedChange");
-java.lang.Object _afterHostChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterHostChange");
-java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:parse-content:afterInit");
-java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterInitializedChange");
-java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:parse-content:onDestroy");
-java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onDestroyedChange");
-java.lang.Object _onHostChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onHostChange");
-java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:parse-content:onInit");
-java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:onInitializedChange");
+java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:parse-content:destroyed"), false);
+java.lang.Object _host = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:host"));
+java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:parse-content:initialized"), false);
+java.lang.Object _afterDestroy = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroy"));
+java.lang.Object _afterDestroyedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroyedChange"));
+java.lang.Object _afterHostChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:afterHostChange"));
+java.lang.Object _afterInit = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:afterInit"));
+java.lang.Object _afterInitializedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:afterInitializedChange"));
+java.lang.Object _onDestroy = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:onDestroy"));
+java.lang.Object _onDestroyedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:onDestroyedChange"));
+java.lang.Object _onHostChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:onHostChange"));
+java.lang.Object _onInit = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:onInit"));
+java.lang.Object _onInitializedChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:parse-content:onInitializedChange"));
 
 String uniqueId = StringPool.BLANK;
 

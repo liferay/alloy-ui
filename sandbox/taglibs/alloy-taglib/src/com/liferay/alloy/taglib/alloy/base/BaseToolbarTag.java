@@ -28,11 +28,11 @@ public class BaseToolbarTag extends IncludeTag {
 		return _activeDescendant;
 	}
 
-	public java.lang.String getActiveState() {
+	public java.lang.Boolean getActiveState() {
 		return _activeState;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
@@ -40,11 +40,11 @@ public class BaseToolbarTag extends IncludeTag {
 		return _children;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
@@ -52,19 +52,19 @@ public class BaseToolbarTag extends IncludeTag {
 		return _defaultChildType;
 	}
 
-	public java.lang.String getDefaultState() {
+	public java.lang.Boolean getDefaultState() {
 		return _defaultState;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -72,35 +72,35 @@ public class BaseToolbarTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getHoverState() {
+	public java.lang.Boolean getHoverState() {
 		return _hoverState;
 	}
 
-	public java.lang.Object getToolbarId() {
+	public java.lang.String getToolbarId() {
 		return _toolbarId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.String getMultiple() {
+	public java.lang.Boolean getMultiple() {
 		return _multiple;
 	}
 
-	public java.lang.Object getOrientation() {
+	public java.lang.String getOrientation() {
 		return _orientation;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
@@ -108,7 +108,7 @@ public class BaseToolbarTag extends IncludeTag {
 		return _selection;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -116,11 +116,11 @@ public class BaseToolbarTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -390,13 +390,13 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("activeDescendant", activeDescendant);
 	}
 
-	public void setActiveState(java.lang.String activeState) {
+	public void setActiveState(java.lang.Boolean activeState) {
 		_activeState = activeState;
 
 		setScopedAttribute("activeState", activeState);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
@@ -408,13 +408,13 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("children", children);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -426,25 +426,25 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("defaultChildType", defaultChildType);
 	}
 
-	public void setDefaultState(java.lang.String defaultState) {
+	public void setDefaultState(java.lang.Boolean defaultState) {
 		_defaultState = defaultState;
 
 		setScopedAttribute("defaultState", defaultState);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -456,49 +456,49 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHoverState(java.lang.String hoverState) {
+	public void setHoverState(java.lang.Boolean hoverState) {
 		_hoverState = hoverState;
 
 		setScopedAttribute("hoverState", hoverState);
 	}
 
-	public void setToolbarId(java.lang.Object toolbarId) {
+	public void setToolbarId(java.lang.String toolbarId) {
 		_toolbarId = toolbarId;
 
 		setScopedAttribute("toolbarId", toolbarId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMultiple(java.lang.String multiple) {
+	public void setMultiple(java.lang.Boolean multiple) {
 		_multiple = multiple;
 
 		setScopedAttribute("multiple", multiple);
 	}
 
-	public void setOrientation(java.lang.Object orientation) {
+	public void setOrientation(java.lang.String orientation) {
 		_orientation = orientation;
 
 		setScopedAttribute("orientation", orientation);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -510,7 +510,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("selection", selection);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -522,13 +522,13 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1023,30 +1023,30 @@ public class BaseToolbarTag extends IncludeTag {
 		"/html/taglib/alloy/toolbar/page.jsp";
 
 	private java.lang.Object _activeDescendant;
-	private java.lang.String _activeState;
-	private java.lang.Object _boundingBox;
+	private java.lang.Boolean _activeState;
+	private java.lang.String _boundingBox;
 	private java.lang.Object _children;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
 	private java.lang.Object _defaultChildType;
-	private java.lang.String _defaultState;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
-	private java.lang.String _focused;
+	private java.lang.Boolean _defaultState;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.String _hoverState;
-	private java.lang.Object _toolbarId;
-	private java.lang.String _initialized;
-	private java.lang.String _multiple;
-	private java.lang.Object _orientation;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
+	private java.lang.String _hideClass;
+	private java.lang.Boolean _hoverState;
+	private java.lang.String _toolbarId;
+	private java.lang.Boolean _initialized;
+	private java.lang.Boolean _multiple;
+	private java.lang.String _orientation;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
 	private java.lang.Object _selection;
-	private java.lang.Object _srcNode;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
-	private java.lang.String _visible;
+	private java.lang.Object _tabIndex;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
 	private java.lang.Object _afterActiveDescendantChange;
 	private java.lang.Object _afterActiveStateChange;

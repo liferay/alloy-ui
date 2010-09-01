@@ -24,31 +24,31 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getAlwaysShowContainer() {
+	public java.lang.Boolean getAlwaysShowContainer() {
 		return _alwaysShowContainer;
 	}
 
-	public java.lang.String getApplyLocalFilter() {
+	public java.lang.Boolean getApplyLocalFilter() {
 		return _applyLocalFilter;
 	}
 
-	public java.lang.String getAutoHighlight() {
+	public java.lang.Boolean getAutoHighlight() {
 		return _autoHighlight;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getButton() {
+	public java.lang.Boolean getButton() {
 		return _button;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
@@ -56,27 +56,27 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _dataSource;
 	}
 
-	public java.lang.Object getDataSourceType() {
+	public java.lang.String getDataSourceType() {
 		return _dataSourceType;
 	}
 
-	public java.lang.Object getDelimChar() {
+	public java.lang.String getDelimChar() {
 		return _delimChar;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
-	public java.lang.String getForceSelection() {
+	public java.lang.Boolean getForceSelection() {
 		return _forceSelection;
 	}
 
@@ -84,19 +84,19 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.Object getAutocompleteId() {
+	public java.lang.String getAutocompleteId() {
 		return _autocompleteId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getInput() {
+	public java.lang.String getInput() {
 		return _input;
 	}
 
@@ -104,39 +104,39 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _matchKey;
 	}
 
-	public java.lang.String getMaxResultsDisplayed() {
+	public java.lang.Object getMaxResultsDisplayed() {
 		return _maxResultsDisplayed;
 	}
 
-	public java.lang.String getMinQueryLength() {
+	public java.lang.Object getMinQueryLength() {
 		return _minQueryLength;
 	}
 
-	public java.lang.String getQueryDelay() {
+	public java.lang.Object getQueryDelay() {
 		return _queryDelay;
 	}
 
-	public java.lang.String getQueryInterval() {
+	public java.lang.Object getQueryInterval() {
 		return _queryInterval;
 	}
 
-	public java.lang.String getQueryMatchCase() {
+	public java.lang.Boolean getQueryMatchCase() {
 		return _queryMatchCase;
 	}
 
-	public java.lang.String getQueryMatchContains() {
+	public java.lang.Boolean getQueryMatchContains() {
 		return _queryMatchContains;
 	}
 
-	public java.lang.String getQueryQuestionMark() {
+	public java.lang.Boolean getQueryQuestionMark() {
 		return _queryQuestionMark;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
@@ -144,11 +144,11 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _schema;
 	}
 
-	public java.lang.Object getSchemaType() {
+	public java.lang.String getSchemaType() {
 		return _schemaType;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -156,27 +156,27 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getSuppressInputUpdate() {
+	public java.lang.Boolean getSuppressInputUpdate() {
 		return _suppressInputUpdate;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.String getTypeAhead() {
+	public java.lang.Boolean getTypeAhead() {
 		return _typeAhead;
 	}
 
-	public java.lang.String getTypeAheadDelay() {
+	public java.lang.Object getTypeAheadDelay() {
 		return _typeAheadDelay;
 	}
 
-	public java.lang.Object getUniqueName() {
+	public java.lang.String getUniqueName() {
 		return _uniqueName;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -680,43 +680,43 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
-	public void setAlwaysShowContainer(java.lang.String alwaysShowContainer) {
+	public void setAlwaysShowContainer(java.lang.Boolean alwaysShowContainer) {
 		_alwaysShowContainer = alwaysShowContainer;
 
 		setScopedAttribute("alwaysShowContainer", alwaysShowContainer);
 	}
 
-	public void setApplyLocalFilter(java.lang.String applyLocalFilter) {
+	public void setApplyLocalFilter(java.lang.Boolean applyLocalFilter) {
 		_applyLocalFilter = applyLocalFilter;
 
 		setScopedAttribute("applyLocalFilter", applyLocalFilter);
 	}
 
-	public void setAutoHighlight(java.lang.String autoHighlight) {
+	public void setAutoHighlight(java.lang.Boolean autoHighlight) {
 		_autoHighlight = autoHighlight;
 
 		setScopedAttribute("autoHighlight", autoHighlight);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setButton(java.lang.String button) {
+	public void setButton(java.lang.Boolean button) {
 		_button = button;
 
 		setScopedAttribute("button", button);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
@@ -728,37 +728,37 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("dataSource", dataSource);
 	}
 
-	public void setDataSourceType(java.lang.Object dataSourceType) {
+	public void setDataSourceType(java.lang.String dataSourceType) {
 		_dataSourceType = dataSourceType;
 
 		setScopedAttribute("dataSourceType", dataSourceType);
 	}
 
-	public void setDelimChar(java.lang.Object delimChar) {
+	public void setDelimChar(java.lang.String delimChar) {
 		_delimChar = delimChar;
 
 		setScopedAttribute("delimChar", delimChar);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setForceSelection(java.lang.String forceSelection) {
+	public void setForceSelection(java.lang.Boolean forceSelection) {
 		_forceSelection = forceSelection;
 
 		setScopedAttribute("forceSelection", forceSelection);
@@ -770,25 +770,25 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setAutocompleteId(java.lang.Object autocompleteId) {
+	public void setAutocompleteId(java.lang.String autocompleteId) {
 		_autocompleteId = autocompleteId;
 
 		setScopedAttribute("autocompleteId", autocompleteId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setInput(java.lang.Object input) {
+	public void setInput(java.lang.String input) {
 		_input = input;
 
 		setScopedAttribute("input", input);
@@ -800,55 +800,55 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("matchKey", matchKey);
 	}
 
-	public void setMaxResultsDisplayed(java.lang.String maxResultsDisplayed) {
+	public void setMaxResultsDisplayed(java.lang.Object maxResultsDisplayed) {
 		_maxResultsDisplayed = maxResultsDisplayed;
 
 		setScopedAttribute("maxResultsDisplayed", maxResultsDisplayed);
 	}
 
-	public void setMinQueryLength(java.lang.String minQueryLength) {
+	public void setMinQueryLength(java.lang.Object minQueryLength) {
 		_minQueryLength = minQueryLength;
 
 		setScopedAttribute("minQueryLength", minQueryLength);
 	}
 
-	public void setQueryDelay(java.lang.String queryDelay) {
+	public void setQueryDelay(java.lang.Object queryDelay) {
 		_queryDelay = queryDelay;
 
 		setScopedAttribute("queryDelay", queryDelay);
 	}
 
-	public void setQueryInterval(java.lang.String queryInterval) {
+	public void setQueryInterval(java.lang.Object queryInterval) {
 		_queryInterval = queryInterval;
 
 		setScopedAttribute("queryInterval", queryInterval);
 	}
 
-	public void setQueryMatchCase(java.lang.String queryMatchCase) {
+	public void setQueryMatchCase(java.lang.Boolean queryMatchCase) {
 		_queryMatchCase = queryMatchCase;
 
 		setScopedAttribute("queryMatchCase", queryMatchCase);
 	}
 
-	public void setQueryMatchContains(java.lang.String queryMatchContains) {
+	public void setQueryMatchContains(java.lang.Boolean queryMatchContains) {
 		_queryMatchContains = queryMatchContains;
 
 		setScopedAttribute("queryMatchContains", queryMatchContains);
 	}
 
-	public void setQueryQuestionMark(java.lang.String queryQuestionMark) {
+	public void setQueryQuestionMark(java.lang.Boolean queryQuestionMark) {
 		_queryQuestionMark = queryQuestionMark;
 
 		setScopedAttribute("queryQuestionMark", queryQuestionMark);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -860,13 +860,13 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("schema", schema);
 	}
 
-	public void setSchemaType(java.lang.Object schemaType) {
+	public void setSchemaType(java.lang.String schemaType) {
 		_schemaType = schemaType;
 
 		setScopedAttribute("schemaType", schemaType);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -878,37 +878,37 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setSuppressInputUpdate(java.lang.String suppressInputUpdate) {
+	public void setSuppressInputUpdate(java.lang.Boolean suppressInputUpdate) {
 		_suppressInputUpdate = suppressInputUpdate;
 
 		setScopedAttribute("suppressInputUpdate", suppressInputUpdate);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTypeAhead(java.lang.String typeAhead) {
+	public void setTypeAhead(java.lang.Boolean typeAhead) {
 		_typeAhead = typeAhead;
 
 		setScopedAttribute("typeAhead", typeAhead);
 	}
 
-	public void setTypeAheadDelay(java.lang.String typeAheadDelay) {
+	public void setTypeAheadDelay(java.lang.Object typeAheadDelay) {
 		_typeAheadDelay = typeAheadDelay;
 
 		setScopedAttribute("typeAheadDelay", typeAheadDelay);
 	}
 
-	public void setUniqueName(java.lang.Object uniqueName) {
+	public void setUniqueName(java.lang.String uniqueName) {
 		_uniqueName = uniqueName;
 
 		setScopedAttribute("uniqueName", uniqueName);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1836,45 +1836,45 @@ public class BaseAutoCompleteTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/auto_complete/page.jsp";
 
-	private java.lang.String _alwaysShowContainer;
-	private java.lang.String _applyLocalFilter;
-	private java.lang.String _autoHighlight;
-	private java.lang.Object _boundingBox;
-	private java.lang.String _button;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
+	private java.lang.Boolean _alwaysShowContainer;
+	private java.lang.Boolean _applyLocalFilter;
+	private java.lang.Boolean _autoHighlight;
+	private java.lang.String _boundingBox;
+	private java.lang.Boolean _button;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
 	private java.lang.Object _dataSource;
-	private java.lang.Object _dataSourceType;
-	private java.lang.Object _delimChar;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
-	private java.lang.String _focused;
-	private java.lang.String _forceSelection;
+	private java.lang.String _dataSourceType;
+	private java.lang.String _delimChar;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
+	private java.lang.Boolean _focused;
+	private java.lang.Boolean _forceSelection;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.Object _autocompleteId;
-	private java.lang.String _initialized;
-	private java.lang.Object _input;
+	private java.lang.String _hideClass;
+	private java.lang.String _autocompleteId;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _input;
 	private java.lang.Object _matchKey;
-	private java.lang.String _maxResultsDisplayed;
-	private java.lang.String _minQueryLength;
-	private java.lang.String _queryDelay;
-	private java.lang.String _queryInterval;
-	private java.lang.String _queryMatchCase;
-	private java.lang.String _queryMatchContains;
-	private java.lang.String _queryQuestionMark;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
+	private java.lang.Object _maxResultsDisplayed;
+	private java.lang.Object _minQueryLength;
+	private java.lang.Object _queryDelay;
+	private java.lang.Object _queryInterval;
+	private java.lang.Boolean _queryMatchCase;
+	private java.lang.Boolean _queryMatchContains;
+	private java.lang.Boolean _queryQuestionMark;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
 	private java.lang.Object _schema;
-	private java.lang.Object _schemaType;
-	private java.lang.Object _srcNode;
+	private java.lang.String _schemaType;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _suppressInputUpdate;
-	private java.lang.String _tabIndex;
-	private java.lang.String _typeAhead;
-	private java.lang.String _typeAheadDelay;
-	private java.lang.Object _uniqueName;
-	private java.lang.String _visible;
+	private java.lang.Boolean _suppressInputUpdate;
+	private java.lang.Object _tabIndex;
+	private java.lang.Boolean _typeAhead;
+	private java.lang.Object _typeAheadDelay;
+	private java.lang.String _uniqueName;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
 	private java.lang.Object _afterAlwaysShowContainerChange;
 	private java.lang.Object _afterApplyLocalFilterChange;

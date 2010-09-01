@@ -32,11 +32,11 @@ public class BaseCalendarTag extends IncludeTag {
 		return _calendarBodyContent;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.String getCancellableHide() {
+	public java.lang.Boolean getCancellableHide() {
 		return _cancellableHide;
 	}
 
@@ -48,19 +48,19 @@ public class BaseCalendarTag extends IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getCurrentDay() {
+	public java.lang.Object getCurrentDay() {
 		return _currentDay;
 	}
 
-	public java.lang.String getCurrentMonth() {
+	public java.lang.Object getCurrentMonth() {
 		return _currentMonth;
 	}
 
@@ -68,11 +68,11 @@ public class BaseCalendarTag extends IncludeTag {
 		return _currentNode;
 	}
 
-	public java.lang.String getCurrentYear() {
+	public java.lang.Object getCurrentYear() {
 		return _currentYear;
 	}
 
-	public java.lang.Object getDateFormat() {
+	public java.lang.String getDateFormat() {
 		return _dateFormat;
 	}
 
@@ -80,11 +80,11 @@ public class BaseCalendarTag extends IncludeTag {
 		return _dates;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -92,11 +92,11 @@ public class BaseCalendarTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.String getFirstDayOfWeek() {
+	public java.lang.Object getFirstDayOfWeek() {
 		return _firstDayOfWeek;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -112,27 +112,27 @@ public class BaseCalendarTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getHideDelay() {
+	public java.lang.Object getHideDelay() {
 		return _hideDelay;
 	}
 
-	public java.lang.Object getHideOn() {
+	public java.lang.String getHideOn() {
 		return _hideOn;
 	}
 
-	public java.lang.String getHideOnDocumentClick() {
+	public java.lang.Boolean getHideOnDocumentClick() {
 		return _hideOnDocumentClick;
 	}
 
-	public java.lang.Object getCalendarId() {
+	public java.lang.String getCalendarId() {
 		return _calendarId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -144,43 +144,43 @@ public class BaseCalendarTag extends IncludeTag {
 		return _minDate;
 	}
 
-	public java.lang.String getPreventOverlap() {
+	public java.lang.Boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.String getSelectMultipleDates() {
+	public java.lang.Boolean getSelectMultipleDates() {
 		return _selectMultipleDates;
 	}
 
-	public java.lang.String getSetValue() {
+	public java.lang.Boolean getSetValue() {
 		return _setValue;
 	}
 
-	public java.lang.String getShim() {
+	public java.lang.Boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.String getShowDelay() {
+	public java.lang.Object getShowDelay() {
 		return _showDelay;
 	}
 
-	public java.lang.Object getShowOn() {
+	public java.lang.String getShowOn() {
 		return _showOn;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
-	public java.lang.String getStack() {
+	public java.lang.Boolean getStack() {
 		return _stack;
 	}
 
@@ -188,7 +188,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -196,7 +196,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -204,7 +204,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.String getX() {
+	public java.lang.Object getX() {
 		return _x;
 	}
 
@@ -212,11 +212,11 @@ public class BaseCalendarTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.String getY() {
+	public java.lang.Object getY() {
 		return _y;
 	}
 
-	public java.lang.String getZIndex() {
+	public java.lang.Object getZIndex() {
 		return _zIndex;
 	}
 
@@ -656,13 +656,13 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("calendarBodyContent", calendarBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCancellableHide(java.lang.String cancellableHide) {
+	public void setCancellableHide(java.lang.Boolean cancellableHide) {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
@@ -680,25 +680,25 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setCurrentDay(java.lang.String currentDay) {
+	public void setCurrentDay(java.lang.Object currentDay) {
 		_currentDay = currentDay;
 
 		setScopedAttribute("currentDay", currentDay);
 	}
 
-	public void setCurrentMonth(java.lang.String currentMonth) {
+	public void setCurrentMonth(java.lang.Object currentMonth) {
 		_currentMonth = currentMonth;
 
 		setScopedAttribute("currentMonth", currentMonth);
@@ -710,13 +710,13 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("currentNode", currentNode);
 	}
 
-	public void setCurrentYear(java.lang.String currentYear) {
+	public void setCurrentYear(java.lang.Object currentYear) {
 		_currentYear = currentYear;
 
 		setScopedAttribute("currentYear", currentYear);
 	}
 
-	public void setDateFormat(java.lang.Object dateFormat) {
+	public void setDateFormat(java.lang.String dateFormat) {
 		_dateFormat = dateFormat;
 
 		setScopedAttribute("dateFormat", dateFormat);
@@ -728,13 +728,13 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("dates", dates);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -746,13 +746,13 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFirstDayOfWeek(java.lang.String firstDayOfWeek) {
+	public void setFirstDayOfWeek(java.lang.Object firstDayOfWeek) {
 		_firstDayOfWeek = firstDayOfWeek;
 
 		setScopedAttribute("firstDayOfWeek", firstDayOfWeek);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -776,37 +776,37 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHideDelay(java.lang.String hideDelay) {
+	public void setHideDelay(java.lang.Object hideDelay) {
 		_hideDelay = hideDelay;
 
 		setScopedAttribute("hideDelay", hideDelay);
 	}
 
-	public void setHideOn(java.lang.Object hideOn) {
+	public void setHideOn(java.lang.String hideOn) {
 		_hideOn = hideOn;
 
 		setScopedAttribute("hideOn", hideOn);
 	}
 
-	public void setHideOnDocumentClick(java.lang.String hideOnDocumentClick) {
+	public void setHideOnDocumentClick(java.lang.Boolean hideOnDocumentClick) {
 		_hideOnDocumentClick = hideOnDocumentClick;
 
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
 	}
 
-	public void setCalendarId(java.lang.Object calendarId) {
+	public void setCalendarId(java.lang.String calendarId) {
 		_calendarId = calendarId;
 
 		setScopedAttribute("calendarId", calendarId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -824,61 +824,61 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("minDate", minDate);
 	}
 
-	public void setPreventOverlap(java.lang.String preventOverlap) {
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelectMultipleDates(java.lang.String selectMultipleDates) {
+	public void setSelectMultipleDates(java.lang.Boolean selectMultipleDates) {
 		_selectMultipleDates = selectMultipleDates;
 
 		setScopedAttribute("selectMultipleDates", selectMultipleDates);
 	}
 
-	public void setSetValue(java.lang.String setValue) {
+	public void setSetValue(java.lang.Boolean setValue) {
 		_setValue = setValue;
 
 		setScopedAttribute("setValue", setValue);
 	}
 
-	public void setShim(java.lang.String shim) {
+	public void setShim(java.lang.Boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowDelay(java.lang.String showDelay) {
+	public void setShowDelay(java.lang.Object showDelay) {
 		_showDelay = showDelay;
 
 		setScopedAttribute("showDelay", showDelay);
 	}
 
-	public void setShowOn(java.lang.Object showOn) {
+	public void setShowOn(java.lang.String showOn) {
 		_showOn = showOn;
 
 		setScopedAttribute("showOn", showOn);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.String stack) {
+	public void setStack(java.lang.Boolean stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -890,7 +890,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -902,7 +902,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -914,7 +914,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.String x) {
+	public void setX(java.lang.Object x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -926,13 +926,13 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.String y) {
+	public void setY(java.lang.Object y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.String zIndex) {
+	public void setZIndex(java.lang.Object zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -1739,53 +1739,53 @@ public class BaseCalendarTag extends IncludeTag {
 
 	private java.lang.Object _align;
 	private java.lang.Object _calendarBodyContent;
-	private java.lang.Object _boundingBox;
-	private java.lang.String _cancellableHide;
+	private java.lang.String _boundingBox;
+	private java.lang.Boolean _cancellableHide;
 	private java.lang.Object _centered;
 	private java.lang.Object _constrain;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.String _currentDay;
-	private java.lang.String _currentMonth;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.Object _currentDay;
+	private java.lang.Object _currentMonth;
 	private java.lang.Object _currentNode;
-	private java.lang.String _currentYear;
-	private java.lang.Object _dateFormat;
+	private java.lang.Object _currentYear;
+	private java.lang.String _dateFormat;
 	private java.lang.Object _dates;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
 	private java.lang.Object _fillHeight;
-	private java.lang.String _firstDayOfWeek;
-	private java.lang.String _focused;
+	private java.lang.Object _firstDayOfWeek;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _footerContent;
 	private java.lang.Object _headerContent;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.String _hideDelay;
-	private java.lang.Object _hideOn;
-	private java.lang.String _hideOnDocumentClick;
-	private java.lang.Object _calendarId;
-	private java.lang.String _initialized;
+	private java.lang.String _hideClass;
+	private java.lang.Object _hideDelay;
+	private java.lang.String _hideOn;
+	private java.lang.Boolean _hideOnDocumentClick;
+	private java.lang.String _calendarId;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _maxDate;
 	private java.lang.Object _minDate;
-	private java.lang.String _preventOverlap;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.String _selectMultipleDates;
-	private java.lang.String _setValue;
-	private java.lang.String _shim;
-	private java.lang.String _showDelay;
-	private java.lang.Object _showOn;
-	private java.lang.Object _srcNode;
-	private java.lang.String _stack;
+	private java.lang.Boolean _preventOverlap;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _selectMultipleDates;
+	private java.lang.Boolean _setValue;
+	private java.lang.Boolean _shim;
+	private java.lang.Object _showDelay;
+	private java.lang.String _showOn;
+	private java.lang.String _srcNode;
+	private java.lang.Boolean _stack;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
+	private java.lang.Object _tabIndex;
 	private java.lang.Object _trigger;
-	private java.lang.String _visible;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
-	private java.lang.String _x;
+	private java.lang.Object _x;
 	private java.lang.Object _xy;
-	private java.lang.String _y;
-	private java.lang.String _zIndex;
+	private java.lang.Object _y;
+	private java.lang.Object _zIndex;
 	private java.lang.Object _afterAlignChange;
 	private java.lang.Object _afterBodyContentChange;
 	private java.lang.Object _afterBoundingBoxChange;

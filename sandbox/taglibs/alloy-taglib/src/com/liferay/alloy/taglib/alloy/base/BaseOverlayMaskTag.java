@@ -32,7 +32,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _alignPoints;
 	}
 
-	public java.lang.Object getBackground() {
+	public java.lang.String getBackground() {
 		return _background;
 	}
 
@@ -40,7 +40,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _overlaymaskBodyContent;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
@@ -52,19 +52,19 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -72,7 +72,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -88,39 +88,39 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.Object getOverlaymaskId() {
+	public java.lang.String getOverlaymaskId() {
 		return _overlaymaskId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.String getOpacity() {
+	public java.lang.Object getOpacity() {
 		return _opacity;
 	}
 
-	public java.lang.String getPreventOverlap() {
+	public java.lang.Boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.String getShim() {
+	public java.lang.Boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -128,15 +128,15 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.Object getTarget() {
+	public java.lang.String getTarget() {
 		return _target;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -144,7 +144,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.String getX() {
+	public java.lang.Object getX() {
 		return _x;
 	}
 
@@ -152,11 +152,11 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		return _xy;
 	}
 
-	public java.lang.String getY() {
+	public java.lang.Object getY() {
 		return _y;
 	}
 
-	public java.lang.String getZIndex() {
+	public java.lang.Object getZIndex() {
 		return _zIndex;
 	}
 
@@ -476,7 +476,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("alignPoints", alignPoints);
 	}
 
-	public void setBackground(java.lang.Object background) {
+	public void setBackground(java.lang.String background) {
 		_background = background;
 
 		setScopedAttribute("background", background);
@@ -488,7 +488,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("overlaymaskBodyContent", overlaymaskBodyContent);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
@@ -506,25 +506,25 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -536,7 +536,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -560,55 +560,55 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setOverlaymaskId(java.lang.Object overlaymaskId) {
+	public void setOverlaymaskId(java.lang.String overlaymaskId) {
 		_overlaymaskId = overlaymaskId;
 
 		setScopedAttribute("overlaymaskId", overlaymaskId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setOpacity(java.lang.String opacity) {
+	public void setOpacity(java.lang.Object opacity) {
 		_opacity = opacity;
 
 		setScopedAttribute("opacity", opacity);
 	}
 
-	public void setPreventOverlap(java.lang.String preventOverlap) {
+	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setShim(java.lang.String shim) {
+	public void setShim(java.lang.Boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -620,19 +620,19 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTarget(java.lang.Object target) {
+	public void setTarget(java.lang.String target) {
 		_target = target;
 
 		setScopedAttribute("target", target);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -644,7 +644,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setX(java.lang.String x) {
+	public void setX(java.lang.Object x) {
 		_x = x;
 
 		setScopedAttribute("x", x);
@@ -656,13 +656,13 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setScopedAttribute("xy", xy);
 	}
 
-	public void setY(java.lang.String y) {
+	public void setY(java.lang.Object y) {
 		_y = y;
 
 		setScopedAttribute("y", y);
 	}
 
-	public void setZIndex(java.lang.String zIndex) {
+	public void setZIndex(java.lang.Object zIndex) {
 		_zIndex = zIndex;
 
 		setScopedAttribute("zIndex", zIndex);
@@ -1244,38 +1244,38 @@ public class BaseOverlayMaskTag extends IncludeTag {
 
 	private java.lang.Object _align;
 	private java.lang.Object _alignPoints;
-	private java.lang.Object _background;
+	private java.lang.String _background;
 	private java.lang.Object _overlaymaskBodyContent;
-	private java.lang.Object _boundingBox;
+	private java.lang.String _boundingBox;
 	private java.lang.Object _centered;
 	private java.lang.Object _constrain;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
 	private java.lang.Object _fillHeight;
-	private java.lang.String _focused;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _footerContent;
 	private java.lang.Object _headerContent;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.Object _overlaymaskId;
-	private java.lang.String _initialized;
-	private java.lang.String _opacity;
-	private java.lang.String _preventOverlap;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.String _shim;
-	private java.lang.Object _srcNode;
+	private java.lang.String _hideClass;
+	private java.lang.String _overlaymaskId;
+	private java.lang.Boolean _initialized;
+	private java.lang.Object _opacity;
+	private java.lang.Boolean _preventOverlap;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.Boolean _shim;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
-	private java.lang.Object _target;
-	private java.lang.String _visible;
+	private java.lang.Object _tabIndex;
+	private java.lang.String _target;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
-	private java.lang.String _x;
+	private java.lang.Object _x;
 	private java.lang.Object _xy;
-	private java.lang.String _y;
-	private java.lang.String _zIndex;
+	private java.lang.Object _y;
+	private java.lang.Object _zIndex;
 	private java.lang.Object _afterAlignChange;
 	private java.lang.Object _afterAlignPointsChange;
 	private java.lang.Object _afterBackgroundChange;

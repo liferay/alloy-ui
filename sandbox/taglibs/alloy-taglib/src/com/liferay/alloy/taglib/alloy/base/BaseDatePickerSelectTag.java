@@ -28,11 +28,11 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _appendOrder;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
-	public java.lang.Object getButtonNode() {
+	public java.lang.String getButtonNode() {
 		return _buttonNode;
 	}
 
@@ -40,31 +40,31 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _calendar;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.Object getDayNode() {
+	public java.lang.String getDayNode() {
 		return _dayNode;
 	}
 
-	public java.lang.Object getDayNodeName() {
+	public java.lang.String getDayNodeName() {
 		return _dayNodeName;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -72,51 +72,51 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.Object getDatepickerselectId() {
+	public java.lang.String getDatepickerselectId() {
 		return _datepickerselectId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getMonthNode() {
+	public java.lang.String getMonthNode() {
 		return _monthNode;
 	}
 
-	public java.lang.Object getMonthNodeName() {
+	public java.lang.String getMonthNodeName() {
 		return _monthNodeName;
 	}
 
-	public java.lang.String getPopulateDay() {
+	public java.lang.Boolean getPopulateDay() {
 		return _populateDay;
 	}
 
-	public java.lang.String getPopulateMonth() {
+	public java.lang.Boolean getPopulateMonth() {
 		return _populateMonth;
 	}
 
-	public java.lang.String getPopulateYear() {
+	public java.lang.Boolean getPopulateYear() {
 		return _populateYear;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Object getSelectWrapperNode() {
+	public java.lang.String getSelectWrapperNode() {
 		return _selectWrapperNode;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -124,7 +124,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
@@ -132,7 +132,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -140,11 +140,11 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _width;
 	}
 
-	public java.lang.Object getYearNode() {
+	public java.lang.String getYearNode() {
 		return _yearNode;
 	}
 
-	public java.lang.Object getYearNodeName() {
+	public java.lang.String getYearNodeName() {
 		return _yearNodeName;
 	}
 
@@ -446,13 +446,13 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("appendOrder", appendOrder);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setButtonNode(java.lang.Object buttonNode) {
+	public void setButtonNode(java.lang.String buttonNode) {
 		_buttonNode = buttonNode;
 
 		setScopedAttribute("buttonNode", buttonNode);
@@ -464,43 +464,43 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("calendar", calendar);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDayNode(java.lang.Object dayNode) {
+	public void setDayNode(java.lang.String dayNode) {
 		_dayNode = dayNode;
 
 		setScopedAttribute("dayNode", dayNode);
 	}
 
-	public void setDayNodeName(java.lang.Object dayNodeName) {
+	public void setDayNodeName(java.lang.String dayNodeName) {
 		_dayNodeName = dayNodeName;
 
 		setScopedAttribute("dayNodeName", dayNodeName);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -512,73 +512,73 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setDatepickerselectId(java.lang.Object datepickerselectId) {
+	public void setDatepickerselectId(java.lang.String datepickerselectId) {
 		_datepickerselectId = datepickerselectId;
 
 		setScopedAttribute("datepickerselectId", datepickerselectId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMonthNode(java.lang.Object monthNode) {
+	public void setMonthNode(java.lang.String monthNode) {
 		_monthNode = monthNode;
 
 		setScopedAttribute("monthNode", monthNode);
 	}
 
-	public void setMonthNodeName(java.lang.Object monthNodeName) {
+	public void setMonthNodeName(java.lang.String monthNodeName) {
 		_monthNodeName = monthNodeName;
 
 		setScopedAttribute("monthNodeName", monthNodeName);
 	}
 
-	public void setPopulateDay(java.lang.String populateDay) {
+	public void setPopulateDay(java.lang.Boolean populateDay) {
 		_populateDay = populateDay;
 
 		setScopedAttribute("populateDay", populateDay);
 	}
 
-	public void setPopulateMonth(java.lang.String populateMonth) {
+	public void setPopulateMonth(java.lang.Boolean populateMonth) {
 		_populateMonth = populateMonth;
 
 		setScopedAttribute("populateMonth", populateMonth);
 	}
 
-	public void setPopulateYear(java.lang.String populateYear) {
+	public void setPopulateYear(java.lang.Boolean populateYear) {
 		_populateYear = populateYear;
 
 		setScopedAttribute("populateYear", populateYear);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSelectWrapperNode(java.lang.Object selectWrapperNode) {
+	public void setSelectWrapperNode(java.lang.String selectWrapperNode) {
 		_selectWrapperNode = selectWrapperNode;
 
 		setScopedAttribute("selectWrapperNode", selectWrapperNode);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -590,7 +590,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
@@ -602,7 +602,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -614,13 +614,13 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("width", width);
 	}
 
-	public void setYearNode(java.lang.Object yearNode) {
+	public void setYearNode(java.lang.String yearNode) {
 		_yearNode = yearNode;
 
 		setScopedAttribute("yearNode", yearNode);
 	}
 
-	public void setYearNodeName(java.lang.Object yearNodeName) {
+	public void setYearNodeName(java.lang.String yearNodeName) {
 		_yearNodeName = yearNodeName;
 
 		setScopedAttribute("yearNodeName", yearNodeName);
@@ -1177,36 +1177,36 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		"/html/taglib/alloy/date_picker_select/page.jsp";
 
 	private java.lang.Object _appendOrder;
-	private java.lang.Object _boundingBox;
-	private java.lang.Object _buttonNode;
+	private java.lang.String _boundingBox;
+	private java.lang.String _buttonNode;
 	private java.lang.Object _calendar;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.Object _dayNode;
-	private java.lang.Object _dayNodeName;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
-	private java.lang.String _focused;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.String _dayNode;
+	private java.lang.String _dayNodeName;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.Object _datepickerselectId;
-	private java.lang.String _initialized;
-	private java.lang.Object _monthNode;
-	private java.lang.Object _monthNodeName;
-	private java.lang.String _populateDay;
-	private java.lang.String _populateMonth;
-	private java.lang.String _populateYear;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.Object _selectWrapperNode;
-	private java.lang.Object _srcNode;
+	private java.lang.String _hideClass;
+	private java.lang.String _datepickerselectId;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _monthNode;
+	private java.lang.String _monthNodeName;
+	private java.lang.Boolean _populateDay;
+	private java.lang.Boolean _populateMonth;
+	private java.lang.Boolean _populateYear;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.String _selectWrapperNode;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
+	private java.lang.Object _tabIndex;
 	private java.lang.Object _trigger;
-	private java.lang.String _visible;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
-	private java.lang.Object _yearNode;
-	private java.lang.Object _yearNodeName;
+	private java.lang.String _yearNode;
+	private java.lang.String _yearNodeName;
 	private java.lang.Object _yearRange;
 	private java.lang.Object _afterAppendOrderChange;
 	private java.lang.Object _afterBoundingBoxChange;

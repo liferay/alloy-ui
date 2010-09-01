@@ -24,11 +24,11 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getActiveState() {
+	public java.lang.Boolean getActiveState() {
 		return _activeState;
 	}
 
-	public java.lang.Object getBoundingBox() {
+	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
 
@@ -36,27 +36,27 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _classNames;
 	}
 
-	public java.lang.Object getContentBox() {
+	public java.lang.String getContentBox() {
 		return _contentBox;
 	}
 
-	public java.lang.Object getCssClass() {
+	public java.lang.String getCssClass() {
 		return _cssClass;
 	}
 
-	public java.lang.String getDefaultState() {
+	public java.lang.Boolean getDefaultState() {
 		return _defaultState;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getDisabled() {
+	public java.lang.Boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.String getFocused() {
+	public java.lang.Boolean getFocused() {
 		return _focused;
 	}
 
@@ -68,47 +68,47 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _height;
 	}
 
-	public java.lang.Object getHideClass() {
+	public java.lang.String getHideClass() {
 		return _hideClass;
 	}
 
-	public java.lang.String getHoverState() {
+	public java.lang.Boolean getHoverState() {
 		return _hoverState;
 	}
 
-	public java.lang.Object getIcon() {
+	public java.lang.String getIcon() {
 		return _icon;
 	}
 
-	public java.lang.Object getIconNode() {
+	public java.lang.String getIconNode() {
 		return _iconNode;
 	}
 
-	public java.lang.Object getButtonitemId() {
+	public java.lang.String getButtonitemId() {
 		return _buttonitemId;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Object getLabel() {
+	public java.lang.String getLabel() {
 		return _label;
 	}
 
-	public java.lang.Object getLabelNode() {
+	public java.lang.String getLabelNode() {
 		return _labelNode;
 	}
 
-	public java.lang.String getRender() {
+	public java.lang.Boolean getRender() {
 		return _render;
 	}
 
-	public java.lang.String getRendered() {
+	public java.lang.Boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Object getSrcNode() {
+	public java.lang.String getSrcNode() {
 		return _srcNode;
 	}
 
@@ -116,15 +116,15 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.String getTabIndex() {
+	public java.lang.Object getTabIndex() {
 		return _tabIndex;
 	}
 
-	public java.lang.Object getTitle() {
+	public java.lang.String getTitle() {
 		return _title;
 	}
 
-	public java.lang.String getVisible() {
+	public java.lang.Boolean getVisible() {
 		return _visible;
 	}
 
@@ -380,13 +380,13 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _onWidthChange;
 	}
 
-	public void setActiveState(java.lang.String activeState) {
+	public void setActiveState(java.lang.Boolean activeState) {
 		_activeState = activeState;
 
 		setScopedAttribute("activeState", activeState);
 	}
 
-	public void setBoundingBox(java.lang.Object boundingBox) {
+	public void setBoundingBox(java.lang.String boundingBox) {
 		_boundingBox = boundingBox;
 
 		setScopedAttribute("boundingBox", boundingBox);
@@ -398,37 +398,37 @@ public class BaseButtonItemTag extends IncludeTag {
 		setScopedAttribute("classNames", classNames);
 	}
 
-	public void setContentBox(java.lang.Object contentBox) {
+	public void setContentBox(java.lang.String contentBox) {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.Object cssClass) {
+	public void setCssClass(java.lang.String cssClass) {
 		_cssClass = cssClass;
 
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDefaultState(java.lang.String defaultState) {
+	public void setDefaultState(java.lang.Boolean defaultState) {
 		_defaultState = defaultState;
 
 		setScopedAttribute("defaultState", defaultState);
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.String disabled) {
+	public void setDisabled(java.lang.Boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.String focused) {
+	public void setFocused(java.lang.Boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -446,67 +446,67 @@ public class BaseButtonItemTag extends IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.Object hideClass) {
+	public void setHideClass(java.lang.String hideClass) {
 		_hideClass = hideClass;
 
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHoverState(java.lang.String hoverState) {
+	public void setHoverState(java.lang.Boolean hoverState) {
 		_hoverState = hoverState;
 
 		setScopedAttribute("hoverState", hoverState);
 	}
 
-	public void setIcon(java.lang.Object icon) {
+	public void setIcon(java.lang.String icon) {
 		_icon = icon;
 
 		setScopedAttribute("icon", icon);
 	}
 
-	public void setIconNode(java.lang.Object iconNode) {
+	public void setIconNode(java.lang.String iconNode) {
 		_iconNode = iconNode;
 
 		setScopedAttribute("iconNode", iconNode);
 	}
 
-	public void setButtonitemId(java.lang.Object buttonitemId) {
+	public void setButtonitemId(java.lang.String buttonitemId) {
 		_buttonitemId = buttonitemId;
 
 		setScopedAttribute("buttonitemId", buttonitemId);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLabel(java.lang.Object label) {
+	public void setLabel(java.lang.String label) {
 		_label = label;
 
 		setScopedAttribute("label", label);
 	}
 
-	public void setLabelNode(java.lang.Object labelNode) {
+	public void setLabelNode(java.lang.String labelNode) {
 		_labelNode = labelNode;
 
 		setScopedAttribute("labelNode", labelNode);
 	}
 
-	public void setRender(java.lang.String render) {
+	public void setRender(java.lang.Boolean render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.String rendered) {
+	public void setRendered(java.lang.Boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setSrcNode(java.lang.Object srcNode) {
+	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
@@ -518,19 +518,19 @@ public class BaseButtonItemTag extends IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setTabIndex(java.lang.String tabIndex) {
+	public void setTabIndex(java.lang.Object tabIndex) {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTitle(java.lang.Object title) {
+	public void setTitle(java.lang.String title) {
 		_title = title;
 
 		setScopedAttribute("title", title);
 	}
 
-	public void setVisible(java.lang.String visible) {
+	public void setVisible(java.lang.Boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1011,32 +1011,32 @@ public class BaseButtonItemTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/button_item/page.jsp";
 
-	private java.lang.String _activeState;
-	private java.lang.Object _boundingBox;
+	private java.lang.Boolean _activeState;
+	private java.lang.String _boundingBox;
 	private java.lang.Object _classNames;
-	private java.lang.Object _contentBox;
-	private java.lang.Object _cssClass;
-	private java.lang.String _defaultState;
-	private java.lang.String _destroyed;
-	private java.lang.String _disabled;
-	private java.lang.String _focused;
+	private java.lang.String _contentBox;
+	private java.lang.String _cssClass;
+	private java.lang.Boolean _defaultState;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _disabled;
+	private java.lang.Boolean _focused;
 	private java.lang.Object _handler;
 	private java.lang.Object _height;
-	private java.lang.Object _hideClass;
-	private java.lang.String _hoverState;
-	private java.lang.Object _icon;
-	private java.lang.Object _iconNode;
-	private java.lang.Object _buttonitemId;
-	private java.lang.String _initialized;
-	private java.lang.Object _label;
-	private java.lang.Object _labelNode;
-	private java.lang.String _render;
-	private java.lang.String _rendered;
-	private java.lang.Object _srcNode;
+	private java.lang.String _hideClass;
+	private java.lang.Boolean _hoverState;
+	private java.lang.String _icon;
+	private java.lang.String _iconNode;
+	private java.lang.String _buttonitemId;
+	private java.lang.Boolean _initialized;
+	private java.lang.String _label;
+	private java.lang.String _labelNode;
+	private java.lang.Boolean _render;
+	private java.lang.Boolean _rendered;
+	private java.lang.String _srcNode;
 	private java.lang.Object _strings;
-	private java.lang.String _tabIndex;
-	private java.lang.Object _title;
-	private java.lang.String _visible;
+	private java.lang.Object _tabIndex;
+	private java.lang.String _title;
+	private java.lang.Boolean _visible;
 	private java.lang.Object _width;
 	private java.lang.Object _afterActiveStateChange;
 	private java.lang.Object _afterBoundingBoxChange;

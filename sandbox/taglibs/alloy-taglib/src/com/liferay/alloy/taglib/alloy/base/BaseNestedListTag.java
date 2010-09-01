@@ -24,11 +24,11 @@ public class BaseNestedListTag extends IncludeTag {
 		return _PAGE;
 	}
 
-	public java.lang.String getDestroyed() {
+	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.String getInitialized() {
+	public java.lang.Boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -64,13 +64,13 @@ public class BaseNestedListTag extends IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public void setDestroyed(java.lang.String destroyed) {
+	public void setDestroyed(java.lang.Boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setInitialized(java.lang.String initialized) {
+	public void setInitialized(java.lang.Boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -142,8 +142,8 @@ public class BaseNestedListTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/nested_list/page.jsp";
 
-	private java.lang.String _destroyed;
-	private java.lang.String _initialized;
+	private java.lang.Boolean _destroyed;
+	private java.lang.Boolean _initialized;
 	private java.lang.Object _afterDestroy;
 	private java.lang.Object _afterDestroyedChange;
 	private java.lang.Object _afterInit;
