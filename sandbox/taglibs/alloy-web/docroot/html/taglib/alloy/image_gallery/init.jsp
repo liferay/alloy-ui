@@ -254,11 +254,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "align", _align);
 _updateOptions(options, "anim", _anim);
 _updateOptions(options, "arrowLeftEl", _arrowLeftEl);
@@ -472,3 +468,5 @@ _updateOptions(options, "onXyChange", _onXyChange);
 _updateOptions(options, "onYChange", _onYChange);
 _updateOptions(options, "onZIndexChange", _onZIndexChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

@@ -127,11 +127,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "alwaysShowHitArea", _alwaysShowHitArea);
 _updateOptions(options, "cache", _cache);
 _updateOptions(options, "checkContainerEl", _checkContainerEl);
@@ -215,3 +211,5 @@ _updateOptions(options, "onOwnerTreeChange", _onOwnerTreeChange);
 _updateOptions(options, "onParentNodeChange", _onParentNodeChange);
 _updateOptions(options, "onPrevSiblingChange", _onPrevSiblingChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

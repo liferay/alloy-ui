@@ -146,11 +146,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "appendOrder", _appendOrder);
 _updateOptions(options, "boundingBox", _boundingBox);
 _updateOptions(options, "buttonNode", _buttonNode);
@@ -256,3 +252,5 @@ _updateOptions(options, "onYearNodeChange", _onYearNodeChange);
 _updateOptions(options, "onYearNodeNameChange", _onYearNodeNameChange);
 _updateOptions(options, "onYearRangeChange", _onYearRangeChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

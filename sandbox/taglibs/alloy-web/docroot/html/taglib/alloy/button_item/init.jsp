@@ -131,11 +131,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "activeState", _activeState);
 _updateOptions(options, "boundingBox", _boundingBox);
 _updateOptions(options, "classNames", _classNames);
@@ -226,3 +222,5 @@ _updateOptions(options, "onContentUpdate", _onContentUpdate);
 _updateOptions(options, "onRender", _onRender);
 _updateOptions(options, "onWidthChange", _onWidthChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

@@ -133,11 +133,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "alwaysVisible", _alwaysVisible);
 _updateOptions(options, "containers", _containers);
 _updateOptions(options, "destroyed", _destroyed);
@@ -227,3 +223,5 @@ _updateOptions(options, "onTotalElChange", _onTotalElChange);
 _updateOptions(options, "onTotalLabelChange", _onTotalLabelChange);
 _updateOptions(options, "onTotalPagesChange", _onTotalPagesChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

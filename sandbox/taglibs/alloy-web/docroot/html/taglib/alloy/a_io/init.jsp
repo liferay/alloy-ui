@@ -45,9 +45,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
+
 %>
 
 <%@ include file="init-ext.jsp" %>
-
-<%
-%>

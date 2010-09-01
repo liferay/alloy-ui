@@ -206,11 +206,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "alwaysShowContainer", _alwaysShowContainer);
 _updateOptions(options, "applyLocalFilter", _applyLocalFilter);
 _updateOptions(options, "autoHighlight", _autoHighlight);
@@ -376,3 +372,5 @@ _updateOptions(options, "onContentUpdate", _onContentUpdate);
 _updateOptions(options, "onRender", _onRender);
 _updateOptions(options, "onWidthChange", _onWidthChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

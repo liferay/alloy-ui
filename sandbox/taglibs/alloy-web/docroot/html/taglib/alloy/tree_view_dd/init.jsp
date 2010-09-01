@@ -100,11 +100,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "checkContainerEl", _checkContainerEl);
 _updateOptions(options, "checkEl", _checkEl);
 _updateOptions(options, "checkName", _checkName);
@@ -161,3 +157,5 @@ _updateOptions(options, "onNodeContentChange", _onNodeContentChange);
 _updateOptions(options, "onScrollDelayChange", _onScrollDelayChange);
 _updateOptions(options, "onTypeChange", _onTypeChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

@@ -58,11 +58,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "destroyed", _destroyed);
 _updateOptions(options, "host", _host);
 _updateOptions(options, "initialized", _initialized);
@@ -77,3 +73,5 @@ _updateOptions(options, "onHostChange", _onHostChange);
 _updateOptions(options, "onInit", _onInit);
 _updateOptions(options, "onInitializedChange", _onInitializedChange);
 %>
+
+<%@ include file="init-ext.jsp" %>

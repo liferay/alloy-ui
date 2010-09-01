@@ -122,11 +122,7 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 _updateOptions(options, "activeHandle", _activeHandle);
 _updateOptions(options, "activeHandleEl", _activeHandleEl);
 _updateOptions(options, "autoHide", _autoHide);
@@ -205,3 +201,5 @@ _updateOptions(options, "onWrapChange", _onWrapChange);
 _updateOptions(options, "onWrapTypesChange", _onWrapTypesChange);
 _updateOptions(options, "onWrapperChange", _onWrapperChange);
 %>
+
+<%@ include file="init-ext.jsp" %>
