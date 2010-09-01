@@ -1,7 +1,6 @@
 <%@ include file="init.jsp" %>
 
 <c:if test="<%= useJavaScript %>">
-
 	<alloy:component
 		excludeAttributes="var,javaScriptAttributes,useMarkup"
 		tagPageContext="<%= pageContext %>"
@@ -11,5 +10,4 @@
 		name="${component.getName()}"
 		yuiVariable="A"
 	/>
-	
 </c:if>
