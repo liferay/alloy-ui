@@ -97,8 +97,8 @@ java.lang.Object _onWrapperChange = (java.lang.Object)request.getAttribute("allo
 
 String uniqueId = StringPool.BLANK;
 
-boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
-boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
+boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
+boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
 
 if (useMarkup) {
 	uniqueId = MarkupUtil.getUniqueId();
