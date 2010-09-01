@@ -39,6 +39,7 @@ ${attribute.getJavaType()} _${attribute.getSafeName()} = GetterUtil.get${simpleC
 
 String uniqueId = StringPool.BLANK;
 
+boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
 boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {
