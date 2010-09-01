@@ -102,6 +102,7 @@ java.lang.Object _onPrevSiblingChange = (java.lang.Object)request.getAttribute("
 
 String uniqueId = StringPool.BLANK;
 
+boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
 boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {

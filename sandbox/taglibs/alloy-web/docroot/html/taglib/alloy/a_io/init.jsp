@@ -20,6 +20,7 @@ boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
 
 String uniqueId = StringPool.BLANK;
 
+boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
 boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {

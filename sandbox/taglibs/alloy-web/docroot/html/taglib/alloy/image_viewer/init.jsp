@@ -190,6 +190,7 @@ java.lang.Object _onZIndexChange = (java.lang.Object)request.getAttribute("alloy
 
 String uniqueId = StringPool.BLANK;
 
+boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
 boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {

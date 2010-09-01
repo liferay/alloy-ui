@@ -75,6 +75,7 @@ java.lang.Object _onTypeChange = (java.lang.Object)request.getAttribute("alloy:t
 
 String uniqueId = StringPool.BLANK;
 
+boolean useJavaScript = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useJavaScript")));
 boolean useMarkup = GetterUtil.getBoolean(String.valueOf(dynamicAttributes.get("useMarkup")));
 
 if (useMarkup) {
