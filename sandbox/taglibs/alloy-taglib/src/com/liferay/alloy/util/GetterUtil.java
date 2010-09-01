@@ -27,6 +27,7 @@ import java.text.NumberFormat;
 public class GetterUtil extends com.liferay.portal.kernel.util.GetterUtil {
 
 	public static final Number DEFAULT_NUMBER = 0;
+	public static final Number DEFAULT_OBJECT= null;
 
 	public static Number get(Serializable value, Number defaultValue) {
 		if (value == null) {
@@ -70,6 +71,18 @@ public class GetterUtil extends com.liferay.portal.kernel.util.GetterUtil {
 
 	public static Number getNumber(String value, Number defaultValue) {
 		return get(value, defaultValue);
+	}
+
+	public static Object getObject(Object value, Object defaultValue) {
+		if (value == null) {
+			return defaultValue;
+		}
+
+		return value;
+	}
+
+	public static Object getObject(Object value) {
+		return getObject(value, DEFAULT_OBJECT);
 	}
 
 }
