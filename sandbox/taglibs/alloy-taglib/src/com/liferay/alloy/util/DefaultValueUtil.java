@@ -16,9 +16,14 @@ package com.liferay.alloy.util;
 
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import jodd.util.ArraysUtil;
+import org.apache.commons.collections.ListUtils;
+import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * <a href="DefaultValueUtil.java.html"><b><i>View Source</i></b></a>
@@ -27,40 +32,43 @@ import java.util.HashMap;
  */
 public class DefaultValueUtil {
 
-	public static final String[] _EMPTY_STRINGS = {
-		"", "''", "\"\"", "(empty)", "empty", "EMPTY_STR", "undefined",
-		"WidgetStdMod.BODY", "HTMLTextNode"
-	};
-
 	public static String getDefaultValue(String className, String value) {
 		String defaultValue = StringPool.BLANK;
-
-		if (_STRING_VALUES == null) {
-			_STRING_VALUES = new HashMap<String, String>();
-
-			_registerValues(_STRING_VALUES, _EMPTY_STRINGS, StringPool.BLANK);
-		}
 
 		if (className.equals(_JAVA_LANG_STRING) ||
 			className.equals(_JAVA_LANG_OBJECT)) {
 
 			if (isValidStringValue(value)) {
-				defaultValue = StringUtil.unquote(
-					GetterUtil.getString(
-						_STRING_VALUES.get(value.toLowerCase()), value));
+				if (_EMPTY_STRINGS.contains(value)) {
+					value = StringPool.BLANK;
+				}
+
+				defaultValue = StringUtil.unquote(value);
 			}
 		}
 		else if (className.equals(_JAVA_LANG_INTEGER)) {
+			if (_INFINITY.contains(value)) {
+				value = String.valueOf(Integer.MAX_VALUE);
+			}
+
 			defaultValue = String.valueOf(GetterUtil.getInteger(value));
 		}
 		else if (className.equals(_JAVA_LANG_NUMBER)) {
+			if (_INFINITY.contains(value)) {
+				value = String.valueOf(Integer.MAX_VALUE);
+			}
+
 			defaultValue = String.valueOf(GetterUtil.getNumber(value));
+		}
+		else if (className.equals(_JAVA_LANG_FLOAT)) {
+			if (_INFINITY.contains(value)) {
+				value = String.valueOf(Float.MAX_VALUE);
+			}
+
+			defaultValue = String.valueOf(GetterUtil.getFloat(value));
 		}
 		else if (className.equals(_JAVA_LANG_BOOLEAN)) {
 			defaultValue = String.valueOf(GetterUtil.getBoolean(value));
-		}
-		else if (className.equals(_JAVA_LANG_FLOAT)) {
-			defaultValue = String.valueOf(GetterUtil.getFloat(value));
 		}
 
 		return defaultValue;
@@ -84,15 +92,14 @@ public class DefaultValueUtil {
 		return false;
 	}
 
-	private static void _registerValues(HashMap<String, String> map,
-		String[] values, String value) {
-
-		for (String val : values) {
-			map.put(val.toLowerCase(), value);
-		}
-	}
+	private static final List<String> _EMPTY_STRINGS =
+		Arrays.asList("", "''", "\"\"", "(empty)", "empty", "EMPTY_STR",
+			"undefined", "WidgetStdMod.BODY", "HTMLTextNode");
 
 	private static final String _GENERATED = "generated";
+
+	private static final List<String> _INFINITY =
+		Arrays.asList("infinity", "Infinity", "INFINITY");
 
 	private static final String _JAVA_LANG_BOOLEAN = "java.lang.Boolean";
 
@@ -105,6 +112,7 @@ public class DefaultValueUtil {
 	private static final String _JAVA_LANG_OBJECT = "java.lang.Object";
 
 	private static final String _JAVA_LANG_STRING = "java.lang.String";
+	private static HashMap<String, Integer> _NUMBER_VALUES = null;
 
 	private static HashMap<String, String> _STRING_VALUES = null;
 
