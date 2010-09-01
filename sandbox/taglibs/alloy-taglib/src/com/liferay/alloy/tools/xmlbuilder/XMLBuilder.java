@@ -155,7 +155,8 @@ public class XMLBuilder {
 			for (Attribute attribute : component.getAttributes()) {
 				Element attributeNode = attributesNode.addElement("attribute");
 				Element nameNode = attributeNode.addElement("name");
-				Element typeNode = attributeNode.addElement("type");
+				Element inputTypeNode = attributeNode.addElement("inputType");
+				Element outputTypeNode = attributeNode.addElement("outputType");
 				Element defaultValueNode =
 					attributeNode.addElement("defaultValue");
 
@@ -163,7 +164,8 @@ public class XMLBuilder {
 					attributeNode.addElement("description");
 
 				nameNode.setText(attribute.getName());
-				typeNode.setText(attribute.getJavaType());
+				inputTypeNode.setText(attribute.getInputType());
+				outputTypeNode.setText(attribute.getOutputType());
 				defaultValueNode.setText(attribute.getDefaultValue());
 				descriptionNode.addCDATA(attribute.getDescription());
 			}
@@ -174,7 +176,7 @@ public class XMLBuilder {
 				Element typeNode = eventNode.addElement("type");
 
 				nameNode.setText(event.getName());
-				typeNode.setText(event.getJavaType());
+				typeNode.setText(event.getInputType());
 			}
 		}
 
@@ -189,6 +191,8 @@ public class XMLBuilder {
 
 			writer.write(doc);
 			writer.flush();
+
+			System.out.println("Writing " + _componentXML);
 		}
 		catch(IOException e) {
 			e.printStackTrace();
@@ -226,14 +230,20 @@ public class XMLBuilder {
 					JSONObject attributeJSON = JSONUtil.getJSONObject(
 						typeJSON, attributeName);
 
-					String type = GetterUtil.getString(
+					String inputType = GetterUtil.getString(
 						JSONUtil.getString(attributeJSON, "type"),
-							"String");
+							_DEFAULT_TYPE);
 
-					String javaType = TypeUtil.getJavaType(type);
+					String outputType = GetterUtil.getString(
+						JSONUtil.getString(attributeJSON, "type"),
+							_DEFAULT_TYPE);
 
-					String defaultValue = DefaultValueUtil.getDefaultValue(
-						javaType, JSONUtil.getString(attributeJSON, "default"));
+					String outputJavaType =
+						TypeUtil.getOutputJavaType(outputType);
+
+					String defaultValue =
+						DefaultValueUtil.getDefaultValue(outputJavaType,
+							JSONUtil.getString(attributeJSON, "default"));
 
 					String description = GetterUtil.getString(
 						JSONUtil.getString(attributeJSON, "description"));
@@ -242,7 +252,7 @@ public class XMLBuilder {
 						JSONUtil.getString(attributeJSON, "required"));
 
 					Attribute attribute = new Attribute(
-						attributeName, type, defaultValue, description,
+						attributeName, inputType, outputType, defaultValue, description,
 							required);
 
 					attributes.add(attribute);
@@ -289,7 +299,9 @@ public class XMLBuilder {
 	}
 	private static final String AUI_PREFIX = "aui-";
 	private static final String UTF_8 = "UTF-8";
+
 	private static final String _DEFAULT_NAMESPACE = "alloy";
+	private static final String _DEFAULT_TYPE = "java.lang.Object";
 
 	private JSONObject _classMapJSON;
 	private List<String> _componentExcluded;

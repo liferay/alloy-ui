@@ -230,14 +230,23 @@ public class TagBuilder {
 
 		for (Element attributeNode : attributesNodes) {
 			String name = attributeNode.elementText("name");
-			String type = attributeNode.elementText("type");
+			String type = GetterUtil.getString(
+				attributeNode.elementText("type"), _DEFAULT_TYPE);
+
+			String inputType = GetterUtil.getString(
+				attributeNode.elementText("inputType"), type);
+
+			String outputType = GetterUtil.getString(
+				attributeNode.elementText("outputType"), type);
+
 			String defaultValue = attributeNode.elementText("defaultValue");
 			String description = attributeNode.elementText("description");
 			boolean required = GetterUtil.getBoolean(
 				attributeNode.elementText("required"));
 
 			attributes.add(
-				new Attribute(name, type, defaultValue, description, required));
+				new Attribute(name, inputType, outputType, defaultValue,
+				description, required));
 		}
 
 		return attributes;
@@ -344,6 +353,8 @@ public class TagBuilder {
 			e.printStackTrace();
 		}
 	}
+
+	private static final String _DEFAULT_TYPE = "java.lang.Object";
 	private static final String _AFTER = "after";
 	private static final String _ALLOY_TLD = "alloy.tld";
 	private static final String _BASE = "base";

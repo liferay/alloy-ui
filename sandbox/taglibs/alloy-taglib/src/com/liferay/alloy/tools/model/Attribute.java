@@ -1,7 +1,6 @@
 package com.liferay.alloy.tools.model;
 
 import com.liferay.alloy.util.ReservedAttributeUtil;
-import com.liferay.alloy.util.StringUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import org.apache.commons.lang.StringUtils;
@@ -9,11 +8,12 @@ import org.apache.commons.lang.StringUtils;
 public class Attribute extends BaseModel {
 
 	public Attribute(
-		String name, String type, String defaultValue, String description,
-		boolean required) {
+		String name, String inputType, String outputType, String defaultValue,
+		String description, boolean required) {
 
 		setName(name);
-		setType(type);
+		setInputType(inputType);
+		setOutputType(outputType);
 		setDefaultValue(defaultValue);
 		setDescription(description);
 		setRequired(required);
@@ -35,37 +35,35 @@ public class Attribute extends BaseModel {
 		return _description;
 	}
 
-	public String getJavaType() {
-		return TypeUtil.getJavaType(_type);
+	public String getInputType() {
+		return TypeUtil.getInputJavaType(_inputType);
 	}
 
-	public String getJavaTypeSimpleClassName() {
-		try {
-			return Class.forName(TypeUtil.getJavaType(_type)).getSimpleName();
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return StringPool.BLANK;
+	public String getInputTypeSimpleClassName() {
+		return getTypeSimpleClassName(getInputType());
 	}
 
-	public String getSafeJavaType() {
-		String safeType = _DEFAULT_JAVA_TYPE;
+	public String getOutputType() {
+		return TypeUtil.getOutputJavaType(_outputType);
+	}
 
-		if (getJavaType().equals(_JAVA_LANG_OBJECT)) {
-			safeType = _JAVA_LANG_OBJECT;
-		}
-
-		return safeType;
+	public String getOutputTypeSimpleClassName() {
+		return getTypeSimpleClassName(getOutputType());
 	}
 
 	public String getSafeName() {
 		return ReservedAttributeUtil.getSafeName(this);
 	}
 
-	public String getType() {
-		return _type;
+	public String getTypeSimpleClassName(String type) {
+		try {
+			return Class.forName(type).getSimpleName();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return StringPool.BLANK;
 	}
 
 	public boolean isRequired() {
@@ -84,21 +82,23 @@ public class Attribute extends BaseModel {
 		_description = description;
 	}
 
+	public void setInputType(String inputType) {
+		_inputType = inputType;
+	}
+
+	public void setOutputType(String outputType) {
+		_outputType = outputType;
+	}
+
 	public void setRequired(boolean required) {
 		_required = required;
 	}
 
-	public void setType(String type) {
-		_type = type;
-	}
-
-	private static final String _DEFAULT_JAVA_TYPE = "java.lang.String";
-	private static final String _JAVA_LANG_OBJECT = "java.lang.Object";
-
 	private Component _component;
 	private String _defaultValue;
 	private String _description;
+	private String _inputType;
+	private String _outputType;
 	private boolean _required;
-	private String _type;
 
 }

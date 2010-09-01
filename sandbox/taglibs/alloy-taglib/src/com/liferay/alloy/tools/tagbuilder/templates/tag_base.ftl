@@ -36,13 +36,13 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 
 	</#if>
 	<#list component.getAttributesAndEvents() as attribute>
-	public ${attribute.getSafeJavaType()} get${attribute.getCapitalizedName()}() {
+	public ${attribute.getInputType()} get${attribute.getCapitalizedName()}() {
 		return _${attribute.getSafeName()};
 	}
 
 	</#list>
 	<#list component.getAttributesAndEvents() as attribute>
-	public void set${attribute.getCapitalizedName()}(${attribute.getSafeJavaType()} ${attribute.getSafeName()}) {
+	public void set${attribute.getCapitalizedName()}(${attribute.getInputType()} ${attribute.getSafeName()}) {
 		_${attribute.getSafeName()} = ${attribute.getSafeName()};
 
 		setScopedAttribute("${attribute.getSafeName()}", ${attribute.getSafeName()});
@@ -69,7 +69,7 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 	</#if>
 
 	<#list component.getAttributesAndEvents() as attribute>
-	private ${attribute.getSafeJavaType()} _${attribute.getSafeName()};
+	private ${attribute.getInputType()} _${attribute.getSafeName()};
 	</#list>
 
 }
