@@ -8,19 +8,25 @@
 	<#return ((attributeName != "boundingBox") && (attributeName != "contentBox") && (attributeName != "srcNode")) />
 </#function>
 
-<#function isNumericAttribute outputSimpleClassName>
-	<#return ((outputSimpleClassName == "Number") || (outputSimpleClassName == "Integer") || (outputSimpleClassName == "Float") || (outputSimpleClassName == "Double")) />
+<#function isQuoted simpleClassName>
+	<#return ((simpleClassName == "String") || (simpleClassName == "ArrayList") || (simpleClassName == "HashMap")) />
+</#function>
+
+<#function isNumericAttribute simpleClassName>
+	<#return ((simpleClassName == "Number") || (simpleClassName == "Integer") || (simpleClassName == "Float") || (simpleClassName == "Double")) />
 </#function>
 
 <#function getDefaultValueSuffix outputSimpleClassName defaultValue>
 	<#assign defaultValueSuffix = BLANK>
 
 	<#if (defaultValue?? && (defaultValue != BLANK))>
-		<#if (outputSimpleClassName == "String")>
-			<#assign defaultValueSuffix = COMMA + SPACE + QUOTE + defaultValue + QUOTE>
+		<#if isQuoted(outputSimpleClassName)>
+			<#assign value = QUOTE + defaultValue + QUOTE>
 		<#else>
-			<#assign defaultValueSuffix = COMMA + SPACE + defaultValue>
+			<#assign value = defaultValue>
 		</#if>
+
+		<#assign defaultValueSuffix = COMMA + SPACE + value>
 	</#if>
 
 	<#return defaultValueSuffix />

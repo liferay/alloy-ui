@@ -931,7 +931,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>align</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ node: null, points: [ TL, BL ] }</defaultValue>
         <description><![CDATA[Inherited from <a href="Overlay.html#config_align">Overlay</a>.]]></description>
       </attribute>
       <attribute>
@@ -1299,7 +1299,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -1612,7 +1612,7 @@ href="CharCounter.html#config_input">input</a> can have.]]></description>
         <name>align</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ node: null, points: [ TL, BL ] }</defaultValue>
         <description><![CDATA[Inherited from <a href="Overlay.html#config_align">Overlay</a>.]]></description>
       </attribute>
       <attribute>
@@ -1897,7 +1897,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -2094,7 +2094,7 @@ zIndex will be converted to 0]]></description>
         <name>appendOrder</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[ 'm', 'd', 'y' ]</defaultValue>
         <description><![CDATA[The order the selects elements are appended to the
 <a href="DatePickerSelect.html#config_srcNode">srcNode</a>.]]></description>
       </attribute>
@@ -2120,7 +2120,7 @@ contentBox which matches <code>aui-buttonitem</code>.]]></description>
         <name>calendar</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[<a href="Calendar.html">Calendar</a> configuration Object.</a>]]></description>
       </attribute>
       <attribute>
@@ -2347,7 +2347,7 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
         <name>yearRange</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[ year - 10, year + 10 ]</defaultValue>
         <description><![CDATA[Year range to be displayed on the year select element. By default
 it displays from -10 to +10 years from the current year.]]></description>
       </attribute>
@@ -2528,7 +2528,7 @@ for skinning.]]></description>
         <name>buttons</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[<p>Array of object literals, each containing a set of properties
 defining a button to be appended into the Dialog's footer. Each
 button object in the buttons array can have two properties:</p>
@@ -2701,7 +2701,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>icons</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[<p>Array of <a href="ButtonItem.html">ButtonItem</a> configuration objects to be displayed as icons
 on the Panel title.</p>
 Example:
@@ -2850,7 +2850,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -3172,7 +3172,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>icons</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Array with icons for the <a href="Toolbar.html">Toolbar</a>.]]></description>
       </attribute>
       <attribute>
@@ -3507,7 +3507,7 @@ Configuration</a>.]]></description>
         <name>headers</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>Object</defaultValue>
         <description><![CDATA[Set the correct ACCEPT header based on the dataType.]]></description>
       </attribute>
       <attribute>
@@ -4184,7 +4184,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -4892,7 +4892,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -5199,7 +5199,7 @@ not matches with the filter.]]></description>
         <name>index</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Index for the nodes content.]]></description>
       </attribute>
       <attribute>
@@ -5330,7 +5330,7 @@ has been through the init lifecycle phase.]]></description>
         <name>strings</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ loading: 'Loading&amp;hellip;' }</defaultValue>
         <description><![CDATA[Strings used on the LoadingMask. See
 <a href="Widget.html#method_strings">strings</a>.]]></description>
       </attribute>
@@ -5641,7 +5641,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -5806,7 +5806,7 @@ zIndex will be converted to 0]]></description>
         <name>align</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ node: null, points: [ TL, BL ] }</defaultValue>
         <description><![CDATA[Inherited from <a href="Overlay.html#config_align">Overlay</a>.]]></description>
       </attribute>
       <attribute>
@@ -6091,7 +6091,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -6288,14 +6288,14 @@ zIndex will be converted to 0]]></description>
         <name>align</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ node: null, points: [ TL, BL ] }</defaultValue>
         <description><![CDATA[Inherited from <a href="Overlay.html#config_align">Overlay</a>.]]></description>
       </attribute>
       <attribute>
         <name>anim</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ show: false }</defaultValue>
         <description><![CDATA[Enable or disable the animation for hide and show. Used as the
 <a href="Anim.html">Anim</a> configuration attributes.
 <pre><code>anim: {
@@ -6617,7 +6617,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -6837,7 +6837,7 @@ zIndex will be converted to 0]]></description>
         <name>alignPoints</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[ 'tl', 'tl' ]</defaultValue>
         <description><![CDATA[Points to align the <a href="Overlay.html">Overlay</a> used as
 mask.]]></description>
       </attribute>
@@ -7081,7 +7081,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -7435,7 +7435,7 @@ prev link element.]]></description>
         <name>rowsPerPageOptions</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Array to be displayed on the generated HTML Select element with the
 <a href="Paginator.html#config_rowsPerPage">rowsPerPage</a>
 information. (i.e., [1,3,5,7], will display these values on the
@@ -7445,7 +7445,7 @@ select)]]></description>
         <name>state</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[Generates information to the <code>changeRequest</code> event. See
 <a href="Paginator.html#method_changeRequest">changeRequest</a>.]]></description>
       </attribute>
@@ -7731,7 +7731,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>icons</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[<p>Array of <a href="ButtonItem.html">ButtonItem</a> configuration objects to be displayed as icons
 on the Panel title.</p>
 Example:
@@ -10325,14 +10325,14 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>align</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ node: null, points: [ BL, TR ] }</defaultValue>
         <description><![CDATA[See <a href="Overlay.html#config_align">OverlayContextPanel align</a>.]]></description>
       </attribute>
       <attribute>
         <name>anim</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{ show: false }</defaultValue>
         <description><![CDATA[See <a href="OverlayContextPanel.html#config_anim">OverlayContextPanel anim</a>.]]></description>
       </attribute>
       <attribute>
@@ -10651,7 +10651,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
         <name>xy</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[0,0]</defaultValue>
         <description><![CDATA[Page XY co-ordinate pair for the widget.]]></description>
       </attribute>
       <attribute>
@@ -10910,7 +10910,7 @@ zIndex will be converted to 0]]></description>
         <name>children</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Array of children (i.e. could be a JSON metadata object or a TreeNode instance).]]></description>
       </attribute>
       <attribute>
@@ -10967,7 +10967,7 @@ has been through the destroy lifecycle phase.]]></description>
         <name>index</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[Index the nodes.]]></description>
       </attribute>
       <attribute>
@@ -11171,7 +11171,7 @@ children is present the TreeNode is a leaf).]]></description>
         <name>children</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Array of children (i.e. could be a JSON metadata object or a TreeNode instance).]]></description>
       </attribute>
       <attribute>
@@ -11193,7 +11193,7 @@ has been through the destroy lifecycle phase.]]></description>
         <name>index</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[Index the nodes.]]></description>
       </attribute>
       <attribute>
@@ -11303,7 +11303,7 @@ has been through the init lifecycle phase.]]></description>
         <name>children</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.ArrayList</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>[]</defaultValue>
         <description><![CDATA[Array of children (i.e. could be a JSON metadata object or a TreeNode instance).]]></description>
       </attribute>
       <attribute>
@@ -11339,7 +11339,7 @@ has been through the destroy lifecycle phase.]]></description>
         <name>index</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue></defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[Index the nodes.]]></description>
       </attribute>
       <attribute>
