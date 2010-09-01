@@ -45,12 +45,15 @@ AUI().ready('aui-drawing', function(A) {
 		var a = pi / 2 - pi * 2 / segments * 1.5;
 		var path = ['M', x, (y - r), 'A', r, r, 0, 0, 1, (r * Math.cos(a) + x), (y - r * Math.sin(a)), 'L', x, y, 'z'].join();
 
+		var hueFactor = 360 / segments;
+		var decimalHueFactor = hueFactor / 360;
+
 		for (var i = 0; i < segments; i++) {
 			this.path(path).attr(
 				{
 					stroke: 'none',
-					fill: 'hsb(' + (segments - i) * (360 / segments) + ', 100, 100)',
-					rotation: [90 + (360 / segments) * i, x, y]
+					fill: 'hsb(' + (segments - i) * decimalHueFactor + ', 1, 1)',
+					rotation: [90 + hueFactor * i, x, y]
 				}
 			);
 		}
@@ -433,12 +436,15 @@ AUI().ready('aui-drawing', function(A) {
 
 		var path = ['M', size2, padding, 'A', R, R, 0, 0, 1, R * Math.cos(a) + R + padding, R - R * Math.sin(a) + padding, 'L', R2 * Math.cos(a) + R + padding, R - R2 * Math.sin(a) + padding, 'A', R2, R2, 0, 0, 0, size2, padding + size20 * 2, 'z'].join();
 
+		var hueFactor = 360 / segments;
+		var decimalHueFactor = hueFactor / 360;
+
 		for (var i = 0; i < segments; i++) {
 			drawing.path(path).attr(
 				{
 					stroke: 'none',
-					fill: 'hsb(' + i * (360 / segments) + ', 100, 100)',
-					rotation: [(360 / segments) * i, size2, size2]
+					fill: 'hsb(' + (i * decimalHueFactor) + ', 1, 1)',
+					rotation: [hueFactor * i, size2, size2]
 				}
 			);
 		}
