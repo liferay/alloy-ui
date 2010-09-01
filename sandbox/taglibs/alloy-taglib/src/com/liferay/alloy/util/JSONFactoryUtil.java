@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.util;
 
+import com.liferay.portal.kernel.util.Validator;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import flexjson.transformer.Transformer;
@@ -45,7 +46,12 @@ public class JSONFactoryUtil {
 	}
 
 	public static Object safeDeserialize(Object obj) {
-		return deserialize(StringUtil.unquote(serialize(obj)));
+
+		if (Validator.isNotNull(obj)) {
+			return deserialize(StringUtil.unquote(serialize(obj)));
+		}
+
+		return null;
 	}
 
 	public static String serialize(Object obj) {
