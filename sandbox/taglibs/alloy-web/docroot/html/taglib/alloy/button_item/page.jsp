@@ -2,7 +2,7 @@
 
 <c:if test="<%= useMarkup %>">
 	<c:if test="<%= !hasBoundingBox %>">
-		<button class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
+		<button class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox" type="button">
 	</c:if>
 
 	<span class="<%= StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_CUSTOM_ICON }, StringPool.SPACE) %>"></span>
@@ -18,12 +18,14 @@
 	</c:if>
 </c:if>
 
-<alloy:component
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
-	var="ButtonItem1"
-	module="aui-button-item"
-	name="ButtonItem"
-	yuiVariable="A"
-/>
+<c:if test="<%= useJavaScript %>">
+	<alloy:component
+		excludeAttributes="var,javaScriptAttributes,useMarkup"
+		tagPageContext="<%= pageContext %>"
+		options="<%= options %>"
+		var="ButtonItem1"
+		module="aui-button-item"
+		name="ButtonItem"
+		yuiVariable="A"
+	/>
+</c:if>

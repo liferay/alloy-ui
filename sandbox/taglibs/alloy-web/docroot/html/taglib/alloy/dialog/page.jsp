@@ -1,12 +1,14 @@
 <%@ include file="init.jsp" %>
 
-<alloy:component
-	javaScriptAttributes="xy"
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
-	var="Dialog1"
-	module="aui-dialog"
-	name="Dialog"
-	yuiVariable="A"
-/>
+<c:if test="<%= useJavaScript %>">
+	<alloy:component
+		javaScriptAttributes="xy"
+		excludeAttributes="var,javaScriptAttributes,useMarkup"
+		tagPageContext="<%= pageContext %>"
+		options="<%= options %>"
+		var="Dialog1"
+		module="aui-dialog"
+		name="Dialog"
+		yuiVariable="A"
+	/>
+</c:if>

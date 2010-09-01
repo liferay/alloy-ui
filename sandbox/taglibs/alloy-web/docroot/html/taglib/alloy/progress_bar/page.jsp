@@ -18,12 +18,14 @@
 	</c:if>
 </c:if>
 
-<alloy:component
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
-	var="ProgressBar1"
-	module="aui-progressbar"
-	name="ProgressBar"
-	yuiVariable="A"
-/>
+<c:if test="<%= useJavaScript %>">
+	<alloy:component
+		excludeAttributes="var,javaScriptAttributes,useMarkup"
+		tagPageContext="<%= pageContext %>"
+		options="<%= options %>"
+		var="ProgressBar1"
+		module="aui-progressbar"
+		name="ProgressBar"
+		yuiVariable="A"
+	/>
+</c:if>
