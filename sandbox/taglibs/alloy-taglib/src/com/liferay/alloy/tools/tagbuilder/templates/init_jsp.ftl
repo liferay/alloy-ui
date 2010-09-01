@@ -64,12 +64,10 @@ if (useMarkup) {
 		options.put("contentBox", _contentBox);
 	}
 }
-%>
 
-<%@ include file="init-ext.jsp" %>
-
-<%
 <#list component.getAttributesAndEvents() as attribute>
 _updateOptions(options, "${attribute.getSafeName()}", _${attribute.getSafeName()});
 </#list>
 %>
+
+<%@ include file="init-ext.jsp" %>
