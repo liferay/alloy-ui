@@ -110,7 +110,7 @@ public class XMLBuilder {
 				getComponentEvents(className));
 
 			Component component = new Component(
-				namespace, name, module, bodyContent, attributes, events);
+				namespace, name, true, module, bodyContent, attributes, events);
 
 			if (!isExcludedComponent(component)) {
 				components.add(component);
@@ -146,8 +146,11 @@ public class XMLBuilder {
 			componentNode.addAttribute("name", component.getName());
 			componentNode.addAttribute("module", component.getModule());
 			componentNode.addAttribute("namespace", component.getNamespace());
-			componentNode.addAttribute("bodyContent", String.valueOf(
-				component.isBodyContent()));
+			componentNode.addAttribute(
+				"bodyContent", String.valueOf(component.isBodyContent()));
+
+			componentNode.addAttribute(
+				"alloyComponent", String.valueOf(component.isAlloyComponent()));
 
 			Element attributesNode = componentNode.addElement("attributes");
 			Element eventsNode = componentNode.addElement("events");

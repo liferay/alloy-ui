@@ -8,6 +8,7 @@ import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -28,11 +29,13 @@ public class TagBuilder {
 		"Eduardo Lundgren", "Bruno Basto", "Nathan Cavanaugh"
 	};
 
-	public TagBuilder(String componentsXML, String templatesDir,
-			String javaOutputDir, String javaOutputPackage, String jspDir,
+	public TagBuilder(
+			String componentsXML, String componentsExtXML, String templatesDir,
+			String javaOutputDir, String javaOutputPackage,	String jspDir,
 			String jspOutputDir, String tldDir)
 		throws Exception {
 
+		_componentsExtXML = Arrays.asList(StringUtil.split(componentsExtXML));
 		_componentsXML = componentsXML;
 		_templatesDir = templatesDir;
 		_javaOutputDir = javaOutputDir;
@@ -53,6 +56,7 @@ public class TagBuilder {
 
 	public static void main(String[] args) throws Exception {
 		String componentsXML = System.getProperty("tagbuilder.components.xml");
+		String componentsExtXML = System.getProperty("tagbuilder.components.ext.xml");
 		String templatesDir = System.getProperty("tagbuilder.templates.dir");
 		String javaOutputDir = System.getProperty("tagbuilder.java.output.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
@@ -61,8 +65,8 @@ public class TagBuilder {
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
 
 		new TagBuilder(
-			componentsXML, templatesDir, javaOutputDir, javaOutputPackage,
-			jspDir, jspOutputDir, tldDir);
+			componentsXML, componentsExtXML, templatesDir, javaOutputDir,
+			javaOutputPackage, jspDir, jspOutputDir, tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
@@ -221,14 +225,19 @@ public class TagBuilder {
 	}
 
 	private List<Attribute> _getAttributes(
-		Element componentNode, String group, String node) {
+		Element componentNode, String group, String nodeName) {
 
-		Element attributesNode = componentNode.element(group);
-		List<Element> attributesNodes = attributesNode.elements(node);
+		List<Element> nodes = Collections.EMPTY_LIST;
 
 		List<Attribute> attributes = new ArrayList<Attribute>();
 
-		for (Element attributeNode : attributesNodes) {
+		Element node = componentNode.element(group);
+
+		if (node != null) {
+			nodes = node.elements(nodeName);
+		}
+
+		for (Element attributeNode : nodes) {
 			String name = attributeNode.elementText("name");
 			String type = GetterUtil.getString(
 				attributeNode.elementText("type"), _DEFAULT_TYPE);
@@ -262,20 +271,40 @@ public class TagBuilder {
 			Document doc = reader.read(file);
 			Element root = doc.getRootElement();
 
-			List<Element> componentNodes = root.elements("component");
+			for (String componentExtXML : _componentsExtXML) {
+				File extFile = new File(componentExtXML);
 
-			for (Element node : componentNodes) {
+				if (extFile.exists()) {
+					SAXReader extReader = new SAXReader();
+					Document extDoc = extReader.read(extFile);
+
+					List<Element> extComponents =
+						extDoc.getRootElement().elements("component");
+
+					for (Element extComponent : extComponents) {
+						root.add(extComponent.createCopy());
+					}
+				}
+			}
+
+			List<Element> allComponentNodes = root.elements("component");
+
+			for (Element node : allComponentNodes) {
 				String namespace = GetterUtil.getString(
 					node.attributeValue("namespace"), _DEFAULT_NAMESPACE);
 
 				String name = node.attributeValue("name");
-				String module = node.attributeValue("module");
+				boolean alloyComponent = GetterUtil.getBoolean(
+					node.attributeValue("alloyComponent"));
+
+				String module = GetterUtil.getString(
+					node.attributeValue("module"));
 
 				boolean bodyContent = GetterUtil.getBoolean(
 					node.attributeValue("bodyContent"));
 
 				Component component = new Component(
-					namespace, name, module, bodyContent,
+					namespace, name, alloyComponent, module, bodyContent,
 					_getAttributes(node), _getPrefixedEvents(node));
 
 				components.add(component);
@@ -353,14 +382,13 @@ public class TagBuilder {
 			e.printStackTrace();
 		}
 	}
-
-	private static final String _DEFAULT_TYPE = "java.lang.Object";
 	private static final String _AFTER = "after";
 	private static final String _ALLOY_TLD = "alloy.tld";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = "Tag.java";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
+	private static final String _DEFAULT_TYPE = "java.lang.Object";
 	private static final String _END_PAGE = "/end.jsp";
 	private static final String _INIT_EXT_PAGE = "/init-ext.jsp";
 	private static final String _INIT_PAGE = "/init.jsp";
@@ -368,6 +396,7 @@ public class TagBuilder {
 	private static final String _PAGE = "/page.jsp";
 	private static final String _START_PAGE = "/start.jsp";
 
+	private List<String> _componentsExtXML;
 	private String _componentsXML;
 	private String _javaOutputDir;
 	private String _javaOutputPackage;

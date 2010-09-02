@@ -8,10 +8,12 @@ import java.util.List;
 
 public class Component extends BaseModel {
 
-	public Component(String namespace, String name, String module,
+	public Component(
+		String namespace, String name, boolean alloyComponent, String module,
 		boolean bodyContent, List<Attribute> attributes,
 		List<Attribute> events) {
 
+		setAlloyComponent(alloyComponent);
 		setEvents(events);
 		setAttributes(attributes);
 		setBodyContent(bodyContent);
@@ -73,8 +75,16 @@ public class Component extends BaseModel {
 		return StringUtil.uncamelize(getName(), delimiter);
 	}
 
+	public boolean isAlloyComponent() {
+		return _alloyComponent;
+	}
+
 	public boolean isBodyContent() {
 		return _bodyContent;
+	}
+
+	public void setAlloyComponent(boolean alloyComponent) {
+		_alloyComponent = alloyComponent;
 	}
 
 	public void setAttributes(List<Attribute> attributes) {
@@ -101,6 +111,7 @@ public class Component extends BaseModel {
 		_namespace = namespace;
 	}
 
+	private boolean _alloyComponent;
 	private List<Attribute> _attributes;
 	private boolean _bodyContent;
 	private List<Attribute> _events;
