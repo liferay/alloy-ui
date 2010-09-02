@@ -15,6 +15,7 @@
 package com.liferay.alloy.util;
 
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
@@ -37,6 +38,24 @@ public class GetterUtil extends com.liferay.portal.kernel.util.GetterUtil {
 		if (value instanceof String) {
 			return get((String)value, defaultValue);
 		}
+		else if (value.getClass().isAssignableFrom(Byte.class)) {
+			return (Byte)value;
+		}
+		else if (value.getClass().isAssignableFrom(Short.class)) {
+			return (Short)value;
+		}
+		else if (value.getClass().isAssignableFrom(Integer.class)) {
+			return (Integer)value;
+		}
+		else if (value.getClass().isAssignableFrom(Double.class)) {
+			return (Double)value;
+		}
+		else if (value.getClass().isAssignableFrom(Float.class)) {
+			return (Float)value;
+		}
+		else if (value.getClass().isAssignableFrom(Long.class)) {
+			return (Long)value;
+		}
 		else if (value.getClass().isAssignableFrom(Number.class)) {
 			return (Number)value;
 		}
@@ -45,7 +64,7 @@ public class GetterUtil extends com.liferay.portal.kernel.util.GetterUtil {
 	}
 
 	public static Number get(String value, Number defaultValue) {
-		if (value == null) {
+		if (Validator.isNull(value)) {
 			return defaultValue;
 		}
 
