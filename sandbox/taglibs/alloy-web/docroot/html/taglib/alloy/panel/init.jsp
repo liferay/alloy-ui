@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:panel:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:panel:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:panel:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:panel:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:panel:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.lang.Object _panelBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:panel:panelBodyContent"));
 java.lang.Boolean _collapsed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:panel:collapsed"), false);
 java.lang.Boolean _collapsible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:panel:collapsible"), false);
@@ -97,35 +96,6 @@ java.lang.Object _onVisibleChange = GetterUtil.getObject((java.lang.Object)reque
 java.lang.Object _onContentUpdate = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:panel:onContentUpdate"));
 java.lang.Object _onRender = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:panel:onRender"));
 java.lang.Object _onWidthChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:panel:onWidthChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "panelBodyContent", _panelBodyContent);
 _updateOptions(options, "boundingBox", _boundingBox);

@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:date-picker-select:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:date-picker-select:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:date-picker-select:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.util.ArrayList _appendOrder = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:appendOrder"), "[ 'm', 'd', 'y' ]"));
 java.lang.String _buttonNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:buttonNode"));
 java.util.HashMap _calendar = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:calendar"), "{}"));
@@ -118,35 +117,6 @@ java.lang.Object _onWidthChange = GetterUtil.getObject((java.lang.Object)request
 java.lang.Object _onYearNodeChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearNodeChange"));
 java.lang.Object _onYearNodeNameChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearNodeNameChange"));
 java.lang.Object _onYearRangeChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:onYearRangeChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "appendOrder", _appendOrder);
 _updateOptions(options, "boundingBox", _boundingBox);

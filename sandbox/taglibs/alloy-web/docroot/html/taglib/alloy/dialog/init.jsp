@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:dialog:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:dialog:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:dialog:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:dialog:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:align")));
 java.lang.String _dialogBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogBodyContent"));
 java.util.ArrayList _buttons = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:buttons"), "[]"));
@@ -154,35 +153,6 @@ java.lang.Object _onXChange = GetterUtil.getObject((java.lang.Object)request.get
 java.lang.Object _onXyChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:onXyChange"));
 java.lang.Object _onYChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:onYChange"));
 java.lang.Object _onZIndexChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:onZIndexChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "align", _align);
 _updateOptions(options, "dialogBodyContent", _dialogBodyContent);

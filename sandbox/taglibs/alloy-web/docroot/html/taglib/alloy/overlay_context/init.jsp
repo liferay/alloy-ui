@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:overlay-context:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-context:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-context:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:overlay-context:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:overlay-context:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:overlay-context:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.util.HashMap _align = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object _overlaycontextBodyContent = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:overlaycontextBodyContent"));
 java.lang.Boolean _cancellableHide = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:overlay-context:cancellableHide"), true);
@@ -136,35 +135,6 @@ java.lang.Object _onXChange = GetterUtil.getObject((java.lang.Object)request.get
 java.lang.Object _onXyChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:onXyChange"));
 java.lang.Object _onYChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:onYChange"));
 java.lang.Object _onZIndexChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:onZIndexChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "align", _align);
 _updateOptions(options, "overlaycontextBodyContent", _overlaycontextBodyContent);

@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:tree-node-task:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-node-task:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-node-task:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:tree-node-task:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:tree-node-task:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:tree-node-task:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.lang.Boolean _alwaysShowHitArea = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-node-task:alwaysShowHitArea"), true);
 java.lang.Boolean _cache = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-node-task:cache"), true);
 java.lang.String _checkContainerEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-node-task:checkContainerEl"));
@@ -99,35 +98,6 @@ java.lang.Object _onNextSiblingChange = GetterUtil.getObject((java.lang.Object)r
 java.lang.Object _onOwnerTreeChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-node-task:onOwnerTreeChange"));
 java.lang.Object _onParentNodeChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-node-task:onParentNodeChange"));
 java.lang.Object _onPrevSiblingChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-node-task:onPrevSiblingChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "alwaysShowHitArea", _alwaysShowHitArea);
 _updateOptions(options, "cache", _cache);

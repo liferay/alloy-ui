@@ -1,6 +1,8 @@
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <%
+java.lang.String NAMESPACE = "alloy:live-search:";
+
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:scopedAttributes");
 
@@ -9,14 +11,11 @@ Map<String, Object> options = new HashMap<String, Object>();
 options.putAll(scopedAttributes);
 options.putAll(dynamicAttributes);
 
-java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute("alloy:live-search:boundingBox");
-java.lang.Object _contentBox = (java.lang.Object)request.getAttribute("alloy:live-search:contentBox");
-java.lang.Object _srcNode = (java.lang.Object)request.getAttribute("alloy:live-search:srcNode");
+%>
 
-boolean hasBoundingBox = GetterUtil.getBoolean(String.valueOf(_boundingBox));
-boolean hasContentBox = GetterUtil.getBoolean(String.valueOf(_contentBox));
-boolean hasSrcNode = GetterUtil.getBoolean(String.valueOf(_srcNode));
+<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
+<%
 java.lang.Object _data = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:live-search:data"));
 java.lang.Number _delay = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:live-search:delay")), 250);
 java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:live-search:destroyed"), false);
@@ -51,35 +50,6 @@ java.lang.Object _onInputChange = GetterUtil.getObject((java.lang.Object)request
 java.lang.Object _onMatchRegexChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:live-search:onMatchRegexChange"));
 java.lang.Object _onNodesChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:live-search:onNodesChange"));
 java.lang.Object _onShowChange = GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:live-search:onShowChange"));
-
-String uniqueId = StringPool.BLANK;
-
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useJavaScript"), true);
-boolean useMarkup = GetterUtil.getBoolean((Serializable)dynamicAttributes.get("useMarkup"), true);
-
-if (useMarkup) {
-	uniqueId = MarkupUtil.getUniqueId();
-
-	String prefix = StringPool.POUND.concat(uniqueId);
-
-	if (!hasBoundingBox) {
-		_boundingBox = prefix.concat("BoundingBox");
-
-		options.put("boundingBox", _boundingBox);
-	}
-
-	if (!hasSrcNode && !hasContentBox) {
-		_srcNode = prefix.concat("SrcNode");
-
-		options.put("srcNode", _srcNode);
-	}
-
-	if (!hasSrcNode && hasContentBox) {
-		_contentBox = prefix.concat("ContentBox");
-
-		options.put("contentBox", _contentBox);
-	}
-}
 
 _updateOptions(options, "data", _data);
 _updateOptions(options, "delay", _delay);
