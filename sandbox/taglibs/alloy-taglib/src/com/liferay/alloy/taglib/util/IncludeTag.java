@@ -128,6 +128,11 @@ public class IncludeTag	extends AttributesTagSupport {
 			request = _trackedRequest;
 		}
 
+		if (bodyContent != null) {
+			setNamespacedAttribute(
+				request, "bodyContent", bodyContent.getString());
+		}
+
 		setNamespacedAttribute(
 			request, "dynamicAttributes", getDynamicAttributes());
 
