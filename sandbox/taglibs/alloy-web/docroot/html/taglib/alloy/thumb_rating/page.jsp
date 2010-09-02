@@ -14,7 +14,7 @@
 
 		<label for="<%= uniqueId %>Up" style="display:none;"><%= StringUtil.substitute(elementTitle, new Object[] {"Good"}) %></label>
 		<input checked="<%= 1 == (Integer)_defaultSelected %>" id="<%= uniqueId %>Up" type="hidden" value="<%= 1 %>" />
-		
+
 		<a class="<%= RATING_EL_DOWN_CLASS %>" href="javascript:;"></a>
 
 		<label for="<%= uniqueId %>Down" style="display:none;"><%= StringUtil.substitute(elementTitle, new Object[] {"Bad"}) %></label>
@@ -26,14 +26,12 @@
 	</c:if>
 </c:if>
 
-<c:if test="<%= useJavaScript %>">
-	<alloy:component
-		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
-		tagPageContext="<%= pageContext %>"
-		options="<%= options %>"
-		var="ThumbRating1"
-		module="aui-rating"
-		name="ThumbRating"
-		yuiVariable="A"
-	/>
-</c:if>
+<alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
+	var="ThumbRating1"
+	module="aui-rating"
+	name="ThumbRating"
+	yuiVariable="A"
+/>

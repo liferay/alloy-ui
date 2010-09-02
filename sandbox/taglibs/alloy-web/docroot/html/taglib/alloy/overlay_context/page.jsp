@@ -16,14 +16,12 @@
 	</c:if>
 </c:if>
 
-<c:if test="<%= useJavaScript %>">
-	<alloy:component
-		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
-		tagPageContext="<%= pageContext %>"
-		options="<%= options %>"
-		var="OverlayContext1"
-		module="aui-overlay"
-		name="OverlayContext"
-		yuiVariable="A"
-	/>
-</c:if>
+<alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
+	var="OverlayContext1"
+	module="aui-overlay"
+	name="OverlayContext"
+	yuiVariable="A"
+/>

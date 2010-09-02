@@ -52,6 +52,7 @@ body {
 <alloy:rating
 	label="Created from HTML markup"
 	render="true"
+	useJavaScript="true"
 />
 
 <br/>

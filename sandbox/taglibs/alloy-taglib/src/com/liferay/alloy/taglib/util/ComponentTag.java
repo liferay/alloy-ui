@@ -111,9 +111,10 @@ public class ComponentTag extends IncludeTag {
 	}
 
 	protected void _setAttributes(HttpServletRequest request) {
+		Map<String, Object> options = getOptions();
 		HashMap<String, Object> newOptions = new HashMap<String, Object>();
 
-		_proccessAttributes(getOptions(), newOptions);
+		_proccessAttributes(options, newOptions);
 
 		setNamespacedAttribute(request, "excludeAttributes", _excludeAttributes);
 		setNamespacedAttribute(request, "tagPageContext", _tagPageContext);
@@ -121,7 +122,8 @@ public class ComponentTag extends IncludeTag {
 		setNamespacedAttribute(request, "var", _var);
 		setNamespacedAttribute(request, "module", _module);
 		setNamespacedAttribute(request, "name", _name);
-		setNamespacedAttribute(request, "options", _serialize(newOptions));
+		setNamespacedAttribute(request, "options", options);
+		setNamespacedAttribute(request, "optionsJSON", _serialize(newOptions));
 		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 

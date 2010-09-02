@@ -18,14 +18,12 @@
 	</c:if>
 </c:if>
 
-<c:if test="<%= useJavaScript %>">
-	<alloy:component
-		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
-		tagPageContext="<%= pageContext %>"
-		options="<%= options %>"
-		var="ButtonItem1"
-		module="aui-button-item"
-		name="ButtonItem"
-		yuiVariable="A"
-	/>
-</c:if>
+<alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
+	var="ButtonItem1"
+	module="aui-button-item"
+	name="ButtonItem"
+	yuiVariable="A"
+/>

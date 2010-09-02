@@ -26,14 +26,12 @@
 	</c:if>
 </c:if>
 
-<c:if test="<%= useJavaScript %>">
-	<alloy:component
-		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
-		tagPageContext="<%= pageContext %>"
-		options="<%= options %>"
-		var="Rating1"
-		module="aui-rating"
-		name="Rating"
-		yuiVariable="A"
-	/>
-</c:if>
+<alloy:component
+	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
+	tagPageContext="<%= pageContext %>"
+	options="<%= options %>"
+	var="Rating1"
+	module="aui-rating"
+	name="Rating"
+	yuiVariable="A"
+/>
