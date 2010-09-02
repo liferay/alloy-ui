@@ -1,4 +1,5 @@
 <%@ include file="init.jsp" %>
+<#if component.isAlloyComponent()>
 
 <c:if test="<%= useJavaScript %>">
 	<alloy:component
@@ -11,3 +12,4 @@
 		yuiVariable="A"
 	/>
 </c:if>
+</#if>
