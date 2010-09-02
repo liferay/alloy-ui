@@ -18,22 +18,6 @@
 		#wrapper {
 			padding: 10px;
 		}
-
-		#pb1 {
-			height: 25px;
-			width: 650px;
-		}
-
-		#pb2 {
-			height: 50px;
-			width: 200px;
-		}
-
-		#pb3 {
-			width: 400px;
-			position: relative;
-			text-align: center;
-		}
 	</style>
 </head>
 
@@ -42,38 +26,43 @@
 <div id="wrapper">
 	<h1>Alloy - ProgressBar Demo</h1>
 
-	<div id="pb1"></div>
+	<div id="pb1">
+		<alloy:progress-bar
+			progressbarValue="33"
+			label="33%"
+			valueChange="function(e) { this.set('label', e.newVal + '%'); }"
+			onComplete="function(e) { this.set('label', 'complete!'); }"
+			width="650"
+			height="25"
+			render="true"
+		/>
+	</div>
+	
+	<br />
 
-	<div id="pb2"></div>
+	<div id="pb2">
+		<alloy:progress-bar
+			orientation="vertical"
+			height="50"
+			progressbarValue="50"
+			label="50%"
+			width="200"
+			render="true"
+		/>
+	</div>
+	
+	<br />
 
 	<div id="pb3">
-		<div class="aui-progress-bar-text">
-			From markup
-        </div>
+		<alloy:progress-bar
+			progressbarValue="75"
+			label="75%"
+			height="50"
+			width="400"
+			render="true"
+		/>
 	</div>
 </div>
-
-<alloy:progress-bar
-	boundingBox="#pb1"
-	onComplete="function(e) { this.set('label', 'complete!'); }"
-	valueChange="function(e) { this.set('label', e.newVal + '%'); }"
-	value="33"
-	render="true"
-/>
-
-<alloy:progress-bar
-	boundingBox="#pb2"
-	orientation="vertical"
-	height="300"
-	value="50"
-	render="true"
-/>
-
-<alloy:progress-bar
-	contentBox="#pb3"
-	value="75"
-	render="true"
-/>
 
 </body>
 </html>

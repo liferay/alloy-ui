@@ -18,19 +18,10 @@
 		#wrapper {
 			padding: 10px;
 		}
-
-
 	</style>
 </head>
 
 <body>
-
-<div id="wrapper">
-	<h1>Alloy - textboxlist Demo</h1>
-
-	<h4>Start typing the name of a state (such as Alaska, California, or Maine)</h4>
-	<div id="demo"></div>
-</div>
 
 <%
 String[][] states = new String[][] {
@@ -106,15 +97,20 @@ Map<String, String[]> schema = new HashMap<String, String[]>();
 schema.put("resultFields", new String[] {"key", "name", "description"});
 %>
 
-<alloy:textboxlist
-	contentBox="#demo"
-	dataSource="<%= states %>"
-	matchKey="name"
-	render="true"
-	schema="<%= schema %>"
-	typeAhead="true"
-	width="600"
-/>
+<div id="wrapper">
+	<h1>Alloy - textboxlist Demo</h1>
+
+	<h4>Start typing the name of a state (such as Alaska, California, or Maine)</h4>
+	
+	<alloy:textboxlist
+		dataSource="<%= states %>"
+		matchKey="name"
+		render="true"
+		schema="<%= schema %>"
+		typeAhead="true"
+		width="600"
+	/>
+</div>
 
 </body>
 </html>

@@ -9,6 +9,12 @@
 	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	
+	<style>
+	body {
+		padding: 10px;
+	}
+	</style>
 </head>
 
 <body>
@@ -31,10 +37,16 @@
 	defaultSelected="3"
 	canReset="false"
 	render="true"
-	useMarkup="true"
 />
 
 <br/>
+
+<alloy:thumb-rating
+	label="Thumb Rating"
+	render="true"
+/>
+
+<br />
 
 <alloy:rating
 	boundingBox="#rating1"
@@ -42,6 +54,7 @@
 	disabled="false"
 	label="Label..."
 	render="true"
+	useMarkup="false"
 />
 
 </body>

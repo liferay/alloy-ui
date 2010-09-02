@@ -9,7 +9,6 @@
     	<div class="<%= CSS_RATING_LABEL_EL %>">
     		<%= _label %>
    		</div>
-
         <%
 		for (int i = 1; i <= (Integer)_size; i++) {
 		%>
@@ -29,7 +28,7 @@
 
 <c:if test="<%= useJavaScript %>">
 	<alloy:component
-		excludeAttributes="var,javaScriptAttributes,useMarkup"
+		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 		tagPageContext="<%= pageContext %>"
 		options="<%= options %>"
 		var="Rating1"

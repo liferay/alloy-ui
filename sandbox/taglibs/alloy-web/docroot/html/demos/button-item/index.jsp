@@ -224,7 +224,7 @@ String[] allIcons = new String[] {
 					<%
 						for (String curIcon : allIcons) {
 					%>
-						<alloy:button-item icon="<%= curIcon %>" label="<%= curIcon %>" render="true" useMarkup="true" />					
+						<alloy:button-item icon="<%= curIcon %>" label="<%= curIcon %>" render="true" />					
 					<%
 						}
 					%>
@@ -236,7 +236,7 @@ String[] allIcons = new String[] {
 					<%
 						for (String curIcon : allIcons) {
 					%>
-						<alloy:button-item icon="<%= curIcon %>" render="true" useMarkup="true" />					
+						<alloy:button-item icon="<%= curIcon %>" render="true" />					
 					<%
 						}
 					%>

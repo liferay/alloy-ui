@@ -72,8 +72,6 @@
 
 <h1>Alloy - Nested List</h1>
 
-</div>
-
 <ul id="demo-1" class="dd-demo">
 	<li id="list1">Node</li>
 

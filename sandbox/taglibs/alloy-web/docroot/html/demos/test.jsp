@@ -2,14 +2,26 @@
 
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
-<script src="<%= PropsValues.ALLOY_BASE_PATH %>yui/yui-min.js" type="text/javascript"></script>
-<script src="<%= PropsValues.ALLOY_BASE_PATH %>/aui-base/aui-base-min.js" type="text/javascript"></script>
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>overlay/assets/skins/sam/overlay.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>widget/assets/skins/sam/widget.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>widget/assets/skins/sam/widget-stack.css" type="text/css" rel="stylesheet" />
 
-<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
-<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
-<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-datepicker-select/assets/skins/sam/aui-datepicker-select.css" type="text/css" rel="stylesheet" />
-<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
-<link href="<%= PropsValues.ALLOY_BASE_PATH %>/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-calendar/assets/skins/sam/aui-calendar-base.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-datepicker-select/assets/skins/sam/aui-datepicker-select.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-dialog/assets/skins/sam/aui-dialog.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-loading-mask/assets/skins/sam/aui-loading-mask.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-overlay/assets/skins/sam/aui-overlay-mask.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-panel/assets/skins/sam/aui-panel.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-progressbar/assets/skins/sam/aui-progressbar.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-rating/assets/skins/sam/aui-rating.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-resize/assets/skins/sam/aui-resize.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-base/css/aui-skin-base.css" type="text/css" rel="stylesheet" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+<link href="<%= PropsValues.ALLOY_BASE_PATH %>aui-toolbar/assets/skins/sam/aui-toolbar.css" type="text/css" rel="stylesheet" />
+
+<script src="<%= PropsValues.ALLOY_BASE_PATH %>yui/yui-min.js" type="text/javascript"></script>
+<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui-base/aui-base-min.js" type="text/javascript"></script>
 
 <style>
 body {
@@ -26,12 +38,20 @@ body {
 }
 </style>
 
+<alloy:dialog
+	render="true"
+	title="Eduardo"
+	dialogBodyContent="asdasdasdddddddd"
+	width="300"
+	height="300"
+	xy="<%= new Object[] { 400, 200 } %>"
+/>
+
 <br/>
 
 <alloy:rating
 	label="Created from HTML markup"
 	render="true"
-	useMarkup="true"
 />
 
 <br/>
@@ -43,28 +63,15 @@ body {
 		render="true"
 		width="500"
 		progressbarValue="90"
-		useMarkup="true"
 	/>
 </div>
 
-<br/>
-
-<alloy:button-item
-	label="Test"
-	icon="loading"
-	render="true"
-	useMarkup="true"
-/>
-
-<input id="input0" /> <span id="counter0"></span>
+<br />
 
 <alloy:char-counter
-	counter="#counter0"
-	input="#input0"
 	maxLength="5"
 	afterMaxLength="function(e) { console.log('max') }"
 />
-
 
 <br /><br />
 
@@ -74,26 +81,23 @@ body {
 		headerContent="Header"
 		panelBodyContent="Test"
 		render="true"
-		useMarkup="true"
 	/>
 </div>
 
 <br /><br />
 
-<div id="datePicker"></div>
+<div class="aui-helper-clearfix">
+	<alloy:date-picker-select
+		appendOrder='<%= new String[] {"d", "m", "y"} %>'
+		render="true"
+		yearRange="<%= new Integer[] {1980, 2010} %>"
+	/>
+</div>
 
-<alloy:date-picker-select
-	appendOrder='<%= new String[] {"y", "m", "d"} %>'
-	render="true"
-	useMarkup="true"
-	yearRange="<%= new Integer[] {1980, 2010} %>"
-/>
+<br />
 
-<alloy:dialog
+<alloy:button-item
+	label="Test"
+	icon="loading"
 	render="true"
-	title="Eduardo"
-	dialogBodyContent="asdasdasdddddddd"
-	width="300"
-	height="300"
-	xy="<%= new Object[] { 400, 200 } %>"
 />

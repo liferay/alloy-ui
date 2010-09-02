@@ -3,7 +3,7 @@
 <c:if test="<%= useJavaScript %>">
 	<alloy:component
 		javaScriptAttributes="xy"
-		excludeAttributes="var,javaScriptAttributes,useMarkup"
+		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 		tagPageContext="<%= pageContext %>"
 		options="<%= options %>"
 		var="Dialog1"

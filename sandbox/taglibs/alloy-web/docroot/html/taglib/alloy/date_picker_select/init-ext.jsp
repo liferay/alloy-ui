@@ -19,13 +19,10 @@ final String CSS_ICON_CALENDAR = MarkupUtil.getClassName("icon", "calendar");
 final String CSS_STATE_DEFAULT = MarkupUtil.getClassName("state", "default");
 final String CSS_WIDGET = MarkupUtil.getClassName("widget");
 
-final String CSS_DATEPICKER_BUTTON_BOUNDING_BOX_CLASS = StringUtil.merge(new String[] { CSS_WIDGET, CSS_COMPONENT, CSS_BUTTON_ITEM, CSS_BUTTON_ITEM_CONTENT, CSS_STATE_DEFAULT, CSS_BUTTON_ITEM_ICON_ONLY }, StringPool.SPACE);
-final String CSS_DATEPICKER_BUTTON_ICON_CLASS = StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_ICON_CALENDAR }, StringPool.SPACE);
-
 final String BOUNDING_BOX_CLASS = StringUtil.merge(new String[] { CSS_DATEPICKER, CSS_DATEPICKER_DISPLAY, CSS_CLEAR_FIX }, StringPool.SPACE);
 final String CONTENT_BOX_CLASS = StringUtil.merge(new String[] { CSS_DATEPICKER_CONTENT }, StringPool.SPACE);
 
-final String DAY_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_DAY }, StringPool.SPACE);
+final String DATE_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_DAY }, StringPool.SPACE);
 final String MONTH_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_MONTH }, StringPool.SPACE);
 final String YEAR_NODE_CLASS = StringUtil.merge(new String[] { CSS_CUSTOM_FIELD, CSS_DATEPICKER_YEAR }, StringPool.SPACE);
 %>

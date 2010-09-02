@@ -4,7 +4,6 @@ final String CSS_COMPONENT = MarkupUtil.getClassName("component");
 final String CSS_RATING = MarkupUtil.getClassName("rating");
 final String CSS_RATING_CONTENT = MarkupUtil.getClassName("rating", "content");
 final String CSS_RATING_EL = MarkupUtil.getClassName("rating", "element");
-final String CSS_RATING_EL_HOVER  = MarkupUtil.getClassName("rating", "element", "hover");
 final String CSS_RATING_EL_ON = MarkupUtil.getClassName("rating", "element", "on");
 final String CSS_RATING_LABEL_EL = MarkupUtil.getClassName("rating", "label", "element");
 final String CSS_WIDGET = MarkupUtil.getClassName("widget");

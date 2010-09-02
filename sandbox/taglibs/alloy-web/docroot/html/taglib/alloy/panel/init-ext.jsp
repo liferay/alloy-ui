@@ -21,4 +21,6 @@ final String CONTENT_BOX_CLASS = StringUtil.merge(new String[] { CSS_PANEL_CONTE
 final String BODY_CLASS = StringUtil.merge(new String[] { CSS_WIDGET_BD, CSS_PANEL_BD }, StringPool.SPACE);
 final String HEADER_CLASS = StringUtil.merge(new String[] { CSS_WIDGET_HD, CSS_CLEAR_FIX, CSS_PANEL_HD }, StringPool.SPACE);
 final String TOOLBAR_CLASS = StringUtil.merge(new String[] { CSS_WIDGET, CSS_COMPONENT, CSS_TOOLBAR, CSS_TOOLBAR_HORIZONTAL, CSS_PANEL_ICONS }, StringPool.SPACE);
+
+String _bodyContent = (String)request.getAttribute("alloy:panel:bodyContent");
 %>

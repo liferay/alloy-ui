@@ -21,12 +21,6 @@
 </style>
 <body>
 
-<div id="wrapper">
-	<h1>Alloy AutoComplete</h1>
-	<h4>Start typing the name of a state (such as Alaska, California, or Maine)</h4>
-	<div id="myAutoComplete"></div>
-</div>
-
 <%
 String[][] states = new String[][] {
 	new String[] {"AL", "Alabama", "The Heart of Dixie"},
@@ -101,15 +95,19 @@ Map<String, String[]> schema = new HashMap<String, String[]>();
 schema.put("resultFields", new String[] {"key", "name", "description"});
 %>
 
-<alloy:auto-complete
-	contentBox="#myAutoComplete"
-	dataSource="<%= states %>"
-	delimChar=","
-	matchKey="name"
-	schema="<%= schema %>"
-	render="true"
-	typeAhead="true"
-/>
+<div id="wrapper">
+	<h1>Alloy AutoComplete</h1>
+	<h4>Start typing the name of a state (such as Alaska, California, or Maine)</h4>
+	
+	<alloy:auto-complete
+		dataSource="<%= states %>"
+		delimChar=","
+		matchKey="name"
+		schema="<%= schema %>"
+		render="true"
+		typeAhead="true"
+	/>
+</div>
 
 </body>
 </html>

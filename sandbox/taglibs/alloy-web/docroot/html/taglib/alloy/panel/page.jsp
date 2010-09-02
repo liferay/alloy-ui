@@ -12,12 +12,18 @@
 			</span>
 			<span class="<%= TOOLBAR_CLASS %>">
 				<span class="<%= CSS_TOOLBAR_CONTENT %>">
-					<alloy:button-item icon="minus" useMarkup="true"/>
+					<alloy:button-item cssClass="aui-toolbar-first aui-toolbar-last aui-toolbar-item" icon="minus" useMarkup="true"/>
 				</span>
 			</span>
 		</div>
 		<div class="<%= CSS_WIDGET_BD %>">
-			<%= _panelBodyContent %>
+			<c:if test="<%= Validator.isNotNull(_bodyContent) %>">
+				<%= _bodyContent %>
+			</c:if>
+	
+			<c:if test="<%= Validator.isNotNull(_panelBodyContent) %>">
+				<%= _panelBodyContent %>
+			</c:if>
 		</div>
 	</div>
 
@@ -26,12 +32,14 @@
 	</c:if>
 </c:if>
 
-<alloy:component
-	excludeAttributes="var,javaScriptAttributes,useMarkup"
-	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
-	var="Panel1"
-	module="aui-panel"
-	name="Panel"
-	yuiVariable="A"
-/>
+<c:if test="<%= useJavaScript %>">
+	<alloy:component
+		excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
+		tagPageContext="<%= pageContext %>"
+		options="<%= options %>"
+		var="Panel1"
+		module="aui-panel"
+		name="Panel"
+		yuiVariable="A"
+	/>
+</c:if>

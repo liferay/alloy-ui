@@ -2,6 +2,9 @@
 
 <%@page import="com.liferay.alloy.util.PropsValues"%>
 
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Set"%>
+
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
 <html>
@@ -9,9 +12,14 @@
 	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-tree/assets/skins/sam/aui-tree.css" type="text/css" media="screen" />
 </head>
 
 <style type="text/css" media="screen">
+	
+	body {
+		padding: 10px;
+	}
 
 	.aui-tree-view {
 		margin: 30px;
@@ -27,278 +35,82 @@
 		border: 3px solid #ededed;
 	}
 
-	#tree1-1 {
-		left: 300px;
-		position: absolute;
-		top: 100px;
-	}
-
 </style>
 
 <body>
 <h1>Alloy - TreeView</h1>
 
-<button id="expandAll-1">Expand All</button>
-<button id="collapseAll-1">Collapse All</button>
-<button id="createNodeROOT-1">Append node to ROOT</button>
-<button id="insertBeforeROOT-1">Insert node before ROOT</button>
-
 <h1>A.TreeView Folder Style</h1>
 <div id="tree1"></div>
-<div id="tree1-1"></div>
 
 <br/><br/><br/>
-
-<button id="expandAll-2">Expand All</button>
-<button id="collapseAll-2">Collapse All</button>
-<button id="createNodeROOT-2">Append node to ROOT</button>
 
 <h1>A.TreeView Simple Style</h1>
 <div id="tree2"></div>
 
-<script type="text/javascript" charset="utf-8">
+<%
+Map<String, Object> child1 = new HashMap<String, Object>();
 
-AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', function(A) {
-	console.log(arguments);
-	new A.Tooltip({ trigger: '#tree1', bodyContent: 'Mouseover the tree to activate the Drag&Drop.', width: 150 }).render();
+child1.put("label", "child1");
+child1.put("type", "task");
 
-	var defCallback = function(event) {
-		if (window.console && window.console.log) {
-			console.log(event.type, event);
-		}
-	};
+Map<String, Object> child2 = new HashMap<String, Object>();
 
-	// creating from constructor A.TreeNode
-	var fileRoot1 = new A.TreeNode({ label: 'File ROOT 1', id: 'fileRoot1' });
+child2.put("label", "child2");
 
-	// or from json
-	var children = [
-		{
-			label: 'ROOT',
-			id: 'root1',
-			expanded: true,
-			draggable: false,
-			children: [
-				{
-					type: 'task',
-					checkName: 'customSelectName',
-					label: 'TaskNodeRoot',
-					leaf: false,
-					checked: true,
-					io: 'assets/tasks.html',
-					on: {
-						check: defCallback,
-						uncheck: defCallback
-					}
-				},
-				{
-					type: 'check',
-					checkName: 'customSelectName',
-					label: 'CheckboxNode',
-					alwaysShowHitArea: false,
-					leaf: false,
-					on: {
-						check: defCallback,
-						uncheck: defCallback
-					}
-				},
-				{
-					type: 'io',
-					label: 'CachedTreeNodeIO',
-					cache: true,
-					io: 'assets/content.html'
-				},
-				{
-					type: A.TreeNodeIO,
-					label: 'TreeNodeIO',
-					cache: false,
-					io: {
-						url: 'assets/content.html',
-						cfg: {
-							data: function(node) {
-								console.log(node);
+Set<Map<String, Object>> child3Children = new HashSet<Map<String, Object>>();
 
-								return 'foo=bar&bar=foo';
-							},
-							on: {
-								success: function(id, o) {
-									// console.log('User success handler', arguments);
-								}
-							}
-						}
-					}
-				},
-				{
-					label: 'Folder1',
-					id: 'folder1',
-					expanded: true,
-					children: [
-						{
-							label: 'Folder1-1',
-							id: 'folder1-1',
-							leaf: false,
-							expanded: false,
-							children: [
-								fileRoot1,
-								{ label: 'File1' },
-								{ label: 'File2' },
-								{ label: 'From JSON', id: 'fromJSON' }
-							]
-						},
-						{ label: 'File1 - with id', id: 'file1' },
-						{ label: 'File2' },
-						{ label: 'File3' },
-						{ label: 'File4' },
-						{ label: 'File5' }
-					]
-				},
-				{
-					label: 'Folder2',
-					id: 'folder2',
-					expanded: true,
-					children: [
-						{
-							label: 'Folder2-1',
-							// leaf: false,
-							expanded: false,
-							children: [
-								fileRoot1,
-								{ label: 'File1' },
-								{ label: 'File2' }
-							]
-						},
-						{ label: 'File1' },
-						{ label: 'File2' },
-						{ label: 'File3' },
-						{ label: 'File4' },
-						{ label: 'File5' }
-					]
-				}
-			]
-		}
-	];
+Map<String, Object> child4 = new HashMap<String, Object>();
 
-	// display the nodes using the A.TreeView
-	// var tree1 = new A.TreeView({
-	var tree1 = new A.TreeViewDD({
-		io: {
-			cache: false,
-			url: 'assets/content.html'
-		},
-		type: 'file',
-		width: 200,
-		height: 400,
-		boundingBox: '#tree1',
-		on: {
-			// collapse: defCallback,
-			// expand: defCallback,
-			append: defCallback,
-			collapseAll: defCallback,
-			expandAll: defCallback,
-			// insert: defCallback,
-			move: defCallback,
-			remove: defCallback,
-			drop: defCallback
-		},
-		after: {
-			drop: function(event) {
-				var tree = event.tree;
-				// console.log(tree.dragNode.get('parentNode').indexOf(tree.dragNode));
-			},
-			// collapse: defCallback,
-			// expand: defCallback,
-			append: defCallback,
-			collapseAll: defCallback,
-			expandAll: defCallback,
-			// insert: defCallback,
-			move: defCallback,
-			remove: defCallback
-		},
-		children: children
-	})
-	.render();
+child4.put("label", "child4");
 
-	var tree11 = new A.TreeViewDD({
-		boundingBox: '#tree1-1',
-		children: [
-			{
-				label: 'Drag nodes to here!',
-				expanded: true,
-				children: [
-					{ label: 'Click here to activate' }
-				]
-			}
-		]
-	})
-	.render();
+Map<String, Object> child5 = new HashMap<String, Object>();
 
-	var tree2 = new A.TreeViewDD({
-		width: 200,
-		type: 'normal',
-		boundingBox: '#tree2',
-		children: [
-			{ label: 'Folder 1', children: [ { label: 'file' }, { label: 'file' }, { label: 'file' } ] },
-			{ label: 'Folder 2', expanded: true, children: [ { label: 'file' }, { label: 'file' } ] },
-			{ label: 'Folder 3', children: [ { label: 'file' } ] },
-			{ label: 'Folder 4', expanded: true, children: [ { label: 'Folder 4-1', expanded: true, children: [ { label: 'file' } ] } ] }
-		]
-	})
-	.render();
+child5.put("label", "child5");
 
+child3Children.add(child4);
+child3Children.add(child5);
 
-	// Extras tree1
+Map<String, Object> child3 = new HashMap<String, Object>();
 
-	A.on('click', function() {
-		var ROOT = tree1.getNodeById('root1');
+child3.put("children", child3Children);
+child3.put("label", "child3");
 
-		var tempNode = ROOT.createNode({
-			label: 'Temp folder',
-			children: [
-				{ label: 'Temp file' }
-			]
-		});
+Set<Map<String, Object>> rootChildren = new HashSet<Map<String, Object>>();
 
-		ROOT.appendChild(tempNode);
-	},
-	'#createNodeROOT-1');
+rootChildren.add(child1);
+rootChildren.add(child2);
+rootChildren.add(child3);
 
-	A.on('click', function() {
-		var ROOT = tree1.getNodeById('root1');
+Map<String, Object> root = new HashMap<String, Object>();
 
-		var tempNode = ROOT.createNode({
-			label: 'Temp folder',
-			children: [
-				{ label: 'Temp file' }
-			]
-		});
+root.put("children", rootChildren);
+root.put("draggable", false);
+root.put("expanded", true);
+root.put("id", "root1");
+root.put("label", "ROOT");
 
-		ROOT.insertBefore(tempNode);
-	},
-	'#insertBeforeROOT-1');
+Set<Map<String, Object>> children = new HashSet<Map<String, Object>>();
 
-	A.on('click', function() { tree1.expandAll(); }, '#expandAll-1');
-	A.on('click', function() { tree1.collapseAll(); }, '#collapseAll-1');
+children.add(root);
+%>
 
-	// Extras tree2
+<alloy:tree-view-dd
+	boundingBox="#tree1"
+	children="<%= children %>"
+	height="150"
+	render="true"
+	type="file"
+	width="200"
+/>
 
-	A.on('click', function() {
-		var tempNode = tree2.createNode({
-			label: 'Temp folder',
-			children: [
-				{ label: 'Temp file' }
-			]
-		});
-
-		tree2.appendChild(tempNode);
-	},
-	'#createNodeROOT-2');
-
-
-	A.on('click', function() { tree2.expandAll(); }, '#expandAll-2');
-	A.on('click', function() { tree2.collapseAll(); }, '#collapseAll-2');
-});
-
-</script>
+<alloy:tree-view
+	children="<%= children %>"
+	height="150"
+	render="true"
+	type="file"
+	width="200"
+/>
 
 </body>
 </html>

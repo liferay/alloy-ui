@@ -30,7 +30,7 @@
 <input type="text" name="input1" size="55" value="" id="input1" />
 
 <div class="calendar-icon">
-	<alloy:button-item icon="calendar" render="true" useMarkup="true" />
+	<alloy:button-item icon="calendar" render="true" />
 	
 	Click on the icon to load a Portuguese Calendar
 </div>
