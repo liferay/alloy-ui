@@ -96,7 +96,7 @@ public class BaseEditableTag extends IncludeTag {
 		return _node;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -520,7 +520,7 @@ public class BaseEditableTag extends IncludeTag {
 		setScopedAttribute("node", node);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1117,7 +1117,7 @@ public class BaseEditableTag extends IncludeTag {
 	private java.lang.Boolean _initialized;
 	private java.lang.String _inputType;
 	private java.lang.Object _node;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.String _renderTo;
 	private java.lang.Boolean _rendered;
 	private java.lang.String _saveButton;

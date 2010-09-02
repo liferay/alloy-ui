@@ -84,7 +84,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		return _ratio;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -458,7 +458,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setScopedAttribute("ratio", ratio);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -993,7 +993,7 @@ public class BaseProgressBarTag extends IncludeTag {
 	private java.lang.Object _min;
 	private java.lang.String _orientation;
 	private java.lang.Object _ratio;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.String _srcNode;
 	private java.lang.String _statusNode;

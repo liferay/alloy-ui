@@ -148,7 +148,7 @@ public class BaseCalendarTag extends IncludeTag {
 		return _preventOverlap;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -830,7 +830,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1768,7 +1768,7 @@ public class BaseCalendarTag extends IncludeTag {
 	private java.lang.Object _maxDate;
 	private java.lang.Object _minDate;
 	private java.lang.Boolean _preventOverlap;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.Boolean _selectMultipleDates;
 	private java.lang.Boolean _setValue;

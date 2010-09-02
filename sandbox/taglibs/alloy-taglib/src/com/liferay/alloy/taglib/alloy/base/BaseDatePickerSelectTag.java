@@ -104,7 +104,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		return _populateYear;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -560,7 +560,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setScopedAttribute("populateYear", populateYear);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1196,7 +1196,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 	private java.lang.Boolean _populateDay;
 	private java.lang.Boolean _populateMonth;
 	private java.lang.Boolean _populateYear;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.String _selectWrapperNode;
 	private java.lang.String _srcNode;

@@ -96,7 +96,7 @@ public class BaseToolbarTag extends IncludeTag {
 		return _orientation;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -492,7 +492,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setScopedAttribute("orientation", orientation);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1040,7 +1040,7 @@ public class BaseToolbarTag extends IncludeTag {
 	private java.lang.Boolean _initialized;
 	private java.lang.Boolean _multiple;
 	private java.lang.String _orientation;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.Object _selection;
 	private java.lang.String _srcNode;

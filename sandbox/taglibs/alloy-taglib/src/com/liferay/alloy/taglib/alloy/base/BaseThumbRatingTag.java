@@ -92,7 +92,7 @@ public class BaseThumbRatingTag extends IncludeTag {
 		return _labelNode;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -530,7 +530,7 @@ public class BaseThumbRatingTag extends IncludeTag {
 		setScopedAttribute("labelNode", labelNode);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1160,7 +1160,7 @@ public class BaseThumbRatingTag extends IncludeTag {
 	private java.lang.String _inputName;
 	private java.lang.String _label;
 	private java.lang.String _labelNode;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.Object _selectedIndex;
 	private java.lang.Boolean _showTitle;

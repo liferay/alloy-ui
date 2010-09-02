@@ -124,7 +124,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 		return _preventOverlap;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -710,7 +710,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 		setScopedAttribute("preventOverlap", preventOverlap);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1531,7 +1531,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 	private java.lang.String _overlaycontextpanelId;
 	private java.lang.Boolean _initialized;
 	private java.lang.Boolean _preventOverlap;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.Boolean _shim;
 	private java.lang.Boolean _showArrow;

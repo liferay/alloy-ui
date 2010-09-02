@@ -92,7 +92,7 @@ public class BasePanelTag extends IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -458,7 +458,7 @@ public class BasePanelTag extends IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -962,7 +962,7 @@ public class BasePanelTag extends IncludeTag {
 	private java.lang.Object _icons;
 	private java.lang.String _panelId;
 	private java.lang.Boolean _initialized;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;

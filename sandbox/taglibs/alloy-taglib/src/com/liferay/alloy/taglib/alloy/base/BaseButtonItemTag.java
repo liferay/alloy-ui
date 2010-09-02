@@ -100,7 +100,7 @@ public class BaseButtonItemTag extends IncludeTag {
 		return _labelNode;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -494,7 +494,7 @@ public class BaseButtonItemTag extends IncludeTag {
 		setScopedAttribute("labelNode", labelNode);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1030,7 +1030,7 @@ public class BaseButtonItemTag extends IncludeTag {
 	private java.lang.Boolean _initialized;
 	private java.lang.String _label;
 	private java.lang.String _labelNode;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.String _srcNode;
 	private java.lang.Object _strings;

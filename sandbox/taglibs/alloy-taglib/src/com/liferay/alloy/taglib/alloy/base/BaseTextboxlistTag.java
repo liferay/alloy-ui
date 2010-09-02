@@ -132,7 +132,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		return _queryQuestionMark;
 	}
 
-	public java.lang.Boolean getRender() {
+	public java.lang.Object getRender() {
 		return _render;
 	}
 
@@ -842,7 +842,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setScopedAttribute("queryQuestionMark", queryQuestionMark);
 	}
 
-	public void setRender(java.lang.Boolean render) {
+	public void setRender(java.lang.Object render) {
 		_render = render;
 
 		setScopedAttribute("render", render);
@@ -1863,7 +1863,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 	private java.lang.Boolean _queryMatchCase;
 	private java.lang.Boolean _queryMatchContains;
 	private java.lang.Boolean _queryQuestionMark;
-	private java.lang.Boolean _render;
+	private java.lang.Object _render;
 	private java.lang.Boolean _rendered;
 	private java.lang.Object _schema;
 	private java.lang.String _schemaType;
