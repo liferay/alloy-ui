@@ -6,10 +6,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
 >
-	<tlib-version>1.0</tlib-version>
-	<short-name>alloy</short-name>
-	<uri>http://alloy.liferay.com/tld/alloy</uri>
-
+	<tlib-version>${version}</tlib-version>
+	<short-name>${shortName}</short-name>
+	<uri>${uri}</uri>
+<#if alloyComponent>
 	<tag>
 		<name>component</name>
 		<tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>
@@ -62,8 +62,8 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
-	<#list components as component>
+</#if>
+<#list components as component>
 	<tag>
 		<name>${component.getUncamelizedName()}</name>
 		<tag-class>${packagePath}.${component.getNamespace()}.${component.getSafeName()}Tag</tag-class>
@@ -81,5 +81,5 @@
 		</#list>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-	</#list>
+</#list>
 </taglib>

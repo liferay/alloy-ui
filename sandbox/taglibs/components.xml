@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy>
+<alloy short-name="alloy" uri="http://alloy.liferay.com/tld/alloy" tlib-version="1.0">
   <component name="A.io" module="aui-io" namespace="alloy" bodyContent="false" alloyComponent="true">
     <attributes/>
     <events/>

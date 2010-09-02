@@ -140,6 +140,10 @@ public class XMLBuilder {
 		Document doc = DocumentFactory.getInstance().createDocument();
 		Element root = doc.addElement("alloy");
 
+		root.addAttribute("short-name", _DEFAULT_TAGLIB_SHORT_NAME);
+		root.addAttribute("uri", _DEFAULT_TAGLIB_URI);
+		root.addAttribute("tlib-version", _DEFAULT_TAGLIB_VERSION);
+
 		for (Component component : components) {
 			Element componentNode = root.addElement("component");
 
@@ -305,6 +309,9 @@ public class XMLBuilder {
 
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _DEFAULT_TYPE = "java.lang.Object";
+	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";
+	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
+	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
 
 	private JSONObject _classMapJSON;
 	private List<String> _componentExcluded;

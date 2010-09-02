@@ -2,6 +2,8 @@
 
 <%@ include file="/html/taglib/alloy/init.jsp" %>
 
+<%@ taglib prefix="liferay" uri="http://test.liferay.com/tld/liferay" %>
+
 <link href="<%= PropsValues.ALLOY_BASE_PATH %>overlay/assets/skins/sam/overlay.css" type="text/css" rel="stylesheet" />
 <link href="<%= PropsValues.ALLOY_BASE_PATH %>widget/assets/skins/sam/widget.css" type="text/css" rel="stylesheet" />
 <link href="<%= PropsValues.ALLOY_BASE_PATH %>widget/assets/skins/sam/widget-stack.css" type="text/css" rel="stylesheet" />
@@ -104,3 +106,5 @@ body {
 	icon="loading"
 	render="#buttonContainer"
 />
+
+<liferay:test test="Eduardo"/>

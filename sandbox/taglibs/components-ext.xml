@@ -1,3 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy></alloy>
+<alloy short-name="liferay" uri="http://test.liferay.com/tld/liferay" tlib-version="1.0">
+	<component name="Test" namespace="liferay">
+		<attributes>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+	</component>
+</alloy>
