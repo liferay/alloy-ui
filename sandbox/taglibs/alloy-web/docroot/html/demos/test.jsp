@@ -96,8 +96,10 @@ body {
 
 <br />
 
+<div id="buttonContainer"></div>
+
 <alloy:button-item
 	label="Test"
 	icon="loading"
-	render="true"
+	render="#buttonContainer"
 />

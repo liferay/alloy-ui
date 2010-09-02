@@ -225,8 +225,8 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -735,8 +735,8 @@ boundingBox which matches <code>aui-button-label</code>.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -1177,8 +1177,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -1798,8 +1798,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -2254,8 +2254,8 @@ populated.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -2746,8 +2746,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -3207,8 +3207,8 @@ href="Editable.html#config_node">node</a>.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -4059,8 +4059,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -4795,8 +4795,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -5566,8 +5566,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -5992,8 +5992,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -6503,8 +6503,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -6997,8 +6997,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -7756,8 +7756,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -8152,8 +8152,8 @@ horizontal).]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -8505,8 +8505,8 @@ boundingBox which matches <code>aui-rating-label-element</code>.]]></description
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -9243,8 +9243,8 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -9736,8 +9736,8 @@ boundingBox which matches <code>aui-rating-label-element</code>.]]></description
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -10122,8 +10122,8 @@ in the object hierarchy.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>
@@ -10529,8 +10529,8 @@ for corner based alignments]]></description>
       </attribute>
       <attribute>
         <name>render</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>java.lang.Object</inputType>
+        <outputType>java.lang.Object</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
 preventing the <code>.render()</code> manual call.]]></description>

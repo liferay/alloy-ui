@@ -295,7 +295,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -1301,7 +1301,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -1991,7 +1991,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -3092,7 +3092,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -3884,7 +3884,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -4664,7 +4664,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -5509,7 +5509,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Node to render the editable.]]></description>
@@ -6865,7 +6865,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -8185,7 +8185,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -9628,7 +9628,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -10326,7 +10326,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -11173,7 +11173,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -12035,7 +12035,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -13338,7 +13338,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -14038,7 +14038,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -14631,7 +14631,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -15881,7 +15881,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -16870,7 +16870,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -17544,7 +17544,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
@@ -18207,7 +18207,7 @@ preventing the <code>.render()</code> manual call.]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
