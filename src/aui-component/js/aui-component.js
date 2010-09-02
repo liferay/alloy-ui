@@ -92,7 +92,7 @@ Component.ATTRS = {
 	 *
 	 * @attribute render
 	 * @default false
-	 * @type boolean
+	 * @type boolean | Node
 	 */
 	render: {
 		value: false,
