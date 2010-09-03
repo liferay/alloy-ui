@@ -1,22 +1,22 @@
 package com.liferay.alloy.tools.tagbuilder;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.tools.model.Attribute;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentFactory;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
+import com.liferay.alloy.util.xml.SAXReaderUtil;
 
 import com.liferay.alloy.util.FileUtil;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 
 /**
  * <a href="TagBuilder.java.html"><b><i>View Source</i></b></a>
@@ -54,16 +54,13 @@ public class TagBuilder {
 
 		_componentsExtDoc = new ArrayList<Document>();
 
-		File file = new File(_componentsXML);
-		SAXReader reader = new SAXReader();
-		_componentsDoc = reader.read(file);
+		_componentsDoc = SAXReaderUtil.read(new File(_componentsXML));
 
 		for (String componentExtXML : _componentsExtXML) {
 			File extFile = new File(componentExtXML);
 
 			if (extFile.exists()) {
-				SAXReader extReader = new SAXReader();
-				_componentsExtDoc.add(extReader.read(extFile));
+				_componentsExtDoc.add(SAXReaderUtil.read(extFile));
 			}
 		}
 
@@ -232,7 +229,6 @@ public class TagBuilder {
 
 		for (Document doc : documents) {
 			Element root = doc.getRootElement();
-
 			String shortName = GetterUtil.getString(
 				root.attributeValue("short-name"), _DEFAULT_TAGLIB_SHORT_NAME);
 
@@ -242,29 +238,31 @@ public class TagBuilder {
 			String version = GetterUtil.getString(
 				root.attributeValue("tlib-version"), _DEFAULT_TAGLIB_VERSION);
 
+			context.put("alloyComponent", shortName.equals(_DEFAULT_NAMESPACE));
 			context.put("shortName", shortName);
 			context.put("uri", uri);
 			context.put("version", version);
 			context.put("components", _getComponents(doc));
 
-			if (shortName.equals(_DEFAULT_NAMESPACE)) {
-				context.put("alloyComponent", true);
-			}
-			else {
-				context.put("alloyComponent", false);
-			}
-
 			String content = _processTemplate(_tplTld, context);
 
-			File tagFile = new File(
-				_tldDir.concat(shortName.concat(_TLD_EXTENSION)));
+			String tldFilePath = _tldDir.concat(
+				shortName).concat(_TLD_EXTENSION);
 
-			_writeFile(tagFile, content);
+			File tldFile = new File(tldFilePath);
+
+			Document outputDoc = SAXReaderUtil.read(content);
+
+			if (tldFile.exists()) {
+				outputDoc = _mergeTlds(SAXReaderUtil.read(tldFile), outputDoc);
+			}
+
+			_writeXML(tldFile, outputDoc);
 		}
 	}
 
 	private List<Component> _getAllComponents() throws Exception {
-		Document doc = DocumentFactory.getInstance().createDocument();
+		Document doc = SAXReaderUtil.createDocument();
 		Element root = _componentsDoc.getRootElement().createCopy();
 
 		for (Document extDoc : _componentsExtDoc) {
@@ -388,6 +386,20 @@ public class TagBuilder {
 		return prefixedEvents;
 	}
 
+	private Document _mergeTlds(Document doc1, Document doc2) {
+		Document doc = SAXReaderUtil.createDocument();
+
+		doc.setRootElement(doc1.getRootElement().createCopy());
+
+		List<Element> tags = doc2.getRootElement().elements("tag");
+
+		for (Element tag : tags) {
+			doc.getRootElement().add(tag.createCopy());
+		}
+
+		return doc;
+	}
+
 	private String _processTemplate(String name, Map<String, Object> context)
 		throws Exception {
 
@@ -418,6 +430,23 @@ public class TagBuilder {
 			e.printStackTrace();
 		}
 	}
+
+	private void _writeXML(File xmlFile, Document doc) {
+		try {
+			XMLWriter writer = new XMLWriter(
+				new FileOutputStream(xmlFile),
+				OutputFormat.createPrettyPrint());
+
+			writer.write(doc);
+			writer.flush();
+
+			System.out.println("Writing " + xmlFile.getPath());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static final String _AFTER = "after";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";

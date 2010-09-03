@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<taglib
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/j2ee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
->
-	<tlib-version>1.0</tlib-version>
-	<short-name>liferay</short-name>
-	<uri>http://test.liferay.com/tld/liferay</uri>
-	<tag>
-		<name>test</name>
-		<tag-class>com.liferay.alloy.taglib.liferay.TestTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<name>test</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
-	</tag>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">  
+  <tlib-version>1.0</tlib-version>  
+  <short-name>liferay</short-name>  
+  <uri>http://www.liferay.com</uri>  
+  <tag> 
+    <name>test</name>  
+    <tag-class>com.liferay.alloy.taglib.liferay.TestTag</tag-class>  
+    <body-content>JSP</body-content>  
+    <attribute> 
+      <name>test</name>  
+      <required>false</required>  
+      <rtexprvalue>true</rtexprvalue>  
+      <type>java.lang.String</type> 
+    </attribute>  
+    <dynamic-attributes>true</dynamic-attributes> 
+  </tag> 
 </taglib>

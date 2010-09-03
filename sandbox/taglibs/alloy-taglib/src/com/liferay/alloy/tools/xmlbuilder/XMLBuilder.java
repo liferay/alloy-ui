@@ -192,8 +192,6 @@ public class XMLBuilder {
 
 			OutputFormat format = OutputFormat.createPrettyPrint();
 
-			format.setEncoding(UTF_8);
-
 			XMLWriter writer = new XMLWriter(fos, format);
 
 			writer.write(doc);
@@ -304,9 +302,8 @@ public class XMLBuilder {
 
 		return hierarchy;
 	}
-	private static final String AUI_PREFIX = "aui-";
-	private static final String UTF_8 = "UTF-8";
 
+	private static final String AUI_PREFIX = "aui-";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _DEFAULT_TYPE = "java.lang.Object";
 	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";

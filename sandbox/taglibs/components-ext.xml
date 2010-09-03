@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy short-name="liferay" uri="http://test.liferay.com/tld/liferay" tlib-version="1.0">
+<alloy short-name="liferay" uri="http://www.liferay.com">
 	<component name="Test" namespace="liferay">
 		<attributes>
 			<attribute>
