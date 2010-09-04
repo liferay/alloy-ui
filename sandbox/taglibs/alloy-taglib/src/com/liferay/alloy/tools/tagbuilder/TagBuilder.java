@@ -187,19 +187,25 @@ public class TagBuilder {
 		String contentJsp = _processTemplate(_tplJsp, context);
 		String contentInitJsp = _processTemplate(_tplInitJsp, context);
 
-		_writeFile(new File(path.concat(_INIT_PAGE)), contentInitJsp);
-		_writeFile(
-			new File(path.concat(_INIT_EXT_PAGE)), StringPool.BLANK, false);
+		File initFile = new File(path.concat(_INIT_PAGE));
+		File initExtFile = new File(path.concat(_INIT_EXT_PAGE));
+
+		_writeFile(initFile, contentInitJsp);
+		_writeFile(initExtFile, StringPool.BLANK, false);
 
 		if (component.isBodyContent()) {
 			String contentStart = _processTemplate(_tplStartJsp, context);
 
-			_writeFile(new File(path.concat(_START_PAGE)), contentStart, false);
+			File startFile = new File(path.concat(_START_PAGE));
+			File endFile = new File(path.concat(_END_PAGE));
 
-			_writeFile(new File(path.concat(_END_PAGE)), contentJsp, false);
+			_writeFile(startFile, contentStart, false);
+			_writeFile(endFile, contentJsp, false);
 		}
 		else {
-			_writeFile(new File(path.concat(_PAGE)), contentJsp, false);
+			File pageFile = new File(path.concat(_PAGE));
+
+			_writeFile(pageFile, contentJsp, false);
 		}
 	}
 
@@ -348,10 +354,6 @@ public class TagBuilder {
 		}
 
 		return components;
-	}
-
-	private List<Attribute> _getEvents(Element componentNode) {
-		return _getAttributes(componentNode, "events", "event");
 	}
 
 	private List<Attribute> _getPrefixedEvents(Element componentNode) {
