@@ -21,6 +21,8 @@ import com.liferay.alloy.util.StringUtil;
 import com.liferay.alloy.util.json.StringTransformer;
 import com.liferay.portal.kernel.util.StringPool;
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -39,9 +41,11 @@ public class ComponentTag extends BaseComponentTag {
 
 		_proccessAttributes(options, newOptions);
 
+		JSONObject optionsJSON = JSONFactoryUtil.getJSONObject(newOptions);
+
 		super._setAttributes(request);
 		setNamespacedAttribute(request, "options", options);
-		setNamespacedAttribute(request, "optionsJSON", _serialize(newOptions));
+		setNamespacedAttribute(request, "optionsJSON", optionsJSON);
 	}
 
 	private boolean _isEventAttribute(String key) {

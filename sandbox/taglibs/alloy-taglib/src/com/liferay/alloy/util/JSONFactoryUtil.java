@@ -18,6 +18,9 @@ import com.liferay.portal.kernel.util.Validator;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 import flexjson.transformer.Transformer;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +46,32 @@ public class JSONFactoryUtil {
 
 	public static HashMap<String, Object> getHashMap(Object obj) {
 		return (HashMap)safeDeserialize(obj);
+	}
+
+	public static JSONArray getJSONArray(Object obj) {
+		JSONArray json = null;
+
+		try {
+			json = new JSONArray(serialize(obj));
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return json;
+	}
+
+	public static JSONObject getJSONObject(Object obj) {
+		JSONObject json = null;
+
+		try {
+			json = new JSONObject(serialize(obj));
+		}
+		catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		return json;
 	}
 
 	public static Object safeDeserialize(Object obj) {

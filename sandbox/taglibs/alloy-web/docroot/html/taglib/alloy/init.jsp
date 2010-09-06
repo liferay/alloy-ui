@@ -20,6 +20,8 @@
 <%@ page import="com.liferay.alloy.util.StringUtil"%>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator"%>
+<%@ page import="org.json.JSONObject" %>
+<%@ page import="org.json.JSONArray" %>
 <%!
 public static void _updateOptions(Map<String, Object> options, String key, Object value) {
 	if ((options != null) && options.containsKey(key)) {
