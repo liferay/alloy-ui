@@ -5,58 +5,6 @@
   <short-name>alloy</short-name>  
   <uri>http://alloy.liferay.com/tld/alloy</uri>  
   <tag> 
-    <name>component</name>  
-    <tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>  
-    <body-content>JSP</body-content>  
-    <attribute> 
-      <name>excludeAttributes</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <attribute> 
-      <name>javaScriptAttributes</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <attribute> 
-      <name>tagPageContext</name>  
-      <required>true</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>javax.servlet.jsp.JspContext</type> 
-    </attribute>  
-    <attribute> 
-      <name>var</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <attribute> 
-      <name>module</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <attribute> 
-      <name>name</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <attribute> 
-      <name>options</name>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.util.Map</type> 
-    </attribute>  
-    <attribute> 
-      <name>yuiVariable</name>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
-    <dynamic-attributes>true</dynamic-attributes> 
-  </tag>  
-  <tag> 
     <name>a-io</name>  
     <tag-class>com.liferay.alloy.taglib.alloy.AioTag</tag-class>  
     <body-content>JSP</body-content>  

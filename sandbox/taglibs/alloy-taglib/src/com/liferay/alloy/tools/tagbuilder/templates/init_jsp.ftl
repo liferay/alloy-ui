@@ -12,6 +12,10 @@
 	<#return ((simpleClassName == "String") || (simpleClassName == "ArrayList") || (simpleClassName == "HashMap")) />
 </#function>
 
+<#function hasGetter simpleClassName>
+	<#return ((simpleClassName == "Object") || (simpleClassName == "String") || (simpleClassName == "Integer") || (simpleClassName == "Boolean") || (simpleClassName == "Date") || (simpleClassName == "Double") || (simpleClassName == "Float") || (simpleClassName == "Long") || (simpleClassName == "Short") || (simpleClassName == "Number")) />
+</#function>
+
 <#function isNumericAttribute simpleClassName>
 	<#return ((simpleClassName == "Number") || (simpleClassName == "Integer") || (simpleClassName == "Float") || (simpleClassName == "Double")) />
 </#function>
@@ -74,8 +78,10 @@ options.putAll(dynamicAttributes);
 			${attribute.getOutputType()} _${attribute.getSafeName()} = JSONFactoryUtil.getArrayList(GetterUtil.getObject(${value}${defaultValueSuffix}));
 		<#elseif outputSimpleClassName == "HashMap">
 			${attribute.getOutputType()} _${attribute.getSafeName()} = JSONFactoryUtil.getHashMap(GetterUtil.getObject(${value}${defaultValueSuffix}));
-		<#else>
+		<#elseif hasGetter(outputSimpleClassName)>
 			${attribute.getOutputType()} _${attribute.getSafeName()} = GetterUtil.get${outputSimpleClassName}(${value}${defaultValueSuffix});
+		<#else>
+			${attribute.getOutputType()} _${attribute.getSafeName()} = (${attribute.getOutputType()})request.getAttribute(${namespacedName});
 		</#if>
 	</#if>
 </#list>

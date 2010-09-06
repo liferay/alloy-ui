@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<alloy short-name="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util">
+	<component name="Component" namespace="alloy_util">
+		<attributes>
+			<attribute>
+				<name>excludeAttributes</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+			<attribute>
+				<name>javaScriptAttributes</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+			<attribute>
+				<name>tagPageContext</name>
+				<inputType>java.lang.Object</inputType>
+				<outputType>javax.servlet.jsp.JspContext</outputType>
+				<required>true</required>
+			</attribute>
+			<attribute>
+				<name>var</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+			<attribute>
+				<name>module</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+			<attribute>
+				<name>name</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType></defaultType>
+			</attribute>
+			<attribute>
+				<name>options</name>
+				<inputType>java.util.Map</inputType>
+				<outputType>java.util.Map</outputType>
+			</attribute>
+			<attribute>
+				<name>yuiVariable</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+		</attributes>
+	</component>
+</alloy>

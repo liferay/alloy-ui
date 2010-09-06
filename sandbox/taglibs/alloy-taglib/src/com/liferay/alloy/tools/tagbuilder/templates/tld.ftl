@@ -9,60 +9,6 @@
 	<tlib-version>${version}</tlib-version>
 	<short-name>${shortName}</short-name>
 	<uri>${uri}</uri>
-<#if alloyComponent>
-	<tag>
-		<name>component</name>
-		<tag-class>com.liferay.alloy.taglib.util.ComponentTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<name>excludeAttributes</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>javaScriptAttributes</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>tagPageContext</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>javax.servlet.jsp.JspContext</type>
-		</attribute>
-		<attribute>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>module</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>name</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<name>options</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.util.Map</type>
-		</attribute>
-		<attribute>
-			<name>yuiVariable</name>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<dynamic-attributes>true</dynamic-attributes>
-	</tag>
-</#if>
 <#list components as component>
 	<tag>
 		<name>${component.getUncamelizedName()}</name>

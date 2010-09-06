@@ -12,18 +12,18 @@
  * details.
  */
 
-package com.liferay.alloy.taglib.util;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
+package com.liferay.alloy.taglib.alloy_util;
 
 import com.liferay.alloy.servlet.taglib.AttributesTagSupport;
 import com.liferay.alloy.servlet.taglib.TagServletResponseWrapper;
 import com.liferay.portal.kernel.servlet.TrackedServletRequest;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.Validator;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.jsp.JspException;
 
 /**
  * @author Brian Wing Shun Chan

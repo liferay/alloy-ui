@@ -1,6 +1,6 @@
 package com.liferay.alloy.taglib.alloy.base;
 
-import com.liferay.alloy.taglib.util.IncludeTag;
+import com.liferay.alloy.taglib.alloy_util.IncludeTag;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;

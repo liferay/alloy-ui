@@ -12,7 +12,7 @@
 	</c:if>
 </c:if>
 
-<alloy:component
+<alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
