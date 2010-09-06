@@ -5,7 +5,6 @@ import java.util.*;
 
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.tools.model.Attribute;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -223,7 +222,7 @@ public class TagBuilder {
 
 		File tagFile = new File(sb.toString());
 
-		_writeFile(tagFile, content);
+		_writeFile(tagFile, content, false);
 	}
 
 	private void _createTld() throws Exception {
