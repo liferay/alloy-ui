@@ -65,7 +65,6 @@
 	caption="Liferay Champion Soccer"
 	captionFromTitle="true"
 	preloadAllImages="true"
-	render="true"
 	showInfo="true"
 />
 

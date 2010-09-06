@@ -77,7 +77,7 @@
 		</div>
 
 		<div class="<%= CSS_DATEPICKER_BUTTON_WRAPPER %>">
-			<alloy:button-item icon="calendar" render="true" useJavaScript="false" />
+			<alloy:button-item icon="calendar" useJavaScript="false" />
 		</div>
 
     </div>

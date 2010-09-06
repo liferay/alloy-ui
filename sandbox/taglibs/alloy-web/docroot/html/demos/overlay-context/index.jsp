@@ -159,7 +159,6 @@
 	trigger=".menu-item-1"
 	showDelay="0"
 	showOn="mouseenter"
-	render="true"
 />
 
 <alloy:overlay-context
@@ -170,7 +169,6 @@
 	trigger="#menuItem2"
 	showDelay="0"
 	showOn="mouseenter"
-	render="true"
 />
 
 <alloy:overlay-context
@@ -181,7 +179,6 @@
 	trigger="button"
 	showDelay="0"
 	showOn="click"
-	render="true"
 />
 
 </body>

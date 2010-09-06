@@ -105,7 +105,6 @@ schema.put("resultFields", new String[] {"key", "name", "description"});
 	<alloy:textboxlist
 		dataSource="<%= states %>"
 		matchKey="name"
-		render="true"
 		schema="<%= schema %>"
 		typeAhead="true"
 		width="600"

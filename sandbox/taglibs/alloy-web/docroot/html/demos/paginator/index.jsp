@@ -95,7 +95,6 @@
 	rowsPerPage="1"
 	rowsPerPageOptions="<%= new Integer[] {1, 3, 5, 7} %>"
 	onChangeRequest="changeRequestHandlerA"
-	render="true"
 />
 
 <alloy:paginator
@@ -110,7 +109,6 @@
 	nextPageLinkLabel="NEXT"
 	prevPageLinkLabel="PREV"
 	template="{PrevPageLink} {NextPageLink} - {PageLinks} {CurrentPageReport}"
-	render="true"
 />
 
 <script type="text/javascript">

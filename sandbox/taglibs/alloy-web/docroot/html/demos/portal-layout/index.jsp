@@ -157,7 +157,6 @@
 	dragNodes=".portlet"
 	dropNodes=".column"
 	lazyStart="true"
-	render="true"
 />
 
 <script type="text/javascript">

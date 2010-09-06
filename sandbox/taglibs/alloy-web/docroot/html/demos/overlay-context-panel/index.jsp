@@ -71,7 +71,6 @@
 	hideDelay="0"
 	hideOnDocumentClick="false"
 	anim="true"
-	render="true"
 />
 
 <%
@@ -101,7 +100,6 @@ align.put("points", new String[] {"tl", "bc"});
 	align="<%= align %>"
 	anim="<%= anim %>"
 	width="300"
-	render="true"
 />
 
 </body>

@@ -24,7 +24,6 @@ body {
 <p><button id="hideAll">Hide All</button></p>
 
 <alloy:dialog
-	render="true"
 	title="Dialog 1"
 	dialogBodyContent="Testing body"
 	width="500"

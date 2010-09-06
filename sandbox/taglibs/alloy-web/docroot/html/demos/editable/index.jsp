@@ -43,9 +43,9 @@
 	</div>
 </div>
 
-<alloy:editable node="#editor1" render="true" />
+<alloy:editable node="#editor1" />
 
-<alloy:editable inputType="textarea" node="#editor2" render="true" />
+<alloy:editable inputType="textarea" node="#editor2" />
 
 </body>
 </html>

@@ -41,7 +41,6 @@ body {
 </style>
 
 <alloy:dialog
-	render="true"
 	title="Eduardo"
 	dialogBodyContent="asdasdasdddddddd"
 	width="300"
@@ -53,7 +52,6 @@ body {
 
 <alloy:rating
 	label="Created from HTML markup"
-	render="true"
 	useJavaScript="true"
 />
 
@@ -63,7 +61,6 @@ body {
 	<alloy:progress-bar
 		boundingBox="#pb1"
 		label="Created from HTML markup"
-		render="true"
 		width="500"
 		progressbarValue="90"
 	/>
@@ -83,7 +80,6 @@ body {
 		collapsible="true"
 		headerContent="Header"
 		panelBodyContent="Test"
-		render="true"
 	/>
 </div>
 
@@ -92,7 +88,6 @@ body {
 <div class="aui-helper-clearfix">
 	<alloy:date-picker-select
 		appendOrder='<%= new String[] {"d", "m", "y"} %>'
-		render="true"
 		yearRange="<%= new Integer[] {1980, 2010} %>"
 	/>
 </div>

@@ -36,14 +36,12 @@
 	label="Created from HTML markup"
 	defaultSelected="3"
 	canReset="false"
-	render="true"
 />
 
 <br/>
 
 <alloy:thumb-rating
 	label="Thumb Rating"
-	render="true"
 />
 
 <br />
@@ -53,7 +51,6 @@
 	defaultSelected="3"
 	disabled="false"
 	label="Label..."
-	render="true"
 	useMarkup="false"
 />
 

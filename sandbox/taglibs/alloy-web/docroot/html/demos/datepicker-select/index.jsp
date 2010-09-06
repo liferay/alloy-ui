@@ -42,7 +42,6 @@
 	
 	<alloy:date-picker-select
 		boundingBox="#dynamicDatePicker"
-		render="true"
 		useMarkup="false"
 	/>
 </div>
@@ -59,7 +58,6 @@
 	<alloy:date-picker-select
 		appendOrder='<%= new String[] {"y", "m", "d"} %>'
 		calendar="<%= calendarConfig %>"
-		render="true"
 		yearRange="<%= new Integer[] {1980, 2010 } %>"
 	/>
 </div>

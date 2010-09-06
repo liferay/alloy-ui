@@ -84,13 +84,11 @@ align.put("points", new String[] {"bc", "tc"});
 	trigger=".t1"
 	align="<%= align %>"
 	title="true"
-	render="true"
 />
 
 <alloy:tooltip
 	bodyContent="<img src='/html/demos/tooltip/assets/cream.jpg' /><br/><div style='text-align: center;'>Ice cream sandwich taste test winner</div>"
 	trigger="#t2"
-	render="true"
 />
 
 <%
@@ -103,13 +101,11 @@ align.put("points", new String[] {"lc", "rc"});
 	align="<%= align %>"
 	showArrow="false"
 	title="true"
-	render="true"
 />
 
 <alloy:tooltip
 	bodyContent="<object width='560' height='340'><param name='movie' value='http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube.com/v/PiSxJwB29R8&hl=en&fs=1&' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width='560' height='340'></embed></object>"
 	trigger="#t5"
-	render="true"
 />
 
 <script type="text/javascript" charset="utf-8">

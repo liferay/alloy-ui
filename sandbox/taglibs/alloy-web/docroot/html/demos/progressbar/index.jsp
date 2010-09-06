@@ -34,7 +34,6 @@
 			onComplete="function(e) { this.set('label', 'complete!'); }"
 			width="650"
 			height="25"
-			render="true"
 		/>
 	</div>
 	
@@ -47,7 +46,6 @@
 			progressbarValue="50"
 			label="50%"
 			width="200"
-			render="true"
 		/>
 	</div>
 	
@@ -59,7 +57,6 @@
 			label="75%"
 			height="50"
 			width="400"
-			render="true"
 		/>
 	</div>
 </div>

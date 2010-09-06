@@ -104,7 +104,6 @@ schema.put("resultFields", new String[] {"key", "name", "description"});
 		delimChar=","
 		matchKey="name"
 		schema="<%= schema %>"
-		render="true"
 		typeAhead="true"
 	/>
 </div>

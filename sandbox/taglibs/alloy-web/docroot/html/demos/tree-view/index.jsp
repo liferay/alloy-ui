@@ -99,7 +99,6 @@ children.add(root);
 	boundingBox="#tree1"
 	children="<%= children %>"
 	height="150"
-	render="true"
 	type="file"
 	width="200"
 />
@@ -107,7 +106,6 @@ children.add(root);
 <alloy:tree-view
 	children="<%= children %>"
 	height="150"
-	render="true"
 	type="file"
 	width="200"
 />

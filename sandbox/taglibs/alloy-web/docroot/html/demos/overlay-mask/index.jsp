@@ -69,7 +69,7 @@
 
 Problem with zIndex attribute setter: Unable to find setter method for attribute: zIndex
 
-<alloy:overlay-mask target="#element1" render="true" visible="true" />
+<alloy:overlay-mask target="#element1" visible="true" />
 
 </body>
 </html>

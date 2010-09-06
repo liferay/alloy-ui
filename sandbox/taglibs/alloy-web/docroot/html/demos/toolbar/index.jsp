@@ -58,7 +58,6 @@
 			activeState="true"
 			boundingBox="#demo1"
 			children="<%= children %>"
-			render="true"
 		/>
 	</div>
 	<div id="demo2">
@@ -79,16 +78,15 @@
 			activeState="true"
 			boundingBox="#demo2"
 			children="<%= children %>"
-			render="true"
 		/>
 	</div>
 	
 	<h2>Icon only</h2>
 
-	<alloy:toolbar orientation="vertical" render="true">
-		<alloy:button-item activeState="true" cssClass="aui-toolbar-first" icon="plus" render="true" />
-		<alloy:button-item activeState="true" icon="minus" render="true" />
-		<alloy:button-item activeState="true" cssClass="aui-toolbar-last" icon="gear" render="true" />
+	<alloy:toolbar orientation="vertical">
+		<alloy:button-item activeState="true" cssClass="aui-toolbar-first" icon="plus" />
+		<alloy:button-item activeState="true" icon="minus" />
+		<alloy:button-item activeState="true" cssClass="aui-toolbar-last" icon="gear" />
 	</alloy:toolbar>
 </div>
 

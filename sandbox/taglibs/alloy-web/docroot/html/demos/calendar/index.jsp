@@ -30,7 +30,7 @@
 <input type="text" name="input1" size="55" value="" id="input1" />
 
 <div class="calendar-icon">
-	<alloy:button-item icon="calendar" render="true" />
+	<alloy:button-item icon="calendar" />
 	
 	Click on the icon to load a Portuguese Calendar
 </div>
@@ -40,7 +40,6 @@
 	dates='<%= new String[] {"09/14/2009", "09/15/2009" } %>'
 	maxDate="09/25/2009"
 	minDate="09/05/2009"
-	render="true"
 	selectMultipleDates="true"
 	setValue="true"
 	trigger="#input1"
@@ -48,7 +47,6 @@
 
 <alloy:calendar
 	firstDayOfWeek="0"
-	render="true"
 	trigger=".aui-buttonitem-content"
 	onSelect="function(event) { alert( event.date.formatted ) }"
 />

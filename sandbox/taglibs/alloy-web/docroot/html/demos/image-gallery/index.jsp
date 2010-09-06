@@ -85,7 +85,6 @@
 	links="#gallery1 a"
 	maxHeight="400"
 	maxWidth="400"
-	render="true"
 />
 
 <script type="text/javascript">

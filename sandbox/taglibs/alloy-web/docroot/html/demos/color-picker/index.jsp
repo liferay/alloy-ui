@@ -30,7 +30,6 @@
 </div>
 
 <alloy:color-picker
-	render="true"
 	boundingBox="#demo"
 />
 
