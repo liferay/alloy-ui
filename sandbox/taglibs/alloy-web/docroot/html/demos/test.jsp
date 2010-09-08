@@ -88,7 +88,6 @@ body {
 <div class="aui-helper-clearfix">
 	<alloy:date-picker-select
 		appendOrder='<%= new String[] {"d", "m", "y"} %>'
-		yearRange="<%= new Integer[] {1980, 2010} %>"
 	/>
 </div>
 

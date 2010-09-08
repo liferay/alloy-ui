@@ -25,29 +25,31 @@
 			map.put("y", Calendar.YEAR);
 			map.put("y-css", YEAR_NODE_CLASS);
 			map.put("y-current", calendar.get(Calendar.YEAR));
-
-			int endValue = GetterUtil.getInteger(
-				String.valueOf(_yearRange.get(1)), 2010);
-
-			int startValue = GetterUtil.getInteger(
-				String.valueOf(_yearRange.get(0)), 1980);
-
+			
 			for (Object curNode : _appendOrder) {
 
 				calendar.setTime(new Date());
 
 				Integer type = (Integer)map.get(curNode);
 
-				if (type != Calendar.YEAR) {
-					endValue = calendar.getActualMaximum(type);
-					startValue = calendar.getActualMinimum(type);
+				int endValue = calendar.getActualMaximum(type);
+				int startValue = calendar.getActualMinimum(type);
+				
+				if (type == Calendar.YEAR) {
+					int currentYear = calendar.get(Calendar.YEAR);
+		
+					endValue = GetterUtil.getInteger(
+						String.valueOf(_yearRange.get(1)), currentYear + 10);
+		
+					startValue = GetterUtil.getInteger(
+						String.valueOf(_yearRange.get(0)), currentYear - 10);
 				}
 			%>
 
 			<select class="<%= map.get(((String)curNode).concat("-css")) %>">
 
 				<%
-				for (int i = startValue; i < endValue+ 1; i++) {
+				for (int i = startValue; i < endValue + 1; i++) {
 
 					calendar.set(type, i);
 
