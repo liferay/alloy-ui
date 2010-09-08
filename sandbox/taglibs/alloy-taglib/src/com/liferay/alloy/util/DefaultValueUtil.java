@@ -135,8 +135,4 @@ public class DefaultValueUtil {
 
 	private static final String _JAVA_UTIL_HASH_MAP = "java.util.HashMap";
 
-	private static HashMap<String, Integer> _NUMBER_VALUES = null;
-
-	private static HashMap<String, String> _STRING_VALUES = null;
-
 }
