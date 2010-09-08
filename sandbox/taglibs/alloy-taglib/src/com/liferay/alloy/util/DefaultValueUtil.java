@@ -14,6 +14,7 @@
 
 package com.liferay.alloy.util;
 
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import jodd.util.ArraysUtil;
@@ -36,17 +37,32 @@ public class DefaultValueUtil {
 		String defaultValue = StringPool.BLANK;
 
 		if (className.equals(_JAVA_LANG_STRING) ||
-			className.equals(_JAVA_UTIL_HASH_MAP) ||
 			className.equals(_JAVA_UTIL_ARRAY_LIST) ||
+			className.equals(_JAVA_UTIL_HASH_MAP) ||
 			className.equals(_JAVA_LANG_OBJECT)) {
 
-			if (isValidStringValue(value)) {
-				if (_EMPTY_STRINGS.contains(value)) {
-					value = StringPool.BLANK;
-				}
-
-				defaultValue = StringUtil.unquote(value);
+			if (!isValidStringValue(value)) {
+				return defaultValue;
 			}
+
+			if (_EMPTY_STRINGS.contains(value)) {
+				value = StringPool.BLANK;
+			}
+
+			if (className.equals(_JAVA_UTIL_ARRAY_LIST) &&
+				!StringUtil.startsWith(
+					value.trim(), StringPool.OPEN_BRACKET)) {
+
+				value = "[]";
+			}
+			else if (className.equals(_JAVA_UTIL_HASH_MAP) &&
+				!StringUtil.startsWith(
+					value.trim(), StringPool.OPEN_CURLY_BRACE)) {
+
+				value = "{}";
+			}
+
+			defaultValue = StringUtil.unquote(value);
 		}
 		else if (className.equals(_JAVA_LANG_INTEGER)) {
 			if (_INFINITY.contains(value)) {
@@ -115,9 +131,10 @@ public class DefaultValueUtil {
 
 	private static final String _JAVA_LANG_STRING = "java.lang.String";
 
-	private static final String _JAVA_UTIL_ARRAY_LIST = "java.util.HashMap";
+	private static final String _JAVA_UTIL_ARRAY_LIST = "java.util.ArrayList";
 
-	private static final String _JAVA_UTIL_HASH_MAP = "java.util.ArrayList";
+	private static final String _JAVA_UTIL_HASH_MAP = "java.util.HashMap";
+
 	private static HashMap<String, Integer> _NUMBER_VALUES = null;
 
 	private static HashMap<String, String> _STRING_VALUES = null;

@@ -3507,7 +3507,7 @@ Configuration</a>.]]></description>
         <name>headers</name>
         <inputType>java.lang.Object</inputType>
         <outputType>java.util.HashMap</outputType>
-        <defaultValue>Object</defaultValue>
+        <defaultValue>{}</defaultValue>
         <description><![CDATA[Set the correct ACCEPT header based on the dataType.]]></description>
       </attribute>
       <attribute>
