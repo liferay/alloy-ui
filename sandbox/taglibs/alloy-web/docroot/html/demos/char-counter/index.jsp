@@ -45,11 +45,14 @@
 	<span id="counter3"></span> character(s) remaining
 </p>
 
+<!-- Without markup -->
+
 <alloy:char-counter
 	input= "#input3"
 	counter= "#counter3"
 	maxLength="225"
-	onMaxLength="function(event) { alert('The max length was reach'); }" 
+	onMaxLength="function(event) { alert('The max length was reach'); }"
+	useMarkup="false" 
 />
 
 </body>
