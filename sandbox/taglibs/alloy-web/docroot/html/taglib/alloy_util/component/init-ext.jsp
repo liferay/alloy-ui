@@ -12,5 +12,5 @@ else if (_render.equals("true") || _render.equals("false")) {
 
 optionsJSON.put("render", _render);
 
-boolean useJavaScript = GetterUtil.getBoolean((Serializable)options.get("useJavaScript"), true);
+boolean useJavaScript = GetterUtil.getBoolean((Serializable)_options.get("useJavaScript"), true);
 %>
