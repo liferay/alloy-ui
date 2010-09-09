@@ -55,7 +55,7 @@ public class Base${component.getSafeName()}Tag extends IncludeTag {
 		</#list>
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "${namespace}";
+	protected static final String _ATTRIBUTE_NAMESPACE = "${namespace}";
 
 	<#if component.isBodyContent() == true>
 	private static final String _END_PAGE =
