@@ -27,11 +27,12 @@ public class AttributeUtil {
 
 	public static Object getAttribute(Object obj, String key) {
 		try {
-			Class<?>[] paramClasses = { String.class };
-			Object[] params = { key };
+			Method getAttribute = ReflectUtil.findMethod(
+				obj.getClass(), "getAttribute");
 
-			return ReflectUtil.invoke(
-				obj, "getAttribute", paramClasses, params);
+			getAttribute.setAccessible(true);
+
+			return getAttribute.invoke(obj, key);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
