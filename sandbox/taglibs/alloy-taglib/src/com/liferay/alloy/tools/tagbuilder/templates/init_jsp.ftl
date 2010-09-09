@@ -17,7 +17,7 @@
 </#function>
 
 <#function isNumericAttribute simpleClassName>
-	<#return ((simpleClassName == "Number") || (simpleClassName == "Integer") || (simpleClassName == "Float") || (simpleClassName == "Double")) />
+	<#return ((simpleClassName == "Number") || (simpleClassName == "Integer") || (simpleClassName == "Float") || (simpleClassName == "Double") || (simpleClassName == "Long") || (simpleClassName == "Short")) />
 </#function>
 
 <#function getDefaultValueSuffix outputSimpleClassName defaultValue>

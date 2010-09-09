@@ -34,6 +34,10 @@ public class TypeUtil {
 		"boolean", "bool"
 	};
 
+	public static final String[] DOUBLES = {
+		"double"
+	};
+
 	public static final String[] FLOATS = {
 		"float"
 	};
@@ -42,12 +46,20 @@ public class TypeUtil {
 		"integer", "int", "int | string"
 	};
 
+	public static final String[] LONGS = {
+		"long"
+	};
+
 	public static final String[] NUMBERS = {
 		"num", "number"
 	};
 
 	public static final String[] OBJECTS = {
 		"object", "{}"
+	};
+
+	public static final String[] SHORTS = {
+		"short"
 	};
 
 	public static final String[] STRINGS = {
@@ -70,6 +82,9 @@ public class TypeUtil {
 		_registerTypes(_INPUT_TYPES, BOOLEANS, Boolean.class.getName());
 		_registerTypes(_INPUT_TYPES, FLOATS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, INTEGERS, Object.class.getName());
+		_registerTypes(_INPUT_TYPES, DOUBLES, Object.class.getName());
+		_registerTypes(_INPUT_TYPES, LONGS, Object.class.getName());
+		_registerTypes(_INPUT_TYPES, SHORTS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, NUMBERS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, OBJECTS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, STRINGS, String.class.getName());
@@ -78,6 +93,9 @@ public class TypeUtil {
 		_registerTypes(_OUTPUT_TYPES, BOOLEANS, Boolean.class.getName());
 		_registerTypes(_OUTPUT_TYPES, FLOATS, Float.class.getName());
 		_registerTypes(_OUTPUT_TYPES, INTEGERS, Integer.class.getName());
+		_registerTypes(_OUTPUT_TYPES, DOUBLES, Double.class.getName());
+		_registerTypes(_OUTPUT_TYPES, LONGS, Long.class.getName());
+		_registerTypes(_OUTPUT_TYPES, SHORTS, Short.class.getName());
 		_registerTypes(_OUTPUT_TYPES, NUMBERS, Number.class.getName());
 		_registerTypes(_OUTPUT_TYPES, OBJECTS, HashMap.class.getName());
 		_registerTypes(_OUTPUT_TYPES, STRINGS, String.class.getName());
@@ -117,7 +135,8 @@ public class TypeUtil {
 
 			return true;
 		}
-		catch (ClassNotFoundException e) {}
+		catch (ClassNotFoundException e) {
+		}
 
 		return false;
 	}
