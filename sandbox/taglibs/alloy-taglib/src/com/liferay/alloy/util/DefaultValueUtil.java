@@ -14,16 +14,11 @@
 
 package com.liferay.alloy.util;
 
-import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import jodd.util.ArraysUtil;
-import org.apache.commons.collections.ListUtils;
-import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 /**
