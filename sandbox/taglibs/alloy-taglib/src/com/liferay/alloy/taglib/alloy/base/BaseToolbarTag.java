@@ -1017,7 +1017,7 @@ public class BaseToolbarTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:toolbar:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:toolbar:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/toolbar/page.jsp";

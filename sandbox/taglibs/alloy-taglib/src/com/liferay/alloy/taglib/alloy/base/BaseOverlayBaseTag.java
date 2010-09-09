@@ -1105,7 +1105,7 @@ public class BaseOverlayBaseTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-base:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-base:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/overlay_base/page.jsp";

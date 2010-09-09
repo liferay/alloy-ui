@@ -1831,7 +1831,7 @@ public class BaseTextboxlistTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:textboxlist:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:textboxlist:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/textboxlist/page.jsp";

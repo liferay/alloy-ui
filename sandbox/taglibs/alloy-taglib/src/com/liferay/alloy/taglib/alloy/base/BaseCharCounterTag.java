@@ -236,7 +236,7 @@ public class BaseCharCounterTag extends IncludeTag {
 		setNamespacedAttribute(request, "onMaxLengthChange", _onMaxLengthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:char-counter:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:char-counter:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/char_counter/page.jsp";

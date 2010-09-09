@@ -335,7 +335,7 @@ public class BaseTreeViewTag extends IncludeTag {
 		setNamespacedAttribute(request, "onTypeChange", _onTypeChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-view:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-view:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_view/page.jsp";

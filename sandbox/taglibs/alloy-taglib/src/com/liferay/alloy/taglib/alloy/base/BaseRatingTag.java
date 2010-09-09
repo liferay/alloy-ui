@@ -1138,7 +1138,7 @@ public class BaseRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:rating:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:rating:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/rating/page.jsp";

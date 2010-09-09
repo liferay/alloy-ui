@@ -1567,7 +1567,7 @@ public class BaseDialogTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:dialog:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:dialog:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/dialog/page.jsp";

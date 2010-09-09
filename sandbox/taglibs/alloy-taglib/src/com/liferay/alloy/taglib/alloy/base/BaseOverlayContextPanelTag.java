@@ -1501,7 +1501,7 @@ public class BaseOverlayContextPanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-context-panel:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-context-panel:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/overlay_context_panel/page.jsp";

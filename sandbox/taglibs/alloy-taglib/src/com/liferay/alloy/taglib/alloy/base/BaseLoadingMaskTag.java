@@ -269,7 +269,7 @@ public class BaseLoadingMaskTag extends IncludeTag {
 		setNamespacedAttribute(request, "onTargetChange", _onTargetChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:loading-mask:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:loading-mask:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/loading_mask/page.jsp";

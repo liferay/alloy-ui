@@ -973,7 +973,7 @@ public class BaseProgressBarTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:progress-bar:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:progress-bar:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/progress_bar/page.jsp";

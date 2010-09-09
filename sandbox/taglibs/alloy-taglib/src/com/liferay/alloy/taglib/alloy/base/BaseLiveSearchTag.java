@@ -401,7 +401,7 @@ public class BaseLiveSearchTag extends IncludeTag {
 		setNamespacedAttribute(request, "onShowChange", _onShowChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:live-search:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:live-search:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/live_search/page.jsp";

@@ -170,7 +170,7 @@ public class BaseParseContentTag extends IncludeTag {
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:parse-content:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:parse-content:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/parse_content/page.jsp";

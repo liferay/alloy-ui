@@ -874,7 +874,7 @@ public class BaseResizeTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWrapperChange", _onWrapperChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:resize:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:resize:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/resize/page.jsp";

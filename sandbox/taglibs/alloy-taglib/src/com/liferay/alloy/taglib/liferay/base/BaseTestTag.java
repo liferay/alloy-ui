@@ -38,7 +38,7 @@ public class BaseTestTag extends IncludeTag {
 		setNamespacedAttribute(request, "test", _test);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "liferay:test:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "liferay:test:";
 
 	private static final String _PAGE =
 		"/html/taglib/liferay/test/page.jsp";

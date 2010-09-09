@@ -1006,7 +1006,7 @@ public class BaseButtonItemTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:button-item:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:button-item:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/button_item/page.jsp";

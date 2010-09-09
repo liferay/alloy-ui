@@ -115,7 +115,7 @@ public class BaseComponentTag extends IncludeTag {
 		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy_util:component:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy_util:component:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/component/page.jsp";

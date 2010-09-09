@@ -1094,7 +1094,7 @@ public class BaseEditableTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:editable:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:editable:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/editable/page.jsp";

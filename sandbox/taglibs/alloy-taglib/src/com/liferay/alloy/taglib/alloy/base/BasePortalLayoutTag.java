@@ -137,7 +137,7 @@ public class BasePortalLayoutTag extends IncludeTag {
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:portal-layout:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:portal-layout:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/portal_layout/page.jsp";

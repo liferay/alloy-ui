@@ -137,7 +137,7 @@ public class BaseNestedListTag extends IncludeTag {
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:nested-list:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:nested-list:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/nested_list/page.jsp";

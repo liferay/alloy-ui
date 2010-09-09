@@ -2359,7 +2359,7 @@ public class BaseImageGalleryTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:image-gallery:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:image-gallery:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/image_gallery/page.jsp";

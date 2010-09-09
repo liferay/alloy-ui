@@ -929,7 +929,7 @@ public class BaseTreeNodeTaskTag extends IncludeTag {
 		setNamespacedAttribute(request, "onPrevSiblingChange", _onPrevSiblingChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-node-task:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-node-task:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_node_task/page.jsp";

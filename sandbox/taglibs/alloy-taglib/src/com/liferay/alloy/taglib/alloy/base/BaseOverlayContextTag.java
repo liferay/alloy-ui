@@ -1369,7 +1369,7 @@ public class BaseOverlayContextTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-context:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-context:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/overlay_context/page.jsp";

@@ -27,7 +27,7 @@ public class BaseAioTag extends IncludeTag {
 	protected void _setAttributes(HttpServletRequest request) {
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:a-io:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:a-io:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/a_io/page.jsp";

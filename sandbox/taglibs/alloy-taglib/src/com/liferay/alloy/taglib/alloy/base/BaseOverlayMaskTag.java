@@ -1237,7 +1237,7 @@ public class BaseOverlayMaskTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-mask:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:overlay-mask:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/overlay_mask/page.jsp";

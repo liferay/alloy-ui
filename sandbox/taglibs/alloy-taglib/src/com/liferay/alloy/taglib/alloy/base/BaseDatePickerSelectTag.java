@@ -1171,7 +1171,7 @@ public class BaseDatePickerSelectTag extends IncludeTag {
 		setNamespacedAttribute(request, "onYearRangeChange", _onYearRangeChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:date-picker-select:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:date-picker-select:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/date_picker_select/page.jsp";

@@ -1534,7 +1534,7 @@ public class BaseTooltipTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:tooltip:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:tooltip:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/tooltip/page.jsp";

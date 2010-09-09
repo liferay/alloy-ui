@@ -1138,7 +1138,7 @@ public class BaseThumbRatingTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:thumb-rating:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:thumb-rating:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/thumb_rating/page.jsp";

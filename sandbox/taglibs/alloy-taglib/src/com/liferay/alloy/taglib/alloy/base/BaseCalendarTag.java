@@ -1732,7 +1732,7 @@ public class BaseCalendarTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:calendar:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:calendar:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/calendar/page.jsp";

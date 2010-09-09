@@ -940,7 +940,7 @@ public class BasePanelTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:panel:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:panel:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/panel/page.jsp";

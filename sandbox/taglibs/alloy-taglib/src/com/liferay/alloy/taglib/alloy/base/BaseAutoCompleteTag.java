@@ -1831,7 +1831,7 @@ public class BaseAutoCompleteTag extends IncludeTag {
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:auto-complete:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:auto-complete:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/auto_complete/page.jsp";

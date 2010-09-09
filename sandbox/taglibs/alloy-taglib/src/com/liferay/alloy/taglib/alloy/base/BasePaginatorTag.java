@@ -995,7 +995,7 @@ public class BasePaginatorTag extends IncludeTag {
 		setNamespacedAttribute(request, "onTotalPagesChange", _onTotalPagesChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:paginator:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:paginator:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/paginator/page.jsp";

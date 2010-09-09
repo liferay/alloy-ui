@@ -1369,7 +1369,7 @@ public class BaseColorPickerTag extends IncludeTag {
 		setNamespacedAttribute(request, "onZIndexChange", _onZIndexChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:color-picker:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:color-picker:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/color_picker/page.jsp";

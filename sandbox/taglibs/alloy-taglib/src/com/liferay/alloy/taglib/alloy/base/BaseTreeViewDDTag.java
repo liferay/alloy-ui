@@ -632,7 +632,7 @@ public class BaseTreeViewDDTag extends IncludeTag {
 		setNamespacedAttribute(request, "onTypeChange", _onTypeChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-view-dd:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:tree-view-dd:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_view_dd/page.jsp";

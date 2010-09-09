@@ -863,7 +863,7 @@ public class BaseIORequestTag extends IncludeTag {
 		setNamespacedAttribute(request, "onXdrChange", _onXdrChange);
 	}
 
-	private static final String _ATTRIBUTE_NAMESPACE = "alloy:io-request:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:io-request:";
 
 	private static final String _PAGE =
 		"/html/taglib/alloy/io_request/page.jsp";
