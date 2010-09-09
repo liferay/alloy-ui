@@ -18,7 +18,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -31,10 +33,10 @@ public class DefaultValueUtil {
 	public static String getDefaultValue(String className, String value) {
 		String defaultValue = StringPool.BLANK;
 
-		if (className.equals(_JAVA_LANG_STRING) ||
-			className.equals(_JAVA_UTIL_ARRAY_LIST) ||
-			className.equals(_JAVA_UTIL_HASH_MAP) ||
-			className.equals(_JAVA_LANG_OBJECT)) {
+		if (className.equals(ArrayList.class.getName()) ||
+			className.equals(HashMap.class.getName()) ||
+			className.equals(Object.class.getName()) ||
+			className.equals(String.class.getName())) {
 
 			if (!isValidStringValue(value)) {
 				return defaultValue;
@@ -43,43 +45,43 @@ public class DefaultValueUtil {
 			if (_EMPTY_STRINGS.contains(value)) {
 				value = StringPool.BLANK;
 			}
-			else if (className.equals(_JAVA_UTIL_ARRAY_LIST) &&
-				!StringUtil.startsWith(
-					value.trim(), StringPool.OPEN_BRACKET)) {
+			else if (className.equals(ArrayList.class.getName()) &&
+					!StringUtil.startsWith(
+						value.trim(), StringPool.OPEN_BRACKET)) {
 
 				value = "[]";
 			}
-			else if (className.equals(_JAVA_UTIL_HASH_MAP) &&
-				!StringUtil.startsWith(
-					value.trim(), StringPool.OPEN_CURLY_BRACE)) {
+			else if (className.equals(HashMap.class.getName()) &&
+					!StringUtil.startsWith(
+						value.trim(), StringPool.OPEN_CURLY_BRACE)) {
 
 				value = "{}";
 			}
 
 			defaultValue = StringUtil.unquote(value);
 		}
-		else if (className.equals(_JAVA_LANG_INTEGER)) {
+		else if (className.equals(Integer.class.getName())) {
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Integer.MAX_VALUE);
 			}
 
 			defaultValue = String.valueOf(GetterUtil.getInteger(value));
 		}
-		else if (className.equals(_JAVA_LANG_NUMBER)) {
+		else if (className.equals(Number.class.getName())) {
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Integer.MAX_VALUE);
 			}
 
 			defaultValue = String.valueOf(GetterUtil.getNumber(value));
 		}
-		else if (className.equals(_JAVA_LANG_FLOAT)) {
+		else if (className.equals(Float.class.getName())) {
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Float.MAX_VALUE);
 			}
 
 			defaultValue = String.valueOf(GetterUtil.getFloat(value));
 		}
-		else if (className.equals(_JAVA_LANG_BOOLEAN)) {
+		else if (className.equals(Boolean.class.getName())) {
 			defaultValue = String.valueOf(GetterUtil.getBoolean(value));
 		}
 
@@ -112,21 +114,5 @@ public class DefaultValueUtil {
 
 	private static final List<String> _INFINITY =
 		Arrays.asList("infinity", "Infinity", "INFINITY");
-
-	private static final String _JAVA_LANG_BOOLEAN = "java.lang.Boolean";
-
-	private static final String _JAVA_LANG_FLOAT = "java.lang.Float";
-
-	private static final String _JAVA_LANG_INTEGER = "java.lang.Integer";
-
-	private static final String _JAVA_LANG_NUMBER = "java.lang.Number";
-
-	private static final String _JAVA_LANG_OBJECT = "java.lang.Object";
-
-	private static final String _JAVA_LANG_STRING = "java.lang.String";
-
-	private static final String _JAVA_UTIL_ARRAY_LIST = "java.util.ArrayList";
-
-	private static final String _JAVA_UTIL_HASH_MAP = "java.util.HashMap";
 
 }
