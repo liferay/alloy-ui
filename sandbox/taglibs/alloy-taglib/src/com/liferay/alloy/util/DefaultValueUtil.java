@@ -48,8 +48,7 @@ public class DefaultValueUtil {
 			if (_EMPTY_STRINGS.contains(value)) {
 				value = StringPool.BLANK;
 			}
-
-			if (className.equals(_JAVA_UTIL_ARRAY_LIST) &&
+			else if (className.equals(_JAVA_UTIL_ARRAY_LIST) &&
 				!StringUtil.startsWith(
 					value.trim(), StringPool.OPEN_BRACKET)) {
 
