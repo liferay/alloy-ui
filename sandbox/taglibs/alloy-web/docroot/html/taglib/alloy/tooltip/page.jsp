@@ -7,5 +7,4 @@
 	var="Tooltip1"
 	module="aui-tooltip"
 	name="Tooltip"
-	yuiVariable="A"
 />

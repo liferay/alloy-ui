@@ -91,5 +91,4 @@ private void buildTreeNode(Map<String, Object> node, StringBundler sb) {
 	var="TreeView1"
 	module="aui-tree"
 	name="TreeView"
-	yuiVariable="A"
 />

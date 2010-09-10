@@ -7,5 +7,4 @@
 	var="PortalLayout1"
 	module="aui-portal-layout"
 	name="PortalLayout"
-	yuiVariable="A"
 />

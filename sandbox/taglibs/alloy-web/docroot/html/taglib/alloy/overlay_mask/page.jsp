@@ -7,5 +7,4 @@
 	var="OverlayMask1"
 	module="aui-overlay"
 	name="OverlayMask"
-	yuiVariable="A"
 />

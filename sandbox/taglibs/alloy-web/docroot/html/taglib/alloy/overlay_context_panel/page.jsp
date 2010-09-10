@@ -7,5 +7,4 @@
 	var="OverlayContextPanel1"
 	module="aui-overlay"
 	name="OverlayContextPanel"
-	yuiVariable="A"
 />

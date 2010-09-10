@@ -96,5 +96,4 @@
 	var="DatePickerSelect1"
 	module="aui-datepicker-select"
 	name="DatePickerSelect"
-	yuiVariable="A"
 />

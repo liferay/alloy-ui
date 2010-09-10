@@ -7,5 +7,4 @@
 	var="LoadingMask1"
 	module="aui-loading-mask"
 	name="LoadingMask"
-	yuiVariable="A"
 />

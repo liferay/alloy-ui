@@ -7,5 +7,4 @@
 	var="Paginator1"
 	module="aui-paginator"
 	name="Paginator"
-	yuiVariable="A"
 />

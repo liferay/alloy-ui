@@ -7,5 +7,4 @@
 	var="LiveSearch1"
 	module="aui-live-search"
 	name="LiveSearch"
-	yuiVariable="A"
 />

@@ -7,5 +7,4 @@
 	var="Aio1"
 	module="aui-io"
 	name="A.io"
-	yuiVariable="A"
 />

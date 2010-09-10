@@ -40,11 +40,6 @@
 				<inputType>java.util.Map</inputType>
 				<outputType>java.util.Map</outputType>
 			</attribute>
-			<attribute>
-				<name>yuiVariable</name>
-				<inputType>java.lang.String</inputType>
-				<outputType>java.lang.String</outputType>
-			</attribute>
 		</attributes>
 	</component>
 	<component name="Script" namespace="alloy_util">

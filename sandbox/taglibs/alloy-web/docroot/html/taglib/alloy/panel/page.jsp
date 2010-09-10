@@ -39,5 +39,4 @@
 	var="Panel1"
 	module="aui-panel"
 	name="Panel"
-	yuiVariable="A"
 />

@@ -7,5 +7,4 @@
 	var="TreeNodeTask1"
 	module="aui-tree"
 	name="TreeNodeTask"
-	yuiVariable="A"
 />

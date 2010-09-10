@@ -19,5 +19,4 @@
 	var="Textboxlist1"
 	module="aui-textboxlist"
 	name="TextboxList"
-	yuiVariable="A"
 />

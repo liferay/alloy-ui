@@ -8,5 +8,4 @@
 	var="Dialog1"
 	module="aui-dialog"
 	name="Dialog"
-	yuiVariable="A"
 />

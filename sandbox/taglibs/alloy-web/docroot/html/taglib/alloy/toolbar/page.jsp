@@ -26,5 +26,4 @@
 	var="Toolbar1"
 	module="aui-toolbar"
 	name="Toolbar"
-	yuiVariable="A"
 />

@@ -33,5 +33,4 @@
 	var="Rating1"
 	module="aui-rating"
 	name="Rating"
-	yuiVariable="A"
 />

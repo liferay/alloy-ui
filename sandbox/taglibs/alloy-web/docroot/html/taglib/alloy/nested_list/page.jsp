@@ -7,5 +7,4 @@
 	var="NestedList1"
 	module="aui-nested-list"
 	name="NestedList"
-	yuiVariable="A"
 />

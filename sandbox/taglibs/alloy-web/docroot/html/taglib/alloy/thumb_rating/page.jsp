@@ -33,5 +33,4 @@
 	var="ThumbRating1"
 	module="aui-rating"
 	name="ThumbRating"
-	yuiVariable="A"
 />

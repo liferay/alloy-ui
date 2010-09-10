@@ -19,5 +19,4 @@
 	var="AutoComplete1"
 	module="aui-autocomplete"
 	name="AutoComplete"
-	yuiVariable="A"
 />

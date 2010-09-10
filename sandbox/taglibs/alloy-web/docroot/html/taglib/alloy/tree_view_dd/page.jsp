@@ -7,5 +7,4 @@
 	var="TreeViewDD1"
 	module="aui-tree"
 	name="TreeViewDD"
-	yuiVariable="A"
 />

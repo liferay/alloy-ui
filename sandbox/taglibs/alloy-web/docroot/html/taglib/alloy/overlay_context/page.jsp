@@ -23,5 +23,4 @@
 	var="OverlayContext1"
 	module="aui-overlay"
 	name="OverlayContext"
-	yuiVariable="A"
 />

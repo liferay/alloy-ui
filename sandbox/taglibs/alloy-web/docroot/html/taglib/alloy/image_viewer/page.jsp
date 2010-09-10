@@ -7,5 +7,4 @@
 	var="ImageViewer1"
 	module="aui-image-viewer"
 	name="ImageViewer"
-	yuiVariable="A"
 />

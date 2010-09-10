@@ -14,5 +14,4 @@
 	var="CharCounter1"
 	module="aui-char-counter"
 	name="CharCounter"
-	yuiVariable="A"
 />

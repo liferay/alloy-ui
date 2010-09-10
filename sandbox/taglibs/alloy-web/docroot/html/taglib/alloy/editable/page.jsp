@@ -7,5 +7,4 @@
 	var="Editable1"
 	module="aui-editable"
 	name="Editable"
-	yuiVariable="A"
 />

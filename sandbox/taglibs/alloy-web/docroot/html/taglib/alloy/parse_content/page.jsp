@@ -7,5 +7,4 @@
 	var="ParseContent1"
 	module="aui-parse-content"
 	name="ParseContent"
-	yuiVariable="A"
 />

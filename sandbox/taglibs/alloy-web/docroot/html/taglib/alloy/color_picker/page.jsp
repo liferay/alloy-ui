@@ -7,5 +7,4 @@
 	var="ColorPicker1"
 	module="aui-color-picker"
 	name="ColorPicker"
-	yuiVariable="A"
 />

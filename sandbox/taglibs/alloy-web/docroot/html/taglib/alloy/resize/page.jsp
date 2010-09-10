@@ -7,5 +7,4 @@
 	var="Resize1"
 	module="aui-resize"
 	name="Resize"
-	yuiVariable="A"
 />

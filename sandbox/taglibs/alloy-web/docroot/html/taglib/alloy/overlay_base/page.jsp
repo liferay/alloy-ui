@@ -7,5 +7,4 @@
 	var="OverlayBase1"
 	module="aui-overlay"
 	name="OverlayBase"
-	yuiVariable="A"
 />

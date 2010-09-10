@@ -7,5 +7,4 @@
 	var="Calendar1"
 	module="aui-calendar"
 	name="Calendar"
-	yuiVariable="A"
 />

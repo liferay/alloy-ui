@@ -7,5 +7,4 @@
 	var="IORequest1"
 	module="aui-io"
 	name="IORequest"
-	yuiVariable="A"
 />

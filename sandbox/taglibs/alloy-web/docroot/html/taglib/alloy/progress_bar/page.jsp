@@ -27,5 +27,4 @@
 	var="ProgressBar1"
 	module="aui-progressbar"
 	name="ProgressBar"
-	yuiVariable="A"
 />
