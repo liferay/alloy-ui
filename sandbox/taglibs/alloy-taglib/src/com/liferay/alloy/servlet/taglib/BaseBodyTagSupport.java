@@ -17,7 +17,10 @@ package com.liferay.alloy.servlet.taglib;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.tagext.BodyContent;
 import javax.servlet.jsp.tagext.BodyTagSupport;
+
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * <a href="BaseBodyTagSupport.java.html"><b><i>View Source</i></b></a>
@@ -25,6 +28,16 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  * @author Eduardo Lundgren
  */
 public class BaseBodyTagSupport extends BodyTagSupport {
+
+	public String getBodyContentString() {
+		BodyContent bodyContent = getBodyContent();
+
+		if (bodyContent != null) {
+			return bodyContent.getString();
+		}
+
+		return StringPool.BLANK;
+	}
 
 	public ServletContext getServletContext() {
 		if (_servletContext != null) {
