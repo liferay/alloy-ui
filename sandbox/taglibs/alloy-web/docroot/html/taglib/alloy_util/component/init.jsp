@@ -18,7 +18,6 @@ java.lang.String _var = GetterUtil.getString((java.lang.String)request.getAttrib
 java.lang.String _module = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:module"));
 java.lang.String _name = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:name"));
 java.util.Map _options = (java.util.Map)request.getAttribute("alloy_util:component:options");
-java.lang.String _yuiVariable = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:yuiVariable"));
 
 _updateOptions(options, "excludeAttributes", _excludeAttributes);
 _updateOptions(options, "javaScriptAttributes", _javaScriptAttributes);
@@ -27,7 +26,6 @@ _updateOptions(options, "var", _var);
 _updateOptions(options, "module", _module);
 _updateOptions(options, "name", _name);
 _updateOptions(options, "options", _options);
-_updateOptions(options, "yuiVariable", _yuiVariable);
 %>
 
 <%@ include file="init-ext.jsp" %>

@@ -50,12 +50,6 @@
       <rtexprvalue>true</rtexprvalue>  
       <type>java.util.Map</type> 
     </attribute>  
-    <attribute> 
-      <name>yuiVariable</name>  
-      <required>false</required>  
-      <rtexprvalue>true</rtexprvalue>  
-      <type>java.lang.String</type> 
-    </attribute>  
     <dynamic-attributes>true</dynamic-attributes> 
   </tag>  
   <tag> 

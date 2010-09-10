@@ -52,10 +52,6 @@ public class BaseComponentTag extends IncludeTag {
 		return _options;
 	}
 
-	public java.lang.String getYuiVariable() {
-		return _yuiVariable;
-	}
-
 	public void setExcludeAttributes(java.lang.String excludeAttributes) {
 		_excludeAttributes = excludeAttributes;
 
@@ -98,12 +94,6 @@ public class BaseComponentTag extends IncludeTag {
 		setScopedAttribute("options", options);
 	}
 
-	public void setYuiVariable(java.lang.String yuiVariable) {
-		_yuiVariable = yuiVariable;
-
-		setScopedAttribute("yuiVariable", yuiVariable);
-	}
-
 	protected void _setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "excludeAttributes", _excludeAttributes);
 		setNamespacedAttribute(request, "javaScriptAttributes", _javaScriptAttributes);
@@ -112,7 +102,6 @@ public class BaseComponentTag extends IncludeTag {
 		setNamespacedAttribute(request, "module", _module);
 		setNamespacedAttribute(request, "name", _name);
 		setNamespacedAttribute(request, "options", _options);
-		setNamespacedAttribute(request, "yuiVariable", _yuiVariable);
 	}
 
 	protected static final String _ATTRIBUTE_NAMESPACE = "alloy_util:component:";
@@ -127,6 +116,5 @@ public class BaseComponentTag extends IncludeTag {
 	private java.lang.String _module;
 	private java.lang.String _name;
 	private java.util.Map _options;
-	private java.lang.String _yuiVariable;
 
 }
