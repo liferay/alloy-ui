@@ -63,6 +63,7 @@ body {
 		label="Created from HTML markup"
 		width="500"
 		progressbarValue="90"
+		cacheJavaScript="true"
 	/>
 </div>
 
@@ -102,3 +103,13 @@ body {
 />
 
 <liferay:test test="Eduardo"/>
+
+<alloy-util:script>
+	window.msg = "Testing script tag";
+</alloy-util:script>
+
+<alloy-util:script>
+	alert(window.msg);
+</alloy-util:script>
+
+<alloy-util:script printBuffer="true" />

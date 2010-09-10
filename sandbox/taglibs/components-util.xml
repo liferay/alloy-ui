@@ -47,4 +47,23 @@
 			</attribute>
 		</attributes>
 	</component>
+	<component name="Script" namespace="alloy_util">
+		<attributes>
+			<attribute>
+				<name>position</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+			<attribute>
+				<name>printBuffer</name>
+				<inputType>java.lang.Boolean</inputType>
+				<outputType>java.lang.Boolean</outputType>
+			</attribute>
+			<attribute>
+				<name>use</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+			</attribute>
+		</attributes>
+	</component>
 </alloy>

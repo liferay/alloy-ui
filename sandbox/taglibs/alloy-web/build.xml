@@ -16,8 +16,25 @@
 	</target>
 
 	<target name="deploy-fast">
+		<var name="from.dir" value="docroot"/>
+
+		<if>
+			<equals arg1="${deploy.liferay}" arg2="true" />
+			<then>
+				<mkdir dir="${temp.dir}"/>
+
+				<copy todir="${temp.dir}" preservelastmodified="true">
+					<fileset dir="docroot" />
+				</copy>
+
+				<antcall target="build-common-web.prepare-liferay-deploy" />
+
+				<var name="from.dir" value="${temp.dir}"/>
+			</then>
+		</if>
+
 		<copy todir="${app.server.portal.dir}" preservelastmodified="true">
-			<fileset dir="docroot">
+			<fileset dir="${from.dir}">
 				<include name="**/*.css" />
 				<include name="**/*.dtd" />
 				<include name="**/*.gif" />
@@ -33,5 +50,7 @@
 				<include name="**/*.xml" />
 			</fileset>
 		</copy>
+
+		<delete dir="${temp.dir}" />
 	</target>
 </project>

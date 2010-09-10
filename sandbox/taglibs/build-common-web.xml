@@ -2,16 +2,20 @@
 
 <project name="build-common-web" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
+	
+	<property name="temp.dir" value="${project.dir}/_temp" />
 
 	<target name="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete file="${war.file}.war" failonerror="false" />
+		<delete dir="${temp.dir}" />
 	</target>
 
 	<target name="compile">
 	</target>
 
-	<target name="deploy" depends="compile">
+	<target name="deploy" depends="clean, compile">
+		<var name="from.dir" value="docroot"/>
 		<property name="war.file.dest" value="${app.server.portal.dir}" />
 
 		<if>
@@ -21,6 +25,17 @@
 					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
 				</copy>
 			</then>
+			<else>
+				<mkdir dir="${temp.dir}"/>
+
+				<copy todir="${temp.dir}" preservelastmodified="true">
+					<fileset dir="docroot" />
+				</copy>
+
+				<antcall target="prepare-liferay-deploy" />
+
+				<var name="from.dir" value="${temp.dir}"/>
+			</else>
 		</if>
 
 		<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
@@ -28,8 +43,25 @@
 		</copy>
 
 		<copy todir="${war.file.dest}" preservelastmodified="true">
-			<fileset dir="docroot" excludes="web.xml" />
+			<fileset dir="${from.dir}" excludes="web.xml" />
 		</copy>
+
+		<delete dir="${temp.dir}" />
+	</target>
+
+	<target name="prepare-liferay-deploy">
+		<replace dir="${temp.dir}">
+		  <include name="**/*.jsp"/>
+
+		  <replacetoken><![CDATA[alloy-util:script]]></replacetoken>
+		  <replacevalue><![CDATA[aui:script]]></replacevalue>
+		</replace>
+
+		<echo file="${temp.dir}/html/taglib/alloy/init.jsp" append="yes">
+		<![CDATA[
+			<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+		]]>
+		</echo>
 	</target>
 
 	<target name="war" depends="compile">

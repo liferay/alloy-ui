@@ -1,9 +1,7 @@
 <%@ include file="init.jsp" %>
 
 <c:if test="<%= useJavaScript %>">
-	<script type="text/javascript">
-		AUI().use('<%= _module %>', function(<%= _yuiVariable %>){
-			var <%= _var %> = new <%= _yuiVariable %>.<%= _name %>(<%= optionsJSON.toString() %>);
-		});
-	</script>
+	<alloy-util:script use="<%= _module %>" position="<%= position %>">
+		var <%= _var %> = new <%= _yuiVariable %>.<%= _name %>(<%= optionsJSON.toString() %>);
+	</alloy-util:script>
 </c:if>

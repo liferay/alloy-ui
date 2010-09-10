@@ -1,5 +1,3 @@
-<%@ taglib prefix="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util" %>
-
 <%
 java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute(NAMESPACE.concat("boundingBox"));
 java.lang.Object _contentBox = (java.lang.Object)request.getAttribute(NAMESPACE.concat("contentBox"));
