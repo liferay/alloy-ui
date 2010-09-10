@@ -61,12 +61,12 @@ public class DefaultValueUtil {
 			defaultValue = StringUtil.unquote(value);
 		}
 		else if (className.equals(boolean.class.getName()) ||
-				className.equals(Boolean.class.getName())) {
+				 className.equals(Boolean.class.getName())) {
 
 			defaultValue = String.valueOf(GetterUtil.getBoolean(value));
 		}
 		else if (className.equals(int.class.getName()) ||
-				className.equals(Integer.class.getName())) {
+				 className.equals(Integer.class.getName())) {
 
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Integer.MAX_VALUE);
@@ -75,7 +75,7 @@ public class DefaultValueUtil {
 			defaultValue = String.valueOf(GetterUtil.getInteger(value));
 		}
 		else if (className.equals(double.class.getName()) ||
-				className.equals(Double.class.getName())) {
+				 className.equals(Double.class.getName())) {
 
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Double.MAX_VALUE);
@@ -84,7 +84,7 @@ public class DefaultValueUtil {
 			defaultValue = String.valueOf(GetterUtil.getDouble(value));
 		}
 		else if (className.equals(float.class.getName()) ||
-				className.equals(Float.class.getName())) {
+				 className.equals(Float.class.getName())) {
 
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Float.MAX_VALUE);
@@ -93,7 +93,7 @@ public class DefaultValueUtil {
 			defaultValue = String.valueOf(GetterUtil.getFloat(value));
 		}
 		else if (className.equals(long.class.getName()) ||
-				className.equals(Long.class.getName())) {
+				 className.equals(Long.class.getName())) {
 
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Long.MAX_VALUE);
@@ -102,7 +102,7 @@ public class DefaultValueUtil {
 			defaultValue = String.valueOf(GetterUtil.getLong(value));
 		}
 		else if (className.equals(short.class.getName()) ||
-				className.equals(Short.class.getName())) {
+				 className.equals(Short.class.getName())) {
 
 			if (_INFINITY.contains(value)) {
 				value = String.valueOf(Short.MAX_VALUE);
