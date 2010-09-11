@@ -55,10 +55,24 @@
 
 	<target name="prepare-liferay-deploy">
 		<replace dir="${temp.dir}">
+		 <include name="html/taglib/alloy_util/component/page.jsp"/>
+
+		  <replacetoken><![CDATA[ position="<%= position %>"]]></replacetoken>
+		  <replacevalue><![CDATA[]]></replacevalue>
+		</replace>
+		
+		<replace dir="${temp.dir}">
 		  <include name="**/*.jsp"/>
 
 		  <replacetoken><![CDATA[alloy-util:script]]></replacetoken>
 		  <replacevalue><![CDATA[aui:script]]></replacevalue>
+		</replace>
+		
+		<replace dir="${temp.dir}">
+		  <include name="**/*.jsp"/>
+
+		  <replacetoken><![CDATA[printBuffer="true"]]></replacetoken>
+		  <replacevalue></replacevalue>
 		</replace>
 
 		<echo file="${temp.dir}/html/taglib/alloy/init.jsp" append="yes">
