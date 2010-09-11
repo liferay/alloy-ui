@@ -24,7 +24,11 @@
 				<mkdir dir="${temp.dir}"/>
 
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" />
+					<fileset dir="docroot" excludes="html/demos/**" />
+				</copy>
+
+				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
+					<fileset dir="${project.dir}/alloy-taglib/src/META-INF" includes="*.tld" />
 				</copy>
 
 				<antcall target="build-common-web.prepare-liferay-deploy" />

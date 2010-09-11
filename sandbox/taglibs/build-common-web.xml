@@ -2,7 +2,7 @@
 
 <project name="build-common-web" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
-	
+
 	<property name="temp.dir" value="${project.dir}/_temp" />
 
 	<target name="clean">
@@ -19,22 +19,26 @@
 		<property name="war.file.dest" value="${app.server.portal.dir}" />
 
 		<if>
-			<equals arg1="${deploy.liferay}" arg2="false" />
+			<equals arg1="${deploy.liferay}" arg2="true" />
 			<then>
-				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
-					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
-				</copy>
-			</then>
-			<else>
 				<mkdir dir="${temp.dir}"/>
 
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" />
+					<fileset dir="docroot" excludes="html/demos/**" />
+				</copy>
+
+				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
+					<fileset dir="${project.dir}/alloy-taglib/src/META-INF" includes="*.tld" />
 				</copy>
 
 				<antcall target="prepare-liferay-deploy" />
 
 				<var name="from.dir" value="${temp.dir}"/>
+			</then>
+			<else>
+				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+				</copy>
 			</else>
 		</if>
 
