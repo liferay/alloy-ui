@@ -22,7 +22,7 @@
 			<equals arg1="${deploy.liferay}" arg2="true" />
 			<then>
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" />
+					<fileset dir="docroot" excludes="**/demos/init-alloy.jsp" />
 				</copy>
 
 				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
@@ -64,6 +64,16 @@
 
 		<replace dir="${temp.dir}" includes="**/*.jsp">
 		  <replacetoken><![CDATA[printBuffer="true"]]></replacetoken>
+		  <replacevalue></replacevalue>
+		</replace>
+
+		<replace dir="${temp.dir}" includes="**/*.jsp">
+		  <replacetoken><![CDATA[<aui:script  />]]></replacetoken>
+		  <replacevalue></replacevalue>
+		</replace>
+
+		<replace file="${temp.dir}/html/demos/init.jsp">
+		  <replacetoken><![CDATA[<%@ include file="/html/demos/init-alloy.jsp" %>]]></replacetoken>
 		  <replacevalue></replacevalue>
 		</replace>
 

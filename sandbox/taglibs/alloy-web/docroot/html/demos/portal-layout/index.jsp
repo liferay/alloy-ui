@@ -1,63 +1,50 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css">
+#content-wrapper {
+	width: 950px;
+}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+.column {
+	background: lightyellow;
+	padding: 10px;
+	border: 1px solid;
+}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
+.portlet {
+	background: #EEEFB3;
+	margin: 10px;
+}
 
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+.aui-portal-layout-proxy {
+	position: absolute;
+	width: 100px;
+	height: 20px;
+	background: black;
+	opacity: .7;
+    filter: alpha(opacity=70);
+}
 
-	<style type="text/css">
-	#content-wrapper {
-		width: 950px;
-	}
+.portlet-list {
+	border: 1px solid;
+	left: 960px;
+	position: absolute;
+	top: 51px;
+	width: 128px;
+}
 
-	.column {
-		background: lightyellow;
-		padding: 10px;
-		border: 1px solid;
-	}
+.portlet-list .portlet-item {
+	background: lightblue;
+	margin: 10px;
+	padding: 5px;
+	height: 30px;
+	width: 100px;
+}
 
-	.portlet {
-		background: #EEEFB3;
-		margin: 10px;
-	}
-
-	.aui-portal-layout-proxy {
-		position: absolute;
-		width: 100px;
-		height: 20px;
-		background: black;
-		opacity: .7;
-	    filter: alpha(opacity=70);
-	}
-
-	.portlet-list {
-		border: 1px solid;
-		left: 960px;
-		position: absolute;
-		top: 51px;
-		width: 128px;
-	}
-
-	.portlet-list .portlet-item {
-		background: lightblue;
-		margin: 10px;
-		padding: 5px;
-		height: 30px;
-		width: 100px;
-	}
-
-	.aui-portal-layout-drag-target-indicator  {
-		margin: 2px 0;
-	}
-	</style>
-</head>
-
-<body>
+.aui-portal-layout-drag-target-indicator  {
+	margin: 2px 0;
+}
+</style>
 
 <h1>Alloy - PortalLayout</h1>
 
@@ -220,6 +207,3 @@ AUI().ready('aui-portal-layout', function(A) {
 });
 
 </script>
-
-</body>
-</html>

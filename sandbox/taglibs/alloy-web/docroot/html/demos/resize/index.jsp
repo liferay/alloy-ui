@@ -1,68 +1,42 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css" media="screen">
+	div {
+		overflow: hidden;
+	}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+	#resize1 {
+		width: 300px;
+		padding: 10px;
+		margin: 10px;
+		background: lightblue;
+	}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
+	#resize3 {
+		top: 300px;
+		left: 600px;
+		height: 330px;
+		width: 150px;
+		background: lightblue;
+		position: absolute;
+	}
 
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	#resize4 {
+		top: 100px;
+		left: 500px;
+		width: 300px;
+		background: lightblue;
+		position: fixed;
+	}
 
-	<style type="text/css" media="screen">
-		body {
-			font-size: 12px;
-			padding: 30px;
-		}
-
-		div {
-			overflow: hidden;
-		}
-
-		.aui-resize-handle-active {
-/*			background: #bbb;*/
-		}
-
-		#resize1 {
-			width: 300px;
-			padding: 10px;
-			margin: 10px;
-			background: lightblue;
-		}
-
-		#resize3 {
-			top: 300px;
-			left: 600px;
-			height: 330px;
-			width: 150px;
-			background: lightblue;
-			position: absolute;
-		}
-
-		#resize4 {
-			top: 100px;
-			left: 500px;
-			width: 300px;
-			background: lightblue;
-			position: fixed;
-		}
-
-		#parent {
-			position: relative;
-			width: 500px;
-			height: 200px;
-			border: 1px solid #ccc;
-			border-width: 5px 10px 20px 30px;
-		}
-
-		.aui-resize-proxy {
-/*			border: 5px solid #000 !important;*/
-		}
-	</style>
-</head>
-
-<body>
+	#parent {
+		position: relative;
+		width: 500px;
+		height: 200px;
+		border: 1px solid #ccc;
+		border-width: 5px 10px 20px 30px;
+	}
+</style>
 
 <h1>Alloy - Resize Demo</h1>
 
@@ -178,6 +152,3 @@ AUI().use(
 );
 
 </script>
-
-</body>
-</html>

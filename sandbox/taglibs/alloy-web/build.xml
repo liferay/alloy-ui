@@ -22,7 +22,7 @@
 			<equals arg1="${deploy.liferay}" arg2="true" />
 			<then>
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" />
+					<fileset dir="docroot" excludes="**/demos/init-alloy.jsp" />
 				</copy>
 
 				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">

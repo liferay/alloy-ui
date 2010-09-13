@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-
-<%@page import="com.liferay.alloy.util.PropsValues"%>
-
-<%@page import="com.liferay.portal.kernel.util.ArrayUtil"%>
-
-<%@ include file="/html/taglib/alloy/init.jsp" %>
-
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-</head>
+<%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">
-
 p {
 	border: 1px solid #CCCCCC;
 	margin: 10px;
@@ -36,7 +22,6 @@ p a {
 
 </style>
 
-<body>
 <h1>Alloy - Tooltip</h1>
 
 <button id="showAll">Show all Tooltips</button>
@@ -119,6 +104,3 @@ AUI().ready('aui-tooltip', 'aui-io-plugin', function(A) {
 });
 
 </script>
-
-</body>
-</html>

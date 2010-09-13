@@ -1,37 +1,22 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css">
+.aui-paginator-container {
+	margin: 30px;
+}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+.contentA, .contentB {
+	border:2px solid #CCCCCC;
+	font-size:15px;
+	margin:-10px 40px;
+	padding:10px;
+	width:534px;
+}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-
-	<style type="text/css">
-
-	.aui-paginator-container {
-		margin: 30px;
-	}
-
-	.contentA, .contentB {
-		border:2px solid #CCCCCC;
-		font-size:15px;
-		margin:-10px 40px;
-		padding:10px;
-		width:534px;
-	}
-
-	.contentA div {
-		display: none;
-	}
-
-	</style>
-</head>
-
-<body>
+.contentA div {
+	display: none;
+}
+</style>
 
 <h1>Alloy - Paginator</h1>
 
@@ -147,6 +132,3 @@ window.changeRequestHandlerB = function(event) {
 }
 
 </script>
-
-</body>
-</html>

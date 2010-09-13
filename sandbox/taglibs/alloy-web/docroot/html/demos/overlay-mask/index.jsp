@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-
-<%@page import="com.liferay.alloy.util.PropsValues"%>
-
-<%@ include file="/html/taglib/alloy/init.jsp" %>
-
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-</head>
+<%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">
-
 #element1 {
 	background: red;
 	position: absolute;
@@ -52,10 +40,8 @@
 	margin-left: -150px;
 	z-index: 99999;
 }
-
 </style>
 
-<body>
 <h1>Alloy - OverlayMask</h1>
 
 <p><button id="showOn-document">Show on document</button></p>
@@ -70,6 +56,3 @@
 Problem with zIndex attribute setter: Unable to find setter method for attribute: zIndex
 
 <alloy:overlay-mask target="#element1" visible="true" />
-
-</body>
-</html>

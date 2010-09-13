@@ -1,41 +1,26 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css">
+.query {
+	color: #444444;
+	font-size: 20px;
+	padding: 5px;
+	width: 443px;
+}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+.list {
+	margin: 30px;
+	width: 500px;
+	border: 2px solid #ccc;
+}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-
-	<style type="text/css">
-
-	.query {
-		color: #444444;
-		font-size: 20px;
-		padding: 5px;
-		width: 443px;
-	}
-
-	.list {
-		margin: 30px;
-		width: 500px;
-		border: 2px solid #ccc;
-	}
-
-	.entry, .entry-query {
-		margin: 10px;
-		border: 1px solid #ccc;
-		padding: 10px;
-		font-size: 14px;
-	}
-
-	</style>
-</head>
-
-<body>
+.entry, .entry-query {
+	margin: 10px;
+	border: 1px solid #ccc;
+	padding: 10px;
+	font-size: 14px;
+}
+</style>
 
 <h1>Alloy - LiveSearch</h1>
 
@@ -92,6 +77,3 @@
 	input="#query1"
 	nodes="#search1 .entry"
 />
-
-</body>
-</html>

@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-
-<%@page import="com.liferay.alloy.util.PropsValues"%>
-
-<%@ include file="/html/taglib/alloy/init.jsp" %>
-
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-button/assets/aui-button-core.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-</head>
+<%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">
-
 .calendar-icon {
 	font-size:15px;
 	left:400px;
@@ -21,10 +8,8 @@
 	position:absolute;
 	top:100px;
 }
-
 </style>
 
-<body>
 <h1>Alloy - Calendar</h1>
 
 <input type="text" name="input1" size="55" value="" id="input1" />
@@ -60,6 +45,3 @@ AUI().ready('aui-calendar-base', function(A) {
 });
 
 </script>
-
-</body>
-</html>

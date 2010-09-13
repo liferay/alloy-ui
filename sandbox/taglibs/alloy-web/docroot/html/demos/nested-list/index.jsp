@@ -1,74 +1,60 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css">
+.placeholder-test {
+	background: #fff;
+	height: 30px;
+	border: 1px dashed #ccc !important;
+	opacity: .5;
+}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+.dd-demo {
+	left: 100px;
+	padding: 2px;
+	position: relative;
+    width: 200px;
+	background: #eee;
+}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
+#dd-demo-1 {
 
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+}
 
-	<style type="text/css">
-	.placeholder-test {
-		background: #fff;
-		height: 30px;
-		border: 1px dashed #ccc !important;
-		opacity: .5;
-	}
+#demo-1 li {
+	border: 2px solid #ccc;
+	margin: 4px;
+	padding: 3px;
+	list-style: none;
+}
 
-	.dd-demo {
-		left: 100px;
-		padding: 2px;
-		position: relative;
-	    width: 200px;
-		background: #eee;
-	}
+#demo-2 li {
+	border: 2px solid #ccc;
+	margin: 4px;
+	padding: 2px;
+	list-style: none;
+}
 
-	#dd-demo-1 {
+#demo-4 div {
+	height: 50px;
+	width: 50px;
+	background: red;
+}
 
-	}
+#demo-4 > div {
+	border: 2px solid #ccc;
+	margin: 4px;
+	padding: 2px;
+	list-style: none;
+	float: left;
+	height: 50px;
+	width: 50px;
+	background: transparent;
+}
 
-	#demo-1 li {
-		border: 2px solid #ccc;
-/*		margin: 10px 4px 10px 4px;*/
-		margin: 4px;
-		padding: 3px;
-		list-style: none;
-	}
-
-	#demo-2 li {
-		border: 2px solid #ccc;
-		margin: 4px;
-		padding: 2px;
-		list-style: none;
-	}
-
-	#demo-4 div {
-		height: 50px;
-		width: 50px;
-		background: red;
-	}
-
-	#demo-4 > div {
-		border: 2px solid #ccc;
-		margin: 4px;
-		padding: 2px;
-		list-style: none;
-		float: left;
-		height: 50px;
-		width: 50px;
-		background: transparent;
-	}
-
-	.yui-dd-dragging {
-		visibility: hidden;
-	}
-	</style>
-</head>
-
-<body>
+.yui-dd-dragging {
+	visibility: hidden;
+}
+</style>
 
 <h1>Alloy - Nested List</h1>
 
@@ -203,6 +189,3 @@
 	nodes="#demo-4 div"
 	dropCondition="function(event) { return true; }"
 />
-
-</body>
-</html>

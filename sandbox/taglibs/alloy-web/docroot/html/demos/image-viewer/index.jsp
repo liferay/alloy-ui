@@ -1,34 +1,19 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css">
+.gallery {
+	margin: 30px;
+}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+.gallery .picture {
+	border: 5px solid #222;
+	margin: 3px;
+}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-
-	<style type="text/css">
-
-	.gallery {
-		margin: 30px;
-	}
-
-	.gallery .picture {
-		border: 5px solid #222;
-		margin: 3px;
-	}
-
-	.gallery a {
-		outline: none;
-	}
-
-	</style>
-</head>
-
-<body>
+.gallery a {
+	outline: none;
+}
+</style>
 
 <h1>Alloy - ImageViewer</h1>
 
@@ -77,6 +62,3 @@ AUI().ready('aui-image-viewer-base', function(A) {
 });
 
 </script>
-
-</body>
-</html>

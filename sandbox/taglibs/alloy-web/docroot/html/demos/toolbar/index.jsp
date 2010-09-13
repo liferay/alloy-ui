@@ -1,34 +1,16 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
-
-<%@page import="com.liferay.portal.kernel.util.ArrayUtil"%>
-
-<%@ include file="/html/taglib/alloy/init.jsp" %>
-
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-	
-	<style type="text/css" media="screen">
-		body {
-			font-size: 12px;
-		}
-		#wrapper {
-			padding: 10px;
-		}
-		.testing {
-			display: block;
-		}
-		.aui-buttonitem-content {
-			margin: 0;
-		}
-	</style>
-</head>
-
-<body>
+<style type="text/css" media="screen">
+	#wrapper {
+		padding: 10px;
+	}
+	.testing {
+		display: block;
+	}
+	.aui-buttonitem-content {
+		margin: 0;
+	}
+</style>
 
 <div id="wrapper">
 	<h1>Alloy - Toolbar Demo</h1>
@@ -89,6 +71,3 @@
 		<alloy:button-item activeState="true" cssClass="aui-toolbar-last" icon="gear" />
 	</alloy:toolbar>
 </div>
-
-</body>
-</html>

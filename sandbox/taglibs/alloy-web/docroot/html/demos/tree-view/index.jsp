@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-
-<%@page import="com.liferay.alloy.util.PropsValues"%>
-
-<%@page import="java.util.HashSet"%>
-<%@page import="java.util.Set"%>
-
-<%@ include file="/html/taglib/alloy/init.jsp" %>
-
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-tree/assets/skins/sam/aui-tree.css" type="text/css" media="screen" />
-</head>
+<%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">
-	
-	body {
-		padding: 10px;
-	}
-
 	.aui-tree-view {
 		margin: 30px;
 		font-size: 12px;
@@ -37,7 +17,6 @@
 		padding: 20px;
 		width: 200px;
 	}
-
 </style>
 
 <%
@@ -87,7 +66,6 @@ Set<Map<String, Object>> children = new HashSet<Map<String, Object>>();
 children.add(root);
 %>
 
-<body>
 <h1>Alloy - TreeView</h1>
 
 <h1>A.TreeView Drag & Drop Style</h1>
@@ -109,6 +87,3 @@ children.add(root);
 	children="<%= children %>"
 	type="file"
 />
-
-</body>
-</html>

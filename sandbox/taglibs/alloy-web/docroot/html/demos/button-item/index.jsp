@@ -1,39 +1,21 @@
-<!DOCTYPE html>
+<%@ include file="/html/demos/init.jsp" %>
 
-<%@page import="com.liferay.alloy.util.PropsValues"%>
+<style type="text/css" media="screen">
+	#wrapper {
+		padding: 10px;
+	}
 
-<%@ include file="/html/taglib/alloy/init.jsp" %>
+	#wrapper {
+		padding: 10px;
+		width: 800px;
+		margin: 0 auto;
+	}
 
-<html>
-<head>
-	<script src="<%= PropsValues.ALLOY_BASE_PATH %>aui/aui.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="<%= PropsValues.ALLOY_BASE_PATH %>aui-button-item/assets/skins/sam/aui-button-item.css" type="text/css" media="screen" />
-
-	<style type="text/css" media="screen">
-		body {
-			font-size: 12px;
-		}
-
-		#wrapper {
-			padding: 10px;
-		}
-
-		#wrapper {
-			padding: 10px;
-			width: 800px;
-			margin: 0 auto;
-		}
-
-		#withLabel .aui-buttonitem, #iconOnly .aui-buttonitem {
-			display: block;
-			clear: both;
-		}
-	</style>
-</head>
-
-<body>
+	#withLabel .aui-buttonitem, #iconOnly .aui-buttonitem {
+		display: block;
+		clear: both;
+	}
+</style>
 
 <%
 String[] allIcons = new String[] {
@@ -245,6 +227,3 @@ String[] allIcons = new String[] {
 		</div>
 	</div>
 </div>
-
-</body>
-</html>
