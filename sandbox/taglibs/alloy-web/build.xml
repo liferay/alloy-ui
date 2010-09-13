@@ -21,10 +21,8 @@
 		<if>
 			<equals arg1="${deploy.liferay}" arg2="true" />
 			<then>
-				<mkdir dir="${temp.dir}"/>
-
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" excludes="html/demos/**" />
+					<fileset dir="docroot" />
 				</copy>
 
 				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
@@ -35,6 +33,11 @@
 
 				<var name="from.dir" value="${temp.dir}"/>
 			</then>
+			<else>
+				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+				</copy>
+			</else>
 		</if>
 
 		<copy todir="${app.server.portal.dir}" preservelastmodified="true">

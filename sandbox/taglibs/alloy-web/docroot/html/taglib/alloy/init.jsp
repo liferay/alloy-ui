@@ -8,14 +8,13 @@
 <%@ taglib prefix="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util" %>
 
 <%@ page import="java.io.Serializable"%>
-
 <%@ page import="java.util.Calendar"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.util.HashMap"%>
 <%@ page import="java.util.Locale"%>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Set"%>
-
+<%@ page import="com.liferay.alloy.util.PropsValues"%>
 <%@ page import="com.liferay.alloy.util.GetterUtil" %>
 <%@ page import="com.liferay.alloy.util.JSONFactoryUtil"%>
 <%@ page import="com.liferay.alloy.util.MarkupUtil"%>
@@ -24,7 +23,6 @@
 <%@ page import="com.liferay.portal.kernel.util.StringBundler"%>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator"%>
-
 <%@ page import="org.json.JSONObject" %>
 <%@ page import="org.json.JSONArray" %>
 

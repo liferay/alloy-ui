@@ -15,16 +15,14 @@
 	</target>
 
 	<target name="deploy" depends="clean, compile">
-		<var name="from.dir" value="docroot"/>
+		<var name="from.dir" value="docroot" />
 		<property name="war.file.dest" value="${app.server.portal.dir}" />
 
 		<if>
 			<equals arg1="${deploy.liferay}" arg2="true" />
 			<then>
-				<mkdir dir="${temp.dir}"/>
-
 				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" excludes="html/demos/**" />
+					<fileset dir="docroot" />
 				</copy>
 
 				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
@@ -42,7 +40,7 @@
 			</else>
 		</if>
 
-		<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
+		<copy todir="${from.dir}/WEB-INF/lib" preservelastmodified="true">
 			<fileset dir="${project.dir}/lib/liferay" includes="*.jar" />
 		</copy>
 
@@ -54,31 +52,23 @@
 	</target>
 
 	<target name="prepare-liferay-deploy">
-		<replace dir="${temp.dir}">
-		 <include name="html/taglib/alloy_util/component/page.jsp"/>
-
+		<replace dir="${temp.dir}" includes="html/taglib/alloy_util/component/page.jsp">
 		  <replacetoken><![CDATA[ position="<%= position %>"]]></replacetoken>
 		  <replacevalue><![CDATA[]]></replacevalue>
 		</replace>
-		
-		<replace dir="${temp.dir}">
-		  <include name="**/*.jsp"/>
 
+		<replace dir="${temp.dir}" includes="**/*.jsp">
 		  <replacetoken><![CDATA[alloy-util:script]]></replacetoken>
 		  <replacevalue><![CDATA[aui:script]]></replacevalue>
 		</replace>
-		
-		<replace dir="${temp.dir}">
-		  <include name="**/*.jsp"/>
 
+		<replace dir="${temp.dir}" includes="**/*.jsp">
 		  <replacetoken><![CDATA[printBuffer="true"]]></replacetoken>
 		  <replacevalue></replacevalue>
 		</replace>
 
 		<echo file="${temp.dir}/html/taglib/alloy/init.jsp" append="yes">
-		<![CDATA[
-			<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-		]]>
+<![CDATA[<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>]]>
 		</echo>
 	</target>
 
