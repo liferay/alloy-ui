@@ -28,6 +28,7 @@
 	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
 	border-style: solid;
 	border-width: 1px;
+	margin: 0;
 }
 
 .menu ul, .menu li {
@@ -114,62 +115,64 @@
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 
-<div id="menu1" class="menu aui-overlaycontext-hidden">
-	<ul>
-		<li>
-			<a href="javascript:;">Page</a>
-		</li>
-		<li>
-			<a href="javascript:;">Application</a>
-		</li>
-		<li>
-			<a href="javascript:;">Web Content Display</a>
-		</li>
-		<li>
-			<a href="javascript:;">Breadcrumb</a>
-		</li>
-		<li>
-			<a href="javascript:;">Navigation</a>
-		</li>
-		<li>
-			<a href="javascript:;">Site Map</a>
-		</li>
-	</ul>
+<div id="menu1">
+	<alloy:overlay-context
+		cancellableHide="false"
+		hideOn="mouseleave"
+		hideDelay="1000"
+		trigger=".menu-item-1"
+		showDelay="0"
+		showOn="mouseenter">
+		
+		<ul class="menu">
+			<li>
+				<a href="javascript:;">Page</a>
+			</li>
+			<li>
+				<a href="javascript:;">Application</a>
+			</li>
+			<li>
+				<a href="javascript:;">Web Content Display</a>
+			</li>
+			<li>
+				<a href="javascript:;">Breadcrumb</a>
+			</li>
+			<li>
+				<a href="javascript:;">Navigation</a>
+			</li>
+			<li>
+				<a href="javascript:;">Site Map</a>
+			</li>
+		</ul>
+
+	</alloy:overlay-context>
 </div>
 
-<div id="menu2" class="menu aui-overlaycontext-hidden">
-	<ul>
-		<li>
-			<a href="javascript:;">Control Panel</a>
-		</li>
-		<li>
-			<a href="javascript:;">Public Pages</a>
-		</li>
-		<li>
-			<a href="javascript:;">Private Pages</a>
-		</li>
-	</ul>
+<div id="menu2">
+
+	<alloy:overlay-context
+		cancellableHide="true"
+		hideOn="mouseleave"
+		hideDelay="1000"
+		trigger="#menuItem2"
+		showDelay="0"
+		showOn="mouseenter">
+
+		<ul class="menu">
+			<li>
+				<a href="javascript:;">Control Panel</a>
+			</li>
+			<li>
+				<a href="javascript:;">Public Pages</a>
+			</li>
+			<li>
+				<a href="javascript:;">Private Pages</a>
+			</li>
+		</ul>
+
+	</alloy:overlay-context>
+	
 </div>
-
-<alloy:overlay-context
-	boundingBox="#menu1"
-	cancellableHide="false"
-	hideOn="mouseleave"
-	hideDelay="1000"
-	trigger=".menu-item-1"
-	showDelay="0"
-	showOn="mouseenter"
-/>
-
-<alloy:overlay-context
-	boundingBox="#menu2"
-	cancellableHide="true"
-	hideOn="mouseleave"
-	hideDelay="1000"
-	trigger="#menuItem2"
-	showDelay="0"
-	showOn="mouseenter"
-/>
 
 <alloy:overlay-context
 	boundingBox="#contextOverlay1"
@@ -179,6 +182,7 @@
 	trigger="button"
 	showDelay="0"
 	showOn="click"
+	useMarkup="false"
 />
 
 </body>

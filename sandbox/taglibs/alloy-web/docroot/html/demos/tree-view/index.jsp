@@ -31,22 +31,14 @@
 	}
 
 	#tree1 {
-		padding: 15px;
 		border: 3px solid #ededed;
+		height: 150px;
+		margin: 10px;
+		padding: 20px;
+		width: 200px;
 	}
 
 </style>
-
-<body>
-<h1>Alloy - TreeView</h1>
-
-<h1>A.TreeView Folder Style</h1>
-<div id="tree1"></div>
-
-<br/><br/><br/>
-
-<h1>A.TreeView Simple Style</h1>
-<div id="tree2"></div>
 
 <%
 Map<String, Object> child1 = new HashMap<String, Object>();
@@ -95,19 +87,27 @@ Set<Map<String, Object>> children = new HashSet<Map<String, Object>>();
 children.add(root);
 %>
 
+<body>
+<h1>Alloy - TreeView</h1>
+
+<h1>A.TreeView Drag & Drop Style</h1>
+
+<div id="tree1"></div>
+
 <alloy:tree-view-dd
 	boundingBox="#tree1"
 	children="<%= children %>"
-	height="150"
 	type="file"
-	width="200"
+	useMarkup="false"
 />
+
+<br/><br/>
+
+<h1>A.TreeView Simple Style</h1>
 
 <alloy:tree-view
 	children="<%= children %>"
-	height="150"
 	type="file"
-	width="200"
 />
 
 </body>
