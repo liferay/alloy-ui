@@ -1826,7 +1826,26 @@ Set.prototype.getRegion = Set.prototype.getBBox =  function() {
 		width: MATH_MAX.apply(0, w) - x,
 		height: MATH_MAX.apply(0, h) - y
 	};
-}
+};
+
+Set.prototype.attr = function(name, value) {
+	var instance = this;
+
+	var items = instance._items;
+
+	if (name && isArray(name) && isObject(name[0])) {
+		for (var i = 0, length = name.length; i < length; i++) {
+			items[i].attr(name[i]);
+		}
+	}
+	else {
+		for (var i = 0, length = items.length; i < length; i++) {
+			items[i].attr(name, value);
+		}
+	}
+
+	return instance;
+};
 
 Set.prototype.toString = function() {
 	return this._items.join(',');
