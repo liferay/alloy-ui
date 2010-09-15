@@ -538,6 +538,7 @@ YUI.add('dd-drag', function(Y) {
             });
             
             this.publish(EV_END, {
+                defaultFn: this._defEndFn,
                 preventedFn: this._prevEndFn,
                 queuable: false,
                 emitFacade: true,
@@ -1067,10 +1068,19 @@ YUI.add('dd-drag', function(Y) {
         },
         /**
         * @private
+        * @method _defEndFn
+        * @description Handler for fixing the selection in IE
+        */
+        _defEndFn: function(e) {
+            this._fixIEMouseUp();
+        },
+        /**
+        * @private
         * @method _prevEndFn
         * @description Handler for preventing the drag:end event. It will reset the node back to it's start position
         */
         _prevEndFn: function(e) {
+            this._fixIEMouseUp();
             //Bug #1852577
             this.get(DRAG_NODE).setXY(this.nodeXY);
         },
@@ -1220,4 +1230,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm-base'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm-base']});

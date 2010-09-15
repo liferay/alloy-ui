@@ -1469,4 +1469,4 @@ DRAWING_PROTOTYPE._uiSetHeight = function(value) {
 	canvasStyle.clip = 'rect(0 ' + width  + ' ' + value + ' 0)';
 };
 
-}, '@VERSION@' ,{requires:['substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});

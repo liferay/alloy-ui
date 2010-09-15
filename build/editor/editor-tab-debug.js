@@ -75,4 +75,4 @@ YUI.add('editor-tab', function(Y) {
     Y.Plugin.EditorTab = EditorTab;
 
 
-}, '3.2.0PR1' ,{requires:['editor-base'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['editor-base']});

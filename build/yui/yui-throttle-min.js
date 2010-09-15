@@ -5,6 +5,6 @@ http://developer.yahoo.com/yui/license.html
 version: 3.2.0PR1
 build: nightly
 */
-YUI.add("yui-throttle",function(Y){
-/* Based on work by Simon Willison: http://gist.github.com/292562 */
-var throttle=function(fn,ms){ms=(ms)?ms:(Y.config.throttleTime||150);if(ms===-1){return(function(){fn.apply(null,arguments);});}var last=(new Date()).getTime();return(function(){var now=(new Date()).getTime();if(now-last>ms){last=now;fn.apply(null,arguments);}});};Y.throttle=throttle;},"3.2.0PR1",{requires:["yui-base"]});
+YUI.add("yui-throttle",function(b){
+/*! Based on work by Simon Willison: http://gist.github.com/292562 */
+var a=function(d,c){c=(c)?c:(b.config.throttleTime||150);if(c===-1){return(function(){d.apply(null,arguments);});}var e=(new Date()).getTime();return(function(){var f=(new Date()).getTime();if(f-e>c){e=f;d.apply(null,arguments);}});};b.throttle=a;},"3.2.0PR1",{requires:["yui-base"]});

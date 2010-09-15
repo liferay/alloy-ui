@@ -1416,4 +1416,4 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 	}
 };
 
-}, '@VERSION@' ,{requires:['substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});

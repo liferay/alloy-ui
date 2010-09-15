@@ -12,8 +12,9 @@ build: nightly
  * @submodule yui-base
  */
 
-
-if (typeof YUI === 'undefined') {
+if (typeof YUI != 'undefined') {
+    var _YUI = YUI;
+}
 
 /**
  * The YUI global namespace object.  If YUI is already defined, the
@@ -36,8 +37,8 @@ if (typeof YUI === 'undefined') {
     var YUI = function() {
         var i     = 0, 
             Y     = this, 
-            a     = arguments, 
-            l     = a.length, 
+            args  = arguments, 
+            l     = args.length, 
             gconf = (typeof YUI_config !== 'undefined') && YUI_config;
 
         if (!(Y instanceof YUI)) {
@@ -56,7 +57,7 @@ if (typeof YUI === 'undefined') {
 
         if (l) {
             for (; i<l; i++) {
-                Y.applyConfig(a[i]);
+                Y.applyConfig(args[i]);
             }
 
             Y._setup();
@@ -64,7 +65,6 @@ if (typeof YUI === 'undefined') {
 
         return Y;
     };
-}
 
 (function() {
     var proto, prop,
@@ -108,12 +108,11 @@ if (typeof YUI === 'undefined') {
                             }
                         },
         getLoader = function(Y, o) {
-            // var loader = YUI.Env.loaders[Y.config._sig];
             var loader = Y.Env._loader;
             if (loader) {
                 loader.ignoreRegistered = false;
                 loader.onEnd            = null;
-                loader.attaching        = null;
+                // loader.attaching        = null;
                 loader.data             = null;
                 loader.required         = [];
                 loader.loadType         = null;
@@ -124,6 +123,14 @@ if (typeof YUI === 'undefined') {
             }
 
             return loader;
+        },
+        
+        clobber = function(r, s) {
+            for (var i in s) {
+                if (s.hasOwnProperty(i)) {
+                    r[i] = s[i];
+                }
+            }
         };
 
 //  Stamp the documentElement (HTML) with a class of "yui-loaded" to 
@@ -137,7 +144,7 @@ if (docEl && docClass.indexOf(DOC_LABEL) == -1) {
 }
 
 if (VERSION.indexOf('@') > -1) {
-    VERSION = '3.0.0'; // dev time hack for cdn test
+    VERSION = '3.2.0pr1'; // dev time hack for cdn test
 }
         
 proto = {
@@ -156,29 +163,22 @@ proto = {
         
         var attr,
             name, 
-            detail,
+            // detail,
             config = this.config, 
             mods   = config.modules,
             groups = config.groups,
+            rls    = config.rls,
             loader = this.Env._loader;
-
-        // config._sig += this.stamp(o);
 
         for (name in o) {
             if (o.hasOwnProperty(name)) {
                 attr = o[name];
                 if (mods && name == 'modules') {
-                    for (detail in attr) {
-                        if (attr.hasOwnProperty(detail)) {
-                            mods[detail] = attr[detail];
-                        }
-                    }
+                    clobber(mods, attr);
                 } else if (groups && name == 'groups') {
-                    for (detail in attr) {
-                        if (attr.hasOwnProperty(detail)) {
-                            groups[detail] = attr[detail];
-                        }
-                    }
+                    clobber(groups, attr);
+                } else if (rls && name == 'rls') {
+                    clobber(rls, attr);
                 } else if (name == 'win') {
                     config[name] = attr.contentWindow || attr;
                     config.doc = config[name].document;
@@ -207,7 +207,8 @@ proto = {
         var filter,
             Y       = this, 
             G_ENV   = YUI.Env,
-            Env     = Y.Env;
+            Env     = Y.Env,
+            prop, config;
 
         Y.version = VERSION;
 
@@ -232,11 +233,6 @@ proto = {
                     for (i=0; i<nodes.length; i=i+1) {
                         src = nodes[i].src;
                         if (src) {
-                            //src = "http://yui.yahooapis.com/combo?2.8.0r4/b
-                            //uild/yuiloader-dom-event/yuiloader-dom-event.js
-                            //&3.0.0/build/yui/yui-min.js"; // debug url
-
-                            // src = 'http://yui.yahooapis.com/combo?3.1.1/build/yui/yui-min.js&3.1.1/build/oop/oop-min.js&3.1.1/build/event-custom/event-custom-min.js&3.1.1/build/attribute/attribute-min.js';
 
                             match = src.match(srcPattern);
                             b = match && match[1];
@@ -278,6 +274,17 @@ proto = {
                 Env._yidx  = ++G_ENV._yidx;
                 Env._guidp = ('yui_' + VERSION + '_' + 
                              Env._yidx + '_' + time).replace(/\./g, '_');
+            } else if (typeof _YUI != 'undefined') {
+
+                G_ENV = _YUI.Env;
+                Env._yidx += G_ENV._yidx;
+                Env._uidx += G_ENV._uidx;
+                
+                for (prop in G_ENV) {
+                    if (!(prop in Env)) {
+                        Env[prop] = G_ENV[prop];
+                    }
+                }
             }
 
             Y.id = Y.stamp(Y);
@@ -299,15 +306,18 @@ proto = {
             fetchCSS:          true
         };
 
-        Y.config.base = YUI.config.base || 
+        config = Y.config;
+
+
+        config.base = YUI.config.base || 
             Y.Env.getBase(/^(.*)yui\/yui([\.\-].*)js(\?.*)?$/, 
                           /^(.*\?)(.*\&)(.*)yui\/yui[\.\-].*js(\?.*)?$/);
 
-        Y.config.loaderPath = YUI.config.loaderPath || 
+        config.loaderPath = YUI.config.loaderPath || 
             'loader/loader' + (filter || '-min.') + 'js';
 
     },
-    
+
     /**
      * Finishes the instance setup. Attaches whatever modules were defined
      * when the yui modules was registered.
@@ -318,7 +328,13 @@ proto = {
         var i, Y = this,
             core = [],
             mods = YUI.Env.mods,
-            extras = Y.config.core || ['get', 'intl-base', 'loader', 'yui-log', 'yui-later', 'yui-throttle'];
+            extras = Y.config.core || [ 'get', 
+                                        'rls', 
+                                        'intl-base', 
+                                        'loader', 
+                                        'yui-log', 
+                                        'yui-later', 
+                                        'yui-throttle' ];
 
         for (i=0; i<extras.length; i++) {
             if (mods[extras[i]]) {
@@ -444,7 +460,6 @@ proto = {
                 use        = details.use;
 
                 if (req && req.length) {
-                    // if (!Y._attach(Y.Array(req))) {
                     if (!Y._attach(req)) {
                         return false;
                     }
@@ -461,7 +476,6 @@ proto = {
                 }
 
                 if (use && use.length) {
-                    // if (!Y._attach(Y.Array(use))) {
                     if (!Y._attach(use)) {
                         return false;
                     }
@@ -513,8 +527,6 @@ proto = {
      */
     use: function() {
 
-        // console.log(arguments);
-
         if (!this.Array) {
             this._attach(['yui-base']);
             // this._attach( this.config.core || ['yui-base', 'get', 'intl-base', 'loader', 'yui-log', 'yui-later', 'yui-throttle']);
@@ -538,19 +550,18 @@ proto = {
             star,
             ret      = true,
             fetchCSS = config.fetchCSS,
-            process  = function(names) {
+            process  = function(names, skip) {
 
                 if (!names.length) {
                     return;
                 }
 
-                // var collection = YArray(names);
-                var collection = names;
-
-                YArray.each(collection, function(name) {
+                YArray.each(names, function(name) {
 
                     // add this module to full list of things to attach
-                    r.push(name);
+                    if (!skip) {
+                        r.push(name);
+                    }
 
                     // only attach a module once
                     if (used[name]) {
@@ -572,13 +583,12 @@ proto = {
                         }
                     }
 
-
                     if (req && req.length) { // make sure requirements are attached
                         process(req);
                     }
 
                     if (use && use.length) { // make sure we grab the submodule dependencies too
-                        process(use);
+                        process(use, 1);
                     }
                 });
             },
@@ -608,6 +618,7 @@ proto = {
                 if (data) {
                     origMissing = missing.concat();
                     missing = [];
+                    r = [];
                     process(data);
                     redo = missing.length;
                     if (redo) {
@@ -620,9 +631,11 @@ proto = {
                 if (redo && data) {
                     
                     // newData = data.concat();
-                    newData = r.concat();
+                    // newData = args.concat();
+                    newData = args.concat();
 
-                    newData = missing.concat();
+                    // newData = missing.concat();
+
                     newData.push(function() {
                         if (Y._attach(data)) {
                             notify(response);
@@ -669,7 +682,8 @@ proto = {
         // use loader to expand dependencies and sort the 
         // requirements if it is available.
         if (boot && !star && Y.Loader && args.length) {
-            // loader = new Y.Loader(config);
+
+
             loader = getLoader(Y);
             loader.require(args);
             loader.ignoreRegistered = true;
@@ -685,7 +699,6 @@ proto = {
         // the module metadata specifies
         process(args);
 
-        // console.log(args);
         len = missing.length;
 
         if (len) {
@@ -700,10 +713,20 @@ proto = {
             loader = getLoader(Y);
             loader.onEnd = handleLoader;
             loader.context = Y;
-            loader.attaching = args;
+            // loader.attaching = args;
             loader.data = args;
             loader.require((fetchCSS) ? missing : args);
             loader.insert(null, (fetchCSS) ? null : 'js');
+        } else if (len && Y.config.use_rls) {
+
+            // server side loader service
+            Y.Get.script(Y._rls(args), {
+                onEnd: function(o) {
+                    handleLoader(o);
+                }, 
+                data: args
+            });
+            
         } else if (boot && len && Y.Get && !Env.bootstrapped) {
 
             Y._loading = true;
@@ -731,7 +754,7 @@ proto = {
             if (len) {
                 Y.message('Requirement NOT loaded: ' + missing, 'warn', 'yui');
             }
-            ret = Y._attach(r);
+            ret = Y._attach(args);
             if (ret) {
                 handleLoader();
             }
@@ -1287,7 +1310,7 @@ proto = {
  * @since 3.1.0
  * @property yui2 
  * @type string
- * @default 2.8.0
+ * @default 2.8.1
  */
 
 /**
@@ -1304,7 +1327,8 @@ proto = {
 
 /**
  * Alternative console log function for use in environments without
- * a supported native console.
+ * a supported native console.  The function is executed in the
+ * YUI instance context.
  * @since 3.1.0
  * @property logFn
  * @type Function
@@ -1313,11 +1337,66 @@ proto = {
 /**
  * A callback to execute when Y.error is called.  It receives the
  * error message and an javascript error object if Y.error was
- * executed because a javascript error was caught.
+ * executed because a javascript error was caught.  The function
+ * is executed in the YUI instance context.
  *
  * @since 3.2.0
  * @property errorFn
  * @type Function
+ */
+
+/**
+ * The parameter defaults for the remote loader service.
+ * Requires the rls submodule.  The properties that are
+ * supported:
+ * <pre>
+ * m: comma separated list of module requirements.  This 
+ *    must be the param name even for custom implemetations.
+ * v: the version of YUI to load.  Defaults to the version
+ *    of YUI that is being used.
+ * gv: the version of the gallery to load (@see the gallery config)
+ * env: comma separated list of modules already on the page.
+ *      this must be the param name even for custom implemetations.
+ * lang: the languages supported on the page (@see the lang config)
+ * '2in3v':  the version of the 2in3 wrapper to use (@see the 2in3 config).
+ * '2v': the version of yui2 to use in the yui 2in3 wrappers (@see the yui2 config)
+ * filt: a filter def to apply to the urls (@see the filter config).
+ * filts: a list of custom filters to apply per module (@see the filters config).
+ * tests: this is a map of conditional module test function id keys with the values
+ * of 1 if the test passes, 0 if not.  This must be the name of the querystring
+ * param in custom templates.
+ *</pre>
+ *
+ * @since 3.2.0
+ * @property rls
+ */
+
+/**
+ * The base path to the remote loader service
+ *
+ * @since 3.2.0
+ * @property rls_base
+ */
+
+/**
+ * The template to use for building the querystring portion
+ * of the remote loader service url.  The default is determined
+ * by the rls config -- each property that has a value will be
+ * represented.
+ *
+ * ex: m={m}&v={v}&env={env}&lang={lang}&filt={filt}&tests={tests}
+ *
+ *
+ * @since 3.2.0
+ * @property rls_tmpl
+ */
+
+/**
+ * Configure the instance to use a remote loader service instead of
+ * the client loader.
+ *
+ * @since 3.2.0
+ * @property use_rls
  */
 YUI.add('yui-base', function(Y) {
 
@@ -1368,7 +1447,8 @@ TYPES     = {
 },
 
 TRIMREGEX = /^\s+|\s+$/g,
-EMPTYSTRING = '';
+EMPTYSTRING = '',
+SUBREGEX  = /\{\s*([^\|\}]+?)\s*(?:\|([^\}]*))?\s*\}/g;
 
 /**
  * Determines whether or not the provided item is an array.
@@ -1540,6 +1620,19 @@ L.type = function (o) {
     return  TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? OBJECT : NULL);
 };
 
+/**
+ * Lightweight version of @see Y.substitute... it uses the same template
+ * structure as Y.substitute, but doesn't support recursion, auto-object
+ * coersion, or formats
+ * @method sub
+ * @since 3.2.0
+ */
+L.sub = function (s, o) {
+    return ((s.replace) ? s.replace(SUBREGEX, function (match, key) {
+        return (!L.isUndefined(o[key])) ? o[key] : match;
+    }) : s);
+};
+
 // })();
 
 /**
@@ -1672,9 +1765,7 @@ YArray.each = (Native.forEach) ?
 YArray.hash = function(k, v) {
     var o = {}, l = k.length, vl = v && v.length, i;
     for (i=0; i<l; i=i+1) {
-        if (k[i]) {
-            o[k[i]] = (vl && vl > i) ? v[i] : true;
-        }
+        o[k[i]] = (vl && vl > i) ? v[i] : true;
     }
 
     return o;
@@ -2162,7 +2253,7 @@ O.each = function (o, f, c, proto) {
     return Y;
 };
 
-/*
+/**
  * Executes a function on each item, but halts if the
  * function returns true.  The function
  * receives the value, the key, and the object
@@ -3276,6 +3367,155 @@ Y.Get = function() {
 
 
 }, '3.2.0PR1' );
+YUI.add('features', function(Y) {
+
+var tests = {};
+
+Y.mix(Y.namespace("Features"), {
+
+    tests: tests,
+
+    add: function(cat, name, o) {
+        tests[cat] = tests[cat] || {};
+        tests[cat][name] = o;
+    },
+
+    all: function(cat, args) {
+        var cat_o   = tests[cat],
+            // results = {};
+            result = '';
+        if (cat_o) {
+            Y.Object.each(cat_o, function(v, k) {
+                // results[k] = Y.Features.test(cat, k, args);
+                result += k + ':' + (Y.Features.test(cat, k, args) ? 1 : 0) + ';';
+            });
+        }
+
+        return result;
+    },
+
+    test: function(cat, name, args) {
+
+        var result, ua, test,
+            cat_o   = tests[cat],
+            feature = cat_o && cat_o[name];
+
+        if (!feature) {
+        } else {
+
+            result = feature.result;
+
+            if (Y.Lang.isUndefined(result)) {
+
+                ua = feature.ua;
+                if (ua) {
+                    result = (Y.UA[ua]);
+                }
+
+                test = feature.test;
+                if (test && ((!ua) || result)) {
+                    result = test.apply(Y, args);
+                }
+
+                feature.result = result;
+            }
+        }
+
+        return result;
+    }
+});
+
+// Y.Features.add("load", "1", {});
+// Y.Features.test("load", "1");
+// caps=1:1;2:0;3:1;
+
+/* This file is auto-generated by src/loader/meta_join.py */
+var add = Y.Features.add;
+// 0
+add('load', '0', {
+    "trigger": "dom-style", 
+    "ua": "ie"
+});
+// history-hash-ie-test.js
+add('load', '1', {
+    "test": function (Y) {
+    var docMode = Y.config.doc.documentMode;
+
+    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
+            !docMode || docMode < 8);
+}, 
+    "trigger": "history-hash"
+});
+// dd-gestures-test.js
+add('load', '2', {
+    "test": function(Y) {
+    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
+}, 
+    "trigger": "dd-drag"
+});
+
+
+}, '3.2.0PR1' ,{requires:['yui-base']});
+YUI.add('rls', function(Y) {
+
+/**
+ * Implentation for building the remote loader service url.
+ * @method _rls
+ * @param what {Array} the requested modules
+ * @since 3.2.0
+ */
+Y._rls = function(what) {
+
+    var config = Y.config,
+
+        // the configuration
+        rls = config.rls || {
+            m:       1, // required in the template
+            v:       Y.version,
+            gv:      config.gallery,
+            env:     1, // required in the template
+            lang:    config.lang,
+            '2in3v': config['2in3'],
+            '2v':    config.yui2,
+            filt:    config.filter,
+            filts:   config.filters,
+            tests:   1 // required in the template
+        },
+
+        // The rls base path
+        rls_base = config.rls_base || 'load?',
+
+        // the template
+        rls_tmpl = config.rls_tmpl || function() {
+            var s = '', param;
+            for (param in rls) {
+                if (param in rls && rls[param]) {
+                    s += param + '={' + param + '}&';
+                }
+            }
+            // console.log('rls_tmpl: ' + s);
+            return s;
+        }(), 
+        
+        url;
+
+    // update the request
+    rls.m     = what;
+    rls.env   = Y.Object.keys(YUI.Env.mods);
+    rls.tests = Y.Features.all('load', [Y]);
+
+    url = Y.Lang.sub(rls_base + rls_tmpl, rls);
+
+    config.rls = rls;
+    config.rls_tmpl = rls_tmpl;
+
+    // console.log(url);
+    return url;
+};
+
+
+
+}, '3.2.0PR1' ,{requires:['yui-base','get','features']});
 YUI.add('intl-base', function(Y) {
 
 /** 
@@ -3419,7 +3659,7 @@ INSTANCE.log = function(msg, cat, src, silent) {
             if (c.useBrowserConsole) {
                 m = (src) ? src + ': ' + msg : msg;
                 if (Y.Lang.isFunction(c.logFn)) {
-                    c.logFn(msg, cat, src);
+                    c.logFn.call(Y, msg, cat, src);
                 } else if (typeof console != UNDEFINED && console.log) {
                     f = (cat && console[cat] && (cat in LEVELS)) ? cat : 'log';
                     console[f](m);
@@ -3503,25 +3743,17 @@ YUI.add('yui-later', function(Y) {
     later = function(when, o, fn, data, periodic) {
         when = when || 0; 
 
-        var m = fn, f = m, id, d;
+        var m = fn, f, id;
 
-        if (o) {
-            if (L.isString(fn)) {
-                m = o[fn];
-            }
-
-            if(!Y.Lang.isUndefined(data)) {
-                d = Y.Array(data);
-            }
-
-            f = function() {
-                if (d) {
-                    m.apply(o, d) ;
-                } else {
-                    m.call(o);
-                }
-            };
+        if (o && L.isString(fn)) {
+            m = o[fn];
         }
+
+        f = !L.isUndefined(data) ? function() {
+            m.apply(o, Y.Array(data));
+        } : function() {
+            m.call(o);
+        };
 
         id = (periodic) ? setInterval(f, when) : setTimeout(f, when);
 
@@ -3597,5 +3829,5 @@ Y.throttle = throttle;
 }, '3.2.0PR1' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','features','rls','intl-base','yui-log','yui-later','yui-throttle']});
 

@@ -22,61 +22,94 @@ YUI.add('event-valuechange', function(Y) {
  * @static
  */
 
-var VALUE        = 'value',
-    VALUE_CHANGE = 'valueChange',
+var YArray = Y.Array,
 
 // Just a simple namespace to make methods overridable.
 VC = {
     // -- Static Constants -----------------------------------------------------
+    POLL_INTERVAL: 50,
     TIMEOUT: 10000,
 
     // -- Protected Static Properties ------------------------------------------
-    _events   : {},
     _history  : {},
     _intervals: {},
+    _notifiers: {},
     _timeouts : {},
 
     // -- Protected Static Methods ---------------------------------------------
-    _poll: function (node, e) {
-        var stamp   = Y.stamp(node),
-            newVal  = node.get(VALUE),
-            prevVal = VC._history[stamp];
+    _poll: function (node, stamp, e) {
+        var newVal  = node._node.value, // performance cheat; getValue() is a big hit when polling
+            prevVal = VC._history[stamp],
+            facade;
 
         if (newVal !== prevVal) {
             VC._history[stamp] = newVal;
 
-            VC._events[stamp].fire({
+            facade = {
                 _event : e,
                 newVal : newVal,
                 prevVal: prevVal
+            };
+
+            YArray.each(VC._notifiers[stamp], function (notifier) {
+                notifier.fire(facade);
             });
 
-            VC._startPolling(node, e);
+            VC._refreshTimeout(node, stamp);
         }
     },
 
-    _startPolling: function (node, e) {
-        var stamp = Y.stamp(node);
+    _refreshTimeout: function (node, stamp) {
+        VC._stopTimeout(node, stamp); // avoid dupes
 
-        VC._stopPolling(node); // avoid dupes
+        // If we don't see any changes within the timeout period (10 seconds by
+        // default), stop polling.
+        VC._timeouts[stamp] = setTimeout(function () {
+            VC._stopPolling(node, stamp);
+        }, VC.TIMEOUT);
+
+    },
+
+    _startPolling: function (node, stamp, e, force) {
+        if (!stamp) {
+            stamp = Y.stamp(node);
+        }
+
+        // Don't bother continuing if we're already polling.
+        if (!force && VC._intervals[stamp]) {
+            return;
+        }
+
+        VC._stopPolling(node, stamp); // avoid dupes
 
         // Poll for changes to the node's value. We can't rely on keyboard
         // events for this, since the value may change due to a mouse-initiated
         // paste event, an IME input event, or for some other reason that
         // doesn't trigger a key event.
-        VC._intervals[stamp] = setInterval(Y.bind(VC._poll, null, node, e), 20);
+        VC._intervals[stamp] = setInterval(function () {
+            VC._poll(node, stamp, e);
+        }, VC.POLL_INTERVAL);
 
-        // If we don't see any changes within the timeout period (10 seconds by
-        // default), stop polling.
-        VC._timeouts[stamp] = setTimeout(Y.bind(VC._stopPolling, null, node),
-                VC.TIMEOUT);
+        VC._refreshTimeout(node, stamp, e);
+
     },
 
-    _stopPolling: function (node) {
-        var stamp = Y.stamp(node);
+    _stopPolling: function (node, stamp) {
+        if (!stamp) {
+            stamp = Y.stamp(node);
+        }
 
-        clearTimeout(VC._timeouts[stamp]);
-        clearInterval(VC._intervals[stamp]);
+        VC._intervals[stamp] = clearInterval(VC._intervals[stamp]);
+        VC._stopTimeout(node, stamp);
+
+    },
+
+    _stopTimeout: function (node, stamp) {
+        if (!stamp) {
+            stamp = Y.stamp(node);
+        }
+
+        VC._timeouts[stamp] = clearTimeout(VC._timeouts[stamp]);
     },
 
     // -- Protected Static Event Handlers --------------------------------------
@@ -85,45 +118,58 @@ VC = {
     },
 
     _onKeyDown: function (e) {
-        VC._startPolling(e.currentTarget, e);
+        VC._startPolling(e.currentTarget, null, e);
     },
 
     _onKeyUp: function (e) {
         // These charCodes indicate that an IME has started. We'll restart
         // polling and give the IME up to 10 seconds (by default) to finish.
         if (e.charCode === 229 || e.charCode === 197) {
-            VC._startPolling(e.currentTarget, e);
+            VC._startPolling(e.currentTarget, null, e, true);
         }
     },
 
     _onMouseDown: function (e) {
-        VC._startPolling(e.currentTarget, e);
+        VC._startPolling(e.currentTarget, null, e);
     },
 
-    _onSubscribe: function (node, subscription, customEvent) {
-        Y.all(node).each(function (node) {
-            var stamp = Y.stamp(node);
+    _onSubscribe: function (node, subscription, notifier) {
+        var stamp     = Y.stamp(node),
+            notifiers = VC._notifiers[stamp];
 
-            VC._events[stamp]  = customEvent;
-            VC._history[stamp] = node.get(VALUE);
+        VC._history[stamp] = node.get('value');
 
-            node.on(VALUE_CHANGE + '|blur', VC._onBlur);
-            node.on(VALUE_CHANGE + '|mousedown', VC._onMouseDown);
-            node.on(VALUE_CHANGE + '|keydown', VC._onKeyDown);
-            node.on(VALUE_CHANGE + '|keyup', VC._onKeyUp);
+        notifier._handles = node.on({
+            blur     : VC._onBlur,
+            keydown  : VC._onKeyDown,
+            keyup    : VC._onKeyUp,
+            mousedown: VC._onMouseDown
         });
+
+        if (!notifiers) {
+            notifiers = VC._notifiers[stamp] = [];
+        }
+
+        notifiers.push(notifier);
     },
 
-    _onUnsubscribe: function (node, subscription, customEvent) {
-        Y.all(node).each(function (node) {
-            var stamp = Y.stamp(node);
+    _onUnsubscribe: function (node, subscription, notifier) {
+        var stamp     = Y.stamp(node),
+            notifiers = VC._notifiers[stamp],
+            index     = YArray.indexOf(notifiers, notifier);
 
-            node.detachAll(VALUE_CHANGE + '|*');
-            VC._stopPolling(node);
+        notifier._handles.detach();
 
-            delete VC._events[stamp];
-            delete VC._history[stamp];
-        });
+        if (index !== -1) {
+            notifiers.splice(index, 1);
+
+            if (!notifiers.length) {
+                VC._stopPolling(node, stamp);
+
+                delete VC._notifiers[stamp];
+                delete VC._history[stamp];
+            }
+        }
     }
 };
 
@@ -142,7 +188,7 @@ VC = {
  * </p>
  *
  * <p>
- * This event is provided by the <code>value-change</code> module.
+ * This event is provided by the <code>event-valuechange</code> module.
  * </p>
  *
  * <p>
@@ -150,7 +196,7 @@ VC = {
  * </p>
  *
  * <code><pre>
- * YUI().use('value-change', function (Y) {
+ * YUI().use('event-valuechange', function (Y) {
  * &nbsp;&nbsp;Y.one('input').on('valueChange', function (e) {
  * &nbsp;&nbsp;&nbsp;&nbsp;// Handle valueChange events on the first input element on the page.
  * &nbsp;&nbsp;});
@@ -176,12 +222,11 @@ VC = {
  * @for YUI
  */
 
-Y.Event.define(VALUE_CHANGE, {
+Y.Event.define('valueChange', {
     detach: VC._onUnsubscribe,
     on    : VC._onSubscribe,
 
     publishConfig: {
-        broadcast: 1,
         emitFacade: true
     }
 });

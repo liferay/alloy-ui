@@ -130,4 +130,4 @@ Y.mix(JSONPRequest.prototype, {
 }, true);
 
 
-}, '3.2.0PR1' ,{requires:['jsonp-base']});
+}, '3.2.0PR1' ,{requires:['jsonp']});

@@ -16,4 +16,4 @@ A.Drawing.prototype.safari = function() {
 	);
 };
 
-}, '@VERSION@' );
+}, '@VERSION@' ,{requires:['aui-drawing-base']});

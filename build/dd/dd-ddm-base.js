@@ -355,4 +355,4 @@ YUI.add('dd-ddm-base', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['node', 'base', 'yui-throttle', 'classnamemanager'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['node', 'base', 'yui-throttle', 'classnamemanager']});

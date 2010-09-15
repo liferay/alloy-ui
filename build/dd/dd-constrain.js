@@ -230,7 +230,7 @@ YUI.add('dd-constrain', function(Y) {
                         this.resetCache();
                     }
                 } else if (Y.Lang.isObject(con)) {
-                    region = con;
+                    region = Y.clone(con);
                 }
             }
             if (!con || !region) {
@@ -322,7 +322,7 @@ YUI.add('dd-constrain', function(Y) {
         */
         align: function() {
             var host = this.get(HOST),
-                _xy = host.actXY,
+                _xy = [host.actXY[0], host.actXY[1]],
                 r = this.getRegion(true);
 
             if (this.get('stickX')) {
@@ -455,4 +455,4 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-drag']});

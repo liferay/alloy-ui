@@ -355,7 +355,7 @@ YUI.add('dd-ddm-base', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['node', 'base', 'yui-throttle', 'classnamemanager'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['node', 'base', 'yui-throttle', 'classnamemanager']});
 YUI.add('dd-ddm', function(Y) {
 
 
@@ -476,7 +476,7 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});
 YUI.add('dd-ddm-drop', function(Y) {
 
 
@@ -662,7 +662,7 @@ YUI.add('dd-ddm-drop', function(Y) {
                         if (drop && drop.shim) {
                             if ((dMode == this.INTERSECT) && this._noShim) {
                                 r = ((aRegion) ? aRegion : this.activeDrag.get('node'));
-                                return drop.get('node').intersect(r).inRegion;
+                                return drop.get('node').intersect(r, drop.region).inRegion;
                             } else {
                                 if (this._noShim) {
                                     node = drop.get('node');
@@ -887,7 +887,7 @@ YUI.add('dd-ddm-drop', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm']});
 YUI.add('dd-drag', function(Y) {
 
 
@@ -1422,6 +1422,7 @@ YUI.add('dd-drag', function(Y) {
             });
             
             this.publish(EV_END, {
+                defaultFn: this._defEndFn,
                 preventedFn: this._prevEndFn,
                 queuable: false,
                 emitFacade: true,
@@ -1953,10 +1954,19 @@ YUI.add('dd-drag', function(Y) {
         },
         /**
         * @private
+        * @method _defEndFn
+        * @description Handler for fixing the selection in IE
+        */
+        _defEndFn: function(e) {
+            this._fixIEMouseUp();
+        },
+        /**
+        * @private
         * @method _prevEndFn
         * @description Handler for preventing the drag:end event. It will reset the node back to it's start position
         */
         _prevEndFn: function(e) {
+            this._fixIEMouseUp();
             //Bug #1852577
             this.get(DRAG_NODE).setXY(this.nodeXY);
         },
@@ -2106,7 +2116,7 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm-base'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm-base']});
 YUI.add('dd-proxy', function(Y) {
 
 
@@ -2186,6 +2196,11 @@ YUI.add('dd-proxy', function(Y) {
         borderStyle: {
             value: '1px solid #808080'
         },
+        /**
+        * @attribute cloneNode
+        * @description Should the node be cloned into the proxy for you. Default: false
+        * @type Boolean
+        */
         cloneNode: {
             value: false
         }
@@ -2256,10 +2271,10 @@ YUI.add('dd-proxy', function(Y) {
             var host = this.get(HOST),
                 n = host.get(NODE),
                 c = n.cloneNode(true);
-            c.set('id', '');
-            c.setStyle('position', 'absolute');
+
             delete c._yuid;
-            Y.stamp(c);
+            c.setAttribute('id', Y.guid());
+            c.setStyle('position', 'absolute');
             n.get('parentNode').appendChild(c);
             host.set(DRAG_NODE, c);
             return c;
@@ -2310,12 +2325,6 @@ YUI.add('dd-proxy', function(Y) {
         */
         _setFrame: function(drag) {
             var n = drag.get(NODE), d = drag.get(DRAG_NODE), ah, cur = 'auto';
-            if (drag.proxy.get('resizeFrame')) {
-                DDM._proxy.setStyles({
-                    height: n.get('offsetHeight') + 'px',
-                    width: n.get('offsetWidth') + 'px'
-                });
-            }
             
             ah = DDM.activeDrag.get('activeHandle');
             if (ah) {
@@ -2336,6 +2345,13 @@ YUI.add('dd-proxy', function(Y) {
                 d = drag.proxy.clone();
             }
 
+            if (drag.proxy.get('resizeFrame')) {
+                d.setStyles({
+                    height: n.get('offsetHeight') + 'px',
+                    width: n.get('offsetWidth') + 'px'
+                });
+            }
+
             if (drag.proxy.get('positionProxy')) {
                 d.setXY(drag.nodeXY);
             }
@@ -2348,7 +2364,7 @@ YUI.add('dd-proxy', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm', 'dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm', 'dd-drag']});
 YUI.add('dd-constrain', function(Y) {
 
 
@@ -2577,7 +2593,7 @@ YUI.add('dd-constrain', function(Y) {
                         this.resetCache();
                     }
                 } else if (Y.Lang.isObject(con)) {
-                    region = con;
+                    region = Y.clone(con);
                 }
             }
             if (!con || !region) {
@@ -2669,7 +2685,7 @@ YUI.add('dd-constrain', function(Y) {
         */
         align: function() {
             var host = this.get(HOST),
-                _xy = host.actXY,
+                _xy = [host.actXY[0], host.actXY[1]],
                 r = this.getRegion(true);
 
             if (this.get('stickX')) {
@@ -2802,7 +2818,7 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-drag']});
 YUI.add('dd-scroll', function(Y) {
 
 
@@ -3229,7 +3245,7 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{requires:['dd-drag'], skinnable:false, optional:['dd-proxy']});
 YUI.add('dd-drop', function(Y) {
 
 
@@ -3778,7 +3794,7 @@ YUI.add('dd-drop', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});
+}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm-drop', 'dd-drag']});
 YUI.add('dd-delegate', function(Y) {
 
 
@@ -3850,7 +3866,6 @@ YUI.add('dd-delegate', function(Y) {
             this.get('lastNode').removeClass(Y.DD.DDM.CSS_PREFIX + '-dragging');
             this.dd._unprep();
             this.dd.set('node', _tmpNode);
-            this.dd._fixIEMouseUp();
         },
         /**
         * @private
@@ -3861,7 +3876,7 @@ YUI.add('dd-delegate', function(Y) {
         _delMouseDown: function(e) {
             var tar = e.currentTarget,
                 dd = this.dd;
-
+            
             if (tar.test(this.get(NODES)) && !tar.test(this.get('invalid'))) {
                 this._shimState = Y.DD.DDM._noShim;
                 Y.DD.DDM._noShim = true;
@@ -3873,6 +3888,7 @@ YUI.add('dd-delegate', function(Y) {
                     dd.set('dragNode', tar);
                 }
                 dd._prep();
+                
                 dd.fire('drag:mouseDown', { ev: e });
             }
         },
@@ -3898,7 +3914,7 @@ YUI.add('dd-delegate', function(Y) {
         initializer: function(cfg) {
             this._handles = [];
             //Create a tmp DD instance under the hood.
-            var conf = this.get('dragConfig') || {},
+            var conf = Y.clone(this.get('dragConfig') || {}),
                 cont = this.get(CONT);
 
             conf.node = _tmpNode.cloneNode(true);
@@ -4108,7 +4124,7 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['dd-drop-plugin'], requires:['dd-drag', 'event-mouseenter'], skinnable:false});
+}, '3.2.0PR1' ,{requires:['dd-drag', 'event-mouseenter'], skinnable:false, optional:['dd-drop-plugin']});
 
 
 YUI.add('dd', function(Y){}, '3.2.0PR1' ,{use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-drop', 'dd-scroll', 'dd-delegate'], skinnable:false});

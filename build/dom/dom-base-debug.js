@@ -25,6 +25,7 @@ YUI.add('dom-base', function(Y) {
  */
 var NODE_TYPE = 'nodeType',
     OWNER_DOCUMENT = 'ownerDocument',
+    DOCUMENT_ELEMENT = 'documentElement',
     DEFAULT_VIEW = 'defaultView',
     PARENT_WINDOW = 'parentWindow',
     TAG_NAME = 'tagName',
@@ -218,32 +219,19 @@ Y.DOM = {
      * @return {Boolean} Whether or not the element is attached to the document. 
      */
     inDoc: function(element, doc) {
-        // there may be multiple elements with the same ID
-        var nodes = [],
-            ret = false,
-            id,
-            i,
-            node,
-            query;
-                
-        // avoid collision with form.id === input.name
-        if (element && element.attributes) {
-            doc = doc || element[OWNER_DOCUMENT];
-            if (element.attributes.id) {
-                id = element.attributes.id.value;
-            }
+        var ret = false,
+            rootNode;
 
-            if (!id) {
-                id = Y.guid();
-                element.setAttribute('id', id);
-            }
+        if (element && element.nodeType) {
+            (doc) || (doc = element[OWNER_DOCUMENT]);
 
-            nodes = Y.DOM.allById(id, doc);
-            for (i = 0; node = nodes[i++];) { // check for a match
-                if (node === element) {
-                    ret = true;
-                    break;
-                }
+            rootNode = doc[DOCUMENT_ELEMENT];
+
+            // contains only works with HTML_ELEMENT
+            if (rootNode && rootNode.contains && element.tagName) {
+                ret = rootNode.contains(element);
+            } else {
+                ret = Y.DOM.contains(rootNode, element);
             }
         }
 
@@ -269,7 +257,7 @@ Y.DOM = {
             if (nodes && nodes.length) {
                 for (i = 0; node = nodes[i++];) { // check for a match
                     if (node.attributes && node.attributes.id
-                            && node.attributes.id.value === id) { // avoid false positive for node.name
+                            && node.attributes.id.value === id) { // avoid false positive for node.name & form.id
                         ret.push(node);
                     }
                 }

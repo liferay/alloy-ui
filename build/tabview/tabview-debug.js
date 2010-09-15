@@ -399,4 +399,4 @@ Y.Tab = Y.Base.create('tab', Y.Widget, [Y.WidgetChild], {
 });
 
 
-}, '3.2.0PR1' ,{requires:['substitute', 'node-focusmanager', 'tabview-base', 'widget', 'widget-parent', 'widget-child']});
+}, '3.2.0PR1' ,{requires:['substitute', 'node-pluginhost', 'node-focusmanager', 'tabview-base', 'widget', 'widget-parent', 'widget-child']});

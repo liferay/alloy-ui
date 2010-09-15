@@ -3290,7 +3290,7 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 	}
 };
 
-}, '@VERSION@' ,{requires:['substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});
 AUI.add('aui-drawing-vml', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -4762,7 +4762,7 @@ DRAWING_PROTOTYPE._uiSetHeight = function(value) {
 	canvasStyle.clip = 'rect(0 ' + width  + ' ' + value + ' 0)';
 };
 
-}, '@VERSION@' ,{requires:['substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});
 AUI.add('aui-drawing-animate', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -5911,7 +5911,7 @@ A.Drawing.prototype.safari = function() {
 	);
 };
 
-}, '@VERSION@' );
+}, '@VERSION@' ,{requires:['aui-drawing-base']});
 
 
 AUI.add('aui-drawing', function(A){}, '@VERSION@' ,{plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}, skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts']});
