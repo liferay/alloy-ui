@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('scrollview-paginator', function(Y) {
@@ -317,4 +317,4 @@ Y.extend(PaginatorPlugin, Y.Plugin.Base, {
 Y.namespace('Plugin').ScrollViewPaginator = PaginatorPlugin;
 
 
-}, '3.2.0PR1' ,{skinnable:true, requires:['plugin']});
+}, '3.2.0' ,{skinnable:true, requires:['plugin']});

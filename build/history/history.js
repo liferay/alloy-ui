@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('history-base', function(Y) {
@@ -631,7 +631,7 @@ Y.mix(HistoryBase.prototype, {
 Y.HistoryBase = HistoryBase;
 
 
-}, '3.2.0PR1' ,{requires:['event-custom-complex']});
+}, '3.2.0' ,{requires:['event-custom-complex']});
 YUI.add('history-hash', function(Y) {
 
 /**
@@ -1092,7 +1092,7 @@ if (useHistoryHTML5 === false || (!Y.History && useHistoryHTML5 !== true &&
 }
 
 
-}, '3.2.0PR1' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
+}, '3.2.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
 YUI.add('history-hash-ie', function(Y) {
 
 /**
@@ -1216,7 +1216,7 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 }
 
 
-}, '3.2.0PR1' ,{requires:['history-hash', 'node-base']});
+}, '3.2.0' ,{requires:['history-hash', 'node-base']});
 YUI.add('history-html5', function(Y) {
 
 /**
@@ -1466,8 +1466,8 @@ if (useHistoryHTML5 === true || (useHistoryHTML5 !== false &&
 }
 
 
-}, '3.2.0PR1' ,{optional:['json'], requires:['event-base', 'history-base', 'node-base']});
+}, '3.2.0' ,{optional:['json'], requires:['event-base', 'history-base', 'node-base']});
 
 
-YUI.add('history', function(Y){}, '3.2.0PR1' ,{use:['history-base', 'history-hash', 'history-hash-ie', 'history-html5']});
+YUI.add('history', function(Y){}, '3.2.0' ,{use:['history-base', 'history-hash', 'history-hash-ie', 'history-html5']});
 

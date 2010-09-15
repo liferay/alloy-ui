@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('transition-native', function(Y) {
@@ -423,7 +423,7 @@ Y.NodeList.prototype.transition = function(config, callback) {
 };
 
 
-}, '3.2.0PR1' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});
 YUI.add('transition-timer', function(Y) {
 
 /*
@@ -760,8 +760,8 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.2.0PR1' ,{requires:['transition-native', 'node-style']});
+}, '3.2.0' ,{requires:['transition-native', 'node-style']});
 
 
-YUI.add('transition', function(Y){}, '3.2.0PR1' ,{use:['transition-native', 'transition-timer']});
+YUI.add('transition', function(Y){}, '3.2.0' ,{use:['transition-native', 'transition-timer']});
 

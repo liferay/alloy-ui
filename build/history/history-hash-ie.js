@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('history-hash-ie', function(Y) {
@@ -128,4 +128,4 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 }
 
 
-}, '3.2.0PR1' ,{requires:['history-hash', 'node-base']});
+}, '3.2.0' ,{requires:['history-hash', 'node-base']});

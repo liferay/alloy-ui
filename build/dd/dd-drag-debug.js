@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('dd-drag', function(Y) {
@@ -1233,4 +1233,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base']});

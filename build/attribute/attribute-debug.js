@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('attribute-base', function(Y) {
@@ -1175,7 +1175,7 @@ YUI.add('attribute-base', function(Y) {
     Y.Attribute = Attribute;
 
 
-}, '3.2.0PR1' ,{requires:['event-custom']});
+}, '3.2.0' ,{requires:['event-custom']});
 YUI.add('attribute-complex', function(Y) {
 
     /**
@@ -1298,8 +1298,8 @@ YUI.add('attribute-complex', function(Y) {
     Y.mix(Y.Attribute, Y.Attribute.Complex, true, null, 1);
 
 
-}, '3.2.0PR1' ,{requires:['attribute-base']});
+}, '3.2.0' ,{requires:['attribute-base']});
 
 
-YUI.add('attribute', function(Y){}, '3.2.0PR1' ,{use:['attribute-base', 'attribute-complex']});
+YUI.add('attribute', function(Y){}, '3.2.0' ,{use:['attribute-base', 'attribute-complex']});
 

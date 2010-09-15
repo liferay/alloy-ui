@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('event-delegate', function(Y) {
@@ -258,4 +258,4 @@ delegate._applyFilter = function (filter, args) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.2.0PR1' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});

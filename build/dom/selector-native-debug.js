@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('selector-native', function(Y) {
@@ -273,4 +273,4 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.2.0PR1' ,{requires:['dom-base']});
+}, '3.2.0' ,{requires:['dom-base']});

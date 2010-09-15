@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 YUI.add('io-base', function(Y) {
@@ -813,7 +813,7 @@ YUI.add('io-base', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{optional:['querystring-stringify-simple'], requires:['event-custom-base']});
+}, '3.2.0' ,{optional:['querystring-stringify-simple'], requires:['event-custom-base']});
 
 YUI.add('io-form', function(Y) {
 
@@ -909,7 +909,7 @@ YUI.add('io-form', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['io-base','node-base']});
+}, '3.2.0' ,{requires:['io-base','node-base']});
 
 YUI.add('io-xdr', function(Y) {
 
@@ -1211,7 +1211,7 @@ YUI.add('io-xdr', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['io-base','datatype-xml']});
+}, '3.2.0' ,{requires:['io-base','datatype-xml']});
 
 YUI.add('io-upload-iframe', function(Y) {
 
@@ -1491,7 +1491,7 @@ YUI.add('io-upload-iframe', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['io-base','node-base']});
+}, '3.2.0' ,{requires:['io-base','node-base']});
 
 YUI.add('io-queue', function(Y) {
 
@@ -1697,9 +1697,9 @@ YUI.add('io-queue', function(Y) {
 
 
 
-}, '3.2.0PR1' ,{requires:['io-base','queue-promote']});
+}, '3.2.0' ,{requires:['io-base','queue-promote']});
 
 
 
-YUI.add('io', function(Y){}, '3.2.0PR1' ,{use:['io-base', 'io-form', 'io-xdr', 'io-upload-iframe', 'io-queue']});
+YUI.add('io', function(Y){}, '3.2.0' ,{use:['io-base', 'io-form', 'io-xdr', 'io-upload-iframe', 'io-queue']});
 

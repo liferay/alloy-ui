@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0PR1
+version: 3.2.0
 build: nightly
 */
 /**
@@ -68,7 +68,7 @@ if (typeof YUI != 'undefined') {
 
 (function() {
     var proto, prop,
-        VERSION       = '3.2.0PR1', 
+        VERSION       = '3.2.0', 
         BASE          = 'http://yui.yahooapis.com/',
         DOC_LABEL     = 'yui3-js-enabled',
         NOOP          = function() {},
@@ -2663,7 +2663,7 @@ Y.UA = YUI.Env.UA || function() {
 }();
 
 
-}, '3.2.0PR1' );
+}, '3.2.0' );
 YUI.add('get', function(Y) {
 
 (function() {
@@ -3408,7 +3408,7 @@ Y.Get = function() {
 })();
 
 
-}, '3.2.0PR1' );
+}, '3.2.0' );
 YUI.add('features', function(Y) {
 
 var tests = {};
@@ -3498,7 +3498,7 @@ add('load', '2', {
 });
 
 
-}, '3.2.0PR1' ,{requires:['yui-base']});
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('rls', function(Y) {
 
 /**
@@ -3558,7 +3558,7 @@ Y._rls = function(what) {
 
 
 
-}, '3.2.0PR1' ,{requires:['yui-base','get','features']});
+}, '3.2.0' ,{requires:['yui-base','get','features']});
 YUI.add('intl-base', function(Y) {
 
 /** 
@@ -3642,7 +3642,7 @@ Y.mix(Y.namespace("Intl"), {
 });
 
 
-}, '3.2.0PR1' ,{requires:['yui-base']});
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -3751,7 +3751,7 @@ INSTANCE.message = function() {
 })();
 
 
-}, '3.2.0PR1' ,{requires:['yui-base']});
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -3819,7 +3819,7 @@ YUI.add('yui-later', function(Y) {
 })();
 
 
-}, '3.2.0PR1' ,{requires:['yui-base']});
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('yui-throttle', function(Y) {
 
 /**
@@ -3869,8 +3869,8 @@ Y.throttle = throttle;
 
 
 
-}, '3.2.0PR1' ,{requires:['yui-base']});
+}, '3.2.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.2.0PR1' ,{use:['yui-base','get','features','rls','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','intl-base','yui-log','yui-later','yui-throttle']});
 
