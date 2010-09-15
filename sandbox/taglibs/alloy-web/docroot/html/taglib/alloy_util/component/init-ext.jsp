@@ -12,13 +12,7 @@ else if (_render.equals("true") || _render.equals("false")) {
 
 optionsJSON.put("render", _render);
 
-boolean cacheJavaScript = GetterUtil.getBoolean((Serializable)_options.get("cacheJavaScript"), false);
+String scriptPosition = GetterUtil.getString((Serializable)_options.get("scriptPosition"), "inline");
 
 boolean useJavaScript = GetterUtil.getBoolean((Serializable)_options.get("useJavaScript"), true);
-
-String position = "inline";
-
-if (cacheJavaScript) {
-	position = "auto";
-}
 %>

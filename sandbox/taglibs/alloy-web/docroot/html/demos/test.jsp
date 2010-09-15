@@ -34,7 +34,7 @@
 		label="Created from HTML markup"
 		width="500"
 		progressbarValue="90"
-		cacheJavaScript="true"
+		scriptPosition="auto"
 	/>
 </div>
 
