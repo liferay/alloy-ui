@@ -266,11 +266,8 @@ Component.create = function(config) {
 
 	var configProto = config.prototype;
 
-	var BIND_UI_ATTRS = [];
-	var SYNC_UI_ATTRS = [];
-
-	BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
-	SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
+	var BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
+	var SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
 
 	if (BIND_UI_ATTRS.length) {
 		configProto._BIND_UI_ATTRS = concat(COMP_PROTO._BIND_UI_ATTRS, BIND_UI_ATTRS);
