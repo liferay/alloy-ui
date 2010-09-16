@@ -30,7 +30,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="ThumbRating1"
 	module="aui-rating"
 	name="ThumbRating"
 />

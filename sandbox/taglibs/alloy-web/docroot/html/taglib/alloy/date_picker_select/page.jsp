@@ -93,7 +93,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="DatePickerSelect1"
 	module="aui-datepicker-select"
 	name="DatePickerSelect"
 />

@@ -16,7 +16,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="AutoComplete1"
 	module="aui-autocomplete"
 	name="AutoComplete"
 />

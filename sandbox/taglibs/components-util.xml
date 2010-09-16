@@ -4,6 +4,12 @@
 	<component name="Component" namespace="alloy_util">
 		<attributes>
 			<attribute>
+				<name>defineVar</name>
+				<inputType>java.lang.Boolean</inputType>
+				<outputType>java.lang.Boolean</outputType>
+				<defaultValue>true</defaultValue>
+			</attribute>
+			<attribute>
 				<name>excludeAttributes</name>
 				<inputType>java.lang.String</inputType>
 				<outputType>java.lang.String</outputType>

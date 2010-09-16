@@ -30,6 +30,7 @@
 
 <div id="pb1">
 	<alloy:progress-bar
+		var="myVariableName"
 		boundingBox="#pb1"
 		label="Created from HTML markup"
 		width="500"

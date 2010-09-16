@@ -36,7 +36,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="Panel1"
 	module="aui-panel"
 	name="Panel"
 />

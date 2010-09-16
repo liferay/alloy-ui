@@ -24,7 +24,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="ProgressBar1"
 	module="aui-progressbar"
 	name="ProgressBar"
 />

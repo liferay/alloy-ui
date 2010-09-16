@@ -15,4 +15,10 @@ optionsJSON.put("render", _render);
 String scriptPosition = GetterUtil.getString((Serializable)_options.get("scriptPosition"), "inline");
 
 boolean useJavaScript = GetterUtil.getBoolean((Serializable)_options.get("useJavaScript"), true);
+
+_defineVar = GetterUtil.getBoolean((Serializable)_options.get("defineVar"), _defineVar);
+
+if (Validator.isNull(_var)) {
+	_var = (String)_options.get("var");
+}
 %>

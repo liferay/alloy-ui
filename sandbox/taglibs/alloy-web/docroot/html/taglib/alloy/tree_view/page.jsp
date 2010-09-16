@@ -88,7 +88,6 @@ private void buildTreeNode(Map<String, Object> node, StringBundler sb) {
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="TreeView1"
 	module="aui-tree"
 	name="TreeView"
 />

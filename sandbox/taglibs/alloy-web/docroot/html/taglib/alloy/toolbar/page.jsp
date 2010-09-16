@@ -23,7 +23,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
-	var="Toolbar1"
 	module="aui-toolbar"
 	name="Toolbar"
 />
