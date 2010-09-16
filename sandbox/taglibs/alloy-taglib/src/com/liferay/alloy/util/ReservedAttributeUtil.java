@@ -35,7 +35,7 @@ public class ReservedAttributeUtil {
 			"servletContext", "scopedAttribute", "scopedAttributes",
 			"previousOut", "parent", "namespacedAttribute",
 			"attributeNamespace", "bodyContent", "class", "dynamicAttribute",
-			"dynamicAttributes", "id"
+			"dynamicAttributes", "id", "scriptPosition"
 		}
 	);
 
