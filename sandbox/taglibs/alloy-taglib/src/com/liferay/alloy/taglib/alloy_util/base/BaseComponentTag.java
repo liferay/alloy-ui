@@ -24,6 +24,10 @@ public class BaseComponentTag extends IncludeTag {
 		return _PAGE;
 	}
 
+	public java.lang.Boolean getDefineVar() {
+		return _defineVar;
+	}
+
 	public java.lang.String getExcludeAttributes() {
 		return _excludeAttributes;
 	}
@@ -50,6 +54,12 @@ public class BaseComponentTag extends IncludeTag {
 
 	public java.util.Map getOptions() {
 		return _options;
+	}
+
+	public void setDefineVar(java.lang.Boolean defineVar) {
+		_defineVar = defineVar;
+
+		setScopedAttribute("defineVar", defineVar);
 	}
 
 	public void setExcludeAttributes(java.lang.String excludeAttributes) {
@@ -95,6 +105,7 @@ public class BaseComponentTag extends IncludeTag {
 	}
 
 	protected void _setAttributes(HttpServletRequest request) {
+		setNamespacedAttribute(request, "defineVar", _defineVar);
 		setNamespacedAttribute(request, "excludeAttributes", _excludeAttributes);
 		setNamespacedAttribute(request, "javaScriptAttributes", _javaScriptAttributes);
 		setNamespacedAttribute(request, "tagPageContext", _tagPageContext);
@@ -109,6 +120,7 @@ public class BaseComponentTag extends IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/component/page.jsp";
 
+	private java.lang.Boolean _defineVar;
 	private java.lang.String _excludeAttributes;
 	private java.lang.String _javaScriptAttributes;
 	private java.lang.Object _tagPageContext;
