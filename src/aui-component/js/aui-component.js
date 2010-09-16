@@ -6,6 +6,10 @@
 
 var Lang = A.Lang,
 
+	concat = function(arr, arr2) {
+		return (arr || []).concat(arr2 || []);
+	},
+
 	getClassName = A.ClassNameManager.getClassName,
 
 	NAME = 'component',
@@ -262,17 +266,18 @@ Component.create = function(config) {
 
 	var configProto = config.prototype;
 
-	if (config.UI_ATTRS) {
-		configProto._BIND_UI_ATTRS = COMP_PROTO._BIND_UI_ATTRS.concat(config.UI_ATTRS);
-		configProto._SYNC_UI_ATTRS = COMP_PROTO._SYNC_UI_ATTRS.concat(config.UI_ATTRS);
+	var BIND_UI_ATTRS = [];
+	var SYNC_UI_ATTRS = [];
+
+	BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
+	SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
+
+	if (BIND_UI_ATTRS.length) {
+		configProto._BIND_UI_ATTRS = concat(COMP_PROTO._BIND_UI_ATTRS, BIND_UI_ATTRS);
 	}
 
-	if (config.BIND_UI_ATTRS) {
-		configProto._BIND_UI_ATTRS = COMP_PROTO._BIND_UI_ATTRS.concat(config.BIND_UI_ATTRS);
-	}
-
-	if (config.SYNC_UI_ATTRS) {
-		configProto._SYNC_UI_ATTRS = COMP_PROTO._SYNC_UI_ATTRS.concat(config.SYNC_UI_ATTRS);
+	if (SYNC_UI_ATTRS.length) {
+		configProto._SYNC_UI_ATTRS = concat(COMP_PROTO._SYNC_UI_ATTRS, SYNC_UI_ATTRS);
 	}
 
 	var augmentsClasses = config.AUGMENTS;
