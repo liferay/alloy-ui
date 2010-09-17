@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <alloy short-name="alloy" uri="http://alloy.liferay.com/tld/alloy" tlib-version="1.0">
-  <component name="A.io" module="aui-io" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="A.io" module="aui-io" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes/>
     <events/>
   </component>
-  <component name="AutoComplete" module="aui-autocomplete" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="AutoComplete" module="aui-autocomplete" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>alwaysShowContainer</name>
@@ -578,7 +578,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="ButtonItem" module="aui-button-item" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ButtonItem" module="aui-button-item" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>activeState</name>
@@ -925,7 +925,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="Calendar" module="aui-calendar" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Calendar" module="aui-calendar" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -1534,7 +1534,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="CharCounter" module="aui-char-counter" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="CharCounter" module="aui-char-counter" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>counter</name>
@@ -1606,7 +1606,7 @@ href="CharCounter.html#config_input">input</a> can have.]]></description>
       </event>
     </events>
   </component>
-  <component name="ColorPicker" module="aui-color-picker" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ColorPicker" module="aui-color-picker" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -2088,7 +2088,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="DatePickerSelect" module="aui-calendar" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="DatePickerSelect" module="aui-calendar" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>appendOrder</name>
@@ -2499,7 +2499,7 @@ it displays from -10 to +10 years from the current year.]]></description>
       </event>
     </events>
   </component>
-  <component name="Dialog" module="aui-dialog" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Dialog" module="aui-dialog" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -3065,7 +3065,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="Editable" module="aui-editable" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Editable" module="aui-editable" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>boundingBox</name>
@@ -3421,7 +3421,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="IORequest" module="aui-io" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="IORequest" module="aui-io" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>active</name>
@@ -3697,7 +3697,7 @@ Configuration</a>.]]></description>
       </event>
     </events>
   </component>
-  <component name="ImageGallery" module="aui-image-viewer" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ImageGallery" module="aui-image-viewer" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -4499,7 +4499,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="ImageViewer" module="aui-image-viewer" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ImageViewer" module="aui-image-viewer" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -5155,7 +5155,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="LiveSearch" module="aui-live-search" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="LiveSearch" module="aui-live-search" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>data</name>
@@ -5294,7 +5294,7 @@ matches with the filter.]]></description>
       </event>
     </events>
   </component>
-  <component name="LoadingMask" module="aui-loading-mask" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="LoadingMask" module="aui-loading-mask" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>destroyed</name>
@@ -5377,7 +5377,7 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-  <component name="NestedList" module="aui-nested-list" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="NestedList" module="aui-nested-list" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>destroyed</name>
@@ -5415,7 +5415,7 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-  <component name="OverlayBase" module="aui-overlay" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="OverlayBase" module="aui-overlay" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -5800,7 +5800,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="OverlayContext" module="aui-overlay" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="OverlayContext" module="aui-overlay" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -6282,7 +6282,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="OverlayContextPanel" module="aui-overlay" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="OverlayContextPanel" module="aui-overlay" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -6824,7 +6824,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="OverlayMask" module="aui-overlay" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="OverlayMask" module="aui-overlay" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -7255,7 +7255,7 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
       </event>
     </events>
   </component>
-  <component name="Paginator" module="aui-paginator" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Paginator" module="aui-paginator" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>alwaysVisible</name>
@@ -7613,7 +7613,7 @@ so named ui component.]]></description>
       </event>
     </events>
   </component>
-  <component name="Panel" module="aui-panel" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Panel" module="aui-panel" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>bodyContent</name>
@@ -7938,7 +7938,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="ParseContent" module="aui-parse-content" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ParseContent" module="aui-parse-content" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>destroyed</name>
@@ -7987,7 +7987,7 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-  <component name="PortalLayout" module="aui-portal-layout" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="PortalLayout" module="aui-portal-layout" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>destroyed</name>
@@ -8025,7 +8025,7 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-  <component name="ProgressBar" module="aui-progressbar" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ProgressBar" module="aui-progressbar" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>boundingBox</name>
@@ -8365,7 +8365,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="Rating" module="aui-rating" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Rating" module="aui-rating" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>boundingBox</name>
@@ -8746,7 +8746,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="Resize" module="aui-resize" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Resize" module="aui-resize" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>activeHandle</name>
@@ -9023,7 +9023,7 @@ the handles elements.]]></description>
       </event>
     </events>
   </component>
-  <component name="Textboxlist" module="aui-textboxlist" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Textboxlist" module="aui-textboxlist" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>alwaysShowContainer</name>
@@ -9596,7 +9596,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="ThumbRating" module="aui-rating" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="ThumbRating" module="aui-rating" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>boundingBox</name>
@@ -9977,7 +9977,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="Toolbar" module="aui-toolbar" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Toolbar" module="aui-toolbar" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>activeDescendant</name>
@@ -10319,7 +10319,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </event>
     </events>
   </component>
-  <component name="Tooltip" module="aui-tooltip" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="Tooltip" module="aui-tooltip" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>align</name>
@@ -10862,7 +10862,7 @@ zIndex will be converted to 0]]></description>
       </event>
     </events>
   </component>
-  <component name="TreeNodeTask" module="aui-tree" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="TreeNodeTask" module="aui-tree" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>alwaysShowHitArea</name>
@@ -11165,7 +11165,7 @@ children is present the TreeNode is a leaf).]]></description>
       </event>
     </events>
   </component>
-  <component name="TreeView" module="aui-tree" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="TreeView" module="aui-tree" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>children</name>
@@ -11269,7 +11269,7 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-  <component name="TreeViewDD" module="aui-tree" namespace="alloy" bodyContent="false" alloyComponent="true">
+  <component name="TreeViewDD" module="aui-tree" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes>
       <attribute>
         <name>checkContainerEl</name>
