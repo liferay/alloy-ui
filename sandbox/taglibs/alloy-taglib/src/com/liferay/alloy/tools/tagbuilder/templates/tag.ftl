@@ -1,6 +1,6 @@
-package ${packagePath}.${component.getNamespace()};
+package ${packagePath}.${component.getPackage()};
 
-import ${packagePath}.${component.getNamespace()}.base.Base${component.getSafeName()}Tag;
+import ${packagePath}.${component.getPackage()}.base.Base${component.getSafeName()}Tag;
 
 /**
  * <a href="${component.getSafeName()}Tag.java.html"><b><i>View Source</i></b></a>

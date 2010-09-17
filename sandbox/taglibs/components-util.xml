@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <alloy short-name="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util">
-	<component name="Component" namespace="alloy_util">
+	<component name="Component" package="alloy_util">
 		<attributes>
 			<attribute>
 				<name>defineVar</name>
@@ -48,7 +48,7 @@
 			</attribute>
 		</attributes>
 	</component>
-	<component name="Script" namespace="alloy_util">
+	<component name="Script" package="alloy_util">
 		<attributes>
 			<attribute>
 				<name>position</name>

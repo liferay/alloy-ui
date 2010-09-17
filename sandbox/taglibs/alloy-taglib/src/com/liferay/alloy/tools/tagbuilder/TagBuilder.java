@@ -1,21 +1,28 @@
 package com.liferay.alloy.tools.tagbuilder;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import com.liferay.alloy.tools.model.Component;
-import com.liferay.alloy.tools.model.Attribute;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.alloy.util.xml.SAXReaderUtil;
-
-import com.liferay.alloy.util.FileUtil;
-import com.liferay.portal.freemarker.FreeMarkerUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
+
+import com.liferay.alloy.tools.model.Attribute;
+import com.liferay.alloy.tools.model.Component;
+import com.liferay.alloy.util.FileUtil;
+import com.liferay.alloy.util.xml.SAXReaderUtil;
+import com.liferay.portal.freemarker.FreeMarkerUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * <a href="TagBuilder.java.html"><b><i>View Source</i></b></a>
@@ -105,7 +112,7 @@ public class TagBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_javaOutputDir);
-		sb.append(component.getNamespace());
+		sb.append(component.getPackage());
 		sb.append(StringPool.SLASH);
 
 		return sb.toString();
@@ -115,7 +122,7 @@ public class TagBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_jspDir);
-		sb.append(component.getNamespace());
+		sb.append(component.getPackage());
 		sb.append(StringPool.SLASH);
 
 		return sb.toString();
@@ -125,7 +132,7 @@ public class TagBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_jspOutputDir);
-		sb.append(component.getNamespace());
+		sb.append(component.getPackage());
 		sb.append(StringPool.SLASH);
 
 		return sb.toString();
@@ -271,8 +278,17 @@ public class TagBuilder {
 		Element root = _componentsDoc.getRootElement().createCopy();
 
 		for (Document extDoc : _componentsExtDoc) {
+			Document componentsDoc = extDoc;
+
+			Document parentDoc = _getComponentsDoc(
+				extDoc.getRootElement().attributeValue("extends"));
+
+			if (parentDoc != null) {
+				componentsDoc = _mergeAttributes(extDoc, parentDoc);
+			}
+
 			List<Element> extComponents =
-				extDoc.getRootElement().elements("component");
+				componentsDoc.getRootElement().elements("component");
 
 			for (Element extComponent : extComponents) {
 				root.add(extComponent.createCopy());
@@ -327,13 +343,15 @@ public class TagBuilder {
 
 	private List<Component> _getComponents(Document doc) throws Exception {
 		List<Component> components = new ArrayList<Component>();
+		Element root = doc.getRootElement();
 
-		List<Element> allComponentNodes =
-			doc.getRootElement().elements("component");
+		List<Element> allComponentNodes = root.elements("component");
 
 		for (Element node : allComponentNodes) {
-			String namespace = GetterUtil.getString(
-				node.attributeValue("namespace"), _DEFAULT_NAMESPACE);
+			String defaultPackage = root.attributeValue("short-name");
+
+			String componentPackage = GetterUtil.getString(
+				node.attributeValue("package"), defaultPackage);
 
 			String name = node.attributeValue("name");
 			boolean alloyComponent = GetterUtil.getBoolean(
@@ -346,13 +364,29 @@ public class TagBuilder {
 				node.attributeValue("bodyContent"));
 
 			Component component = new Component(
-				namespace, name, alloyComponent, module, bodyContent,
+				componentPackage, name, alloyComponent, module, bodyContent,
 				_getAttributes(node), _getPrefixedEvents(node));
 
 			components.add(component);
 		}
 
 		return components;
+	}
+
+	private Document _getComponentsDoc(String name) {
+		List<Document> documents = new ArrayList<Document>();
+		documents.add(_componentsDoc);
+		documents.addAll(_componentsExtDoc);
+
+		for (Document doc : documents) {
+			Element root = doc.getRootElement();
+
+			if (root.attributeValue("short-name").equals(name)) {
+				return doc;
+			}
+		}
+
+		return null;
 	}
 
 	private List<Attribute> _getPrefixedEvents(Element componentNode) {
@@ -399,6 +433,57 @@ public class TagBuilder {
 		}
 
 		return doc;
+	}
+
+	private Document _mergeAttributes(Document doc1, Document doc2) {
+		Element doc1Root = doc1.getRootElement();
+
+		Element docRoot = doc1Root.createCopy();
+		docRoot.clearContent();
+
+		Document doc = SAXReaderUtil.createDocument();
+		doc.setRootElement(docRoot);
+
+		List<Element> doc1Components = doc1Root.elements(_COMPONENT);
+
+		for (Element doc1Component : doc1Components) {
+			String name = doc1Component.attributeValue("name");
+
+			Element doc2Component = _getComponentNode(doc2, name);
+
+			if (doc2Component != null) {
+				List<Element> doc2Attributes = doc2Component.element(
+					_ATTRIBUTES).elements(_ATTRIBUTE);
+
+				for (Element doc2Attribute : doc2Attributes) {
+					doc1Component.element(_ATTRIBUTES).add(
+						doc2Attribute.createCopy());
+				}
+
+				List<Element> doc2Events = doc2Component.element(
+					_EVENTS).elements(_EVENT);
+
+				for (Element doc2Event : doc2Events) {
+					doc1Component.element(_EVENTS).add(doc2Event.createCopy());
+				}
+			}
+
+			doc.getRootElement().add(doc1Component.createCopy());
+		}
+
+		return doc;
+	}
+	
+	private Element _getComponentNode(Document doc, String name) {
+		List<Element> components = doc.getRootElement().elements(_COMPONENT);
+
+		for (Element component : components) {
+			if (component.attributeValue("name").equals(name)) {
+				return component;
+			}
+		}
+
+		return null;
 	}
 
 	private String _processTemplate(String name, Map<String, Object> context)
@@ -449,15 +534,20 @@ public class TagBuilder {
 	}
 
 	private static final String _AFTER = "after";
+	private static final String _ATTRIBUTE = "attribute";
+	private static final String _ATTRIBUTES = "attributes";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
 	private static final String _CLASS_SUFFIX = "Tag.java";
+	private static final String _COMPONENT = "component";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";
 	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
 	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
 	private static final String _DEFAULT_TYPE = "java.lang.Object";
 	private static final String _END_PAGE = "/end.jsp";
+	private static final String _EVENT = "event";
+	private static final String _EVENTS = "events";
 	private static final String _INIT_EXT_PAGE = "/init-ext.jsp";
 	private static final String _INIT_PAGE = "/init.jsp";
 	private static final String _ON = "on";

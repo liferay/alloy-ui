@@ -9,8 +9,8 @@ import java.util.List;
 public class Component extends BaseModel {
 
 	public Component(
-		String namespace, String name, boolean alloyComponent, String module,
-		boolean bodyContent, List<Attribute> attributes,
+		String componentPackage, String name, boolean alloyComponent,
+		String module, boolean bodyContent, List<Attribute> attributes,
 		List<Attribute> events) {
 
 		setAlloyComponent(alloyComponent);
@@ -18,14 +18,14 @@ public class Component extends BaseModel {
 		setAttributes(attributes);
 		setBodyContent(bodyContent);
 		setModule(module);
-		setNamespace(namespace);
+		setPackage(componentPackage);
 		setName(name);
 	}
 
 	public String getAttributeNamespace() {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_namespace);
+		sb.append(_package);
 		sb.append(StringPool.COLON);
 		sb.append(getUncamelizedName());
 		sb.append(StringPool.COLON);
@@ -58,8 +58,8 @@ public class Component extends BaseModel {
 		return _module;
 	}
 
-	public String getNamespace() {
-		return _namespace;
+	public String getPackage() {
+		return _package;
 	}
 
 	public String getSafeName() {
@@ -107,8 +107,8 @@ public class Component extends BaseModel {
 		_module = type;
 	}
 
-	public void setNamespace(String namespace) {
-		_namespace = namespace;
+	public void setPackage(String componentPackage) {
+		_package = componentPackage;
 	}
 
 	private boolean _alloyComponent;
@@ -116,6 +116,6 @@ public class Component extends BaseModel {
 	private boolean _bodyContent;
 	private List<Attribute> _events;
 	private String _module;
-	private String _namespace;
+	private String _package;
 
 }

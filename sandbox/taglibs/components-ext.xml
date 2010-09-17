@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy short-name="liferay" uri="http://test.liferay.com/tld/liferay">
-	<component name="Test" namespace="liferay">
+<alloy short-name="liferay" extends="alloy" uri="http://test.liferay.com/tld/liferay">
+	<component name="Test" package="liferay">
 		<attributes>
 			<attribute>
 				<name>test</name>
@@ -10,5 +10,16 @@
 				<defaultType>VALUE</defaultType>
 			</attribute>
 		</attributes>
+	</component>
+	<component name="AutoComplete" package="liferay" alloyComponent="true">
+		<attributes>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+		<events></events>
 	</component>
 </alloy>

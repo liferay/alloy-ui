@@ -25,8 +25,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import com.liferay.alloy.util.DefaultValueUtil;
-import com.liferay.alloy.util.TypeUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
@@ -36,8 +34,10 @@ import org.json.JSONObject;
 
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
+import com.liferay.alloy.util.DefaultValueUtil;
 import com.liferay.alloy.util.FileUtil;
 import com.liferay.alloy.util.JSONUtil;
+import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -149,7 +149,7 @@ public class XMLBuilder {
 
 			componentNode.addAttribute("name", component.getName());
 			componentNode.addAttribute("module", component.getModule());
-			componentNode.addAttribute("namespace", component.getNamespace());
+			componentNode.addAttribute("package", component.getPackage());
 			componentNode.addAttribute(
 				"bodyContent", String.valueOf(component.isBodyContent()));
 
