@@ -289,7 +289,6 @@ var DatePickerSelect = A.Component.create(
 			 * @type Object
 			 */
 			calendar: {
-				setter: '_setCalendarConfig',
 				value: {}
 			},
 
@@ -453,15 +452,16 @@ var DatePickerSelect = A.Component.create(
 			_renderCalendar: function() {
 				var instance = this;
 
-				var calendarConfig = instance.get('calendar');
+				var datePickerConfig = {
+					calendar: instance.get(CALENDAR),
+					trigger: instance.get(TRIGGER).item(0)
+				};
 
-				calendarConfig.trigger = calendarConfig.trigger || instance.get(TRIGGER).item(0);
+				var datePicker = new A.DatePicker(datePickerConfig).render();
 
-				var calendar = new A.Calendar(calendarConfig).render();
-
-				calendar.addTarget(instance);
-
-				instance.calendar = calendar;
+				datePicker.addTarget(instance);
+				instance.datePicker = datePicker;
+				instance.calendar = datePicker.calendar;
 			},
 
 			/**
@@ -494,8 +494,6 @@ var DatePickerSelect = A.Component.create(
 				yearNode.set(NAME, instance.get(YEAR_NODE_NAME));
 				dayNode.set(NAME, instance.get(DAY_NODE_NAME));
 
-				// alert();
-				// console.log(instance.get(SRC_NODE), contentBox);
 				if (!monthNode.inDoc(A.config.doc)) {
 					// append elements
 					var selectWrapper = instance.get(SELECT_WRAPPER_NODE);
@@ -773,20 +771,6 @@ var DatePickerSelect = A.Component.create(
 				instance._selectCurrentDay();
 				instance._selectCurrentMonth();
 				instance._selectCurrentYear();
-			},
-
-			_setCalendarConfig: function(value) {
-				var instance = this;
-
-				A.mix(
-					value,
-					{
-						setValue: false,
-						visible: false
-					}
-				);
-
-				return value;
 			}
 		}
 	}
