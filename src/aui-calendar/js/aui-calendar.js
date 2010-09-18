@@ -18,6 +18,7 @@ var L = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 
 	ACTIVE = 'active',
+	ANCHOR = 'a',
 	BLANK = 'blank',
 	BLANK_DAYS = 'blankDays',
 	BOUNDING_BOX = 'boundingBox',
@@ -507,8 +508,7 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance._createEvents();
-				instance._bindDelegateDOMEvents();
-				instance._bindDelegateMonthDays();
+				instance._bindDelegate();
 			},
 
 			/**
@@ -751,14 +751,11 @@ var Calendar = A.Component.create(
 		     * header.
 			 *
 			 * @method selectNextMonth
-			 * @param {EventFacade} event
 			 */
-			selectNextMonth: function(event) {
+			selectNextMonth: function() {
 				var instance = this;
 
 				instance.navigateMonth(+1);
-
-				event.preventDefault();
 			},
 
 			/**
@@ -766,42 +763,28 @@ var Calendar = A.Component.create(
 			 * Calendar header.
 			 *
 			 * @method selectPrevMonth
-			 * @param {EventFacade} event
 			 */
-			selectPrevMonth: function(event) {
+			selectPrevMonth: function() {
 				var instance = this;
 
 				instance.navigateMonth(-1);
-
-				event.preventDefault();
 			},
 
 			/**
 			 * Bind DOM events to the UI.
 			 *
-			 * @method _bindDelegateDOMEvents
+			 * @method _bindDelegate
 			 * @private
 			 */
-			_bindDelegateDOMEvents: function() {
+			_bindDelegate: function() {
 				var instance = this;
-
-				var headerContentNode = instance.headerContentNode;
 				var boundingBox = instance.get(BOUNDING_BOX);
+				var headerContentNode = instance.headerContentNode;
 
 				headerContentNode.delegate('click', instance.selectNextMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_R, instance);
 				headerContentNode.delegate('click', instance.selectPrevMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_L, instance);
-			},
 
-			/**
-			 * Delegate DOM events to the UI.
-			 *
-			 * @method _bindDelegateMonthDays
-			 * @private
-			 */
-			_bindDelegateMonthDays: function() {
-				var instance = this;
-				var boundingBox = instance.get(BOUNDING_BOX);
-
+				boundingBox.delegate('click', instance._preventDefaultFn, ANCHOR);
 				boundingBox.delegate('click', A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
@@ -1050,8 +1033,6 @@ var Calendar = A.Component.create(
 						instance._selectDate();
 					}
 				}
-
-				event.preventDefault();
 			},
 
 		    /**
@@ -1080,6 +1061,10 @@ var Calendar = A.Component.create(
 				var target  = event.currentTarget || event.target;
 
 				target.replaceClass(CSS_STATE_HOVER, CSS_STATE_DEFAULT);
+			},
+
+			_preventDefaultFn: function(event) {
+				event.preventDefault();
 			},
 
 			/**
