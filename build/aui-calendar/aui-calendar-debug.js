@@ -85,10 +85,6 @@ var L = A.Lang,
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
-	FN_HALT = function(event) {
-		event.halt();
-	},
-
 	INT_WEEK_LENGTH = 7,
 	INT_MONTH_LENGTH = 31,
 
@@ -791,9 +787,6 @@ var Calendar = A.Component.create(
 
 				var headerContentNode = instance.headerContentNode;
 				var boundingBox = instance.get(BOUNDING_BOX);
-
-				boundingBox.on('click', FN_HALT);
-				boundingBox.on('mousedown', FN_HALT);
 
 				headerContentNode.delegate('click', instance.selectNextMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_R, instance);
 				headerContentNode.delegate('click', instance.selectPrevMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_L, instance);
