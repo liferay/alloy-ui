@@ -68,9 +68,28 @@
 	</div>
 </div>
 
+<div class="aui-datepicker-example aui-helper-clearfix" id="datePicker">
+	<h1>Simple Datepicker</h1>
+	
+	<input type="text" size="50" id="trigger1" />
+</div>
+
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-datepicker-select', function(A) {
+AUI().use('aui-datepicker', function(A) {
+	/*
+ 		Simple Datepicker
+	*/
+
+	var simpleDatepicker1 = new A.DatePicker({
+		trigger: '#trigger1',
+		calendar: {
+			dates: [ '10/10/2010' ],
+			selectMultipleDates: true
+		}
+	})
+	.render('#datePicker');
+
 	/*
 		Creating dynamically
 		--------------------------------------------------------------------
