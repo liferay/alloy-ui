@@ -1,4 +1,3 @@
-AUI.add('aui-calendar', function(A) {
 /**
  * The Calendar component is a UI control that enables users to choose one or
  * more dates from a graphical calendar presented in a single month or multi
@@ -1488,5 +1487,3 @@ var Calendar = A.Component.create(
 );
 
 A.Calendar = A.augment(Calendar, A.WidgetStdMod);
-
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','widget-stdmod','datatype-date','widget-locale']});

@@ -186,6 +186,7 @@ hr, .separator {
 .aui-overlaycontext-hidden,
 .aui-overlaymask-hidden,
 .aui-calendar-hidden,
+.aui-date-picker-hidden,
 .aui-datepicker-hidden,
 .aui-colorpicker-hidden,
 .aui-tooltip-hidden,
@@ -1614,9 +1615,9 @@ shadow or rounded corners.
 
 /* ---------- CSS3 shadows ---------- */
 .aui-dialog-content,
+.aui-date-picker-content,
 .aui-overlaycontextpanel-content,
 .aui-tooltip-content,
-.aui-calendar-content,
 .aui-colorpicker-content,
 .aui-tree-drag-helper-content {
 	-moz-box-shadow: 4px 4px 14px #777;
