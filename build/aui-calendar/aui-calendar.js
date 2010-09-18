@@ -932,6 +932,17 @@ var Calendar = A.Component.create(
 				return ( d1.getTime() == d2.getTime() );
 			},
 
+			_conditionalToggle: function(node, show) {
+				var instance = this;
+
+				if (show) {
+					node.show();
+				}
+				else {
+					node.hide();
+				}
+			},
+
 		    /**
 		     * Default calendar:select handler
 		     *
@@ -1463,17 +1474,6 @@ var Calendar = A.Component.create(
 				instance._syncDays();
 				instance._syncHeader();
 				instance._syncSelectedDays();
-			},
-
-			_conditionalToggle: function(node, show) {
-				var instance = this;
-
-				if (show) {
-					node.show();
-				}
-				else {
-					node.hide();
-				}
 			},
 
 			/**
