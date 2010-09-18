@@ -18,12 +18,16 @@ var L = A.Lang,
 
 	WidgetStdMod = A.WidgetStdMod,
 
+	EMPTY_STR = '',
+	SPACE = ' ',
+
 	ACTIVE = 'active',
 	ANCHOR = 'a',
 	BLANK = 'blank',
 	BLANK_DAYS = 'blankDays',
 	BOUNDING_BOX = 'boundingBox',
 	CALENDAR = 'calendar',
+	CHILDREN = 'children',
 	CIRCLE = 'circle',
 	CLEARFIX = 'clearfix',
 	CURRENT_DAY = 'currentDay',
@@ -89,23 +93,23 @@ var L = A.Lang,
 	INT_WEEK_LENGTH = 7,
 	INT_MONTH_LENGTH = 31,
 
-	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>',
+	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(SPACE)+'"></div>',
 
-	TPL_CALENDAR_PREV = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(' ')+'">Back</a>',
+	TPL_CALENDAR_PREV = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(SPACE)+'">Back</a>',
 
-	TPL_CALENDAR_NEXT = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(' ')+'">Prev</a>',
+	TPL_CALENDAR_NEXT = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE)+'">Prev</a>',
 
-	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_DAY_HIDDEN ].join(' ')+'"></div>',
+	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_DAY_HIDDEN ].join(SPACE)+'"></div>',
 
 	TPL_CALENDAR_HEADER_TITLE = '<div class="'+CSS_TITLE+'"></div>',
 
-	TPL_CALENDAR_MONTHDAYS = '<div class="'+[ CSS_MONTHDAYS, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>',
+	TPL_CALENDAR_MONTHDAYS = '<div class="'+[ CSS_MONTHDAYS, CSS_HELPER_CLEARFIX ].join(SPACE)+'"></div>',
 
-	TPL_CALENDAR_WEEKDAYS = '<div class="'+[ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(' ')+'"></div>',
+	TPL_CALENDAR_WEEKDAYS = '<div class="'+[ CSS_WEEKDAYS, CSS_HELPER_CLEARFIX ].join(SPACE)+'"></div>',
 
 	TPL_BUFFER_WEEKDAYS = ['<div class="'+CSS_WEEK+'">', 0, '</div>'],
 
-	TPL_BUFFER_MONTH_DAYS = ['<a href="#" class="'+[ CSS_DAY, CSS_STATE_DEFAULT ].join(' ')+'">', 0, '</a>'];
+	TPL_BUFFER_MONTH_DAYS = ['<a href="#" class="'+[ CSS_DAY, CSS_STATE_DEFAULT ].join(SPACE)+'">', 0, '</a>'];
 
 /**
  * <p><img src="assets/images/aui-calendar/main.png"/></p>
@@ -1304,7 +1308,7 @@ var Calendar = A.Component.create(
 				var currentMonth = instance.get(CURRENT_MONTH);
 				var currentYear = instance.get(CURRENT_YEAR);
 
-				var title = [ instance._getMonthName(currentMonth), currentYear ].join(' ');
+				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
 
 				instance.headerTitleNode.html(title);
 			},
@@ -1401,16 +1405,18 @@ var Calendar = A.Component.create(
 			 * @protected
 			 */
 			_valueBlankDays: function() {
-				var blankDaysBuffer = [];
+				var buffer = [];
 				var day = INT_WEEK_LENGTH;
 
 				while (day--) {
-					blankDaysBuffer.push(TPL_CALENDAR_DAY_BLANK);
+					buffer.push(TPL_CALENDAR_DAY_BLANK);
 				}
 
-				var blankDays = A.DOM.create(blankDaysBuffer.join(''));
+				var blankDays = A.one(
+					A.DOM.create(buffer.join(EMPTY_STR))
+				);
 
-				return A.all(blankDays.childNodes);
+				return blankDays.get(CHILDREN);
 			},
 
 			/**
@@ -1423,17 +1429,19 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				var day = 0;
-				var monthsBuffer = [];
+				var buffer = [];
 
 				while (day++ < INT_MONTH_LENGTH) {
 					TPL_BUFFER_MONTH_DAYS[1] = day;
 
-					monthsBuffer.push(TPL_BUFFER_MONTH_DAYS.join(''));
+					buffer.push(TPL_BUFFER_MONTH_DAYS.join(EMPTY_STR));
 				}
 
-				var monthDays = A.DOM.create(monthsBuffer.join(''));
+				var monthDays = A.one(
+					A.DOM.create(buffer.join(EMPTY_STR))
+				);
 
-				return A.all(monthDays.childNodes);
+				return monthDays.get(CHILDREN);
 			},
 
 			/**
@@ -1446,21 +1454,22 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				var day = 0;
-				var weekDaysBuffer = [];
+				var buffer = [];
 				var firstWeekDay = instance.get(FIRST_DAY_OF_WEEK);
 
 				while(day < INT_WEEK_LENGTH) {
 					var fixedDay = (day + firstWeekDay) % INT_WEEK_LENGTH;
-					var dayName = instance._getDayNameMin(fixedDay);
 
-					TPL_BUFFER_WEEKDAYS[1] = dayName;
+					TPL_BUFFER_WEEKDAYS[1] = instance._getDayNameMin(fixedDay);
 
-					weekDaysBuffer[day++] = TPL_BUFFER_WEEKDAYS.join('');
+					buffer.push(TPL_BUFFER_WEEKDAYS.join(EMPTY_STR)); day++;
 				}
 
-				var weekDays = A.DOM.create(weekDaysBuffer.join(''));
+				var weekDays = A.one(
+					A.DOM.create(buffer.join(EMPTY_STR))
+				);
 
-				return A.all(weekDays.childNodes);
+				return weekDays.get(CHILDREN);
 			}
 		}
 	}
