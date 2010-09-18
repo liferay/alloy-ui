@@ -109,20 +109,7 @@ var DatePicker = A.Component.create({
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('calendar:select', instance._onSelectDate);
-		},
-
-		/**
-		 * Create the DOM structure for the Datepicker. Lifecycle.
-		 *
-		 * @method renderUI
-		 * @protected
-		 */
-		renderUI: function() {
-			var instance = this;
-
-			DatePicker.superclass.renderUI.apply(this, arguments);
-
-			instance._renderCalendar();
+			instance.on('show', instance._onShowOverlay);
 		},
 
 		/**
@@ -144,6 +131,20 @@ var DatePicker = A.Component.create({
 
 				instance.get(CURRENT_NODE).val(value);
 			}
+		},
+
+		/**
+		* Fires before the DatePicker overlay show. Responsible to invoke the
+		* render phase of the Calendar.
+		 *
+		 * @method _onShowOverlay
+		 * @param {Event} event
+		 * @protected
+		 */
+		_onShowOverlay: function(event) {
+			var instance = this;
+
+			instance._renderCalendar();
 		},
 
 		/**
