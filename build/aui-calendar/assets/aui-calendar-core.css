@@ -66,3 +66,15 @@
 	-ms-filter: alpha(opacity=40);
 	filter: alpha(opacity=40);
 }
+
+.aui-calendar-link {
+	text-decoration: none;
+}
+
+.aui-calendar-link-today {
+	float: left;
+}
+
+.aui-calendar-link-none {
+	float: right;
+}

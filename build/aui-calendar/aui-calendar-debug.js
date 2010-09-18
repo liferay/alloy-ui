@@ -22,6 +22,7 @@ var L = A.Lang,
 	SPACE = ' ',
 
 	ACTIVE = 'active',
+	ALLOW_NONE = 'allowNone',
 	ANCHOR = 'a',
 	BLANK = 'blank',
 	BLANK_DAYS = 'blankDays',
@@ -49,6 +50,7 @@ var L = A.Lang,
 	ICON = 'icon',
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
+	LINK = 'link',
 	LOCALE = 'locale',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
@@ -56,10 +58,15 @@ var L = A.Lang,
 	MONTH_DAYS = 'monthDays',
 	MONTH_DAYS_NODE = 'monthDaysNode',
 	NEXT = 'next',
+	NONE = 'none',
+	NONE_LINK_NODE = 'noneLinkNode',
 	PREV = 'prev',
 	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
+	SHOW_TODAY = 'showToday',
 	STATE = 'state',
 	TITLE = 'title',
+	TODAY = 'today',
+	TODAY_LINK_NODE = 'todayLinkNode',
 	TRIANGLE = 'triangle',
 	WEEK = 'week',
 	WEEKDAYS = 'weekdays',
@@ -89,9 +96,16 @@ var L = A.Lang,
 	CSS_TITLE = getCN(CALENDAR, TITLE),
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
+	CSS_CALENDAR_LINK = getCN(CALENDAR, LINK),
+	CSS_CALENDAR_LINK_TODAY = getCN(CALENDAR, LINK, TODAY),
+	CSS_CALENDAR_LINK_NONE = getCN(CALENDAR, LINK, NONE),
 
 	INT_WEEK_LENGTH = 7,
 	INT_MONTH_LENGTH = 31,
+
+	TPL_CALENDAR_NONE_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE)+'">None</a>',
+
+	TPL_CALENDAR_TODAY_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_TODAY ].join(SPACE)+'">Today</a>',
 
 	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(SPACE)+'"></div>',
 
@@ -162,6 +176,18 @@ var Calendar = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+			/**
+			 * Wheather displays the "none" link on the Calendar footer.
+			 *
+			 * @attribute allowNone
+			 * @default true
+			 * @type boolean
+			 */
+			allowNone: {
+				value: true,
+				validator: isBoolean
+			},
+
 			/**
 			 * NodeList containing all the DOM elements for
 			 * each blank day. If not specified try to query using HTML_PARSER
@@ -363,6 +389,36 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * DOM node reference to be the "none" link of the Calendar. If not
+             * specified try to query using HTML_PARSER an element inside
+             * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute noneLinkNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			noneLinkNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_NONE_LINK);
+				}
+			},
+
+			/**
+			 * DOM node reference to be the "today" link of the Calendar. If not
+             * specified try to query using HTML_PARSER an element inside
+             * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute todayLinkNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			todayLinkNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
+				}
+			},
+
+			/**
 			 * Wether accepts to select multiple dates.
 			 *
 			 * @attribute selectMultipleDates
@@ -383,6 +439,18 @@ var Calendar = A.Component.create(
 			 * @type boolean
 			 */
 			setValue: {
+				value: true,
+				validator: isBoolean
+			},
+
+			/**
+			 * Wheather displays the "today" link on the Calendar footer.
+			 *
+			 * @attribute showToday
+			 * @default true
+			 * @type boolean
+			 */
+			showToday: {
 				value: true,
 				validator: isBoolean
 			},
@@ -453,10 +521,14 @@ var Calendar = A.Component.create(
 
 			iconNextNode: DOT+CSS_NEXT,
 
-			iconPrevNode: DOT+CSS_PREV
+			iconPrevNode: DOT+CSS_PREV,
+
+			todayLinkNode: DOT+CSS_CALENDAR_LINK_TODAY,
+
+			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE
 		},
 
-		UI_ATTRS: [DATES],
+		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE],
 
 		BIND_UI_ATTRS: [CURRENT_MONTH, CURRENT_YEAR],
 
@@ -490,6 +562,8 @@ var Calendar = A.Component.create(
 				instance.iconPrevNode = instance.get(ICON_PREV_NODE);
 				instance.monthDays = instance.get(MONTH_DAYS);
 				instance.monthDaysNode = instance.get(MONTH_DAYS_NODE);
+				instance.noneLinkNode = instance.get(NONE_LINK_NODE);
+				instance.todayLinkNode = instance.get(TODAY_LINK_NODE);
 				instance.weekDays = instance.get(WEEK_DAYS);
 				instance.weekDaysNode = instance.get(WEEK_DAYS_NODE);
 
@@ -514,6 +588,17 @@ var Calendar = A.Component.create(
 
 				instance._createEvents();
 				instance._bindDelegate();
+			},
+
+			/**
+			 * Clear all selected dates on the Calendar.
+			 *
+			 * @method clear
+			 */
+			clear: function() {
+				var instance = this;
+
+				instance.set(DATES, []);
 			},
 
 			/**
@@ -776,6 +861,17 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Select today date on the Calendar.
+			 *
+			 * @method selectToday
+			 */
+			selectToday: function() {
+				var instance = this;
+
+				instance.set(DATES, [ new Date() ]);
+			},
+
+			/**
 			 * Bind DOM events to the UI.
 			 *
 			 * @method _bindDelegate
@@ -790,6 +886,8 @@ var Calendar = A.Component.create(
 				headerContentNode.delegate('click', instance.selectPrevMonth, DOT+CSS_ICON_CIRCLE_TRIANGLE_L, instance);
 
 				boundingBox.delegate('click', instance._preventDefaultFn, ANCHOR);
+				boundingBox.delegate('click', A.bind(instance.selectToday, instance), DOT+CSS_CALENDAR_LINK_TODAY);
+				boundingBox.delegate('click', A.bind(instance.clear, instance), DOT+CSS_CALENDAR_LINK_NONE);
 				boundingBox.delegate('click', A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
@@ -1096,12 +1194,17 @@ var Calendar = A.Component.create(
 			_renderStdContent: function() {
 				var instance = this;
 				var bodyContent = A.Node.create('<div></div>');
+				var footContent = A.Node.create('<div class="' + CSS_HELPER_CLEARFIX + '"></div>');
 
 				bodyContent.append(instance.weekDaysNode);
 				bodyContent.append(instance.monthDaysNode);
 
+				footContent.append(instance.todayLinkNode);
+				footContent.append(instance.noneLinkNode);
+
 				instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode.getDOM());
 				instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
+				instance.setStdModContent(WidgetStdMod.FOOTER, footContent);
 			},
 
 			/**
@@ -1362,6 +1465,29 @@ var Calendar = A.Component.create(
 				instance._syncSelectedDays();
 			},
 
+			_conditionalToggle: function(node, show) {
+				var instance = this;
+
+				if (show) {
+					node.show();
+				}
+				else {
+					node.hide();
+				}
+			},
+
+			/**
+			 * Sync the UI of the Calendar when showToday attribute change.
+			 *
+			 * @method _uiSetShowToday
+			 * @protected
+			 */
+			_uiSetAllowNone: function(val) {
+				var instance = this;
+
+				instance._conditionalToggle(instance.noneLinkNode, val);
+			},
+
 			/**
 			 * Sync the UI of the Calendar when currentMonth attribute change.
 			 *
@@ -1396,6 +1522,18 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance._handleSelectEvent();
+			},
+
+			/**
+			 * Sync the UI of the Calendar when showToday attribute change.
+			 *
+			 * @method _uiSetShowToday
+			 * @protected
+			 */
+			_uiSetShowToday: function(val) {
+				var instance = this;
+
+				instance._conditionalToggle(instance.todayLinkNode, val);
 			},
 
 			/**
@@ -1477,4 +1615,4 @@ var Calendar = A.Component.create(
 
 A.Calendar = A.augment(Calendar, A.WidgetStdMod);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','widget-stdmod','datatype-date','widget-locale']});
+}, '@VERSION@' ,{requires:['aui-base','widget-stdmod','datatype-date','widget-locale'], skinnable:true});

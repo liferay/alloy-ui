@@ -99,6 +99,12 @@
 						</div>
 					</div>
 				</div>
+				<div class="aui-widget-ft">
+					<div class="aui-helper-clearfix">
+						<a class="aui-calendar-link aui-calendar-link-today" href="#">Today</a>
+						<a class="aui-calendar-link aui-calendar-link-none" href="#">None</a>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -122,6 +128,9 @@ AUI().ready('aui-calendar', function(A) {
 		dates: [ '09/14/2009', '09/15/2009' ],
 		dateFormat: '%d/%m/%y %A',
 		setValue: true,
+
+		allowNone: false,
+		showToday: false,
 
 		// minDate: new Date(2009, 8, 5),
 		// maxDate: new Date(2009, 8, 25),
