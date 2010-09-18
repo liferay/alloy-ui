@@ -20,26 +20,104 @@
 	top:100px;
 }
 
+.inline, .container {
+	padding: 10px;
+	width: 195px;
+}
+
 </style>
 
 <body>
 <h1>Alloy - Calendar</h1>
 
-<input type="text" name="input1" size="55" value="" id="input1" />
+<div>Selected date: <span id="selected"></span></div>
 
-<div class="calendar-icon">
-	<button class="aui-buttonitem aui-buttonitem-content aui-state-default">
-		<span class="aui-icon aui-icon-calendar"></span>
-	</button>
-	Click on the icon to load a Portuguese Calendar
+<div class="container">
+	<h1>From HTML Markup</h1>
+
+	<div class="inline" id="markup1">
+
+		<div id="calendarMarkup1" class="aui-widget aui-component aui-calendar">
+			<div class="aui-calendar-content">
+				<div class="aui-widget-hd">
+					<div class="aui-calendar-hd aui-state-default aui-helper-clearfix">
+						<a class="aui-icon aui-icon-circle-triangle-l aui-calendar-prev" href="">Back</a>
+						<a class="aui-icon aui-icon-circle-triangle-r aui-calendar-next" href="">Prev</a>
+						<div class="aui-calendar-title">September 2010</div>
+					</div>
+				</div>
+				<div class="aui-widget-bd">
+					<div>
+						<div class="aui-calendar-weekdays aui-helper-clearfix">
+							<div class="aui-calendar-week">Su</div>
+							<div class="aui-calendar-week">Mo</div>
+							<div class="aui-calendar-week">Tu</div>
+							<div class="aui-calendar-week">We</div>
+							<div class="aui-calendar-week">Th</div>
+							<div class="aui-calendar-week">Fr</div>
+							<div class="aui-calendar-week">Sa</div>
+						</div>
+						<div class="aui-calendar-monthdays aui-helper-clearfix">
+							<div class="aui-calendar-day-blank"></div>
+							<div class="aui-calendar-day-blank"></div>
+							<div class="aui-calendar-day-blank"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<a class="aui-calendar-day aui-state-default" href="#">1</a>
+							<a class="aui-calendar-day aui-state-default" href="#">2</a>
+							<a class="aui-calendar-day aui-state-default" href="#">3</a>
+							<a class="aui-calendar-day aui-state-default" href="#">4</a>
+							<a class="aui-calendar-day aui-state-default" href="#">5</a>
+							<a class="aui-calendar-day aui-state-default" href="#">6</a>
+							<a class="aui-calendar-day aui-state-default" href="#">7</a>
+							<a class="aui-calendar-day aui-state-default" href="#">8</a>
+							<a class="aui-calendar-day aui-state-default" href="#">9</a>
+							<a class="aui-calendar-day aui-state-default" href="#">10</a>
+							<a class="aui-calendar-day aui-state-default" href="#">11</a>
+							<a class="aui-calendar-day aui-state-default" href="#">12</a>
+							<a class="aui-calendar-day aui-state-default" href="#">13</a>
+							<a class="aui-calendar-day aui-state-default" href="#">14</a>
+							<a class="aui-calendar-day aui-state-default" href="#">15</a>
+							<a class="aui-calendar-day aui-state-default" href="#">16</a>
+							<a class="aui-calendar-day aui-state-default aui-state-active" href="#">17</a>
+							<a class="aui-calendar-day aui-state-default" href="#">18</a>
+							<a class="aui-calendar-day aui-state-default" href="#">19</a>
+							<a class="aui-calendar-day aui-state-default" href="#">20</a>
+							<a class="aui-calendar-day aui-state-default" href="#">21</a>
+							<a class="aui-calendar-day aui-state-default" href="#">22</a>
+							<a class="aui-calendar-day aui-state-default" href="#">23</a>
+							<a class="aui-calendar-day aui-state-default" href="#">24</a>
+							<a class="aui-calendar-day aui-state-default" href="#">25</a>
+							<a class="aui-calendar-day aui-state-default" href="#">26</a>
+							<a class="aui-calendar-day aui-state-default" href="#">27</a>
+							<a class="aui-calendar-day aui-state-default" href="#">28</a>
+							<a class="aui-calendar-day aui-state-default" href="#">29</a>
+							<a class="aui-calendar-day aui-state-default" href="#">30</a>
+							<a class="aui-calendar-day aui-state-default" href="#">31</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+
+<div class="container">
+	<h1>Inline Calendars</h1>
+	<div class="inline" id="inline1"></div>
+	<div class="inline" id="inline2"></div>
+	<div class="inline" id="inline3"></div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-calendar-base', function(A) {
+AUI().ready('aui-calendar', function(A) {
 
-	var calendar1 = new A.Calendar({
-		trigger: '#input1',
+	window.calendar1 = new A.Calendar({
 		// dates: [ new Date(2009, 08, 15), new Date(2009, 08, 14) ],
 		dates: [ '09/14/2009', '09/15/2009' ],
 		dateFormat: '%d/%m/%y %A',
@@ -47,6 +125,8 @@ AUI().ready('aui-calendar-base', function(A) {
 
 		// minDate: new Date(2009, 8, 5),
 		// maxDate: new Date(2009, 8, 25),
+
+		firstDayOfWeek: 1,
 
 		minDate: '09/05/2009',
 		maxDate: '09/25/2009',
@@ -58,13 +138,20 @@ AUI().ready('aui-calendar-base', function(A) {
 				var detailed = event.date.detailed;
 				var formatted = event.date.formatted;
 
+				// console.log('on select', event, this.get('dates'));
+
+				// event.halt();
 				// alert(formatted);
+			}
+		},
+
+		after: {
+			select: function(event) {
+				// console.log('after select', event, this.get('dates'));
 			}
 		}
 	})
-	.render();
-
-	calendar1.toggle();
+	.render('#inline1');
 
 	var calendar2 = new A.Calendar({
 		trigger: '.aui-buttonitem-content',
@@ -72,16 +159,26 @@ AUI().ready('aui-calendar-base', function(A) {
 		firstDayOfWeek: 0,
 		on: {
 			select: function(event) {
-				alert( event.date.formatted )
+				// alert( event.date.formatted )
 			}
 		}
 	})
-	.render();
+	.render('#inline2');
+
+	var calendar3 = new A.Calendar({ render: '#inline3' });
+
+	// From Markup
+	var calendar4 = new A.Calendar({ boundingBox: '#calendarMarkup1', srcNode: '#calendarMarkup1 .aui-calendar-content' }).render();
 
 	// extras
+	var printSelectedDate = function(event) {
+		A.one('#selected').html(event.date.formatted);
+	};
 
-	A.on('mousedown', function() { A.CalendarManager.hideAll() }, document);
-
+	calendar1.on('select', printSelectedDate);
+	calendar2.on('select', printSelectedDate);
+	calendar3.on('select', printSelectedDate);
+	calendar4.on('select', printSelectedDate);
 });
 
 </script>
