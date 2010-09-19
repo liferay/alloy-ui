@@ -782,6 +782,25 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Check if the passed date is out of range. Compared with the
+		     * <a href="Calendar.html#config_minDate">minDate</a> and
+		     * <a href="Calendar.html#config_maxDate">maxDate</a>.
+			 *
+			 * @method isOutOfRangeDate
+			 * @param {Date} date Date to be checked.
+			 */
+			isOutOfRangeDate: function(date) {
+				var instance = this;
+				var maxDate = instance.get(MAX_DATE);
+				var minDate = instance.get(MIN_DATE);
+
+				var disablePrev = minDate && (date < minDate);
+				var disableNext = maxDate && (date > maxDate);
+
+				return (disablePrev || disableNext);
+			},
+
+			/**
 			 * Navigate through months and re-sync the UI.
 			 *
 			 * @method navigateMonth
@@ -1278,32 +1297,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Util method to disable day nodes between
-		     * <a href="Calendar.html#config_minDate">minDate</a> and
-		     * <a href="Calendar.html#config_maxDate">maxDate</a>.
-			 *
-			 * @method _restrictDate
-			 * @param {Date} currentDate Current date showed on the Calendar.
-			 * @param {Node} monthDayNode Day node to be disabled.
-			 * @protected
-			 */
-			_restrictDate: function(currentDate, monthDayNode) {
-				var instance = this;
-				var maxDate = instance.get(MAX_DATE);
-				var minDate = instance.get(MIN_DATE);
-
-				var disablePrev = minDate && (currentDate < minDate);
-				var disableNext = maxDate && (currentDate > maxDate);
-
-				if (disablePrev || disableNext) {
-					monthDayNode.addClass(CSS_CALENDAR_DISABLED);
-				}
-				else {
-					monthDayNode.removeClass(CSS_CALENDAR_DISABLED);
-				}
-			},
-
-			/**
 			 * Select the current date returned by
 		     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
 			 *
@@ -1377,35 +1370,27 @@ var Calendar = A.Component.create(
 				var daysInMonth = instance.getDaysInMonth();
 				var firstWeekDay = instance.getFirstDayOfWeek();
 				var currentDate = instance.getCurrentDate();
+				var rangeCheckerDate = new Date(currentDate.getTime());
 
 				instance.monthDays.each(
 					function(monthDayNode, day) {
-						if (day >= daysInMonth) {
-							// displaying the correct number of days in the current month
-							monthDayNode.addClass(CSS_DAY_HIDDEN);
-						}
-						else {
-							monthDayNode.removeClass(CSS_DAY_HIDDEN);
-						}
+						// Update the day on the rangeCheckerDate to be the current day
+						rangeCheckerDate.setDate(day + 1);
+						var hideDayNode = (day >= daysInMonth);
+						var isOutOfRange = instance.isOutOfRangeDate(rangeCheckerDate);
 
-						// restricting date
-						currentDate.setDate(day + 1);
-
-						instance._restrictDate(currentDate, monthDayNode);
+						monthDayNode.toggleClass(CSS_DAY_HIDDEN, hideDayNode);
+						monthDayNode.toggleClass(CSS_CALENDAR_DISABLED, isOutOfRange);
 					}
 				);
 
+				var numberOfBlankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
+
 				instance.blankDays.each(
 					function(blankDayNode, day) {
-						var blankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
+						var hidePaddingNode = (day >= numberOfBlankDays);
 
-						if (day < blankDays) {
-							// show padding days to position the firstWeekDay correctly
-							blankDayNode.removeClass(CSS_DAY_HIDDEN);
-						}
-						else {
-							blankDayNode.addClass(CSS_DAY_HIDDEN);
-						}
+						blankDayNode.toggleClass(CSS_DAY_HIDDEN, hidePaddingNode);
 					}
 				);
 			},
