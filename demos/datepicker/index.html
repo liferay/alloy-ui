@@ -70,7 +70,7 @@
 
 <div class="aui-datepicker-example aui-helper-clearfix" id="datePicker">
 	<h1>Simple Datepicker</h1>
-	
+
 	<input type="text" size="50" id="trigger1" />
 </div>
 
@@ -86,7 +86,13 @@ AUI().use('aui-datepicker', function(A) {
 		calendar: {
 			dates: [ '10/10/2010' ],
 			selectMultipleDates: true
-		}
+		},
+		// setValue: false,
+		// on: {
+		// 	'calendar:select': function() {
+		// 		console.log('select');
+		// 	}
+		// }
 	})
 	.render('#datePicker');
 
@@ -108,6 +114,7 @@ AUI().use('aui-datepicker', function(A) {
 
 		appendOrder: [ 'y', 'm', 'd' ],
 		calendar: {
+			dates: [ '10/10/2010' ],
 			dateFormat: '%m/%d/%y'
 		},
 
