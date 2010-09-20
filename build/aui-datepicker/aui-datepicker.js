@@ -108,8 +108,11 @@ var DatePicker = A.Component.create({
 
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
-			instance.on('calendar:select', instance._onSelectDate);
 			instance.on('show', instance._onShowOverlay);
+			instance.on('calendar:select', instance._onSelectDate);
+
+			// Fire the calendar:select event to invoke the _onSelectDate of the DatePicker
+			instance.calendar._handleSelectEvent();
 		},
 
 		/**
