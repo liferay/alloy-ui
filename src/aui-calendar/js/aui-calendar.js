@@ -16,7 +16,7 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 
 	toNumber = function(val) {
-		return parseFloat(val) || 0;
+		return parseInt(val, 10) || 0;
 	},
 
 	WidgetStdMod = A.WidgetStdMod,
@@ -90,7 +90,6 @@ var L = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
-	CSS_CALENDAR = getCN(CALENDAR),
 	CSS_CALENDAR_DISABLED = getCN(CALENDAR, DISABLED),
 	CSS_CALENDAR_LINK = getCN(CALENDAR, LINK),
 	CSS_CALENDAR_LINK_NONE = getCN(CALENDAR, LINK, NONE),
@@ -260,6 +259,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentDay: {
+				setter: toNumber,
 				value: (new Date()).getDate()
 			},
 
@@ -271,6 +271,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentMonth: {
+				setter: toNumber,
 				value: (new Date()).getMonth()
 			},
 
@@ -282,6 +283,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentYear: {
+				setter: toNumber,
 				value: (new Date()).getFullYear()
 			},
 
@@ -602,9 +604,9 @@ var Calendar = A.Component.create(
 			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE
 		},
 
-		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE, SHOW_OTHER_MONTH],
+		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE],
 
-		BIND_UI_ATTRS: [CURRENT_MONTH, CURRENT_YEAR],
+		BIND_UI_ATTRS: [SHOW_OTHER_MONTH],
 
 		prototype: {
 			/**
@@ -661,9 +663,11 @@ var Calendar = A.Component.create(
 			 */
 			bindUI: function() {
 				var instance = this;
+				var boundingBox = instance.get(BOUNDING_BOX);
 
 				instance._createEvents();
-				instance._bindDelegate();
+
+				boundingBox.once('mousemove', A.bind(instance._bindDelegate, instance));
 			},
 
 			/**
@@ -891,6 +895,8 @@ var Calendar = A.Component.create(
 				// when navigate by month update the year also
 				instance.set(CURRENT_MONTH, date.getMonth());
 				instance.set(CURRENT_YEAR, date.getFullYear());
+
+				instance._syncView();
 			},
 
 			/**
@@ -1251,9 +1257,9 @@ var Calendar = A.Component.create(
 				var disabled = target.test(DOT+CSS_CALENDAR_DISABLED);
 
 				if (!disabled) {
-					var day = toNumber(target.attr(DATA_DAY) || target.text());
-					var month = toNumber(target.attr(DATA_MONTH));
-					var year = toNumber(target.attr(DATA_YEAR));
+					var day = target.attr(DATA_DAY) || target.text();
+					var month = target.attr(DATA_MONTH);
+					var year = target.attr(DATA_YEAR);
 
 					if (year) {
 						instance.set(CURRENT_YEAR, year);
@@ -1508,24 +1514,15 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Sync Calendar days UI.
+			 * Sync Calendar month days UI.
 			 *
-			 * @method _syncDays
+			 * @method _syncMonthDays
 			 * @protected
 			 */
-			_syncDays: function() {
+			_syncMonthDays: function() {
 				var instance = this;
-				var firstDayOfWeek = instance.get(FIRST_DAY_OF_WEEK);
-				var showOtherMonth = instance.get(SHOW_OTHER_MONTH);
-
-				var currentDate = instance.getCurrentDate();
-				var rangeDate = instance.getCurrentDate();
-				var prevMonthDate = instance.getCurrentDate(0, -1);
-				var nextMonthDate = instance.getCurrentDate(0, +1);
-
-				var monthFirstWeekDay = instance.getFirstDayOfWeek();
 				var daysInMonth = instance.getDaysInMonth();
-				var totalPrevMonthDays = instance.getDaysInMonth(null, prevMonthDate.getMonth());
+				var rangeDate = instance.getCurrentDate();
 
 				// Sync month days
 				instance.monthDays.each(
@@ -1536,12 +1533,53 @@ var Calendar = A.Component.create(
 						instance._checkNodeRange(node, rangeDate);
 					}
 				);
+			},
 
-				// Sync blank or padding start nodes
+			/**
+			 * Sync Calendar padding end days UI.
+			 *
+			 * @method _syncPaddingEnd
+			 * @protected
+			 */
+			_syncPaddingEnd: function() {
+				var instance = this;
+
+				// Sync padding end nodes
+				if (instance.get(SHOW_OTHER_MONTH)) {
+					var nextMonthDate = instance.getCurrentDate(0, +1);
+					var daysInMonth = instance.getDaysInMonth();
+					var totalVisible = (instance.getFirstDayOfWeek() - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
+					var totalVisiblePaddingEnd = (INT_MATRIX_DAYS_LENGTH - (totalVisible + daysInMonth));
+
+					// Sync blank or padding start nodes
+					instance.paddingDaysEnd.each(
+						function(node, index) {
+							node.toggleClass(CSS_HELPER_HIDDEN, (index >= totalVisiblePaddingEnd));
+
+							nextMonthDate.setDate(index + 1);
+							instance._bindDataAttrs(node, nextMonthDate);
+							instance._checkNodeRange(node, nextMonthDate);
+						}
+					);
+				}
+			},
+
+			/**
+			 * Sync Calendar padding start days UI.
+			 *
+			 * @method _syncPaddingStart
+			 * @protected
+			 */
+			_syncPaddingStart: function() {
+				var instance = this;
+				var showOtherMonth = instance.get(SHOW_OTHER_MONTH);
+				var prevMonthDate = instance.getCurrentDate(0, -1);
+				var totalPrevMonthDays = instance.getDaysInMonth(null, prevMonthDate.getMonth());
 				var paddingNodes = (showOtherMonth ? instance.paddingDaysStart : instance.blankDays);
 				var totalPadding = paddingNodes.size();
-				var totalVisible = (monthFirstWeekDay - firstDayOfWeek + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
+				var totalVisible = (instance.getFirstDayOfWeek() - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
 
+				// Sync blank or padding start nodes
 				paddingNodes.each(
 					function(node, index) {
 						var totalHidden = (totalPadding - totalVisible);
@@ -1558,21 +1596,6 @@ var Calendar = A.Component.create(
 						}
 					}
 				);
-
-				// Sync padding end nodes
-				if (showOtherMonth) {
-					var totalVisiblePaddingEnd = (INT_MATRIX_DAYS_LENGTH - (totalVisible + daysInMonth));
-
-					instance.paddingDaysEnd.each(
-						function(node, index) {
-							node.toggleClass(CSS_HELPER_HIDDEN, (index >= totalVisiblePaddingEnd));
-
-							nextMonthDate.setDate(index + 1);
-							instance._bindDataAttrs(node, nextMonthDate);
-							instance._checkNodeRange(node, nextMonthDate);
-						}
-					);
-				}
 			},
 
 			/**
@@ -1635,9 +1658,13 @@ var Calendar = A.Component.create(
 			_syncView: function() {
 				var instance = this;
 
-				instance._syncDays();
+				instance._syncMonthDays();
 				instance._syncHeader();
 				instance._syncSelectedDays();
+
+				instance._uiSetShowOtherMonth(
+					instance.get(SHOW_OTHER_MONTH)
+				);
 			},
 
 			/**
@@ -1650,30 +1677,6 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance._conditionalToggle(instance.noneLinkNode, val);
-			},
-
-			/**
-			 * Sync the UI of the Calendar when currentMonth attribute change.
-			 *
-			 * @method _uiSetCurrentMonth
-			 * @protected
-			 */
-			_uiSetCurrentMonth: function(val) {
-				var instance = this;
-
-				instance._syncView();
-			},
-
-			/**
-			 * Sync the UI of the Calendar when currentYear attribute change.
-			 *
-			 * @method _uiSetCurrentYear
-			 * @protected
-			 */
-			_uiSetCurrentYear: function(val) {
-				var instance = this;
-
-				instance._syncView();
 			},
 
 			/**
@@ -1717,7 +1720,8 @@ var Calendar = A.Component.create(
 					instance.paddingDaysStart.hide();
 				}
 
-				instance._syncDays();
+				instance._syncPaddingEnd();
+				instance._syncPaddingStart();
 			},
 
 			/**
