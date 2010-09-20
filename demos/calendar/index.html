@@ -37,6 +37,13 @@
 
 	<div class="inline" id="markup1">
 
+		<input checked="checked" type="checkbox" id="ck-0" onclick="window.calendar4.set('showOtherMonth', this.checked);" checked><label for="ck-0">showOtherMonth</label>
+		<br/>
+		<input checked="checked" type="checkbox" id="ck-1" onclick="window.calendar4.set('showToday', this.checked);" checked><label for="ck-1">showToday</label>
+		<br/>
+		<input checked="checked" type="checkbox" id="ck-2" onclick="window.calendar4.set('allowNone', this.checked);" checked><label for="ck-2">allowNone</label>
+		<br/><br/>
+
 		<div id="calendarMarkup1" class="aui-widget aui-component aui-calendar">
 			<div class="aui-calendar-content">
 				<div class="aui-widget-hd">
@@ -58,44 +65,69 @@
 							<div class="aui-calendar-week">Sa</div>
 						</div>
 						<div class="aui-calendar-monthdays aui-helper-clearfix">
-							<div class="aui-calendar-day-blank"></div>
-							<div class="aui-calendar-day-blank"></div>
-							<div class="aui-calendar-day-blank"></div>
 							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
 							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
 							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
 							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
-							<a class="aui-calendar-day aui-state-default" href="#">1</a>
-							<a class="aui-calendar-day aui-state-default" href="#">2</a>
-							<a class="aui-calendar-day aui-state-default" href="#">3</a>
-							<a class="aui-calendar-day aui-state-default" href="#">4</a>
-							<a class="aui-calendar-day aui-state-default" href="#">5</a>
-							<a class="aui-calendar-day aui-state-default" href="#">6</a>
-							<a class="aui-calendar-day aui-state-default" href="#">7</a>
-							<a class="aui-calendar-day aui-state-default" href="#">8</a>
-							<a class="aui-calendar-day aui-state-default" href="#">9</a>
-							<a class="aui-calendar-day aui-state-default" href="#">10</a>
-							<a class="aui-calendar-day aui-state-default" href="#">11</a>
-							<a class="aui-calendar-day aui-state-default" href="#">12</a>
-							<a class="aui-calendar-day aui-state-default" href="#">13</a>
-							<a class="aui-calendar-day aui-state-default" href="#">14</a>
-							<a class="aui-calendar-day aui-state-default" href="#">15</a>
-							<a class="aui-calendar-day aui-state-default" href="#">16</a>
-							<a class="aui-calendar-day aui-state-default aui-state-active" href="#">17</a>
-							<a class="aui-calendar-day aui-state-default" href="#">18</a>
-							<a class="aui-calendar-day aui-state-default" href="#">19</a>
-							<a class="aui-calendar-day aui-state-default" href="#">20</a>
-							<a class="aui-calendar-day aui-state-default" href="#">21</a>
-							<a class="aui-calendar-day aui-state-default" href="#">22</a>
-							<a class="aui-calendar-day aui-state-default" href="#">23</a>
-							<a class="aui-calendar-day aui-state-default" href="#">24</a>
-							<a class="aui-calendar-day aui-state-default" href="#">25</a>
-							<a class="aui-calendar-day aui-state-default" href="#">26</a>
-							<a class="aui-calendar-day aui-state-default" href="#">27</a>
-							<a class="aui-calendar-day aui-state-default" href="#">28</a>
-							<a class="aui-calendar-day aui-state-default" href="#">29</a>
-							<a class="aui-calendar-day aui-state-default" href="#">30</a>
-							<a class="aui-calendar-day aui-state-default" href="#">31</a>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+							<div class="aui-calendar-day-blank aui-helper-hidden"></div>
+
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start aui-helper-hidden">25</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start aui-helper-hidden">26</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start aui-helper-hidden">27</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start aui-helper-hidden">28</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start">29</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start">30</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-start">31</div>
+
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">1</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">2</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">3</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">4</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">5</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">6</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">7</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">8</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">9</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">10</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">11</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">12</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">13</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">14</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">15</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">16</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">17</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">18</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">19</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">20</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">21</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">22</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">23</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">24</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">25</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">26</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">27</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">28</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">29</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">30</a>
+							<a class="aui-calendar-day aui-calendar-day-month aui-state-default aui-helper-hidden" href="#">31</a>
+							
+							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">1</div>
+							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">2</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end">3</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end">4</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end">5</div>
+							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">6</div>
+							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">7</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end">8</div>
+							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">9</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">10</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">11</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">12</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">13</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">14</div>
+							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end aui-helper-hidden">15</div>
 						</div>
 					</div>
 				</div>
@@ -177,7 +209,16 @@ AUI().ready('aui-calendar', function(A) {
 	var calendar3 = new A.Calendar({ render: '#inline3' });
 
 	// From Markup
-	var calendar4 = new A.Calendar({ boundingBox: '#calendarMarkup1', srcNode: '#calendarMarkup1 .aui-calendar-content' }).render();
+	window.calendar4 = new A.Calendar({
+		boundingBox: '#calendarMarkup1',
+		srcNode: '#calendarMarkup1 .aui-calendar-content',
+		dates: [ '09/01/2010' ]
+		// firstDayOfWeek: 2,
+		// showOtherMonth: false,
+		// minDate: '09/01/2010',
+		// maxDate: '10/03/2010'
+	})
+	.render();
 
 	// extras
 	var printSelectedDate = function(event) {

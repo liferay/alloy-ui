@@ -57,14 +57,25 @@
 	_width: 23px;
 }
 
+.aui-calendar-day-padding-end, .aui-calendar-day-padding-start {
+	border: 1px dashed #aaa;
+	opacity: 0.50;
+	-ms-filter: alpha(opacity=50);
+	filter: alpha(opacity=50);
+}
+
 .aui-calendar-day-hidden {
 	display: none;
 }
 
 .aui-calendar-disabled {
-	opacity: 0.4;
-	-ms-filter: alpha(opacity=40);
-	filter: alpha(opacity=40);
+	border-color: #C8C9CA #9E9E9E #9E9E9E #C8C9CA;
+	border-style: solid;
+	border-width: 1px;
+
+	opacity: 0.30;
+	-ms-filter: alpha(opacity=30);
+	filter: alpha(opacity=30);
 }
 
 .aui-calendar-link {

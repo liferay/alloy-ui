@@ -15,6 +15,10 @@ var L = A.Lang,
 	isUndefined = L.isUndefined,
 	isNumber = L.isNumber,
 
+	toNumber = function(val) {
+		return parseFloat(val) || 0;
+	},
+
 	WidgetStdMod = A.WidgetStdMod,
 
 	EMPTY_STR = '',
@@ -33,12 +37,16 @@ var L = A.Lang,
 	CURRENT_DAY = 'currentDay',
 	CURRENT_MONTH = 'currentMonth',
 	CURRENT_YEAR = 'currentYear',
+	DATA_DAY = 'data-day',
+	DATA_MONTH = 'data-month',
+	DATA_YEAR = 'data-year',
 	DATES = 'dates',
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DEFAULT = 'default',
 	DISABLED = 'disabled',
 	DOT = '.',
+	END = 'end',
 	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
 	HEADER = 'hd',
 	HEADER_CONTENT_NODE = 'headerContentNode',
@@ -53,15 +61,21 @@ var L = A.Lang,
 	LOCALE = 'locale',
 	MAX_DATE = 'maxDate',
 	MIN_DATE = 'minDate',
+	MONTH = 'month',
 	MONTHDAYS = 'monthdays',
 	MONTH_DAYS = 'monthDays',
 	MONTH_DAYS_NODE = 'monthDaysNode',
 	NEXT = 'next',
 	NONE = 'none',
 	NONE_LINK_NODE = 'noneLinkNode',
+	PADDING = 'padding',
+	PADDING_DAYS_END = 'paddingDaysEnd',
+	PADDING_DAYS_START = 'paddingDaysStart',
 	PREV = 'prev',
 	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
+	SHOW_OTHER_MONTH = 'showOtherMonth',
 	SHOW_TODAY = 'showToday',
+	START = 'start',
 	STATE = 'state',
 	TITLE = 'title',
 	TODAY = 'today',
@@ -78,11 +92,17 @@ var L = A.Lang,
 
 	CSS_CALENDAR = getCN(CALENDAR),
 	CSS_CALENDAR_DISABLED = getCN(CALENDAR, DISABLED),
+	CSS_CALENDAR_LINK = getCN(CALENDAR, LINK),
+	CSS_CALENDAR_LINK_NONE = getCN(CALENDAR, LINK, NONE),
+	CSS_CALENDAR_LINK_TODAY = getCN(CALENDAR, LINK, TODAY),
 	CSS_DAY = getCN(CALENDAR, DAY),
+	CSS_DAY_MONTH = getCN(CALENDAR, DAY, MONTH),
 	CSS_DAY_BLANK = getCN(CALENDAR, DAY, BLANK),
-	CSS_DAY_HIDDEN = getCN(CALENDAR, DAY, HIDDEN),
+	CSS_DAY_PADDING_END = getCN(CALENDAR, DAY, PADDING, END),
+	CSS_DAY_PADDING_START = getCN(CALENDAR, DAY, PADDING, START),
 	CSS_HEADER = getCN(CALENDAR, HEADER),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
+	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_CIRCLE_TRIANGLE_L = getCN(ICON, CIRCLE, TRIANGLE, 'l'),
 	CSS_ICON_CIRCLE_TRIANGLE_R = getCN(ICON, CIRCLE, TRIANGLE, 'r'),
@@ -95,12 +115,11 @@ var L = A.Lang,
 	CSS_TITLE = getCN(CALENDAR, TITLE),
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
-	CSS_CALENDAR_LINK = getCN(CALENDAR, LINK),
-	CSS_CALENDAR_LINK_TODAY = getCN(CALENDAR, LINK, TODAY),
-	CSS_CALENDAR_LINK_NONE = getCN(CALENDAR, LINK, NONE),
 
-	INT_WEEK_LENGTH = 7,
+	INT_MATRIX_DAYS_LENGTH = 42,
+	INT_MAX_PADDING_END = 14,
 	INT_MONTH_LENGTH = 31,
+	INT_WEEK_LENGTH = 7,
 
 	TPL_CALENDAR_NONE_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE)+'">None</a>',
 
@@ -112,7 +131,11 @@ var L = A.Lang,
 
 	TPL_CALENDAR_NEXT = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE)+'">Prev</a>',
 
-	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_DAY_HIDDEN ].join(SPACE)+'"></div>',
+	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_HELPER_HIDDEN ].join(SPACE)+'"></div>',
+
+	TPL_CALENDAR_DAY_PADDING_START = '<div class="'+[ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_START, CSS_HELPER_HIDDEN ].join(SPACE)+'"></div>',
+
+	TPL_CALENDAR_DAY_PADDING_END = ['<div class="'+[ CSS_DAY, CSS_STATE_DEFAULT, CSS_DAY_PADDING_END, CSS_HELPER_HIDDEN ].join(SPACE)+'">', 0, '</div>'],
 
 	TPL_CALENDAR_HEADER_TITLE = '<div class="'+CSS_TITLE+'"></div>',
 
@@ -122,7 +145,7 @@ var L = A.Lang,
 
 	TPL_BUFFER_WEEKDAYS = ['<div class="'+CSS_WEEK+'">', 0, '</div>'],
 
-	TPL_BUFFER_MONTH_DAYS = ['<a href="#" class="'+[ CSS_DAY, CSS_STATE_DEFAULT ].join(SPACE)+'">', 0, '</a>'];
+	TPL_BUFFER_MONTH_DAYS = ['<a href="#" class="'+[ CSS_DAY, CSS_DAY_MONTH, CSS_STATE_DEFAULT ].join(SPACE)+'">', 0, '</a>'];
 
 /**
  * <p><img src="assets/images/aui-calendar/main.png"/></p>
@@ -185,6 +208,34 @@ var Calendar = A.Component.create(
 			allowNone: {
 				value: true,
 				validator: isBoolean
+			},
+
+			/**
+			 * NodeList containing all the DOM elements for
+			 * each blank day. If not specified try to query using HTML_PARSER
+			 * an element inside contentBox which matches
+			 * <code>aui-calendar-day-blank</code>.
+			 *
+			 * @attribute paddingDaysEnd
+			 * @default Generated div element.
+			 * @type NodeList
+			 */
+			paddingDaysEnd: {
+				valueFn: '_valuePaddingDaysEnd'
+			},
+
+			/**
+			 * NodeList containing all the DOM elements for
+			 * each blank day. If not specified try to query using HTML_PARSER
+			 * an element inside contentBox which matches
+			 * <code>aui-calendar-day-blank</code>.
+			 *
+			 * @attribute paddingDaysStart
+			 * @default Generated div element.
+			 * @type NodeList
+			 */
+			paddingDaysStart: {
+				valueFn: '_valuePaddingDaysStart'
 			},
 
 			/**
@@ -443,6 +494,18 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Wheather displays the days for the other months.
+			 *
+			 * @attribute showOtherMonth
+			 * @default true
+			 * @type boolean
+			 */
+			showOtherMonth: {
+				value: true,
+				validator: isBoolean
+			},
+
+			/**
 			 * Wheather displays the "today" link on the Calendar footer.
 			 *
 			 * @attribute showToday
@@ -499,7 +562,19 @@ var Calendar = A.Component.create(
 			},
 
 			monthDays: function(srcNode) {
-				var nodes = srcNode.all(DOT+CSS_DAY);
+				var nodes = srcNode.all(DOT+CSS_DAY_MONTH);
+
+				return nodes.size() ? nodes : null;
+			},
+
+			paddingDaysEnd: function(srcNode) {
+				var nodes = srcNode.all(DOT+CSS_DAY_PADDING_END);
+
+				return nodes.size() ? nodes : null;
+			},
+
+			paddingDaysStart: function(srcNode) {
+				var nodes = srcNode.all(DOT+CSS_DAY_PADDING_START);
 
 				return nodes.size() ? nodes : null;
 			},
@@ -527,7 +602,7 @@ var Calendar = A.Component.create(
 			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE
 		},
 
-		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE],
+		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE, SHOW_OTHER_MONTH],
 
 		BIND_UI_ATTRS: [CURRENT_MONTH, CURRENT_YEAR],
 
@@ -562,18 +637,20 @@ var Calendar = A.Component.create(
 				instance.monthDays = instance.get(MONTH_DAYS);
 				instance.monthDaysNode = instance.get(MONTH_DAYS_NODE);
 				instance.noneLinkNode = instance.get(NONE_LINK_NODE);
+				instance.paddingDaysEnd = instance.get(PADDING_DAYS_END);
+				instance.paddingDaysStart = instance.get(PADDING_DAYS_START);
 				instance.todayLinkNode = instance.get(TODAY_LINK_NODE);
 				instance.weekDays = instance.get(WEEK_DAYS);
 				instance.weekDaysNode = instance.get(WEEK_DAYS_NODE);
 
 				instance._renderWeekDays();
 				instance._renderBlankDays();
+				instance._renderPaddingDaysStart();
 				instance._renderMonthDays();
+				instance._renderPaddingDaysEnd();
 				instance._renderIconControls();
 				instance._renderTitleNode();
 				instance._renderStdContent();
-
-				instance.get(BOUNDING_BOX).addClass(CSS_CALENDAR);
 			},
 
 			/**
@@ -637,11 +714,11 @@ var Calendar = A.Component.create(
 			 * @method getCurrentDate
 			 * @return {Date}
 			 */
-			getCurrentDate: function() {
+			getCurrentDate: function(offsetYear, offsetMonth, offsetDay) {
 				var instance = this;
 				var date = instance._normalizeYearMonth();
 
-				return ( new Date(date.year, date.month, date.day) );
+				return (new Date(date.year + toNumber(offsetYear), date.month + toNumber(offsetMonth), date.day + toNumber(offsetDay)));
 			},
 
 			/**
@@ -809,10 +886,7 @@ var Calendar = A.Component.create(
 			 */
 			navigateMonth: function(offset) {
 				var instance = this;
-				var currentMonth = instance.get(CURRENT_MONTH);
-				var currentYear = instance.get(CURRENT_YEAR);
-
-				var date = new Date(currentYear, currentMonth + offset);
+				var date = instance.getCurrentDate(0, offset);
 
 				// when navigate by month update the year also
 				instance.set(CURRENT_MONTH, date.getMonth());
@@ -911,6 +985,20 @@ var Calendar = A.Component.create(
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
 			},
 
+			_bindDataAttrs: function(node, date) {
+				node.attr(DATA_YEAR, date.getFullYear());
+				node.attr(DATA_MONTH, date.getMonth());
+			},
+
+			_checkNodeRange: function(node, date) {
+				var instance = this;
+
+				node.toggleClass(
+					CSS_CALENDAR_DISABLED,
+					instance.isOutOfRangeDate(date)
+				);
+			},
+
 		    /**
 		     * Create the custom events used on the Calendar.
 		     *
@@ -935,6 +1023,16 @@ var Calendar = A.Component.create(
 					EV_CALENDAR_SELECT,
 					instance._defSelectFn
 				);
+			},
+
+			_createNodeList: function(buffer) {
+				var instance = this;
+
+				var blankDays = A.one(
+					A.DOM.create(buffer.join(EMPTY_STR))
+				);
+
+				return blankDays.get(CHILDREN);
 			},
 
 			/**
@@ -1150,11 +1248,22 @@ var Calendar = A.Component.create(
 			_onClickDays: function(event) {
 				var instance = this;
 				var target  = event.currentTarget || event.target;
-				var day = instance.monthDays.indexOf(target)+1;
 				var disabled = target.test(DOT+CSS_CALENDAR_DISABLED);
 
 				if (!disabled) {
-					instance.set(CURRENT_DAY, day);
+					var day = toNumber(target.attr(DATA_DAY) || target.text());
+					var month = toNumber(target.attr(DATA_MONTH));
+					var year = toNumber(target.attr(DATA_YEAR));
+
+					if (year) {
+						instance.set(CURRENT_YEAR, year);
+					}
+					if (month) {
+						instance.set(CURRENT_MONTH, month);
+					}
+					if (day) {
+						instance.set(CURRENT_DAY, day);
+					}
 
 					var currentDate = instance.getCurrentDate();
 
@@ -1210,6 +1319,34 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance.blankDays.appendTo(
+					instance.monthDaysNode
+				);
+			},
+
+			/**
+			 * Render Calendar DOM padding days elements. Padding days are used to show other month day values.
+			 *
+			 * @method _renderPaddingDaysEnd
+			 * @protected
+			 */
+			_renderPaddingDaysEnd: function() {
+				var instance = this;
+
+				instance.paddingDaysEnd.appendTo(
+					instance.monthDaysNode
+				);
+			},
+
+			/**
+			 * Render Calendar DOM padding days elements. Padding days are used to show other month day values.
+			 *
+			 * @method _renderPaddingDaysStart
+			 * @protected
+			 */
+			_renderPaddingDaysStart: function() {
+				var instance = this;
+
+				instance.paddingDaysStart.appendTo(
 					instance.monthDaysNode
 				);
 			},
@@ -1296,6 +1433,17 @@ var Calendar = A.Component.create(
 				);
 			},
 
+			_repeateTemplate: function(template, times) {
+				var instance = this;
+				var buffer = [];
+
+				while (times--) {
+					buffer.push(template);
+				}
+
+				return instance._createNodeList(buffer);
+			},
+
 			/**
 			 * Select the current date returned by
 		     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
@@ -1367,32 +1515,64 @@ var Calendar = A.Component.create(
 			 */
 			_syncDays: function() {
 				var instance = this;
-				var daysInMonth = instance.getDaysInMonth();
-				var firstWeekDay = instance.getFirstDayOfWeek();
+				var firstDayOfWeek = instance.get(FIRST_DAY_OF_WEEK);
+				var showOtherMonth = instance.get(SHOW_OTHER_MONTH);
+
 				var currentDate = instance.getCurrentDate();
-				var rangeCheckerDate = new Date(currentDate.getTime());
+				var rangeDate = instance.getCurrentDate();
+				var prevMonthDate = instance.getCurrentDate(0, -1);
+				var nextMonthDate = instance.getCurrentDate(0, +1);
 
+				var monthFirstWeekDay = instance.getFirstDayOfWeek();
+				var daysInMonth = instance.getDaysInMonth();
+				var totalPrevMonthDays = instance.getDaysInMonth(null, prevMonthDate.getMonth());
+
+				// Sync month days
 				instance.monthDays.each(
-					function(monthDayNode, day) {
-						// Update the day on the rangeCheckerDate to be the current day
-						rangeCheckerDate.setDate(day + 1);
-						var hideDayNode = (day >= daysInMonth);
-						var isOutOfRange = instance.isOutOfRangeDate(rangeCheckerDate);
+					function(node, index) {
+						node.toggleClass(CSS_HELPER_HIDDEN, (index >= daysInMonth));
 
-						monthDayNode.toggleClass(CSS_DAY_HIDDEN, hideDayNode);
-						monthDayNode.toggleClass(CSS_CALENDAR_DISABLED, isOutOfRange);
+						rangeDate.setDate(index + 1);
+						instance._checkNodeRange(node, rangeDate);
 					}
 				);
 
-				var numberOfBlankDays = (firstWeekDay - instance.get(FIRST_DAY_OF_WEEK) + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
+				// Sync blank or padding start nodes
+				var paddingNodes = (showOtherMonth ? instance.paddingDaysStart : instance.blankDays);
+				var totalPadding = paddingNodes.size();
+				var totalVisible = (monthFirstWeekDay - firstDayOfWeek + INT_WEEK_LENGTH) % INT_WEEK_LENGTH;
 
-				instance.blankDays.each(
-					function(blankDayNode, day) {
-						var hidePaddingNode = (day >= numberOfBlankDays);
+				paddingNodes.each(
+					function(node, index) {
+						var totalHidden = (totalPadding - totalVisible);
 
-						blankDayNode.toggleClass(CSS_DAY_HIDDEN, hidePaddingNode);
+						node.toggleClass(CSS_HELPER_HIDDEN, (index < totalHidden));
+
+						if (showOtherMonth) {
+							var dayNumber = (totalPrevMonthDays - totalPadding) + (index + 1);
+
+							node.html(dayNumber);
+							prevMonthDate.setDate(dayNumber);
+							instance._bindDataAttrs(node, prevMonthDate);
+							instance._checkNodeRange(node, prevMonthDate);
+						}
 					}
 				);
+
+				// Sync padding end nodes
+				if (showOtherMonth) {
+					var totalVisiblePaddingEnd = (INT_MATRIX_DAYS_LENGTH - (totalVisible + daysInMonth));
+
+					instance.paddingDaysEnd.each(
+						function(node, index) {
+							node.toggleClass(CSS_HELPER_HIDDEN, (index >= totalVisiblePaddingEnd));
+
+							nextMonthDate.setDate(index + 1);
+							instance._bindDataAttrs(node, nextMonthDate);
+							instance._checkNodeRange(node, nextMonthDate);
+						}
+					);
+				}
 			},
 
 			/**
@@ -1521,24 +1701,64 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Sync the UI of the Calendar when showOtherMonth attribute change.
+			 *
+			 * @method _uiSetShowOtherMonth
+			 * @protected
+			 */
+			_uiSetShowOtherMonth: function(val) {
+				var instance = this;
+
+				if (val) {
+					instance.blankDays.hide();
+				}
+				else {
+					instance.paddingDaysEnd.hide();
+					instance.paddingDaysStart.hide();
+				}
+
+				instance._syncDays();
+			},
+
+			/**
+			 * Default value for paddingDaysEnd attribute, passed as valueFn.
+			 *
+			 * @method _valuePaddingDaysEnd
+			 * @protected
+			 */
+			_valuePaddingDaysEnd: function() {
+				var instance = this;
+				var buffer = [];
+				var day = 0;
+
+				while (day++ <= INT_MAX_PADDING_END) {
+					TPL_CALENDAR_DAY_PADDING_END[1] = day;
+
+					buffer.push(TPL_CALENDAR_DAY_PADDING_END.join(EMPTY_STR));
+				}
+
+				return instance._createNodeList(buffer);
+			},
+
+			/**
+			 * Default value for paddingDaysStart attribute, passed as valueFn.
+			 *
+			 * @method _valuePaddingDaysStart
+			 * @protected
+			 */
+			_valuePaddingDaysStart: function() {
+				return this._repeateTemplate(TPL_CALENDAR_DAY_PADDING_START, INT_WEEK_LENGTH);
+			},
+
+
+			/**
 			 * Default value for blankDays attribute, passed as valueFn.
 			 *
 			 * @method _valueBlankDays
 			 * @protected
 			 */
 			_valueBlankDays: function() {
-				var buffer = [];
-				var day = INT_WEEK_LENGTH;
-
-				while (day--) {
-					buffer.push(TPL_CALENDAR_DAY_BLANK);
-				}
-
-				var blankDays = A.one(
-					A.DOM.create(buffer.join(EMPTY_STR))
-				);
-
-				return blankDays.get(CHILDREN);
+				return this._repeateTemplate(TPL_CALENDAR_DAY_BLANK, INT_WEEK_LENGTH);
 			},
 
 			/**
@@ -1559,11 +1779,7 @@ var Calendar = A.Component.create(
 					buffer.push(TPL_BUFFER_MONTH_DAYS.join(EMPTY_STR));
 				}
 
-				var monthDays = A.one(
-					A.DOM.create(buffer.join(EMPTY_STR))
-				);
-
-				return monthDays.get(CHILDREN);
+				return instance._createNodeList(buffer);
 			},
 
 			/**
@@ -1574,24 +1790,19 @@ var Calendar = A.Component.create(
 			 */
 			_valueWeekDays: function() {
 				var instance = this;
-
 				var day = 0;
 				var buffer = [];
 				var firstWeekDay = instance.get(FIRST_DAY_OF_WEEK);
 
 				while(day < INT_WEEK_LENGTH) {
-					var fixedDay = (day + firstWeekDay) % INT_WEEK_LENGTH;
+					var fixedDay = (day++ + firstWeekDay) % INT_WEEK_LENGTH;
 
 					TPL_BUFFER_WEEKDAYS[1] = instance._getDayNameMin(fixedDay);
 
-					buffer.push(TPL_BUFFER_WEEKDAYS.join(EMPTY_STR)); day++;
+					buffer.push(TPL_BUFFER_WEEKDAYS.join(EMPTY_STR));
 				}
 
-				var weekDays = A.one(
-					A.DOM.create(buffer.join(EMPTY_STR))
-				);
-
-				return weekDays.get(CHILDREN);
+				return instance._createNodeList(buffer);
 			}
 		}
 	}
