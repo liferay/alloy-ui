@@ -9,6 +9,7 @@
  */
 
 var L = A.Lang,
+	isDate = L.isDate,
 	isString = L.isString,
 	isArray = L.isArray,
 	isBoolean = L.isBoolean,
@@ -617,8 +618,12 @@ var Calendar = A.Component.create(
 			 */
 			initializer: function() {
 				var instance = this;
+				var dates = instance.get(DATES);
 
-				instance.selectedDates = [];
+				// Set current date to be the passed date
+				instance.setCurrentDate(
+					dates[dates.length - 1]
+				);
 			},
 
 			/**
@@ -969,6 +974,23 @@ var Calendar = A.Component.create(
 				instance.set(DATES, [ new Date() ]);
 			},
 
+		    /**
+		     * Update the currentDay, currentMonth and currentYear values.
+		     *
+		     * @method setCurrentDate
+		     * @param {Date} date
+		     */
+			setCurrentDate: function(date) {
+				var instance = this;
+
+				if (isDate(date)) {
+					// update the current values to the last selected date
+					instance.set(CURRENT_DAY, date.getDate());
+					instance.set(CURRENT_MONTH, date.getMonth());
+					instance.set(CURRENT_YEAR, date.getFullYear());
+				}
+			},
+
 			/**
 			 * Bind DOM events to the UI.
 			 *
@@ -1077,12 +1099,7 @@ var Calendar = A.Component.create(
 				var selectedDates = event.date.normal;
 				var lastSelectedDate = selectedDates[selectedDates.length - 1];
 
-				if (lastSelectedDate) {
-					// update the current values to the last selected date
-					instance.set(CURRENT_DAY, lastSelectedDate.getDate());
-					instance.set(CURRENT_MONTH, lastSelectedDate.getMonth());
-					instance.set(CURRENT_YEAR, lastSelectedDate.getFullYear());
-				}
+				instance.setCurrentDate(lastSelectedDate);
 
 				instance._syncView();
 			},
