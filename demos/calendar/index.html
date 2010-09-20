@@ -112,7 +112,7 @@
 							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">29</a>
 							<a class="aui-calendar-day aui-calendar-day-month aui-state-default" href="#">30</a>
 							<a class="aui-calendar-day aui-calendar-day-month aui-state-default aui-helper-hidden" href="#">31</a>
-							
+
 							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">1</div>
 							<div class="aui-calendar-day aui-calendar-day-padding-end aui-state-default">2</div>
 							<div class="aui-calendar-day aui-state-default aui-calendar-day-padding-end">3</div>
@@ -206,19 +206,30 @@ AUI().ready('aui-calendar', function(A) {
 	})
 	.render('#inline2');
 
-	var calendar3 = new A.Calendar({ render: '#inline3' });
+	window.calendar3 = new A.Calendar({
+		showOtherMonth: false
+	});
+
+	// console.time('window.calendar3');
+	window.calendar3.render('#inline3');
+	// console.timeEnd('window.calendar3');
+
 
 	// From Markup
 	window.calendar4 = new A.Calendar({
 		boundingBox: '#calendarMarkup1',
 		srcNode: '#calendarMarkup1 .aui-calendar-content',
-		dates: [ '09/01/2010' ]
+		dates: [ '09/01/2010' ],
+		// allowNone: false,
 		// firstDayOfWeek: 2,
 		// showOtherMonth: false,
 		// minDate: '09/01/2010',
 		// maxDate: '10/03/2010'
-	})
-	.render();
+	});
+
+	// console.time('window.calendar4');
+	window.calendar4.render();
+	// console.timeEnd('window.calendar4');
 
 	// extras
 	var printSelectedDate = function(event) {
