@@ -119,4 +119,8 @@
 			<fileset dir="${project.dir}/alloy-taglib/src/META-INF/" includes="*.tld" />
 		</delete>
 	</target>
+
+	<target name="war">
+		<ant dir="alloy-web" target="war" inheritAll="false" />
+	</target>
 </project>

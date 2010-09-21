@@ -16,7 +16,7 @@
 
 	<target name="deploy" depends="clean, compile">
 		<var name="from.dir" value="docroot" />
-		<property name="war.file.dest" value="${app.server.portal.dir}" />
+		<var name="dest.dir" value="${app.server.portal.dir}" />
 
 		<if>
 			<equals arg1="${deploy.liferay}" arg2="true" />
@@ -32,6 +32,7 @@
 				<antcall target="prepare-liferay-deploy" />
 
 				<var name="from.dir" value="${temp.dir}"/>
+				<var name="dest.dir" value="${lp.source.dir}/portal-web/docroot" />
 			</then>
 			<else>
 				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
@@ -44,7 +45,7 @@
 			<fileset dir="${project.dir}/lib/liferay" includes="*.jar" />
 		</copy>
 
-		<copy todir="${war.file.dest}" preservelastmodified="true">
+		<copy todir="${dest.dir}" preservelastmodified="true">
 			<fileset dir="${from.dir}" excludes="web.xml" />
 		</copy>
 

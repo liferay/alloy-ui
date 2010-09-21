@@ -3,6 +3,14 @@
 <project name="alloy-taglib" basedir="." default="compile">
 	<import file="../build-common-java.xml" />
 
-	<property name="deploy.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
+	<var name="deploy.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
+
+	<if>
+		<equals arg1="${deploy.liferay}" arg2="true" />
+		<then>
+			<var name="deploy.dir" value="${lp.source.dir}/lib/portal" />
+		</then>
+	</if>
+
 	<property name="jar.file" value="${ant.project.name}" />
 </project>
