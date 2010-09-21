@@ -16,7 +16,7 @@ package com.liferay.alloy.util;
 
 import java.util.Properties;
 
-import com.liferay.portal.configuration.ConfigurationImpl;
+import com.liferay.alloy.configuration.ConfigurationImpl;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;

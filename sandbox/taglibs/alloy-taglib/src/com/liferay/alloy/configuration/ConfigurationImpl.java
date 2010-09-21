@@ -12,31 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.configuration;
-
-import com.germinus.easyconf.AggregatedProperties;
-import com.germinus.easyconf.ComponentConfiguration;
-import com.germinus.easyconf.ComponentProperties;
-import com.germinus.easyconf.Conventions;
-import com.germinus.easyconf.EasyConf;
-
-import com.liferay.portal.kernel.configuration.Filter;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PropertiesUtil;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+package com.liferay.alloy.configuration;
 
 import java.io.FileWriter;
 import java.io.Writer;
-
 import java.lang.reflect.Field;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -47,6 +30,19 @@ import java.util.Set;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.MapConfiguration;
+
+import com.germinus.easyconf.AggregatedProperties;
+import com.germinus.easyconf.ComponentConfiguration;
+import com.germinus.easyconf.ComponentProperties;
+import com.germinus.easyconf.Conventions;
+import com.germinus.easyconf.EasyConf;
+import com.liferay.portal.kernel.configuration.Filter;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Brian Wing Shun Chan
