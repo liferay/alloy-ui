@@ -1,7 +1,5 @@
 package ${packagePath}.${component.getPackage()}.base;
 
-import com.liferay.alloy.taglib.alloy_util.IncludeTag;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
@@ -12,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author ${author}
 </#list>
  */
-public class Base${component.getSafeName()}Tag extends IncludeTag {
+public class Base${component.getSafeName()}Tag extends ${component.getParentClass()} {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);

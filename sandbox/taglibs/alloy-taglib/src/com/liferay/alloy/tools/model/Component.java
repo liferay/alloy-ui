@@ -62,6 +62,10 @@ public class Component extends BaseModel {
 		return _package;
 	}
 
+	public String getParentClass() {
+		return _parentClass;
+	}
+
 	public String getSafeName() {
 		return com.liferay.portal.kernel.util.StringUtil.replace(
 			getName(), StringPool.PERIOD, StringPool.BLANK);
@@ -111,11 +115,16 @@ public class Component extends BaseModel {
 		_package = componentPackage;
 	}
 
+	public void setParentClass(String parentClass) {
+		_parentClass = parentClass;
+	}
+
 	private boolean _alloyComponent;
 	private List<Attribute> _attributes;
 	private boolean _bodyContent;
 	private List<Attribute> _events;
 	private String _module;
 	private String _package;
+	private String _parentClass;
 
 }

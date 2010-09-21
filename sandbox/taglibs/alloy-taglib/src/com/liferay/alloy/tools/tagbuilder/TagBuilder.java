@@ -360,12 +360,17 @@ public class TagBuilder {
 			String module = GetterUtil.getString(
 				node.attributeValue("module"));
 
+			String parentClass = GetterUtil.getString(
+				node.attributeValue("parentClass"), _DEFAULT_PARENT_CLASS);
+
 			boolean bodyContent = GetterUtil.getBoolean(
 				node.attributeValue("bodyContent"));
 
 			Component component = new Component(
 				componentPackage, name, alloyComponent, module, bodyContent,
 				_getAttributes(node), _getPrefixedEvents(node));
+
+			component.setParentClass(parentClass);
 
 			components.add(component);
 		}
@@ -541,6 +546,7 @@ public class TagBuilder {
 	private static final String _CLASS_SUFFIX = "Tag.java";
 	private static final String _COMPONENT = "component";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
+	private static final String _DEFAULT_PARENT_CLASS = "com.liferay.alloy.taglib.alloy_util.IncludeTag";
 	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";
 	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
 	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
