@@ -655,7 +655,6 @@ var Calendar = A.Component.create(
 				instance._renderPaddingDaysEnd();
 				instance._renderIconControls();
 				instance._renderTitleNode();
-				instance._renderStdContent();
 			},
 
 			/**
@@ -669,6 +668,18 @@ var Calendar = A.Component.create(
 				var boundingBox = instance.get(BOUNDING_BOX);
 
 				boundingBox.once('mousemove', A.bind(instance._bindDelegate, instance));
+			},
+
+			/**
+			 * Sync the Calendar UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
+			syncUI: function() {
+				var instance = this;
+
+				instance._syncStdContent();
 			},
 
 			/**
@@ -1401,28 +1412,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Render Calendar bodyContent.
-			 *
-			 * @method _renderStdContent
-			 * @protected
-			 */
-			_renderStdContent: function() {
-				var instance = this;
-				var bodyContent = A.Node.create('<div></div>');
-				var footContent = A.Node.create('<div class="' + CSS_HELPER_CLEARFIX + '"></div>');
-
-				bodyContent.append(instance.weekDaysNode);
-				bodyContent.append(instance.monthDaysNode);
-
-				footContent.append(instance.todayLinkNode);
-				footContent.append(instance.noneLinkNode);
-
-				instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode.getDOM());
-				instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
-				instance.setStdModContent(WidgetStdMod.FOOTER, footContent);
-			},
-
-			/**
 			 * Render Calendar title node element.
 			 *
 			 * @method _renderTitleNode
@@ -1535,6 +1524,28 @@ var Calendar = A.Component.create(
 				}
 
 				return value;
+			},
+
+			/**
+			 * Sync Calendar StdContent.
+			 *
+			 * @method _syncStdContent
+			 * @protected
+			 */
+			_syncStdContent: function() {
+				var instance = this;
+				var bodyContent = A.Node.create('<div></div>');
+				var footContent = A.Node.create('<div class="' + CSS_HELPER_CLEARFIX + '"></div>');
+
+				bodyContent.append(instance.weekDaysNode);
+				bodyContent.append(instance.monthDaysNode);
+
+				footContent.append(instance.todayLinkNode);
+				footContent.append(instance.noneLinkNode);
+
+				instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode.getDOM());
+				instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
+				instance.setStdModContent(WidgetStdMod.FOOTER, footContent);
 			},
 
 			/**
@@ -1836,6 +1847,6 @@ var Calendar = A.Component.create(
 	}
 );
 
-A.Calendar = A.augment(Calendar, A.WidgetStdMod);
+A.Calendar = A.Base.create(CALENDAR, Calendar, [A.WidgetStdMod]);
 
 }, '@VERSION@' ,{requires:['aui-base','widget-stdmod','datatype-date','widget-locale'], skinnable:true});
