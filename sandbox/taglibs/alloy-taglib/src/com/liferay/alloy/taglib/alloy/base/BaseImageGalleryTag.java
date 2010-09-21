@@ -1,7 +1,5 @@
 package com.liferay.alloy.taglib.alloy.base;
 
-import com.liferay.alloy.taglib.alloy_util.IncludeTag;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
@@ -12,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseImageGalleryTag extends IncludeTag {
+public class BaseImageGalleryTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
