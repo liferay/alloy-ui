@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy short-name="alloy" uri="http://alloy.liferay.com/tld/alloy" tlib-version="1.0">
+<taglibs short-name="alloy" uri="http://alloy.liferay.com/tld/alloy" tlib-version="1.0">
   <component name="A.io" module="aui-io" package="alloy" bodyContent="false" alloyComponent="true">
     <attributes/>
     <events/>
@@ -11472,4 +11472,4 @@ has been through the init lifecycle phase.]]></description>
       </event>
     </events>
   </component>
-</alloy>
+</taglibs>

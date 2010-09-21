@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy short-name="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util">
+<taglibs short-name="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util">
 	<component name="Component" package="alloy_util">
 		<attributes>
 			<attribute>
@@ -67,4 +67,4 @@
 			</attribute>
 		</attributes>
 	</component>
-</alloy>
+</taglibs>

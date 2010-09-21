@@ -138,7 +138,7 @@ public class XMLBuilder {
 		ArrayList<Component> components = getComponents();
 
 		Document doc = DocumentFactory.getInstance().createDocument();
-		Element root = doc.addElement("alloy");
+		Element root = doc.addElement("taglibs");
 
 		root.addAttribute("short-name", _DEFAULT_TAGLIB_SHORT_NAME);
 		root.addAttribute("uri", _DEFAULT_TAGLIB_URI);

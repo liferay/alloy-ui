@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<alloy short-name="liferay" extends="alloy" uri="http://test.liferay.com/tld/liferay">
+<taglibs short-name="liferay" extends="alloy" uri="http://test.liferay.com/tld/liferay">
 	<component name="Test" package="liferay">
 		<attributes>
 			<attribute>
@@ -22,4 +22,4 @@
 		</attributes>
 		<events></events>
 	</component>
-</alloy>
+</taglibs>
