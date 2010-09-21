@@ -297,6 +297,7 @@ var Calendar = A.Component.create(
 			 * @type Array
 			 */
 			dates: {
+				lazyAdd: false,
 				value: [ new Date() ],
 				validator: isArray,
 				setter: '_setDates'
@@ -619,12 +620,8 @@ var Calendar = A.Component.create(
 			 */
 			initializer: function() {
 				var instance = this;
-				var dates = instance.get(DATES);
 
-				// Set current date to be the passed date
-				instance.setCurrentDate(
-					dates[dates.length - 1]
-				);
+				instance._createEvents();
 			},
 
 			/**
@@ -670,8 +667,6 @@ var Calendar = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 				var boundingBox = instance.get(BOUNDING_BOX);
-
-				instance._createEvents();
 
 				boundingBox.once('mousemove', A.bind(instance._bindDelegate, instance));
 			},
@@ -941,6 +936,30 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Select the current date returned by
+		     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
+			 *
+			 * @method selectCurrentDate
+			 * @protected
+			 */
+			selectCurrentDate: function() {
+				var instance = this;
+				var currentDate = instance.getCurrentDate();
+
+				if (!instance.isAlreadySelected(currentDate)) {
+					var dates = instance.get(DATES);
+
+					// if is single selection reset the selected dates
+					if (!instance.get(SELECT_MULTIPLE_DATES)) {
+						dates = [];
+					}
+
+					dates.push(currentDate);
+					instance.set(DATES, dates);
+				}
+			},
+
+			/**
 			 * Navigate to the next month. Fired from the next icon on the Calendar
 		     * header.
 			 *
@@ -1097,10 +1116,6 @@ var Calendar = A.Component.create(
 		     */
 			_defSelectFn: function(event) {
 				var instance = this;
-				var selectedDates = event.date.normal;
-				var lastSelectedDate = selectedDates[selectedDates.length - 1];
-
-				instance.setCurrentDate(lastSelectedDate);
 
 				instance._syncView();
 			},
@@ -1209,6 +1224,25 @@ var Calendar = A.Component.create(
 				return localeMap.b[month];
 			},
 
+			/**
+			 * Object data containing all the information needed to the select event.
+			 *
+			 * @method _getSelectEventData
+			 * @protected
+			 * @return {}
+			 */
+			_getSelectEventData: function() {
+				var instance = this;
+
+				return {
+					date: {
+						detailed: instance.getDetailedSelectedDates(),
+						formatted: instance.getFormattedSelectedDates(),
+						normal: instance.getSelectedDates()
+					}
+				};
+			},
+
 		    /**
 		     * Fires the calendar:select event.
 		     *
@@ -1218,17 +1252,8 @@ var Calendar = A.Component.create(
 		     */
 			_handleSelectEvent: function() {
 				var instance = this;
-				var normal = instance.getSelectedDates();
-				var formatted = instance.getFormattedSelectedDates();
-				var detailed = instance.getDetailedSelectedDates();
 
-				instance.fire(EV_CALENDAR_SELECT, {
-					date: {
-						detailed: detailed,
-						formatted: formatted,
-						normal: normal
-					}
-				});
+				instance.fire(EV_CALENDAR_SELECT, instance._getSelectEventData());
 			},
 
 			/**
@@ -1295,7 +1320,7 @@ var Calendar = A.Component.create(
 						instance.removeDate(currentDate);
 					}
 					else {
-						instance._selectDate();
+						instance.selectCurrentDate();
 					}
 				}
 			},
@@ -1469,30 +1494,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Select the current date returned by
-		     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
-			 *
-			 * @method _selectDate
-			 * @protected
-			 */
-			_selectDate: function() {
-				var instance = this;
-				var currentDate = instance.getCurrentDate();
-
-				if (!instance.isAlreadySelected(currentDate)) {
-					var dates = instance.get(DATES);
-
-					// if is single selection reset the selected dates
-					if (!instance.get(SELECT_MULTIPLE_DATES)) {
-						dates = [];
-					}
-
-					dates.push(currentDate);
-					instance.set(DATES, dates);
-				}
-			},
-
-			/**
 			 * Setter for the <a href="Calendar.html#config_dates">dates</a> attribute.
 			 *
 			 * @method _setDates
@@ -1508,6 +1509,11 @@ var Calendar = A.Component.create(
 						value[index] = instance.parseDate( date );
 					}
 				});
+
+				// Set current date to be the last passed date
+				instance.setCurrentDate(
+					value[value.length - 1]
+				);
 
 				return value;
 			},

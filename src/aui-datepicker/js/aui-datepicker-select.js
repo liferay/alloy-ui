@@ -353,8 +353,6 @@ var DatePickerSelect = A.Component.create(
 
 		EXTENDS: A.Component,
 
-		BIND_UI_ATTRS: ['calendar:disabled', 'calendar:dates', 'calendar:currentMonth'],
-
 		prototype: {
 			/**
 			 * Create the DOM structure for the DatePickerSelect. Lifecycle.
@@ -379,12 +377,9 @@ var DatePickerSelect = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				// instance.after('calendar:datesChange', instance._uiSetDates);
-				// instance.after('calendar:currentMonthChange', instance._uiSetCurrentMonth);
-
-				// instance.after('disabledChange', instance._afterDisabledChangeDatePicker);
-
 				instance._bindSelectEvents();
+
+				instance.after('calendar:select', instance._afterSelectDate);
 			},
 
 			/**
@@ -397,7 +392,20 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				instance._populateSelects();
-				instance._uiSetDates();
+				instance._syncSelectsUI();
+			},
+
+			/**
+			 * Fires when a date is selected on the Calendar.
+			 *
+			 * @method _afterSelectDate
+			 * @param {Event} event
+			 * @protected
+			 */
+			_afterSelectDate: function(event) {
+				var instance = this;
+
+				instance._syncSelectsUI();
 			},
 
 			/**
@@ -554,6 +562,20 @@ var DatePickerSelect = A.Component.create(
 
 				selects.on('change', instance._onSelectChange, instance);
 				selects.on('keypress', instance._onSelectChange, instance);
+			},
+
+			/**
+			 * Sync the UI of each DOM Select element.
+			 *
+			 * @method _syncSelectsUI
+			 * @protected
+			 */
+			_syncSelectsUI: function() {
+				var instance = this;
+
+				instance._selectCurrentDay();
+				instance._selectCurrentMonth();
+				instance._selectCurrentYear();
 			},
 
 			/**
@@ -740,7 +762,7 @@ var DatePickerSelect = A.Component.create(
 					instance._uiSetCurrentMonth();
 				}
 
-				instance.calendar._selectDate();
+				instance.calendar.selectCurrentDate();
 			},
 
 			/**
@@ -756,21 +778,6 @@ var DatePickerSelect = A.Component.create(
 
 				instance._populateDays();
 				instance._selectCurrentDay();
-			},
-
-			/**
-			 * Select the current values for the day, month and year to the respective
-		     * input field.
-			 *
-			 * @method _uiSetDates
-			 * @protected
-			 */
-			_uiSetDates: function(value) {
-				var instance = this;
-
-				instance._selectCurrentDay();
-				instance._selectCurrentMonth();
-				instance._selectCurrentYear();
 			}
 		}
 	}

@@ -108,20 +108,24 @@ var DatePicker = A.Component.create({
 			DatePicker.superclass.bindUI.apply(this, arguments);
 
 			instance.on('show', instance._onShowOverlay);
-			instance.on('calendar:select', instance._onSelectDate);
+			instance.after('calendar:select', instance._afterSelectDate);
 
-			// Fire the calendar:select event to invoke the _onSelectDate of the DatePicker
-			instance.calendar._handleSelectEvent();
+			// Set the value of the trigger with the Calendar current date
+			if (instance.get(SET_VALUE)) {
+				instance._setTriggerValue(
+					instance.calendar._getSelectEventData().date
+				);
+			}
 		},
 
 		/**
 		 * Fires when a date is selected on the Calendar.
 		 *
-		 * @method _onSelectDate
+		 * @method _afterSelectDate
 		 * @param {Event} event
 		 * @protected
 		 */
-		_onSelectDate: function(event) {
+		_afterSelectDate: function(event) {
 			var instance = this;
 
 			if (!instance.calendar.get(SELECT_MULTIPLE_DATES)) {
@@ -129,9 +133,7 @@ var DatePicker = A.Component.create({
 			}
 
 			if (instance.get(SET_VALUE)) {
-				var value = instance.get(FORMATTER).apply(instance, [event.date]);
-
-				instance.get(CURRENT_NODE).val(value);
+				instance._setTriggerValue(event.date);
 			}
 		},
 
@@ -201,6 +203,21 @@ var DatePicker = A.Component.create({
 			}
 
 			return value;
+		},
+
+		/**
+		 * Set the value of the trigger input with the date information.
+		 *
+		 * @method _setTriggerValue
+		 * @param {Object} dateObj Object containing date information
+		 * @protected
+		 */
+		_setTriggerValue: function(dateObj) {
+			var instance = this;
+
+			var value = instance.get(FORMATTER).apply(instance, [dateObj]);
+
+			instance.get(CURRENT_NODE).val(value);
 		}
 	}
 });
