@@ -11,7 +11,7 @@ var Lang = A.Lang,
 
 	TPL_SOURCE_MP4 = '<source type="video/mp4;" />',
 	TPL_SOURCE_OGV = '<source type=\'video/ogg; codecs="theora, vorbis"\' />',
-	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>';
+	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 var Video = A.Component.create(
@@ -203,8 +203,14 @@ var Video = A.Component.create(
 
 			_uiSetPoster: function (val) {
 				var instance = this;
+				
+				var video = instance._video;
+				
+				var usingVideo = video.get('nodeName').toLowerCase() == 'video';
 
-				instance._video.setAttribute('poster', val);
+				if (usingVideo) {
+					video.setAttribute('poster', val);
+				}
 
 				instance._renderSwfTask.delay(1);
 			},
@@ -219,19 +225,33 @@ var Video = A.Component.create(
 				var instance = this;
 
 				var ogvUrl = instance.get('ogvUrl');
-
-				if (instance._video || !ogvUrl) {
-					var sourceMp4 = instance._sourceMp4;
-
-					if (!sourceMp4) {
-						sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
-
-						instance._video.append(sourceMp4);
-
-						instance._sourceMp4 = sourceMp4;
+				var video = instance._video;
+				
+				var usingVideo = video.get('nodeName').toLowerCase() == 'video';
+				var sourceMp4 = instance._sourceMp4;
+				
+				if (UA.gecko && !usingVideo) {
+					
+					if (sourceMp4 != null) {
+						sourceMp4.remove(true);
+						
+						instance._sourceMp4 = null;
 					}
+				}
+				else
+				{
+					if (instance._video || !ogvUrl) {
+						
+						if (!sourceMp4) {
+							sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
 
-					sourceMp4.attr('src', val);
+							instance._video.append(sourceMp4);
+
+							instance._sourceMp4 = sourceMp4;
+						}
+
+						sourceMp4.attr('src', val);
+					}
 				}
 
 				instance._renderSwfTask.delay(1);
