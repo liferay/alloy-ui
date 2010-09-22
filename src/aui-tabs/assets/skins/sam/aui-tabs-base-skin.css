@@ -1,9 +1,9 @@
-.aui-tabview-list {
+.aui-tabview-list-content {
 	border: 1px solid #c8c9ca;
 	padding: 4px;
 }
 
-.ie7 .aui-tabview-list {
+.ie7 .aui-tabview-list-content {
 	overflow: hidden;
 }
 
