@@ -165,11 +165,11 @@
 				<fileset dir="${aui.combined.dir}" includes="aui*.js"/>
 			</delete>
 
-			<concat destfile="${aui.combined.file}" fixlastline="yes">
+			<concat destfile="${aui.combined.file}" fixlastline="yes" eol="${buildfiles.eol}">
 				<header file="${global.build.base}/yui/yui.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base.js"/>
 			</concat>
-			<concat destfile="${aui.combined.min.file}" fixlastline="yes">
+			<concat destfile="${aui.combined.min.file}" fixlastline="yes" eol="${buildfiles.eol}">
 				<header file="${global.build.base}/yui/yui-min.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base-min.js"/>
 			</concat>
@@ -221,11 +221,11 @@
 				<header file="@{defaultsfile}"/>
 				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base.js"/>
 			</concat>
-			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-debug.js" fixlastline="yes">
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-debug.js" fixlastline="yes" eol="${buildfiles.eol}">
 				<header file="@{defaultsfile}"/>
 				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-debug.js"/>
 			</concat>
-			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-min.js" fixlastline="yes">
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base-min.js" fixlastline="yes" eol="${buildfiles.eol}">
 				<header file="@{defaultsfile}"/>
 				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base-min.js"/>
 			</concat>
