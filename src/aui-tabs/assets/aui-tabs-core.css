@@ -1,23 +1,23 @@
-.aui-tabview-list-content {
+.aui-tabview-list {
 	border-bottom: 1px solid #000;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.aui-tabview-list-content:after {
+.aui-tabview-list:after {
 	clear: both;
 	content: "";
 	display: block;
 	height: 0;
 }
 
-.aui-tabview-list-content {
+.aui-tabview-list {
 	/* IE7/IE6 */
 	zoom: 1;
 }
 
-.aui-tabview-list-content {
+.aui-tabview-list {
 	margin-bottom: 1em;
 }
 
