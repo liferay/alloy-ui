@@ -182,8 +182,38 @@
 
 			<delete dir="${aui.temp.dir}"/>
 
+			<copy todir="${project.dir}/resources/temp/${build.aui.prefix}aui">
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui">
+					<include name="**"/>
+				</fileset>
+			</copy>
+			<copy todir="${project.dir}/resources/temp/${build.aui.prefix}aui-base">
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base">
+					<include name="**"/>
+				</fileset>
+			</copy>
+			
 			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui" fixlast="true" eol="${buildfiles.eol}" />
 			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui-base" fixlast="true" eol="${buildfiles.eol}" />
+
+			<delete>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui" includes="*.*"/>
+			</delete>
+
+			<delete>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui" includes="*.*"/>
+			</delete>
+
+			<copy todir="${global.build.base}/${build.aui.prefix}aui">
+				<fileset dir="${project.dir}/resources/temp/${build.aui.prefix}aui">
+					<include name="**"/>
+				</fileset>
+			</copy>
+			<copy todir="${global.build.base}/${build.aui.prefix}aui-base">
+				<fileset dir="${project.dir}/resources/temp/${build.aui.prefix}aui-base">
+					<include name="**"/>
+				</fileset>
+			</copy>
 		</sequential>
 	</macrodef>
 
