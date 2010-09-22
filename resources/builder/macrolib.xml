@@ -36,6 +36,37 @@
 		/>
 	</presetdef>
 
+	<macrodef name="concatsource">
+		<attribute name="destfile" />
+		<attribute name="sourcedir" />
+		<attribute name="sourcefiles" />
+		<attribute name="workingdir" default="${workingdir}" />
+
+		<element name="filters" optional="true" description="Additonal filters to apply to individual files"/>
+
+		<sequential>
+			<echo level="info">Concatenating</echo>
+			<echo level="info">	Source Files : @{sourcefiles}</echo>
+			<echo level="info">	In Source Dir : @{sourcedir}</echo>
+			<echo level="info">	To : @{destfile}</echo>
+
+			<delete dir="@{workingdir}" quiet="true"/>
+			<copy todir="@{workingdir}">
+				<filelist dir="@{sourcedir}" files="@{sourcefiles}" />
+				<filterchain>
+					<filters />
+					<fixcrlf fixlast="true" eof="remove"/>
+				</filterchain>
+			</copy>
+
+			<concat destfile="@{destfile}" fixlastline="true" eol="${buildfiles.eol}">
+				<filelist dir="@{workingdir}" files="@{sourcefiles}" />
+			</concat>
+
+			<delete dir="${workingdir}" quiet="true" />
+		</sequential>
+	</macrodef>
+
 	<!-- Alloy Macrodef utilities -->
 	<macrodef name="clean-variables" description="Clean all properties which match with the regex attribute">
 		<attribute name="regex"/>
@@ -217,7 +248,7 @@
 				</then>
 			</if>
 
-			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base.js" fixlastline="yes">
+			<concat destfile="${aui.base.component.dir}/${build.aui.prefix}aui-base.js" fixlastline="yes" eol="${buildfiles.eol}">
 				<header file="@{defaultsfile}"/>
 				<fileset dir="${aui.base.component.tmp.dir}" includes="${build.aui.prefix}aui-base.js"/>
 			</concat>
