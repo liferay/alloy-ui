@@ -197,11 +197,11 @@
 			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui-base" fixlast="true" eol="${buildfiles.eol}" />
 
 			<delete>
-				<fileset dir="${global.build.base}/${build.aui.prefix}aui" includes="*.*"/>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui" includes="**"/>
 			</delete>
 
 			<delete>
-				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="*.*"/>
+				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="**"/>
 			</delete>
 
 			<copy todir="${global.build.base}/${build.aui.prefix}aui">
