@@ -175,10 +175,10 @@ var Video = A.Component.create(
 				if (UA.gecko) {
 					var video = instance._video;
 
-					var usingVideo = video.get('nodeName').toLowerCase() == 'video';
+					var usingVideo = instance._usingVideo();
 
 					if ((!val && usingVideo) || (val && !usingVideo)) {
-						instance._video.remove(true);
+						video.remove(true);
 
 						instance._renderVideoTask(1, null, null, [!val]);
 					}
@@ -192,7 +192,7 @@ var Video = A.Component.create(
 						if (!sourceOgv) {
 							sourceOgv = A.Node.create(TPL_SOURCE_OGV);
 
-							instance._video.append(sourceOgv);
+							video.append(sourceOgv);
 
 							instance._sourceOgv = sourceOgv;
 						}
@@ -204,12 +204,10 @@ var Video = A.Component.create(
 
 			_uiSetPoster: function (val) {
 				var instance = this;
-				
-				var video = instance._video;
-				
-				var usingVideo = video.get('nodeName').toLowerCase() == 'video';
 
-				if (usingVideo) {
+				var video = instance._video;
+
+				if (instance._usingVideo()) {
 					video.setAttribute('poster', val);
 				}
 
@@ -227,26 +225,23 @@ var Video = A.Component.create(
 
 				var ogvUrl = instance.get('ogvUrl');
 				var video = instance._video;
-				
-				var usingVideo = video.get('nodeName').toLowerCase() == 'video';
+
 				var sourceMp4 = instance._sourceMp4;
-				
-				if (UA.gecko && !usingVideo) {
-					
+
+				if (UA.gecko && !instance._usingVideo()) {
 					if (sourceMp4 != null) {
 						sourceMp4.remove(true);
-						
+
 						instance._sourceMp4 = null;
 					}
 				}
 				else
 				{
-					if (instance._video || !ogvUrl) {
-						
+					if (video || !ogvUrl) {
 						if (!sourceMp4) {
 							sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
 
-							instance._video.append(sourceMp4);
+							video.append(sourceMp4);
 
 							instance._sourceMp4 = sourceMp4;
 						}
@@ -257,11 +252,16 @@ var Video = A.Component.create(
 
 				instance._renderSwfTask.delay(1);
 			}
+		},
+
+		_usingVideo: function() {
+			var instance = this;
+
+			return (instance._video.get('nodeName').toLowerCase() == 'video');
 		}
 	}
 );
 
 A.Video = Video;
-
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-base','querystring-stringify-simple']});
