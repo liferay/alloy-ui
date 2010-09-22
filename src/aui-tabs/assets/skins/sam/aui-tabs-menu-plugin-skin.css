@@ -1,0 +1,51 @@
+.aui-tabview-wrapper
+{
+    border: 1px solid #C8C9CA;
+    margin-bottom: 1em;
+}
+
+.aui-tabview-wrapper .aui-tab-active:after {
+	border: 10px solid;
+	border-top-width: 0;
+	border-color: transparent transparent #ccc;
+	bottom: -5px;
+	content: '-';
+	display: block;
+	height: 0;
+	left: 50%;
+	margin-left: -10px;
+	position: absolute;
+	text-indent: -9999px;
+	width: 0;
+	z-index: 20;
+}
+
+.aui-tabviewmenu-trigger
+{
+    width: 20px;
+    height: 15px;
+    background-color: #ccc;
+}
+
+.aui-tabviewmenu-list {
+	width: 150px;
+	background: #FFF;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.aui-tabviewmenu-item {
+	border-bottom: 1px solid #DEDEDE;
+	padding: 2px;
+}
+
+.aui-tabviewmenu-item a {
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #336699;
+}
+
+.aui-tabviewmenu-item a:hover {
+	background: #ccc;
+}
