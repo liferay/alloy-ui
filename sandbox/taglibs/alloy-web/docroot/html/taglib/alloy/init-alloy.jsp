@@ -1,3 +1,12 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+
+<%@ taglib prefix="alloy" uri="http://alloy.liferay.com/tld/alloy" %>
+<%@ taglib prefix="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util" %>
+
 <%
 java.lang.Object _boundingBox = (java.lang.Object)request.getAttribute(NAMESPACE.concat("boundingBox"));
 java.lang.Object _contentBox = (java.lang.Object)request.getAttribute(NAMESPACE.concat("contentBox"));

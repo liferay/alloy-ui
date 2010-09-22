@@ -1,3 +1,6 @@
+<%@ taglib prefix="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%
 JSONObject optionsJSON = (JSONObject)request.getAttribute("alloy_util:component:optionsJSON");
 
