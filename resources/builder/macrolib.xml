@@ -181,6 +181,9 @@
 			<antcall target="clean-skin-src"/>
 
 			<delete dir="${aui.temp.dir}"/>
+
+			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui" fixlast="true" eol="${buildfiles.eol}" />
+			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui-base" fixlast="true" eol="${buildfiles.eol}" />
 		</sequential>
 	</macrodef>
 
