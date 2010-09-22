@@ -1,211 +1,246 @@
 AUI.add('aui-video', function(A) {
 var Lang = A.Lang,
-UA = A.UA,
-getClassName = A.ClassNameManager.getClassName,
+	UA = A.UA,
+	getClassName = A.ClassNameManager.getClassName,
 
-NAME = 'video',
+	NAME = 'video',
 
-CSS_VIDEO = getClassName(NAME),
+	CSS_VIDEO = getClassName(NAME),
+	CSS_VIDEO_NODE = getClassName(NAME, 'node'),
 
-DEFAULT_SWF_PATH = A.config.base + 'aui-video/assets/player.swf';
+	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf',
+
+	TPL_SOURCE_MP4 = '<source type="video/mp4;" />',
+	TPL_SOURCE_OGV = '<source type=\'video/ogg; codecs="theora, vorbis"\' />',
+	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>';
+	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 var Video = A.Component.create(
-    {
-        NAME: NAME,
-        ATTRS: {
-            url: {
-                value: ''
-            },
-            ogvUrl: {
-                value: ''
-            },
-            swfUrl: {
-                value: DEFAULT_SWF_PATH
-            },
-            poster: {
-                value: ''
-            },
-            fixedAttributes: {
-                value: {}
-            },
-            flashVars: {
-                value: {}
-            },
-            render: {
-                value: true
-            }
-        },
-        SYNC_UI_ATTRS: ['url', 'poster', 'ogvUrl'],
-        BIND_UI_ATTRS: ['url', 'poster', 'ogvUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
-        prototype: {
-            renderUI: function () {
-                var instance = this;
+	{
+		NAME: NAME,
 
-                var videoId = A.guid();
-                instance._videoId = videoId;
+		ATTRS: {
+			url: {
+				value: ''
+			},
+			ogvUrl: {
+				value: ''
+			},
+			swfUrl: {
+				value: DEFAULT_PLAYER_PATH
+			},
+			poster: {
+				value: ''
+			},
+			fixedAttributes: {
+				value: {}
+			},
+			flashVars: {
+				value: {}
+			},
+			render: {
+				value: true
+			}
+		},
 
-                var contentBox = instance.get('contentBox');
+		BIND_UI_ATTRS: ['url', 'poster', 'ogvUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
+		SYNC_UI_ATTRS: ['url', 'poster', 'ogvUrl'],
 
-                var tplObj = '<video id="' + videoId + '" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO + '"></video>';
+		prototype: {
+			renderUI: function () {
+				var instance = this;
 
-                contentBox.set('innerHTML', tplObj);
+				instance._renderVideoTask = new A.DelayedTask(
+					function () {
+						instance._renderVideo();
+					}
+				);
 
-                instance._video = A.one('#' + videoId);
+				instance._renderSwfTask = new A.DelayedTask(
+					function () {
+						instance._renderSwf();
+					}
+				);
 
-                instance._dtSwf = new A.DelayedTask(function () {
-                    instance._updateSwf();
-                });
-            },
-            bindUI: function () {
-                var instance = this;
+				instance._renderVideo(!instance.get('ogvUrl'));
+			},
 
-                instance.publish(
-				    'videoReady',
-				    {
-				        fireOnce: true
-				    }
-			    );
-            },
-            syncUI: function () {
-                var instance = this;
-            },
-            toString: function () {
-                var instance = this;
+			bindUI: function () {
+				var instance = this;
 
-                return 'VIDEO' + instance._videoId;
-            },
-            _eventHandler: function (event) {
-                var instance = this;
+				instance.publish(
+					'videoReady',
+					{
+						fireOnce: true
+					}
+				);
+			},
 
-                var eventType = event.type;
+			_renderSwf: function () {
+				var instance = this;
 
-                if (eventType != 'log') {
-                    instance.fire(eventType, event);
-                }
-            },
-            _updateSwf: function () {
-                var instance = this;
+				var swfUrl = instance.get('swfUrl');
 
-                var swfUrl = instance.get('swfUrl');
+				if (swfUrl) {
+					var videoUrl = instance.get('url');
+					var posterUrl = instance.get('poster');
+					var flashVars = instance.get('flashVars');
 
-                if (swfUrl) {
-                    var videoUrl = instance.get('url');
-                    var posterUrl = instance.get('poster');
-                    var flashVars = instance.get('flashVars');
+					A.mix(
+						flashVars,
+						{
+							controls: true,
+							src: videoUrl,
+							poster: posterUrl
+						}
+					);
 
-                    A.mix(
-				        flashVars,
-				        {
-				            controls: true,
-				            src: videoUrl,
-				            poster: posterUrl
-				        }
-			        );
+					var flashVarString = A.QueryString.stringify(flashVars);
 
-                    var flashVarString = A.QueryString.stringify(flashVars);
+					if (instance._swfId) {
+						instance._video.removeChild(A.one('#' + instance._swfId));
+					}
+					else {
+						instance._swfId = A.guid();
+					}
 
-                    if (instance._swfId) {
-                        instance._video.removeChild(A.one('#' + instance._swfId));
-                    }
-                    else {
-                        instance._swfId = A.guid();
-                    }
+					var tplObj = '<object id="' + instance._swfId + '" ';
 
-                    var tplObj = '<object id="' + instance._swfId + '" ';
+					if (UA.ie) {
+						tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
+					}
+					else {
+						tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
+					}
 
-                    if (UA.ie) {
-                        tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
-                    }
-                    else {
-                        tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
-                    }
+					tplObj += 'height="100%" width="100%">';
 
-                    tplObj += 'height="100%" width="100%">';
+					if (UA.ie) {
+						tplObj += '<param name="movie" value="' + swfUrl + '"/>';
+					}
 
-                    if (UA.ie) {
-                        tplObj += '<param name="movie" value="' + swfUrl + '"/>';
-                    }
+					var fixedAttributes = instance.get('fixedAttributes');
 
-                    var fixedAttributes = instance.get('fixedAttributes');
+					for (var i in fixedAttributes) {
+						tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
+					}
 
-                    for (var i in fixedAttributes) {
-                        tplObj += '<param name="' + i + '" value="' + fixedAttributes[i] + '" />';
-                    }
+					if (flashVarString) {
+						tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
+					}
 
-                    if (flashVarString) {
-                        tplObj += '<param name="flashVars" value="' + flashVarString + '" />';
-                    }
+					if (posterUrl != '') {
+						tplObj += '<img src="' + posterUrl + '" alt="" />';
+					}
 
-                    if (posterUrl != '') {
-                        tplObj += '<img src="' + posterUrl + '" alt="" />';
-                    }
+					tplObj += '</object>';
 
-                    tplObj += '</object>';
+					instance._video.append(tplObj);
+				}
+			},
 
-                    instance._video.append(tplObj);
-                }
-            },
-            _uiSetUrl: function (val) {
-                var instance = this;
+			_renderVideo: function(fallback) {
+				var instance = this;
 
-                var ogvUrl = instance.get('ogvUrl');
+				var tpl = TPL_VIDEO;
 
-                if (!UA.gecko || ogvUrl) {
-                    if (instance._sourceMp4 != null) {
-                        instance._sourceMp4.setAttribute('src', val);
-                    }
-                    else {
-                        var sourceObj = '<source src="' + val + '" type="video/mp4;" />';
+				if (UA.gecko && fallback) {
+					tpl = TPL_VIDEO_FALLBACK;
+				}
 
-                        instance._video.append(sourceObj);
+				var tplObj = Lang.sub(tpl, [A.guid()]);
 
-                        instance._sourceMp4 = instance._video.one('source[type^="video/mp4"]');
-                    }
-                }
+				var video = A.Node.create(tplObj);
 
-                instance._dtSwf.delay(1);
-            },
-            _uiSetOgvUrl: function (val) {
-                var instance = this;
+				instance.get('contentBox').append(video);
 
-                if (instance._sourceOgv != null) {
-                    instance._sourceOgv.setAttribute('src', val);
-                }
-                else {
-                    var sourceObj = '<source src="' + val + '" type=\'video/ogg; codecs="theora, vorbis"\' />';
+				instance._video = video;
+			},
 
-                    instance._video.append(sourceObj);
+			_uiSetFixedAttributes: function (val) {
+				var instance = this;
 
-                    instance._sourceOgv = instance._video.one('source[type^="video/ogg"]');
-                }
-            },
-            _uiSetSwfUrl: function (val) {
-                var instance = this;
+				instance._renderSwfTask.delay(1);
+			},
 
-                instance._dtSwf.delay(1);
-            },
-            _uiSetPoster: function (val) {
-                var instance = this;
+			_uiSetFlashVars: function (val) {
+				var instance = this;
 
-                instance._video.setAttribute('poster', val);
+				instance._renderSwfTask.delay(1);
+			},
 
-                instance._dtSwf.delay(1);
-            },
-            _uiSetFixedAttributes: function (val) {
-                var instance = this;
+			_uiSetOgvUrl: function (val) {
+				var instance = this;
 
-                instance._dtSwf.delay(1);
-            },
-            _uiSetFlashVars: function (val) {
-                var instance = this;
+				if (UA.gecko) {
+					var video = instance._video;
 
-                instance._dtSwf.delay(1);
-            }
-        }
-    }
+					var usingVideo = video.get('nodeName').toLowerCase() == 'video';
+
+					if ((!val && usingVideo) || (val && !usingVideo)) {
+						instance._video.remove(true);
+
+						instance._renderVideoTask(1, null, null, [!val]);
+					}
+
+					if (!val) {
+						instance._renderSwfTask.delay(1);
+					}
+					else {
+						var sourceOgv = instance._sourceOgv;
+
+						if (!sourceOgv) {
+							sourceOgv = A.Node.create(TPL_SOURCE_OGV);
+
+							instance._video.append(sourceOgv);
+
+							instance._sourceOgv = sourceOgv;
+						}
+
+						sourceOgv.attr('src', val);
+					}
+				}
+			},
+
+			_uiSetPoster: function (val) {
+				var instance = this;
+
+				instance._video.setAttribute('poster', val);
+
+				instance._renderSwfTask.delay(1);
+			},
+
+			_uiSetSwfUrl: function (val) {
+				var instance = this;
+
+				instance._renderSwfTask.delay(1);
+			},
+
+			_uiSetUrl: function (val) {
+				var instance = this;
+
+				var ogvUrl = instance.get('ogvUrl');
+
+				if (instance._video || !ogvUrl) {
+					var sourceMp4 = instance._sourceMp4;
+
+					if (!sourceMp4) {
+						sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
+
+						instance._video.append(sourceMp4);
+
+						instance._sourceMp4 = sourceMp4;
+					}
+
+					sourceMp4.attr('src', val);
+				}
+
+				instance._renderSwfTask.delay(1);
+			}
+		}
+	}
 );
 
 A.Video = Video;
-
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-base','querystring-stringify-simple']});
