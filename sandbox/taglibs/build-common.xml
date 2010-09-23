@@ -2,6 +2,7 @@
 
 <project name="common" xmlns:antelope="antlib:ise.antelope.tasks">
 	<property name="project.dir" value=".." />
+	<property name="project.version" value="1.0" />
 
 	<property environment="env" />
 
