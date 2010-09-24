@@ -3,9 +3,9 @@ var isArray = Lang.isArray;
 var isFunction = Lang.isFunction;
 var isString = Lang.isString;
 
-A.namespace('String');
+A.namespace('Lang.String');
 
-A.mix(A.String, {
+A.mix(A.Lang.String, {
 	endsWith: function(str, suffix) {
 		var length = (str.length - suffix.length);
 
@@ -29,17 +29,17 @@ A.mix(A.String, {
 			index = str.length;
 		}
 
-		return A.String.repeat('0', Math.max(0, length - index)) + str;
+		return A.Lang.String.repeat('0', Math.max(0, length - index)) + str;
 	},
 
 	remove: function(s, substitute, all) {
-		var re = new RegExp(A.String.escapeRegEx(substitute), all ? 'g' : '');
+		var re = new RegExp(A.Lang.String.escapeRegEx(substitute), all ? 'g' : '');
 
 		return s.replace(re, '');
 	},
 
 	removeAll: function(s, substitute) {
-		return A.String.remove(s, substitute, true);
+		return A.Lang.String.remove(s, substitute, true);
 	},
 
 	startsWith: function(str, prefix) {
