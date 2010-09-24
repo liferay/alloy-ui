@@ -27,6 +27,12 @@ var L = A.Lang,
 *
 * @class A.DataType.DateMath
 */
+var S = A.String,
+
+	COLON = ':',
+	AM = 'am',
+	PM = 'pm';
+
 A.namespace('DataType.DateMath');
 
 A.mix(A.DataType.DateMath, {
@@ -443,7 +449,54 @@ A.mix(A.DataType.DateMath, {
 
 	getDaysInMonth: function(year, month) {
 		return this.findMonthEnd(this.getDate(year, month)).getDate();
-    }
+    },
+
+	toUsTimeString: function(date, padHours, omitMinutes, hideAmPm) {
+		date = isDate(date) ? date : new Date(0, 0, 0, date);
+
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var isPM = false;
+
+		if (hours > 12) {
+			isPM = true;
+			hours -= 12;
+		}
+
+		if (hours === 0) {
+			hours = 12;
+		}
+
+		var time = padHours ? A.String.padNumber(hours, 2) : String(hours);
+
+		if (!omitMinutes) {
+			time += COLON;
+			time += A.String.padNumber(minutes, 2);
+		}
+
+		if (!hideAmPm) {
+			time += (isPM ? PM : AM);
+		}
+
+		return time;
+	},
+
+	toIsoTimeString: function(date, showSeconds) {
+		date = isDate(date) ? date : new Date(0, 0, 0, date);
+
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
+		var time = A.String.padNumber(hours, 2) + COLON + A.String.padNumber(minutes, 2);
+
+		if (showSeconds) {
+			var seconds = date.getSeconds();
+
+			time += COLON;
+			time += A.String.padNumber(seconds, 2);
+		}
+
+		return time;
+	}
 });
 
 var DateMath = A.DataType.DateMath,
