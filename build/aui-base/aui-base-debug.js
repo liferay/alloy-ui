@@ -422,6 +422,10 @@ A.mix(A.Lang.String, {
 
 	startsWith: function(str, prefix) {
 		return (str.lastIndexOf(prefix, 0) == 0);
+	},
+
+	trim: function(str) {
+		return A.Lang.trim(str);
 	}
 });
 
