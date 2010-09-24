@@ -369,7 +369,7 @@ var LiveSearch = A.Component.create(
 				// replace on the query '*' to '', on a regex empty match with everything like *
 				query = query.replace(STAR, BLANK);
 
-				query = L.escapeRegEx(query);
+				query = A.String.escapeRegEx(query);
 
 				return query;
 			},
