@@ -1,7 +1,10 @@
-.aui-tabview-list 
+.aui-tabview-wrapper .aui-tabview-list 
 {
     position: relative;
     width: 9999px;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 .aui-tabview-wrapper
