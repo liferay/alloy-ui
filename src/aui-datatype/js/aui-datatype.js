@@ -82,7 +82,7 @@ DS.evaluate = function(data) {
 * @class A.DataType.DateMath
 */
 var L = A.Lang,
-	S = A.String,
+	S = A.Lang.String,
 
 	isDate = L.isDate,
 	isValue = L.isValue,
@@ -525,11 +525,11 @@ A.mix(A.DataType.DateMath, {
 			hours = 12;
 		}
 
-		var time = padHours ? A.String.padNumber(hours, 2) : String(hours);
+		var time = padHours ? S.padNumber(hours, 2) : String(hours);
 
 		if (!omitMinutes) {
 			time += COLON;
-			time += A.String.padNumber(minutes, 2);
+			time += S.padNumber(minutes, 2);
 		}
 
 		if (!hideAmPm) {
@@ -544,13 +544,13 @@ A.mix(A.DataType.DateMath, {
 
 		var hours = date.getHours();
 		var minutes = date.getMinutes();
-		var time = A.String.padNumber(hours, 2) + COLON + A.String.padNumber(minutes, 2);
+		var time = S.padNumber(hours, 2) + COLON + S.padNumber(minutes, 2);
 
 		if (showSeconds) {
 			var seconds = date.getSeconds();
 
 			time += COLON;
-			time += A.String.padNumber(seconds, 2);
+			time += S.padNumber(seconds, 2);
 		}
 
 		return time;
