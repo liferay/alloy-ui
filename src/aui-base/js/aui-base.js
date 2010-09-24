@@ -1,3 +1,52 @@
+var Lang = A.Lang;
+var isArray = Lang.isArray;
+var isFunction = Lang.isFunction;
+var isString = Lang.isString;
+
+A.namespace('String');
+
+A.mix(A.String, {
+	endsWith: function(str, suffix) {
+		var length = (str.length - suffix.length);
+
+		return ((length >= 0) && (str.indexOf(suffix, length) == length));
+	},
+
+	// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+	escapeRegEx: function(str) {
+		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+	},
+
+	repeat: function(string, length) {
+		return new Array(length + 1).join(string);
+	},
+
+	padNumber: function(num, length, precision) {
+		var str = precision ? Number(num).toFixed(precision) : String(num);
+		var index = str.indexOf('.');
+
+		if (index == -1) {
+			index = str.length;
+		}
+
+		return A.String.repeat('0', Math.max(0, length - index)) + str;
+	},
+
+	remove: function(s, substitute, all) {
+		var re = new RegExp(A.String.escapeRegEx(substitute), all ? 'g' : '');
+
+		return s.replace(re, '');
+	},
+
+	removeAll: function(s, substitute) {
+		return A.String.remove(s, substitute, true);
+	},
+
+	startsWith: function(str, prefix) {
+		return (str.lastIndexOf(prefix, 0) == 0);
+	}
+});
+
 A.mix(A.Array, {
 	remove: function(a, from, to) {
 	  var rest = a.slice((to || from) + 1 || a.length);
@@ -13,11 +62,6 @@ A.mix(A.Array, {
 	}
 });
 
-var Lang = A.Lang;
-var isArray = Lang.isArray;
-var isFunction = Lang.isFunction;
-var isString = Lang.isString;
-
 A.mix(
 	Lang,
 	{
@@ -27,11 +71,6 @@ A.mix(
 		},
 		emptyFnTrue: function() {
 			return true;
-		},
-
-		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
-		escapeRegEx: function(str) {
-			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
 		},
 
 		isGuid: function(id) {
