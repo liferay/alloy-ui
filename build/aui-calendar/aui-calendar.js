@@ -1058,16 +1058,6 @@ var Calendar = A.Component.create(
 				);
 			},
 
-			_createNodeList: function(buffer) {
-				var instance = this;
-
-				var blankDays = A.one(
-					A.DOM.create(buffer.join(EMPTY_STR))
-				);
-
-				return blankDays.get(CHILDREN);
-			},
-
 			/**
 			 * Compare two dates.
 			 *
@@ -1463,7 +1453,7 @@ var Calendar = A.Component.create(
 					buffer.push(template);
 				}
 
-				return instance._createNodeList(buffer);
+				return A.NodeList.create(buffer.join(EMPTY_STR));
 			},
 
 			/**
@@ -1759,7 +1749,7 @@ var Calendar = A.Component.create(
 					buffer.push(TPL_CALENDAR_DAY_PADDING_END.join(EMPTY_STR));
 				}
 
-				return instance._createNodeList(buffer);
+				return A.NodeList.create(buffer.join(EMPTY_STR));
 			},
 
 			/**
@@ -1801,7 +1791,7 @@ var Calendar = A.Component.create(
 					buffer.push(TPL_BUFFER_MONTH_DAYS.join(EMPTY_STR));
 				}
 
-				return instance._createNodeList(buffer);
+				return A.NodeList.create(buffer.join(EMPTY_STR));
 			},
 
 			/**
@@ -1824,7 +1814,7 @@ var Calendar = A.Component.create(
 					buffer.push(TPL_BUFFER_WEEKDAYS.join(EMPTY_STR));
 				}
 
-				return instance._createNodeList(buffer);
+				return A.NodeList.create(buffer.join(EMPTY_STR));
 			}
 		}
 	}

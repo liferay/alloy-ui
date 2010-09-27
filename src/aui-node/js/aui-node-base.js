@@ -25,6 +25,8 @@ var Lang = A.Lang,
 	CSS_HELPER_HIDDEN = getClassName(HELPER, 'hidden'),
 	CSS_HELPER_UNSELECTABLE = getClassName(HELPER, 'unselectable'),
 
+	CHILD_NODES = 'childNodes',
+	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	INNER_HTML = 'innerHTML',
 	NEXT_SIBLING = 'nextSibling',
 	NONE = 'none',
@@ -1140,6 +1142,14 @@ A.mix(
 		}
 	}
 );
+
+A.mix(A.NodeList, {
+	create: function(html) {
+		var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+
+		return docFrag.append(html).get(CHILD_NODES);
+	}
+});
 
 A.mix(
 	A,
