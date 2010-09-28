@@ -1,8 +1,11 @@
+<%@ page import="com.liferay.alloy.util.json.StringTransformer"%>
+<%@ page import="java.util.Arrays"%>
+
 <%@ taglib prefix="alloy-util" uri="http://alloy.liferay.com/tld/alloy_util" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-JSONObject optionsJSON = (JSONObject)request.getAttribute("alloy_util:component:optionsJSON");
+HashMap<String, Object> optionsJSON = (HashMap<String, Object>)request.getAttribute("alloy_util:component:optionsJSON");
 
 Object _render = String.valueOf(_options.get("render"));
 
@@ -23,5 +26,16 @@ _defineVar = GetterUtil.getBoolean((Serializable)_options.get("defineVar"), _def
 
 if (Validator.isNull(_var)) {
 	_var = (String)_options.get("var");
+}
+%>
+
+<%!
+public String _serialize(Object value, String javaScriptAttributes) {
+	StringTransformer stringTransformer = new StringTransformer();
+
+	stringTransformer.setJavaScriptAttributes(
+		Arrays.asList(StringUtil.split(javaScriptAttributes)));
+
+	return JSONFactoryUtil.serialize(value, stringTransformer, String.class);
 }
 %>

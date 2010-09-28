@@ -14,20 +14,21 @@
 
 package com.liferay.alloy.taglib.alloy_util;
 
-import com.liferay.alloy.taglib.alloy_util.base.BaseComponentTag;
-import com.liferay.alloy.util.JSONFactoryUtil;
-import com.liferay.alloy.util.ReservedAttributeUtil;
-import com.liferay.alloy.util.StringUtil;
-import com.liferay.alloy.util.json.StringTransformer;
-import com.liferay.portal.kernel.util.StringPool;
-import org.apache.commons.lang.StringUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.liferay.alloy.taglib.alloy_util.base.BaseComponentTag;
+import com.liferay.alloy.util.ReservedAttributeUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Eduardo Lundgren
@@ -37,11 +38,9 @@ public class ComponentTag extends BaseComponentTag {
 
 	protected void _setAttributes(HttpServletRequest request) {
 		Map<String, Object> options = getOptions();
-		HashMap<String, Object> newOptions = new HashMap<String, Object>();
+		HashMap<String, Object> optionsJSON = new HashMap<String, Object>();
 
-		_proccessAttributes(options, newOptions);
-
-		JSONObject optionsJSON = JSONFactoryUtil.getJSONObject(newOptions);
+		_proccessAttributes(options, optionsJSON);
 
 		super._setAttributes(request);
 		setNamespacedAttribute(request, "options", options);
@@ -129,15 +128,6 @@ public class ComponentTag extends BaseComponentTag {
 
 			onEventsOptionsMap.put(event, value);
 		}
-	}
-
-	private String _serialize(Object value) {
-		StringTransformer stringTransformer = new StringTransformer();
-
-		stringTransformer.setJavaScriptAttributes(
-			Arrays.asList(StringUtil.split(getJavaScriptAttributes())));
-
-		return JSONFactoryUtil.serialize(value, stringTransformer, String.class);
 	}
 
 	private static final String _AFTER = "after";

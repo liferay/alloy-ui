@@ -6,6 +6,6 @@
 				<%= _var %> =
 		</c:if>
 
-		(new A.<%= _name %>(<%= optionsJSON.toString() %>));
+		(new A.<%= _name %>(<%= _serialize(optionsJSON, _javaScriptAttributes) %>));
 	</alloy-util:script>
 </c:if>
