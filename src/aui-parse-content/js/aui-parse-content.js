@@ -15,7 +15,6 @@ var L = A.Lang,
 	isString = L.isString,
 
 	APPEND = 'append',
-	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DOCUMENT_ELEMENT = 'documentElement',
 	FIRST_CHILD = 'firstChild',
 	HEAD = 'head',
@@ -191,7 +190,7 @@ var ParseContent = A.Component.create(
 			 */
 			_clean: function(content) {
 				var output = {};
-				var fragment = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+				var fragment = A.Node.create('<div></div>');
 
 				// instead of fix all tags to "XHTML"-style, make the firstChild be a valid non-empty tag
 				fragment.append('<div>_</div>');
@@ -214,7 +213,7 @@ var ParseContent = A.Component.create(
 				// remove padding node
 				fragment.get(FIRST_CHILD).remove();
 
-				output.fragment = fragment;
+				output.fragment = fragment.get('childNodes').toFrag();
 
 				return output;
 			},
