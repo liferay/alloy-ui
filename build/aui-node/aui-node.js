@@ -1090,7 +1090,7 @@ A.mix(
 		first: function() {
 			var instance = this;
 
-			return instacne.item(0);
+			return instance.item(0);
 		},
 
 		/**
