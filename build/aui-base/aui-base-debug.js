@@ -14,22 +14,22 @@
             alloy: {
 	            combine: false,
                 modules: {
-						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop']},
-						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
-						'aui-calendar': {skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']},
-						'aui-carousel': {skinnable:true, requires:['aui-base','anim']},
-						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
-						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
-						'aui-color-picker': {skinnable:true, requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color','aui-form-base','aui-panel']},
+						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
+						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
+						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
+						'aui-calendar': {requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true},
+						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
+						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
+						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
+						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {requires:['aui-color-picker','plugin'], skinnable:true}, 'aui-color-picker-base': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color','aui-form-base','aui-panel'], skinnable:true} }, use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true},
 						'aui-color': {skinnable:false},
-						'aui-component': {skinnable:false, requires:['widget']},
-						'aui-data-set': {skinnable:false, requires:['oop','collection','base']},
-						'aui-datatype': {skinnable:false, requires:['aui-base']},
-						'aui-datepicker': {submodules: {'aui-datepicker-select': {requires:['aui-datepicker-base','aui-button-item'], skinnable:true}, 'aui-datepicker-base': {requires:['aui-calendar','aui-overlay-context'], skinnable:true} }, skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']},
+						'aui-component': {requires:['widget'], skinnable:false},
+						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
+						'aui-datatype': {requires:['aui-base'], skinnable:false},
+						'aui-datepicker': {submodules: {'aui-datepicker-select': {requires:['aui-datepicker-base','aui-button-item'], skinnable:true}, 'aui-datepicker-base': {requires:['aui-calendar','aui-overlay-context'], skinnable:true} }, use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true},
 						'aui-delayed-task': {skinnable:false},
 						'aui-dialog': {requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true},
-						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color','substitute']} }, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false},
+						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color','substitute']} }, skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
 						'aui-editable': {requires:['aui-base','aui-form-combobox'], skinnable:true},
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
 						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false},
@@ -50,11 +50,11 @@
 						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-skin-classic': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base']},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-stringify-simple'], skinnable:false},
-						'aui-tabs-base': {requires:['aui-component','aui-state-interaction']},
+						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction']} }, use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true},
 						'aui-textboxlist': {requires:['anim-node-plugin','aui-autocomplete','node-focusmanager'], skinnable:true},
 						'aui-toolbar': {requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
@@ -381,76 +381,86 @@ var isArray = Lang.isArray;
 var isFunction = Lang.isFunction;
 var isString = Lang.isString;
 
-A.namespace('Lang.String');
+var LString = A.namespace('Lang.String');
+var AArray = A.Array;
 
-A.mix(A.Lang.String, {
-	endsWith: function(str, suffix) {
-		var length = (str.length - suffix.length);
+var arrayIndexOf = AArray.indexOf;
+var arrayRemove = AArray.remove;
 
-		return ((length >= 0) && (str.indexOf(suffix, length) == length));
-	},
+A.mix(
+	LString,
+	{
+		endsWith: function(str, suffix) {
+			var length = (str.length - suffix.length);
 
-	// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
-	escapeRegEx: function(str) {
-		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
-	},
+			return ((length >= 0) && (str.indexOf(suffix, length) == length));
+		},
 
-	repeat: function(string, length) {
-		return new Array(length + 1).join(string);
-	},
+		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+		escapeRegEx: function(str) {
+			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+		},
 
-	padNumber: function(num, length, precision) {
-		var str = precision ? Number(num).toFixed(precision) : String(num);
-		var index = str.indexOf('.');
+		repeat: function(string, length) {
+			return new Array(length + 1).join(string);
+		},
 
-		if (index == -1) {
-			index = str.length;
+		padNumber: function(num, length, precision) {
+			var str = precision ? Number(num).toFixed(precision) : String(num);
+			var index = str.indexOf('.');
+
+			if (index == -1) {
+				index = str.length;
+			}
+
+			return LString.repeat('0', Math.max(0, length - index)) + str;
+		},
+
+		remove: function(s, substitute, all) {
+			var re = new RegExp(LString.escapeRegEx(substitute), all ? 'g' : '');
+
+			return s.replace(re, '');
+		},
+
+		removeAll: function(s, substitute) {
+			return LString.remove(s, substitute, true);
+		},
+
+		startsWith: function(str, prefix) {
+			return (str.lastIndexOf(prefix, 0) == 0);
+		},
+
+		trim: Lang.trim
+	}
+);
+
+A.mix(
+	AArray,
+	{
+		remove: function(a, from, to) {
+		  var rest = a.slice((to || from) + 1 || a.length);
+		  a.length = (from < 0) ? (a.length + from) : from;
+
+		  return a.push.apply(a, rest);
+		},
+
+		removeItem: function(a, item) {
+			var index = arrayIndexOf(a, item);
+
+			return arrayRemove(a, index);
 		}
-
-		return A.Lang.String.repeat('0', Math.max(0, length - index)) + str;
-	},
-
-	remove: function(s, substitute, all) {
-		var re = new RegExp(A.Lang.String.escapeRegEx(substitute), all ? 'g' : '');
-
-		return s.replace(re, '');
-	},
-
-	removeAll: function(s, substitute) {
-		return A.Lang.String.remove(s, substitute, true);
-	},
-
-	startsWith: function(str, prefix) {
-		return (str.lastIndexOf(prefix, 0) == 0);
-	},
-
-	trim: function(str) {
-		return A.Lang.trim(str);
 	}
-});
-
-A.mix(A.Array, {
-	remove: function(a, from, to) {
-	  var rest = a.slice((to || from) + 1 || a.length);
-	  a.length = (from < 0) ? (a.length + from) : from;
-
-	  return a.push.apply(a, rest);
-	},
-
-	removeItem: function(a, item) {
-		var index = A.Array.indexOf(a, item);
-
-		return A.Array.remove(a, index);
-	}
-});
+);
 
 A.mix(
 	Lang,
 	{
 		emptyFn: function() {},
+
 		emptyFnFalse: function() {
 			return false;
 		},
+
 		emptyFnTrue: function() {
 			return true;
 		},

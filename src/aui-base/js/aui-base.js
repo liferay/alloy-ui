@@ -3,76 +3,86 @@ var isArray = Lang.isArray;
 var isFunction = Lang.isFunction;
 var isString = Lang.isString;
 
-A.namespace('Lang.String');
+var LString = A.namespace('Lang.String');
+var AArray = A.Array;
 
-A.mix(A.Lang.String, {
-	endsWith: function(str, suffix) {
-		var length = (str.length - suffix.length);
+var arrayIndexOf = AArray.indexOf;
+var arrayRemove = AArray.remove;
 
-		return ((length >= 0) && (str.indexOf(suffix, length) == length));
-	},
+A.mix(
+	LString,
+	{
+		endsWith: function(str, suffix) {
+			var length = (str.length - suffix.length);
 
-	// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
-	escapeRegEx: function(str) {
-		return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
-	},
+			return ((length >= 0) && (str.indexOf(suffix, length) == length));
+		},
 
-	repeat: function(string, length) {
-		return new Array(length + 1).join(string);
-	},
+		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+		escapeRegEx: function(str) {
+			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+		},
 
-	padNumber: function(num, length, precision) {
-		var str = precision ? Number(num).toFixed(precision) : String(num);
-		var index = str.indexOf('.');
+		repeat: function(string, length) {
+			return new Array(length + 1).join(string);
+		},
 
-		if (index == -1) {
-			index = str.length;
+		padNumber: function(num, length, precision) {
+			var str = precision ? Number(num).toFixed(precision) : String(num);
+			var index = str.indexOf('.');
+
+			if (index == -1) {
+				index = str.length;
+			}
+
+			return LString.repeat('0', Math.max(0, length - index)) + str;
+		},
+
+		remove: function(s, substitute, all) {
+			var re = new RegExp(LString.escapeRegEx(substitute), all ? 'g' : '');
+
+			return s.replace(re, '');
+		},
+
+		removeAll: function(s, substitute) {
+			return LString.remove(s, substitute, true);
+		},
+
+		startsWith: function(str, prefix) {
+			return (str.lastIndexOf(prefix, 0) == 0);
+		},
+
+		trim: Lang.trim
+	}
+);
+
+A.mix(
+	AArray,
+	{
+		remove: function(a, from, to) {
+		  var rest = a.slice((to || from) + 1 || a.length);
+		  a.length = (from < 0) ? (a.length + from) : from;
+
+		  return a.push.apply(a, rest);
+		},
+
+		removeItem: function(a, item) {
+			var index = arrayIndexOf(a, item);
+
+			return arrayRemove(a, index);
 		}
-
-		return A.Lang.String.repeat('0', Math.max(0, length - index)) + str;
-	},
-
-	remove: function(s, substitute, all) {
-		var re = new RegExp(A.Lang.String.escapeRegEx(substitute), all ? 'g' : '');
-
-		return s.replace(re, '');
-	},
-
-	removeAll: function(s, substitute) {
-		return A.Lang.String.remove(s, substitute, true);
-	},
-
-	startsWith: function(str, prefix) {
-		return (str.lastIndexOf(prefix, 0) == 0);
-	},
-
-	trim: function(str) {
-		return A.Lang.trim(str);
 	}
-});
-
-A.mix(A.Array, {
-	remove: function(a, from, to) {
-	  var rest = a.slice((to || from) + 1 || a.length);
-	  a.length = (from < 0) ? (a.length + from) : from;
-
-	  return a.push.apply(a, rest);
-	},
-
-	removeItem: function(a, item) {
-		var index = A.Array.indexOf(a, item);
-
-		return A.Array.remove(a, index);
-	}
-});
+);
 
 A.mix(
 	Lang,
 	{
 		emptyFn: function() {},
+
 		emptyFnFalse: function() {
 			return false;
 		},
+
 		emptyFnTrue: function() {
 			return true;
 		},
