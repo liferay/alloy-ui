@@ -7,7 +7,6 @@ var LString = A.namespace('Lang.String');
 var AArray = A.Array;
 
 var arrayIndexOf = AArray.indexOf;
-var arrayRemove = AArray.remove;
 
 A.mix(
 	LString,
@@ -69,7 +68,7 @@ A.mix(
 		removeItem: function(a, item) {
 			var index = arrayIndexOf(a, item);
 
-			return arrayRemove(a, index);
+			return AArray.remove(a, index);
 		}
 	}
 );
