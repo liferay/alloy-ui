@@ -1144,13 +1144,16 @@ A.mix(
 	}
 );
 
-A.mix(A.NodeList, {
-	create: function(html) {
-		var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+A.mix(
+	A.NodeList,
+	{
+		create: function(html) {
+			var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
 
-		return docFrag.append(html).get(CHILD_NODES);
+			return docFrag.append(html).get(CHILD_NODES);
+		}
 	}
-});
+);
 
 A.mix(
 	A,
