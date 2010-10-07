@@ -7,7 +7,7 @@ var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
-	NAME = 'dataview',
+	NAME = 'databrowser',
 	SEARCH_VIEW = 'searchView',
 	TREE_VIEW = 'treeView'
 
