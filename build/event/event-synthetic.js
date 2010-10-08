@@ -1,10 +1,3 @@
-/*
-Copyright (c) 2010, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.com/yui/license.html
-version: 3.2.0
-build: nightly
-*/
 YUI.add('event-synthetic', function(Y) {
 
 /**
@@ -468,7 +461,7 @@ Y.mix(SyntheticEvent, {
         _unregisterSub: function (sub) {
             var notifiers = SyntheticEvent.getRegistry(sub.node, this.type),
                 i;
-                
+
             if (notifiers) {
                 for (i = notifiers.length - 1; i >= 0; --i) {
                     if (notifiers[i].sub === sub) {
@@ -496,7 +489,7 @@ Y.mix(SyntheticEvent, {
                 els    = (isString(target)) ?
                             query(target) : toArray(target),
                 node, i, len, handles, j;
-            
+
             // (type, fn, el, context, filter?) => (type, fn, context, filter?)
             args.splice(2, 1);
 
@@ -732,4 +725,4 @@ Y.Event.define = function (type, config, force) {
 };
 
 
-}, '3.2.0' ,{requires:['node-base', 'event-custom']});
+}, '@VERSION@' ,{requires:['node-base', 'event-custom']});

@@ -1,10 +1,3 @@
-/*
-Copyright (c) 2010, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.com/yui/license.html
-version: 3.2.0
-build: nightly
-*/
 YUI.add('dd-delegate', function(Y) {
 
 
@@ -334,4 +327,4 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['dd-drag', 'event-mouseenter'], skinnable:false, optional:['dd-drop-plugin']});
+}, '@VERSION@' ,{optional:['dd-drop-plugin'], requires:['dd-drag', 'event-mouseenter'], skinnable:false});

@@ -1,10 +1,3 @@
-/*
-Copyright (c) 2010, Yahoo! Inc. All rights reserved.
-Code licensed under the BSD License:
-http://developer.yahoo.com/yui/license.html
-version: 3.2.0
-build: nightly
-*/
 YUI.add('event-focus', function(Y) {
 
 /**
@@ -17,7 +10,7 @@ var Event    = Y.Event,
     YLang    = Y.Lang,
     isString = YLang.isString,
     useActivate = YLang.isFunction(
-        Y.DOM.create('<p onbeforeactivate=";">').onbeforeactivate);
+        Y.DOM.create('<p onbeforeactivate=";"/>').onbeforeactivate);
 
 function define(type, proxy, directEvent) {
     var nodeDataKey = '_' + type + 'Notifiers';
@@ -152,4 +145,4 @@ if (useActivate) {
 }
 
 
-}, '3.2.0' ,{requires:['event-synthetic']});
+}, '@VERSION@' ,{requires:['event-synthetic']});

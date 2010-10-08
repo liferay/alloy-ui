@@ -1682,15 +1682,45 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 			return (info.offsetHeight/oHeight);
 		};
 
-		// handles which only change the height, need to vary the width first
-		// and then check width to constrain to max/min dimensions
+		if (host.changeHeightHandles && host.changeWidthHandles) {
+			var constrainRegion = instance._getConstrainRegion();
+
+			var bottomDiff = constrainRegion.bottom - info.bottom;
+			var rightDiff = constrainRegion.right - info.right;
+			var leftDiff = info.left - constrainRegion.left;
+			var topDiff = info.top - constrainRegion.top;
+
+			console.log(bottomDiff < rightDiff, bottomDiff < leftDiff,
+			topDiff < rightDiff, topDiff < leftDiff);
+
+			if (bottomDiff < rightDiff || bottomDiff < leftDiff
+				|| topDiff < rightDiff || topDiff < leftDiff) {
+
+				info.offsetWidth = oWidth*hRatio();
+
+				console.log('limitando o width');
+			}
+
+			else {
+				info.offsetHeight = oHeight*wRatio();
+
+				console.log('limitando o height');
+			}
+
+			instance._checkHeight();
+			instance._checkWidth();
+		} else
+
+		// handles which are able to change the width need to vary the height first
+		// and then check height to constrain to max/min dimensions
 		if (host.changeHeightHandles) {
 			info.offsetWidth = oWidth*hRatio();
 			instance._checkWidth();
 			info.offsetHeight = oHeight*wRatio();
 		}
-		// handles which are able to change the width need to vary the height first
-		// and then check height to constrain to max/min dimensions
+
+		// handles which only change the height, need to vary the width first
+		// and then check width to constrain to max/min dimensions
 		else if (host.changeWidthHandles) {
 			info.offsetHeight = oHeight*wRatio();
 			instance._checkHeight();
@@ -1846,4 +1876,3 @@ A.Plugin.ResizeConstrained = ResizeConstrained;
 
 
 AUI.add('aui-resize', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-resize-base','aui-resize-constrain']});
-
