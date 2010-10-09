@@ -1671,6 +1671,8 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 		var oHeight = originalInfo.offsetHeight;
 		var oTop = originalInfo.top;
 		var oLeft = originalInfo.left;
+		var oBottom = originalInfo.bottom;
+		var oRight = originalInfo.right;
 
 		// wRatio/hRatio functions keep the ratio information always synced with the current info information
 		// RETURN: percentage how much width/height has changed from the original width/height
@@ -1682,46 +1684,40 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 			return (info.offsetHeight/oHeight);
 		};
 
-		if (host.changeHeightHandles && host.changeWidthHandles) {
+		var isClosestToHeight = host.changeHeightHandles;
+
+		// check whether the resizable node is closest to height or not
+		if (instance.get(CONSTRAIN) && host.changeHeightHandles && host.changeWidthHandles) {
 			var constrainRegion = instance._getConstrainRegion();
+			var constrainBorders = instance.constrainBorderInfo;
 
-			var bottomDiff = constrainRegion.bottom - info.bottom;
-			var rightDiff = constrainRegion.right - info.right;
-			var leftDiff = info.left - constrainRegion.left;
-			var topDiff = info.top - constrainRegion.top;
+			var bottomDiff = (constrainRegion.bottom - constrainBorders.bottom) - oBottom;
+			var leftDiff = oLeft - (constrainRegion.left + constrainBorders.left);
+			var rightDiff = (constrainRegion.right - constrainBorders.right) - oRight;
+			var topDiff = oTop - (constrainRegion.top + constrainBorders.top);
 
-			console.log(bottomDiff < rightDiff, bottomDiff < leftDiff,
-			topDiff < rightDiff, topDiff < leftDiff);
-
-			if (bottomDiff < rightDiff || bottomDiff < leftDiff
-				|| topDiff < rightDiff || topDiff < leftDiff) {
-
-				info.offsetWidth = oWidth*hRatio();
-
-				console.log('limitando o width');
+			if (host.changeLeftHandles && host.changeTopHandles) {
+				isClosestToHeight = (topDiff < leftDiff);
 			}
-
+			else if (host.changeLeftHandles) {
+				isClosestToHeight = (bottomDiff < leftDiff);
+			}
+			else if (host.changeTopHandles) {
+				isClosestToHeight = (topDiff < rightDiff);
+			}
 			else {
-				info.offsetHeight = oHeight*wRatio();
-
-				console.log('limitando o height');
+				isClosestToHeight = (bottomDiff < rightDiff);
 			}
+		}
 
-			instance._checkHeight();
-			instance._checkWidth();
-		} else
-
-		// handles which are able to change the width need to vary the height first
-		// and then check height to constrain to max/min dimensions
-		if (host.changeHeightHandles) {
+		// when the height of the resizable element touch the border of the constrain first
+		// force the offsetWidth to be calculated based on the height ratio
+		if (isClosestToHeight) {
 			info.offsetWidth = oWidth*hRatio();
 			instance._checkWidth();
 			info.offsetHeight = oHeight*wRatio();
 		}
-
-		// handles which only change the height, need to vary the width first
-		// and then check width to constrain to max/min dimensions
-		else if (host.changeWidthHandles) {
+		else {
 			info.offsetHeight = oHeight*wRatio();
 			instance._checkHeight();
 			info.offsetWidth = oWidth*hRatio();
@@ -1872,7 +1868,8 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 A.namespace('Plugin');
 A.Plugin.ResizeConstrained = ResizeConstrained;
 
-}, '@VERSION@' ,{requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']});
 
 
 AUI.add('aui-resize', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-resize-base','aui-resize-constrain']});
+
