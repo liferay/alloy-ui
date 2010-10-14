@@ -50,10 +50,10 @@
 
 	var ALLOY;
 
-	try {
+	if (typeof A != 'undefined') {
 		ALLOY = A;
 	}
-	catch (e) {
+	else {
 		ALLOY = YUI(defaults);
 	}
 
