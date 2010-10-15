@@ -17,6 +17,8 @@ var Lang = A.Lang,
 
 	CONFIG = A.config,
 
+	NODE_PROTOTYPE = A.Node.prototype,
+
 	STR_EMPTY = '',
 
 	ARRAY_EMPTY_STRINGS = [STR_EMPTY, STR_EMPTY],
@@ -36,7 +38,26 @@ var Lang = A.Lang,
 
 	SUPPORT_CLONED_EVENTS = false,
 
-	VALUE = 'value';
+	VALUE = 'value',
+
+	MAP_BORDER = {
+		b: 'borderBottomWidth',
+		l: 'borderLeftWidth',
+		r: 'borderRightWidth',
+		t: 'borderTopWidth'
+	},
+	MAP_MARGIN = {
+		b: 'marginBottom',
+		l: 'marginLeft',
+		r: 'marginRight',
+		t: 'marginTop'
+	},
+	MAP_PADDING = {
+		b: 'paddingBottom',
+		l: 'paddingLeft',
+		r: 'paddingRight',
+		t: 'paddingTop'
+	};
 
 	/*
 		Parts of this file are used from jQuery (http://jquery.com)
@@ -78,7 +99,7 @@ var Lang = A.Lang,
  * @constructor
  * @uses Node
  */
-A.mix(A.Node.prototype, {
+A.mix(NODE_PROTOTYPE, {
 	/**
 	 * <p>Returns the current ancestors of the node element. If a selector is
 	 * specified, the ancestors are filtered to match the selector.</p>
@@ -335,6 +356,48 @@ A.mix(A.Node.prototype, {
 		var instance = this;
 
 		return A.Node.getDOMNode(instance);
+	},
+
+	/**
+     * Return the combined width of the border for the specified sides.
+     *
+     * @method getBorderWidth
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
+     */
+	getBorderWidth: function(sides) {
+		var instance = this;
+
+		return instance._getBoxStyleAsNumber(sides, MAP_BORDER);
+	},
+
+	/**
+     * Return the combined size of the margin for the specified sides.
+     *
+     * @method getMargin
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
+     */
+	getMargin: function(sides) {
+		var instance = this;
+
+		return instance._getBoxStyleAsNumber(sides, MAP_MARGIN);
+	},
+
+	/**
+     * Return the combined width of the border for the specified sides.
+     *
+     * @method getPadding
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @return {number}
+     */
+	getPadding: function(sides) {
+		var instance = this;
+
+		return instance._getBoxStyleAsNumber(sides, MAP_PADDING);
 	},
 
     /**
@@ -829,6 +892,38 @@ A.mix(A.Node.prototype, {
 		}
 	},
 
+	/**
+     * Return the combined size of the box style for the specified sides.
+     *
+     * @method _getBoxStyleAsNumber
+     * @param {string} sides Can be t, r, b, l or any combination of
+     * those to represent the top, right, bottom, or left sides.
+     * @param {string} map An object mapping mapping the "sides" param to the a CSS value to retrieve
+     * @return {number}
+     */
+	_getBoxStyleAsNumber: function(sides, map) {
+		var instance = this;
+
+		var sidesArray = sides.match(/\w/g);
+		var value = 0;
+		var side;
+		var sideKey;
+
+		for (var i = sidesArray.length - 1; i >= 0; i--) {
+			sideKey = sidesArray[i];
+			side = 0;
+
+			if (sideKey) {
+				side = parseFloat(instance.getComputedStyle(map[sideKey]));
+				side = Math.abs(side);
+
+				value += side || 0;
+			}
+		}
+
+		return value;
+	},
+
     /**
      * Extract text content from the passed nodes.
 	 *
@@ -1009,7 +1104,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
  * @uses A.Node
  */
 A.NodeList.importMethod(
-	A.Node.prototype,
+	NODE_PROTOTYPE,
 	[
 		'after',
 
