@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 30px;
+		}
+
+		.aui-scheduler-base {
+			width: 1500px;
+		}
+
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Scheduler Demo</h1>
+
+		<div id="scheduler1" class="aui-scheduler-base">
+			<div id="content" class="aui-scheduler-base-content">
+				<div class="aui-widget-hd">
+					<div class="aui-scheduler-base-hd aui-helper-clearfix">
+						<div class="aui-scheduler-base-controls">
+							<a href="#" class="aui-scheduler-base-today">Today</a>
+							<div class="aui-scheduler-base-nav">
+								<a href="#" class="aui-scheduler-base-icon-prev aui-icon">Prev</a>
+								<a href="#" class="aui-scheduler-base-icon-next aui-icon">Next</a>
+							</div>
+							<div class="aui-scheduler-base-current-date"></div>
+						</div>
+
+						<div class="aui-scheduler-base-views">
+							<!-- <a href="#" class="aui-scheduler-base-view aui-scheduler-base-view-day">Day</a>
+							<a href="#" class="aui-scheduler-base-view aui-scheduler-base-view-week">Week</a>
+							<a href="#" class="aui-scheduler-base-view aui-scheduler-base-view-month">Month</a>
+							<a href="#" class="aui-scheduler-base-view aui-scheduler-base-view-year">Year</a> -->
+						</div>
+					</div>
+				</div>
+				<div class="aui-widget-bd">
+					<div class="aui-scheduler-view-day">
+						<div class="aui-scheduler-view-day-content">
+
+							<div class="aui-widget-hd">
+								<table class="aui-scheduler-view-day-header-table">
+									<tbody>
+										<tr class="aui-scheduler-view-day-header-col">
+											<td class="aui-scheduler-view-day-header-day aui-scheduler-view-day-header-day-first"></td>
+											<th class="aui-scheduler-view-day-header-day"><a href="#">&nbsp;</a></th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="aui-widget-bd">
+								<table class="aui-scheduler-view-table">
+									<tbody>
+										<tr class="aui-scheduler-view-colgrid" height="1">
+											<td class="aui-scheduler-view-table-col aui-scheduler-view-table-colblank"></td>
+											<td class="aui-scheduler-view-grid-container" colspan="1">
+												<div class="aui-scheduler-view-grid">
+													<div class="aui-scheduler-view-markers">
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+														<div class="aui-scheduler-view-markercell">
+															<div class="aui-scheduler-view-marker-division"></div>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr class="aui-scheduler-view-coldata">
+											<td class="aui-scheduler-view-table-col aui-scheduler-view-table-coltime">
+												<div class="aui-scheduler-view-table-time">12am</div>
+												<div class="aui-scheduler-view-table-time">1am</div>
+												<div class="aui-scheduler-view-table-time">2am</div>
+												<div class="aui-scheduler-view-table-time">3am</div>
+												<div class="aui-scheduler-view-table-time">4am</div>
+												<div class="aui-scheduler-view-table-time">5am</div>
+												<div class="aui-scheduler-view-table-time">6am</div>
+												<div class="aui-scheduler-view-table-time">7am</div>
+												<div class="aui-scheduler-view-table-time">8am</div>
+												<div class="aui-scheduler-view-table-time">9am</div>
+												<div class="aui-scheduler-view-table-time">10am</div>
+												<div class="aui-scheduler-view-table-time">11am</div>
+												<div class="aui-scheduler-view-table-time">12pm</div>
+												<div class="aui-scheduler-view-table-time">1pm</div>
+												<div class="aui-scheduler-view-table-time">2pm</div>
+												<div class="aui-scheduler-view-table-time">3pm</div>
+												<div class="aui-scheduler-view-table-time">4pm</div>
+												<div class="aui-scheduler-view-table-time">5pm</div>
+												<div class="aui-scheduler-view-table-time">6pm</div>
+												<div class="aui-scheduler-view-table-time">7pm</div>
+												<div class="aui-scheduler-view-table-time">8pm</div>
+												<div class="aui-scheduler-view-table-time">9pm</div>
+												<div class="aui-scheduler-view-table-time">10pm</div>
+												<div class="aui-scheduler-view-table-time">11pm</div>
+											</td>
+											<!-- <td class="aui-scheduler-view-table-col aui-scheduler-view-table-colday">
+												col1
+											</td> -->
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+					<div class="aui-scheduler-view-week aui-scheduler-view-week-hidden">
+						<div class="aui-scheduler-view-week-content"></div>
+					</div>
+
+
+
+
+
+					<div class="aui-scheduler-view-month aui-scheduler-view-month-hidden">
+						<div class="aui-scheduler-view-month-content">
+
+							<div class="aui-widget-hd">
+								<table class="aui-scheduler-view-month-header-table">
+									<tbody>
+										<tr class="aui-scheduler-view-month-header-col">
+											<!-- <th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-month-header-day"><a href="#">&nbsp;</a></th> -->
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="aui-widget-bd">
+
+								<!-- <div class="aui-scheduler-view-month-container">
+									<div class="aui-scheduler-view-month-row-container">
+										<div class="aui-scheduler-view-month-row" style="top: 0; height: 16.6667%;">
+
+											<table cellspacing="0" cellpadding="0" class="aui-scheduler-view-month-table-grid">
+											    <tbody>
+											        <tr>
+											            <td class="aui-scheduler-view-month-colgrid aui-scheduler-view-month-colgrid-first">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											            <td class="aui-scheduler-view-month-colgrid">&nbsp;</td>
+											        </tr>
+											    </tbody>
+											</table>
+
+										</div>
+										<div class="aui-scheduler-view-month-row" style="top: 16.6667%; height: 16.6667%;">ok</div>
+										<div class="aui-scheduler-view-month-row" style="top: 33.3333%; height: 16.6667%;">ok</div>
+										<div class="aui-scheduler-view-month-row" style="top: 50%; height: 16.6667%;">ok</div>
+										<div class="aui-scheduler-view-month-row" style="top: 66.6667%; height: 16.6667%;">ok</div>
+										<div class="aui-scheduler-view-month-row" style="top: 83.3333%; height: 16.6667%;">ok</div>
+									</div>
+								</div> -->
+
+							</div>
+
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<br/>
+		<br/>
+</div>
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-scheduler', function(A) {
+
+	window.evt1 = new A.SchedulerEvent({
+		// startDate: new Date(2010, 9, 3, 11),
+		startDate: new Date(2010, 9, 2, 7),
+		endDate: new Date(2010, 9, 8, 12),
+		content: 'Testing event 1 - overlap'
+	});
+
+	var events1 = [
+		// window.evt1,
+
+		{
+			startDate: new Date(2010, 9, 12, 6),
+			endDate: new Date(2010, 9, 12, 7),
+			content: 'Wake up',
+			// repeat: 'tuesThurs',
+			// repeat: 'dayly',
+			// repeat: A.SchedulerEventRepeat.dayly,
+		},
+
+		{
+			startDate: new Date(2010, 9, 12, 7),
+			endDate: new Date(2010, 9, 12, 9),
+			content: 'Go to the gym'
+		},
+
+		{
+			startDate: new Date(2010, 9, 5, 7),
+			endDate: new Date(2010, 9, 19, 9),
+			content: 'Build scheduler component'
+		}
+	];
+
+	var view11 = new A.SchedulerDayView({
+		boundingBox: '#scheduler1 .aui-widget-bd .aui-scheduler-view-day',
+		srcNode: '#scheduler1 .aui-widget-bd .aui-scheduler-view-day-content'
+	});
+
+	var view12 = new A.SchedulerWeekView({
+		boundingBox: '#scheduler1 .aui-widget-bd .aui-scheduler-view-week',
+		srcNode: '#scheduler1 .aui-widget-bd .aui-scheduler-view-week-content',
+		isoTime: true
+	});
+
+	var view13 = new A.SchedulerMonthView({
+		boundingBox: '#scheduler1 .aui-widget-bd .aui-scheduler-view-month',
+		srcNode: '#scheduler1 .aui-widget-bd .aui-scheduler-view-month-content'
+	});
+
+	window.eventRecorder = new A.SchedulerEventRecorder({});
+
+	window.schedulerBase1 = new A.Scheduler({
+		boundingBox: '#scheduler1',
+		srcNode: '#content',
+		firstDayOfWeek: 1,
+		views: [view11, view12, view13],
+		events: events1,
+		eventRecorder: eventRecorder,
+		currentDate: new Date(2010, 9, 12)
+	})
+	.render();
+
+	// schedulerBase1.on('scheduler-event:startDateChange', function(event) {
+	// 	console.log('startDateChange', event);
+	// });
+	//
+	// schedulerBase1.on('scheduler-event-recorder:save', function(event) {
+	// 	console.log('scheduler-event-recorder:save', event);
+	// });
+
+	var events2 = [
+		{
+			startDate: new Date(2010, 8, 26, 7, 15),
+			endDate: new Date(2010, 8, 26, 11, 15)
+		}
+	];
+
+	var view0 = new A.SchedulerMonthView();
+	var view1 = new A.SchedulerDayView();
+	var view2 = new A.SchedulerWeekView();
+
+	window.schedulerBase2 = new A.Scheduler({
+		views: [view0, view2, view1],
+		events: events2,
+		eventRecorder: new A.SchedulerEventRecorder(),
+		currentDate: new Date(2010, 9, 4)
+	})
+	.render('#wrapper');
+
+
+});
+
+</script>
+
+</body>
+</html>
