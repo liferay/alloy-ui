@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+	<script src="build/aui-editor.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="build/assets/skins/sam/aui-editor.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo {
+			width: 800px;
+			border: 1px solid #ccc;
+			margin-top: 4px;
+		}
+
+		.aui-toolbar-content .aui-buttonitem-content {
+			margin: 0;
+		}
+
+		.red {
+			background-color: red;
+		}
+
+		.green {
+			background-color: green;
+		}
+
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Editor Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+
+
+AUI().ready('editor', 'aui-editor', function(A) {
+
+	var fonts = [
+		'Fonts',
+		{ label: 'Arial', tag: 'font', styles: { 'font-family': 'Arial' } },
+		{ label: 'Times New Roman', tag: 'font', styles: { 'font-family': 'Times New Roman' } },
+		{ label: 'Verdana', tag: 'font', styles: { 'font-family': 'Verdana' } },
+		'Block Styles',
+		{ label: 'Normal', tag: 'p' },
+		{ label: 'Heading 1', tag: 'h1' },
+		{ label: 'Heading 2', tag: 'h2' },
+		{ label: 'Heading 3', tag: 'h3' },
+		{ label: 'Heading 4', tag: 'h4' },
+		{ label: 'Preformatted Text', tag: 'pre' },
+		{ label: 'Red Message', tag: 'div', attributes: { 'class': 'red' }, styles: { 'text-align': 'center' } },
+		{ label: 'Green Message', tag: 'div', attributes: { 'class': 'green' } },
+		'Inline Styles',
+		{ label: 'Cited Work', tag: 'cite' },
+		{ label: 'Computer Code', tag: 'code' },
+	];
+
+	var component = new A.EditorBase(
+			{
+				content: '<p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>'
+			}
+		);
+
+		component.on(
+			'frame:ready',
+			function() {
+				var instance = this;
+
+				instance.focus();
+			}
+		);
+
+		component.render('#demo');
+
+		component.plug(A.Plugin.EditorToolbarPlugin,
+			{
+				groups: [
+					{
+						type: 'styles',
+						config: {
+							styles: {
+								items: fonts,
+								width: 200,
+								height: 300
+							}
+						}
+					},
+					{
+						type: 'font',
+						config: {
+							fontname: {
+								optionHtml: '<option selected="selected"></option>' +
+											'<option>Arial</option>' +
+											'<option>Arial Black</option>' +
+											'<option>Comic Sans MS</option>' +
+											'<option>Courier New</option>' +
+											'<option>Lucida Console</option>' +
+											'<option>Tahoma</option>' +
+											'<option>Times New Roman</option>' +
+											'<option>Verdana</option>'
+							}
+						}
+					},
+					{ type: 'text' },
+					{ type: 'alignment' },
+					{ type: 'indent' },
+					{ type: 'list' },
+					{ type: 'insert' },
+					{ type: 'source' }
+				]
+			}
+		);
+
+});
+
+</script>
+
+</body>
+</html>
