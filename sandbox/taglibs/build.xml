@@ -80,7 +80,7 @@
 		<antcall target="print-current-time" />
 	</target>
 
-	<target name="build-component-xml" depends="compile">
+	<target name="build-taglibs-xml" depends="compile">
 		<java
 			classname="com.liferay.alloy.tools.xmlbuilder.XMLBuilder"
 			classpathref="project.classpath"
