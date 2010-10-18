@@ -336,12 +336,12 @@
 	<target name="patch-yui">
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
 
-		<copy todir="${project.dir}/build" overwrite="true">
-			<fileset dir="${project.dir}/lib/patches" includes="**/*.js" />
+		<copy todir="${project.dir}/lib/yui3" overwrite="true">
+			<fileset dir="${project.dir}/lib/patches" includes="**/*.*" />
 		</copy>
 
 		<!-- Patch for dd -->
-		<!-- <replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
+		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
 			<replacefilter token="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')), { standAlone: true });" value="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')));" />
 		</replace>
 
@@ -351,11 +351,10 @@
 				dir="${project.dir}/lib/yui3/src/dd"
 				includes="build.xml"
 			/>
-		</subant> -->
-		<!-- /End Loader Patch -->
+		</subant>
+		<!-- /End Patch -->
 
 		<!-- Patch for AUI-153 -->
-		<!--
 		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
 			<replacetoken><![CDATA[if (m && custom[m[1]]) {
                 if (typeof custom[m[1]] === 'function') {
@@ -382,8 +381,6 @@
 				includes="build.xml"
 			/>
 		</subant>
-		-->
-
 		<!-- /End Patch for AUI-153 -->
 	</target>
 
