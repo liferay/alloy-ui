@@ -1,0 +1,9 @@
+.aui-scheduler-base-icon-next, .aui-scheduler-base-icon-prev {
+	background: url(scheduler-arrows.png) no-repeat 0 0;
+	height: 17px;
+	width: 29px;
+}
+	
+.aui-scheduler-base-icon-prev {
+	background-position: 0 -17px;
+}

@@ -1,0 +1,63 @@
+.aui-scheduler-base-content {
+	border-color: #BBCCFF;
+	border-style: solid;
+	border-width: 0 3px 3px;
+	overflow: hidden;
+}
+
+.aui-scheduler-base-nav {
+	width: 61px;
+	padding: 5px;
+}
+
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next,
+.aui-scheduler-base-nav .aui-scheduler-base-icon-prev {
+	float: left;
+}
+
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next {
+	margin-left: 3px;
+}
+
+.aui-scheduler-base-hd {
+	background: #BBCCFF;
+}
+
+.aui-scheduler-base-controls {
+	float: left;
+}
+
+.aui-scheduler-base-views {
+	float: right;
+}
+
+.aui-scheduler-base-controls {
+	line-height: 27px;
+	width: 350px;
+}
+
+.aui-scheduler-base-views {
+	line-height: 27px;
+	width: 160px;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-current-date,
+.aui-scheduler-base-controls .aui-scheduler-base-nav,
+.aui-scheduler-base-controls .aui-scheduler-base-today {
+	float: left;
+}
+
+.aui-scheduler-base-views .aui-scheduler-base-view {
+	color: #fff;
+	float: left;
+	margin-right: 10px;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-today {
+	color: #fff;
+	margin: 0 5px 0 10px;
+}
+
+.aui-scheduler-base-controls .aui-scheduler-base-current-date {
+	font-weight: bold;
+}
