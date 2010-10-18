@@ -31,7 +31,7 @@ var L = A.Lang,
 /**
  * Parses any <code>falsey</code> value to <code>false</code> and
  * <code>non-falsey</code> to <code>true</code>.
- * 
+ *
  * @for DataType.Boolean
  * @method parse
  * @param {*} data falsey or non-falsey values (i.e., falsey values: null, false, undefined, NaN; non-falsey values: 1, true, 'abc').
@@ -47,7 +47,7 @@ DB.parse = function(data) {
  * Evaluates a string to a primitive value (if possible). Supports
  * <code>true</code> and <code>false</code> also. Unrecognized strings are
  * returned without any modification.
- * 
+ *
  * @for DataType.String
  * @method evaluate
  * @param {*} data Input data to be evaluated.
@@ -131,6 +131,33 @@ A.mix(A.DataType.DateMath, {
 	MONTH : "M",
 
 	/**
+	* Constant field representing Minutes
+	* @property MINUTES
+	* @static
+	* @final
+	* @type String
+	*/
+	MINUTES : "MINUTES",
+
+	/**
+	* Constant field representing Hour
+	* @property HOUR
+	* @static
+	* @final
+	* @type String
+	*/
+	HOUR : "HOUR",
+
+	/**
+	* Constant field representing Seconds
+	* @property SECONDS
+	* @static
+	* @final
+	* @type String
+	*/
+	SECONDS : "SECONDS",
+
+	/**
 	* Constant field representing the number of maximum days in a month
 	* @property MAX_MONTH_LENGTH
 	* @static
@@ -156,6 +183,33 @@ A.mix(A.DataType.DateMath, {
 	* @type Number
 	*/
 	ONE_DAY_MS : 1000*60*60*24,
+
+	/**
+	* Constant field representing one hour, in milliseconds
+	* @property ONE_HOUR_MS
+	* @static
+	* @final
+	* @type Number
+	*/
+	ONE_HOUR_MS : 1000*60*60,
+
+	/**
+	* Constant field representing one minute, in milliseconds
+	* @property ONE_MINUTE_MS
+	* @static
+	* @final
+	* @type Number
+	*/
+	ONE_MINUTE_MS : 1000*60,
+
+	/**
+	* Constant field representing one second, in milliseconds
+	* @property ONE_SECOND_MS
+	* @static
+	* @final
+	* @type Number
+	*/
+	ONE_SECOND_MS : 1000,
 
 	/**
 	 * Constant field representing the date in first week of January
@@ -211,6 +265,21 @@ A.mix(A.DataType.DateMath, {
 				this._addDays(d, (amount * 7));
 				// d.setDate(date.getDate() + (amount * 7));
 				break;
+			case this.HOUR:
+				var hours = d.getHours();
+
+				d.setHours(hours + amount);
+				break;
+			case this.MINUTES:
+				var minutes = d.getMinutes();
+
+				d.setMinutes(minutes + amount);
+				break;
+			case this.SECONDS:
+				var seconds = d.getSeconds();
+
+				d.setSeconds(seconds + amount);
+				break;
 		}
 		return d;
 	},
@@ -243,6 +312,26 @@ A.mix(A.DataType.DateMath, {
 			// nDays should be remainder between -128 and 96
 		}
 		d.setDate(d.getDate() + nDays);
+	},
+
+	/**
+	* Compare dates.
+	* @method compare
+	* @param {Date} d1	The JavaScript Date object to compare
+	* @param {Date} d2	The JavaScript Date object to compare
+	* @return {boolean}
+	*/
+	compare: function(d1, d2) {
+		return ( d1 && d2 && (d1.getTime() == d2.getTime()) );
+	},
+
+	copyHours: function(d1, d2) {
+		var instance = this;
+
+		d1.setHours(d2.getHours());
+		d1.setMinutes(d2.getMinutes());
+		d1.setSeconds(d2.getSeconds());
+		d1.setMilliseconds(d2.getMilliseconds());
 	},
 
 	/**
@@ -330,11 +419,75 @@ A.mix(A.DataType.DateMath, {
 		return this.getDayOffset(date, beginYear, calendarYear);
 	},
 
-	getDayOffset : function(d1, d2, calendarYear) {
-		var dayOffset = Math.ceil((d1.getTime()-d2.getTime()) / this.ONE_DAY_MS);
-
-		return dayOffset;
+	/**
+	* Calculates the number of days between the specified dates.
+	* @method getDayOffset
+	* @param {Date}	d1 Date 1
+	* @param {Date}	d2 Date 2
+	* @return {Number}	The number of days
+	*/
+	getDayOffset : function(d1, d2) {
+		return this._absCeil(this.getOffset(d1, d2, this.ONE_DAY_MS));
 	},
+
+	/**
+	* Calculates the number of hours between the specified dates.
+	* @method getHoursOffset
+	* @param {Date}	d1 Date 1
+	* @param {Date}	d2 Date 2
+	* @return {Number}	The number of hours
+	*/
+	getHoursOffset : function(d1, d2) {
+		return this._absFloor(this.getOffset(d1, d2, this.ONE_HOUR_MS));
+	},
+
+	/**
+	* Calculates the number of minutes between the specified dates.
+	* @method getMinutesOffset
+	* @param {Date}	d1 Date 1
+	* @param {Date}	d2 Date 2
+	* @return {Number}	The number of minutes
+	*/
+	getMinutesOffset : function(d1, d2) {
+		return this._absFloor(this.getOffset(d1, d2, this.ONE_MINUTE_MS));
+	},
+
+	/**
+	* Calculates the number of seconds between the specified dates.
+	* @method getSecondsOffset
+	* @param {Date}	d1 Date 1
+	* @param {Date}	d2 Date 2
+	* @return {Number}	The number of seconds
+	*/
+	getSecondsOffset : function(d1, d2) {
+		return this._absFloor(this.getOffset(d1, d2, this.ONE_SECOND_MS));
+	},
+
+	getOffset: function(d1, d2, constantAmount) {
+		var offset = (d1.getTime()-d2.getTime()) / (constantAmount || 0);
+
+		return offset;
+	},
+
+    _absFloor : function(n) {
+		var abs = Math.floor(Math.abs(n));
+
+		if (n < 0) {
+			abs *= -1;
+		}
+
+        return abs;
+    },
+
+    _absCeil : function(n) {
+		var abs = Math.ceil(Math.abs(n));
+
+		if (n < 0) {
+			abs *= -1;
+		}
+
+        return abs;
+    },
 
 	/**
 	* Calculates the week number for the given date. Can currently support standard
@@ -410,6 +563,76 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
+	 * Chechs if the passed date is a week day.
+	 *
+	 * @method isWeekDay
+	 * @param {Date} date Date
+	 * @return boolean
+	 */
+	isWeekDay: function(date) {
+		var day = date.getDay();
+
+		return (day > 0) && (day < 6);
+	},
+
+	/**
+	 * Chechs if the passed date is a Tuesday or Thursday.
+	 *
+	 * @method isTueOrThu
+	 * @param {Date} date Date
+	 * @return boolean
+	 */
+	isTueOrThu: function(date) {
+		return this.isWeekDay(date) && (date.getDay() % 2 === 0);
+	},
+
+	/**
+	 * Chechs if the passed date is a Monday, Wednesday or Friday.
+	 *
+	 * @method isMonWedOrFri
+	 * @param {Date} date Date
+	 * @return boolean
+	 */
+	isMonWedOrFri: function(date) {
+		return this.isWeekDay(date) && !this.isTueOrThu(date);
+	},
+
+	/**
+	 * Chechs if the passed date is between two days.
+	 *
+	 * @method isDayOverlap
+	 * @param {Date} date1 Date
+	 * @param {Date} date2 Date
+	 * @return boolean
+	 */
+	isDayOverlap : function(date1, date2) {
+		return ((date1.getFullYear() !== date2.getFullYear()) || (date1.getMonth() !== date2.getMonth()) || (date1.getDate() !== date2.getDate()));;
+	},
+
+	/**
+	 * Chechs if the passed date is today.
+	 *
+	 * @method isToday
+	 * @param {Date} date Date
+	 * @return boolean
+	 */
+	isToday: function(date) {
+		return !this.isDayOverlap(date, new Date());
+	},
+
+	/**
+	 * Chechs if the passed dates are in the same month.
+	 *
+	 * @method isSameMonth
+	 * @param {Date} d1 Date
+	 * @param {Date} d2 Date
+	 * @return boolean
+	 */
+	isSameMonth : function(d1, d2) {
+		return ((d1.getFullYear() === d2.getFullYear()) && (d1.getMonth() === d2.getMonth()));
+	},
+
+	/**
 	* Determines if a given week overlaps two different years.
 	* @method isYearOverlapWeek
 	* @param {Date}	weekBeginDate	The JavaScript Date representing the first day of the week.
@@ -472,6 +695,28 @@ A.mix(A.DataType.DateMath, {
 	clearTime : function(date) {
 		date.setHours(12,0,0,0);
 		return date;
+	},
+
+	/**
+	* Clears the time fields from a given date, effectively setting the time to
+	* 12 noon. This is "safe" because clones the date before clear, not affecting
+	* the passed reference.
+	* @method safeClearTime
+	* @param {Date}	date	The JavaScript Date for which the time fields will be cleared
+	* @return {Date}		The JavaScript Date cleared of all time fields
+	*/
+	safeClearTime : function(date) {
+		return this.clearTime(this.clone(date));
+	},
+
+	/**
+	* Clone the passed date object.
+	* @method clone
+	* @param {Date}	date	The JavaScript Date to clone
+	* @return {Date}		The JavaScript Date cloned
+	*/
+	clone : function(date) {
+		return new Date(date.getTime());
 	},
 
 	/**
