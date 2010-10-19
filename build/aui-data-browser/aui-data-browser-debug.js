@@ -21,7 +21,7 @@ var Lang = A.Lang,
 	TEXT = 'text',
 	TREE = 'tree',
 
-	ICON_FOLDER = 'folder-open', 
+	ICON_FOLDER = 'folder-open',
 	ICON_DEFAULT = 'search',
 	ICON_ERROR = ALERT,
 	ICON_LOADING = LOADING,
@@ -113,9 +113,9 @@ var DataBrowser = A.Component.create(
 
 				instance._createDataSource();
 
-				var searchView = instance.get(SEARCH_VIEW),
-					treeView = instance.get(TREE_VIEW),
-					currentView = instance.get('currentView');
+				var searchView = instance.get(SEARCH_VIEW);
+				var treeView = instance.get(TREE_VIEW);
+				var currentView = instance.get('currentView');
 
 				if (!treeView && currentView == TREE) {
 					instance.set('currentView', SEARCH);
@@ -128,12 +128,12 @@ var DataBrowser = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				var searchView = instance.get(SEARCH_VIEW),
-					treeView = instance.get(TREE_VIEW);
+				var searchView = instance.get(SEARCH_VIEW);
+				var treeView = instance.get(TREE_VIEW);
 
 				if (searchView) {
-					var buttonSearch = instance.buttonSearch,
-						inputNode = instance.inputNode;
+					var buttonSearch = instance.buttonSearch;
+					var inputNode = instance.inputNode;
 
 					searchView.dataSource.on('request', A.bind(buttonSearch.set, buttonSearch, ICON, ICON_LOADING));
 
@@ -246,10 +246,10 @@ var DataBrowser = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				var searchView = instance.get(SEARCH_VIEW),
-					treeView = instance.get(TREE_VIEW),
-					currentView = instance.get('currentView'),
-					autoLoad = instance.get('autoLoad');
+				var searchView = instance.get(SEARCH_VIEW);
+				var treeView = instance.get(TREE_VIEW);
+				var currentView = instance.get('currentView');
+				var autoLoad = instance.get('autoLoad');
 
 				if (autoLoad) {
 					if (currentView == SEARCH) {
@@ -341,12 +341,12 @@ var DataBrowser = A.Component.create(
 
 				for (var i = 0; i < views.length; i++) {
 					if (views[i]) {
-						var dataSource = views[i].dataSource,
-							data = dataSource;
+						var dataSource = views[i].dataSource;
+						var data = dataSource;
 
-						var dataSourceType = views[i].dataSourceType,
-							schema = views[i].schema,
-							schemaType = views[i].schemaType;
+						var dataSourceType = views[i].dataSourceType;
+						var schema = views[i].schema;
+						var schemaType = views[i].schemaType;
 
 						if (!(dataSource instanceof A.DataSource.Local)) {
 							if (!dataSourceType) {
@@ -453,8 +453,8 @@ var DataBrowser = A.Component.create(
 
 				var currentView = instance.get('currentView');
 
-				var input = instance.inputNode,
-					query = instance._query;
+				var input = instance.inputNode;
+				var query = instance._query;
 
 				var value = input.get('value');
 
@@ -518,35 +518,35 @@ var DataBrowser = A.Component.create(
 
 					instance.fire('dataReturn', event);
 
-					var searchView = instance.get(SEARCH_VIEW),
-						displayName = instance.get('displayName');
+					var searchView = instance.get(SEARCH_VIEW);
+					var displayName = instance.get('displayName');
 
-					var allResults = response.results,
-						folderKey = searchView.folderKey;
+					var allResults = response.results;
+					var folderKey = searchView.folderKey;
 
 					var sorted = [];
 
 					if (folderKey) {
-						var found = [],
-							unsorted = [];
-	
+						var found = [];
+						var unsorted = [];
+
 						var index = 0;
-	
+
 						for (var i = 0; i < allResults.length; i++) {
 							var name = allResults[i][folderKey];
-	
+
 							if (name != null) {
 								if (found[name] != null) {
 									sorted[found[name]].data.push(allResults[i]);
 								}
 								else {
 									found[name] = index;
-	
+
 									sorted[index] = {
 										name: name,
 										data: [allResults[i]]
 									};
-	
+
 									index++;
 								}
 							}
@@ -554,13 +554,13 @@ var DataBrowser = A.Component.create(
 								unsorted.push(allResults[i]);
 							}
 						}
-	
+
 						sorted.sort(
 							function(a, b) {
 								return (a.data.length == b.data.length ? 0 : (a.data.length > b.data.length ? -1 : 1));
 							}
 						);
-	
+
 						if (unsorted.length > 0) {
 							sorted.push(
 								{
@@ -587,9 +587,9 @@ var DataBrowser = A.Component.create(
 						for (var j = 0; j < sorted[i].data.length; j++) {
 							var data = sorted[i].data[j];
 
-							var tpl = null,
-								icon = null,
-								type = null;
+							var tpl = null;
+							var icon = null;
+							var type = null;
 
 							if (data.imageUri) {
 								tpl = TPL_SEARCH_LIST_ITEM_IMAGE;
@@ -637,8 +637,8 @@ var DataBrowser = A.Component.create(
 			_populateTreeView: function(event) {
 				var instance = this;
 
-				var response = event.response,
-					node = event.node;
+				var response = event.response;
+				var node = event.node;
 
 				var ok = instance.doBeforeLoadData(event);
 
@@ -694,9 +694,9 @@ var DataBrowser = A.Component.create(
 			_renderInput: function() {
 				var instance = this;
 
-				var contentBox = instance.get(CONTENT_BOX),
-					input = instance.get('input'),
-					treeView = instance.get(TREE_VIEW);
+				var contentBox = instance.get(CONTENT_BOX);
+				var input = instance.get('input');
+				var treeView = instance.get(TREE_VIEW);
 
 				var comboConfig = {
 					field: {
@@ -720,9 +720,9 @@ var DataBrowser = A.Component.create(
 							handler: {
 								fn: function() {
 									var instance = this;
-	
+
 									instance.set('currentView', TREE);
-	
+
 									instance._loadTreeView();
 									instance._toggleView();
 								},
@@ -732,8 +732,8 @@ var DataBrowser = A.Component.create(
 					);
 				}
 
-				var inputReference = null,
-					inputParent = null;
+				var inputReference = null;
+				var inputParent = null;
 
 				if (input) {
 					input = A.one(input);
@@ -766,8 +766,8 @@ var DataBrowser = A.Component.create(
 			_sendQuery: function(query) {
 				var instance = this;
 
-				var searchView = instance.get(SEARCH_VIEW),
-					dataSource = searchView.dataSource;
+				var searchView = instance.get(SEARCH_VIEW);
+				var dataSource = searchView.dataSource;
 
 				query = encodeURIComponent(query);
 
@@ -787,10 +787,10 @@ var DataBrowser = A.Component.create(
 
 				if (height) {
 					var boundingBox = instance.get(BOUNDING_BOX);
-	
-					var searchViewEl = instance._searchViewEl,
-						treeViewEl = instance._treeViewEl,
-						comboBox = instance.comboBox;
+
+					var searchViewEl = instance._searchViewEl;
+					var treeViewEl = instance._treeViewEl;
+					var comboBox = instance.comboBox;
 
 					var comboBoxOffset = 0;
 
@@ -807,7 +807,7 @@ var DataBrowser = A.Component.create(
 					}
 
 					var scrollHeight = parseInt(instance.get('height')) - comboBoxOffset;
-	
+
 					if (searchViewEl) {
 						var padding = (
 								parseFloat(searchViewEl.getComputedStyle('borderTopWidth')) +
@@ -837,8 +837,8 @@ var DataBrowser = A.Component.create(
 
 				var currentView = instance.get('currentView');
 
-				var searchViewEl = instance._searchViewEl,
-					treeViewEl = instance._treeViewEl;
+				var searchViewEl = instance._searchViewEl;
+				var treeViewEl = instance._treeViewEl;
 
 				if (currentView == SEARCH) {
 					if (treeViewEl) {
