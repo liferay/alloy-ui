@@ -9,6 +9,10 @@ var L = A.Lang,
 	FALSE = 'false',
 	TRUE = 'true',
 
+	NUM_SIXTY = 60,
+	NUM_THOUSAND = 1000,
+	NUM_TWENTY_FOUR = 24,
+
 	/**
 	 * DataType.Boolean provides a set of utility to parse <code>falsey</code>
      * value to <code>false</code> and <code>non-falsey</code> to
@@ -102,7 +106,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	DAY : "D",
+	DAY : 'D',
 
 	/**
 	* Constant field representing Week
@@ -111,7 +115,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	WEEK : "W",
+	WEEK : 'W',
 
 	/**
 	* Constant field representing Year
@@ -120,7 +124,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	YEAR : "Y",
+	YEAR : 'Y',
 
 	/**
 	* Constant field representing Month
@@ -129,7 +133,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	MONTH : "M",
+	MONTH : 'M',
 
 	/**
 	* Constant field representing Minutes
@@ -138,7 +142,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	MINUTES : "MINUTES",
+	MINUTES : 'MINUTES',
 
 	/**
 	* Constant field representing Hour
@@ -147,7 +151,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	HOUR : "HOUR",
+	HOUR : 'HOUR',
 
 	/**
 	* Constant field representing Seconds
@@ -156,7 +160,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type String
 	*/
-	SECONDS : "SECONDS",
+	SECONDS : 'SECONDS',
 
 	/**
 	* Constant field representing the number of maximum days in a month
@@ -183,7 +187,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type Number
 	*/
-	ONE_DAY_MS : 1000*60*60*24,
+	ONE_DAY_MS : NUM_THOUSAND * NUM_SIXTY * NUM_SIXTY * NUM_TWENTY_FOUR,
 
 	/**
 	* Constant field representing one hour, in milliseconds
@@ -192,7 +196,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type Number
 	*/
-	ONE_HOUR_MS : 1000*60*60,
+	ONE_HOUR_MS : NUM_THOUSAND * NUM_SIXTY * NUM_SIXTY,
 
 	/**
 	* Constant field representing one minute, in milliseconds
@@ -201,7 +205,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type Number
 	*/
-	ONE_MINUTE_MS : 1000*60,
+	ONE_MINUTE_MS : NUM_THOUSAND * NUM_SIXTY,
 
 	/**
 	* Constant field representing one second, in milliseconds
@@ -210,7 +214,7 @@ A.mix(A.DataType.DateMath, {
 	* @final
 	* @type Number
 	*/
-	ONE_SECOND_MS : 1000,
+	ONE_SECOND_MS : NUM_THOUSAND,
 
 	/**
 	 * Constant field representing the date in first week of January
