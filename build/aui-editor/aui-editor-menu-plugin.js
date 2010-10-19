@@ -74,9 +74,9 @@ var EditorMenu = A.Component.create(
 
 					var host = instance.get('host');
 
-					var	contentBox = instance.get('contentBox'),
-						headerContent = instance._headerContent,
-						items = instance.get('items');
+					var	contentBox = instance.get('contentBox');
+					var headerContent = instance._headerContent;
+					var items = instance.get('items');
 
 					var menuList = A.Node.create(TPL_MENU_CONTENT_LIST);
 
@@ -155,8 +155,8 @@ var EditorMenu = A.Component.create(
 				_uiSetHeight: function(val) {
 					var instance = this;
 
-					var	boundingBox = instance.get('boundingBox'),
-						menuList = instance._menuList;
+					var	boundingBox = instance.get('boundingBox');
+					var menuList = instance._menuList;
 
 					boundingBox.setStyle('height', 'auto');
 
@@ -165,9 +165,9 @@ var EditorMenu = A.Component.create(
 
 				_uiSetWidth: function(val) {
 					var instance = this;
-					
-					var	boundingBox = instance.get('boundingBox'),
-						menuList = instance._menuList;
+
+					var	boundingBox = instance.get('boundingBox');
+					var menuList = instance._menuList;
 
 					boundingBox.setStyle('width', 'auto');
 

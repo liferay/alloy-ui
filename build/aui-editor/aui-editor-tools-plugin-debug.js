@@ -26,12 +26,12 @@ A.mix(
 		justify: function(cmd, val) {
 			var instance = this;
 
-			var host = instance.get('host'),
-				frame = host.getInstance();
+			var host = instance.get('host');
+			var frame = host.getInstance();
 
-			var selection = new frame.Selection(),
-				items = selection.getSelected(),
-				insertHtml = false;
+			var selection = new frame.Selection();
+			var items = selection.getSelected();
+			var insertHtml = false;
 
 			if (selection.isCollapsed || !items.size()) {
 				var anchorTextNode = selection.anchorTextNode;
@@ -44,9 +44,10 @@ A.mix(
 			A.each(
 				items,
 				function(node) {
-					var tagName = node.get('tagName'),
-						parent = node.ancestor(),
-						wrapper = null;
+					var tagName = node.get('tagName');
+					var parent = node.ancestor();
+
+					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
@@ -131,11 +132,11 @@ A.mix(
 		wraphtml: function(cmd, val) {
 			var instance = this;
 
-			var host = instance.get('host'),
-				frame = host.getInstance();
+			var host = instance.get('host');
+			var frame = host.getInstance();
 
-			var selection = new frame.Selection(),
-				items = selection.getSelected();
+			var selection = new frame.Selection();
+			var items = selection.getSelected();
 
 			if (!selection.isCollapsed && items.size()) {
 				items.each(
@@ -151,6 +152,7 @@ A.mix(
 							else {
 								function findInsert(node) {
 									var found = null;
+
 									var childNodes = node.get('childNodes');
 
 									childNodes.some(
@@ -188,7 +190,7 @@ A.mix(
 			}
 			else {
 				host.execCommand('inserthtml', Lang.sub(val, [frame.Selection.CURSOR]));
-	
+
 				if (val.indexOf('{0}') != -1) {
 					selection.focusCursor(true, true);
 				}

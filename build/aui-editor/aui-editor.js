@@ -26,12 +26,12 @@ A.mix(
 		justify: function(cmd, val) {
 			var instance = this;
 
-			var host = instance.get('host'),
-				frame = host.getInstance();
+			var host = instance.get('host');
+			var frame = host.getInstance();
 
-			var selection = new frame.Selection(),
-				items = selection.getSelected(),
-				insertHtml = false;
+			var selection = new frame.Selection();
+			var items = selection.getSelected();
+			var insertHtml = false;
 
 			if (selection.isCollapsed || !items.size()) {
 				var anchorTextNode = selection.anchorTextNode;
@@ -44,9 +44,10 @@ A.mix(
 			A.each(
 				items,
 				function(node) {
-					var tagName = node.get('tagName'),
-						parent = node.ancestor(),
-						wrapper = null;
+					var tagName = node.get('tagName');
+					var parent = node.ancestor();
+
+					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
@@ -131,11 +132,11 @@ A.mix(
 		wraphtml: function(cmd, val) {
 			var instance = this;
 
-			var host = instance.get('host'),
-				frame = host.getInstance();
+			var host = instance.get('host');
+			var frame = host.getInstance();
 
-			var selection = new frame.Selection(),
-				items = selection.getSelected();
+			var selection = new frame.Selection();
+			var items = selection.getSelected();
 
 			if (!selection.isCollapsed && items.size()) {
 				items.each(
@@ -151,6 +152,7 @@ A.mix(
 							else {
 								function findInsert(node) {
 									var found = null;
+
 									var childNodes = node.get('childNodes');
 
 									childNodes.some(
@@ -188,7 +190,7 @@ A.mix(
 			}
 			else {
 				host.execCommand('inserthtml', Lang.sub(val, [frame.Selection.CURSOR]));
-	
+
 				if (val.indexOf('{0}') != -1) {
 					selection.focusCursor(true, true);
 				}
@@ -277,9 +279,9 @@ var EditorMenu = A.Component.create(
 
 					var host = instance.get('host');
 
-					var	contentBox = instance.get('contentBox'),
-						headerContent = instance._headerContent,
-						items = instance.get('items');
+					var	contentBox = instance.get('contentBox');
+					var headerContent = instance._headerContent;
+					var items = instance.get('items');
 
 					var menuList = A.Node.create(TPL_MENU_CONTENT_LIST);
 
@@ -358,8 +360,8 @@ var EditorMenu = A.Component.create(
 				_uiSetHeight: function(val) {
 					var instance = this;
 
-					var	boundingBox = instance.get('boundingBox'),
-						menuList = instance._menuList;
+					var	boundingBox = instance.get('boundingBox');
+					var menuList = instance._menuList;
 
 					boundingBox.setStyle('height', 'auto');
 
@@ -368,9 +370,9 @@ var EditorMenu = A.Component.create(
 
 				_uiSetWidth: function(val) {
 					var instance = this;
-					
-					var	boundingBox = instance.get('boundingBox'),
-						menuList = instance._menuList;
+
+					var	boundingBox = instance.get('boundingBox');
+					var menuList = instance._menuList;
 
 					boundingBox.setStyle('width', 'auto');
 
@@ -545,8 +547,8 @@ var Lang = A.Lang,
 	}
 
 	function generateColorPicker(editor, attrs, config, cmd) {
-		var button = attrs.button,
-			boundingBox = button.get('boundingBox');
+		var button = attrs.button;
+		var boundingBox = button.get('boundingBox');
 
 		var colorPicker = new A.ColorPicker(
 			A.merge(
@@ -605,12 +607,12 @@ var EditorToolbarPlugin = A.Component.create(
 				initializer: function() {
 					var instance = this;
 
-					var host = instance.get('host'),
-						container = host.frame.get('container'),
-						groups = instance.get('groups');
+					var host = instance.get('host');
+					var container = host.frame.get('container');
+					var groups = instance.get('groups');
 
-					var boundingBox = A.Node.create(TPL_TOOLBAR),
-						contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
+					var boundingBox = A.Node.create(TPL_TOOLBAR);
+					var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
 
 					container.placeBefore(boundingBox);
 
@@ -622,8 +624,8 @@ var EditorToolbarPlugin = A.Component.create(
 					var toolbars = [];
 
 					for (var i = 0; i < groups.length; i++) {
-						var group = groups[i],
-							groupType = GROUPS[group.type];
+						var group = groups[i];
+						var groupType = GROUPS[group.type];
 
 						var children = [];
 
@@ -688,8 +690,8 @@ var EditorToolbarPlugin = A.Component.create(
 					var instance = this;
 
 					if (event.changedNode) {
-						var cmds = event.commands,
-							toolbars = attrs.toolbars;
+						var cmds = event.commands;
+						var toolbars = attrs.toolbars;
 
 						if (toolbars) {
 							for (var i = 0; i < toolbars.length; i++) {
@@ -707,10 +709,10 @@ var EditorToolbarPlugin = A.Component.create(
 							}
 						}
 
-						var fontName = event.fontFamily,
-							fontNameOptions = attrs._fontNameOptions,
-							fontSize = event.fontSize,
-							fontSizeOptions = attrs._fontSizeOptions;
+						var fontName = event.fontFamily;
+						var fontNameOptions = attrs._fontNameOptions;
+						var fontSize = event.fontSize;
+						var fontSizeOptions = attrs._fontSizeOptions;
 
 						if (fontNameOptions) {
 							fontNameOptions.item(0).set('selected', true);
@@ -733,8 +735,8 @@ var EditorToolbarPlugin = A.Component.create(
 
 							fontSizeOptions.each(
 								function(node) {
-									var val = node.get('value').toLowerCase(),
-										txt = node.get('text');
+									var val = node.get('value').toLowerCase();
+									var txt = node.get('text');
 
 									if (txt === fontSize) {
 										node.set('selected', true);
@@ -849,10 +851,10 @@ GROUPS[FONT] = {
 				function(event) {
 					var instance = this;
 
-					var target = event.currentTarget,
-						css = target.get('className'),
-						cmd = css.substring(css.lastIndexOf('-') + 1),
-						val = target.get('value');
+					var target = event.currentTarget;
+					var css = target.get('className');
+					var cmd = css.substring(css.lastIndexOf('-') + 1);
+					var val = target.get('value');
 
 					editor.execCommand(cmd, val);
 					editor.focus();
@@ -937,8 +939,8 @@ GROUPS[INSERT] = {
 		insertimage: function(editor, attrs, config) {
 			var instance = this;
 
-			var button = attrs.button,
-				boundingBox = button.get('boundingBox');
+			var button = attrs.button;
+			var boundingBox = button.get('boundingBox');
 
 			var overlay = generateOverlay(boundingBox, config);
 
@@ -966,9 +968,10 @@ GROUPS[INSERT] = {
 				config.dataBrowser.render(contextBox);
 			}
 			else {
-				var frame = editor.getInstance(),
-					iframe = editor.frame._iframe,
-					selection = null;
+				var frame = editor.getInstance();
+				var iframe = editor.frame._iframe;
+
+				var selection = null;
 
 				var imageForm = A.Node.create(TPL_INSERTIMAGE);
 
@@ -1241,8 +1244,8 @@ GROUPS[SOURCE] = {
 		format: function(editor, attrs, config) {
 			var instance = this;
 
-			var frame = editor.frame,
-				button = attrs.button;
+			var frame = editor.frame;
+			var button = attrs.button;
 
 			button.on(
 				'click',
@@ -1251,8 +1254,8 @@ GROUPS[SOURCE] = {
 
 					var frame = instance.getInstance();
 
-					var selection = new frame.Selection(),
-						items = selection.getSelected();
+					var selection = new frame.Selection();
+					var items = selection.getSelected();
 
 					if (!selection.isCollapsed && items.size()) {
 						items.each(
@@ -1288,10 +1291,11 @@ GROUPS[SOURCE] = {
 		source: function(editor, attrs, config) {
 			var instance = this;
 
-			var frame = editor.frame,
-				container = frame.get('container'),
-				contentBox = attrs.contentBox,
-				button = attrs.button;
+			var frame = editor.frame;
+			var container = frame.get('container');
+
+			var contentBox = attrs.contentBox;
+			var button = attrs.button;
 
 			var textarea = A.Node.create(TPL_SOURCE_TEXTAREA);
 
@@ -1353,8 +1357,8 @@ GROUPS[STYLES] = {
 		styles: function(editor, attrs, config) {
 			var instance = this;
 
-			var button = attrs.button
-				boundingBox = button.get('boundingBox');
+			var button = attrs.button;
+			var boundingBox = button.get('boundingBox');
 
 			editor.plug(A.Plugin.EditorMenuPlugin);
 
