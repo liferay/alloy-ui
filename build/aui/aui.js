@@ -4033,13 +4033,13 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 	            combine: false,
                 modules: {
 						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop']},
-						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
-						'aui-calendar': {skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']},
-						'aui-carousel': {skinnable:true, requires:['aui-base','anim']},
-						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
-						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
-						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {requires:['aui-color-picker','plugin'], skinnable:true}, 'aui-color-picker-base': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color','aui-form-base','aui-panel'], skinnable:true} }, skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']},
+						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
+						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
+						'aui-calendar': {requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true},
+						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
+						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
+						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
+						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {requires:['aui-color-picker','plugin'], skinnable:true}, 'aui-color-picker-base': {requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color','aui-form-base','aui-panel'], skinnable:true} }, use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true},
 						'aui-color': {skinnable:false},
 						'aui-component': {requires:['widget'], skinnable:false},
 						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
@@ -4069,7 +4069,7 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
+						'aui-skin-classic': {requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css'},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-stringify-simple'], skinnable:false},
@@ -4406,7 +4406,7 @@ var Lang = A.Lang,
 
 	EMPTY_STR = '',
 
-	DOCUMENT = 'document',
+	DOC = A.config.doc,
 	FIRST_CHILD = 'firstChild',
 	INNER_HTML = 'innerHTML',
 	NODE_VALUE = 'nodeValue',
@@ -4464,19 +4464,20 @@ A.mix(
 		// inspired from Google unescape entities
 		unescapeEntities: function(str) {
 			if (LString.contains(str, '&')) {
-				if ((DOCUMENT in A.getWin().getDOM()) && !LString.contains(str, '<')) {
-					return LString._unescapeEntitiesUsingDom(str);
+				if (DOC && !LString.contains(str, '<')) {
+					str = LString._unescapeEntitiesUsingDom(str);
 				}
 				else {
 					// Fall back on pure XML entities
-					return LString._unescapeXmlEntities(str);
+					str = LString._unescapeXmlEntities(str);
 				}
 			}
+
 			return str;
 		},
 
 		_unescapeEntitiesUsingDom: function(str) {
-			var el = LString._unescapeNode.getDOM();
+			var el = LString._unescapeNode;
 
 			el[INNER_HTML] = str;
 
@@ -4485,7 +4486,9 @@ A.mix(
 			}
 
 			str = el.firstChild.nodeValue;
+
 			el[INNER_HTML] = EMPTY_STR;
+
 			return str;
 		},
 
@@ -4503,6 +4506,7 @@ A.mix(
 					default:
 						if (entity.charAt(0) == '#') {
 							var n = Number('0' + entity.substr(1));
+
 							if (!isNaN(n)) {
 								return String.fromCharCode(n);
 							}
@@ -4513,7 +4517,7 @@ A.mix(
 			});
 		},
 
-		_unescapeNode: A.Node.create('<a></a>')
+		_unescapeNode: DOC.createElement('a')
 	}
 );
 
