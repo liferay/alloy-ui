@@ -6,6 +6,7 @@ AUI.add('aui-editable', function(A) {
  */
 
 var Lang = A.Lang,
+	LString = Lang.String,
 	isFunction = Lang.isFunction,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -647,7 +648,7 @@ var Editable = A.Component.create(
 					value = instance._toText(value);
 				}
 
-				instance.inputNode.set('value', value);
+				instance.inputNode.set('value', LString.unescapeEntities(value));
 			},
 
 			/**
