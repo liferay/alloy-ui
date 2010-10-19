@@ -1,16 +1,27 @@
-var Lang = A.Lang;
-var isArray = Lang.isArray;
-var isFunction = Lang.isFunction;
-var isString = Lang.isString;
+var Lang = A.Lang,
+	isArray = Lang.isArray,
+	isFunction = Lang.isFunction,
+	isString = Lang.isString,
 
-var LString = A.namespace('Lang.String');
-var AArray = A.Array;
+	AArray = A.Array,
+	LString = A.namespace('Lang.String'),
+	arrayIndexOf = AArray.indexOf,
 
-var arrayIndexOf = AArray.indexOf;
+	EMPTY_STR = '',
+
+	DOCUMENT = 'document',
+	FIRST_CHILD = 'firstChild',
+	INNER_HTML = 'innerHTML',
+	NODE_VALUE = 'nodeValue',
+	NORMALIZE = 'normalize';
 
 A.mix(
 	LString,
 	{
+		contains: function(s, ss) {
+		  return s.indexOf(ss) != -1;
+		},
+
 		endsWith: function(str, suffix) {
 			var length = (str.length - suffix.length);
 
@@ -51,7 +62,61 @@ A.mix(
 			return (str.lastIndexOf(prefix, 0) == 0);
 		},
 
-		trim: Lang.trim
+		trim: Lang.trim,
+
+		// inspired from Google unescape entities
+		unescapeEntities: function(str) {
+			if (LString.contains(str, '&')) {
+				if ((DOCUMENT in A.getWin().getDOM()) && !LString.contains(str, '<')) {
+					return LString._unescapeEntitiesUsingDom(str);
+				}
+				else {
+					// Fall back on pure XML entities
+					return LString._unescapeXmlEntities(str);
+				}
+			}
+			return str;
+		},
+
+		_unescapeEntitiesUsingDom: function(str) {
+			var node = LString._unescapeNode, el = node.getDOM();
+
+			el[INNER_HTML] = str;
+
+			if (el[NORMALIZE]) {
+				el[NORMALIZE]();
+			}
+
+			str = el.firstChild.nodeValue;
+			el[INNER_HTML] = EMPTY_STR;
+			return str;
+		},
+
+		_unescapeXmlEntities: function(str) {
+			return str.replace(/&([^;]+);/g, function(s, entity) {
+				switch (entity) {
+					case 'amp':
+						return '&';
+					case 'lt':
+						return '<';
+					case 'gt':
+						return '>';
+					case 'quot':
+						return '"';
+					default:
+						if (entity.charAt(0) == '#') {
+							var n = Number('0' + entity.substr(1));
+							if (!isNaN(n)) {
+								return String.fromCharCode(n);
+							}
+						}
+
+					return s;
+				}
+			});
+		},
+
+		_unescapeNode: A.Node.create('<a></a>')
 	}
 );
 
