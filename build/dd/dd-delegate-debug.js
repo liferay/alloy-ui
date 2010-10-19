@@ -334,4 +334,4 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.2.0' ,{optional:['dd-drop-plugin'], requires:['dd-drag', 'event-mouseenter'], skinnable:false});
+}, '3.2.0' ,{requires:['dd-drag', 'event-mouseenter'], skinnable:false, optional:['dd-drop-plugin']});

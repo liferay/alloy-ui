@@ -73,7 +73,7 @@ Y.mix(Y.namespace('Features'), {
 var add = Y.Features.add;
 // 0
 add('load', '0', {
-    "trigger": "node-base", 
+    "trigger": "dom-style", 
     "ua": "ie"
 });
 // history-hash-ie-test.js
