@@ -4476,7 +4476,7 @@ A.mix(
 		},
 
 		_unescapeEntitiesUsingDom: function(str) {
-			var node = LString._unescapeNode, el = node.getDOM();
+			var el = LString._unescapeNode.getDOM();
 
 			el[INNER_HTML] = str;
 
