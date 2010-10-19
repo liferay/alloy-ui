@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - DataBrowser Demo</h1>
+
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-data-browser', function(A) {
+
+	var gallery = [
+		{
+			folderId: 1,
+			label: 'Folder 1',
+			children: [
+				{ fileId: 1, label: 'File 1' },
+				{ fileId: 2, label: 'File 2' },
+				{ fileId: 3, label: 'File 3' }
+			]
+		},
+		{
+			folderId: 2,
+			label: 'Folder 2',
+			children: [
+				{ fileId: 4, label: 'File 4' },
+				{ fileId: 5, label: 'File 5' },
+				{ fileId: 6, label: 'File 6' }
+			]
+		},
+		{
+			folderId: 3,
+			label: 'Folder 3',
+			children: [
+				{	folderId: 4,
+					label: 'Folder 4',
+					children: [
+						{ fileId: 10, label: 'File 10' },
+						{ fileId: 11, label: 'File 11' },
+						{ fileId: 12, label: 'File 12' }
+					]
+				},
+				{ fileId: 7, label: 'File 7' },
+				{ fileId: 8, label: 'File 8' },
+				{ fileId: 9, label: 'File 9' }
+			]
+		}
+	];
+
+	var icons = [
+		['Folder 1', 'aui-icon-carat-1-t'],
+		['Folder 1', 'aui-icon-carat-1-tr'],
+		['Folder 1', 'aui-icon-carat-1-r'],
+		['Folder 1', 'aui-icon-carat-1-br'],
+		['Folder 1', 'aui-icon-carat-1-b'],
+		['Folder 1', 'aui-icon-carat-1-b'],
+		['Folder 1', 'aui-icon-carat-1-tl'],
+		['Folder 1', 'aui-icon-carat-2-t-b'],
+		['Folder 1', 'aui-icon-carat-2-r-l'],
+		['Folder 1', 'aui-icon-triangle-1-t'],
+		['Folder 2', 'aui-icon-triangle-1-tr'],
+		['Folder 2', 'aui-icon-triangle-1-r'],
+		['Folder 2', 'aui-icon-triangle-1-br'],
+		['Folder 2', 'aui-icon-triangle-1-b'],
+		['Folder 2', 'aui-icon-triangle-1-bl'],
+		['Folder 2', 'aui-icon-triangle-1-l'],
+		['Folder 2', 'aui-icon-triangle-1-tl'],
+		['Folder 2', 'aui-icon-triangle-2-t-b'],
+		['Folder 2', 'aui-icon-triangle-2-r-l'],
+		['Folder 2', 'aui-icon-arrow-1-t'],
+		['Folder 3', 'aui-icon-arrow-1-tr'],
+		['Folder 3', 'aui-icon-arrow-1-r'],
+		['Folder 3', 'aui-icon-arrow-1-br'],
+		['Folder 3', 'aui-icon-arrow-1-b'],
+		['Folder 3', 'aui-icon-arrow-1-bl'],
+		['Folder 3', 'aui-icon-arrow-1-l'],
+		['Folder 3', 'aui-icon-arrow-1-tl'],
+		['Folder 3', 'aui-icon-arrow-2-t-b'],
+		['Folder 3', 'aui-icon-arrow-2-tr-bl'],
+		['Folder 3', 'aui-icon-arrow-2-r-l'],
+		['Folder 4', 'aui-icon-arrow-2-br-tl'],
+		['Folder 4', 'aui-icon-arrowstop-1-t'],
+		['Folder 4', 'aui-icon-arrowstop-1-r'],
+		['Folder 4', 'aui-icon-arrowstop-1-b'],
+		['Folder 4', 'aui-icon-arrowstop-1-l'],
+		['Folder 4', 'aui-icon-arrowthick-1-t'],
+		['Folder 4', 'aui-icon-arrowthick-1-tr'],
+		['Folder 4', 'aui-icon-arrowthick-1-r'],
+		['Folder 4', 'aui-icon-arrowthick-1-br'],
+		['Folder 4', 'aui-icon-arrowthick-1-b'],
+		['Folder 5', 'aui-icon-arrowthick-1-bl'],
+		['Folder 5', 'aui-icon-arrowthick-1-l'],
+		['Folder 5', 'aui-icon-arrowthick-1-tl'],
+		['Folder 5', 'aui-icon-arrowthick-2-t-b'],
+		['Folder 5', 'aui-icon-arrowthick-2-tr-bl'],
+		['Folder 5', 'aui-icon-arrowthick-2-r-l'],
+		['Folder 5', 'aui-icon-arrowthick-2-br-tl'],
+		['Folder 5', 'aui-icon-arrowthickstop-1-t'],
+		['Folder 5', 'aui-icon-arrowthickstop-1-r'],
+		['Folder 5', 'aui-icon-arrowthickstop-1-b'],
+		['Folder 6', 'aui-icon-arrowthickstop-1-l'],
+		['Folder 6', 'aui-icon-arrowreturnthick-1-l'],
+		['Folder 6', 'aui-icon-arrowreturnthick-1-t'],
+		['Folder 6', 'aui-icon-arrowreturnthick-1-r'],
+		['Folder 6', 'aui-icon-arrowreturnthick-1-b'],
+		['Folder 6', 'aui-icon-arrowreturn-1-l'],
+		['Folder 6', 'aui-icon-arrowreturn-1-t'],
+		['Folder 6', 'aui-icon-arrowreturn-1-r'],
+		['Folder 6', 'aui-icon-arrowreturn-1-b'],
+		['Folder 6', 'aui-icon-arrowrefresh-1-l'],
+		['Folder 7', 'aui-icon-arrowrefresh-1-t'],
+		['Folder 7', 'aui-icon-arrowrefresh-1-r'],
+		['Folder 7', 'aui-icon-arrowrefresh-1-b'],
+		['Folder 7', 'aui-icon-arrow-4'],
+		['Folder 7', 'aui-icon-arrow-4-diag'],
+		['Folder 7', 'aui-icon-extlink'],
+		['Folder 7', 'aui-icon-newwin'],
+		['Folder 7', 'aui-icon-refresh'],
+		['Folder 7', 'aui-icon-shuffle'],
+		['Folder 7', 'aui-icon-transfer-r-l'],
+		['Folder 8', 'aui-icon-transferthick-r-l'],
+		['Folder 8', 'aui-icon-folder-collapsed'],
+		['Folder 8', 'aui-icon-folder-open'],
+		['Folder 8', 'aui-icon-document'],
+		['Folder 8', 'aui-icon-document-b'],
+		['Folder 8', 'aui-icon-note'],
+		['Folder 8', 'aui-icon-mail-closed'],
+		['Folder 8', 'aui-icon-mail-open'],
+		['Folder 8', 'aui-icon-suitcase'],
+		['Folder 8', 'aui-icon-comment'],
+		['Folder 9', 'aui-icon-person'],
+		['Folder 9', 'aui-icon-print'],
+		['Folder 9', 'aui-icon-trash'],
+		['Folder 9', 'aui-icon-locked'],
+		['Folder 9', 'aui-icon-unlocked'],
+		['Folder 9', 'aui-icon-bookmark'],
+		['Folder 9', 'aui-icon-tag'],
+		['Folder 9', 'aui-icon-home'],
+		['Folder 9', 'aui-icon-flag'],
+		['Folder 9', 'aui-icon-calendar'],
+		['Folder 9', 'aui-icon-cart'],
+		['Folder 10', 'aui-icon-pencil'],
+		['Folder 10', 'aui-icon-clock'],
+		['Folder 10', 'aui-icon-disk'],
+		['Folder 10', 'aui-icon-calculator'],
+		['Folder 10', 'aui-icon-zoomin'],
+		['Folder 10', 'aui-icon-zoomout'],
+		['Folder 10', 'aui-icon-search'],
+		['Folder 10', 'aui-icon-wrench'],
+		['Folder 10', 'aui-icon-gear'],
+		['Folder 10', 'aui-icon-heart'],
+		['Folder 11', 'aui-icon-star'],
+		['Folder 11', 'aui-icon-link'],
+		['Folder 11', 'aui-icon-cancel'],
+		['Folder 11', 'aui-icon-plus'],
+		['Folder 11', 'aui-icon-plusthick'],
+		['Folder 11', 'aui-icon-minus'],
+		['Folder 11', 'aui-icon-minusthick'],
+		['Folder 11', 'aui-icon-close'],
+		['Folder 11', 'aui-icon-closethick'],
+		['Folder 11', 'aui-icon-key'],
+		['Folder 12', 'aui-icon-lightbulb'],
+		['Folder 12', 'aui-icon-scissors'],
+		['Folder 12', 'aui-icon-clipboard'],
+		['Folder 12', 'aui-icon-copy'],
+		['Folder 12', 'aui-icon-contact'],
+		['Folder 12', 'aui-icon-image'],
+		['Folder 12', 'aui-icon-video'],
+		['Folder 12', 'aui-icon-script'],
+		['Folder 12', 'aui-icon-alert'],
+		['Folder 12', 'aui-icon-info'],
+		['Folder 13', 'aui-icon-notice'],
+		['Folder 13', 'aui-icon-help'],
+		['Folder 13', 'aui-icon-check'],
+		['Folder 13', 'aui-icon-bullet'],
+		['Folder 13', 'aui-icon-radio-off'],
+		['Folder 13', 'aui-icon-radio-on'],
+		['Folder 13', 'aui-icon-pin-l'],
+		['Folder 13', 'aui-icon-pin-b'],
+		['Folder 13', 'aui-icon-play'],
+		['Folder 13', 'aui-icon-pause'],
+		['Folder 14', 'aui-icon-seek-next'],
+		['Folder 14', 'aui-icon-seek-prev'],
+		['Folder 14', 'aui-icon-seek-end'],
+		['Folder 14', 'aui-icon-seek-first'],
+		['Folder 14', 'aui-icon-stop'],
+		['Folder 14', 'aui-icon-eject'],
+		['Folder 14', 'aui-icon-volume-off'],
+		['Folder 14', 'aui-icon-volume-on'],
+		['Folder 14', 'aui-icon-power'],
+		['Folder 14', 'aui-icon-signal-diag'],
+		['Folder 15', 'aui-icon-signal'],
+		['Folder 15', 'aui-icon-battery-0'],
+		['Folder 15', 'aui-icon-battery-1'],
+		['Folder 15', 'aui-icon-battery-2'],
+		['Folder 15', 'aui-icon-battery-3'],
+		['Folder 15', 'aui-icon-circle-plus'],
+		['Folder 15', 'aui-icon-circle-minus'],
+		['Folder 15', 'aui-icon-circle-close'],
+		['Folder 15', 'aui-icon-circle-triangle-r'],
+		['Folder 15', 'aui-icon-circle-triangle-b'],
+		['Folder 15', 'aui-icon-circle-triangle-t'],
+		['Folder 16', 'aui-icon-circle-arrow-r'],
+		['Folder 16', 'aui-icon-circle-arrow-b'],
+		['Folder 16', 'aui-icon-circle-arrow-l'],
+		['Folder 16', 'aui-icon-circle-arrow-t'],
+		['Folder 16', 'aui-icon-circle-zoomin'],
+		['Folder 16', 'aui-icon-circle-zoomout'],
+		['Folder 16', 'aui-icon-circle-check'],
+		['Folder 16', 'aui-icon-circlesmall-plus'],
+		['Folder 16', 'aui-icon-circlesmall-minus'],
+		['Folder 16', 'aui-icon-circlesmall-close'],
+		['Folder 16', 'aui-icon-squaresmall-plus'],
+		['Folder 17', 'aui-icon-squaresmall-minus'],
+		['Folder 17', 'aui-icon-squaresmall-close'],
+		['Folder 17', 'aui-icon-grip-dotted-vertical'],
+		['Folder 17', 'aui-icon-grip-dotted-horizontal'],
+		['Folder 17', 'aui-icon-grip-solid-vertical'],
+		['Folder 17', 'aui-icon-grip-solid-horizontal'],
+		['Folder 17', 'aui-icon-gripsmall-diagonal-br'],
+		['Folder 17', 'aui-icon-grip-diagonal-br']
+	];
+
+	var component = new A.DataBrowser(
+		{
+			width: 300,
+			height: 300,
+			contentBox: '#demo',
+			displayName: false,
+			autoLoad: false,
+			searchView: {
+				dataSource: icons,
+				schema: {
+					resultFields: ['folderName', 'iconCss']
+				}
+			},
+			treeView: {
+				dataSource: gallery
+			},
+			on: {
+				itemSelected: function(event) {
+					console.log('itemSelected', event);
+				},
+				dataReturn: function(event) {
+					var instance = this;
+
+					var results = event.response.results;
+					var query = event.request;
+
+					if (instance.get('currentView') == 'search') {
+						var data = [];
+
+						for (var i = 0; i < results.length; i++) {
+							if (query == '*' || query == '' || results[i].iconCss.toLowerCase().indexOf(query.toLowerCase()) != -1) {
+								var item = results[i];
+
+								item.name = results[i].iconCss;
+								item.title = results[i].iconCss;
+
+								results[i].iconCss += ' aui-icon'; 
+
+								data.push(item);
+							}
+						}
+
+						event.response.results = data;
+					}
+					else {
+						var cfg = event.cfg;
+						var data = event.data;
+
+						var results = [];
+
+						if (cfg.folderId) {
+							var folderId = cfg.folderId;
+
+							function findFolder(data, id) {
+								var folder = null;
+
+								for (var i in data) {
+									if (data[i].folderId == id) {
+										folder = data[i];
+										break;
+									}
+
+									if (data[i].children) {
+										folder = findFolder(data[i].children, id);
+
+										if (folder) {
+											break;
+										}
+									}
+								}
+
+								return folder;
+							}
+
+							var folder = findFolder(data, folderId);
+
+							if (folder) {
+								results = folder.children;
+							}
+						}
+						else {
+							for (var i in data) {
+								var folder = A.mix({}, data[i]);
+			
+								folder.leaf = false;
+								folder.children = [];
+
+								results.push(folder);
+							}
+						}
+
+						event.response.results = results;
+					}
+				}
+			}
+		}
+	).render();
+});
+
+</script>
+
+</body>
+</html>
