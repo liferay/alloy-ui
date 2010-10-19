@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 /**
  * The YUI module contains the components required for building the YUI seed
  * file.  This includes the script loading mechanism, a simple queue, and
@@ -16,7 +23,16 @@ if (typeof YUI != 'undefined') {
  * namespaces are preserved.  It is the constructor for the object
  * the end user interacts with.  As indicated below, each instance
  * has full custom event support, but only if the event system
- * is available.
+ * is available.  This is a self-instantiable factory function.  You
+ * can invoke it directly like this:
+ *
+ * YUI().use('*', function(Y) {
+ *   // ready
+ * });
+ *
+ * But it also works like this:
+ *
+ * var Y = YUI();
  *
  * @class YUI
  * @constructor
@@ -51,9 +67,10 @@ if (typeof YUI != 'undefined') {
                 Y.applyConfig(YUI.GlobalConfig);
             }
 
-            // YUI_Config is a page-level config.  It is applied to all instances
-            // created on the page.  This is applied after YUI.GlobalConfig, and
-            // before the instance level configuration objects.
+            // YUI_Config is a page-level config.  It is applied to all
+            // instances created on the page.  This is applied after
+            // YUI.GlobalConfig, and before the instance level configuration
+            // objects.
             if (gconf) {
                 Y.applyConfig(gconf);
             }
@@ -65,9 +82,10 @@ if (typeof YUI != 'undefined') {
         }
 
         if (l) {
-            // Each instance can accept one or more configuration objects.  These
-            // are applied after YUI.GlobalConfig and YUI_Config, overriding values
-            // set in those config files if there is a matching property.
+            // Each instance can accept one or more configuration objects.
+            // These are applied after YUI.GlobalConfig and YUI_Config,
+            // overriding values set in those config files if there is a '
+            // matching property.
             for (; i < l; i++) {
                 Y.applyConfig(args[i]);
             }
@@ -83,7 +101,7 @@ if (typeof YUI != 'undefined') {
 (function() {
 
     var proto, prop,
-        VERSION = '@VERSION@',
+        VERSION = '3.2.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         DOC_LABEL = 'yui3-js-enabled',
@@ -766,8 +784,11 @@ proto = {
             loader.onEnd = handleLoader;
             loader.context = Y;
             loader.data = args;
-            loader.require((fetchCSS) ? missing : args);
+            loader.ignoreRegistered = false;
+            loader.require(args);
             loader.insert(null, (fetchCSS) ? null : 'js');
+            // loader.partial(missing, (fetchCSS) ? null : 'js');
+
         } else if (len && Y.config.use_rls) {
 
             // server side loader service
@@ -1514,6 +1535,7 @@ NULL = 'null',
 OBJECT = 'object',
 REGEX = 'regexp',
 STRING = 'string',
+STRING_PROTO = String.prototype,
 TOSTRING = Object.prototype.toString,
 UNDEFINED = 'undefined',
 
@@ -1544,7 +1566,7 @@ SUBREGEX = /\{\s*([^\|\}]+?)\s*(?:\|([^\}]*))?\s*\}/g;
  * @param o The object to test.
  * @return {boolean} true if o is an array.
  */
-L.isArray = function(o) {
+L.isArray = Array.isArray || function(o) {
     return L.type(o) === ARRAY;
 };
 
@@ -1667,12 +1689,40 @@ L.isUndefined = function(o) {
  * @param s {string} the string to trim.
  * @return {string} the trimmed string.
  */
-L.trim = function(s) {
+L.trim = STRING_PROTO.trim ? function(s) {
+    return (s && s.trim) ? s.trim() : s;
+} : function (s) {
     try {
         return s.replace(TRIMREGEX, EMPTYSTRING);
     } catch (e) {
         return s;
     }
+};
+
+/**
+ * Returns a string without any leading whitespace.
+ * @method trimLeft
+ * @static
+ * @param s {string} the string to trim.
+ * @return {string} the trimmed string.
+ */
+L.trimLeft = STRING_PROTO.trimLeft ? function (s) {
+    return s.trimLeft();
+} : function (s) {
+    return s.replace(/^s+/, '');
+};
+
+/**
+ * Returns a string without any trailing whitespace.
+ * @method trimRight
+ * @static
+ * @param s {string} the string to trim.
+ * @return {string} the trimmed string.
+ */
+L.trimRight = STRING_PROTO.trimRight ? function (s) {
+    return s.trimRight();
+} : function (s) {
+    return s.replace(/s+$/, '');
 };
 
 /**
@@ -1738,6 +1788,16 @@ L.sub = function(s, o) {
     return ((s.replace) ? s.replace(SUBREGEX, function(match, key) {
         return (!L.isUndefined(o[key])) ? o[key] : match;
     }) : s);
+};
+
+/**
+ * Returns the current time in milliseconds.
+ * @method now
+ * @return {int} the current date
+ * @since 3.3.0
+ */
+L.now = Date.now || function () {
+  return new Date().getTime();
 };
 
 /**
@@ -2216,19 +2276,18 @@ Y.cached = function(source, cache, refetch) {
 
 /**
  * Y.Object(o) returns a new object based upon the supplied object.
- * @todo Use native Object.create() when available
  * @method ()
  * @static
  * @param o the supplier object.
  * @return {Object} the new object.
  */
-Y.Object = function(o) {
-    var F = function() {};
+var F = function() {},
+
+O = Object.create || function(o) {
     F.prototype = o;
     return new F();
-};
+},
 
-var O = Y.Object,
 
 owns = function(o, k) {
     return o && o.hasOwnProperty && o.hasOwnProperty(k);
@@ -2263,39 +2322,38 @@ _extract = function(o, what) {
     return out;
 };
 
+Y.Object = O;
+
 /**
  * Returns an array containing the object's keys
- * @todo use native Object.keys() if available
  * @method keys
  * @static
  * @param o an object.
  * @return {string[]} the keys.
  */
-O.keys = function(o) {
+O.keys = Object.keys || function(o) {
     return _extract(o);
 };
 
 /**
  * Returns an array containing the object's values
- * @todo use native Object.values() if available
  * @method values
  * @static
  * @param o an object.
  * @return {Array} the values.
  */
-O.values = function(o) {
+O.values = Object.values || function(o) {
     return _extract(o, 1);
 };
 
 /**
  * Returns the size of an object
- * @todo use native Object.size() if available
  * @method size
  * @static
  * @param o an object.
  * @return {int} the size.
  */
-O.size = function(o) {
+O.size = Object.size || function(o) {
     return _extract(o, 2);
 };
 
@@ -2750,4 +2808,4 @@ Y.UA = YUI.Env.UA || function() {
 }();
 
 
-}, '@VERSION@' );
+}, '3.2.0' );

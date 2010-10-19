@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 YUI.add('event-mousewheel', function(Y) {
 
 /**
@@ -47,4 +54,4 @@ Y.Env.evt.plugins.mousewheel = {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});

@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 YUI.add('dd-ddm-drop', function(Y) {
 
 
@@ -408,4 +415,4 @@ YUI.add('dd-ddm-drop', function(Y) {
 
 
 
-}, '@VERSION@' ,{requires:['dd-ddm'], skinnable:false});
+}, '3.2.0' ,{requires:['dd-ddm'], skinnable:false});

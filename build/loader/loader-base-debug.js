@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 YUI.add('loader-base', function(Y) {
 
 /**
@@ -1821,7 +1828,12 @@ Y.log('Undefined module: ' + mname + ', matched a pattern: ' +
 
     // },
 
-    _insert: function(source, o, type) {
+    partial: function(partial, o, type) {
+        this.sorted = partial;
+        this.insert(o, type, true);
+    },
+
+    _insert: function(source, o, type, skipcalc) {
 
 // Y.log('private _insert() ' + (type || '') + ', ' + Y.id, "info", "loader");
 
@@ -1833,7 +1845,9 @@ Y.log('Undefined module: ' + mname + ', matched a pattern: ' +
         // build the dependency list
         // don't include type so we can process CSS and script in
         // one pass when the type is not specified.
-        this.calculate(o);
+        if (!skipcalc) {
+            this.calculate(o);
+        }
 
         this.loadType = type;
 
@@ -1902,14 +1916,14 @@ Y.log('Undefined module: ' + mname + ', matched a pattern: ' +
      * @param {object} o optional options object.
      * @param {string} type the type of dependency to insert.
      */
-    insert: function(o, type) {
+    insert: function(o, type, skipsort) {
         // Y.log('public insert() ' + (type || '') + ', ' +
         //  Y.Object.keys(this.required), "info", "loader");
         var self = this, copy = Y.merge(this);
         delete copy.require;
         delete copy.dirty;
         _queue.add(function() {
-            self._insert(copy, o, type);
+            self._insert(copy, o, type, skipsort);
         });
         this._continue();
     },
@@ -2220,4 +2234,4 @@ Y.log('attempting to load ' + s[i] + ', ' + this.base, 'info', 'loader');
 
 
 
-}, '@VERSION@' ,{requires:['get']});
+}, '3.2.0' ,{requires:['get']});

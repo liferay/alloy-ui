@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 YUI.add('event-focus', function(Y) {
 
 /**
@@ -145,4 +152,4 @@ if (useActivate) {
 }
 
 
-}, '@VERSION@' ,{requires:['event-synthetic']});
+}, '3.2.0' ,{requires:['event-synthetic']});

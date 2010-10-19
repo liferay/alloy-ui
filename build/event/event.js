@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 var GLOBAL_ENV = YUI.Env;
 
 if (!GLOBAL_ENV._ready) {
@@ -160,8 +167,9 @@ Y.extend(DOMEventFacade, Object, {
 
         this.keyCode = c;
         this.charCode = c;
-        this.button = e.which || e.button;
-        this.which = this.button;
+        this.which = e.which;
+        this.button = e.button;
+
         this.target = resolve(e.target);
         this.currentTarget = resolve(currentTarget);
         this.relatedTarget = resolve(e.relatedTarget);
@@ -1220,11 +1228,13 @@ Event._poll();
 
 /**
  * Executes the callback as soon as the specified element
- * is detected in the DOM.
+ * is detected in the DOM.  This function expects a selector
+ * string for the element(s) to detect.  If you already have
+ * an element reference, you don't need this event.
  * @event available
  * @param type {string} 'available'
  * @param fn {function} the callback function to execute.
- * @param el {string|HTMLElement|collection} the element(s) to attach
+ * @param el {string} an selector for the element(s) to attach
  * @param context optional argument that specifies what 'this' refers to.
  * @param args* 0..n additional arguments to pass on to the callback function.
  * These arguments will be added after the event object.
@@ -1241,11 +1251,14 @@ Y.Env.evt.plugins.available = {
 /**
  * Executes the callback as soon as the specified element
  * is detected in the DOM with a nextSibling property
- * (indicating that the element's children are available)
+ * (indicating that the element's children are available).
+ * This function expects a selector
+ * string for the element(s) to detect.  If you already have
+ * an element reference, you don't need this event.
  * @event contentready
  * @param type {string} 'contentready'
  * @param fn {function} the callback function to execute.
- * @param el {string|HTMLElement|collection} the element(s) to attach
+ * @param el {string} an selector for the element(s) to attach.
  * @param context optional argument that specifies what 'this' refers to.
  * @param args* 0..n additional arguments to pass on to the callback function.
  * These arguments will be added after the event object.
@@ -1260,7 +1273,7 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '@VERSION@' ,{requires:['event-custom-base']});
+}, '3.2.0' ,{requires:['event-custom-base']});
 YUI.add('event-delegate', function(Y) {
 
 /**
@@ -1530,7 +1543,7 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});
 YUI.add('event-synthetic', function(Y) {
 
 /**
@@ -2258,7 +2271,7 @@ Y.Event.define = function (type, config, force) {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base', 'event-custom']});
+}, '3.2.0' ,{requires:['node-base', 'event-custom']});
 YUI.add('event-mousewheel', function(Y) {
 
 /**
@@ -2308,7 +2321,7 @@ Y.Env.evt.plugins.mousewheel = {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});
 YUI.add('event-mouseenter', function(Y) {
 
 /**
@@ -2370,7 +2383,7 @@ Y.Event.define("mouseenter", config, true);
 Y.Event.define("mouseleave", Y.merge(config, { proxyType: "mouseout" }), true);
 
 
-}, '@VERSION@' ,{requires:['event-synthetic']});
+}, '3.2.0' ,{requires:['event-synthetic']});
 YUI.add('event-key', function(Y) {
 
 /**
@@ -2469,7 +2482,7 @@ Y.Env.evt.plugins.key = {
 };
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});
 YUI.add('event-focus', function(Y) {
 
 /**
@@ -2617,7 +2630,7 @@ if (useActivate) {
 }
 
 
-}, '@VERSION@' ,{requires:['event-synthetic']});
+}, '3.2.0' ,{requires:['event-synthetic']});
 YUI.add('event-resize', function(Y) {
 
 /**
@@ -2681,8 +2694,8 @@ Y.Env.evt.plugins.windowresize = {
 })();
 
 
-}, '@VERSION@' ,{requires:['node-base']});
+}, '3.2.0' ,{requires:['node-base']});
 
 
-YUI.add('event', function(Y){}, '@VERSION@' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize']});
+YUI.add('event', function(Y){}, '3.2.0' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize']});
 

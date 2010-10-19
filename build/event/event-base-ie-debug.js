@@ -1,3 +1,10 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.2.0
+build: nightly
+*/
 
 (function() {
 
@@ -88,6 +95,19 @@ Y.extend(IEEventFacade, Y.DOM2EventFacade, {
 
         this.relatedTarget = resolve(t);
 
+        switch (e.button) {
+            case 2:
+                this.which = 3;
+                break;
+            case 4:
+                this.which = 2;
+                break;
+            default:
+                this.which = e.button;
+        }
+
+        this.button = this.which;
+
     },
 
     stopPropagation: function() {
@@ -114,4 +134,4 @@ Y.extend(IEEventFacade, Y.DOM2EventFacade, {
 Y.DOMEventFacade = IEEventFacade;
 
 
-}, '@VERSION@' );
+}, '3.2.0' );

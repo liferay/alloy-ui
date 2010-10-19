@@ -70,14 +70,14 @@
 			background: #000;
 			width: 333px;
 			height: 500px;
-			position: relative;
+			position: absolute;
 		}
 
 		#cropper {
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: 100px;
+			width: 200px;
 			height: 100px;
 			border: 1px dashed #fff;
 			background: url(../demos/image-viewer/assets/lfr-soccer-4.jpg) no-repeat;
@@ -118,18 +118,18 @@ AUI().ready(
 			}
 		};
 
-		var drag = new A.DD.Drag({
-			node: cropper
-		})
-		.plug(A.Plugin.DDConstrained, {
-			constrain2node: '#container'
-		});
-
-		drag.on('drag:drag', function(event){
-			var xy = event.info.xy;
-
-			syncBackground(xy[0], xy[1]);
-		});
+		// var drag = new A.DD.Drag({
+		// 	node: cropper
+		// })
+		// .plug(A.Plugin.DDConstrained, {
+		// 	constrain2node: '#container'
+		// });
+		//
+		// drag.on('drag:drag', function(event){
+		// 	var xy = event.info.xy;
+		//
+		// 	syncBackground(xy[0], xy[1]);
+		// });
 
 		var resize = new A.Resize({
 			node: cropper,
@@ -139,27 +139,28 @@ AUI().ready(
 		resize.plug(
 			A.Plugin.ResizeConstrained,
 			{
+				preserveRatio: true,
 				minWidth: 100,
 				minHeight: 100,
 				constrain: '#container'
 			}
 		);
 
-		resize.on('resize', function(event) {
-			var info = event.info;
-
-			if (!this.get('proxy')) {
-				syncBackground(info.left, info.top);
-			}
-		});
-
-		resize.on('resize:end', function(event) {
-			var info = event.info;
-
-			if (this.get('proxy')) {
-				syncBackground(info.left, info.top);
-			}
-		});
+		// resize.on('resize', function(event) {
+		// 	var info = event.info;
+		// 
+		// 	if (!this.get('proxy')) {
+		// 		syncBackground(info.left, info.top);
+		// 	}
+		// });
+		// 
+		// resize.on('resize:end', function(event) {
+		// 	var info = event.info;
+		// 
+		// 	if (this.get('proxy')) {
+		// 		syncBackground(info.left, info.top);
+		// 	}
+		// });
 
 		syncBackground(0, 0);
 	}
