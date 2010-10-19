@@ -9,7 +9,7 @@ var Lang = A.Lang,
 
 	EMPTY_STR = '',
 
-	DOCUMENT = 'document',
+	DOC = A.config.doc,
 	FIRST_CHILD = 'firstChild',
 	INNER_HTML = 'innerHTML',
 	NODE_VALUE = 'nodeValue',
@@ -67,19 +67,20 @@ A.mix(
 		// inspired from Google unescape entities
 		unescapeEntities: function(str) {
 			if (LString.contains(str, '&')) {
-				if ((DOCUMENT in A.getWin().getDOM()) && !LString.contains(str, '<')) {
-					return LString._unescapeEntitiesUsingDom(str);
+				if (DOC && !LString.contains(str, '<')) {
+					str = LString._unescapeEntitiesUsingDom(str);
 				}
 				else {
 					// Fall back on pure XML entities
-					return LString._unescapeXmlEntities(str);
+					str = LString._unescapeXmlEntities(str);
 				}
 			}
+
 			return str;
 		},
 
 		_unescapeEntitiesUsingDom: function(str) {
-			var el = LString._unescapeNode.getDOM();
+			var el = LString._unescapeNode;
 
 			el[INNER_HTML] = str;
 
@@ -88,7 +89,9 @@ A.mix(
 			}
 
 			str = el.firstChild.nodeValue;
+
 			el[INNER_HTML] = EMPTY_STR;
+
 			return str;
 		},
 
@@ -106,6 +109,7 @@ A.mix(
 					default:
 						if (entity.charAt(0) == '#') {
 							var n = Number('0' + entity.substr(1));
+
 							if (!isNaN(n)) {
 								return String.fromCharCode(n);
 							}
@@ -116,7 +120,7 @@ A.mix(
 			});
 		},
 
-		_unescapeNode: A.Node.create('<a></a>')
+		_unescapeNode: DOC.createElement('a')
 	}
 );
 
