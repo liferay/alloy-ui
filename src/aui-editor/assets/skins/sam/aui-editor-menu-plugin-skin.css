@@ -1,0 +1,25 @@
+.aui-editormenu {
+	background-color: #fff;
+}
+
+.aui-editormenu-content-text {
+	font-size: 1.1em;
+	font-weight: bold;
+	background-color: #ddd;
+	padding: 3px;
+	margin-bottom: 1px;
+}
+
+.aui-editormenu-content-item {
+	border: 1px solid #eee;
+	background-color: #eee;
+	margin: 1px;
+	padding: 3px;
+	cursor: pointer;
+}
+
+.aui-editormenu-content-item:hover {
+	color: #0066cc;
+	border: 1px solid #316ac5;
+	background-color: #dff1ff;
+}
