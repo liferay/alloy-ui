@@ -337,14 +337,10 @@
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
 
 		<copy todir="${project.dir}/lib/yui3" overwrite="true">
-			<fileset dir="${project.dir}/lib/patches" includes="**/*.*" />
+			<fileset dir="${project.dir}/lib/patches/yui3" includes="**/*.*" />
 		</copy>
 
 		<!-- Patch for dd -->
-		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
-			<replacefilter token="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')), { standAlone: true });" value="node.on(GESTURE_MOVE, Y.throttle(Y.bind(DDM._move, DDM), DDM.get('throttleTime')));" />
-		</replace>
-
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
 			<fileset
@@ -352,6 +348,43 @@
 				includes="build.xml"
 			/>
 		</subant>
+
+		<!-- Patch for event -->
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/event"
+				includes="build.xml"
+			/>
+		</subant>
+		
+		<!-- Patch for loader -->
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/loader"
+				includes="build.xml"
+			/>
+		</subant>
+		
+		<!-- Patch for simpleyui -->
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/simpleyui"
+				includes="build.xml"
+			/>
+		</subant>
+
+		<!-- Patch for yui -->
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/yui"
+				includes="build.xml"
+			/>
+		</subant>
+
 		<!-- /End Patch -->
 
 		<!-- Patch for AUI-153 -->

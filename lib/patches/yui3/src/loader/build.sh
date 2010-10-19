@@ -1,0 +1,2 @@
+#!/bin/sh
+ant all

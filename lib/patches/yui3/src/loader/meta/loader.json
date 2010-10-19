@@ -1,0 +1,21 @@
+{
+    "loader": {
+        "submodules": {
+            "loader-base": {
+                "requires": [
+                    "get"
+                ],
+            },
+            "loader-rollup": {
+                "requires": [
+                    "loader-base"
+                ]
+            },
+            "loader-yui3": {
+                "requires": [
+                    "loader-base"
+                ]
+            }
+        }
+    }
+}
