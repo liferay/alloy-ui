@@ -9,7 +9,7 @@ var Lang = A.Lang,
 
 	NAME = 'databrowser',
 	SEARCH_VIEW = 'searchView',
-	TREE_VIEW = 'treeView'
+	TREE_VIEW = 'treeView',
 
 	ALERT = 'alert',
 	ICON = 'icon',
@@ -25,6 +25,17 @@ var Lang = A.Lang,
 	ICON_DEFAULT = 'search',
 	ICON_ERROR = ALERT,
 	ICON_LOADING = LOADING,
+
+	addLeafClass = function(results) {
+		for (var i in results) {
+			if (results[i].children || (results[i].leaf != undefined && !results[i].leaf)) {
+				addLeafClass(results[i].children);
+			}
+			else {
+				results[i].cssClass = (results[i].cssClass ? ' ' : '') + CSS_RESULTS_ITEM;
+			}
+		}
+	},
 
 	isResultItem = function(node) {
 		return node.hasClass(CSS_RESULTS_ITEM);
@@ -278,13 +289,14 @@ var DataBrowser = A.Component.create(
 				var currentView = instance.get('currentView');
 
 				var iconClass = null;
+				var button;
 
 				if (event.error) {
 					iconClass = ICON_ERROR;
 				}
 
 				if (currentView == SEARCH) {
-					var button = instance.buttonSearch;
+					button = instance.buttonSearch;
 
 					if (!event.error) {
 						iconClass = ICON_DEFAULT;
@@ -296,7 +308,7 @@ var DataBrowser = A.Component.create(
 					button.set(ICON, iconClass);
 				}
 				else if (currentView == TREE) {
-					var button = instance.buttonTree;
+					button = instance.buttonTree;
 
 					if (button) {
 						if (!event.error) {
@@ -416,29 +428,20 @@ var DataBrowser = A.Component.create(
 					var request = {
 						cfg: (!isTreeView(node) ? node._originalConfig : null),
 						callback: {
-							success: A.bind(
-								function(event) {
-									var instance = this;
+							failure: function(event) {
+								instance._handleResponse(event);
+							},
 
-									instance._populateTreeView(
-										A.mix(
-											event,
-											{
-												node: node
-											}
-										)
-									);
-								},
-								instance
-							),
-							failure: A.bind(
-								function(event) {
-									var instance = this;
-
-									instance._handleResponse(event);
-								},
-								instance
-							)
+							success: function(event) {
+								instance._populateTreeView(
+									A.mix(
+										event,
+										{
+											node: node
+										}
+									)
+								);
+							}
 						}
 					};
 
@@ -493,14 +496,11 @@ var DataBrowser = A.Component.create(
 
 				var keyCode = event.keyCode;
 
-				switch (keyCode) {
-					case KEY_ENTER:
-						instance._generateQuery(event);
-					break;
-
-					default:
-						instance.fire('textboxKey', keyCode);
-					break;
+				if (keyCode == KEY_ENTER) {
+					instance._generateQuery(event);
+				}
+				else {
+					instance.fire('textboxKey', keyCode);
 				}
 
 				instance._keyCode = keyCode;
@@ -567,7 +567,7 @@ var DataBrowser = A.Component.create(
 									name: '',
 									data: unsorted
 								}
-							)
+							);
 						}
 					}
 					else {
@@ -650,17 +650,6 @@ var DataBrowser = A.Component.create(
 					var allResults = response.results;
 
 					if (allResults.length > 0) {
-						function addLeafClass(results) {
-							for (var i in results) {
-								if (results[i].children || (results[i].leaf != undefined && !results[i].leaf)) {
-									addLeafClass(results[i].children);
-								}
-								else {
-									results[i].cssClass = (results[i].cssClass ? ' ' : '') + CSS_RESULTS_ITEM;
-								}
-							}
-						}
-
 						addLeafClass(allResults);
 
 						var rootLabel = instance.get('rootLabel');
@@ -797,37 +786,22 @@ var DataBrowser = A.Component.create(
 					if (comboBox) {
 						var comboBoxEl = comboBox.get(BOUNDING_BOX);
 
-						comboBoxOffset += (
-							parseFloat(comboBoxEl.getComputedStyle('marginTop')) +
-							parseFloat(comboBoxEl.getComputedStyle('borderTopWidth')) +
-							comboBoxEl.getDOM().offsetHeight +
-							parseFloat(comboBoxEl.getComputedStyle('borderBottomWidth')) +
-							parseFloat(comboBoxEl.getComputedStyle('marginBottom'))
-						);
+						comboBoxOffset += comboBoxEl.getBorderWidth('tb') + comboBoxEl.getMargin('tb') + comboBoxEl.get('offsetHeight');
 					}
 
-					var scrollHeight = parseInt(instance.get('height')) - comboBoxOffset;
+					var scrollHeight = parseInt(instance.get('height'), 10) - comboBoxOffset;
+					var padding;
 
 					if (searchViewEl) {
-						var padding = (
-								parseFloat(searchViewEl.getComputedStyle('borderTopWidth')) +
-								parseFloat(searchViewEl.getComputedStyle('paddingTop')) +
-								parseFloat(searchViewEl.getComputedStyle('paddingBottom')) +
-								parseFloat(searchViewEl.getComputedStyle('borderBottomWidth'))
-							);
+						padding = searchViewEl.getBorderWidth('tb') + searchViewEl.getPadding('tb');
 
-						searchViewEl.setStyle('height', (scrollHeight - padding) + 'px');
+						searchViewEl.setStyle('height', (scrollHeight - padding));
 					}
 
 					if (treeViewEl) {
-						var padding = (
-								parseFloat(treeViewEl.getComputedStyle('borderTopWidth')) +
-								parseFloat(treeViewEl.getComputedStyle('paddingTop')) +
-								parseFloat(treeViewEl.getComputedStyle('paddingBottom')) +
-								parseFloat(treeViewEl.getComputedStyle('borderBottomWidth'))
-							);
+						padding = treeViewEl.getBorderWidth('tb') + treeViewEl.getPadding('tb');
 
-						treeViewEl.setStyle('height', (scrollHeight - padding) + 'px');
+						treeViewEl.setStyle('height', (scrollHeight - padding));
 					}
 				}
 			},
