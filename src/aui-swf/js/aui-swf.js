@@ -226,7 +226,7 @@ var SWF = A.Component.create(
 			_eventHandler: function(event) {
 				var instance = this;
 
-				var eventType = event.type;
+				var eventType = event.type.replace(/Event$/, '');
 
 				if (eventType != 'log') {
 					instance.fire(eventType, event);
