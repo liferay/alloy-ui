@@ -1294,7 +1294,7 @@ GROUPS[SOURCE] = {
 
 								var parent = node.get('parentNode');
 
-								if (!parent.test('body')) {
+								if (parent && !parent.test('body')) {
 									parent.removeAttribute('style');
 								}
 							}
@@ -1436,10 +1436,10 @@ var Lang = A.Lang,
 	TPL_HTML_STYLE =  '<(([a-z0-9]+)\\b[^>]*?style=("|\')[^:]*{0}\\s*:\\s*([^;"\']+);?[^>]*)>([\\s\\S]*?)<(/\\2)>',
 	TPL_HTML_TAGS = '(<[a-z0-9]+[^>]*>|</[a-z0-9]+>)',
 	TPL_QUOTE_CONTENT = '<div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
-	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div><div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
+	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
-	TPL_UBB_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
-	TPL_UBB_GENERIC = '\\[({0}[^\\[]*)\\]([\\s\\S]*?)\\[\\/{0}\\]',
+	TPL_UBB_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/\\2\\]',
+	TPL_UBB_GENERIC = '\\[({0}[^\\[]*)\\]([\\s\\S]*?)\\[\\/\\1\\]',
 
 	HTML_UBB = [
 		{
@@ -1487,6 +1487,30 @@ var Lang = A.Lang,
 			],
 			regExp: TPL_HTML_STYLE,
 			output: '<$1>[$4]$5[/$4]<$6>'
+		},
+		{
+			convert: [
+				['text-decoration']
+			],
+			regExp: TPL_HTML_STYLE,
+			output: function() {
+				var tags = '';
+
+				var attr = arguments[4].toLowerCase();
+
+				if (attr.indexOf('underline') != -1) {
+					tags += '[u]';
+				}
+				else if (attr.indexOf('line-through') != -1) {
+					tags += '[s]';
+				}
+
+				if (tags != '') {
+					return '<' + arguments[1] + '>' + tags + arguments[5] + tags.replace('[', '[/') + '<' + arguments[6] + '>';
+				}
+
+				return arguments[0];
+			}
 		},
 		{
 			convert: [
@@ -1898,6 +1922,8 @@ var BBCodePlugin = A.Component.create(
 					html = instance._parseTagExpressions(UBB_HTML, html);
 
 					event.newVal = html;
+
+					event.stopImmediatePropagation();
 				},
 
 				_parseTagExpressions: function(options, html) {

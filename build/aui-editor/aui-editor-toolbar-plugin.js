@@ -873,7 +873,7 @@ GROUPS[SOURCE] = {
 
 								var parent = node.get('parentNode');
 
-								if (!parent.test('body')) {
+								if (parent && !parent.test('body')) {
 									parent.removeAttribute('style');
 								}
 							}
