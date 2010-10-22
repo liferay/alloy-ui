@@ -106,6 +106,32 @@ var Lang = A.Lang,
 		return '<label class="' + CSS_FIELD_LABEL + (css ? ' ' + css : '') + '">' + title + '</label>';
 	}
 
+	function generateInsertImage(config) {
+		var html = '<div class="' + CSS_INSERTIMAGE_CONTENT + '">' +
+						'<ul>' +
+							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.IMAGE_URL) + '</li>' +
+							'<li>' + generateLabel(EditorToolbarPlugin.STRINGS.SIZE) + TPL_INSERTIMAGE_INPUT_NUMERIC + '<span>x</span>' + TPL_INSERTIMAGE_INPUT_NUMERIC + '</li>' +
+							'<li>' +
+								generateLabel(EditorToolbarPlugin.STRINGS.PADDING) + TPL_INSERTIMAGE_INPUT_NUMERIC +
+								generateLabel(EditorToolbarPlugin.STRINGS.BORDER, CSS_FIELD_LABEL_SECONDARY) + TPL_INSERTIMAGE_BORDER +
+							'</li>';
+		if (!config.hideAlign) {
+			html += 		'<li>' +
+								generateLabel(EditorToolbarPlugin.STRINGS.ALIGN) +
+								'<div class="' + CSS_INSERTIMAGE_CONTENT_ALIGN + '"></div>' +
+							'</li>';
+		}
+
+		html += 			'<li>' + generateInput(EditorToolbarPlugin.STRINGS.DESCRIPTION) + '</li>' +
+							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.LINK_URL) + '</li>' +
+						'</ul>' +
+						'<span class="' + CSS_INSERTIMAGE_CONTENT_TARGET + '"><input type="checkbox" /><label>' + EditorToolbarPlugin.STRINGS.OPEN_IN_NEW_WINDOW + '</label></span>' +
+						'<div class="' + CSS_BUTTON_HOLDER + '"></div>' +
+					'</div>';
+
+		return html;
+	}
+
 	function generateOverlay(boundingBox, config) {
 		var overlay = new A.OverlayContext(
 			A.merge(
@@ -364,26 +390,6 @@ EditorToolbarPlugin.STRINGS = {
 	UNDERLINE: 'Underline'
 };
 
-var	TPL_INSERTIMAGE = 	'<div class="' + CSS_INSERTIMAGE_CONTENT + '">' +
-							'<ul>' +
-								'<li>' + generateInput(EditorToolbarPlugin.STRINGS.IMAGE_URL) + '</li>' +
-								'<li>' + generateLabel(EditorToolbarPlugin.STRINGS.SIZE) + TPL_INSERTIMAGE_INPUT_NUMERIC + '<span>x</span>' + TPL_INSERTIMAGE_INPUT_NUMERIC + '</li>' +
-								'<li>' +
-									generateLabel(EditorToolbarPlugin.STRINGS.PADDING) + TPL_INSERTIMAGE_INPUT_NUMERIC +
-									generateLabel(EditorToolbarPlugin.STRINGS.BORDER, CSS_FIELD_LABEL_SECONDARY) + TPL_INSERTIMAGE_BORDER +
-								'</li>' +
-								'<li>' +
-									generateLabel(EditorToolbarPlugin.STRINGS.ALIGN) +
-									'<div class="' + CSS_INSERTIMAGE_CONTENT_ALIGN + '"></div>' +
-								'</li>' +
-								'<li>' + generateInput(EditorToolbarPlugin.STRINGS.DESCRIPTION) + '</li>' +
-								'<li>' + generateInput(EditorToolbarPlugin.STRINGS.LINK_URL) + '</li>' +
-							'</ul>' +
-							'<span class="' + CSS_INSERTIMAGE_CONTENT_TARGET + '"><input type="checkbox" /><label>' + EditorToolbarPlugin.STRINGS.OPEN_IN_NEW_WINDOW + '</label></span>' +
-							'<div class="' + CSS_BUTTON_HOLDER + '"></div>' +
-						'</div>';
-
-
 GROUPS = [];
 
 GROUPS[ALIGNMENT] = {
@@ -552,7 +558,9 @@ GROUPS[INSERT] = {
 
 				var selection = null;
 
-				var imageForm = A.Node.create(TPL_INSERTIMAGE);
+				var html = generateInsertImage(config);
+
+				var imageForm = A.Node.create(html);
 
 				contextBox.append(imageForm);
 
@@ -639,42 +647,44 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						toolbarAlign.some(
-							function(node, index) {
-								var instance = this;
+						if (toolbarAlign != null) {
+							toolbarAlign.some(
+								function(node, index) {
+									var instance = this;
 
-								var active = node.StateInteraction.get('active');
+									var active = node.StateInteraction.get('active');
 
-								if (active) {
-									img.setStyle('display', '');
+									if (active) {
+										img.setStyle('display', '');
 
-									switch(index) {
-										case 0:
-											img.attr('align', 'left');
+										switch(index) {
+											case 0:
+												img.attr('align', 'left');
 
-											break;
+												break;
 
-										case 1:
-											img.attr('align', '');
+											case 1:
+												img.attr('align', '');
 
-											break;
+												break;
 
-										case 2:
-											img.attr('align', 'center');
-											img.setStyle('display', 'block');
+											case 2:
+												img.attr('align', 'center');
+												img.setStyle('display', 'block');
 
-											break;
+												break;
 
-										case 3:
-											img.attr('align', 'right');
+											case 3:
+												img.attr('align', 'right');
 
-											break;
+												break;
+										}
+
+										return true;
 									}
-
-									return true;
 								}
-							}
-						);
+							);
+						}
 
 						if (url != null) {
 							href.attr('href', url);
@@ -699,50 +709,54 @@ GROUPS[INSERT] = {
 
 				toolbar.render(imageForm.one('.' + CSS_BUTTON_HOLDER));
 
-				var toolbarAlign = new A.Toolbar(
-						{
-							activeState: true,
-							children: [
-								{
-									icon: 'align-left',
-									title: EditorToolbarPlugin.STRINGS.ALIGN_LEFT
-								},
-								{
-									icon: 'align-inline',
-									title: EditorToolbarPlugin.STRINGS.ALIGN_INLINE
-								},
-								{
-									icon: 'align-block',
-									title: EditorToolbarPlugin.STRINGS.ALIGN_BLOCK
-								},
-								{
-									icon: 'align-right',
-									title: EditorToolbarPlugin.STRINGS.ALIGN_RIGHT
+				var toolbarAlign = null;
+
+				if (!config.hideAlign) {
+					toolbarAlign = new A.Toolbar(
+							{
+								activeState: true,
+								children: [
+									{
+										icon: 'align-left',
+										title: EditorToolbarPlugin.STRINGS.ALIGN_LEFT
+									},
+									{
+										icon: 'align-inline',
+										title: EditorToolbarPlugin.STRINGS.ALIGN_INLINE
+									},
+									{
+										icon: 'align-block',
+										title: EditorToolbarPlugin.STRINGS.ALIGN_BLOCK
+									},
+									{
+										icon: 'align-right',
+										title: EditorToolbarPlugin.STRINGS.ALIGN_RIGHT
+									}
+								]
+							}
+						);
+
+					toolbarAlign.on(
+						'buttonitem:click',
+						function(event) {
+							var instance = this;
+
+							var button = event.target;
+
+							instance.each(
+								function(node) {
+									var instance = this;
+
+									if (node != button) {
+										node.StateInteraction.set('active', false);
+									}
 								}
-							]
+							);
 						}
 					);
 
-				toolbarAlign.on(
-					'buttonitem:click',
-					function(event) {
-						var instance = this;
-
-						var button = event.target;
-
-						instance.each(
-							function(node) {
-								var instance = this;
-
-								if (node != button) {
-									node.StateInteraction.set('active', false);
-								}
-							}
-						);
-					}
-				);
-
-				toolbarAlign.render(imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_ALIGN));
+					toolbarAlign.render(imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_ALIGN));
+				}
 
 				overlay.on(
 					'hide',
@@ -765,13 +779,15 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						toolbarAlign.each(
-							function(node) {
-								var instance = this;
+						if (toolbarAlign != null) {
+							toolbarAlign.each(
+								function(node) {
+									var instance = this;
 
-								node.StateInteraction.set('active', false);
-							}
-						);
+									node.StateInteraction.set('active', false);
+								}
+							);
+						}
 
 						hrefTarget.attr('checked', false);
 					},
