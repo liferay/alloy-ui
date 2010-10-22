@@ -1,29 +1,4 @@
-<%@ page import="java.io.Serializable"%>
-<%@ page import="java.util.Calendar"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.util.HashMap"%>
-<%@ page import="java.util.Locale"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.Set"%>
-<%@ page import="com.liferay.alloy.util.PropsValues"%>
-<%@ page import="com.liferay.alloy.util.GetterUtil" %>
-<%@ page import="com.liferay.alloy.util.JSONFactoryUtil"%>
-<%@ page import="com.liferay.alloy.util.MarkupUtil"%>
-<%@ page import="com.liferay.alloy.util.StringUtil"%>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
-<%@ page import="com.liferay.portal.kernel.util.StringBundler"%>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
-
-<%!
-public static void _updateOptions(Map<String, Object> options, String key, Object value) {
-	if ((options != null) && options.containsKey(key)) {
-		options.put(key, value);
-	}
-}
-%>
+<%@ include file="/html/taglib/init.jsp" %>
 
 <%
 java.lang.String NAMESPACE = "alloy:button-item:";
@@ -31,192 +6,192 @@ java.lang.String NAMESPACE = "alloy:button-item:";
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
 
-Map<String, Object> options = new HashMap<String, Object>();
+Map<String, Object> _options = new HashMap<String, Object>();
 
-options.putAll(scopedAttributes);
-options.putAll(dynamicAttributes);
+_options.putAll(scopedAttributes);
+_options.putAll(dynamicAttributes);
 
 %>
 
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean _activeState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:activeState"), false);
-java.util.HashMap _classNames = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:classNames")));
-java.lang.String _cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:cssClass"));
-java.lang.Boolean _defaultState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:defaultState"), true);
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:destroyed"), false);
-java.lang.Boolean _disabled = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:disabled"), false);
-java.lang.Boolean _focused = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:focused"), false);
-java.lang.Object _handler = (java.lang.Object)request.getAttribute("alloy:button-item:handler");
-java.lang.Object _height = (java.lang.Object)request.getAttribute("alloy:button-item:height");
-java.lang.String _hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:hideClass"), "aui-helper-hidden");
-java.lang.Boolean _hoverState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:hoverState"), true);
-java.lang.String _icon = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:icon"));
-java.lang.String _iconNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:iconNode"));
-java.lang.String _buttonitemId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:buttonitemId"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:initialized"), false);
-java.lang.String _label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:label"));
-java.lang.String _labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
-java.lang.Object _render = (java.lang.Object)request.getAttribute("alloy:button-item:render");
-java.lang.Boolean _rendered = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:rendered"), false);
-java.util.HashMap _strings = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:strings")));
-java.lang.Number _tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:button-item:tabIndex")), 0);
-java.lang.String _title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
-java.lang.Boolean _visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:visible"), true);
-java.lang.Object _width = (java.lang.Object)request.getAttribute("alloy:button-item:width");
-java.lang.Object _afterActiveStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterActiveStateChange");
-java.lang.Object _afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterBoundingBoxChange");
-java.lang.Object _afterClassNamesChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterClassNamesChange");
-java.lang.Object _afterContentBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterContentBoxChange");
-java.lang.Object _afterCssClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterCssClassChange");
-java.lang.Object _afterDefaultStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDefaultStateChange");
-java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:button-item:afterDestroy");
-java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDestroyedChange");
-java.lang.Object _afterDisabledChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDisabledChange");
-java.lang.Object _afterFocusedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterFocusedChange");
-java.lang.Object _afterHandlerChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHandlerChange");
-java.lang.Object _afterHeightChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHeightChange");
-java.lang.Object _afterHideClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHideClassChange");
-java.lang.Object _afterHoverStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHoverStateChange");
-java.lang.Object _afterIconChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIconChange");
-java.lang.Object _afterIconNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIconNodeChange");
-java.lang.Object _afterIdChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIdChange");
-java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:button-item:afterInit");
-java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterInitializedChange");
-java.lang.Object _afterLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelChange");
-java.lang.Object _afterLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelNodeChange");
-java.lang.Object _afterRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderChange");
-java.lang.Object _afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderedChange");
-java.lang.Object _afterSrcNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterSrcNodeChange");
-java.lang.Object _afterStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterStringsChange");
-java.lang.Object _afterTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTabIndexChange");
-java.lang.Object _afterTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTitleChange");
-java.lang.Object _afterVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterVisibleChange");
-java.lang.Object _afterContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:afterContentUpdate");
-java.lang.Object _afterRender = (java.lang.Object)request.getAttribute("alloy:button-item:afterRender");
-java.lang.Object _afterWidthChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterWidthChange");
-java.lang.Object _onActiveStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onActiveStateChange");
-java.lang.Object _onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:onBoundingBoxChange");
-java.lang.Object _onClassNamesChange = (java.lang.Object)request.getAttribute("alloy:button-item:onClassNamesChange");
-java.lang.Object _onContentBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:onContentBoxChange");
-java.lang.Object _onCssClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:onCssClassChange");
-java.lang.Object _onDefaultStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDefaultStateChange");
-java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:button-item:onDestroy");
-java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDestroyedChange");
-java.lang.Object _onDisabledChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDisabledChange");
-java.lang.Object _onFocusedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onFocusedChange");
-java.lang.Object _onHandlerChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHandlerChange");
-java.lang.Object _onHeightChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHeightChange");
-java.lang.Object _onHideClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHideClassChange");
-java.lang.Object _onHoverStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHoverStateChange");
-java.lang.Object _onIconChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIconChange");
-java.lang.Object _onIconNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIconNodeChange");
-java.lang.Object _onIdChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIdChange");
-java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:button-item:onInit");
-java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onInitializedChange");
-java.lang.Object _onLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelChange");
-java.lang.Object _onLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelNodeChange");
-java.lang.Object _onRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderChange");
-java.lang.Object _onRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderedChange");
-java.lang.Object _onSrcNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onSrcNodeChange");
-java.lang.Object _onStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:onStringsChange");
-java.lang.Object _onTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTabIndexChange");
-java.lang.Object _onTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTitleChange");
-java.lang.Object _onVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onVisibleChange");
-java.lang.Object _onContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:onContentUpdate");
-java.lang.Object _onRender = (java.lang.Object)request.getAttribute("alloy:button-item:onRender");
-java.lang.Object _onWidthChange = (java.lang.Object)request.getAttribute("alloy:button-item:onWidthChange");
+java.lang.Boolean activeState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:activeState"), false);
+java.util.HashMap classNames = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:classNames")));
+java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:cssClass"));
+java.lang.Boolean defaultState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:defaultState"), true);
+java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:destroyed"), false);
+java.lang.Boolean disabled = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:disabled"), false);
+java.lang.Boolean focused = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:focused"), false);
+java.lang.Object handler = (java.lang.Object)request.getAttribute("alloy:button-item:handler");
+java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:button-item:height");
+java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:hideClass"), "aui-helper-hidden");
+java.lang.Boolean hoverState = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:hoverState"), true);
+java.lang.String icon = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:icon"));
+java.lang.String iconNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:iconNode"));
+java.lang.String buttonitemId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:buttonitemId"));
+java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:initialized"), false);
+java.lang.String label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:label"));
+java.lang.String labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
+java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:button-item:render");
+java.lang.Boolean rendered = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:rendered"), false);
+java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:strings")));
+java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:button-item:tabIndex")), 0);
+java.lang.String title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
+java.lang.Boolean visible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:button-item:visible"), true);
+java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:button-item:width");
+java.lang.Object afterActiveStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterActiveStateChange");
+java.lang.Object afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterBoundingBoxChange");
+java.lang.Object afterClassNamesChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterClassNamesChange");
+java.lang.Object afterContentBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterContentBoxChange");
+java.lang.Object afterCssClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterCssClassChange");
+java.lang.Object afterDefaultStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDefaultStateChange");
+java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:button-item:afterDestroy");
+java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDestroyedChange");
+java.lang.Object afterDisabledChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterDisabledChange");
+java.lang.Object afterFocusedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterFocusedChange");
+java.lang.Object afterHandlerChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHandlerChange");
+java.lang.Object afterHeightChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHeightChange");
+java.lang.Object afterHideClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHideClassChange");
+java.lang.Object afterHoverStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterHoverStateChange");
+java.lang.Object afterIconChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIconChange");
+java.lang.Object afterIconNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIconNodeChange");
+java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterIdChange");
+java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:button-item:afterInit");
+java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterInitializedChange");
+java.lang.Object afterLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelChange");
+java.lang.Object afterLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelNodeChange");
+java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderChange");
+java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderedChange");
+java.lang.Object afterSrcNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterSrcNodeChange");
+java.lang.Object afterStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterStringsChange");
+java.lang.Object afterTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTabIndexChange");
+java.lang.Object afterTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTitleChange");
+java.lang.Object afterVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterVisibleChange");
+java.lang.Object afterContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:afterContentUpdate");
+java.lang.Object afterRender = (java.lang.Object)request.getAttribute("alloy:button-item:afterRender");
+java.lang.Object afterWidthChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterWidthChange");
+java.lang.Object onActiveStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onActiveStateChange");
+java.lang.Object onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:onBoundingBoxChange");
+java.lang.Object onClassNamesChange = (java.lang.Object)request.getAttribute("alloy:button-item:onClassNamesChange");
+java.lang.Object onContentBoxChange = (java.lang.Object)request.getAttribute("alloy:button-item:onContentBoxChange");
+java.lang.Object onCssClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:onCssClassChange");
+java.lang.Object onDefaultStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDefaultStateChange");
+java.lang.Object onDestroy = (java.lang.Object)request.getAttribute("alloy:button-item:onDestroy");
+java.lang.Object onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDestroyedChange");
+java.lang.Object onDisabledChange = (java.lang.Object)request.getAttribute("alloy:button-item:onDisabledChange");
+java.lang.Object onFocusedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onFocusedChange");
+java.lang.Object onHandlerChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHandlerChange");
+java.lang.Object onHeightChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHeightChange");
+java.lang.Object onHideClassChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHideClassChange");
+java.lang.Object onHoverStateChange = (java.lang.Object)request.getAttribute("alloy:button-item:onHoverStateChange");
+java.lang.Object onIconChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIconChange");
+java.lang.Object onIconNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIconNodeChange");
+java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:button-item:onIdChange");
+java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:button-item:onInit");
+java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onInitializedChange");
+java.lang.Object onLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelChange");
+java.lang.Object onLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelNodeChange");
+java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderChange");
+java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderedChange");
+java.lang.Object onSrcNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onSrcNodeChange");
+java.lang.Object onStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:onStringsChange");
+java.lang.Object onTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTabIndexChange");
+java.lang.Object onTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTitleChange");
+java.lang.Object onVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onVisibleChange");
+java.lang.Object onContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:onContentUpdate");
+java.lang.Object onRender = (java.lang.Object)request.getAttribute("alloy:button-item:onRender");
+java.lang.Object onWidthChange = (java.lang.Object)request.getAttribute("alloy:button-item:onWidthChange");
 
-_updateOptions(options, "activeState", _activeState);
-_updateOptions(options, "boundingBox", _boundingBox);
-_updateOptions(options, "classNames", _classNames);
-_updateOptions(options, "contentBox", _contentBox);
-_updateOptions(options, "cssClass", _cssClass);
-_updateOptions(options, "defaultState", _defaultState);
-_updateOptions(options, "destroyed", _destroyed);
-_updateOptions(options, "disabled", _disabled);
-_updateOptions(options, "focused", _focused);
-_updateOptions(options, "handler", _handler);
-_updateOptions(options, "height", _height);
-_updateOptions(options, "hideClass", _hideClass);
-_updateOptions(options, "hoverState", _hoverState);
-_updateOptions(options, "icon", _icon);
-_updateOptions(options, "iconNode", _iconNode);
-_updateOptions(options, "buttonitemId", _buttonitemId);
-_updateOptions(options, "initialized", _initialized);
-_updateOptions(options, "label", _label);
-_updateOptions(options, "labelNode", _labelNode);
-_updateOptions(options, "render", _render);
-_updateOptions(options, "rendered", _rendered);
-_updateOptions(options, "srcNode", _srcNode);
-_updateOptions(options, "strings", _strings);
-_updateOptions(options, "tabIndex", _tabIndex);
-_updateOptions(options, "title", _title);
-_updateOptions(options, "visible", _visible);
-_updateOptions(options, "width", _width);
-_updateOptions(options, "afterActiveStateChange", _afterActiveStateChange);
-_updateOptions(options, "afterBoundingBoxChange", _afterBoundingBoxChange);
-_updateOptions(options, "afterClassNamesChange", _afterClassNamesChange);
-_updateOptions(options, "afterContentBoxChange", _afterContentBoxChange);
-_updateOptions(options, "afterCssClassChange", _afterCssClassChange);
-_updateOptions(options, "afterDefaultStateChange", _afterDefaultStateChange);
-_updateOptions(options, "afterDestroy", _afterDestroy);
-_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
-_updateOptions(options, "afterDisabledChange", _afterDisabledChange);
-_updateOptions(options, "afterFocusedChange", _afterFocusedChange);
-_updateOptions(options, "afterHandlerChange", _afterHandlerChange);
-_updateOptions(options, "afterHeightChange", _afterHeightChange);
-_updateOptions(options, "afterHideClassChange", _afterHideClassChange);
-_updateOptions(options, "afterHoverStateChange", _afterHoverStateChange);
-_updateOptions(options, "afterIconChange", _afterIconChange);
-_updateOptions(options, "afterIconNodeChange", _afterIconNodeChange);
-_updateOptions(options, "afterIdChange", _afterIdChange);
-_updateOptions(options, "afterInit", _afterInit);
-_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
-_updateOptions(options, "afterLabelChange", _afterLabelChange);
-_updateOptions(options, "afterLabelNodeChange", _afterLabelNodeChange);
-_updateOptions(options, "afterRenderChange", _afterRenderChange);
-_updateOptions(options, "afterRenderedChange", _afterRenderedChange);
-_updateOptions(options, "afterSrcNodeChange", _afterSrcNodeChange);
-_updateOptions(options, "afterStringsChange", _afterStringsChange);
-_updateOptions(options, "afterTabIndexChange", _afterTabIndexChange);
-_updateOptions(options, "afterTitleChange", _afterTitleChange);
-_updateOptions(options, "afterVisibleChange", _afterVisibleChange);
-_updateOptions(options, "afterContentUpdate", _afterContentUpdate);
-_updateOptions(options, "afterRender", _afterRender);
-_updateOptions(options, "afterWidthChange", _afterWidthChange);
-_updateOptions(options, "onActiveStateChange", _onActiveStateChange);
-_updateOptions(options, "onBoundingBoxChange", _onBoundingBoxChange);
-_updateOptions(options, "onClassNamesChange", _onClassNamesChange);
-_updateOptions(options, "onContentBoxChange", _onContentBoxChange);
-_updateOptions(options, "onCssClassChange", _onCssClassChange);
-_updateOptions(options, "onDefaultStateChange", _onDefaultStateChange);
-_updateOptions(options, "onDestroy", _onDestroy);
-_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
-_updateOptions(options, "onDisabledChange", _onDisabledChange);
-_updateOptions(options, "onFocusedChange", _onFocusedChange);
-_updateOptions(options, "onHandlerChange", _onHandlerChange);
-_updateOptions(options, "onHeightChange", _onHeightChange);
-_updateOptions(options, "onHideClassChange", _onHideClassChange);
-_updateOptions(options, "onHoverStateChange", _onHoverStateChange);
-_updateOptions(options, "onIconChange", _onIconChange);
-_updateOptions(options, "onIconNodeChange", _onIconNodeChange);
-_updateOptions(options, "onIdChange", _onIdChange);
-_updateOptions(options, "onInit", _onInit);
-_updateOptions(options, "onInitializedChange", _onInitializedChange);
-_updateOptions(options, "onLabelChange", _onLabelChange);
-_updateOptions(options, "onLabelNodeChange", _onLabelNodeChange);
-_updateOptions(options, "onRenderChange", _onRenderChange);
-_updateOptions(options, "onRenderedChange", _onRenderedChange);
-_updateOptions(options, "onSrcNodeChange", _onSrcNodeChange);
-_updateOptions(options, "onStringsChange", _onStringsChange);
-_updateOptions(options, "onTabIndexChange", _onTabIndexChange);
-_updateOptions(options, "onTitleChange", _onTitleChange);
-_updateOptions(options, "onVisibleChange", _onVisibleChange);
-_updateOptions(options, "onContentUpdate", _onContentUpdate);
-_updateOptions(options, "onRender", _onRender);
-_updateOptions(options, "onWidthChange", _onWidthChange);
+_updateOptions(_options, "activeState", activeState);
+_updateOptions(_options, "boundingBox", boundingBox);
+_updateOptions(_options, "classNames", classNames);
+_updateOptions(_options, "contentBox", contentBox);
+_updateOptions(_options, "cssClass", cssClass);
+_updateOptions(_options, "defaultState", defaultState);
+_updateOptions(_options, "destroyed", destroyed);
+_updateOptions(_options, "disabled", disabled);
+_updateOptions(_options, "focused", focused);
+_updateOptions(_options, "handler", handler);
+_updateOptions(_options, "height", height);
+_updateOptions(_options, "hideClass", hideClass);
+_updateOptions(_options, "hoverState", hoverState);
+_updateOptions(_options, "icon", icon);
+_updateOptions(_options, "iconNode", iconNode);
+_updateOptions(_options, "buttonitemId", buttonitemId);
+_updateOptions(_options, "initialized", initialized);
+_updateOptions(_options, "label", label);
+_updateOptions(_options, "labelNode", labelNode);
+_updateOptions(_options, "render", render);
+_updateOptions(_options, "rendered", rendered);
+_updateOptions(_options, "srcNode", srcNode);
+_updateOptions(_options, "strings", strings);
+_updateOptions(_options, "tabIndex", tabIndex);
+_updateOptions(_options, "title", title);
+_updateOptions(_options, "visible", visible);
+_updateOptions(_options, "width", width);
+_updateOptions(_options, "afterActiveStateChange", afterActiveStateChange);
+_updateOptions(_options, "afterBoundingBoxChange", afterBoundingBoxChange);
+_updateOptions(_options, "afterClassNamesChange", afterClassNamesChange);
+_updateOptions(_options, "afterContentBoxChange", afterContentBoxChange);
+_updateOptions(_options, "afterCssClassChange", afterCssClassChange);
+_updateOptions(_options, "afterDefaultStateChange", afterDefaultStateChange);
+_updateOptions(_options, "afterDestroy", afterDestroy);
+_updateOptions(_options, "afterDestroyedChange", afterDestroyedChange);
+_updateOptions(_options, "afterDisabledChange", afterDisabledChange);
+_updateOptions(_options, "afterFocusedChange", afterFocusedChange);
+_updateOptions(_options, "afterHandlerChange", afterHandlerChange);
+_updateOptions(_options, "afterHeightChange", afterHeightChange);
+_updateOptions(_options, "afterHideClassChange", afterHideClassChange);
+_updateOptions(_options, "afterHoverStateChange", afterHoverStateChange);
+_updateOptions(_options, "afterIconChange", afterIconChange);
+_updateOptions(_options, "afterIconNodeChange", afterIconNodeChange);
+_updateOptions(_options, "afterIdChange", afterIdChange);
+_updateOptions(_options, "afterInit", afterInit);
+_updateOptions(_options, "afterInitializedChange", afterInitializedChange);
+_updateOptions(_options, "afterLabelChange", afterLabelChange);
+_updateOptions(_options, "afterLabelNodeChange", afterLabelNodeChange);
+_updateOptions(_options, "afterRenderChange", afterRenderChange);
+_updateOptions(_options, "afterRenderedChange", afterRenderedChange);
+_updateOptions(_options, "afterSrcNodeChange", afterSrcNodeChange);
+_updateOptions(_options, "afterStringsChange", afterStringsChange);
+_updateOptions(_options, "afterTabIndexChange", afterTabIndexChange);
+_updateOptions(_options, "afterTitleChange", afterTitleChange);
+_updateOptions(_options, "afterVisibleChange", afterVisibleChange);
+_updateOptions(_options, "afterContentUpdate", afterContentUpdate);
+_updateOptions(_options, "afterRender", afterRender);
+_updateOptions(_options, "afterWidthChange", afterWidthChange);
+_updateOptions(_options, "onActiveStateChange", onActiveStateChange);
+_updateOptions(_options, "onBoundingBoxChange", onBoundingBoxChange);
+_updateOptions(_options, "onClassNamesChange", onClassNamesChange);
+_updateOptions(_options, "onContentBoxChange", onContentBoxChange);
+_updateOptions(_options, "onCssClassChange", onCssClassChange);
+_updateOptions(_options, "onDefaultStateChange", onDefaultStateChange);
+_updateOptions(_options, "onDestroy", onDestroy);
+_updateOptions(_options, "onDestroyedChange", onDestroyedChange);
+_updateOptions(_options, "onDisabledChange", onDisabledChange);
+_updateOptions(_options, "onFocusedChange", onFocusedChange);
+_updateOptions(_options, "onHandlerChange", onHandlerChange);
+_updateOptions(_options, "onHeightChange", onHeightChange);
+_updateOptions(_options, "onHideClassChange", onHideClassChange);
+_updateOptions(_options, "onHoverStateChange", onHoverStateChange);
+_updateOptions(_options, "onIconChange", onIconChange);
+_updateOptions(_options, "onIconNodeChange", onIconNodeChange);
+_updateOptions(_options, "onIdChange", onIdChange);
+_updateOptions(_options, "onInit", onInit);
+_updateOptions(_options, "onInitializedChange", onInitializedChange);
+_updateOptions(_options, "onLabelChange", onLabelChange);
+_updateOptions(_options, "onLabelNodeChange", onLabelNodeChange);
+_updateOptions(_options, "onRenderChange", onRenderChange);
+_updateOptions(_options, "onRenderedChange", onRenderedChange);
+_updateOptions(_options, "onSrcNodeChange", onSrcNodeChange);
+_updateOptions(_options, "onStringsChange", onStringsChange);
+_updateOptions(_options, "onTabIndexChange", onTabIndexChange);
+_updateOptions(_options, "onTitleChange", onTitleChange);
+_updateOptions(_options, "onVisibleChange", onVisibleChange);
+_updateOptions(_options, "onContentUpdate", onContentUpdate);
+_updateOptions(_options, "onRender", onRender);
+_updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
 <%@ include file="init-ext.jsp" %>

@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseLoadingMaskTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseLoadingMaskTag extends com.liferay.alloy.taglib.alloy_util.Incl
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -242,7 +242,7 @@ public class BaseLoadingMaskTag extends com.liferay.alloy.taglib.alloy_util.Incl
 		setScopedAttribute("onTargetChange", onTargetChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);
 		setNamespacedAttribute(request, "initialized", _initialized);
@@ -272,27 +272,27 @@ public class BaseLoadingMaskTag extends com.liferay.alloy.taglib.alloy_util.Incl
 	private static final String _PAGE =
 		"/html/taglib/alloy/loading_mask/page.jsp";
 
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _host;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _messageEl;
-	private java.lang.Object _strings;
-	private java.lang.Object _target;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterHostChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterMessageElChange;
-	private java.lang.Object _afterStringsChange;
-	private java.lang.Object _afterTargetChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onHostChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onMessageElChange;
-	private java.lang.Object _onStringsChange;
-	private java.lang.Object _onTargetChange;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _host;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _messageEl;
+	protected java.lang.Object _strings;
+	protected java.lang.Object _target;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterHostChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterMessageElChange;
+	protected java.lang.Object _afterStringsChange;
+	protected java.lang.Object _afterTargetChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onHostChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onMessageElChange;
+	protected java.lang.Object _onStringsChange;
+	protected java.lang.Object _onTargetChange;
 
 }

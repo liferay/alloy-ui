@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseComponentTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseComponentTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -102,7 +102,7 @@ public class BaseComponentTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		setScopedAttribute("options", options);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "defineVar", _defineVar);
 		setNamespacedAttribute(request, "excludeAttributes", _excludeAttributes);
 		setNamespacedAttribute(request, "javaScriptAttributes", _javaScriptAttributes);
@@ -118,13 +118,13 @@ public class BaseComponentTag extends com.liferay.alloy.taglib.alloy_util.Includ
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/component/page.jsp";
 
-	private java.lang.Boolean _defineVar;
-	private java.lang.String _excludeAttributes;
-	private java.lang.String _javaScriptAttributes;
-	private java.lang.Object _tagPageContext;
-	private java.lang.String _var;
-	private java.lang.String _module;
-	private java.lang.String _name;
-	private java.util.Map _options;
+	protected java.lang.Boolean _defineVar;
+	protected java.lang.String _excludeAttributes;
+	protected java.lang.String _javaScriptAttributes;
+	protected java.lang.Object _tagPageContext;
+	protected java.lang.String _var;
+	protected java.lang.String _module;
+	protected java.lang.String _name;
+	protected java.util.Map _options;
 
 }

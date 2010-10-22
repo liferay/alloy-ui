@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -66,8 +66,8 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		return _nextPageLinkLabel;
 	}
 
-	public java.lang.Object getPage() {
-		return _page;
+	public java.lang.Object getPaginatorPage() {
+		return _paginatorPage;
 	}
 
 	public java.lang.String getPageContainerTemplate() {
@@ -440,10 +440,10 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		setScopedAttribute("nextPageLinkLabel", nextPageLinkLabel);
 	}
 
-	public void setPage(java.lang.Object page) {
-		_page = page;
+	public void setPaginatorPage(java.lang.Object paginatorPage) {
+		_paginatorPage = paginatorPage;
 
-		setScopedAttribute("page", page);
+		setScopedAttribute("paginatorPage", paginatorPage);
 	}
 
 	public void setPageContainerTemplate(java.lang.String pageContainerTemplate) {
@@ -902,7 +902,7 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		setScopedAttribute("onTotalPagesChange", onTotalPagesChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysVisible", _alwaysVisible);
 		setNamespacedAttribute(request, "containers", _containers);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
@@ -914,7 +914,7 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		setNamespacedAttribute(request, "maxPageLinks", _maxPageLinks);
 		setNamespacedAttribute(request, "nextPageLink", _nextPageLink);
 		setNamespacedAttribute(request, "nextPageLinkLabel", _nextPageLinkLabel);
-		setNamespacedAttribute(request, "page", _page);
+		setNamespacedAttribute(request, "paginatorPage", _paginatorPage);
 		setNamespacedAttribute(request, "pageContainerTemplate", _pageContainerTemplate);
 		setNamespacedAttribute(request, "pageLinkContent", _pageLinkContent);
 		setNamespacedAttribute(request, "pageLinkTemplate", _pageLinkTemplate);
@@ -998,93 +998,93 @@ public class BasePaginatorTag extends com.liferay.alloy.taglib.alloy_util.Includ
 	private static final String _PAGE =
 		"/html/taglib/alloy/paginator/page.jsp";
 
-	private java.lang.Boolean _alwaysVisible;
-	private java.lang.String _containers;
-	private java.lang.Boolean _destroyed;
-	private java.lang.String _firstPageLink;
-	private java.lang.String _firstPageLinkLabel;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _lastPageLink;
-	private java.lang.String _lastPageLinkLabel;
-	private java.lang.Object _maxPageLinks;
-	private java.lang.String _nextPageLink;
-	private java.lang.String _nextPageLinkLabel;
-	private java.lang.Object _page;
-	private java.lang.String _pageContainerTemplate;
-	private java.lang.Object _pageLinkContent;
-	private java.lang.String _pageLinkTemplate;
-	private java.lang.String _pageReportEl;
-	private java.lang.String _pageReportLabelTemplate;
-	private java.lang.String _prevPageLink;
-	private java.lang.String _prevPageLinkLabel;
-	private java.lang.Object _rowsPerPage;
-	private java.lang.String _rowsPerPageEl;
-	private java.lang.Object _rowsPerPageOptions;
-	private java.lang.Object _state;
-	private java.lang.String _template;
-	private java.lang.Object _total;
-	private java.lang.String _totalEl;
-	private java.lang.String _totalLabel;
-	private java.lang.Object _totalPages;
-	private java.lang.Object _afterAlwaysVisibleChange;
-	private java.lang.Object _afterContainersChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterFirstPageLinkChange;
-	private java.lang.Object _afterFirstPageLinkLabelChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterLastPageLinkChange;
-	private java.lang.Object _afterLastPageLinkLabelChange;
-	private java.lang.Object _afterMaxPageLinksChange;
-	private java.lang.Object _afterNextPageLinkChange;
-	private java.lang.Object _afterNextPageLinkLabelChange;
-	private java.lang.Object _afterPageChange;
-	private java.lang.Object _afterPageContainerTemplateChange;
-	private java.lang.Object _afterPageLinkContentChange;
-	private java.lang.Object _afterPageLinkTemplateChange;
-	private java.lang.Object _afterPageReportElChange;
-	private java.lang.Object _afterPageReportLabelTemplateChange;
-	private java.lang.Object _afterPrevPageLinkChange;
-	private java.lang.Object _afterPrevPageLinkLabelChange;
-	private java.lang.Object _afterRowsPerPageChange;
-	private java.lang.Object _afterRowsPerPageElChange;
-	private java.lang.Object _afterRowsPerPageOptionsChange;
-	private java.lang.Object _afterStateChange;
-	private java.lang.Object _afterTemplateChange;
-	private java.lang.Object _afterTotalChange;
-	private java.lang.Object _afterTotalElChange;
-	private java.lang.Object _afterTotalLabelChange;
-	private java.lang.Object _afterTotalPagesChange;
-	private java.lang.Object _onAlwaysVisibleChange;
-	private java.lang.Object _onContainersChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onFirstPageLinkChange;
-	private java.lang.Object _onFirstPageLinkLabelChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onLastPageLinkChange;
-	private java.lang.Object _onLastPageLinkLabelChange;
-	private java.lang.Object _onMaxPageLinksChange;
-	private java.lang.Object _onNextPageLinkChange;
-	private java.lang.Object _onNextPageLinkLabelChange;
-	private java.lang.Object _onPageChange;
-	private java.lang.Object _onPageContainerTemplateChange;
-	private java.lang.Object _onPageLinkContentChange;
-	private java.lang.Object _onPageLinkTemplateChange;
-	private java.lang.Object _onPageReportElChange;
-	private java.lang.Object _onPageReportLabelTemplateChange;
-	private java.lang.Object _onPrevPageLinkChange;
-	private java.lang.Object _onPrevPageLinkLabelChange;
-	private java.lang.Object _onRowsPerPageChange;
-	private java.lang.Object _onRowsPerPageElChange;
-	private java.lang.Object _onRowsPerPageOptionsChange;
-	private java.lang.Object _onStateChange;
-	private java.lang.Object _onTemplateChange;
-	private java.lang.Object _onTotalChange;
-	private java.lang.Object _onTotalElChange;
-	private java.lang.Object _onTotalLabelChange;
-	private java.lang.Object _onTotalPagesChange;
+	protected java.lang.Boolean _alwaysVisible;
+	protected java.lang.String _containers;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.String _firstPageLink;
+	protected java.lang.String _firstPageLinkLabel;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _lastPageLink;
+	protected java.lang.String _lastPageLinkLabel;
+	protected java.lang.Object _maxPageLinks;
+	protected java.lang.String _nextPageLink;
+	protected java.lang.String _nextPageLinkLabel;
+	protected java.lang.Object _paginatorPage;
+	protected java.lang.String _pageContainerTemplate;
+	protected java.lang.Object _pageLinkContent;
+	protected java.lang.String _pageLinkTemplate;
+	protected java.lang.String _pageReportEl;
+	protected java.lang.String _pageReportLabelTemplate;
+	protected java.lang.String _prevPageLink;
+	protected java.lang.String _prevPageLinkLabel;
+	protected java.lang.Object _rowsPerPage;
+	protected java.lang.String _rowsPerPageEl;
+	protected java.lang.Object _rowsPerPageOptions;
+	protected java.lang.Object _state;
+	protected java.lang.String _template;
+	protected java.lang.Object _total;
+	protected java.lang.String _totalEl;
+	protected java.lang.String _totalLabel;
+	protected java.lang.Object _totalPages;
+	protected java.lang.Object _afterAlwaysVisibleChange;
+	protected java.lang.Object _afterContainersChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterFirstPageLinkChange;
+	protected java.lang.Object _afterFirstPageLinkLabelChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterLastPageLinkChange;
+	protected java.lang.Object _afterLastPageLinkLabelChange;
+	protected java.lang.Object _afterMaxPageLinksChange;
+	protected java.lang.Object _afterNextPageLinkChange;
+	protected java.lang.Object _afterNextPageLinkLabelChange;
+	protected java.lang.Object _afterPageChange;
+	protected java.lang.Object _afterPageContainerTemplateChange;
+	protected java.lang.Object _afterPageLinkContentChange;
+	protected java.lang.Object _afterPageLinkTemplateChange;
+	protected java.lang.Object _afterPageReportElChange;
+	protected java.lang.Object _afterPageReportLabelTemplateChange;
+	protected java.lang.Object _afterPrevPageLinkChange;
+	protected java.lang.Object _afterPrevPageLinkLabelChange;
+	protected java.lang.Object _afterRowsPerPageChange;
+	protected java.lang.Object _afterRowsPerPageElChange;
+	protected java.lang.Object _afterRowsPerPageOptionsChange;
+	protected java.lang.Object _afterStateChange;
+	protected java.lang.Object _afterTemplateChange;
+	protected java.lang.Object _afterTotalChange;
+	protected java.lang.Object _afterTotalElChange;
+	protected java.lang.Object _afterTotalLabelChange;
+	protected java.lang.Object _afterTotalPagesChange;
+	protected java.lang.Object _onAlwaysVisibleChange;
+	protected java.lang.Object _onContainersChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onFirstPageLinkChange;
+	protected java.lang.Object _onFirstPageLinkLabelChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onLastPageLinkChange;
+	protected java.lang.Object _onLastPageLinkLabelChange;
+	protected java.lang.Object _onMaxPageLinksChange;
+	protected java.lang.Object _onNextPageLinkChange;
+	protected java.lang.Object _onNextPageLinkLabelChange;
+	protected java.lang.Object _onPageChange;
+	protected java.lang.Object _onPageContainerTemplateChange;
+	protected java.lang.Object _onPageLinkContentChange;
+	protected java.lang.Object _onPageLinkTemplateChange;
+	protected java.lang.Object _onPageReportElChange;
+	protected java.lang.Object _onPageReportLabelTemplateChange;
+	protected java.lang.Object _onPrevPageLinkChange;
+	protected java.lang.Object _onPrevPageLinkLabelChange;
+	protected java.lang.Object _onRowsPerPageChange;
+	protected java.lang.Object _onRowsPerPageElChange;
+	protected java.lang.Object _onRowsPerPageOptionsChange;
+	protected java.lang.Object _onStateChange;
+	protected java.lang.Object _onTemplateChange;
+	protected java.lang.Object _onTotalChange;
+	protected java.lang.Object _onTotalElChange;
+	protected java.lang.Object _onTotalLabelChange;
+	protected java.lang.Object _onTotalPagesChange;
 
 }

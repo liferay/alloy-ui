@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseResizeTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseResizeTag extends com.liferay.alloy.taglib.alloy_util.IncludeTa
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -792,7 +792,7 @@ public class BaseResizeTag extends com.liferay.alloy.taglib.alloy_util.IncludeTa
 		setScopedAttribute("onWrapperChange", onWrapperChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeHandle", _activeHandle);
 		setNamespacedAttribute(request, "activeHandleEl", _activeHandleEl);
 		setNamespacedAttribute(request, "autoHide", _autoHide);
@@ -877,82 +877,82 @@ public class BaseResizeTag extends com.liferay.alloy.taglib.alloy_util.IncludeTa
 	private static final String _PAGE =
 		"/html/taglib/alloy/resize/page.jsp";
 
-	private java.lang.String _activeHandle;
-	private java.lang.Object _activeHandleEl;
-	private java.lang.Boolean _autoHide;
-	private java.lang.Object _constrain;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _handles;
-	private java.lang.Boolean _initialized;
-	private java.lang.Object _maxHeight;
-	private java.lang.Object _maxWidth;
-	private java.lang.Object _minHeight;
-	private java.lang.Object _minWidth;
-	private java.lang.Object _node;
-	private java.lang.Boolean _preserveRatio;
-	private java.lang.Boolean _proxy;
-	private java.lang.String _proxyEl;
-	private java.lang.Boolean _resizing;
-	private java.lang.Object _tickX;
-	private java.lang.Object _tickY;
-	private java.lang.Boolean _wrap;
-	private java.lang.Object _wrapTypes;
-	private java.lang.String _wrapper;
-	private java.lang.Object _afterActiveHandleChange;
-	private java.lang.Object _afterActiveHandleElChange;
-	private java.lang.Object _afterAutoHideChange;
-	private java.lang.Object _afterConstrainChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterHandlesChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterMaxHeightChange;
-	private java.lang.Object _afterMaxWidthChange;
-	private java.lang.Object _afterMinHeightChange;
-	private java.lang.Object _afterMinWidthChange;
-	private java.lang.Object _afterNodeChange;
-	private java.lang.Object _afterPreserveRatioChange;
-	private java.lang.Object _afterProxyChange;
-	private java.lang.Object _afterProxyElChange;
-	private java.lang.Object _afterAlign;
-	private java.lang.Object _afterEnd;
-	private java.lang.Object _afterMouseUp;
-	private java.lang.Object _afterResize;
-	private java.lang.Object _afterStart;
-	private java.lang.Object _afterResizingChange;
-	private java.lang.Object _afterTickXChange;
-	private java.lang.Object _afterTickYChange;
-	private java.lang.Object _afterWrapChange;
-	private java.lang.Object _afterWrapTypesChange;
-	private java.lang.Object _afterWrapperChange;
-	private java.lang.Object _onActiveHandleChange;
-	private java.lang.Object _onActiveHandleElChange;
-	private java.lang.Object _onAutoHideChange;
-	private java.lang.Object _onConstrainChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onHandlesChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onMaxHeightChange;
-	private java.lang.Object _onMaxWidthChange;
-	private java.lang.Object _onMinHeightChange;
-	private java.lang.Object _onMinWidthChange;
-	private java.lang.Object _onNodeChange;
-	private java.lang.Object _onPreserveRatioChange;
-	private java.lang.Object _onProxyChange;
-	private java.lang.Object _onProxyElChange;
-	private java.lang.Object _onAlign;
-	private java.lang.Object _onEnd;
-	private java.lang.Object _onMouseUp;
-	private java.lang.Object _onResize;
-	private java.lang.Object _onStart;
-	private java.lang.Object _onResizingChange;
-	private java.lang.Object _onTickXChange;
-	private java.lang.Object _onTickYChange;
-	private java.lang.Object _onWrapChange;
-	private java.lang.Object _onWrapTypesChange;
-	private java.lang.Object _onWrapperChange;
+	protected java.lang.String _activeHandle;
+	protected java.lang.Object _activeHandleEl;
+	protected java.lang.Boolean _autoHide;
+	protected java.lang.Object _constrain;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _handles;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.Object _maxHeight;
+	protected java.lang.Object _maxWidth;
+	protected java.lang.Object _minHeight;
+	protected java.lang.Object _minWidth;
+	protected java.lang.Object _node;
+	protected java.lang.Boolean _preserveRatio;
+	protected java.lang.Boolean _proxy;
+	protected java.lang.String _proxyEl;
+	protected java.lang.Boolean _resizing;
+	protected java.lang.Object _tickX;
+	protected java.lang.Object _tickY;
+	protected java.lang.Boolean _wrap;
+	protected java.lang.Object _wrapTypes;
+	protected java.lang.String _wrapper;
+	protected java.lang.Object _afterActiveHandleChange;
+	protected java.lang.Object _afterActiveHandleElChange;
+	protected java.lang.Object _afterAutoHideChange;
+	protected java.lang.Object _afterConstrainChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterHandlesChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterMaxHeightChange;
+	protected java.lang.Object _afterMaxWidthChange;
+	protected java.lang.Object _afterMinHeightChange;
+	protected java.lang.Object _afterMinWidthChange;
+	protected java.lang.Object _afterNodeChange;
+	protected java.lang.Object _afterPreserveRatioChange;
+	protected java.lang.Object _afterProxyChange;
+	protected java.lang.Object _afterProxyElChange;
+	protected java.lang.Object _afterAlign;
+	protected java.lang.Object _afterEnd;
+	protected java.lang.Object _afterMouseUp;
+	protected java.lang.Object _afterResize;
+	protected java.lang.Object _afterStart;
+	protected java.lang.Object _afterResizingChange;
+	protected java.lang.Object _afterTickXChange;
+	protected java.lang.Object _afterTickYChange;
+	protected java.lang.Object _afterWrapChange;
+	protected java.lang.Object _afterWrapTypesChange;
+	protected java.lang.Object _afterWrapperChange;
+	protected java.lang.Object _onActiveHandleChange;
+	protected java.lang.Object _onActiveHandleElChange;
+	protected java.lang.Object _onAutoHideChange;
+	protected java.lang.Object _onConstrainChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onHandlesChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onMaxHeightChange;
+	protected java.lang.Object _onMaxWidthChange;
+	protected java.lang.Object _onMinHeightChange;
+	protected java.lang.Object _onMinWidthChange;
+	protected java.lang.Object _onNodeChange;
+	protected java.lang.Object _onPreserveRatioChange;
+	protected java.lang.Object _onProxyChange;
+	protected java.lang.Object _onProxyElChange;
+	protected java.lang.Object _onAlign;
+	protected java.lang.Object _onEnd;
+	protected java.lang.Object _onMouseUp;
+	protected java.lang.Object _onResize;
+	protected java.lang.Object _onStart;
+	protected java.lang.Object _onResizingChange;
+	protected java.lang.Object _onTickXChange;
+	protected java.lang.Object _onTickYChange;
+	protected java.lang.Object _onWrapChange;
+	protected java.lang.Object _onWrapTypesChange;
+	protected java.lang.Object _onWrapperChange;
 
 }

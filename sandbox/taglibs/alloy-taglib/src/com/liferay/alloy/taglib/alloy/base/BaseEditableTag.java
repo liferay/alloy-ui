@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseEditableTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseEditableTag extends com.liferay.alloy.taglib.alloy_util.Include
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -992,7 +992,7 @@ public class BaseEditableTag extends com.liferay.alloy.taglib.alloy_util.Include
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "cancelButton", _cancelButton);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
@@ -1097,102 +1097,102 @@ public class BaseEditableTag extends com.liferay.alloy.taglib.alloy_util.Include
 	private static final String _PAGE =
 		"/html/taglib/alloy/editable/page.jsp";
 
-	private java.lang.String _boundingBox;
-	private java.lang.String _cancelButton;
-	private java.lang.String _contentBox;
-	private java.lang.String _contentText;
-	private java.lang.String _cssClass;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
-	private java.lang.String _eventType;
-	private java.lang.Boolean _focused;
-	private java.lang.Object _formatInput;
-	private java.lang.Object _formatOutput;
-	private java.lang.Object _height;
-	private java.lang.String _hideClass;
-	private java.lang.Object _icons;
-	private java.lang.String _editableId;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _inputType;
-	private java.lang.Object _node;
-	private java.lang.Object _render;
-	private java.lang.String _renderTo;
-	private java.lang.Boolean _rendered;
-	private java.lang.String _saveButton;
-	private java.lang.String _srcNode;
-	private java.lang.Object _strings;
-	private java.lang.Object _tabIndex;
-	private java.lang.Boolean _visible;
-	private java.lang.Object _width;
-	private java.lang.Object _afterBoundingBoxChange;
-	private java.lang.Object _afterCancel;
-	private java.lang.Object _afterCancelButtonChange;
-	private java.lang.Object _afterContentBoxChange;
-	private java.lang.Object _afterContentTextChange;
-	private java.lang.Object _afterCssClassChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterDisabledChange;
-	private java.lang.Object _afterEventTypeChange;
-	private java.lang.Object _afterFocusedChange;
-	private java.lang.Object _afterFormatInputChange;
-	private java.lang.Object _afterFormatOutputChange;
-	private java.lang.Object _afterHeightChange;
-	private java.lang.Object _afterHideClassChange;
-	private java.lang.Object _afterIconsChange;
-	private java.lang.Object _afterIdChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterInputTypeChange;
-	private java.lang.Object _afterNodeChange;
-	private java.lang.Object _afterRenderChange;
-	private java.lang.Object _afterRenderToChange;
-	private java.lang.Object _afterRenderedChange;
-	private java.lang.Object _afterSave;
-	private java.lang.Object _afterSaveButtonChange;
-	private java.lang.Object _afterSrcNodeChange;
-	private java.lang.Object _afterStartEditing;
-	private java.lang.Object _afterStopEditing;
-	private java.lang.Object _afterStringsChange;
-	private java.lang.Object _afterTabIndexChange;
-	private java.lang.Object _afterVisibleChange;
-	private java.lang.Object _afterContentUpdate;
-	private java.lang.Object _afterRender;
-	private java.lang.Object _afterWidthChange;
-	private java.lang.Object _onBoundingBoxChange;
-	private java.lang.Object _onCancel;
-	private java.lang.Object _onCancelButtonChange;
-	private java.lang.Object _onContentBoxChange;
-	private java.lang.Object _onContentTextChange;
-	private java.lang.Object _onCssClassChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onDisabledChange;
-	private java.lang.Object _onEventTypeChange;
-	private java.lang.Object _onFocusedChange;
-	private java.lang.Object _onFormatInputChange;
-	private java.lang.Object _onFormatOutputChange;
-	private java.lang.Object _onHeightChange;
-	private java.lang.Object _onHideClassChange;
-	private java.lang.Object _onIconsChange;
-	private java.lang.Object _onIdChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onInputTypeChange;
-	private java.lang.Object _onNodeChange;
-	private java.lang.Object _onRenderChange;
-	private java.lang.Object _onRenderToChange;
-	private java.lang.Object _onRenderedChange;
-	private java.lang.Object _onSave;
-	private java.lang.Object _onSaveButtonChange;
-	private java.lang.Object _onSrcNodeChange;
-	private java.lang.Object _onStartEditing;
-	private java.lang.Object _onStopEditing;
-	private java.lang.Object _onStringsChange;
-	private java.lang.Object _onTabIndexChange;
-	private java.lang.Object _onVisibleChange;
-	private java.lang.Object _onContentUpdate;
-	private java.lang.Object _onRender;
-	private java.lang.Object _onWidthChange;
+	protected java.lang.String _boundingBox;
+	protected java.lang.String _cancelButton;
+	protected java.lang.String _contentBox;
+	protected java.lang.String _contentText;
+	protected java.lang.String _cssClass;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Boolean _disabled;
+	protected java.lang.String _eventType;
+	protected java.lang.Boolean _focused;
+	protected java.lang.Object _formatInput;
+	protected java.lang.Object _formatOutput;
+	protected java.lang.Object _height;
+	protected java.lang.String _hideClass;
+	protected java.lang.Object _icons;
+	protected java.lang.String _editableId;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _inputType;
+	protected java.lang.Object _node;
+	protected java.lang.Object _render;
+	protected java.lang.String _renderTo;
+	protected java.lang.Boolean _rendered;
+	protected java.lang.String _saveButton;
+	protected java.lang.String _srcNode;
+	protected java.lang.Object _strings;
+	protected java.lang.Object _tabIndex;
+	protected java.lang.Boolean _visible;
+	protected java.lang.Object _width;
+	protected java.lang.Object _afterBoundingBoxChange;
+	protected java.lang.Object _afterCancel;
+	protected java.lang.Object _afterCancelButtonChange;
+	protected java.lang.Object _afterContentBoxChange;
+	protected java.lang.Object _afterContentTextChange;
+	protected java.lang.Object _afterCssClassChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterDisabledChange;
+	protected java.lang.Object _afterEventTypeChange;
+	protected java.lang.Object _afterFocusedChange;
+	protected java.lang.Object _afterFormatInputChange;
+	protected java.lang.Object _afterFormatOutputChange;
+	protected java.lang.Object _afterHeightChange;
+	protected java.lang.Object _afterHideClassChange;
+	protected java.lang.Object _afterIconsChange;
+	protected java.lang.Object _afterIdChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterInputTypeChange;
+	protected java.lang.Object _afterNodeChange;
+	protected java.lang.Object _afterRenderChange;
+	protected java.lang.Object _afterRenderToChange;
+	protected java.lang.Object _afterRenderedChange;
+	protected java.lang.Object _afterSave;
+	protected java.lang.Object _afterSaveButtonChange;
+	protected java.lang.Object _afterSrcNodeChange;
+	protected java.lang.Object _afterStartEditing;
+	protected java.lang.Object _afterStopEditing;
+	protected java.lang.Object _afterStringsChange;
+	protected java.lang.Object _afterTabIndexChange;
+	protected java.lang.Object _afterVisibleChange;
+	protected java.lang.Object _afterContentUpdate;
+	protected java.lang.Object _afterRender;
+	protected java.lang.Object _afterWidthChange;
+	protected java.lang.Object _onBoundingBoxChange;
+	protected java.lang.Object _onCancel;
+	protected java.lang.Object _onCancelButtonChange;
+	protected java.lang.Object _onContentBoxChange;
+	protected java.lang.Object _onContentTextChange;
+	protected java.lang.Object _onCssClassChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onDisabledChange;
+	protected java.lang.Object _onEventTypeChange;
+	protected java.lang.Object _onFocusedChange;
+	protected java.lang.Object _onFormatInputChange;
+	protected java.lang.Object _onFormatOutputChange;
+	protected java.lang.Object _onHeightChange;
+	protected java.lang.Object _onHideClassChange;
+	protected java.lang.Object _onIconsChange;
+	protected java.lang.Object _onIdChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onInputTypeChange;
+	protected java.lang.Object _onNodeChange;
+	protected java.lang.Object _onRenderChange;
+	protected java.lang.Object _onRenderToChange;
+	protected java.lang.Object _onRenderedChange;
+	protected java.lang.Object _onSave;
+	protected java.lang.Object _onSaveButtonChange;
+	protected java.lang.Object _onSrcNodeChange;
+	protected java.lang.Object _onStartEditing;
+	protected java.lang.Object _onStopEditing;
+	protected java.lang.Object _onStringsChange;
+	protected java.lang.Object _onTabIndexChange;
+	protected java.lang.Object _onVisibleChange;
+	protected java.lang.Object _onContentUpdate;
+	protected java.lang.Object _onRender;
+	protected java.lang.Object _onWidthChange;
 
 }

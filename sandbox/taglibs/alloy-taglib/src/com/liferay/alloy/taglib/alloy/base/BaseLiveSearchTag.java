@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseLiveSearchTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseLiveSearchTag extends com.liferay.alloy.taglib.alloy_util.Inclu
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -362,7 +362,7 @@ public class BaseLiveSearchTag extends com.liferay.alloy.taglib.alloy_util.Inclu
 		setScopedAttribute("onShowChange", onShowChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "data", _data);
 		setNamespacedAttribute(request, "delay", _delay);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
@@ -404,39 +404,39 @@ public class BaseLiveSearchTag extends com.liferay.alloy.taglib.alloy_util.Inclu
 	private static final String _PAGE =
 		"/html/taglib/alloy/live_search/page.jsp";
 
-	private java.lang.Object _data;
-	private java.lang.Object _delay;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _hide;
-	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _input;
-	private java.lang.Object _matchRegex;
-	private java.lang.Object _nodes;
-	private java.lang.Object _show;
-	private java.lang.Object _afterDataChange;
-	private java.lang.Object _afterDelayChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterHideChange;
-	private java.lang.Object _afterIndexChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterInputChange;
-	private java.lang.Object _afterMatchRegexChange;
-	private java.lang.Object _afterNodesChange;
-	private java.lang.Object _afterShowChange;
-	private java.lang.Object _onDataChange;
-	private java.lang.Object _onDelayChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onHideChange;
-	private java.lang.Object _onIndexChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onInputChange;
-	private java.lang.Object _onMatchRegexChange;
-	private java.lang.Object _onNodesChange;
-	private java.lang.Object _onShowChange;
+	protected java.lang.Object _data;
+	protected java.lang.Object _delay;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _hide;
+	protected java.lang.Object _index;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _input;
+	protected java.lang.Object _matchRegex;
+	protected java.lang.Object _nodes;
+	protected java.lang.Object _show;
+	protected java.lang.Object _afterDataChange;
+	protected java.lang.Object _afterDelayChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterHideChange;
+	protected java.lang.Object _afterIndexChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterInputChange;
+	protected java.lang.Object _afterMatchRegexChange;
+	protected java.lang.Object _afterNodesChange;
+	protected java.lang.Object _afterShowChange;
+	protected java.lang.Object _onDataChange;
+	protected java.lang.Object _onDelayChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onHideChange;
+	protected java.lang.Object _onIndexChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onInputChange;
+	protected java.lang.Object _onMatchRegexChange;
+	protected java.lang.Object _onNodesChange;
+	protected java.lang.Object _onShowChange;
 
 }

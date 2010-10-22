@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseToolbarTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseToolbarTag extends com.liferay.alloy.taglib.alloy_util.IncludeT
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -922,7 +922,7 @@ public class BaseToolbarTag extends com.liferay.alloy.taglib.alloy_util.IncludeT
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeDescendant", _activeDescendant);
 		setNamespacedAttribute(request, "activeState", _activeState);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
@@ -1020,95 +1020,95 @@ public class BaseToolbarTag extends com.liferay.alloy.taglib.alloy_util.IncludeT
 	private static final String _PAGE =
 		"/html/taglib/alloy/toolbar/page.jsp";
 
-	private java.lang.Object _activeDescendant;
-	private java.lang.Boolean _activeState;
-	private java.lang.String _boundingBox;
-	private java.lang.Object _children;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
-	private java.lang.Object _defaultChildType;
-	private java.lang.Boolean _defaultState;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
-	private java.lang.Boolean _focused;
-	private java.lang.Object _height;
-	private java.lang.String _hideClass;
-	private java.lang.Boolean _hoverState;
-	private java.lang.String _toolbarId;
-	private java.lang.Boolean _initialized;
-	private java.lang.Boolean _multiple;
-	private java.lang.String _orientation;
-	private java.lang.Object _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.Object _selection;
-	private java.lang.String _srcNode;
-	private java.lang.Object _strings;
-	private java.lang.Object _tabIndex;
-	private java.lang.Boolean _visible;
-	private java.lang.Object _width;
-	private java.lang.Object _afterActiveDescendantChange;
-	private java.lang.Object _afterActiveStateChange;
-	private java.lang.Object _afterAddChild;
-	private java.lang.Object _afterBoundingBoxChange;
-	private java.lang.Object _afterChildrenChange;
-	private java.lang.Object _afterContentBoxChange;
-	private java.lang.Object _afterCssClassChange;
-	private java.lang.Object _afterDefaultChildTypeChange;
-	private java.lang.Object _afterDefaultStateChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterDisabledChange;
-	private java.lang.Object _afterFocusedChange;
-	private java.lang.Object _afterHeightChange;
-	private java.lang.Object _afterHideClassChange;
-	private java.lang.Object _afterHoverStateChange;
-	private java.lang.Object _afterIdChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterMultipleChange;
-	private java.lang.Object _afterOrientationChange;
-	private java.lang.Object _afterRemoveChild;
-	private java.lang.Object _afterRenderChange;
-	private java.lang.Object _afterRenderedChange;
-	private java.lang.Object _afterSelectionChange;
-	private java.lang.Object _afterSrcNodeChange;
-	private java.lang.Object _afterStringsChange;
-	private java.lang.Object _afterTabIndexChange;
-	private java.lang.Object _afterVisibleChange;
-	private java.lang.Object _afterContentUpdate;
-	private java.lang.Object _afterRender;
-	private java.lang.Object _afterWidthChange;
-	private java.lang.Object _onActiveDescendantChange;
-	private java.lang.Object _onActiveStateChange;
-	private java.lang.Object _onAddChild;
-	private java.lang.Object _onBoundingBoxChange;
-	private java.lang.Object _onChildrenChange;
-	private java.lang.Object _onContentBoxChange;
-	private java.lang.Object _onCssClassChange;
-	private java.lang.Object _onDefaultChildTypeChange;
-	private java.lang.Object _onDefaultStateChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onDisabledChange;
-	private java.lang.Object _onFocusedChange;
-	private java.lang.Object _onHeightChange;
-	private java.lang.Object _onHideClassChange;
-	private java.lang.Object _onHoverStateChange;
-	private java.lang.Object _onIdChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onMultipleChange;
-	private java.lang.Object _onOrientationChange;
-	private java.lang.Object _onRemoveChild;
-	private java.lang.Object _onRenderChange;
-	private java.lang.Object _onRenderedChange;
-	private java.lang.Object _onSelectionChange;
-	private java.lang.Object _onSrcNodeChange;
-	private java.lang.Object _onStringsChange;
-	private java.lang.Object _onTabIndexChange;
-	private java.lang.Object _onVisibleChange;
-	private java.lang.Object _onContentUpdate;
-	private java.lang.Object _onRender;
-	private java.lang.Object _onWidthChange;
+	protected java.lang.Object _activeDescendant;
+	protected java.lang.Boolean _activeState;
+	protected java.lang.String _boundingBox;
+	protected java.lang.Object _children;
+	protected java.lang.String _contentBox;
+	protected java.lang.String _cssClass;
+	protected java.lang.Object _defaultChildType;
+	protected java.lang.Boolean _defaultState;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Boolean _disabled;
+	protected java.lang.Boolean _focused;
+	protected java.lang.Object _height;
+	protected java.lang.String _hideClass;
+	protected java.lang.Boolean _hoverState;
+	protected java.lang.String _toolbarId;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.Boolean _multiple;
+	protected java.lang.String _orientation;
+	protected java.lang.Object _render;
+	protected java.lang.Boolean _rendered;
+	protected java.lang.Object _selection;
+	protected java.lang.String _srcNode;
+	protected java.lang.Object _strings;
+	protected java.lang.Object _tabIndex;
+	protected java.lang.Boolean _visible;
+	protected java.lang.Object _width;
+	protected java.lang.Object _afterActiveDescendantChange;
+	protected java.lang.Object _afterActiveStateChange;
+	protected java.lang.Object _afterAddChild;
+	protected java.lang.Object _afterBoundingBoxChange;
+	protected java.lang.Object _afterChildrenChange;
+	protected java.lang.Object _afterContentBoxChange;
+	protected java.lang.Object _afterCssClassChange;
+	protected java.lang.Object _afterDefaultChildTypeChange;
+	protected java.lang.Object _afterDefaultStateChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterDisabledChange;
+	protected java.lang.Object _afterFocusedChange;
+	protected java.lang.Object _afterHeightChange;
+	protected java.lang.Object _afterHideClassChange;
+	protected java.lang.Object _afterHoverStateChange;
+	protected java.lang.Object _afterIdChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterMultipleChange;
+	protected java.lang.Object _afterOrientationChange;
+	protected java.lang.Object _afterRemoveChild;
+	protected java.lang.Object _afterRenderChange;
+	protected java.lang.Object _afterRenderedChange;
+	protected java.lang.Object _afterSelectionChange;
+	protected java.lang.Object _afterSrcNodeChange;
+	protected java.lang.Object _afterStringsChange;
+	protected java.lang.Object _afterTabIndexChange;
+	protected java.lang.Object _afterVisibleChange;
+	protected java.lang.Object _afterContentUpdate;
+	protected java.lang.Object _afterRender;
+	protected java.lang.Object _afterWidthChange;
+	protected java.lang.Object _onActiveDescendantChange;
+	protected java.lang.Object _onActiveStateChange;
+	protected java.lang.Object _onAddChild;
+	protected java.lang.Object _onBoundingBoxChange;
+	protected java.lang.Object _onChildrenChange;
+	protected java.lang.Object _onContentBoxChange;
+	protected java.lang.Object _onCssClassChange;
+	protected java.lang.Object _onDefaultChildTypeChange;
+	protected java.lang.Object _onDefaultStateChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onDisabledChange;
+	protected java.lang.Object _onFocusedChange;
+	protected java.lang.Object _onHeightChange;
+	protected java.lang.Object _onHideClassChange;
+	protected java.lang.Object _onHoverStateChange;
+	protected java.lang.Object _onIdChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onMultipleChange;
+	protected java.lang.Object _onOrientationChange;
+	protected java.lang.Object _onRemoveChild;
+	protected java.lang.Object _onRenderChange;
+	protected java.lang.Object _onRenderedChange;
+	protected java.lang.Object _onSelectionChange;
+	protected java.lang.Object _onSrcNodeChange;
+	protected java.lang.Object _onStringsChange;
+	protected java.lang.Object _onTabIndexChange;
+	protected java.lang.Object _onVisibleChange;
+	protected java.lang.Object _onContentUpdate;
+	protected java.lang.Object _onRender;
+	protected java.lang.Object _onWidthChange;
 
 }

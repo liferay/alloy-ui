@@ -1,29 +1,4 @@
-<%@ page import="java.io.Serializable"%>
-<%@ page import="java.util.Calendar"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.util.HashMap"%>
-<%@ page import="java.util.Locale"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.Set"%>
-<%@ page import="com.liferay.alloy.util.PropsValues"%>
-<%@ page import="com.liferay.alloy.util.GetterUtil" %>
-<%@ page import="com.liferay.alloy.util.JSONFactoryUtil"%>
-<%@ page import="com.liferay.alloy.util.MarkupUtil"%>
-<%@ page import="com.liferay.alloy.util.StringUtil"%>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
-<%@ page import="com.liferay.portal.kernel.util.StringBundler"%>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
-
-<%!
-public static void _updateOptions(Map<String, Object> options, String key, Object value) {
-	if ((options != null) && options.containsKey(key)) {
-		options.put(key, value);
-	}
-}
-%>
+<%@ include file="/html/taglib/init.jsp" %>
 
 <%
 java.lang.String NAMESPACE = "alloy:tree-view:";
@@ -31,73 +6,73 @@ java.lang.String NAMESPACE = "alloy:tree-view:";
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view:scopedAttributes");
 
-Map<String, Object> options = new HashMap<String, Object>();
+Map<String, Object> _options = new HashMap<String, Object>();
 
-options.putAll(scopedAttributes);
-options.putAll(dynamicAttributes);
+_options.putAll(scopedAttributes);
+_options.putAll(dynamicAttributes);
 
 %>
 
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.ArrayList _children = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children"), "[]"));
-java.lang.String _container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:destroyed"), false);
-java.util.HashMap _index = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index"), "{}"));
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:initialized"), false);
-java.util.HashMap _io = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:io")));
-java.lang.Object _lastSelected = (java.lang.Object)request.getAttribute("alloy:tree-view:lastSelected");
-java.lang.String _type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"), "file");
-java.lang.Object _afterChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterChildrenChange");
-java.lang.Object _afterContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterContainerChange");
-java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroy");
-java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroyedChange");
-java.lang.Object _afterIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIndexChange");
-java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInit");
-java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInitializedChange");
-java.lang.Object _afterIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIoChange");
-java.lang.Object _afterLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterLastSelectedChange");
-java.lang.Object _afterTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterTypeChange");
-java.lang.Object _onChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onChildrenChange");
-java.lang.Object _onContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onContainerChange");
-java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroy");
-java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroyedChange");
-java.lang.Object _onIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIndexChange");
-java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:tree-view:onInit");
-java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onInitializedChange");
-java.lang.Object _onIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIoChange");
-java.lang.Object _onLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onLastSelectedChange");
-java.lang.Object _onTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onTypeChange");
+java.util.ArrayList children = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children"), "[]"));
+java.lang.String container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
+java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:destroyed"), false);
+java.util.HashMap index = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index"), "{}"));
+java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:tree-view:initialized"), false);
+java.util.HashMap io = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:io")));
+java.lang.Object lastSelected = (java.lang.Object)request.getAttribute("alloy:tree-view:lastSelected");
+java.lang.String type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"), "file");
+java.lang.Object afterChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterChildrenChange");
+java.lang.Object afterContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterContainerChange");
+java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroy");
+java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterDestroyedChange");
+java.lang.Object afterIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIndexChange");
+java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInit");
+java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterInitializedChange");
+java.lang.Object afterIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterIoChange");
+java.lang.Object afterLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterLastSelectedChange");
+java.lang.Object afterTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterTypeChange");
+java.lang.Object onChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onChildrenChange");
+java.lang.Object onContainerChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onContainerChange");
+java.lang.Object onDestroy = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroy");
+java.lang.Object onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onDestroyedChange");
+java.lang.Object onIndexChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIndexChange");
+java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:tree-view:onInit");
+java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onInitializedChange");
+java.lang.Object onIoChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onIoChange");
+java.lang.Object onLastSelectedChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onLastSelectedChange");
+java.lang.Object onTypeChange = (java.lang.Object)request.getAttribute("alloy:tree-view:onTypeChange");
 
-_updateOptions(options, "children", _children);
-_updateOptions(options, "container", _container);
-_updateOptions(options, "destroyed", _destroyed);
-_updateOptions(options, "index", _index);
-_updateOptions(options, "initialized", _initialized);
-_updateOptions(options, "io", _io);
-_updateOptions(options, "lastSelected", _lastSelected);
-_updateOptions(options, "type", _type);
-_updateOptions(options, "afterChildrenChange", _afterChildrenChange);
-_updateOptions(options, "afterContainerChange", _afterContainerChange);
-_updateOptions(options, "afterDestroy", _afterDestroy);
-_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
-_updateOptions(options, "afterIndexChange", _afterIndexChange);
-_updateOptions(options, "afterInit", _afterInit);
-_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
-_updateOptions(options, "afterIoChange", _afterIoChange);
-_updateOptions(options, "afterLastSelectedChange", _afterLastSelectedChange);
-_updateOptions(options, "afterTypeChange", _afterTypeChange);
-_updateOptions(options, "onChildrenChange", _onChildrenChange);
-_updateOptions(options, "onContainerChange", _onContainerChange);
-_updateOptions(options, "onDestroy", _onDestroy);
-_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
-_updateOptions(options, "onIndexChange", _onIndexChange);
-_updateOptions(options, "onInit", _onInit);
-_updateOptions(options, "onInitializedChange", _onInitializedChange);
-_updateOptions(options, "onIoChange", _onIoChange);
-_updateOptions(options, "onLastSelectedChange", _onLastSelectedChange);
-_updateOptions(options, "onTypeChange", _onTypeChange);
+_updateOptions(_options, "children", children);
+_updateOptions(_options, "container", container);
+_updateOptions(_options, "destroyed", destroyed);
+_updateOptions(_options, "index", index);
+_updateOptions(_options, "initialized", initialized);
+_updateOptions(_options, "io", io);
+_updateOptions(_options, "lastSelected", lastSelected);
+_updateOptions(_options, "type", type);
+_updateOptions(_options, "afterChildrenChange", afterChildrenChange);
+_updateOptions(_options, "afterContainerChange", afterContainerChange);
+_updateOptions(_options, "afterDestroy", afterDestroy);
+_updateOptions(_options, "afterDestroyedChange", afterDestroyedChange);
+_updateOptions(_options, "afterIndexChange", afterIndexChange);
+_updateOptions(_options, "afterInit", afterInit);
+_updateOptions(_options, "afterInitializedChange", afterInitializedChange);
+_updateOptions(_options, "afterIoChange", afterIoChange);
+_updateOptions(_options, "afterLastSelectedChange", afterLastSelectedChange);
+_updateOptions(_options, "afterTypeChange", afterTypeChange);
+_updateOptions(_options, "onChildrenChange", onChildrenChange);
+_updateOptions(_options, "onContainerChange", onContainerChange);
+_updateOptions(_options, "onDestroy", onDestroy);
+_updateOptions(_options, "onDestroyedChange", onDestroyedChange);
+_updateOptions(_options, "onIndexChange", onIndexChange);
+_updateOptions(_options, "onInit", onInit);
+_updateOptions(_options, "onInitializedChange", onInitializedChange);
+_updateOptions(_options, "onIoChange", onIoChange);
+_updateOptions(_options, "onLastSelectedChange", onLastSelectedChange);
+_updateOptions(_options, "onTypeChange", onTypeChange);
 %>
 
 <%@ include file="init-ext.jsp" %>

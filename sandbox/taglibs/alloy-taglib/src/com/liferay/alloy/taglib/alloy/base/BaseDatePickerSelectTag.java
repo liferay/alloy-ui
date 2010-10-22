@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseDatePickerSelectTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseDatePickerSelectTag extends com.liferay.alloy.taglib.alloy_util
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -1062,7 +1062,7 @@ public class BaseDatePickerSelectTag extends com.liferay.alloy.taglib.alloy_util
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "appendOrder", _appendOrder);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "buttonNode", _buttonNode);
@@ -1174,109 +1174,109 @@ public class BaseDatePickerSelectTag extends com.liferay.alloy.taglib.alloy_util
 	private static final String _PAGE =
 		"/html/taglib/alloy/date_picker_select/page.jsp";
 
-	private java.lang.Object _appendOrder;
-	private java.lang.String _boundingBox;
-	private java.lang.String _buttonNode;
-	private java.lang.Object _calendar;
-	private java.lang.String _contentBox;
-	private java.lang.String _cssClass;
-	private java.lang.String _dayNode;
-	private java.lang.String _dayNodeName;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _disabled;
-	private java.lang.Boolean _focused;
-	private java.lang.Object _height;
-	private java.lang.String _hideClass;
-	private java.lang.String _datepickerselectId;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _monthNode;
-	private java.lang.String _monthNodeName;
-	private java.lang.Boolean _populateDay;
-	private java.lang.Boolean _populateMonth;
-	private java.lang.Boolean _populateYear;
-	private java.lang.Object _render;
-	private java.lang.Boolean _rendered;
-	private java.lang.String _selectWrapperNode;
-	private java.lang.String _srcNode;
-	private java.lang.Object _strings;
-	private java.lang.Object _tabIndex;
-	private java.lang.Object _trigger;
-	private java.lang.Boolean _visible;
-	private java.lang.Object _width;
-	private java.lang.String _yearNode;
-	private java.lang.String _yearNodeName;
-	private java.lang.Object _yearRange;
-	private java.lang.Object _afterAppendOrderChange;
-	private java.lang.Object _afterBoundingBoxChange;
-	private java.lang.Object _afterButtonNodeChange;
-	private java.lang.Object _afterCalendarChange;
-	private java.lang.Object _afterContentBoxChange;
-	private java.lang.Object _afterCssClassChange;
-	private java.lang.Object _afterDayNodeChange;
-	private java.lang.Object _afterDayNodeNameChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterDisabledChange;
-	private java.lang.Object _afterFocusedChange;
-	private java.lang.Object _afterHeightChange;
-	private java.lang.Object _afterHideClassChange;
-	private java.lang.Object _afterIdChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterMonthNodeChange;
-	private java.lang.Object _afterMonthNodeNameChange;
-	private java.lang.Object _afterPopulateDayChange;
-	private java.lang.Object _afterPopulateMonthChange;
-	private java.lang.Object _afterPopulateYearChange;
-	private java.lang.Object _afterRenderChange;
-	private java.lang.Object _afterRenderedChange;
-	private java.lang.Object _afterSelectWrapperNodeChange;
-	private java.lang.Object _afterSrcNodeChange;
-	private java.lang.Object _afterStringsChange;
-	private java.lang.Object _afterTabIndexChange;
-	private java.lang.Object _afterTriggerChange;
-	private java.lang.Object _afterVisibleChange;
-	private java.lang.Object _afterContentUpdate;
-	private java.lang.Object _afterRender;
-	private java.lang.Object _afterWidthChange;
-	private java.lang.Object _afterYearNodeChange;
-	private java.lang.Object _afterYearNodeNameChange;
-	private java.lang.Object _afterYearRangeChange;
-	private java.lang.Object _onAppendOrderChange;
-	private java.lang.Object _onBoundingBoxChange;
-	private java.lang.Object _onButtonNodeChange;
-	private java.lang.Object _onCalendarChange;
-	private java.lang.Object _onContentBoxChange;
-	private java.lang.Object _onCssClassChange;
-	private java.lang.Object _onDayNodeChange;
-	private java.lang.Object _onDayNodeNameChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onDisabledChange;
-	private java.lang.Object _onFocusedChange;
-	private java.lang.Object _onHeightChange;
-	private java.lang.Object _onHideClassChange;
-	private java.lang.Object _onIdChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onMonthNodeChange;
-	private java.lang.Object _onMonthNodeNameChange;
-	private java.lang.Object _onPopulateDayChange;
-	private java.lang.Object _onPopulateMonthChange;
-	private java.lang.Object _onPopulateYearChange;
-	private java.lang.Object _onRenderChange;
-	private java.lang.Object _onRenderedChange;
-	private java.lang.Object _onSelectWrapperNodeChange;
-	private java.lang.Object _onSrcNodeChange;
-	private java.lang.Object _onStringsChange;
-	private java.lang.Object _onTabIndexChange;
-	private java.lang.Object _onTriggerChange;
-	private java.lang.Object _onVisibleChange;
-	private java.lang.Object _onContentUpdate;
-	private java.lang.Object _onRender;
-	private java.lang.Object _onWidthChange;
-	private java.lang.Object _onYearNodeChange;
-	private java.lang.Object _onYearNodeNameChange;
-	private java.lang.Object _onYearRangeChange;
+	protected java.lang.Object _appendOrder;
+	protected java.lang.String _boundingBox;
+	protected java.lang.String _buttonNode;
+	protected java.lang.Object _calendar;
+	protected java.lang.String _contentBox;
+	protected java.lang.String _cssClass;
+	protected java.lang.String _dayNode;
+	protected java.lang.String _dayNodeName;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Boolean _disabled;
+	protected java.lang.Boolean _focused;
+	protected java.lang.Object _height;
+	protected java.lang.String _hideClass;
+	protected java.lang.String _datepickerselectId;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _monthNode;
+	protected java.lang.String _monthNodeName;
+	protected java.lang.Boolean _populateDay;
+	protected java.lang.Boolean _populateMonth;
+	protected java.lang.Boolean _populateYear;
+	protected java.lang.Object _render;
+	protected java.lang.Boolean _rendered;
+	protected java.lang.String _selectWrapperNode;
+	protected java.lang.String _srcNode;
+	protected java.lang.Object _strings;
+	protected java.lang.Object _tabIndex;
+	protected java.lang.Object _trigger;
+	protected java.lang.Boolean _visible;
+	protected java.lang.Object _width;
+	protected java.lang.String _yearNode;
+	protected java.lang.String _yearNodeName;
+	protected java.lang.Object _yearRange;
+	protected java.lang.Object _afterAppendOrderChange;
+	protected java.lang.Object _afterBoundingBoxChange;
+	protected java.lang.Object _afterButtonNodeChange;
+	protected java.lang.Object _afterCalendarChange;
+	protected java.lang.Object _afterContentBoxChange;
+	protected java.lang.Object _afterCssClassChange;
+	protected java.lang.Object _afterDayNodeChange;
+	protected java.lang.Object _afterDayNodeNameChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterDisabledChange;
+	protected java.lang.Object _afterFocusedChange;
+	protected java.lang.Object _afterHeightChange;
+	protected java.lang.Object _afterHideClassChange;
+	protected java.lang.Object _afterIdChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterMonthNodeChange;
+	protected java.lang.Object _afterMonthNodeNameChange;
+	protected java.lang.Object _afterPopulateDayChange;
+	protected java.lang.Object _afterPopulateMonthChange;
+	protected java.lang.Object _afterPopulateYearChange;
+	protected java.lang.Object _afterRenderChange;
+	protected java.lang.Object _afterRenderedChange;
+	protected java.lang.Object _afterSelectWrapperNodeChange;
+	protected java.lang.Object _afterSrcNodeChange;
+	protected java.lang.Object _afterStringsChange;
+	protected java.lang.Object _afterTabIndexChange;
+	protected java.lang.Object _afterTriggerChange;
+	protected java.lang.Object _afterVisibleChange;
+	protected java.lang.Object _afterContentUpdate;
+	protected java.lang.Object _afterRender;
+	protected java.lang.Object _afterWidthChange;
+	protected java.lang.Object _afterYearNodeChange;
+	protected java.lang.Object _afterYearNodeNameChange;
+	protected java.lang.Object _afterYearRangeChange;
+	protected java.lang.Object _onAppendOrderChange;
+	protected java.lang.Object _onBoundingBoxChange;
+	protected java.lang.Object _onButtonNodeChange;
+	protected java.lang.Object _onCalendarChange;
+	protected java.lang.Object _onContentBoxChange;
+	protected java.lang.Object _onCssClassChange;
+	protected java.lang.Object _onDayNodeChange;
+	protected java.lang.Object _onDayNodeNameChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onDisabledChange;
+	protected java.lang.Object _onFocusedChange;
+	protected java.lang.Object _onHeightChange;
+	protected java.lang.Object _onHideClassChange;
+	protected java.lang.Object _onIdChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onMonthNodeChange;
+	protected java.lang.Object _onMonthNodeNameChange;
+	protected java.lang.Object _onPopulateDayChange;
+	protected java.lang.Object _onPopulateMonthChange;
+	protected java.lang.Object _onPopulateYearChange;
+	protected java.lang.Object _onRenderChange;
+	protected java.lang.Object _onRenderedChange;
+	protected java.lang.Object _onSelectWrapperNodeChange;
+	protected java.lang.Object _onSrcNodeChange;
+	protected java.lang.Object _onStringsChange;
+	protected java.lang.Object _onTabIndexChange;
+	protected java.lang.Object _onTriggerChange;
+	protected java.lang.Object _onVisibleChange;
+	protected java.lang.Object _onContentUpdate;
+	protected java.lang.Object _onRender;
+	protected java.lang.Object _onWidthChange;
+	protected java.lang.Object _onYearNodeChange;
+	protected java.lang.Object _onYearNodeNameChange;
+	protected java.lang.Object _onYearRangeChange;
 
 }

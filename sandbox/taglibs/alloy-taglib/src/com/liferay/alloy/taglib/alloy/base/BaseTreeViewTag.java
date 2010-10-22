@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseTreeViewTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseTreeViewTag extends com.liferay.alloy.taglib.alloy_util.Include
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -302,7 +302,7 @@ public class BaseTreeViewTag extends com.liferay.alloy.taglib.alloy_util.Include
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "children", _children);
 		setNamespacedAttribute(request, "container", _container);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
@@ -338,33 +338,33 @@ public class BaseTreeViewTag extends com.liferay.alloy.taglib.alloy_util.Include
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_view/page.jsp";
 
-	private java.lang.Object _children;
-	private java.lang.String _container;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
-	private java.lang.Object _io;
-	private java.lang.Object _lastSelected;
-	private java.lang.String _type;
-	private java.lang.Object _afterChildrenChange;
-	private java.lang.Object _afterContainerChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterIndexChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterIoChange;
-	private java.lang.Object _afterLastSelectedChange;
-	private java.lang.Object _afterTypeChange;
-	private java.lang.Object _onChildrenChange;
-	private java.lang.Object _onContainerChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onIndexChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onIoChange;
-	private java.lang.Object _onLastSelectedChange;
-	private java.lang.Object _onTypeChange;
+	protected java.lang.Object _children;
+	protected java.lang.String _container;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _index;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.Object _io;
+	protected java.lang.Object _lastSelected;
+	protected java.lang.String _type;
+	protected java.lang.Object _afterChildrenChange;
+	protected java.lang.Object _afterContainerChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterIndexChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterIoChange;
+	protected java.lang.Object _afterLastSelectedChange;
+	protected java.lang.Object _afterTypeChange;
+	protected java.lang.Object _onChildrenChange;
+	protected java.lang.Object _onContainerChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onIndexChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onIoChange;
+	protected java.lang.Object _onLastSelectedChange;
+	protected java.lang.Object _onTypeChange;
 
 }

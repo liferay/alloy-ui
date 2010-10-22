@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseTreeNodeTaskTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.alloy.taglib.alloy_util.Inc
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -842,7 +842,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.alloy.taglib.alloy_util.Inc
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowHitArea", _alwaysShowHitArea);
 		setNamespacedAttribute(request, "cache", _cache);
 		setNamespacedAttribute(request, "checkContainerEl", _checkContainerEl);
@@ -932,87 +932,87 @@ public class BaseTreeNodeTaskTag extends com.liferay.alloy.taglib.alloy_util.Inc
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_node_task/page.jsp";
 
-	private java.lang.Boolean _alwaysShowHitArea;
-	private java.lang.Boolean _cache;
-	private java.lang.String _checkContainerEl;
-	private java.lang.String _checkEl;
-	private java.lang.String _checkName;
-	private java.lang.Boolean _checked;
-	private java.lang.Object _children;
-	private java.lang.String _container;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Boolean _draggable;
-	private java.lang.Boolean _expanded;
-	private java.lang.String _hitAreaEl;
-	private java.lang.String _iconEl;
-	private java.lang.String _treenodetaskId;
-	private java.lang.Object _index;
-	private java.lang.Boolean _initialized;
-	private java.lang.Object _io;
-	private java.lang.String _label;
-	private java.lang.String _labelEl;
-	private java.lang.Boolean _leaf;
-	private java.lang.Boolean _loaded;
-	private java.lang.Boolean _loading;
-	private java.lang.Object _nextSibling;
-	private java.lang.Object _ownerTree;
-	private java.lang.Object _parentNode;
-	private java.lang.Object _prevSibling;
-	private java.lang.Object _afterAlwaysShowHitAreaChange;
-	private java.lang.Object _afterCacheChange;
-	private java.lang.Object _afterCheckContainerElChange;
-	private java.lang.Object _afterCheckElChange;
-	private java.lang.Object _afterCheckNameChange;
-	private java.lang.Object _afterCheckedChange;
-	private java.lang.Object _afterChildrenChange;
-	private java.lang.Object _afterContainerChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterDraggableChange;
-	private java.lang.Object _afterExpandedChange;
-	private java.lang.Object _afterHitAreaElChange;
-	private java.lang.Object _afterIconElChange;
-	private java.lang.Object _afterIdChange;
-	private java.lang.Object _afterIndexChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterIoChange;
-	private java.lang.Object _afterLabelChange;
-	private java.lang.Object _afterLabelElChange;
-	private java.lang.Object _afterLeafChange;
-	private java.lang.Object _afterLoadedChange;
-	private java.lang.Object _afterLoadingChange;
-	private java.lang.Object _afterNextSiblingChange;
-	private java.lang.Object _afterOwnerTreeChange;
-	private java.lang.Object _afterParentNodeChange;
-	private java.lang.Object _afterPrevSiblingChange;
-	private java.lang.Object _onAlwaysShowHitAreaChange;
-	private java.lang.Object _onCacheChange;
-	private java.lang.Object _onCheckContainerElChange;
-	private java.lang.Object _onCheckElChange;
-	private java.lang.Object _onCheckNameChange;
-	private java.lang.Object _onCheckedChange;
-	private java.lang.Object _onChildrenChange;
-	private java.lang.Object _onContainerChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onDraggableChange;
-	private java.lang.Object _onExpandedChange;
-	private java.lang.Object _onHitAreaElChange;
-	private java.lang.Object _onIconElChange;
-	private java.lang.Object _onIdChange;
-	private java.lang.Object _onIndexChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onIoChange;
-	private java.lang.Object _onLabelChange;
-	private java.lang.Object _onLabelElChange;
-	private java.lang.Object _onLeafChange;
-	private java.lang.Object _onLoadedChange;
-	private java.lang.Object _onLoadingChange;
-	private java.lang.Object _onNextSiblingChange;
-	private java.lang.Object _onOwnerTreeChange;
-	private java.lang.Object _onParentNodeChange;
-	private java.lang.Object _onPrevSiblingChange;
+	protected java.lang.Boolean _alwaysShowHitArea;
+	protected java.lang.Boolean _cache;
+	protected java.lang.String _checkContainerEl;
+	protected java.lang.String _checkEl;
+	protected java.lang.String _checkName;
+	protected java.lang.Boolean _checked;
+	protected java.lang.Object _children;
+	protected java.lang.String _container;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Boolean _draggable;
+	protected java.lang.Boolean _expanded;
+	protected java.lang.String _hitAreaEl;
+	protected java.lang.String _iconEl;
+	protected java.lang.String _treenodetaskId;
+	protected java.lang.Object _index;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.Object _io;
+	protected java.lang.String _label;
+	protected java.lang.String _labelEl;
+	protected java.lang.Boolean _leaf;
+	protected java.lang.Boolean _loaded;
+	protected java.lang.Boolean _loading;
+	protected java.lang.Object _nextSibling;
+	protected java.lang.Object _ownerTree;
+	protected java.lang.Object _parentNode;
+	protected java.lang.Object _prevSibling;
+	protected java.lang.Object _afterAlwaysShowHitAreaChange;
+	protected java.lang.Object _afterCacheChange;
+	protected java.lang.Object _afterCheckContainerElChange;
+	protected java.lang.Object _afterCheckElChange;
+	protected java.lang.Object _afterCheckNameChange;
+	protected java.lang.Object _afterCheckedChange;
+	protected java.lang.Object _afterChildrenChange;
+	protected java.lang.Object _afterContainerChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterDraggableChange;
+	protected java.lang.Object _afterExpandedChange;
+	protected java.lang.Object _afterHitAreaElChange;
+	protected java.lang.Object _afterIconElChange;
+	protected java.lang.Object _afterIdChange;
+	protected java.lang.Object _afterIndexChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterIoChange;
+	protected java.lang.Object _afterLabelChange;
+	protected java.lang.Object _afterLabelElChange;
+	protected java.lang.Object _afterLeafChange;
+	protected java.lang.Object _afterLoadedChange;
+	protected java.lang.Object _afterLoadingChange;
+	protected java.lang.Object _afterNextSiblingChange;
+	protected java.lang.Object _afterOwnerTreeChange;
+	protected java.lang.Object _afterParentNodeChange;
+	protected java.lang.Object _afterPrevSiblingChange;
+	protected java.lang.Object _onAlwaysShowHitAreaChange;
+	protected java.lang.Object _onCacheChange;
+	protected java.lang.Object _onCheckContainerElChange;
+	protected java.lang.Object _onCheckElChange;
+	protected java.lang.Object _onCheckNameChange;
+	protected java.lang.Object _onCheckedChange;
+	protected java.lang.Object _onChildrenChange;
+	protected java.lang.Object _onContainerChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onDraggableChange;
+	protected java.lang.Object _onExpandedChange;
+	protected java.lang.Object _onHitAreaElChange;
+	protected java.lang.Object _onIconElChange;
+	protected java.lang.Object _onIdChange;
+	protected java.lang.Object _onIndexChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onIoChange;
+	protected java.lang.Object _onLabelChange;
+	protected java.lang.Object _onLabelElChange;
+	protected java.lang.Object _onLeafChange;
+	protected java.lang.Object _onLoadedChange;
+	protected java.lang.Object _onLoadingChange;
+	protected java.lang.Object _onNextSiblingChange;
+	protected java.lang.Object _onOwnerTreeChange;
+	protected java.lang.Object _onParentNodeChange;
+	protected java.lang.Object _onPrevSiblingChange;
 
 }

@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseParseContentTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseParseContentTag extends com.liferay.alloy.taglib.alloy_util.Inc
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -152,7 +152,7 @@ public class BaseParseContentTag extends com.liferay.alloy.taglib.alloy_util.Inc
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);
 		setNamespacedAttribute(request, "initialized", _initialized);
@@ -173,18 +173,18 @@ public class BaseParseContentTag extends com.liferay.alloy.taglib.alloy_util.Inc
 	private static final String _PAGE =
 		"/html/taglib/alloy/parse_content/page.jsp";
 
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _host;
-	private java.lang.Boolean _initialized;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterHostChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onHostChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _host;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterHostChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onHostChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
 
 }

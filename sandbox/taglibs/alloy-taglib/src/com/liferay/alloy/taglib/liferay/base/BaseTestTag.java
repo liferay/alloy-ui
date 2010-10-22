@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseTestTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseTestTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag 
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -32,7 +32,7 @@ public class BaseTestTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag 
 		setScopedAttribute("test", test);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "test", _test);
 	}
 
@@ -41,6 +41,6 @@ public class BaseTestTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag 
 	private static final String _PAGE =
 		"/html/taglib/liferay/test/page.jsp";
 
-	private java.lang.String _test;
+	protected java.lang.String _test;
 
 }

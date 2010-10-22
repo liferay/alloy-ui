@@ -1,29 +1,4 @@
-<%@ page import="java.io.Serializable"%>
-<%@ page import="java.util.Calendar"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.util.HashMap"%>
-<%@ page import="java.util.Locale"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.Set"%>
-<%@ page import="com.liferay.alloy.util.PropsValues"%>
-<%@ page import="com.liferay.alloy.util.GetterUtil" %>
-<%@ page import="com.liferay.alloy.util.JSONFactoryUtil"%>
-<%@ page import="com.liferay.alloy.util.MarkupUtil"%>
-<%@ page import="com.liferay.alloy.util.StringUtil"%>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
-<%@ page import="com.liferay.portal.kernel.util.StringBundler"%>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
-
-<%!
-public static void _updateOptions(Map<String, Object> options, String key, Object value) {
-	if ((options != null) && options.containsKey(key)) {
-		options.put(key, value);
-	}
-}
-%>
+<%@ include file="/html/taglib/init.jsp" %>
 
 <%
 java.lang.String NAMESPACE = "alloy:paginator:";
@@ -31,193 +6,193 @@ java.lang.String NAMESPACE = "alloy:paginator:";
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:paginator:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:paginator:scopedAttributes");
 
-Map<String, Object> options = new HashMap<String, Object>();
+Map<String, Object> _options = new HashMap<String, Object>();
 
-options.putAll(scopedAttributes);
-options.putAll(dynamicAttributes);
+_options.putAll(scopedAttributes);
+_options.putAll(dynamicAttributes);
 
 %>
 
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean _alwaysVisible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:alwaysVisible"), true);
-java.lang.String _containers = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:containers"));
-java.lang.Boolean _destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:destroyed"), false);
-java.lang.String _firstPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLink"));
-java.lang.String _firstPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLinkLabel"), "first");
-java.lang.Boolean _initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:initialized"), false);
-java.lang.String _lastPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLink"));
-java.lang.String _lastPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLinkLabel"), "last");
-java.lang.Number _maxPageLinks = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:maxPageLinks")), 10);
-java.lang.String _nextPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLink"));
-java.lang.String _nextPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLinkLabel"), "next &gt;");
-java.lang.Number _page = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:page")), 1);
-java.lang.String _pageContainerTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageContainerTemplate"));
-java.lang.Object _pageLinkContent = (java.lang.Object)request.getAttribute("alloy:paginator:pageLinkContent");
-java.lang.String _pageLinkTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageLinkTemplate"));
-java.lang.String _pageReportEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportEl"));
-java.lang.String _pageReportLabelTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportLabelTemplate"), "({page} of {totalPages})");
-java.lang.String _prevPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLink"));
-java.lang.String _prevPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLinkLabel"), "&lt; prev");
-java.lang.Number _rowsPerPage = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:rowsPerPage")), 1);
-java.lang.String _rowsPerPageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPageEl"));
-java.util.ArrayList _rowsPerPageOptions = JSONFactoryUtil.getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:paginator:rowsPerPageOptions"), "[]"));
-java.util.HashMap _state = JSONFactoryUtil.getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:paginator:state"), "{}"));
-java.lang.String _template = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:template"), "{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}");
-java.lang.Number _total = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:total")), 0);
-java.lang.String _totalEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalEl"));
-java.lang.String _totalLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalLabel"), "(Total {total})");
-java.lang.Number _totalPages = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:totalPages")), 0);
-java.lang.Object _afterAlwaysVisibleChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterAlwaysVisibleChange");
-java.lang.Object _afterContainersChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterContainersChange");
-java.lang.Object _afterDestroy = (java.lang.Object)request.getAttribute("alloy:paginator:afterDestroy");
-java.lang.Object _afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterDestroyedChange");
-java.lang.Object _afterFirstPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterFirstPageLinkChange");
-java.lang.Object _afterFirstPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterFirstPageLinkLabelChange");
-java.lang.Object _afterInit = (java.lang.Object)request.getAttribute("alloy:paginator:afterInit");
-java.lang.Object _afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterInitializedChange");
-java.lang.Object _afterLastPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterLastPageLinkChange");
-java.lang.Object _afterLastPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterLastPageLinkLabelChange");
-java.lang.Object _afterMaxPageLinksChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterMaxPageLinksChange");
-java.lang.Object _afterNextPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterNextPageLinkChange");
-java.lang.Object _afterNextPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterNextPageLinkLabelChange");
-java.lang.Object _afterPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageChange");
-java.lang.Object _afterPageContainerTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageContainerTemplateChange");
-java.lang.Object _afterPageLinkContentChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageLinkContentChange");
-java.lang.Object _afterPageLinkTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageLinkTemplateChange");
-java.lang.Object _afterPageReportElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageReportElChange");
-java.lang.Object _afterPageReportLabelTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageReportLabelTemplateChange");
-java.lang.Object _afterPrevPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPrevPageLinkChange");
-java.lang.Object _afterPrevPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPrevPageLinkLabelChange");
-java.lang.Object _afterRowsPerPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageChange");
-java.lang.Object _afterRowsPerPageElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageElChange");
-java.lang.Object _afterRowsPerPageOptionsChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageOptionsChange");
-java.lang.Object _afterStateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterStateChange");
-java.lang.Object _afterTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTemplateChange");
-java.lang.Object _afterTotalChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalChange");
-java.lang.Object _afterTotalElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalElChange");
-java.lang.Object _afterTotalLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalLabelChange");
-java.lang.Object _afterTotalPagesChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalPagesChange");
-java.lang.Object _onAlwaysVisibleChange = (java.lang.Object)request.getAttribute("alloy:paginator:onAlwaysVisibleChange");
-java.lang.Object _onContainersChange = (java.lang.Object)request.getAttribute("alloy:paginator:onContainersChange");
-java.lang.Object _onDestroy = (java.lang.Object)request.getAttribute("alloy:paginator:onDestroy");
-java.lang.Object _onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:paginator:onDestroyedChange");
-java.lang.Object _onFirstPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onFirstPageLinkChange");
-java.lang.Object _onFirstPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onFirstPageLinkLabelChange");
-java.lang.Object _onInit = (java.lang.Object)request.getAttribute("alloy:paginator:onInit");
-java.lang.Object _onInitializedChange = (java.lang.Object)request.getAttribute("alloy:paginator:onInitializedChange");
-java.lang.Object _onLastPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onLastPageLinkChange");
-java.lang.Object _onLastPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onLastPageLinkLabelChange");
-java.lang.Object _onMaxPageLinksChange = (java.lang.Object)request.getAttribute("alloy:paginator:onMaxPageLinksChange");
-java.lang.Object _onNextPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onNextPageLinkChange");
-java.lang.Object _onNextPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onNextPageLinkLabelChange");
-java.lang.Object _onPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageChange");
-java.lang.Object _onPageContainerTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageContainerTemplateChange");
-java.lang.Object _onPageLinkContentChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageLinkContentChange");
-java.lang.Object _onPageLinkTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageLinkTemplateChange");
-java.lang.Object _onPageReportElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageReportElChange");
-java.lang.Object _onPageReportLabelTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageReportLabelTemplateChange");
-java.lang.Object _onPrevPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPrevPageLinkChange");
-java.lang.Object _onPrevPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPrevPageLinkLabelChange");
-java.lang.Object _onRowsPerPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageChange");
-java.lang.Object _onRowsPerPageElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageElChange");
-java.lang.Object _onRowsPerPageOptionsChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageOptionsChange");
-java.lang.Object _onStateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onStateChange");
-java.lang.Object _onTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTemplateChange");
-java.lang.Object _onTotalChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalChange");
-java.lang.Object _onTotalElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalElChange");
-java.lang.Object _onTotalLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalLabelChange");
-java.lang.Object _onTotalPagesChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalPagesChange");
+java.lang.Boolean alwaysVisible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:alwaysVisible"), true);
+java.lang.String containers = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:containers"));
+java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:destroyed"), false);
+java.lang.String firstPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLink"));
+java.lang.String firstPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLinkLabel"), "first");
+java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:initialized"), false);
+java.lang.String lastPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLink"));
+java.lang.String lastPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLinkLabel"), "last");
+java.lang.Number maxPageLinks = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:maxPageLinks")), 10);
+java.lang.String nextPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLink"));
+java.lang.String nextPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:nextPageLinkLabel"), "next &gt;");
+java.lang.Number paginatorPage = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:paginatorPage")), 1);
+java.lang.String pageContainerTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageContainerTemplate"));
+java.lang.Object pageLinkContent = (java.lang.Object)request.getAttribute("alloy:paginator:pageLinkContent");
+java.lang.String pageLinkTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageLinkTemplate"));
+java.lang.String pageReportEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportEl"));
+java.lang.String pageReportLabelTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:pageReportLabelTemplate"), "({page} of {totalPages})");
+java.lang.String prevPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLink"));
+java.lang.String prevPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:prevPageLinkLabel"), "&lt; prev");
+java.lang.Number rowsPerPage = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:rowsPerPage")), 1);
+java.lang.String rowsPerPageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:rowsPerPageEl"));
+java.util.ArrayList rowsPerPageOptions = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:paginator:rowsPerPageOptions"), "[]"));
+java.util.HashMap state = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:paginator:state"), "{}"));
+java.lang.String template = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:template"), "{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}");
+java.lang.Number total = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:total")), 0);
+java.lang.String totalEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalEl"));
+java.lang.String totalLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:totalLabel"), "(Total {total})");
+java.lang.Number totalPages = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:totalPages")), 0);
+java.lang.Object afterAlwaysVisibleChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterAlwaysVisibleChange");
+java.lang.Object afterContainersChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterContainersChange");
+java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:paginator:afterDestroy");
+java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterDestroyedChange");
+java.lang.Object afterFirstPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterFirstPageLinkChange");
+java.lang.Object afterFirstPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterFirstPageLinkLabelChange");
+java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:paginator:afterInit");
+java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterInitializedChange");
+java.lang.Object afterLastPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterLastPageLinkChange");
+java.lang.Object afterLastPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterLastPageLinkLabelChange");
+java.lang.Object afterMaxPageLinksChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterMaxPageLinksChange");
+java.lang.Object afterNextPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterNextPageLinkChange");
+java.lang.Object afterNextPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterNextPageLinkLabelChange");
+java.lang.Object afterPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageChange");
+java.lang.Object afterPageContainerTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageContainerTemplateChange");
+java.lang.Object afterPageLinkContentChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageLinkContentChange");
+java.lang.Object afterPageLinkTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageLinkTemplateChange");
+java.lang.Object afterPageReportElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageReportElChange");
+java.lang.Object afterPageReportLabelTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPageReportLabelTemplateChange");
+java.lang.Object afterPrevPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPrevPageLinkChange");
+java.lang.Object afterPrevPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterPrevPageLinkLabelChange");
+java.lang.Object afterRowsPerPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageChange");
+java.lang.Object afterRowsPerPageElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageElChange");
+java.lang.Object afterRowsPerPageOptionsChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterRowsPerPageOptionsChange");
+java.lang.Object afterStateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterStateChange");
+java.lang.Object afterTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTemplateChange");
+java.lang.Object afterTotalChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalChange");
+java.lang.Object afterTotalElChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalElChange");
+java.lang.Object afterTotalLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalLabelChange");
+java.lang.Object afterTotalPagesChange = (java.lang.Object)request.getAttribute("alloy:paginator:afterTotalPagesChange");
+java.lang.Object onAlwaysVisibleChange = (java.lang.Object)request.getAttribute("alloy:paginator:onAlwaysVisibleChange");
+java.lang.Object onContainersChange = (java.lang.Object)request.getAttribute("alloy:paginator:onContainersChange");
+java.lang.Object onDestroy = (java.lang.Object)request.getAttribute("alloy:paginator:onDestroy");
+java.lang.Object onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:paginator:onDestroyedChange");
+java.lang.Object onFirstPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onFirstPageLinkChange");
+java.lang.Object onFirstPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onFirstPageLinkLabelChange");
+java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:paginator:onInit");
+java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:paginator:onInitializedChange");
+java.lang.Object onLastPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onLastPageLinkChange");
+java.lang.Object onLastPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onLastPageLinkLabelChange");
+java.lang.Object onMaxPageLinksChange = (java.lang.Object)request.getAttribute("alloy:paginator:onMaxPageLinksChange");
+java.lang.Object onNextPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onNextPageLinkChange");
+java.lang.Object onNextPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onNextPageLinkLabelChange");
+java.lang.Object onPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageChange");
+java.lang.Object onPageContainerTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageContainerTemplateChange");
+java.lang.Object onPageLinkContentChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageLinkContentChange");
+java.lang.Object onPageLinkTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageLinkTemplateChange");
+java.lang.Object onPageReportElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageReportElChange");
+java.lang.Object onPageReportLabelTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPageReportLabelTemplateChange");
+java.lang.Object onPrevPageLinkChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPrevPageLinkChange");
+java.lang.Object onPrevPageLinkLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onPrevPageLinkLabelChange");
+java.lang.Object onRowsPerPageChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageChange");
+java.lang.Object onRowsPerPageElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageElChange");
+java.lang.Object onRowsPerPageOptionsChange = (java.lang.Object)request.getAttribute("alloy:paginator:onRowsPerPageOptionsChange");
+java.lang.Object onStateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onStateChange");
+java.lang.Object onTemplateChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTemplateChange");
+java.lang.Object onTotalChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalChange");
+java.lang.Object onTotalElChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalElChange");
+java.lang.Object onTotalLabelChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalLabelChange");
+java.lang.Object onTotalPagesChange = (java.lang.Object)request.getAttribute("alloy:paginator:onTotalPagesChange");
 
-_updateOptions(options, "alwaysVisible", _alwaysVisible);
-_updateOptions(options, "containers", _containers);
-_updateOptions(options, "destroyed", _destroyed);
-_updateOptions(options, "firstPageLink", _firstPageLink);
-_updateOptions(options, "firstPageLinkLabel", _firstPageLinkLabel);
-_updateOptions(options, "initialized", _initialized);
-_updateOptions(options, "lastPageLink", _lastPageLink);
-_updateOptions(options, "lastPageLinkLabel", _lastPageLinkLabel);
-_updateOptions(options, "maxPageLinks", _maxPageLinks);
-_updateOptions(options, "nextPageLink", _nextPageLink);
-_updateOptions(options, "nextPageLinkLabel", _nextPageLinkLabel);
-_updateOptions(options, "page", _page);
-_updateOptions(options, "pageContainerTemplate", _pageContainerTemplate);
-_updateOptions(options, "pageLinkContent", _pageLinkContent);
-_updateOptions(options, "pageLinkTemplate", _pageLinkTemplate);
-_updateOptions(options, "pageReportEl", _pageReportEl);
-_updateOptions(options, "pageReportLabelTemplate", _pageReportLabelTemplate);
-_updateOptions(options, "prevPageLink", _prevPageLink);
-_updateOptions(options, "prevPageLinkLabel", _prevPageLinkLabel);
-_updateOptions(options, "rowsPerPage", _rowsPerPage);
-_updateOptions(options, "rowsPerPageEl", _rowsPerPageEl);
-_updateOptions(options, "rowsPerPageOptions", _rowsPerPageOptions);
-_updateOptions(options, "state", _state);
-_updateOptions(options, "template", _template);
-_updateOptions(options, "total", _total);
-_updateOptions(options, "totalEl", _totalEl);
-_updateOptions(options, "totalLabel", _totalLabel);
-_updateOptions(options, "totalPages", _totalPages);
-_updateOptions(options, "afterAlwaysVisibleChange", _afterAlwaysVisibleChange);
-_updateOptions(options, "afterContainersChange", _afterContainersChange);
-_updateOptions(options, "afterDestroy", _afterDestroy);
-_updateOptions(options, "afterDestroyedChange", _afterDestroyedChange);
-_updateOptions(options, "afterFirstPageLinkChange", _afterFirstPageLinkChange);
-_updateOptions(options, "afterFirstPageLinkLabelChange", _afterFirstPageLinkLabelChange);
-_updateOptions(options, "afterInit", _afterInit);
-_updateOptions(options, "afterInitializedChange", _afterInitializedChange);
-_updateOptions(options, "afterLastPageLinkChange", _afterLastPageLinkChange);
-_updateOptions(options, "afterLastPageLinkLabelChange", _afterLastPageLinkLabelChange);
-_updateOptions(options, "afterMaxPageLinksChange", _afterMaxPageLinksChange);
-_updateOptions(options, "afterNextPageLinkChange", _afterNextPageLinkChange);
-_updateOptions(options, "afterNextPageLinkLabelChange", _afterNextPageLinkLabelChange);
-_updateOptions(options, "afterPageChange", _afterPageChange);
-_updateOptions(options, "afterPageContainerTemplateChange", _afterPageContainerTemplateChange);
-_updateOptions(options, "afterPageLinkContentChange", _afterPageLinkContentChange);
-_updateOptions(options, "afterPageLinkTemplateChange", _afterPageLinkTemplateChange);
-_updateOptions(options, "afterPageReportElChange", _afterPageReportElChange);
-_updateOptions(options, "afterPageReportLabelTemplateChange", _afterPageReportLabelTemplateChange);
-_updateOptions(options, "afterPrevPageLinkChange", _afterPrevPageLinkChange);
-_updateOptions(options, "afterPrevPageLinkLabelChange", _afterPrevPageLinkLabelChange);
-_updateOptions(options, "afterRowsPerPageChange", _afterRowsPerPageChange);
-_updateOptions(options, "afterRowsPerPageElChange", _afterRowsPerPageElChange);
-_updateOptions(options, "afterRowsPerPageOptionsChange", _afterRowsPerPageOptionsChange);
-_updateOptions(options, "afterStateChange", _afterStateChange);
-_updateOptions(options, "afterTemplateChange", _afterTemplateChange);
-_updateOptions(options, "afterTotalChange", _afterTotalChange);
-_updateOptions(options, "afterTotalElChange", _afterTotalElChange);
-_updateOptions(options, "afterTotalLabelChange", _afterTotalLabelChange);
-_updateOptions(options, "afterTotalPagesChange", _afterTotalPagesChange);
-_updateOptions(options, "onAlwaysVisibleChange", _onAlwaysVisibleChange);
-_updateOptions(options, "onContainersChange", _onContainersChange);
-_updateOptions(options, "onDestroy", _onDestroy);
-_updateOptions(options, "onDestroyedChange", _onDestroyedChange);
-_updateOptions(options, "onFirstPageLinkChange", _onFirstPageLinkChange);
-_updateOptions(options, "onFirstPageLinkLabelChange", _onFirstPageLinkLabelChange);
-_updateOptions(options, "onInit", _onInit);
-_updateOptions(options, "onInitializedChange", _onInitializedChange);
-_updateOptions(options, "onLastPageLinkChange", _onLastPageLinkChange);
-_updateOptions(options, "onLastPageLinkLabelChange", _onLastPageLinkLabelChange);
-_updateOptions(options, "onMaxPageLinksChange", _onMaxPageLinksChange);
-_updateOptions(options, "onNextPageLinkChange", _onNextPageLinkChange);
-_updateOptions(options, "onNextPageLinkLabelChange", _onNextPageLinkLabelChange);
-_updateOptions(options, "onPageChange", _onPageChange);
-_updateOptions(options, "onPageContainerTemplateChange", _onPageContainerTemplateChange);
-_updateOptions(options, "onPageLinkContentChange", _onPageLinkContentChange);
-_updateOptions(options, "onPageLinkTemplateChange", _onPageLinkTemplateChange);
-_updateOptions(options, "onPageReportElChange", _onPageReportElChange);
-_updateOptions(options, "onPageReportLabelTemplateChange", _onPageReportLabelTemplateChange);
-_updateOptions(options, "onPrevPageLinkChange", _onPrevPageLinkChange);
-_updateOptions(options, "onPrevPageLinkLabelChange", _onPrevPageLinkLabelChange);
-_updateOptions(options, "onRowsPerPageChange", _onRowsPerPageChange);
-_updateOptions(options, "onRowsPerPageElChange", _onRowsPerPageElChange);
-_updateOptions(options, "onRowsPerPageOptionsChange", _onRowsPerPageOptionsChange);
-_updateOptions(options, "onStateChange", _onStateChange);
-_updateOptions(options, "onTemplateChange", _onTemplateChange);
-_updateOptions(options, "onTotalChange", _onTotalChange);
-_updateOptions(options, "onTotalElChange", _onTotalElChange);
-_updateOptions(options, "onTotalLabelChange", _onTotalLabelChange);
-_updateOptions(options, "onTotalPagesChange", _onTotalPagesChange);
+_updateOptions(_options, "alwaysVisible", alwaysVisible);
+_updateOptions(_options, "containers", containers);
+_updateOptions(_options, "destroyed", destroyed);
+_updateOptions(_options, "firstPageLink", firstPageLink);
+_updateOptions(_options, "firstPageLinkLabel", firstPageLinkLabel);
+_updateOptions(_options, "initialized", initialized);
+_updateOptions(_options, "lastPageLink", lastPageLink);
+_updateOptions(_options, "lastPageLinkLabel", lastPageLinkLabel);
+_updateOptions(_options, "maxPageLinks", maxPageLinks);
+_updateOptions(_options, "nextPageLink", nextPageLink);
+_updateOptions(_options, "nextPageLinkLabel", nextPageLinkLabel);
+_updateOptions(_options, "paginatorPage", paginatorPage);
+_updateOptions(_options, "pageContainerTemplate", pageContainerTemplate);
+_updateOptions(_options, "pageLinkContent", pageLinkContent);
+_updateOptions(_options, "pageLinkTemplate", pageLinkTemplate);
+_updateOptions(_options, "pageReportEl", pageReportEl);
+_updateOptions(_options, "pageReportLabelTemplate", pageReportLabelTemplate);
+_updateOptions(_options, "prevPageLink", prevPageLink);
+_updateOptions(_options, "prevPageLinkLabel", prevPageLinkLabel);
+_updateOptions(_options, "rowsPerPage", rowsPerPage);
+_updateOptions(_options, "rowsPerPageEl", rowsPerPageEl);
+_updateOptions(_options, "rowsPerPageOptions", rowsPerPageOptions);
+_updateOptions(_options, "state", state);
+_updateOptions(_options, "template", template);
+_updateOptions(_options, "total", total);
+_updateOptions(_options, "totalEl", totalEl);
+_updateOptions(_options, "totalLabel", totalLabel);
+_updateOptions(_options, "totalPages", totalPages);
+_updateOptions(_options, "afterAlwaysVisibleChange", afterAlwaysVisibleChange);
+_updateOptions(_options, "afterContainersChange", afterContainersChange);
+_updateOptions(_options, "afterDestroy", afterDestroy);
+_updateOptions(_options, "afterDestroyedChange", afterDestroyedChange);
+_updateOptions(_options, "afterFirstPageLinkChange", afterFirstPageLinkChange);
+_updateOptions(_options, "afterFirstPageLinkLabelChange", afterFirstPageLinkLabelChange);
+_updateOptions(_options, "afterInit", afterInit);
+_updateOptions(_options, "afterInitializedChange", afterInitializedChange);
+_updateOptions(_options, "afterLastPageLinkChange", afterLastPageLinkChange);
+_updateOptions(_options, "afterLastPageLinkLabelChange", afterLastPageLinkLabelChange);
+_updateOptions(_options, "afterMaxPageLinksChange", afterMaxPageLinksChange);
+_updateOptions(_options, "afterNextPageLinkChange", afterNextPageLinkChange);
+_updateOptions(_options, "afterNextPageLinkLabelChange", afterNextPageLinkLabelChange);
+_updateOptions(_options, "afterPageChange", afterPageChange);
+_updateOptions(_options, "afterPageContainerTemplateChange", afterPageContainerTemplateChange);
+_updateOptions(_options, "afterPageLinkContentChange", afterPageLinkContentChange);
+_updateOptions(_options, "afterPageLinkTemplateChange", afterPageLinkTemplateChange);
+_updateOptions(_options, "afterPageReportElChange", afterPageReportElChange);
+_updateOptions(_options, "afterPageReportLabelTemplateChange", afterPageReportLabelTemplateChange);
+_updateOptions(_options, "afterPrevPageLinkChange", afterPrevPageLinkChange);
+_updateOptions(_options, "afterPrevPageLinkLabelChange", afterPrevPageLinkLabelChange);
+_updateOptions(_options, "afterRowsPerPageChange", afterRowsPerPageChange);
+_updateOptions(_options, "afterRowsPerPageElChange", afterRowsPerPageElChange);
+_updateOptions(_options, "afterRowsPerPageOptionsChange", afterRowsPerPageOptionsChange);
+_updateOptions(_options, "afterStateChange", afterStateChange);
+_updateOptions(_options, "afterTemplateChange", afterTemplateChange);
+_updateOptions(_options, "afterTotalChange", afterTotalChange);
+_updateOptions(_options, "afterTotalElChange", afterTotalElChange);
+_updateOptions(_options, "afterTotalLabelChange", afterTotalLabelChange);
+_updateOptions(_options, "afterTotalPagesChange", afterTotalPagesChange);
+_updateOptions(_options, "onAlwaysVisibleChange", onAlwaysVisibleChange);
+_updateOptions(_options, "onContainersChange", onContainersChange);
+_updateOptions(_options, "onDestroy", onDestroy);
+_updateOptions(_options, "onDestroyedChange", onDestroyedChange);
+_updateOptions(_options, "onFirstPageLinkChange", onFirstPageLinkChange);
+_updateOptions(_options, "onFirstPageLinkLabelChange", onFirstPageLinkLabelChange);
+_updateOptions(_options, "onInit", onInit);
+_updateOptions(_options, "onInitializedChange", onInitializedChange);
+_updateOptions(_options, "onLastPageLinkChange", onLastPageLinkChange);
+_updateOptions(_options, "onLastPageLinkLabelChange", onLastPageLinkLabelChange);
+_updateOptions(_options, "onMaxPageLinksChange", onMaxPageLinksChange);
+_updateOptions(_options, "onNextPageLinkChange", onNextPageLinkChange);
+_updateOptions(_options, "onNextPageLinkLabelChange", onNextPageLinkLabelChange);
+_updateOptions(_options, "onPageChange", onPageChange);
+_updateOptions(_options, "onPageContainerTemplateChange", onPageContainerTemplateChange);
+_updateOptions(_options, "onPageLinkContentChange", onPageLinkContentChange);
+_updateOptions(_options, "onPageLinkTemplateChange", onPageLinkTemplateChange);
+_updateOptions(_options, "onPageReportElChange", onPageReportElChange);
+_updateOptions(_options, "onPageReportLabelTemplateChange", onPageReportLabelTemplateChange);
+_updateOptions(_options, "onPrevPageLinkChange", onPrevPageLinkChange);
+_updateOptions(_options, "onPrevPageLinkLabelChange", onPrevPageLinkLabelChange);
+_updateOptions(_options, "onRowsPerPageChange", onRowsPerPageChange);
+_updateOptions(_options, "onRowsPerPageElChange", onRowsPerPageElChange);
+_updateOptions(_options, "onRowsPerPageOptionsChange", onRowsPerPageOptionsChange);
+_updateOptions(_options, "onStateChange", onStateChange);
+_updateOptions(_options, "onTemplateChange", onTemplateChange);
+_updateOptions(_options, "onTotalChange", onTotalChange);
+_updateOptions(_options, "onTotalElChange", onTotalElChange);
+_updateOptions(_options, "onTotalLabelChange", onTotalLabelChange);
+_updateOptions(_options, "onTotalPagesChange", onTotalPagesChange);
 %>
 
 <%@ include file="init-ext.jsp" %>

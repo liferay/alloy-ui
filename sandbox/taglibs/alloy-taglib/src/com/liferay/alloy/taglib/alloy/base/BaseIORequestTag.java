@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseIORequestTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,7 +18,7 @@ public class BaseIORequestTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -782,7 +782,7 @@ public class BaseIORequestTag extends com.liferay.alloy.taglib.alloy_util.Includ
 		setScopedAttribute("onXdrChange", onXdrChange);
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "active", _active);
 		setNamespacedAttribute(request, "arguments", _arguments);
 		setNamespacedAttribute(request, "autoLoad", _autoLoad);
@@ -866,81 +866,81 @@ public class BaseIORequestTag extends com.liferay.alloy.taglib.alloy_util.Includ
 	private static final String _PAGE =
 		"/html/taglib/alloy/io_request/page.jsp";
 
-	private java.lang.Boolean _active;
-	private java.lang.Object _arguments;
-	private java.lang.Boolean _autoLoad;
-	private java.lang.Boolean _cache;
-	private java.lang.String _cfg;
-	private java.lang.Object _context;
-	private java.lang.Object _data;
-	private java.lang.String _dataType;
-	private java.lang.Boolean _destroyed;
-	private java.lang.Object _form;
-	private java.lang.Object _headers;
-	private java.lang.Object _host;
-	private java.lang.Boolean _initialized;
-	private java.lang.String _method;
-	private java.lang.Object _responseData;
-	private java.lang.Boolean _sync;
-	private java.lang.Object _timeout;
-	private java.lang.Object _transaction;
-	private java.lang.String _uri;
-	private java.lang.Object _xdr;
-	private java.lang.Object _afterActiveChange;
-	private java.lang.Object _afterArgumentsChange;
-	private java.lang.Object _afterAutoLoadChange;
-	private java.lang.Object _afterCacheChange;
-	private java.lang.Object _afterCfgChange;
-	private java.lang.Object _afterContextChange;
-	private java.lang.Object _afterDataChange;
-	private java.lang.Object _afterDataTypeChange;
-	private java.lang.Object _afterDestroy;
-	private java.lang.Object _afterDestroyedChange;
-	private java.lang.Object _afterFormChange;
-	private java.lang.Object _afterHeadersChange;
-	private java.lang.Object _afterHostChange;
-	private java.lang.Object _afterInit;
-	private java.lang.Object _afterInitializedChange;
-	private java.lang.Object _afterComplete;
-	private java.lang.Object _afterEnd;
-	private java.lang.Object _afterFailure;
-	private java.lang.Object _afterStart;
-	private java.lang.Object _afterSuccess;
-	private java.lang.Object _afterXdrReady;
-	private java.lang.Object _afterMethodChange;
-	private java.lang.Object _afterResponseDataChange;
-	private java.lang.Object _afterSyncChange;
-	private java.lang.Object _afterTimeoutChange;
-	private java.lang.Object _afterTransactionChange;
-	private java.lang.Object _afterUriChange;
-	private java.lang.Object _afterXdrChange;
-	private java.lang.Object _onActiveChange;
-	private java.lang.Object _onArgumentsChange;
-	private java.lang.Object _onAutoLoadChange;
-	private java.lang.Object _onCacheChange;
-	private java.lang.Object _onCfgChange;
-	private java.lang.Object _onContextChange;
-	private java.lang.Object _onDataChange;
-	private java.lang.Object _onDataTypeChange;
-	private java.lang.Object _onDestroy;
-	private java.lang.Object _onDestroyedChange;
-	private java.lang.Object _onFormChange;
-	private java.lang.Object _onHeadersChange;
-	private java.lang.Object _onHostChange;
-	private java.lang.Object _onInit;
-	private java.lang.Object _onInitializedChange;
-	private java.lang.Object _onComplete;
-	private java.lang.Object _onEnd;
-	private java.lang.Object _onFailure;
-	private java.lang.Object _onStart;
-	private java.lang.Object _onSuccess;
-	private java.lang.Object _onXdrReady;
-	private java.lang.Object _onMethodChange;
-	private java.lang.Object _onResponseDataChange;
-	private java.lang.Object _onSyncChange;
-	private java.lang.Object _onTimeoutChange;
-	private java.lang.Object _onTransactionChange;
-	private java.lang.Object _onUriChange;
-	private java.lang.Object _onXdrChange;
+	protected java.lang.Boolean _active;
+	protected java.lang.Object _arguments;
+	protected java.lang.Boolean _autoLoad;
+	protected java.lang.Boolean _cache;
+	protected java.lang.String _cfg;
+	protected java.lang.Object _context;
+	protected java.lang.Object _data;
+	protected java.lang.String _dataType;
+	protected java.lang.Boolean _destroyed;
+	protected java.lang.Object _form;
+	protected java.lang.Object _headers;
+	protected java.lang.Object _host;
+	protected java.lang.Boolean _initialized;
+	protected java.lang.String _method;
+	protected java.lang.Object _responseData;
+	protected java.lang.Boolean _sync;
+	protected java.lang.Object _timeout;
+	protected java.lang.Object _transaction;
+	protected java.lang.String _uri;
+	protected java.lang.Object _xdr;
+	protected java.lang.Object _afterActiveChange;
+	protected java.lang.Object _afterArgumentsChange;
+	protected java.lang.Object _afterAutoLoadChange;
+	protected java.lang.Object _afterCacheChange;
+	protected java.lang.Object _afterCfgChange;
+	protected java.lang.Object _afterContextChange;
+	protected java.lang.Object _afterDataChange;
+	protected java.lang.Object _afterDataTypeChange;
+	protected java.lang.Object _afterDestroy;
+	protected java.lang.Object _afterDestroyedChange;
+	protected java.lang.Object _afterFormChange;
+	protected java.lang.Object _afterHeadersChange;
+	protected java.lang.Object _afterHostChange;
+	protected java.lang.Object _afterInit;
+	protected java.lang.Object _afterInitializedChange;
+	protected java.lang.Object _afterComplete;
+	protected java.lang.Object _afterEnd;
+	protected java.lang.Object _afterFailure;
+	protected java.lang.Object _afterStart;
+	protected java.lang.Object _afterSuccess;
+	protected java.lang.Object _afterXdrReady;
+	protected java.lang.Object _afterMethodChange;
+	protected java.lang.Object _afterResponseDataChange;
+	protected java.lang.Object _afterSyncChange;
+	protected java.lang.Object _afterTimeoutChange;
+	protected java.lang.Object _afterTransactionChange;
+	protected java.lang.Object _afterUriChange;
+	protected java.lang.Object _afterXdrChange;
+	protected java.lang.Object _onActiveChange;
+	protected java.lang.Object _onArgumentsChange;
+	protected java.lang.Object _onAutoLoadChange;
+	protected java.lang.Object _onCacheChange;
+	protected java.lang.Object _onCfgChange;
+	protected java.lang.Object _onContextChange;
+	protected java.lang.Object _onDataChange;
+	protected java.lang.Object _onDataTypeChange;
+	protected java.lang.Object _onDestroy;
+	protected java.lang.Object _onDestroyedChange;
+	protected java.lang.Object _onFormChange;
+	protected java.lang.Object _onHeadersChange;
+	protected java.lang.Object _onHostChange;
+	protected java.lang.Object _onInit;
+	protected java.lang.Object _onInitializedChange;
+	protected java.lang.Object _onComplete;
+	protected java.lang.Object _onEnd;
+	protected java.lang.Object _onFailure;
+	protected java.lang.Object _onStart;
+	protected java.lang.Object _onSuccess;
+	protected java.lang.Object _onXdrReady;
+	protected java.lang.Object _onMethodChange;
+	protected java.lang.Object _onResponseDataChange;
+	protected java.lang.Object _onSyncChange;
+	protected java.lang.Object _onTimeoutChange;
+	protected java.lang.Object _onTransactionChange;
+	protected java.lang.Object _onUriChange;
+	protected java.lang.Object _onXdrChange;
 
 }

@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseAioTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
+public class BaseAioTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
@@ -18,11 +18,11 @@ public class BaseAioTag extends com.liferay.alloy.taglib.alloy_util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 	}
 
 	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:a-io:";
