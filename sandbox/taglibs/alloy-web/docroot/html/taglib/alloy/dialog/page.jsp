@@ -4,7 +4,7 @@
 	javaScriptAttributes="xy"
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-dialog"
 	name="Dialog"
 />

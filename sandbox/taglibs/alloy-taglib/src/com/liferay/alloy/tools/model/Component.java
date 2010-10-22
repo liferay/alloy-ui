@@ -1,10 +1,11 @@
 package com.liferay.alloy.tools.model;
 
-import com.liferay.alloy.util.StringUtil;
-import com.liferay.portal.kernel.util.StringPool;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.util.TextFormatter;
 
 public class Component extends BaseModel {
 
@@ -47,7 +48,7 @@ public class Component extends BaseModel {
 	}
 
 	public String getCamelizedName() {
-		return StringUtil.camelize(getName());
+		return TextFormatter.format(getName(), TextFormatter.M);
 	}
 
 	public List<Attribute> getEvents() {
@@ -67,16 +68,18 @@ public class Component extends BaseModel {
 	}
 
 	public String getSafeName() {
-		return com.liferay.portal.kernel.util.StringUtil.replace(
+		return StringUtil.replace(
 			getName(), StringPool.PERIOD, StringPool.BLANK);
 	}
 
 	public String getUncamelizedName() {
-		return StringUtil.uncamelize(getName());
+		String name = getName().replaceAll("\\.", StringPool.DASH);
+
+		return TextFormatter.format(name, TextFormatter.P);
 	}
 
 	public String getUncamelizedName(String delimiter) {
-		return StringUtil.uncamelize(getName(), delimiter);
+		return getUncamelizedName().replaceAll("\\-", delimiter);
 	}
 
 	public boolean isAlloyComponent() {

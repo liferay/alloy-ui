@@ -2,15 +2,15 @@
 
 <c:if test="<%= useMarkup %>">
 
-	<input id="<%= uniqueId %>Input" maxlength="<%= _maxLength %>" />
-	<span id="<%= uniqueId %>Counter"><%= _maxLength %></span>
+	<input id="<%= uniqueId %>Input" maxlength="<%= maxLength %>" />
+	<span id="<%= uniqueId %>Counter"><%= maxLength %></span>
 
 </c:if>
 
 <alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-char-counter"
 	name="CharCounter"
 />

@@ -1,3 +1,5 @@
+<%@page import="com.liferay.portal.kernel.util.ArrayUtil"%>
+
 <%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">

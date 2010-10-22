@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@ include file="init.jsp" %>
 
 <c:if test="<%= useMarkup %>">
@@ -7,9 +6,9 @@
 	    <div class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
 	</c:if>
 
-	<c:if test="<%= Validator.isNotNull(bodyContent) %>">
+	<c:if test="<%= Validator.isNotNull(bodyContentString) %>">
 		<span class="<%= CSS_TOOLBAR_CONTENT %>" id="<%= uniqueId %>SrcNode">
-			<%= bodyContent %>
+			<%= bodyContentString %>
 		</span>
 	</c:if>
 
@@ -22,7 +21,7 @@
 <alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-toolbar"
 	name="Toolbar"
 />

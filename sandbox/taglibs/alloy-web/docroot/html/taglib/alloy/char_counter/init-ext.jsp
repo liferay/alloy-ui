@@ -2,7 +2,7 @@
 if (useMarkup) {
 	String prefix = StringPool.POUND.concat(uniqueId);
 
-	options.put("counter", prefix.concat("Counter"));
-	options.put("input", prefix.concat("Input"));
+	_options.put("counter", prefix.concat("Counter"));
+	_options.put("input", prefix.concat("Input"));
 }
 %>

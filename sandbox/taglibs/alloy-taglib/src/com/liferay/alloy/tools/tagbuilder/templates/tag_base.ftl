@@ -19,16 +19,16 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	<#if component.isBodyContent() == true>
-	protected String _getEndPage() {
+	protected String getEndPage() {
 		return _END_PAGE;
 	}
 
-	protected String _getStartPage() {
+	protected String getStartPage() {
 		return _START_PAGE;
 	}
 
 	<#else>
-	protected String _getPage() {
+	protected String getPage() {
 		return _PAGE;
 	}
 
@@ -47,7 +47,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	</#list>
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
 		</#list>
@@ -67,7 +67,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	</#if>
 
 	<#list component.getAttributesAndEvents() as attribute>
-	private ${attribute.getInputType()} _${attribute.getSafeName()};
+	protected ${attribute.getInputType()} _${attribute.getSafeName()};
 	</#list>
 
 }

@@ -18,6 +18,7 @@
 			<fileset dir="${lp.source.dir}/portal-impl/src/" includes="${lp.source.impl.files}" />
 			<fileset dir="${lp.source.dir}/portal-service/src/" includes="${lp.source.service.files}" />
 			<fileset dir="${lp.source.dir}/util-java/src/" includes="${lp.source.util.files}" />
+			<fileset dir="${lp.source.dir}/util-taglib/src/" includes="${lp.source.taglib.files}" />
 		</copy>
 
 		<mkdir dir="${temp.dir}/classes" />
@@ -109,6 +110,8 @@
 			<jvmarg value="-Dtagbuilder.java.output.dir=${tagbuilder.java.output.dir}" />
 			<jvmarg value="-Dtagbuilder.java.output.package=${tagbuilder.java.output.package}" />
 			<jvmarg value="-Dtagbuilder.jsp.docroot.dir=${tagbuilder.docroot.dir}" />
+			<jvmarg value="-Dtagbuilder.jsp.common.init.path=${tagbuilder.jsp.common.init.path}" />
+			<jvmarg value="-Dtagbuilder.jsp.common.init.output.dir=${tagbuilder.jsp.common.init.output.dir}" />
 			<jvmarg value="-Dtagbuilder.jsp.dir=${tagbuilder.jsp.dir}" />
 			<jvmarg value="-Dtagbuilder.jsp.output.dir=${tagbuilder.jsp.output.dir}" />
 		</java>

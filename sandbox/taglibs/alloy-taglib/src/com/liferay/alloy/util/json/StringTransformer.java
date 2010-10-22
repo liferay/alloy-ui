@@ -14,19 +14,21 @@
 
 package com.liferay.alloy.util.json;
 
+import java.util.Collections;
+import java.util.List;
+
+import com.liferay.portal.kernel.json.JSONTransformer;
+
 import flexjson.Path;
 import flexjson.TypeContext;
 import flexjson.transformer.AbstractTransformer;
-
-import java.util.Collections;
-import java.util.List;
 
 /**
  * <a href="StringTransformer.java.html"><b><i>View Source</i></b></a>
  *
  * @author Eduardo Lundgren
  */
-public class StringTransformer extends AbstractTransformer {
+public class StringTransformer extends AbstractTransformer implements JSONTransformer {
 
 	public List<String> getJavaScriptAttributes() {
 		return _javaScriptAttributes;
@@ -58,15 +60,20 @@ public class StringTransformer extends AbstractTransformer {
 		Path path = getContext().getPath();
 		TypeContext typeContext = getContext().peekTypeContext();
 
-		String propertyName = typeContext.getPropertyName();
+		if (typeContext != null) {
+			String propertyName = typeContext.getPropertyName();
 
-		if (isEventPath(path) ||
-			isJavaScriptAttribute(propertyName)) {
+			if (isEventPath(path) ||
+					isJavaScriptAttribute(propertyName)) {
 
-			getContext().write((String) object);
+				getContext().write((String) object);
+			}
+			else {
+				getContext().writeQuoted((String) object);
+			}
 		}
 		else {
-			getContext().writeQuoted((String) object);
+			getContext().write((String) object);
 		}
 	}
 

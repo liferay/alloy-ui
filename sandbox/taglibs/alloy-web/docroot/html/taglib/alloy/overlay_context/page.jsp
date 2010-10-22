@@ -6,8 +6,8 @@
 	</c:if>
 
 	<div class="<%= CONTENT_BOX_CLASS %>" id="<%= uniqueId %>SrcNode">
-		<c:if test="<%= Validator.isNotNull(_bodyContent) %>">
-			<%= _bodyContent %>
+		<c:if test="<%= Validator.isNotNull(bodyContentString) %>">
+			<%= bodyContentString %>
 		</c:if>
 	</div>
 
@@ -19,7 +19,7 @@
 <alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-overlay"
 	name="OverlayContext"
 />

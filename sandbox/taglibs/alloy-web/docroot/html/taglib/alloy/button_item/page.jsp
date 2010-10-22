@@ -7,9 +7,9 @@
 
 	<span class="<%= StringUtil.merge(new String[] { CSS_BUTTON_ITEM_ICON, CSS_ICON, CSS_CUSTOM_ICON }, StringPool.SPACE) %>"></span>
 
-	<c:if test="<%= Validator.isNotNull(_label) %>">
+	<c:if test="<%= Validator.isNotNull(label) %>">
 		<span class="<%= CSS_BUTTON_ITEM_LABEL %>">
-			<%= _label %>
+			<%= label %>
 		</span>
 	</c:if>
 
@@ -21,7 +21,7 @@
 <alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-button-item"
 	name="ButtonItem"
 />

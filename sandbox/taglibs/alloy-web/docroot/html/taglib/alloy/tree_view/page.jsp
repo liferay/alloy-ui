@@ -16,9 +16,9 @@
 		<%
 		StringBundler sb = new StringBundler();
 
-		builTree(_children, sb);
+		builTree(children, sb);
 
-		options.remove("children");
+		_options.remove("children");
 		%>
 
 		<%= sb.toString() %>
@@ -87,7 +87,7 @@ private void buildTreeNode(Map<String, Object> node, StringBundler sb) {
 <alloy-util:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
-	options="<%= options %>"
+	options="<%= _options %>"
 	module="aui-tree"
 	name="TreeView"
 />

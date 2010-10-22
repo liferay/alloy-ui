@@ -36,13 +36,13 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class ComponentTag extends BaseComponentTag {
 
-	protected void _setAttributes(HttpServletRequest request) {
+	protected void setAttributes(HttpServletRequest request) {
 		Map<String, Object> options = getOptions();
 		HashMap<String, Object> optionsJSON = new HashMap<String, Object>();
 
 		_proccessAttributes(options, optionsJSON);
 
-		super._setAttributes(request);
+		super.setAttributes(request);
 		setNamespacedAttribute(request, "options", options);
 		setNamespacedAttribute(request, "optionsJSON", optionsJSON);
 	}

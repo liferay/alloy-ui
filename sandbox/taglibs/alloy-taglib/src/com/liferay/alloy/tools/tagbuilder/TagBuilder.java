@@ -1,7 +1,6 @@
 package com.liferay.alloy.tools.tagbuilder;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,19 +9,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.io.OutputFormat;
-import org.dom4j.io.XMLWriter;
-
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
-import com.liferay.alloy.util.FileUtil;
-import com.liferay.alloy.util.xml.SAXReaderUtil;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.xml.Document;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.util.FileImpl;
+import com.liferay.portal.xml.SAXReaderImpl;
 
 /**
  * <a href="TagBuilder.java.html"><b><i>View Source</i></b></a>
@@ -39,8 +37,13 @@ public class TagBuilder {
 	public TagBuilder(
 			String componentsXML, String componentsExtXML, String templatesDir,
 			String javaOutputDir, String javaOutputPackage,	String jspDir,
-			String jspOutputDir, String tldDir)
+			String jspOutputDir, String jspCommonInitPath,
+			String jspCommonInitOutputDir, String tldDir)
 		throws Exception {
+
+		if (SAXReaderUtil.getSAXReader() == null) {
+			(new SAXReaderUtil()).setSAXReader(new SAXReaderImpl());
+		}
 
 		_componentsExtXML = Arrays.asList(StringUtil.split(componentsExtXML));
 		_componentsXML = componentsXML;
@@ -49,11 +52,14 @@ public class TagBuilder {
 		_javaOutputPackage = javaOutputPackage;
 		_jspDir = jspDir;
 		_jspOutputDir = jspOutputDir;
+		_jspCommonInitPath = jspCommonInitPath;
+		_jspCommonInitOutputDir = jspCommonInitOutputDir;
 		_tldDir = tldDir;
 
 		_tplTld = _templatesDir + "tld.ftl";
 		_tplTag = _templatesDir + "tag.ftl";
 		_tplTagBase = _templatesDir + "tag_base.ftl";
+		_tplCommonInitJsp = _templatesDir + "common_init_jsp.ftl";
 		_tplJsp = _templatesDir + "jsp.ftl";
 		_tplInitJsp = _templatesDir + "init_jsp.ftl";
 		_tplStartJsp = _templatesDir + "start_jsp.ftl";
@@ -80,18 +86,22 @@ public class TagBuilder {
 		String javaOutputDir = System.getProperty("tagbuilder.java.output.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
 		String jspDir = System.getProperty("tagbuilder.jsp.dir");
+		String jspCommonInitOutputDir = System.getProperty("tagbuilder.jsp.common.init.output.dir");
+		String jspCommonInitPath = System.getProperty("tagbuilder.jsp.common.init.path");
 		String jspOutputDir = System.getProperty("tagbuilder.jsp.output.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
 
 		new TagBuilder(
 			componentsXML, componentsExtXML, templatesDir, javaOutputDir,
-			javaOutputPackage, jspDir, jspOutputDir, tldDir);
+			javaOutputPackage, jspDir, jspOutputDir, jspCommonInitPath,
+			jspCommonInitOutputDir,  tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
 		Map<String, Object> context = new HashMap<String, Object>();
 
 		context.put("authors", AUTHORS);
+		context.put("jspCommonInitPath", _jspCommonInitPath);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaOutputPackage);
 
@@ -162,6 +172,7 @@ public class TagBuilder {
 			_createTag(component, context);
 		}
 
+		_createCommonInitJSP();
 		_createTld();
 	}
 
@@ -181,6 +192,15 @@ public class TagBuilder {
 		File tagFile = new File(sb.toString());
 
 		_writeFile(tagFile, content);
+	}
+
+	private void _createCommonInitJSP() throws Exception {
+		Map<String, Object> context = getDefaultTemplateContext();
+
+		String contentCommonInitJsp = _processTemplate(_tplCommonInitJsp, context);
+
+		File commonInitFile = new File(_jspCommonInitOutputDir);
+		_writeFile(commonInitFile, contentCommonInitJsp, false);
 	}
 
 	private void _createPageJSP(
@@ -269,7 +289,7 @@ public class TagBuilder {
 				outputDoc = _mergeTlds(SAXReaderUtil.read(tldFile), outputDoc);
 			}
 
-			_writeXML(tldFile, outputDoc);
+			_writeFile(tldFile, outputDoc.asXML());
 		}
 	}
 
@@ -354,6 +374,7 @@ public class TagBuilder {
 				node.attributeValue("package"), defaultPackage);
 
 			String name = node.attributeValue("name");
+
 			boolean alloyComponent = GetterUtil.getBoolean(
 				node.attributeValue("alloyComponent"));
 
@@ -478,7 +499,7 @@ public class TagBuilder {
 
 		return doc;
 	}
-	
+
 	private Element _getComponentNode(Document doc, String name) {
 		List<Element> components = doc.getRootElement().elements(_COMPONENT);
 
@@ -503,6 +524,10 @@ public class TagBuilder {
 	}
 
 	private void _writeFile(File file, String content, boolean overwrite) {
+		if (FileUtil.getFile() == null) {
+			(new FileUtil()).setFile(new FileImpl());
+		}
+
 		try {
 			if (overwrite || !file.exists()) {
 				String oldContent = StringPool.BLANK;
@@ -522,22 +547,6 @@ public class TagBuilder {
 		}
 	}
 
-	private void _writeXML(File xmlFile, Document doc) {
-		try {
-			XMLWriter writer = new XMLWriter(
-				new FileOutputStream(xmlFile),
-				OutputFormat.createPrettyPrint());
-
-			writer.write(doc);
-			writer.flush();
-
-			System.out.println("Writing " + xmlFile.getPath());
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	private static final String _AFTER = "after";
 	private static final String _ATTRIBUTE = "attribute";
 	private static final String _ATTRIBUTES = "attributes";
@@ -546,7 +555,7 @@ public class TagBuilder {
 	private static final String _CLASS_SUFFIX = "Tag.java";
 	private static final String _COMPONENT = "component";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
-	private static final String _DEFAULT_PARENT_CLASS = "com.liferay.alloy.taglib.alloy_util.IncludeTag";
+	private static final String _DEFAULT_PARENT_CLASS = "com.liferay.taglib.util.IncludeTag";
 	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";
 	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
 	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
@@ -569,8 +578,11 @@ public class TagBuilder {
 	private String _javaOutputPackage;
 	private String _jspDir;
 	private String _jspOutputDir;
+	private String _jspCommonInitPath;
+	private String _jspCommonInitOutputDir;
 	private String _templatesDir;
 	private String _tldDir;
+	private String _tplCommonInitJsp;
 	private String _tplInitJsp;
 	private String _tplJsp;
 	private String _tplStartJsp;

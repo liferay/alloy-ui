@@ -73,7 +73,9 @@ public class ScriptTag extends BaseScriptTag {
 			scriptData = new ScriptData();
 		}
 
-		scriptData.append(getBodyContentString(), getUse());
+		if (getBodyContent() != null) {
+			scriptData.append(getBodyContent().getString(), getUse());
+		}
 
 		String key = "script-data-inline";
 

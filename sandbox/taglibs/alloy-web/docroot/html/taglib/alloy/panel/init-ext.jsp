@@ -1,3 +1,6 @@
+<%@page import="com.liferay.portal.kernel.util.StringPool"%>
+<%@page import="javax.servlet.jsp.tagext.BodyContent"%>
+
 <%
 final String CSS_CLEAR_FIX = MarkupUtil.getClassName("helper", "clearfix");
 final String CSS_COMPONENT = MarkupUtil.getClassName("component");
@@ -22,5 +25,11 @@ final String BODY_CLASS = StringUtil.merge(new String[] { CSS_WIDGET_BD, CSS_PAN
 final String HEADER_CLASS = StringUtil.merge(new String[] { CSS_WIDGET_HD, CSS_CLEAR_FIX, CSS_PANEL_HD }, StringPool.SPACE);
 final String TOOLBAR_CLASS = StringUtil.merge(new String[] { CSS_WIDGET, CSS_COMPONENT, CSS_TOOLBAR, CSS_TOOLBAR_HORIZONTAL, CSS_PANEL_ICONS }, StringPool.SPACE);
 
-String _bodyContent = (String)request.getAttribute("alloy:panel:bodyContent");
+BodyContent _bodyContent = (BodyContent)request.getAttribute("alloy:panel:bodyContent");
+
+String bodyContentString = StringPool.BLANK;
+
+if (_bodyContent != null) {
+	bodyContentString = _bodyContent.getString();
+}
 %>

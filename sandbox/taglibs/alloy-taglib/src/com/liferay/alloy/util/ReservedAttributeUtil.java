@@ -14,13 +14,15 @@
 
 package com.liferay.alloy.util;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.portal.kernel.util.StringPool;
-import org.apache.commons.lang.StringUtils;
-
-import java.util.Arrays;
-import java.util.List;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * <a href="ReservedAttributeUtil.java.html"><b><i>View Source</i></b></a>
@@ -35,7 +37,7 @@ public class ReservedAttributeUtil {
 			"servletContext", "scopedAttribute", "scopedAttributes",
 			"previousOut", "parent", "namespacedAttribute",
 			"attributeNamespace", "bodyContent", "class", "dynamicAttribute",
-			"dynamicAttributes", "id", "scriptPosition"
+			"dynamicAttributes", "id", "scriptPosition", "page"
 		}
 	);
 
@@ -63,10 +65,6 @@ public class ReservedAttributeUtil {
 
 			name = componentName.toLowerCase().concat(
 				StringUtils.capitalize(name));
-		}
-
-		if (name.indexOf(StringPool.COLON) > -1) {
-			name = StringUtils.substringAfterLast(name, StringPool.COLON);
 		}
 
 		return name;

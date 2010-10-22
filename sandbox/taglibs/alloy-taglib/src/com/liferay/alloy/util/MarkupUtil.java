@@ -15,9 +15,9 @@ public class MarkupUtil {
 		Object[] classes =  ArrayUtil.clone(args);
 
 		ArrayUtil.combine(
-			new String[] { PropsValues.CSS_CLASS_PREFIX }, args, classes);
+			new String[] { Constants.CSS_CLASS_PREFIX }, args, classes);
 
-		return StringUtil.merge(classes, PropsValues.CSS_CLASS_DELIMITER);
+		return StringUtil.merge(classes, Constants.CSS_CLASS_DELIMITER);
 	}
 
 	public static String getUniqueId() {

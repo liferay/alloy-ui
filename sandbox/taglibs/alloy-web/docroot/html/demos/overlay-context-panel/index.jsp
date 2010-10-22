@@ -56,7 +56,7 @@
 	cancellableHide="true"
 	hideDelay="0"
 	hideOnDocumentClick="false"
-	anim="true"
+	anim="{}"
 />
 
 <%

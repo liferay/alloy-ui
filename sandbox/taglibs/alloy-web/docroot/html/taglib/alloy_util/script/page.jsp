@@ -23,9 +23,9 @@ ScriptData scriptData = (ScriptData)request.getAttribute("alloy_util:script:scri
 
 				StringBundler useSB = new StringBundler(useSet.size() * 4);
 
-				for (String use : useSet) {
+				for (String _use : useSet) {
 					useSB.append(StringPool.APOSTROPHE);
-					useSB.append(use);
+					useSB.append(_use);
 					useSB.append(StringPool.APOSTROPHE);
 					useSB.append(StringPool.COMMA_AND_SPACE);
 				}

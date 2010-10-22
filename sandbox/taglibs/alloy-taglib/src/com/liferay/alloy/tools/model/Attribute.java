@@ -1,9 +1,10 @@
 package com.liferay.alloy.tools.model;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.liferay.alloy.util.ReservedAttributeUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import org.apache.commons.lang.StringUtils;
 
 public class Attribute extends BaseModel {
 
@@ -52,7 +53,18 @@ public class Attribute extends BaseModel {
 	}
 
 	public String getSafeName() {
-		return ReservedAttributeUtil.getSafeName(this);
+		String safeName = getName();
+
+		if (getComponent() != null && getComponent().isAlloyComponent()) {
+			safeName = ReservedAttributeUtil.getSafeName(this);
+		}
+
+		if (safeName.indexOf(StringPool.COLON) > -1) {
+			safeName = StringUtils.substringAfterLast(
+				safeName, StringPool.COLON);
+		}
+
+		return safeName;
 	}
 
 	public String getTypeSimpleClassName(String type) {

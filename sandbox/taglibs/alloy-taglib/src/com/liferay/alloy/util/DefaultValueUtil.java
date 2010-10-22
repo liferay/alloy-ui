@@ -14,14 +14,17 @@
 
 package com.liferay.alloy.util;
 
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * <a href="DefaultValueUtil.java.html"><b><i>View Source</i></b></a>

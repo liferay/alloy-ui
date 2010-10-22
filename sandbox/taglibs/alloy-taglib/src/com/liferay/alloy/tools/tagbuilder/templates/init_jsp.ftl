@@ -36,32 +36,7 @@
 	<#return defaultValueSuffix />
 </#function>
 </#compress>
-<%@ page import="java.io.Serializable"%>
-<%@ page import="java.util.Calendar"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.util.HashMap"%>
-<%@ page import="java.util.Locale"%>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.Set"%>
-<%@ page import="com.liferay.alloy.util.PropsValues"%>
-<%@ page import="com.liferay.alloy.util.GetterUtil" %>
-<%@ page import="com.liferay.alloy.util.JSONFactoryUtil"%>
-<%@ page import="com.liferay.alloy.util.MarkupUtil"%>
-<%@ page import="com.liferay.alloy.util.StringUtil"%>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
-<%@ page import="com.liferay.portal.kernel.util.StringBundler"%>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.kernel.util.Validator"%>
-<%@ page import="org.json.JSONObject" %>
-<%@ page import="org.json.JSONArray" %>
-
-<%!
-public static void _updateOptions(Map<String, Object> options, String key, Object value) {
-	if ((options != null) && options.containsKey(key)) {
-		options.put(key, value);
-	}
-}
-%>
+<%@ include file="${jspCommonInitPath}" %>
 
 <%
 java.lang.String NAMESPACE = "${namespace}";
@@ -69,10 +44,10 @@ java.lang.String NAMESPACE = "${namespace}";
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("${namespace}dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
 
-Map<String, Object> options = new HashMap<String, Object>();
+Map<String, Object> _options = new HashMap<String, Object>();
 
-options.putAll(scopedAttributes);
-options.putAll(dynamicAttributes);
+_options.putAll(scopedAttributes);
+_options.putAll(dynamicAttributes);
 
 <#if component.isAlloyComponent()>
 %>
@@ -100,13 +75,13 @@ options.putAll(dynamicAttributes);
 		</#if>
 
 		<#if outputSimpleClassName == "ArrayList">
-			${attribute.getOutputType()} _${attribute.getSafeName()} = JSONFactoryUtil.getArrayList(GetterUtil.getObject(${value}${defaultValueSuffix}));
+			${attribute.getOutputType()} ${attribute.getSafeName()} = _getArrayList(GetterUtil.getObject(${value}${defaultValueSuffix}));
 		<#elseif outputSimpleClassName == "HashMap">
-			${attribute.getOutputType()} _${attribute.getSafeName()} = JSONFactoryUtil.getHashMap(GetterUtil.getObject(${value}${defaultValueSuffix}));
+			${attribute.getOutputType()} ${attribute.getSafeName()} = _getHashMap(GetterUtil.getObject(${value}${defaultValueSuffix}));
 		<#elseif hasGetter(outputSimpleClassName)>
-			${attribute.getOutputType()} _${attribute.getSafeName()} = GetterUtil.get${outputSimpleClassName}(${value}${defaultValueSuffix});
+			${attribute.getOutputType()} ${attribute.getSafeName()} = GetterUtil.get${outputSimpleClassName}(${value}${defaultValueSuffix});
 		<#else>
-			${attribute.getOutputType()} _${attribute.getSafeName()} = (${attribute.getOutputType()})request.getAttribute(${namespacedName});
+			${attribute.getOutputType()} ${attribute.getSafeName()} = (${attribute.getOutputType()})request.getAttribute(${namespacedName});
 		</#if>
 	</#if>
 </#list>
@@ -114,7 +89,7 @@ options.putAll(dynamicAttributes);
 
 
 <#list component.getAttributesAndEvents() as attribute>
-_updateOptions(options, "${attribute.getSafeName()}", _${attribute.getSafeName()});
+_updateOptions(_options, "${attribute.getSafeName()}", ${attribute.getSafeName()});
 </#list>
 %>
 

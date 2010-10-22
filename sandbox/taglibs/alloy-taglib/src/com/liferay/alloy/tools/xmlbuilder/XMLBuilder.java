@@ -35,11 +35,14 @@ import org.json.JSONObject;
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.alloy.util.DefaultValueUtil;
-import com.liferay.alloy.util.FileUtil;
 import com.liferay.alloy.util.JSONUtil;
 import com.liferay.alloy.util.TypeUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.util.FileImpl;
+import com.liferay.portal.xml.SAXReaderImpl;
 
 /**
  * <a href="XMLBuilder.java.html"><b><i>View Source</i></b></a>
@@ -51,6 +54,14 @@ public class XMLBuilder {
 	public XMLBuilder(String componentsJSON, String componentsXML,
 			String componentExcluded)
 		throws Exception {
+
+		if (FileUtil.getFile() == null) {
+			(new FileUtil()).setFile(new FileImpl());
+		}
+
+		if (SAXReaderUtil.getSAXReader() == null) {
+			(new SAXReaderUtil()).setSAXReader(new SAXReaderImpl());
+		}
 
 		_componentJSON = componentsJSON;
 		_componentXML = componentsXML;

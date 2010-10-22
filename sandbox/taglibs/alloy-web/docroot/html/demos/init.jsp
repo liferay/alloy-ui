@@ -8,4 +8,9 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.Set"%>
 
+<%
+//final String ALLOY_BASE_PATH = "http://alloy.liferay.com/deploy/build/"; 
+final String ALLOY_BASE_PATH = "http://192.168.0.102/alloy/build/";
+%>
+
 <%@ include file="/html/demos/init-alloy.jsp" %>
