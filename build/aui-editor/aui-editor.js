@@ -1898,8 +1898,6 @@ var BBCodePlugin = A.Component.create(
 					html = instance._parseTagExpressions(UBB_HTML, html);
 
 					event.newVal = html;
-
-					event.halt();
 				},
 
 				_parseTagExpressions: function(options, html) {
@@ -1911,10 +1909,10 @@ var BBCodePlugin = A.Component.create(
 							var output = options[i].output;
 
 							if (isArray(options[i].convert[j])) {
-								tags = options[i].convert[j]
+								tags = options[i].convert[j];
 							}
 							else {
-								tags = options[i].convert[j].tags
+								tags = options[i].convert[j].tags;
 
 								if (isString(options[i].output)) {
 									output = Lang.sub(options[i].output, options[i].convert[j].source);
