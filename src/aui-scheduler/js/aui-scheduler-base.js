@@ -115,6 +115,7 @@ var SchedulerBase = A.Component.create({
 		},
 
 		events: {
+			value: [],
 			setter: '_setEvents',
 			validator: isArray
 		},
