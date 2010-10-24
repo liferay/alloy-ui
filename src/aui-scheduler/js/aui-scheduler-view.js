@@ -765,7 +765,7 @@ var SchedulerDayView = A.Component.create({
 			var node = dd.get(NODE);
 			var proxyEvt = instance.proxyEvt;
 			var currentEvt = node.getData(SCHEDULER_EVENT);
-			var evtActXY = (dd.actXY[0] - instance.colTimeNode.get(OFFSET_WIDTH));
+			var evtActXY = (dd.actXY[0] - instance.bodyNode.getX() - instance.colTimeNode.get(OFFSET_WIDTH));
 
 			var columnNumber = Math.floor(evtActXY/tickX);
 			var columnNode = instance.colDaysNode.item(columnNumber);

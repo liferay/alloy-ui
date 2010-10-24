@@ -1397,7 +1397,7 @@ var SchedulerDayView = A.Component.create({
 			var node = dd.get(NODE);
 			var proxyEvt = instance.proxyEvt;
 			var currentEvt = node.getData(SCHEDULER_EVENT);
-			var evtActXY = (dd.actXY[0] - instance.colTimeNode.get(OFFSET_WIDTH));
+			var evtActXY = (dd.actXY[0] - instance.bodyNode.getX() - instance.colTimeNode.get(OFFSET_WIDTH));
 
 			var columnNumber = Math.floor(evtActXY/tickX);
 			var columnNode = instance.colDaysNode.item(columnNumber);
@@ -2337,7 +2337,7 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
 AUI.add('aui-scheduler-event', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
