@@ -14,6 +14,14 @@ var Lang = A.Lang,
 		p: true
 	},
 
+	IGNORE_TAGS = {
+		br: true
+	},
+
+	ITEM_TAGS = {
+		li: true
+	},
+
 	TPL_JUSTIFY = '<div style="text-align: {0};">{1}</div>';
 
 var EditorTools = {};
@@ -45,13 +53,28 @@ A.mix(
 				items,
 				function(node) {
 					var tagName = node.get('tagName');
-					var parent = node.ancestor();
-
-					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
 					}
+
+					if (IGNORE_TAGS[tagName]) {
+						return;
+					}
+
+					if (tagName == 'font') {
+						var tempNode = node.get('parentNode');
+
+						if (!tempNode.test('body')) {
+							node = tempNode;
+
+							tagName = node.get('tagName').toLowerCase();
+						}
+					}
+
+					var parent = node.get('parentNode');
+
+					var wrapper = null;
 
 					if (!node.test('body') && node.getComputedStyle('textAlign') == val) {
 						return;
@@ -60,7 +83,7 @@ A.mix(
 					if (BLOCK_TAGS[tagName] || node.getComputedStyle('display') == 'block') {
 						wrapper = node;
 					}
-					else if (!parent.get('childNodes').item(1)) {
+					else if (!parent.get('childNodes').item(1) || ITEM_TAGS[tagName]) {
 						tagName = parent.get('tagName').toLowerCase();
 
 						if (BLOCK_TAGS[tagName] || parent.getComputedStyle('display') == 'block') {
@@ -84,7 +107,9 @@ A.mix(
 						}
 					}
 
-					wrapper.setStyle('textAlign', val);
+					if (wrapper) {
+						wrapper.setStyle('textAlign', val);
+					}
 				}
 			);
 		},
@@ -1068,7 +1093,7 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						if (toolbarAlign != null) {
+						if (toolbarAlign) {
 							toolbarAlign.some(
 								function(node, index) {
 									var instance = this;
@@ -1200,7 +1225,7 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						if (toolbarAlign != null) {
+						if (toolbarAlign) {
 							toolbarAlign.each(
 								function(node) {
 									var instance = this;
@@ -1424,7 +1449,7 @@ var Lang = A.Lang,
 	getClassName = A.ClassNameManager.getClassName,
 
 	NAME = 'bbcodeplugin',
-	UBB_PLUGIN = 'bbcode',
+	BBCODE_PLUGIN = 'bbcode',
 
 	QUOTE = 'quote',
 
@@ -1432,16 +1457,16 @@ var Lang = A.Lang,
 	CSS_QUOTE_CONTENT = getClassName(QUOTE, 'content'),
 	CSS_QUOTE_TITLE = getClassName(QUOTE, 'title'),
 
-	TPL_HTML_GENERIC = '<{0}[^>]*>([\\s\\S]*?)</{0}>',
-	TPL_HTML_STYLE =  '<(([a-z0-9]+)\\b[^>]*?style=("|\')[^:]*{0}\\s*:\\s*([^;"\']+);?[^>]*)>([\\s\\S]*?)<(/\\2)>',
+	TPL_HTML_GENERIC = '<{0}(>|\\b[^>]*>)([\\s\\S]*?)</{0}>',
+	TPL_HTML_STYLE =  '<(([a-z0-9]+)\\b[^>]*?style=("|\').*?{0}\\s*:\\s*([^;"\']+);?[^>]*)>([\\s\\S]*?)<(/\\2)>',
 	TPL_HTML_TAGS = '(<[a-z0-9]+[^>]*>|</[a-z0-9]+>)',
 	TPL_QUOTE_CONTENT = '<div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
 	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
-	TPL_UBB_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/\\2\\]',
-	TPL_UBB_GENERIC = '\\[({0}[^\\[]*)\\]([\\s\\S]*?)\\[\\/\\1\\]',
+	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
+	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
 
-	HTML_UBB = [
+	HTML_BBCODE = [
 		{
 			convert: [
 				['br']
@@ -1480,13 +1505,6 @@ var Lang = A.Lang,
 			],
 			regExp: TPL_HTML_STYLE,
 			output: '<$1>[{0}]$5[/{0}]<$6>'
-		},
-		{
-			convert: [
-				['text-align']
-			],
-			regExp: TPL_HTML_STYLE,
-			output: '<$1>[$4]$5[/$4]<$6>'
 		},
 		{
 			convert: [
@@ -1550,10 +1568,24 @@ var Lang = A.Lang,
 		},
 		{
 			convert: [
+				['text-align']
+			],
+			regExp: TPL_HTML_STYLE,
+			output: '<$1>[$4]$5[/$4]<$6>'
+		},
+		{
+			convert: [
+				['span']
+			],
+			regExp: TPL_HTML_GENERIC,
+			output: '$2'
+		},
+		{
+			convert: [
 				['blockquote']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[indent]$1[/indent]'
+			output: '[indent]$2[/indent]'
 		},
 		{
 			convert: [
@@ -1561,7 +1593,7 @@ var Lang = A.Lang,
 				['strong']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[b]$1[/b]'
+			output: '[b]$2[/b]'
 		},
 		{
 			convert: [
@@ -1569,14 +1601,14 @@ var Lang = A.Lang,
 				['em']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[i]$1[/i]'
+			output: '[i]$2[/i]'
 		},
 		{
 			convert: [
 				['u']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[u]$1[/u]'
+			output: '[u]$2[/u]'
 		},
 		{
 			convert: [
@@ -1584,7 +1616,7 @@ var Lang = A.Lang,
 				['strike']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[s]$1[/s]'
+			output: '[s]$2[/s]'
 		},
 		{
 			convert: [
@@ -1612,35 +1644,35 @@ var Lang = A.Lang,
 				['center']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[center]$1[/center]'
+			output: '[center]$2[/center]'
 		},
 		{
 			convert: [
 				['ul']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[list]$1[/list]'
+			output: '[list]$2[/list]'
 		},
 		{
 			convert: [
 				['ol']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[list=1]$1[/list]'
+			output: '[list=1]$2[/list]'
 		},
 		{
 			convert: [
 				['li']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[*]$1'
+			output: '[*]$2'
 		},
 		{
 			convert: [
 				['code']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[code]$1[/code]'
+			output: '[code]$2[/code]'
 		},
 		{
 			convert: [
@@ -1654,7 +1686,7 @@ var Lang = A.Lang,
 				['div']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '$1\n'
+			output: '$2\n'
 		},
 		{
 			convert: [
@@ -1666,18 +1698,28 @@ var Lang = A.Lang,
 				['h6']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '[b]$1[/b]\n'
+			output: '[b]$2[/b]\n'
 		},
 		{
 			convert: [
 				['p']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '$1\n\n'
+			output: '$2\n\n'
+		},
+		{
+			convert: [
+				{
+					tags: ['list', 'left|center|right'],
+					source: ['list']
+				}
+			],
+			regExp: '(\\[{0}[^\\]]*\\])\\s*\\[({1})\\]([\\s\\S]*?)\\[/\\2\\]\\s*\\[/{0}\\]',
+			output: '[$2]$1$3[/{0}][/$2]'
 		}
 	],
 
-	UBB_HTML = [
+	BBCODE_HTML = [
 		{
 			convert: [
 				{
@@ -1697,22 +1739,63 @@ var Lang = A.Lang,
 					source: ['s']
 				},
 				{
-					tags: ['indent'],
-					source: ['blockquote']
-				},
-				{
 					tags: ['code'],
 					source: ['code']
 				}
 			],
-			regExp: TPL_UBB_GENERIC,
+			regExp: TPL_BBCODE_GENERIC,
 			output: '<{0}>$2</{0}>'
+		},
+		{
+			convert: [
+				{
+					tags: ['color'],
+					source: ['color']
+				}
+			],
+			regExp: TPL_BBCODE_ATTRIBUTE,
+			output: '<span style="{0}: $3;">$4</span>'
+		},
+		{
+			convert: [
+				{
+					tags: ['font'],
+					source: ['face']
+				},
+				{
+					tags: ['size'],
+					source: ['size']
+				}
+			],
+			regExp: TPL_BBCODE_ATTRIBUTE,
+			output: '<font {0}="$3">$4</font>'
+		},
+		{
+			convert: [
+				['img']
+			],
+			regExp: TPL_BBCODE_GENERIC,
+			output: '<img src="$2" alt="" />'
+		},
+		{
+			convert: [
+				{
+					tags: ['email'],
+					source: ['mailto:']
+				},
+				{
+					tags: ['url'],
+					source: ['']
+				}
+			],
+			regExp: TPL_BBCODE_ATTRIBUTE,
+			output: '<a href="{0}$3">$4</a>'
 		},
 		{
 			convert: [
 				['list']
 			],
-			regExp: TPL_UBB_GENERIC,
+			regExp: '\\[({0}(=1)?)]([\\s\\S]*?)\\[\\/{0}\\]',
 			output: function() {
 				var html = '';
 
@@ -1723,7 +1806,7 @@ var Lang = A.Lang,
 					html += '<ul>';
 				}
 
-				var li = Lang.trim(arguments[2]).split('[*]');
+				var li = Lang.trim(arguments[3]).split('[*]');
 
 				for (var i = 1; i < li.length; i++) {
 					html += '<li>' + li[i] + '</li>';
@@ -1742,47 +1825,12 @@ var Lang = A.Lang,
 		{
 			convert: [
 				{
-					tags: ['font'],
-					source: ['face']
-				},
-				{
-					tags: ['size'],
-					source: ['size']
+					tags: ['indent'],
+					source: ['blockquote']
 				}
 			],
-			regExp: TPL_UBB_ATTRIBUTE,
-			output: '<font {0}="$3">$4</font>'
-		},
-		{
-			convert: [
-				{
-					tags: ['color'],
-					source: ['color']
-				}
-			],
-			regExp: TPL_UBB_ATTRIBUTE,
-			output: '<span style="{0}: $3;">$4</span>'
-		},
-		{
-			convert: [
-				['img']
-			],
-			regExp: TPL_UBB_GENERIC,
-			output: '<img src="$2" alt="" />'
-		},
-		{
-			convert: [
-				{
-					tags: ['email'],
-					source: ['mailto:']
-				},
-				{
-					tags: ['url'],
-					source: ['']
-				}
-			],
-			regExp: TPL_UBB_ATTRIBUTE,
-			output: '<a href="{0}$3">$4</a>'
+			regExp: TPL_BBCODE_GENERIC,
+			output: '<{0}>$2</{0}>'
 		},
 		{
 			convert: [
@@ -1790,7 +1838,7 @@ var Lang = A.Lang,
 				['center'],
 				['right']
 			],
-			regExp: TPL_UBB_GENERIC + '\n?',
+			regExp: TPL_BBCODE_GENERIC + '\n?',
 			output: '<div style="text-align: $1;">$2</div>'
 		},
 		{
@@ -1806,7 +1854,7 @@ var BBCodePlugin = A.Component.create(
 		{
 			NAME: NAME,
 
-			NS: UBB_PLUGIN,
+			NS: BBCODE_PLUGIN,
 
 			EXTENDS: A.Plugin.Base,
 
@@ -1859,26 +1907,26 @@ var BBCodePlugin = A.Component.create(
 
 									temp = temp.one('div.' + CSS_QUOTE_CONTENT);
 								}
-								while (temp != null)
+								while (temp)
 
 								var parent = content.get('parentNode');
 								var title = parent.previous();
 
-								var ubb = '[' + QUOTE;
+								var bbcode = '[' + QUOTE;
 
 								if (title && title.hasClass(CSS_QUOTE_TITLE)) {
 									var titleHtml = title.html();
 
 									titleHtml = titleHtml.replace(new RegExp(TPL_HTML_TAGS, 'ig'), '');
 
-									ubb += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.html());
+									bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.html());
 
 									title.remove(true);
 								}
 
-								ubb += ']' +  content.html() + '[/' + QUOTE + ']';
+								bbcode += ']' +  content.html() + '[/' + QUOTE + ']';
 
-								parent.html(ubb);
+								parent.html(bbcode);
 
 								parent.removeClass(QUOTE);
 								parent.addClass('_' + QUOTE);
@@ -1889,7 +1937,7 @@ var BBCodePlugin = A.Component.create(
 
 					html = wrapper.html();
 
-					html =  instance._parseTagExpressions(HTML_UBB, html);
+					html =  instance._parseTagExpressions(HTML_BBCODE, html);
 
 					html = html.replace(new RegExp(TPL_HTML_TAGS, 'ig'), '');
 
@@ -1919,7 +1967,7 @@ var BBCodePlugin = A.Component.create(
 					html = html.replace(/\[quote\]/ig, TPL_QUOTE_TITLE_CONTENT);
 					html = html.replace(/\[\/quote\]/ig, TPL_QUOTE_CLOSING_TAG);
 
-					html = instance._parseTagExpressions(UBB_HTML, html);
+					html = instance._parseTagExpressions(BBCODE_HTML, html);
 
 					event.newVal = html;
 

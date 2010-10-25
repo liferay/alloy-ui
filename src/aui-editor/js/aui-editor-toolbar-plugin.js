@@ -646,7 +646,7 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						if (toolbarAlign != null) {
+						if (toolbarAlign) {
 							toolbarAlign.some(
 								function(node, index) {
 									var instance = this;
@@ -778,7 +778,7 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						if (toolbarAlign != null) {
+						if (toolbarAlign) {
 							toolbarAlign.each(
 								function(node) {
 									var instance = this;
