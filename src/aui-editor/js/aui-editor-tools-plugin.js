@@ -13,6 +13,14 @@ var Lang = A.Lang,
 		p: true
 	},
 
+	IGNORE_TAGS = {
+		br: true
+	},
+
+	ITEM_TAGS = {
+		li: true
+	},
+
 	TPL_JUSTIFY = '<div style="text-align: {0};">{1}</div>';
 
 var EditorTools = {};
@@ -44,13 +52,28 @@ A.mix(
 				items,
 				function(node) {
 					var tagName = node.get('tagName');
-					var parent = node.ancestor();
-
-					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
 					}
+
+					if (IGNORE_TAGS[tagName]) {
+						return;
+					}
+
+					if (tagName == 'font') {
+						var tempNode = node.get('parentNode');
+
+						if (!tempNode.test('body')) {
+							node = tempNode;
+
+							tagName = node.get('tagName').toLowerCase();
+						}
+					}
+
+					var parent = node.get('parentNode');
+
+					var wrapper = null;
 
 					if (!node.test('body') && node.getComputedStyle('textAlign') == val) {
 						return;
@@ -59,7 +82,7 @@ A.mix(
 					if (BLOCK_TAGS[tagName] || node.getComputedStyle('display') == 'block') {
 						wrapper = node;
 					}
-					else if (!parent.get('childNodes').item(1)) {
+					else if (!parent.get('childNodes').item(1) || ITEM_TAGS[tagName]) {
 						tagName = parent.get('tagName').toLowerCase();
 
 						if (BLOCK_TAGS[tagName] || parent.getComputedStyle('display') == 'block') {
@@ -83,7 +106,9 @@ A.mix(
 						}
 					}
 
-					wrapper.setStyle('textAlign', val);
+					if (wrapper) {
+						wrapper.setStyle('textAlign', val);
+					}
 				}
 			);
 		},
