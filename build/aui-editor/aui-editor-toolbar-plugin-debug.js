@@ -194,12 +194,13 @@ var EditorToolbar = A.Component.create(
 					}
 
 					for (var j = 0; j < groupType.children.length; j++) {
-						var icon = groupType.children[j].icon;
+						var item = groupType.children[j];
+						var icon = item.icon;
 
 						if (generate && isFunction(generate[icon])) {
 							var config = (group.config ? group.config[icon] : null);
 
-							attrs.button = (generate[icon].select ? null : toolbar.item(j));
+							attrs.button = (item.select || !toolbar ? null : toolbar.item(j));
 
 							generate[icon].call(instance, host, attrs, config);
 						}
