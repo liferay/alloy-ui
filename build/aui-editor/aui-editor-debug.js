@@ -26,8 +26,6 @@ var Lang = A.Lang,
 
 var EditorTools = {};
 
-A.namespace('Plugin');
-
 A.mix(
 	A.Plugin.ExecCommand.COMMANDS,
 	{
@@ -49,10 +47,12 @@ A.mix(
 				insertHtml = true;
 			}
 
-			A.each(
-				items,
-				function(node) {
-					var tagName = node.get('tagName');
+			items.each(
+				function(item, index, collection) {
+					var tagName = item.get('tagName');
+					var parent = item.ancestor();
+
+					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
@@ -63,25 +63,25 @@ A.mix(
 					}
 
 					if (tagName == 'font') {
-						var tempNode = node.get('parentNode');
+						var tempNode = item.get('parentNode');
 
 						if (!tempNode.test('body')) {
-							node = tempNode;
+							item = tempNode;
 
-							tagName = node.get('tagName').toLowerCase();
+							tagName = item.get('tagName').toLowerCase();
 						}
 					}
 
-					var parent = node.get('parentNode');
+					var parent = item.get('parentNode');
 
 					var wrapper = null;
 
-					if (!node.test('body') && node.getComputedStyle('textAlign') == val) {
+					if (!item.test('body') && item.getComputedStyle('textAlign') == val) {
 						return;
 					}
 
-					if (BLOCK_TAGS[tagName] || node.getComputedStyle('display') == 'block') {
-						wrapper = node;
+					if (BLOCK_TAGS[tagName] || item.getComputedStyle('display') == 'block') {
+						wrapper = item;
 					}
 					else if (!parent.get('childNodes').item(1) || ITEM_TAGS[tagName]) {
 						tagName = parent.get('tagName').toLowerCase();
@@ -101,9 +101,9 @@ A.mix(
 						else {
 							wrapper = A.Node.create(Lang.sub(TPL_JUSTIFY, [val, '']));
 
-							parent.insert(wrapper, node);
+							parent.insert(wrapper, item);
 
-							wrapper.append(node);
+							wrapper.append(item);
 						}
 					}
 
@@ -117,41 +117,31 @@ A.mix(
 		justifycenter: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'center');
+			return instance.get('host').execCommand(JUSTIFY, 'center');
 		},
 
 		justifyleft: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'left');
+			return instance.get('host').execCommand(JUSTIFY, 'left');
 		},
 
 		justifyright: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'right');
+			return instance.get('host').execCommand(JUSTIFY, 'right');
 		},
 
 		subscript: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand('wrap', 'sub');
+			return instance.get('host').execCommand('wrap', 'sub');
 		},
 
 		superscript: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand('wrap', 'sup');
+			return instance.get('host').execCommand('wrap', 'sup');
 		},
 
 		wraphtml: function(cmd, val) {
@@ -165,8 +155,8 @@ A.mix(
 
 			if (!selection.isCollapsed && items.size()) {
 				items.each(
-					function(node) {
-						var parent = node.ancestor();
+					function(item, index, collection) {
+						var parent = item.ancestor();
 
 						var wrapper = A.Node.create(val);
 
@@ -175,41 +165,13 @@ A.mix(
 								wrapper.html('');
 							}
 							else {
-								function findInsert(node) {
-									var found = null;
-
-									var childNodes = node.get('childNodes');
-
-									childNodes.some(
-										function (node) {
-											if (node.get('innerHTML') == '{0}') {
-												found.html('');
-
-												found = node;
-
-												return true;
-											}
-
-											return findInsert(node);
-										}
-									);
-
-									if (found) {
-										wrapper = found;
-
-										return true;
-									}
-
-									return false;
-								}
-
-								findInsert(wrapper);
+								instance._findInsert(wrapper);
 							}
 						}
 
-						parent.insert(wrapper, node);
+						parent.insert(wrapper, item);
 
-						wrapper.append(node);
+						wrapper.append(item);
 					}
 				);
 			}
@@ -220,6 +182,36 @@ A.mix(
 					selection.focusCursor(true, true);
 				}
 			}
+		},
+
+		_findInsert: function(item) {
+			var instance = this;
+
+			var found = null;
+
+			var childNodes = item.get('childNodes');
+
+			childNodes.some(
+				function(item, index, collection) {
+					if (item.get('innerHTML') == '{0}') {
+						found.html('');
+
+						found = item;
+
+						return true;
+					}
+
+					return instance._findInsert(item);
+				}
+			);
+
+			if (found) {
+				wrapper = found;
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 );
@@ -227,7 +219,6 @@ A.mix(
 A.Plugin.EditorTools = EditorTools;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
-
 AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -236,7 +227,8 @@ var Lang = A.Lang,
 
 	NAME = 'editormenu',
 	NAME_PLUGIN = 'editormenuplugin',
-	EDITORMENU_PLUGIN = 'menu',
+
+	NS_EDITORMENU = 'menu',
 
 	CONTENT = 'content',
 
@@ -245,205 +237,203 @@ var Lang = A.Lang,
 	CSS_MENU_CONTENT_ITEM = getClassName(NAME, CONTENT, 'item'),
 
 	TPL_TAG_EMPTY = '<{1}{2}>{0}</{1}>',
+
+	TPL_MENU_CONTENT_ITEM = '<li class="' + CSS_MENU_CONTENT_ITEM + '">' + TPL_TAG_EMPTY + '</li>',
 	TPL_MENU_CONTENT_LIST = '<ul class="' + CSS_MENU_CONTENT_LIST + '"></ul>',
-	TPL_MENU_CONTENT_TEXT = '<li class="' + CSS_MENU_CONTENT_TEXT + '"><span>{0}</span></li>',
-	TPL_MENU_CONTENT_ITEM = '<li class="' + CSS_MENU_CONTENT_ITEM + '">' + TPL_TAG_EMPTY + '</li>';
-
-	function generateTagAttr(config) {
-		var output = '';
-
-		if (config.attributes) {
-			for (var i in config.attributes) {
-				output += ' ' + i + '="' + config.attributes[i] + '"';
-			}
-		}
-
-		if (config.styles) {
-			output = ' style="';
-
-			for (var i in config.styles) {
-				output += i + ': ' + config.styles[i] + ';';
-			}
-
-			output += '"';
-		}
-
-		return output;
-	}
+	TPL_MENU_CONTENT_TEXT = '<li class="' + CSS_MENU_CONTENT_TEXT + '"><span>{0}</span></li>';
 
 var EditorMenu = A.Component.create(
-		{
-			NAME: NAME,
+	{
+		NAME: NAME,
 
-			EXTENDS: A.OverlayContext,
+		EXTENDS: A.OverlayContext,
 
-			ATTRS: {
-				headerContent: {
-					value: '',
-					setter: function(value) {
-						var instance = this;
+		ATTRS: {
+			headerContent: {
+				value: '',
+				setter: function(value) {
+					var instance = this;
 
-						instance._headerContent = value;
+					instance._headerContent = value;
 
-						return '';
-					}
-				},
-				host: {
-					value: false
-				},
-				items: {
-					value: null
+					return '';
 				}
 			},
 
-			prototype: {
-				renderUI: function() {
-					var instance = this;
+			host: {
+				value: false
+			},
 
-					EditorMenu.superclass.renderUI.apply(instance, arguments);
+			items: {
+				value: null
+			}
+		},
 
-					var host = instance.get('host');
+		prototype: {
+			renderUI: function() {
+				var instance = this;
 
-					var	contentBox = instance.get('contentBox');
-					var headerContent = instance._headerContent;
-					var items = instance.get('items');
+				EditorMenu.superclass.renderUI.apply(instance, arguments);
 
-					var menuList = A.Node.create(TPL_MENU_CONTENT_LIST);
+				var host = instance.get('host');
 
-					A.each(
-						items,
-						function(config) {
-							var output = '';
+				var	contentBox = instance.get('contentBox');
+				var headerContent = instance._headerContent;
+				var items = instance.get('items');
 
-							if (isString(config)) {
-								output += Lang.sub(TPL_MENU_CONTENT_TEXT, [config]);
-							}
-							else {
-								var attr = generateTagAttr(config);
+				var menuList = A.Node.create(TPL_MENU_CONTENT_LIST);
 
-								output += Lang.sub(TPL_MENU_CONTENT_ITEM, [config.label, config.tag, attr]);
-							}
+				A.each(
+					items,
+					function(item, index, collection) {
+						var output = '';
 
-							var item = A.Node.create(output);
-							item.setData(NAME, config);
-
-							menuList.append(item);
+						if (isString(item)) {
+							output += Lang.sub(TPL_MENU_CONTENT_TEXT, [item]);
 						}
-					);
+						else {
+							var attr = instance._generateTagAttr(item);
 
-					var panel = new A.Panel(
-						{
-							collapsible: false,
-							headerContent: headerContent,
-							icons: [
-								{
-									icon: 'close',
-									handler: {
-										fn: instance.hide,
-										context: instance
-									}
+							output += Lang.sub(TPL_MENU_CONTENT_ITEM, [item.label, item.tag, attr]);
+						}
+
+						var node = A.Node.create(output);
+
+						node.setData(NAME, item);
+
+						menuList.append(node);
+					}
+				);
+
+				var panel = new A.Panel(
+					{
+						collapsible: false,
+						headerContent: headerContent,
+						icons: [
+							{
+								icon: 'close',
+								handler: {
+									fn: instance.hide,
+									context: instance
 								}
-							]
-						}
-					).render(contentBox);
+							}
+						]
+					}
+				).render(contentBox);
 
-					panel.bodyNode.append(menuList);
+				panel.bodyNode.append(menuList);
 
-					instance._menuList = menuList;
-				},
+				instance._menuList = menuList;
+			},
 
-				bindUI: function() {
-					var instance = this;
+			bindUI: function() {
+				var instance = this;
 
-					EditorMenu.superclass.bindUI.apply(instance, arguments);
+				EditorMenu.superclass.bindUI.apply(instance, arguments);
 
-					var host = instance.get('host');
+				instance._menuList.delegate('click', instance._onMenuListItemClick, '.' + CSS_MENU_CONTENT_ITEM, instance);
+			},
 
-					var menuList = instance._menuList;
+			_generateTagAttr: function(obj) {
+				var instance = this;
 
-					menuList.delegate(
-						'click',
-						function(event) {
-							var instance = this;
+				var buffer = [];
 
-							var item = event.currentTarget,
-								config = item.getData(NAME);
+				var output = '';
+				var attributes = obj.attributes;
+				var styles = obj.styles;
 
-							var attr = generateTagAttr(config),
-								output = Lang.sub(TPL_TAG_EMPTY, ['{0}', config.tag, attr]);
-
-							host.execCommand('wraphtml', output);
-							host.focus();
-
-							instance.hide();
-						},
-						'.' + CSS_MENU_CONTENT_ITEM,
-						instance
-					);
-				},
-
-				_uiSetHeight: function(val) {
-					var instance = this;
-
-					var	boundingBox = instance.get('boundingBox');
-					var menuList = instance._menuList;
-
-					boundingBox.setStyle('height', 'auto');
-
-					menuList.setStyle('height', val);
-				},
-
-				_uiSetWidth: function(val) {
-					var instance = this;
-
-					var	boundingBox = instance.get('boundingBox');
-					var menuList = instance._menuList;
-
-					boundingBox.setStyle('width', 'auto');
-
-					menuList.setStyle('width', val);
+				if (attributes) {
+					for (var i in attributes) {
+						buffer.push(' ' + i + '="' + attributes[i] + '"');
+					}
 				}
+
+				if (styles) {
+					buffer = [' style="'];
+
+					for (var i in styles) {
+						buffer.push(i + ': ' + styles[i] + ';');
+					}
+
+					buffer.push('"');
+				}
+
+				return buffer.join('');
+			},
+
+			_onMenuListItemClick: function(event) {
+				var instance = this;
+
+				var listItem = event.currentTarget;
+				var	config = listItem.getData(NAME);
+
+				var attr = instance._generateTagAttr(config);
+				var output = Lang.sub(TPL_TAG_EMPTY, ['{0}', config.tag, attr]);
+
+				var host = instance.get('host');
+
+				host.execCommand('wraphtml', output);
+				host.focus();
+
+				instance.hide();
+			},
+
+			_uiSetHeight: function(val) {
+				var instance = this;
+
+				var	boundingBox = instance.get('boundingBox');
+				var menuList = instance._menuList;
+
+				boundingBox.setStyle('height', 'auto');
+
+				menuList.setStyle('height', val);
+			},
+
+			_uiSetWidth: function(val) {
+				var instance = this;
+
+				var	boundingBox = instance.get('boundingBox');
+				var menuList = instance._menuList;
+
+				boundingBox.setStyle('width', 'auto');
+
+				menuList.setStyle('width', val);
 			}
 		}
-	);
+	}
+);
 
 var EditorMenuPlugin = A.Component.create(
-		{
-			NAME: NAME_PLUGIN,
+	{
+		EXTENDS: A.Plugin.Base,
 
-			NS: EDITORMENU_PLUGIN,
+		NAME: NAME_PLUGIN,
 
-			EXTENDS: A.Plugin.Base,
+		NS: NS_EDITORMENU,
 
-			ATTRS: {
-				host: {
-					value: false
-				}
-			},
+		prototype: {
+			add: function(config) {
+				var instance = this;
 
-			prototype: {
-				add: function(config) {
-					var instance = this;
+				var host = instance.get('host');
 
-					var host = instance.get('host');
-
-					return new EditorMenu(
-						A.mix(
-							{
-								host: host
-							},
-							config
-						)
-					).render();
-				}
+				return new EditorMenu(
+					A.mix(
+						{
+							host: host
+						},
+						config
+					)
+				).render();
 			}
 		}
-	);
+	}
+);
 
-A.namespace('Plugin').EditorMenuPlugin = EditorMenuPlugin;
+A.namespace('Plugin').EditorMenu = EditorMenuPlugin;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']});
-
 AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -477,7 +467,7 @@ var Lang = A.Lang,
 		source: true,
 		styles: true
 	},
-	
+
 	CMD_FORMAT = [
 		'b',
 		'big',
@@ -494,314 +484,285 @@ var Lang = A.Lang,
 	],
 
 	CSS_BUTTON_HOLDER = getClassName('button', 'holder'),
-	CSS_FIELD_LABEL = getClassName('field', 'label'),
-	CSS_FIELD_LABEL_SECONDARY = getClassName('field', 'label', 'secondary'),
 	CSS_FIELD_INPUT = getClassName('field', INPUT),
 	CSS_FIELD_INPUT_TEXT = getClassName('field', INPUT, 'text'),
-	CSS_FIELD_INPUT_NUMERIC = getClassName('field', INPUT, 'numeric'),
+	CSS_FIELD_LABEL = getClassName('field', 'label'),
+	CSS_FIELD_NUMERIC = getClassName('field', 'numeric'),
+	CSS_INSERTIMAGE = getClassName(NAME, INSERTIMAGE),
 	CSS_SELECT_FONTNAME = getClassName(NAME, SELECT, 'fontname'),
 	CSS_SELECT_FONTSIZE = getClassName(NAME, SELECT, 'fontsize'),
+	CSS_SIZE_SEPARATOR = getClassName(NAME, 'size', 'separator'),
 	CSS_SOURCE_TEXTAREA = getClassName(NAME, SOURCE, 'textarea'),
 	CSS_STATE_ACTIVE = getClassName('state', 'active'),
 	CSS_TOOLBAR = getClassName(NAME),
 	CSS_TOOLBAR_CONTENT = getClassName(NAME, CONTENT),
-	CSS_INSERTIMAGE_CONTENT = getClassName(NAME, INSERTIMAGE, CONTENT),
-	CSS_INSERTIMAGE_CONTENT_TARGET = getClassName(NAME, INSERTIMAGE, CONTENT, 'target'),
-	CSS_INSERTIMAGE_CONTENT_ALIGN = getClassName(NAME, INSERTIMAGE, CONTENT, 'align'),
 
-	TPL_INSERTIMAGE_BORDER = '<select>' +
-								 '<option value="">none</option>' +
-								 '<option value="1px solid">1px</option>' +
-								 '<option value="2px solid">2px</option>' +
-								 '<option value="3px solid">3px</option>' +
-								 '<option value="4px solid">4px</option>' +
-								 '<option value="5px solid">5px</option>' +
-							 '</select>',
 	TPL_INSERTIMAGE_HREF = '<a></a>',
 	TPL_INSERTIMAGE_IMG = '<img />',
-	TPL_INSERTIMAGE_INPUT_NUMERIC = '<input type="text" class="' + CSS_FIELD_INPUT + ' ' + CSS_FIELD_INPUT_TEXT + ' ' + CSS_FIELD_INPUT_NUMERIC + '" />',
 
 	TPL_SOURCE_TEXTAREA = '<textarea class="' + CSS_SOURCE_TEXTAREA + '"></textarea>',
+
 	TPL_TOOLBAR = '<div class="' + CSS_TOOLBAR + '"><div class="' + CSS_TOOLBAR_CONTENT + '"></div></div>',
+
+	TPL_TOOLBAR_BUTTON_HOLDER = '<div class="' + CSS_BUTTON_HOLDER + '"></div>',
+
 	TPL_TOOLBAR_FONTNAME = '<select class="' + CSS_SELECT_FONTNAME + '">{0}</select>',
-	TPL_TOOLBAR_FONTNAME_OPTION =	'<option selected="selected"></option>' +
-									'<option>Arial</option>' +
-									'<option>Arial Black</option>' +
-									'<option>Comic Sans MS</option>' +
-									'<option>Courier New</option>' +
-									'<option>Lucida Console</option>' +
-									'<option>Tahoma</option>' +
-									'<option>Times New Roman</option>' +
-									'<option>Trebuchet MS</option>' +
-									'<option>Verdana</option>',
+
+	TPL_TOOLBAR_FONTNAME_OPTION = '<option selected="selected"></option>' +
+								'<option>Arial</option>' +
+								'<option>Arial Black</option>' +
+								'<option>Comic Sans MS</option>' +
+								'<option>Courier New</option>' +
+								'<option>Lucida Console</option>' +
+								'<option>Tahoma</option>' +
+								'<option>Times New Roman</option>' +
+								'<option>Trebuchet MS</option>' +
+								'<option>Verdana</option>',
+
 	TPL_TOOLBAR_FONTSIZE = '<select class="' + CSS_SELECT_FONTSIZE + '">{0}</select>',
-	TPL_TOOLBAR_FONTSIZE_OPTION =	'<option selected="selected"></option>' +
-									'<option value="1">10</option>' +
-									'<option value="2">13</option>' +
-									'<option value="3">16</option>' +
-									'<option value="4">18</option>' +
-									'<option value="5">24</option>' +
-									'<option value="6">32</option>' +
-									'<option value="7">48</option>';
 
-	function generateInput(title) {
-		return generateLabel(title) + '<input type="text" class="' + CSS_FIELD_INPUT + ' ' + CSS_FIELD_INPUT_TEXT + '" />';
-	}
+	TPL_TOOLBAR_FONTSIZE_OPTION = '<option selected="selected"></option>' +
+								'<option value="1">10</option>' +
+								'<option value="2">13</option>' +
+								'<option value="3">16</option>' +
+								'<option value="4">18</option>' +
+								'<option value="5">24</option>' +
+								'<option value="6">32</option>' +
+								'<option value="7">48</option>',
 
-	function generateLabel(title, css) {
-		return '<label class="' + CSS_FIELD_LABEL + (css ? ' ' + css : '') + '">' + title + '</label>';
-	}
+	TPL_TOOLBAR_SIZE_SEPARATOR = '<span class="' + CSS_SIZE_SEPARATOR + '">x</span>';
 
-	function generateInsertImage(config) {
-		var html = '<div class="' + CSS_INSERTIMAGE_CONTENT + '">' +
-						'<ul>' +
-							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.IMAGE_URL) + '</li>' +
-							'<li>' + generateLabel(EditorToolbarPlugin.STRINGS.SIZE) + TPL_INSERTIMAGE_INPUT_NUMERIC + '<span>x</span>' + TPL_INSERTIMAGE_INPUT_NUMERIC + '</li>' +
-							'<li>' +
-								generateLabel(EditorToolbarPlugin.STRINGS.PADDING) + TPL_INSERTIMAGE_INPUT_NUMERIC +
-								generateLabel(EditorToolbarPlugin.STRINGS.BORDER, CSS_FIELD_LABEL_SECONDARY) + TPL_INSERTIMAGE_BORDER +
-							'</li>';
-		if (!config.hideAlign) {
-			html += 		'<li>' +
-								generateLabel(EditorToolbarPlugin.STRINGS.ALIGN) +
-								'<div class="' + CSS_INSERTIMAGE_CONTENT_ALIGN + '"></div>' +
-							'</li>';
-		}
+var EditorToolbar = A.Component.create(
+	{
+		NAME: NAME,
 
-		html += 			'<li>' + generateInput(EditorToolbarPlugin.STRINGS.DESCRIPTION) + '</li>' +
-							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.LINK_URL) + '</li>' +
-						'</ul>' +
-						'<span class="' + CSS_INSERTIMAGE_CONTENT_TARGET + '"><input type="checkbox" /><label>' + EditorToolbarPlugin.STRINGS.OPEN_IN_NEW_WINDOW + '</label></span>' +
-						'<div class="' + CSS_BUTTON_HOLDER + '"></div>' +
-					'</div>';
+		NS: TOOLBAR_PLUGIN,
 
-		return html;
-	}
+		EXTENDS: A.Plugin.Base,
 
-	function generateOverlay(boundingBox, config) {
-		var overlay = new A.OverlayContext(
-			A.merge(
-				{
-					trigger: boundingBox,
-					showOn: 'click',
-					hideOn: 'click',
-					align: {
-						node: boundingBox,
-						points: [ 'tl', 'bl' ]
+		ATTRS: {
+			groups: {
+				value: [
+					{
+						type: TEXT
+					},
+					{
+						type: ALIGNMENT
+					},
+					{
+						type: INDENT
+					},
+					{
+						type: LIST
 					}
-				},
-				config
-			)
-		).render();
-
-		return overlay;
-	}
-
-	function generateColorPicker(editor, attrs, config, cmd) {
-		var button = attrs.button;
-		var boundingBox = button.get('boundingBox');
-
-		var colorPicker = new A.ColorPicker(
-			A.merge(
-				{
-					trigger: boundingBox,
-					align: {
-						node: boundingBox,
-						points: [ 'tl', 'bl' ]
-					}
-				},
-				config
-			)
-		);
-
-		if (config && config.plugins) {
-			for (var i = 0; i < config.plugins.length; i++) {
-				colorPicker.plug(config.plugins[i], config);
+				]
 			}
-		}
+		},
 
-		colorPicker.render(A.getBody());
-
-		colorPicker.on(
-			'colorChange',
-			function(event) {
+		prototype: {
+			initializer: function() {
 				var instance = this;
 
-				var rgb = colorPicker.get('rgb');
+				var host = instance.get('host');
+				var container = host.frame.get('container');
+				var groups = instance.get('groups');
 
-				editor.execCommand(cmd, rgb.hex);
-				editor.focus();
-			}
-		);
-	}
+				var boundingBox = A.Node.create(TPL_TOOLBAR);
+				var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
 
-var EditorToolbarPlugin = A.Component.create(
-		{
-			NAME: NAME,
+				container.placeBefore(boundingBox);
 
-			NS: TOOLBAR_PLUGIN,
+				var attrs = {
+					boundingBox: boundingBox,
+					contentBox: contentBox
+				};
 
-			EXTENDS: A.Plugin.Base,
+				var toolbars = [];
 
-			ATTRS: {
-				groups: {
-					value: [
-						{ type: TEXT },
-						{ type: ALIGNMENT },
-						{ type: INDENT },
-						{ type: LIST }
-					]
-				}
-			},
+				instance.on(
+					'buttonitem:click',
+					function(event) {
+						var instance = this;
 
-			prototype: {
-				initializer: function() {
-					var instance = this;
+						var cmds = event.target.get('icon').split('-');
 
-					var host = instance.get('host');
-					var container = host.frame.get('container');
-					var groups = instance.get('groups');
-
-					var boundingBox = A.Node.create(TPL_TOOLBAR);
-					var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
-
-					container.placeBefore(boundingBox);
-
-					var attrs = {
-						boundingBox: boundingBox,
-						contentBox: contentBox
-					};
-
-					var toolbars = [];
-
-					for (var i = 0; i < groups.length; i++) {
-						var group = groups[i];
-						var groupType = GROUPS[group.type];
-
-						var children = [];
-
-						for (var j = 0; j < groupType.children.length; j++) {
-							if (!groupType.children[j].select) {
-								children.push(groupType.children[j]);
-							}
+						if (!CMD_IGNORE[cmds[0]]) {
+							instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
+							instance.focus();
 						}
+					},
+					host
+				);
 
-						if (children.length > 0) {
-							var toolbar = new A.Toolbar(
-								A.merge(
-									groupType.config,
-									group.toolbar,
-									{
-										children: children
-									}
-								)
-							).render(contentBox);
+				for (var i = 0; i < groups.length; i++) {
+					var group = groups[i];
+					var groupType = GROUPS[group.type];
+					var toolbar;
 
-							toolbar.on(
-								'buttonitem:click',
-								function(event) {
-									var instance = this;
+					var children = [];
 
-									var cmds = event.target.get('icon').split('-');
-
-									if (!CMD_IGNORE[cmds[0]]) {
-										instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
-										instance.focus();
-									}
-								},
-								host
-							);
-
-							toolbars.push(toolbar);
-						}
-
-						var generate = groupType.generate;
-
-						if (generate && isFunction(generate.init)) {
-							generate.init.call(instance, host, attrs);
-						}
-
-						for (var j = 0; j < groupType.children.length; j++) {
-							var icon = groupType.children[j].icon;
-
-							if (generate && isFunction(generate[icon])) {
-								var config = (group.config ? group.config[icon] : null);
-
-								attrs.button = (generate[icon].select ? null : toolbar.item(j));
-
-								generate[icon].call(instance, host, attrs, config);
-							}
+					for (var j = 0; j < groupType.children.length; j++) {
+						if (!groupType.children[j].select) {
+							children.push(groupType.children[j]);
 						}
 					}
 
-					attrs.toolbars = toolbars;
-				},
+					if (children.length > 0) {
+						toolbar = new A.Toolbar(
+							A.merge(
+								groupType.config,
+								group.toolbar,
+								{
+									children: children
+								}
+							)
+						).render(contentBox);
 
-				_updateToolbar: function(event, attrs) {
-					var instance = this;
+						toolbar.addTarget(instance);
 
-					if (event.changedNode) {
-						var cmds = event.commands;
-						var toolbars = attrs.toolbars;
+						toolbars.push(toolbar);
+					}
 
-						if (toolbars) {
-							for (var i = 0; i < toolbars.length; i++) {
-								toolbars[i].each(
-									function(node) {
-										var state = false;
+					var generate = groupType.generate;
 
-										if (cmds[node.get('icon')]) {
-											state = true;
-										}
+					if (generate && isFunction(generate.init)) {
+						generate.init.call(instance, host, attrs);
+					}
 
-										node.StateInteraction.set('active', state);
-									}
-								);
+					for (var j = 0; j < groupType.children.length; j++) {
+						var icon = groupType.children[j].icon;
+
+						if (generate && isFunction(generate[icon])) {
+							var config = (group.config ? group.config[icon] : null);
+
+							attrs.button = (generate[icon].select ? null : toolbar.item(j));
+
+							generate[icon].call(instance, host, attrs, config);
+						}
+					}
+				}
+
+				attrs.toolbars = toolbars;
+			},
+
+			_updateToolbar: function(event, attrs) {
+				var instance = this;
+
+				if (event.changedNode) {
+					var cmds = event.commands;
+					var toolbars = attrs.toolbars;
+
+					var toolbarIterator = function(item, index, collection) {
+						var state = !!(cmds[item.get('icon')]);
+
+						item.StateInteraction.set('active', state);
+					};
+
+					if (toolbars) {
+						for (var i = 0; i < toolbars.length; i++) {
+							toolbars[i].each(toolbarIterator);
+						}
+					}
+
+					var fontName = event.fontFamily;
+					var fontNameOptions = attrs._fontNameOptions;
+					var fontSize = event.fontSize;
+					var fontSizeOptions = attrs._fontSizeOptions;
+
+					if (fontNameOptions) {
+						fontNameOptions.item(0).set('selected', true);
+
+						fontNameOptions.each(
+							function(item, index, collection) {
+								var val = item.get('value').toLowerCase();
+
+								if (val === fontName.toLowerCase()) {
+									item.set('selected', true);
+								}
 							}
-						}
+						);
+					}
 
-						var fontName = event.fontFamily;
-						var fontNameOptions = attrs._fontNameOptions;
-						var fontSize = event.fontSize;
-						var fontSizeOptions = attrs._fontSizeOptions;
+					if (fontSizeOptions) {
+						fontSize = fontSize.replace('px', '');
 
-						if (fontNameOptions) {
-							fontNameOptions.item(0).set('selected', true);
+						fontSizeOptions.item(0).set('selected', true);
 
-							fontNameOptions.each(
-								function(node) {
-									var val = node.get('value').toLowerCase();
+						fontSizeOptions.each(
+							function(item, index, collection) {
+								var val = item.get('value').toLowerCase();
+								var txt = item.get('text');
 
-									if (val === fontName.toLowerCase()) {
-										node.set('selected', true);
-									}
+								if (txt === fontSize) {
+									item.set('selected', true);
 								}
-							);
-						}
-
-						if (fontSizeOptions) {
-							fontSize = fontSize.replace('px', '');
-
-							fontSizeOptions.item(0).set('selected', true);
-
-							fontSizeOptions.each(
-								function(node) {
-									var val = node.get('value').toLowerCase();
-									var txt = node.get('text');
-
-									if (txt === fontSize) {
-										node.set('selected', true);
-									}
-								}
-							);
-						}
+							}
+						);
 					}
 				}
 			}
 		}
+	}
+);
+
+EditorToolbar.generateOverlay = function(trigger, config) {
+	var overlay = new A.OverlayContext(
+		A.merge(
+			{
+				align: {
+					node: trigger,
+					points: [ 'tl', 'bl' ]
+				},
+				hideOn: 'click',
+				showOn: 'click',
+				trigger: trigger
+			},
+			config
+		)
+	).render();
+
+	return overlay;
+};
+
+EditorToolbar.generateColorPicker = function(editor, attrs, config, cmd) {
+	var button = attrs.button;
+	var boundingBox = button.get('boundingBox');
+
+	var colorPicker = new A.ColorPicker(
+		A.merge(
+			{
+				align: {
+					node: boundingBox,
+					points: ['tl', 'bl']
+				},
+				trigger: boundingBox
+			},
+			config
+		)
 	);
 
-EditorToolbarPlugin.STRINGS = {
+	if (config && config.plugins) {
+		for (var i = 0; i < config.plugins.length; i++) {
+			colorPicker.plug(config.plugins[i], config);
+		}
+	}
+
+	colorPicker.render(A.getBody());
+
+	colorPicker.on(
+		'colorChange',
+		function(event) {
+			var instance = this;
+
+			var rgb = colorPicker.get('rgb');
+
+			editor.execCommand(cmd, rgb.hex);
+			editor.focus();
+		}
+	);
+};
+
+EditorToolbar.STRINGS = {
 	ALIGN: 'Align',
 	ALIGN_BLOCK: 'Block',
 	ALIGN_LEFT: 'Left',
@@ -836,41 +797,63 @@ EditorToolbarPlugin.STRINGS = {
 	UNDERLINE: 'Underline'
 };
 
-GROUPS = [];
+GROUPS = {};
 
 GROUPS[ALIGNMENT] = {
 	children: [
-		{ icon: 'justifyleft', title: EditorToolbarPlugin.STRINGS.JUSTIFY_LEFT },
-		{ icon: 'justifycenter', title: EditorToolbarPlugin.STRINGS.JUSTIFY_CENTER },
-		{ icon: 'justifyright', title: EditorToolbarPlugin.STRINGS.JUSTIFY_RIGHT }
+		{
+			icon: 'justifyleft',
+			title: EditorToolbar.STRINGS.JUSTIFY_LEFT
+		},
+		{
+			icon: 'justifycenter',
+			title: EditorToolbar.STRINGS.JUSTIFY_CENTER
+		},
+		{
+			icon: 'justifyright',
+			title: EditorToolbar.STRINGS.JUSTIFY_RIGHT
+		}
 	]
 };
 
 GROUPS[COLOR] = {
 	children: [
-		{ icon: 'forecolor', title: EditorToolbarPlugin.STRINGS.FORECOLOR },
-		{ icon: 'backcolor', title: EditorToolbarPlugin.STRINGS.BACKCOLOR }
+		{
+			icon: 'forecolor',
+			title: EditorToolbar.STRINGS.FORECOLOR
+		},
+		{
+			icon: 'backcolor',
+			title: EditorToolbar.STRINGS.BACKCOLOR
+		}
 	],
 	generate: {
 		forecolor: function(editor, attrs, config) {
 			var instance = this;
 
-			generateColorPicker(editor, attrs, config, 'forecolor');
+			EditorToolbar.generateColorPicker(editor, attrs, config, 'forecolor');
 		},
 
 		backcolor: function(editor, attrs, config) {
 			var instance = this;
 
-			generateColorPicker(editor, attrs, config, 'backcolor');
+			EditorToolbar.generateColorPicker(editor, attrs, config, 'backcolor');
 		}
 	}
-},
+};
 
 GROUPS[FONT] = {
 	children: [
-		{ icon: 'fontname', select: true },
-		{ icon: 'fontsize', select: true }
+		{
+			icon: 'fontname',
+			select: true
+		},
+		{
+			icon: 'fontsize',
+			select: true
+		}
 	],
+
 	generate: {
 		init: function(editor, attrs) {
 			var instance = this;
@@ -903,7 +886,7 @@ GROUPS[FONT] = {
 						case 'keyup':
 						case 'mousedown':
 							instance._updateToolbar(event, attrs);
-							break;
+						break;
 					}
 				},
 				instance
@@ -915,14 +898,14 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl = null;
+			var tpl;
+			var data = [TPL_TOOLBAR_FONTNAME_OPTION];
 
 			if (config && config.optionHtml) {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, [config.optionHtml]);
+				data[0] = config.optionHtml;
 			}
-			else {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, [TPL_TOOLBAR_FONTNAME_OPTION]);
-			}
+
+			tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, data);
 
 			contentBox.append(tpl);
 
@@ -936,14 +919,14 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl = null;
+			var tpl;
+			var data = [TPL_TOOLBAR_FONTSIZE_OPTION];
 
 			if (config && config.optionHtml) {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, [config.optionHtml]);
+				data[0] = config.optionHtml;
 			}
-			else {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, [TPL_TOOLBAR_FONTSIZE_OPTION]);
-			}
+
+			tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, data);
 
 			contentBox.append(tpl);
 
@@ -956,15 +939,27 @@ GROUPS[FONT] = {
 
 GROUPS[INDENT] = {
 	children: [
-		{ icon: 'indent', title: EditorToolbarPlugin.STRINGS.INDENT },
-		{ icon: 'outdent', title: EditorToolbarPlugin.STRINGS.OUTDENT }
+		{
+			icon: 'indent',
+			title: EditorToolbar.STRINGS.INDENT
+		},
+		{
+			icon: 'outdent',
+			title: EditorToolbar.STRINGS.OUTDENT
+		}
 	]
 };
 
 GROUPS[INSERT] = {
 	children: [
-		{ icon: 'insertimage', title: EditorToolbarPlugin.STRINGS.INSERT_IMAGE },
-		{ icon: 'createlink', title: EditorToolbarPlugin.STRINGS.CREATE_LINK }
+		{
+			icon: 'insertimage',
+			title: EditorToolbar.STRINGS.INSERT_IMAGE
+		},
+		{
+			icon: 'createlink',
+			title: EditorToolbar.STRINGS.CREATE_LINK
+		}
 	],
 	generate: {
 		insertimage: function(editor, attrs, config) {
@@ -973,14 +968,14 @@ GROUPS[INSERT] = {
 			var button = attrs.button;
 			var boundingBox = button.get('boundingBox');
 
-			var overlay = generateOverlay(boundingBox, config);
+			var overlay = EditorToolbar.generateOverlay(boundingBox, config);
 
 			var contextBox = overlay.get('contentBox');
 
 			var panel = new A.Panel(
 				{
 					collapsible: false,
-					headerContent: EditorToolbarPlugin.STRINGS.INSERT_IMAGE,
+					headerContent: EditorToolbar.STRINGS.INSERT_IMAGE,
 					icons: [
 						{
 							icon: 'close',
@@ -1004,138 +999,208 @@ GROUPS[INSERT] = {
 
 				var selection = null;
 
-				var html = generateInsertImage(config);
-
-				var imageForm = A.Node.create(html);
-
-				contextBox.append(imageForm);
-
-				var hrefTarget = imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_TARGET + ' input');
-
-				var toolbar = new A.Toolbar(
+				var imageForm = new A.Form(
 					{
-						children: [
+						cssClass: CSS_INSERTIMAGE,
+						labelAlign: 'left'
+					}
+				).render(contextBox);
+
+				var borderOptions = [
+					{
+						labelText: 'none',
+						value: ''
+					}
+				];
+
+				for (var i = 1; i < 6; i++) {
+					borderOptions.push(
+						{
+							labelText: i + 'px',
+							value: i + 'px solid'
+						}
+					);
+				}
+
+				imageForm.add(
+					[
+						{
+							id: 'imageURL',
+							labelText: EditorToolbar.STRINGS.IMAGE_URL
+						},
+						{
+							id: 'size',
+							labelText: EditorToolbar.STRINGS.SIZE,
+							type: 'hidden'
+						},
+						{
+							id: 'width',
+							labelText: false,
+							cssClass: CSS_FIELD_NUMERIC
+						},
+						{
+							id: 'height',
+							labelText: false,
+							cssClass: CSS_FIELD_NUMERIC
+						},
+						{
+							id: 'padding',
+							labelText: EditorToolbar.STRINGS.PADDING
+						},
+						new A.Select(
 							{
-								icon: 'circle-check',
-								label: EditorToolbarPlugin.STRINGS.INSERT
+								id: 'border',
+								labelText: EditorToolbar.STRINGS.BORDER,
+								options: borderOptions
 							}
-						]
+						),
+						{
+							id: 'align',
+							labelText: EditorToolbar.STRINGS.ALIGN,
+							type: 'hidden'
+						},
+						{
+							id: 'description',
+							labelText: EditorToolbar.STRINGS.DESCRIPTION
+						},
+						{
+							id: 'linkURL',
+							labelText: EditorToolbar.STRINGS.LINK_URL
+						},
+						{
+							id: 'openInNewWindow',
+							labelText: EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
+							type: 'checkbox'
+						}
+					],
+					true
+				);
+
+				imageForm.getField('width').get('boundingBox').placeAfter(TPL_TOOLBAR_SIZE_SEPARATOR);
+
+				var imageFormContentBox = imageForm.get('contentBox');
+				var buttonRow = A.Node.create(TPL_TOOLBAR_BUTTON_HOLDER);
+
+				var hrefTarget = imageForm.getField('openInNewWindow');
+
+				var toolbar = new A.ButtonItem(
+					{
+						icon: 'circle-check',
+						label: EditorToolbar.STRINGS.INSERT
+					}
+				).render(buttonRow);
+
+				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
+
+				var heightField = imageForm.getField('height');
+				var widthField = imageForm.getField('width');
+
+				imgSizeDetection.on(
+					'load',
+					function(event) {
+						var img = event.currentTarget;
+
+						if (!heightField.get('value') || !widthField.get('value')) {
+							imageForm.set(
+								'values',
+								{
+									height: img.get('height'),
+									width: img.get('width')
+								}
+							);
+						}
 					}
 				);
 
-				toolbar.item(0).on(
+				imageForm.getField('imageURL').get('node').on(
+					'blur',
+					function(event) {
+						imgSizeDetection.set('src', this.val());
+					}
+				);
+
+				toolbar.on(
 					'click',
 					function(event) {
 						var instance = this;
 
-						var href = A.Node.create(TPL_INSERTIMAGE_HREF);
 						var img = A.Node.create(TPL_INSERTIMAGE_IMG);
 
-						var url = null;
+						var fieldValues = imageForm.get('fieldValues');
 
-						imageForm.all('input').each(
-							function(node, index) {
-								switch(index) {
-									case 0:
-										img.attr('src', node.val());
+						var description = fieldValues.description;
 
-										break;
+						var imgAttrs = {
+							src: fieldValues.imageURL,
+							title: description,
+							alt: description
+						};
 
-									case 1:
-										var width = parseInt(node.val());
+						var imgStyles = {
+							border: fieldValues.border
+						};
 
-										if (!isNaN(width)) {
-											img.attr('width', width);
-										}
+						var height = parseInt(fieldValues.height, 10);
+						var width = parseInt(fieldValues.width, 10);
 
-										break;
-
-									case 2:
-										var height = parseInt(node.val());
-
-										if (!isNaN(height)) {
-											img.attr('height', height);
-										}
-
-										break;
-
-									case 3:
-										var padding = parseInt(node.val());
-
-										if (!isNaN(padding)) {
-											img.setStyle('padding', padding + 'px');
-										}
-
-										break;
-
-									case 4:
-										img.attr('title', node.val());
-										img.attr('alt', node.val());
-
-										break;
-
-									case 5:
-										url = node.val();
-
-										break;
-								}
-							}
-						);
-
-						imageForm.all('select').each(
-							function(node, index) {
-								switch(index) {
-									case 0:
-										img.setStyle('border', node.val());
-
-										break;
-								}
-							}
-						);
-
-						if (toolbarAlign) {
-							toolbarAlign.some(
-								function(node, index) {
-									var instance = this;
-
-									var active = node.StateInteraction.get('active');
-
-									if (active) {
-										img.setStyle('display', '');
-
-										switch(index) {
-											case 0:
-												img.attr('align', 'left');
-
-												break;
-
-											case 1:
-												img.attr('align', '');
-
-												break;
-
-											case 2:
-												img.attr('align', 'center');
-												img.setStyle('display', 'block');
-
-												break;
-
-											case 3:
-												img.attr('align', 'right');
-
-												break;
-										}
-
-										return true;
-									}
-								}
-							);
+						if (!isNaN(height)) {
+							imgAttrs.height = height;
 						}
 
-						if (url != null) {
-							href.attr('href', url);
+						if (!isNaN(width)) {
+							imgAttrs.width = width;
+						}
 
-							if (hrefTarget.attr('checked')) {
+						var padding = parseInt(fieldValues.padding, 10);
+
+						if (!isNaN(padding)) {
+							imgStyles.padding = padding;
+						}
+
+						toolbarAlign.some(
+							function(item, index, collection) {
+								var instance = this;
+
+								var active = item.StateInteraction.get('active');
+
+								if (active) {
+									imgStyles.display = '';
+
+									switch(index) {
+										case 0:
+											imgAttrs.align = 'left';
+										break;
+
+										case 1:
+											imgAttrs.align = '';
+										break;
+
+										case 2:
+											imgAttrs.align = 'center';
+											imgStyles.display = 'block';
+										break;
+
+										case 3:
+											imgAttrs.align = 'right';
+										break;
+									}
+
+									return true;
+								}
+							}
+						);
+
+						img.attr(imgAttrs);
+						img.setStyles(imgStyles);
+
+						var linkURL = fieldValues.linkURL;
+
+						if (linkURL) {
+							var href = A.Node.create(TPL_INSERTIMAGE_HREF);
+
+							href.attr('href', linkURL);
+
+							if (hrefTarget.get('node').get('checked')) {
 								href.attr('target', '_blank');
 							}
 
@@ -1145,111 +1210,78 @@ GROUPS[INSERT] = {
 						}
 
 						if (selection && selection.anchorNode) {
-							selection.anchorNode.append(img)
+							selection.anchorNode.append(img);
 						}
 
 						overlay.hide();
-					},
-					instance
+					}
 				);
 
-				toolbar.render(imageForm.one('.' + CSS_BUTTON_HOLDER));
+				imageFormContentBox.append(buttonRow);
 
-				var toolbarAlign = null;
-
-				if (!config.hideAlign) {
-					toolbarAlign = new A.Toolbar(
+				var toolbarAlign = new A.Toolbar(
+					{
+						activeState: true,
+						children: [
 							{
-								activeState: true,
-								children: [
-									{
-										icon: 'align-left',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_LEFT
-									},
-									{
-										icon: 'align-inline',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_INLINE
-									},
-									{
-										icon: 'align-block',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_BLOCK
-									},
-									{
-										icon: 'align-right',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_RIGHT
-									}
-								]
+								icon: 'align-left',
+								title: EditorToolbar.STRINGS.ALIGN_LEFT
+							},
+							{
+								icon: 'align-inline',
+								title: EditorToolbar.STRINGS.ALIGN_INLINE
+							},
+							{
+								icon: 'align-block',
+								title: EditorToolbar.STRINGS.ALIGN_BLOCK
+							},
+							{
+								icon: 'align-right',
+								title: EditorToolbar.STRINGS.ALIGN_RIGHT
+							}
+						]
+					}
+				);
+
+				toolbarAlign.after(
+					'buttonitem:click',
+					function(event) {
+						var button = event.target;
+
+						toolbarAlign.each(
+							function(item, index, collection) {
+								if (item != button) {
+									item.StateInteraction.set('active', false);
+								}
 							}
 						);
+					}
+				);
 
-					toolbarAlign.on(
-						'buttonitem:click',
-						function(event) {
-							var instance = this;
+				toolbarAlign.render(imageForm.getField('align').get('contentBox'));
 
-							var button = event.target;
-
-							instance.each(
-								function(node) {
-									var instance = this;
-
-									if (node != button) {
-										node.StateInteraction.set('active', false);
-									}
-								}
-							);
-						}
-					);
-
-					toolbarAlign.render(imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_ALIGN));
-				}
-
-				overlay.on(
+				overlay.after(
 					'hide',
 					function(event) {
-						var instance = this;
+						imageForm.resetValues();
 
-						instance.all('input').each(
-							function(node) {
-								var instance = this;
-
-								node.val('');
+						toolbarAlign.each(
+							function(item, index, collection) {
+								item.StateInteraction.set('active', false);
 							}
 						);
 
-						instance.all('select').each(
-							function(node) {
-								var instance = this;
-
-								node.attr('selectedIndex', 0);
-							}
-						);
-
-						if (toolbarAlign) {
-							toolbarAlign.each(
-								function(node) {
-									var instance = this;
-
-									node.StateInteraction.set('active', false);
-								}
-							);
-						}
-
-						hrefTarget.attr('checked', false);
-					},
-					imageForm
+						hrefTarget.get('node').set('checked', false);
+					}
 				);
 
 				iframe.on(
 					MOUSEOUT,
 					function(event) {
-						var instance = this;
-
-						var frame = instance.getInstance();
+						var frame = editor.getInstance();
 
 						selection = new frame.Selection();
-					},
-					editor
+					}
 				);
 			}
 		},
@@ -1264,8 +1296,14 @@ GROUPS[INSERT] = {
 
 GROUPS[LIST] = {
 	children: [
-		{ icon: 'insertunorderedlist', title: EditorToolbarPlugin.STRINGS.INSERT_UNORDERED_LIST },
-		{ icon: 'insertorderedlist', title: EditorToolbarPlugin.STRINGS.INSERT_ORDERED_LIST }
+		{
+			icon: 'insertunorderedlist',
+			title: EditorToolbar.STRINGS.INSERT_UNORDERED_LIST
+		},
+		{
+			icon: 'insertorderedlist',
+			title: EditorToolbar.STRINGS.INSERT_ORDERED_LIST
+		}
 	],
 	generate: {
 		init: function(editor) {
@@ -1278,8 +1316,14 @@ GROUPS[LIST] = {
 
 GROUPS[SOURCE] = {
 	children: [
-		{ icon: 'format', title: EditorToolbarPlugin.STRINGS.REMOVE_FORMAT },
-		{ icon: 'source', title: EditorToolbarPlugin.STRINGS.SOURCE }
+		{
+			icon: 'format',
+			title: EditorToolbar.STRINGS.REMOVE_FORMAT
+		},
+		{
+			icon: 'source',
+			title: EditorToolbar.STRINGS.SOURCE
+		}
 	],
 	generate: {
 		format: function(editor, attrs, config) {
@@ -1300,12 +1344,12 @@ GROUPS[SOURCE] = {
 
 					if (!selection.isCollapsed && items.size()) {
 						items.each(
-							function(node) {
+							function(item, index, collection) {
 								var instance = this;
 
-								node.removeAttribute('style');
+								item.removeAttribute('style');
 
-								var html = node.get('innerHTML');
+								var html = item.get('innerHTML');
 
 								html = html.replace(/<([a-zA-Z0-9]*)\b[^>]*>/g, '<$1>');
 
@@ -1315,11 +1359,11 @@ GROUPS[SOURCE] = {
 									html = html.replace(regExp, '');
 								}
 
-								node.set('innerHTML', html);
+								item.set('innerHTML', html);
 
-								var parent = node.get('parentNode');
+								var parent = item.get('parentNode');
 
-								if (parent && !parent.test('body')) {
+								if (!parent.test('body')) {
 									parent.removeAttribute('style');
 								}
 							}
@@ -1329,6 +1373,7 @@ GROUPS[SOURCE] = {
 				editor
 			);
 		},
+
 		source: function(editor, attrs, config) {
 			var instance = this;
 
@@ -1349,9 +1394,9 @@ GROUPS[SOURCE] = {
 			button.on(
 				'click',
 				function(event) {
-					var instance = this;
+					var buttonVisible = button._visible;
 
-					if (button._visible) {
+					if (buttonVisible) {
 						editor.set('content', textarea.val());
 
 						textarea.hide();
@@ -1364,27 +1409,24 @@ GROUPS[SOURCE] = {
 
 						textarea.val(editor.getContent());
 
-						var offsetHeight = (
-								iframe.get('offsetHeight') -
-								parseInt(textarea.getComputedStyle('paddingTop')) -
-								parseInt(textarea.getComputedStyle('paddingBottom'))
-							);
+						var offsetHeight = iframe.get('offsetHeight') - textarea.getPadding('tb');
 
-						textarea.setStyle('height', offsetHeight + 'px');
+						textarea.setStyle('height', offsetHeight);
 
 						frame.hide();
 
 						textarea.show();
 					}
 
-					button._visible = !button._visible;
+					buttonVisible = !buttonVisible;
 
-					contentBox.all('select').attr('disabled', button._visible);
-					contentBox.all('button').attr('disabled', button._visible);
+					button._visible = buttonVisible;
+
+					contentBox.all('select').attr('disabled', buttonVisible);
+					contentBox.all('button').attr('disabled', buttonVisible);
 
 					button.get('contentBox').attr('disabled', false);
-				},
-				editor
+				}
 			);
 		}
 	}
@@ -1392,7 +1434,9 @@ GROUPS[SOURCE] = {
 
 GROUPS[STYLES] = {
 	children: [
-		{ icon: 'styles' }
+		{
+			icon: 'styles'
+		}
 	],
 	generate: {
 		styles: function(editor, attrs, config) {
@@ -1401,18 +1445,18 @@ GROUPS[STYLES] = {
 			var button = attrs.button;
 			var boundingBox = button.get('boundingBox');
 
-			editor.plug(A.Plugin.EditorMenuPlugin);
+			editor.plug(A.Plugin.EditorMenu);
 
 			editor.menu.add(
 				A.merge(
 					{
-						trigger: boundingBox,
-						showOn: 'click',
-						hideOn: 'click',
 						align: {
 							node: boundingBox,
-							points: [ 'tl', 'bl' ]
-						}
+							points: ['tl', 'bl']
+						},
+						hideOn: 'click',
+						showOn: 'click',
+						trigger: boundingBox
 					},
 					config
 				)
@@ -1423,24 +1467,41 @@ GROUPS[STYLES] = {
 
 GROUPS[SUBSCRIPT] = {
 	children: [
-		{ icon: 'subscript', title: EditorToolbarPlugin.STRINGS.SUBSCRIPT },
-		{ icon: 'superscript', title: EditorToolbarPlugin.STRINGS.SUPERSCRIPT }
+		{
+			icon: 'subscript',
+			title: EditorToolbar.STRINGS.SUBSCRIPT
+		},
+		{
+			icon: 'superscript',
+			title: EditorToolbar.STRINGS.SUPERSCRIPT
+		}
 	]
 };
 
 GROUPS[TEXT] = {
 	children: [
-		{ icon: 'bold', title: EditorToolbarPlugin.STRINGS.BOLD },
-		{ icon: 'italic', title: EditorToolbarPlugin.STRINGS.ITALIC },
-		{ icon: 'underline', title: EditorToolbarPlugin.STRINGS.UNDERLINE },
-		{ icon: 'strikethrough', title: EditorToolbarPlugin.STRINGS.LINE_THROUGH }
+		{
+			icon: 'bold',
+			title: EditorToolbar.STRINGS.BOLD
+		},
+		{
+			icon: 'italic',
+			title: EditorToolbar.STRINGS.ITALIC
+		},
+		{
+			icon: 'underline',
+			title: EditorToolbar.STRINGS.UNDERLINE
+		},
+		{
+			icon: 'strikethrough',
+			title: EditorToolbar.STRINGS.LINE_THROUGH
+		}
 	]
 };
 
-A.namespace('Plugin').EditorToolbarPlugin = EditorToolbarPlugin;
+A.namespace('Plugin').EditorToolbar = EditorToolbar;
 
-}, '@VERSION@' ,{requires:['aui-base','editor-base','aui-toolbar','aui-overlay-context','aui-panel','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-button-item','createlink-base','editor-lists','plugin']});
-
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']});
 AUI.add('aui-editor-bbcode-plugin', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2008,7 +2069,6 @@ var BBCodePlugin = A.Component.create(
 A.namespace('Plugin').BBCodePlugin = BBCodePlugin;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
-
 
 
 AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']});

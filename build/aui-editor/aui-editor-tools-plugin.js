@@ -26,8 +26,6 @@ var Lang = A.Lang,
 
 var EditorTools = {};
 
-A.namespace('Plugin');
-
 A.mix(
 	A.Plugin.ExecCommand.COMMANDS,
 	{
@@ -49,10 +47,12 @@ A.mix(
 				insertHtml = true;
 			}
 
-			A.each(
-				items,
-				function(node) {
-					var tagName = node.get('tagName');
+			items.each(
+				function(item, index, collection) {
+					var tagName = item.get('tagName');
+					var parent = item.ancestor();
+
+					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
@@ -63,25 +63,25 @@ A.mix(
 					}
 
 					if (tagName == 'font') {
-						var tempNode = node.get('parentNode');
+						var tempNode = item.get('parentNode');
 
 						if (!tempNode.test('body')) {
-							node = tempNode;
+							item = tempNode;
 
-							tagName = node.get('tagName').toLowerCase();
+							tagName = item.get('tagName').toLowerCase();
 						}
 					}
 
-					var parent = node.get('parentNode');
+					var parent = item.get('parentNode');
 
 					var wrapper = null;
 
-					if (!node.test('body') && node.getComputedStyle('textAlign') == val) {
+					if (!item.test('body') && item.getComputedStyle('textAlign') == val) {
 						return;
 					}
 
-					if (BLOCK_TAGS[tagName] || node.getComputedStyle('display') == 'block') {
-						wrapper = node;
+					if (BLOCK_TAGS[tagName] || item.getComputedStyle('display') == 'block') {
+						wrapper = item;
 					}
 					else if (!parent.get('childNodes').item(1) || ITEM_TAGS[tagName]) {
 						tagName = parent.get('tagName').toLowerCase();
@@ -101,9 +101,9 @@ A.mix(
 						else {
 							wrapper = A.Node.create(Lang.sub(TPL_JUSTIFY, [val, '']));
 
-							parent.insert(wrapper, node);
+							parent.insert(wrapper, item);
 
-							wrapper.append(node);
+							wrapper.append(item);
 						}
 					}
 
@@ -117,41 +117,31 @@ A.mix(
 		justifycenter: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'center');
+			return instance.get('host').execCommand(JUSTIFY, 'center');
 		},
 
 		justifyleft: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'left');
+			return instance.get('host').execCommand(JUSTIFY, 'left');
 		},
 
 		justifyright: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand(JUSTIFY, 'right');
+			return instance.get('host').execCommand(JUSTIFY, 'right');
 		},
 
 		subscript: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand('wrap', 'sub');
+			return instance.get('host').execCommand('wrap', 'sub');
 		},
 
 		superscript: function() {
 			var instance = this;
 
-			var host = instance.get('host');
-
-			return host.execCommand('wrap', 'sup');
+			return instance.get('host').execCommand('wrap', 'sup');
 		},
 
 		wraphtml: function(cmd, val) {
@@ -165,8 +155,8 @@ A.mix(
 
 			if (!selection.isCollapsed && items.size()) {
 				items.each(
-					function(node) {
-						var parent = node.ancestor();
+					function(item, index, collection) {
+						var parent = item.ancestor();
 
 						var wrapper = A.Node.create(val);
 
@@ -175,41 +165,13 @@ A.mix(
 								wrapper.html('');
 							}
 							else {
-								function findInsert(node) {
-									var found = null;
-
-									var childNodes = node.get('childNodes');
-
-									childNodes.some(
-										function (node) {
-											if (node.get('innerHTML') == '{0}') {
-												found.html('');
-
-												found = node;
-
-												return true;
-											}
-
-											return findInsert(node);
-										}
-									);
-
-									if (found) {
-										wrapper = found;
-
-										return true;
-									}
-
-									return false;
-								}
-
-								findInsert(wrapper);
+								instance._findInsert(wrapper);
 							}
 						}
 
-						parent.insert(wrapper, node);
+						parent.insert(wrapper, item);
 
-						wrapper.append(node);
+						wrapper.append(item);
 					}
 				);
 			}
@@ -220,6 +182,36 @@ A.mix(
 					selection.focusCursor(true, true);
 				}
 			}
+		},
+
+		_findInsert: function(item) {
+			var instance = this;
+
+			var found = null;
+
+			var childNodes = item.get('childNodes');
+
+			childNodes.some(
+				function(item, index, collection) {
+					if (item.get('innerHTML') == '{0}') {
+						found.html('');
+
+						found = item;
+
+						return true;
+					}
+
+					return instance._findInsert(item);
+				}
+			);
+
+			if (found) {
+				wrapper = found;
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 );
