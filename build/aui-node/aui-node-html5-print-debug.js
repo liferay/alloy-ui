@@ -1,80 +1,103 @@
 AUI.add('aui-node-html5-print', function(A) {
-// iepp v1.6.2 Alloy UI Edition MIT @jon_neal
 (function(win, doc, elemsArr, elemsArrLen, elems, isIE) {
-	// Do not run on non-IE or IE9+
-	if (!isIE || isIE >= 9) return;
-	var elemRegExp = new RegExp('(^|\\s)('+elems+')', 'gi'), 
-		tagRegExp = new RegExp('<(\/*)('+elems+')', 'gi'),
-		ruleRegExp = new RegExp('(^|[^\\n]*?\\s)('+elems+')([^\\n]*)({[\\n\\w\\W]*?})', 'gi'),
-		docFrag = doc.createDocumentFragment(),
-		html = doc.documentElement,
-		head = html.firstChild,
-		bodyElem = doc.createElement('body'),
-		styleElem = doc.createElement('style'),
-		body;
+	if (!isIE || isIE >= 9) {
+		return;
+	}
+
+	var ELEM_REG_EXP = new RegExp('(^|\\s)('+elems+')', 'gi'), 
+		TAG_REG_EXP = new RegExp('<(\/*)('+elems+')', 'gi'),
+		RULE_REG_EXP = new RegExp('(^|[^\\n]*?\\s)('+elems+')([^\\n]*)({[\\n\\w\\W]*?})', 'gi'),
+		DOC_FRAG = doc.createDocumentFragment(),
+		HTML = doc.documentElement,
+		HEAD = HTML.firstChild,
+		BODY_ELEM = doc.createElement('body'),
+		STYLE_ELEM = doc.createElement('style');
+
+	var body;
+
 	function shim(doc) {
 		var a = -1;
-		while (++a < elemsArrLen)
-			// Use createElement so IE allows HTML5-named elements in a document
+
+		while (++a < elemsArrLen) {
 			doc.createElement(elemsArr[a]);
+		}
 	}
+
 	function getCSS(styleSheetList, mediaType) {
-		var a = -1,
-			len = styleSheetList.length,
-			styleSheet,
-			cssTextArr = [];
+		var a = -1;
+		var len = styleSheetList.length;
+		var styleSheet;
+		var cssTextArr = [];
+
 		while (++a < len) {
 			styleSheet = styleSheetList[a];
-			// Get css from all non-screen stylesheets and their imports
-			if ((mediaType = styleSheet.media || mediaType) != 'screen') cssTextArr.push(getCSS(styleSheet.imports, mediaType), styleSheet.cssText);
+
+			if ((mediaType = styleSheet.media || mediaType) != 'screen') {
+				cssTextArr.push(getCSS(styleSheet.imports, mediaType), styleSheet.cssText);
+			}
 		}
+
 		return cssTextArr.join('');
 	}
-	// Shim the document and iepp fragment
+
 	shim(doc);
-	shim(docFrag);
-	// Add iepp custom print style element
-	head.insertBefore(styleElem, head.firstChild);
-	styleElem.media = 'print';
+	shim(DOC_FRAG);
+
+	HEAD.insertBefore(STYLE_ELEM, HEAD.firstChild);
+
+	STYLE_ELEM.media = 'print';
+
 	win.attachEvent(
 		'onbeforeprint',
 		function() {
-			var a = -1,
-				cssText = getCSS(doc.styleSheets, 'all'),
-				cssTextArr = [],
-				rule;
+			var a = -1;
+			var b;
+			var cssText = getCSS(doc.styleSheets, 'all');
+			var cssTextArr = [];
+			var nodeList;
+			var nodeListLen;
+			var rule;
+
 			body = body || doc.body;
-			// Get only rules which reference HTML5 elements by name
-			while ((rule = ruleRegExp.exec(cssText)) != null)
-				// Replace all html5 element references with iepp substitute classnames
-				cssTextArr.push((rule[1]+rule[2]+rule[3]).replace(elemRegExp, '$1.iepp_$2')+rule[4]);
-			// Write iepp custom print CSS
-			styleElem.styleSheet.cssText = cssTextArr.join('\n');
-			while (++a < elemsArrLen) {
-				var nodeList = doc.getElementsByTagName(elemsArr[a]),
-					nodeListLen = nodeList.length,
-					b = -1;
-				while (++b < nodeListLen)
-					if (nodeList[b].className.indexOf('iepp_') < 0)
-						// Append iepp substitute classnames to all html5 elements
-						nodeList[b].className += ' iepp_'+elemsArr[a];
+
+			while ((rule = RULE_REG_EXP.exec(cssText)) != null) {
+				cssTextArr.push((rule[1]+rule[2]+rule[3]).replace(ELEM_REG_EXP, '$1.iepp_$2')+rule[4]);
 			}
-			docFrag.appendChild(body);
-			html.appendChild(bodyElem);
-			// Write iepp substitute print-safe document
-			bodyElem.className = body.className;
-			// Replace HTML5 elements with <font> which is print-safe and shouldn't conflict since it isn't part of html5
-			bodyElem.innerHTML = body.innerHTML.replace(tagRegExp, '<$1font');
+
+			STYLE_ELEM.styleSheet.cssText = cssTextArr.join('\n');
+
+			while (++a < elemsArrLen) {
+				nodeList = doc.getElementsByTagName(elemsArr[a]),
+
+				nodeListLen = nodeList.length,
+
+				b = -1;
+
+				while (++b < nodeListLen) {
+					if (nodeList[b].className.indexOf('iepp_') < 0) {
+						nodeList[b].className += ' iepp_'+elemsArr[a];
+					}
+				}
+			}
+
+			DOC_FRAG.appendChild(body);
+			HTML.appendChild(BODY_ELEM);
+
+			BODY_ELEM.className = body.className;
+
+			BODY_ELEM.innerHTML = body.innerHTML.replace(TAG_REG_EXP, '<$1font');
 		}
 	);
+
 	win.attachEvent(
 		'onafterprint',
 		function() {
-			// Undo everything done in onbeforeprint
-			bodyElem.innerHTML = '';
-			html.removeChild(bodyElem);
-			html.appendChild(body);
-			styleElem.styleSheet.cssText = '';
+			BODY_ELEM.innerHTML = '';
+
+			HTML.removeChild(BODY_ELEM);
+			HTML.appendChild(body);
+
+			STYLE_ELEM.styleSheet.cssText = '';
 		}
 	);
 })(A.config.win, A.config.doc, YUI.AUI.HTML5_ELEMENTS, YUI.AUI.HTML5_ELEMENTS.length, YUI.AUI.HTML5_ELEMENTS.join('|'), A.UA.ie);
