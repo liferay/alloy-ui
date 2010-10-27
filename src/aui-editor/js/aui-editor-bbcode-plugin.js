@@ -13,14 +13,15 @@ var Lang = A.Lang,
 	CSS_QUOTE_CONTENT = getClassName(QUOTE, 'content'),
 	CSS_QUOTE_TITLE = getClassName(QUOTE, 'title'),
 
+	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
+	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
 	TPL_HTML_GENERIC = '<{0}(>|\\b[^>]*>)([\\s\\S]*?)</{0}>',
 	TPL_HTML_STYLE =  '<(([a-z0-9]+)\\b[^>]*?style=("|\').*?{0}\\s*:\\s*([^;"\']+);?[^>]*)>([\\s\\S]*?)<(/\\2)>',
 	TPL_HTML_TAGS = '(<[a-z0-9]+[^>]*>|</[a-z0-9]+>)',
 	TPL_QUOTE_CONTENT = '<div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
-	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
-	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
-	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
+	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
+	TPL_QUOTE_WRAPPER = '<div>{0}</div>',
 
 	HTML_BBCODE = [
 		{
@@ -406,7 +407,7 @@ var Lang = A.Lang,
 		}
 	];
 
-var BBCodePlugin = A.Component.create(
+var EditorBBCode = A.Component.create(
 		{
 			NAME: NAME,
 
@@ -424,10 +425,8 @@ var BBCodePlugin = A.Component.create(
 				initializer: function() {
 					var instance = this;
 
-					var host = instance.get('host');
-
 					instance.afterHostMethod('getContent', instance.getBBCode, instance);
-					host.on('contentChange', instance._contentChange, instance);
+					instance.get('host').on('contentChange', instance._contentChange, instance);
 				},
 
 				getBBCode: function() {
@@ -435,13 +434,9 @@ var BBCodePlugin = A.Component.create(
 
 					var host = instance.get('host');
 
-					var html = '';
-
-					html = host.constructor.prototype.getContent.apply(host, arguments);
-
-					var wrapper = A.Node.create('<div>' + html + '</div>');
-
-					var quote = null;
+					var quote;
+					var html = host.constructor.prototype.getContent.apply(host, arguments);
+					var wrapper = A.Node.create(Lang.sub(TPL_QUOTE_WRAPPER, [html]));
 
 					while (quote = wrapper.all('div.' + CSS_QUOTE)) {
 						if (!quote.size()) {
@@ -449,11 +444,9 @@ var BBCodePlugin = A.Component.create(
 						}
 
 						quote.each(
-							function(node) {
-								var instance = this;
-
-								var content = null;
-								var temp = node;
+							function(item, index, collection) {
+								var content;
+								var temp = item;
 
 								do
 								{
@@ -486,15 +479,13 @@ var BBCodePlugin = A.Component.create(
 
 								parent.removeClass(QUOTE);
 								parent.addClass('_' + QUOTE);
-							},
-							instance
+							}
 						);
 					}
 
 					html = wrapper.html();
 
 					html =  instance._parseTagExpressions(HTML_BBCODE, html);
-
 					html = html.replace(new RegExp(TPL_HTML_TAGS, 'ig'), '');
 
 					return new A.Do.AlterReturn(null, html);
@@ -505,9 +496,7 @@ var BBCodePlugin = A.Component.create(
 
 					var host = instance.get('host');
 
-					var html = '';
-
-					html = host.constructor.prototype.getContent.apply(host, arguments);
+					var html = host.constructor.prototype.getContent.apply(host, arguments);
 
 					return html;
 				},
@@ -515,14 +504,11 @@ var BBCodePlugin = A.Component.create(
 				_contentChange: function(event) {
 					var instance = this;
 
-					var host = instance.get('host');
-
 					var html = event.newVal;
 
 					html = html.replace(/\[quote=([^\]]*)\]/ig, TPL_QUOTE_CONTENT);
 					html = html.replace(/\[quote\]/ig, TPL_QUOTE_TITLE_CONTENT);
 					html = html.replace(/\[\/quote\]/ig, TPL_QUOTE_CLOSING_TAG);
-
 					html = instance._parseTagExpressions(BBCODE_HTML, html);
 
 					event.newVal = html;
@@ -535,7 +521,7 @@ var BBCodePlugin = A.Component.create(
 
 					for (var i = 0; i < options.length; i++) {
 						for (var j = 0; j < options[i].convert.length; j++) {
-							var tags = null;
+							var tags;
 							var output = options[i].output;
 
 							if (isArray(options[i].convert[j])) {
@@ -561,4 +547,4 @@ var BBCodePlugin = A.Component.create(
 		}
 	);
 
-A.namespace('Plugin').BBCodePlugin = BBCodePlugin;
+A.namespace('Plugin').EditorBBCode = EditorBBCode;
