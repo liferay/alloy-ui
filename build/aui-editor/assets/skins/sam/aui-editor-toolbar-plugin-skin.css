@@ -117,54 +117,18 @@
 }
 
 .aui-editortoolbar-insertimage-content {
-	background-color: #fff;
-	padding: 10px 10px 0 0;
+	padding: 10px;
 }
 
-.aui-editortoolbar-insertimage-content li {
-	margin: 0 0 4px 0;
+.aui-editortoolbar-insertimage-content .aui-field-numeric, .aui-editortoolbar-size-separator {
+	display: inline-block;
+	vertical-align: middle;
 }
 
-.aui-editortoolbar-insertimage-content .aui-field-label {
-	width: 70px;
-	font-size: 1em;
-	margin-left: 10px;
-	padding-top: 5px;
-}
-
-.aui-editortoolbar-insertimage-content .aui-field-input {
-	float: left;
-}
-
-.aui-editortoolbar-insertimage-content .aui-field-input-numeric {
+.aui-editortoolbar-insertimage-content .aui-field-numeric input, .aui-editortoolbar-size-separator {
 	width: 30px;
 }
 
-.aui-editortoolbar-insertimage-content .aui-field-label-secondary {
-	width: auto;
-	margin: 0px 10px;
-}
-
-.aui-editortoolbar-insertimage-content select {
-	margin-top: 2px;
-}
-
-.aui-editortoolbar-insertimage-content li span {
-	padding: 3px 5px;
-}
-
-.aui-editortoolbar-insertimage-content-target {
-	margin: 4px auto;
-}
-
-.aui-editortoolbar-insertimage-content-target input {
-	margin-top: 1px;
-}
-
-.aui-editortoolbar-insertimage-content-target label {
-	margin-left: 4px;
-}
-
-.aui-editortoolbar-insertimage-content .aui-button-holder {
-	margin-top: 5px;
+.aui-editortoolbar-size-separator {
+	text-align: center;
 }
