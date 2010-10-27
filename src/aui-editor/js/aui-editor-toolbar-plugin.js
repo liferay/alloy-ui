@@ -30,7 +30,7 @@ var Lang = A.Lang,
 		source: true,
 		styles: true
 	},
-	
+
 	CMD_FORMAT = [
 		'b',
 		'big',
@@ -47,314 +47,285 @@ var Lang = A.Lang,
 	],
 
 	CSS_BUTTON_HOLDER = getClassName('button', 'holder'),
-	CSS_FIELD_LABEL = getClassName('field', 'label'),
-	CSS_FIELD_LABEL_SECONDARY = getClassName('field', 'label', 'secondary'),
 	CSS_FIELD_INPUT = getClassName('field', INPUT),
 	CSS_FIELD_INPUT_TEXT = getClassName('field', INPUT, 'text'),
-	CSS_FIELD_INPUT_NUMERIC = getClassName('field', INPUT, 'numeric'),
+	CSS_FIELD_LABEL = getClassName('field', 'label'),
+	CSS_FIELD_NUMERIC = getClassName('field', 'numeric'),
+	CSS_INSERTIMAGE = getClassName(NAME, INSERTIMAGE),
 	CSS_SELECT_FONTNAME = getClassName(NAME, SELECT, 'fontname'),
 	CSS_SELECT_FONTSIZE = getClassName(NAME, SELECT, 'fontsize'),
+	CSS_SIZE_SEPARATOR = getClassName(NAME, 'size', 'separator'),
 	CSS_SOURCE_TEXTAREA = getClassName(NAME, SOURCE, 'textarea'),
 	CSS_STATE_ACTIVE = getClassName('state', 'active'),
 	CSS_TOOLBAR = getClassName(NAME),
 	CSS_TOOLBAR_CONTENT = getClassName(NAME, CONTENT),
-	CSS_INSERTIMAGE_CONTENT = getClassName(NAME, INSERTIMAGE, CONTENT),
-	CSS_INSERTIMAGE_CONTENT_TARGET = getClassName(NAME, INSERTIMAGE, CONTENT, 'target'),
-	CSS_INSERTIMAGE_CONTENT_ALIGN = getClassName(NAME, INSERTIMAGE, CONTENT, 'align'),
 
-	TPL_INSERTIMAGE_BORDER = '<select>' +
-								 '<option value="">none</option>' +
-								 '<option value="1px solid">1px</option>' +
-								 '<option value="2px solid">2px</option>' +
-								 '<option value="3px solid">3px</option>' +
-								 '<option value="4px solid">4px</option>' +
-								 '<option value="5px solid">5px</option>' +
-							 '</select>',
 	TPL_INSERTIMAGE_HREF = '<a></a>',
 	TPL_INSERTIMAGE_IMG = '<img />',
-	TPL_INSERTIMAGE_INPUT_NUMERIC = '<input type="text" class="' + CSS_FIELD_INPUT + ' ' + CSS_FIELD_INPUT_TEXT + ' ' + CSS_FIELD_INPUT_NUMERIC + '" />',
 
 	TPL_SOURCE_TEXTAREA = '<textarea class="' + CSS_SOURCE_TEXTAREA + '"></textarea>',
+
 	TPL_TOOLBAR = '<div class="' + CSS_TOOLBAR + '"><div class="' + CSS_TOOLBAR_CONTENT + '"></div></div>',
+
+	TPL_TOOLBAR_BUTTON_HOLDER = '<div class="' + CSS_BUTTON_HOLDER + '"></div>',
+
 	TPL_TOOLBAR_FONTNAME = '<select class="' + CSS_SELECT_FONTNAME + '">{0}</select>',
-	TPL_TOOLBAR_FONTNAME_OPTION =	'<option selected="selected"></option>' +
-									'<option>Arial</option>' +
-									'<option>Arial Black</option>' +
-									'<option>Comic Sans MS</option>' +
-									'<option>Courier New</option>' +
-									'<option>Lucida Console</option>' +
-									'<option>Tahoma</option>' +
-									'<option>Times New Roman</option>' +
-									'<option>Trebuchet MS</option>' +
-									'<option>Verdana</option>',
+
+	TPL_TOOLBAR_FONTNAME_OPTION = '<option selected="selected"></option>' +
+								'<option>Arial</option>' +
+								'<option>Arial Black</option>' +
+								'<option>Comic Sans MS</option>' +
+								'<option>Courier New</option>' +
+								'<option>Lucida Console</option>' +
+								'<option>Tahoma</option>' +
+								'<option>Times New Roman</option>' +
+								'<option>Trebuchet MS</option>' +
+								'<option>Verdana</option>',
+
 	TPL_TOOLBAR_FONTSIZE = '<select class="' + CSS_SELECT_FONTSIZE + '">{0}</select>',
-	TPL_TOOLBAR_FONTSIZE_OPTION =	'<option selected="selected"></option>' +
-									'<option value="1">10</option>' +
-									'<option value="2">13</option>' +
-									'<option value="3">16</option>' +
-									'<option value="4">18</option>' +
-									'<option value="5">24</option>' +
-									'<option value="6">32</option>' +
-									'<option value="7">48</option>';
 
-	function generateInput(title) {
-		return generateLabel(title) + '<input type="text" class="' + CSS_FIELD_INPUT + ' ' + CSS_FIELD_INPUT_TEXT + '" />';
-	}
+	TPL_TOOLBAR_FONTSIZE_OPTION = '<option selected="selected"></option>' +
+								'<option value="1">10</option>' +
+								'<option value="2">13</option>' +
+								'<option value="3">16</option>' +
+								'<option value="4">18</option>' +
+								'<option value="5">24</option>' +
+								'<option value="6">32</option>' +
+								'<option value="7">48</option>',
 
-	function generateLabel(title, css) {
-		return '<label class="' + CSS_FIELD_LABEL + (css ? ' ' + css : '') + '">' + title + '</label>';
-	}
+	TPL_TOOLBAR_SIZE_SEPARATOR = '<span class="' + CSS_SIZE_SEPARATOR + '">x</span>';
 
-	function generateInsertImage(config) {
-		var html = '<div class="' + CSS_INSERTIMAGE_CONTENT + '">' +
-						'<ul>' +
-							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.IMAGE_URL) + '</li>' +
-							'<li>' + generateLabel(EditorToolbarPlugin.STRINGS.SIZE) + TPL_INSERTIMAGE_INPUT_NUMERIC + '<span>x</span>' + TPL_INSERTIMAGE_INPUT_NUMERIC + '</li>' +
-							'<li>' +
-								generateLabel(EditorToolbarPlugin.STRINGS.PADDING) + TPL_INSERTIMAGE_INPUT_NUMERIC +
-								generateLabel(EditorToolbarPlugin.STRINGS.BORDER, CSS_FIELD_LABEL_SECONDARY) + TPL_INSERTIMAGE_BORDER +
-							'</li>';
-		if (!config.hideAlign) {
-			html += 		'<li>' +
-								generateLabel(EditorToolbarPlugin.STRINGS.ALIGN) +
-								'<div class="' + CSS_INSERTIMAGE_CONTENT_ALIGN + '"></div>' +
-							'</li>';
-		}
+var EditorToolbar = A.Component.create(
+	{
+		NAME: NAME,
 
-		html += 			'<li>' + generateInput(EditorToolbarPlugin.STRINGS.DESCRIPTION) + '</li>' +
-							'<li>' + generateInput(EditorToolbarPlugin.STRINGS.LINK_URL) + '</li>' +
-						'</ul>' +
-						'<span class="' + CSS_INSERTIMAGE_CONTENT_TARGET + '"><input type="checkbox" /><label>' + EditorToolbarPlugin.STRINGS.OPEN_IN_NEW_WINDOW + '</label></span>' +
-						'<div class="' + CSS_BUTTON_HOLDER + '"></div>' +
-					'</div>';
+		NS: TOOLBAR_PLUGIN,
 
-		return html;
-	}
+		EXTENDS: A.Plugin.Base,
 
-	function generateOverlay(boundingBox, config) {
-		var overlay = new A.OverlayContext(
-			A.merge(
-				{
-					trigger: boundingBox,
-					showOn: 'click',
-					hideOn: 'click',
-					align: {
-						node: boundingBox,
-						points: [ 'tl', 'bl' ]
+		ATTRS: {
+			groups: {
+				value: [
+					{
+						type: TEXT
+					},
+					{
+						type: ALIGNMENT
+					},
+					{
+						type: INDENT
+					},
+					{
+						type: LIST
 					}
-				},
-				config
-			)
-		).render();
-
-		return overlay;
-	}
-
-	function generateColorPicker(editor, attrs, config, cmd) {
-		var button = attrs.button;
-		var boundingBox = button.get('boundingBox');
-
-		var colorPicker = new A.ColorPicker(
-			A.merge(
-				{
-					trigger: boundingBox,
-					align: {
-						node: boundingBox,
-						points: [ 'tl', 'bl' ]
-					}
-				},
-				config
-			)
-		);
-
-		if (config && config.plugins) {
-			for (var i = 0; i < config.plugins.length; i++) {
-				colorPicker.plug(config.plugins[i], config);
+				]
 			}
-		}
+		},
 
-		colorPicker.render(A.getBody());
-
-		colorPicker.on(
-			'colorChange',
-			function(event) {
+		prototype: {
+			initializer: function() {
 				var instance = this;
 
-				var rgb = colorPicker.get('rgb');
+				var host = instance.get('host');
+				var container = host.frame.get('container');
+				var groups = instance.get('groups');
 
-				editor.execCommand(cmd, rgb.hex);
-				editor.focus();
-			}
-		);
-	}
+				var boundingBox = A.Node.create(TPL_TOOLBAR);
+				var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
 
-var EditorToolbarPlugin = A.Component.create(
-		{
-			NAME: NAME,
+				container.placeBefore(boundingBox);
 
-			NS: TOOLBAR_PLUGIN,
+				var attrs = {
+					boundingBox: boundingBox,
+					contentBox: contentBox
+				};
 
-			EXTENDS: A.Plugin.Base,
+				var toolbars = [];
 
-			ATTRS: {
-				groups: {
-					value: [
-						{ type: TEXT },
-						{ type: ALIGNMENT },
-						{ type: INDENT },
-						{ type: LIST }
-					]
-				}
-			},
+				instance.on(
+					'buttonitem:click',
+					function(event) {
+						var instance = this;
 
-			prototype: {
-				initializer: function() {
-					var instance = this;
+						var cmds = event.target.get('icon').split('-');
 
-					var host = instance.get('host');
-					var container = host.frame.get('container');
-					var groups = instance.get('groups');
-
-					var boundingBox = A.Node.create(TPL_TOOLBAR);
-					var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
-
-					container.placeBefore(boundingBox);
-
-					var attrs = {
-						boundingBox: boundingBox,
-						contentBox: contentBox
-					};
-
-					var toolbars = [];
-
-					for (var i = 0; i < groups.length; i++) {
-						var group = groups[i];
-						var groupType = GROUPS[group.type];
-
-						var children = [];
-
-						for (var j = 0; j < groupType.children.length; j++) {
-							if (!groupType.children[j].select) {
-								children.push(groupType.children[j]);
-							}
+						if (!CMD_IGNORE[cmds[0]]) {
+							instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
+							instance.focus();
 						}
+					},
+					host
+				);
 
-						if (children.length > 0) {
-							var toolbar = new A.Toolbar(
-								A.merge(
-									groupType.config,
-									group.toolbar,
-									{
-										children: children
-									}
-								)
-							).render(contentBox);
+				for (var i = 0; i < groups.length; i++) {
+					var group = groups[i];
+					var groupType = GROUPS[group.type];
+					var toolbar;
 
-							toolbar.on(
-								'buttonitem:click',
-								function(event) {
-									var instance = this;
+					var children = [];
 
-									var cmds = event.target.get('icon').split('-');
-
-									if (!CMD_IGNORE[cmds[0]]) {
-										instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
-										instance.focus();
-									}
-								},
-								host
-							);
-
-							toolbars.push(toolbar);
-						}
-
-						var generate = groupType.generate;
-
-						if (generate && isFunction(generate.init)) {
-							generate.init.call(instance, host, attrs);
-						}
-
-						for (var j = 0; j < groupType.children.length; j++) {
-							var icon = groupType.children[j].icon;
-
-							if (generate && isFunction(generate[icon])) {
-								var config = (group.config ? group.config[icon] : null);
-
-								attrs.button = (generate[icon].select ? null : toolbar.item(j));
-
-								generate[icon].call(instance, host, attrs, config);
-							}
+					for (var j = 0; j < groupType.children.length; j++) {
+						if (!groupType.children[j].select) {
+							children.push(groupType.children[j]);
 						}
 					}
 
-					attrs.toolbars = toolbars;
-				},
+					if (children.length > 0) {
+						toolbar = new A.Toolbar(
+							A.merge(
+								groupType.config,
+								group.toolbar,
+								{
+									children: children
+								}
+							)
+						).render(contentBox);
 
-				_updateToolbar: function(event, attrs) {
-					var instance = this;
+						toolbar.addTarget(instance);
 
-					if (event.changedNode) {
-						var cmds = event.commands;
-						var toolbars = attrs.toolbars;
+						toolbars.push(toolbar);
+					}
 
-						if (toolbars) {
-							for (var i = 0; i < toolbars.length; i++) {
-								toolbars[i].each(
-									function(node) {
-										var state = false;
+					var generate = groupType.generate;
 
-										if (cmds[node.get('icon')]) {
-											state = true;
-										}
+					if (generate && isFunction(generate.init)) {
+						generate.init.call(instance, host, attrs);
+					}
 
-										node.StateInteraction.set('active', state);
-									}
-								);
+					for (var j = 0; j < groupType.children.length; j++) {
+						var icon = groupType.children[j].icon;
+
+						if (generate && isFunction(generate[icon])) {
+							var config = (group.config ? group.config[icon] : null);
+
+							attrs.button = (generate[icon].select ? null : toolbar.item(j));
+
+							generate[icon].call(instance, host, attrs, config);
+						}
+					}
+				}
+
+				attrs.toolbars = toolbars;
+			},
+
+			_updateToolbar: function(event, attrs) {
+				var instance = this;
+
+				if (event.changedNode) {
+					var cmds = event.commands;
+					var toolbars = attrs.toolbars;
+
+					var toolbarIterator = function(item, index, collection) {
+						var state = !!(cmds[item.get('icon')]);
+
+						item.StateInteraction.set('active', state);
+					};
+
+					if (toolbars) {
+						for (var i = 0; i < toolbars.length; i++) {
+							toolbars[i].each(toolbarIterator);
+						}
+					}
+
+					var fontName = event.fontFamily;
+					var fontNameOptions = attrs._fontNameOptions;
+					var fontSize = event.fontSize;
+					var fontSizeOptions = attrs._fontSizeOptions;
+
+					if (fontNameOptions) {
+						fontNameOptions.item(0).set('selected', true);
+
+						fontNameOptions.each(
+							function(item, index, collection) {
+								var val = item.get('value').toLowerCase();
+
+								if (val === fontName.toLowerCase()) {
+									item.set('selected', true);
+								}
 							}
-						}
+						);
+					}
 
-						var fontName = event.fontFamily;
-						var fontNameOptions = attrs._fontNameOptions;
-						var fontSize = event.fontSize;
-						var fontSizeOptions = attrs._fontSizeOptions;
+					if (fontSizeOptions) {
+						fontSize = fontSize.replace('px', '');
 
-						if (fontNameOptions) {
-							fontNameOptions.item(0).set('selected', true);
+						fontSizeOptions.item(0).set('selected', true);
 
-							fontNameOptions.each(
-								function(node) {
-									var val = node.get('value').toLowerCase();
+						fontSizeOptions.each(
+							function(item, index, collection) {
+								var val = item.get('value').toLowerCase();
+								var txt = item.get('text');
 
-									if (val === fontName.toLowerCase()) {
-										node.set('selected', true);
-									}
+								if (txt === fontSize) {
+									item.set('selected', true);
 								}
-							);
-						}
-
-						if (fontSizeOptions) {
-							fontSize = fontSize.replace('px', '');
-
-							fontSizeOptions.item(0).set('selected', true);
-
-							fontSizeOptions.each(
-								function(node) {
-									var val = node.get('value').toLowerCase();
-									var txt = node.get('text');
-
-									if (txt === fontSize) {
-										node.set('selected', true);
-									}
-								}
-							);
-						}
+							}
+						);
 					}
 				}
 			}
 		}
+	}
+);
+
+EditorToolbar.generateOverlay = function(trigger, config) {
+	var overlay = new A.OverlayContext(
+		A.merge(
+			{
+				align: {
+					node: trigger,
+					points: [ 'tl', 'bl' ]
+				},
+				hideOn: 'click',
+				showOn: 'click',
+				trigger: trigger
+			},
+			config
+		)
+	).render();
+
+	return overlay;
+};
+
+EditorToolbar.generateColorPicker = function(editor, attrs, config, cmd) {
+	var button = attrs.button;
+	var boundingBox = button.get('boundingBox');
+
+	var colorPicker = new A.ColorPicker(
+		A.merge(
+			{
+				align: {
+					node: boundingBox,
+					points: ['tl', 'bl']
+				},
+				trigger: boundingBox
+			},
+			config
+		)
 	);
 
-EditorToolbarPlugin.STRINGS = {
+	if (config && config.plugins) {
+		for (var i = 0; i < config.plugins.length; i++) {
+			colorPicker.plug(config.plugins[i], config);
+		}
+	}
+
+	colorPicker.render(A.getBody());
+
+	colorPicker.on(
+		'colorChange',
+		function(event) {
+			var instance = this;
+
+			var rgb = colorPicker.get('rgb');
+
+			editor.execCommand(cmd, rgb.hex);
+			editor.focus();
+		}
+	);
+};
+
+EditorToolbar.STRINGS = {
 	ALIGN: 'Align',
 	ALIGN_BLOCK: 'Block',
 	ALIGN_LEFT: 'Left',
@@ -389,41 +360,63 @@ EditorToolbarPlugin.STRINGS = {
 	UNDERLINE: 'Underline'
 };
 
-GROUPS = [];
+GROUPS = {};
 
 GROUPS[ALIGNMENT] = {
 	children: [
-		{ icon: 'justifyleft', title: EditorToolbarPlugin.STRINGS.JUSTIFY_LEFT },
-		{ icon: 'justifycenter', title: EditorToolbarPlugin.STRINGS.JUSTIFY_CENTER },
-		{ icon: 'justifyright', title: EditorToolbarPlugin.STRINGS.JUSTIFY_RIGHT }
+		{
+			icon: 'justifyleft',
+			title: EditorToolbar.STRINGS.JUSTIFY_LEFT
+		},
+		{
+			icon: 'justifycenter',
+			title: EditorToolbar.STRINGS.JUSTIFY_CENTER
+		},
+		{
+			icon: 'justifyright',
+			title: EditorToolbar.STRINGS.JUSTIFY_RIGHT
+		}
 	]
 };
 
 GROUPS[COLOR] = {
 	children: [
-		{ icon: 'forecolor', title: EditorToolbarPlugin.STRINGS.FORECOLOR },
-		{ icon: 'backcolor', title: EditorToolbarPlugin.STRINGS.BACKCOLOR }
+		{
+			icon: 'forecolor',
+			title: EditorToolbar.STRINGS.FORECOLOR
+		},
+		{
+			icon: 'backcolor',
+			title: EditorToolbar.STRINGS.BACKCOLOR
+		}
 	],
 	generate: {
 		forecolor: function(editor, attrs, config) {
 			var instance = this;
 
-			generateColorPicker(editor, attrs, config, 'forecolor');
+			EditorToolbar.generateColorPicker(editor, attrs, config, 'forecolor');
 		},
 
 		backcolor: function(editor, attrs, config) {
 			var instance = this;
 
-			generateColorPicker(editor, attrs, config, 'backcolor');
+			EditorToolbar.generateColorPicker(editor, attrs, config, 'backcolor');
 		}
 	}
-},
+};
 
 GROUPS[FONT] = {
 	children: [
-		{ icon: 'fontname', select: true },
-		{ icon: 'fontsize', select: true }
+		{
+			icon: 'fontname',
+			select: true
+		},
+		{
+			icon: 'fontsize',
+			select: true
+		}
 	],
+
 	generate: {
 		init: function(editor, attrs) {
 			var instance = this;
@@ -456,7 +449,7 @@ GROUPS[FONT] = {
 						case 'keyup':
 						case 'mousedown':
 							instance._updateToolbar(event, attrs);
-							break;
+						break;
 					}
 				},
 				instance
@@ -468,14 +461,14 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl = null;
+			var tpl;
+			var data = [TPL_TOOLBAR_FONTNAME_OPTION];
 
 			if (config && config.optionHtml) {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, [config.optionHtml]);
+				data[0] = config.optionHtml;
 			}
-			else {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, [TPL_TOOLBAR_FONTNAME_OPTION]);
-			}
+
+			tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, data);
 
 			contentBox.append(tpl);
 
@@ -489,14 +482,14 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl = null;
+			var tpl;
+			var data = [TPL_TOOLBAR_FONTSIZE_OPTION];
 
 			if (config && config.optionHtml) {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, [config.optionHtml]);
+				data[0] = config.optionHtml;
 			}
-			else {
-				tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, [TPL_TOOLBAR_FONTSIZE_OPTION]);
-			}
+
+			tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, data);
 
 			contentBox.append(tpl);
 
@@ -509,15 +502,27 @@ GROUPS[FONT] = {
 
 GROUPS[INDENT] = {
 	children: [
-		{ icon: 'indent', title: EditorToolbarPlugin.STRINGS.INDENT },
-		{ icon: 'outdent', title: EditorToolbarPlugin.STRINGS.OUTDENT }
+		{
+			icon: 'indent',
+			title: EditorToolbar.STRINGS.INDENT
+		},
+		{
+			icon: 'outdent',
+			title: EditorToolbar.STRINGS.OUTDENT
+		}
 	]
 };
 
 GROUPS[INSERT] = {
 	children: [
-		{ icon: 'insertimage', title: EditorToolbarPlugin.STRINGS.INSERT_IMAGE },
-		{ icon: 'createlink', title: EditorToolbarPlugin.STRINGS.CREATE_LINK }
+		{
+			icon: 'insertimage',
+			title: EditorToolbar.STRINGS.INSERT_IMAGE
+		},
+		{
+			icon: 'createlink',
+			title: EditorToolbar.STRINGS.CREATE_LINK
+		}
 	],
 	generate: {
 		insertimage: function(editor, attrs, config) {
@@ -526,14 +531,14 @@ GROUPS[INSERT] = {
 			var button = attrs.button;
 			var boundingBox = button.get('boundingBox');
 
-			var overlay = generateOverlay(boundingBox, config);
+			var overlay = EditorToolbar.generateOverlay(boundingBox, config);
 
 			var contextBox = overlay.get('contentBox');
 
 			var panel = new A.Panel(
 				{
 					collapsible: false,
-					headerContent: EditorToolbarPlugin.STRINGS.INSERT_IMAGE,
+					headerContent: EditorToolbar.STRINGS.INSERT_IMAGE,
 					icons: [
 						{
 							icon: 'close',
@@ -557,138 +562,208 @@ GROUPS[INSERT] = {
 
 				var selection = null;
 
-				var html = generateInsertImage(config);
-
-				var imageForm = A.Node.create(html);
-
-				contextBox.append(imageForm);
-
-				var hrefTarget = imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_TARGET + ' input');
-
-				var toolbar = new A.Toolbar(
+				var imageForm = new A.Form(
 					{
-						children: [
+						cssClass: CSS_INSERTIMAGE,
+						labelAlign: 'left'
+					}
+				).render(contextBox);
+
+				var borderOptions = [
+					{
+						labelText: 'none',
+						value: ''
+					}
+				];
+
+				for (var i = 1; i < 6; i++) {
+					borderOptions.push(
+						{
+							labelText: i + 'px',
+							value: i + 'px solid'
+						}
+					);
+				}
+
+				imageForm.add(
+					[
+						{
+							id: 'imageURL',
+							labelText: EditorToolbar.STRINGS.IMAGE_URL
+						},
+						{
+							id: 'size',
+							labelText: EditorToolbar.STRINGS.SIZE,
+							type: 'hidden'
+						},
+						{
+							id: 'width',
+							labelText: false,
+							cssClass: CSS_FIELD_NUMERIC
+						},
+						{
+							id: 'height',
+							labelText: false,
+							cssClass: CSS_FIELD_NUMERIC
+						},
+						{
+							id: 'padding',
+							labelText: EditorToolbar.STRINGS.PADDING
+						},
+						new A.Select(
 							{
-								icon: 'circle-check',
-								label: EditorToolbarPlugin.STRINGS.INSERT
+								id: 'border',
+								labelText: EditorToolbar.STRINGS.BORDER,
+								options: borderOptions
 							}
-						]
+						),
+						{
+							id: 'align',
+							labelText: EditorToolbar.STRINGS.ALIGN,
+							type: 'hidden'
+						},
+						{
+							id: 'description',
+							labelText: EditorToolbar.STRINGS.DESCRIPTION
+						},
+						{
+							id: 'linkURL',
+							labelText: EditorToolbar.STRINGS.LINK_URL
+						},
+						{
+							id: 'openInNewWindow',
+							labelText: EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
+							type: 'checkbox'
+						}
+					],
+					true
+				);
+
+				imageForm.getField('width').get('boundingBox').placeAfter(TPL_TOOLBAR_SIZE_SEPARATOR);
+
+				var imageFormContentBox = imageForm.get('contentBox');
+				var buttonRow = A.Node.create(TPL_TOOLBAR_BUTTON_HOLDER);
+
+				var hrefTarget = imageForm.getField('openInNewWindow');
+
+				var toolbar = new A.ButtonItem(
+					{
+						icon: 'circle-check',
+						label: EditorToolbar.STRINGS.INSERT
+					}
+				).render(buttonRow);
+
+				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
+
+				var heightField = imageForm.getField('height');
+				var widthField = imageForm.getField('width');
+
+				imgSizeDetection.on(
+					'load',
+					function(event) {
+						var img = event.currentTarget;
+
+						if (!heightField.get('value') || !widthField.get('value')) {
+							imageForm.set(
+								'values',
+								{
+									height: img.get('height'),
+									width: img.get('width')
+								}
+							);
+						}
 					}
 				);
 
-				toolbar.item(0).on(
+				imageForm.getField('imageURL').get('node').on(
+					'blur',
+					function(event) {
+						imgSizeDetection.set('src', this.val());
+					}
+				);
+
+				toolbar.on(
 					'click',
 					function(event) {
 						var instance = this;
 
-						var href = A.Node.create(TPL_INSERTIMAGE_HREF);
 						var img = A.Node.create(TPL_INSERTIMAGE_IMG);
 
-						var url = null;
+						var fieldValues = imageForm.get('fieldValues');
 
-						imageForm.all('input').each(
-							function(node, index) {
-								switch(index) {
-									case 0:
-										img.attr('src', node.val());
+						var description = fieldValues.description;
 
-										break;
+						var imgAttrs = {
+							src: fieldValues.imageURL,
+							title: description,
+							alt: description
+						};
 
-									case 1:
-										var width = parseInt(node.val());
+						var imgStyles = {
+							border: fieldValues.border
+						};
 
-										if (!isNaN(width)) {
-											img.attr('width', width);
-										}
+						var height = parseInt(fieldValues.height, 10);
+						var width = parseInt(fieldValues.width, 10);
 
-										break;
-
-									case 2:
-										var height = parseInt(node.val());
-
-										if (!isNaN(height)) {
-											img.attr('height', height);
-										}
-
-										break;
-
-									case 3:
-										var padding = parseInt(node.val());
-
-										if (!isNaN(padding)) {
-											img.setStyle('padding', padding + 'px');
-										}
-
-										break;
-
-									case 4:
-										img.attr('title', node.val());
-										img.attr('alt', node.val());
-
-										break;
-
-									case 5:
-										url = node.val();
-
-										break;
-								}
-							}
-						);
-
-						imageForm.all('select').each(
-							function(node, index) {
-								switch(index) {
-									case 0:
-										img.setStyle('border', node.val());
-
-										break;
-								}
-							}
-						);
-
-						if (toolbarAlign) {
-							toolbarAlign.some(
-								function(node, index) {
-									var instance = this;
-
-									var active = node.StateInteraction.get('active');
-
-									if (active) {
-										img.setStyle('display', '');
-
-										switch(index) {
-											case 0:
-												img.attr('align', 'left');
-
-												break;
-
-											case 1:
-												img.attr('align', '');
-
-												break;
-
-											case 2:
-												img.attr('align', 'center');
-												img.setStyle('display', 'block');
-
-												break;
-
-											case 3:
-												img.attr('align', 'right');
-
-												break;
-										}
-
-										return true;
-									}
-								}
-							);
+						if (!isNaN(height)) {
+							imgAttrs.height = height;
 						}
 
-						if (url != null) {
-							href.attr('href', url);
+						if (!isNaN(width)) {
+							imgAttrs.width = width;
+						}
 
-							if (hrefTarget.attr('checked')) {
+						var padding = parseInt(fieldValues.padding, 10);
+
+						if (!isNaN(padding)) {
+							imgStyles.padding = padding;
+						}
+
+						toolbarAlign.some(
+							function(item, index, collection) {
+								var instance = this;
+
+								var active = item.StateInteraction.get('active');
+
+								if (active) {
+									imgStyles.display = '';
+
+									switch(index) {
+										case 0:
+											imgAttrs.align = 'left';
+										break;
+
+										case 1:
+											imgAttrs.align = '';
+										break;
+
+										case 2:
+											imgAttrs.align = 'center';
+											imgStyles.display = 'block';
+										break;
+
+										case 3:
+											imgAttrs.align = 'right';
+										break;
+									}
+
+									return true;
+								}
+							}
+						);
+
+						img.attr(imgAttrs);
+						img.setStyles(imgStyles);
+
+						var linkURL = fieldValues.linkURL;
+
+						if (linkURL) {
+							var href = A.Node.create(TPL_INSERTIMAGE_HREF);
+
+							href.attr('href', linkURL);
+
+							if (hrefTarget.get('node').get('checked')) {
 								href.attr('target', '_blank');
 							}
 
@@ -698,111 +773,78 @@ GROUPS[INSERT] = {
 						}
 
 						if (selection && selection.anchorNode) {
-							selection.anchorNode.append(img)
+							selection.anchorNode.append(img);
 						}
 
 						overlay.hide();
-					},
-					instance
+					}
 				);
 
-				toolbar.render(imageForm.one('.' + CSS_BUTTON_HOLDER));
+				imageFormContentBox.append(buttonRow);
 
-				var toolbarAlign = null;
-
-				if (!config.hideAlign) {
-					toolbarAlign = new A.Toolbar(
+				var toolbarAlign = new A.Toolbar(
+					{
+						activeState: true,
+						children: [
 							{
-								activeState: true,
-								children: [
-									{
-										icon: 'align-left',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_LEFT
-									},
-									{
-										icon: 'align-inline',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_INLINE
-									},
-									{
-										icon: 'align-block',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_BLOCK
-									},
-									{
-										icon: 'align-right',
-										title: EditorToolbarPlugin.STRINGS.ALIGN_RIGHT
-									}
-								]
+								icon: 'align-left',
+								title: EditorToolbar.STRINGS.ALIGN_LEFT
+							},
+							{
+								icon: 'align-inline',
+								title: EditorToolbar.STRINGS.ALIGN_INLINE
+							},
+							{
+								icon: 'align-block',
+								title: EditorToolbar.STRINGS.ALIGN_BLOCK
+							},
+							{
+								icon: 'align-right',
+								title: EditorToolbar.STRINGS.ALIGN_RIGHT
+							}
+						]
+					}
+				);
+
+				toolbarAlign.after(
+					'buttonitem:click',
+					function(event) {
+						var button = event.target;
+
+						toolbarAlign.each(
+							function(item, index, collection) {
+								if (item != button) {
+									item.StateInteraction.set('active', false);
+								}
 							}
 						);
+					}
+				);
 
-					toolbarAlign.on(
-						'buttonitem:click',
-						function(event) {
-							var instance = this;
+				toolbarAlign.render(imageForm.getField('align').get('contentBox'));
 
-							var button = event.target;
-
-							instance.each(
-								function(node) {
-									var instance = this;
-
-									if (node != button) {
-										node.StateInteraction.set('active', false);
-									}
-								}
-							);
-						}
-					);
-
-					toolbarAlign.render(imageForm.one('.' + CSS_INSERTIMAGE_CONTENT_ALIGN));
-				}
-
-				overlay.on(
+				overlay.after(
 					'hide',
 					function(event) {
-						var instance = this;
+						imageForm.resetValues();
 
-						instance.all('input').each(
-							function(node) {
-								var instance = this;
-
-								node.val('');
+						toolbarAlign.each(
+							function(item, index, collection) {
+								item.StateInteraction.set('active', false);
 							}
 						);
 
-						instance.all('select').each(
-							function(node) {
-								var instance = this;
-
-								node.attr('selectedIndex', 0);
-							}
-						);
-
-						if (toolbarAlign) {
-							toolbarAlign.each(
-								function(node) {
-									var instance = this;
-
-									node.StateInteraction.set('active', false);
-								}
-							);
-						}
-
-						hrefTarget.attr('checked', false);
-					},
-					imageForm
+						hrefTarget.get('node').set('checked', false);
+					}
 				);
 
 				iframe.on(
 					MOUSEOUT,
 					function(event) {
-						var instance = this;
-
-						var frame = instance.getInstance();
+						var frame = editor.getInstance();
 
 						selection = new frame.Selection();
-					},
-					editor
+					}
 				);
 			}
 		},
@@ -817,8 +859,14 @@ GROUPS[INSERT] = {
 
 GROUPS[LIST] = {
 	children: [
-		{ icon: 'insertunorderedlist', title: EditorToolbarPlugin.STRINGS.INSERT_UNORDERED_LIST },
-		{ icon: 'insertorderedlist', title: EditorToolbarPlugin.STRINGS.INSERT_ORDERED_LIST }
+		{
+			icon: 'insertunorderedlist',
+			title: EditorToolbar.STRINGS.INSERT_UNORDERED_LIST
+		},
+		{
+			icon: 'insertorderedlist',
+			title: EditorToolbar.STRINGS.INSERT_ORDERED_LIST
+		}
 	],
 	generate: {
 		init: function(editor) {
@@ -831,8 +879,14 @@ GROUPS[LIST] = {
 
 GROUPS[SOURCE] = {
 	children: [
-		{ icon: 'format', title: EditorToolbarPlugin.STRINGS.REMOVE_FORMAT },
-		{ icon: 'source', title: EditorToolbarPlugin.STRINGS.SOURCE }
+		{
+			icon: 'format',
+			title: EditorToolbar.STRINGS.REMOVE_FORMAT
+		},
+		{
+			icon: 'source',
+			title: EditorToolbar.STRINGS.SOURCE
+		}
 	],
 	generate: {
 		format: function(editor, attrs, config) {
@@ -853,12 +907,12 @@ GROUPS[SOURCE] = {
 
 					if (!selection.isCollapsed && items.size()) {
 						items.each(
-							function(node) {
+							function(item, index, collection) {
 								var instance = this;
 
-								node.removeAttribute('style');
+								item.removeAttribute('style');
 
-								var html = node.get('innerHTML');
+								var html = item.get('innerHTML');
 
 								html = html.replace(/<([a-zA-Z0-9]*)\b[^>]*>/g, '<$1>');
 
@@ -868,11 +922,11 @@ GROUPS[SOURCE] = {
 									html = html.replace(regExp, '');
 								}
 
-								node.set('innerHTML', html);
+								item.set('innerHTML', html);
 
-								var parent = node.get('parentNode');
+								var parent = item.get('parentNode');
 
-								if (parent && !parent.test('body')) {
+								if (!parent.test('body')) {
 									parent.removeAttribute('style');
 								}
 							}
@@ -882,6 +936,7 @@ GROUPS[SOURCE] = {
 				editor
 			);
 		},
+
 		source: function(editor, attrs, config) {
 			var instance = this;
 
@@ -902,9 +957,9 @@ GROUPS[SOURCE] = {
 			button.on(
 				'click',
 				function(event) {
-					var instance = this;
+					var buttonVisible = button._visible;
 
-					if (button._visible) {
+					if (buttonVisible) {
 						editor.set('content', textarea.val());
 
 						textarea.hide();
@@ -917,27 +972,24 @@ GROUPS[SOURCE] = {
 
 						textarea.val(editor.getContent());
 
-						var offsetHeight = (
-								iframe.get('offsetHeight') -
-								parseInt(textarea.getComputedStyle('paddingTop')) -
-								parseInt(textarea.getComputedStyle('paddingBottom'))
-							);
+						var offsetHeight = iframe.get('offsetHeight') - textarea.getPadding('tb');
 
-						textarea.setStyle('height', offsetHeight + 'px');
+						textarea.setStyle('height', offsetHeight);
 
 						frame.hide();
 
 						textarea.show();
 					}
 
-					button._visible = !button._visible;
+					buttonVisible = !buttonVisible;
 
-					contentBox.all('select').attr('disabled', button._visible);
-					contentBox.all('button').attr('disabled', button._visible);
+					button._visible = buttonVisible;
+
+					contentBox.all('select').attr('disabled', buttonVisible);
+					contentBox.all('button').attr('disabled', buttonVisible);
 
 					button.get('contentBox').attr('disabled', false);
-				},
-				editor
+				}
 			);
 		}
 	}
@@ -945,7 +997,9 @@ GROUPS[SOURCE] = {
 
 GROUPS[STYLES] = {
 	children: [
-		{ icon: 'styles' }
+		{
+			icon: 'styles'
+		}
 	],
 	generate: {
 		styles: function(editor, attrs, config) {
@@ -954,18 +1008,18 @@ GROUPS[STYLES] = {
 			var button = attrs.button;
 			var boundingBox = button.get('boundingBox');
 
-			editor.plug(A.Plugin.EditorMenuPlugin);
+			editor.plug(A.Plugin.EditorMenu);
 
 			editor.menu.add(
 				A.merge(
 					{
-						trigger: boundingBox,
-						showOn: 'click',
-						hideOn: 'click',
 						align: {
 							node: boundingBox,
-							points: [ 'tl', 'bl' ]
-						}
+							points: ['tl', 'bl']
+						},
+						hideOn: 'click',
+						showOn: 'click',
+						trigger: boundingBox
 					},
 					config
 				)
@@ -976,18 +1030,36 @@ GROUPS[STYLES] = {
 
 GROUPS[SUBSCRIPT] = {
 	children: [
-		{ icon: 'subscript', title: EditorToolbarPlugin.STRINGS.SUBSCRIPT },
-		{ icon: 'superscript', title: EditorToolbarPlugin.STRINGS.SUPERSCRIPT }
+		{
+			icon: 'subscript',
+			title: EditorToolbar.STRINGS.SUBSCRIPT
+		},
+		{
+			icon: 'superscript',
+			title: EditorToolbar.STRINGS.SUPERSCRIPT
+		}
 	]
 };
 
 GROUPS[TEXT] = {
 	children: [
-		{ icon: 'bold', title: EditorToolbarPlugin.STRINGS.BOLD },
-		{ icon: 'italic', title: EditorToolbarPlugin.STRINGS.ITALIC },
-		{ icon: 'underline', title: EditorToolbarPlugin.STRINGS.UNDERLINE },
-		{ icon: 'strikethrough', title: EditorToolbarPlugin.STRINGS.LINE_THROUGH }
+		{
+			icon: 'bold',
+			title: EditorToolbar.STRINGS.BOLD
+		},
+		{
+			icon: 'italic',
+			title: EditorToolbar.STRINGS.ITALIC
+		},
+		{
+			icon: 'underline',
+			title: EditorToolbar.STRINGS.UNDERLINE
+		},
+		{
+			icon: 'strikethrough',
+			title: EditorToolbar.STRINGS.LINE_THROUGH
+		}
 	]
 };
 
-A.namespace('Plugin').EditorToolbarPlugin = EditorToolbarPlugin;
+A.namespace('Plugin').EditorToolbar = EditorToolbar;
