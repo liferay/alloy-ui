@@ -219,7 +219,6 @@ A.mix(
 A.Plugin.EditorTools = EditorTools;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
-
 AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -435,7 +434,6 @@ var EditorMenuPlugin = A.Component.create(
 A.namespace('Plugin').EditorMenu = EditorMenuPlugin;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']});
-
 AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -1505,7 +1503,6 @@ GROUPS[TEXT] = {
 A.namespace('Plugin').EditorToolbar = EditorToolbar;
 
 }, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']});
-
 AUI.add('aui-editor-bbcode-plugin', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1531,6 +1528,8 @@ var Lang = A.Lang,
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
 	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
 	TPL_QUOTE_WRAPPER = '<div>{0}</div>',
+
+	REGEX_HTML_TAGS = new RegExp(TPL_HTML_TAGS, 'gi'),
 
 	HTML_BBCODE = [
 		{
@@ -1603,7 +1602,7 @@ var Lang = A.Lang,
 			regExp: TPL_HTML_STYLE,
 			output: function() {
 				var html = '';
-				var width = parseInt(arguments[3]);
+				var width = parseInt(arguments[3], 10);
 
 				if (!isNaN(width)) {
 					var total = Math.floor(width / 40);
@@ -1947,55 +1946,55 @@ var EditorBBCode = A.Component.create(
 					var html = host.constructor.prototype.getContent.apply(host, arguments);
 					var wrapper = A.Node.create(Lang.sub(TPL_QUOTE_WRAPPER, [html]));
 
+					var quoteIterator = function(item, index, collection) {
+						var content;
+						var temp = item;
+
+						do {
+							if (temp) {
+								content = temp;
+							}
+
+							temp = temp.one('div.' + CSS_QUOTE_CONTENT);
+						}
+						while (temp);
+
+						var parent = content.get('parentNode');
+						var title = parent.previous();
+
+						var bbcode = '[' + QUOTE;
+
+						if (title && title.hasClass(CSS_QUOTE_TITLE)) {
+							var titleHtml = title.html();
+
+							titleHtml = titleHtml.replace(REGEX_HTML_TAGS, '');
+
+							bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.html());
+
+							title.remove(true);
+						}
+
+						bbcode += ']' +  content.html() + '[/' + QUOTE + ']';
+
+						parent.html(bbcode);
+
+						parent.removeClass(QUOTE);
+						parent.addClass('_' + QUOTE);
+					};
+
 					while (quote = wrapper.all('div.' + CSS_QUOTE)) {
 						if (!quote.size()) {
 							break;
 						}
 
-						quote.each(
-							function(item, index, collection) {
-								var content;
-								var temp = item;
-
-								do
-								{
-									if (temp) {
-										content = temp;
-									}
-
-									temp = temp.one('div.' + CSS_QUOTE_CONTENT);
-								}
-								while (temp)
-
-								var parent = content.get('parentNode');
-								var title = parent.previous();
-
-								var bbcode = '[' + QUOTE;
-
-								if (title && title.hasClass(CSS_QUOTE_TITLE)) {
-									var titleHtml = title.html();
-
-									titleHtml = titleHtml.replace(new RegExp(TPL_HTML_TAGS, 'ig'), '');
-
-									bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.html());
-
-									title.remove(true);
-								}
-
-								bbcode += ']' +  content.html() + '[/' + QUOTE + ']';
-
-								parent.html(bbcode);
-
-								parent.removeClass(QUOTE);
-								parent.addClass('_' + QUOTE);
-							}
-						);
+						quote.each(quoteIterator);
 					}
 
 					html = wrapper.html();
 
 					html =  instance._parseTagExpressions(HTML_BBCODE, html);
-					html = html.replace(new RegExp(TPL_HTML_TAGS, 'ig'), '');
+
+					html = html.replace(REGEX_HTML_TAGS, '');
 
 					return new A.Do.AlterReturn(null, html);
 				},
@@ -2005,9 +2004,7 @@ var EditorBBCode = A.Component.create(
 
 					var host = instance.get('host');
 
-					var html = host.constructor.prototype.getContent.apply(host, arguments);
-
-					return html;
+					return host.constructor.prototype.getContent.apply(host, arguments);
 				},
 
 				_contentChange: function(event) {
@@ -2015,9 +2012,10 @@ var EditorBBCode = A.Component.create(
 
 					var html = event.newVal;
 
-					html = html.replace(/\[quote=([^\]]*)\]/ig, TPL_QUOTE_CONTENT);
-					html = html.replace(/\[quote\]/ig, TPL_QUOTE_TITLE_CONTENT);
-					html = html.replace(/\[\/quote\]/ig, TPL_QUOTE_CLOSING_TAG);
+					html = html.replace(/\[quote=([^\]]*)\]/gi, TPL_QUOTE_CONTENT);
+					html = html.replace(/\[quote\]/gi, TPL_QUOTE_TITLE_CONTENT);
+					html = html.replace(/\[\/quote\]/gi, TPL_QUOTE_CLOSING_TAG);
+
 					html = instance._parseTagExpressions(BBCODE_HTML, html);
 
 					event.newVal = html;
@@ -2028,25 +2026,36 @@ var EditorBBCode = A.Component.create(
 				_parseTagExpressions: function(options, html) {
 					var instance = this;
 
-					for (var i = 0; i < options.length; i++) {
-						for (var j = 0; j < options[i].convert.length; j++) {
-							var tags;
-							var output = options[i].output;
+					var option;
+					var convert;
+					var convertItem;
+					var convertLength;
+					var tags;
 
-							if (isArray(options[i].convert[j])) {
-								tags = options[i].convert[j];
+					for (var i = 0; i < options.length; i++) {
+						option = options[i];
+						convert = option.convert;
+						convertLength = convert.length;
+
+						for (var j = 0; j < convertLength; j++) {
+							var output = option.output;
+
+							convertItem = convert[j];
+
+							if (isArray(convertItem)) {
+								tags = convertItem;
 							}
 							else {
-								tags = options[i].convert[j].tags;
+								tags = convertItem.tags;
 
-								if (isString(options[i].output)) {
-									output = Lang.sub(options[i].output, options[i].convert[j].source);
+								if (isString(output)) {
+									output = Lang.sub(output, convertItem.source);
 								}
 							}
 
-							var regExp = Lang.sub(options[i].regExp, tags);
+							var regExp = Lang.sub(option.regExp, tags);
 
-							html = html.replace(new RegExp(regExp, 'ig'), output);
+							html = html.replace(new RegExp(regExp, 'gi'), output);
 						}
 					}
 
@@ -2059,7 +2068,6 @@ var EditorBBCode = A.Component.create(
 A.namespace('Plugin').EditorBBCode = EditorBBCode;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
-
 
 
 AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']});
