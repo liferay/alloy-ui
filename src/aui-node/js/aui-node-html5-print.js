@@ -3,24 +3,20 @@
 		return;
 	}
 
-	var ELEM_REG_EXP = new RegExp('(^|\\s)('+elems+')', 'gi'), 
-		TAG_REG_EXP = new RegExp('<(\/*)('+elems+')', 'gi'),
-		RULE_REG_EXP = new RegExp('(^|[^\\n]*?\\s)('+elems+')([^\\n]*)({[\\n\\w\\W]*?})', 'gi'),
-		DOC_FRAG = doc.createDocumentFragment(),
+	var DOC_FRAG = doc.createDocumentFragment(),
+		EL_BODY = doc.createElement('body'),
+		EL_STYLE = doc.createElement('style'),
+
 		HTML = doc.documentElement,
 		HEAD = HTML.firstChild,
-		BODY_ELEM = doc.createElement('body'),
-		STYLE_ELEM = doc.createElement('style');
+
+		REGEX_ELEM = new RegExp('(^|\\s)(' + elems + ')', 'gi'),
+		REGEX_RULE = new RegExp('(^|[^\\n]*?\\s)(' + elems + ')([^\\n]*)({[\\n\\w\\W]*?})', 'gi'),
+		REGEX_TAG = new RegExp('<(\/*)(' + elems + ')', 'gi');
 
 	var body;
 
-	function shim(doc) {
-		var a = -1;
-
-		while (++a < elemsArrLen) {
-			doc.createElement(elemsArr[a]);
-		}
-	}
+	var shim = YUI.AUI.html5shiv;
 
 	function getCSS(styleSheetList, mediaType) {
 		var a = -1;
@@ -42,9 +38,9 @@
 	shim(doc);
 	shim(DOC_FRAG);
 
-	HEAD.insertBefore(STYLE_ELEM, HEAD.firstChild);
+	HEAD.insertBefore(EL_STYLE, HEAD.firstChild);
 
-	STYLE_ELEM.media = 'print';
+	EL_STYLE.media = 'print';
 
 	win.attachEvent(
 		'onbeforeprint',
@@ -53,50 +49,55 @@
 			var b;
 			var cssText = getCSS(doc.styleSheets, 'all');
 			var cssTextArr = [];
+			var elem;
+			var node;
 			var nodeList;
 			var nodeListLen;
 			var rule;
 
 			body = body || doc.body;
 
-			while ((rule = RULE_REG_EXP.exec(cssText)) != null) {
-				cssTextArr.push((rule[1]+rule[2]+rule[3]).replace(ELEM_REG_EXP, '$1.iepp_$2')+rule[4]);
+			while ((rule = REGEX_RULE.exec(cssText)) != null) {
+				cssTextArr.push((rule[1] + rule[2] + rule[3]).replace(REGEX_ELEM, '$1.iepp_$2') + rule[4]);
 			}
 
-			STYLE_ELEM.styleSheet.cssText = cssTextArr.join('\n');
+			EL_STYLE.styleSheet.cssText = cssTextArr.join('\n');
 
 			while (++a < elemsArrLen) {
-				nodeList = doc.getElementsByTagName(elemsArr[a]),
+				elem = elemsArr[a];
+				nodeList = doc.getElementsByTagName(elem);
 
-				nodeListLen = nodeList.length,
+				nodeListLen = nodeList.length;
 
 				b = -1;
 
 				while (++b < nodeListLen) {
-					if (nodeList[b].className.indexOf('iepp_') < 0) {
-						nodeList[b].className += ' iepp_'+elemsArr[a];
+					node = nodeList[b];
+
+					if (node.className.indexOf('iepp_') < 0) {
+						node.className += ' iepp_' + elem;
 					}
 				}
 			}
 
 			DOC_FRAG.appendChild(body);
-			HTML.appendChild(BODY_ELEM);
+			HTML.appendChild(EL_BODY);
 
-			BODY_ELEM.className = body.className;
+			EL_BODY.className = body.className;
 
-			BODY_ELEM.innerHTML = body.innerHTML.replace(TAG_REG_EXP, '<$1font');
+			EL_BODY.innerHTML = body.innerHTML.replace(REGEX_TAG, '<$1font');
 		}
 	);
 
 	win.attachEvent(
 		'onafterprint',
 		function() {
-			BODY_ELEM.innerHTML = '';
+			EL_BODY.innerHTML = '';
 
-			HTML.removeChild(BODY_ELEM);
+			HTML.removeChild(EL_BODY);
 			HTML.appendChild(body);
 
-			STYLE_ELEM.styleSheet.cssText = '';
+			EL_STYLE.styleSheet.cssText = '';
 		}
 	);
 })(A.config.win, A.config.doc, YUI.AUI.HTML5_ELEMENTS, YUI.AUI.HTML5_ELEMENTS.length, YUI.AUI.HTML5_ELEMENTS.join('|'), A.UA.ie);
