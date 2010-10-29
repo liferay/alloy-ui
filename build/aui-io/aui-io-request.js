@@ -338,6 +338,17 @@ var IORequest = A.Component.create(
 			},
 
 			/**
+			 * A selector to be used to query against the response of the
+			 * request. Only works if the response is XML or HTML.
+			 *
+			 * @attribute selector
+			 * @type string
+			 */
+			selector: {
+				value: null
+			},
+
+			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 	        * Configuration</a>.
 			 *
@@ -587,6 +598,22 @@ var IORequest = A.Component.create(
 						}
 						catch(e) {
 							// throw PARSE_ERROR;
+						}
+					}
+					else {
+						var selector = instance.get('selector');
+
+						if (data && selector) {
+							var tempRoot;
+
+							if (data.documentElement) {
+								tempRoot = A.one(data);
+							}
+							else {
+								tempRoot = A.Node.create(data);
+							}
+
+							data = tempRoot.all(selector);
 						}
 					}
 				}

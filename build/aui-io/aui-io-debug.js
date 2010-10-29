@@ -338,6 +338,17 @@ var IORequest = A.Component.create(
 			},
 
 			/**
+			 * A selector to be used to query against the response of the
+			 * request. Only works if the response is XML or HTML.
+			 *
+			 * @attribute selector
+			 * @type string
+			 */
+			selector: {
+				value: null
+			},
+
+			/**
 			 * See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 	        * Configuration</a>.
 			 *
@@ -589,6 +600,22 @@ var IORequest = A.Component.create(
 							// throw PARSE_ERROR;
 						}
 					}
+					else {
+						var selector = instance.get('selector');
+
+						if (data && selector) {
+							var tempRoot;
+
+							if (data.documentElement) {
+								tempRoot = A.one(data);
+							}
+							else {
+								tempRoot = A.Node.create(data);
+							}
+
+							data = tempRoot.all(selector);
+						}
+					}
 				}
 
 				return data;
@@ -657,6 +684,7 @@ var L = A.Lang,
 	LOADING = 'loading',
 	LOADING_MASK = 'loadingMask',
 	NODE = 'node',
+	OUTER = 'outer',
 	PARSE_CONTENT = 'parseContent',
 	QUEUE = 'queue',
 	RENDERED = 'rendered',
@@ -846,7 +874,7 @@ var IOPlugin = A.Component.create(
 			},
 
 			/**
-			 * Where to insert the content, AFTER, BEFORE or REPLACE.
+			 * Where to insert the content, AFTER, BEFORE or REPLACE. If you're plugging a Node, there is a fourth option called OUTER that will not only replace the entire node itself. This is different from REPLACE, in that REPLACE will replace the *contents* of the node, OUTER will replace the entire Node itself.
 			 *
 			 * @attribute where
 			 * @default StdMod.REPLACE
@@ -855,7 +883,7 @@ var IOPlugin = A.Component.create(
 			where: {
 				value: StdMod.REPLACE,
 				validator: function(val) {
-					return (!val || val == StdMod.AFTER || val == StdMod.BEFORE || val == StdMod.REPLACE);
+					return (!val || val == StdMod.AFTER || val == StdMod.BEFORE || val == StdMod.REPLACE || val == OUTER);
 				}
 			}
 		},
@@ -1011,7 +1039,22 @@ var IOPlugin = A.Component.create(
 						// when this.get(HOST) is a Node instance the NODE is the host
 						var node = instance.get(NODE);
 
-						node.setContent.apply(node, [content]);
+						if (content instanceof A.NodeList) {
+							content = content.toFrag();
+						}
+
+						if (content instanceof A.Node) {
+							content = content._node;
+						}
+
+						var where = instance.get(WHERE);
+
+						if (where == OUTER) {
+							node.replace(content);
+						}
+						else {
+							A.DOM.addHTML(node._node, content, where);
+						}
 					},
 
 					// Widget forces set the content on the SECTION node using setStdModContent method
@@ -1075,7 +1118,7 @@ var IOPlugin = A.Component.create(
 				var instance = this;
 
 				instance.setContent(
-					xhr.responseText
+					this.get('responseData')
 				);
 			},
 
@@ -1116,6 +1159,46 @@ var IOPlugin = A.Component.create(
 		}
 	}
 );
+
+A.Node.prototype.load = function(uri, config, callback) {
+	var instance = this;
+
+	var index = uri.indexOf(' ');
+	var selector;
+
+	if (index > 0) {
+		selector = uri.slice(index, uri.length);
+
+		uri = uri.slice(0, index);
+	}
+
+	if (L.isFunction(config)) {
+		callback = config;
+		config = null;
+	}
+
+	config = config || {};
+
+	if (callback) {
+		config.after = config.after || {};
+
+		config.after.success = callback;
+	}
+
+	var where = config.where;
+
+	config.uri = uri;
+	config.where = where;
+
+	if (selector) {
+		config.selector = selector;
+		config.where = where || 'replace';
+	}
+
+	instance.plug(A.Plugin.IO, config);
+
+	return instance;
+};
 
 A.namespace('Plugin').IO = IOPlugin;
 
