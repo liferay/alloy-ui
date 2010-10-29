@@ -28,3 +28,7 @@
 .aui-editortoolbar-insertimage-content .aui-field-content {
 	clear: both;
 }
+
+.aui-editortoolbar-insertimage-align {
+	position: absolute;
+}
