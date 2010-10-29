@@ -44,7 +44,7 @@
 
 
 
-AUI().ready('aui-editor', function(A) {
+AUI().ready('aui-overlay-context-panel', 'aui-editor', function(A) {
 
 	var fonts = [
 		'Fonts',
@@ -67,67 +67,67 @@ AUI().ready('aui-editor', function(A) {
 
 	var component = new A.EditorBase(
 			{
-				content: '<p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>'
+				content: '<p><a href="http://www.test.com" target="_blank"><img src="../../build/aui-editor/assets/skins/sam/blankimage.png" align="left" style="border: 1px solid; padding: 5px;" alt="test" /></a></p><p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>'
 			}
 		);
 
-		component.on(
-			'frame:ready',
-			function() {
-				var instance = this;
+	component.on(
+		'frame:ready',
+		function() {
+			var instance = this;
 
-				instance.focus();
-			}
-		);
+			instance.focus();
+		}
+	);
 
-		component.render('#demo');
+	component.render('#demo');
 
-		component.plug(A.Plugin.EditorToolbar,
-			{
-				groups: [
-					{
-						type: 'styles',
-						config: {
-							styles: {
-								items: fonts,
-								width: 200,
-								height: 300
-							}
+	component.plug(A.Plugin.EditorToolbar,
+		{
+			groups: [
+				{
+					type: 'styles',
+					config: {
+						styles: {
+							items: fonts,
+							width: 200,
+							height: 300
 						}
-					},
-					{
-						type: 'font',
-						config: {
-							fontname: {
-								optionHtml: '<option selected="selected"></option>' +
-											'<option>Arial</option>' +
-											'<option>Arial Black</option>' +
-											'<option>Comic Sans MS</option>' +
-											'<option>Courier New</option>' +
-											'<option>Lucida Console</option>' +
-											'<option>Tahoma</option>' +
-											'<option>Times New Roman</option>' +
-											'<option>Verdana</option>'
-							}
+					}
+				},
+				{
+					type: 'font',
+					config: {
+						fontname: {
+							optionHtml: '<option selected="selected"></option>' +
+										'<option>Arial</option>' +
+										'<option>Arial Black</option>' +
+										'<option>Comic Sans MS</option>' +
+										'<option>Courier New</option>' +
+										'<option>Lucida Console</option>' +
+										'<option>Tahoma</option>' +
+										'<option>Times New Roman</option>' +
+										'<option>Verdana</option>'
 						}
-					},
-					{ type: 'text' },
-					{
-						type: 'color',
-						config: {
-							forecolor: {
-								plugins: [A.Plugin.ColorPickerGrid]
-							}
+					}
+				},
+				{ type: 'text' },
+				{
+					type: 'color',
+					config: {
+						forecolor: {
+							plugins: [A.Plugin.ColorPickerGrid]
 						}
-					},
-					{ type: 'alignment' },
-					{ type: 'indent' },
-					{ type: 'list' },
-					{ type: 'insert' },
-					{ type: 'source' }
-				]
-			}
-		);
+					}
+				},
+				{ type: 'alignment' },
+				{ type: 'indent' },
+				{ type: 'list' },
+				{ type: 'insert' },
+				{ type: 'source' }
+			]
+		}
+	);
 
 });
 

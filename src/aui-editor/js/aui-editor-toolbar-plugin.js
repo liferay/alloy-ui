@@ -7,6 +7,10 @@ var Lang = A.Lang,
 	TOOLBAR_PLUGIN = 'toolbar',
 
 	ALIGNMENT = 'alignment',
+	ALIGN_LEFT = 'align-left',
+	ALIGN_INLINE = 'align-inline',
+	ALIGN_BLOCK = 'align-block',
+	ALIGN_RIGHT = 'align-right',
 	COLOR = 'color',
 	CONTENT = 'content',
 	FONT = 'font',
@@ -15,7 +19,6 @@ var Lang = A.Lang,
 	INSERT = 'insert',
 	INSERTIMAGE = 'insertimage',
 	LIST = 'list',
-	MOUSEOUT = 'mouseout',
 	SELECT = 'select',
 	SOURCE = 'source',
 	STYLES = 'styles',
@@ -52,6 +55,7 @@ var Lang = A.Lang,
 	CSS_FIELD_LABEL = getClassName('field', 'label'),
 	CSS_FIELD_NUMERIC = getClassName('field', 'numeric'),
 	CSS_INSERTIMAGE = getClassName(NAME, INSERTIMAGE),
+	CSS_INSERTIMAGE_ALIGN = getClassName(NAME, INSERTIMAGE, 'align'),
 	CSS_SELECT_FONTNAME = getClassName(NAME, SELECT, 'fontname'),
 	CSS_SELECT_FONTSIZE = getClassName(NAME, SELECT, 'fontsize'),
 	CSS_SIZE_SEPARATOR = getClassName(NAME, 'size', 'separator'),
@@ -62,6 +66,7 @@ var Lang = A.Lang,
 
 	TPL_INSERTIMAGE_HREF = '<a></a>',
 	TPL_INSERTIMAGE_IMG = '<img />',
+	TPL_INSERTIMAGE_ALIGN = '<div class="' + CSS_INSERTIMAGE_ALIGN + '"></div>',
 
 	TPL_SOURCE_TEXTAREA = '<textarea class="' + CSS_SOURCE_TEXTAREA + '"></textarea>',
 
@@ -269,8 +274,8 @@ var EditorToolbar = A.Component.create(
 	}
 );
 
-EditorToolbar.generateOverlay = function(trigger, config) {
-	var overlay = new A.OverlayContext(
+EditorToolbar.generateOverlay = function(trigger, config, panel) {
+	var overlay = new A['OverlayContext' + (panel ? 'Panel' : '')] (
 		A.merge(
 			{
 				align: {
@@ -337,6 +342,7 @@ EditorToolbar.STRINGS = {
 	BORDER: 'Border',
 	CREATE_LINK: 'Create Link',
 	DESCRIPTION: 'Description',
+	EDIT_IMAGE: 'Edit Image',
 	FORECOLOR: 'Foreground Color',
 	IMAGE_URL: 'Image URL',
 	INDENT: 'Indent',
@@ -353,6 +359,7 @@ EditorToolbar.STRINGS = {
 	OUTDENT: 'Outdent',
 	PADDING: 'Padding',
 	REMOVE_FORMAT: 'Format Source',
+	SAVE: 'Save',
 	SIZE: 'Size',
 	SOURCE: 'Source',
 	SUBSCRIPT: 'Subscript',
@@ -532,7 +539,7 @@ GROUPS[INSERT] = {
 			var button = attrs.button;
 			var boundingBox = button.get('boundingBox');
 
-			var overlay = EditorToolbar.generateOverlay(boundingBox, config);
+			var overlay = EditorToolbar.generateOverlay(boundingBox, config, true);
 
 			var contextBox = overlay.get('contentBox');
 
@@ -558,10 +565,9 @@ GROUPS[INSERT] = {
 				config.dataBrowser.render(contextBox);
 			}
 			else {
-				var frame = editor.getInstance();
 				var iframe = editor.frame._iframe;
-
-				var selection = null;
+				var editNode;
+				var selection;
 
 				var imageForm = new A.Form(
 					{
@@ -647,48 +653,33 @@ GROUPS[INSERT] = {
 
 				var hrefTarget = imageForm.getField('openInNewWindow');
 
-				var toolbar = new A.ButtonItem(
+				var insertButton = new A.ButtonItem(
 					{
 						icon: 'circle-check',
 						label: EditorToolbar.STRINGS.INSERT
 					}
 				).render(buttonRow);
 
-				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
-
-				var heightField = imageForm.getField('height');
-				var widthField = imageForm.getField('width');
-
-				imgSizeDetection.on(
-					'load',
-					function(event) {
-						var img = event.currentTarget;
-
-						if (!heightField.get('value') || !widthField.get('value')) {
-							imageForm.set(
-								'values',
-								{
-									height: img.get('height'),
-									width: img.get('width')
-								}
-							);
-						}
-					}
-				);
-
-				imageForm.getField('imageURL').get('node').on(
-					'blur',
-					function(event) {
-						imgSizeDetection.set('src', this.val());
-					}
-				);
-
-				toolbar.on(
+				insertButton.on(
 					'click',
 					function(event) {
 						var instance = this;
 
-						var img = A.Node.create(TPL_INSERTIMAGE_IMG);
+						var href;
+						var img;
+						var parent;
+
+						if (editNode) {
+							img = editNode;
+							parent = editNode.get('parentNode');
+
+							if (parent.get('tagName').toLowerCase() == 'a') {
+								href = parent;
+							}
+						}
+						else {
+							img = A.Node.create(TPL_INSERTIMAGE_IMG);
+						}
 
 						var fieldValues = imageForm.get('fieldValues');
 
@@ -720,7 +711,7 @@ GROUPS[INSERT] = {
 						if (!isNaN(padding)) {
 							imgStyles.padding = padding;
 						}
-
+ 
 						toolbarAlign.some(
 							function(item, index, collection) {
 								var instance = this;
@@ -754,30 +745,69 @@ GROUPS[INSERT] = {
 							}
 						);
 
-						img.attr(imgAttrs);
+						img.setAttrs(imgAttrs);
 						img.setStyles(imgStyles);
 
 						var linkURL = fieldValues.linkURL;
 
 						if (linkURL) {
-							var href = A.Node.create(TPL_INSERTIMAGE_HREF);
+							if (!href) {
+								href = A.Node.create(TPL_INSERTIMAGE_HREF);
 
-							href.attr('href', linkURL);
+								if (editNode) {
+									parent.insert(href, editNode);
+								}
 
-							if (hrefTarget.get('node').get('checked')) {
-								href.attr('target', '_blank');
+								href.append(img);
 							}
 
-							href.append(img);
+							href.setAttribute('href', linkURL);
+							href.setAttribute('target', (hrefTarget.get('node').get('checked') ? '_blank' : ''));
 
 							img = href;
 						}
+						else {
+							if (editNode && href) {
+								parent.insert(editNode, href);
 
-						if (selection && selection.anchorNode) {
+								href.remove(true);
+							}
+						}
+
+						if (!editNode && selection && selection.anchorNode) {
 							selection.anchorNode.append(img);
 						}
 
 						overlay.hide();
+					}
+				);
+				
+				var imgSizeDetection = A.Node.create(TPL_INSERTIMAGE_IMG);
+
+				var heightField = imageForm.getField('height');
+				var widthField = imageForm.getField('width');
+
+				imgSizeDetection.on(
+					'load',
+					function(event) {
+						var img = event.currentTarget;
+
+						if (!heightField.get('value') || !widthField.get('value')) {
+							imageForm.set(
+								'values',
+								{
+									height: img.get('height'),
+									width: img.get('width')
+								}
+							);
+						}
+					}
+				);
+
+				imageForm.getField('imageURL').get('node').on(
+					'blur',
+					function(event) {
+						imgSizeDetection.set('src', this.val());
 					}
 				);
 
@@ -788,19 +818,19 @@ GROUPS[INSERT] = {
 						activeState: true,
 						children: [
 							{
-								icon: 'align-left',
+								icon: ALIGN_LEFT,
 								title: EditorToolbar.STRINGS.ALIGN_LEFT
 							},
 							{
-								icon: 'align-inline',
+								icon: ALIGN_INLINE,
 								title: EditorToolbar.STRINGS.ALIGN_INLINE
 							},
 							{
-								icon: 'align-block',
+								icon: ALIGN_BLOCK,
 								title: EditorToolbar.STRINGS.ALIGN_BLOCK
 							},
 							{
-								icon: 'align-right',
+								icon: ALIGN_RIGHT,
 								title: EditorToolbar.STRINGS.ALIGN_RIGHT
 							}
 						]
@@ -824,6 +854,19 @@ GROUPS[INSERT] = {
 
 				toolbarAlign.render(imageForm.getField('align').get('contentBox'));
 
+				overlay.on(
+					'show',
+					function(event) {
+						if (!selection || !selection.anchorNode) {
+							var frame = editor.getInstance();
+
+							editor.focus();
+
+							selection = new frame.Selection();
+						}
+					}
+				);
+
 				overlay.after(
 					'hide',
 					function(event) {
@@ -836,15 +879,117 @@ GROUPS[INSERT] = {
 						);
 
 						hrefTarget.get('node').set('checked', false);
+
+						panel.set('title', EditorToolbar.STRINGS.INSERT_IMAGE);
+						insertButton.set('label', EditorToolbar.STRINGS.INSERT);
+
+						alignNode.hide();
+
+						overlay.set(
+							'align',
+							{
+								node: boundingBox,
+								points: [ 'tl', 'bl' ]
+							}
+						);
+
+						editNode = null;
 					}
 				);
 
 				iframe.on(
-					MOUSEOUT,
+					'mouseout',
 					function(event) {
 						var frame = editor.getInstance();
 
 						selection = new frame.Selection();
+					}
+				);
+
+				var alignNode = A.Node.create(TPL_INSERTIMAGE_ALIGN);
+
+				alignNode.hide();
+
+				A.getBody().append(alignNode);
+
+				editor.on(
+					'frame:ready',
+					function(event) {
+						var frame = editor.getInstance();
+
+						frame.one('body').delegate(
+							'click',
+							function(event) {
+								var instance = this;
+
+								if (editNode != event.currentTarget) {
+									var img = event.currentTarget;
+
+									var parent = img.get('parentNode');
+									var borderWidth = img.getStyle('borderWidth');
+									var padding = img.getStyle('padding');
+									var linkTag = (parent.get('tagName').toLowerCase() == 'a');
+
+									imageForm.set(
+										'values',
+										{
+											border: (borderWidth ? borderWidth + ' solid' : ''),
+											description: img.get('alt'),
+											height: img.get('height'),
+											imageURL: img.get('src'),
+											linkURL: (linkTag ? parent.get('href') : ''),
+											width: img.get('width'),
+											padding: (padding ? parseInt(padding) : '')
+										}
+									);
+
+									var index = 1;
+
+									switch (img.getAttribute('align')) {
+										case 'left':
+											index = 0;
+										break;
+										case 'center':
+											index = 2;
+										break;
+										case 'right':
+											index = 3;
+										break;
+									}
+
+									toolbarAlign.item(index).StateInteraction.set('active', true);
+
+									imageForm.getField('openInNewWindow').get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
+
+									panel.set('title', EditorToolbar.STRINGS.EDIT_IMAGE);
+									insertButton.set('label', EditorToolbar.STRINGS.SAVE);
+
+									var xy = iframe.getXY();
+									var xyNode = img.getXY();
+
+									xy = [xy[0] + xyNode[0], xy[1] + xyNode[1]];
+
+									alignNode.setStyle('width', img.get('offsetWidth'));
+									alignNode.setStyle('height', img.get('offsetHeight'));
+									alignNode.setXY(xy);
+
+									alignNode.show();
+
+									editNode = img;
+
+									overlay.set(
+										'align',
+										{
+											node: alignNode,
+											points: [ 'tl', 'bc' ]
+										}
+									);
+
+									overlay.show();
+								}
+							},
+							'img'
+						);
 					}
 				);
 			}

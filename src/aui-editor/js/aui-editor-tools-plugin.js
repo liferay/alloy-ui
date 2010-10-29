@@ -49,9 +49,6 @@ A.mix(
 			items.each(
 				function(item, index, collection) {
 					var tagName = item.get('tagName');
-					var parent = item.ancestor();
-
-					var wrapper = null;
 
 					if (tagName) {
 						tagName = tagName.toLowerCase();
@@ -71,13 +68,12 @@ A.mix(
 						}
 					}
 
-					var parent = item.get('parentNode');
-
-					var wrapper = null;
-
 					if (!item.test('body') && item.getComputedStyle('textAlign') == val) {
 						return;
 					}
+
+					var parent = item.get('parentNode');
+					var wrapper;
 
 					if (BLOCK_TAGS[tagName] || item.getComputedStyle('display') == 'block') {
 						wrapper = item;
