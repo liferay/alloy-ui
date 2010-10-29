@@ -340,6 +340,20 @@
 			<fileset dir="${project.dir}/lib/patches/yui3" includes="**/*.*" />
 		</copy>
 
+		<!-- Patch for widget-locale -->
+		<replace file="${project.dir}/lib/yui3/src/widget/js/WidgetLocale.js">
+			<replacefilter token="Y.mix(Widget.prototype, {" value="Widget.ATTRS.strings.lazyAdd = false; Y.mix(Widget.prototype, {" />
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/widget"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch -->
+
 		<!-- Patch for dd -->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
