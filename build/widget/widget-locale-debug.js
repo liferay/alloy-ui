@@ -33,7 +33,7 @@ Widget.ATTRS[LOCALE] = {
     value: "en"
 };
 
-Y.mix(Widget.prototype, {
+Widget.ATTRS.strings.lazyAdd = false; Y.mix(Widget.prototype, {
 
     /**
      * Sets strings for a particular locale, merging with any existing
