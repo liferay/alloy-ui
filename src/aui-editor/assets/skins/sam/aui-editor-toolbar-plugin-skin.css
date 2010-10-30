@@ -60,7 +60,7 @@
 	background: url(image.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-createlink {
+.aui-editortoolbar-content .aui-icon-insertlink {
 	background: url(hyperlink.png) no-repeat transparent;
 }
 
@@ -116,7 +116,7 @@
 	background: url(align_right.png) no-repeat;
 }
 
-.aui-editortoolbar-insertimage-content {
+.aui-editortoolbar-insertimage-content, .aui-editortoolbar-insertlink-content {
 	padding: 10px;
 }
 

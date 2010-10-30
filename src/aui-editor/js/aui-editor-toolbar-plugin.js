@@ -18,6 +18,7 @@ var Lang = A.Lang,
 	INPUT = 'input',
 	INSERT = 'insert',
 	INSERTIMAGE = 'insertimage',
+	INSERTLINK = 'insertlink',
 	LIST = 'list',
 	SELECT = 'select',
 	SOURCE = 'source',
@@ -25,11 +26,15 @@ var Lang = A.Lang,
 	SUBSCRIPT = 'subscript',
 	TEXT = 'text',
 
+	ICON_CHECK = 'circle-check',
+	ICON_CLOSE = 'close',
+
 	CMD_IGNORE = {
 		backcolor: true,
 		forecolor: true,
 		format: true,
 		insertimage: true,
+		insertlink: true,
 		source: true,
 		styles: true
 	},
@@ -54,8 +59,9 @@ var Lang = A.Lang,
 	CSS_FIELD_INPUT_TEXT = getClassName('field', INPUT, 'text'),
 	CSS_FIELD_LABEL = getClassName('field', 'label'),
 	CSS_FIELD_NUMERIC = getClassName('field', 'numeric'),
+	CSS_ALIGN_NODE = getClassName(NAME, 'align', 'node'),
 	CSS_INSERTIMAGE = getClassName(NAME, INSERTIMAGE),
-	CSS_INSERTIMAGE_ALIGN = getClassName(NAME, INSERTIMAGE, 'align'),
+	CSS_INSERTLINK = getClassName(NAME, INSERTLINK),
 	CSS_SELECT_FONTNAME = getClassName(NAME, SELECT, 'fontname'),
 	CSS_SELECT_FONTSIZE = getClassName(NAME, SELECT, 'fontsize'),
 	CSS_SIZE_SEPARATOR = getClassName(NAME, 'size', 'separator'),
@@ -64,9 +70,10 @@ var Lang = A.Lang,
 	CSS_TOOLBAR = getClassName(NAME),
 	CSS_TOOLBAR_CONTENT = getClassName(NAME, CONTENT),
 
+	TPL_ALIGN_NODE = '<div class="' + CSS_ALIGN_NODE + '"></div>',
 	TPL_INSERTIMAGE_HREF = '<a></a>',
 	TPL_INSERTIMAGE_IMG = '<img />',
-	TPL_INSERTIMAGE_ALIGN = '<div class="' + CSS_INSERTIMAGE_ALIGN + '"></div>',
+	TPL_INSERTLINK = '<a href="{0}"{2}>{1}</a>',
 
 	TPL_SOURCE_TEXTAREA = '<textarea class="' + CSS_SOURCE_TEXTAREA + '"></textarea>',
 
@@ -331,6 +338,29 @@ EditorToolbar.generateColorPicker = function(editor, attrs, config, cmd) {
 	);
 };
 
+EditorToolbar.openOverlayToAlignNode = function(overlay, alignNode, iframe, iframeNode) {
+	var xy = iframe.getXY();
+	var xyNode = iframeNode.getXY();
+
+	xy = [xy[0] + xyNode[0], xy[1] + xyNode[1]];
+
+	alignNode.setStyle('width', iframeNode.get('offsetWidth'));
+	alignNode.setStyle('height', iframeNode.get('offsetHeight'));
+	alignNode.setXY(xy);
+
+	alignNode.show();
+
+	overlay.set(
+		'align',
+		{
+			node: alignNode,
+			points: [ 'tl', 'bc' ]
+		}
+	);
+
+	overlay.show();
+}
+
 EditorToolbar.STRINGS = {
 	ALIGN: 'Align',
 	ALIGN_BLOCK: 'Block',
@@ -340,14 +370,15 @@ EditorToolbar.STRINGS = {
 	BACKCOLOR: 'Background Color',
 	BOLD: 'Bold',
 	BORDER: 'Border',
-	CREATE_LINK: 'Create Link',
 	DESCRIPTION: 'Description',
 	EDIT_IMAGE: 'Edit Image',
+	EDIT_LINK: 'Edit Link',
 	FORECOLOR: 'Foreground Color',
 	IMAGE_URL: 'Image URL',
 	INDENT: 'Indent',
 	INSERT: 'Insert',
 	INSERT_IMAGE: 'Insert Image',
+	INSERT_LINK: 'Insert Link',
 	INSERT_ORDERED_LIST: 'Insert Numbered List',
 	INSERT_UNORDERED_LIST: 'Insert Bulleted List',
 	ITALIC: 'Italic',
@@ -528,8 +559,8 @@ GROUPS[INSERT] = {
 			title: EditorToolbar.STRINGS.INSERT_IMAGE
 		},
 		{
-			icon: 'createlink',
-			title: EditorToolbar.STRINGS.CREATE_LINK
+			icon: 'insertlink',
+			title: EditorToolbar.STRINGS.INSERT_LINK
 		}
 	],
 	generate: {
@@ -546,10 +577,10 @@ GROUPS[INSERT] = {
 			var panel = new A.Panel(
 				{
 					collapsible: false,
-					headerContent: EditorToolbar.STRINGS.INSERT_IMAGE,
+					title: EditorToolbar.STRINGS.INSERT_IMAGE,
 					icons: [
 						{
-							icon: 'close',
+							icon: ICON_CLOSE,
 							handler: {
 								fn: overlay.hide,
 								context: overlay
@@ -579,7 +610,7 @@ GROUPS[INSERT] = {
 				var borderOptions = [
 					{
 						labelText: 'none',
-						value: ''
+						value: 'none'
 					}
 				];
 
@@ -655,7 +686,7 @@ GROUPS[INSERT] = {
 
 				var insertButton = new A.ButtonItem(
 					{
-						icon: 'circle-check',
+						icon: ICON_CHECK,
 						label: EditorToolbar.STRINGS.INSERT
 					}
 				).render(buttonRow);
@@ -906,7 +937,7 @@ GROUPS[INSERT] = {
 					}
 				);
 
-				var alignNode = A.Node.create(TPL_INSERTIMAGE_ALIGN);
+				var alignNode = A.Node.create(TPL_ALIGN_NODE);
 
 				alignNode.hide();
 
@@ -959,33 +990,14 @@ GROUPS[INSERT] = {
 
 									toolbarAlign.item(index).StateInteraction.set('active', true);
 
-									imageForm.getField('openInNewWindow').get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
+									hrefTarget.get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
 
 									panel.set('title', EditorToolbar.STRINGS.EDIT_IMAGE);
 									insertButton.set('label', EditorToolbar.STRINGS.SAVE);
 
-									var xy = iframe.getXY();
-									var xyNode = img.getXY();
-
-									xy = [xy[0] + xyNode[0], xy[1] + xyNode[1]];
-
-									alignNode.setStyle('width', img.get('offsetWidth'));
-									alignNode.setStyle('height', img.get('offsetHeight'));
-									alignNode.setXY(xy);
-
-									alignNode.show();
-
 									editNode = img;
 
-									overlay.set(
-										'align',
-										{
-											node: alignNode,
-											points: [ 'tl', 'bc' ]
-										}
-									);
-
-									overlay.show();
+									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, img);
 								}
 							},
 							'img'
@@ -995,10 +1007,173 @@ GROUPS[INSERT] = {
 			}
 		},
 
-		createlink: function(editor, attrs, config) {
+		insertlink: function(editor, attrs, config) {
 			var instance = this;
 
-			editor.plug(A.Plugin.CreateLinkBase);
+			var button = attrs.button;
+			var boundingBox = button.get('boundingBox');
+
+			var overlay = EditorToolbar.generateOverlay(boundingBox, config, true);
+
+			var contextBox = overlay.get('contentBox');
+
+			var panel = new A.Panel(
+				{
+					collapsible: false,
+					title: EditorToolbar.STRINGS.INSERT_LINK,
+					icons: [
+						{
+							icon: ICON_CLOSE,
+							handler: {
+								fn: overlay.hide,
+								context: overlay
+							}
+						}
+					]
+				}
+			).render(contextBox);
+
+			contextBox = panel.bodyNode;
+
+			var iframe = editor.frame._iframe;
+			var editNode;
+			var selection;
+
+			var linkForm = new A.Form(
+				{
+					cssClass: CSS_INSERTLINK,
+					labelAlign: 'left'
+				}
+			).render(contextBox);
+
+			linkForm.add(
+				[
+					{
+						id: 'description',
+						labelText: EditorToolbar.STRINGS.DESCRIPTION
+					},
+					{
+						id: 'linkURL',
+						labelText: EditorToolbar.STRINGS.LINK_URL
+					},
+					{
+						id: 'openInNewWindow',
+						labelText: EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
+						type: 'checkbox'
+					}
+				],
+				true
+			);
+
+			var linkFormContentBox = linkForm.get('contentBox');
+			var buttonRow = A.Node.create(TPL_TOOLBAR_BUTTON_HOLDER);
+
+			var hrefTarget = linkForm.getField('openInNewWindow');
+
+			var insertButton = new A.ButtonItem(
+				{
+					icon: ICON_CHECK,
+					label: EditorToolbar.STRINGS.INSERT
+				}
+			).render(buttonRow);
+
+			insertButton.on(
+				'click',
+				function(event) {
+					var instance = this;
+
+					var fieldValues = linkForm.get('fieldValues');
+
+					if (editNode) {
+						editNode.setAttribute('href', fieldValues.linkURL);
+						editNode.set('innerHTML', fieldValues.description);
+
+						if (hrefTarget.get('node').get('checked')) {
+							editNode.setAttribute('target', '_blank');
+						}
+						else {
+							editNode.setAttribute('target', '');
+						}
+					}
+					else {
+						editor.execCommand('inserthtml', Lang.sub(TPL_INSERTLINK, [fieldValues.linkURL, fieldValues.description, (hrefTarget.get('node').get('checked') ? ' target="_blank"' : '')]));
+					}
+
+					overlay.hide();
+				}
+			);
+
+			linkFormContentBox.append(buttonRow);
+
+			overlay.after(
+				'hide',
+				function(event) {
+					linkForm.resetValues();
+
+					hrefTarget.get('node').set('checked', false);
+
+					panel.set('title', EditorToolbar.STRINGS.CREATE_LINK);
+					insertButton.set('label', EditorToolbar.STRINGS.INSERT);
+
+					alignNode.hide();
+
+					overlay.set(
+						'align',
+						{
+							node: boundingBox,
+							points: [ 'tl', 'bl' ]
+						}
+					);
+
+					editNode = null;
+				}
+			);
+
+			var alignNode = A.Node.create(TPL_ALIGN_NODE);
+
+			alignNode.hide();
+
+			A.getBody().append(alignNode);
+
+			editor.on(
+				'frame:ready',
+				function(event) {
+					var frame = editor.getInstance();
+
+					frame.one('body').delegate(
+						'click',
+						function(event) {
+							var instance = this;
+
+							if (editNode != event.currentTarget) {
+								var link = event.currentTarget;
+
+								if (!link.one('img')) {
+									var parent = link.get('parentNode');
+
+									linkForm.set(
+										'values',
+										{
+											description: link.get('innerHTML'),
+											linkURL: link.getAttribute('href'),
+										}
+									);
+
+									hrefTarget.get('node').attr('checked', (link.getAttribute('target') == '_blank'));
+
+									panel.set('title', EditorToolbar.STRINGS.EDIT_LINK);
+									insertButton.set('label', EditorToolbar.STRINGS.SAVE);
+
+									editNode = link;
+
+									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, link);
+								}
+							}
+						},
+						'a'
+					);
+				}
+			);
 		}
 	}
 };
