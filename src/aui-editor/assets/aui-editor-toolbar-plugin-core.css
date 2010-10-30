@@ -21,14 +21,18 @@
 	width: 100%;
 }
 
-.aui-editortoolbar-insertimage-content .aui-button-holder {
+.aui-editortoolbar-insertimage-content .aui-button-holder, .aui-editortoolbar-insertlink-content .aui-button-holder {
 	text-align: right;
 }
 
-.aui-editortoolbar-insertimage-content .aui-field-content {
+.aui-editortoolbar-insertimage-content .aui-field-content, .aui-editortoolbar-insertlink-content .aui-field-content {
 	clear: both;
 }
 
-.aui-editortoolbar-insertimage-align {
+.aui-editortoolbar-align-node {
 	position: absolute;
+}
+
+.aui-editortoolbar-insertlink-content {
+	padding: 10px;
 }
