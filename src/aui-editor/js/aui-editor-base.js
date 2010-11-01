@@ -19,13 +19,17 @@ var Editor = A.Component.create(
 
 			Editor.superclass.constructor.apply(instance, arguments);
 
-			instance.after(
-				'ready',
-				function() {
-					instance.plug(A.Plugin.EditorToolbar, instance.get('toolbar'));
-					instance.focus();
-				}
-			);
+			instance.after('ready', instance._afterEditorReady, instance);
+		},
+
+		prototype: {
+			_afterEditorReady: function(event) {
+				var instance = this;
+
+				instance.plug(A.Plugin.EditorToolbar, instance.get('toolbar'));
+
+				instance.focus();
+			}
 		}
 	}
 );
