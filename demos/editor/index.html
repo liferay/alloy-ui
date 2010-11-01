@@ -84,8 +84,9 @@ AUI().ready('aui-overlay-context-panel', 'aui-editor', function(A) {
 
 	component.plug(A.Plugin.EditorToolbar,
 		{
-			groups: [
+			append: [
 				{
+					index: 0,
 					type: 'styles',
 					config: {
 						styles: {
@@ -94,37 +95,7 @@ AUI().ready('aui-overlay-context-panel', 'aui-editor', function(A) {
 							height: 300
 						}
 					}
-				},
-				{
-					type: 'font',
-					config: {
-						fontname: {
-							optionHtml: '<option selected="selected"></option>' +
-										'<option>Arial</option>' +
-										'<option>Arial Black</option>' +
-										'<option>Comic Sans MS</option>' +
-										'<option>Courier New</option>' +
-										'<option>Lucida Console</option>' +
-										'<option>Tahoma</option>' +
-										'<option>Times New Roman</option>' +
-										'<option>Verdana</option>'
-						}
-					}
-				},
-				{ type: 'text' },
-				{
-					type: 'color',
-					config: {
-						forecolor: {
-							plugins: [A.Plugin.ColorPickerGrid]
-						}
-					}
-				},
-				{ type: 'alignment' },
-				{ type: 'indent' },
-				{ type: 'list' },
-				{ type: 'insert' },
-				{ type: 'source' }
+				}
 			]
 		}
 	);
