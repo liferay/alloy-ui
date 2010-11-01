@@ -175,27 +175,16 @@ var EditorToolbar = A.Component.create(
 
 				var toolbars = [];
 
-				instance.on(
-					'buttonitem:click',
-					function(event) {
-						var instance = this;
-
-						var cmds = event.target.get('icon').split('-');
-
-						if (!CMD_IGNORE[cmds[0]]) {
-							instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
-							instance.focus();
-						}
-					},
-					host
-				);
-
 				if (append != null && isArray(append)) {
 					for (var i = 0; i < append.length; i++) {
 						if (append[i].index != null) {
-							var index = Math.min(append[i].index, groups.length);
+							var index = instance._isGroupIncluded('type', groups, append[i].type);
 
-							groups.splice(index, 0, append[i]);
+							if (index != -1) {
+								groups.splice(index, 1);
+							}
+
+							groups.splice(Math.min(append[i].index, groups.length), 0, append[i]);
 						}
 						else {
 							groups.push(append[i]);
@@ -206,13 +195,32 @@ var EditorToolbar = A.Component.create(
 				for (var i = 0; i < groups.length; i++) {
 					var group = groups[i];
 					var groupType = GROUPS[group.type];
+					var children = [];
+					var buttons;
 					var toolbar;
 
-					var children = [];
+					if (isArray(group.include)) {
+						buttons = [];
 
-					for (var j = 0; j < groupType.children.length; j++) {
-						if (!groupType.children[j].select) {
-							children.push(groupType.children[j]);
+						for (var j = 0; j < group.include.length; j++) {
+							var index = instance._isGroupIncluded('icon', groupType.children, group.include[j]);
+
+							if (index != -1) {
+								buttons.push(groupType.children[index]);
+							}
+						}
+					}
+					else {
+						buttons = groupType.children;
+					}
+
+					for (var j = 0; j < buttons.length; j++) {
+						if (!buttons[j].select) {
+							var title = YUI.AUI.defaults.EditorToolbar.STRINGS[buttons[j]._titleKey];
+
+							buttons[j].title = (title != null ? title : EditorToolbarStrings[buttons[j]._titleKey]);
+
+							children.push(buttons[j]);
 						}
 					}
 
@@ -222,12 +230,25 @@ var EditorToolbar = A.Component.create(
 								groupType.config,
 								group.toolbar,
 								{
-									children: children
+									children: buttons
 								}
 							)
 						).render(contentBox);
 
-						toolbar.addTarget(instance);
+						toolbar.on(
+							'buttonitem:click',
+							function(event) {
+								var instance = this;
+
+								var cmds = event.target.get('icon').split('-');
+
+								if (!CMD_IGNORE[cmds[0]]) {
+									instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
+									instance.focus();
+								}
+							},
+							host
+						);
 
 						toolbars.push(toolbar);
 					}
@@ -238,8 +259,8 @@ var EditorToolbar = A.Component.create(
 						generate.init.call(instance, host, attrs);
 					}
 
-					for (var j = 0; j < groupType.children.length; j++) {
-						var item = groupType.children[j];
+					for (var j = 0; j < buttons.length; j++) {
+						var item = buttons[j];
 						var icon = item.icon;
 
 						if (generate && isFunction(generate[icon])) {
@@ -253,6 +274,18 @@ var EditorToolbar = A.Component.create(
 				}
 
 				attrs.toolbars = toolbars;
+			},
+
+			_isGroupIncluded: function(name, children, type) {
+				var instance = this;
+
+				for (var i = 0; i < children.length; i++) {
+					if (children[i][name] == type) {
+						return i;
+					}
+				}
+
+				return -1;
 			},
 
 			_updateToolbar: function(event, attrs) {
@@ -393,47 +426,55 @@ EditorToolbar.openOverlayToAlignNode = function(overlay, alignNode, iframe, ifra
 	);
 
 	overlay.show();
-}
-
-YUI.AUI.defaults.EditorToolbar = {
-	STRINGS: {
-		ALIGN: 'Align',
-		ALIGN_BLOCK: 'Block',
-		ALIGN_LEFT: 'Left',
-		ALIGN_INLINE: 'Inline',
-		ALIGN_RIGHT: 'Right',
-		BACKCOLOR: 'Background Color',
-		BOLD: 'Bold',
-		BORDER: 'Border',
-		DESCRIPTION: 'Description',
-		EDIT_IMAGE: 'Edit Image',
-		EDIT_LINK: 'Edit Link',
-		FORECOLOR: 'Foreground Color',
-		IMAGE_URL: 'Image URL',
-		INDENT: 'Indent',
-		INSERT: 'Insert',
-		INSERT_IMAGE: 'Insert Image',
-		INSERT_LINK: 'Insert Link',
-		INSERT_ORDERED_LIST: 'Insert Numbered List',
-		INSERT_UNORDERED_LIST: 'Insert Bulleted List',
-		ITALIC: 'Italic',
-		JUSTIFY_LEFT: 'Justify Left',
-		JUSTIFY_CENTER: 'Justify Center',
-		JUSTIFY_RIGHT: 'Justify Right',
-		LINK_URL: 'Link URL',
-		OPEN_IN_NEW_WINDOW: 'Open in new window',
-		OUTDENT: 'Outdent',
-		PADDING: 'Padding',
-		REMOVE_FORMAT: 'Format Source',
-		SAVE: 'Save',
-		SIZE: 'Size',
-		SOURCE: 'Source',
-		SUBSCRIPT: 'Subscript',
-		SUPERSCRIPT: 'Superscript',
-		LINE_THROUGH: 'Line Through',
-		UNDERLINE: 'Underline'
-	}
 };
+
+var EditorToolbarStrings = {
+	ALIGN: 'Align',
+	ALIGN_BLOCK: 'Block',
+	ALIGN_LEFT: 'Left',
+	ALIGN_INLINE: 'Inline',
+	ALIGN_RIGHT: 'Right',
+	BACKCOLOR: 'Background Color',
+	BOLD: 'Bold',
+	BORDER: 'Border',
+	DESCRIPTION: 'Description',
+	EDIT_IMAGE: 'Edit Image',
+	EDIT_LINK: 'Edit Link',
+	FORECOLOR: 'Foreground Color',
+	IMAGE_URL: 'Image URL',
+	INDENT: 'Indent',
+	INSERT: 'Insert',
+	INSERT_IMAGE: 'Insert Image',
+	INSERT_LINK: 'Insert Link',
+	INSERT_ORDERED_LIST: 'Insert Numbered List',
+	INSERT_UNORDERED_LIST: 'Insert Bulleted List',
+	ITALIC: 'Italic',
+	JUSTIFY_LEFT: 'Justify Left',
+	JUSTIFY_CENTER: 'Justify Center',
+	JUSTIFY_RIGHT: 'Justify Right',
+	LINE_THROUGH: 'Line Through',
+	LINK_URL: 'Link URL',
+	OPEN_IN_NEW_WINDOW: 'Open in new window',
+	OUTDENT: 'Outdent',
+	PADDING: 'Padding',
+	REMOVE_FORMAT: 'Format Source',
+	SAVE: 'Save',
+	SIZE: 'Size',
+	SOURCE: 'Source',
+	SUBSCRIPT: 'Subscript',
+	SUPERSCRIPT: 'Superscript',
+	STYLES: 'Styles',
+	UNDERLINE: 'Underline'
+};
+
+A.mix(
+	YUI.AUI.defaults,
+	{
+		EditorToolbar: {
+			STRINGS: EditorToolbarStrings
+		}
+	}
+);
 
 GROUPS = {};
 
@@ -441,15 +482,15 @@ GROUPS[ALIGNMENT] = {
 	children: [
 		{
 			icon: 'justifyleft',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_LEFT
+			_titleKey: 'JUSTIFY_LEFT'
 		},
 		{
 			icon: 'justifycenter',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_CENTER
+			_titleKey: 'JUSTIFY_CENTER'
 		},
 		{
 			icon: 'justifyright',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_RIGHT
+			_titleKey: 'JUSTIFY_RIGHT'
 		}
 	]
 };
@@ -458,11 +499,11 @@ GROUPS[COLOR] = {
 	children: [
 		{
 			icon: 'forecolor',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.FORECOLOR
+			_titleKey: 'FORECOLOR'
 		},
 		{
 			icon: 'backcolor',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.BACKCOLOR
+			_titleKey: 'BACKCOLOR'
 		}
 	],
 	generate: {
@@ -579,11 +620,11 @@ GROUPS[INDENT] = {
 	children: [
 		{
 			icon: 'indent',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INDENT
+			_titleKey: 'INDENT'
 		},
 		{
 			icon: 'outdent',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.OUTDENT
+			_titleKey: 'OUTDENT'
 		}
 	]
 };
@@ -592,11 +633,11 @@ GROUPS[INSERT] = {
 	children: [
 		{
 			icon: 'insertimage',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_IMAGE
+			_titleKey: 'INSERT_IMAGE'
 		},
 		{
 			icon: 'insertlink',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_LINK
+			_titleKey: 'INSERT_LINK'
 		}
 	],
 	generate: {
@@ -1218,11 +1259,11 @@ GROUPS[LIST] = {
 	children: [
 		{
 			icon: 'insertunorderedlist',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_UNORDERED_LIST
+			_titleKey: 'INSERT_UNORDERED_LIST'
 		},
 		{
 			icon: 'insertorderedlist',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_ORDERED_LIST
+			_titleKey: 'INSERT_ORDERED_LIST'
 		}
 	],
 	generate: {
@@ -1238,11 +1279,11 @@ GROUPS[SOURCE] = {
 	children: [
 		{
 			icon: 'format',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.REMOVE_FORMAT
+			_titleKey: 'REMOVE_FORMAT'
 		},
 		{
 			icon: 'source',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SOURCE
+			_titleKey: 'SOURCE'
 		}
 	],
 	generate: {
@@ -1355,7 +1396,8 @@ GROUPS[SOURCE] = {
 GROUPS[STYLES] = {
 	children: [
 		{
-			icon: 'styles'
+			icon: 'styles',
+			_titleKey: 'STYLES'
 		}
 	],
 	generate: {
@@ -1389,11 +1431,11 @@ GROUPS[SUBSCRIPT] = {
 	children: [
 		{
 			icon: 'subscript',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SUBSCRIPT
+			_titleKey: 'SUBSCRIPT'
 		},
 		{
 			icon: 'superscript',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SUPERSCRIPT
+			_titleKey: 'SUPERSCRIPT'
 		}
 	]
 };
@@ -1402,19 +1444,19 @@ GROUPS[TEXT] = {
 	children: [
 		{
 			icon: 'bold',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.BOLD
+			_titleKey: 'BOLD'
 		},
 		{
 			icon: 'italic',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.ITALIC
+			_titleKey: 'ITALIC'
 		},
 		{
 			icon: 'underline',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.UNDERLINE
+			_titleKey: 'UNDERLINE'
 		},
 		{
 			icon: 'strikethrough',
-			title: YUI.AUI.defaults.EditorToolbar.STRINGS.LINE_THROUGH
+			_titleKey: 'LINE_THROUGH'
 		}
 	]
 };
