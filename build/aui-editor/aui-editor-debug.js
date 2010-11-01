@@ -1,3 +1,40 @@
+AUI.add('aui-editor-base', function(A) {
+var Lang = A.Lang,
+
+	NAME = 'editor';
+
+var Editor = A.Component.create(
+	{
+		NAME: NAME,
+
+		EXTENDS: A.EditorBase,
+
+		ATTRS: {
+			toolbar: {
+				value: null
+			}
+		},
+
+		constructor: function() {
+			var instance = this;
+
+			Editor.superclass.constructor.apply(instance, arguments);
+
+			instance.after(
+				'ready',
+				function() {
+					instance.plug(A.Plugin.EditorToolbar, instance.get('toolbar'));
+					instance.focus();
+				}
+			);
+		}
+	}
+);
+
+A.Editor = Editor;
+
+}, '@VERSION@' ,{requires:['aui-base','editor-base','aui-editor-toolbar-plugin']});
+
 AUI.add('aui-editor-tools-plugin', function(A) {
 var Lang = A.Lang,
 
@@ -434,6 +471,7 @@ A.namespace('Plugin').EditorMenu = EditorMenuPlugin;
 
 AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
+	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -551,10 +589,22 @@ var EditorToolbar = A.Component.create(
 		EXTENDS: A.Plugin.Base,
 
 		ATTRS: {
+			append: {
+				value: null
+			},
 			groups: {
 				value: [
 					{
+						type: FONT
+					},
+					{
 						type: TEXT
+					},
+					{
+						type: SUBSCRIPT
+					},
+					{
+						type: COLOR
 					},
 					{
 						type: ALIGNMENT
@@ -564,6 +614,12 @@ var EditorToolbar = A.Component.create(
 					},
 					{
 						type: LIST
+					},
+					{
+						type: INSERT
+					},
+					{
+						type: SOURCE
 					}
 				]
 			}
@@ -575,6 +631,7 @@ var EditorToolbar = A.Component.create(
 
 				var host = instance.get('host');
 				var container = host.frame.get('container');
+				var append = instance.get('append');
 				var groups = instance.get('groups');
 
 				var boundingBox = A.Node.create(TPL_TOOLBAR);
@@ -603,6 +660,19 @@ var EditorToolbar = A.Component.create(
 					},
 					host
 				);
+
+				if (append != null && isArray(append)) {
+					for (var i = 0; i < append.length; i++) {
+						if (append[i].index != null) {
+							var index = Math.min(append[i].index, groups.length);
+
+							groups.splice(index, 0, append[i]);
+						}
+						else {
+							groups.push(append[i]);
+						}
+					}
+				}
 
 				for (var i = 0; i < groups.length; i++) {
 					var group = groups[i];
@@ -2390,5 +2460,5 @@ A.namespace('Plugin').EditorBBCode = EditorBBCode;
 
 
 
-AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']});
+AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']});
 

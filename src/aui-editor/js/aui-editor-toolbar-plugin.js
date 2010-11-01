@@ -1,4 +1,5 @@
 var Lang = A.Lang,
+	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -116,10 +117,22 @@ var EditorToolbar = A.Component.create(
 		EXTENDS: A.Plugin.Base,
 
 		ATTRS: {
+			append: {
+				value: null
+			},
 			groups: {
 				value: [
 					{
+						type: FONT
+					},
+					{
 						type: TEXT
+					},
+					{
+						type: SUBSCRIPT
+					},
+					{
+						type: COLOR
 					},
 					{
 						type: ALIGNMENT
@@ -129,6 +142,12 @@ var EditorToolbar = A.Component.create(
 					},
 					{
 						type: LIST
+					},
+					{
+						type: INSERT
+					},
+					{
+						type: SOURCE
 					}
 				]
 			}
@@ -140,6 +159,7 @@ var EditorToolbar = A.Component.create(
 
 				var host = instance.get('host');
 				var container = host.frame.get('container');
+				var append = instance.get('append');
 				var groups = instance.get('groups');
 
 				var boundingBox = A.Node.create(TPL_TOOLBAR);
@@ -168,6 +188,19 @@ var EditorToolbar = A.Component.create(
 					},
 					host
 				);
+
+				if (append != null && isArray(append)) {
+					for (var i = 0; i < append.length; i++) {
+						if (append[i].index != null) {
+							var index = Math.min(append[i].index, groups.length);
+
+							groups.splice(index, 0, append[i]);
+						}
+						else {
+							groups.push(append[i]);
+						}
+					}
+				}
 
 				for (var i = 0; i < groups.length; i++) {
 					var group = groups[i];
