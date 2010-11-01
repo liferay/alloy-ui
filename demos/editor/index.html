@@ -44,7 +44,7 @@
 
 
 
-AUI().ready('aui-overlay-context-panel', 'aui-editor', function(A) {
+AUI().ready('aui-editor', function(A) {
 
 	var fonts = [
 		'Fonts',
@@ -65,40 +65,28 @@ AUI().ready('aui-overlay-context-panel', 'aui-editor', function(A) {
 		{ label: 'Computer Code', tag: 'code' },
 	];
 
-	var component = new A.EditorBase(
+	var component = new A.Editor(
 			{
-				content: '<p><a href="http://www.test.com" target="_blank"><img src="../../build/aui-editor/assets/skins/sam/blankimage.png" align="left" style="border: 1px solid; padding: 5px;" alt="test" /></a></p><p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>'
+				content: '<p><a href="http://www.test.com" target="_blank"><img src="../../build/aui-editor/assets/skins/sam/blankimage.png" align="left" style="border: 1px solid; padding: 5px;" alt="test" /></a></p><p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>',
+				toolbar: {
+					append: [
+						{
+							index: 0,
+							type: 'styles',
+							config: {
+								styles: {
+									items: fonts,
+									width: 200,
+									height: 300
+								}
+							}
+						}
+					]
+				}
 			}
 		);
 
-	component.on(
-		'frame:ready',
-		function() {
-			var instance = this;
-
-			instance.focus();
-		}
-	);
-
 	component.render('#demo');
-
-	component.plug(A.Plugin.EditorToolbar,
-		{
-			append: [
-				{
-					index: 0,
-					type: 'styles',
-					config: {
-						styles: {
-							items: fonts,
-							width: 200,
-							height: 300
-						}
-					}
-				}
-			]
-		}
-	);
 
 });
 

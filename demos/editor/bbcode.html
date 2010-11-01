@@ -40,38 +40,13 @@
 
 AUI().ready('aui-editor', function(A) {
 
-	var component = new A.EditorBase(
+	var component = new A.Editor(
 			{
 				content: '<p>Test Content 1</p><p><b>Test Content 2</b></p><p><i>Test Content 3</i></p><p><u>Test Content 4</u></p><p><strike>Test Content 5</strike></p>'
 			}
 		);
 
-		component.on(
-			'frame:ready',
-			function() {
-				var instance = this;
-
-				instance.focus();
-			}
-		);
-
 		component.render('#demo');
-
-		component.plug(
-			A.Plugin.EditorToolbar,
-			{
-				groups: [
-					{ type: 'font' },
-					{ type: 'text' },
-					{ type: 'color' },
-					{ type: 'alignment' },
-					{ type: 'indent' },
-					{ type: 'list' },
-					{ type: 'insert' },
-					{ type: 'source' }
-				]
-			}
-		);
 
 		component.plug(A.Plugin.EditorBBCode);
 
