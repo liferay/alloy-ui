@@ -866,42 +866,44 @@ EditorToolbar.openOverlayToAlignNode = function(overlay, alignNode, iframe, ifra
 	overlay.show();
 }
 
-EditorToolbar.STRINGS = {
-	ALIGN: 'Align',
-	ALIGN_BLOCK: 'Block',
-	ALIGN_LEFT: 'Left',
-	ALIGN_INLINE: 'Inline',
-	ALIGN_RIGHT: 'Right',
-	BACKCOLOR: 'Background Color',
-	BOLD: 'Bold',
-	BORDER: 'Border',
-	DESCRIPTION: 'Description',
-	EDIT_IMAGE: 'Edit Image',
-	EDIT_LINK: 'Edit Link',
-	FORECOLOR: 'Foreground Color',
-	IMAGE_URL: 'Image URL',
-	INDENT: 'Indent',
-	INSERT: 'Insert',
-	INSERT_IMAGE: 'Insert Image',
-	INSERT_LINK: 'Insert Link',
-	INSERT_ORDERED_LIST: 'Insert Numbered List',
-	INSERT_UNORDERED_LIST: 'Insert Bulleted List',
-	ITALIC: 'Italic',
-	JUSTIFY_LEFT: 'Justify Left',
-	JUSTIFY_CENTER: 'Justify Center',
-	JUSTIFY_RIGHT: 'Justify Right',
-	LINK_URL: 'Link URL',
-	OPEN_IN_NEW_WINDOW: 'Open in new window',
-	OUTDENT: 'Outdent',
-	PADDING: 'Padding',
-	REMOVE_FORMAT: 'Format Source',
-	SAVE: 'Save',
-	SIZE: 'Size',
-	SOURCE: 'Source',
-	SUBSCRIPT: 'Subscript',
-	SUPERSCRIPT: 'Superscript',
-	LINE_THROUGH: 'Line Through',
-	UNDERLINE: 'Underline'
+YUI.AUI.defaults.EditorToolbar = {
+	STRINGS: {
+		ALIGN: 'Align',
+		ALIGN_BLOCK: 'Block',
+		ALIGN_LEFT: 'Left',
+		ALIGN_INLINE: 'Inline',
+		ALIGN_RIGHT: 'Right',
+		BACKCOLOR: 'Background Color',
+		BOLD: 'Bold',
+		BORDER: 'Border',
+		DESCRIPTION: 'Description',
+		EDIT_IMAGE: 'Edit Image',
+		EDIT_LINK: 'Edit Link',
+		FORECOLOR: 'Foreground Color',
+		IMAGE_URL: 'Image URL',
+		INDENT: 'Indent',
+		INSERT: 'Insert',
+		INSERT_IMAGE: 'Insert Image',
+		INSERT_LINK: 'Insert Link',
+		INSERT_ORDERED_LIST: 'Insert Numbered List',
+		INSERT_UNORDERED_LIST: 'Insert Bulleted List',
+		ITALIC: 'Italic',
+		JUSTIFY_LEFT: 'Justify Left',
+		JUSTIFY_CENTER: 'Justify Center',
+		JUSTIFY_RIGHT: 'Justify Right',
+		LINK_URL: 'Link URL',
+		OPEN_IN_NEW_WINDOW: 'Open in new window',
+		OUTDENT: 'Outdent',
+		PADDING: 'Padding',
+		REMOVE_FORMAT: 'Format Source',
+		SAVE: 'Save',
+		SIZE: 'Size',
+		SOURCE: 'Source',
+		SUBSCRIPT: 'Subscript',
+		SUPERSCRIPT: 'Superscript',
+		LINE_THROUGH: 'Line Through',
+		UNDERLINE: 'Underline'
+	}
 };
 
 GROUPS = {};
@@ -910,15 +912,15 @@ GROUPS[ALIGNMENT] = {
 	children: [
 		{
 			icon: 'justifyleft',
-			title: EditorToolbar.STRINGS.JUSTIFY_LEFT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_LEFT
 		},
 		{
 			icon: 'justifycenter',
-			title: EditorToolbar.STRINGS.JUSTIFY_CENTER
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_CENTER
 		},
 		{
 			icon: 'justifyright',
-			title: EditorToolbar.STRINGS.JUSTIFY_RIGHT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.JUSTIFY_RIGHT
 		}
 	]
 };
@@ -927,11 +929,11 @@ GROUPS[COLOR] = {
 	children: [
 		{
 			icon: 'forecolor',
-			title: EditorToolbar.STRINGS.FORECOLOR
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.FORECOLOR
 		},
 		{
 			icon: 'backcolor',
-			title: EditorToolbar.STRINGS.BACKCOLOR
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.BACKCOLOR
 		}
 	],
 	generate: {
@@ -1048,11 +1050,11 @@ GROUPS[INDENT] = {
 	children: [
 		{
 			icon: 'indent',
-			title: EditorToolbar.STRINGS.INDENT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INDENT
 		},
 		{
 			icon: 'outdent',
-			title: EditorToolbar.STRINGS.OUTDENT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.OUTDENT
 		}
 	]
 };
@@ -1061,11 +1063,11 @@ GROUPS[INSERT] = {
 	children: [
 		{
 			icon: 'insertimage',
-			title: EditorToolbar.STRINGS.INSERT_IMAGE
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_IMAGE
 		},
 		{
 			icon: 'insertlink',
-			title: EditorToolbar.STRINGS.INSERT_LINK
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_LINK
 		}
 	],
 	generate: {
@@ -1082,7 +1084,7 @@ GROUPS[INSERT] = {
 			var panel = new A.Panel(
 				{
 					collapsible: false,
-					title: EditorToolbar.STRINGS.INSERT_IMAGE,
+					title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_IMAGE,
 					icons: [
 						{
 							icon: ICON_CLOSE,
@@ -1132,11 +1134,11 @@ GROUPS[INSERT] = {
 					[
 						{
 							id: 'imageURL',
-							labelText: EditorToolbar.STRINGS.IMAGE_URL
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.IMAGE_URL
 						},
 						{
 							id: 'size',
-							labelText: EditorToolbar.STRINGS.SIZE,
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.SIZE,
 							type: 'hidden'
 						},
 						{
@@ -1151,31 +1153,31 @@ GROUPS[INSERT] = {
 						},
 						{
 							id: 'padding',
-							labelText: EditorToolbar.STRINGS.PADDING
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.PADDING
 						},
 						new A.Select(
 							{
 								id: 'border',
-								labelText: EditorToolbar.STRINGS.BORDER,
+								labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.BORDER,
 								options: borderOptions
 							}
 						),
 						{
 							id: 'align',
-							labelText: EditorToolbar.STRINGS.ALIGN,
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN,
 							type: 'hidden'
 						},
 						{
 							id: 'description',
-							labelText: EditorToolbar.STRINGS.DESCRIPTION
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.DESCRIPTION
 						},
 						{
 							id: 'linkURL',
-							labelText: EditorToolbar.STRINGS.LINK_URL
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.LINK_URL
 						},
 						{
 							id: 'openInNewWindow',
-							labelText: EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
+							labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
 							type: 'checkbox'
 						}
 					],
@@ -1192,7 +1194,7 @@ GROUPS[INSERT] = {
 				var insertButton = new A.ButtonItem(
 					{
 						icon: ICON_CHECK,
-						label: EditorToolbar.STRINGS.INSERT
+						label: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT
 					}
 				).render(buttonRow);
 
@@ -1355,19 +1357,19 @@ GROUPS[INSERT] = {
 						children: [
 							{
 								icon: ALIGN_LEFT,
-								title: EditorToolbar.STRINGS.ALIGN_LEFT
+								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_LEFT
 							},
 							{
 								icon: ALIGN_INLINE,
-								title: EditorToolbar.STRINGS.ALIGN_INLINE
+								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_INLINE
 							},
 							{
 								icon: ALIGN_BLOCK,
-								title: EditorToolbar.STRINGS.ALIGN_BLOCK
+								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_BLOCK
 							},
 							{
 								icon: ALIGN_RIGHT,
-								title: EditorToolbar.STRINGS.ALIGN_RIGHT
+								title: YUI.AUI.defaults.EditorToolbar.STRINGS.ALIGN_RIGHT
 							}
 						]
 					}
@@ -1416,8 +1418,8 @@ GROUPS[INSERT] = {
 
 						hrefTarget.get('node').set('checked', false);
 
-						panel.set('title', EditorToolbar.STRINGS.INSERT_IMAGE);
-						insertButton.set('label', EditorToolbar.STRINGS.INSERT);
+						panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_IMAGE);
+						insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT);
 
 						alignNode.hide();
 
@@ -1497,8 +1499,8 @@ GROUPS[INSERT] = {
 
 									hrefTarget.get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
 
-									panel.set('title', EditorToolbar.STRINGS.EDIT_IMAGE);
-									insertButton.set('label', EditorToolbar.STRINGS.SAVE);
+									panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_IMAGE);
+									insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
 
 									editNode = img;
 
@@ -1525,7 +1527,7 @@ GROUPS[INSERT] = {
 			var panel = new A.Panel(
 				{
 					collapsible: false,
-					title: EditorToolbar.STRINGS.INSERT_LINK,
+					title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_LINK,
 					icons: [
 						{
 							icon: ICON_CLOSE,
@@ -1555,15 +1557,15 @@ GROUPS[INSERT] = {
 				[
 					{
 						id: 'description',
-						labelText: EditorToolbar.STRINGS.DESCRIPTION
+						labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.DESCRIPTION
 					},
 					{
 						id: 'linkURL',
-						labelText: EditorToolbar.STRINGS.LINK_URL
+						labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.LINK_URL
 					},
 					{
 						id: 'openInNewWindow',
-						labelText: EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
+						labelText: YUI.AUI.defaults.EditorToolbar.STRINGS.OPEN_IN_NEW_WINDOW,
 						type: 'checkbox'
 					}
 				],
@@ -1578,7 +1580,7 @@ GROUPS[INSERT] = {
 			var insertButton = new A.ButtonItem(
 				{
 					icon: ICON_CHECK,
-					label: EditorToolbar.STRINGS.INSERT
+					label: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT
 				}
 			).render(buttonRow);
 
@@ -1617,8 +1619,8 @@ GROUPS[INSERT] = {
 
 					hrefTarget.get('node').set('checked', false);
 
-					panel.set('title', EditorToolbar.STRINGS.CREATE_LINK);
-					insertButton.set('label', EditorToolbar.STRINGS.INSERT);
+					panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.CREATE_LINK);
+					insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT);
 
 					alignNode.hide();
 
@@ -1666,8 +1668,8 @@ GROUPS[INSERT] = {
 
 									hrefTarget.get('node').attr('checked', (link.getAttribute('target') == '_blank'));
 
-									panel.set('title', EditorToolbar.STRINGS.EDIT_LINK);
-									insertButton.set('label', EditorToolbar.STRINGS.SAVE);
+									panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_LINK);
+									insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
 
 									editNode = link;
 
@@ -1687,11 +1689,11 @@ GROUPS[LIST] = {
 	children: [
 		{
 			icon: 'insertunorderedlist',
-			title: EditorToolbar.STRINGS.INSERT_UNORDERED_LIST
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_UNORDERED_LIST
 		},
 		{
 			icon: 'insertorderedlist',
-			title: EditorToolbar.STRINGS.INSERT_ORDERED_LIST
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_ORDERED_LIST
 		}
 	],
 	generate: {
@@ -1707,11 +1709,11 @@ GROUPS[SOURCE] = {
 	children: [
 		{
 			icon: 'format',
-			title: EditorToolbar.STRINGS.REMOVE_FORMAT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.REMOVE_FORMAT
 		},
 		{
 			icon: 'source',
-			title: EditorToolbar.STRINGS.SOURCE
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SOURCE
 		}
 	],
 	generate: {
@@ -1858,11 +1860,11 @@ GROUPS[SUBSCRIPT] = {
 	children: [
 		{
 			icon: 'subscript',
-			title: EditorToolbar.STRINGS.SUBSCRIPT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SUBSCRIPT
 		},
 		{
 			icon: 'superscript',
-			title: EditorToolbar.STRINGS.SUPERSCRIPT
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.SUPERSCRIPT
 		}
 	]
 };
@@ -1871,19 +1873,19 @@ GROUPS[TEXT] = {
 	children: [
 		{
 			icon: 'bold',
-			title: EditorToolbar.STRINGS.BOLD
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.BOLD
 		},
 		{
 			icon: 'italic',
-			title: EditorToolbar.STRINGS.ITALIC
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.ITALIC
 		},
 		{
 			icon: 'underline',
-			title: EditorToolbar.STRINGS.UNDERLINE
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.UNDERLINE
 		},
 		{
 			icon: 'strikethrough',
-			title: EditorToolbar.STRINGS.LINE_THROUGH
+			title: YUI.AUI.defaults.EditorToolbar.STRINGS.LINE_THROUGH
 		}
 	]
 };
