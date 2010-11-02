@@ -14,6 +14,10 @@
 	float: right;
 }
 
+.aui-databrowser .aui-databrowser-search-view-only .aui-combobox-content {
+	float: none;
+}
+
 .aui-databrowser .aui-databrowser-search-list {
 	margin: 0;
 	list-style: none;
