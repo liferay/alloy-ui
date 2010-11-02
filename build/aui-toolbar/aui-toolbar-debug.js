@@ -11,6 +11,7 @@ var Lang = A.Lang,
 	HORIZONTAL = 'horizontal',
 	NAME = 'toolbar',
 	ORIENTATION = 'orientation',
+	TOOLBARSPACER = 'toolbarspacer',
 	VERTICAL = 'vertical',
 
 	getClassName = A.ClassNameManager.getClassName,
@@ -21,6 +22,14 @@ var Lang = A.Lang,
 	CSS_ITEM_CONTENT = getClassName(NAME, 'item', 'content'),
 	CSS_LAST = getClassName(NAME, 'last'),
 	CSS_VERTICAL = getClassName(NAME, VERTICAL),
+
+	isButtonItem = function(v) {
+		return ( v instanceof A.ButtonItem );
+	},
+
+	isToolbarSpacer = function(v) {
+		return ( v instanceof A.ToolbarSpacer );
+	},
 
 	TPL_GENERIC = '<span></span>';
 
@@ -165,15 +174,38 @@ var Toolbar = A.Component.create(
 				var instance = this;
 
 				var length = instance.size() - 1;
+				var indexFirst = -1;
+				var indexLast = -1;
 
 				instance.each(
 					function(item, index, collection) {
 						var itemBoundingBox = item.get('boundingBox');
 
-						itemBoundingBox.toggleClass(CSS_FIRST, index == 0);
-						itemBoundingBox.toggleClass(CSS_LAST, index == length);
+						if (isButtonItem(item)) {
+							if (indexFirst == -1) {
+								indexFirst = index;
+							}
+							else {
+								indexLast = index;
+							}
 
-						itemBoundingBox.addClass(CSS_ITEM);
+							itemBoundingBox.toggleClass(CSS_FIRST, index == indexFirst);
+							itemBoundingBox.toggleClass(CSS_LAST, index == length);
+
+							itemBoundingBox.addClass(CSS_ITEM);
+						}
+						else {
+							if (index == indexFirst + 1) {
+								indexLast = indexFirst;
+							}
+
+							if (indexLast != -1) {
+								collection.item(indexLast).get('boundingBox').toggleClass(CSS_LAST, true);
+							}
+
+							indexFirst = -1;
+							indexLast = -1;
+						}
 					}
 				);
 			},
@@ -251,6 +283,23 @@ var Toolbar = A.Component.create(
 	}
 );
 
+var ToolbarSpacer = A.Component.create(
+		{
+			NAME: TOOLBARSPACER,
+
+			ATTRS: {
+				
+			},
+
+			prototype: {
+				BOUNDING_TEMPLATE: TPL_GENERIC,
+				CONTENT_TEMPLATE: null
+			}
+		}
+	);
+
+A.ToolbarSpacer = A.Base.build(NAME, ToolbarSpacer, [A.WidgetChild], { dynamic: false });
+
 var WidgetParentId = function() {
 	var instance = this;
 
@@ -317,4 +366,4 @@ WidgetParentId.prototype = {
 
 A.Toolbar = A.Base.build(NAME, Toolbar, [A.WidgetParent, WidgetParentId], { dynamic: false });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true});
