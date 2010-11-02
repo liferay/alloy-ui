@@ -712,21 +712,6 @@ var EditorToolbar = A.Component.create(
 							)
 						).render(contentBox);
 
-						toolbar.on(
-							'buttonitem:click',
-							function(event) {
-								var instance = this;
-
-								var cmds = event.target.get('icon').split('-');
-
-								if (!CMD_IGNORE[cmds[0]]) {
-									instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
-									instance.focus();
-								}
-							},
-							host
-						);
-
 						toolbars.push(toolbar);
 					}
 
@@ -751,6 +736,26 @@ var EditorToolbar = A.Component.create(
 				}
 
 				attrs.toolbars = toolbars;
+
+				contentBox.delegate(
+					'click',
+					function(event) {
+						var instance = this;
+
+						var node = A.Widget.getByNode(event.currentTarget);
+
+						if (node) {
+							var cmds = node.get('icon').split('-');
+
+							if (!CMD_IGNORE[cmds[0]]) {
+								instance.execCommand(cmds[0], (cmds[1] ? cmds[1] : ''));
+								instance.focus();
+							}
+						}
+					},
+					'button',
+					host
+				);
 			},
 
 			_isGroupIncluded: function(name, children, type) {
