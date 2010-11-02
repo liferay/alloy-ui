@@ -31,3 +31,13 @@
 .aui-toolbar-vertical .aui-buttonitem-icon-only .aui-buttonitem-icon {
 	float: none;
 }
+
+.aui-toolbar-horizontal .aui-toolbarspacer {
+	width: 4px;
+	display: inline-block;
+}
+
+.aui-toolbar-vertical .aui-toolbarspacer {
+	height: 4px;
+	display: block;
+}
