@@ -44,8 +44,10 @@ var Lang = A.Lang,
 	CSS_SEARCH = getClassName(NAME, SEARCH),
 	CSS_SEARCH_LIST = getClassName(NAME, SEARCH, 'list'),
 	CSS_SEARCH_LIST_ITEM = getClassName(NAME, SEARCH, 'list', 'item'),
+	CSS_SEARCH_VIEW_ONLY = getClassName(NAME, SEARCH, 'view', 'only'),
 	CSS_TREE = getClassName(NAME, TREE),
 	CSS_TREE_NODE_LEAF = getClassName(TREE, 'node', 'leaf'),
+	CSS_TREE_VIEW_ONLY = getClassName(NAME, TREE, 'view', 'only'),
 
 	TPL_SEARCH = '<div class="' + CSS_SEARCH + '"></div>',
 	TPL_SEARCH_LIST = '<ul class="' + CSS_SEARCH_LIST + '"></ul>',
@@ -450,6 +452,9 @@ var DataBrowser = A.Component.create(
 
 					instance._searchBrowser = searchBrowser;
 				}
+				else {
+					contentBox.addClass(CSS_TREE_VIEW_ONLY)
+				}
 
 				if (treeView) {
 					var treeBrowser = new TreeBrowser(
@@ -457,6 +462,9 @@ var DataBrowser = A.Component.create(
 					).render(contentBox);
 
 					instance._treeBrowser = treeBrowser;
+				}
+				else {
+					contentBox.addClass(CSS_SEARCH_VIEW_ONLY)
 				}
 
 				if (searchView && treeView) {
