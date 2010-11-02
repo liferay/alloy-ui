@@ -10,6 +10,10 @@
 	overflow-y: auto;
 }
 
+.aui-databrowser .aui-combobox-content {
+	float: right;
+}
+
 .aui-databrowser .aui-databrowser-search-list {
 	margin: 0;
 	list-style: none;
