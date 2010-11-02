@@ -253,23 +253,17 @@ AUI().ready('aui-data-browser', function(A) {
 				dataSource: icons,
 				schema: {
 					resultFields: ['folderName', 'iconCss']
-				}
-			},
-			treeView: {
-				dataSource: gallery
-			},
-			on: {
-				itemSelected: function(event) {
-					console.log('itemSelected', event);
 				},
-				dataReturn: function(event) {
-					var instance = this;
+				on: {
+					dataReturn: function(event) {
+						var instance = this;
 
-					var results = event.response.results;
-					var query = event.request;
+						var results = event.response.results;
+						var query = event.request;
 
-					if (instance.get('currentView') == 'search') {
 						var data = [];
+
+						query = query.replace('*', '');
 
 						for (var i = 0; i < results.length; i++) {
 							if (query == '*' || query == '' || results[i].iconCss.toLowerCase().indexOf(query.toLowerCase()) != -1) {
@@ -286,7 +280,17 @@ AUI().ready('aui-data-browser', function(A) {
 
 						event.response.results = data;
 					}
-					else {
+				}
+			},
+			treeView: {
+				dataSource: gallery,
+				on: {
+					dataReturn: function(event) {
+						var instance = this;
+
+						var results = event.response.results;
+						var query = event.request;
+
 						var cfg = event.cfg;
 						var data = event.data;
 
@@ -335,6 +339,11 @@ AUI().ready('aui-data-browser', function(A) {
 
 						event.response.results = results;
 					}
+				}
+			},
+			on: {
+				itemSelected: function(event) {
+					console.log('itemSelected', event);
 				}
 			}
 		}

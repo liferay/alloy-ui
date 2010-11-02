@@ -8,23 +8,19 @@ var Lang = A.Lang,
 	getClassName = A.ClassNameManager.getClassName,
 
 	NAME = 'databrowser',
-	SEARCH_VIEW = 'searchView',
-	TREE_VIEW = 'treeView',
 
-	ALERT = 'alert',
+	BINDUI = 'bindUI',
 	ICON = 'icon',
+	ICON_SEARCH = 'search',
+	ICON_TREE = 'folder-open',
 	IMAGE = 'image',
-	INPUT = 'input',
-	LOADING = 'loading',
-	RENDERED = 'rendered',
+	RENDERUI = 'renderUI',
 	SEARCH = 'search',
 	TEXT = 'text',
 	TREE = 'tree',
 
-	ICON_FOLDER = 'folder-open',
-	ICON_DEFAULT = 'search',
-	ICON_ERROR = ALERT,
-	ICON_LOADING = LOADING,
+	SEARCHBROWSER = NAME + '-' + SEARCH + '-ui',
+	TREEBROWSER = NAME + '-' + TREE + '-ui',
 
 	addLeafClass = function(results) {
 		for (var i in results) {
@@ -45,21 +41,12 @@ var Lang = A.Lang,
 		return ( v instanceof A.TreeView );
 	},
 
-	isTreeNodeItem = function(node) {
-		return node.hasClass(CSS_TREE_NODE);
-	},
-
 	CSS_RESULTS_ITEM = getClassName(NAME, 'results', 'item'),
 	CSS_SEARCH = getClassName(NAME, SEARCH),
 	CSS_SEARCH_LIST = getClassName(NAME, SEARCH, 'list'),
 	CSS_SEARCH_LIST_ITEM = getClassName(NAME, SEARCH, 'list', 'item'),
 	CSS_TREE = getClassName(NAME, TREE),
-	CSS_TREE_NODE = getClassName(NAME, TREE, 'node'),
-
-	KEY_ENTER = 13,
-
-	BOUNDING_BOX = 'boundingBox',
-	CONTENT_BOX = 'contentBox',
+	CSS_TREE_NODE_LEAF = getClassName(TREE, 'node', 'leaf'),
 
 	TPL_SEARCH = '<div class="' + CSS_SEARCH + '"></div>',
 	TPL_SEARCH_LIST = '<ul class="' + CSS_SEARCH_LIST + '"></ul>',
@@ -69,46 +56,372 @@ var Lang = A.Lang,
 	TPL_SEARCH_LIST_ITEM_TEXT = '<div title="{1}">{0}</div>',
 	TPL_TREE = '<div class="' + CSS_TREE + '"></div>';
 
+var SearchBrowserView = function() {
+	var instance = this;
+
+	A.after(instance._renderUISearchBrowserView, instance, RENDERUI);
+	A.after(instance._bindUISearchBrowserView, instance, BINDUI);
+};
+
+SearchBrowserView.ATTRS = {
+	displayName: {
+		value: false
+	},
+	matchKey: {
+		value: ''
+	}
+};
+
+SearchBrowserView.prototype = {
+	/**
+	 * Create the DOM structure for the SearchBrowserView. Lifecycle.
+	 *
+	 * @method _renderUISearchBrowserView
+	 * @protected
+	 */
+	_renderUISearchBrowserView: function() {
+		var instance = this;
+
+		var viewNode = A.Node.create(TPL_SEARCH);
+
+		instance.get('contentBox').append(viewNode);
+
+		instance._viewNode = viewNode;
+	},
+
+	/**
+	 * Bind the events on the SearchBrowserView UI. Lifecycle.
+	 *
+	 * @method _bindUISearchBrowserView
+	 * @protected
+	 */
+	_bindUISearchBrowserView: function() {
+		var instance = this;
+
+		instance.on('handleResponse', instance._populateResultView, instance);
+	},
+
+	hideView: function() {
+		var instance = this;
+
+		instance._viewNode.hide();
+	},
+
+	showView: function() {
+		var instance = this;
+
+		instance._viewNode.show();
+	},
+
+	_populateResultView: function(event) {
+		var instance = this;
+
+		var response = event.response;
+
+		var ok = instance.doBeforeLoadData(event);
+
+		if (ok && !event.error) {
+			instance.fire('dataReturn', event);
+
+			var allResults = response.results;
+			var displayName = instance.get('displayName');
+			var matchKey = instance.get('matchKey');
+			var sorted = [];
+
+			if (matchKey) {
+				var found = [];
+				var unsorted = [];
+				var index = 0;
+
+				for (var i = 0; i < allResults.length; i++) {
+					var name = allResults[i][matchKey];
+
+					if (name != null) {
+						if (found[name] != null) {
+							sorted[found[name]].data.push(allResults[i]);
+						}
+						else {
+							found[name] = index;
+
+							sorted[index] = {
+								name: name,
+								data: [allResults[i]]
+							};
+
+							index++;
+						}
+					}
+					else {
+						unsorted.push(allResults[i]);
+					}
+				}
+
+				sorted.sort(
+					function(a, b) {
+						return (a.data.length == b.data.length ? 0 : (a.data.length > b.data.length ? -1 : 1));
+					}
+				);
+
+				if (unsorted.length > 0) {
+					sorted.push(
+						{
+							name: '',
+							data: unsorted
+						}
+					);
+				}
+			}
+			else {
+				sorted.push(
+					{
+						name: '',
+						data: allResults
+					}
+				);
+			}
+
+			instance._viewNode.html('');
+
+			for (var i = 0; i < sorted.length; i++) {
+				var ul = A.Node.create(TPL_SEARCH_LIST);
+
+				for (var j = 0; j < sorted[i].data.length; j++) {
+					var data = sorted[i].data[j];
+
+					var tpl;
+					var icon;
+					var type;
+
+					if (data.imageUri) {
+						tpl = TPL_SEARCH_LIST_ITEM_IMAGE;
+						icon = data.imageUri;
+						type = IMAGE;
+					}
+					else if (data.iconCss) {
+						tpl = TPL_SEARCH_LIST_ITEM_ICON;
+						icon =  data.iconCss;
+						type = ICON;
+					}
+					else {
+						tpl = TPL_SEARCH_LIST_ITEM_TEXT;
+						type = TEXT;
+					}
+
+					tpl = Lang.sub(TPL_SEARCH_LIST_ITEM, [Lang.sub(tpl, [(displayName ? data.name : ''), data.title || '', icon || '']), type]);
+
+					var item = A.Node.create(tpl);
+
+					item.setData(NAME, data);
+
+					ul.append(item);
+				}
+
+				if (matchKey) {
+					new A.Panel(
+						{
+							collapsible: true,
+							collapsed: (instance._viewNode.html() != ''),
+							headerContent: sorted[i].name,
+							bodyContent: ul
+						}
+					).render(instance._viewNode);
+				}
+				else {
+					instance._viewNode.append(ul);
+				}
+			}
+		}
+	},
+
+	_uiSetHeight: function(val) {
+		var instance = this;
+
+		var height = parseInt(val);
+		var viewNode = instance._viewNode;
+
+		if (height) {
+			var padding = viewNode.getBorderWidth('tb') + viewNode.getPadding('tb');
+
+			viewNode.setStyle('height', (height - padding));
+		}
+		else {
+			viewNode.setStyle('height', '');
+		}
+	}
+};
+
+var SearchBrowser = A.Base.build(SEARCHBROWSER, A.Component, [A.DataSourceControl, A.InputTextControl, SearchBrowserView]);
+
+var TreeBrowserView = function() {
+	var instance = this;
+
+	A.after(instance._renderUITreeBrowserView, instance, RENDERUI);
+	A.after(instance._bindUITreeBrowserView, instance, BINDUI);
+};
+
+TreeBrowserView.ATTRS = {
+	rootLabel: {
+		value: ''
+	}
+};
+
+TreeBrowserView.prototype = {
+	/**
+	 * Create the DOM structure for the TreeBrowserView. Lifecycle.
+	 *
+	 * @method _renderUITreeBrowserView
+	 * @protected
+	 */
+	_renderUITreeBrowserView: function() {
+		var instance = this;
+
+		var contentBox = instance.get('contentBox');
+		var dataSource = instance.get('dataSource');
+		var viewNode = A.Node.create(TPL_TREE);
+
+		contentBox.append(viewNode);
+
+		var treeView = new A.TreeView().render(viewNode);
+
+		treeView.on(
+			'expand',
+			function(event) {
+				var instance = this;
+
+				var node = event.tree.node;
+
+				instance._expandNode(node, dataSource);
+			},
+			instance
+		);
+
+		instance._treeView = treeView;
+		instance._viewNode = viewNode;
+	},
+
+	/**
+	 * Bind the events on the TreeBrowserView UI. Lifecycle.
+	 *
+	 * @method _bindUITreeBrowserView
+	 * @protected
+	 */
+	_bindUITreeBrowserView: function() {
+		var instance = this;
+
+		instance._expandNode(instance._treeView, instance.get('dataSource'));
+	},
+
+	doBeforeLoadData: function(event) {
+		return true;
+	},
+
+	hideView: function() {
+		var instance = this;
+
+		instance._viewNode.hide();
+	},
+
+	showView: function() {
+		var instance = this;
+
+		instance._viewNode.show();
+	},
+
+	_expandNode: function(node, dataSource) {
+		var instance = this;
+
+		if (node && !node.hasChildNodes()) {
+			var request = {
+				cfg: (!isTreeView(node) ? node._originalConfig : null),
+				callback: {
+					success: function(event) {
+						instance._populateResultView(
+							A.mix(
+								event,
+								{
+									node: node
+								}
+							)
+						);
+					}
+				}
+			};
+
+			instance.fire('dataRequest', null, request);
+
+			dataSource.sendRequest(request);
+		}
+	},
+
+	_populateResultView: function(event) {
+		var instance = this;
+
+		var response = event.response;
+		var node = event.node;
+
+		var ok = instance.doBeforeLoadData(event);
+
+		if (ok && !event.error && node) {
+			instance.fire('dataReturn', event);
+
+			var allResults = response.results;
+
+			if (allResults.length > 0) {
+				var rootLabel = instance.get('rootLabel');
+
+				if (rootLabel && isTreeView(node)) {
+					var rootNode = new A.TreeNode(
+						{
+							label: rootLabel,
+							children: allResults
+						}
+					);
+
+					node.appendChild(rootNode);
+				}
+				else {
+					A.each(
+						allResults,
+						function(options) {
+							var tempNode = node.createNode.apply(instance, [options]);
+	
+							node.appendChild(tempNode);
+						}
+					);
+				}
+			}
+		}
+		else {
+			instance.fire('dataError', event);
+		}
+	},
+
+	_uiSetHeight: function(val) {
+		var instance = this;
+
+		var height = parseInt(val);
+		var viewNode = instance._viewNode;
+
+		if (height) {
+			var padding = viewNode.getBorderWidth('tb') + viewNode.getPadding('tb');
+
+			viewNode.setStyle('height', (height - padding));
+		}
+		else {
+			viewNode.setStyle('height', '');
+		}
+	}
+};
+
+var TreeBrowser = A.Base.build(TREEBROWSER, A.Component, [A.DataSourceControl, TreeBrowserView]);
+
 var DataBrowser = A.Component.create(
 	{
 		NAME: NAME,
 
 		ATTRS: {
-			autoLoad: {
-				value: true
-			},
 			currentView: {
 				value: SEARCH
-			},
-			dataSource: {
-				value: null,
-				getter: function() {
-					var instance = this;
-
-					var dataSource = [];
-
-					if (instance.get(RENDERED)) {
-						var searchView = instance.get(SEARCH_VIEW);
-
-						if (searchView) {
-							dataSource[SEARCH] = searchView.dataSource;
-						}
-
-						var treeView = instance.get(TREE_VIEW);
-
-						if (treeView) {
-							dataSource[TREE] = treeView.dataSource;
-						}
-					}
-
-					return dataSource;
-				}
-			},
-			displayName: {
-				value: false
-			},
-			rootLabel: {
-				value: ''
 			},
 			searchView: {
 				value: null
@@ -119,724 +432,170 @@ var DataBrowser = A.Component.create(
 		},
 
 		prototype: {
-			initializer: function() {
+			renderUI: function() {
 				var instance = this;
 
-				instance._createDataSource();
+				var contentBox = instance.get('contentBox');
+				var searchView = instance.get('searchView');
+				var treeView = instance.get('treeView');
 
-				var searchView = instance.get(SEARCH_VIEW);
-				var treeView = instance.get(TREE_VIEW);
-				var currentView = instance.get('currentView');
+				if (searchView) {
+					var searchBrowser = new SearchBrowser(
+						A.mix(
+							{
+								iconButton: 'circle-triangle-r'
+							},
+							searchView
+						)
+					).render(contentBox);
 
-				if (!treeView && currentView == TREE) {
-					instance.set('currentView', SEARCH);
+					instance._searchBrowser = searchBrowser;
 				}
-				else if (!searchView && currentView == SEARCH) {
-					instance.set('currentView', TREE);
+
+				if (treeView) {
+					var treeBrowser = new TreeBrowser(
+						treeView
+					).render(contentBox);
+
+					instance._treeBrowser = treeBrowser;
+				}
+
+				if (searchView && treeView) {
+					var comboBox = instance._searchBrowser.comboBox;
+
+					var toolbar = new A.Toolbar(
+						{
+							children: [
+								{
+									icon: ICON_SEARCH,
+									handler: {
+										fn: function() {
+											var instance = this;
+
+											instance.set('currentView', SEARCH);
+											instance._updateViews();
+										},
+										context: instance
+									}
+								},
+								{
+									icon: ICON_TREE,
+									handler: {
+										fn: function() {
+											var instance = this;
+
+											instance.set('currentView', TREE);
+											instance._updateViews();
+										},
+										context: instance
+									}
+								}
+							]
+						}
+					).render(comboBox.get('boundingBox'));
 				}
 			},
 
 			bindUI: function() {
 				var instance = this;
 
-				var searchView = instance.get(SEARCH_VIEW);
-				var treeView = instance.get(TREE_VIEW);
-
-				if (searchView) {
-					var buttonSearch = instance.buttonSearch;
-					var inputNode = instance.inputNode;
-
-					searchView.dataSource.on('request', A.bind(buttonSearch.set, buttonSearch, ICON, ICON_LOADING));
-
-					inputNode.on('focus', instance._onTextboxFocus, instance);
-					inputNode.on('keydown', instance._onTextboxKeyDown, instance);
-
-					if (treeView) {
-						var buttonTree = instance.buttonTree;
-
-						treeView.dataSource.on('request', A.bind(buttonTree.set, buttonTree, ICON, ICON_LOADING));
-					}
-				}
-
-				instance.publish('dataError');
-				instance.publish('dataRequest');
-				instance.publish('dataReturn');
-				instance.publish('textboxFocus');
-				instance.publish('textboxKey');
-				instance.publish('itemSelected');
-				instance.publish('itemError');
-			},
-
-			renderUI: function() {
-				var instance = this;
-
-				var contentBox = instance.get(CONTENT_BOX);
-
-				if (instance.get(SEARCH_VIEW)) {
-					instance._renderInput();
-
-					var searchViewEl = A.Node.create(TPL_SEARCH);
-
-					searchViewEl.hide();
-
-					contentBox.append(searchViewEl);
-
-					instance._searchViewEl = searchViewEl;
-				}
-
-				var treeView = instance.get(TREE_VIEW);
-
-				if (treeView) {
-					var dataSource = treeView.dataSource;
-
-					var treeViewEl = A.Node.create(TPL_TREE);
-
-					treeViewEl.hide();
-
-					contentBox.append(treeViewEl);
-
-					treeView = new A.TreeView(
-						{
-							boundingBox: treeViewEl
-						}
-					).render();
-
-					treeView.on(
-						'expand',
-						function(event) {
-							var instance = this;
-
-							var node = event.tree.node;
-
-							instance._expandNode(node, dataSource);
-						},
-						instance
-					);
-
-					instance._treeView = treeView;
-					instance._treeViewEl = treeViewEl;
-				}
-
-				contentBox.delegate(
+				instance.get('contentBox').delegate(
 					'click',
 					function(event) {
 						var node = event.currentTarget;
+						var data;
 
 						if (isResultItem(node)) {
-							var data = null;
+							data = node.getData(NAME);
+						}
+						else {
+							node = A.Widget.getByNode(node);
 
-							if (isTreeNodeItem(node)) {
-								node = A.Widget.getByNode(node);
-
-								if (node) {
-									data = node._originalConfig;
-								}
-							}
-							else {
-								data = node.getData(NAME);
-							}
-
-							if (data) {
-								instance.fire(
-									'itemSelected',
-									{
-										node: node,
-										item: data
-									}
-								);
-							}
-							else {
-								instance.fire('itemError', event);
+							if (node) {
+								data = node._originalConfig;
 							}
 						}
+
+						if (data) {
+							instance.fire(
+								'itemSelected',
+								{
+									item: data,
+									node: node
+								}
+							);
+						}
+						else {
+							instance.fire('itemError', event);
+						}
 					},
-					'.' + CSS_RESULTS_ITEM
+					'.' + CSS_RESULTS_ITEM + ', .' + CSS_TREE_NODE_LEAF
 				);
 			},
 
 			syncUI: function() {
 				var instance = this;
 
-				var searchView = instance.get(SEARCH_VIEW);
-				var treeView = instance.get(TREE_VIEW);
-				var currentView = instance.get('currentView');
-				var autoLoad = instance.get('autoLoad');
-
-				if (autoLoad) {
-					if (currentView == SEARCH) {
-						if (searchView) {
-							instance._generateQuery();
-						}
-					}
-					else if (currentView == TREE) {
-						if (treeView) {
-							instance._loadTreeView();
-						}
-					}
-				}
-
-				instance._syncResultViews();
-				instance._toggleView();
+				instance._syncDimensions();
+				instance._updateViews();
 			},
 
-			doBeforeLoadData: function(event) {
-				return true;
-			},
-
-			handleResponse: function(event) {
-				var instance = this;
-
-				var currentView = instance.get('currentView');
-
-				var iconClass = null;
-				var button;
-
-				if (event.error) {
-					iconClass = ICON_ERROR;
-				}
-
-				if (currentView == SEARCH) {
-					button = instance.buttonSearch;
-
-					if (!event.error) {
-						iconClass = ICON_DEFAULT;
-					}
-					else {
-						instance._query = null;
-					}
-
-					button.set(ICON, iconClass);
-				}
-				else if (currentView == TREE) {
-					button = instance.buttonTree;
-
-					if (button) {
-						if (!event.error) {
-							iconClass = ICON_FOLDER;
-						}
-
-						button.set(ICON, iconClass);
-					}
-				}
-			},
-
-			generateRequest: function(query) {
-				var instance = this;
-
-				return {
-					request: query,
-					callback: {
-						success: A.bind(
-							function(event) {
-								var instance = this;
-
-								instance._populateSearchView(event);
-							},
-							instance
-						),
-						failure: A.bind(
-							function(event) {
-								var instance = this;
-
-								instance._handleResponse(event);
-							},
-							instance
-						)
-					}
-				};
-			},
-
-			_createDataSource: function() {
-				var instance = this;
-
-				var views = [instance.get(SEARCH_VIEW), instance.get(TREE_VIEW)];
-
-				for (var i = 0; i < views.length; i++) {
-					if (views[i]) {
-						var dataSource = views[i].dataSource;
-						var data = dataSource;
-
-						var dataSourceType = views[i].dataSourceType;
-						var schema = views[i].schema;
-						var schemaType = views[i].schemaType;
-
-						if (!(dataSource instanceof A.DataSource.Local)) {
-							if (!dataSourceType) {
-								dataSourceType = 'Local';
-
-								if (isFunction(data)) {
-									dataSourceType = 'Function';
-								}
-								else if (isString(data)) {
-									dataSourceType = 'IO';
-								}
-							}
-
-							dataSource = new A.DataSource[dataSourceType](
-								{
-									source: data
-								}
-							);
-						}
-
-						dataSource.on('error', instance.handleResponse, instance);
-						dataSource.after('response', instance.handleResponse, instance);
-
-						dataSourceType = dataSource.name;
-
-						if (dataSourceType == 'dataSourceLocal') {
-							instance.set('applyLocalFilter', true);
-						}
-
-						views[i].dataSource = dataSource;
-						views[i].dataSourceType = dataSourceType;
-
-						if (schema) {
-							if (schema.fn) {
-								views[i].dataSource.plug(schema);
-							}
-							else {
-								var schemaTypes = {
-									array: A.Plugin.DataSourceArraySchema,
-									json: A.Plugin.DataSourceJSONSchema,
-									text: A.Plugin.DataSourceTextSchema,
-									xml: A.Plugin.DataSourceXMLSchema
-								};
-
-								schemaType = (schemaType ? schemaType.toLowerCase() : 'array');
-
-								views[i].dataSource.plug(
-									{
-										fn: schemaTypes[schemaType],
-										cfg: {
-											schema: schema
-										}
-									}
-								);
-							}
-						}
-
-						views[i].schema = schema;
-					}
-				}
-			},
-
-			_expandNode: function(node, dataSource) {
-				var instance = this;
-
-				if (node && !node.hasChildNodes()) {
-					var request = {
-						cfg: (!isTreeView(node) ? node._originalConfig : null),
-						callback: {
-							failure: function(event) {
-								instance._handleResponse(event);
-							},
-
-							success: function(event) {
-								instance._populateTreeView(
-									A.mix(
-										event,
-										{
-											node: node
-										}
-									)
-								);
-							}
-						}
-					};
-
-					instance.fire('dataRequest', null, request);
-
-					dataSource.sendRequest(request);
-				}
-			},
-
-			_generateQuery: function(event) {
-				var instance = this;
-
-				var currentView = instance.get('currentView');
-
-				var input = instance.inputNode;
-				var query = instance._query;
-
-				var value = input.get('value');
-
-				if (currentView == TREE && (value != '' && query == value)) {
-					instance.set('currentView', SEARCH);
-
-					instance._toggleView();
-				}
-				else {
-					this._sendQuery(value);
-				}
-			},
-
-			_loadTreeView: function() {
-				var instance = this;
-
-				var treeView = instance.get(TREE_VIEW);
-
-				instance._expandNode(instance._treeView, treeView.dataSource);
-			},
-
-			_onTextboxFocus: function(event) {
-				var instance = this;
-
-				if (!instance.get('focused')) {
-					instance.focus();
-
-					instance._initInputValue = instance.inputNode.get('value');
-
-					instance.fire('textboxFocus');
-				}
-			},
-
-			_onTextboxKeyDown: function(event) {
-				var instance = this;
-
-				var keyCode = event.keyCode;
-
-				if (keyCode == KEY_ENTER) {
-					instance._generateQuery(event);
-				}
-				else {
-					instance.fire('textboxKey', keyCode);
-				}
-
-				instance._keyCode = keyCode;
-			},
-
-			_populateSearchView: function(event) {
-				var instance = this;
-
-				var response = event.response;
-
-				var ok = instance.doBeforeLoadData(event);
-
-				if (ok && !event.error) {
-					instance.set('currentView', SEARCH);
-
-					instance.fire('dataReturn', event);
-
-					var searchView = instance.get(SEARCH_VIEW);
-					var displayName = instance.get('displayName');
-
-					var allResults = response.results;
-					var folderKey = searchView.folderKey;
-
-					var sorted = [];
-
-					if (folderKey) {
-						var found = [];
-						var unsorted = [];
-
-						var index = 0;
-
-						for (var i = 0; i < allResults.length; i++) {
-							var name = allResults[i][folderKey];
-
-							if (name != null) {
-								if (found[name] != null) {
-									sorted[found[name]].data.push(allResults[i]);
-								}
-								else {
-									found[name] = index;
-
-									sorted[index] = {
-										name: name,
-										data: [allResults[i]]
-									};
-
-									index++;
-								}
-							}
-							else {
-								unsorted.push(allResults[i]);
-							}
-						}
-
-						sorted.sort(
-							function(a, b) {
-								return (a.data.length == b.data.length ? 0 : (a.data.length > b.data.length ? -1 : 1));
-							}
-						);
-
-						if (unsorted.length > 0) {
-							sorted.push(
-								{
-									name: '',
-									data: unsorted
-								}
-							);
-						}
-					}
-					else {
-						sorted.push(
-							{
-								name: '',
-								data: allResults
-							}
-						);
-					}
-
-					instance._searchViewEl.html('');
-
-					for (var i = 0; i < sorted.length; i++) {
-						var ul = A.Node.create(TPL_SEARCH_LIST);
-
-						for (var j = 0; j < sorted[i].data.length; j++) {
-							var data = sorted[i].data[j];
-
-							var tpl = null;
-							var icon = null;
-							var type = null;
-
-							if (data.imageUri) {
-								tpl = TPL_SEARCH_LIST_ITEM_IMAGE;
-								icon = data.imageUri;
-								type = IMAGE;
-							}
-							else if (data.iconCss) {
-								tpl = TPL_SEARCH_LIST_ITEM_ICON;
-								icon =  data.iconCss;
-								type = ICON;
-							}
-							else {
-								tpl = TPL_SEARCH_LIST_ITEM_TEXT;
-								type = TEXT;
-							}
-
-							tpl = Lang.sub(TPL_SEARCH_LIST_ITEM, [Lang.sub(tpl, [(displayName ? data.name : ''), data.title || '', icon || '']), type]);
-
-							var item = A.Node.create(tpl);
-
-							item.setData(NAME, data);
-
-							ul.append(item);
-						}
-
-						if (folderKey) {
-							new A.Panel(
-								{
-									collapsible: true,
-									collapsed: (instance._searchViewEl.html() != ''),
-									headerContent: sorted[i].name,
-									bodyContent: ul
-								}
-							).render(instance._searchViewEl);
-						}
-						else {
-							instance._searchViewEl.append(ul);
-						}
-					}
-
-					this._toggleView();
-				}
-			},
-
-			_populateTreeView: function(event) {
-				var instance = this;
-
-				var response = event.response;
-				var node = event.node;
-
-				var ok = instance.doBeforeLoadData(event);
-
-				if (ok && !event.error && node != null) {
-					instance.set('currentView', TREE);
-
-					instance.fire('dataReturn', event);
-
-					var allResults = response.results;
-
-					if (allResults.length > 0) {
-						addLeafClass(allResults);
-
-						var rootLabel = instance.get('rootLabel');
-
-						if (rootLabel && isTreeView(node)) {
-							var rootNode = new A.TreeNode(
-								{
-									label: rootLabel,
-									children: allResults
-								}
-							);
-
-							node.appendChild(rootNode);
-						}
-						else {
-							A.each(allResults, function(options) {
-								var tempNode = node.createNode.apply(instance, [options]);
-
-								node.appendChild(tempNode);
-							});
-						}
-					}
-
-					this._toggleView();
-				}
-				else {
-					instance.fire('dataError', event);
-				}
-			},
-
-			_renderInput: function() {
-				var instance = this;
-
-				var contentBox = instance.get(CONTENT_BOX);
-				var input = instance.get('input');
-				var treeView = instance.get(TREE_VIEW);
-
-				var comboConfig = {
-					field: {
-						labelText: false
-					},
-					icons: [
-						{
-							icon: ICON_DEFAULT,
-							handler: {
-								fn: instance._generateQuery,
-								context: instance
-							}
-						}
-					]
-				};
-
-				if (treeView) {
-					comboConfig.icons.push(
-						{
-							icon: ICON_FOLDER,
-							handler: {
-								fn: function() {
-									var instance = this;
-
-									instance.set('currentView', TREE);
-
-									instance._loadTreeView();
-									instance._toggleView();
-								},
-								context: instance
-							}
-						}
-					);
-				}
-
-				var inputReference = null;
-				var inputParent = null;
-
-				if (input) {
-					input = A.one(input);
-
-					comboConfig.field.node = input;
-
-					inputReference = input.next();
-					inputParent = input.get('parentNode');
-				}
-
-				var comboBox = new A.Combobox(comboConfig).render(contentBox);
-
-				if (inputParent) {
-					var comboBoundingBox = comboBox.get('boundingBox');
-
-					inputParent.insertBefore(comboBoundingBox, inputReference);
-				}
-
-				instance.comboBox = comboBox;
-				instance.inputNode = comboBox.get('node');
-				instance.buttonSearch = comboBox.icons.item(0);
-
-				if (treeView) {
-					instance.buttonTree = comboBox.icons.item(1);
-				}
-
-				instance.set('uniqueName', A.stamp(instance.inputNode));
-			},
-
-			_sendQuery: function(query) {
-				var instance = this;
-
-				var searchView = instance.get(SEARCH_VIEW);
-				var dataSource = searchView.dataSource;
-
-				query = encodeURIComponent(query);
-
-				var request = instance.generateRequest(query);
-
-				instance.fire('dataRequest', query, request);
-
-				dataSource.sendRequest(request);
-
-				instance._query = query;
-			},
-
-			_syncResultViews: function() {
+			_syncDimensions: function() {
 				var instance = this;
 
 				var height = instance.get('height');
 
 				if (height) {
-					var boundingBox = instance.get(BOUNDING_BOX);
+					var boundingBox = instance.get('boundingBox');
+					var searchBrowser = instance._searchBrowser;
+					var treeBrowser = instance._treeBrowser;
 
-					var searchViewEl = instance._searchViewEl;
-					var treeViewEl = instance._treeViewEl;
-					var comboBox = instance.comboBox;
+					var paddingOffset = 0;
 
-					var comboBoxOffset = 0;
+					if (searchBrowser) {
+						var comboBox = searchBrowser.comboBox;
 
-					if (comboBox) {
-						var comboBoxEl = comboBox.get(BOUNDING_BOX);
+						if (comboBox) {
+							var comboBoxEl = comboBox.get('boundingBox');
 
-						comboBoxOffset += comboBoxEl.getBorderWidth('tb') + comboBoxEl.getMargin('tb') + comboBoxEl.get('offsetHeight');
+							paddingOffset += comboBoxEl.getBorderWidth('tb') + comboBoxEl.getMargin('tb') + comboBoxEl.get('offsetHeight');
+						}
 					}
 
-					var scrollHeight = parseInt(instance.get('height'), 10) - comboBoxOffset;
-					var padding;
+					var scrollHeight = parseInt(instance.get('height'), 10) - paddingOffset;
 
-					if (searchViewEl) {
-						padding = searchViewEl.getBorderWidth('tb') + searchViewEl.getPadding('tb');
-
-						searchViewEl.setStyle('height', (scrollHeight - padding));
+					if (searchBrowser) {
+						searchBrowser.set('height', scrollHeight);
 					}
 
-					if (treeViewEl) {
-						padding = treeViewEl.getBorderWidth('tb') + treeViewEl.getPadding('tb');
-
-						treeViewEl.setStyle('height', (scrollHeight - padding));
+					if (treeBrowser) {
+						treeBrowser.set('height', scrollHeight);
 					}
 				}
 			},
 
-			_toggleView: function() {
+			_updateViews: function() {
 				var instance = this;
 
 				var currentView = instance.get('currentView');
+				var searchBrowser = instance._searchBrowser;
+				var treeBrowser = instance._treeBrowser;
 
-				var searchViewEl = instance._searchViewEl;
-				var treeViewEl = instance._treeViewEl;
-
-				if (currentView == SEARCH) {
-					if (treeViewEl) {
-						treeViewEl.hide();
+				if (searchBrowser && treeBrowser) {
+					if (currentView == SEARCH) {
+						treeBrowser.hideView();
+						searchBrowser.showView();
 					}
-
-					if (searchViewEl) {
-						searchViewEl.show();
-					}
-				}
-				else if (currentView == TREE) {
-					if (searchViewEl) {
-						searchViewEl.hide();
-					}
-
-					if (treeViewEl) {
-						treeViewEl.show();
+					else if (currentView == TREE) {
+						searchBrowser.hideView();
+						treeBrowser.showView();
 					}
 				}
 			}
-		}
+		}	
 	}
 );
 
 A.DataBrowser = DataBrowser;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-tree','aui-panel','datasource','dataschema','aui-form-combobox'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel'], skinnable:true});
