@@ -19,8 +19,8 @@ var Lang = A.Lang,
 	TEXT = 'text',
 	TREE = 'tree',
 
-	SEARCHBROWSER = NAME + '-' + SEARCH + '-ui',
-	TREEBROWSER = NAME + '-' + TREE + '-ui',
+	SEARCHBROWSER = NAME + '-' + SEARCH + 'control',
+	TREEBROWSER = NAME + '-' + TREE + 'control',
 
 	addLeafClass = function(results) {
 		for (var i in results) {
@@ -349,8 +349,6 @@ TreeBrowserView.prototype = {
 				}
 			};
 
-			instance.set('requestData', request);
-
 			instance.fire('dataRequest', { request: request });
 
 			dataSource.sendRequest(request);
@@ -546,8 +544,8 @@ var DataBrowser = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				instance._syncDimensions();
 				instance._updateViews();
+				instance._syncDimensions();
 			},
 
 			_syncDimensions: function() {
