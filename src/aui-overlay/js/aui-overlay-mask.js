@@ -126,7 +126,7 @@ var OverlayMask = A.Component.create(
 
 					var target = A.one(v);
 
-					var isDoc = instance._isDoc = (win.HTMLDocument && v instanceof win.HTMLDocument) || target.compareTo(doc);
+					var isDoc = instance._isDoc = A.instanceOf(v, win.HTMLDocument) || target.compareTo(doc);
 					var isWin = instance._isWin = target.compareTo(win);
 
 					instance._fullPage = isDoc || isWin;
