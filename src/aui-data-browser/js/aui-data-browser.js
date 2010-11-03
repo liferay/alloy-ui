@@ -11,6 +11,7 @@ var Lang = A.Lang,
 	BINDUI = 'bindUI',
 	ICON = 'icon',
 	ICON_SEARCH = 'search',
+	ICON_SUBMIT = 'circle-triangle-r',
 	ICON_TREE = 'folder-open',
 	IMAGE = 'image',
 	RENDERUI = 'renderUI',
@@ -348,7 +349,9 @@ TreeBrowserView.prototype = {
 				}
 			};
 
-			instance.fire('dataRequest', null, request);
+			instance.set('requestData', request);
+
+			instance.fire('dataRequest', { request: request });
 
 			dataSource.sendRequest(request);
 		}
@@ -444,7 +447,7 @@ var DataBrowser = A.Component.create(
 					var searchBrowser = new SearchBrowser(
 						A.mix(
 							{
-								iconButton: 'circle-triangle-r'
+								iconButton: ICON_SUBMIT
 							},
 							searchView
 						)

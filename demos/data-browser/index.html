@@ -283,61 +283,22 @@ AUI().ready('aui-data-browser', function(A) {
 				}
 			},
 			treeView: {
-				dataSource: gallery,
+				dataSource: 'assets/treeview/index.html',
+				schemaType: 'json',
+				uriFormatter: function(event) {
+					var instance = this;
+
+					var cfg = event.cfg;
+
+					if (cfg) {
+						return 'assets/treeview/' + cfg.folderId + '.html';
+					}
+				},
 				on: {
 					dataReturn: function(event) {
 						var instance = this;
 
-						var results = event.response.results;
-						var query = event.request;
-
-						var cfg = event.cfg;
-						var data = event.data;
-
-						var results = [];
-
-						if (cfg.folderId) {
-							var folderId = cfg.folderId;
-
-							function findFolder(data, id) {
-								var folder = null;
-
-								for (var i in data) {
-									if (data[i].folderId == id) {
-										folder = data[i];
-										break;
-									}
-
-									if (data[i].children) {
-										folder = findFolder(data[i].children, id);
-
-										if (folder) {
-											break;
-										}
-									}
-								}
-
-								return folder;
-							}
-
-							var folder = findFolder(data, folderId);
-
-							if (folder) {
-								results = folder.children;
-							}
-						}
-						else {
-							for (var i in data) {
-								var folder = A.mix({}, data[i]);
-			
-								folder.leaf = false;
-								folder.children = [];
-
-								results.push(folder);
-							}
-						}
-
-						event.response.results = results;
+						event.response.results = instance.get('responseData');
 					}
 				}
 			},
