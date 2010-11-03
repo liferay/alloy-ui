@@ -4,10 +4,8 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 
 	BINDUI = 'bindUI',
-	JSON = 'json',
 	RENDERUI = 'renderUI',
-	SYNCUI = 'syncUI',
-	XML = 'xml';
+	SYNCUI = 'syncUI';
 
 var DataSourceControl = function() {};
 
@@ -54,38 +52,6 @@ DataSourceControl.ATTRS = {
 
 				dataSourceType = dataSource.name;
 
-				if (dataSourceType == 'dataSourceIO') {
-					dataSource.on(
-						'request',
-						function(event) {
-							var instance = this;
-
-							var uriFormatter = instance.get('uriFormatter');
-
-							if (isFunction(uriFormatter)) {
-								var source = uriFormatter.call(instance, instance.get('requestData'));
-
-								if (source) {
-									dataSource.set('source', source);
-								}
-							}
-						},
-						instance
-					);
-
-					dataSource.on(
-						'data',
-						function(event) {
-							var instance = this;
-
-							if (!event.error) {
-								instance.set('responseData', event.data);
-							}
-						},
-						instance
-					);
-				}
-
 				var schema = instance._schema;
 
 				if (schema) {
@@ -112,19 +78,6 @@ DataSourceControl.ATTRS = {
 		value: null
 	},
 
-	requestData: {
-		value: null
-	},
-
-	responseData: {
-		value: null,
-		setter: function(val) {
-			var instance = this;
-
-			return this._setResponseData(val);
-		}
-	},
-
 	/**
 	 * A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.
 	 *
@@ -149,7 +102,11 @@ DataSourceControl.ATTRS = {
 			}
 
 			if (val) {
-				if (!val.fn) {
+				if (val.fn) {
+					schema = val;
+					val = val.cfg.schema;
+				}
+				else {
 					var schemaType = instance.get('schemaType');
 
 					var schemaTypes = {
@@ -167,10 +124,6 @@ DataSourceControl.ATTRS = {
 							schema: val
 						}
 					};
-				}
-				else {
-					schema = val;
-					val = val.cfg.schema;
 				}
 			}
 
@@ -193,11 +146,8 @@ DataSourceControl.ATTRS = {
 	 */
 	schemaType: {
 		value: '',
+		lazyAdd: false,
 		validator: isString
-	},
-
-	uriFormatter: {
-		value: null
 	}
 };
 
@@ -250,60 +200,6 @@ DataSourceControl.prototype = {
 		var instance = this;
 
 		instance.fire(SYNCUI);
-	},
-
-	_setResponseData: function(xhr) {
-		var instance = this;
-
-		var data = null;
-
-		if (xhr) {
-			var schemaType = instance.get('schemaType');
-			var contentType = xhr.getResponseHeader('content-type');
-
-			if ((schemaType == XML) || (!schemaType && contentType.indexOf(XML) >= 0)) {
-
-				data = xhr.responseXML;
-
-				if (data.documentElement.tagName == 'parsererror') {
-					throw PARSE_ERROR;
-				}
-			}
-			else {
-				data = xhr.responseText;
-			}
-
-			if (data === '') {
-				data = null;
-			}
-
-			if (schemaType == JSON) {
-				try {
-					data = A.JSON.parse(data);
-				}
-				catch(e) {
-
-				}
-			}
-			else {
-				var selector = instance.get('selector');
-
-				if (data && selector) {
-					var tempRoot;
-
-					if (data.documentElement) {
-						tempRoot = A.one(data);
-					}
-					else {
-						tempRoot = A.Node.create(data);
-					}
-
-					data = tempRoot.all(selector);
-				}
-			}
-		}
-
-		return data;
 	}
 }
 

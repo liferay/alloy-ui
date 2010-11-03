@@ -28,45 +28,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-data-browser', function(A) {
-
-	var gallery = [
-		{
-			folderId: 1,
-			label: 'Folder 1',
-			children: [
-				{ fileId: 1, label: 'File 1' },
-				{ fileId: 2, label: 'File 2' },
-				{ fileId: 3, label: 'File 3' }
-			]
-		},
-		{
-			folderId: 2,
-			label: 'Folder 2',
-			children: [
-				{ fileId: 4, label: 'File 4' },
-				{ fileId: 5, label: 'File 5' },
-				{ fileId: 6, label: 'File 6' }
-			]
-		},
-		{
-			folderId: 3,
-			label: 'Folder 3',
-			children: [
-				{	folderId: 4,
-					label: 'Folder 4',
-					children: [
-						{ fileId: 10, label: 'File 10' },
-						{ fileId: 11, label: 'File 11' },
-						{ fileId: 12, label: 'File 12' }
-					]
-				},
-				{ fileId: 7, label: 'File 7' },
-				{ fileId: 8, label: 'File 8' },
-				{ fileId: 9, label: 'File 9' }
-			]
-		}
-	];
+AUI().ready('datasource-io', 'aui-data-browser', function(A) {
 
 	var icons = [
 		['Folder 1', 'aui-icon-carat-1-t'],
@@ -242,6 +204,32 @@ AUI().ready('aui-data-browser', function(A) {
 		['Folder 17', 'aui-icon-grip-diagonal-br']
 	];
 
+	var gallery = new A.DataSource.IO(
+		{
+			source: 'assets/treeview/index.html',
+			on: {
+				request: function(event) {
+					var instance = this;
+
+					var cfg = event.cfg;
+
+					if (cfg && cfg.folderId) {
+						instance.set('source', 'assets/treeview/' + cfg.folderId + '.html');
+					}
+				},
+				data: function(event) {
+					var instance = this;
+
+					var data = event.data;
+
+					if (data) {
+						event.data = A.JSON.parse(data.responseText);
+					}
+				}
+			}
+		}
+	);
+
 	var component = new A.DataBrowser(
 		{
 			width: 300,
@@ -283,24 +271,7 @@ AUI().ready('aui-data-browser', function(A) {
 				}
 			},
 			treeView: {
-				dataSource: 'assets/treeview/index.html',
-				schemaType: 'json',
-				uriFormatter: function(event) {
-					var instance = this;
-
-					var cfg = event.cfg;
-
-					if (cfg) {
-						return 'assets/treeview/' + cfg.folderId + '.html';
-					}
-				},
-				on: {
-					dataReturn: function(event) {
-						var instance = this;
-
-						event.response.results = instance.get('responseData');
-					}
-				}
+				dataSource: gallery
 			},
 			on: {
 				itemSelected: function(event) {
