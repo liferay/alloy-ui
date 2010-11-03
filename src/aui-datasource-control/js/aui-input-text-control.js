@@ -919,7 +919,7 @@ InputTextControl.prototype = {
 
 		var request = instance.generateRequest(query);
 
-		instance.fire('dataRequest', query, request);
+		instance.fire('dataRequest', request);
 
 		dataSource.sendRequest(request);
 	},
