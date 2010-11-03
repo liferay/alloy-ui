@@ -117,14 +117,17 @@ var OverlayMask = A.Component.create(
 			 */
 			target: {
 				lazyAdd: false,
-				value: document,
+				value: CONFIG.doc,
 				setter: function(v) {
 					var instance = this;
 
+					var doc = CONFIG.doc;
+					var win = CONFIG.doc;
+
 					var target = A.one(v);
 
-					var isDoc = instance._isDoc = target.compareTo(CONFIG.doc);
-					var isWin = instance._isWin = target.compareTo(CONFIG.win);
+					var isDoc = instance._isDoc = (win.HTMLDocument && v instanceof win.HTMLDocument) || target.compareTo(doc);
+					var isWin = instance._isWin = target.compareTo(win);
 
 					instance._fullPage = isDoc || isWin;
 
