@@ -3,14 +3,6 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 
-	isDegree = function(value) {
-		return value && (value.slice(-3) == 'deg' || value.slice(-1) == '\xb0');
-	},
-
-	isPercentage = function(value) {
-		return value && value.slice(-1) == '%';
-	},
-
 	HSRG = {
 		hs: 1,
 		rg: 1
@@ -21,7 +13,7 @@ var Lang = A.Lang,
 	MATH_MIN = MATH.min,
 
 	REGEX_COMMA_SPACES = /\s*,\s*/,
-	REGEX_COLOR = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+%?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\)|hsba?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\)|hsla?\(\s*([\d\.]+(?:deg|\xb0|%)?\s*,\s*[\d\.]+%?\s*,\s*[\d\.]+(?:%?\s*,\s*[\d\.]+)?)%?\s*\))\s*$/i,
+	REGEX_COLOR = /^\s*((#[a-f\d]{6})|(#[a-f\d]{3})|rgba?\(\s*([\d\.]+\s*,\s*[\d\.]+\s*,\s*[\d\.]+(?:\s*,\s*[\d\.]+)?)\s*\)|rgba?\(\s*([\d\.]+%\s*,\s*[\d\.]+%\s*,\s*[\d\.]+%(?:\s*,\s*[\d\.]+%)?)\s*\)|hsb\(\s*([\d\.]+(?:deg|\xb0)?\s*,\s*[\d\.]+\s*,\s*[\d\.]+)\s*\)|hsb\(\s*([\d\.]+(?:deg|\xb0|%)\s*,\s*[\d\.]+%\s*,\s*[\d\.]+%)\s*\)|hsl\(\s*([\d\.]+(?:deg|\xb0)?\s*,\s*[\d\.]+\s*,\s*[\d\.]+)\s*\)|hsl\(\s*([\d\.]+(?:deg|\xb0|%)\s*,\s*[\d\.]+%\s*,\s*[\d\.]+%)\s*\))\s*$/i,
 
 	REGEX_HEX_PREFIX = /^(?=[\da-f]$)/,
 	REGEX_TRIM = /^\s+|\s+$/g,
@@ -49,7 +41,7 @@ var Color = {
 				return new Color.RGB();
 			}
 
-			if (!HSRG.hasOwnProperty(color.toLowerCase().substring(0, 2)) && color.charAt(0) != '#') {
+			if (!HSRG.hasOwnProperty(color.substring(0, 2)) && color.charAt(0) != '#') {
 				color = Color._toHex(color);
 			}
 
@@ -59,7 +51,6 @@ var Color = {
 			var opacity;
 			var t;
 			var rgb = color.match(REGEX_COLOR);
-			var values;
 
 			if (rgb) {
 				if (rgb[2]) {
@@ -75,105 +66,75 @@ var Color = {
 				}
 
 				if (rgb[4]) {
-					values = rgb[4].split(REGEX_COMMA_SPACES);
+					rgb = rgb[4].split(REGEX_COMMA_SPACES);
 
-					red = parseFloat(values[0]);
-
-					if (isPercentage(values[0])) {
-						red *= 2.55;
-					}
-
-					green = parseFloat(values[1]);
-
-					if (isPercentage(values[1])) {
-						green *= 2.55;
-					}
-
-					blue = parseFloat(values[2]);
-
-					if (isPercentage(values[2])) {
-						blue *= 2.55;
-					}
-
-					if (rgb[1].toLowerCase().slice(0, 4) == 'rgba') {
-						opacity = parseFloat(values[3]);
-					}
-
-					if (isPercentage(values[3])) {
-						opacity /= 100;
-					}
+					red = parseFloat(rgb[0]);
+					green = parseFloat(rgb[1]);
+					blue = parseFloat(rgb[2]);
+					opacity = parseFloat(rgb[3]);
 				}
 
 				if (rgb[5]) {
-					values = rgb[5].split(REGEX_COMMA_SPACES);
+					rgb = rgb[5].split(REGEX_COMMA_SPACES);
 
-					red = parseFloat(values[0]);
-
-					if (isPercentage(values[0])) {
-						red *= 2.55;
-					}
-
-					green = parseFloat(values[1]);
-
-					if (isPercentage(values[1])) {
-						green *= 2.55;
-					}
-
-					blue = parseFloat(values[2]);
-
-					if (isPercentage(values[2])) {
-						blue *= 2.55;
-					}
-
-					if (isDegree(values[0])) {
-						red /= 360;
-					}
-
-					if (rgb[1].toLowerCase().slice(0, 4) == 'hsba') {
-						opacity = parseFloat(values[3]);
-					}
-
-					if (isPercentage(values[3])) {
-						opacity /= 100;
-					}
-
-					return Color.hsb2rgb(red, green, blue, opacity);
+					red = parseFloat(rgb[0]) * 2.55;
+					green = parseFloat(rgb[1]) * 2.55;
+					blue = parseFloat(rgb[2]) * 2.55;
+					opacity = parseFloat(rgb[3]);
 				}
 
 				if (rgb[6]) {
-					values = rgb[6].split(REGEX_COMMA_SPACES);
+					rgb = rgb[6].split(REGEX_COMMA_SPACES);
 
-					red = parseFloat(values[0]);
+					red = parseFloat(rgb[0]);
+					green = parseFloat(rgb[1]);
+					blue = parseFloat(rgb[2]);
 
-					if (isPercentage(values[0])) {
-						red *= 2.55;
-					}
-
-					green = parseFloat(values[1]);
-
-					if (isPercentage(values[1])) {
-						green *= 2.55;
-					}
-
-					blue = parseFloat(values[2]);
-
-					if (isPercentage(values[2])) {
-						blue *= 2.55;
-					}
-
-					if (isDegree(values[0])) {
+					if (rgb[0].slice(-3) == 'deg' || rgb[0].slice(-1) == '\xb0') {
 						red /= 360;
 					}
 
-					if (rgb[1].toLowerCase().slice(0, 4) == 'hsla') {
-						opacity = parseFloat(values[3]);
+					return Color.hsb2rgb(red, green, blue);
+				}
+
+				if (rgb[7]) {
+					rgb = rgb[7].split(REGEX_COMMA_SPACES);
+
+					red = parseFloat(rgb[0]) * 2.55;
+					green = parseFloat(rgb[1]) * 2.55;
+					blue = parseFloat(rgb[2]) * 2.55;
+
+					if (rgb[0].slice(-3) == 'deg' || rgb[0].slice(-1) == '\xb0') {
+						red /= 360 * 2.55;
 					}
 
-					if (isPercentage(values[3])) {
-						opacity /= 100;
+					return Color.hsb2rgb(red, green, blue);
+				}
+
+				if (rgb[8]) {
+					rgb = rgb[8].split(REGEX_COMMA_SPACES);
+					red = parseFloat(rgb[0]);
+					green = parseFloat(rgb[1]);
+					blue = parseFloat(rgb[2]);
+
+					if (rgb[0].slice(-3) == 'deg' || rgb[0].slice(-1) == '\xb0') {
+						red /= 360;
 					}
 
-					return Color.hsb2rgb(red, green, blue, opacity);
+					return Color.hsl2rgb(red, green, blue);
+				}
+
+				if (rgb[9]) {
+					rgb = rgb[9].split(REGEX_COMMA_SPACES);
+					red = parseFloat(rgb[0]) * 2.55;
+					green = parseFloat(rgb[1]) * 2.55;
+					blue = parseFloat(rgb[2]) * 2.55;
+
+					if (rgb[0].slice(-3) == 'deg' || rgb[0].slice(-1) == '\xb0') {
+						red /= 360 * 2.55;
+					}
+
+					return Color.hsl2rgb(red, green, blue);
 				}
 
 				rgb = new Color.RGB(red, green, blue, opacity);
@@ -271,8 +232,8 @@ var Color = {
 		var hsl = instance._getColorArgs('hslo', arguments);
 
 		var h = hsl[0];
-		var s = hsl[1];
-		var l = hsl[2];
+		var s = Math.max(Math.min(hsl[1], 1), 0);
+		var l = Math.max(Math.min(hsl[2], 1), 0);
 		var o = hsl[3];
 
 		var r, g, b;
