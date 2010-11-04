@@ -268,8 +268,14 @@ AUI().ready('aui-scheduler', function(A) {
 		content: 'Testing event 1 - overlap'
 	});
 
+	window.evt2 = new A.SchedulerEvent({
+		startDate: new Date(),
+		content: 'Testing event 2'
+	});
+
 	var events1 = [
 		// window.evt1,
+		window.evt2,
 
 		{
 			startDate: new Date(2010, 9, 12, 6),
@@ -290,7 +296,14 @@ AUI().ready('aui-scheduler', function(A) {
 			startDate: new Date(2010, 9, 5, 7),
 			endDate: new Date(2010, 9, 19, 9),
 			content: 'Build scheduler component'
-		}
+		},
+
+		// new A.SchedulerCalendar({
+		// 	events: [
+		// 		{ startDate: new Date(), content: 'testing agenda event 1' },
+		// 		{ startDate: new Date(), content: 'testing agenda event 2' }
+		// 	]
+		// })
 	];
 
 	var view11 = new A.SchedulerDayView({

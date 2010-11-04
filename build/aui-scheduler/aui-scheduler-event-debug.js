@@ -5,7 +5,9 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isBoolean = Lang.isBoolean,
+	isNumber = Lang.isNumber,
 
+	Color = A.Color,
 	DateMath = A.DataType.DateMath,
 
     _toInitialCap = A.cached(function(str) {
@@ -21,16 +23,23 @@ var Lang = A.Lang,
 	_PROPAGATE_SET = '_propagateSet',
 
 	ACTIVE_VIEW = 'activeView',
-	BORDER_COLOR = 'borderColor',
+	BORDER_WIDTH = 'borderWidth',
+	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
+	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CHANGE = 'Change',
 	COLOR = 'color',
 	CONTENT = 'content',
+	CONTENT_NODE = 'contentNode',
+	DURATION = 'duration',
 	END_DATE = 'endDate',
+	EVENTS = 'events',
 	ID = 'id',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
 	NODE = 'node',
+	OVERLAY = 'overlay',
 	PARENT_EVENT = 'parentEvent',
+	RECORDER = 'recorder',
 	REPEAT = 'repeat',
 	REPEATED = 'repeated',
 	REPEATED_EVENTS = 'repeatedEvents',
@@ -42,11 +51,7 @@ var Lang = A.Lang,
 	TITLE = 'title',
 	TITLE_DATE_FORMAT = 'titleDateFormat',
 	TITLE_NODE = 'titleNode',
-	CONTENT_NODE = 'contentNode',
-	EVENTS = 'events',
-	RECORDER = 'recorder',
-	DURATION = 'duration',
-	OVERLAY = 'overlay',
+	BORDER_STYLE = 'borderStyle',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
@@ -68,9 +73,24 @@ var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
 
 	ATTRS: {
-		borderColor: {
-			value: '#A32929',
+		borderStyle: {
+			value: 'solid',
 			validator: isString
+		},
+
+		borderWidth: {
+			value: '1px',
+			validator: isString
+		},
+
+		colorBrightnessFactor: {
+			value: 0.75,
+			validator: isNumber
+		},
+
+		colorSaturationFactor: {
+			value: 1.5,
+			validator: isNumber
 		},
 
 		content: {
@@ -79,6 +99,8 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		color: {
+			lazyAdd: false,
+			setter: '_setColor',
 			value: '#D96666',
 			validator: isString
 		},
@@ -132,28 +154,9 @@ var SchedulerEvent = A.Component.create({
 
 	EXTENDS: A.Base,
 
-	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, BORDER_COLOR, COLOR, TITLE_DATE_FORMAT],
+	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT],
 
 	prototype: {
-		// initializer: function() {
-		// 	var instance = this;
-		//
-		// 	A.each(A.Color.names, function(hex, name) {
-		// 		var rgb = A.Color.getRGB(hex);
-		//
-		// 		if ((rgb.r + rgb.g + rgb.b)/3 >= 110) {
-		// 			var bColor = A.Color.darken(rgb, 0.08);
-		//
-		// 			var ok1 = A.Node.create('<div style="margin-bottom:100px;">okkkkkk</div>');
-		//
-		// 			ok1.setStyle('background', hex);
-		// 			ok1.setStyle('border', '3px solid ' + bColor.hex);
-		//
-		// 			A.getBody().append(ok1);
-		// 		}
-		// 	});
-		// }
-
 		eventStack: null,
 
 		initializer: function() {
@@ -191,6 +194,28 @@ var SchedulerEvent = A.Component.create({
 
 			instance.set(END_DATE, DateMath.clone(evt.get(END_DATE)));
 			instance.set(START_DATE, DateMath.clone(evt.get(START_DATE)));
+		},
+
+		copyPropagateAttrValues: function(evt, dontCopyMap) {
+			var instance = this;
+
+			instance.copyDates(evt);
+
+			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
+				if ( !(attrName in (dontCopyMap || {})) ) {
+					var value = evt.get(attrName);
+
+					if (!isObject(value)) {
+						instance.set(attrName, value);
+					}
+				}
+			});
+		},
+
+		getBorderColor: function() {
+			var instance = this;
+
+			return instance.borderColorRGB.hex;
 		},
 
 		getDaysDuration: function() {
@@ -256,17 +281,18 @@ var SchedulerEvent = A.Component.create({
 				DateMath.copyHours(repeatedStartDate, instance.get(START_DATE));
 				DateMath.copyHours(repeatedEndDate, instance.get(END_DATE));
 
-				instance.eventStack[uid] = new A.SchedulerEvent({
-					parentEvent: instance,
-					borderColor: instance.get(BORDER_COLOR),
-					content: instance.get(CONTENT),
-					color: instance.get(COLOR),
+				// copying base attrs
+				var newEvt = new A.SchedulerEvent({
 					endDate: repeatedEndDate,
+					parentEvent: instance,
 					scheduler: instance.get(SCHEDULER),
-					startDate: repeatedStartDate,
-					// template: instance.get(TEMPLATE),
-					titleDateFormat: instance.get(TITLE_DATE_FORMAT)
+					startDate: repeatedStartDate
 				});
+
+				// copying propagatable attrs
+				newEvt.copyPropagateAttrValues(instance);
+
+				instance.eventStack[uid] = newEvt;
 			}
 
 			return instance.eventStack[uid];
@@ -345,8 +371,38 @@ var SchedulerEvent = A.Component.create({
 				!!(instance.get(PARENT_EVENT))
 			);
 
+			instance.syncNodeColorUI(propagate);
 			instance.syncNodeTitleUI(propagate);
 			instance.syncNodeContentUI(propagate);
+		},
+
+		syncNodeColorUI: function(propagate) {
+			var instance = this;
+			var node = instance.get(NODE);
+			var borderColor = instance.getBorderColor();
+
+			// update original event node
+			if (node) {
+				node.setStyles({
+					borderWidth: instance.get(BORDER_WIDTH),
+					borderColor: borderColor,
+					backgroundColor: instance.get(COLOR),
+					borderStyle: instance.get(BORDER_STYLE)
+				});
+			}
+
+			if (instance.titleNode) {
+				instance.titleNode.setStyles({
+					backgroundColor: borderColor
+				});
+			}
+
+			// update repeated nodes
+			if (propagate) {
+				instance.eachRepeatedEvent(function(evt, uid) {
+					evt.syncNodeColorUI()
+				});
+			}
 		},
 
 		syncNodeContentUI: function(propagate) {
@@ -423,6 +479,19 @@ var SchedulerEvent = A.Component.create({
 			evt.set(START_DATE, startDate);
 		},
 
+		_setColor: function(val) {
+			var instance = this;
+
+			// finding the respective nice color to the border
+			instance.hsbColor = Color.rgb2hsb(Color.getRGB(val));
+			instance.borderColor = A.clone(instance.hsbColor);
+			instance.borderColor.b *= instance.get(COLOR_BRIGHTNESS_FACTOR);
+			instance.borderColor.s *= instance.get(COLOR_SATURATION_FACTOR);
+			instance.borderColorRGB = Color.hsb2rgb(instance.borderColor);
+
+			return val;
+		},
+
 		_setContent: function(nodeRefName, content, propagate) {
 			var instance = this;
 			var node = instance[nodeRefName];
@@ -487,10 +556,56 @@ var SchedulerEvent = A.Component.create({
 });
 
 A.SchedulerEvent = SchedulerEvent;
+A.SchedulerEventRepeat = {
+	dayly: {
+		description: 'Every day',
+		validate: function(evt, date) {
+			return true;
+		}
+	},
 
+	monthly: {
+		description: 'Every month',
+		validate: function(evt, date) {
+			var endDate = evt.get(END_DATE);
+			var startDate = evt.get(START_DATE);
 
+			return (startDate.getDate() === evt.getDate());
+		}
+	},
 
+	monWedFri: {
+		description: 'Every Monday, Wednesday and Friday',
+		validate: function(evt, date) {
+			return DateMath.isMonWedOrFri(date);
+		}
+	},
 
+	tuesThurs: {
+		description: 'Every Tuesday and Thursday',
+		validate: function(evt, date) {
+			return DateMath.isTueOrThu(date);
+		}
+	},
+
+	weekDays: {
+		description: 'Every week days',
+		validate: function(evt, date) {
+			return DateMath.isWeekDay(date);
+		}
+	},
+
+	weekly: {
+		description: 'Every week',
+		validate: function(evt, date) {
+			var endDate = evt.get(END_DATE);
+			var startDate = evt.get(START_DATE);
+
+			return (startDate.getDay() === evt.getDay());
+		}
+	}
+
+};
 var BC = 'bc',
 	BD = 'bd',
 	BODY_CONTENT = 'bodyContent',
@@ -683,15 +798,16 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var content = instance.overlayDescNode.val();
 
+			// copying base attrs
 			var newEvt = new A.SchedulerEvent({
-				borderColor: instance.get(BORDER_COLOR),
-				color: instance.get(COLOR),
 				endDate: instance.get(END_DATE),
 				scheduler: instance.get(SCHEDULER),
 				startDate: instance.get(START_DATE),
-				repeat: instance.overlaySelectNode.val(),
-				titleDateFormat: instance.get(TITLE_DATE_FORMAT)
+				repeat: instance.overlaySelectNode.val()
 			});
+
+			// copying propagatable attrs
+			newEvt.copyPropagateAttrValues(instance, { content: true });
 
 			if (content) {
 				newEvt.set(CONTENT, content);
@@ -860,62 +976,5 @@ var SchedulerEventRecorder = A.Component.create({
 });
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
-
-
-
-
-
-
-
-A.SchedulerEventRepeat = {
-	dayly: {
-		description: 'Every day',
-		validate: function(evt, date) {
-			return true;
-		}
-	},
-
-	monthly: {
-		description: 'Every month',
-		validate: function(evt, date) {
-			var endDate = evt.get(END_DATE);
-			var startDate = evt.get(START_DATE);
-
-			return (startDate.getDate() === evt.getDate());
-		}
-	},
-
-	monWedFri: {
-		description: 'Every Monday, Wednesday and Friday',
-		validate: function(evt, date) {
-			return DateMath.isMonWedOrFri(date);
-		}
-	},
-
-	tuesThurs: {
-		description: 'Every Tuesday and Thursday',
-		validate: function(evt, date) {
-			return DateMath.isTueOrThu(date);
-		}
-	},
-
-	weekDays: {
-		description: 'Every week days',
-		validate: function(evt, date) {
-			return DateMath.isWeekDay(date);
-		}
-	},
-
-	weekly: {
-		description: 'Every week',
-		validate: function(evt, date) {
-			var endDate = evt.get(END_DATE);
-			var startDate = evt.get(START_DATE);
-
-			return (startDate.getDay() === evt.getDay());
-		}
-	}
-
-};
 
 }, '@VERSION@' ,{requires:['aui-base','aui-color','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});

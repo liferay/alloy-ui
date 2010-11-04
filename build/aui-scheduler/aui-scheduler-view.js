@@ -318,7 +318,6 @@ var SchedulerView = A.Component.create({
 });
 
 A.SchedulerView = A.Base.create(SCHEDULER_VIEW, SchedulerView, [A.WidgetStdMod]);
-
 var getNodeListHTMLParser = function(selector, sizeCondition) {
 		return function(srcNode) {
 			var nodes = srcNode.all(selector);
@@ -958,8 +957,7 @@ var SchedulerDayView = A.Component.create({
 				dd.set(DRAG_NODE, proxyEvtNode);
 				evtColumnNode.append(proxyEvtNode);
 
-				proxyEvt.copyDates(currentEvt);
-				proxyEvt.set(CONTENT, currentEvt.get(CONTENT));
+				proxyEvt.copyPropagateAttrValues(currentEvt);
 
 				instance.syncEventTopUI(proxyEvt);
 				instance.syncEventHeightUI(proxyEvt);
@@ -1130,9 +1128,6 @@ var SchedulerDayView = A.Component.create({
 });
 
 A.SchedulerDayView = SchedulerDayView;
-
-
-
 var SchedulerWeekView = A.Component.create({
 	NAME: SCHEDULER_VIEW_WEEK,
 
@@ -1202,18 +1197,6 @@ var SchedulerWeekView = A.Component.create({
 });
 
 A.SchedulerWeekView = SchedulerWeekView;
-
-
-
-
-
-
-
-
-
-
-
-
 var	CSS_SVM_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, CONTAINER),
 	CSS_SVM_HEADER_COL = getCN(SCHEDULER_VIEW, MONTH, HEADER, COL),
 	CSS_SVM_HEADER_DAY = getCN(SCHEDULER_VIEW, MONTH, HEADER, DAY),
