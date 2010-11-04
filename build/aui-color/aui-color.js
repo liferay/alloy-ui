@@ -233,8 +233,8 @@ var Color = {
 		var hsl = instance._getColorArgs('hslo', arguments);
 
 		var h = hsl[0];
-		var s = hsl[1];
-		var l = hsl[2];
+		var s = Math.max(Math.min(hsl[1], 1), 0);
+		var l = Math.max(Math.min(hsl[2], 1), 0);
 		var o = hsl[3];
 
 		var r, g, b;
