@@ -68,7 +68,8 @@ A.mix(
 				insertHtml = true;
 			}
 
-			items.each(
+			A.each(
+				items,
 				function(item, index, collection) {
 					var tagName = item.get('tagName');
 

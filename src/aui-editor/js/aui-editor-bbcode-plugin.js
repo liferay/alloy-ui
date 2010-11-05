@@ -35,6 +35,13 @@ var Lang = A.Lang,
 		},
 		{
 			convert: [
+				['&nbsp;']
+			],
+			regExp: '{0}',
+			output: ' '
+		},
+		{
+			convert: [
 				{
 					tags: ['font-family'],
 					source: ['font']
@@ -550,9 +557,7 @@ var EditorBBCode = A.Component.create(
 
 				var host = instance.get('host');
 
-				var html = instance._parseBBCode(bbcode);
-
-				host.set('content', html);
+				host.set('content', bbcode);
 			},
 
 			_contentChange: function(event) {

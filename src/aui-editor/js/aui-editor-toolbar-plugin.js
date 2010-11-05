@@ -129,9 +129,6 @@ var EditorToolbar = A.Component.create(
 						type: TEXT
 					},
 					{
-						type: SUBSCRIPT
-					},
-					{
 						type: COLOR
 					},
 					{
@@ -742,7 +739,6 @@ GROUPS[INSERT] = {
 				config.dataBrowser.render(contextBox);
 			}
 			else {
-				var iframe = editor.frame._iframe;
 				var editNode;
 				var selection;
 
@@ -1089,8 +1085,6 @@ GROUPS[INSERT] = {
 						iframe.on(
 							'mouseout',
 							function(event) {
-								var frame = editor.getInstance();
-
 								selection = new frame.Selection();
 							}
 						);
@@ -1161,7 +1155,6 @@ GROUPS[INSERT] = {
 			var boundingBox = button.get('boundingBox');
 
 			var overlay = EditorToolbar.generateOverlay(boundingBox, config, true);
-
 			var contextBox = overlay.get('contentBox');
 
 			var panel = new A.Panel(
@@ -1360,7 +1353,6 @@ GROUPS[SOURCE] = {
 		format: function(editor, attrs, config) {
 			var instance = this;
 
-			var frame = editor.frame;
 			var button = attrs.button;
 
 			button.on(
@@ -1408,27 +1400,38 @@ GROUPS[SOURCE] = {
 		source: function(editor, attrs, config) {
 			var instance = this;
 
-			var frame = editor.frame;
-			var container = frame.get('container');
-
 			var contentBox = attrs.contentBox;
 			var button = attrs.button;
+			var frame;
 
 			var textarea = A.Node.create(TPL_SOURCE_TEXTAREA);
 
-			textarea.hide();
+			editor.on(
+				'toolbar:ready',
+				function() {
+					var instance = this;
 
-			container.append(textarea);
+					var frame = editor.frame;
+					var container = frame.get('container');
+
+					textarea.hide();
+
+					container.append(textarea);
+				}
+			);
 
 			button._visible = false;
 
 			button.on(
 				'click',
 				function(event) {
+					var instance = this;
+
+					var frame = editor.frame;
 					var buttonVisible = button._visible;
 
 					if (buttonVisible) {
-						editor.set('content', textarea.val());
+						instance.set('content', textarea.val());
 
 						textarea.hide();
 						textarea.val('');
@@ -1438,7 +1441,7 @@ GROUPS[SOURCE] = {
 					else {
 						var iframe = frame._iframe;
 
-						textarea.val(editor.getContent());
+						textarea.val(instance.getContent());
 
 						var offsetHeight = iframe.get('offsetHeight') - textarea.getPadding('tb');
 
@@ -1457,7 +1460,8 @@ GROUPS[SOURCE] = {
 					contentBox.all('button').attr('disabled', buttonVisible);
 
 					button.get('contentBox').attr('disabled', false);
-				}
+				},
+				editor
 			);
 		}
 	}
