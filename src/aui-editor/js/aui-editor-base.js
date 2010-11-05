@@ -37,6 +37,19 @@ var Editor = A.Component.create(
 				);
 			},
 
+			addCss: function(url) {
+				var instance = this;
+
+				instance.on(
+					'toolbar:ready',
+					function() {
+						var frame = instance.getInstance();
+
+						frame.Get.css(url);
+					}
+				);
+			},
+
 			addGroup: function(group) {
 				var instance = this;
 
@@ -57,7 +70,7 @@ var Editor = A.Component.create(
 						instance.toolbar.addGroupType(type, data);
 					}
 				);
-			}
+			}			
 		}
 	}
 );
