@@ -9,26 +9,54 @@ var Editor = A.Component.create(
 		EXTENDS: A.EditorBase,
 
 		ATTRS: {
-			toolbar: {
+			toolbarConfig: {
 				value: null
 			}
 		},
 
-		constructor: function() {
-			var instance = this;
-
-			Editor.superclass.constructor.apply(instance, arguments);
-
-			instance.after('ready', instance._afterEditorReady, instance);
-		},
-
 		prototype: {
-			_afterEditorReady: function(event) {
+			initializer: function() {
 				var instance = this;
 
-				instance.plug(A.Plugin.EditorToolbar, instance.get('toolbar'));
+				instance.publish(
+					'toolbar:init',
+					{
+						fireOnce: true
+					}
+				);
 
-				instance.focus();
+				instance.after(
+					'ready',
+					function() {
+						instance.plug(A.Plugin.EditorToolbar, instance.get('toolbarConfig'));
+
+						instance.fire('toolbar:init');
+
+						instance.focus();
+					}
+				);
+			},
+
+			addGroup: function(group) {
+				var instance = this;
+
+				instance.on(
+					'toolbar:init',
+					function() {
+						instance.toolbar.addGroup(group);
+					}
+				);
+			},
+
+			addGroupType: function(type, data) {
+				var instance = this;
+
+				instance.on(
+					'toolbar:init',
+					function() {
+						instance.toolbar.addGroupType(type, data);
+					}
+				);
 			}
 		}
 	}

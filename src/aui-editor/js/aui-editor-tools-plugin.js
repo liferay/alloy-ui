@@ -23,6 +23,28 @@ var Lang = A.Lang,
 
 	TPL_JUSTIFY = '<div style="text-align: {0};">{1}</div>';
 
+function findInsert(item) {
+	var found = null;
+
+	var childNodes = item.get('childNodes');
+
+	childNodes.some(
+		function(item, index, collection) {
+			if (item.get('innerHTML') == '{0}') {
+				item.html('');
+
+				found = item;
+
+				return true;
+			}
+
+			return findInsert(item);
+		}
+	);
+
+	return found;
+}
+
 var EditorTools = {};
 
 A.mix(
@@ -155,16 +177,20 @@ A.mix(
 
 						var wrapper = A.Node.create(val);
 
+						parent.insert(wrapper, item);
+
 						if (wrapper.html() != '') {
 							if (wrapper.html() == '{0}') {
 								wrapper.html('');
 							}
 							else {
-								instance._findInsert(wrapper);
+								var insert = findInsert(wrapper);
+
+								if (insert) {
+									wrapper = insert;
+								}
 							}
 						}
-
-						parent.insert(wrapper, item);
 
 						wrapper.append(item);
 					}
@@ -177,36 +203,6 @@ A.mix(
 					selection.focusCursor(true, true);
 				}
 			}
-		},
-
-		_findInsert: function(item) {
-			var instance = this;
-
-			var found = null;
-
-			var childNodes = item.get('childNodes');
-
-			childNodes.some(
-				function(item, index, collection) {
-					if (item.get('innerHTML') == '{0}') {
-						found.html('');
-
-						found = item;
-
-						return true;
-					}
-
-					return instance._findInsert(item);
-				}
-			);
-
-			if (found) {
-				wrapper = found;
-
-				return true;
-			}
-
-			return false;
 		}
 	}
 );
