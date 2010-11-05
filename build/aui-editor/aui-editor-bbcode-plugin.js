@@ -546,10 +546,28 @@ var EditorBBCode = A.Component.create(
 				return host.constructor.prototype.getContent.apply(host, arguments);
 			},
 
+			setContentAsBBCode: function(bbcode) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var html = instance._parseBBCode(bbcode);
+
+				host.set('content', html);
+			},
+
 			_contentChange: function(event) {
 				var instance = this;
 
-				var html = event.newVal;
+				event.newVal = instance._parseBBCode(event.newVal);
+
+				event.stopImmediatePropagation();
+			},
+
+			_parseBBCode: function(bbcode) {
+				var instance = this;
+
+				var html = bbcode;
 
 				html = html.replace(/\[quote=([^\]]*)\]/gi, TPL_QUOTE_TITLE_CONTENT);
 				html = html.replace(/\[quote\]/gi, TPL_QUOTE_CONTENT);
@@ -557,9 +575,7 @@ var EditorBBCode = A.Component.create(
 
 				html = instance._parseTagExpressions(BBCODE_HTML, html);
 
-				event.newVal = html;
-
-				event.stopImmediatePropagation();
+				return html;
 			},
 
 			_parseTagExpressions: function(options, html) {
