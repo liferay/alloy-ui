@@ -1074,91 +1074,83 @@ GROUPS[INSERT] = {
 					}
 				);
 
-				if (iframe) {
-					iframe.on(
-						'mouseout',
-						function(event) {
-							var frame = editor.getInstance();
-
-							selection = new frame.Selection();
-						}
-					);
-				}
-
 				var alignNode = A.Node.create(TPL_ALIGN_NODE);
 
 				alignNode.hide();
 
 				A.getBody().append(alignNode);
 
-				function loadImageDelegate() {
-					var frame = editor.getInstance();
+				editor.on(
+					'toolbar:ready',
+					function() {
+						var iframe = editor.frame._iframe;
+						var frame = editor.getInstance();
 
-					frame.one('body').delegate(
-						'click',
-						function(event) {
-							var instance = this;
+						iframe.on(
+							'mouseout',
+							function(event) {
+								var frame = editor.getInstance();
 
-							if (editNode != event.currentTarget) {
-								var img = event.currentTarget;
-
-								var parent = img.get('parentNode');
-								var borderWidth = img.getStyle('borderWidth');
-								var padding = img.getStyle('padding');
-								var linkTag = (parent.get('tagName').toLowerCase() == 'a');
-
-								imageForm.set(
-									'values',
-									{
-										border: (borderWidth ? borderWidth + ' solid' : ''),
-										description: img.get('alt'),
-										height: img.get('height'),
-										imageURL: img.get('src'),
-										linkURL: (linkTag ? parent.get('href') : ''),
-										width: img.get('width'),
-										padding: (padding ? parseInt(padding) : '')
-									}
-								);
-
-								var index = 1;
-
-								switch (img.getAttribute('align')) {
-									case 'left':
-										index = 0;
-									break;
-									case 'center':
-										index = 2;
-									break;
-									case 'right':
-										index = 3;
-									break;
-								}
-
-								toolbarAlign.item(index).StateInteraction.set('active', true);
-
-								hrefTarget.get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
-
-								panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_IMAGE);
-								insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
-
-								editNode = img;
-
-								EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, img);
+								selection = new frame.Selection();
 							}
-						},
-						'img'
-					);
-				}
+						);
 
-				if (editor.getInstance()) {
-					loadImageDelegate();
-				}
-				else {
-					editor.on(
-						'frame:ready',
-						loadImageDelegate
-					);
-				}
+						frame.one('body').delegate(
+							'click',
+							function(event) {
+								var instance = this;
+
+								if (editNode != event.currentTarget) {
+									var img = event.currentTarget;
+
+									var parent = img.get('parentNode');
+									var borderWidth = img.getStyle('borderWidth');
+									var padding = img.getStyle('padding');
+									var linkTag = (parent.get('tagName').toLowerCase() == 'a');
+
+									imageForm.set(
+										'values',
+										{
+											border: (borderWidth ? borderWidth + ' solid' : ''),
+											description: img.get('alt'),
+											height: img.get('height'),
+											imageURL: img.get('src'),
+											linkURL: (linkTag ? parent.get('href') : ''),
+											width: img.get('width'),
+											padding: (padding ? parseInt(padding) : '')
+										}
+									);
+
+									var index = 1;
+
+									switch (img.getAttribute('align')) {
+										case 'left':
+											index = 0;
+										break;
+										case 'center':
+											index = 2;
+										break;
+										case 'right':
+											index = 3;
+										break;
+									}
+
+									toolbarAlign.item(index).StateInteraction.set('active', true);
+
+									hrefTarget.get('node').attr('checked', (linkTag && parent.getAttribute('target') == '_blank'));
+
+									panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_IMAGE);
+									insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
+
+									editNode = img;
+
+									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, img);
+								}
+							},
+							'img'
+						);
+					}
+				);
 			}
 		},
 
@@ -1290,52 +1282,45 @@ GROUPS[INSERT] = {
 
 			A.getBody().append(alignNode);
 
-			function loadLinkDelegate() {
-				var frame = editor.getInstance();
+			editor.on(
+				'toolbar:ready',
+				function() {
+					var frame = editor.getInstance();
 
-				frame.one('body').delegate(
-					'click',
-					function(event) {
-						var instance = this;
+					frame.one('body').delegate(
+						'click',
+						function(event) {
+							var instance = this;
 
-						if (editNode != event.currentTarget) {
-							var link = event.currentTarget;
+							if (editNode != event.currentTarget) {
+								var link = event.currentTarget;
 
-							if (!link.one('img')) {
-								var parent = link.get('parentNode');
+								if (!link.one('img')) {
+									var parent = link.get('parentNode');
 
-								linkForm.set(
-									'values',
-									{
-										description: link.get('innerHTML'),
-										linkURL: link.getAttribute('href'),
-									}
-								);
+									linkForm.set(
+										'values',
+										{
+											description: link.get('innerHTML'),
+											linkURL: link.getAttribute('href'),
+										}
+									);
 
-								hrefTarget.get('node').attr('checked', (link.getAttribute('target') == '_blank'));
+									hrefTarget.get('node').attr('checked', (link.getAttribute('target') == '_blank'));
 
-								panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_LINK);
-								insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
+									panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.EDIT_LINK);
+									insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.SAVE);
 
-								editNode = link;
+									editNode = link;
 
-								EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, link);
+									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, link);
+								}
 							}
-						}
-					},
-					'a'
-				);
-			}
-
-			if (editor.getInstance()) {
-				loadLinkDelegate();
-			}
-			else {
-				editor.on(
-					'frame:ready',
-					loadLinkDelegate
-				);
-			}
+						},
+						'a'
+					);
+				}
+			);
 		}
 	}
 };

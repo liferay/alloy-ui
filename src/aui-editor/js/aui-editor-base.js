@@ -19,7 +19,7 @@ var Editor = A.Component.create(
 				var instance = this;
 
 				instance.publish(
-					'toolbar:init',
+					'toolbar:ready',
 					{
 						fireOnce: true
 					}
@@ -30,7 +30,7 @@ var Editor = A.Component.create(
 					function() {
 						instance.plug(A.Plugin.EditorToolbar, instance.get('toolbarConfig'));
 
-						instance.fire('toolbar:init');
+						instance.fire('toolbar:ready');
 
 						instance.focus();
 					}
@@ -41,7 +41,7 @@ var Editor = A.Component.create(
 				var instance = this;
 
 				instance.on(
-					'toolbar:init',
+					'toolbar:ready',
 					function() {
 						instance.toolbar.addGroup(group);
 					}
@@ -52,7 +52,7 @@ var Editor = A.Component.create(
 				var instance = this;
 
 				instance.on(
-					'toolbar:init',
+					'toolbar:ready',
 					function() {
 						instance.toolbar.addGroupType(type, data);
 					}
