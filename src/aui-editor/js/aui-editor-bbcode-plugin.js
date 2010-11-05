@@ -9,9 +9,9 @@ var Lang = A.Lang,
 
 	QUOTE = 'quote',
 
-	CSS_QUOTE = getClassName(QUOTE),
-	CSS_QUOTE_CONTENT = getClassName(QUOTE, 'content'),
-	CSS_QUOTE_TITLE = getClassName(QUOTE, 'title'),
+	CSS_QUOTE = QUOTE,
+	CSS_QUOTE_CONTENT = QUOTE + '-content',
+	CSS_QUOTE_TITLE = QUOTE + '-title',
 
 	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
 	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
@@ -132,6 +132,13 @@ var Lang = A.Lang,
 			regExp: TPL_HTML_STYLE,
 			output: '<$1>[$4]$5[/$4]<$6>'
 		},
+   		{
+			convert: [
+				['quote']
+			],
+			regExp: '<div\\b[^>]*class=("|\')([^"\']*?)_' + CSS_QUOTE + '[^"\']*("|\')[^>]*>([\\s\\S]*?)</div>',
+			output: '$4'
+		},
 		{
 			convert: [
 				['span']
@@ -232,13 +239,6 @@ var Lang = A.Lang,
 			],
 			regExp: TPL_HTML_GENERIC,
 			output: '[code]$2[/code]'
-		},
-		{
-			convert: [
-				['quote']
-			],
-			regExp: '<div\\b[^>]*class=("|\')_' + CSS_QUOTE + '\s*[^"\']*("|\')[^>]*>([\\s\\S]*?)</div>',
-			output: '$3'
 		},
 		{
 			convert: [
@@ -409,154 +409,198 @@ var Lang = A.Lang,
 		}
 	];
 
-var EditorBBCode = A.Component.create(
+var GROUPS = {};
+
+GROUPS[QUOTE] = {
+	children: [
 		{
-			NAME: NAME,
+			icon: 'quote',
+			_titleKey: 'QUOTE'
+		}
+	]
+};
 
-			NS: BBCODE_PLUGIN,
+A.mix(
+	A.Plugin.ExecCommand.COMMANDS,
+	{
+		quote: function(cmd, val) {
+			var instance = this;
 
-			EXTENDS: A.Plugin.Base,
+			var host = instance.get('host');
 
-			ATTRS: {
-				host: {
-					value: false
-				}
+			var output = TPL_QUOTE_CONTENT + '{0}' + TPL_QUOTE_CLOSING_TAG;
+
+			host.execCommand('wraphtml', output);
+			host.focus();
+		}
+	}
+);
+
+if (!YUI.AUI.defaults.EditorToolbar) {
+	YUI.AUI.defaults.EditorToolbar = {
+		STRINGS: {}
+	};
+}
+
+A.mix(
+	YUI.AUI.defaults.EditorToolbar.STRINGS,
+	{
+		QUOTE: 'Quote'
+	}
+);
+
+var EditorBBCode = A.Component.create(
+	{
+		NAME: NAME,
+
+		NS: BBCODE_PLUGIN,
+
+		EXTENDS: A.Plugin.Base,
+
+		ATTRS: {
+			host: {
+				value: false
+			}
+		},
+
+		prototype: {
+			initializer: function() {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				host.addGroupType(QUOTE, GROUPS[QUOTE]);
+
+				instance.afterHostMethod('getContent', instance.getBBCode, instance);
+				host.on('contentChange', instance._contentChange, instance);
 			},
 
-			prototype: {
-				initializer: function() {
-					var instance = this;
+			getBBCode: function() {
+				var instance = this;
 
-					instance.afterHostMethod('getContent', instance.getBBCode, instance);
-					instance.get('host').on('contentChange', instance._contentChange, instance);
-				},
+				var host = instance.get('host');
+				var frame = host.getInstance();
 
-				getBBCode: function() {
-					var instance = this;
+				var wrapper = frame.one('body');
+				var quote;
 
-					var host = instance.get('host');
+				var quoteIterator = function(item, index, collection) {
+					var content;
+					var temp = item;
 
-					var quote;
-					var html = host.constructor.prototype.getContent.apply(host, arguments);
-					var wrapper = A.Node.create(Lang.sub(TPL_QUOTE_WRAPPER, [html]));
-
-					var quoteIterator = function(item, index, collection) {
-						var content;
-						var temp = item;
-
-						do {
-							if (temp) {
-								content = temp;
-							}
-
-							temp = temp.one('div.' + CSS_QUOTE_CONTENT);
-						}
-						while (temp);
-
-						var parent = content.get('parentNode');
-						var title = parent.previous();
-
-						var bbcode = '[' + QUOTE;
-
-						if (title && title.hasClass(CSS_QUOTE_TITLE)) {
-							var titleHtml = title.html();
-
-							titleHtml = titleHtml.replace(REGEX_HTML_TAGS, '');
-
-							bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.html());
-
-							title.remove(true);
+					do {
+						if (temp) {
+							content = temp;
 						}
 
-						bbcode += ']' +  content.html() + '[/' + QUOTE + ']';
+						temp = temp.one('div.' + CSS_QUOTE_CONTENT);
+					}
+					while (temp);
 
-						parent.html(bbcode);
+					var parent = content.get('parentNode');
+					var title = parent.previous();
 
-						parent.removeClass(QUOTE);
-						parent.addClass('_' + QUOTE);
-					};
+					var bbcode = '[' + QUOTE;
 
-					while (quote = wrapper.all('div.' + CSS_QUOTE)) {
-						if (!quote.size()) {
-							break;
-						}
+					if (title && title.hasClass(CSS_QUOTE_TITLE)) {
+						var titleHtml = title.get('innerHTML');
 
-						quote.each(quoteIterator);
+						titleHtml = titleHtml.replace(REGEX_HTML_TAGS, '');
+
+						bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.get('innerHTML'));
+
+						title.remove(true);
 					}
 
-					html = wrapper.html();
+					bbcode += ']' +  content.get('innerHTML') + '[/' + QUOTE + ']\n';
 
-					html =  instance._parseTagExpressions(HTML_BBCODE, html);
+					parent.set('innerHTML', bbcode);
 
-					html = html.replace(REGEX_HTML_TAGS, '');
+					parent.removeClass(QUOTE);
+					parent.addClass('_' + QUOTE);
+				};
 
-					return new A.Do.AlterReturn(null, html);
-				},
-
-				getContentAsHtml: function() {
-					var instance = this;
-
-					var host = instance.get('host');
-
-					return host.constructor.prototype.getContent.apply(host, arguments);
-				},
-
-				_contentChange: function(event) {
-					var instance = this;
-
-					var html = event.newVal;
-
-					html = html.replace(/\[quote=([^\]]*)\]/gi, TPL_QUOTE_CONTENT);
-					html = html.replace(/\[quote\]/gi, TPL_QUOTE_TITLE_CONTENT);
-					html = html.replace(/\[\/quote\]/gi, TPL_QUOTE_CLOSING_TAG);
-
-					html = instance._parseTagExpressions(BBCODE_HTML, html);
-
-					event.newVal = html;
-
-					event.stopImmediatePropagation();
-				},
-
-				_parseTagExpressions: function(options, html) {
-					var instance = this;
-
-					var option;
-					var convert;
-					var convertItem;
-					var convertLength;
-					var tags;
-
-					for (var i = 0; i < options.length; i++) {
-						option = options[i];
-						convert = option.convert;
-						convertLength = convert.length;
-
-						for (var j = 0; j < convertLength; j++) {
-							var output = option.output;
-
-							convertItem = convert[j];
-
-							if (isArray(convertItem)) {
-								tags = convertItem;
-							}
-							else {
-								tags = convertItem.tags;
-
-								if (isString(output)) {
-									output = Lang.sub(output, convertItem.source);
-								}
-							}
-
-							var regExp = Lang.sub(option.regExp, tags);
-
-							html = html.replace(new RegExp(regExp, 'gi'), output);
-						}
+				while (quote = wrapper.all('div.' + CSS_QUOTE)) {
+					if (!quote.size()) {
+						break;
 					}
 
-					return html;
+					quote.each(quoteIterator);
 				}
+
+				html = wrapper.get('innerHTML');
+
+				html =  instance._parseTagExpressions(HTML_BBCODE, html);
+
+				html = html.replace(REGEX_HTML_TAGS, '');
+
+				return new A.Do.AlterReturn(null, html);
+			},
+
+			getContentAsHtml: function() {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				return host.constructor.prototype.getContent.apply(host, arguments);
+			},
+
+			_contentChange: function(event) {
+				var instance = this;
+
+				var html = event.newVal;
+
+				html = html.replace(/\[quote=([^\]]*)\]/gi, TPL_QUOTE_TITLE_CONTENT);
+				html = html.replace(/\[quote\]/gi, TPL_QUOTE_CONTENT);
+				html = html.replace(/\[\/quote\]\n?/gi, TPL_QUOTE_CLOSING_TAG);
+
+				html = instance._parseTagExpressions(BBCODE_HTML, html);
+
+				event.newVal = html;
+
+				event.stopImmediatePropagation();
+			},
+
+			_parseTagExpressions: function(options, html) {
+				var instance = this;
+
+				var option;
+				var convert;
+				var convertItem;
+				var convertLength;
+				var tags;
+
+				for (var i = 0; i < options.length; i++) {
+					option = options[i];
+					convert = option.convert;
+					convertLength = convert.length;
+
+					for (var j = 0; j < convertLength; j++) {
+						var output = option.output;
+
+						convertItem = convert[j];
+
+						if (isArray(convertItem)) {
+							tags = convertItem;
+						}
+						else {
+							tags = convertItem.tags;
+
+							if (isString(output)) {
+								output = Lang.sub(output, convertItem.source);
+							}
+						}
+
+						var regExp = Lang.sub(option.regExp, tags);
+
+						html = html.replace(new RegExp(regExp, 'gi'), output);
+					}
+				}
+
+				return html;
 			}
 		}
-	);
+	}
+);
 
 A.namespace('Plugin').EditorBBCode = EditorBBCode;

@@ -167,10 +167,8 @@ var EditorToolbar = A.Component.create(
 
 				container.placeBefore(boundingBox);
 
-				var attrs = {
-					boundingBox: boundingBox,
-					contentBox: contentBox
-				};
+				instance._boundingBox = boundingBox;
+				instance._contentBox = contentBox;
 
 				var toolbars = [];
 
@@ -197,10 +195,8 @@ var EditorToolbar = A.Component.create(
 
 				for (var i = 0; i < groups.length; i++) {
 					var group = groups[i];
-					var groupType = GROUPS[group.type];
-					var children = [];
+					var groupType = GROUPS[group.type] || group;
 					var buttons = [];
-					var toolbar;
 
 					if (isArray(group.include)) {
 						var groupLength = group.include.length;
@@ -217,53 +213,14 @@ var EditorToolbar = A.Component.create(
 						buttons = groupType.children;
 					}
 
-					for (var j = 0; j < buttons.length; j++) {
-						var button = buttons[j];
+					var toolbar = instance._addGroup(group, groupType, buttons);
 
-						if (!button.select) {
-							var title = YUI.AUI.defaults.EditorToolbar.STRINGS[button._titleKey];
-
-							button.title = (title != null ? title : EditorToolbarStrings[button._titleKey]);
-
-							children.push(button);
-						}
-					}
-
-					if (children.length > 0) {
-						toolbar = new A.Toolbar(
-							A.merge(
-								groupType.config,
-								group.toolbar,
-								{
-									children: buttons
-								}
-							)
-						).render(contentBox);
-
+					if (toolbar) {
 						toolbars.push(toolbar);
-					}
-
-					var generate = groupType.generate;
-
-					if (generate && isFunction(generate.init)) {
-						generate.init.call(instance, host, attrs);
-					}
-
-					for (var j = 0; j < buttons.length; j++) {
-						var item = buttons[j];
-						var icon = item.icon;
-
-						if (generate && isFunction(generate[icon])) {
-							var config = (group.config ? group.config[icon] : null);
-
-							attrs.button = (item.select || !toolbar ? null : toolbar.item(j));
-
-							generate[icon].call(instance, host, attrs, config);
-						}
 					}
 				}
 
-				attrs.toolbars = toolbars;
+				instance._toolbars = toolbars;
 
 				contentBox.delegate(
 					'click',
@@ -286,6 +243,98 @@ var EditorToolbar = A.Component.create(
 				);
 			},
 
+			addGroup: function(group) {
+				var instance = this;
+
+				var groupType = GROUPS[group.type] || group;
+
+				instance._addGroup(group, groupType);
+			},
+
+			addGroupType: function(type, data) {
+				var instance = this;
+
+				if (!GROUPS[type]) {
+					GROUPS[type] = data;
+				}
+			},
+
+			_addGroup: function(group, groupType, buttons) {
+				var instance = this;
+
+				var insert = (buttons == null && group.index != null);
+				buttons = buttons || groupType.children;
+
+				if (isArray(buttons)) {
+					var host = instance.get('host');
+					var contentBox = instance._contentBox;
+					var children = [];
+					var toolbar;
+
+					var attrs = {
+						boundingBox: instance._boundingBox,
+						contentBox: contentBox
+					};
+
+					for (var j = 0; j < buttons.length; j++) {
+						var button = buttons[j];
+
+						if (!button.select) {
+							var title = YUI.AUI.defaults.EditorToolbar.STRINGS[button._titleKey];
+
+							button.title = (title != null ? title : EditorToolbarStrings[button._titleKey]);
+
+							children.push(button);
+						}
+					}
+
+					if (children.length > 0) {
+						toolbar = new A.Toolbar(
+							A.merge(
+								groupType.config,
+								group.toolbar,
+								{
+									children: children
+								}
+							)
+						).render(contentBox);
+					}
+
+					var generate = groupType.generate;
+
+					if (generate && isFunction(generate.init)) {
+						generate.init.call(instance, host, attrs);
+					}
+
+					children = (children.length > 0 ? children : buttons);
+
+					for (var j = 0; j < children.length; j++) {
+						var item = children[j];
+						var icon = item.icon;
+
+						if (generate && isFunction(generate[icon])) {
+							var config = (group.config ? group.config[icon] : null);
+
+							attrs.button = (item.select || !toolbar ? null : toolbar.item(j));
+
+							generate[icon].call(instance, host, attrs, config);
+						}
+					}
+
+					if (insert) {
+						var nodes = contentBox.get('childNodes');
+						var nodesLength = nodes.size();
+						var index = group.index;
+
+						if (index < nodesLength - 1) {
+							contentBox.insert(nodes.item(nodesLength - 1), nodes.item(index));
+						}
+					}
+
+					return toolbar;
+				}
+			},
+
 			_isGroupIncluded: function(name, children, type) {
 				var instance = this;
 
@@ -303,7 +352,7 @@ var EditorToolbar = A.Component.create(
 
 				if (event.changedNode) {
 					var cmds = event.commands;
-					var toolbars = attrs.toolbars;
+					var toolbars = instance.toolbars;
 
 					var toolbarIterator = function(item, index, collection) {
 						var state = !!(cmds[item.get('icon')]);
@@ -357,6 +406,18 @@ var EditorToolbar = A.Component.create(
 		}
 	}
 );
+
+function selectFontCommand(event) {
+	var instance = this;
+
+	var target = event.currentTarget;
+	var css = target.get('className');
+	var cmd = css.substring(css.lastIndexOf('-') + 1);
+	var val = target.get('value');
+
+	instance.execCommand(cmd, val);
+	instance.focus();
+}
 
 EditorToolbar.generateOverlay = function(trigger, config, panel) {
 	var overlay = new A['OverlayContext' + (panel ? 'Panel' : '')] (
@@ -477,16 +538,15 @@ var EditorToolbarStrings = {
 	UNDERLINE: 'Underline'
 };
 
-A.mix(
-	YUI.AUI.defaults,
-	{
-		EditorToolbar: {
-			STRINGS: EditorToolbarStrings
-		}
-	}
-);
+if (!YUI.AUI.defaults.EditorToolbar) {
+	YUI.AUI.defaults.EditorToolbar = {
+		STRINGS: {}
+	};
+}
 
-GROUPS = {};
+A.mix(YUI.AUI.defaults.EditorToolbar.STRINGS, EditorToolbarStrings);
+
+var GROUPS = {};
 
 GROUPS[ALIGNMENT] = {
 	children: [
@@ -549,23 +609,6 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			A.delegate(
-				'change',
-				function(event) {
-					var instance = this;
-
-					var target = event.currentTarget;
-					var css = target.get('className');
-					var cmd = css.substring(css.lastIndexOf('-') + 1);
-					var val = target.get('value');
-
-					editor.execCommand(cmd, val);
-					editor.focus();
-				},
-				contentBox,
-				'select'
-			);
-
 			editor.after(
 				'nodeChange',
 				function(event) {
@@ -587,20 +630,28 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl;
+			var node;
 			var data = [TPL_TOOLBAR_FONTNAME_OPTION];
 
 			if (config && config.optionHtml) {
 				data[0] = config.optionHtml;
 			}
 
-			tpl = Lang.sub(TPL_TOOLBAR_FONTNAME, data);
+			node = A.Node.create(Lang.sub(TPL_TOOLBAR_FONTNAME, data));
 
-			contentBox.append(tpl);
+			contentBox.append(node);
+
+			node.on(
+				'change',
+				selectFontCommand,
+				editor
+			);
 
 			var options = contentBox.all('.' + CSS_SELECT_FONTNAME + ' option');
 
 			attrs._fontNameOptions = options;
+
+			return node;
 		},
 
 		fontsize: function(editor, attrs, config) {
@@ -608,20 +659,28 @@ GROUPS[FONT] = {
 
 			var contentBox = attrs.contentBox;
 
-			var tpl;
+			var node;
 			var data = [TPL_TOOLBAR_FONTSIZE_OPTION];
 
 			if (config && config.optionHtml) {
 				data[0] = config.optionHtml;
 			}
 
-			tpl = Lang.sub(TPL_TOOLBAR_FONTSIZE, data);
+			node = A.Node.create(Lang.sub(TPL_TOOLBAR_FONTSIZE, data));
 
-			contentBox.append(tpl);
+			contentBox.append(node);
+
+			node.on(
+				'change',
+				selectFontCommand,
+				editor
+			);
 
 			var options = contentBox.all('.' + CSS_SELECT_FONTSIZE + ' option');
 
 			attrs._fontSizeOptions = options;
+
+			return node;
 		}
 	}
 };
@@ -1015,14 +1074,16 @@ GROUPS[INSERT] = {
 					}
 				);
 
-				iframe.on(
-					'mouseout',
-					function(event) {
-						var frame = editor.getInstance();
+				if (iframe) {
+					iframe.on(
+						'mouseout',
+						function(event) {
+							var frame = editor.getInstance();
 
-						selection = new frame.Selection();
-					}
-				);
+							selection = new frame.Selection();
+						}
+					);
+				}
 
 				var alignNode = A.Node.create(TPL_ALIGN_NODE);
 
