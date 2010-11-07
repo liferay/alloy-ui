@@ -629,4 +629,4 @@ var SchedulerBase = A.Component.create({
 
 A.Scheduler = A.Base.create(SCHEDULER_BASE, SchedulerBase, [A.WidgetStdMod]);
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view','datasource'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view','datasource']});

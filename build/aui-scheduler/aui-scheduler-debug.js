@@ -629,7 +629,7 @@ var SchedulerBase = A.Component.create({
 
 A.Scheduler = A.Base.create(SCHEDULER_BASE, SchedulerBase, [A.WidgetStdMod]);
 
-}, '@VERSION@' ,{requires:['aui-scheduler-view','datasource'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view','datasource']});
 AUI.add('aui-scheduler-view', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
@@ -2321,7 +2321,7 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']});
 AUI.add('aui-scheduler-event', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -3237,7 +3237,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.addEvent(instance.getEventCopy());
+			scheduler.addEvent(event.newSchedulerEvent);
 
 			instance.hideOverlay();
 
@@ -3258,7 +3258,9 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleSaveEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE);
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+				newSchedulerEvent: instance.getEventCopy()
+			});
 
 			event.preventDefault();
 		},
@@ -3301,7 +3303,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color','aui-datatype','aui-overlay-context-panel','substitute']});
 AUI.add('aui-scheduler-calendar', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3375,5 +3377,5 @@ A.SchedulerCalendar = SchedulerCalendar;
 }, '@VERSION@' ,{requires:['aui-scheduler-event'], skinnable:true});
 
 
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event']});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event'], skinnable:true});
 

@@ -913,7 +913,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			scheduler.addEvent(instance.getEventCopy());
+			scheduler.addEvent(event.newSchedulerEvent);
 
 			instance.hideOverlay();
 
@@ -934,7 +934,9 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleSaveEvent: function(event) {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE);
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+				newSchedulerEvent: instance.getEventCopy()
+			});
 
 			event.preventDefault();
 		},
@@ -977,4 +979,4 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color','aui-datatype','aui-overlay-context-panel','substitute']});
