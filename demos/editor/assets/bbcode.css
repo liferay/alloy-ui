@@ -1,0 +1,15 @@
+.quote-title {
+	font-weight: bold;
+	padding: 5px 0;
+}
+
+.quote {
+	background: url(quoteleft.png) no-repeat scroll left top #fff;
+	border: 1px solid #777;
+	padding: 5px 0 0 5px;
+}
+
+.quote-content {
+	background:url(quoteright.png) no-repeat scroll right bottom transparent;
+	padding: 5px 30px 10px;
+}

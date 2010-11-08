@@ -2676,26 +2676,29 @@ var EditorBBCode = A.Component.create(
 					while (temp);
 
 					var parent = content.get('parentNode');
-					var title = parent.previous();
 
-					var bbcode = '[' + QUOTE;
+					if (parent.hasClass(QUOTE)) {
+						var title = parent.previous();
 
-					if (title && title.hasClass(CSS_QUOTE_TITLE)) {
-						var titleHtml = title.get('innerHTML');
+						var bbcode = '[' + QUOTE;
 
-						titleHtml = titleHtml.replace(REGEX_HTML_TAGS, '');
+						if (title && title.hasClass(CSS_QUOTE_TITLE)) {
+							var titleHtml = title.get('innerHTML');
 
-						bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.get('innerHTML'));
+							titleHtml = titleHtml.replace(REGEX_HTML_TAGS, '');
 
-						title.remove(true);
+							bbcode += '=' + (titleHtml.charAt(titleHtml.length - 1) == ':' ? titleHtml.substring(0, titleHtml.length - 1) : title.get('innerHTML'));
+
+							title.remove(true);
+						}
+
+						bbcode += ']' +  content.get('innerHTML') + '[/' + QUOTE + ']\n';
+
+						parent.set('innerHTML', bbcode);
+
+						parent.removeClass(QUOTE);
+						parent.addClass('_' + QUOTE);
 					}
-
-					bbcode += ']' +  content.get('innerHTML') + '[/' + QUOTE + ']\n';
-
-					parent.set('innerHTML', bbcode);
-
-					parent.removeClass(QUOTE);
-					parent.addClass('_' + QUOTE);
 				};
 
 				while (quote = wrapper.all('div.' + CSS_QUOTE)) {
