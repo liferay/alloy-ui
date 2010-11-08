@@ -1,4 +1,5 @@
 var Lang = A.Lang,
+	UA = A.UA,
 
 	JUSTIFY = 'justify',
 
@@ -43,6 +44,33 @@ function findInsert(item) {
 	);
 
 	return found;
+}
+
+function addWrapper(parent, item, html) {
+	var wrapper = A.Node.create(html);
+
+	parent.insert(wrapper, item);
+
+	if (wrapper.html() != '') {
+		if (wrapper.html() == '{0}') {
+			wrapper.html('');
+		}
+		else {
+			var insert = findInsert(wrapper);
+
+			if (insert) {
+				wrapper = insert;
+			}
+		}
+	}
+
+	return wrapper;
+}
+
+function compareTextContent(innerItem, outerItem) {
+	var attr = (UA.ie ? 'innerText' : 'textContent');
+
+	return (innerItem.get(attr) == outerItem.get(attr));
 }
 
 var EditorTools = {};
@@ -172,30 +200,117 @@ A.mix(
 			var items = selection.getSelected();
 
 			if (!selection.isCollapsed && items.size()) {
-				items.each(
-					function(item, index, collection) {
-						var parent = item.ancestor();
+				var firstInner;
+				var firstOuter;
+				var lastInner;
+				var lastOuter;
+				var outerNodes;
 
-						var wrapper = A.Node.create(val);
+				if (items.size() > 1) {
+					var itemIndex;
+					var itemTotal;
 
-						parent.insert(wrapper, item);
+					items.each(
+						function(item, index, collection) {
+							var parent = item;
+							var total = 0;
+							var previous;
 
-						if (wrapper.html() != '') {
-							if (wrapper.html() == '{0}') {
-								wrapper.html('');
+							while ((parent = parent.ancestor()) && !parent.test('body')) {
+								total++;
+
+								previous = parent;
 							}
-							else {
-								var insert = findInsert(wrapper);
 
-								if (insert) {
-									wrapper = insert;
-								}
+							if (itemTotal == null || total < itemTotal) {
+								itemIndex = index;
+								itemTotal = total;
 							}
 						}
+					);
 
-						wrapper.append(item);
+					var item = items.item(itemIndex);
+					var parent = (item.test('font') ? item.ancestor().ancestor() : item.ancestor());
+					var outerIndex = [];
+
+					outerNodes = parent.get('childNodes');
+
+					items.each(
+						function(item, index, collection) {
+							var parent = item;
+							var total = 0;
+							var foundIndex = -1;
+
+							while ((parent = parent.ancestor()) && !parent.test('body')) {
+								outerNodes.some(
+									function(outerItem, outerIndex, outerCollection) {
+										if (outerItem == parent) {
+											foundIndex = outerIndex;
+
+											return true;
+										}
+									}
+								);
+
+								if (foundIndex != -1) {
+									break;
+								}
+							}
+
+							outerIndex[index] = foundIndex;
+						}
+					);
+
+					if (outerIndex.length > 1) {
+						var firstIndex = outerIndex[0];
+						var lastIndex = outerIndex[0];
+
+						firstInner = lastInner = items.item(0);
+						firstOuter = lastOuter = outerNodes.item(outerIndex[0]);
+
+						for (var i = 1; i < outerIndex.length; i++) {
+							if (outerIndex[i] != -1) {
+								if (outerIndex[i] < firstIndex) {
+									firstIndex = outerIndex[i];
+									firstInner = items.item(i);
+									firstOuter = outerNodes.item(firstIndex);
+								}
+
+								if (outerIndex[i] > lastIndex) {
+									lastIndex = outerIndex[i];
+									lastInner = items.item(i);
+									lastOuter = outerNodes.item(lastIndex);
+								}
+							}
+							else {
+								firstOuter = null;
+
+								break;
+							}
+						}
 					}
-				);
+				}
+
+				if (firstOuter != null && ((firstOuter == lastOuter) || (compareTextContent(firstInner, firstOuter) && compareTextContent(lastInner, lastOuter)))) {
+					var parent = firstOuter.ancestor();
+
+					var wrapper = addWrapper(parent, firstOuter, val);
+
+					for (var i = firstIndex; i <= lastIndex; i++) {
+						wrapper.append(outerNodes.item(i));
+					}
+				}
+				else {
+					items.each(
+						function(item, index, collection) {
+							var parent = item.ancestor();
+
+							var wrapper = addWrapper(parent, item, val);
+
+							wrapper.append(item);
+						}
+					);
+				}
 			}
 			else {
 				host.execCommand('inserthtml', Lang.sub(val, [frame.Selection.CURSOR]));
