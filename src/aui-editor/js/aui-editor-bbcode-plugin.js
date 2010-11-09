@@ -271,7 +271,7 @@ var Lang = A.Lang,
 				['p']
 			],
 			regExp: TPL_HTML_GENERIC,
-			output: '$2\n\n'
+			output: '\n$2\n'
 		},
 		{
 			convert: [
