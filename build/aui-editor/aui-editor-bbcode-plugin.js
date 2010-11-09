@@ -11,8 +11,8 @@ var Lang = A.Lang,
 	QUOTE = 'quote',
 
 	CSS_QUOTE = QUOTE,
-	CSS_QUOTE_CONTENT = QUOTE + '-content',
-	CSS_QUOTE_TITLE = QUOTE + '-title',
+	CSS_QUOTE_CONTENT = CSS_QUOTE + '-content',
+	CSS_QUOTE_TITLE = CSS_QUOTE + '-title',
 
 	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
 	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
@@ -22,7 +22,6 @@ var Lang = A.Lang,
 	TPL_QUOTE_CONTENT = '<div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
 	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
-	TPL_QUOTE_WRAPPER = '<div>{0}</div>',
 
 	REGEX_HTML_TAGS = new RegExp(TPL_HTML_TAGS, 'gi'),
 
@@ -489,7 +488,7 @@ var EditorBBCode = A.Component.create(
 				var host = instance.get('host');
 				var frame = host.getInstance();
 
-				var wrapper = frame.one('body');
+				var wrapper = frame.one('body').cloneNode(true);
 				var quote;
 
 				var quoteIterator = function(item, index, collection) {

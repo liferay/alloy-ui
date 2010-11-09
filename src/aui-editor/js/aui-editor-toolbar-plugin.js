@@ -273,8 +273,8 @@ var EditorToolbar = A.Component.create(
 						contentBox: contentBox
 					};
 
-					for (var j = 0; j < buttons.length; j++) {
-						var button = buttons[j];
+					for (var i = 0; i < buttons.length; i++) {
+						var button = buttons[i];
 
 						if (!button.select) {
 							var title = YUI.AUI.defaults.EditorToolbar.STRINGS[button._titleKey];
@@ -285,7 +285,7 @@ var EditorToolbar = A.Component.create(
 						}
 					}
 
-					if (children.length > 0) {
+					if (children.length) {
 						toolbar = new A.Toolbar(
 							A.merge(
 								groupType.config,
@@ -303,16 +303,16 @@ var EditorToolbar = A.Component.create(
 						generate.init.call(instance, host, attrs);
 					}
 
-					children = (children.length > 0 ? children : buttons);
+					children = (children.length ? children : buttons);
 
-					for (var j = 0; j < children.length; j++) {
-						var item = children[j];
+					for (var i = 0; i < children.length; i++) {
+						var item = children[i];
 						var icon = item.icon;
 
 						if (generate && isFunction(generate[icon])) {
 							var config = (group.config ? group.config[icon] : null);
 
-							attrs.button = (item.select || !toolbar ? null : toolbar.item(j));
+							attrs.button = (item.select || !toolbar ? null : toolbar.item(i));
 
 							generate[icon].call(instance, host, attrs, config);
 						}

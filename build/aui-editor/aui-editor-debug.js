@@ -907,8 +907,8 @@ var EditorToolbar = A.Component.create(
 						contentBox: contentBox
 					};
 
-					for (var j = 0; j < buttons.length; j++) {
-						var button = buttons[j];
+					for (var i = 0; i < buttons.length; i++) {
+						var button = buttons[i];
 
 						if (!button.select) {
 							var title = YUI.AUI.defaults.EditorToolbar.STRINGS[button._titleKey];
@@ -919,7 +919,7 @@ var EditorToolbar = A.Component.create(
 						}
 					}
 
-					if (children.length > 0) {
+					if (children.length) {
 						toolbar = new A.Toolbar(
 							A.merge(
 								groupType.config,
@@ -937,16 +937,16 @@ var EditorToolbar = A.Component.create(
 						generate.init.call(instance, host, attrs);
 					}
 
-					children = (children.length > 0 ? children : buttons);
+					children = (children.length ? children : buttons);
 
-					for (var j = 0; j < children.length; j++) {
-						var item = children[j];
+					for (var i = 0; i < children.length; i++) {
+						var item = children[i];
 						var icon = item.icon;
 
 						if (generate && isFunction(generate[icon])) {
 							var config = (group.config ? group.config[icon] : null);
 
-							attrs.button = (item.select || !toolbar ? null : toolbar.item(j));
+							attrs.button = (item.select || !toolbar ? null : toolbar.item(i));
 
 							generate[icon].call(instance, host, attrs, config);
 						}
@@ -2186,8 +2186,8 @@ var Lang = A.Lang,
 	QUOTE = 'quote',
 
 	CSS_QUOTE = QUOTE,
-	CSS_QUOTE_CONTENT = QUOTE + '-content',
-	CSS_QUOTE_TITLE = QUOTE + '-title',
+	CSS_QUOTE_CONTENT = CSS_QUOTE + '-content',
+	CSS_QUOTE_TITLE = CSS_QUOTE + '-title',
 
 	TPL_BBCODE_ATTRIBUTE = '\\[(({0})=([^\\]]*))\\]([\\s\\S]*?)\\[\\/{0}\\]',
 	TPL_BBCODE_GENERIC = '\\[({0})\\]([\\s\\S]*?)\\[\\/{0}\\]',
@@ -2197,7 +2197,6 @@ var Lang = A.Lang,
 	TPL_QUOTE_CONTENT = '<div class="' + CSS_QUOTE + '"><div class="' + CSS_QUOTE_CONTENT + '">',
 	TPL_QUOTE_CLOSING_TAG = '</div></div>',
 	TPL_QUOTE_TITLE_CONTENT = '<div class="' + CSS_QUOTE_TITLE + '">$1</div>' + TPL_QUOTE_CONTENT,
-	TPL_QUOTE_WRAPPER = '<div>{0}</div>',
 
 	REGEX_HTML_TAGS = new RegExp(TPL_HTML_TAGS, 'gi'),
 
@@ -2664,7 +2663,7 @@ var EditorBBCode = A.Component.create(
 				var host = instance.get('host');
 				var frame = host.getInstance();
 
-				var wrapper = frame.one('body');
+				var wrapper = frame.one('body').cloneNode(true);
 				var quote;
 
 				var quoteIterator = function(item, index, collection) {
