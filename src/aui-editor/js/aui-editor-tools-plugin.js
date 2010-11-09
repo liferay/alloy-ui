@@ -238,22 +238,26 @@ A.mix(
 					items.each(
 						function(item, index, collection) {
 							var parent = item;
-							var total = 0;
 							var foundIndex = -1;
 
-							while ((parent = parent.ancestor()) && !parent.test('body')) {
-								outerNodes.some(
-									function(outerItem, outerIndex, outerCollection) {
-										if (outerItem == parent) {
-											foundIndex = outerIndex;
+							if (item.ancestor().test('body')) {
+								foundIndex = index;
+							}
+							else {
+								while ((parent = parent.ancestor()) != null) {
+									outerNodes.some(
+										function(outerItem, outerIndex, outerCollection) {
+											if (outerItem == parent) {
+												foundIndex = outerIndex;
 
-											return true;
+												return true;
+											}
 										}
-									}
-								);
+									);
 
-								if (foundIndex != -1) {
-									break;
+									if (foundIndex != -1) {
+										break;
+									}
 								}
 							}
 
@@ -262,21 +266,18 @@ A.mix(
 					);
 
 					if (outerIndex.length > 1) {
-						var firstIndex = outerIndex[0];
-						var lastIndex = outerIndex[0];
+						var firstIndex;
+						var lastIndex;
 
-						firstInner = lastInner = items.item(0);
-						firstOuter = lastOuter = outerNodes.item(outerIndex[0]);
-
-						for (var i = 1; i < outerIndex.length; i++) {
+						for (var i = 0; i < outerIndex.length; i++) {
 							if (outerIndex[i] != -1) {
-								if (outerIndex[i] < firstIndex) {
+								if (outerIndex[i] < firstIndex || firstIndex == null) {
 									firstIndex = outerIndex[i];
 									firstInner = items.item(i);
 									firstOuter = outerNodes.item(firstIndex);
 								}
 
-								if (outerIndex[i] > lastIndex) {
+								if (outerIndex[i] > lastIndex || lastIndex == null) {
 									lastIndex = outerIndex[i];
 									lastInner = items.item(i);
 									lastOuter = outerNodes.item(lastIndex);
@@ -303,11 +304,15 @@ A.mix(
 				else {
 					items.each(
 						function(item, index, collection) {
-							var parent = item.ancestor();
+							var tagName = item.get('tagName').toLowerCase();
 
-							var wrapper = addWrapper(parent, item, val);
-
-							wrapper.append(item);
+							if (!IGNORE_TAGS[tagName]) {
+								var parent = item.ancestor();
+	
+								var wrapper = addWrapper(parent, item, val);
+	
+								wrapper.append(item);
+							}
 						}
 					);
 				}
