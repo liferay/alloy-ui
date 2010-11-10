@@ -4146,7 +4146,7 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 	}
 
 	var guidExtensions = function(A) {
-		A.Env._guidp = ['aui', A.version, A.Env._yidx].join('-').replace(/\./g, '-');
+		A.Env._guidp = ['aui', A.version, A.Env._yidx].join('_').replace(/\./g, '_');
 	};
 
 	guidExtensions(ALLOY);
