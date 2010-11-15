@@ -2968,8 +2968,9 @@ var ACTIVE_VIEW = 'activeView',
 	AUI_SCHEDULER_EVENT_RECORDER_SELECT = 'auiSchedulerEventRecorderSelect',
 	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
 
-	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'scheduler-event-recorder:save',
 	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'scheduler-event-recorder:cancel',
+	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'scheduler-event-recorder:edit',
+	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'scheduler-event-recorder:save',
 
 	DASH = '-',
 	POUND = '#',
@@ -3220,6 +3221,11 @@ var SchedulerEventRecorder = A.Component.create({
 			);
 
 			publish(
+				EV_SCHEDULER_EVENT_RECORDER_EDIT,
+				this._defEditEventFn
+			);
+
+			publish(
 				EV_SCHEDULER_EVENT_RECORDER_CANCEL,
 				this._defCancelEventFn
 			);
@@ -3289,6 +3295,12 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.hideOverlay();
 		},
 
+		_defEditEventFn: function(event) {
+			var instance = this;
+
+			instance.hideOverlay();
+		},
+
 		_defSaveEventFn: function(event) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -3316,7 +3328,11 @@ var SchedulerEventRecorder = A.Component.create({
 		_handleEditEvent: function(event) {
 			var instance = this;
 
-			instance._handleSaveEvent(event);
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
+				newSchedulerEvent: instance.getEventCopy()
+			});
+
+			event.preventDefault();
 		},
 
 		_handleSaveEvent: function(event) {
