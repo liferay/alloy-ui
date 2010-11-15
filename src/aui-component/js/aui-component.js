@@ -40,6 +40,8 @@ var Component = function(config) {
 
 	instance._originalConfig = config;
 
+	instance._setRender(config);
+
 	Component.superclass.constructor.apply(this, arguments);
 
 	INSTANCES[instance.get('id')] = instance;
@@ -199,6 +201,26 @@ A.extend(
 		},
 
 		/**
+		 * Renders the Component based upon a passed in interaction.
+		 *
+		 * @method _renderInteraction
+		 * @protected
+		 */
+		_renderInteraction: function(event, parentNode) {
+			var instance = this;
+
+			instance.render(parentNode);
+
+			var renderHandles = instance._renderHandles;
+
+			for (var i = renderHandles.length - 1; i >= 0; i--) {
+				var handle = renderHandles.pop();
+
+				handle.detach();
+			}
+		},
+
+		/**
 		 * Set the class names on the Component <code>contentBox</code>.
 		 *
 		 * @method _setComponentClassNames
@@ -218,6 +240,45 @@ A.extend(
 			}
 
 			instance.get('contentBox').addClass(buffer.join(' '));
+		},
+
+		/**
+		 * Set the interaction and render behavior based upon an object 
+		 * (intercepts the default rendering behavior).
+		 *
+		 * @method _setRender
+		 * @protected
+		 */
+		_setRender: function(config) {
+			var instance = this;
+
+			var render = config && config.render;
+
+			if (render && render.constructor == CONSTRUCTOR_OBJECT) {
+				var eventType = render.eventType || 'mousemove';
+				var parentNode = render.parentNode;
+				var selector = render.selector || parentNode;
+
+				if (selector) {
+					instance._renderHandles = [];
+
+					var renderHandles = instance._renderHandles;
+
+					if (!Lang.isArray(eventType)) {
+						eventType = [eventType];
+					}
+
+					var renderInteraction = A.rbind(instance._renderInteraction, instance, parentNode);
+
+					var interactionNode = A.one(selector);
+
+					 for (var i = eventType.length - 1; i >= 0; i--) {
+					 	renderHandles[i] = interactionNode.once(eventType[i], renderInteraction);
+					 }
+
+					delete config.render;
+				}
+			}
 		},
 
 		/**

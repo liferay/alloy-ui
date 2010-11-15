@@ -14,6 +14,16 @@
 		#wrapper {
 			padding: 10px;
 		}
+
+		.aui-custom {
+			background: #eee;
+			border: 3px solid #999;
+		}
+
+		.aui-custom-rendered {
+			background: #ffc;
+			border: 3px solid #fc0;
+		}
 	</style>
 </head>
 
@@ -27,6 +37,10 @@
 		<input id="cloneButton" type="button" value="Clone" />
 		<input id="toggleButton" type="button" value="Toggle" />
 		<input id="destroyButton" type="button" value="Destroy" />
+	</div>
+
+	<div class="aui-custom" id="delayedWidget">
+		This widget will only render once you click on it
 	</div>
 </div>
 
@@ -173,12 +187,16 @@ AUI().ready(
 			}
 		);
 
-		var testInstance = (new testComponent({myAttr: 'My Attr 1', myAttr2: 55})).render();
+		// var testInstance = (new testComponent({myAttr: 'My Attr 1', myAttr2: 55})).render();
 
 		cmp = new A.Component(
 			{
 				cssClass: 'lfr-panel',
-				render: '#demo'
+				render: {
+					selector: '#demo',
+					parentNode: '#demo',
+					eventType: ['click', 'focus']
+				}
 			}
 		);
 
@@ -198,6 +216,19 @@ AUI().ready(
 		A.get('#toggleButton').on('click', cmp.toggle, cmp);
 
 		A.get('#destroyButton').on('click', cmp.destroy, cmp);
+
+		new A.Component({
+			contentBox: '#delayedWidget',
+			after: {
+				render: function(event) {
+					this.get('boundingBox').addClass('aui-custom-rendered').set('innerHTML', 'This widget has been rendered');
+				}
+			},
+			render: {
+				selector: '#delayedWidget',
+				eventType: 'click'
+			}
+		});
 	}
 );
 
