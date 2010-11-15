@@ -118,3 +118,7 @@
 .aui-scheduler-view-day-header-day {
 	text-align: center;
 }
+
+.aui-scheduler-view-day {
+	background: #fff;
+}
