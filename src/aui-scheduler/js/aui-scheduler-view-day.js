@@ -90,11 +90,6 @@ var SchedulerDayView = A.Component.create({
 			validator: isString
 		},
 
-		isoTime: {
-			value: false,
-			validator: isBoolean
-		},
-
 		name: {
 			value: DAY
 		},

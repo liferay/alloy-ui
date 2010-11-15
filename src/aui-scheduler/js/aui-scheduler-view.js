@@ -159,6 +159,11 @@ var SchedulerView = A.Component.create({
 			value: 600
 		},
 
+		isoTime: {
+			value: false,
+			validator: isBoolean
+		},
+
 		name: {
 			value: EMPTY_STR,
 			validator: isString
