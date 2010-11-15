@@ -3285,7 +3285,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			overlay.on('hide', A.bind(instance._onOverlayHide, instance));
 			overlay.on('show', A.bind(instance._onOverlayShow, instance));
-			oBodyContent.on('submit', A.bind(instance._handleSaveEvent, instance));
+			oBodyContent.on('submit', A.bind(instance._onSubmitForm, instance));
 			oBoundingBox.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
 		},
 
@@ -3385,12 +3385,15 @@ var SchedulerEventRecorder = A.Component.create({
 		_onOverlayShow: function(event) {
 			var instance = this;
 			var overlayEditBtn = instance.overlayEditBtn;
+			var overlaySaveBtn = instance.overlaySaveBtn;
 
 			if (instance.get(EVENT)) {
 				overlayEditBtn.show();
+				overlaySaveBtn.hide();
 			}
 			else {
 				overlayEditBtn.hide();
+				overlaySaveBtn.show();
 			}
 
 			instance.loadFormValues();
@@ -3404,6 +3407,17 @@ var SchedulerEventRecorder = A.Component.create({
 				END_DATE,
 				DateMath.add(event.newVal, DateMath.MINUTES, duration)
 			);
+		},
+
+		_onSubmitForm: function(event) {
+			var instance = this;
+
+			if (instance.get(EVENT)) {
+				instance._handleEditEvent(event);
+			}
+			else {
+				instance._handleSaveEvent(event);
+			}
 		}
 	}
 });
