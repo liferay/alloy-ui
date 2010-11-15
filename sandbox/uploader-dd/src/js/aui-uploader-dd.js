@@ -278,7 +278,7 @@ var UploaderDD = A.Component.create(
 							instance._removeFile(file);
 						}
 						else {
-							if (instance._getQueueIndex(file) == -1) {
+							if (instance._getQueueIndex(fileId) == -1) {
 								var queueList = instance._queueList;
 
 								queueList.push(
@@ -388,18 +388,22 @@ var UploaderDD = A.Component.create(
 				var xhr = instance;
 				var uploaderDD = xhr._uploaderDD;
 				var fileId = uploaderDD.fileId;
+				var file = uploaderDD.file;
 
 				instance = uploaderDD.instance;
+
+				instance._removeXHR(fileId);
 
 				instance.fire(
 					'uploadcancel',
 					{
 						id: fileId,
+						file: file,
 						type: 'uploadcancel'
 					}
 				);
 
-				instance._sendQueued(fileId);
+				instance._sendQueued();
 			},
 
 			_doErrorXHR: function(event) {
@@ -411,6 +415,8 @@ var UploaderDD = A.Component.create(
 
 				instance = uploaderDD.instance;
 
+				instance._removeXHR(fileId);
+
 				instance.fire(
 					'uploaderror',
 					{
@@ -419,7 +425,7 @@ var UploaderDD = A.Component.create(
 					}
 				);
 
-				instance._sendQueued(fileId);
+				instance._sendQueued();
 			},
 
 			_doLoadEndXHR: function(event) {
@@ -477,6 +483,8 @@ var UploaderDD = A.Component.create(
 
 				instance = uploaderDD.instance;
 
+				instance._removeXHR(fileId);
+
 				instance.fire(
 					'uploadcomplete',
 					{
@@ -485,7 +493,7 @@ var UploaderDD = A.Component.create(
 					}
 				);
 
-				instance._sendQueued(fileId);
+				instance._sendQueued();
 			},
 
 			_doProgressXHR: function(event) {
@@ -692,8 +700,9 @@ var UploaderDD = A.Component.create(
 					var buttonSkin = instance.get('buttonSkin');
 
 					var contentId = A.guid();
-					var fileSelect;
 					var wrapper;
+					var fileSelect;
+					var offsetWidth;
 
 					if (buttonSkin) {
 						fileSelect = A.Node.create(Lang.sub(TPL_UPLOADER_IMAGE, [contentId]));
@@ -710,6 +719,8 @@ var UploaderDD = A.Component.create(
 						var stylesheet = new A.StyleSheet(tpl);
 
 						wrapper = container;
+
+						offsetWidth = wrapper.get('offsetWidth');
 					}
 					else {
 						var tag = (container.getComputedStyle('display') == 'block' ? 'div' : 'span');
@@ -725,6 +736,8 @@ var UploaderDD = A.Component.create(
 						fileSelect.append(container);
 
 						wrapper = fileSelect;
+
+						offsetWidth = container.get('offsetWidth');
 					}
 
 					instance._fileSelect = fileSelect;
@@ -733,7 +746,6 @@ var UploaderDD = A.Component.create(
 
 					var multiFiles = instance.get('multiFiles');
 					var formSelect = fileSelect.one('form');
-					var offsetWidth = wrapper.get('offsetWidth');
 					var offsetHeight = wrapper.get('offsetHeight');
 
 					do {
@@ -813,12 +825,8 @@ var UploaderDD = A.Component.create(
 				}
 			},
 
-			_sendQueued: function(fileId) {
+			_sendQueued: function() {
 				var instance = this;
-
-				if (fileId) {
-					instance._removeXHR(fileId);
-				}
 
 				var queueList = instance._queueList;
 
