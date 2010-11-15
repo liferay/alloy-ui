@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+	<script src="build/aui-uploader-dd.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="build/assets/skins/sam/aui-uploader-dd.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#toggle {
+			display: none;
+		}
+
+		#browseButton {
+			background: url(assets/add_content.png) no-repeat scroll 0 50% transparent;
+			padding: 2px 0 2px 20px;
+			
+		}
+
+		#browseButton.hover {
+			color: #0066cc;
+			text-decoration: none;
+		}
+
+		#selectButton {
+			width: 100px;
+			height: 40px;
+		}
+
+		.uploadButton a {
+			display: block;
+			width: 100px;
+			height: 40px;
+			text-decoration: none;
+		}
+ 
+		.uploadButton a {
+			background: url(assets/uploadFileButton.png) 0 0 no-repeat;
+		}
+ 
+		.uploadButton a:visited {
+			background-position: 0 0;
+		}
+ 
+		.uploadButton a:hover {	
+			background-position: 0 -40px;
+		}
+ 
+		.uploadButton a:active {
+			background-position: 0 -80px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - UploaderDD Demo</h1>
+
+
+	<div id="demo">
+		<div id="selectButton"></div> 
+		<div class="uploadButton"><a href="javascript://" id="uploadButtonLink"></a></div>
+		<div id="filename">
+			File selected:
+		</div>
+		<div id="percent">
+			Percent uploaded:
+		</div>
+		<div id="response">
+			Response data:
+		</div>
+		<br />
+		<div id="toggle">
+			<button onclick="uploaderDD.toggleSwf(true);">Toggle SWF</button>
+			<button onclick="uploaderDD.toggleSwf(false);">Toggle XHR</button>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-uploader-dd','aui-swf', function(A) {
+
+	var component = new A.UploaderDD(
+		{
+			boundingBox: '#selectButton',
+			buttonSkin: 'assets/selectFileButton.png',
+			disableXHR: false
+		}
+	);
+
+	component.on('uploaderReady', setupUploader);
+	component.on('fileselect', fileSelect);
+	component.on('uploadprogress', updateProgress);
+	component.on('uploadcomplete', uploadComplete);
+	component.on("uploadcompletedata", uploadCompleteData);
+
+	A.one('#uploadButtonLink').on('click', uploadFile);
+
+	if (component.canSupportXHR()) {
+		A.one('#toggle').setStyle('display', 'block');
+	}
+
+	function setupUploader(event) {
+		component.set('multiFiles', true);
+		component.set('log', true);
+
+		var fileFilters = [
+			{ description: 'Images', extensions: '*.jpg;*.png;*.gif' },
+			{ description: 'Videos', extensions: '*.avi;*.mov;*.mpg' }
+		];
+	}
+
+	function fileSelect(event) {
+		var fileData = event.fileList;
+
+		for (var key in fileData) {
+			var output = 'File selected: ' + fileData[key].name;
+			A.one('#filename').setContent(output);
+		}
+	}
+
+	function updateProgress(event) {
+		console.log(event);
+		A.one('#percent').setContent('Percent uploaded: ' + Math.round((100 * event.bytesLoaded / event.bytesTotal)) + '%');
+	}
+
+	function uploadComplete(event) {
+		console.log(event);
+		A.one('#percent').setContent('Upload complete!');
+	}
+
+	function uploadCompleteData(event) {
+		console.log(event);
+		A.one('#response').setContent('Response data: ' + event.data);
+	}
+
+	function uploadFile(event) {
+		component.uploadAll('http://localhost/alloy/demos/uploader-dd/upload.ashx', null, { form1: '1', form2: '2' });
+	}
+	
+	window.uploaderDD = component;
+});
+
+</script>
+
+</body>
+</html>
