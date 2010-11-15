@@ -606,7 +606,8 @@ A.SchedulerEventRepeat = {
 	}
 
 };
-var BC = 'bc',
+var ACTIVE_VIEW = 'activeView',
+	BC = 'bc',
 	BD = 'bd',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -926,7 +927,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var endDate = instance.get(END_DATE);
 			var scheduler = instance.get(SCHEDULER);
 			var startDate = instance.get(START_DATE);
-			var fmtHourFn = (scheduler.get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
 
 			return [ instance._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
 		},
