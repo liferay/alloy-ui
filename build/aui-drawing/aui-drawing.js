@@ -9,7 +9,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 	Util,
 	UA = A.UA,
 
@@ -342,7 +342,7 @@ Drawing.getColor = function(value) {
 		b: value || 0.75
 	};
 
-	var rgb = Color.hsb2rgb(start.h, start.s, start.b);
+	var rgb = ColorUtil.hsb2rgb(start.h, start.s, start.b);
 
 	start.h += 0.075;
 
@@ -1186,7 +1186,7 @@ Util.parseDots = A.cached(
 			var dot = {};
 			var par = gradient[i].match(REGEX_GRADIENT_VALUES);
 
-			dot.color = Color.getRGB(par[1]);
+			dot.color = ColorUtil.getRGB(par[1]);
 
 			if (dot.color.error) {
 				return null;
@@ -1871,7 +1871,7 @@ Drawing.Element = Element;
 
 A.Drawing = Drawing;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','substitute']});
 AUI.add('aui-drawing-svg', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1883,7 +1883,7 @@ var Lang = A.Lang,
 	CONFIG = A.config,
 	DOC = CONFIG.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -2751,7 +2751,7 @@ Impl = Drawing.Impl = {
 							break;
 						}
 
-						var color = Color.getRGB(value);
+						var color = ColorUtil.getRGB(value);
 
 						if (!color.error) {
 							delete params.gradient;
@@ -2792,7 +2792,7 @@ Impl = Drawing.Impl = {
 							);
 						}
 					case 'stroke':
-						color = Color.getRGB(value);
+						color = ColorUtil.getRGB(value);
 						node.setAttribute(att, color.hex);
 
 						if (att == 'stroke' && color.hasOwnProperty('o')) {
@@ -3302,7 +3302,7 @@ var Lang = A.Lang,
 	CONFIG = A.config,
 	DOC = CONFIG.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -4050,7 +4050,7 @@ Impl = Drawing.Impl = {
 			}
 
 			if ('fill-opacity' in params || 'opacity' in params) {
-				opacity = ((+a['fill-opacity'] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+Color.getRGB(params.fill).o + 1 || 2) - 1);
+				opacity = ((+a['fill-opacity'] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+ColorUtil.getRGB(params.fill).o + 1 || 2) - 1);
 
 				if (opacity < 0) {
 					opacity = 0;
@@ -4078,7 +4078,7 @@ Impl = Drawing.Impl = {
 					fill.type = 'tile';
 				}
 				else {
-					var fillColor = Color.getRGB(params.fill);
+					var fillColor = ColorUtil.getRGB(params.fill);
 
 					fill.color = fillColor.hex;
 					fill.src = STR_EMPTY;
@@ -4121,7 +4121,7 @@ Impl = Drawing.Impl = {
 				stroke.on = false;
 			}
 
-			var strokeColor = Color.getRGB(params.stroke);
+			var strokeColor = ColorUtil.getRGB(params.stroke);
 
 			if (stroke.on && params.stroke) {
 				stroke.color = strokeColor.hex;
@@ -4768,7 +4768,7 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isString = Lang.isString,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -5263,9 +5263,9 @@ ELEMENT_PROTOTYPE.animate = function(params, ms, easing, callback) {
 					break;
 
 					case 'color':
-						from[attr] = Color.getRGB(from[attr]);
+						from[attr] = ColorUtil.getRGB(from[attr]);
 
-						var toColour = Color.getRGB(to[attr]);
+						var toColour = ColorUtil.getRGB(to[attr]);
 
 						diff[attr] = {
 							r: (toColour.r - from[attr].r) / ms,

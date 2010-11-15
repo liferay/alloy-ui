@@ -366,4 +366,4 @@ WidgetParentId.prototype = {
 
 A.Toolbar = A.Base.build(NAME, Toolbar, [A.WidgetParent, WidgetParentId], { dynamic: false });
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']});

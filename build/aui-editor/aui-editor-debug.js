@@ -79,7 +79,6 @@ var Editor = A.Component.create(
 A.Editor = Editor;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-editor-toolbar-plugin']});
-
 AUI.add('aui-editor-tools-plugin', function(A) {
 var Lang = A.Lang,
 	UA = A.UA,
@@ -414,7 +413,6 @@ A.mix(
 A.Plugin.EditorTools = EditorTools;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
-
 AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -630,7 +628,6 @@ var EditorMenuPlugin = A.Component.create(
 A.namespace('Plugin').EditorMenu = EditorMenuPlugin;
 
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']});
-
 AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2172,7 +2169,6 @@ GROUPS[TEXT] = {
 A.namespace('Plugin').EditorToolbar = EditorToolbar;
 
 }, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']});
-
 AUI.add('aui-editor-bbcode-plugin', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2807,6 +2803,5 @@ A.namespace('Plugin').EditorBBCode = EditorBBCode;
 }, '@VERSION@' ,{requires:['aui-base','editor-base']});
 
 
-
-AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']});
+AUI.add('aui-editor', function(A){}, '@VERSION@' ,{use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin'], skinnable:true});
 

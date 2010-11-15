@@ -206,7 +206,6 @@ DataSourceControl.prototype = {
 A.DataSourceControl = DataSourceControl;
 
 }, '@VERSION@' ,{requires:['aui-base','datasource','dataschema']});
-
 AUI.add('aui-input-text-control', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1185,7 +1184,6 @@ InputTextControl.prototype = {
 A.InputTextControl = InputTextControl;
 
 }, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-form-combobox']});
-
 
 
 AUI.add('aui-datasource-control', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']});

@@ -782,4 +782,4 @@ var Editable = A.Component.create(
 
 A.Editable = Editable;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-form-combobox'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-form-combobox']});

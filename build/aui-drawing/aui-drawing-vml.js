@@ -9,7 +9,7 @@ var Lang = A.Lang,
 	CONFIG = A.config,
 	DOC = CONFIG.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -757,7 +757,7 @@ Impl = Drawing.Impl = {
 			}
 
 			if ('fill-opacity' in params || 'opacity' in params) {
-				opacity = ((+a['fill-opacity'] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+Color.getRGB(params.fill).o + 1 || 2) - 1);
+				opacity = ((+a['fill-opacity'] + 1 || 2) - 1) * ((+a.opacity + 1 || 2) - 1) * ((+ColorUtil.getRGB(params.fill).o + 1 || 2) - 1);
 
 				if (opacity < 0) {
 					opacity = 0;
@@ -785,7 +785,7 @@ Impl = Drawing.Impl = {
 					fill.type = 'tile';
 				}
 				else {
-					var fillColor = Color.getRGB(params.fill);
+					var fillColor = ColorUtil.getRGB(params.fill);
 
 					fill.color = fillColor.hex;
 					fill.src = STR_EMPTY;
@@ -828,7 +828,7 @@ Impl = Drawing.Impl = {
 				stroke.on = false;
 			}
 
-			var strokeColor = Color.getRGB(params.stroke);
+			var strokeColor = ColorUtil.getRGB(params.stroke);
 
 			if (stroke.on && params.stroke) {
 				stroke.color = strokeColor.hex;

@@ -3,7 +3,7 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isString = Lang.isString,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -498,9 +498,9 @@ ELEMENT_PROTOTYPE.animate = function(params, ms, easing, callback) {
 					break;
 
 					case 'color':
-						from[attr] = Color.getRGB(from[attr]);
+						from[attr] = ColorUtil.getRGB(from[attr]);
 
-						var toColour = Color.getRGB(to[attr]);
+						var toColour = ColorUtil.getRGB(to[attr]);
 
 						diff[attr] = {
 							r: (toColour.r - from[attr].r) / ms,

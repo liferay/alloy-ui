@@ -607,4 +607,4 @@ var DataBrowser = A.Component.create(
 
 A.DataBrowser = DataBrowser;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel']});

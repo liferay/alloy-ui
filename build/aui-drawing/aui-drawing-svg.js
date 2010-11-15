@@ -9,7 +9,7 @@ var Lang = A.Lang,
 	CONFIG = A.config,
 	DOC = CONFIG.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	Drawing = A.Drawing,
 	Element = Drawing.Element,
@@ -877,7 +877,7 @@ Impl = Drawing.Impl = {
 							break;
 						}
 
-						var color = Color.getRGB(value);
+						var color = ColorUtil.getRGB(value);
 
 						if (!color.error) {
 							delete params.gradient;
@@ -918,7 +918,7 @@ Impl = Drawing.Impl = {
 							);
 						}
 					case 'stroke':
-						color = Color.getRGB(value);
+						color = ColorUtil.getRGB(value);
 						node.setAttribute(att, color.hex);
 
 						if (att == 'stroke' && color.hasOwnProperty('o')) {

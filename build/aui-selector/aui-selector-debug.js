@@ -104,4 +104,4 @@ var Lang = A.Lang,
 		}
 	);
 
-}, '@VERSION@' ,{requires:['selector'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['selector']});

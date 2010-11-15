@@ -456,4 +456,4 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 A.namespace('Plugin');
 A.Plugin.ResizeConstrained = ResizeConstrained;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']});
+}, '@VERSION@' ,{requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false});
