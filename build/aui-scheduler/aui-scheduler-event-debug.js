@@ -1047,7 +1047,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 				instance.set(EVENT, evt);
 				instance.overlay.set(TRIGGER, evt.get(NODE));
-
+				instance.get(NODE).remove();
 				instance.showOverlay();
 			}
 		},
