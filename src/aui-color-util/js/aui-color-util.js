@@ -28,7 +28,7 @@ var Lang = A.Lang,
 
 	STR_EMPTY = '';
 
-var Color = {
+var ColorUtil = {
 	constrainTo: function(number, start, end, defaultNumber) {
 		var instance = this;
 
@@ -42,15 +42,15 @@ var Color = {
 	getRGB: A.cached(
 		function(color) {
 			if (!color || !!((color = String(color)).indexOf('-') + 1)) {
-				return new Color.RGB('error');
+				return new ColorUtil.RGB('error');
 			}
 
 			if (color == 'none') {
-				return new Color.RGB();
+				return new ColorUtil.RGB();
 			}
 
 			if (!HSRG.hasOwnProperty(color.toLowerCase().substring(0, 2)) && color.charAt(0) != '#') {
-				color = Color._toHex(color);
+				color = ColorUtil._toHex(color);
 			}
 
 			var red;
@@ -137,7 +137,7 @@ var Color = {
 						opacity /= 100;
 					}
 
-					return Color.hsb2rgb(red, green, blue, opacity);
+					return ColorUtil.hsb2rgb(red, green, blue, opacity);
 				}
 
 				if (rgb[6]) {
@@ -173,15 +173,15 @@ var Color = {
 						opacity /= 100;
 					}
 
-					return Color.hsb2rgb(red, green, blue, opacity);
+					return ColorUtil.hsb2rgb(red, green, blue, opacity);
 				}
 
-				rgb = new Color.RGB(red, green, blue, opacity);
+				rgb = new ColorUtil.RGB(red, green, blue, opacity);
 
 				return rgb;
 			}
 
-			return new Color.RGB('error');
+			return new ColorUtil.RGB('error');
 		}
 	),
 
@@ -262,7 +262,7 @@ var Color = {
 			break;
 		}
 
-		return new Color.RGB(r * 255, g * 255, b * 255);
+		return new ColorUtil.RGB(r * 255, g * 255, b * 255);
 	},
 
 	hsl2rgb: function() {
@@ -291,7 +291,7 @@ var Color = {
 			b = hue2rgb(p, q, h - 1/3);
 		}
 
-		return new Color.RGB(r * 255, g * 255, b * 255, o);
+		return new ColorUtil.RGB(r * 255, g * 255, b * 255, o);
 	},
 
 	rgb2hex: function(red, green, blue) {
@@ -361,7 +361,7 @@ var Color = {
 			h: h,
 			s: s,
 			l: l,
-			toString: Color._hsltoString
+			toString: ColorUtil._hsltoString
 		};
 	},
 
@@ -410,7 +410,7 @@ var Color = {
 			h: h,
 			s: s,
 			v: v,
-			toString: Color._hsbtoString
+			toString: ColorUtil._hsbtoString
 		};
 	},
 
@@ -531,7 +531,7 @@ var Color = {
 	}
 };
 
-Color.RGB = function(r, g, b, o) {
+ColorUtil.RGB = function(r, g, b, o) {
 	var instance = this;
 
 	if (r == 'error') {
@@ -542,7 +542,7 @@ Color.RGB = function(r, g, b, o) {
 		instance.g = ~~g;
 		instance.b = ~~b;
 
-		instance.hex = '#' + Color.rgb2hex(instance);
+		instance.hex = '#' + ColorUtil.rgb2hex(instance);
 
 		if (isFinite(parseFloat(o))) {
 			instance.o = o;
@@ -550,7 +550,7 @@ Color.RGB = function(r, g, b, o) {
 	}
 };
 
-Color.RGB.prototype = {
+ColorUtil.RGB.prototype = {
 	r: -1,
 	g: -1,
 	b: -1,
@@ -562,4 +562,4 @@ Color.RGB.prototype = {
 	}
 };
 
-A.Color = Color;
+A.ColorUtil = ColorUtil;
