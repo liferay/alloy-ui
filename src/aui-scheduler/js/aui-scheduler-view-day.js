@@ -181,7 +181,6 @@ var SchedulerDayView = A.Component.create({
 			var instance = this;
 
 			instance.headerTableNode.delegate('click', A.bind(instance._onClickDaysHeader, instance), DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY);
-			instance.colDataNode.delegate('click', A.bind(instance._onClickTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 			instance.colDataNode.delegate('mousedown', A.bind(instance._onMouseDownTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 			instance.colDataNode.delegate('mouseup', A.bind(instance._onMouseUpTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 			instance.colDataNode.delegate('mousemove', A.bind(instance._onMouseMoveTableCol, instance), DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
@@ -581,13 +580,6 @@ var SchedulerDayView = A.Component.create({
 			}
 
 			event.preventDefault();
-		},
-
-		_onClickTableCol: function(event) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var eventRecorder = scheduler.get(EVENT_RECORDER);
-
 		},
 
 		_onEventDragEnd: function(event) {
