@@ -6,7 +6,7 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 	DateMath = A.DataType.DateMath,
 
     _toInitialCap = A.cached(function(str) {
@@ -482,11 +482,11 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			// finding the respective nice color to the border
-			instance.hsbColor = Color.rgb2hsb(Color.getRGB(val));
+			instance.hsbColor = ColorUtil.rgb2hsb(ColorUtil.getRGB(val));
 			instance.borderColor = A.clone(instance.hsbColor);
 			instance.borderColor.b *= instance.get(COLOR_BRIGHTNESS_FACTOR);
 			instance.borderColor.s *= instance.get(COLOR_SATURATION_FACTOR);
-			instance.borderColorRGB = Color.hsb2rgb(instance.borderColor);
+			instance.borderColorRGB = ColorUtil.hsb2rgb(instance.borderColor);
 
 			return val;
 		},

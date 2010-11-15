@@ -8,7 +8,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 
 	NAME = 'colorpicker',
 
@@ -106,7 +106,7 @@ var ColorPicker = A.Component.create(
 						hex = hex.split('#').join('')
 					}
 					else {
-						hex = Color.rgb2hex(rgb);
+						hex = ColorUtil.rgb2hex(rgb);
 					}
 
 					return hex;
@@ -115,7 +115,7 @@ var ColorPicker = A.Component.create(
 					var instance = this;
 
 					if (value) {
-						var rgb = Color.getRGB('#' + value);
+						var rgb = ColorUtil.getRGB('#' + value);
 
 						value = rgb.hex.split('#').join('');
 
@@ -139,7 +139,7 @@ var ColorPicker = A.Component.create(
 
 					var rgb = instance.get('rgb');
 
-					return Color.rgb2hsv(rgb);
+					return ColorUtil.rgb2hsv(rgb);
 				},
 				setter: function(value) {
 					var instance = this;
@@ -147,7 +147,7 @@ var ColorPicker = A.Component.create(
 					if (isArray(value)) {
 						var current = instance.get('hsv');
 
-						var rgb = Color.hsv2rgb(value);
+						var rgb = ColorUtil.hsv2rgb(value);
 
 						instance.set('rgb', rgb);
 
@@ -179,7 +179,7 @@ var ColorPicker = A.Component.create(
 			},
 
 			rgb: {
-				value: new Color.RGB(255, 255, 255),
+				value: new ColorUtil.RGB(255, 255, 255),
 
 				setter: function(value) {
 					var instance = this;
@@ -207,11 +207,11 @@ var ColorPicker = A.Component.create(
 					}
 
 					if (set) {
-						r = Color.constrainTo(r, 0, 255, 255);
-						g = Color.constrainTo(g, 0, 255, 255);
-						b = Color.constrainTo(b, 0, 255, 255);
+						r = ColorUtil.constrainTo(r, 0, 255, 255);
+						g = ColorUtil.constrainTo(g, 0, 255, 255);
+						b = ColorUtil.constrainTo(b, 0, 255, 255);
 
-						value = new Color.RGB(r, g, b);
+						value = new ColorUtil.RGB(r, g, b);
 					}
 
 					return value;
@@ -424,7 +424,7 @@ var ColorPicker = A.Component.create(
 				var size = instance.get('pickersize');
 				var hue = (size - instance._hueSlider.get('value')) / size;
 
-				hue = Color.constrainTo(hue, 0, 1, 0);
+				hue = ColorUtil.constrainTo(hue, 0, 1, 0);
 
 				return (hue === 1) ? 0 : hue;
 			},
@@ -504,7 +504,7 @@ var ColorPicker = A.Component.create(
 				var saturation = instance._getSaturationPicker();
 				var value = instance._getValuePicker();
 
-				var rgb = Color.hsv2rgb(hue, saturation, value);
+				var rgb = ColorUtil.hsv2rgb(hue, saturation, value);
 
 				if (event.src != 'controls') {
 					instance.set('rgb', rgb);
@@ -520,7 +520,7 @@ var ColorPicker = A.Component.create(
 						hue = instance._getHuePicker();
 					}
 
-					var canvasRGB = Color.hsv2rgb(hue, 1, 1);
+					var canvasRGB = ColorUtil.hsv2rgb(hue, 1, 1);
 
 					instance._updateCanvas(canvasRGB);
 				}

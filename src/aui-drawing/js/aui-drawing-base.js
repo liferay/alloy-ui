@@ -8,7 +8,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 
-	Color = A.Color,
+	ColorUtil = A.ColorUtil,
 	Util,
 	UA = A.UA,
 
@@ -341,7 +341,7 @@ Drawing.getColor = function(value) {
 		b: value || 0.75
 	};
 
-	var rgb = Color.hsb2rgb(start.h, start.s, start.b);
+	var rgb = ColorUtil.hsb2rgb(start.h, start.s, start.b);
 
 	start.h += 0.075;
 
@@ -1185,7 +1185,7 @@ Util.parseDots = A.cached(
 			var dot = {};
 			var par = gradient[i].match(REGEX_GRADIENT_VALUES);
 
-			dot.color = Color.getRGB(par[1]);
+			dot.color = ColorUtil.getRGB(par[1]);
 
 			if (dot.color.error) {
 				return null;
