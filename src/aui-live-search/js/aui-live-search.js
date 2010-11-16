@@ -307,7 +307,11 @@ var LiveSearch = A.Component.create(
 				var instance = this;
 				var index = [];
 
-				instance.get(NODES).each(function(node) {
+				var nodes = instance.get(NODES);
+
+				nodes.refresh();
+
+				nodes.each(function(node) {
 					var content = L.trim(
 						instance.get(DATA).apply(instance, [node]).toLowerCase()
 					);
