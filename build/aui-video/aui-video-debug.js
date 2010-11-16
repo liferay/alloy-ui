@@ -251,13 +251,13 @@ var Video = A.Component.create(
 				}
 
 				instance._renderSwfTask.delay(1);
+			},
+
+			_usingVideo: function() {
+				var instance = this;
+
+				return (instance._video.get('nodeName').toLowerCase() == 'video');
 			}
-		},
-
-		_usingVideo: function() {
-			var instance = this;
-
-			return (instance._video.get('nodeName').toLowerCase() == 'video');
 		}
 	}
 );
