@@ -639,6 +639,19 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
+			 * Descructor lifecycle implementation for the Autocomplete class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+
+				instance.overlay.destroy();
+			},
+
+			/**
 			 * An overridable method that is executed before the result container is shown.
 			 * The method can return false to prevent the container from being shown.
 			 *
