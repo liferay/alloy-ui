@@ -9,7 +9,7 @@
 	background-position: 0 0;
 }
 
-.aui-uploaderdd-html form, .aui-uploaderdd-image form {
+.aui-uploaderdd-html form, .aui-uploaderdd-image form, .aui-uploaderdd-html object {
 	position: absolute;
 	opacity: 0;
 }

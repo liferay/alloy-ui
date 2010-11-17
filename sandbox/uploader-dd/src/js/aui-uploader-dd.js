@@ -8,7 +8,7 @@ var Lang = A.Lang,
 	INPUT_FILE = 'input[type=file]',
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
-	CSS_UPLOADER_HTML = getClassName(NAME, 'html')
+	CSS_UPLOADER_HTML = getClassName(NAME, 'html'),
 	CSS_UPLOADER_IMAGE = getClassName(NAME, 'image'),
 
 	TPL_UPLOADER_HTML = '<{0} id="{1}" class="' + CSS_UPLOADER_HTML + '"><form></form></{0}>',
@@ -83,6 +83,12 @@ var UploaderDD = A.Component.create(
 			},
 			filePostName: {
 				value: null
+			},
+			fileSizeLimit: {
+				value: null
+			},
+			generateNewId: {
+				value: false
 			}
 		},
 
@@ -102,26 +108,69 @@ var UploaderDD = A.Component.create(
 
 				instance.set('container', A.one(instance.get('boundingBox')));
 
+				var uploaderswf = instance.uploaderswf;
+				var swfId = uploaderswf._swfId || uploaderswf._id;
+
+				instance._swf = A.one('#' + swfId);
+
 				if (instance.canSupportXHR() && !instance.get('disableXHR')) {
 					instance._renderFileSelect();
 
 					instance._initializeUploader();
 				}
+				else {
+					if (!instance.get('buttonSkin')) {
+						var container = instance.get('container');
+
+						container.append(instance._content.html());
+
+						container.addClass(CSS_UPLOADER_HTML);
+
+						var swf = instance._swf;
+
+						swf.setStyle('width', container.get('offsetWidth'));
+						swf.setStyle('height', container.get('offsetHeight'));
+
+						instance._bindMouseEvents(container);
+					}
+				}
+
+				instance._totalFileCount = 0;
 			},
 
 			cancel: function(fileId) {
 				var instance = this;
 
 				if (instance._isSwfVisible()) {
-					UploaderDD.superclass.cancel.apply(instance, arguments);
+					return UploaderDD.superclass.cancel.apply(instance, arguments);
 				}
 				else {
 					if (instance._xhr[fileId]) {
 						instance._xhr[fileId].abort();
 
-						instance._removeXHR(fileId);
+						return true;
+					}
+
+					return false;
+				}
+			},
+
+			cancelAll: function() {
+				var instance = this;
+
+				var count = 0;
+
+				if (!instance._isSwfVisible()) {
+					instance._queueList = [];
+
+					for (var i in instance._xhr) {
+						instance._xhr[i].abort();
+
+						count++;
 					}
 				}
+
+				return count;
 			},
 
 			canSupportDD: function() {
@@ -140,7 +189,7 @@ var UploaderDD = A.Component.create(
 				var instance = this;
 
 				if (instance._isSwfVisible()) {
-					UploaderDD.superclass.clearFileList.apply(instance, arguments);
+					return UploaderDD.superclass.clearFileList.apply(instance, arguments);
 				}
 				else {
 					instance.set('fileList', {});
@@ -156,7 +205,7 @@ var UploaderDD = A.Component.create(
 					fileSelect.all(INPUT_FILE).attr('disabled', true);
 				}
 
-				UploaderDD.superclass.disable.apply(instance, arguments);
+				return UploaderDD.superclass.disable.apply(instance, arguments);
 			},
 
 			enable: function() {
@@ -175,7 +224,7 @@ var UploaderDD = A.Component.create(
 				var instance = this;
 
 				if (instance._isSwfVisible()) {
-					UploaderDD.superclass.removeFile.apply(instance, arguments);
+					return UploaderDD.superclass.removeFile.apply(instance, arguments);
 				}
 				else {
 					var fileList = instance.get('fileList');
@@ -188,12 +237,15 @@ var UploaderDD = A.Component.create(
 				var instance = this;
 
 				var swf = instance._swf;
-				var fileSelect = instance._fileSelect;
 
 				if (swf) {
+					var fileSelect = instance._fileSelect;
+
 					if (open == null) {
 						open = !instance._isSwfVisible();
 					}
+
+					instance.clearFileList();
 
 					if (open) {
 						swf.show();
@@ -207,8 +259,6 @@ var UploaderDD = A.Component.create(
 
 						fileSelect.show();
 					}
-
-					instance.clearFileList();
 				}
 			},
 
@@ -231,8 +281,6 @@ var UploaderDD = A.Component.create(
 					if (file) {
 						var simLimit = instance.get('simLimit');
 						var xhrCount = instance._getXHRCount();
-
-						delete fileList[fileId];
 
 						if (xhrCount < simLimit) {
 							var xhr = new XMLHttpRequest();
@@ -267,6 +315,8 @@ var UploaderDD = A.Component.create(
 
 							fileReader.readAsBinaryString(file);
 
+							instance._removeFile(file);
+
 							instance.fire(
 								'uploadstart',
 								{
@@ -274,14 +324,10 @@ var UploaderDD = A.Component.create(
 									type: 'uploadstart'
 								}
 							);
-
-							instance._removeFile(file);
 						}
 						else {
 							if (instance._getQueueIndex(fileId) == -1) {
-								var queueList = instance._queueList;
-
-								queueList.push(
+								instance._queueList.push(
 									{
 										arguments: arguments,
 										file: file,
@@ -290,6 +336,8 @@ var UploaderDD = A.Component.create(
 								);
 							}
 						}
+
+						delete fileList[fileId];
 
 						return true;
 					}
@@ -342,7 +390,7 @@ var UploaderDD = A.Component.create(
 					var fileCount = instance._getFileCount();
 
 					if (instance.get('multiFiles') || fileCount == 0) {
-						var id = 'file' + fileCount;
+						var id = 'file' + (instance.get('generateNewId') ? instance._getNewId() : fileCount);
 						var found = false;
 						var fileFiltersRegExp = instance._fileFiltersRegExp;
 
@@ -364,22 +412,64 @@ var UploaderDD = A.Component.create(
 						}
 
 						if (found) {
-							while (fileList[id] || instance._getQueueIndex(id) != -1) {
-								fileCount++;
+							var fileSizeLimit = instance.get('fileSizeLimit');
 
-								id = 'file' + fileCount;
+							if (fileSizeLimit && item.size <= fileSizeLimit) {
+								while (fileList[id] || instance._getQueueIndex(id) != -1) {
+									fileCount++;
+
+									id = 'file' + fileCount;
+								}
+
+								item.id = id;
+
+								fileList[id] = item;
+
+								instance._totalFileCount++;
+
+								return true;
 							}
-
-							item.id = id;
-
-							fileList[id] = item;
-
-							return true;
+							else {
+								instance.fire(
+									'filesizeerror',
+									{
+										file: item,
+										type: 'filesizeerror'
+									}
+								);
+							}
 						}
 					}
 				}
 
 				return false;
+			},
+
+			_appendInputFile: function(width) {
+				var instance = this;
+
+				var fileSelect = instance._fileSelect;
+				var formSelect = fileSelect.one('form');
+
+				var input = A.Node.create(Lang.sub(TPL_SELECT_INPUT, [(instance.get('multiFiles') ? 'true' : 'false')]));
+
+				if (width) {
+					input.setStyle('width', width);
+				}
+
+				formSelect.append(input);
+			},
+
+			_bindMouseEvents: function(container) {
+				var instance = this;
+
+				var fireEvent = A.bind(instance._fireEvent, instance);
+
+				container.on('click', fireEvent);
+				container.on('mousedown', fireEvent);
+				container.on('mouseup', fireEvent);
+				container.on('mouseleave', fireEvent);
+				container.on('mouseenter', fireEvent);
 			},
 
 			_doAbortXHR: function(event) {
@@ -412,6 +502,7 @@ var UploaderDD = A.Component.create(
 				var xhr = instance;
 				var uploaderDD = xhr._uploaderDD;
 				var fileId = uploaderDD.fileId;
+				var file = uploaderDD.file;
 
 				instance = uploaderDD.instance;
 
@@ -421,6 +512,7 @@ var UploaderDD = A.Component.create(
 					'uploaderror',
 					{
 						id: fileId,
+						file: file,
 						type: 'uploaderror'
 					}
 				);
@@ -525,25 +617,38 @@ var UploaderDD = A.Component.create(
 				var uploaderDD = xhr._uploaderDD;
 				var fileId = uploaderDD.fileId;
 				var target = event.currentTarget;
+				var file = uploaderDD.file;
 
 				instance = uploaderDD.instance;
 
 				if (target.readyState == 4) {
 					var status = target.status;
+					var responseData = (target.responseXML != null ? target.responseXML : target.responseText);
 
-					if (status >= 200 && status < 300 || status === 1223) {
-						var responseData = (target.responseXML != null ? target.responseXML : target.responseText);
-
+					if ((status >= 200 && status < 300) || status === 1223) {
 						if (responseData != null) {
 							instance.fire(
 								'uploadcompletedata',
 								{
 									data: responseData,
 									id: fileId,
+									status: status,
 									type: 'uploadcompletedata'
 								}
 							);
 						}
+					}
+					else {
+						instance.fire(
+							'uploaderror',
+							{
+								data: responseData,
+								id: fileId,
+								file: file,
+								status: status,
+								type: 'uploaderror'
+							}
+						);
 					}
 				}
 			},
@@ -578,7 +683,6 @@ var UploaderDD = A.Component.create(
 				var instance = this;
 
 				var queueList = instance._queueList;
-
 				var index = instance._getQueueIndex(fileId);
 
 				return (index != -1 ? queueList[index].file : null);
@@ -596,6 +700,27 @@ var UploaderDD = A.Component.create(
 				}
 
 				return -1;
+			},
+
+			_getQueueLength: function() {
+				var instance = this;
+
+				var queueList = instance._queueList;
+				var count = 0;
+
+				for (var i = 0; i < queueList.length; i++) {
+					if (!queueList[i].sent) {
+						count++;
+					}
+				}
+
+				return count;
+			},
+
+			_getNewId: function() {
+				var instance = this;
+
+				return instance._totalFileCount;
 			},
 
 			_getXHRCount: function() {
@@ -677,7 +802,22 @@ var UploaderDD = A.Component.create(
 				}
 
 				if (instance._queueList.length) {
-					A.Array.removeItem(instance._queueList, file);
+					var index = instance._getQueueIndex(file.id);
+					var sent = true;
+
+					instance._queueList[index].sent = true;
+
+					for (var i = 0; i < instance._queueList.length; i++) {
+						if (!instance._queueList[i].sent) {
+							sent = false;
+
+							break;
+						}
+					}
+
+					if (sent) {
+						instance._queueList = [];
+					}
 				}
 			},
 
@@ -692,11 +832,6 @@ var UploaderDD = A.Component.create(
 
 				if (!instance._fileSelect) {
 					var container = instance.get('container');
-
-					var swfId = instance.uploaderswf._swfId || instance.uploaderswf._id;
-
-					instance._swf = A.one('#' + swfId);
-
 					var buttonSkin = instance.get('buttonSkin');
 
 					var contentId = A.guid();
@@ -749,11 +884,8 @@ var UploaderDD = A.Component.create(
 					var offsetHeight = wrapper.get('offsetHeight');
 
 					do {
-						var input = A.Node.create(Lang.sub(TPL_SELECT_INPUT, [(multiFiles ? 'true' : 'false')]));
 
-						input.setStyle('width', offsetWidth);
-
-						formSelect.append(input);
+						instance._appendInputFile(offsetWidth);
 
 					} while (formSelect.get('offsetHeight') < offsetHeight);
 
@@ -783,6 +915,14 @@ var UploaderDD = A.Component.create(
 									fileList: fileList
 								}
 							);
+
+							var target = event.target;
+
+							if (target) {
+								target.remove(true);
+
+								instance._appendInputFile(offsetWidth);
+							}
 						},
 						INPUT_FILE,
 						instance
@@ -791,15 +931,11 @@ var UploaderDD = A.Component.create(
 					instance._xhr = {};
 					instance._queueList = [];
 
-					instance.publish('click');
-					instance.publish('mousedown');
-					instance.publish('mouseup');
-					instance.publish('mouseleave');
-					instance.publish('mouseenter');
 					instance.publish('dragenter');
 					instance.publish('dragover');
 					instance.publish('dragleave');
 					instance.publish('drop');
+
 					instance.publish('fileselect');
 					instance.publish('uploadprogress');
 					instance.publish('uploadcomplete');
@@ -807,19 +943,20 @@ var UploaderDD = A.Component.create(
 					instance.publish('uploaderror');
 					instance.publish('uploadcancel');
 					instance.publish('uploadstart');
+					instance.publish('filesizeerror');
 
-					var fireEvent = A.bind(instance._fireEvent, instance);
+					instance.publish('click');
+					instance.publish('mousedown');
+					instance.publish('mouseup');
+					instance.publish('mouseleave');
+					instance.publish('mouseenter');
 
-					wrapper.on('click', fireEvent);
-					wrapper.on('mousedown', fireEvent);
-					wrapper.on('mouseup', fireEvent);
-					wrapper.on('mouseleave', fireEvent);
-					wrapper.on('mouseenter', fireEvent);
+					instance._bindMouseEvents(wrapper);
 
 					if (instance.canSupportDD()) {
 						wrapper.on('dragenter', instance._onDragEnter, instance);
 						wrapper.on('dragover', instance._onDragOver, instance);
-						wrapper.on('dragleave', fireEvent);
+						wrapper.on('dragleave', instance._fireEvent, instance);
 						wrapper.on('drop', instance._onDrop, instance);
 					}
 				}
@@ -830,8 +967,10 @@ var UploaderDD = A.Component.create(
 
 				var queueList = instance._queueList;
 
-				for (var i in queueList) {
-					instance.upload.apply(instance, queueList[i].arguments);
+				for (var i = 0; i < queueList.length; i++) {
+					if (!queueList[i].sent) {
+						instance.upload.apply(instance, queueList[i].arguments);
+					}
 				}
 			}
 		}
