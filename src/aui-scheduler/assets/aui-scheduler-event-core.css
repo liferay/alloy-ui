@@ -41,7 +41,7 @@
 	position: absolute;
 	top: 0;
 	width: 95%;
-	z-index: 9999;
+	z-index: 400;
 	overflow: hidden;
 }
 
