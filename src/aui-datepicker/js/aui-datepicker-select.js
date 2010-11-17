@@ -396,6 +396,19 @@ var DatePickerSelect = A.Component.create(
 			},
 
 			/**
+			 * Descructor lifecycle implementation for the Datepicker class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+
+				instance.datePicker.destroy();
+			},
+
+			/**
 			 * Fires when a date is selected on the Calendar.
 			 *
 			 * @method _afterSelectDate
