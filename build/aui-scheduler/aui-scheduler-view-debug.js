@@ -747,8 +747,7 @@ var SchedulerDayView = A.Component.create({
 		            defaultFn: fn,
 		            queuable: false,
 		            emitFacade: true,
-		            bubbles: true,
-		            prefix: SCHEDULER_VIEW
+		            bubbles: true
 		        });
 			};
 
