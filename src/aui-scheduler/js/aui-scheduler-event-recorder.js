@@ -37,9 +37,9 @@ var ACTIVE_VIEW = 'activeView',
 	AUI_SCHEDULER_EVENT_RECORDER_SELECT = 'auiSchedulerEventRecorderSelect',
 	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
 
-	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'scheduler-event-recorder:cancel',
-	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'scheduler-event-recorder:edit',
-	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'scheduler-event-recorder:save',
+	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
+	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
+	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'save',
 
 	DASH = '-',
 	POUND = '#',
@@ -279,8 +279,7 @@ var SchedulerEventRecorder = A.Component.create({
 		            defaultFn: fn,
 		            queuable: false,
 		            emitFacade: true,
-		            bubbles: true,
-		            prefix: SCHEDULER_EVENT_RECORDER
+		            bubbles: true
 		        });
 			};
 
