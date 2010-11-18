@@ -25,8 +25,7 @@ var Lang = A.Lang,
 						'\r\n{2}\r\n',
 	TPL_XHR_FORM_UPLOAD = '--{0}\r\n' +
 						'Content-Disposition: form-data; name="{1}"; filename="{2}"\r\n' +
-						'Content-Type: application/octet-stream\r\n' +
-						'\r\n{3}\r\n';
+						'Content-Type: application/octet-stream\r\n';
 
 var UploaderDD = A.Component.create(
 	{
@@ -134,8 +133,22 @@ var UploaderDD = A.Component.create(
 
 						instance._bindMouseEvents(container);
 					}
+
+					instance.on(
+						'fileselect',
+						instance._onFileSelect,
+						instance
+					);
+
+					instance.on(
+						[ 'uploadcomplete', 'uploaderror', 'uploadcancel' ],
+						instance._onUploadComplete,
+						instance
+					);
 				}
 
+				instance._xhr = {};
+				instance._queueList = [];
 				instance._totalFileCount = 0;
 			},
 
@@ -161,7 +174,16 @@ var UploaderDD = A.Component.create(
 
 				var count = 0;
 
-				if (!instance._isSwfVisible()) {
+				if (instance._isSwfVisible()) {
+					var fileList = instance.get('fileList');
+
+					for (var i in fileList) {
+						instance.cancel(i);
+
+						count++;
+					}
+				}
+				else {
 					instance._queueList = [];
 
 					for (var i in instance._xhr) {
@@ -189,12 +211,9 @@ var UploaderDD = A.Component.create(
 			clearFileList: function() {
 				var instance = this;
 
-				if (instance._isSwfVisible()) {
-					return UploaderDD.superclass.clearFileList.apply(instance, arguments);
-				}
-				else {
-					instance.set('fileList', {});
-				}
+				instance.set('fileList', {});
+
+				return UploaderDD.superclass.clearFileList.apply(instance, arguments);
 			},
 
 			disable: function() {
@@ -218,48 +237,18 @@ var UploaderDD = A.Component.create(
 					fileSelect.all(INPUT_FILE).attr('disabled', false);
 				}
 
-				UploaderDD.superclass.enable.apply(instance, arguments);
+				return UploaderDD.superclass.enable.apply(instance, arguments);
 			},
 
 			removeFile: function(fileId) {
 				var instance = this;
 
+				var fileList = instance.get('fileList');
+
+				delete fileList[fileId];
+
 				if (instance._isSwfVisible()) {
 					return UploaderDD.superclass.removeFile.apply(instance, arguments);
-				}
-				else {
-					var fileList = instance.get('fileList');
-
-					delete fileList[fileId];
-				}
-			},
-
-			toggleSwf: function(open) {
-				var instance = this;
-
-				var swf = instance._swf;
-
-				if (swf) {
-					var fileSelect = instance._fileSelect;
-
-					if (open == null) {
-						open = !instance._isSwfVisible();
-					}
-
-					instance.clearFileList();
-
-					if (open) {
-						swf.show();
-
-						if (fileSelect) {
-							fileSelect.hide();
-						}
-					}
-					else if (fileSelect) {
-						swf.hide();
-
-						fileSelect.show();
-					}
 				}
 			},
 
@@ -267,7 +256,7 @@ var UploaderDD = A.Component.create(
 				var instance = this;
 
 				if (instance._isSwfVisible()) {
-					return UploaderDD.superclass.upload.apply(instance, arguments);
+					UploaderDD.superclass.upload.apply(instance, arguments);
 				}
 				else {
 					var fileList = instance.get('fileList');
@@ -415,7 +404,7 @@ var UploaderDD = A.Component.create(
 						if (found) {
 							var fileSizeLimit = instance.get('fileSizeLimit');
 
-							if (fileSizeLimit && item.size <= fileSizeLimit) {
+							if (!fileSizeLimit || item.size <= fileSizeLimit) {
 								while (fileList[id] || instance._getQueueIndex(id) != -1) {
 									fileCount++;
 
@@ -438,6 +427,8 @@ var UploaderDD = A.Component.create(
 										type: 'filesizeerror'
 									}
 								);
+
+								return null;
 							}
 						}
 					}
@@ -489,7 +480,6 @@ var UploaderDD = A.Component.create(
 					'uploadcancel',
 					{
 						id: fileId,
-						file: file,
 						type: 'uploadcancel'
 					}
 				);
@@ -513,7 +503,6 @@ var UploaderDD = A.Component.create(
 					'uploaderror',
 					{
 						id: fileId,
-						file: file,
 						type: 'uploaderror'
 					}
 				);
@@ -552,7 +541,10 @@ var UploaderDD = A.Component.create(
 					filePostName = uploaderDD.fileId;
 				}
 
-				buffer.push(Lang.sub(TPL_XHR_FORM_UPLOAD, [boundary, filePostName, (fileName != null ? fileName : uploaderDD.file.name), result]));
+				buffer.push(Lang.sub(TPL_XHR_FORM_UPLOAD, [boundary, filePostName, (fileName != null ? fileName : uploaderDD.file.name)]));
+				buffer.push('\r\n');
+				buffer.push(result);
+				buffer.push('\r\n');
 				buffer.push(Lang.sub(TPL_XHR_FOOTER, [boundary]));
 
 				xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
@@ -645,7 +637,6 @@ var UploaderDD = A.Component.create(
 							{
 								data: responseData,
 								id: fileId,
-								file: file,
 								status: status,
 								type: 'uploaderror'
 							}
@@ -709,9 +700,11 @@ var UploaderDD = A.Component.create(
 				var queueList = instance._queueList;
 				var count = 0;
 
-				for (var i = 0; i < queueList.length; i++) {
-					if (!queueList[i].sent) {
-						count++;
+				if (queueList) {
+					for (var i = 0; i < queueList.length; i++) {
+						if (!queueList[i].sent) {
+							count++;
+						}
 					}
 				}
 
@@ -766,27 +759,44 @@ var UploaderDD = A.Component.create(
 
 				if (originalEvent.dataTransfer) {
 					var files = originalEvent.dataTransfer.files;
-					var fileList = {};
 
 					if (files) {
 						for (var i = 0; i < files.length; i++) {
-							var item = files[i];
-
-							if (instance._addFile(item)) {
-								fileList[item.id] = item;
-							}
+							instance._addFile(files[i]);
 						}
 					}
 
 					instance.fire(
 						'fileselect',
-						{ 
-							fileList: fileList
+						{
+							fileList: instance.get('fileList')
 						}
 					);
 				}
 
 				instance.fire('drop', event);
+			},
+
+			_onFileSelect: function(event) {
+				var instance = this;
+
+				var fileList = instance.get('fileList');
+				var eventFileList = event.fileList;
+
+				for (var i in eventFileList) {
+					fileList[i] = eventFileList[i];
+				}
+			},
+
+			_onUploadComplete: function(event) {
+				var instance = this;
+
+				var fileId = event.id;
+				var fileList = instance.get('fileList');
+
+				delete fileList[fileId];
+
+				instance.removeFile(fileId);
 			},
 
 			_removeFile: function(file) {
@@ -878,7 +888,7 @@ var UploaderDD = A.Component.create(
 
 					instance._fileSelect = fileSelect;
 
-					instance.toggleSwf(false);
+					instance._toggleSwf(false);
 
 					var multiFiles = instance.get('multiFiles');
 					var formSelect = fileSelect.one('form');
@@ -896,15 +906,13 @@ var UploaderDD = A.Component.create(
 							var instance = this;
 
 							var files = event.currentTarget.get('files');
-							var fileList = {};
 
 							A.some(
 								files._nodes,
 								function(item, index, collection) {
-									if (instance._addFile(item)) {
-										fileList[item.id] = item;
-									}
-									else {
+									var result = instance._addFile(item);
+
+									if (result == false) {
 										return true;
 									}
 								}
@@ -913,7 +921,7 @@ var UploaderDD = A.Component.create(
 							instance.fire(
 								'fileselect',
 								{ 
-									fileList: fileList
+									fileList: instance.get('fileList')
 								}
 							);
 
@@ -928,9 +936,6 @@ var UploaderDD = A.Component.create(
 						INPUT_FILE,
 						instance
 					);
-
-					instance._xhr = {};
-					instance._queueList = [];
 
 					instance.publish('dragenter');
 					instance.publish('dragover');
@@ -973,7 +978,36 @@ var UploaderDD = A.Component.create(
 						instance.upload.apply(instance, queueList[i].arguments);
 					}
 				}
-			}
+			},
+
+			_toggleSwf: function(open) {
+				var instance = this;
+
+				var swf = instance._swf;
+
+				if (swf) {
+					var fileSelect = instance._fileSelect;
+
+					if (open == null) {
+						open = !instance._isSwfVisible();
+					}
+
+					instance.clearFileList();
+
+					if (open) {
+						swf.show();
+
+						if (fileSelect) {
+							fileSelect.hide();
+						}
+					}
+					else if (fileSelect) {
+						swf.hide();
+
+						fileSelect.show();
+					}
+				}
+			},
 		}
 	}
 );
