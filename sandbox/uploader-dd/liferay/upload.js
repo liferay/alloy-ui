@@ -88,6 +88,7 @@ AUI().add(
 			instance._uploadsCompleteText = Liferay.Language.get('all-uploads-complete');
 			instance._uploadStatusText = Liferay.Language.get('uploading-file-x-of-x');
 			instance._uploadFilesText = Liferay.Language.get('upload-files');
+			instance._fileFiltersText = Liferay.Language.get('files');
 
 			instance._errorMessages = {
 				'1000': Liferay.Language.get('please-enter-a-unique-document-name'),
@@ -225,11 +226,11 @@ AUI().add(
 					if (displayButtons) {
 						instance._cancelButton.show();
 						instance._uploadButton.show();
-
-						var stats = instance._getStats();
-
-						instance._updateList(stats.files_queued);
 					}
+
+					var stats = instance._getStats();
+
+					instance._updateList(stats.files_queued);
 				}
 			},
 
@@ -731,14 +732,29 @@ AUI().add(
 					}
 				);
 
+				instance._allowedFileTypes = '*.png;*.jpg';
+
 				uploaderDD.on(
 					'uploaderReady',
 					function(event) {
 						var instance = this;
 
-						instance.set("multiFiles", true);
-						instance.set("simLimit", 1);
-					}
+						uploaderDD.set('multiFiles', true);
+						uploaderDD.set('simLimit', 1);
+
+						if (instance._allowedFileTypes && instance._allowedFileTypes != '*') {
+							uploaderDD.set(
+								'fileFilters',
+								[
+									{
+										description: instance._fileFiltersText,
+										extensions: instance._allowedFileTypes
+									}
+								]
+							);
+						}
+					},
+					instance
 				);
 
 				uploaderDD.on(
