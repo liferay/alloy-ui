@@ -812,9 +812,7 @@ YUI.add('io-base', function(Y) {
     Y.io.http = _io;
 
 
-
-}, '3.2.0' ,{optional:['querystring-stringify-simple'], requires:['event-custom-base']});
-
+}, '3.2.0' ,{requires:['event-custom-base'], optional:['querystring-stringify-simple']});
 YUI.add('io-form', function(Y) {
 
    /**
@@ -908,9 +906,7 @@ YUI.add('io-form', function(Y) {
     }, true);
 
 
-
 }, '3.2.0' ,{requires:['io-base','node-base']});
-
 YUI.add('io-xdr', function(Y) {
 
    /**
@@ -1210,9 +1206,7 @@ YUI.add('io-xdr', function(Y) {
     });
 
 
-
 }, '3.2.0' ,{requires:['io-base','datatype-xml']});
-
 YUI.add('io-upload-iframe', function(Y) {
 
    /**
@@ -1301,9 +1295,9 @@ YUI.add('io-upload-iframe', function(Y) {
         var p;
 
         for (p in a) {
-            if (a.hasOwnProperty(a, p)) {
+            if (a.hasOwnProperty(p)) {
                 if (a[p]) {
-                    f.setAttribute(p, f[p]);
+                    f.setAttribute(p, a[p]);
                 }
                 else {
                     f.removeAttribute(p);
@@ -1490,9 +1484,7 @@ YUI.add('io-upload-iframe', function(Y) {
     });
 
 
-
 }, '3.2.0' ,{requires:['io-base','node-base']});
-
 YUI.add('io-queue', function(Y) {
 
    /**
@@ -1696,9 +1688,7 @@ YUI.add('io-queue', function(Y) {
     }, true);
 
 
-
 }, '3.2.0' ,{requires:['io-base','queue-promote']});
-
 
 
 YUI.add('io', function(Y){}, '3.2.0' ,{use:['io-base', 'io-form', 'io-xdr', 'io-upload-iframe', 'io-queue']});
