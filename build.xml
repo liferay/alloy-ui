@@ -439,7 +439,45 @@
 			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
 			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
 		</replace>
+		<!-- /End Patch for AUI-284-->
 
+		<!-- Patch for AUI-285 -->
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-base.js">
+			<replacetoken><![CDATA[function _destroy(o) {
+        // IE, when using XMLHttpRequest as an ActiveX Object, will throw
+        // a "Type Mismatch" error if the event handler is set to "null".
+        if (w && w.XMLHttpRequest) {
+            if (o.c) {
+                o.c.onreadystatechange = null;
+            }
+        }
+
+        o.c = null;
+        o = null;
+    }]]></replacetoken>
+			  <replacevalue><![CDATA[function _destroy(o) {
+        if (w) {
+            if (o.c && w.XMLHttpRequest) {
+                o.c.onreadystatechange = null;
+            }
+			else if (Y.UA.ie === 6 && !o.t) {
+				// IE, when using XMLHttpRequest as an ActiveX Object, will throw
+				// a "Type Mismatch" error if the event handler is set to "null".
+				o.c.abort();
+			}
+        }
+
+        o.c = null;
+        o = null;
+    }]]></replacevalue>
+		</replace>
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
+			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
+			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
+		</replace>
+		<!-- /End Patch for AUI-285-->
+
+		<!-- Patch for AUI-284 & AUI-285-->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
 			<fileset
@@ -447,7 +485,7 @@
 				includes="build.xml"
 			/>
 		</subant>
-		<!-- /End Patch for AUI-284-->
+		<!-- /End Patch for AUI-284 & AUI-285-->
 
 	</target>
 
