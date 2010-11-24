@@ -429,6 +429,26 @@
 			/>
 		</subant>
 		<!-- /End Patch for AUI-153 -->
+
+		<!-- Patch for AUI-284 -->
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
+			<replacetoken><![CDATA[if (a.hasOwnProperty(a, p)) {]]></replacetoken>
+			  <replacevalue><![CDATA[if (a.hasOwnProperty(p)) {]]></replacevalue>
+		</replace>
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
+			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
+			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/io"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-284-->
+
 	</target>
 
 	<target name="release" depends="clean-release">
