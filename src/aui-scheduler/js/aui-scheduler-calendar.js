@@ -55,8 +55,6 @@ var SchedulerCalendar = A.Component.create({
 		_afterEventsChange: function(event) {
 			var instance = this;
 
-			console.log('_afterEventsChange', event);
-
 			instance._uiSetEvents(event.newVal);
 		},
 
@@ -64,7 +62,6 @@ var SchedulerCalendar = A.Component.create({
 			var instance = this;
 
 			A.Array.each(val, function(evt, i) {
-				console.log(evt, instance.get(COLOR));
 				evt.set(COLOR, instance.get(COLOR));
 			});
 		}
