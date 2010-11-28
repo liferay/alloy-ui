@@ -8,19 +8,13 @@ var Lang = A.Lang,
 
 	SCHEDULER_CALENDAR = 'scheduler-calendar',
 	COLOR = 'color',
+	EVENTS = 'events',
 	PALLETE = 'pallete';
 
 var SchedulerCalendar = A.Component.create({
 	NAME: SCHEDULER_CALENDAR,
 
 	ATTRS: {
-		events: {
-			lazyAdd: false,
-			value: [],
-			setter: '_setEvents',
-			validator: isArray
-		},
-
 		color: {
 			valueFn: function() {
 				var instance = this;
@@ -45,22 +39,34 @@ var SchedulerCalendar = A.Component.create({
 
 	EXTENDS: A.Base,
 
+	AUGMENTS: A.SchedulerEventSupport,
+
 	prototype: {
-		_setEvents: function(val) {
+		initializer: function() {
 			var instance = this;
-			var events = [];
+
+			instance.after('eventsChange', instance._afterEventsChange);
+
+			instance._uiSetEvents(
+				instance.get(EVENTS)
+			);
+		},
+
+		_afterEventsChange: function(event) {
+			var instance = this;
+
+			console.log('_afterEventsChange', event);
+
+			instance._uiSetEvents(event.newVal);
+		},
+
+		_uiSetEvents: function(val) {
+			var instance = this;
 
 			A.Array.each(val, function(evt, i) {
-				if (!isSchedulerEvent(evt)) {
-					evt = new A.SchedulerEvent(evt);
-				}
-
+				console.log(evt, instance.get(COLOR));
 				evt.set(COLOR, instance.get(COLOR));
-
-				events.push(evt);
 			});
-
-			return events;
 		}
 	}
 });
