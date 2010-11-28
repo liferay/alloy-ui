@@ -106,6 +106,90 @@ var Lang = A.Lang,
 	TPL_SCHEDULER_VIEW = '<a href="#" class="'+[ CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_ ].join(SPACE)+'{name}" data-view-name="{name}">{label}</a>',
 	TPL_SCHEDULER_VIEWS = '<div class="'+CSS_SCHEDULER_VIEWS+'"></div>';
 
+var SchedulerEventSupport = function() {};
+
+SchedulerEventSupport.ATTRS = {
+	events: {
+		value: [],
+		setter: '_setEvents',
+		validator: isArray
+	}
+};
+
+A.mix(SchedulerEventSupport.prototype, {
+	addEvent: function(evt) {
+		var instance = this;
+		var events = instance.get(EVENTS);
+
+		if (A.Array.indexOf(events, evt) > -1) {
+			A.Array.removeItem(events, evt);
+		}
+
+		events.push(evt);
+		instance.set(EVENTS, events);
+	},
+
+	addEvents: function(events) {
+		var instance = this;
+
+		A.Array.each(
+			instance._normalizeEvents(events),
+			A.bind(instance.addEvent, instance)
+		);
+	},
+
+	removeEvent: function(evt) {
+		var instance = this;
+		var events = instance.get(EVENTS);
+
+		A.Array.removeItem(events, evt);
+
+		instance.set(EVENTS, events);
+	},
+
+	removeEvents: function(events) {
+		var instance = this;
+
+		A.Array.each(
+			instance._normalizeEvents(events),
+			A.bind(instance.removeEvent, instance)
+		);
+	},
+
+	_normalizeEvents: function(events) {
+		var instance = this;
+		var output = [];
+
+		events = A.Array(events);
+
+		A.Array.each(events, function(evt, i) {
+			if (isSchedulerEvent(evt)) {
+				output.push(evt);
+			}
+			else if (isSchedulerCalendar(evt)) {
+				// get events from the calendar
+				output = output.concat(
+					instance._normalizeEvents(evt.get(EVENTS))
+				);
+			}
+			else {
+				output.push(
+					new A.SchedulerEvent(evt)
+				);
+			}
+		});
+
+		return output;
+	},
+
+	_setEvents: function(val) {
+		var instance = this;
+
+		return instance._normalizeEvents(val);
+	}
+});
+
+A.SchedulerEventSupport = SchedulerEventSupport;
 
 var SchedulerBase = A.Component.create({
 	NAME: SCHEDULER_BASE,
@@ -117,12 +201,6 @@ var SchedulerBase = A.Component.create({
 
 		eventRecorder: {
 			setter: '_setEventRecorder'
-		},
-
-		events: {
-			value: [],
-			setter: '_setEvents',
-			validator: isArray
 		},
 
 		strings: {
@@ -250,6 +328,8 @@ var SchedulerBase = A.Component.create({
 
 	UI_ATTRS: [CURRENT_DATE],
 
+	AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
+
 	prototype: {
 		viewStack: null,
 
@@ -283,45 +363,6 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 
 			instance.syncStdContent();
-		},
-
-		addEvent: function(evt) {
-			var instance = this;
-			var events = instance.get(EVENTS);
-
-			if (A.Array.indexOf(events, evt) > -1) {
-				A.Array.removeItem(events, evt);
-			}
-
-			events.push(evt);
-			instance.set(EVENTS, events);
-		},
-
-		addEvents: function(events) {
-			var instance = this;
-
-			A.Array.each(
-				instance._normalizeEvents(events),
-				A.bind(instance.addEvent, instance)
-			);
-		},
-
-		removeEvent: function(evt) {
-			var instance = this;
-			var events = instance.get(EVENTS);
-
-			A.Array.removeItem(events, evt);
-
-			instance.set(EVENTS, events);
-		},
-
-		removeEvents: function(events) {
-			var instance = this;
-
-			A.Array.each(
-				instance._normalizeEvents(events),
-				A.bind(instance.removeEvent, instance)
-			);
 		},
 
 		flushEvents: function() {
@@ -501,32 +542,6 @@ var SchedulerBase = A.Component.create({
 			return evtsByDate;
 		},
 
-		_normalizeEvents: function(events) {
-			var instance = this;
-			var output = [];
-
-			events = A.Array(events);
-
-			A.Array.each(events, function(evt, i) {
-				if (isSchedulerEvent(evt)) {
-					output.push(evt);
-				}
-				else if (isSchedulerCalendar(evt)) {
-					// get events from the calendar
-					output = output.concat(
-						instance._normalizeEvents(evt.get(EVENTS))
-					);
-				}
-				else {
-					output.push(
-						new A.SchedulerEvent(evt)
-					);
-				}
-			});
-
-			return output;
-		},
-
 		_onClickToday: function(event) {
 			var instance = this;
 
@@ -583,12 +598,6 @@ var SchedulerBase = A.Component.create({
 			if (val) {
 				val.set(SCHEDULER, instance);
 			}
-		},
-
-		_setEvents: function(val) {
-			var instance = this;
-
-			return instance._normalizeEvents(val);
 		},
 
 		_setViews: function(val) {
@@ -664,7 +673,7 @@ var SchedulerBase = A.Component.create({
 	}
 });
 
-A.Scheduler = A.Base.create(SCHEDULER_BASE, SchedulerBase, [A.WidgetStdMod]);
+A.Scheduler = SchedulerBase;
 
 }, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view','datasource']});
 AUI.add('aui-scheduler-view', function(A) {
@@ -3471,19 +3480,13 @@ var Lang = A.Lang,
 
 	SCHEDULER_CALENDAR = 'scheduler-calendar',
 	COLOR = 'color',
+	EVENTS = 'events',
 	PALLETE = 'pallete';
 
 var SchedulerCalendar = A.Component.create({
 	NAME: SCHEDULER_CALENDAR,
 
 	ATTRS: {
-		events: {
-			lazyAdd: false,
-			value: [],
-			setter: '_setEvents',
-			validator: isArray
-		},
-
 		color: {
 			valueFn: function() {
 				var instance = this;
@@ -3508,22 +3511,34 @@ var SchedulerCalendar = A.Component.create({
 
 	EXTENDS: A.Base,
 
+	AUGMENTS: A.SchedulerEventSupport,
+
 	prototype: {
-		_setEvents: function(val) {
+		initializer: function() {
 			var instance = this;
-			var events = [];
+
+			instance.after('eventsChange', instance._afterEventsChange);
+
+			instance._uiSetEvents(
+				instance.get(EVENTS)
+			);
+		},
+
+		_afterEventsChange: function(event) {
+			var instance = this;
+
+			console.log('_afterEventsChange', event);
+
+			instance._uiSetEvents(event.newVal);
+		},
+
+		_uiSetEvents: function(val) {
+			var instance = this;
 
 			A.Array.each(val, function(evt, i) {
-				if (!isSchedulerEvent(evt)) {
-					evt = new A.SchedulerEvent(evt);
-				}
-
+				console.log(evt, instance.get(COLOR));
 				evt.set(COLOR, instance.get(COLOR));
-
-				events.push(evt);
 			});
-
-			return events;
 		}
 	}
 });
