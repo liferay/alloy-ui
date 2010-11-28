@@ -259,7 +259,7 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-scheduler', function(A) {
+AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 
 	window.evt1 = new A.SchedulerEvent({
 		// startDate: new Date(2010, 9, 3, 11),
@@ -273,7 +273,21 @@ AUI().ready('aui-scheduler', function(A) {
 		content: 'Testing event 2'
 	});
 
+	var eduardoCalendar = new A.SchedulerCalendar({
+		events: [
+			{
+				label: 'eduardo 1',
+				startDate: new Date(2010, 10, 27)
+			},
+			{
+				startDate: new Date(2010, 10, 27, 12),
+				label: 'eduardo 2'
+			}
+		]
+	});
+
 	var events1 = [
+		eduardoCalendar,
 		// window.evt1,
 		window.evt2,
 
@@ -339,28 +353,65 @@ AUI().ready('aui-scheduler', function(A) {
 	// 	console.log('startDateChange', event);
 	// });
 	//
-	// schedulerBase1.on('scheduler-event-recorder:save', function(event) {
-	// 	console.log('scheduler-event-recorder:save', event);
+	schedulerBase1.on('scheduler-event-recorder:save', function(event) {
+		console.log('scheduler-event-recorder:save', event);
+	});
+
+	schedulerBase1.on('scheduler-event-recorder:edit', function(event) {
+		console.log('scheduler-event-recorder:edit', event);
+	});
+
+
+// setTimeout(function() {
+// 
+// 	console.log('REMOVING');
+// 
+// 	console.log(schedulerBase1.get('events'));
+// 
+// 	// schedulerBase1.addEvents([eduardoCalendar]);
+// 	schedulerBase1.removeEvents(eduardoCalendar);
+// 
+// 	console.log(schedulerBase1.get('events'));
+// 
+// 	schedulerBase1.syncEventsUI();
+// 
+// },2000);
+
+	//
+	// var eduardoCalendar = new A.SchedulerCalendar({
+	// 	events: [
+	// 		{
+	// 			label: 'eduardo 1',
+	// 			startDate: new Date(2010, 10, 27)
+	// 		},
+	// 		{
+	// 			startDate: new Date(2010, 10, 27, 12),
+	// 			label: 'eduardo 2'
+	// 		}
+	// 	]
 	// });
-
-	var events2 = [
-		{
-			startDate: new Date(2010, 8, 26, 7, 15),
-			endDate: new Date(2010, 8, 26, 11, 15)
-		}
-	];
-
-	var view0 = new A.SchedulerMonthView();
-	var view1 = new A.SchedulerDayView();
-	var view2 = new A.SchedulerWeekView();
-
-	window.schedulerBase2 = new A.Scheduler({
-		views: [view0, view2, view1],
-		events: events2,
-		eventRecorder: new A.SchedulerEventRecorder(),
-		currentDate: new Date(2010, 9, 4)
-	})
-	.render('#wrapper');
+	//
+	//
+	// var events2 = [
+	// 	eduardoCalendar,
+	//
+	// 	{
+	// 		startDate: new Date(2010, 8, 26, 7, 15),
+	// 		endDate: new Date(2010, 8, 26, 11, 15)
+	// 	}
+	// ];
+	//
+	// var view0 = new A.SchedulerMonthView();
+	// var view1 = new A.SchedulerDayView();
+	// var view2 = new A.SchedulerWeekView();
+	//
+	// window.schedulerBase2 = new A.Scheduler({
+	// 	views: [view0, view2, view1],
+	// 	events: events2,
+	// 	eventRecorder: new A.SchedulerEventRecorder(),
+	// 	currentDate: new Date(2010, 9, 4)
+	// })
+	// .render('#wrapper');
 
 
 });
