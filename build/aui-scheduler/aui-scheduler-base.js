@@ -14,6 +14,10 @@ var Lang = A.Lang,
 		return (val instanceof A.SchedulerEvent);
 	},
 
+	isSchedulerCalendar = function(val) {
+		return (A.SchedulerCalendar && (val instanceof A.SchedulerCalendar));
+	},
+
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
 
@@ -293,6 +297,15 @@ var SchedulerBase = A.Component.create({
 			instance.set(EVENTS, events);
 		},
 
+		addEvents: function(events) {
+			var instance = this;
+
+			A.Array.each(
+				instance._normalizeEvents(events),
+				A.bind(instance.addEvent, instance)
+			);
+		},
+
 		removeEvent: function(evt) {
 			var instance = this;
 			var events = instance.get(EVENTS);
@@ -300,6 +313,15 @@ var SchedulerBase = A.Component.create({
 			A.Array.removeItem(events, evt);
 
 			instance.set(EVENTS, events);
+		},
+
+		removeEvents: function(events) {
+			var instance = this;
+
+			A.Array.each(
+				instance._normalizeEvents(events),
+				A.bind(instance.removeEvent, instance)
+			);
 		},
 
 		flushEvents: function() {
@@ -479,6 +501,32 @@ var SchedulerBase = A.Component.create({
 			return evtsByDate;
 		},
 
+		_normalizeEvents: function(events) {
+			var instance = this;
+			var output = [];
+
+			events = A.Array(events);
+
+			A.Array.each(events, function(evt, i) {
+				if (isSchedulerEvent(evt)) {
+					output.push(evt);
+				}
+				else if (isSchedulerCalendar(evt)) {
+					// get events from the calendar
+					output = output.concat(
+						instance._normalizeEvents(evt.get(EVENTS))
+					);
+				}
+				else {
+					output.push(
+						new A.SchedulerEvent(evt)
+					);
+				}
+			});
+
+			return output;
+		},
+
 		_onClickToday: function(event) {
 			var instance = this;
 
@@ -539,19 +587,8 @@ var SchedulerBase = A.Component.create({
 
 		_setEvents: function(val) {
 			var instance = this;
-			var events = [];
 
-			A.Array.each(val, function(evt, i) {
-				if (!isSchedulerEvent(evt)) {
-					evt = new A.SchedulerEvent(evt);
-				}
-
-				evt.set(SCHEDULER, instance);
-
-				events.push(evt);
-			});
-
-			return events;
+			return instance._normalizeEvents(val);
 		},
 
 		_setViews: function(val) {
