@@ -276,15 +276,31 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 	var eduardoCalendar = new A.SchedulerCalendar({
 		events: [
 			{
-				label: 'eduardo 1',
+				content: 'eduardo 1',
 				startDate: new Date(2010, 10, 27)
 			},
 			{
 				startDate: new Date(2010, 10, 27, 12),
-				label: 'eduardo 2'
+				content: 'eduardo 2'
 			}
 		]
 	});
+
+	var johnCalendar = new A.SchedulerCalendar({
+		events: [
+			{
+				content: 'john 1',
+				startDate: new Date(2010, 10, 27)
+			}
+		]
+	});
+
+	eduardoCalendar.addEvents([
+		{ content: 'new event' }
+	]);
+
+	// eduardoCalendar.addEvents(johnCalendar);
+	// eduardoCalendar.removeEvents(johnCalendar);
 
 	var events1 = [
 		eduardoCalendar,
@@ -363,18 +379,18 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 
 
 // setTimeout(function() {
-// 
+//
 // 	console.log('REMOVING');
-// 
+//
 // 	console.log(schedulerBase1.get('events'));
-// 
+//
 // 	// schedulerBase1.addEvents([eduardoCalendar]);
 // 	schedulerBase1.removeEvents(eduardoCalendar);
-// 
+//
 // 	console.log(schedulerBase1.get('events'));
-// 
+//
 // 	schedulerBase1.syncEventsUI();
-// 
+//
 // },2000);
 
 	//
