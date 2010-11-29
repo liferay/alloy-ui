@@ -140,159 +140,238 @@
 		UA extensions
 	*/
 
-	AUI._uaExtensions = function(A) {
-		var p = navigator.platform;
-		var u = navigator.userAgent;
-		var b = /(Firefox|Opera|Chrome|Safari|KDE|iCab|Flock|IE)/.exec(u);
-		var os = /(Win|Mac|Linux|iPhone|iPad|Sun|Solaris)/.exec(p);
-		var versionDefaults = [0,0];
+	(function() {
+		var REGEX_VERSION_DOT = /\./g;
 
-		b = (!b || !b.length) ? (/(Mozilla)/.exec(u) || ['']) : b;
-		os = (!os || !os.length) ? [''] : os;
+		var parseVersionNumber = function(str) {
+			var count = 0;
 
-		UA = A.merge(
-			UA,
-			{
-				gecko: /Gecko/.test(u) && !/like Gecko/.test(u),
-				webkit: /WebKit/.test(u),
-
-				aol: /America Online Browser/.test(u),
-				camino: /Camino/.test(u),
-				firefox: /Firefox/.test(u),
-				flock: /Flock/.test(u),
-				icab: /iCab/.test(u),
-				konqueror: /KDE/.test(u),
-				mozilla: /mozilla/.test(u),
-				ie: /MSIE/.test(u),
-				netscape: /Netscape/.test(u),
-				opera: /Opera/.test(u),
-				chrome: /Chrome/.test(u),
-				safari: /Safari/.test(u) && !(/Chrome/.test(u)),
-				browser: b[0].toLowerCase(),
-
-				win: /Win/.test(p),
-				mac: /Mac/.test(p),
-				linux: /Linux/.test(p),
-				iphone: (p == 'iPhone'),
-				ipad: (p == 'iPad'),
-				sun: /Solaris|SunOS/.test(p),
-				os: os[0].toLowerCase(),
-
-				platform: p,
-				agent: u
-			}
-		);
-
-		UA.version = {
-			string: ''
+			return parseFloat(
+				str.replace(
+					REGEX_VERSION_DOT,
+					function() {
+						return (count++ == 1) ? '' : '.';
+					}
+				)
+			);
 		};
 
-		if (UA.ie) {
-			UA.version.string = (/MSIE ([^;]+)/.exec(u) || versionDefaults)[1];
-		}
-		else if (UA.firefox) {
-			UA.version.string = (/Firefox\/(.+)/.exec(u) || versionDefaults)[1];
-		}
-		else if (UA.safari) {
-			UA.version.string = (/Version\/([^\s]+)/.exec(u) || versionDefaults)[1];
-		}
-		else if (UA.opera) {
-			UA.version.string = (/Opera\/([^\s]+)/.exec(u) || versionDefaults)[1];
-		}
+		var DEFAULTS_VERSION = ['0','0'];
 
-		UA.version.number = parseFloat(UA.version.string) || versionDefaults[0];
-		UA.version.major = (/([^\.]+)/.exec(UA.version.string) || versionDefaults)[1];
+		var getVersion = function(regex, userAgent) {
+			var version = (userAgent.match(regex) || DEFAULTS_VERSION)[1];
 
-		UA[UA.browser + UA.version.major] = true;
+			return parseVersionNumber(version);
+		};
 
-		UA.renderer = '';
+		var MAP_OS_SELECTORS = {
+			windows: 'win',
+			macintosh: 'mac'
+		};
 
-		var documentElement = document.documentElement;
-
-		UA.dir = documentElement.getAttribute('dir') || 'ltr';
-
-		if (UA.ie) {
-			UA.renderer = 'trident';
-		}
-		else if (UA.gecko) {
-			UA.renderer = 'gecko';
-		}
-		else if (UA.webkit) {
-			UA.renderer = 'webkit';
-		}
-		else if (UA.opera) {
-			UA.renderer = 'presto';
-		}
-
-		A.UA = UA;
-
-		/*
-		* Browser selectors
-		*/
-
-		var selectors = [
-			UA.renderer,
-			UA.browser,
-			UA.browser + UA.version.major,
-			UA.os,
-			UA.dir,
-			'js'
+		var BROWSERS = [
+			'ie',
+			'opera',
+			'chrome',
+			'aol',
+			'camino',
+			'firefox',
+			'flock',
+			'mozilla',
+			'netscape',
+			'icab',
+			'konqueror',
+			'safari'
 		];
 
-		if (UA.os == 'macintosh') {
-			selectors.push('mac');
-		}
-		else if (UA.os == 'windows') {
-			selectors.push('win');
-		}
+		AUI._uaExtensions = function(A) {
+			var nav = navigator;
 
-		if (UA.mobile) {
-			selectors.push('mobile');
-		}
+			var userAgent = nav.userAgent;
 
-		if (UA.secure) {
-			selectors.push('secure');
-		}
+			var UA = A.UA;
+			var OS = UA.os;
 
-		UA.selectors = selectors.join(' ');
+			var UAX = {
+				aol: 0,
 
-		// The methods in this if block only run once across all instances
-		if (!documentElement._yuid) {
-			documentElement.className += ' ' + UA.selectors;
+				camino: 0,
+				firefox: 0,
+				flock: 0,
+				mozilla: 0,
+				netscape: 0,
 
-			var CONFIG = A.config,
-				DOC = CONFIG.doc,
-				vml,
-				svg;
+				icab: 0,
+				konqueror: 0,
 
-			vml = !(svg = !!(CONFIG.win.SVGAngle || DOC.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')));
+				safari: 0,
 
-			if (vml) {
-				var div = DOC.createElement('div');
-				var behaviorObj;
+				browser: 0,
 
-				div.innerHTML = '<v:shape adj="1"/>';
+				win: OS == 'windows',
+				mac: OS == 'macintosh',
+				rhino: OS == 'rhino',
 
-				behaviorObj = div.firstChild;
+				agent: userAgent
+			};
 
-				behaviorObj.style.behavior = 'url(#default#VML)';
-
-				if (!(behaviorObj && typeof behaviorObj.adj == 'object')) {
-					vml = false;
-				}
-
-				div = null;
+			if (UA.ie) {
+				UAX.aol = getVersion(/America Online Browser ([^\s]*);/, userAgent);
+			}
+			else if (UA.gecko) {
+				UAX.netscape = getVersion(/(Netscape|Navigator)\/([^\s]*)/, userAgent);
+				UAX.flock = getVersion(/Flock\/([^\s]*)/, userAgent);
+				UAX.camino = getVersion(/Camino\/([^\s]*)/, userAgent);
+				UAX.firefox = getVersion(/Firefox\/([^\s]*)/, userAgent);
+			}
+			else if (UA.webkit) {
+				UAX.safari = getVersion(/Version\/([^\s]*) Safari/, userAgent);
+			}
+			else {
+				UAX.icab = getVersion(/iCab(?:\/|\s)?([^\s]*)/, userAgent);
+				UAX.konqueror = getVersion(/Konqueror\/([^\s]*)/, userAgent);
 			}
 
-			AUI._VML = vml;
-			AUI._SVG = svg;
+			if (!UAX.win && !UAX.mac) {
+				var linux = /Linux/.test(userAgent);
+				var sun = /Solaris|SunOS/.test(userAgent);
 
-			A.stamp(documentElement);
-		}
+				if (linux) {
+					UA.os = 'linux';
+					UAX.linux = linux;
+				}
+				else if (sun) {
+					UA.os = 'sun';
+					UAX.sun = sun;
+				}
+			}
 
-		UA.vml = AUI._VML;
-		UA.svg = AUI._SVG;
-	};
+			A.mix(UA, UAX);
+
+			var browserList = [];
+			var versionMajor = 0;
+
+			var browser;
+			var version;
+			var uaVersionMajor;
+			var uaVersionMinor;
+
+			var versionObj = {
+				string: '',
+				major: versionMajor
+			};
+
+			var i = BROWSERS.length;
+
+			while (i--) {
+				browser = BROWSERS[i];
+				version = UA[browser];
+
+				if (version > 0) {
+					versionMajor = parseInt(version, 10);
+					uaVersionMajor = browser + versionMajor;
+
+					uaVersionMinor = (browser + version);
+
+					if (String(version).indexOf('.') > -1) {
+						uaVersionMinor = uaVersionMinor.replace(/\.(\d).*/, '-$1');
+					}
+					else {
+						uaVersionMinor += '-0';
+					}
+
+					browserList.push(browser, uaVersionMajor, uaVersionMinor);
+
+					versionObj.string = browser + '';
+					versionObj.major = versionMajor;
+				}
+			}
+
+			UA.version = versionObj;
+
+			UA.renderer = '';
+
+			var documentElement = A.config.doc.documentElement;
+
+			UA.dir = documentElement.getAttribute('dir') || 'ltr';
+
+			if (UA.ie) {
+				UA.renderer = 'trident';
+			}
+			else if (UA.gecko) {
+				UA.renderer = 'gecko';
+			}
+			else if (UA.webkit) {
+				UA.renderer = 'webkit';
+			}
+			else if (UA.opera) {
+				UA.renderer = 'presto';
+			}
+
+			A.UA = UA;
+
+			/*
+			* Browser selectors
+			*/
+
+			var selectors = [
+				UA.renderer,
+				UA.dir,
+				'js'
+			].concat(browserList);
+
+			var osSelector = MAP_OS_SELECTORS[UA.os] || UA.os;
+
+			selectors.push(osSelector);
+
+			if (UA.mobile) {
+				selectors.push('mobile');
+			}
+
+			if (UA.secure) {
+				selectors.push('secure');
+			}
+
+			UA.selectors = selectors.join(' ');
+
+			// The methods in this if block only run once across all instances
+			if (!documentElement._yuid) {
+				documentElement.className += ' ' + UA.selectors;
+
+				var CONFIG = A.config,
+					DOC = CONFIG.doc,
+					vml,
+					svg;
+
+				vml = !(svg = !!(CONFIG.win.SVGAngle || DOC.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')));
+
+				if (vml) {
+					var div = DOC.createElement('div');
+					var behaviorObj;
+
+					div.innerHTML = '<v:shape adj="1"/>';
+
+					behaviorObj = div.firstChild;
+
+					behaviorObj.style.behavior = 'url(#default#VML)';
+
+					if (!(behaviorObj && typeof behaviorObj.adj == 'object')) {
+						vml = false;
+					}
+
+					div = null;
+				}
+
+				AUI._VML = vml;
+				AUI._SVG = svg;
+
+				A.stamp(documentElement);
+			}
+
+			UA.vml = AUI._VML;
+			UA.svg = AUI._SVG;
+		};
+	})();
 
 	AUI._uaExtensions(ALLOY);
 
