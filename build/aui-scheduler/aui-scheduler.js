@@ -6,6 +6,10 @@ var Lang = A.Lang,
 	isDate = Lang.isDate,
 	isNumber = Lang.isNumber,
 
+	isScheduler = function(val) {
+		return (val instanceof A.Scheduler);
+	},
+
 	isSchedulerView = function(val) {
 		return (val instanceof A.SchedulerView);
 	},
@@ -173,9 +177,13 @@ A.mix(SchedulerEventSupport.prototype, {
 				);
 			}
 			else {
-				output.push(
-					new A.SchedulerEvent(evt)
-				);
+				evt = new A.SchedulerEvent(evt);
+
+				output.push(evt);
+			}
+
+			if (isScheduler(instance)) {
+				evt.set(SCHEDULER, instance);
 			}
 		});
 
