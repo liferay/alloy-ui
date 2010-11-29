@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>untitled</title>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+</head>
+
+<body>
+	
+	<script type="text/javascript">
+		delete Document.prototype.all;
+
+		YUI.add('get', function(Y) {
+			var end = function(cb, msg, result) {
+			        //Y.log('Get end: ' + cb.onEnd);
+			        if (Y.Lang.isFunction(cb.onEnd)) {
+			            cb.onEnd.call(Y, msg, result);
+			        }
+			    }, pass = function(cb) {
+			        //Y.log('Get pass: ' + cb.onSuccess);
+			        if (Y.Lang.isFunction(cb.onSuccess)) {
+			            cb.onSuccess.call(Y, cb);
+			        }
+			        end(cb, 'success', 'success');
+			    }, fail = function(cb, er) {
+			        //Y.log('Get fail: ' + er);
+			        if (Y.Lang.isFunction(cb.onFailure)) {
+			            cb.onFailure.call(Y, er, cb);
+			        }
+			        end(cb, er, 'fail');
+			    };
+		    Y.Get = function() {};
+		    Y.Get.script = function(s, cb) {
+		        var urls = Y.Array(s), url, i, l = urls.length;
+		        for (i=0; i < l; i++) {
+		            url = urls[i];
+		            if (!urls[i].match(/^https?:\/\//)) {
+		                // url = url.replace(/\.js$/, '');
+		            }
+		            // Y.log('URL: ' + url, 'info', 'get');
+
+		            load(url);
+					pass(cb);
+		        }
+		    };
+		    //Just putting this is so we don't get errors
+		    Y.Get.css = function(s, cb) {
+		        // Y.log('Loading CSS: ' + s, 'debug', 'get');
+		        pass(cb);
+		    };
+		});
+
+		AUI({
+			base: '../../build/',
+			filter: 'raw',
+			logFn: function(str, t, m) {
+			    t = t || 'info';
+			    m = (m) ? '(' +  m+ ') ' : '';
+			    var o = false;
+			    if (str instanceof Object || str instanceof Array) {
+			        //Should we use this?
+			        if (str.toString) {
+			            str = str.toString();
+			        }
+			    }
+			    // output log messages to stderr
+			    print('[' + t.toUpperCase() + ']: ' + m + str);
+			}
+		}).use(function(A){
+			print(window.USER_AGENT_KEY + ' - ' + A.config.doc.documentElement.className);
+		});
+	</script>
+</body>
+</html>

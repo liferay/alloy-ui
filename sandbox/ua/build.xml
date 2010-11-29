@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="Alloy" basedir="." default="release">
+	<property name="project.dir" value="."/>
+
+	<property environment="env" />
+
+	<target name="run-tests" description="Clean out build">
+		<echo>Running tests</echo>
+
+		<java jar="js.jar" fork="true">
+            <arg value="-opt" />
+            <arg value="-1" />
+            <arg value="${project.dir}/runtest/test.js" />
+        </java>
+
+		<echo message="Test Suite Finished" />
+	</target>
+</project>
