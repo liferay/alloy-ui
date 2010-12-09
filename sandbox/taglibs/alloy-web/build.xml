@@ -24,6 +24,13 @@
 			<fileset dir="docroot" />
 		</copy>
 
+		<if>
+			<equals arg1="${deploy.liferay.source}" arg2="true" />
+			<then>
+				<antcall target="prepare-liferay-war" />
+			</then>
+		</if>
+
 		<copy todir="${temp.dir}/WEB-INF/lib">
 			<fileset dir="${project.dir}/alloy-taglib" includes="alloy-taglib.jar" />
 			<fileset dir="${project.dir}/lib/application" />
@@ -41,5 +48,37 @@
 		/>
 
 		<delete dir="${temp.dir}" />
+	</target>
+	
+	<target name="prepare-liferay-war">
+		<!-- Replace alloy-util:script -->
+
+		<replace dir="${temp.dir}" includes="**/*.jsp">
+			<replacetoken><![CDATA[alloy-util:script]]></replacetoken>
+			<replacevalue><![CDATA[aui:script]]></replacevalue>
+		</replace>
+
+		<!-- Remove _initJSONFactoryUtil from init jsp -->
+		
+		<replace dir="${temp.dir}" includes="**/*.jsp">
+			<replacetoken><![CDATA[public static void _initJSONFactoryUtil() {
+	if (JSONFactoryUtil.getJSONFactory() == null) {
+		(new JSONFactoryUtil()).setJSONFactory(new JSONFactoryImpl());
+	}
+}
+
+]]></replacetoken>
+			<replacevalue><![CDATA[]]></replacevalue>
+		</replace>
+
+		<!-- Remove call for _initJSONFactoryUtil from init jsp -->
+
+		<replace dir="${temp.dir}" includes="**/*.jsp">
+			<replacetoken><![CDATA[
+<%
+_initJSONFactoryUtil();
+%>]]></replacetoken>
+			<replacevalue><![CDATA[]]></replacevalue>
+		</replace>
 	</target>
 </project>
