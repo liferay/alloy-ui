@@ -1,14 +1,5 @@
 package com.liferay.alloy.tools.tagbuilder;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.liferay.alloy.tools.model.Attribute;
 import com.liferay.alloy.tools.model.Component;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
@@ -22,6 +13,15 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.util.FileImpl;
 import com.liferay.portal.xml.SAXReaderImpl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <a href="TagBuilder.java.html"><b><i>View Source</i></b></a>
  *
@@ -29,10 +29,6 @@ import com.liferay.portal.xml.SAXReaderImpl;
  * @author Bruno Basto
  */
 public class TagBuilder {
-
-	public static final String[] AUTHORS = new String[] {
-		"Eduardo Lundgren", "Bruno Basto", "Nathan Cavanaugh"
-	};
 
 	public TagBuilder(
 			String componentsXML, String componentsExtXML, String templatesDir,
@@ -361,6 +357,18 @@ public class TagBuilder {
 		return attributes;
 	}
 
+	private Element _getComponentNode(Document doc, String name) {
+		List<Element> components = doc.getRootElement().elements(_COMPONENT);
+
+		for (Element component : components) {
+			if (component.attributeValue("name").equals(name)) {
+				return component;
+			}
+		}
+
+		return null;
+	}
+
 	private List<Component> _getComponents(Document doc) throws Exception {
 		List<Component> components = new ArrayList<Component>();
 		Element root = doc.getRootElement();
@@ -447,20 +455,6 @@ public class TagBuilder {
 		return prefixedEvents;
 	}
 
-	private Document _mergeTlds(Document doc1, Document doc2) {
-		Document doc = SAXReaderUtil.createDocument();
-
-		doc.setRootElement(doc1.getRootElement().createCopy());
-
-		List<Element> tags = doc2.getRootElement().elements("tag");
-
-		for (Element tag : tags) {
-			doc.getRootElement().add(tag.createCopy());
-		}
-
-		return doc;
-	}
-
 	private Document _mergeAttributes(Document doc1, Document doc2) {
 		Element doc1Root = doc1.getRootElement();
 
@@ -500,16 +494,18 @@ public class TagBuilder {
 		return doc;
 	}
 
-	private Element _getComponentNode(Document doc, String name) {
-		List<Element> components = doc.getRootElement().elements(_COMPONENT);
+	private Document _mergeTlds(Document doc1, Document doc2) {
+		Document doc = SAXReaderUtil.createDocument();
 
-		for (Element component : components) {
-			if (component.attributeValue("name").equals(name)) {
-				return component;
-			}
+		doc.setRootElement(doc1.getRootElement().createCopy());
+
+		List<Element> tags = doc2.getRootElement().elements("tag");
+
+		for (Element tag : tags) {
+			doc.getRootElement().add(tag.createCopy());
 		}
 
-		return null;
+		return doc;
 	}
 
 	private String _processTemplate(String name, Map<String, Object> context)
@@ -546,6 +542,10 @@ public class TagBuilder {
 			e.printStackTrace();
 		}
 	}
+
+	public static final String[] AUTHORS = new String[] {
+		"Eduardo Lundgren", "Bruno Basto", "Nathan Cavanaugh"
+	};
 
 	private static final String _AFTER = "after";
 	private static final String _ATTRIBUTE = "attribute";

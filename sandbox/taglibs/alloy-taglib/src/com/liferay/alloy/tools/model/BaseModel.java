@@ -42,6 +42,7 @@ public abstract class BaseModel implements Comparable {
 	}
 
 	public void setName(String name) {
+
 		_name = name;
 	}
 

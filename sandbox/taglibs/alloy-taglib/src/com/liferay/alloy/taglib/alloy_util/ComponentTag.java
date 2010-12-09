@@ -14,6 +14,10 @@
 
 package com.liferay.alloy.taglib.alloy_util;
 
+import com.liferay.alloy.taglib.alloy_util.base.BaseComponentTag;
+import com.liferay.alloy.util.ReservedAttributeUtil;
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,10 +29,6 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-
-import com.liferay.alloy.taglib.alloy_util.base.BaseComponentTag;
-import com.liferay.alloy.util.ReservedAttributeUtil;
-import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Eduardo Lundgren
@@ -43,6 +43,7 @@ public class ComponentTag extends BaseComponentTag {
 		_proccessAttributes(options, optionsJSON);
 
 		super.setAttributes(request);
+
 		setNamespacedAttribute(request, "options", options);
 		setNamespacedAttribute(request, "optionsJSON", optionsJSON);
 	}
@@ -58,7 +59,7 @@ public class ComponentTag extends BaseComponentTag {
 		List<String> excludeAttributes = Collections.EMPTY_LIST;
 
 		if (getExcludeAttributes() != null) {
-			excludeAttributes = (List<String>)Arrays.asList(
+			excludeAttributes = Arrays.asList(
 				getExcludeAttributes().split(StringPool.COMMA));
 		}
 

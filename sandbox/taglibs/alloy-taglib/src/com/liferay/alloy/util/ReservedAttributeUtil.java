@@ -31,16 +31,6 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public class ReservedAttributeUtil {
 
-	public static final List<String> RESERVED_ATTRIBUTES =	Arrays.asList(
-		new String[] {
-			"values", "value", "servletRequest", "servletResponse",
-			"servletContext", "scopedAttribute", "scopedAttributes",
-			"previousOut", "parent", "namespacedAttribute",
-			"attributeNamespace", "bodyContent", "class", "dynamicAttribute",
-			"dynamicAttributes", "id", "scriptPosition", "page"
-		}
-	);
-
 	public static String getOriginalName(
 		String componentName, String attributeName) {
 
@@ -77,5 +67,15 @@ public class ReservedAttributeUtil {
 	public static boolean isReserved(String attributeName) {
 		return RESERVED_ATTRIBUTES.contains(attributeName);
 	}
+
+	public static final List<String> RESERVED_ATTRIBUTES =	Arrays.asList(
+		new String[] {
+			"values", "value", "servletRequest", "servletResponse",
+			"servletContext", "scopedAttribute", "scopedAttributes",
+			"previousOut", "parent", "namespacedAttribute",
+			"attributeNamespace", "bodyContent", "class", "dynamicAttribute",
+			"dynamicAttributes", "id", "scriptPosition", "page"
+		}
+	);
 
 }

@@ -26,54 +26,6 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class TypeUtil {
 
-	public static final String[] ARRAYS = {
-		"array", "[]"
-	};
-
-	public static final String[] BOOLEANS = {
-		"boolean", "bool"
-	};
-
-	public static final String[] DOUBLES = {
-		"double"
-	};
-
-	public static final String[] FLOATS = {
-		"float"
-	};
-
-	public static final String[] INTEGERS = {
-		"integer", "int", "int | string"
-	};
-
-	public static final String[] LONGS = {
-		"long"
-	};
-
-	public static final String[] NUMBERS = {
-		"num", "number"
-	};
-
-	public static final String[] OBJECTS = {
-		"object", "{}"
-	};
-
-	public static final String[] SHORTS = {
-		"short"
-	};
-
-	public static final String[] STRINGS = {
-		"node | string", "string", "string | node", "string | int"
-	};
-
-	public static String getInputJavaType(String type) {
-		return _instance._getInputJavaType(type);
-	}
-
-	public static String getOutputJavaType(String type) {
-		return _instance._getOutputJavaType(type);
-	}
-
 	private TypeUtil() {
 		_INPUT_TYPES = new HashMap<String, String>();
 		_OUTPUT_TYPES = new HashMap<String, String>();
@@ -99,6 +51,14 @@ public class TypeUtil {
 		_registerTypes(_OUTPUT_TYPES, NUMBERS, Number.class.getName());
 		_registerTypes(_OUTPUT_TYPES, OBJECTS, HashMap.class.getName());
 		_registerTypes(_OUTPUT_TYPES, STRINGS, String.class.getName());
+	}
+
+	public static String getInputJavaType(String type) {
+		return _instance._getInputJavaType(type);
+	}
+
+	public static String getOutputJavaType(String type) {
+		return _instance._getOutputJavaType(type);
 	}
 
 	private String _getInputJavaType(String type) {
@@ -148,6 +108,46 @@ public class TypeUtil {
 			map.put(type.toLowerCase(), javaType);
 		}
 	}
+
+	public static final String[] ARRAYS = {
+		"array", "[]"
+	};
+
+	public static final String[] BOOLEANS = {
+		"boolean", "bool"
+	};
+
+	public static final String[] DOUBLES = {
+		"double"
+	};
+
+	public static final String[] FLOATS = {
+		"float"
+	};
+
+	public static final String[] INTEGERS = {
+		"integer", "int", "int | string"
+	};
+
+	public static final String[] LONGS = {
+		"long"
+	};
+
+	public static final String[] NUMBERS = {
+		"num", "number"
+	};
+
+	public static final String[] OBJECTS = {
+		"object", "{}"
+	};
+
+	public static final String[] SHORTS = {
+		"short"
+	};
+
+	public static final String[] STRINGS = {
+		"node | string", "string", "string | node", "string | int"
+	};
 
 	private static HashMap<String, String> _INPUT_TYPES = null;
 
