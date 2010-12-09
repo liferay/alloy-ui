@@ -25,18 +25,18 @@
 		</copy>
 
 		<copy todir="${temp.dir}/WEB-INF/lib">
-			<fileset dir="../alloy-taglib" includes="alloy-taglib.jar" />
-			<fileset dir="../lib/application" />
-			<fileset dir="../lib/liferay" />
+			<fileset dir="${project.dir}/alloy-taglib" includes="alloy-taglib.jar" />
+			<fileset dir="${project.dir}/lib/application" />
+			<fileset dir="${project.dir}/lib/liferay" />
 		</copy>
 
 		<copy todir="${temp.dir}/WEB-INF/tld">
-			<fileset dir="../alloy-taglib/src/META-INF" includes="*.tld" />
+			<fileset dir="${project.dir}/alloy-taglib/src/META-INF" includes="*.tld" />
 		</copy>
 
 		<war
 			basedir="${temp.dir}"
-			destfile="../${war.file}.war"
+			destfile="${project.dir}/${war.file}.war"
 			webxml="${temp.dir}/WEB-INF/web.xml"
 		/>
 
