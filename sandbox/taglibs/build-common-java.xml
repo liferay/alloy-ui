@@ -47,8 +47,6 @@
 	</target>
 
 	<target name="deploy" depends="jar">
-		<copy file="${jar.file}.jar" todir="${deploy.dir}" />
-
 		<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
 			<fileset
 				dir="."

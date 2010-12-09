@@ -69,8 +69,6 @@
 
 	<target name="jar">
 		<ant dir="alloy-taglib" target="jar" inheritAll="false" />
-
-		<ant dir="alloy-web" target="war" inheritAll="false" />
 	</target>
 
 	<target name="start">

@@ -15,54 +15,6 @@
 		<antcall target="build-common-web.deploy" />
 	</target>
 
-	<target name="deploy-fast">
-		<var name="from.dir" value="docroot"/>
-		<var name="dest.dir" value="${app.server.portal.dir}" />
-
-		<if>
-			<equals arg1="${deploy.liferay}" arg2="true" />
-			<then>
-				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" excludes="**/demos/init-alloy.jsp" />
-				</copy>
-
-				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
-					<fileset dir="${project.dir}/alloy-taglib/src/META-INF" includes="*.tld" />
-				</copy>
-
-				<antcall target="build-common-web.prepare-liferay-deploy" />
-
-				<var name="from.dir" value="${temp.dir}"/>
-				<var name="dest.dir" value="${lp.source.dir}/portal-web/docroot" />
-			</then>
-			<else>
-				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
-					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
-				</copy>
-			</else>
-		</if>
-
-		<copy todir="${dest.dir}" preservelastmodified="true">
-			<fileset dir="${from.dir}">
-				<include name="**/*.css" />
-				<include name="**/*.dtd" />
-				<include name="**/*.gif" />
-				<include name="**/*.jar" />
-				<include name="**/*.jpg" />
-				<include name="**/*.js" />
-				<include name="**/*.jsp" />
-				<include name="**/*.jspf" />
-				<include name="**/*.png" />
-				<include name="**/*.properties" />
-				<include name="**/*.tld" />
-				<include name="**/*.vm" />
-				<include name="**/*.xml" />
-			</fileset>
-		</copy>
-
-		<delete dir="${temp.dir}" />
-	</target>
-
 	<target name="war">
 		<property name="temp.dir" value="_temp" />
 

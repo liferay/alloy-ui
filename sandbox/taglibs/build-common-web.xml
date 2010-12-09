@@ -8,81 +8,14 @@
 	<target name="clean">
 		<delete dir="docroot/WEB-INF/classes" />
 		<delete file="${war.file}.war" failonerror="false" />
-		<delete dir="${temp.dir}" />
+		<delete dir="${temp.dir}" failonerror="false" />
 	</target>
 
-	<target name="compile">
-	</target>
-
-	<target name="deploy" depends="clean, compile">
-		<var name="from.dir" value="docroot" />
-		<var name="dest.dir" value="${app.server.portal.dir}" />
-
-		<if>
-			<equals arg1="${deploy.liferay}" arg2="true" />
-			<then>
-				<copy todir="${temp.dir}" preservelastmodified="true">
-					<fileset dir="docroot" excludes="**/demos/init-alloy.jsp" />
-				</copy>
-
-				<copy todir="${temp.dir}/WEB-INF/tld/alloy" preservelastmodified="true">
-					<fileset dir="${project.dir}/alloy-taglib/src/META-INF" includes="*.tld" />
-				</copy>
-
-				<antcall target="prepare-liferay-deploy" />
-
-				<var name="from.dir" value="${temp.dir}"/>
-				<var name="dest.dir" value="${lp.source.dir}/portal-web/docroot" />
-			</then>
-			<else>
-				<copy todir="${project.dir}/alloy-web/docroot/WEB-INF/lib">
-					<fileset dir="${project.dir}/lib/application" includes="*.jar" />
-				</copy>
-			</else>
-		</if>
-
-		<copy todir="${from.dir}/WEB-INF/lib" preservelastmodified="true">
-			<fileset dir="${project.dir}/lib/liferay" includes="*.jar" />
+	<target name="deploy" depends="clean, war">
+		<copy todir="${app.server.tomcat.deploy.dir}">
+			<fileset dir="${project.dir}" includes="*.war" />
 		</copy>
-
-		<copy todir="${dest.dir}" preservelastmodified="true">
-			<fileset dir="${from.dir}" excludes="web.xml" />
-		</copy>
-
-		<delete dir="${temp.dir}" />
 	</target>
-
-	<target name="prepare-liferay-deploy">
-		<replace dir="${temp.dir}" includes="html/taglib/alloy_util/component/page.jsp">
-		  <replacetoken><![CDATA[ position="<%= position %>"]]></replacetoken>
-		  <replacevalue><![CDATA[]]></replacevalue>
-		</replace>
-
-		<replace dir="${temp.dir}" includes="**/*.jsp">
-		  <replacetoken><![CDATA[alloy-util:script]]></replacetoken>
-		  <replacevalue><![CDATA[aui:script]]></replacevalue>
-		</replace>
-
-		<replace dir="${temp.dir}" includes="**/*.jsp">
-		  <replacetoken><![CDATA[printBuffer="true"]]></replacetoken>
-		  <replacevalue></replacevalue>
-		</replace>
-
-		<replace dir="${temp.dir}" includes="**/*.jsp">
-		  <replacetoken><![CDATA[<aui:script  />]]></replacetoken>
-		  <replacevalue></replacevalue>
-		</replace>
-
-		<replace file="${temp.dir}/html/demos/init.jsp">
-		  <replacetoken><![CDATA[<%@ include file="/html/demos/init-alloy.jsp" %>]]></replacetoken>
-		  <replacevalue></replacevalue>
-		</replace>
-
-		<echo file="${temp.dir}/html/taglib/alloy/init.jsp" append="yes">
-<![CDATA[<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>]]>
-		</echo>
-	</target>
-
-	<target name="war" depends="compile">
-	</target>
+	
+	<target name="war" depends="compile"></target>
 </project>
