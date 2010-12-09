@@ -1,4 +1,4 @@
-<%@ include file="/html/taglib/init.jsp" %>
+<%@ include file="/html/taglib/init-taglib.jsp" %>
 
 <%
 java.lang.String NAMESPACE = "alloy:overlay-mask:";
