@@ -2,6 +2,7 @@ package com.liferay.alloy.taglib.alloy_util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyTag;
 
 import com.liferay.alloy.taglib.alloy_util.base.BaseScriptTag;
 import com.liferay.portal.kernel.servlet.taglib.aui.ScriptData;
@@ -14,7 +15,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class ScriptTag extends BaseScriptTag {
+public class ScriptTag extends BaseScriptTag implements BodyTag {
 
 	public int doEndTag() throws JspException {
 		HttpServletRequest request =
@@ -64,6 +65,12 @@ public class ScriptTag extends BaseScriptTag {
 					_ATTRIBUTE_NAMESPACE.concat("script-data-inline"));
 			}
 		}
+	}
+
+	public int doStartTag() throws JspException {
+		super.doStartTag();
+
+		return EVAL_BODY_BUFFERED;
 	}
 
 	private void _updateScriptData(
