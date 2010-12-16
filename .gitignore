@@ -1,8 +1,8 @@
 
 # /
 /.git
-/build_tmp
-/build_rollup_tmp
+build_tmp/
+build_rollup_tmp/
 /__MACOSX
 //trunk/lib/yui3/
 /build.*.properties
