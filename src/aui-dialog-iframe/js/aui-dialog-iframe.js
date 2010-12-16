@@ -128,8 +128,6 @@ var DialogIframePlugin = A.Component.create(
 
 					var iframeBody = iframeDoc.get('body');
 
-					iframeBody.addClass('controlPanel-popup');
-
 					node.set('height', iframeBody.get('scrollHeight'));
 
 					if (instance.get('closeOnEscape')) {
