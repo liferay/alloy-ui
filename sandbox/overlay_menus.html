@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+
+<style type="text/css" media="screen">
+	body {
+		font-size: 12px;
+	}
+	.container {
+		border: 1px solid #ccc;
+		height: 100px;
+		padding: 10px;
+	}
+
+	.clipped {
+		overflow: hidden;
+		position: relative;
+		border-color: #f00;
+	}
+
+	.lfr-section-hd {
+		position: relative;
+		z-index: 10;
+	}
+</style>
+
+<body>
+
+<h1>Alloy - Test for WCAG 2.0 specification</h1>
+
+<p>This page was created to demonstrate an issue with the WCAG 2.0 specification which requires that markup be inserted next to the activating item.<br />
+The problem with this is that if any of the parents of an absolutely floating container (such as a menu or dialog) contains a specific combination of CSS (position: relative and overflow: hidden), the item will be clipped and could be completely invisible to the end user.</p>
+
+<button id="toggleStyles">Turn on position: relative &amp; overflow: hidden</button>
+
+<div class="container">
+	<div class="aui-widget-hd lfr-section-hd">Heading</div>
+	<div class="aui-widget-bd lfr-section-bd">
+		Loading...
+	</div>
+</div>
+
+<script type="text/javascript">
+	AUI().use(
+		'aui-dialog',
+		function(A) {
+			var dialog;
+
+			A.one('#toggleStyles').on(
+				'click',
+				function(event) {
+
+					var html = this.html();
+
+					var on = false;
+
+					html = html.replace(/\b(on|off)\b/, function(match) {
+						if (match == 'on') {
+							on = true;
+						}
+						return on ? 'off' : 'on';
+					});
+
+					this.html(html);
+
+					A.one('.container').toggleClass('clipped', on);
+				}
+			);
+
+			var openDialog = A.Node.create('<button id="openDialog">Open Dialog</button>');
+
+			openDialog.on(
+				'click',
+				function(event) {
+					if (dialog) {
+						dialog.show();
+					}
+					else {
+						dialog = new A.Dialog(
+							{
+								bodyContent: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+								destroyOnClose: false,
+								height: 300,
+								width: 300,
+								xy: [300, 100],
+								zIndex: 999
+							}
+						).render('.lfr-section-bd');
+					}
+				}
+			);
+
+			A.one('.lfr-section-bd').empty().appendChild(openDialog);
+		}
+	);
+</script>
+
+</body>
+</html>
