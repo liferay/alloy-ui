@@ -6,1568 +6,1344 @@
 /__MACOSX
 //trunk/lib/yui3/
 /build.*.properties
-
 # /build/
 /build/.git
 /build/build_tmp
 /build/build_rollup_tmp
 /build/__MACOSX
 /build//trunk/lib/yui3/
-
 # /build/anim/
 /build/anim/.git
 /build/anim/build_tmp
 /build/anim/build_rollup_tmp
 /build/anim/__MACOSX
 /build/anim//trunk/lib/yui3/
-
 # /build/assets/
 /build/assets/.git
 /build/assets/build_tmp
 /build/assets/build_rollup_tmp
 /build/assets/__MACOSX
 /build/assets//trunk/lib/yui3/
-
 # /build/assets/skins/
 /build/assets/skins/.git
 /build/assets/skins/build_tmp
 /build/assets/skins/build_rollup_tmp
 /build/assets/skins/__MACOSX
 /build/assets/skins//trunk/lib/yui3/
-
 # /build/assets/skins/sam/
 /build/assets/skins/sam/.git
 /build/assets/skins/sam/build_tmp
 /build/assets/skins/sam/build_rollup_tmp
 /build/assets/skins/sam/__MACOSX
 /build/assets/skins/sam//trunk/lib/yui3/
-
 # /build/async-queue/
 /build/async-queue/.git
 /build/async-queue/build_tmp
 /build/async-queue/build_rollup_tmp
 /build/async-queue/__MACOSX
 /build/async-queue//trunk/lib/yui3/
-
 # /build/attribute/
 /build/attribute/.git
 /build/attribute/build_tmp
 /build/attribute/build_rollup_tmp
 /build/attribute/__MACOSX
 /build/attribute//trunk/lib/yui3/
-
 # /build/aui-autocomplete/
 /build/aui-autocomplete/.git
 /build/aui-autocomplete/build_tmp
 /build/aui-autocomplete/build_rollup_tmp
 /build/aui-autocomplete/__MACOSX
 /build/aui-autocomplete//trunk/lib/yui3/
-
 # /build/aui-autocomplete/assets/
 /build/aui-autocomplete/assets/.git
 /build/aui-autocomplete/assets/build_tmp
 /build/aui-autocomplete/assets/build_rollup_tmp
 /build/aui-autocomplete/assets/__MACOSX
 /build/aui-autocomplete/assets//trunk/lib/yui3/
-
 # /build/aui-autocomplete/assets/skins/
 /build/aui-autocomplete/assets/skins/.git
 /build/aui-autocomplete/assets/skins/build_tmp
 /build/aui-autocomplete/assets/skins/build_rollup_tmp
 /build/aui-autocomplete/assets/skins/__MACOSX
 /build/aui-autocomplete/assets/skins//trunk/lib/yui3/
-
 # /build/aui-autocomplete/assets/skins/sam/
 /build/aui-autocomplete/assets/skins/sam/.git
 /build/aui-autocomplete/assets/skins/sam/build_tmp
 /build/aui-autocomplete/assets/skins/sam/build_rollup_tmp
 /build/aui-autocomplete/assets/skins/sam/__MACOSX
 /build/aui-autocomplete/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-base/
 /build/aui-base/.git
 /build/aui-base/build_tmp
 /build/aui-base/build_rollup_tmp
 /build/aui-base/__MACOSX
 /build/aui-base//trunk/lib/yui3/
-
 # /build/aui-base/assets/
 /build/aui-base/assets/.git
 /build/aui-base/assets/build_tmp
 /build/aui-base/assets/build_rollup_tmp
 /build/aui-base/assets/__MACOSX
 /build/aui-base/assets//trunk/lib/yui3/
-
 # /build/aui-calendar/
 /build/aui-calendar/.git
 /build/aui-calendar/build_tmp
 /build/aui-calendar/build_rollup_tmp
 /build/aui-calendar/__MACOSX
 /build/aui-calendar//trunk/lib/yui3/
-
 # /build/aui-calendar/assets/
 /build/aui-calendar/assets/.git
 /build/aui-calendar/assets/build_tmp
 /build/aui-calendar/assets/build_rollup_tmp
 /build/aui-calendar/assets/__MACOSX
 /build/aui-calendar/assets//trunk/lib/yui3/
-
 # /build/aui-calendar/assets/skins/
 /build/aui-calendar/assets/skins/.git
 /build/aui-calendar/assets/skins/build_tmp
 /build/aui-calendar/assets/skins/build_rollup_tmp
 /build/aui-calendar/assets/skins/__MACOSX
 /build/aui-calendar/assets/skins//trunk/lib/yui3/
-
 # /build/aui-calendar/assets/skins/sam/
 /build/aui-calendar/assets/skins/sam/.git
 /build/aui-calendar/assets/skins/sam/build_tmp
 /build/aui-calendar/assets/skins/sam/build_rollup_tmp
 /build/aui-calendar/assets/skins/sam/__MACOSX
 /build/aui-calendar/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-char-counter/
 /build/aui-char-counter/.git
 /build/aui-char-counter/build_tmp
 /build/aui-char-counter/build_rollup_tmp
 /build/aui-char-counter/__MACOSX
 /build/aui-char-counter//trunk/lib/yui3/
-
 # /build/aui-chart/
 /build/aui-chart/.git
 /build/aui-chart/build_tmp
 /build/aui-chart/build_rollup_tmp
 /build/aui-chart/__MACOSX
 /build/aui-chart//trunk/lib/yui3/
-
 # /build/aui-color-picker/
 /build/aui-color-picker/.git
 /build/aui-color-picker/build_tmp
 /build/aui-color-picker/build_rollup_tmp
 /build/aui-color-picker/__MACOSX
 /build/aui-color-picker//trunk/lib/yui3/
-
 # /build/aui-color-picker/assets/
 /build/aui-color-picker/assets/.git
 /build/aui-color-picker/assets/build_tmp
 /build/aui-color-picker/assets/build_rollup_tmp
 /build/aui-color-picker/assets/__MACOSX
 /build/aui-color-picker/assets//trunk/lib/yui3/
-
 # /build/aui-color-picker/assets/skins/
 /build/aui-color-picker/assets/skins/.git
 /build/aui-color-picker/assets/skins/build_tmp
 /build/aui-color-picker/assets/skins/build_rollup_tmp
 /build/aui-color-picker/assets/skins/__MACOSX
 /build/aui-color-picker/assets/skins//trunk/lib/yui3/
-
 # /build/aui-color-picker/assets/skins/sam/
 /build/aui-color-picker/assets/skins/sam/.git
 /build/aui-color-picker/assets/skins/sam/build_tmp
 /build/aui-color-picker/assets/skins/sam/build_rollup_tmp
 /build/aui-color-picker/assets/skins/sam/__MACOSX
 /build/aui-color-picker/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-component/
 /build/aui-component/.git
 /build/aui-component/build_tmp
 /build/aui-component/build_rollup_tmp
 /build/aui-component/__MACOSX
 /build/aui-component//trunk/lib/yui3/
-
 # /build/aui-component/assets/
 /build/aui-component/assets/.git
 /build/aui-component/assets/build_tmp
 /build/aui-component/assets/build_rollup_tmp
 /build/aui-component/assets/__MACOSX
 /build/aui-component/assets//trunk/lib/yui3/
-
 # /build/aui-data-set/
 /build/aui-data-set/.git
 /build/aui-data-set/build_tmp
 /build/aui-data-set/build_rollup_tmp
 /build/aui-data-set/__MACOSX
 /build/aui-data-set//trunk/lib/yui3/
-
 # /build/aui-datatype/
 /build/aui-datatype/.git
 /build/aui-datatype/build_tmp
 /build/aui-datatype/build_rollup_tmp
 /build/aui-datatype/__MACOSX
 /build/aui-datatype//trunk/lib/yui3/
-
 # /build/aui-datatype/assets/
 /build/aui-datatype/assets/.git
 /build/aui-datatype/assets/build_tmp
 /build/aui-datatype/assets/build_rollup_tmp
 /build/aui-datatype/assets/__MACOSX
 /build/aui-datatype/assets//trunk/lib/yui3/
-
 # /build/aui-delayed-task/
 /build/aui-delayed-task/.git
 /build/aui-delayed-task/build_tmp
 /build/aui-delayed-task/build_rollup_tmp
 /build/aui-delayed-task/__MACOSX
 /build/aui-delayed-task//trunk/lib/yui3/
-
 # /build/aui-delayed-task/assets/
 /build/aui-delayed-task/assets/.git
 /build/aui-delayed-task/assets/build_tmp
 /build/aui-delayed-task/assets/build_rollup_tmp
 /build/aui-delayed-task/assets/__MACOSX
 /build/aui-delayed-task/assets//trunk/lib/yui3/
-
 # /build/aui-dialog/
 /build/aui-dialog/.git
 /build/aui-dialog/build_tmp
 /build/aui-dialog/build_rollup_tmp
 /build/aui-dialog/__MACOSX
 /build/aui-dialog//trunk/lib/yui3/
-
 # /build/aui-dialog/assets/
 /build/aui-dialog/assets/.git
 /build/aui-dialog/assets/build_tmp
 /build/aui-dialog/assets/build_rollup_tmp
 /build/aui-dialog/assets/__MACOSX
 /build/aui-dialog/assets//trunk/lib/yui3/
-
 # /build/aui-dialog/assets/skins/
 /build/aui-dialog/assets/skins/.git
 /build/aui-dialog/assets/skins/build_tmp
 /build/aui-dialog/assets/skins/build_rollup_tmp
 /build/aui-dialog/assets/skins/__MACOSX
 /build/aui-dialog/assets/skins//trunk/lib/yui3/
-
 # /build/aui-dialog/assets/skins/sam/
 /build/aui-dialog/assets/skins/sam/.git
 /build/aui-dialog/assets/skins/sam/build_tmp
 /build/aui-dialog/assets/skins/sam/build_rollup_tmp
 /build/aui-dialog/assets/skins/sam/__MACOSX
 /build/aui-dialog/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-editable/
 /build/aui-editable/.git
 /build/aui-editable/build_tmp
 /build/aui-editable/build_rollup_tmp
 /build/aui-editable/__MACOSX
 /build/aui-editable//trunk/lib/yui3/
-
 # /build/aui-editable/assets/
 /build/aui-editable/assets/.git
 /build/aui-editable/assets/build_tmp
 /build/aui-editable/assets/build_rollup_tmp
 /build/aui-editable/assets/__MACOSX
 /build/aui-editable/assets//trunk/lib/yui3/
-
 # /build/aui-editable/assets/skins/
 /build/aui-editable/assets/skins/.git
 /build/aui-editable/assets/skins/build_tmp
 /build/aui-editable/assets/skins/build_rollup_tmp
 /build/aui-editable/assets/skins/__MACOSX
 /build/aui-editable/assets/skins//trunk/lib/yui3/
-
 # /build/aui-editable/assets/skins/sam/
 /build/aui-editable/assets/skins/sam/.git
 /build/aui-editable/assets/skins/sam/build_tmp
 /build/aui-editable/assets/skins/sam/build_rollup_tmp
 /build/aui-editable/assets/skins/sam/__MACOSX
 /build/aui-editable/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-form/
 /build/aui-form/.git
 /build/aui-form/build_tmp
 /build/aui-form/build_rollup_tmp
 /build/aui-form/__MACOSX
 /build/aui-form//trunk/lib/yui3/
-
 # /build/aui-image-viewer/
 /build/aui-image-viewer/.git
 /build/aui-image-viewer/build_tmp
 /build/aui-image-viewer/build_rollup_tmp
 /build/aui-image-viewer/__MACOSX
 /build/aui-image-viewer//trunk/lib/yui3/
-
 # /build/aui-image-viewer/assets/
 /build/aui-image-viewer/assets/.git
 /build/aui-image-viewer/assets/build_tmp
 /build/aui-image-viewer/assets/build_rollup_tmp
 /build/aui-image-viewer/assets/__MACOSX
 /build/aui-image-viewer/assets//trunk/lib/yui3/
-
 # /build/aui-image-viewer/assets/skins/
 /build/aui-image-viewer/assets/skins/.git
 /build/aui-image-viewer/assets/skins/build_tmp
 /build/aui-image-viewer/assets/skins/build_rollup_tmp
 /build/aui-image-viewer/assets/skins/__MACOSX
 /build/aui-image-viewer/assets/skins//trunk/lib/yui3/
-
 # /build/aui-image-viewer/assets/skins/sam/
 /build/aui-image-viewer/assets/skins/sam/.git
 /build/aui-image-viewer/assets/skins/sam/build_tmp
 /build/aui-image-viewer/assets/skins/sam/build_rollup_tmp
 /build/aui-image-viewer/assets/skins/sam/__MACOSX
 /build/aui-image-viewer/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-live-search/
 /build/aui-live-search/.git
 /build/aui-live-search/build_tmp
 /build/aui-live-search/build_rollup_tmp
 /build/aui-live-search/__MACOSX
 /build/aui-live-search//trunk/lib/yui3/
-
 # /build/aui-live-search/assets/
 /build/aui-live-search/assets/.git
 /build/aui-live-search/assets/build_tmp
 /build/aui-live-search/assets/build_rollup_tmp
 /build/aui-live-search/assets/__MACOSX
 /build/aui-live-search/assets//trunk/lib/yui3/
-
 # /build/aui-nested-list/
 /build/aui-nested-list/.git
 /build/aui-nested-list/build_tmp
 /build/aui-nested-list/build_rollup_tmp
 /build/aui-nested-list/__MACOSX
 /build/aui-nested-list//trunk/lib/yui3/
-
 # /build/aui-nested-list/assets/
 /build/aui-nested-list/assets/.git
 /build/aui-nested-list/assets/build_tmp
 /build/aui-nested-list/assets/build_rollup_tmp
 /build/aui-nested-list/assets/__MACOSX
 /build/aui-nested-list/assets//trunk/lib/yui3/
-
 # /build/aui-node/
 /build/aui-node/.git
 /build/aui-node/build_tmp
 /build/aui-node/build_rollup_tmp
 /build/aui-node/__MACOSX
 /build/aui-node//trunk/lib/yui3/
-
 # /build/aui-node/assets/
 /build/aui-node/assets/.git
 /build/aui-node/assets/build_tmp
 /build/aui-node/assets/build_rollup_tmp
 /build/aui-node/assets/__MACOSX
 /build/aui-node/assets//trunk/lib/yui3/
-
 # /build/aui-paginator/
 /build/aui-paginator/.git
 /build/aui-paginator/build_tmp
 /build/aui-paginator/build_rollup_tmp
 /build/aui-paginator/__MACOSX
 /build/aui-paginator//trunk/lib/yui3/
-
 # /build/aui-paginator/assets/
 /build/aui-paginator/assets/.git
 /build/aui-paginator/assets/build_tmp
 /build/aui-paginator/assets/build_rollup_tmp
 /build/aui-paginator/assets/__MACOSX
 /build/aui-paginator/assets//trunk/lib/yui3/
-
 # /build/aui-paginator/assets/skins/
 /build/aui-paginator/assets/skins/.git
 /build/aui-paginator/assets/skins/build_tmp
 /build/aui-paginator/assets/skins/build_rollup_tmp
 /build/aui-paginator/assets/skins/__MACOSX
 /build/aui-paginator/assets/skins//trunk/lib/yui3/
-
 # /build/aui-paginator/assets/skins/sam/
 /build/aui-paginator/assets/skins/sam/.git
 /build/aui-paginator/assets/skins/sam/build_tmp
 /build/aui-paginator/assets/skins/sam/build_rollup_tmp
 /build/aui-paginator/assets/skins/sam/__MACOSX
 /build/aui-paginator/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-panel/
 /build/aui-panel/.git
 /build/aui-panel/build_tmp
 /build/aui-panel/build_rollup_tmp
 /build/aui-panel/__MACOSX
 /build/aui-panel//trunk/lib/yui3/
-
 # /build/aui-panel/assets/
 /build/aui-panel/assets/.git
 /build/aui-panel/assets/build_tmp
 /build/aui-panel/assets/build_rollup_tmp
 /build/aui-panel/assets/__MACOSX
 /build/aui-panel/assets//trunk/lib/yui3/
-
 # /build/aui-panel/assets/skins/
 /build/aui-panel/assets/skins/.git
 /build/aui-panel/assets/skins/build_tmp
 /build/aui-panel/assets/skins/build_rollup_tmp
 /build/aui-panel/assets/skins/__MACOSX
 /build/aui-panel/assets/skins//trunk/lib/yui3/
-
 # /build/aui-panel/assets/skins/sam/
 /build/aui-panel/assets/skins/sam/.git
 /build/aui-panel/assets/skins/sam/build_tmp
 /build/aui-panel/assets/skins/sam/build_rollup_tmp
 /build/aui-panel/assets/skins/sam/__MACOSX
 /build/aui-panel/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-parse-content/
 /build/aui-parse-content/.git
 /build/aui-parse-content/build_tmp
 /build/aui-parse-content/build_rollup_tmp
 /build/aui-parse-content/__MACOSX
 /build/aui-parse-content//trunk/lib/yui3/
-
 # /build/aui-portal-layout/
 /build/aui-portal-layout/.git
 /build/aui-portal-layout/build_tmp
 /build/aui-portal-layout/build_rollup_tmp
 /build/aui-portal-layout/__MACOSX
 /build/aui-portal-layout//trunk/lib/yui3/
-
 # /build/aui-portal-layout/assets/
 /build/aui-portal-layout/assets/.git
 /build/aui-portal-layout/assets/build_tmp
 /build/aui-portal-layout/assets/build_rollup_tmp
 /build/aui-portal-layout/assets/__MACOSX
 /build/aui-portal-layout/assets//trunk/lib/yui3/
-
 # /build/aui-portal-layout/assets/skins/
 /build/aui-portal-layout/assets/skins/.git
 /build/aui-portal-layout/assets/skins/build_tmp
 /build/aui-portal-layout/assets/skins/build_rollup_tmp
 /build/aui-portal-layout/assets/skins/__MACOSX
 /build/aui-portal-layout/assets/skins//trunk/lib/yui3/
-
 # /build/aui-portal-layout/assets/skins/sam/
 /build/aui-portal-layout/assets/skins/sam/.git
 /build/aui-portal-layout/assets/skins/sam/build_tmp
 /build/aui-portal-layout/assets/skins/sam/build_rollup_tmp
 /build/aui-portal-layout/assets/skins/sam/__MACOSX
 /build/aui-portal-layout/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-rating/
 /build/aui-rating/.git
 /build/aui-rating/build_tmp
 /build/aui-rating/build_rollup_tmp
 /build/aui-rating/__MACOSX
 /build/aui-rating//trunk/lib/yui3/
-
 # /build/aui-rating/assets/
 /build/aui-rating/assets/.git
 /build/aui-rating/assets/build_tmp
 /build/aui-rating/assets/build_rollup_tmp
 /build/aui-rating/assets/__MACOSX
 /build/aui-rating/assets//trunk/lib/yui3/
-
 # /build/aui-rating/assets/skins/
 /build/aui-rating/assets/skins/.git
 /build/aui-rating/assets/skins/build_tmp
 /build/aui-rating/assets/skins/build_rollup_tmp
 /build/aui-rating/assets/skins/__MACOSX
 /build/aui-rating/assets/skins//trunk/lib/yui3/
-
 # /build/aui-rating/assets/skins/sam/
 /build/aui-rating/assets/skins/sam/.git
 /build/aui-rating/assets/skins/sam/build_tmp
 /build/aui-rating/assets/skins/sam/build_rollup_tmp
 /build/aui-rating/assets/skins/sam/__MACOSX
 /build/aui-rating/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-resize/
 /build/aui-resize/.git
 /build/aui-resize/build_tmp
 /build/aui-resize/build_rollup_tmp
 /build/aui-resize/__MACOSX
 /build/aui-resize//trunk/lib/yui3/
-
 # /build/aui-resize/assets/
 /build/aui-resize/assets/.git
 /build/aui-resize/assets/build_tmp
 /build/aui-resize/assets/build_rollup_tmp
 /build/aui-resize/assets/__MACOSX
 /build/aui-resize/assets//trunk/lib/yui3/
-
 # /build/aui-resize/assets/skins/
 /build/aui-resize/assets/skins/.git
 /build/aui-resize/assets/skins/build_tmp
 /build/aui-resize/assets/skins/build_rollup_tmp
 /build/aui-resize/assets/skins/__MACOSX
 /build/aui-resize/assets/skins//trunk/lib/yui3/
-
 # /build/aui-resize/assets/skins/sam/
 /build/aui-resize/assets/skins/sam/.git
 /build/aui-resize/assets/skins/sam/build_tmp
 /build/aui-resize/assets/skins/sam/build_rollup_tmp
 /build/aui-resize/assets/skins/sam/__MACOSX
 /build/aui-resize/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-sortable/
 /build/aui-sortable/.git
 /build/aui-sortable/build_tmp
 /build/aui-sortable/build_rollup_tmp
 /build/aui-sortable/__MACOSX
 /build/aui-sortable//trunk/lib/yui3/
-
 # /build/aui-sortable/assets/
 /build/aui-sortable/assets/.git
 /build/aui-sortable/assets/build_tmp
 /build/aui-sortable/assets/build_rollup_tmp
 /build/aui-sortable/assets/__MACOSX
 /build/aui-sortable/assets//trunk/lib/yui3/
-
 # /build/aui-sortable/assets/skins/
 /build/aui-sortable/assets/skins/.git
 /build/aui-sortable/assets/skins/build_tmp
 /build/aui-sortable/assets/skins/build_rollup_tmp
 /build/aui-sortable/assets/skins/__MACOSX
 /build/aui-sortable/assets/skins//trunk/lib/yui3/
-
 # /build/aui-sortable/assets/skins/sam/
 /build/aui-sortable/assets/skins/sam/.git
 /build/aui-sortable/assets/skins/sam/build_tmp
 /build/aui-sortable/assets/skins/sam/build_rollup_tmp
 /build/aui-sortable/assets/skins/sam/__MACOSX
 /build/aui-sortable/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-state-interaction/
 /build/aui-state-interaction/.git
 /build/aui-state-interaction/build_tmp
 /build/aui-state-interaction/build_rollup_tmp
 /build/aui-state-interaction/__MACOSX
 /build/aui-state-interaction//trunk/lib/yui3/
-
 # /build/aui-state-interaction/assets/
 /build/aui-state-interaction/assets/.git
 /build/aui-state-interaction/assets/build_tmp
 /build/aui-state-interaction/assets/build_rollup_tmp
 /build/aui-state-interaction/assets/__MACOSX
 /build/aui-state-interaction/assets//trunk/lib/yui3/
-
 # /build/aui-swf/
 /build/aui-swf/.git
 /build/aui-swf/build_tmp
 /build/aui-swf/build_rollup_tmp
 /build/aui-swf/__MACOSX
 /build/aui-swf//trunk/lib/yui3/
-
 # /build/aui-swf/assets/
 /build/aui-swf/assets/.git
 /build/aui-swf/assets/build_tmp
 /build/aui-swf/assets/build_rollup_tmp
 /build/aui-swf/assets/__MACOSX
 /build/aui-swf/assets//trunk/lib/yui3/
-
 # /build/aui-tabs/
 /build/aui-tabs/.git
 /build/aui-tabs/build_tmp
 /build/aui-tabs/build_rollup_tmp
 /build/aui-tabs/__MACOSX
 /build/aui-tabs//trunk/lib/yui3/
-
 # /build/aui-tabs/assets/
 /build/aui-tabs/assets/.git
 /build/aui-tabs/assets/build_tmp
 /build/aui-tabs/assets/build_rollup_tmp
 /build/aui-tabs/assets/__MACOSX
 /build/aui-tabs/assets//trunk/lib/yui3/
-
 # /build/aui-tabs/assets/skins/
 /build/aui-tabs/assets/skins/.git
 /build/aui-tabs/assets/skins/build_tmp
 /build/aui-tabs/assets/skins/build_rollup_tmp
 /build/aui-tabs/assets/skins/__MACOSX
 /build/aui-tabs/assets/skins//trunk/lib/yui3/
-
 # /build/aui-tabs/assets/skins/sam/
 /build/aui-tabs/assets/skins/sam/.git
 /build/aui-tabs/assets/skins/sam/build_tmp
 /build/aui-tabs/assets/skins/sam/build_rollup_tmp
 /build/aui-tabs/assets/skins/sam/__MACOSX
 /build/aui-tabs/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-tooltip/
 /build/aui-tooltip/.git
 /build/aui-tooltip/build_tmp
 /build/aui-tooltip/build_rollup_tmp
 /build/aui-tooltip/__MACOSX
 /build/aui-tooltip//trunk/lib/yui3/
-
 # /build/aui-tooltip/assets/
 /build/aui-tooltip/assets/.git
 /build/aui-tooltip/assets/build_tmp
 /build/aui-tooltip/assets/build_rollup_tmp
 /build/aui-tooltip/assets/__MACOSX
 /build/aui-tooltip/assets//trunk/lib/yui3/
-
 # /build/aui-tooltip/assets/skins/
 /build/aui-tooltip/assets/skins/.git
 /build/aui-tooltip/assets/skins/build_tmp
 /build/aui-tooltip/assets/skins/build_rollup_tmp
 /build/aui-tooltip/assets/skins/__MACOSX
 /build/aui-tooltip/assets/skins//trunk/lib/yui3/
-
 # /build/aui-tooltip/assets/skins/sam/
 /build/aui-tooltip/assets/skins/sam/.git
 /build/aui-tooltip/assets/skins/sam/build_tmp
 /build/aui-tooltip/assets/skins/sam/build_rollup_tmp
 /build/aui-tooltip/assets/skins/sam/__MACOSX
 /build/aui-tooltip/assets/skins/sam//trunk/lib/yui3/
-
 # /build/aui-tree/
 /build/aui-tree/.git
 /build/aui-tree/build_tmp
 /build/aui-tree/build_rollup_tmp
 /build/aui-tree/__MACOSX
 /build/aui-tree//trunk/lib/yui3/
-
 # /build/aui-tree/assets/
 /build/aui-tree/assets/.git
 /build/aui-tree/assets/build_tmp
 /build/aui-tree/assets/build_rollup_tmp
 /build/aui-tree/assets/__MACOSX
 /build/aui-tree/assets//trunk/lib/yui3/
-
 # /build/aui-tree/assets/skins/
 /build/aui-tree/assets/skins/.git
 /build/aui-tree/assets/skins/build_tmp
 /build/aui-tree/assets/skins/build_rollup_tmp
 /build/aui-tree/assets/skins/__MACOSX
 /build/aui-tree/assets/skins//trunk/lib/yui3/
-
 # /build/aui-tree/assets/skins/sam/
 /build/aui-tree/assets/skins/sam/.git
 /build/aui-tree/assets/skins/sam/build_tmp
 /build/aui-tree/assets/skins/sam/build_rollup_tmp
 /build/aui-tree/assets/skins/sam/__MACOSX
 /build/aui-tree/assets/skins/sam//trunk/lib/yui3/
-
 # /build/base/
 /build/base/.git
 /build/base/build_tmp
 /build/base/build_rollup_tmp
 /build/base/__MACOSX
 /build/base//trunk/lib/yui3/
-
 # /build/cache/
 /build/cache/.git
 /build/cache/build_tmp
 /build/cache/build_rollup_tmp
 /build/cache/__MACOSX
 /build/cache//trunk/lib/yui3/
-
 # /build/classnamemanager/
 /build/classnamemanager/.git
 /build/classnamemanager/build_tmp
 /build/classnamemanager/build_rollup_tmp
 /build/classnamemanager/__MACOSX
 /build/classnamemanager//trunk/lib/yui3/
-
 # /build/collection/
 /build/collection/.git
 /build/collection/build_tmp
 /build/collection/build_rollup_tmp
 /build/collection/__MACOSX
 /build/collection//trunk/lib/yui3/
-
 # /build/compat/
 /build/compat/.git
 /build/compat/build_tmp
 /build/compat/build_rollup_tmp
 /build/compat/__MACOSX
 /build/compat//trunk/lib/yui3/
-
 # /build/console/
 /build/console/.git
 /build/console/build_tmp
 /build/console/build_rollup_tmp
 /build/console/__MACOSX
 /build/console//trunk/lib/yui3/
-
 # /build/console/assets/
 /build/console/assets/.git
 /build/console/assets/build_tmp
 /build/console/assets/build_rollup_tmp
 /build/console/assets/__MACOSX
 /build/console/assets//trunk/lib/yui3/
-
 # /build/console/assets/skins/
 /build/console/assets/skins/.git
 /build/console/assets/skins/build_tmp
 /build/console/assets/skins/build_rollup_tmp
 /build/console/assets/skins/__MACOSX
 /build/console/assets/skins//trunk/lib/yui3/
-
 # /build/console/assets/skins/sam/
 /build/console/assets/skins/sam/.git
 /build/console/assets/skins/sam/build_tmp
 /build/console/assets/skins/sam/build_rollup_tmp
 /build/console/assets/skins/sam/__MACOSX
 /build/console/assets/skins/sam//trunk/lib/yui3/
-
 # /build/cookie/
 /build/cookie/.git
 /build/cookie/build_tmp
 /build/cookie/build_rollup_tmp
 /build/cookie/__MACOSX
 /build/cookie//trunk/lib/yui3/
-
 # /build/cssbase/
 /build/cssbase/.git
 /build/cssbase/build_tmp
 /build/cssbase/build_rollup_tmp
 /build/cssbase/__MACOSX
 /build/cssbase//trunk/lib/yui3/
-
 # /build/cssfonts/
 /build/cssfonts/.git
 /build/cssfonts/build_tmp
 /build/cssfonts/build_rollup_tmp
 /build/cssfonts/__MACOSX
 /build/cssfonts//trunk/lib/yui3/
-
 # /build/cssgrids/
 /build/cssgrids/.git
 /build/cssgrids/build_tmp
 /build/cssgrids/build_rollup_tmp
 /build/cssgrids/__MACOSX
 /build/cssgrids//trunk/lib/yui3/
-
 # /build/cssreset/
 /build/cssreset/.git
 /build/cssreset/build_tmp
 /build/cssreset/build_rollup_tmp
 /build/cssreset/__MACOSX
 /build/cssreset//trunk/lib/yui3/
-
 # /build/dataschema/
 /build/dataschema/.git
 /build/dataschema/build_tmp
 /build/dataschema/build_rollup_tmp
 /build/dataschema/__MACOSX
 /build/dataschema//trunk/lib/yui3/
-
 # /build/datasource/
 /build/datasource/.git
 /build/datasource/build_tmp
 /build/datasource/build_rollup_tmp
 /build/datasource/__MACOSX
 /build/datasource//trunk/lib/yui3/
-
 # /build/datatype/
 /build/datatype/.git
 /build/datatype/build_tmp
 /build/datatype/build_rollup_tmp
 /build/datatype/__MACOSX
 /build/datatype//trunk/lib/yui3/
-
 # /build/dd/
 /build/dd/.git
 /build/dd/build_tmp
 /build/dd/build_rollup_tmp
 /build/dd/__MACOSX
 /build/dd//trunk/lib/yui3/
-
 # /build/dd-value/
 /build/dd-value/.git
 /build/dd-value/build_tmp
 /build/dd-value/build_rollup_tmp
 /build/dd-value/__MACOSX
 /build/dd-value//trunk/lib/yui3/
-
 # /build/dom/
 /build/dom/.git
 /build/dom/build_tmp
 /build/dom/build_rollup_tmp
 /build/dom/__MACOSX
 /build/dom//trunk/lib/yui3/
-
 # /build/dump/
 /build/dump/.git
 /build/dump/build_tmp
 /build/dump/build_rollup_tmp
 /build/dump/__MACOSX
 /build/dump//trunk/lib/yui3/
-
 # /build/event/
 /build/event/.git
 /build/event/build_tmp
 /build/event/build_rollup_tmp
 /build/event/__MACOSX
 /build/event//trunk/lib/yui3/
-
 # /build/event-custom/
 /build/event-custom/.git
 /build/event-custom/build_tmp
 /build/event-custom/build_rollup_tmp
 /build/event-custom/__MACOSX
 /build/event-custom//trunk/lib/yui3/
-
 # /build/event-simulate/
 /build/event-simulate/.git
 /build/event-simulate/build_tmp
 /build/event-simulate/build_rollup_tmp
 /build/event-simulate/__MACOSX
 /build/event-simulate//trunk/lib/yui3/
-
 # /build/get/
 /build/get/.git
 /build/get/build_tmp
 /build/get/build_rollup_tmp
 /build/get/__MACOSX
 /build/get//trunk/lib/yui3/
-
 # /build/history/
 /build/history/.git
 /build/history/build_tmp
 /build/history/build_rollup_tmp
 /build/history/__MACOSX
 /build/history//trunk/lib/yui3/
-
 # /build/imageloader/
 /build/imageloader/.git
 /build/imageloader/build_tmp
 /build/imageloader/build_rollup_tmp
 /build/imageloader/__MACOSX
 /build/imageloader//trunk/lib/yui3/
-
 # /build/intl/
 /build/intl/.git
 /build/intl/build_tmp
 /build/intl/build_rollup_tmp
 /build/intl/__MACOSX
 /build/intl//trunk/lib/yui3/
-
 # /build/io/
 /build/io/.git
 /build/io/build_tmp
 /build/io/build_rollup_tmp
 /build/io/__MACOSX
 /build/io//trunk/lib/yui3/
-
 # /build/json/
 /build/json/.git
 /build/json/build_tmp
 /build/json/build_rollup_tmp
 /build/json/__MACOSX
 /build/json//trunk/lib/yui3/
-
 # /build/loader/
 /build/loader/.git
 /build/loader/build_tmp
 /build/loader/build_rollup_tmp
 /build/loader/__MACOSX
 /build/loader//trunk/lib/yui3/
-
 # /build/node/
 /build/node/.git
 /build/node/build_tmp
 /build/node/build_rollup_tmp
 /build/node/__MACOSX
 /build/node//trunk/lib/yui3/
-
 # /build/node-focusmanager/
 /build/node-focusmanager/.git
 /build/node-focusmanager/build_tmp
 /build/node-focusmanager/build_rollup_tmp
 /build/node-focusmanager/__MACOSX
 /build/node-focusmanager//trunk/lib/yui3/
-
 # /build/node-menunav/
 /build/node-menunav/.git
 /build/node-menunav/build_tmp
 /build/node-menunav/build_rollup_tmp
 /build/node-menunav/__MACOSX
 /build/node-menunav//trunk/lib/yui3/
-
 # /build/node-menunav/assets/
 /build/node-menunav/assets/.git
 /build/node-menunav/assets/build_tmp
 /build/node-menunav/assets/build_rollup_tmp
 /build/node-menunav/assets/__MACOSX
 /build/node-menunav/assets//trunk/lib/yui3/
-
 # /build/node-menunav/assets/skins/
 /build/node-menunav/assets/skins/.git
 /build/node-menunav/assets/skins/build_tmp
 /build/node-menunav/assets/skins/build_rollup_tmp
 /build/node-menunav/assets/skins/__MACOSX
 /build/node-menunav/assets/skins//trunk/lib/yui3/
-
 # /build/node-menunav/assets/skins/sam/
 /build/node-menunav/assets/skins/sam/.git
 /build/node-menunav/assets/skins/sam/build_tmp
 /build/node-menunav/assets/skins/sam/build_rollup_tmp
 /build/node-menunav/assets/skins/sam/__MACOSX
 /build/node-menunav/assets/skins/sam//trunk/lib/yui3/
-
 # /build/oop/
 /build/oop/.git
 /build/oop/build_tmp
 /build/oop/build_rollup_tmp
 /build/oop/__MACOSX
 /build/oop//trunk/lib/yui3/
-
 # /build/overlay/
 /build/overlay/.git
 /build/overlay/build_tmp
 /build/overlay/build_rollup_tmp
 /build/overlay/__MACOSX
 /build/overlay//trunk/lib/yui3/
-
 # /build/overlay/assets/
 /build/overlay/assets/.git
 /build/overlay/assets/build_tmp
 /build/overlay/assets/build_rollup_tmp
 /build/overlay/assets/__MACOSX
 /build/overlay/assets//trunk/lib/yui3/
-
 # /build/overlay/assets/skins/
 /build/overlay/assets/skins/.git
 /build/overlay/assets/skins/build_tmp
 /build/overlay/assets/skins/build_rollup_tmp
 /build/overlay/assets/skins/__MACOSX
 /build/overlay/assets/skins//trunk/lib/yui3/
-
 # /build/overlay/assets/skins/sam/
 /build/overlay/assets/skins/sam/.git
 /build/overlay/assets/skins/sam/build_tmp
 /build/overlay/assets/skins/sam/build_rollup_tmp
 /build/overlay/assets/skins/sam/__MACOSX
 /build/overlay/assets/skins/sam//trunk/lib/yui3/
-
 # /build/plugin/
 /build/plugin/.git
 /build/plugin/build_tmp
 /build/plugin/build_rollup_tmp
 /build/plugin/__MACOSX
 /build/plugin//trunk/lib/yui3/
-
 # /build/pluginhost/
 /build/pluginhost/.git
 /build/pluginhost/build_tmp
 /build/pluginhost/build_rollup_tmp
 /build/pluginhost/__MACOSX
 /build/pluginhost//trunk/lib/yui3/
-
 # /build/profiler/
 /build/profiler/.git
 /build/profiler/build_tmp
 /build/profiler/build_rollup_tmp
 /build/profiler/__MACOSX
 /build/profiler//trunk/lib/yui3/
-
 # /build/querystring/
 /build/querystring/.git
 /build/querystring/build_tmp
 /build/querystring/build_rollup_tmp
 /build/querystring/__MACOSX
 /build/querystring//trunk/lib/yui3/
-
 # /build/queue-promote/
 /build/queue-promote/.git
 /build/queue-promote/build_tmp
 /build/queue-promote/build_rollup_tmp
 /build/queue-promote/__MACOSX
 /build/queue-promote//trunk/lib/yui3/
-
 # /build/slider/
 /build/slider/.git
 /build/slider/build_tmp
 /build/slider/build_rollup_tmp
 /build/slider/__MACOSX
 /build/slider//trunk/lib/yui3/
-
 # /build/slider/assets/
 /build/slider/assets/.git
 /build/slider/assets/build_tmp
 /build/slider/assets/build_rollup_tmp
 /build/slider/assets/__MACOSX
 /build/slider/assets//trunk/lib/yui3/
-
 # /build/slider/assets/skins/
 /build/slider/assets/skins/.git
 /build/slider/assets/skins/build_tmp
 /build/slider/assets/skins/build_rollup_tmp
 /build/slider/assets/skins/__MACOSX
 /build/slider/assets/skins//trunk/lib/yui3/
-
 # /build/slider/assets/skins/sam/
 /build/slider/assets/skins/sam/.git
 /build/slider/assets/skins/sam/build_tmp
 /build/slider/assets/skins/sam/build_rollup_tmp
 /build/slider/assets/skins/sam/__MACOSX
 /build/slider/assets/skins/sam//trunk/lib/yui3/
-
 # /build/sortable/
 /build/sortable/.git
 /build/sortable/build_tmp
 /build/sortable/build_rollup_tmp
 /build/sortable/__MACOSX
 /build/sortable//trunk/lib/yui3/
-
 # /build/stylesheet/
 /build/stylesheet/.git
 /build/stylesheet/build_tmp
 /build/stylesheet/build_rollup_tmp
 /build/stylesheet/__MACOSX
 /build/stylesheet//trunk/lib/yui3/
-
 # /build/substitute/
 /build/substitute/.git
 /build/substitute/build_tmp
 /build/substitute/build_rollup_tmp
 /build/substitute/__MACOSX
 /build/substitute//trunk/lib/yui3/
-
 # /build/swf/
 /build/swf/.git
 /build/swf/build_tmp
 /build/swf/build_rollup_tmp
 /build/swf/__MACOSX
 /build/swf//trunk/lib/yui3/
-
 # /build/swfdetect/
 /build/swfdetect/.git
 /build/swfdetect/build_tmp
 /build/swfdetect/build_rollup_tmp
 /build/swfdetect/__MACOSX
 /build/swfdetect//trunk/lib/yui3/
-
 # /build/tabview/
 /build/tabview/.git
 /build/tabview/build_tmp
 /build/tabview/build_rollup_tmp
 /build/tabview/__MACOSX
 /build/tabview//trunk/lib/yui3/
-
 # /build/test/
 /build/test/.git
 /build/test/build_tmp
 /build/test/build_rollup_tmp
 /build/test/__MACOSX
 /build/test//trunk/lib/yui3/
-
 # /build/test/assets/
 /build/test/assets/.git
 /build/test/assets/build_tmp
 /build/test/assets/build_rollup_tmp
 /build/test/assets/__MACOSX
 /build/test/assets//trunk/lib/yui3/
-
 # /build/test/assets/skins/
 /build/test/assets/skins/.git
 /build/test/assets/skins/build_tmp
 /build/test/assets/skins/build_rollup_tmp
 /build/test/assets/skins/__MACOSX
 /build/test/assets/skins//trunk/lib/yui3/
-
 # /build/test/assets/skins/sam/
 /build/test/assets/skins/sam/.git
 /build/test/assets/skins/sam/build_tmp
 /build/test/assets/skins/sam/build_rollup_tmp
 /build/test/assets/skins/sam/__MACOSX
 /build/test/assets/skins/sam//trunk/lib/yui3/
-
 # /build/value-change/
 /build/value-change/.git
 /build/value-change/build_tmp
 /build/value-change/build_rollup_tmp
 /build/value-change/__MACOSX
 /build/value-change//trunk/lib/yui3/
-
 # /build/widget/
 /build/widget/.git
 /build/widget/build_tmp
 /build/widget/build_rollup_tmp
 /build/widget/__MACOSX
 /build/widget//trunk/lib/yui3/
-
 # /build/widget/assets/
 /build/widget/assets/.git
 /build/widget/assets/build_tmp
 /build/widget/assets/build_rollup_tmp
 /build/widget/assets/__MACOSX
 /build/widget/assets//trunk/lib/yui3/
-
 # /build/widget/assets/skins/
 /build/widget/assets/skins/.git
 /build/widget/assets/skins/build_tmp
 /build/widget/assets/skins/build_rollup_tmp
 /build/widget/assets/skins/__MACOSX
 /build/widget/assets/skins//trunk/lib/yui3/
-
 # /build/widget/assets/skins/sam/
 /build/widget/assets/skins/sam/.git
 /build/widget/assets/skins/sam/build_tmp
 /build/widget/assets/skins/sam/build_rollup_tmp
 /build/widget/assets/skins/sam/__MACOSX
 /build/widget/assets/skins/sam//trunk/lib/yui3/
-
 # /build/widget-anim/
 /build/widget-anim/.git
 /build/widget-anim/build_tmp
 /build/widget-anim/build_rollup_tmp
 /build/widget-anim/__MACOSX
 /build/widget-anim//trunk/lib/yui3/
-
 # /build/yui/
 /build/yui/.git
 /build/yui/build_tmp
 /build/yui/build_rollup_tmp
 /build/yui/__MACOSX
 /build/yui//trunk/lib/yui3/
-
 # /demos/
 /demos/.git
 /demos/build_tmp
 /demos/build_rollup_tmp
 /demos/__MACOSX
 /demos//trunk/lib/yui3/
-
 # /demos/autocomplete/
 /demos/autocomplete/.git
 /demos/autocomplete/build_tmp
 /demos/autocomplete/build_rollup_tmp
 /demos/autocomplete/__MACOSX
 /demos/autocomplete//trunk/lib/yui3/
-
 # /demos/calendar/
 /demos/calendar/.git
 /demos/calendar/build_tmp
 /demos/calendar/build_rollup_tmp
 /demos/calendar/__MACOSX
 /demos/calendar//trunk/lib/yui3/
-
 # /demos/char-counter/
 /demos/char-counter/.git
 /demos/char-counter/build_tmp
 /demos/char-counter/build_rollup_tmp
 /demos/char-counter/__MACOSX
 /demos/char-counter//trunk/lib/yui3/
-
 # /demos/charts/
 /demos/charts/.git
 /demos/charts/build_tmp
 /demos/charts/build_rollup_tmp
 /demos/charts/__MACOSX
 /demos/charts//trunk/lib/yui3/
-
 # /demos/color-picker/
 /demos/color-picker/.git
 /demos/color-picker/build_tmp
 /demos/color-picker/build_rollup_tmp
 /demos/color-picker/__MACOSX
 /demos/color-picker//trunk/lib/yui3/
-
 # /demos/combobox/
 /demos/combobox/.git
 /demos/combobox/build_tmp
 /demos/combobox/build_rollup_tmp
 /demos/combobox/__MACOSX
 /demos/combobox//trunk/lib/yui3/
-
 # /demos/component/
 /demos/component/.git
 /demos/component/build_tmp
 /demos/component/build_rollup_tmp
 /demos/component/__MACOSX
 /demos/component//trunk/lib/yui3/
-
 # /demos/data-set/
 /demos/data-set/.git
 /demos/data-set/build_tmp
 /demos/data-set/build_rollup_tmp
 /demos/data-set/__MACOSX
 /demos/data-set//trunk/lib/yui3/
-
 # /demos/datatype/
 /demos/datatype/.git
 /demos/datatype/build_tmp
 /demos/datatype/build_rollup_tmp
 /demos/datatype/__MACOSX
 /demos/datatype//trunk/lib/yui3/
-
 # /demos/datepicker/
 /demos/datepicker/.git
 /demos/datepicker/build_tmp
 /demos/datepicker/build_rollup_tmp
 /demos/datepicker/__MACOSX
 /demos/datepicker//trunk/lib/yui3/
-
 # /demos/delayed-task/
 /demos/delayed-task/.git
 /demos/delayed-task/build_tmp
 /demos/delayed-task/build_rollup_tmp
 /demos/delayed-task/__MACOSX
 /demos/delayed-task//trunk/lib/yui3/
-
 # /demos/dialog/
 /demos/dialog/.git
 /demos/dialog/build_tmp
 /demos/dialog/build_rollup_tmp
 /demos/dialog/__MACOSX
 /demos/dialog//trunk/lib/yui3/
-
 # /demos/dialog/assets/
 /demos/dialog/assets/.git
 /demos/dialog/assets/build_tmp
 /demos/dialog/assets/build_rollup_tmp
 /demos/dialog/assets/__MACOSX
 /demos/dialog/assets//trunk/lib/yui3/
-
 # /demos/editable/
 /demos/editable/.git
 /demos/editable/build_tmp
 /demos/editable/build_rollup_tmp
 /demos/editable/__MACOSX
 /demos/editable//trunk/lib/yui3/
-
 # /demos/form/
 /demos/form/.git
 /demos/form/build_tmp
 /demos/form/build_rollup_tmp
 /demos/form/__MACOSX
 /demos/form//trunk/lib/yui3/
-
 # /demos/forms/
 /demos/forms/.git
 /demos/forms/build_tmp
 /demos/forms/build_rollup_tmp
 /demos/forms/__MACOSX
 /demos/forms//trunk/lib/yui3/
-
 # /demos/image-gallery/
 /demos/image-gallery/.git
 /demos/image-gallery/build_tmp
 /demos/image-gallery/build_rollup_tmp
 /demos/image-gallery/__MACOSX
 /demos/image-gallery//trunk/lib/yui3/
-
 # /demos/image-viewer/
 /demos/image-viewer/.git
 /demos/image-viewer/build_tmp
 /demos/image-viewer/build_rollup_tmp
 /demos/image-viewer/__MACOSX
 /demos/image-viewer//trunk/lib/yui3/
-
 # /demos/image-viewer/assets/
 /demos/image-viewer/assets/.git
 /demos/image-viewer/assets/build_tmp
 /demos/image-viewer/assets/build_rollup_tmp
 /demos/image-viewer/assets/__MACOSX
 /demos/image-viewer/assets//trunk/lib/yui3/
-
 # /demos/io-plugin/
 /demos/io-plugin/.git
 /demos/io-plugin/build_tmp
 /demos/io-plugin/build_rollup_tmp
 /demos/io-plugin/__MACOSX
 /demos/io-plugin//trunk/lib/yui3/
-
 # /demos/io-plugin/assets/
 /demos/io-plugin/assets/.git
 /demos/io-plugin/assets/build_tmp
 /demos/io-plugin/assets/build_rollup_tmp
 /demos/io-plugin/assets/__MACOSX
 /demos/io-plugin/assets//trunk/lib/yui3/
-
 # /demos/io-request/
 /demos/io-request/.git
 /demos/io-request/build_tmp
 /demos/io-request/build_rollup_tmp
 /demos/io-request/__MACOSX
 /demos/io-request//trunk/lib/yui3/
-
 # /demos/io-request/assets/
 /demos/io-request/assets/.git
 /demos/io-request/assets/build_tmp
 /demos/io-request/assets/build_rollup_tmp
 /demos/io-request/assets/__MACOSX
 /demos/io-request/assets//trunk/lib/yui3/
-
 # /demos/layout/
 /demos/layout/.git
 /demos/layout/build_tmp
 /demos/layout/build_rollup_tmp
 /demos/layout/__MACOSX
 /demos/layout//trunk/lib/yui3/
-
 # /demos/live-search/
 /demos/live-search/.git
 /demos/live-search/build_tmp
 /demos/live-search/build_rollup_tmp
 /demos/live-search/__MACOSX
 /demos/live-search//trunk/lib/yui3/
-
 # /demos/nested-list/
 /demos/nested-list/.git
 /demos/nested-list/build_tmp
 /demos/nested-list/build_rollup_tmp
 /demos/nested-list/__MACOSX
 /demos/nested-list//trunk/lib/yui3/
-
 # /demos/overlay-context/
 /demos/overlay-context/.git
 /demos/overlay-context/build_tmp
 /demos/overlay-context/build_rollup_tmp
 /demos/overlay-context/__MACOSX
 /demos/overlay-context//trunk/lib/yui3/
-
 # /demos/overlay-context-panel/
 /demos/overlay-context-panel/.git
 /demos/overlay-context-panel/build_tmp
 /demos/overlay-context-panel/build_rollup_tmp
 /demos/overlay-context-panel/__MACOSX
 /demos/overlay-context-panel//trunk/lib/yui3/
-
 # /demos/overlay-manager/
 /demos/overlay-manager/.git
 /demos/overlay-manager/build_tmp
 /demos/overlay-manager/build_rollup_tmp
 /demos/overlay-manager/__MACOSX
 /demos/overlay-manager//trunk/lib/yui3/
-
 # /demos/overlay-mask/
 /demos/overlay-mask/.git
 /demos/overlay-mask/build_tmp
 /demos/overlay-mask/build_rollup_tmp
 /demos/overlay-mask/__MACOSX
 /demos/overlay-mask//trunk/lib/yui3/
-
 # /demos/paginator/
 /demos/paginator/.git
 /demos/paginator/build_tmp
 /demos/paginator/build_rollup_tmp
 /demos/paginator/__MACOSX
 /demos/paginator//trunk/lib/yui3/
-
 # /demos/panel/
 /demos/panel/.git
 /demos/panel/build_tmp
 /demos/panel/build_rollup_tmp
 /demos/panel/__MACOSX
 /demos/panel//trunk/lib/yui3/
-
 # /demos/parse-content/
 /demos/parse-content/.git
 /demos/parse-content/build_tmp
 /demos/parse-content/build_rollup_tmp
 /demos/parse-content/__MACOSX
 /demos/parse-content//trunk/lib/yui3/
-
 # /demos/parse-content/assets/
 /demos/parse-content/assets/.git
 /demos/parse-content/assets/build_tmp
 /demos/parse-content/assets/build_rollup_tmp
 /demos/parse-content/assets/__MACOSX
 /demos/parse-content/assets//trunk/lib/yui3/
-
 # /demos/portal-layout/
 /demos/portal-layout/.git
 /demos/portal-layout/build_tmp
 /demos/portal-layout/build_rollup_tmp
 /demos/portal-layout/__MACOSX
 /demos/portal-layout//trunk/lib/yui3/
-
 # /demos/rating/
 /demos/rating/.git
 /demos/rating/build_tmp
 /demos/rating/build_rollup_tmp
 /demos/rating/__MACOSX
 /demos/rating//trunk/lib/yui3/
-
 # /demos/resize/
 /demos/resize/.git
 /demos/resize/build_tmp
 /demos/resize/build_rollup_tmp
 /demos/resize/__MACOSX
 /demos/resize//trunk/lib/yui3/
-
 # /demos/sortable/
 /demos/sortable/.git
 /demos/sortable/build_tmp
 /demos/sortable/build_rollup_tmp
 /demos/sortable/__MACOSX
 /demos/sortable//trunk/lib/yui3/
-
 # /demos/swf/
 /demos/swf/.git
 /demos/swf/build_tmp
 /demos/swf/build_rollup_tmp
 /demos/swf/__MACOSX
 /demos/swf//trunk/lib/yui3/
-
 # /demos/swf/assets/
 /demos/swf/assets/.git
 /demos/swf/assets/build_tmp
 /demos/swf/assets/build_rollup_tmp
 /demos/swf/assets/__MACOSX
 /demos/swf/assets//trunk/lib/yui3/
-
 # /demos/tabs/
 /demos/tabs/.git
 /demos/tabs/build_tmp
 /demos/tabs/build_rollup_tmp
 /demos/tabs/__MACOSX
 /demos/tabs//trunk/lib/yui3/
-
 # /demos/textarea/
 /demos/textarea/.git
 /demos/textarea/build_tmp
 /demos/textarea/build_rollup_tmp
 /demos/textarea/__MACOSX
 /demos/textarea//trunk/lib/yui3/
-
 # /demos/textboxlist/
 /demos/textboxlist/.git
 /demos/textboxlist/build_tmp
 /demos/textboxlist/build_rollup_tmp
 /demos/textboxlist/__MACOSX
 /demos/textboxlist//trunk/lib/yui3/
-
 # /demos/tooltip/
 /demos/tooltip/.git
 /demos/tooltip/build_tmp
 /demos/tooltip/build_rollup_tmp
 /demos/tooltip/__MACOSX
 /demos/tooltip//trunk/lib/yui3/
-
 # /demos/tooltip/assets/
 /demos/tooltip/assets/.git
 /demos/tooltip/assets/build_tmp
 /demos/tooltip/assets/build_rollup_tmp
 /demos/tooltip/assets/__MACOSX
 /demos/tooltip/assets//trunk/lib/yui3/
-
 # /demos/tree-view/
 /demos/tree-view/.git
 /demos/tree-view/build_tmp
 /demos/tree-view/build_rollup_tmp
 /demos/tree-view/__MACOSX
 /demos/tree-view//trunk/lib/yui3/
-
 # /demos/tree-view/assets/
 /demos/tree-view/assets/.git
 /demos/tree-view/assets/build_tmp
 /demos/tree-view/assets/build_rollup_tmp
 /demos/tree-view/assets/__MACOSX
 /demos/tree-view/assets//trunk/lib/yui3/
-
 # /lib/
 /lib/.git
 /lib/build_tmp
 /lib/build_rollup_tmp
 /lib/__MACOSX
 /lib/yui3
-
 # /lib/builder/
 /lib/builder/.git
 /lib/builder/build_tmp
 /lib/builder/build_rollup_tmp
 /lib/builder/__MACOSX
 /lib/builder//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/
 /lib/builder/componentbuild/.git
 /lib/builder/componentbuild/build_tmp
 /lib/builder/componentbuild/build_rollup_tmp
 /lib/builder/componentbuild/__MACOSX
 /lib/builder/componentbuild//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/2.x/
 /lib/builder/componentbuild/2.x/.git
 /lib/builder/componentbuild/2.x/build_tmp
 /lib/builder/componentbuild/2.x/build_rollup_tmp
 /lib/builder/componentbuild/2.x/__MACOSX
 /lib/builder/componentbuild/2.x//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/3.x/
 /lib/builder/componentbuild/3.x/.git
 /lib/builder/componentbuild/3.x/build_tmp
 /lib/builder/componentbuild/3.x/build_rollup_tmp
 /lib/builder/componentbuild/3.x/__MACOSX
 /lib/builder/componentbuild/3.x//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/docs/
 /lib/builder/componentbuild/docs/.git
 /lib/builder/componentbuild/docs/build_tmp
 /lib/builder/componentbuild/docs/build_rollup_tmp
 /lib/builder/componentbuild/docs/__MACOSX
 /lib/builder/componentbuild/docs//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/files/
 /lib/builder/componentbuild/files/.git
 /lib/builder/componentbuild/files/build_tmp
 /lib/builder/componentbuild/files/build_rollup_tmp
 /lib/builder/componentbuild/files/__MACOSX
 /lib/builder/componentbuild/files//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/lib/
 /lib/builder/componentbuild/lib/.git
 /lib/builder/componentbuild/lib/build_tmp
 /lib/builder/componentbuild/lib/build_rollup_tmp
 /lib/builder/componentbuild/lib/__MACOSX
 /lib/builder/componentbuild/lib//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/lib/ant-contrib/
 /lib/builder/componentbuild/lib/ant-contrib/.git
 /lib/builder/componentbuild/lib/ant-contrib/build_tmp
 /lib/builder/componentbuild/lib/ant-contrib/build_rollup_tmp
 /lib/builder/componentbuild/lib/ant-contrib/__MACOSX
 /lib/builder/componentbuild/lib/ant-contrib//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/lib/jslint/
 /lib/builder/componentbuild/lib/jslint/.git
 /lib/builder/componentbuild/lib/jslint/build_tmp
 /lib/builder/componentbuild/lib/jslint/build_rollup_tmp
 /lib/builder/componentbuild/lib/jslint/__MACOSX
 /lib/builder/componentbuild/lib/jslint//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/lib/rhino/
 /lib/builder/componentbuild/lib/rhino/.git
 /lib/builder/componentbuild/lib/rhino/build_tmp
 /lib/builder/componentbuild/lib/rhino/build_rollup_tmp
 /lib/builder/componentbuild/lib/rhino/__MACOSX
 /lib/builder/componentbuild/lib/rhino//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/lib/yuicompressor/
 /lib/builder/componentbuild/lib/yuicompressor/.git
 /lib/builder/componentbuild/lib/yuicompressor/build_tmp
 /lib/builder/componentbuild/lib/yuicompressor/build_rollup_tmp
 /lib/builder/componentbuild/lib/yuicompressor/__MACOSX
 /lib/builder/componentbuild/lib/yuicompressor//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/shared/
 /lib/builder/componentbuild/shared/.git
 /lib/builder/componentbuild/shared/build_tmp
 /lib/builder/componentbuild/shared/build_rollup_tmp
 /lib/builder/componentbuild/shared/__MACOSX
 /lib/builder/componentbuild/shared//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/templates/
 /lib/builder/componentbuild/templates/.git
 /lib/builder/componentbuild/templates/build_tmp
 /lib/builder/componentbuild/templates/build_rollup_tmp
 /lib/builder/componentbuild/templates/__MACOSX
 /lib/builder/componentbuild/templates//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/templates/yui2/
 /lib/builder/componentbuild/templates/yui2/.git
 /lib/builder/componentbuild/templates/yui2/build_tmp
 /lib/builder/componentbuild/templates/yui2/build_rollup_tmp
 /lib/builder/componentbuild/templates/yui2/__MACOSX
 /lib/builder/componentbuild/templates/yui2//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/templates/yui3/
 /lib/builder/componentbuild/templates/yui3/.git
 /lib/builder/componentbuild/templates/yui3/build_tmp
 /lib/builder/componentbuild/templates/yui3/build_rollup_tmp
 /lib/builder/componentbuild/templates/yui3/__MACOSX
 /lib/builder/componentbuild/templates/yui3//trunk/lib/yui3/
-
 # /lib/builder/componentbuild/templates/yui3/rollup/
 /lib/builder/componentbuild/templates/yui3/rollup/.git
 /lib/builder/componentbuild/templates/yui3/rollup/build_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/build_rollup_tmp
 /lib/builder/componentbuild/templates/yui3/rollup/__MACOSX
 /lib/builder/componentbuild/templates/yui3/rollup//trunk/lib/yui3/
-
 # /resources/
 /resources/.git
 /resources/build_tmp
@@ -1575,91 +1351,78 @@
 /resources/__MACOSX
 /resources//trunk/lib/yui3/
 /resources/temp
-
 # /resources/builder/
 /resources/builder/.git
 /resources/builder/build_tmp
 /resources/builder/build_rollup_tmp
 /resources/builder/__MACOSX
 /resources/builder//trunk/lib/yui3/
-
 # /resources/builder/templates/
 /resources/builder/templates/.git
 /resources/builder/templates/build_tmp
 /resources/builder/templates/build_rollup_tmp
 /resources/builder/templates/__MACOSX
 /resources/builder/templates//trunk/lib/yui3/
-
 # /resources/create-module/
 /resources/create-module/.git
 /resources/create-module/build_tmp
 /resources/create-module/build_rollup_tmp
 /resources/create-module/__MACOSX
 /resources/create-module//trunk/lib/yui3/
-
 # /resources/create-module/lib/
 /resources/create-module/lib/.git
 /resources/create-module/lib/build_tmp
 /resources/create-module/lib/build_rollup_tmp
 /resources/create-module/lib/__MACOSX
 /resources/create-module/lib//trunk/lib/yui3/
-
 # /resources/create-module/templates/
 /resources/create-module/templates/.git
 /resources/create-module/templates/build_tmp
 /resources/create-module/templates/build_rollup_tmp
 /resources/create-module/templates/__MACOSX
 /resources/create-module/templates//trunk/lib/yui3/
-
 # /sandbox/
 /sandbox/.git
 /sandbox/build_tmp
 /sandbox/build_rollup_tmp
 /sandbox/__MACOSX
 /sandbox//trunk/lib/yui3/
-
 # /sandbox/assets/
 /sandbox/assets/.git
 /sandbox/assets/build_tmp
 /sandbox/assets/build_rollup_tmp
 /sandbox/assets/__MACOSX
 /sandbox/assets//trunk/lib/yui3/
-
 # /sandbox/css/
 /sandbox/css/.git
 /sandbox/css/build_tmp
 /sandbox/css/build_rollup_tmp
 /sandbox/css/__MACOSX
 /sandbox/css//trunk/lib/yui3/
-
 # /sandbox/layout-pitch/
 /sandbox/layout-pitch/.git
 /sandbox/layout-pitch/build_tmp
 /sandbox/layout-pitch/build_rollup_tmp
 /sandbox/layout-pitch/__MACOSX
 /sandbox/layout-pitch//trunk/lib/yui3/
-
 # /sandbox/layout-pitch/css/
 /sandbox/layout-pitch/css/.git
 /sandbox/layout-pitch/css/build_tmp
 /sandbox/layout-pitch/css/build_rollup_tmp
 /sandbox/layout-pitch/css/__MACOSX
 /sandbox/layout-pitch/css//trunk/lib/yui3/
-
 # /sandbox/layout-pitch/images/
 /sandbox/layout-pitch/images/.git
 /sandbox/layout-pitch/images/build_tmp
 /sandbox/layout-pitch/images/build_rollup_tmp
 /sandbox/layout-pitch/images/__MACOSX
 /sandbox/layout-pitch/images//trunk/lib/yui3/
-
 # /sandbox/layout-pitch/js/
 /sandbox/layout-pitch/js/.git
 /sandbox/layout-pitch/js/build_tmp
 /sandbox/layout-pitch/js/build_rollup_tmp
 /sandbox/layout-pitch/js/__MACOSX
 /sandbox/layout-pitch/js//trunk/lib/yui3/
-
 # /sandbox/taglibs/
 /sandbox/taglibs/*.iml
 /sandbox/taglibs/*.ipr
@@ -1667,1056 +1430,902 @@
 /sandbox/taglibs/classes
 /sandbox/taglibs/out
 /sandbox/taglibs/build.*.properties
-
 # /sandbox/taglibs/alloy-taglib/
 /sandbox/taglibs/alloy-taglib/*.iml
 /sandbox/taglibs/alloy-taglib/*.ipr
 /sandbox/taglibs/alloy-taglib/*.iws
 /sandbox/taglibs/alloy-taglib/classes
-
 # /sandbox/taglibs/alloy-taglib/src/
 /sandbox/taglibs/alloy-taglib/src/*.iml
 /sandbox/taglibs/alloy-taglib/src/*.ipr
 /sandbox/taglibs/alloy-taglib/src/*.iws
 /sandbox/taglibs/alloy-taglib/src/classes
 /sandbox/taglibs/alloy-taglib/src/*-ext.properties
-
 # /sandbox/taglibs/alloy-taglib/src/META-INF/
 /sandbox/taglibs/alloy-taglib/src/META-INF/*.iml
 /sandbox/taglibs/alloy-taglib/src/META-INF/*.ipr
 /sandbox/taglibs/alloy-taglib/src/META-INF/*.iws
 /sandbox/taglibs/alloy-taglib/src/META-INF/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/
 /sandbox/taglibs/alloy-taglib/src/com/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/base/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/base/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/base/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/base/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy/base/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy_util/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy_util/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy_util/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy_util/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/taglib/alloy_util/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/templates/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/templates/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/templates/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/templates/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/tools/tagbuilder/templates/classes
-
 # /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/util/
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/util/*.iml
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/util/*.ipr
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/util/*.iws
 /sandbox/taglibs/alloy-taglib/src/com/liferay/alloy/util/classes
-
 # /sandbox/taglibs/alloy-web/
 /sandbox/taglibs/alloy-web/*.iml
 /sandbox/taglibs/alloy-web/*.ipr
 /sandbox/taglibs/alloy-web/*.iws
 /sandbox/taglibs/alloy-web/classes
-
 # /sandbox/taglibs/alloy-web/docroot/
 /sandbox/taglibs/alloy-web/docroot/*.iml
 /sandbox/taglibs/alloy-web/docroot/*.ipr
 /sandbox/taglibs/alloy-web/docroot/*.iws
 /sandbox/taglibs/alloy-web/docroot/classes
-
 # /sandbox/taglibs/alloy-web/docroot/WEB-INF/
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/*.iml
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/*.ipr
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/*.iws
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/classes
-
 # /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/*.iml
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/*.ipr
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/*.iws
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/classes
 /sandbox/taglibs/alloy-web/docroot/WEB-INF/lib/*.jar
-
 # /sandbox/taglibs/alloy-web/docroot/html/
 /sandbox/taglibs/alloy-web/docroot/html/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/demos/
 /sandbox/taglibs/alloy-web/docroot/html/demos/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/demos/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/demos/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/demos/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/char_counter/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/char_counter/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/char_counter/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/char_counter/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/char_counter/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/progress_bar/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/progress_bar/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/progress_bar/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/progress_bar/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/progress_bar/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/rating/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/rating/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/rating/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/rating/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy/rating/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/classes
-
 # /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/component/
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/component/*.iml
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/component/*.ipr
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/component/*.iws
 /sandbox/taglibs/alloy-web/docroot/html/taglib/alloy_util/component/classes
-
 # /sandbox/taglibs/lib/
 /sandbox/taglibs/lib/*.iml
 /sandbox/taglibs/lib/*.ipr
 /sandbox/taglibs/lib/*.iws
 /sandbox/taglibs/lib/classes
-
 # /sandbox/taglibs/lib/application/
 /sandbox/taglibs/lib/application/*.iml
 /sandbox/taglibs/lib/application/*.ipr
 /sandbox/taglibs/lib/application/*.iws
 /sandbox/taglibs/lib/application/classes
-
 # /sandbox/taglibs/lib/development/
 /sandbox/taglibs/lib/development/*.iml
 /sandbox/taglibs/lib/development/*.ipr
 /sandbox/taglibs/lib/development/*.iws
 /sandbox/taglibs/lib/development/classes
-
 # /sandbox/tags/
 /sandbox/tags/build.*.properties
-
 # /src/
 /src/.git
 /src/build_tmp
 /src/build_rollup_tmp
 /src/__MACOSX
 /src//trunk/lib/yui3/
-
 # /src/aui-autocomplete/
 /src/aui-autocomplete/.git
 /src/aui-autocomplete/build_tmp
 /src/aui-autocomplete/build_rollup_tmp
 /src/aui-autocomplete/__MACOSX
 /src/aui-autocomplete//trunk/lib/yui3/
-
 # /src/aui-autocomplete/assets/
 /src/aui-autocomplete/assets/.git
 /src/aui-autocomplete/assets/build_tmp
 /src/aui-autocomplete/assets/build_rollup_tmp
 /src/aui-autocomplete/assets/__MACOSX
 /src/aui-autocomplete/assets//trunk/lib/yui3/
-
 # /src/aui-autocomplete/assets/skins/
 /src/aui-autocomplete/assets/skins/.git
 /src/aui-autocomplete/assets/skins/build_tmp
 /src/aui-autocomplete/assets/skins/build_rollup_tmp
 /src/aui-autocomplete/assets/skins/__MACOSX
 /src/aui-autocomplete/assets/skins//trunk/lib/yui3/
-
 # /src/aui-autocomplete/assets/skins/sam/
 /src/aui-autocomplete/assets/skins/sam/.git
 /src/aui-autocomplete/assets/skins/sam/build_tmp
 /src/aui-autocomplete/assets/skins/sam/build_rollup_tmp
 /src/aui-autocomplete/assets/skins/sam/__MACOSX
 /src/aui-autocomplete/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-autocomplete/js/
 /src/aui-autocomplete/js/.git
 /src/aui-autocomplete/js/build_tmp
 /src/aui-autocomplete/js/build_rollup_tmp
 /src/aui-autocomplete/js/__MACOSX
 /src/aui-autocomplete/js//trunk/lib/yui3/
-
 # /src/aui-base/
 /src/aui-base/.git
 /src/aui-base/build_tmp
 /src/aui-base/build_rollup_tmp
 /src/aui-base/__MACOSX
 /src/aui-base//trunk/lib/yui3/
-
 # /src/aui-base/assets/
 /src/aui-base/assets/.git
 /src/aui-base/assets/build_tmp
 /src/aui-base/assets/build_rollup_tmp
 /src/aui-base/assets/__MACOSX
 /src/aui-base/assets//trunk/lib/yui3/
-
 # /src/aui-base/js/
 /src/aui-base/js/.git
 /src/aui-base/js/build_tmp
 /src/aui-base/js/build_rollup_tmp
 /src/aui-base/js/__MACOSX
 /src/aui-base/js//trunk/lib/yui3/
-
 # /src/aui-calendar/
 /src/aui-calendar/.git
 /src/aui-calendar/build_tmp
 /src/aui-calendar/build_rollup_tmp
 /src/aui-calendar/__MACOSX
 /src/aui-calendar//trunk/lib/yui3/
-
 # /src/aui-calendar/assets/
 /src/aui-calendar/assets/.git
 /src/aui-calendar/assets/build_tmp
 /src/aui-calendar/assets/build_rollup_tmp
 /src/aui-calendar/assets/__MACOSX
 /src/aui-calendar/assets//trunk/lib/yui3/
-
 # /src/aui-calendar/assets/skins/
 /src/aui-calendar/assets/skins/.git
 /src/aui-calendar/assets/skins/build_tmp
 /src/aui-calendar/assets/skins/build_rollup_tmp
 /src/aui-calendar/assets/skins/__MACOSX
 /src/aui-calendar/assets/skins//trunk/lib/yui3/
-
 # /src/aui-calendar/assets/skins/sam/
 /src/aui-calendar/assets/skins/sam/.git
 /src/aui-calendar/assets/skins/sam/build_tmp
 /src/aui-calendar/assets/skins/sam/build_rollup_tmp
 /src/aui-calendar/assets/skins/sam/__MACOSX
 /src/aui-calendar/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-calendar/js/
 /src/aui-calendar/js/.git
 /src/aui-calendar/js/build_tmp
 /src/aui-calendar/js/build_rollup_tmp
 /src/aui-calendar/js/__MACOSX
 /src/aui-calendar/js//trunk/lib/yui3/
-
 # /src/aui-char-counter/
 /src/aui-char-counter/.git
 /src/aui-char-counter/build_tmp
 /src/aui-char-counter/build_rollup_tmp
 /src/aui-char-counter/__MACOSX
 /src/aui-char-counter//trunk/lib/yui3/
-
 # /src/aui-char-counter/js/
 /src/aui-char-counter/js/.git
 /src/aui-char-counter/js/build_tmp
 /src/aui-char-counter/js/build_rollup_tmp
 /src/aui-char-counter/js/__MACOSX
 /src/aui-char-counter/js//trunk/lib/yui3/
-
 # /src/aui-chart/
 /src/aui-chart/.git
 /src/aui-chart/build_tmp
 /src/aui-chart/build_rollup_tmp
 /src/aui-chart/__MACOSX
 /src/aui-chart//trunk/lib/yui3/
-
 # /src/aui-chart/js/
 /src/aui-chart/js/.git
 /src/aui-chart/js/build_tmp
 /src/aui-chart/js/build_rollup_tmp
 /src/aui-chart/js/__MACOSX
 /src/aui-chart/js//trunk/lib/yui3/
-
 # /src/aui-color-picker/
 /src/aui-color-picker/.git
 /src/aui-color-picker/build_tmp
 /src/aui-color-picker/build_rollup_tmp
 /src/aui-color-picker/__MACOSX
 /src/aui-color-picker//trunk/lib/yui3/
-
 # /src/aui-color-picker/assets/
 /src/aui-color-picker/assets/.git
 /src/aui-color-picker/assets/build_tmp
 /src/aui-color-picker/assets/build_rollup_tmp
 /src/aui-color-picker/assets/__MACOSX
 /src/aui-color-picker/assets//trunk/lib/yui3/
-
 # /src/aui-color-picker/assets/skins/
 /src/aui-color-picker/assets/skins/.git
 /src/aui-color-picker/assets/skins/build_tmp
 /src/aui-color-picker/assets/skins/build_rollup_tmp
 /src/aui-color-picker/assets/skins/__MACOSX
 /src/aui-color-picker/assets/skins//trunk/lib/yui3/
-
 # /src/aui-color-picker/assets/skins/sam/
 /src/aui-color-picker/assets/skins/sam/.git
 /src/aui-color-picker/assets/skins/sam/build_tmp
 /src/aui-color-picker/assets/skins/sam/build_rollup_tmp
 /src/aui-color-picker/assets/skins/sam/__MACOSX
 /src/aui-color-picker/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-color-picker/js/
 /src/aui-color-picker/js/.git
 /src/aui-color-picker/js/build_tmp
 /src/aui-color-picker/js/build_rollup_tmp
 /src/aui-color-picker/js/__MACOSX
 /src/aui-color-picker/js//trunk/lib/yui3/
-
 # /src/aui-component/
 /src/aui-component/.git
 /src/aui-component/build_tmp
 /src/aui-component/build_rollup_tmp
 /src/aui-component/__MACOSX
 /src/aui-component//trunk/lib/yui3/
-
 # /src/aui-component/assets/
 /src/aui-component/assets/.git
 /src/aui-component/assets/build_tmp
 /src/aui-component/assets/build_rollup_tmp
 /src/aui-component/assets/__MACOSX
 /src/aui-component/assets//trunk/lib/yui3/
-
 # /src/aui-component/js/
 /src/aui-component/js/.git
 /src/aui-component/js/build_tmp
 /src/aui-component/js/build_rollup_tmp
 /src/aui-component/js/__MACOSX
 /src/aui-component/js//trunk/lib/yui3/
-
 # /src/aui-data-set/
 /src/aui-data-set/.git
 /src/aui-data-set/build_tmp
 /src/aui-data-set/build_rollup_tmp
 /src/aui-data-set/__MACOSX
 /src/aui-data-set//trunk/lib/yui3/
-
 # /src/aui-data-set/js/
 /src/aui-data-set/js/.git
 /src/aui-data-set/js/build_tmp
 /src/aui-data-set/js/build_rollup_tmp
 /src/aui-data-set/js/__MACOSX
 /src/aui-data-set/js//trunk/lib/yui3/
-
 # /src/aui-datatype/
 /src/aui-datatype/.git
 /src/aui-datatype/build_tmp
 /src/aui-datatype/build_rollup_tmp
 /src/aui-datatype/__MACOSX
 /src/aui-datatype//trunk/lib/yui3/
-
 # /src/aui-datatype/assets/
 /src/aui-datatype/assets/.git
 /src/aui-datatype/assets/build_tmp
 /src/aui-datatype/assets/build_rollup_tmp
 /src/aui-datatype/assets/__MACOSX
 /src/aui-datatype/assets//trunk/lib/yui3/
-
 # /src/aui-datatype/js/
 /src/aui-datatype/js/.git
 /src/aui-datatype/js/build_tmp
 /src/aui-datatype/js/build_rollup_tmp
 /src/aui-datatype/js/__MACOSX
 /src/aui-datatype/js//trunk/lib/yui3/
-
 # /src/aui-delayed-task/
 /src/aui-delayed-task/.git
 /src/aui-delayed-task/build_tmp
 /src/aui-delayed-task/build_rollup_tmp
 /src/aui-delayed-task/__MACOSX
 /src/aui-delayed-task//trunk/lib/yui3/
-
 # /src/aui-delayed-task/assets/
 /src/aui-delayed-task/assets/.git
 /src/aui-delayed-task/assets/build_tmp
 /src/aui-delayed-task/assets/build_rollup_tmp
 /src/aui-delayed-task/assets/__MACOSX
 /src/aui-delayed-task/assets//trunk/lib/yui3/
-
 # /src/aui-delayed-task/js/
 /src/aui-delayed-task/js/.git
 /src/aui-delayed-task/js/build_tmp
 /src/aui-delayed-task/js/build_rollup_tmp
 /src/aui-delayed-task/js/__MACOSX
 /src/aui-delayed-task/js//trunk/lib/yui3/
-
 # /src/aui-dialog/
 /src/aui-dialog/.git
 /src/aui-dialog/build_tmp
 /src/aui-dialog/build_rollup_tmp
 /src/aui-dialog/__MACOSX
 /src/aui-dialog//trunk/lib/yui3/
-
 # /src/aui-dialog/assets/
 /src/aui-dialog/assets/.git
 /src/aui-dialog/assets/build_tmp
 /src/aui-dialog/assets/build_rollup_tmp
 /src/aui-dialog/assets/__MACOSX
 /src/aui-dialog/assets//trunk/lib/yui3/
-
 # /src/aui-dialog/assets/skins/
 /src/aui-dialog/assets/skins/.git
 /src/aui-dialog/assets/skins/build_tmp
 /src/aui-dialog/assets/skins/build_rollup_tmp
 /src/aui-dialog/assets/skins/__MACOSX
 /src/aui-dialog/assets/skins//trunk/lib/yui3/
-
 # /src/aui-dialog/assets/skins/sam/
 /src/aui-dialog/assets/skins/sam/.git
 /src/aui-dialog/assets/skins/sam/build_tmp
 /src/aui-dialog/assets/skins/sam/build_rollup_tmp
 /src/aui-dialog/assets/skins/sam/__MACOSX
 /src/aui-dialog/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-dialog/js/
 /src/aui-dialog/js/.git
 /src/aui-dialog/js/build_tmp
 /src/aui-dialog/js/build_rollup_tmp
 /src/aui-dialog/js/__MACOSX
 /src/aui-dialog/js//trunk/lib/yui3/
-
 # /src/aui-editable/
 /src/aui-editable/.git
 /src/aui-editable/build_tmp
 /src/aui-editable/build_rollup_tmp
 /src/aui-editable/__MACOSX
 /src/aui-editable//trunk/lib/yui3/
-
 # /src/aui-editable/assets/
 /src/aui-editable/assets/.git
 /src/aui-editable/assets/build_tmp
 /src/aui-editable/assets/build_rollup_tmp
 /src/aui-editable/assets/__MACOSX
 /src/aui-editable/assets//trunk/lib/yui3/
-
 # /src/aui-editable/assets/skins/
 /src/aui-editable/assets/skins/.git
 /src/aui-editable/assets/skins/build_tmp
 /src/aui-editable/assets/skins/build_rollup_tmp
 /src/aui-editable/assets/skins/__MACOSX
 /src/aui-editable/assets/skins//trunk/lib/yui3/
-
 # /src/aui-editable/assets/skins/sam/
 /src/aui-editable/assets/skins/sam/.git
 /src/aui-editable/assets/skins/sam/build_tmp
 /src/aui-editable/assets/skins/sam/build_rollup_tmp
 /src/aui-editable/assets/skins/sam/__MACOSX
 /src/aui-editable/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-editable/js/
 /src/aui-editable/js/.git
 /src/aui-editable/js/build_tmp
 /src/aui-editable/js/build_rollup_tmp
 /src/aui-editable/js/__MACOSX
 /src/aui-editable/js//trunk/lib/yui3/
-
 # /src/aui-event/
 /src/aui-event/.git
 /src/aui-event/build_tmp
 /src/aui-event/build_rollup_tmp
 /src/aui-event/__MACOSX
 /src/aui-event//trunk/lib/yui3/
-
 # /src/aui-event/assets/
 /src/aui-event/assets/.git
 /src/aui-event/assets/build_tmp
 /src/aui-event/assets/build_rollup_tmp
 /src/aui-event/assets/__MACOSX
 /src/aui-event/assets//trunk/lib/yui3/
-
 # /src/aui-event/js/
 /src/aui-event/js/.git
 /src/aui-event/js/build_tmp
 /src/aui-event/js/build_rollup_tmp
 /src/aui-event/js/__MACOSX
 /src/aui-event/js//trunk/lib/yui3/
-
 # /src/aui-form/
 /src/aui-form/.git
 /src/aui-form/build_tmp
 /src/aui-form/build_rollup_tmp
 /src/aui-form/__MACOSX
 /src/aui-form//trunk/lib/yui3/
-
 # /src/aui-form/js/
 /src/aui-form/js/.git
 /src/aui-form/js/build_tmp
 /src/aui-form/js/build_rollup_tmp
 /src/aui-form/js/__MACOSX
 /src/aui-form/js//trunk/lib/yui3/
-
 # /src/aui-image-viewer/
 /src/aui-image-viewer/.git
 /src/aui-image-viewer/build_tmp
 /src/aui-image-viewer/build_rollup_tmp
 /src/aui-image-viewer/__MACOSX
 /src/aui-image-viewer//trunk/lib/yui3/
-
 # /src/aui-image-viewer/assets/
 /src/aui-image-viewer/assets/.git
 /src/aui-image-viewer/assets/build_tmp
 /src/aui-image-viewer/assets/build_rollup_tmp
 /src/aui-image-viewer/assets/__MACOSX
 /src/aui-image-viewer/assets//trunk/lib/yui3/
-
 # /src/aui-image-viewer/assets/skins/
 /src/aui-image-viewer/assets/skins/.git
 /src/aui-image-viewer/assets/skins/build_tmp
 /src/aui-image-viewer/assets/skins/build_rollup_tmp
 /src/aui-image-viewer/assets/skins/__MACOSX
 /src/aui-image-viewer/assets/skins//trunk/lib/yui3/
-
 # /src/aui-image-viewer/assets/skins/sam/
 /src/aui-image-viewer/assets/skins/sam/.git
 /src/aui-image-viewer/assets/skins/sam/build_tmp
 /src/aui-image-viewer/assets/skins/sam/build_rollup_tmp
 /src/aui-image-viewer/assets/skins/sam/__MACOSX
 /src/aui-image-viewer/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-image-viewer/js/
 /src/aui-image-viewer/js/.git
 /src/aui-image-viewer/js/build_tmp
 /src/aui-image-viewer/js/build_rollup_tmp
 /src/aui-image-viewer/js/__MACOSX
 /src/aui-image-viewer/js//trunk/lib/yui3/
-
 # /src/aui-live-search/
 /src/aui-live-search/.git
 /src/aui-live-search/build_tmp
 /src/aui-live-search/build_rollup_tmp
 /src/aui-live-search/__MACOSX
 /src/aui-live-search//trunk/lib/yui3/
-
 # /src/aui-live-search/assets/
 /src/aui-live-search/assets/.git
 /src/aui-live-search/assets/build_tmp
 /src/aui-live-search/assets/build_rollup_tmp
 /src/aui-live-search/assets/__MACOSX
 /src/aui-live-search/assets//trunk/lib/yui3/
-
 # /src/aui-live-search/js/
 /src/aui-live-search/js/.git
 /src/aui-live-search/js/build_tmp
 /src/aui-live-search/js/build_rollup_tmp
 /src/aui-live-search/js/__MACOSX
 /src/aui-live-search/js//trunk/lib/yui3/
-
 # /src/aui-nested-list/
 /src/aui-nested-list/.git
 /src/aui-nested-list/build_tmp
 /src/aui-nested-list/build_rollup_tmp
 /src/aui-nested-list/__MACOSX
 /src/aui-nested-list//trunk/lib/yui3/
-
 # /src/aui-nested-list/assets/
 /src/aui-nested-list/assets/.git
 /src/aui-nested-list/assets/build_tmp
 /src/aui-nested-list/assets/build_rollup_tmp
 /src/aui-nested-list/assets/__MACOSX
 /src/aui-nested-list/assets//trunk/lib/yui3/
-
 # /src/aui-nested-list/js/
 /src/aui-nested-list/js/.git
 /src/aui-nested-list/js/build_tmp
 /src/aui-nested-list/js/build_rollup_tmp
 /src/aui-nested-list/js/__MACOSX
 /src/aui-nested-list/js//trunk/lib/yui3/
-
 # /src/aui-node/
 /src/aui-node/.git
 /src/aui-node/build_tmp
 /src/aui-node/build_rollup_tmp
 /src/aui-node/__MACOSX
 /src/aui-node//trunk/lib/yui3/
-
 # /src/aui-node/assets/
 /src/aui-node/assets/.git
 /src/aui-node/assets/build_tmp
 /src/aui-node/assets/build_rollup_tmp
 /src/aui-node/assets/__MACOSX
 /src/aui-node/assets//trunk/lib/yui3/
-
 # /src/aui-node/js/
 /src/aui-node/js/.git
 /src/aui-node/js/build_tmp
 /src/aui-node/js/build_rollup_tmp
 /src/aui-node/js/__MACOSX
 /src/aui-node/js//trunk/lib/yui3/
-
 # /src/aui-paginator/
 /src/aui-paginator/.git
 /src/aui-paginator/build_tmp
 /src/aui-paginator/build_rollup_tmp
 /src/aui-paginator/__MACOSX
 /src/aui-paginator//trunk/lib/yui3/
-
 # /src/aui-paginator/assets/
 /src/aui-paginator/assets/.git
 /src/aui-paginator/assets/build_tmp
 /src/aui-paginator/assets/build_rollup_tmp
 /src/aui-paginator/assets/__MACOSX
 /src/aui-paginator/assets//trunk/lib/yui3/
-
 # /src/aui-paginator/assets/skins/
 /src/aui-paginator/assets/skins/.git
 /src/aui-paginator/assets/skins/build_tmp
 /src/aui-paginator/assets/skins/build_rollup_tmp
 /src/aui-paginator/assets/skins/__MACOSX
 /src/aui-paginator/assets/skins//trunk/lib/yui3/
-
 # /src/aui-paginator/assets/skins/sam/
 /src/aui-paginator/assets/skins/sam/.git
 /src/aui-paginator/assets/skins/sam/build_tmp
 /src/aui-paginator/assets/skins/sam/build_rollup_tmp
 /src/aui-paginator/assets/skins/sam/__MACOSX
 /src/aui-paginator/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-paginator/js/
 /src/aui-paginator/js/.git
 /src/aui-paginator/js/build_tmp
 /src/aui-paginator/js/build_rollup_tmp
 /src/aui-paginator/js/__MACOSX
 /src/aui-paginator/js//trunk/lib/yui3/
-
 # /src/aui-panel/
 /src/aui-panel/.git
 /src/aui-panel/build_tmp
 /src/aui-panel/build_rollup_tmp
 /src/aui-panel/__MACOSX
 /src/aui-panel//trunk/lib/yui3/
-
 # /src/aui-panel/assets/
 /src/aui-panel/assets/.git
 /src/aui-panel/assets/build_tmp
 /src/aui-panel/assets/build_rollup_tmp
 /src/aui-panel/assets/__MACOSX
 /src/aui-panel/assets//trunk/lib/yui3/
-
 # /src/aui-panel/assets/skins/
 /src/aui-panel/assets/skins/.git
 /src/aui-panel/assets/skins/build_tmp
 /src/aui-panel/assets/skins/build_rollup_tmp
 /src/aui-panel/assets/skins/__MACOSX
 /src/aui-panel/assets/skins//trunk/lib/yui3/
-
 # /src/aui-panel/assets/skins/sam/
 /src/aui-panel/assets/skins/sam/.git
 /src/aui-panel/assets/skins/sam/build_tmp
 /src/aui-panel/assets/skins/sam/build_rollup_tmp
 /src/aui-panel/assets/skins/sam/__MACOSX
 /src/aui-panel/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-panel/js/
 /src/aui-panel/js/.git
 /src/aui-panel/js/build_tmp
 /src/aui-panel/js/build_rollup_tmp
 /src/aui-panel/js/__MACOSX
 /src/aui-panel/js//trunk/lib/yui3/
-
 # /src/aui-parse-content/
 /src/aui-parse-content/.git
 /src/aui-parse-content/build_tmp
 /src/aui-parse-content/build_rollup_tmp
 /src/aui-parse-content/__MACOSX
 /src/aui-parse-content//trunk/lib/yui3/
-
 # /src/aui-parse-content/js/
 /src/aui-parse-content/js/.git
 /src/aui-parse-content/js/build_tmp
 /src/aui-parse-content/js/build_rollup_tmp
 /src/aui-parse-content/js/__MACOSX
 /src/aui-parse-content/js//trunk/lib/yui3/
-
 # /src/aui-portal-layout/
 /src/aui-portal-layout/.git
 /src/aui-portal-layout/build_tmp
 /src/aui-portal-layout/build_rollup_tmp
 /src/aui-portal-layout/__MACOSX
 /src/aui-portal-layout//trunk/lib/yui3/
-
 # /src/aui-portal-layout/assets/
 /src/aui-portal-layout/assets/.git
 /src/aui-portal-layout/assets/build_tmp
 /src/aui-portal-layout/assets/build_rollup_tmp
 /src/aui-portal-layout/assets/__MACOSX
 /src/aui-portal-layout/assets//trunk/lib/yui3/
-
 # /src/aui-portal-layout/assets/skins/
 /src/aui-portal-layout/assets/skins/.git
 /src/aui-portal-layout/assets/skins/build_tmp
 /src/aui-portal-layout/assets/skins/build_rollup_tmp
 /src/aui-portal-layout/assets/skins/__MACOSX
 /src/aui-portal-layout/assets/skins//trunk/lib/yui3/
-
 # /src/aui-portal-layout/assets/skins/sam/
 /src/aui-portal-layout/assets/skins/sam/.git
 /src/aui-portal-layout/assets/skins/sam/build_tmp
 /src/aui-portal-layout/assets/skins/sam/build_rollup_tmp
 /src/aui-portal-layout/assets/skins/sam/__MACOSX
 /src/aui-portal-layout/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-portal-layout/js/
 /src/aui-portal-layout/js/.git
 /src/aui-portal-layout/js/build_tmp
 /src/aui-portal-layout/js/build_rollup_tmp
 /src/aui-portal-layout/js/__MACOSX
 /src/aui-portal-layout/js//trunk/lib/yui3/
-
 # /src/aui-rating/
 /src/aui-rating/.git
 /src/aui-rating/build_tmp
 /src/aui-rating/build_rollup_tmp
 /src/aui-rating/__MACOSX
 /src/aui-rating//trunk/lib/yui3/
-
 # /src/aui-rating/assets/
 /src/aui-rating/assets/.git
 /src/aui-rating/assets/build_tmp
 /src/aui-rating/assets/build_rollup_tmp
 /src/aui-rating/assets/__MACOSX
 /src/aui-rating/assets//trunk/lib/yui3/
-
 # /src/aui-rating/assets/skins/
 /src/aui-rating/assets/skins/.git
 /src/aui-rating/assets/skins/build_tmp
 /src/aui-rating/assets/skins/build_rollup_tmp
 /src/aui-rating/assets/skins/__MACOSX
 /src/aui-rating/assets/skins//trunk/lib/yui3/
-
 # /src/aui-rating/assets/skins/sam/
 /src/aui-rating/assets/skins/sam/.git
 /src/aui-rating/assets/skins/sam/build_tmp
 /src/aui-rating/assets/skins/sam/build_rollup_tmp
 /src/aui-rating/assets/skins/sam/__MACOSX
 /src/aui-rating/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-rating/js/
 /src/aui-rating/js/.git
 /src/aui-rating/js/build_tmp
 /src/aui-rating/js/build_rollup_tmp
 /src/aui-rating/js/__MACOSX
 /src/aui-rating/js//trunk/lib/yui3/
-
 # /src/aui-resize/
 /src/aui-resize/.git
 /src/aui-resize/build_tmp
 /src/aui-resize/build_rollup_tmp
 /src/aui-resize/__MACOSX
 /src/aui-resize//trunk/lib/yui3/
-
 # /src/aui-resize/assets/
 /src/aui-resize/assets/.git
 /src/aui-resize/assets/build_tmp
 /src/aui-resize/assets/build_rollup_tmp
 /src/aui-resize/assets/__MACOSX
 /src/aui-resize/assets//trunk/lib/yui3/
-
 # /src/aui-resize/assets/skins/
 /src/aui-resize/assets/skins/.git
 /src/aui-resize/assets/skins/build_tmp
 /src/aui-resize/assets/skins/build_rollup_tmp
 /src/aui-resize/assets/skins/__MACOSX
 /src/aui-resize/assets/skins//trunk/lib/yui3/
-
 # /src/aui-resize/assets/skins/sam/
 /src/aui-resize/assets/skins/sam/.git
 /src/aui-resize/assets/skins/sam/build_tmp
 /src/aui-resize/assets/skins/sam/build_rollup_tmp
 /src/aui-resize/assets/skins/sam/__MACOSX
 /src/aui-resize/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-resize/js/
 /src/aui-resize/js/.git
 /src/aui-resize/js/build_tmp
 /src/aui-resize/js/build_rollup_tmp
 /src/aui-resize/js/__MACOSX
 /src/aui-resize/js//trunk/lib/yui3/
-
 # /src/aui-skin-base/
 /src/aui-skin-base/.git
 /src/aui-skin-base/build_tmp
 /src/aui-skin-base/build_rollup_tmp
 /src/aui-skin-base/__MACOSX
 /src/aui-skin-base//trunk/lib/yui3/
-
 # /src/aui-skin-base/css/
 /src/aui-skin-base/css/.git
 /src/aui-skin-base/css/build_tmp
 /src/aui-skin-base/css/build_rollup_tmp
 /src/aui-skin-base/css/__MACOSX
 /src/aui-skin-base/css//trunk/lib/yui3/
-
 # /src/aui-skin-base/images/
 /src/aui-skin-base/images/.git
 /src/aui-skin-base/images/build_tmp
 /src/aui-skin-base/images/build_rollup_tmp
 /src/aui-skin-base/images/__MACOSX
 /src/aui-skin-base/images//trunk/lib/yui3/
-
 # /src/aui-sortable/
 /src/aui-sortable/.git
 /src/aui-sortable/build_tmp
 /src/aui-sortable/build_rollup_tmp
 /src/aui-sortable/__MACOSX
 /src/aui-sortable//trunk/lib/yui3/
-
 # /src/aui-sortable/assets/
 /src/aui-sortable/assets/.git
 /src/aui-sortable/assets/build_tmp
 /src/aui-sortable/assets/build_rollup_tmp
 /src/aui-sortable/assets/__MACOSX
 /src/aui-sortable/assets//trunk/lib/yui3/
-
 # /src/aui-sortable/assets/skins/
 /src/aui-sortable/assets/skins/.git
 /src/aui-sortable/assets/skins/build_tmp
 /src/aui-sortable/assets/skins/build_rollup_tmp
 /src/aui-sortable/assets/skins/__MACOSX
 /src/aui-sortable/assets/skins//trunk/lib/yui3/
-
 # /src/aui-sortable/assets/skins/sam/
 /src/aui-sortable/assets/skins/sam/.git
 /src/aui-sortable/assets/skins/sam/build_tmp
 /src/aui-sortable/assets/skins/sam/build_rollup_tmp
 /src/aui-sortable/assets/skins/sam/__MACOSX
 /src/aui-sortable/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-sortable/js/
 /src/aui-sortable/js/.git
 /src/aui-sortable/js/build_tmp
 /src/aui-sortable/js/build_rollup_tmp
 /src/aui-sortable/js/__MACOSX
 /src/aui-sortable/js//trunk/lib/yui3/
-
 # /src/aui-state-interaction/
 /src/aui-state-interaction/.git
 /src/aui-state-interaction/build_tmp
 /src/aui-state-interaction/build_rollup_tmp
 /src/aui-state-interaction/__MACOSX
 /src/aui-state-interaction//trunk/lib/yui3/
-
 # /src/aui-state-interaction/assets/
 /src/aui-state-interaction/assets/.git
 /src/aui-state-interaction/assets/build_tmp
 /src/aui-state-interaction/assets/build_rollup_tmp
 /src/aui-state-interaction/assets/__MACOSX
 /src/aui-state-interaction/assets//trunk/lib/yui3/
-
 # /src/aui-state-interaction/js/
 /src/aui-state-interaction/js/.git
 /src/aui-state-interaction/js/build_tmp
 /src/aui-state-interaction/js/build_rollup_tmp
 /src/aui-state-interaction/js/__MACOSX
 /src/aui-state-interaction/js//trunk/lib/yui3/
-
 # /src/aui-swf/
 /src/aui-swf/.git
 /src/aui-swf/build_tmp
 /src/aui-swf/build_rollup_tmp
 /src/aui-swf/__MACOSX
 /src/aui-swf//trunk/lib/yui3/
-
 # /src/aui-swf/assets/
 /src/aui-swf/assets/.git
 /src/aui-swf/assets/build_tmp
 /src/aui-swf/assets/build_rollup_tmp
 /src/aui-swf/assets/__MACOSX
 /src/aui-swf/assets//trunk/lib/yui3/
-
 # /src/aui-swf/js/
 /src/aui-swf/js/.git
 /src/aui-swf/js/build_tmp
 /src/aui-swf/js/build_rollup_tmp
 /src/aui-swf/js/__MACOSX
 /src/aui-swf/js//trunk/lib/yui3/
-
 # /src/aui-tabs/
 /src/aui-tabs/.git
 /src/aui-tabs/build_tmp
 /src/aui-tabs/build_rollup_tmp
 /src/aui-tabs/__MACOSX
 /src/aui-tabs//trunk/lib/yui3/
-
 # /src/aui-tabs/assets/
 /src/aui-tabs/assets/.git
 /src/aui-tabs/assets/build_tmp
 /src/aui-tabs/assets/build_rollup_tmp
 /src/aui-tabs/assets/__MACOSX
 /src/aui-tabs/assets//trunk/lib/yui3/
-
 # /src/aui-tabs/assets/skins/
 /src/aui-tabs/assets/skins/.git
 /src/aui-tabs/assets/skins/build_tmp
 /src/aui-tabs/assets/skins/build_rollup_tmp
 /src/aui-tabs/assets/skins/__MACOSX
 /src/aui-tabs/assets/skins//trunk/lib/yui3/
-
 # /src/aui-tabs/assets/skins/sam/
 /src/aui-tabs/assets/skins/sam/.git
 /src/aui-tabs/assets/skins/sam/build_tmp
 /src/aui-tabs/assets/skins/sam/build_rollup_tmp
 /src/aui-tabs/assets/skins/sam/__MACOSX
 /src/aui-tabs/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-tabs/js/
 /src/aui-tabs/js/.git
 /src/aui-tabs/js/build_tmp
 /src/aui-tabs/js/build_rollup_tmp
 /src/aui-tabs/js/__MACOSX
 /src/aui-tabs/js//trunk/lib/yui3/
-
 # /src/aui-textboxlist/
 /src/aui-textboxlist/.git
 /src/aui-textboxlist/build_tmp
 /src/aui-textboxlist/build_rollup_tmp
 /src/aui-textboxlist/__MACOSX
 /src/aui-textboxlist//trunk/lib/yui3/
-
 # /src/aui-textboxlist/assets/
 /src/aui-textboxlist/assets/.git
 /src/aui-textboxlist/assets/build_tmp
 /src/aui-textboxlist/assets/build_rollup_tmp
 /src/aui-textboxlist/assets/__MACOSX
 /src/aui-textboxlist/assets//trunk/lib/yui3/
-
 # /src/aui-textboxlist/assets/skins/
 /src/aui-textboxlist/assets/skins/.git
 /src/aui-textboxlist/assets/skins/build_tmp
 /src/aui-textboxlist/assets/skins/build_rollup_tmp
 /src/aui-textboxlist/assets/skins/__MACOSX
 /src/aui-textboxlist/assets/skins//trunk/lib/yui3/
-
 # /src/aui-textboxlist/assets/skins/sam/
 /src/aui-textboxlist/assets/skins/sam/.git
 /src/aui-textboxlist/assets/skins/sam/build_tmp
 /src/aui-textboxlist/assets/skins/sam/build_rollup_tmp
 /src/aui-textboxlist/assets/skins/sam/__MACOSX
 /src/aui-textboxlist/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-textboxlist/js/
 /src/aui-textboxlist/js/.git
 /src/aui-textboxlist/js/build_tmp
 /src/aui-textboxlist/js/build_rollup_tmp
 /src/aui-textboxlist/js/__MACOSX
 /src/aui-textboxlist/js//trunk/lib/yui3/
-
 # /src/aui-tooltip/
 /src/aui-tooltip/.git
 /src/aui-tooltip/build_tmp
 /src/aui-tooltip/build_rollup_tmp
 /src/aui-tooltip/__MACOSX
 /src/aui-tooltip//trunk/lib/yui3/
-
 # /src/aui-tooltip/assets/
 /src/aui-tooltip/assets/.git
 /src/aui-tooltip/assets/build_tmp
 /src/aui-tooltip/assets/build_rollup_tmp
 /src/aui-tooltip/assets/__MACOSX
 /src/aui-tooltip/assets//trunk/lib/yui3/
-
 # /src/aui-tooltip/assets/skins/
 /src/aui-tooltip/assets/skins/.git
 /src/aui-tooltip/assets/skins/build_tmp
 /src/aui-tooltip/assets/skins/build_rollup_tmp
 /src/aui-tooltip/assets/skins/__MACOSX
 /src/aui-tooltip/assets/skins//trunk/lib/yui3/
-
 # /src/aui-tooltip/assets/skins/sam/
 /src/aui-tooltip/assets/skins/sam/.git
 /src/aui-tooltip/assets/skins/sam/build_tmp
 /src/aui-tooltip/assets/skins/sam/build_rollup_tmp
 /src/aui-tooltip/assets/skins/sam/__MACOSX
 /src/aui-tooltip/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-tooltip/js/
 /src/aui-tooltip/js/.git
 /src/aui-tooltip/js/build_tmp
 /src/aui-tooltip/js/build_rollup_tmp
 /src/aui-tooltip/js/__MACOSX
 /src/aui-tooltip/js//trunk/lib/yui3/
-
 # /src/aui-tree/
 /src/aui-tree/.git
 /src/aui-tree/build_tmp
 /src/aui-tree/build_rollup_tmp
 /src/aui-tree/__MACOSX
 /src/aui-tree//trunk/lib/yui3/
-
 # /src/aui-tree/assets/
 /src/aui-tree/assets/.git
 /src/aui-tree/assets/build_tmp
 /src/aui-tree/assets/build_rollup_tmp
 /src/aui-tree/assets/__MACOSX
 /src/aui-tree/assets//trunk/lib/yui3/
-
 # /src/aui-tree/assets/skins/
 /src/aui-tree/assets/skins/.git
 /src/aui-tree/assets/skins/build_tmp
 /src/aui-tree/assets/skins/build_rollup_tmp
 /src/aui-tree/assets/skins/__MACOSX
 /src/aui-tree/assets/skins//trunk/lib/yui3/
-
 # /src/aui-tree/assets/skins/sam/
 /src/aui-tree/assets/skins/sam/.git
 /src/aui-tree/assets/skins/sam/build_tmp
 /src/aui-tree/assets/skins/sam/build_rollup_tmp
 /src/aui-tree/assets/skins/sam/__MACOSX
 /src/aui-tree/assets/skins/sam//trunk/lib/yui3/
-
 # /src/aui-tree/js/
 /src/aui-tree/js/.git
 /src/aui-tree/js/build_tmp
 /src/aui-tree/js/build_rollup_tmp
 /src/aui-tree/js/__MACOSX
 /src/aui-tree/js//trunk/lib/yui3/
+/alloy-*.zip
