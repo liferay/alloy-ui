@@ -1,3 +1,5 @@
 .aui-dialog-iframe-node {
+	border-width: 0;
+	overflow: auto;
 	width: 100%;
 }
