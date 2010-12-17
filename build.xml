@@ -487,6 +487,21 @@
 		</subant>
 		<!-- /End Patch for AUI-284 & AUI-285-->
 
+		<!-- Patch for AUI-297 -->
+		<replace file="${project.dir}/lib/yui3/src/event/js/event-ready-base-ie.js">
+			<replacetoken><![CDATA[GLOBAL_ENV.Env.]]></replacetoken>
+			<replacevalue><![CDATA[GLOBAL_ENV.]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/event"
+				includes="build-base-ie.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-297 -->
+
 	</target>
 
 	<target name="release" depends="clean-release">
