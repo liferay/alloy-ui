@@ -52,6 +52,7 @@ var Lang = A.Lang,
 	TITLE = 'title',
 	TITLE_DATE_FORMAT = 'titleDateFormat',
 	TITLE_NODE = 'titleNode',
+	VISIBLE = 'visible',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
@@ -150,12 +151,17 @@ var SchedulerEvent = A.Component.create({
 				return new Date();
 			},
 			validator: isDate
+		},
+
+		visible: {
+			value: true,
+			validator: isBoolean
 		}
 	},
 
 	EXTENDS: A.Base,
 
-	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT],
+	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE],
 
 	prototype: {
 		eventStack: null,
@@ -170,6 +176,12 @@ var SchedulerEvent = A.Component.create({
 			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
 				instance.after(attrName+CHANGE, instance._propagateAttrChange);
 			});
+
+			instance.on('visibleChange', instance._onVisibleChange);
+
+			instance._uiSetVisible(
+				instance.get(VISIBLE)
+			);
 
 			instance.contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
 			instance.titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
@@ -243,12 +255,6 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.getSecondsOffset(instance.get(END_DATE), instance.get(START_DATE));
 		},
 
-		hide: function() {
-			var instance = this;
-
-			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_HIDDEN);
-		},
-
 		sameEndDate: function(evt) {
 			var instance = this;
 
@@ -259,12 +265,6 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			return DateMath.compare(instance.get(START_DATE), evt.get(START_DATE));
-		},
-
-		show: function() {
-			var instance = this;
-
-			instance.get(NODE).removeClass(CSS_SCHEDULER_EVENT_HIDDEN);
 		},
 
 		isAfter: function(evt) {
@@ -457,6 +457,12 @@ var SchedulerEvent = A.Component.create({
 			instance.syncNodeUI();
 		},
 
+		_onVisibleChange: function(event) {
+			var instance = this;
+
+			instance._uiSetVisible(event.newVal);
+		},
+
 		_propagateAttrChange: function(event) {
 			var instance = this;
 			var attrName = event.attrName;
@@ -564,6 +570,12 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
+		},
+
+		_uiSetVisible: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_HIDDEN, !val);
 		}
 	}
 });
