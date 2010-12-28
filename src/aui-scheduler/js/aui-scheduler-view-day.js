@@ -85,6 +85,24 @@ var SchedulerDayView = A.Component.create({
 			validator: isNumber
 		},
 
+		delegateConfig: {
+			value: {},
+			setter: function(val) {
+				var instance = this;
+
+				return A.merge(
+					{
+						bubbleTargets: instance,
+						container: instance.get(BOUNDING_BOX),
+						// handles: [DOT+CSS_SCHEDULER_EVENT_TITLE],
+						nodes: DOT+CSS_SCHEDULER_EVENT
+					},
+					val || {}
+				);
+			},
+			validator: isObject
+		},
+
 		headerDateFormat: {
 			value: '%a %d/%m',
 			validator: isString
@@ -522,12 +540,9 @@ var SchedulerDayView = A.Component.create({
 			}
 
 			if (!instance.delegate) {
-				instance.delegate = new A.DD.Delegate({
-					bubbleTargets: instance,
-					container: boundingBox,
-					// handles: [DOT+CSS_SCHEDULER_EVENT_TITLE],
-					nodes: DOT+CSS_SCHEDULER_EVENT
-				});
+				instance.delegate = new A.DD.Delegate(
+					instance.get(DELEGATE_CONFIG)
+				);
 			}
 
 			var dd = instance.delegate.dd;
