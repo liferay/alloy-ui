@@ -57,6 +57,7 @@ var Lang = A.Lang,
 	DATE_FORMAT = 'dateFormat',
 	DAY = 'day',
 	DAYS = 'days',
+	DELEGATE_CONFIG = 'delegateConfig',
 	DIV = 'div',
 	DIVISION = 'division',
 	DOWN = 'down',
@@ -133,6 +134,7 @@ var Lang = A.Lang,
 	TRIGGER = 'trigger',
 	WEEK = 'week',
 	WIDTH = 'width',
+
 
 	// #cons
 
