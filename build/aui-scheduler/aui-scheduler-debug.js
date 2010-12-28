@@ -142,6 +142,13 @@ A.mix(SchedulerEventSupport.prototype, {
 		);
 	},
 
+	eachEvent: function(fn) {
+		var instance = this;
+		var events = instance.get(EVENTS);
+
+		A.Array.each(events, fn, instance);
+	},
+
 	removeEvent: function(evt) {
 		var instance = this;
 		var events = instance.get(EVENTS);
@@ -2410,16 +2417,18 @@ var Lang = A.Lang,
 	_PROPAGATE_SET = '_propagateSet',
 
 	ACTIVE_VIEW = 'activeView',
+	BORDER_STYLE = 'borderStyle',
 	BORDER_WIDTH = 'borderWidth',
-	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
-	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CHANGE = 'Change',
 	COLOR = 'color',
+	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
+	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
 	CONTENT_NODE = 'contentNode',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
 	EVENTS = 'events',
+	HIDDEN = 'hidden',
 	ID = 'id',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
@@ -2438,7 +2447,6 @@ var Lang = A.Lang,
 	TITLE = 'title',
 	TITLE_DATE_FORMAT = 'titleDateFormat',
 	TITLE_NODE = 'titleNode',
-	BORDER_STYLE = 'borderStyle',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
@@ -2446,8 +2454,9 @@ var Lang = A.Lang,
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
-	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
+	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 
@@ -2629,6 +2638,12 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.getSecondsOffset(instance.get(END_DATE), instance.get(START_DATE));
 		},
 
+		hide: function() {
+			var instance = this;
+
+			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_HIDDEN);
+		},
+
 		sameEndDate: function(evt) {
 			var instance = this;
 
@@ -2639,6 +2654,12 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			return DateMath.compare(instance.get(START_DATE), evt.get(START_DATE));
+		},
+
+		show: function() {
+			var instance = this;
+
+			instance.get(NODE).removeClass(CSS_SCHEDULER_EVENT_HIDDEN);
 		},
 
 		isAfter: function(evt) {
@@ -3547,6 +3568,22 @@ var SchedulerCalendar = A.Component.create({
 			instance._uiSetEvents(
 				instance.get(EVENTS)
 			);
+		},
+
+		hide: function() {
+			var instance = this;
+
+			instance.eachEvent(function(evt, i) {
+				evt.hide();
+			});
+		},
+
+		show: function() {
+			var instance = this;
+
+			instance.eachEvent(function(evt, i) {
+				evt.show();
+			});
 		},
 
 		_afterEventsChange: function(event) {

@@ -142,6 +142,13 @@ A.mix(SchedulerEventSupport.prototype, {
 		);
 	},
 
+	eachEvent: function(fn) {
+		var instance = this;
+		var events = instance.get(EVENTS);
+
+		A.Array.each(events, fn, instance);
+	},
+
 	removeEvent: function(evt) {
 		var instance = this;
 		var events = instance.get(EVENTS);

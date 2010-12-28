@@ -53,6 +53,22 @@ var SchedulerCalendar = A.Component.create({
 			);
 		},
 
+		hide: function() {
+			var instance = this;
+
+			instance.eachEvent(function(evt, i) {
+				evt.hide();
+			});
+		},
+
+		show: function() {
+			var instance = this;
+
+			instance.eachEvent(function(evt, i) {
+				evt.show();
+			});
+		},
+
 		_afterEventsChange: function(event) {
 			var instance = this;
 
