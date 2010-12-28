@@ -1,3 +1,7 @@
+.aui-scheduler-event-hidden {
+	display: none;
+}
+
 .aui-scheduler-event-content {
 	text-align: left;
 }
