@@ -64,6 +64,14 @@ var SchedulerCalendar = A.Component.create({
 			);
 		},
 
+		syncEventsColor: function(events) {
+			var instance = this;
+
+			A.Array.each(events || instance.get(EVENTS), function(evt, i) {
+				evt.set(COLOR, instance.get(COLOR));
+			});
+		},
+
 		_afterEventsChange: function(event) {
 			var instance = this;
 
@@ -79,9 +87,7 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetEvents: function(val) {
 			var instance = this;
 
-			A.Array.each(val, function(evt, i) {
-				evt.set(COLOR, instance.get(COLOR));
-			});
+			instance.syncEventsColor(val);
 		},
 
 		_uiSetVisible: function(val) {
