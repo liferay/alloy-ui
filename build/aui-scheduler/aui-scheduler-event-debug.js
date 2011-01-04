@@ -1017,8 +1017,11 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_defEditEventFn: function(event) {
 			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
 
 			instance.hideOverlay();
+
+			scheduler.syncEventsUI();
 		},
 
 		_defSaveEventFn: function(event) {
