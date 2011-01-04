@@ -358,6 +358,7 @@ Dialog.prototype = {
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		A.Event.purgeElement(boundingBox, true);
+		A.DialogManager.remove(instance);
 	},
 
 	/**
