@@ -3027,9 +3027,20 @@ A.SchedulerEventRepeat = {
 			var endDate = evt.get(END_DATE);
 			var startDate = evt.get(START_DATE);
 
-			return (startDate.getDay() === evt.getDay());
+			return (startDate.getDay() === date.getDay());
 		},
 		value: 'weekly'
+	},
+
+	yearly: {
+		description: 'Every year',
+		validate: function(evt, date) {
+			var endDate = evt.get(END_DATE);
+			var startDate = evt.get(START_DATE);
+
+			return ((startDate.getMonth() === date.getMonth()) && (startDate.getDay() === date.getDay()));
+		},
+		value: 'yearly'
 	}
 
 };
