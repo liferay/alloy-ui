@@ -1,10 +1,10 @@
 A.SchedulerEventRepeat = {
-	dayly: {
+	daily: {
 		description: 'Every day',
 		validate: function(evt, date) {
 			return true;
 		},
-		value: 'dayly'
+		value: 'daily'
 	},
 
 	monthly: {
