@@ -15,6 +15,7 @@ var Lang = A.Lang,
     }),
 
 	DASH = '-',
+	NDASH = '&ndash;',
 	DOT = '.',
 	EMPTY_STR = '',
 	SPACE = ' ',
@@ -430,7 +431,7 @@ var SchedulerEvent = A.Component.create({
 			var sDateFormatted = instance._formatDate(instance.get(START_DATE));
 			var eDateFormatted = instance._formatDate(instance.get(END_DATE));
 
-			instance.setTitle([sDateFormatted, eDateFormatted].join(SPACE+DASH+SPACE), propagate);
+			instance.setTitle([sDateFormatted, eDateFormatted].join(SPACE+NDASH+SPACE), propagate);
 		},
 
 		eachRepeatedEvent: function(fn) {
@@ -536,7 +537,7 @@ var SchedulerEvent = A.Component.create({
 				val = A.SchedulerEventRepeat[val];
 			}
 
-			return val;
+			return isObject(val) ? val : null;
 		},
 
 		_setScheduler: function(val) {
@@ -583,12 +584,12 @@ var SchedulerEvent = A.Component.create({
 
 A.SchedulerEvent = SchedulerEvent;
 A.SchedulerEventRepeat = {
-	dayly: {
+	daily: {
 		description: 'Every day',
 		validate: function(evt, date) {
 			return true;
 		},
-		value: 'dayly'
+		value: 'daily'
 	},
 
 	monthly: {
