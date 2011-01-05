@@ -1,0 +1,52 @@
+.aui-scheduler-event-icons .aui-icon {
+	background: url(scheduler-notification.png) no-repeat 0 0;
+	height: 7px;
+	width: 8px;
+}
+
+.aui-scheduler-event-icons {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	display: none;
+}
+
+.aui-scheduler-event-icons .aui-icon {
+	float: left;
+	display: none;
+}
+
+.aui-scheduler-event-repeated .aui-scheduler-event-icons,
+.aui-scheduler-event-repeated .aui-scheduler-event-icon-repeated {
+
+	display: block;
+}
+
+.aui-scheduler-event-repeated .aui-scheduler-event-icons .aui-scheduler-event-icon-repeated {
+	background-position: -9px 0;
+}
+
+.aui-scheduler-event-repeater .aui-scheduler-event-icons,
+.aui-scheduler-event-repeater .aui-scheduler-event-icon-repeater,
+.aui-scheduler-event-repeater .aui-scheduler-event-icon-repeated {
+
+	display: block;
+}
+
+.aui-scheduler-event-repeater .aui-scheduler-event-icons .aui-scheduler-event-icon-repeated {
+	background-position: -9px 0;
+}
+
+.aui-scheduler-event-repeater .aui-scheduler-event-icons .aui-scheduler-event-icon-repeater {
+	background-position: 0 0;
+}
+
+.aui-scheduler-event-disabled .aui-scheduler-event-icons,
+.aui-scheduler-event-disabled .aui-scheduler-event-icon-disabled {
+
+	display: block;
+}
+
+.aui-scheduler-event-disabled .aui-scheduler-event-icons .aui-scheduler-event-icon-disabled {
+	background-position: 0 -28px;
+}

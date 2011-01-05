@@ -32,10 +32,13 @@ var Lang = A.Lang,
 	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
 	CONTENT_NODE = 'contentNode',
+	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
 	EVENTS = 'events',
 	HIDDEN = 'hidden',
+	ICON = 'icon',
+	ICONS = 'icons',
 	ID = 'id',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
@@ -45,6 +48,7 @@ var Lang = A.Lang,
 	RECORDER = 'recorder',
 	REPEAT = 'repeat',
 	REPEATED = 'repeated',
+	REPEATER = 'repeater',
 	REPEATED_EVENTS = 'repeatedEvents',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_EVENT = 'scheduler-event',
@@ -61,17 +65,19 @@ var Lang = A.Lang,
 
 	getCN = A.ClassNameManager.getClassName,
 
+	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
 	CSS_SCHEDULER_EVENT_CONTENT = getCN(SCHEDULER_EVENT, CONTENT),
 	CSS_SCHEDULER_EVENT_HIDDEN = getCN(SCHEDULER_EVENT, HIDDEN),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
 	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER_EVENT, RECORDER),
 	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
+	CSS_SCHEDULER_EVENT_REPEATER = getCN(SCHEDULER_EVENT, REPEATER),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
-
-	TPL_SCHEDULER_EVENT_NODE = '<div class="' + CSS_SCHEDULER_EVENT + '">' +
-									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
-									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
-								'</div>';
+	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS);
+	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
+	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
+	CSS_SCHEDULER_EVENT_ICON_REPEATER = getCN(SCHEDULER_EVENT, ICON, REPEATER);
 
 var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
@@ -129,9 +135,14 @@ var SchedulerEvent = A.Component.create({
 			setter: A.one
 		},
 
+		disabled: {
+			value: false,
+			validator: isBoolean
+		},
+
 		node: {
 			valueFn: function() {
-				return A.Node.create(TPL_SCHEDULER_EVENT_NODE).setData(SCHEDULER_EVENT, this);
+				return A.Node.create(this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
 			},
 			setter: A.one
 		},
@@ -163,9 +174,19 @@ var SchedulerEvent = A.Component.create({
 
 	EXTENDS: A.Base,
 
-	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE],
+	PROPAGATE_ATTRS: [START_DATE, END_DATE, CONTENT, COLOR, COLOR_BRIGHTNESS_FACTOR, COLOR_SATURATION_FACTOR, BORDER_STYLE, BORDER_WIDTH, TITLE_DATE_FORMAT, VISIBLE, DISABLED],
 
 	prototype: {
+		EVENT_NODE_TEMPLATE: '<div class="' + CSS_SCHEDULER_EVENT + '">' +
+									'<div class="' + CSS_SCHEDULER_EVENT_TITLE + '"></div>' +
+									'<div class="' + CSS_SCHEDULER_EVENT_CONTENT + '"></div>' +
+									'<div class="' + CSS_SCHEDULER_EVENT_ICONS + '">' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATED].join(SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_REPEATER].join(SPACE) + '"></span>' +
+										'<span class="' + [CSS_ICON, CSS_SCHEDULER_EVENT_ICON_DISABLED].join(SPACE) + '"></span>' +
+									'</div>' +
+								'</div>',
+
 		eventStack: null,
 
 		initializer: function() {
@@ -179,11 +200,7 @@ var SchedulerEvent = A.Component.create({
 				instance.after(attrName+CHANGE, instance._propagateAttrChange);
 			});
 
-			instance.on('visibleChange', instance._onVisibleChange);
-
-			instance._uiSetVisible(
-				instance.get(VISIBLE)
-			);
+			instance._bindUIAttrs();
 
 			instance.contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
 			instance.titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
@@ -381,10 +398,7 @@ var SchedulerEvent = A.Component.create({
 		syncNodeUI: function(propagate) {
 			var instance = this;
 
-			instance.get(NODE).toggleClass(
-				CSS_SCHEDULER_EVENT_REPEATED,
-				!!(instance.get(PARENT_EVENT))
-			);
+			instance._syncUIAttrs();
 
 			instance.syncNodeColorUI(propagate);
 			instance.syncNodeTitleUI(propagate);
@@ -459,10 +473,39 @@ var SchedulerEvent = A.Component.create({
 			instance.syncNodeUI();
 		},
 
-		_onVisibleChange: function(event) {
+		_afterDisabledChange: function(event) {
+			var instance = this;
+
+			instance._uiSetDisabled(event.newVal);
+		},
+
+		_afterVisibleChange: function(event) {
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
+		},
+
+		_afterRepeatChange: function(event) {
+			var instance = this;
+
+			instance._uiSetRepeat(event.newVal);
+		},
+
+		_afterParentEventChange: function(event) {
+			var instance = this;
+
+			instance._uiSetParentEvent(event.newVal);
+		},
+
+		_bindUIAttrs: function() {
+			var instance = this;
+
+			instance.after('disabledChange', instance._afterDisabledChange);
+			instance.after('visibleChange', instance._afterVisibleChange);
+			instance.after('parentEventChange', instance._afterParentEventChange);
+			instance.after('repeatChange', instance._afterRepeatChange);
+
+			instance._syncUIAttrs();
 		},
 
 		_propagateAttrChange: function(event) {
@@ -553,6 +596,26 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
+		_syncUIAttrs: function() {
+			var instance = this;
+
+			instance._uiSetDisabled(
+				instance.get(DISABLED)
+			);
+
+			instance._uiSetVisible(
+				instance.get(VISIBLE)
+			);
+
+			instance._uiSetParentEvent(
+				instance.get(PARENT_EVENT)
+			);
+
+			instance._uiSetRepeat(
+				instance.get(REPEAT)
+			);
+		},
+
 		_formatDate: function(date, format) {
 			var instance = this;
 			var locale = instance.get(LOCALE);
@@ -572,6 +635,33 @@ var SchedulerEvent = A.Component.create({
 			}
 
 			return val;
+		},
+
+		_uiSetDisabled: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(
+				CSS_SCHEDULER_EVENT_DISABLED,
+				!!val
+			);
+		},
+
+		_uiSetParentEvent: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(
+				CSS_SCHEDULER_EVENT_REPEATED,
+				!!val
+			);
+		},
+
+		_uiSetRepeat: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(
+				CSS_SCHEDULER_EVENT_REPEATER,
+				!!val
+			);
 		},
 
 		_uiSetVisible: function(val) {
