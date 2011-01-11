@@ -818,4 +818,4 @@ YUI.add('io-base', function(Y) {
     Y.io.http = _io;
 
 
-}, '3.2.0' ,{optional:['querystring-stringify-simple'], requires:['event-custom-base']});
+}, '3.2.0' ,{requires:['event-custom-base'], optional:['querystring-stringify-simple']});
