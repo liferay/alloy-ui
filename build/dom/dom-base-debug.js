@@ -39,7 +39,19 @@ var NODE_TYPE = 'nodeType',
 
     documentElement = Y.config.doc.documentElement,
 
-    re_tag = /<([a-z]+)/i;
+    re_tag = /<([a-z]+)/i,
+
+		    createFromDIV = function(html, tag) {
+		        var div = Y.config.doc.createElement('div'),
+		            ret = true;
+
+		        div.innerHTML = html;
+		        if (!div.firstChild || div.firstChild.tagName !== tag) {
+		            ret = false;
+		        }
+
+		        return ret;
+		    };
 
 Y.DOM = {
     /**
@@ -698,7 +710,7 @@ Y.DOM = {
         Y.DOM.creators.style = Y.DOM.creators.script;
     }
 
-    if (Y.UA.gecko || Y.UA.ie) {
+    if (!createFromDIV('<tr/>', 'TR')) {
         Y.mix(creators, {
             option: function(html, doc) {
                 return create('<select><option class="yui3-big-dummy" selected></option>' + html + '</select>', doc);
@@ -724,7 +736,7 @@ Y.DOM = {
             tfoot: creators.tbody,
             caption: creators.tbody,
             colgroup: creators.tbody,
-            col: creators.tbody,
+            
             optgroup: creators.option
         });
     }
