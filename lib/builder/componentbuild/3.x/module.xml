@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YuiModuleTargets">
+
+    <dirname property="module.basedir" file="${ant.file.YuiModuleTargets}"/>
+    <import file="${module.basedir}/../shared/targets.xml" description="Targets common to Rollup/Module" />
+
+    <target name="build" depends="buildcore, -rollupjs, buildskins, buildlangs" />
+    <target name="buildskins" depends="-buildskins, -rollupcss" />
+    <target name="buildlangs" depends="-buildlangs, -rolluplangs" />
+
+    <!-- CORE -->
+    <target name="buildcore" depends="builddebug, -createcore, -loggerregex" description="Create component.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-createcore">
+        <copy file="${component.builddir}/${component.basefilename}-debug.js" tofile="${component.builddir}/${component.basefilename}.js" />
+    </target>
+
+    <target name="-loggerregex" description="Replace logger statements" unless="component.logger.regex.skip">
+        <echo level="info">Replacing Logger Statements in ${component.builddir}/${component.basefilename}.js</echo>
+        <replaceregexp file="${component.builddir}/${component.basefilename}.js"
+                            byline="${component.logger.regex.byline}"
+                            match="${component.logger.regex}"
+                            replace="${component.logger.regex.replace}"
+                            flags="${component.logger.regex.flags}" />
+    </target>
+
+    <!-- DEBUG -->
+    <target name="builddebug" depends="-concatdebug, -registerdebug, -prependdebug, -appenddebug" description="Create component-debug.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}-debug.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-concatdebug">
+        <concatsource destfile="${component.builddir}/${component.basefilename}-debug.js" sourcedir="${component.jsfiles.base}" sourcefiles="${component.jsfiles}" />
+    </target>
+
+    <target name="-registerdebug" unless="register.skip">
+        <addmodule module="${component.module}" file="${component.builddir}/${component.basefilename}-debug.js" details="${component.details.hash}" />
+    </target>
+
+    <target name="-rollupjs" if="rollup">
+        <if>
+            <isset property="rollup.sub"/>
+            <then>
+                <echo level="info">Module: Build a rollup of a rollup; moving rollup.sub properties into rollup properties.</echo>
+                <var name="rollup.builddir" unset="true"/>
+                <var name="rollup.component" unset="true"/>
+                <var name="rollup.component.basefilename" unset="true"/>
+                <propertycopy name="rollup.builddir" from="rollup.sub.builddir"/>
+                <propertycopy name="rollup.component" from="rollup.sub.component"/>
+                <propertycopy name="rollup.component.basefilename" from="rollup.sub.component.basefilename"/>
+            </then>
+        </if>
+        <echo level="info">Module: Rolling up ${component.basefilename}-debug.js into ${rollup.component.basefilename}-debug.js</echo>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}" files="${component.basefilename}.js" />
+        </concat>
+        <concat destfile="${rollup.builddir}/${rollup.component.basefilename}-debug.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}" files="${component.basefilename}-debug.js" />
+        </concat>
+    </target>
+
+    <!-- SKINS -->
+    <target name="-buildskins" depends="-concatskins" description="Create skin rollup in local component build directory" if="component.skins.exist">
+        <fixcrlf srcdir="${component.builddir}/assets/skins/sam" includes="${component}.css" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-buildlangs" description="Create language packs in the local component build directory" if="component.langs.exist">
+    	<mkdir dir="${component.builddir}/lang" />
+
+        <for list="${component.lang}" param="lang" trim="true">
+            <sequential>
+            	<addlang dir="${component.lang.base}" module="${component}" lang="@{lang}" dest="${component.builddir}/lang" />
+            </sequential>
+        </for>
+
+    	<addlang dir="${component.lang.base}" module="${component}" lang="" dest="${component.builddir}/lang/" />
+
+    </target>
+
+    <target name="-rolluplangs" if="rolluplangs">
+        <for list="${component.lang}" param="lang" trim="true">
+            <sequential>
+                <concat destfile="${rollup.builddir}/lang/${rollup.component}_@{lang}.js" append="true" fixlastline="true">
+                    <fileset dir="${component.builddir}/lang" includes="*_@{lang}.js" />
+                </concat>
+            </sequential>
+        </for>
+    	<concat destfile="${rollup.builddir}/lang/${rollup.component}.js" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/lang" files="${component}.js" />
+        </concat>
+	</target>
+
+    <target name="-concatskins" if="component.skins.exist">
+        <concatsource destfile="${component.builddir}/assets/skins/sam/${component}.css" sourcedir="${component.assets.base}" sourcefiles="${component}-core.css, skins/sam/${component}-skin.css" />
+        <yuicompress type="css" src="${component.builddir}/assets/skins/sam/${component}.css" dest="${component.builddir}/assets/skins/sam/${component}.css" args="${yuicompressor.css.args.internal}" />
+    </target>
+
+    <target name="-rollupcss" if="rollupskins">
+        <echo level="info">Rolling up ${component}.css into ${rollup.component}.css</echo>
+        <concat destfile="${rollup.builddir}/assets/skins/sam/${rollup.component}.css" append="true" fixlastline="true">
+            <filelist dir="${component.builddir}/assets/skins/sam" files="${component}.css" />
+        </concat>
+    </target>
+
+</project>

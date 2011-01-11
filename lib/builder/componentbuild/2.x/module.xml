@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YuiModuleTargets">
+
+    <dirname property="module.basedir" file="${ant.file.YuiModuleTargets}"/>
+    <import file="${module.basedir}/../shared/targets.xml" description="Targets common to Rollup/Module" />
+
+    <target name="build" depends="buildcore, buildskins" />
+    <target name="buildskins" depends="-buildskins" />
+
+    <!-- CORE -->
+    <target name="buildcore" depends="builddebug, -createcore, -loggerregex" description="Create component.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-createcore">
+        <copy file="${component.builddir}/${component.basefilename}-debug.js" tofile="${component.builddir}/${component.basefilename}.js" />
+    </target>
+
+    <target name="-loggerregex" description="Replace logger statements" unless="component.logger.regex.skip">
+        <echo level="info">Replacing Logger Statements in ${component.builddir}/${component.basefilename}.js</echo>
+        <replaceregexp file="${component.builddir}/${component.basefilename}.js"
+                            byline="${component.logger.regex.byline}"
+                            match="${component.logger.regex}"
+                            replace="${component.logger.regex.replace}"
+                            flags="${component.logger.regex.flags}" />
+    </target>
+
+    <!-- DEBUG -->
+    <target name="builddebug" depends="-concatdebug, -registerdebug, -prependdebug, -appenddebug" description="Create component-debug.js">
+        <fixcrlf srcdir="${component.builddir}" includes="${component.basefilename}-debug.js" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-concatdebug">
+        <concatsource destfile="${component.builddir}/${component.basefilename}-debug.js" sourcedir="${component.jsfiles.base}" sourcefiles="${component.jsfiles}" />
+    </target>
+
+    <target name="-registerdebug" unless="register.skip">
+        <registerversion classname="${component.mainclass}" module="${component.module}" file="${component.builddir}/${component.basefilename}-debug.js" />
+    </target>
+
+    <!-- SKINS -->
+    <target name="-buildskins" depends="-concatskins" description="Create skin file in local component build directory" if="component.skins.exist">
+        <fixcrlf srcdir="${component.builddir}/assets/skins/sam" includes="${component}.css" eol="${buildfiles.eol}" />
+    </target>
+
+    <target name="-concatskins" if="component.skins.exist">
+        <concatsource destfile="${component.builddir}/assets/skins/sam/${component}.css" sourcedir="${component.assets.base}" sourcefiles="${component}-core.css, skins/sam/${component}-skin.css" />
+        <yuicompress src="${component.builddir}/assets/skins/sam/${component}.css" dest="${component.builddir}/assets/skins/sam/${component}.css" args="${yuicompressor.css.args.internal}" />
+    </target>
+
+</project>

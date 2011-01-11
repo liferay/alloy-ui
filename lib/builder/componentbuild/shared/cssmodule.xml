@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="YuiCssModuleTargets">
+
+    <dirname property="cssmodule.basedir" file="${ant.file.YuiCssModuleTargets}"/>
+    <import file="${cssmodule.basedir}/../shared/targets.xml" description="Targets common to Rollup/Module" />
+
+    <target name="build" depends="buildcore" />
+
+    <target name="buildcore">
+        <concatsource destfile="${component.builddir}/${component.basefilename}.css" sourcedir="${component.cssfiles.base}" sourcefiles="${component.cssfiles}" />
+    </target>
+
+    <target name="minify">
+        <yuicompress type="css" src="${component.builddir}/${component.basefilename}.css" dest="${component.builddir}/${component.basefilename}-min.css" args="${yuicompressor.css.args.internal}" />
+    </target>
+
+    <target name="lint">
+        <!-- TODO : CSS Lint support. Currently need to add @charset "UTF-8";-->
+    </target>
+
+    <target name="deploybuild" description="Copy built files to global build location">
+        <copy todir="${global.build.component}" preservelastmodified="true">
+            <fileset dir="${component.builddir}" includes="*.css" />
+        </copy>
+    </target>
+</project>
