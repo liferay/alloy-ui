@@ -537,4 +537,4 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['dd-drag'], skinnable:false});
+}, '3.2.0' ,{skinnable:false, requires:['dd-drag']});

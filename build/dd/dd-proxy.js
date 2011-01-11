@@ -252,4 +252,4 @@ YUI.add('dd-proxy', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['dd-ddm', 'dd-drag'], skinnable:false});
+}, '3.2.0' ,{skinnable:false, requires:['dd-ddm', 'dd-drag']});
