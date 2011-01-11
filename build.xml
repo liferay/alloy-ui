@@ -371,7 +371,7 @@
 				includes="build.xml"
 			/>
 		</subant>
-		
+
 		<!-- Patch for loader -->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
@@ -380,7 +380,7 @@
 				includes="build.xml"
 			/>
 		</subant>
-		
+
 		<!-- Patch for simpleyui -->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
@@ -420,6 +420,45 @@
 	                }
 	            }]]></replacevalue>
 		</replace>
+		<!-- /End Patch for AUI-153 -->
+
+		<!-- Patch for AUI-313 -->
+		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
+			<replacetoken><![CDATA[re_tag = /<([a-z]+)/i;]]></replacetoken>
+			  <replacevalue><![CDATA[re_tag = /<([a-z]+)/i,
+
+		    createFromDIV = function(html, tag) {
+		        var div = Y.config.doc.createElement('div'),
+		            ret = true;
+
+		        div.innerHTML = html;
+		        if (!div.firstChild || div.firstChild.tagName !== tag) {
+		            ret = false;
+		        }
+
+		        return ret;
+		    };]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
+			<replacetoken><![CDATA[if (Y.UA.gecko || Y.UA.ie) {]]></replacetoken>
+			<replacevalue><![CDATA[if (!createFromDIV('<tr/>', 'TR')) {]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
+			<replacetoken><![CDATA[tbody: function(html, doc) {
+			                return create(TABLE_OPEN + html + TABLE_CLOSE, doc);
+			            }]]></replacetoken>
+			<replacevalue><![CDATA[col: function(html, doc) {
+	                return create('<colgroup>' + html + '</colgroup>', doc);
+	            },
+	            tbody: 'table']]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
+			<replacetoken><![CDATA[col: creators.tbody,]]></replacetoken>
+			<replacevalue><![CDATA[]]></replacevalue>
+		</replace>
 
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
@@ -428,7 +467,7 @@
 				includes="build.xml"
 			/>
 		</subant>
-		<!-- /End Patch for AUI-153 -->
+		<!-- /End Patch for AUI-313 -->
 
 		<!-- Patch for AUI-284 -->
 		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
