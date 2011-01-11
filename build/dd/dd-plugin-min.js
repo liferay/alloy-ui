@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.2.0
 build: nightly
 */
-YUI.add("dd-plugin",function(B){var A=function(C){C.node=((B.Widget&&C.host instanceof B.Widget)?C.host.get("boundingBox"):C.host);A.superclass.constructor.call(this,C);};A.NAME="dd-plugin";A.NS="dd";B.extend(A,B.DD.Drag);B.namespace("Plugin");B.Plugin.Drag=A;},"3.2.0",{requires:["dd-drag"],skinnable:false,optional:["dd-constrain","dd-proxy"]});
+YUI.add("dd-plugin",function(b){var a=function(c){c.node=((b.Widget&&c.host instanceof b.Widget)?c.host.get("boundingBox"):c.host);a.superclass.constructor.call(this,c);};a.NAME="dd-plugin";a.NS="dd";b.extend(a,b.DD.Drag);b.namespace("Plugin");b.Plugin.Drag=a;},"3.2.0",{requires:["dd-drag"],optional:["dd-constrain","dd-proxy"],skinnable:false});
