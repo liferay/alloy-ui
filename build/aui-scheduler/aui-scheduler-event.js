@@ -1237,4 +1237,4 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});

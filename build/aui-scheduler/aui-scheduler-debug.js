@@ -690,7 +690,7 @@ var SchedulerBase = A.Component.create({
 
 A.Scheduler = SchedulerBase;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view','datasource']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view','datasource'], skinnable:true});
 AUI.add('aui-scheduler-view', function(A) {
 var Lang = A.Lang,
 	isObject = Lang.isObject,
@@ -752,6 +752,7 @@ var Lang = A.Lang,
 	DAY = 'day',
 	DAYS = 'days',
 	DELEGATE_CONFIG = 'delegateConfig',
+	DISABLED = 'disabled',
 	DIV = 'div',
 	DIVISION = 'division',
 	DOWN = 'down',
@@ -1027,10 +1028,8 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 		};
 	},
 
-	// EV_SCHEDULER_VIEW_EVENT_INTERSECT = 'scheduler-view:eventIntersect',
-
-	// CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
 	CSS_SCHEDULER_EVENT_PROXY = getCN(SCHEDULER_EVENT, PROXY),
 	CSS_SCHEDULER_VIEW_DAY_COLDATA = getCN(SCHEDULER_VIEW, COLDATA),
 	CSS_SCHEDULER_VIEW_DAY_COLGRID = getCN(SCHEDULER_VIEW, COLGRID),
@@ -1116,7 +1115,8 @@ var SchedulerDayView = A.Component.create({
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
 						// handles: [DOT+CSS_SCHEDULER_EVENT_TITLE],
-						nodes: DOT+CSS_SCHEDULER_EVENT
+						nodes: DOT+CSS_SCHEDULER_EVENT,
+						invalid: 'input, select, button, a, textarea, ' + DOT+CSS_SCHEDULER_EVENT_DISABLED
 					},
 					val || {}
 				);
@@ -2391,7 +2391,7 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
 AUI.add('aui-scheduler-event', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -3631,7 +3631,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});
 AUI.add('aui-scheduler-calendar', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,

@@ -59,6 +59,7 @@ var Lang = A.Lang,
 	DAY = 'day',
 	DAYS = 'days',
 	DELEGATE_CONFIG = 'delegateConfig',
+	DISABLED = 'disabled',
 	DIV = 'div',
 	DIVISION = 'division',
 	DOWN = 'down',
@@ -334,10 +335,8 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 		};
 	},
 
-	// EV_SCHEDULER_VIEW_EVENT_INTERSECT = 'scheduler-view:eventIntersect',
-
-	// CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
+	CSS_SCHEDULER_EVENT_DISABLED = getCN(SCHEDULER_EVENT, DISABLED),
 	CSS_SCHEDULER_EVENT_PROXY = getCN(SCHEDULER_EVENT, PROXY),
 	CSS_SCHEDULER_VIEW_DAY_COLDATA = getCN(SCHEDULER_VIEW, COLDATA),
 	CSS_SCHEDULER_VIEW_DAY_COLGRID = getCN(SCHEDULER_VIEW, COLGRID),
@@ -423,7 +422,8 @@ var SchedulerDayView = A.Component.create({
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
 						// handles: [DOT+CSS_SCHEDULER_EVENT_TITLE],
-						nodes: DOT+CSS_SCHEDULER_EVENT
+						nodes: DOT+CSS_SCHEDULER_EVENT,
+						invalid: 'input, select, button, a, textarea, ' + DOT+CSS_SCHEDULER_EVENT_DISABLED
 					},
 					val || {}
 				);
@@ -1698,4 +1698,4 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']});
+}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});

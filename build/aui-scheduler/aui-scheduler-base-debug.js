@@ -690,4 +690,4 @@ var SchedulerBase = A.Component.create({
 
 A.Scheduler = SchedulerBase;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-view','datasource']});
+}, '@VERSION@' ,{requires:['aui-scheduler-view','datasource'], skinnable:true});
