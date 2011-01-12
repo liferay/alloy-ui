@@ -655,7 +655,7 @@ var SchedulerDayView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var eventRecorder = scheduler.get(EVENT_RECORDER);
 
-			if (eventRecorder) {
+			if (eventRecorder && !scheduler.get(DISABLED)) {
 				eventRecorder.hideOverlay();
 
 				if (event.target.test(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
@@ -725,7 +725,7 @@ var SchedulerDayView = A.Component.create({
 			var scheduler = instance.get(SCHEDULER);
 			var eventRecorder = scheduler.get(EVENT_RECORDER);
 
-			if (eventRecorder) {
+			if (eventRecorder && !scheduler.get(DISABLED)) {
 				if (instance.ddStartDate) {
 					instance.syncEventRecorderUI(event.currentTarget);
 
