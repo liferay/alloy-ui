@@ -19,6 +19,7 @@ var DialogIframePlugin = A.Component.create(
 			},
 
 			iframeCssClass: {
+				value: '',
 				setter: '_setIframeCssClass'
 			},
 
@@ -157,6 +158,10 @@ var DialogIframePlugin = A.Component.create(
 			_uiSetUri: function(value) {
 				var instance = this;
 
+				if (instance._bodyNode.loadingmask) {
+					instance._bodyNode.loadingmask.show();
+				}
+
 				instance.node.attr('src', value);
 			},
 
@@ -190,4 +195,4 @@ var DialogIframePlugin = A.Component.create(
 
 A.Plugin.DialogIframe = DialogIframePlugin;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-loading-mask','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','aui-loading-mask','plugin'], skinnable:true});
