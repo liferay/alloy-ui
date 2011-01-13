@@ -130,7 +130,7 @@ var DialogIframePlugin = A.Component.create(
 
 					var iframeBody = iframeDoc.get('body');
 
-					node.set('height', iframeBody.get('scrollHeight'));
+					node.set('height', iframeBody.get('scrollHeight') + 5);
 
 					if (instance.get('closeOnEscape')) {
 						A.on(
