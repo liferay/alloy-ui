@@ -202,7 +202,7 @@ AUI().ready(
 
 		cmp.get('contentBox').set('innerHTML', componentText);
 
-		A.get('#cloneButton').on(
+		A.one('#cloneButton').on(
 			'click',
 			function(event) {
 				var clone = cmp.clone();
@@ -213,9 +213,9 @@ AUI().ready(
 			}
 		);
 
-		A.get('#toggleButton').on('click', cmp.toggle, cmp);
+		A.one('#toggleButton').on('click', cmp.toggle, cmp);
 
-		A.get('#destroyButton').on('click', cmp.destroy, cmp);
+		A.one('#destroyButton').on('click', cmp.destroy, cmp);
 
 		new A.Component({
 			contentBox: '#delayedWidget',

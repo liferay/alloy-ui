@@ -155,27 +155,27 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	new A.DD.Drag({	node: overlay9.get('boundingBox') });
 	new A.DD.Drag({	node: overlay10.get('boundingBox') });
 
-	A.get('#showAll-blue').on('click', function() {
+	A.one('#showAll-blue').on('click', function() {
 		blueOverlayManager.showAll();
 	});
 
-	A.get('#hideAll-blue').on('click', function() {
+	A.one('#hideAll-blue').on('click', function() {
 		blueOverlayManager.hideAll();
 	});
 
-	A.get('#showAll-red').on('click', function() {
+	A.one('#showAll-red').on('click', function() {
 		redOverlayManager.showAll();
 	});
 
-	A.get('#hideAll-red').on('click', function() {
+	A.one('#hideAll-red').on('click', function() {
 		redOverlayManager.hideAll();
 	});
 
-	A.get('#showAll-mixed').on('click', function() {
+	A.one('#showAll-mixed').on('click', function() {
 		mixedOverlayManager.showAll();
 	});
 
-	A.get('#hideAll-mixed').on('click', function() {
+	A.one('#hideAll-mixed').on('click', function() {
 		mixedOverlayManager.hideAll();
 	});
 

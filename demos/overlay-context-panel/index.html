@@ -104,8 +104,8 @@ AUI().ready('aui-overlay-context-panel', 'aui-overlay-manager', function(A) {
 	// Extras
 
 	var alignContextPanel = function(contextPanel) {
-		var overlayPoint = A.get('#overlayPoint').val();
-		var targetPoint = A.get('#targetPoint').val();
+		var overlayPoint = A.one('#overlayPoint').val();
+		var targetPoint = A.one('#targetPoint').val();
 
 		contextPanel.align('#simpleContextPanel', [ overlayPoint, targetPoint ]);
 	};
