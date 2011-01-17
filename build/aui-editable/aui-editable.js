@@ -144,9 +144,6 @@ var Editable = A.Component.create(
 					if (!node) {
 						A.error('AUI.Editable: Invalid Node Given: ' + value);
 					}
-					else {
-						node = node.item(0);
-					}
 
 					return node;
 				}
@@ -185,9 +182,6 @@ var Editable = A.Component.create(
 
 					if (!node) {
 						A.error('AUI.Editable: Invalid renderTo Given: ' + value);
-					}
-					else {
-						node = node.item(0);
 					}
 
 					return node;
@@ -782,4 +776,4 @@ var Editable = A.Component.create(
 
 A.Editable = Editable;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-form-combobox']});
+}, '@VERSION@' ,{requires:['aui-base','aui-form-combobox'], skinnable:true});

@@ -143,9 +143,6 @@ var Editable = A.Component.create(
 					if (!node) {
 						A.error('AUI.Editable: Invalid Node Given: ' + value);
 					}
-					else {
-						node = node.item(0);
-					}
 
 					return node;
 				}
@@ -184,9 +181,6 @@ var Editable = A.Component.create(
 
 					if (!node) {
 						A.error('AUI.Editable: Invalid renderTo Given: ' + value);
-					}
-					else {
-						node = node.item(0);
 					}
 
 					return node;
