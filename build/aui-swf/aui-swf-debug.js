@@ -113,19 +113,23 @@ var SWF = A.Component.create(
 			}
 		},
 
-		constructor: function() {
+		constructor: function(config) {
 			var instance = this;
 
 			if (arguments.length > 1) {
-				var config = {
-					boundingBox: arguments[0],
-					url: arguments[1],
-					fixedAttributes: (arguments[2] ? arguments[2].fixedAttributes : null),
-					flashVars: (arguments[2] ? arguments[2].flashVars : null)
-				};
+				var boundingBox = arguments[0];
+				var url = arguments[1];
+				var params = arguments[2] || {};
 
-				SWF.superclass.constructor.call(this, config);
+				config = {
+					boundingBox: boundingBox,
+					url: url,
+					fixedAttributes: params.fixedAttributes,
+					flashVars: params.flashVars
+				};
 			}
+
+			SWF.superclass.constructor.call(this, config);
 		},
 
 		getFlashVersion: function() {
