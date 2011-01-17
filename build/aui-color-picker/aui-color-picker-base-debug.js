@@ -252,6 +252,8 @@ var ColorPicker = A.Component.create(
 
 						value = instance._buttonTrigger.get('boundingBox');
 
+						value = new A.NodeList(value);
+
 						instance.set('trigger', value);
 					}
 
@@ -841,4 +843,4 @@ var ColorPicker = A.Component.create(
 
 A.ColorPicker = ColorPicker;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color-util','aui-form-base','aui-panel']});
+}, '@VERSION@' ,{requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color-util','aui-form-base','aui-panel'], skinnable:true});
