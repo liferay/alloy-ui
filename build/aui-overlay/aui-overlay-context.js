@@ -118,7 +118,6 @@ var OverlayContext = A.Component.create(
 			 */
 			currentNode: {
 				valueFn: function() {
-					console.log(this);
 					// define default currentNode as the first item from trigger
 					return this.get(TRIGGER).item(0);
 				}
