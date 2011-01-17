@@ -336,9 +336,14 @@
 	<target name="patch-yui">
 		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
 
-		<copy todir="${project.dir}/lib/yui3" overwrite="true">
-			<fileset dir="${project.dir}/lib/patches/yui3" includes="**/*.*" />
-		</copy>
+		<if>
+			<available file="${project.dir}/lib/patches/yui3" />
+			<then>
+				<copy todir="${project.dir}/lib/yui3" overwrite="true">
+					<fileset dir="${project.dir}/lib/patches/yui3" includes="**/*.*" />
+				</copy>
+			</then>
+		</if>
 
 		<!-- Patch for widget-locale -->
 		<replace file="${project.dir}/lib/yui3/src/widget/js/WidgetLocale.js">
