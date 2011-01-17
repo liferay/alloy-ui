@@ -261,7 +261,7 @@ A.DatepickerManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-overlay-context']});
+}, '@VERSION@' ,{requires:['aui-calendar','aui-overlay-context'], skinnable:true});
 AUI.add('aui-datepicker-select', function(A) {
 /**
  * The DatePickerSelect Utility
@@ -524,8 +524,18 @@ var DatePickerSelect = A.Component.create(
 			 * @type {Node | String}
 			 */
 			trigger: {
+				setter: function(v) {
+					if (v instanceof A.NodeList) {
+						return v;
+					}
+					else if (Lang.isString(v)) {
+						return A.all(v);
+					}
+
+					return new A.NodeList(v);
+				},
 				valueFn: function() {
-					return A.Node.create(WRAPPER_BUTTON_TPL);
+					return A.NodeList.create(WRAPPER_BUTTON_TPL);
 				}
 			},
 
@@ -1063,7 +1073,7 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});
+}, '@VERSION@' ,{requires:['aui-datepicker-base','aui-button-item'], skinnable:true});
 
 
 AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true});
