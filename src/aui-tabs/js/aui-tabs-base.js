@@ -86,7 +86,7 @@ var Tab = A.Component.create(
 				setter: function(value) {
 					var instance = this;
 
-					var node = A.Node.get(value);
+					var node = A.one(value);
 
 					if (!node) {
 						node = instance._createDefaultLabel();
@@ -105,7 +105,7 @@ var Tab = A.Component.create(
 				setter: function(value) {
 					var instance = this;
 
-					var node = A.Node.get(value);
+					var node = A.one(value);
 
 					if (!node) {
 						node = instance._createDefaultContentEl();
@@ -301,7 +301,7 @@ var TabView = A.Component.create(
 				setter: function(value) {
 					var instance = this;
 
-					var node = A.Node.get(value);
+					var node = A.one(value);
 
 					if (!node) {
 						node = instance._createDefaultList();
@@ -320,7 +320,7 @@ var TabView = A.Component.create(
 				setter: function(value) {
 					var instance = this;
 
-					var node = A.Node.get(value);
+					var node = A.one(value);
 
 					if (!node) {
 						node = instance._createDefaultContentContainer();
