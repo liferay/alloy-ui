@@ -251,6 +251,8 @@ var ColorPicker = A.Component.create(
 
 						value = instance._buttonTrigger.get('boundingBox');
 
+						value = new A.NodeList(value);
+
 						instance.set('trigger', value);
 					}
 
