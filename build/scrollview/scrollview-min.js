@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.2.0
 build: nightly
 */
-YUI.add("scrollview",function(A){A.Base.plug(A.ScrollView,A.Plugin.ScrollViewScrollbars);},"3.2.0",{requires:["scrollview-base","scrollview-scrollbars"]});
+YUI.add("scrollview",function(a){a.Base.plug(a.ScrollView,a.Plugin.ScrollViewScrollbars);},"3.2.0",{requires:["scrollview-base","scrollview-scrollbars"]});

@@ -41,4 +41,4 @@ Y.mix(Y.namespace("DataType.Number"), {
 Y.namespace("Parsers").number = Y.DataType.Number.parse;
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});

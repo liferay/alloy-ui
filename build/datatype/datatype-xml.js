@@ -29,19 +29,19 @@ Y.mix(Y.namespace("DataType.XML"), {
         var xmlDoc = null;
         if(LANG.isString(data)) {
             try {
-                if(!LANG.isUndefined(DOMParser)) {
-                    xmlDoc = new DOMParser().parseFromString(data, "text/xml");
+                if(!LANG.isUndefined(ActiveXObject)) {
+                        xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                        xmlDoc.async = false;
+                        xmlDoc.loadXML(data);
                 }
             }
-            catch(e) {
+            catch(ee) {
                 try {
-                    if(!LANG.isUndefined(ActiveXObject)) {
-                            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-                            xmlDoc.async = false;
-                            xmlDoc.loadXML(data);
+                    if(!LANG.isUndefined(DOMParser)) {
+                        xmlDoc = new DOMParser().parseFromString(data, "text/xml");
                     }
                 }
-                catch(ee) {
+                catch(e) {
                 }
             }
         }
@@ -58,7 +58,7 @@ Y.namespace("Parsers").xml = Y.DataType.XML.parse;
 
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('datatype-xml-format', function(Y) {
 
 /**
@@ -110,7 +110,7 @@ Y.mix(Y.namespace("DataType.XML"), {
 
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});
 
 
 YUI.add('datatype-xml', function(Y){}, '3.2.0' ,{use:['datatype-xml-parse', 'datatype-xml-format']});

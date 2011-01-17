@@ -32,7 +32,7 @@ var d      = Y.config.doc,
 _unsetOpacity = (OPACITY in workerStyle) ?
     function (style) { style.opacity = EMPTY; } :
     function (style) { style.filter = EMPTY; };
-        
+
 // Normalizes the removal of an assigned style for a given property.  Expands
 // shortcut properties if necessary and handles the various names for the float
 // property.
@@ -74,7 +74,7 @@ _unsetProperty = workerStyle.borderLeft ?
             }
         }
     };
-    
+
 /**
  * Create an instance of StyleSheet to encapsulate a css stylesheet.
  * The constructor can be called using function or constructor syntax.
@@ -103,7 +103,7 @@ _unsetProperty = workerStyle.borderLeft ?
  * <p>The optional second parameter is a string name to register the sheet as.
  * This param is largely useful when providing a node id/ref or chunk of css
  * text to create a populated instance.</p>
- * 
+ *
  * @class StyleSheet
  * @constructor
  * @param seed {String|HTMLElement|Node} a style or link node, its id, or a
@@ -122,7 +122,7 @@ function StyleSheet(seed, name) {
         i,r,sel;
 
     // Factory or constructor
-    if (!(this instanceof StyleSheet)) {
+    if (!(Y.instanceOf(this, StyleSheet))) {
         return new StyleSheet(seed,name);
     }
 
@@ -370,7 +370,7 @@ function StyleSheet(seed, name) {
                         remove = true;
                     }
                 }
-                
+
                 if (remove) { // remove the rule altogether
                     rules = sheet[_rules];
                     for (i = rules.length - 1; i >= 0; --i) {
@@ -398,7 +398,7 @@ function StyleSheet(seed, name) {
          * @return {String}
          */
         getCssText : function (sel) {
-            var rule,css;
+            var rule, css, selector;
 
             if (isString(sel)) {
                 // IE's addRule doesn't support multiple comma delimited
@@ -408,9 +408,9 @@ function StyleSheet(seed, name) {
                 return rule ? rule.style.cssText : null;
             } else {
                 css = [];
-                for (sel in cssRules) {
-                    if (cssRules.hasOwnProperty(sel)) {
-                        rule = cssRules[sel];
+                for (selector in cssRules) {
+                    if (cssRules.hasOwnProperty(selector)) {
+                        rule = cssRules[selector];
                         css.push(rule.selectorText+" {"+rule.style.cssText+"}");
                     }
                 }
@@ -426,7 +426,20 @@ _toCssText = function (css,base) {
         trim = Y.Lang.trim,
         prop;
 
-    workerStyle.cssText = base || EMPTY;
+    // A very difficult to repro/isolate IE 9 beta (and Platform Preview 7) bug
+    // was reduced to this line throwing the error:
+    // "Invalid this pointer used as target for method call"
+    // It appears that the style collection is corrupted. The error is
+    // catchable, so in a best effort to work around it, replace the
+    // p and workerStyle and try the assignment again.
+    try {
+        workerStyle.cssText = base || EMPTY;
+    } catch (e) {
+        Y.log("Worker style collection corrupted. Replacing.", "warn", "StyleSheet");
+        p = d.createElement('p');
+        workerStyle = p.style;
+        workerStyle.cssText = base || EMPTY;
+    }
 
     if (f && !css[floatAttr]) {
         css = Y.merge(css);
@@ -441,9 +454,9 @@ _toCssText = function (css,base) {
                 // in values ala ' red' or 'red '
                 workerStyle[prop] = trim(css[prop]);
             }
-            catch (e) {
+            catch (ex) {
                 Y.log('Error assigning property "'+prop+'" to "'+css[prop]+
-                          "\" (ignored):\n"+e.message,'warn','StyleSheet');
+                          "\" (ignored):\n"+ex.message,'warn','StyleSheet');
             }
         }
     }

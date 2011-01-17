@@ -110,4 +110,4 @@ Y.namespace('Plugin').DataSourceArraySchema = DataSourceArraySchema;
 
 
 
-}, '3.2.0' ,{requires:['plugin', 'datasource-local', 'dataschema-array']});
+}, '3.2.0' ,{requires:['datasource-local', 'plugin', 'dataschema-array']});

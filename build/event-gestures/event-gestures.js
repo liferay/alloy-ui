@@ -213,7 +213,12 @@ Y.Event.define('flick', {
                     endEvent.pageY - start.pageY
                 ];
 
-                axis = params.axis || (Math.abs(xyDistance[0]) >= Math.abs(xyDistance[1])) ? 'x' : 'y';
+                if (params.axis) {
+                    axis = params.axis;
+                } else {
+                    axis = (Math.abs(xyDistance[0]) >= Math.abs(xyDistance[1])) ? 'x' : 'y';
+                }
+
                 distance = xyDistance[(axis === 'x') ? 0 : 1];
                 velocity = (time !== 0) ? distance/time : 0;
 
@@ -317,8 +322,8 @@ var EVENT = ("ontouchstart" in Y.config.win && !Y.UA.chrome) ? {
         touchFacade.screenY = touch.screenY;
         touchFacade.clientX = touch.clientX;
         touchFacade.clientY = touch.clientY;
-        touchFacade[TARGET] = touch[TARGET] || touchFacade[TARGET];
-        touchFacade[CURRENT_TARGET] = touch[CURRENT_TARGET] || touchFacade[CURRENT_TARGET];
+        touchFacade[TARGET] = touchFacade[TARGET] || touch[TARGET];
+        touchFacade[CURRENT_TARGET] = touchFacade[CURRENT_TARGET] || touch[CURRENT_TARGET];
 
         touchFacade[BUTTON] = (params && params[BUTTON]) || 1; // default to left (left as per vendors, not W3C which is 0)
     },

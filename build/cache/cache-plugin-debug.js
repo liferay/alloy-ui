@@ -51,4 +51,4 @@ Y.namespace("Plugin").Cache = CachePlugin;
 
 
 
-}, '3.2.0' ,{requires:['cache-base']});
+}, '3.2.0' ,{requires:['plugin','cache-base']});

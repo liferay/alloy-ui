@@ -252,31 +252,44 @@ YUI.add('editor-bidi', function(Y) {
         var inst = this.getInstance(),
             sel = new inst.Selection(),
             returnValue, block,
-            selected, selectedBlocks;
+            selected, selectedBlocks, dir;
 
         inst.Selection.filterBlocks();
         if (sel.isCollapsed) { // No selection
             block = EditorBidi.blockParent(sel.anchorNode);
+            if (!direction) {
+                //If no direction is set, auto-detect the proper setting to make it "toggle"
+                dir = block.getAttribute(DIR);
+                if (!dir || dir == 'ltr') {
+                    direction = 'rtl';
+                } else {
+                    direction = 'ltr';
+                }
+            }
             block.setAttribute(DIR, direction);
             returnValue = block;
         } else { // some text is selected
             selected = sel.getSelected();
             selectedBlocks = [];
             selected.each(function(node) {
-                if (!node.test(BODY)) { // workaround for a YUI bug
+                /*
+                * Temporarily removed this check, should already be fixed
+                * in Y.Selection.getSelected()
+                */
+                //if (!node.test(BODY)) { // workaround for a YUI bug
                    selectedBlocks.push(EditorBidi.blockParent(node));
-                }
+                //}
             });
             selectedBlocks = inst.all(EditorBidi.addParents(selectedBlocks));
             selectedBlocks.setAttribute(DIR, direction);
             returnValue = selectedBlocks;
         }
 
-        this.get(HOST).get(HOST).editorBidi.checkForChange();
+        this.get(HOST).get(HOST).editorBidi._checkForChange();
         return returnValue;
     };
 
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['editor-base', 'selection']});
+}, '3.2.0' ,{requires:['editor-base'], skinnable:false});

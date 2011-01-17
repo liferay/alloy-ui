@@ -653,6 +653,7 @@ YUI.add('history-hash', function(Y) {
 var HistoryBase = Y.HistoryBase,
     Lang        = Y.Lang,
     YArray      = Y.Array,
+    YObject     = Y.Object,
     GlobalEnv   = YUI.namespace('Env.HistoryHash'),
 
     SRC_HASH    = 'hash',
@@ -688,15 +689,32 @@ Y.extend(HistoryHash, HistoryBase, {
     },
 
     // -- Protected Methods ----------------------------------------------------
+    _change: function (src, state, options) {
+        // Stringify all values to ensure that comparisons don't fail after
+        // they're coerced to strings in the location hash.
+        YObject.each(state, function (value, key) {
+            if (Lang.isValue(value)) {
+                state[key] = value.toString();
+            }
+        });
+
+        return HistoryHash.superclass._change.call(this, src, state, options);
+    },
+
     _storeState: function (src, newState) {
-        var newHash = HistoryHash.createHash(newState);
+        var decode  = HistoryHash.decode,
+            newHash = HistoryHash.createHash(newState);
 
         HistoryHash.superclass._storeState.apply(this, arguments);
 
         // Update the location hash with the changes, but only if the new hash
         // actually differs from the current hash (this avoids creating multiple
         // history entries for a single state).
-        if (HistoryHash.getHash() !== newHash) {
+        //
+        // We always compare decoded hashes, since it's possible that the hash
+        // could be set incorrectly to a non-encoded value outside of
+        // HistoryHash.
+        if (src !== SRC_HASH && decode(HistoryHash.getHash()) !== decode(newHash)) {
             HistoryHash[src === HistoryBase.SRC_REPLACE ? 'replaceHash' : 'setHash'](newHash);
         }
     },
@@ -779,7 +797,7 @@ Y.extend(HistoryHash, HistoryBase, {
         var encode = HistoryHash.encode,
             hash   = [];
 
-        Y.Object.each(params, function (value, key) {
+        YObject.each(params, function (value, key) {
             if (Lang.isValue(value)) {
                 hash.push(encode(key) + '=' + encode(value));
             }
@@ -1067,7 +1085,7 @@ if (HistoryBase.nativeHashChange) {
             if (oldHash !== newHash) {
                 newUrl = HistoryHash.getUrl();
 
-                YArray.each(hashNotifiers, function (notifier) {
+                YArray.each(hashNotifiers.concat(), function (notifier) {
                     notifier.fire({
                         oldHash: oldHash,
                         oldUrl : oldUrl,
@@ -1112,33 +1130,30 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
     var Do          = Y.Do,
         GlobalEnv   = YUI.namespace('Env.HistoryHash'),
         HistoryHash = Y.HistoryHash,
+
         iframe      = GlobalEnv._iframe,
         win         = Y.config.win,
-        location    = win.location;
+        location    = win.location,
+        lastUrlHash = '';
 
-    HistoryHash.getHash = function () {
-        // The iframe's hash always wins over the parent frame's. This results
-        // in the unfortunate edge case that changing the parent's hash without
-        // using the YUI History API will not result in a hashchange event, but
-        // this is a reasonable tradeoff. The only time the parent frame's hash
-        // will be returned is if the iframe hasn't been created yet (i.e.,
-        // before domready).
+    /**
+     * Gets the raw (not decoded) current location hash from the IE iframe,
+     * minus the preceding '#' character and the hashPrefix (if one is set).
+     *
+     * @method getIframeHash
+     * @return {String} current iframe hash
+     * @static
+     */
+    HistoryHash.getIframeHash = function () {
+        if (!iframe || !iframe.contentWindow) {
+            return '';
+        }
+
         var prefix = HistoryHash.hashPrefix,
-            hash   = iframe ? iframe.contentWindow.location.hash.substr(1) :
-                        location.hash.substr(1);
+            hash   = iframe.contentWindow.location.hash.substr(1);
 
         return prefix && hash.indexOf(prefix) === 0 ?
                     hash.replace(prefix, '') : hash;
-    };
-
-    HistoryHash.getUrl = function () {
-        var hash = HistoryHash.getHash();
-
-        if (hash && hash !== location.hash.substr(1)) {
-            return location.href.replace(/#.*$/, '') + '#' + hash;
-        } else {
-            return location.href;
-        }
     };
 
     /**
@@ -1153,8 +1168,12 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
      * @for HistoryHash
      */
     HistoryHash._updateIframe = function (hash, replace) {
-        var iframeDoc      = iframe.contentWindow.document,
-            iframeLocation = iframeDoc.location;
+        var iframeDoc      = iframe && iframe.contentWindow && iframe.contentWindow.document,
+            iframeLocation = iframeDoc && iframeDoc.location;
+
+        if (!iframeDoc || !iframeLocation) {
+            return;
+        }
 
         Y.log('updating history iframe: ' + hash, 'info', 'history');
 
@@ -1168,7 +1187,6 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
     };
 
     Do.after(HistoryHash._updateIframe, HistoryHash, 'replaceHash', HistoryHash, true);
-    Do.after(HistoryHash._updateIframe, HistoryHash, 'setHash');
 
     if (!iframe) {
         Y.on('domready', function () {
@@ -1204,17 +1222,29 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
             // Update the iframe with the initial location hash, if any. This
             // will create an initial history entry that the user can return to
             // after the state has changed.
-            HistoryHash._updateIframe(location.hash.substr(1));
-        });
+            HistoryHash._updateIframe(HistoryHash.getHash() || '#');
 
-        // Listen for hashchange events and keep the parent window's location
-        // hash in sync with the hash stored in the iframe.
-        Y.on('hashchange', function (e) {
-            if (location.hash.substr(1) !== e.newHash) {
-                Y.log('updating parent location hash to match iframe location hash', 'info', 'history');
-                location.hash = e.newHash;
-            }
-        }, win);
+            // Listen for hashchange events and keep the iframe's hash in sync
+            // with the parent frame's hash.
+            Y.on('hashchange', function (e) {
+                lastUrlHash = e.newHash;
+
+                if (HistoryHash.getIframeHash() !== lastUrlHash) {
+                    Y.log('updating iframe hash to match URL hash', 'info', 'history');
+                    HistoryHash._updateIframe(lastUrlHash);
+                }
+            }, win);
+
+            // Watch the iframe hash in order to detect back/forward navigation.
+            Y.later(50, null, function () {
+                var iframeHash = HistoryHash.getIframeHash();
+
+                if (iframeHash !== lastUrlHash) {
+                    Y.log('updating URL hash to match iframe hash', 'info', 'history');
+                    HistoryHash.setHash(iframeHash);
+                }
+            }, null, true);
+        });
     }
 }
 

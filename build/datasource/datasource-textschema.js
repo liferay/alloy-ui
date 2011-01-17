@@ -110,4 +110,4 @@ Y.namespace('Plugin').DataSourceTextSchema = DataSourceTextSchema;
 
 
 
-}, '3.2.0' ,{requires:['plugin', 'datasource-local', 'dataschema-text']});
+}, '3.2.0' ,{requires:['datasource-local', 'plugin', 'dataschema-text']});

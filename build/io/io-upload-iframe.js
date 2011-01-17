@@ -16,7 +16,8 @@ YUI.add('io-upload-iframe', function(Y) {
 
     var w = Y.config.win,
         d = Y.config.doc,
-        str = (d.documentMode && d.documentMode === 8);
+        _std = (d.documentMode && d.documentMode >= 8),
+		_d = decodeURIComponent;
    /**
     * @description Parses the POST data object and creates hidden form elements
     * for each key-value, and appends them to the HTML form object.
@@ -35,8 +36,8 @@ YUI.add('io-upload-iframe', function(Y) {
         for (i = 0, l = m.length - 1; i < l; i++) {
             o[i] = d.createElement('input');
             o[i].type = 'hidden';
-            o[i].name = m[i].substring(m[i].lastIndexOf('&') + 1);
-            o[i].value = (i + 1 === l) ? m[i + 1] : m[i + 1].substring(0, (m[i + 1].lastIndexOf('&')));
+            o[i].name = _d(m[i].substring(m[i].lastIndexOf('&') + 1));
+            o[i].value = (i + 1 === l) ? _d(m[i + 1]) : _d(m[i + 1].substring(0, (m[i + 1].lastIndexOf('&'))));
             f.appendChild(o[i]);
         }
 
@@ -56,7 +57,7 @@ YUI.add('io-upload-iframe', function(Y) {
     function _removeData(f, o) {
         var i, l;
 
-        for(i = 0, l = o.length; i < l; i++){
+        for (i = 0, l = o.length; i < l; i++) {
             f.removeChild(o[i]);
         }
     }
@@ -76,12 +77,11 @@ YUI.add('io-upload-iframe', function(Y) {
         f.setAttribute('action', uri);
         f.setAttribute('method', 'POST');
         f.setAttribute('target', 'ioupload' + id );
-        f.setAttribute(Y.UA.ie && !str ? 'encoding' : 'enctype', 'multipart/form-data');
+        f.setAttribute(Y.UA.ie && !_std ? 'encoding' : 'enctype', 'multipart/form-data');
     }
 
    /**
-    * @description Sets the appropriate attributes and values to the HTML
-    * form, in preparation of a file upload transaction.
+    * @description Reset the HTML form attributes to their original values.
     * @method _resetAttrs
     * @private
     * @static
@@ -175,7 +175,7 @@ YUI.add('io-upload-iframe', function(Y) {
         if (b) {
             // When a response Content-Type of "text/plain" is used, Firefox and Safari
             // will wrap the response string with <pre></pre>.
-            p = b.query('pre:first-child');
+            p = b.one('pre:first-child');
             o.c.responseText = p ? p.get('text') : b.get('text');
         }
         else {

@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.2.0
 build: nightly
 */
-YUI.add("range-slider",function(A){A.Slider=A.Base.build("slider",A.SliderBase,[A.SliderValueRange,A.ClickableRail]);},"3.2.0",{requires:["slider-base","clickable-rail","slider-value-range"]});
+YUI.add("range-slider",function(a){a.Slider=a.Base.build("slider",a.SliderBase,[a.SliderValueRange,a.ClickableRail]);},"3.2.0",{requires:["slider-base","clickable-rail","slider-value-range"]});

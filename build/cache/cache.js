@@ -398,15 +398,37 @@ function CacheOffline() {
     CacheOffline.superclass.constructor.apply(this, arguments);
 }
 
-var localStorage = Y.config.win.localStorage,
-    JSON = Y.JSON,
+var localStorage = null,
+    JSON = Y.JSON;
 
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    // CacheOffline static properties
-    //
-    /////////////////////////////////////////////////////////////////////////////
-    cacheOfflineStatic = {
+// Bug 2529572
+try {
+    localStorage = Y.config.win.localStorage;
+}
+catch(e) {
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// CacheOffline events
+//
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+* @event error
+* @description Fired when an entry could not be added, most likely due to
+* exceeded browser quota.
+* <dl>
+* <dt>error (Object)</dt> <dd>The error object.</dd>
+* </dl>
+*/
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// CacheOffline static
+//
+/////////////////////////////////////////////////////////////////////////////
+Y.mix(CacheOffline, {
     /**
      * Class name.
      *
@@ -476,7 +498,7 @@ var localStorage = Y.config.win.localStorage,
             }
         }
     },
-    
+
     /**
      * Removes all items from all sandboxes. Useful if localStorage has
      * exceeded quota. Only supported on browsers that implement HTML 5
@@ -504,25 +526,15 @@ var localStorage = Y.config.win.localStorage,
         else {
         }
     }
-    },
+});
 
+Y.extend(CacheOffline, Y.Cache, localStorage ? {
+/////////////////////////////////////////////////////////////////////////////
+//
+// Offline is supported
+//
+/////////////////////////////////////////////////////////////////////////////
 
-    /////////////////////////////////////////////////////////////////////////////
-    //
-    // CacheOffline events
-    //
-    /////////////////////////////////////////////////////////////////////////////
-
-    /**
-    * @event error
-    * @description Fired when an entry could not be added, most likely due to
-    * exceeded browser quota.
-    * <dl>
-    * <dt>error (Object)</dt> <dd>The error object.</dd>
-    * </dl>
-    */
-
-    cacheOfflinePrototype =  localStorage ? {
     /////////////////////////////////////////////////////////////////////////////
     //
     // CacheOffline protected methods
@@ -592,7 +604,7 @@ var localStorage = Y.config.win.localStorage,
             request = entry.request,
             cached = entry.cached,
             expires = entry.expires;
-            
+
         // Convert Dates to msecs on the way into localStorage
         entry.cached = cached.getTime();
         entry.expires = expires ? expires.getTime() : expires;
@@ -623,7 +635,7 @@ var localStorage = Y.config.win.localStorage,
             }
         }
     },
-    
+
     /////////////////////////////////////////////////////////////////////////////
     //
     // CacheOffline public methods
@@ -669,7 +681,7 @@ var localStorage = Y.config.win.localStorage,
             expires = entry.expires;
             expires = !expires ? null : new Date(expires);
             entry.expires = expires;
-            
+
             if(this._isMatch(request, entry)) {
                 this.fire("retrieve", {entry: entry});
                 return entry;
@@ -677,7 +689,13 @@ var localStorage = Y.config.win.localStorage,
         }
         return null;
     }
-} : {
+} :
+/////////////////////////////////////////////////////////////////////////////
+//
+// Offline is not supported
+//
+/////////////////////////////////////////////////////////////////////////////
+{
     /**
      * Always return null.
      *
@@ -687,10 +705,7 @@ var localStorage = Y.config.win.localStorage,
     _setMax: function(value) {
         return null;
     }
-};
-
-Y.mix(CacheOffline, cacheOfflineStatic);
-Y.extend(CacheOffline, Y.Cache, cacheOfflinePrototype);
+});
 
 
 Y.CacheOffline = CacheOffline;
@@ -745,7 +760,7 @@ Y.namespace("Plugin").Cache = CachePlugin;
 
 
 
-}, '3.2.0' ,{requires:['cache-base']});
+}, '3.2.0' ,{requires:['plugin','cache-base']});
 
 
 

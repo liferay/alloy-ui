@@ -112,4 +112,4 @@ Y.namespace('Plugin').DataSourceJSONSchema = DataSourceJSONSchema;
 
 
 
-}, '3.2.0' ,{requires:['plugin', 'datasource-local', 'dataschema-json']});
+}, '3.2.0' ,{requires:['datasource-local', 'plugin', 'dataschema-json']});

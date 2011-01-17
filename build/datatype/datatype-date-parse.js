@@ -49,4 +49,4 @@ Y.mix(Y.namespace("DataType.Date"), {
 Y.namespace("Parsers").date = Y.DataType.Date.parse;
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});

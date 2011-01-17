@@ -23,7 +23,7 @@ var L   = Y.Lang,
     isObject    = L.isObject,
     isNumber    = L.isNumber,
     doc         = Y.config.doc,
-    
+
     //mouse events supported
     mouseEvents = {
         click:      1,
@@ -34,14 +34,14 @@ var L   = Y.Lang,
         mouseup:    1,
         mousemove:  1
     },
-    
+
     //key events supported
     keyEvents   = {
         keydown:    1,
         keyup:      1,
         keypress:   1
     },
-    
+
     //HTML events supported
     uiEvents  = {
         blur:       1,
@@ -50,9 +50,8 @@ var L   = Y.Lang,
         resize:     1,
         scroll:     1,
         select:     1
-
     },
-    
+
     //events that bubble by default
     bubbleEvents = {
         scroll:     1,
@@ -64,10 +63,10 @@ var L   = Y.Lang,
         error:      1,
         abort:      1
     };
-    
+
 //all key and mouse events bubble
 Y.mix(bubbleEvents, mouseEvents);
-Y.mix(bubbleEvents, keyEvents);    
+Y.mix(bubbleEvents, keyEvents);
 
 /*
  * Note: Intentionally not for YUIDoc generation.
@@ -87,7 +86,7 @@ Y.mix(bubbleEvents, keyEvents);
  *      default. The default is true.
  * @param {Boolean} cancelable (Optional) Indicates if the event can be
  *      canceled using preventDefault(). DOM Level 3 specifies that all
- *      key events can be cancelled. The default 
+ *      key events can be cancelled. The default
  *      is true.
  * @param {Window} view (Optional) The view containing the target. This is
  *      typically the window object. The default is window.
@@ -99,23 +98,23 @@ Y.mix(bubbleEvents, keyEvents);
  *      is pressed while the event is firing. The default is false.
  * @param {Boolean} metaKey (Optional) Indicates if one of the META keys
  *      is pressed while the event is firing. The default is false.
- * @param {int} keyCode (Optional) The code for the key that is in use. 
+ * @param {int} keyCode (Optional) The code for the key that is in use.
  *      The default is 0.
  * @param {int} charCode (Optional) The Unicode code for the character
  *      associated with the key being used. The default is 0.
  */
-function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/, 
-                             bubbles /*:Boolean*/,  cancelable /*:Boolean*/,    
+function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
+                             bubbles /*:Boolean*/,  cancelable /*:Boolean*/,
                              view /*:Window*/,
-                             ctrlKey /*:Boolean*/,    altKey /*:Boolean*/, 
-                             shiftKey /*:Boolean*/,   metaKey /*:Boolean*/, 
-                             keyCode /*:int*/,        charCode /*:int*/) /*:Void*/                             
+                             ctrlKey /*:Boolean*/,    altKey /*:Boolean*/,
+                             shiftKey /*:Boolean*/,   metaKey /*:Boolean*/,
+                             keyCode /*:int*/,        charCode /*:int*/) /*:Void*/
 {
-    //check target    
+    //check target
     if (!target){
         Y.error("simulateKeyEvent(): Invalid target.");
     }
-    
+
     //check event type
     if (isString(type)){
         type = type.toLowerCase();
@@ -133,7 +132,7 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
     } else {
         Y.error("simulateKeyEvent(): Event type must be a string.");
     }
-    
+
     //setup default values
     if (!isBoolean(bubbles)){
         bubbles = true; //all key events bubble
@@ -160,20 +159,20 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
         keyCode = 0;
     }
     if (!isNumber(charCode)){
-        charCode = 0; 
+        charCode = 0;
     }
 
     //try to create a mouse event
     var customEvent /*:MouseEvent*/ = null;
-        
+
     //check for DOM-compliant browsers first
     if (isFunction(doc.createEvent)){
-    
+
         try {
-            
+
             //try to create key event
             customEvent = doc.createEvent("KeyEvents");
-            
+
             /*
              * Interesting problem: Firefox implemented a non-standard
              * version of initKeyEvent() based on DOM Level 2 specs.
@@ -184,12 +183,12 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
              */
             // @TODO: Decipher between Firefox's implementation and a correct one.
             customEvent.initKeyEvent(type, bubbles, cancelable, view, ctrlKey,
-                altKey, shiftKey, metaKey, keyCode, charCode);       
-            
+                altKey, shiftKey, metaKey, keyCode, charCode);
+
         } catch (ex /*:Error*/){
 
             /*
-             * If it got here, that means key events aren't officially supported. 
+             * If it got here, that means key events aren't officially supported.
              * Safari/WebKit is a real problem now. WebKit 522 won't let you
              * set keyCode, charCode, or other properties if you use a
              * UIEvent, so we first must try to create a generic event. The
@@ -219,19 +218,19 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
                 customEvent.metaKey = metaKey;
                 customEvent.keyCode = keyCode;
                 customEvent.charCode = charCode;
-      
-            }          
-         
+
+            }
+
         }
-        
+
         //fire the event
         target.dispatchEvent(customEvent);
 
     } else if (isObject(doc.createEventObject)){ //IE
-    
+
         //create an IE event object
         customEvent = doc.createEventObject();
-        
+
         //assign available properties
         customEvent.bubbles = bubbles;
         customEvent.cancelable = cancelable;
@@ -240,17 +239,17 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
         customEvent.altKey = altKey;
         customEvent.shiftKey = shiftKey;
         customEvent.metaKey = metaKey;
-        
+
         /*
          * IE doesn't support charCode explicitly. CharCode should
          * take precedence over any keyCode value for accurate
          * representation.
          */
         customEvent.keyCode = (charCode > 0) ? charCode : keyCode;
-        
+
         //fire the event
-        target.fireEvent("on" + type, customEvent);  
-                
+        target.fireEvent("on" + type, customEvent);
+
     } else {
         Y.error("simulateKeyEvent(): No event simulation framework present.");
     }
@@ -274,8 +273,8 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
  *      default. The default is true.
  * @param {Boolean} cancelable (Optional) Indicates if the event can be
  *      canceled using preventDefault(). DOM Level 2 specifies that all
- *      mouse events except mousemove can be cancelled. The default 
- *      is true for all events except mousemove, for which the default 
+ *      mouse events except mousemove can be cancelled. The default
+ *      is true for all events except mousemove, for which the default
  *      is false.
  * @param {Window} view (Optional) The view containing the target. This is
  *      typically the window object. The default is window.
@@ -307,25 +306,25 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
  *      events, this is the element that the mouse has moved from. This
  *      argument is ignored for all other events. The default is null.
  */
-function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/, 
-                               bubbles /*:Boolean*/,  cancelable /*:Boolean*/,    
-                               view /*:Window*/,        detail /*:int*/, 
-                               screenX /*:int*/,        screenY /*:int*/, 
-                               clientX /*:int*/,        clientY /*:int*/,       
-                               ctrlKey /*:Boolean*/,    altKey /*:Boolean*/, 
-                               shiftKey /*:Boolean*/,   metaKey /*:Boolean*/, 
+function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
+                               bubbles /*:Boolean*/,  cancelable /*:Boolean*/,
+                               view /*:Window*/,        detail /*:int*/,
+                               screenX /*:int*/,        screenY /*:int*/,
+                               clientX /*:int*/,        clientY /*:int*/,
+                               ctrlKey /*:Boolean*/,    altKey /*:Boolean*/,
+                               shiftKey /*:Boolean*/,   metaKey /*:Boolean*/,
                                button /*:int*/,         relatedTarget /*:HTMLElement*/) /*:Void*/
 {
-    
-    //check target   
+
+    //check target
     if (!target){
         Y.error("simulateMouseEvent(): Invalid target.");
     }
-    
+
     //check event type
     if (isString(type)){
         type = type.toLowerCase();
-        
+
         //make sure it's a supported mouse event
         if (!mouseEvents[type]){
             Y.error("simulateMouseEvent(): Event type '" + type + "' not supported.");
@@ -333,7 +332,7 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
     } else {
         Y.error("simulateMouseEvent(): Event type must be a string.");
     }
-    
+
     //setup default values
     if (!isBoolean(bubbles)){
         bubbles = true; //all mouse events bubble
@@ -348,16 +347,16 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
         detail = 1;  //number of mouse clicks must be at least one
     }
     if (!isNumber(screenX)){
-        screenX = 0; 
+        screenX = 0;
     }
     if (!isNumber(screenY)){
-        screenY = 0; 
+        screenY = 0;
     }
     if (!isNumber(clientX)){
-        clientX = 0; 
+        clientX = 0;
     }
     if (!isNumber(clientY)){
-        clientY = 0; 
+        clientY = 0;
     }
     if (!isBoolean(ctrlKey)){
         ctrlKey = false;
@@ -372,25 +371,27 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
         metaKey = false;
     }
     if (!isNumber(button)){
-        button = 0; 
+        button = 0;
     }
+
+    relatedTarget = relatedTarget || null;
 
     //try to create a mouse event
     var customEvent /*:MouseEvent*/ = null;
-        
+
     //check for DOM-compliant browsers first
     if (isFunction(doc.createEvent)){
-    
+
         customEvent = doc.createEvent("MouseEvents");
-    
+
         //Safari 2.x (WebKit 418) still doesn't implement initMouseEvent()
         if (customEvent.initMouseEvent){
             customEvent.initMouseEvent(type, bubbles, cancelable, view, detail,
-                                 screenX, screenY, clientX, clientY, 
-                                 ctrlKey, altKey, shiftKey, metaKey, 
+                                 screenX, screenY, clientX, clientY,
+                                 ctrlKey, altKey, shiftKey, metaKey,
                                  button, relatedTarget);
         } else { //Safari
-        
+
             //the closest thing available in Safari 2.x is UIEvents
             customEvent = doc.createEvent("UIEvents");
             customEvent.initEvent(type, bubbles, cancelable);
@@ -407,7 +408,7 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
             customEvent.button = button;
             customEvent.relatedTarget = relatedTarget;
         }
-        
+
         /*
          * Check to see if relatedTarget has been assigned. Firefox
          * versions less than 2.0 don't allow it to be assigned via
@@ -424,15 +425,15 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
                 customEvent.fromElement = relatedTarget;
             }
         }
-        
+
         //fire the event
         target.dispatchEvent(customEvent);
 
     } else if (isObject(doc.createEventObject)){ //IE
-    
+
         //create an IE event object
         customEvent = doc.createEventObject();
-        
+
         //assign available properties
         customEvent.bubbles = bubbles;
         customEvent.cancelable = cancelable;
@@ -459,8 +460,8 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
                 //leave as is
                 break;
             default:
-                customEvent.button = 0;                    
-        }    
+                customEvent.button = 0;
+        }
 
         /*
          * Have to use relatedTarget because IE won't allow assignment
@@ -468,10 +469,10 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
          * YAHOO.util.customEvent.getRelatedTarget() functional.
          */
         customEvent.relatedTarget = relatedTarget;
-        
+
         //fire the event
         target.fireEvent("on" + type, customEvent);
-                
+
     } else {
         Y.error("simulateMouseEvent(): No event simulation framework present.");
     }
@@ -495,28 +496,28 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
  *      default. The default is true.
  * @param {Boolean} cancelable (Optional) Indicates if the event can be
  *      canceled using preventDefault(). DOM Level 2 specifies that all
- *      mouse events except mousemove can be cancelled. The default 
- *      is true for all events except mousemove, for which the default 
+ *      mouse events except mousemove can be cancelled. The default
+ *      is true for all events except mousemove, for which the default
  *      is false.
  * @param {Window} view (Optional) The view containing the target. This is
  *      typically the window object. The default is window.
  * @param {int} detail (Optional) The number of times the mouse button has
  *      been used. The default value is 1.
  */
-function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/, 
-                               bubbles /*:Boolean*/,  cancelable /*:Boolean*/,    
+function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
+                               bubbles /*:Boolean*/,  cancelable /*:Boolean*/,
                                view /*:Window*/,        detail /*:int*/) /*:Void*/
 {
-    
-    //check target   
+
+    //check target
     if (!target){
         Y.error("simulateUIEvent(): Invalid target.");
     }
-    
+
     //check event type
     if (isString(type)){
         type = type.toLowerCase();
-        
+
         //make sure it's a supported mouse event
         if (!uiEvents[type]){
             Y.error("simulateUIEvent(): Event type '" + type + "' not supported.");
@@ -524,11 +525,11 @@ function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
     } else {
         Y.error("simulateUIEvent(): Event type must be a string.");
     }
-    
+
     //try to create a mouse event
-    var customEvent = null;    
-    
-    
+    var customEvent = null;
+
+
     //setup default values
     if (!isBoolean(bubbles)){
         bubbles = (type in bubbleEvents);  //not all events bubble
@@ -542,22 +543,22 @@ function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
     if (!isNumber(detail)){
         detail = 1;  //usually not used but defaulted to this
     }
-        
+
     //check for DOM-compliant browsers first
     if (isFunction(doc.createEvent)){
-    
+
         //just a generic UI Event object is needed
         customEvent = doc.createEvent("UIEvents");
         customEvent.initUIEvent(type, bubbles, cancelable, view, detail);
-        
+
         //fire the event
         target.dispatchEvent(customEvent);
 
     } else if (isObject(doc.createEventObject)){ //IE
-    
+
         //create an IE event object
         customEvent = doc.createEventObject();
-        
+
         //assign available properties
         customEvent.bubbles = bubbles;
         customEvent.cancelable = cancelable;
@@ -566,7 +567,7 @@ function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
 
         //fire the event
         target.fireEvent("on" + type, customEvent);
-                
+
     } else {
         Y.error("simulateUIEvent(): No event simulation framework present.");
     }
@@ -578,27 +579,28 @@ function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
  * @param {String} type The type of event to simulate (i.e., "click").
  * @param {Object} options (Optional) Extra options to copy onto the event object.
  * @return {void}
+ * @for Event
  * @method simulate
  * @static
  */
 Y.Event.simulate = function(target, type, options){
 
     options = options || {};
-    
+
     if (mouseEvents[type]){
         simulateMouseEvent(target, type, options.bubbles,
-            options.cancelable, options.view, options.detail, options.screenX,        
+            options.cancelable, options.view, options.detail, options.screenX,
             options.screenY, options.clientX, options.clientY, options.ctrlKey,
-            options.altKey, options.shiftKey, options.metaKey, options.button,         
-            options.relatedTarget);        
+            options.altKey, options.shiftKey, options.metaKey, options.button,
+            options.relatedTarget);
     } else if (keyEvents[type]){
         simulateKeyEvent(target, type, options.bubbles,
             options.cancelable, options.view, options.ctrlKey,
-            options.altKey, options.shiftKey, options.metaKey, 
-            options.keyCode, options.charCode);   
+            options.altKey, options.shiftKey, options.metaKey,
+            options.keyCode, options.charCode);
     } else if (uiEvents[type]){
         simulateUIEvent(target, type, options.bubbles,
-            options.cancelable, options.view, options.detail);        
+            options.cancelable, options.view, options.detail);
      } else {
         Y.error("simulate(): Event '" + type + "' can't be simulated.");
     }

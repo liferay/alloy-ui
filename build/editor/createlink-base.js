@@ -52,10 +52,15 @@ YUI.add('createlink-base', function(Y) {
         * @return {Node} Node instance of the item touched by this command.
         */
         createlink: function(cmd) {
-            var inst = this.get('host').getInstance(), out, a, sel,
+            var inst = this.get('host').getInstance(), out, a, sel, holder,
                 url = prompt(CreateLinkBase.STRINGS.PROMPT, CreateLinkBase.STRINGS.DEFAULT);
 
             if (url) {
+                holder = inst.config.doc.createElement('div');
+                url = inst.config.doc.createTextNode(url);
+                holder.appendChild(url);
+                url = holder.innerHTML;
+
 
                 this.get('host')._execCommand(cmd, url);
                 sel = new inst.Selection();
@@ -65,6 +70,13 @@ YUI.add('createlink-base', function(Y) {
                     a = out.item(0).one('a');
                     if (a) {
                         out.item(0).replace(a);
+                    }
+                    if (Y.UA.gecko) {
+                        if (a.get('parentNode').test('span')) {
+                            if (a.get('parentNode').one('br.yui-cursor')) {
+                                a.get('parentNode').insert(a, 'before');
+                            }
+                        }
                     }
                 } else {
                     //No selection, insert a new node..
@@ -77,4 +89,4 @@ YUI.add('createlink-base', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.2.0' ,{requires:['editor-base'], skinnable:false});

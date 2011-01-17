@@ -18,7 +18,7 @@ YUI.add('yql', function(Y) {
      * @param {String} sql The SQL statement to execute
      * @param {Function/Object} callback The callback to execute after the query (Falls through to JSONP).
      * @param {Object} params An object literal of extra parameters to pass along (optional).
-     * @param {Object} params An object literal of configuration options (optional): proto (http|https), base (url)
+     * @param {Object} opts An object literal of configuration options (optional): proto (http|https), base (url)
      */
     var YQLRequest = function (sql, callback, params, opts) {
         
@@ -41,6 +41,12 @@ YUI.add('yql', function(Y) {
     };
     
     YQLRequest.prototype = {
+        /**
+        * @private
+        * @property _jsonp
+        * @description Reference to the JSONP instance used to make the queries
+        */
+        _jsonp: null,
         /**
         * @private
         * @property _opts
@@ -73,8 +79,21 @@ YUI.add('yql', function(Y) {
             });
             
             url += ((this._opts && this._opts.base) ? this._opts.base : Y.YQLRequest.BASE_URL) + qs;
-
-            Y.jsonp(url, this._callback);
+            
+            var o = (!Y.Lang.isFunction(this._callback)) ? this._callback : { on: { success: this._callback } };
+            if (o.allowCache !== false) {
+                o.allowCache = true;
+            }
+            
+            if (!this._jsonp) {
+                this._jsonp = Y.jsonp(url, o);
+            } else {
+                this._jsonp.url = url;
+                if (o.on && o.on.success) {
+                    this._jsonp._config.on.success = o.on.success;
+                }
+                this._jsonp.send();
+            }
             return this;
         }
     };

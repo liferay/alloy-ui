@@ -125,4 +125,4 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});
+}, '3.2.0' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});

@@ -129,8 +129,8 @@ ScrollbarsPlugin.ATTRS = {
      * @type Y.Node
      */
     verticalNode: {
-		setter: '_setNode',
-        value: Y.Node.create(ScrollbarsPlugin.SCROLLBAR_TEMPLATE)
+        setter: '_setNode',
+        valueFn: '_defaultNode'
     },
 
     /**
@@ -140,8 +140,8 @@ ScrollbarsPlugin.ATTRS = {
      * @type Y.Node
      */
     horizontalNode: {
-		setter: '_setNode',
-        value: Y.Node.create(ScrollbarsPlugin.SCROLLBAR_TEMPLATE)
+        setter: '_setNode',
+        valueFn: '_defaultNode'
     }
 };
 
@@ -155,10 +155,9 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
     initializer: function() {
         this._host = this.get("host");
 
-        this.afterHostMethod('_uiScrollY', this._update);
-        this.afterHostMethod('_uiScrollX', this._update);
-        this.afterHostMethod('_uiDimensionsChange', this._hostDimensionsChange);
         this.afterHostEvent('scrollEnd', this._hostScrollEnd);
+        this.afterHostMethod('_uiScrollTo', this._update);
+        this.afterHostMethod('_uiDimensionsChange', this._hostDimensionsChange);
     },
 
     /**
@@ -415,20 +414,22 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
     },
 
     /**
-     * Position and resize the scroll bars according to the content size
+     * AOP method, invoked after the host's _uiScrollTo method, 
+     * to position and resize the scroll bars
      *
      * @method _update
-     * @param currentPos {Number} The current scrollX or scrollY value (not used here, but passed by default from _uiScrollX/_uiScrollY)
-     * @param duration {Number} Number of ms of animation (optional) - used when snapping to bounds
+     * @param x {Number} The current scrollX value
+     * @param y {Number} The current scrollY value
+     * @param duration {Number} Number of ms of animation (optional) - used when snapping to bounds 
      * @param easing {String} Optional easing equation to use during the animation, if duration is set
      * @protected
      */
-    _update: function(currentPos, duration, easing) {
-        
+    _update: function(x, y, duration, easing) {
+
         var vNode = this.get(VERTICAL_NODE),
             hNode = this.get(HORIZONTAL_NODE),
             host = this._host;
-
+            
         duration = (duration || 0)/1000;
 
         if (!this._showing) {
@@ -436,11 +437,11 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
         }
 
         if (host._scrollsVertical && vNode) {
-            this._updateBar(vNode, currentPos, duration, false);
+            this._updateBar(vNode, y, duration, false);
         }
 
         if (host._scrollsHorizontal && hNode) {
-            this._updateBar(hNode, currentPos, duration, true);
+            this._updateBar(hNode, x, duration, true);
         }
     },
 
@@ -548,6 +549,18 @@ Y.namespace("Plugin").ScrollViewScrollbars = Y.extend(ScrollbarsPlugin, Y.Plugin
 
         return node;
     },
+
+    /**
+     * Creates default node instances for scrollbars
+     *
+     * @method _defaultNode
+     * @return {Node} The Y.Node instance for the scrollbar
+     * 
+     * @protected
+     */
+    _defaultNode: function() {
+        return Y.Node.create(ScrollbarsPlugin.SCROLLBAR_TEMPLATE);
+    },    
 
     _basic: Y.UA.ie && Y.UA.ie <= 8
 

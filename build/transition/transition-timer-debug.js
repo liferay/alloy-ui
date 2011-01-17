@@ -54,11 +54,13 @@ Y.mix(Transition.prototype, {
     _runAttrs: function(time) {
         var anim = this,
             node = anim._node,
+            config = anim._config,
             uid = Y.stamp(node),
             attrs = Transition._nodeAttrs[uid],
             customAttr = Transition.behaviors,
             done = false,
             allDone = false,
+            data,
             name,
             attribute,
             setter,
@@ -75,6 +77,13 @@ Y.mix(Transition.prototype, {
                 delay = attribute.delay;
                 elapsed = (time - delay) / 1000;
                 t = time;
+                data = {
+                    type: 'propertyEnd',
+                    propertyName: name,
+                    config: config,
+                    elapsedTime: elapsed
+                };
+
                 setter = (i in customAttr && 'set' in customAttr[i]) ?
                         customAttr[i].set : Transition.DEFAULT_SETTER;
 
@@ -92,12 +101,11 @@ Y.mix(Transition.prototype, {
                         delete attrs[name];
                         anim._count--;
 
-                        node.fire('transition:propertyEnd', {
-                            type: 'propertyEnd',
-                            propertyName: name,
-                            config: anim._config,
-                            elapsedTime: elapsed
-                        });
+                        if (config[name] && config[name].on && config[name].on.end) {
+                            config[name].on.end.call(Y.one(node), data);
+                        }
+
+                        //node.fire('transition:propertyEnd', data);
 
                         if (!allDone && anim._count <= 0) {
                             allDone = true;
@@ -135,7 +143,7 @@ Y.mix(Transition.prototype, {
                 val = attribute.value;
 
                 // only allow supported properties
-                if (name in anim._node._node.style || name in Y.DOM.CUSTOM_STYLES) {
+                if (name in anim._node.style || name in Y.DOM.CUSTOM_STYLES) {
                     begin = (name in customAttr && 'get' in customAttr[name])  ?
                             customAttr[name].get(anim, name) : Transition.DEFAULT_GETTER(anim, name);
 
@@ -214,7 +222,7 @@ Y.mix(Y.Transition, {
     behaviors: {
         left: {
             get: function(anim, attr) {
-                return Y.DOM._getAttrOffset(anim._node._node, attr);
+                return Y.DOM._getAttrOffset(anim._node, attr);
             }
         }
     },
@@ -234,13 +242,13 @@ Y.mix(Y.Transition, {
 
         val = from + val[0] * (to - from);
 
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            unit = unit || '';
-            node.setStyle(att, val + unit);
-        } else if (node._node.attributes[att]) {
-            node.setAttribute(att, val);
+        if (node) {
+            if (att in node.style || att in Y.DOM.CUSTOM_STYLES) {
+                unit = unit || '';
+                Y.DOM.setStyle(node, att, val + unit);
+            }
         } else {
-            node.set(att, val);
+            anim._end();
         }
     },
 
@@ -254,12 +262,8 @@ Y.mix(Y.Transition, {
         var node = anim._node,
             val = '';
 
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            val = node.getComputedStyle(att);
-        } else if (node._node.attributes[att]) {
-            val = node.getAttribute(att);
-        } else {
-            val = node.get(att);
+        if (att in node.style || att in Y.DOM.CUSTOM_STYLES) {
+            val = Y.DOM.getComputedStyle(node, att);
         }
 
         return val;

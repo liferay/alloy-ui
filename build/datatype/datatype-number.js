@@ -41,7 +41,7 @@ Y.mix(Y.namespace("DataType.Number"), {
 Y.namespace("Parsers").number = Y.DataType.Number.parse;
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('datatype-number-format', function(Y) {
 
 /**
@@ -145,7 +145,7 @@ Y.mix(Y.namespace("DataType.Number"), {
 });
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});
 
 
 YUI.add('datatype-number', function(Y){}, '3.2.0' ,{use:['datatype-number-parse', 'datatype-number-format']});

@@ -110,4 +110,4 @@ Y.namespace('Plugin').DataSourceXMLSchema = DataSourceXMLSchema;
 
 
 
-}, '3.2.0' ,{requires:['plugin', 'datasource-local', 'dataschema-xml']});
+}, '3.2.0' ,{requires:['datasource-local', 'plugin', 'dataschema-xml']});

@@ -164,4 +164,4 @@ Y.namespace("Plugin").DataSourceCache = DataSourceCache;
 
 
 
-}, '3.2.0' ,{requires:['datasource-local']});
+}, '3.2.0' ,{requires:['datasource-local', 'cache-base']});

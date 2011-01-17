@@ -56,4 +56,4 @@ Y.mix(Y.namespace("DataType.XML"), {
 
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});

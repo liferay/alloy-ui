@@ -172,4 +172,4 @@ YUI.add('editor-lists', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.2.0' ,{requires:['editor-base'], skinnable:false});

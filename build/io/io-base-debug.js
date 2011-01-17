@@ -173,6 +173,7 @@ YUI.add('io-base', function(Y) {
         }
         else {
             o.c = {};
+			o.t = 'io:iframe';
         }
 
         return o;
@@ -447,21 +448,28 @@ YUI.add('io-base', function(Y) {
 
         for (p in _headers) {
             if (_headers.hasOwnProperty(p)) {
+				/*
                 if (h[p]) {
-                    // Configuration headers will supersede io preset headers,
+                    // Configuration headers will supersede preset io headers,
                     // if headers match.
                     continue;
                 }
                 else {
                     h[p] = _headers[p];
                 }
+				*/
+				if (!h[p]) {
+					h[p] = _headers[p];
+				}
             }
         }
 
         for (p in h) {
             if (h.hasOwnProperty(p)) {
-                o.setRequestHeader(p, h[p]);
-            }
+				if (h[p] !== 'disable') {
+                	o.setRequestHeader(p, h[p]);
+				}
+			}
         }
     }
 
@@ -529,12 +537,7 @@ YUI.add('io-base', function(Y) {
         var status;
 
         try {
-            if (o.c.status && o.c.status !== 0) {
-                status = o.c.status;
-            }
-            else {
-                status = 0;
-            }
+			status = (o.c.status && o.c.status !== 0) ? o.c.status : 0;
         }
         catch(e) {
             status = 0;
@@ -818,4 +821,4 @@ YUI.add('io-base', function(Y) {
     Y.io.http = _io;
 
 
-}, '3.2.0' ,{requires:['event-custom-base'], optional:['querystring-stringify-simple']});
+}, '3.2.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});

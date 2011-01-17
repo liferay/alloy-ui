@@ -1230,4 +1230,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.2.0' ,{requires:['dd-ddm-base'], skinnable:false});

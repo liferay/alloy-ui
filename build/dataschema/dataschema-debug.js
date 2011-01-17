@@ -275,7 +275,7 @@ var LANG = Y.Lang,
             var results = [],
                 len = fields.length,
                 i, j,
-                field, key, path, parser,
+                field, key, locator, path, parser,
                 simplePaths = [], complexPaths = [], fieldParsers = [],
                 result, record;
 
@@ -283,9 +283,10 @@ var LANG = Y.Lang,
             for (i=0; i<len; i++) {
                 field = fields[i]; // A field can be a simple string or a hash
                 key = field.key || field; // Find the key
+                locator = field.locator || key; // Find the locator
 
                 // Validate and store locators for later
-                path = SchemaJSON.getPath(key);
+                path = SchemaJSON.getPath(locator);
                 if (path) {
                     if (path.length === 1) {
                         simplePaths[simplePaths.length] = {key:key, path:path[0]};
@@ -374,7 +375,7 @@ Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
 
-}, '3.2.0' ,{requires:['json', 'dataschema-base']});
+}, '3.2.0' ,{requires:['dataschema-base','json']});
 
 YUI.add('dataschema-xml', function(Y) {
 
@@ -493,7 +494,7 @@ var LANG = Y.Lang,
                             subloc = location.slice(location.indexOf("[")+1, location.indexOf("]"));
                             //XPath is 1-based while DOM is 0-based
                             subloc--;
-                            context = context.childNodes[subloc];
+                            context = context.children[subloc];
                             isNth = true;
                         }
                         // grab attribute value @
@@ -618,7 +619,7 @@ var LANG = Y.Lang,
          *
          * @method _parseResults
          * @param schema {Object} Schema to parse against.
-         * @param context {Object} XML node document parse.
+         * @param context {Object} XML node or document to parse.
          * @param data_out {Object} In-progress schema-parsed data to update.
          * @return {Object} Schema-parsed data.
          * @static

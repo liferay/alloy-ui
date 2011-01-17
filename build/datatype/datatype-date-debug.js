@@ -50,7 +50,7 @@ Y.mix(Y.namespace("DataType.Date"), {
 Y.namespace("Parsers").date = Y.DataType.Date.parse;
 
 
-}, '3.2.0' );
+}, '3.2.0' ,{requires:['yui-base']});
 YUI.add('datatype-date-format', function(Y) {
 
 /**
@@ -484,7 +484,7 @@ Y.DataType.Date.Locale["en-AU"] = Y.merge(YDateEn);
 
 
 
-}, '3.2.0' ,{lang:['ar','ar-JO','ca','ca-ES','da','da-DK','de','de-AT','de-DE','el','el-GR','en','en-AU','en-CA','en-GB','en-IE','en-IN','en-JO','en-MY','en-NZ','en-PH','en-SG','en-US','es','es-AR','es-BO','es-CL','es-CO','es-EC','es-ES','es-MX','es-PE','es-PY','es-US','es-UY','es-VE','fi','fi-FI','fr','fr-BE','fr-CA','fr-FR','hi','hi-IN','id','id-ID','it','it-IT','ja','ja-JP','ko','ko-KR','ms','ms-MY','nb','nb-NO','nl','nl-BE','nl-NL','pl','pl-PL','pt','pt-BR','ro','ro-RO','ru','ru-RU','sv','sv-SE','th','th-TH','tr','tr-TR','vi','vi-VN','zh-Hans','zh-Hans-CN','zh-Hant','zh-Hant-HK','zh-Hant-TW']});
+}, '3.2.0' ,{requires:['yui-base'], lang:['ar','ar-JO','ca','ca-ES','da','da-DK','de','de-AT','de-DE','el','el-GR','en','en-AU','en-CA','en-GB','en-IE','en-IN','en-JO','en-MY','en-NZ','en-PH','en-SG','en-US','es','es-AR','es-BO','es-CL','es-CO','es-EC','es-ES','es-MX','es-PE','es-PY','es-US','es-UY','es-VE','fi','fi-FI','fr','fr-BE','fr-CA','fr-FR','hi','hi-IN','id','id-ID','it','it-IT','ja','ja-JP','ko','ko-KR','ms','ms-MY','nb','nb-NO','nl','nl-BE','nl-NL','pl','pl-PL','pt','pt-BR','ro','ro-RO','ru','ru-RU','sv','sv-SE','th','th-TH','tr','tr-TR','vi','vi-VN','zh-Hans','zh-Hans-CN','zh-Hant','zh-Hant-HK','zh-Hant-TW']});
 
 
 YUI.add('datatype-date', function(Y){}, '3.2.0' ,{use:['datatype-date-parse', 'datatype-date-format']});
