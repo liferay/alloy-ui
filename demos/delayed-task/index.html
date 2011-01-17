@@ -92,7 +92,7 @@ AUI().ready(
 			}
 		);
 
-		var inputNode = A.get('#longNumber');
+		var inputNode = A.one('#longNumber');
 		var symbol = A.Node.create('<span class="aui-button aui-button-content aui-icon-button aui-helper-hidden"><span class="aui-icon"></span></span>');
 
 		inputNode.get('parentNode').insertBefore(symbol, inputNode.get('nextSibling'));

@@ -134,7 +134,7 @@ AUI().ready('aui-dialog', 'aui-overlay-manager', 'dd-constrain', function(A) {
 		uri: 'assets/content.html'
 	});
 
-	A.get('#createNew').on('click', function() {
+	A.one('#createNew').on('click', function() {
 		var dialog = new A.Dialog(
 			A.merge(options, {
 				title: 'New Dialog',
@@ -153,15 +153,15 @@ AUI().ready('aui-dialog', 'aui-overlay-manager', 'dd-constrain', function(A) {
 		dialog.io.start();
 	});
 
-	A.get('#showAll').on('click', function() {
+	A.one('#showAll').on('click', function() {
 		A.DialogManager.showAll();
 	});
 
-	A.get('#hideAll').on('click', function() {
+	A.one('#hideAll').on('click', function() {
 		A.DialogManager.hideAll();
 	});
 
-	A.get('#alignHere').on('click', function() {
+	A.one('#alignHere').on('click', function() {
 		dialog1.set('align', { node: '#alignHere', points: [ 'tl', 'tr' ]});
 	});
 
