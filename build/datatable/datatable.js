@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('datatable-base', function(Y) {
@@ -1640,7 +1640,7 @@ Y.namespace("DataTable").Base = DTBase;
 
 
 
-}, '3.2.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});
+}, '3.3.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});
 
 YUI.add('datatable-datasource', function(Y) {
 
@@ -1823,7 +1823,7 @@ Y.namespace("Plugin").DataTableDataSource = DataTableDataSource;
 
 
 
-}, '3.2.0' ,{requires:['datatable-base','plugin','datasource-local']});
+}, '3.3.0' ,{requires:['datatable-base','plugin','datasource-local']});
 
 YUI.add('datatable-sort', function(Y) {
 
@@ -2138,7 +2138,7 @@ Y.namespace("Plugin").DataTableSort = DataTableSort;
 
 
 
-}, '3.2.0' ,{lang:['en'], requires:['datatable-base','plugin','recordset-sort']});
+}, '3.3.0' ,{lang:['en'], requires:['datatable-base','plugin','recordset-sort']});
 
 YUI.add('datatable-scroll', function(Y) {
 
@@ -2829,9 +2829,9 @@ Y.namespace("Plugin").DataTableScroll = DataTableScroll;
 
 
 
-}, '3.2.0' ,{requires:['datatable-base','plugin','stylesheet']});
+}, '3.3.0' ,{requires:['datatable-base','plugin','stylesheet']});
 
 
 
-YUI.add('datatable', function(Y){}, '3.2.0' ,{use:['datatable-base','datatable-datasource','datatable-sort','datatable-scroll']});
+YUI.add('datatable', function(Y){}, '3.3.0' ,{use:['datatable-base','datatable-datasource','datatable-sort','datatable-scroll']});
 

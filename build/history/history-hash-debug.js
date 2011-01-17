@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('history-hash', function(Y) {
@@ -483,4 +483,4 @@ if (useHistoryHTML5 === false || (!Y.History && useHistoryHTML5 !== true &&
 }
 
 
-}, '3.2.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
+}, '3.3.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});

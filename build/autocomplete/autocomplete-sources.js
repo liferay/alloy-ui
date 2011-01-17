@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('autocomplete-sources', function(Y) {
@@ -398,4 +398,4 @@ ACSources.ATTRS = {
 Y.Base.mix(Y.AutoCompleteBase, [ACSources]);
 
 
-}, '3.2.0' ,{optional:['io-base', 'json-parse', 'jsonp', 'yql'], requires:['autocomplete-base']});
+}, '3.3.0' ,{optional:['io-base', 'json-parse', 'jsonp', 'yql'], requires:['autocomplete-base']});

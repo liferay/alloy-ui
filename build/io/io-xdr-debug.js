@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('io-xdr', function(Y) {
@@ -325,4 +325,4 @@ YUI.add('io-xdr', function(Y) {
 	Y.io.xdr.delay = 50;
 
 
-}, '3.2.0' ,{requires:['io-base','datatype-xml']});
+}, '3.3.0' ,{requires:['io-base','datatype-xml']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('text-accentfold', function(Y) {
@@ -166,7 +166,7 @@ AccentFold = {
 Text.AccentFold = AccentFold;
 
 
-}, '3.2.0' ,{requires:['array-extras', 'text-data-accentfold']});
+}, '3.3.0' ,{requires:['array-extras', 'text-data-accentfold']});
 YUI.add('text-data-accentfold', function(Y) {
 
 // The following tool was very helpful in creating these mappings:
@@ -212,7 +212,7 @@ Y.namespace('Text.Data').AccentFold = {
 };
 
 
-}, '3.2.0' );
+}, '3.3.0' );
 YUI.add('text-data-wordbreak', function(Y) {
 
 Y.namespace('Text.Data').WordBreak = {
@@ -240,7 +240,7 @@ Y.namespace('Text.Data').WordBreak = {
 };
 
 
-}, '3.2.0' );
+}, '3.3.0' );
 YUI.add('text-wordbreak', function(Y) {
 
 /**
@@ -603,8 +603,8 @@ WordBreak = {
 Text.WordBreak = WordBreak;
 
 
-}, '3.2.0' ,{requires:['array-extras', 'text-data-wordbreak']});
+}, '3.3.0' ,{requires:['array-extras', 'text-data-wordbreak']});
 
 
-YUI.add('text', function(Y){}, '3.2.0' ,{use:['text-accentfold', 'text-wordbreak']});
+YUI.add('text', function(Y){}, '3.3.0' ,{use:['text-accentfold', 'text-wordbreak']});
 

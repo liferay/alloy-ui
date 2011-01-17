@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('datatable-sort', function(Y) {
@@ -318,4 +318,4 @@ Y.namespace("Plugin").DataTableSort = DataTableSort;
 
 
 
-}, '3.2.0' ,{lang:['en'], requires:['datatable-base','plugin','recordset-sort']});
+}, '3.3.0' ,{lang:['en'], requires:['datatable-base','plugin','recordset-sort']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('recordset-base', function(Y) {
@@ -652,7 +652,7 @@ Y.Recordset = Recordset;
 
 
 
-}, '3.2.0' ,{requires:['base','arraylist']});
+}, '3.3.0' ,{requires:['base','arraylist']});
 
 YUI.add('recordset-sort', function(Y) {
 
@@ -860,7 +860,7 @@ Y.namespace("Plugin").RecordsetSort = RecordsetSort;
 
 
 
-}, '3.2.0' ,{requires:['arraysort','recordset-base','plugin']});
+}, '3.3.0' ,{requires:['arraysort','recordset-base','plugin']});
 
 YUI.add('recordset-filter', function(Y) {
 
@@ -975,7 +975,7 @@ Y.namespace("Plugin").RecordsetFilter = RecordsetFilter;
 
 
 
-}, '3.2.0' ,{requires:['recordset-base','array-extras','plugin']});
+}, '3.3.0' ,{requires:['recordset-base','array-extras','plugin']});
 
 YUI.add('recordset-indexer', function(Y) {
 
@@ -1204,9 +1204,9 @@ Y.namespace("Plugin").RecordsetIndexer = RecordsetIndexer;
 
 
 
-}, '3.2.0' ,{requires:['recordset-base','plugin']});
+}, '3.3.0' ,{requires:['recordset-base','plugin']});
 
 
 
-YUI.add('recordset', function(Y){}, '3.2.0' ,{use:['recordset-base','recordset-sort','recordset-filter','recordset-indexer']});
+YUI.add('recordset', function(Y){}, '3.3.0' ,{use:['recordset-base','recordset-sort','recordset-filter','recordset-indexer']});
 

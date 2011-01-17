@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('dataschema-base', function(Y) {
@@ -70,7 +70,7 @@ Y.namespace("Parsers");
 
 
 
-}, '3.2.0' ,{requires:['base']});
+}, '3.3.0' ,{requires:['base']});
 
 YUI.add('dataschema-json', function(Y) {
 
@@ -370,7 +370,7 @@ Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
 
-}, '3.2.0' ,{requires:['dataschema-base','json']});
+}, '3.3.0' ,{requires:['dataschema-base','json']});
 
 YUI.add('dataschema-xml', function(Y) {
 
@@ -658,7 +658,7 @@ Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
 
-}, '3.2.0' ,{requires:['dataschema-base']});
+}, '3.3.0' ,{requires:['dataschema-base']});
 
 YUI.add('dataschema-array', function(Y) {
 
@@ -759,7 +759,7 @@ Y.DataSchema.Array = Y.mix(SchemaArray, Y.DataSchema.Base);
 
 
 
-}, '3.2.0' ,{requires:['dataschema-base']});
+}, '3.3.0' ,{requires:['dataschema-base']});
 
 YUI.add('dataschema-text', function(Y) {
 
@@ -869,9 +869,9 @@ Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
 
-}, '3.2.0' ,{requires:['dataschema-base']});
+}, '3.3.0' ,{requires:['dataschema-base']});
 
 
 
-YUI.add('dataschema', function(Y){}, '3.2.0' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
+YUI.add('dataschema', function(Y){}, '3.3.0' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
 

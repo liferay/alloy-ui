@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('resize-base', function(Y) {
@@ -1602,7 +1602,7 @@ Y.each(Y.Resize.prototype.ALL_HANDLES, function(handle, i) {
 });
 
 
-}, '3.2.0' ,{requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop'], skinnable:true});
+}, '3.3.0' ,{requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop'], skinnable:true});
 YUI.add('resize-proxy', function(Y) {
 
 var ACTIVE_HANDLE_NODE = 'activeHandleNode',
@@ -1748,7 +1748,7 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeProxy = ResizeProxy;
 
 
-}, '3.2.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
+}, '3.3.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
 YUI.add('resize-constrain', function(Y) {
 
 var Lang = Y.Lang,
@@ -2192,8 +2192,8 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeConstrained = ResizeConstrained;
 
 
-}, '3.2.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
+}, '3.3.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
 
 
-YUI.add('resize', function(Y){}, '3.2.0' ,{use:['resize-base', 'resize-proxy', 'resize-constrain']});
+YUI.add('resize', function(Y){}, '3.3.0' ,{use:['resize-base', 'resize-proxy', 'resize-constrain']});
 

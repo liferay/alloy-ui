@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('autocomplete-base', function(Y) {
@@ -1529,7 +1529,7 @@ AutoCompleteBase.prototype = {
 Y.AutoCompleteBase = AutoCompleteBase;
 
 
-}, '3.2.0' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});
+}, '3.3.0' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});
 YUI.add('autocomplete-sources', function(Y) {
 
 /**
@@ -1923,7 +1923,7 @@ ACSources.ATTRS = {
 Y.Base.mix(Y.AutoCompleteBase, [ACSources]);
 
 
-}, '3.2.0' ,{optional:['io-base', 'json-parse', 'jsonp', 'yql'], requires:['autocomplete-base']});
+}, '3.3.0' ,{optional:['io-base', 'json-parse', 'jsonp', 'yql'], requires:['autocomplete-base']});
 YUI.add('autocomplete-list', function(Y) {
 
 /**
@@ -2708,7 +2708,7 @@ Y.AutoCompleteList = List;
 Y.AutoComplete = List;
 
 
-}, '3.2.0' ,{lang:['en'], requires:['autocomplete-base', 'selector-css3', 'widget', 'widget-position', 'widget-position-align', 'widget-stack'], after:['autocomplete-sources'], skinnable:true});
+}, '3.3.0' ,{lang:['en'], requires:['autocomplete-base', 'selector-css3', 'widget', 'widget-position', 'widget-position-align', 'widget-stack'], after:['autocomplete-sources'], skinnable:true});
 YUI.add('autocomplete-plugin', function(Y) {
 
 /**
@@ -2762,8 +2762,8 @@ Plugin.AutoComplete     = ACListPlugin;
 Plugin.AutoCompleteList = ACListPlugin;
 
 
-}, '3.2.0' ,{requires:['autocomplete-list', 'node-pluginhost']});
+}, '3.3.0' ,{requires:['autocomplete-list', 'node-pluginhost']});
 
 
-YUI.add('autocomplete', function(Y){}, '3.2.0' ,{use:['autocomplete-base', 'autocomplete-sources', 'autocomplete-list', 'autocomplete-plugin']});
+YUI.add('autocomplete', function(Y){}, '3.3.0' ,{use:['autocomplete-base', 'autocomplete-sources', 'autocomplete-list', 'autocomplete-plugin']});
 

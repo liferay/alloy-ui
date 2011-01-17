@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('recordset-indexer', function(Y) {
@@ -232,4 +232,4 @@ Y.namespace("Plugin").RecordsetIndexer = RecordsetIndexer;
 
 
 
-}, '3.2.0' ,{requires:['recordset-base','plugin']});
+}, '3.3.0' ,{requires:['recordset-base','plugin']});

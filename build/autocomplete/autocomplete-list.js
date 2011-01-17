@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('autocomplete-list', function(Y) {
@@ -789,4 +789,4 @@ Y.AutoCompleteList = List;
 Y.AutoComplete = List;
 
 
-}, '3.2.0' ,{lang:['en'], requires:['autocomplete-base', 'selector-css3', 'widget', 'widget-position', 'widget-position-align', 'widget-stack'], after:['autocomplete-sources'], skinnable:true});
+}, '3.3.0' ,{lang:['en'], requires:['autocomplete-base', 'selector-css3', 'widget', 'widget-position', 'widget-position-align', 'widget-stack'], after:['autocomplete-sources'], skinnable:true});

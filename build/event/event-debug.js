@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 var GLOBAL_ENV = YUI.Env;
@@ -1277,7 +1277,7 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.2.0' ,{requires:['event-custom-base']});
+}, '3.3.0' ,{requires:['event-custom-base']});
 YUI.add('event-delegate', function(Y) {
 
 /**
@@ -1590,7 +1590,7 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.2.0' ,{requires:['node-base']});
+}, '3.3.0' ,{requires:['node-base']});
 YUI.add('event-synthetic', function(Y) {
 
 /**
@@ -2341,7 +2341,7 @@ Y.Event.define = function (type, config, force) {
 };
 
 
-}, '3.2.0' ,{requires:['node-base', 'event-custom']});
+}, '3.3.0' ,{requires:['node-base', 'event-custom']});
 YUI.add('event-mousewheel', function(Y) {
 
 /**
@@ -2391,7 +2391,7 @@ Y.Env.evt.plugins.mousewheel = {
 };
 
 
-}, '3.2.0' ,{requires:['node-base']});
+}, '3.3.0' ,{requires:['node-base']});
 YUI.add('event-mouseenter', function(Y) {
 
 /**
@@ -2453,7 +2453,7 @@ Y.Event.define("mouseenter", config, true);
 Y.Event.define("mouseleave", Y.merge(config, { proxyType: "mouseout" }), true);
 
 
-}, '3.2.0' ,{requires:['event-synthetic']});
+}, '3.3.0' ,{requires:['event-synthetic']});
 YUI.add('event-key', function(Y) {
 
 /**
@@ -2557,7 +2557,7 @@ Y.log('Illegal key spec, creating a regular keypress listener instead.', 'info',
 };
 
 
-}, '3.2.0' ,{requires:['node-base']});
+}, '3.3.0' ,{requires:['node-base']});
 YUI.add('event-focus', function(Y) {
 
 /**
@@ -2705,7 +2705,7 @@ if (useActivate) {
 }
 
 
-}, '3.2.0' ,{requires:['event-synthetic']});
+}, '3.3.0' ,{requires:['event-synthetic']});
 YUI.add('event-resize', function(Y) {
 
 /**
@@ -2769,7 +2769,7 @@ Y.Env.evt.plugins.windowresize = {
 })();
 
 
-}, '3.2.0' ,{requires:['node-base']});
+}, '3.3.0' ,{requires:['node-base']});
 YUI.add('event-hover', function(Y) {
 
 /**
@@ -2824,8 +2824,8 @@ conf.detachDelegate = conf.detach;
 Y.Event.define("hover", conf);
 
 
-}, '3.2.0' ,{requires:['event-mouseenter']});
+}, '3.3.0' ,{requires:['event-mouseenter']});
 
 
-YUI.add('event', function(Y){}, '3.2.0' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize', 'event-hover']});
+YUI.add('event', function(Y){}, '3.3.0' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize', 'event-hover']});
 

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('autocomplete-base', function(Y) {
@@ -1522,4 +1522,4 @@ AutoCompleteBase.prototype = {
 Y.AutoCompleteBase = AutoCompleteBase;
 
 
-}, '3.2.0' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});
+}, '3.3.0' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('loader-base', function(Y) {
@@ -2184,4 +2184,4 @@ Y.log('attempting to load ' + s[i] + ', ' + self.base, 'info', 'loader');
 
 
 
-}, '3.2.0' ,{requires:['get']});
+}, '3.3.0' ,{requires:['get']});

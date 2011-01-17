@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('scrollview-base', function(Y) {
@@ -954,4 +954,4 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
 });
 
 
-}, '3.2.0' ,{skinnable:true, requires:['widget', 'event-gestures', 'transition']});
+}, '3.3.0' ,{skinnable:true, requires:['widget', 'event-gestures', 'transition']});

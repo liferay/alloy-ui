@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('pluginhost-base', function(Y) {
@@ -182,7 +182,7 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('pluginhost-config', function(Y) {
 
     /**
@@ -303,8 +303,8 @@ YUI.add('pluginhost-config', function(Y) {
     };
 
 
-}, '3.2.0' ,{requires:['pluginhost-base']});
+}, '3.3.0' ,{requires:['pluginhost-base']});
 
 
-YUI.add('pluginhost', function(Y){}, '3.2.0' ,{use:['pluginhost-base', 'pluginhost-config']});
+YUI.add('pluginhost', function(Y){}, '3.3.0' ,{use:['pluginhost-base', 'pluginhost-config']});
 

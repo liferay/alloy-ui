@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('widget-base', function(Y) {
@@ -1137,7 +1137,7 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '3.2.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});
+}, '3.3.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});
 YUI.add('widget-uievents', function(Y) {
 
 /**
@@ -1332,7 +1332,7 @@ Y.mix(Widget.prototype, {
 }, true); // overwrite existing EventTarget methods
 
 
-}, '3.2.0' ,{requires:['widget-base', 'node-event-delegate']});
+}, '3.3.0' ,{requires:['widget-base', 'node-event-delegate']});
 YUI.add('widget-htmlparser', function(Y) {
 
 /**
@@ -1495,7 +1495,7 @@ Y.mix(Widget.prototype, {
 });
 
 
-}, '3.2.0' ,{requires:['widget-base']});
+}, '3.3.0' ,{requires:['widget-base']});
 YUI.add('widget-skin', function(Y) {
 
 /**
@@ -1538,8 +1538,8 @@ Y.Widget.prototype.getSkinName = function () {
 };
 
 
-}, '3.2.0' ,{requires:['widget-base']});
+}, '3.3.0' ,{requires:['widget-base']});
 
 
-YUI.add('widget', function(Y){}, '3.2.0' ,{use:['widget-base', 'widget-uievents', 'widget-htmlparser', 'widget-skin']});
+YUI.add('widget', function(Y){}, '3.3.0' ,{use:['widget-base', 'widget-uievents', 'widget-htmlparser', 'widget-skin']});
 

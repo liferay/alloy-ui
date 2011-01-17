@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('event-custom-base', function(Y) {
@@ -2015,7 +2015,7 @@ Y.Global = YUI.Env.globalEvents;
  */
 
 
-}, '3.2.0' ,{requires:['oop']});
+}, '3.3.0' ,{requires:['oop']});
 YUI.add('event-custom-complex', function(Y) {
 
 
@@ -2514,8 +2514,8 @@ FACADE_KEYS = Y.Object.keys(FACADE);
 
 
 
-}, '3.2.0' ,{requires:['event-custom-base']});
+}, '3.3.0' ,{requires:['event-custom-base']});
 
 
-YUI.add('event-custom', function(Y){}, '3.2.0' ,{use:['event-custom-base', 'event-custom-complex']});
+YUI.add('event-custom', function(Y){}, '3.3.0' ,{use:['event-custom-base', 'event-custom-complex']});
 

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('widget-base', function(Y) {
@@ -1137,4 +1137,4 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '3.2.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});
+}, '3.3.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});

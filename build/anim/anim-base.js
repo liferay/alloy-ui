@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('anim-base', function(Y) {
@@ -662,4 +662,4 @@ YUI.add('anim-base', function(Y) {
     Y.extend(Y.Anim, Y.Base, proto);
 
 
-}, '3.2.0' ,{requires:['base-base', 'node-style']});
+}, '3.3.0' ,{requires:['base-base', 'node-style']});

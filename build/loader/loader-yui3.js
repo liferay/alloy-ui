@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('loader-yui3', function(Y) {
@@ -1699,4 +1699,4 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
 YUI.Env[Y.version].md5 = 'faf08d27c01d7ab5575789a63b1e36fc';
 
 
-}, '3.2.0' ,{requires:['loader-base']});
+}, '3.3.0' ,{requires:['loader-base']});

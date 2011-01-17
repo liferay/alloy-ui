@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('dial', function(Y) {
@@ -985,4 +985,4 @@ YUI.add('dial', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['widget', 'dd-drag', 'substitute', 'event-mouseenter', 'transition', 'intl'], skinnable:true, lang:['en','es' ]});
+}, '3.3.0' ,{requires:['widget', 'dd-drag', 'substitute', 'event-mouseenter', 'transition', 'intl'], skinnable:true, lang:['en','es' ]});

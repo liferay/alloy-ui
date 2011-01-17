@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 YUI.add('test', function(Y) {
@@ -3094,4 +3094,4 @@ if (typeof YUITest == "undefined" || !YUITest) {
 }
 
 
-}, '3.2.0' ,{requires:['substitute','event-base','json-stringify']});
+}, '3.3.0' ,{requires:['substitute','event-base','json-stringify']});
