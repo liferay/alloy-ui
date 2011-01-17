@@ -273,7 +273,7 @@ A.extend(
 					var interactionNode = A.one(selector);
 
 					 for (var i = eventType.length - 1; i >= 0; i--) {
-					 	renderHandles[i] = interactionNode.once(eventType[i], renderInteraction);
+						renderHandles[i] = interactionNode.once(eventType[i], renderInteraction);
 					 }
 
 					delete config.render;
@@ -312,6 +312,11 @@ Component.getById = function(id) {
 
 var COMP_PROTO = Component.prototype;
 
+var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
+
+var DEFAULT_BIND_ATTRS = DEFAULT_UI_ATTRS.BIND;
+var DEFAULT_SYNC_ATTRS = DEFAULT_UI_ATTRS.SYNC;
+
 Component.create = function(config) {
 	config = config || {};
 
@@ -327,15 +332,22 @@ Component.create = function(config) {
 
 	var configProto = config.prototype;
 
-	var BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
-	var SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
+	if (configProto) {
+		var configProtoUIAttrs = configProto._UI_ATTRS || (configProto._UI_ATTRS = {
+			BIND: DEFAULT_BIND_ATTRS.slice(0),
+			SYNC: DEFAULT_SYNC_ATTRS.slice(0)
+		});
 
-	if (BIND_UI_ATTRS.length) {
-		configProto._BIND_UI_ATTRS = concat(COMP_PROTO._BIND_UI_ATTRS, BIND_UI_ATTRS);
-	}
+		var BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
+		var SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
 
-	if (SYNC_UI_ATTRS.length) {
-		configProto._SYNC_UI_ATTRS = concat(COMP_PROTO._SYNC_UI_ATTRS, SYNC_UI_ATTRS);
+		if (BIND_UI_ATTRS.length) {
+			configProtoUIAttrs.BIND = concat(COMP_PROTO._UI_ATTRS.BIND, BIND_UI_ATTRS);
+		}
+
+		if (SYNC_UI_ATTRS.length) {
+			configProtoUIAttrs.SYNC = concat(COMP_PROTO._UI_ATTRS.SYNC, SYNC_UI_ATTRS);
+		}
 	}
 
 	var augmentsClasses = config.AUGMENTS;
