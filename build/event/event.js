@@ -159,7 +159,7 @@ Y.extend(DOMEventFacade, Object, {
         this.pageX = x;
         this.pageY = y;
 
-        c = e.keyCode || e.charCode || 0;
+        c = e.keyCode || e.charCode;
 
         if (ua.webkit && (c in webkitKeymap)) {
             c = webkitKeymap[c];
@@ -167,8 +167,9 @@ Y.extend(DOMEventFacade, Object, {
 
         this.keyCode = c;
         this.charCode = c;
-        this.which = e.which;
-        this.button = e.button;
+        this.which = e.which || e.charCode || c;
+        // this.button = e.button;
+        this.button = this.which;
 
         this.target = resolve(e.target);
         this.currentTarget = resolve(currentTarget);
@@ -901,14 +902,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
          * @static
          */
         generateId: function(el) {
-            var id = el.id;
-
-            if (!id) {
-                id = Y.stamp(el);
-                el.id = id;
-            }
-
-            return id;
+            return Y.DOM.generateID(el);
         },
 
         /**
@@ -1286,6 +1280,8 @@ YUI.add('event-delegate', function(Y) {
 var toArray          = Y.Array,
     YLang            = Y.Lang,
     isString         = YLang.isString,
+    isObject         = YLang.isObject,
+    isArray          = YLang.isArray,
     selectorTest     = Y.Selector.test,
     detachCategories = Y.Env.evt.handles;
 
@@ -1327,8 +1323,36 @@ var toArray          = Y.Array,
 function delegate(type, fn, el, filter) {
     var args     = toArray(arguments, 0, true),
         query    = isString(el) ? el : null,
-        typeBits = type.split(/\|/),
-        synth, container, categories, cat, handle;
+        typeBits, synth, container, categories, cat, i, len, handles, handle;
+
+    // Support Y.delegate({ click: fnA, key: fnB }, context, filter, ...);
+    // and Y.delegate(['click', 'key'], fn, context, filter, ...);
+    if (isObject(type)) {
+        handles = [];
+
+        if (isArray(type)) {
+            for (i = 0, len = type.length; i < len; ++i) {
+                args[0] = type[i];
+                handles.push(Y.delegate.apply(Y, args));
+            }
+        } else {
+            // Y.delegate({'click', fn}, context, filter) =>
+            // Y.delegate('click', fn, context, filter)
+            args.unshift(null); // one arg becomes two; need to make space
+
+            for (i in type) {
+                if (type.hasOwnProperty(i)) {
+                    args[0] = i;
+                    args[1] = type[i];
+                    handles.push(Y.delegate.apply(Y, args));
+                }
+            }
+        }
+
+        return new Y.EventHandle(handles);
+    }
+
+    typeBits = type.split(/\|/);
 
     if (typeBits.length > 1) {
         cat  = typeBits.shift();
@@ -1337,7 +1361,7 @@ function delegate(type, fn, el, filter) {
 
     synth = Y.Node.DOM_EVENTS[type];
 
-    if (YLang.isObject(synth) && synth.delegate) {
+    if (isObject(synth) && synth.delegate) {
         handle = synth.delegate.apply(synth, arguments);
     }
 
@@ -1448,8 +1472,8 @@ delegate.compileFilter = Y.cached(function (selector) {
 
 /**
  * Walks up the parent axis of an event's target, and tests each element
- * against a supplied filter function.  If any Nodes satisfy the filter, the
- * delegated callback will be triggered for each.
+ * against a supplied filter function.  If any Nodes, including the container,
+ * satisfy the filter, the delegated callback will be triggered for each.
  *
  * @method delegate._applyFilter
  * @param filter {Function} boolean function to test for inclusion in event
@@ -1462,9 +1486,9 @@ delegate.compileFilter = Y.cached(function (selector) {
 delegate._applyFilter = function (filter, args, ce) {
     var e         = args[0],
         container = ce.el, // facadeless events in IE, have no e.currentTarget
-        //container = e.currentTarget,
         target    = e.target || e.srcElement,
-        match     = [];
+        match     = [],
+        isContainer = false;
 
     // Resolve text nodes to their containing element
     if (target.nodeType === 3) {
@@ -1477,21 +1501,33 @@ delegate._applyFilter = function (filter, args, ce) {
     args.unshift(target);
 
     if (isString(filter)) {
-        while (target && target !== container) {
-            if (selectorTest(target, filter, container)) {
+        while (target) {
+            isContainer = (target === container);
+            if (selectorTest(target, filter, (isContainer ?null: container))) {
                 match.push(target);
             }
+
+            if (isContainer) {
+                break;
+            }
+
             target = target.parentNode;
         }
     } else {
         // filter functions are implementer code and should receive wrappers
         args[0] = Y.one(target);
         args[1] = new Y.DOMEventFacade(e, container, ce);
-        while (target && target !== container) {
+
+        while (target) {
             // filter(target, e, extra args...) - this === target
             if (filter.apply(args[0], args)) {
                 match.push(target);
             }
+
+            if (target === container) {
+                break;
+            }
+
             target = target.parentNode;
             args[0] = Y.one(target);
         }
@@ -1902,6 +1938,7 @@ Y.mix(SyntheticEvent, {
          */
         _on: function (args, delegate) {
             var handles  = [],
+                extra    = this.processArgs(args, delegate),
                 selector = args[2],
                 method   = delegate ? 'delegate' : 'on',
                 nodes, handle;
@@ -1917,15 +1954,13 @@ Y.mix(SyntheticEvent, {
                 return handle;
             }
 
-            Y.each(nodes, function (node) {
+            Y.Array.each(nodes, function (node) {
                 var subArgs = args.slice(),
-                    extra, filter;
+                    filter;
 
                 node = Y.one(node);
 
                 if (node) {
-                    extra = this.processArgs(subArgs, delegate);
-
                     if (delegate) {
                         filter = subArgs.splice(3, 1)[0];
                     }
@@ -1978,7 +2013,9 @@ Y.mix(SyntheticEvent, {
 
             sub.node   = node;
             sub.filter = filter;
-            sub._extra = extra;
+            if (extra) {
+                this.applyArgExtras(extra, sub);
+            }
 
             Y.mix(dispatcher, {
                 eventDef     : this,
@@ -1994,6 +2031,28 @@ Y.mix(SyntheticEvent, {
             registry.push(handle);
 
             return handle;
+        },
+
+        /**
+         * <p>Implementers MAY provide this method definition.</p>
+         *
+         * <p>Implement this function if you want extra data extracted during
+         * processArgs to be propagated to subscriptions on a per-node basis.
+         * That is to say, if you call <code>Y.on('xyz', fn, xtra, 'div')</code>
+         * the data returned from processArgs will be shared
+         * across the subscription objects for all the divs.  If you want each
+         * subscription to receive unique information, do that processing
+         * here.</p>
+         *
+         * <p>The default implementation adds the data extracted by processArgs
+         * to the subscription object as <code>sub._extra</code>.</p>
+         *
+         * @method applyArgExtras
+         * @param extra {any} Any extra data extracted from processArgs
+         * @param sub {Subscription} the individual subscription
+         */
+        applyArgExtras: function (extra, sub) {
+            sub._extra = extra;
         },
 
         /**
@@ -2695,7 +2754,62 @@ Y.Env.evt.plugins.windowresize = {
 
 
 }, '3.2.0' ,{requires:['node-base']});
+YUI.add('event-hover', function(Y) {
+
+/**
+ * Adds support for a "hover" event.  The event provides a convenience wrapper
+ * for subscribing separately to mouseenter and mouseleave.  The signature for
+ * subscribing to the event is</p>
+ *
+ * <pre><code>node.on("hover", overFn, outFn);
+ * node.delegate("hover", overFn, outFn, ".filterSelector");
+ * Y.on("hover", overFn, outFn, ".targetSelector");
+ * Y.delegate("hover", overFn, outFn, "#container", ".filterSelector");
+ * </code></pre>
+ *
+ * <p>Additionally, for compatibility with a more typical subscription
+ * signature, the following are also supported:</p>
+ *
+ * <pre><code>Y.on("hover", overFn, ".targetSelector", outFn);
+ * Y.delegate("hover", overFn, "#container", outFn, ".filterSelector");
+ * </code></pre>
+ *
+ * @module event
+ * @submodule event-hover
+ */
+var isFunction = Y.Lang.isFunction,
+    noop = function () {},
+    conf = {
+        processArgs: function (args) {
+            // Y.delegate('hover', over, out, '#container', '.filter')
+            // comes in as ['hover', over, out, '#container', '.filter'], but
+            // node.delegate('hover', over, out, '.filter')
+            // comes in as ['hover', over, containerEl, out, '.filter']
+            var i = isFunction(args[2]) ? 2 : 3;
+
+            return (isFunction(args[i])) ? args.splice(i,1)[0] : noop;
+        },
+
+        on: function (node, sub, notifier, filter) {
+            sub._detach = node[(filter) ? "delegate" : "on"]({
+                mouseenter: Y.bind(notifier.fire, notifier),
+                mouseleave: sub._extra
+            }, filter);
+        },
+
+        detach: function (node, sub, notifier) {
+            sub._detacher.detach();
+        }
+    };
+
+conf.delegate = conf.on;
+conf.detachDelegate = conf.detach;
+
+Y.Event.define("hover", conf);
 
 
-YUI.add('event', function(Y){}, '3.2.0' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize']});
+}, '3.2.0' ,{requires:['event-mouseenter']});
+
+
+YUI.add('event', function(Y){}, '3.2.0' ,{use:['event-base', 'event-delegate', 'event-synthetic', 'event-mousewheel', 'event-mouseenter', 'event-key', 'event-focus', 'event-resize', 'event-hover']});
 

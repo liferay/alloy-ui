@@ -346,6 +346,7 @@ proto = {
             useBrowserConsole: true,
             throwFail: true,
             bootstrap: true,
+            cacheUse: true,
             fetchCSS: true
         };
 
@@ -489,7 +490,7 @@ proto = {
      * @private
      */
     _attach: function(r, fromLoader) {
-        var i, name, mod, details, req, use,
+        var i, name, mod, details, req, use, after,
             mods = YUI.Env.mods,
             Y = this, j,
             done = Y.Env._attached,
@@ -514,11 +515,34 @@ proto = {
                     details = mod.details;
                     req = details.requires;
                     use = details.use;
+                    after = details.after;
 
                     if (req) {
                         for (j = 0; j < req.length; j++) {
                             if (!done[req[j]]) {
                                 if (!Y._attach(req)) {
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (after) {
+                        for (j = 0; j < after.length; j++) {
+                            if (!done[after[j]]) {
+                                if (!Y._attach(after)) {
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (use) {
+                        for (j = 0; j < use.length; j++) {
+                            if (!done[use[j]]) {
+                                if (!Y._attach(use)) {
                                     return false;
                                 }
                                 break;
@@ -535,16 +559,6 @@ proto = {
                         }
                     }
 
-                    if (use) {
-                        for (j = 0; j < use.length; j++) {
-                            if (!done[use[j]]) {
-                                if (!Y._attach(use)) {
-                                    return false;
-                                }
-                                break;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -610,13 +624,15 @@ proto = {
         } else {
             key = args.join();
 
-            if (Y.Env.serviced[key]) {
+            if (Y.config.cacheUse && Y.Env.serviced[key]) {
                 Y.log('already provisioned: ' + key, 'info', 'yui');
                 Y._notify(callback, ALREADY_DONE, args);
             } else {
                 Y._use(args, function(Y, response) {
-                    Y.log('caching request: ' + key, 'info', 'yui');
-                    Y.Env.serviced[key] = true;
+                    if (Y.config.cacheUse) {
+                        Y.log('caching request: ' + key, 'info', 'yui');
+                        Y.Env.serviced[key] = true;
+                    }
                     Y._notify(callback, response, args);
                 });
             }
@@ -626,7 +642,9 @@ proto = {
     },
 
     _notify: function(callback, response, args) {
-        if (callback) {
+        if (!response.success && this.config.loadErrorFn) {
+            this.config.loadErrorFn.call(this, this, callback, response, args);
+        } else if (callback) {
             try {
                 callback(this, response);
             } catch (e) {
@@ -897,11 +915,12 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
      * a JS error is thrown
      * @method error
      * @param msg {string} the error message.
-     * @param e {Error} Optional JS error that was caught.  If supplied
+     * @param e {Error|string} Optional JS error that was caught, or an error string.
+     * @param data Optional additional info
      * and throwFail is specified, this error will be re-thrown.
      * @return {YUI} this YUI instance.
      */
-    error: function(msg, e) {
+    error: function(msg, e, data) {
 
         var Y = this, ret;
 
@@ -1462,6 +1481,42 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
  */
 
 /**
+ * A callback to execute when the loader fails to load one or
+ * more resource.  This could be because of a script load
+ * failure.  It can also fail if a javascript module fails
+ * to register itself, but only when the 'requireRegistration'
+ * is true.  If this function is defined, the use() callback will
+ * only be called when the loader succeeds, otherwise it always
+ * executes unless there was a javascript error when attaching
+ * a module.
+ *
+ * @since 3.3.0
+ * @property loadErrorFn
+ * @type Function
+ */
+
+/**
+ * When set to true, the YUI loader will expect that all modules
+ * it is responsible for loading will be first-class YUI modules
+ * that register themselves with the YUI global.  If this is
+ * set to true, loader will fail if the module registration fails
+ * to happen after the script is loaded.
+ *
+ * @since 3.3.0
+ * @property requireRegistration
+ * @type boolean
+ * @default false
+ */
+
+/**
+ * Cache serviced use() requests.
+ * @since 3.3.0
+ * @property cacheUse
+ * @type boolean
+ * @default true
+ */
+
+/**
  * The parameter defaults for the remote loader service.
  * Requires the rls submodule.  The properties that are
  * supported:
@@ -1581,7 +1636,11 @@ SUBREGEX = /\{\s*([^\|\}]+?)\s*(?:\|([^\}]*))?\s*\}/g;
  * @param o The object to test.
  * @return {boolean} true if o is an array.
  */
-L.isArray = Array.isArray || function(o) {
+// L.isArray = Array.isArray || function(o) {
+//     return L.type(o) === ARRAY;
+// };
+
+L.isArray = function(o) {
     return L.type(o) === ARRAY;
 };
 
@@ -1724,7 +1783,7 @@ L.trim = STRING_PROTO.trim ? function(s) {
 L.trimLeft = STRING_PROTO.trimLeft ? function (s) {
     return s.trimLeft();
 } : function (s) {
-    return s.replace(/^s+/, '');
+    return s.replace(/^\s+/, '');
 };
 
 /**
@@ -1737,7 +1796,7 @@ L.trimLeft = STRING_PROTO.trimLeft ? function (s) {
 L.trimRight = STRING_PROTO.trimRight ? function (s) {
     return s.trimRight();
 } : function (s) {
-    return s.replace(/s+$/, '');
+    return s.replace(/\s+$/, '');
 };
 
 /**
@@ -2086,9 +2145,7 @@ Queue.prototype = {
      * @return {object} this queue.
      */
     add: function() {
-        Y.Array.each(Y.Array(arguments, 0, true), function(fn) {
-            this._q.push(fn);
-        }, this);
+        this._q.push.apply(this._q, arguments);
 
         return this;
     },
@@ -2107,6 +2164,7 @@ Queue.prototype = {
 Y.Queue = Queue;
 
 YUI.Env._loaderQueue = YUI.Env._loaderQueue || new Queue();
+
 /**
  * The YUI module contains the components required for building the YUI
  * seed file.  This includes the script loading mechanism, a simple queue,
@@ -2298,11 +2356,15 @@ Y.cached = function(source, cache, refetch) {
  */
 var F = function() {},
 
-O = Object.create || function(o) {
+// O = Object.create || function(o) {
+//     F.prototype = o;
+//     return new F();
+// },
+
+O = function(o) {
     F.prototype = o;
     return new F();
 },
-
 
 owns = function(o, k) {
     return o && o.hasOwnProperty && o.hasOwnProperty(k);
@@ -2346,7 +2408,11 @@ Y.Object = O;
  * @param o an object.
  * @return {string[]} the keys.
  */
-O.keys = Object.keys || function(o) {
+// O.keys = Object.keys || function(o) {
+//     return _extract(o);
+// };
+
+O.keys = function(o) {
     return _extract(o);
 };
 
@@ -2357,7 +2423,11 @@ O.keys = Object.keys || function(o) {
  * @param o an object.
  * @return {Array} the values.
  */
-O.values = Object.values || function(o) {
+// O.values = Object.values || function(o) {
+//     return _extract(o, 1);
+// };
+
+O.values = function(o) {
     return _extract(o, 1);
 };
 
@@ -2537,7 +2607,6 @@ O.isEmpty = function(o) {
     }
     return true;
 };
-
 /**
  * The YUI module contains the components required for building the YUI seed
  * file.  This includes the script loading mechanism, a simple queue, and the
@@ -2559,8 +2628,15 @@ O.isEmpty = function(o) {
  * @class UA
  * @static
  */
-Y.UA = YUI.Env.UA || function() {
-
+/**
+* Static method for parsing the UA string. Defaults to assigning it's value to Y.UA
+* @static
+* @method Env.parseUA
+* @param {String} subUA Parse this UA string instead of navigator.userAgent
+* @returns {Object} The Y.UA object
+*/
+YUI.Env.parseUA = function(subUA) {
+    
     var numberify = function(s) {
             var c = 0;
             return parseFloat(s.replace(/\./g, function() {
@@ -2696,6 +2772,13 @@ Y.UA = YUI.Env.UA || function() {
          * @static
          */
         android: 0,
+        /**
+         * Detects Palms WebOS version
+         * @property webos
+         * @type float
+         * @static
+         */
+        webos: 0,
 
         /**
          * Google Caja version number or 0.
@@ -2722,7 +2805,7 @@ Y.UA = YUI.Env.UA || function() {
 
     },
 
-    ua = nav && nav.userAgent,
+    ua = subUA || nav && nav.userAgent,
 
     loc = win && win.location,
 
@@ -2759,15 +2842,25 @@ Y.UA = YUI.Env.UA || function() {
                 if (m && m[1]) {
                     m = numberify(m[1].replace('_', '.'));
                 }
-                o.ipad = (navigator.platform == 'iPad') ? m : 0;
-                o.ipod = (navigator.platform == 'iPod') ? m : 0;
-                o.iphone = (navigator.platform == 'iPhone') ? m : 0;
-                o.ios = o.ipad || o.iphone || o.ipod;
+                o.ios = m;
+                o.ipad = o.ipod = o.iphone = 0;
+
+                m = ua.match(/iPad|iPod|iPhone/);
+                if (m && m[0]) {
+                    o[m[0].toLowerCase()] = o.ios;
+                }
             } else {
                 m = ua.match(/NokiaN[^\/]*|Android \d\.\d|webOS\/\d\.\d/);
                 if (m) {
                     // Nokia N-series, Android, webOS, ex: NokiaN95
                     o.mobile = m[0];
+                }
+                if (/webOS/.test(ua)) {
+                    o.mobile = 'WebOS';
+                    m = ua.match(/webOS\/([^\s]*);/);
+                    if (m && m[1]) {
+                        o.webos = numberify(m[1]);
+                    }
                 }
                 if (/ Android/.test(ua)) {
                     o.mobile = 'Android';
@@ -2820,7 +2913,10 @@ Y.UA = YUI.Env.UA || function() {
     YUI.Env.UA = o;
 
     return o;
-}();
+};
+
+
+Y.UA = YUI.Env.UA || YUI.Env.parseUA();
 
 
 }, '3.2.0' );
@@ -3626,7 +3722,7 @@ Y.mix(Y.namespace('Features'), {
     },
 
     test: function(cat, name, args) {
-
+        args = args || [];
         var result, ua, test,
             cat_o = feature_tests[cat],
             feature = cat_o && cat_o[name];
@@ -3663,13 +3759,8 @@ Y.mix(Y.namespace('Features'), {
 
 /* This file is auto-generated by src/loader/meta_join.py */
 var add = Y.Features.add;
-// 0
-add('load', '0', {
-    "trigger": "widget-base", 
-    "ua": "ie"
-});
 // autocomplete-list-keys-sniff.js
-add('load', '1', {
+add('load', '0', {
     "test": function (Y) {
     // Only add keyboard support to autocomplete-list if this doesn't appear to
     // be an iOS or Android-based mobile device.
@@ -3686,18 +3777,8 @@ add('load', '1', {
 }, 
     "trigger": "autocomplete-list"
 });
-// history-hash-ie-test.js
-add('load', '2', {
-    "test": function (Y) {
-    var docMode = Y.config.doc.documentMode;
-
-    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
-            !docMode || docMode < 8);
-}, 
-    "trigger": "history-hash"
-});
 // ie-style-test.js
-add('load', '3', {
+add('load', '1', {
     "test": function (Y) {
 
     var testFeature = Y.Features.test,
@@ -3726,12 +3807,35 @@ add('load', '3', {
 }, 
     "trigger": "dom-style"
 });
+// 0
+add('load', '2', {
+    "trigger": "widget-base", 
+    "ua": "ie"
+});
+// ie-base-test.js
+add('load', '3', {
+    "test": function(Y) {
+    var imp = Y.config.doc && Y.config.doc.implementation;
+    return (imp && (!imp.hasFeature('Events', '2.0')));
+}, 
+    "trigger": "node-base"
+});
 // dd-gestures-test.js
 add('load', '4', {
     "test": function(Y) {
     return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
 }, 
     "trigger": "dd-drag"
+});
+// history-hash-ie-test.js
+add('load', '5', {
+    "test": function (Y) {
+    var docMode = Y.config.doc.documentMode;
+
+    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
+            !docMode || docMode < 8);
+}, 
+    "trigger": "history-hash"
 });
 
 

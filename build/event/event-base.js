@@ -159,7 +159,7 @@ Y.extend(DOMEventFacade, Object, {
         this.pageX = x;
         this.pageY = y;
 
-        c = e.keyCode || e.charCode || 0;
+        c = e.keyCode || e.charCode;
 
         if (ua.webkit && (c in webkitKeymap)) {
             c = webkitKeymap[c];
@@ -167,8 +167,9 @@ Y.extend(DOMEventFacade, Object, {
 
         this.keyCode = c;
         this.charCode = c;
-        this.which = e.which;
-        this.button = e.button;
+        this.which = e.which || e.charCode || c;
+        // this.button = e.button;
+        this.button = this.which;
 
         this.target = resolve(e.target);
         this.currentTarget = resolve(currentTarget);
@@ -901,14 +902,7 @@ Event._interval = setInterval(Event._poll, Event.POLL_INTERVAL);
          * @static
          */
         generateId: function(el) {
-            var id = el.id;
-
-            if (!id) {
-                id = Y.stamp(el);
-                el.id = id;
-            }
-
-            return id;
+            return Y.DOM.generateID(el);
         },
 
         /**

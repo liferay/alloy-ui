@@ -28,6 +28,12 @@ YUI.add('dd-drag', function(Y) {
         OFFSET_HEIGHT = 'offsetHeight',
         OFFSET_WIDTH = 'offsetWidth',        
         /**
+        * @event drag:mouseup
+        * @description Handles the mouseup DOM event, does nothing internally just fires.
+        * @bubbles DDM
+        * @type {Event.Custom}
+        */
+        /**
         * @event drag:mouseDown
         * @description Handles the mousedown DOM event, checks to see if you have a valid handle then starts the drag timers.
         * @preventable _defMouseDownFn
@@ -222,8 +228,6 @@ YUI.add('dd-drag', function(Y) {
                 var n = Y.one(node);
                 if (!n) {
                     Y.error('DD.Drag: Invalid Node Given: ' + node);
-                } else {
-                    n = n.item(0);
                 }
                 return n;
             }
@@ -689,6 +693,7 @@ YUI.add('dd-drag', function(Y) {
         * @param {Event.Facade}
         */
         _handleMouseUp: function(ev) {
+            this.fire('drag:mouseup');
             this._fixIEMouseUp();
             if (DDM.activeDrag) {
                 DDM._end();
@@ -721,7 +726,7 @@ YUI.add('dd-drag', function(Y) {
         * @method _fixIEMouseDown
         * @description This method copies the onselectstart listner on the document to the _ieSelectFix property
         */
-        _fixIEMouseDown: function() {
+        _fixIEMouseDown: function(e) {
             if (Y.UA.ie) {
                 this._ieSelectBack = Y.config.doc.body.onselectstart;
                 Y.config.doc.body.onselectstart = this._ieSelectFix;
@@ -762,7 +767,7 @@ YUI.add('dd-drag', function(Y) {
                 return false;
             }
             if (this.validClick(ev)) {
-                this._fixIEMouseDown();
+                this._fixIEMouseDown(ev);
                 if (this.get('haltDown')) {
                     ev.halt();
                 } else {
@@ -980,8 +985,6 @@ YUI.add('dd-drag', function(Y) {
             this._dragThreshMet = false;
             var node = this.get(NODE);
             node.addClass(DDM.CSS_PREFIX + '-draggable');
-
-            node.addClass(DDM.CSS_PREFIX + '-draggable');
             node.on(Drag.START_EVENT, Y.bind(this._handleMouseDownEvent, this));
             node.on('mouseup', Y.bind(this._handleMouseUp, this));
             node.on('dragstart', Y.bind(this._fixDragStart, this));
@@ -1050,7 +1053,6 @@ YUI.add('dd-drag', function(Y) {
                 this._clickTimeout.cancel();
             }
             this._dragThreshMet = this._fromTimeout = false;
-            this._ev_md = null;
 
             if (!this.get('lock') && this.get(DRAGGING)) {
                 this.fire(EV_END, {
@@ -1073,6 +1075,7 @@ YUI.add('dd-drag', function(Y) {
         */
         _defEndFn: function(e) {
             this._fixIEMouseUp();
+            this._ev_md = null;
         },
         /**
         * @private
@@ -1083,6 +1086,8 @@ YUI.add('dd-drag', function(Y) {
             this._fixIEMouseUp();
             //Bug #1852577
             this.get(DRAG_NODE).setXY(this.nodeXY);
+            this._ev_md = null;
+            this.region = null;
         },
         /**
         * @private

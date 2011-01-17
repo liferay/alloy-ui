@@ -857,8 +857,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
                     "event-base"
                 ], 
                 "condition": {
-                    "trigger": "node-base", 
-                    "ua": "ie"
+                    "test": function(Y) {
+    var imp = Y.config.doc && Y.config.doc.implementation;
+    return (imp && (!imp.hasFeature('Events', '2.0')));
+}, 
+                    "trigger": "node-base"
                 }, 
                 "requires": [
                     "node-base"
@@ -883,6 +886,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
                 ]
             }, 
             "event-focus": {
+                "requires": [
+                    "event-synthetic"
+                ]
+            }, 
+            "event-hover": {
                 "requires": [
                     "event-synthetic"
                 ]
@@ -1688,7 +1696,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         }
     }
 };
-YUI.Env[Y.version].md5 = 'f449d186a2899cc6988607f22ab89cb3';
+YUI.Env[Y.version].md5 = 'faf08d27c01d7ab5575789a63b1e36fc';
 
 
 }, '3.2.0' ,{requires:['loader-base']});

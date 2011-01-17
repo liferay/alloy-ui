@@ -9378,7 +9378,7 @@ Y.extend(DOMEventFacade, Object, {
         this.pageX = x;
         this.pageY = y;
 
-        c = e.keyCode || e.charCode || 0;
+        c = e.keyCode || e.charCode;
 
         if (ua.webkit && (c in webkitKeymap)) {
             c = webkitKeymap[c];
@@ -9386,8 +9386,9 @@ Y.extend(DOMEventFacade, Object, {
 
         this.keyCode = c;
         this.charCode = c;
-        this.which = e.which;
-        this.button = e.button;
+        this.which = e.which || e.charCode || c;
+        // this.button = e.button;
+        this.button = this.which;
 
         this.target = resolve(e.target);
         this.currentTarget = resolve(currentTarget);
@@ -10126,14 +10127,7 @@ Y.log(type + " attach call failed, invalid callback", "error", "event");
          * @static
          */
         generateId: function(el) {
-            var id = el.id;
-
-            if (!id) {
-                id = Y.stamp(el);
-                el.id = id;
-            }
-
-            return id;
+            return Y.DOM.generateID(el);
         },
 
         /**
@@ -10503,6 +10497,149 @@ Y.Env.evt.plugins.contentready = {
 
 
 }, '3.2.0' ,{requires:['event-custom-base']});
+(function() {
+
+var stateChangeListener,
+    GLOBAL_ENV   = YUI.Env,
+    config       = YUI.config,
+    doc          = config.doc,
+    docElement   = doc && doc.documentElement,
+    EVENT_NAME   = 'onreadystatechange',
+    pollInterval = config.pollInterval || 40;
+
+if (docElement.doScroll && !GLOBAL_ENV._ieready) {
+    GLOBAL_ENV._ieready = function() {
+        GLOBAL_ENV._ready();
+    };
+
+/*! DOMReady: based on work by: Dean Edwards/John Resig/Matthias Miller/Diego Perini */
+// Internet Explorer: use the doScroll() method on the root element.
+// This isolates what appears to be a safe moment to manipulate the
+// DOM prior to when the document's readyState suggests it is safe to do so.
+    if (self !== self.top) {
+        stateChangeListener = function() {
+            if (doc.readyState == 'complete') {
+                GLOBAL_ENV.remove(doc, EVENT_NAME, stateChangeListener);
+                GLOBAL_ENV.ieready();
+            }
+        };
+        GLOBAL_ENV.add(doc, EVENT_NAME, stateChangeListener);
+    } else {
+        GLOBAL_ENV._dri = setInterval(function() {
+            try {
+                docElement.doScroll('left');
+                clearInterval(GLOBAL_ENV._dri);
+                GLOBAL_ENV._dri = null;
+                GLOBAL_ENV._ieready();
+            } catch (domNotReady) { }
+        }, pollInterval);
+    }
+}
+
+})();
+YUI.add('event-base-ie', function(Y) {
+
+/*
+ * Custom event engine, DOM event listener abstraction layer, synthetic DOM
+ * events.
+ * @module event
+ * @submodule event-base
+ */
+
+var IEEventFacade = function() {
+        // IEEventFacade.superclass.constructor.apply(this, arguments);
+        Y.DOM2EventFacade.apply(this, arguments);
+    };
+
+Y.extend(IEEventFacade, Y.DOM2EventFacade, {
+
+    init: function() {
+
+        IEEventFacade.superclass.init.apply(this, arguments);
+
+        var e = this._event,
+            resolve = Y.DOM2EventFacade.resolve,
+            x, y, d, b, de, t;
+
+        this.target = resolve(e.srcElement);
+
+        if (('clientX' in e) && (!x) && (0 !== x)) {
+            x = e.clientX;
+            y = e.clientY;
+
+            d = Y.config.doc;
+            b = d.body;
+            de = d.documentElement;
+
+            x += (de.scrollLeft || (b && b.scrollLeft) || 0);
+            y += (de.scrollTop  || (b && b.scrollTop)  || 0);
+
+            this.pageX = x;
+            this.pageY = y;
+        }
+
+        if (e.type == "mouseout") {
+            t = e.toElement;
+        } else if (e.type == "mouseover") {
+            t = e.fromElement;
+        }
+
+        this.relatedTarget = resolve(t);
+
+        // which should contain the unicode key code if this is a key event
+        // if (e.charCode) {
+        //     this.which = e.charCode;
+        // }
+
+        // for click events, which is normalized for which mouse button was
+        // clicked.
+        if (e.button) {
+            switch (e.button) {
+                case 2:
+                    this.which = 3;
+                    break;
+                case 4:
+                    this.which = 2;
+                    break;
+                default:
+                    this.which = e.button;
+            }
+
+            this.button = this.which;
+        }
+
+    },
+
+    stopPropagation: function() {
+        var e = this._event;
+        e.cancelBubble = true;
+        this._wrapper.stopped = 1;
+        this.stopped = 1;
+    },
+
+    stopImmediatePropagation: function() {
+        this.stopPropagation();
+        this._wrapper.stopped = 2;
+        this.stopped = 2;
+    },
+
+    preventDefault: function(returnValue) {
+        this._event.returnValue = returnValue || false;
+        this._wrapper.prevented = 1;
+        this.prevented = 1;
+    }
+
+});
+
+var imp = Y.config.doc && Y.config.doc.implementation;
+
+if (imp && (!imp.hasFeature('Events', '2.0'))) {
+    Y.DOMEventFacade = IEEventFacade;
+}
+
+
+
+}, '3.2.0' );
 YUI.add('pluginhost-base', function(Y) {
 
     /**
@@ -13444,6 +13581,8 @@ YUI.add('event-delegate', function(Y) {
 var toArray          = Y.Array,
     YLang            = Y.Lang,
     isString         = YLang.isString,
+    isObject         = YLang.isObject,
+    isArray          = YLang.isArray,
     selectorTest     = Y.Selector.test,
     detachCategories = Y.Env.evt.handles;
 
@@ -13485,8 +13624,36 @@ var toArray          = Y.Array,
 function delegate(type, fn, el, filter) {
     var args     = toArray(arguments, 0, true),
         query    = isString(el) ? el : null,
-        typeBits = type.split(/\|/),
-        synth, container, categories, cat, handle;
+        typeBits, synth, container, categories, cat, i, len, handles, handle;
+
+    // Support Y.delegate({ click: fnA, key: fnB }, context, filter, ...);
+    // and Y.delegate(['click', 'key'], fn, context, filter, ...);
+    if (isObject(type)) {
+        handles = [];
+
+        if (isArray(type)) {
+            for (i = 0, len = type.length; i < len; ++i) {
+                args[0] = type[i];
+                handles.push(Y.delegate.apply(Y, args));
+            }
+        } else {
+            // Y.delegate({'click', fn}, context, filter) =>
+            // Y.delegate('click', fn, context, filter)
+            args.unshift(null); // one arg becomes two; need to make space
+
+            for (i in type) {
+                if (type.hasOwnProperty(i)) {
+                    args[0] = i;
+                    args[1] = type[i];
+                    handles.push(Y.delegate.apply(Y, args));
+                }
+            }
+        }
+
+        return new Y.EventHandle(handles);
+    }
+
+    typeBits = type.split(/\|/);
 
     if (typeBits.length > 1) {
         cat  = typeBits.shift();
@@ -13495,7 +13662,7 @@ function delegate(type, fn, el, filter) {
 
     synth = Y.Node.DOM_EVENTS[type];
 
-    if (YLang.isObject(synth) && synth.delegate) {
+    if (isObject(synth) && synth.delegate) {
         handle = synth.delegate.apply(synth, arguments);
     }
 
@@ -13607,8 +13774,8 @@ delegate.compileFilter = Y.cached(function (selector) {
 
 /**
  * Walks up the parent axis of an event's target, and tests each element
- * against a supplied filter function.  If any Nodes satisfy the filter, the
- * delegated callback will be triggered for each.
+ * against a supplied filter function.  If any Nodes, including the container,
+ * satisfy the filter, the delegated callback will be triggered for each.
  *
  * @method delegate._applyFilter
  * @param filter {Function} boolean function to test for inclusion in event
@@ -13621,9 +13788,9 @@ delegate.compileFilter = Y.cached(function (selector) {
 delegate._applyFilter = function (filter, args, ce) {
     var e         = args[0],
         container = ce.el, // facadeless events in IE, have no e.currentTarget
-        //container = e.currentTarget,
         target    = e.target || e.srcElement,
-        match     = [];
+        match     = [],
+        isContainer = false;
 
     // Resolve text nodes to their containing element
     if (target.nodeType === 3) {
@@ -13636,21 +13803,33 @@ delegate._applyFilter = function (filter, args, ce) {
     args.unshift(target);
 
     if (isString(filter)) {
-        while (target && target !== container) {
-            if (selectorTest(target, filter, container)) {
+        while (target) {
+            isContainer = (target === container);
+            if (selectorTest(target, filter, (isContainer ?null: container))) {
                 match.push(target);
             }
+
+            if (isContainer) {
+                break;
+            }
+
             target = target.parentNode;
         }
     } else {
         // filter functions are implementer code and should receive wrappers
         args[0] = Y.one(target);
         args[1] = new Y.DOMEventFacade(e, container, ce);
-        while (target && target !== container) {
+
+        while (target) {
             // filter(target, e, extra args...) - this === target
             if (filter.apply(args[0], args)) {
                 match.push(target);
             }
+
+            if (target === container) {
+                break;
+            }
+
             target = target.parentNode;
             args[0] = Y.one(target);
         }
@@ -14521,6 +14700,68 @@ YUI.add('io-base', function(Y) {
 
 
 }, '3.2.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+YUI.add('querystring-stringify-simple', function(Y) {
+
+/*global Y */
+/**
+ * <p>Provides Y.QueryString.stringify method for converting objects to Query Strings.
+ * This is a subset implementation of the full querystring-stringify.</p>
+ * <p>This module provides the bare minimum functionality (encoding a hash of simple values),
+ * without the additional support for nested data structures.  Every key-value pair is
+ * encoded by encodeURIComponent.</p>
+ * <p>This module provides a minimalistic way for io to handle  single-level objects
+ * as transaction data.</p>
+ *
+ * @module querystring
+ * @submodule querystring-stringify-simple
+ * @for QueryString
+ * @static
+ */
+
+var QueryString = Y.namespace("QueryString"),
+    EUC = encodeURIComponent;
+
+/**
+ * <p>Converts a simple object to a Query String representation.</p>
+ * <p>Nested objects, Arrays, and so on, are not supported.</p>
+ *
+ * @method stringify
+ * @for QueryString
+ * @public
+ * @submodule querystring-stringify-simple
+ * @param obj {Object} A single-level object to convert to a querystring.
+ * @param cfg {Object} (optional) Configuration object.  In the simple
+ *                                module, only the arrayKey setting is
+ *                                supported.  When set to true, the key of an
+ *                                array will have the '[]' notation appended
+ *                                to the key;.
+ * @static
+ */
+QueryString.stringify = function (obj, c) {
+    var qs = [],
+        // Default behavior is false; standard key notation.
+        s = c && c.arrayKey ? true : false,
+        key, i, l;
+
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            if (Y.Lang.isArray(obj[key])) {
+                for (i = 0, l = obj[key].length; i < l; i++) {
+                    qs.push(EUC(s ? key + '[]' : key) + '=' + EUC(obj[key][i]));
+                }
+            }
+            else {
+                qs.push(EUC(key) + '=' + EUC(obj[key]));
+            }
+        }
+    }
+
+    return qs.join('&');
+};
+
+
+
+}, '3.2.0' );
 YUI.add('json-parse', function(Y) {
 
 /**
@@ -16230,5 +16471,5 @@ YUI.add('simpleyui', function(Y) {
 
 
 
-}, '3.2.0' ,{use:['yui','oop','dom','event-custom-base','event-base','pluginhost','node','event-delegate','io-base','json-parse','transition','selector-css3','dom-style-ie']});
+}, '3.2.0' ,{use:['yui','oop','dom','event-custom-base','event-base','pluginhost','node','event-delegate','io-base','json-parse','transition','selector-css3','dom-style-ie','querystring-stringify-simple']});
 var Y = YUI().use('*');
