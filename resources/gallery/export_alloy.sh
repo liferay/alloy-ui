@@ -1,4 +1,4 @@
-#!/bin/bash -x ;-x for debugging
+#!/bin/bash -x
 
 curScript=`perl -e "use Cwd qw(realpath);print realpath('$0');"`
 curDir=`dirname $curScript`
@@ -115,6 +115,10 @@ do
 	perl -pi -e 's/^(srcdir|global\.|component\.rollup)/#$1/g;' $oldModuleDir/build.properties
 	perl -pi -e "s/^(component=)/component.jsfiles=${baseModuleName}.js\n\$1/g;" $oldModuleDir/build.properties
 	perl -pi -e "s/^component.use=/component.requires=/g;" $oldModuleDir/build.properties
+
+	if [ "$baseModuleName" = "gallery-aui-scheduler" ]; then
+		mv $oldModuleDir/js/$moduleName*.js $newModuleDir/js/
+	fi
 done
 
 #manual cleanup
