@@ -657,6 +657,7 @@ var TreeViewDD = A.Component.create(
 				instance.on('drag:align', instance._onDragAlign);
 				instance.on('drag:start', instance._onDragStart);
 				instance.on('drop:exit', instance._onDropExit);
+				instance.after('drop:hit', instance._afterDropHit);
 				instance.on('drop:hit', instance._onDropHit);
 				instance.on('drop:over', instance._onDropOver);
 			},
@@ -810,6 +811,58 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
+			 * Fires after the drop hit event.
+			 *
+			 * @method _afterDropHit
+			 * @param {EventFacade} event drop hit event facade
+			 * @protected
+			 */
+			_afterDropHit: function(event) {
+				var instance = this;
+				var dropAction = instance.dropAction;
+				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
+				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
+
+				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dragTreeNode = A.Widget.getByNode(dragNode);
+
+				var output = instance.getEventOutputMap(instance);
+
+				output.tree.dropNode = dropTreeNode;
+				output.tree.dragNode = dragTreeNode;
+
+				if (dropAction == ABOVE) {
+					dropTreeNode.insertBefore(dragTreeNode);
+
+					instance.bubbleEvent('dropInsert', output);
+				}
+				else if (dropAction == BELOW) {
+					dropTreeNode.insertAfter(dragTreeNode);
+
+					instance.bubbleEvent('dropInsert', output);
+				}
+				else if (dropAction == APPEND) {
+					if (dropTreeNode && !dropTreeNode.isLeaf()) {
+						dropTreeNode.appendChild(dragTreeNode);
+
+						if (!dropTreeNode.get(EXPANDED)) {
+							// expand node when drop a child on it
+							dropTreeNode.expand();
+						}
+
+						instance.bubbleEvent('dropAppend', output);
+					}
+				}
+
+				instance._resetState(instance.nodeContent);
+
+				// bubbling drop event
+				instance.bubbleEvent('drop', output);
+
+				instance.dropAction = null;
+			},
+
+			/**
 			 * Fires on drag align event.
 			 *
 			 * @method _onDragAlign
@@ -886,48 +939,12 @@ var TreeViewDD = A.Component.create(
 			 * @protected
 			 */
 			_onDropHit: function(event) {
-				var instance = this;
-				var dropAction = instance.dropAction;
-				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-
 				var dropTreeNode = A.Widget.getByNode(dropNode);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
 
-				var output = instance.getEventOutputMap(instance);
-
-				output.tree.dropNode = dropTreeNode;
-				output.tree.dragNode = dragTreeNode;
-
-				if (dropAction == ABOVE) {
-					dropTreeNode.insertBefore(dragTreeNode);
-
-					instance.bubbleEvent('dropInsert', output);
+				if (!isTreeNode(dropTreeNode)) {
+					event.preventDefault();
 				}
-				else if (dropAction == BELOW) {
-					dropTreeNode.insertAfter(dragTreeNode);
-
-					instance.bubbleEvent('dropInsert', output);
-				}
-				else if (dropAction == APPEND) {
-					if (dropTreeNode && !dropTreeNode.isLeaf()) {
-						dropTreeNode.appendChild(dragTreeNode);
-
-						if (!dropTreeNode.get(EXPANDED)) {
-							// expand node when drop a child on it
-							dropTreeNode.expand();
-						}
-
-						instance.bubbleEvent('dropAppend', output);
-					}
-				}
-
-				instance._resetState(instance.nodeContent);
-
-				// bubbling drop event
-				instance.bubbleEvent('drop', output);
-
-				instance.dropAction = null;
 			},
 
 			/**
@@ -950,4 +967,4 @@ var TreeViewDD = A.Component.create(
 
 A.TreeViewDD = TreeViewDD;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
