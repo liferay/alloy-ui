@@ -613,13 +613,16 @@ var Combobox = A.Component.create(
 
 A.Combobox = Combobox;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textarea','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-form-textarea','aui-toolbar'], skinnable:true});
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
+	CLEARFIX = 'clearfix',
 	NAME = 'field',
+	HELPER = 'helper',
+	SPACE = ' ',
 
 	getTypeClassName = A.cached(
 		function(type, prefix) {
@@ -648,6 +651,8 @@ var Lang = A.Lang,
 	CSS_FIELD_INVALID = getClassName(NAME, 'invalid'),
 	CSS_FIELD_LABEL = getClassName(NAME, 'label'),
 
+	CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
+
 	CSS_LABELS = getClassName(NAME, 'labels'),
 	CSS_LABELS_INLINE = getClassName(NAME, 'labels', 'inline'),
 
@@ -659,7 +664,7 @@ var Lang = A.Lang,
 
 	REGEX_INLINE_LABEL = /left|right/,
 
-	TPL_BOUNDING_BOX = '<span class="' + CSS_FIELD + '"></span>',
+	TPL_BOUNDING_BOX = '<span class="' + [CSS_FIELD, CSS_HELPER_CLEARFIX].join(SPACE) + '"></span>',
 	TPL_CONTENT_BOX = '<span class="' + CSS_FIELD_CONTENT + '"></span>',
 	TPL_FIELD_HINT = '<span class="' + CSS_FIELD_HINT + '"></span>',
 	TPL_INPUT = '<input autocomplete="off" class="{cssClass}" id="{id}" name="{name}" type="{type}" />',
@@ -705,6 +710,7 @@ var Field = A.Component.create(
 
 			type: {
 				value: 'text',
+				validator: Lang.isString,
 				writeOnce: true
 			},
 
@@ -1059,8 +1065,17 @@ var Field = A.Component.create(
 					instance._uiSetLabelAlign(instance.get('labelAlign'));
 
 					var contentBox = instance.get('contentBox');
+					var labelAlign = instance.get('labelAlign');
+					var type = instance.get('type').toLowerCase();
 
-					contentBox.prepend(labelNode);
+					var isLabelInline = REGEX_INLINE_LABEL.test(labelAlign);
+
+					if (isLabelInline && ((type == 'checkbox') || (type == 'radio'))) {
+						contentBox.append(labelNode);
+					}
+					else {
+						contentBox.prepend(labelNode);
+					}
 				}
 			},
 
@@ -1471,7 +1486,7 @@ var Textarea = A.Component.create(
 
 A.Textarea = Textarea;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-form-textfield']});
+}, '@VERSION@' ,{requires:['aui-form-textfield'], skinnable:true});
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
@@ -2403,5 +2418,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']});
 

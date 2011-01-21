@@ -3,7 +3,10 @@ var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
+	CLEARFIX = 'clearfix',
 	NAME = 'field',
+	HELPER = 'helper',
+	SPACE = ' ',
 
 	getTypeClassName = A.cached(
 		function(type, prefix) {
@@ -32,6 +35,8 @@ var Lang = A.Lang,
 	CSS_FIELD_INVALID = getClassName(NAME, 'invalid'),
 	CSS_FIELD_LABEL = getClassName(NAME, 'label'),
 
+	CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
+
 	CSS_LABELS = getClassName(NAME, 'labels'),
 	CSS_LABELS_INLINE = getClassName(NAME, 'labels', 'inline'),
 
@@ -43,7 +48,7 @@ var Lang = A.Lang,
 
 	REGEX_INLINE_LABEL = /left|right/,
 
-	TPL_BOUNDING_BOX = '<span class="' + CSS_FIELD + '"></span>',
+	TPL_BOUNDING_BOX = '<span class="' + [CSS_FIELD, CSS_HELPER_CLEARFIX].join(SPACE) + '"></span>',
 	TPL_CONTENT_BOX = '<span class="' + CSS_FIELD_CONTENT + '"></span>',
 	TPL_FIELD_HINT = '<span class="' + CSS_FIELD_HINT + '"></span>',
 	TPL_INPUT = '<input autocomplete="off" class="{cssClass}" id="{id}" name="{name}" type="{type}" />',
@@ -89,6 +94,7 @@ var Field = A.Component.create(
 
 			type: {
 				value: 'text',
+				validator: Lang.isString,
 				writeOnce: true
 			},
 
@@ -443,8 +449,17 @@ var Field = A.Component.create(
 					instance._uiSetLabelAlign(instance.get('labelAlign'));
 
 					var contentBox = instance.get('contentBox');
+					var labelAlign = instance.get('labelAlign');
+					var type = instance.get('type').toLowerCase();
 
-					contentBox.prepend(labelNode);
+					var isLabelInline = REGEX_INLINE_LABEL.test(labelAlign);
+
+					if (isLabelInline && ((type == 'checkbox') || (type == 'radio'))) {
+						contentBox.append(labelNode);
+					}
+					else {
+						contentBox.prepend(labelNode);
+					}
 				}
 			},
 
