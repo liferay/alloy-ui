@@ -505,15 +505,16 @@ var IORequest = A.Component.create(
 			 *
 			 * @method _end
 			 * @param {Number} id ID of the IO transaction.
+			 * @param {Object} Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 			 * @protected
 			 */
-			_end: function(id) {
+			_end: function(id, args) {
 				var instance = this;
 
 				instance.set(ACTIVE, false);
 				instance.set(TRANSACTION, null);
 
-				instance.fire(END, id);
+				instance.fire(END, id, args);
 			},
 
 			/**
@@ -522,15 +523,16 @@ var IORequest = A.Component.create(
 			 * @method _success
 			 * @param {Number} id ID of the IO transaction.
 			 * @param {Object} obj IO transaction Object.
+			 * @param {Object} Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 			 * @protected
 			 */
-			_success: function(id, obj) {
+			_success: function(id, obj, args) {
 				var instance = this;
 
 				// update the responseData attribute with the new data from xhr
 				instance.set(RESPONSE_DATA, obj);
 
-				instance.fire(SUCCESS, id, obj);
+				instance.fire(SUCCESS, id, obj, args);
 			},
 
 			/**
@@ -1205,5 +1207,5 @@ A.namespace('Plugin').IO = IOPlugin;
 }, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{use:['aui-io-request','aui-io-plugin'], skinnable:false});
 
