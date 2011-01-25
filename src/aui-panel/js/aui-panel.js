@@ -366,7 +366,6 @@ Panel.prototype = {
 			if (collapsed) {
 				bodyNode.hide();
 				boundingBox.addClass(CSS_COLLAPSED);
-
 			}
 			else {
 				bodyNode.show();
