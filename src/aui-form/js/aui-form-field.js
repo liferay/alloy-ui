@@ -2,9 +2,8 @@ var Lang = A.Lang,
 
 	getClassName = A.ClassNameManager.getClassName,
 
-	CLEARFIX = 'clearfix',
-	HELPER = 'helper',
 	NAME = 'field',
+
 	SPACE = ' ',
 
 	getTypeClassName = A.cached(
@@ -28,13 +27,17 @@ var Lang = A.Lang,
 	),
 
 	CSS_FIELD = getClassName(NAME),
+
+	CSS_FIELD_CHECKBOX = getClassName(NAME, 'checkbox'),
+	CSS_FIELD_CHOICE = getClassName(NAME, 'choice'),
+
 	CSS_FIELD_CONTENT = getClassName(NAME, 'content'),
 	CSS_FIELD_INPUT = getClassName(NAME, 'input'),
 	CSS_FIELD_HINT = getClassName(NAME, 'hint'),
 	CSS_FIELD_INVALID = getClassName(NAME, 'invalid'),
 	CSS_FIELD_LABEL = getClassName(NAME, 'label'),
 
-	CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
+	CSS_FIELD_RADIO = getClassName(NAME, 'radio'),
 
 	CSS_LABELS = getClassName(NAME, 'labels'),
 	CSS_LABELS_INLINE = getClassName(NAME, 'labels', 'inline'),
@@ -45,9 +48,14 @@ var Lang = A.Lang,
 		top: [CSS_LABELS, 'top'].join('-')
 	},
 
+	MAP_CSS_FIELD_TYPES = {
+		radio: CSS_FIELD_RADIO,
+		checkbox: CSS_FIELD_CHECKBOX
+	},
+
 	REGEX_INLINE_LABEL = /left|right/,
 
-	TPL_BOUNDING_BOX = '<span class="' + [CSS_FIELD, CSS_HELPER_CLEARFIX].join(SPACE) + '"></span>',
+	TPL_BOUNDING_BOX = '<span class="' + CSS_FIELD + '"></span>',
 	TPL_CONTENT_BOX = '<span class="' + CSS_FIELD_CONTENT + '"></span>',
 	TPL_FIELD_HINT = '<span class="' + CSS_FIELD_HINT + '"></span>',
 	TPL_INPUT = '<input autocomplete="off" class="{cssClass}" id="{id}" name="{name}" type="{type}" />',
@@ -98,7 +106,11 @@ var Field = A.Component.create(
 			},
 
 			labelAlign: {
-				value: ''
+				valueFn: function() {
+					var instance = this;
+
+					return instance._getChoiceCss() ? 'left' : null;
+				}
 			},
 
 			labelNode: {
@@ -383,6 +395,14 @@ var Field = A.Component.create(
 				return A.Node.create(instance.FIELD_TEMPLATE);
 			},
 
+			_getChoiceCss: function() {
+				var instance = this;
+
+				var type = instance.get('type');
+
+				return MAP_CSS_FIELD_TYPES[type];
+			},
+
 			_getNodeValue: function() {
 				var instance = this;
 
@@ -401,7 +421,16 @@ var Field = A.Component.create(
 
 				var type = instance.get('type');
 
-				boundingBox.addClass(getTypeClassName(type));
+				var cssClass = [getTypeClassName(type)];
+
+				var choiceCss = instance._getChoiceCss();
+
+				if (choiceCss) {
+					cssClass.push(CSS_FIELD_CHOICE);
+					cssClass.push(choiceCss);
+				}
+
+				boundingBox.addClass(cssClass.join(SPACE));
 				node.addClass(getTypeClassName(type, 'input'));
 
 				if (!contentBox.contains(node)) {
@@ -453,12 +482,13 @@ var Field = A.Component.create(
 
 					var isLabelInline = REGEX_INLINE_LABEL.test(labelAlign);
 
-					if (isLabelInline && ((type == 'checkbox') || (type == 'radio'))) {
-						contentBox.append(labelNode);
+					var action = 'prepend';
+
+					if (isLabelInline && instance._getChoiceCss()) {
+						action = 'append';
 					}
-					else {
-						contentBox.prepend(labelNode);
-					}
+
+					contentBox[action](labelNode);
 				}
 			},
 
