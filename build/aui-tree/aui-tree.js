@@ -835,7 +835,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -2599,7 +2599,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3136,6 +3136,19 @@ var TreeViewDD = A.Component.create(
 				if (helper) {
 					helper.remove(true);
 				}
+
+				instance.eachChildren(
+					function(child) {
+						if (child.get(DRAGGABLE)) {
+							var dd = DDM.getDrag(child.get(CONTENT_BOX));
+
+							if (dd) {
+								dd.destroy();
+							}
+						}
+					},
+					true
+				);
 			},
 
 			/**
