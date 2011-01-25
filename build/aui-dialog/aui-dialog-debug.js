@@ -289,6 +289,18 @@ A.mix(
 					return this._setStack(v);
 				},
 				validator: isBoolean
+			},
+
+			/**
+			 * @attribute strings
+			 * @description Collection of strings used to label elements of the Dialog's UI.
+			 * @default null
+			 * @type Object
+			 */
+			strings: {
+				value: {
+					close: 'Close dialog'
+				}
 			}
 		}
 	}
@@ -318,7 +330,8 @@ Dialog.prototype = {
 				handler: {
 					fn: instance.close,
 					context: instance
-				}
+				},
+				title: instance.get('strings').close
 			};
 
 			if (icons) {
@@ -415,6 +428,16 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance._initButtons();
+
+		instance.get('contentBox').setAttribute('role', 'dialog');
+
+		if (instance.icons) {
+			var closeThick = instance.icons.item(CLOSETHICK);
+
+			if (closeThick){
+				closeThick.get(BOUNDING_BOX).setAttribute('aria-controls', instance.get('id'));
+			}
+		}
 
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
@@ -709,6 +732,10 @@ Dialog.prototype = {
 				A.DialogMask.hide();
 			}
 		}
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		boundingBox.setAttribute('aria-hidden', !event.newVal);
 	}
 };
 
