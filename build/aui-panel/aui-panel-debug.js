@@ -367,7 +367,6 @@ Panel.prototype = {
 			if (collapsed) {
 				bodyNode.hide();
 				boundingBox.addClass(CSS_COLLAPSED);
-
 			}
 			else {
 				bodyNode.show();
@@ -476,4 +475,4 @@ Panel.prototype = {
 
 A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true});
