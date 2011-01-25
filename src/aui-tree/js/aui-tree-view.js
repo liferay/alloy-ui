@@ -533,6 +533,19 @@ var TreeViewDD = A.Component.create(
 				if (helper) {
 					helper.remove(true);
 				}
+
+				instance.eachChildren(
+					function(child) {
+						if (child.get(DRAGGABLE)) {
+							var dd = DDM.getDrag(child.get(CONTENT_BOX));
+
+							if (dd) {
+								dd.destroy();
+							}
+						}
+					},
+					true
+				);
 			},
 
 			/**
