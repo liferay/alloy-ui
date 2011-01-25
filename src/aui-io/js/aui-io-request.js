@@ -504,7 +504,7 @@ var IORequest = A.Component.create(
 			 *
 			 * @method _end
 			 * @param {Number} id ID of the IO transaction.
-			 * @param {Object} Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+			 * @param {Object} args Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 			 * @protected
 			 */
 			_end: function(id, args) {
@@ -522,7 +522,7 @@ var IORequest = A.Component.create(
 			 * @method _success
 			 * @param {Number} id ID of the IO transaction.
 			 * @param {Object} obj IO transaction Object.
-			 * @param {Object} Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
+			 * @param {Object} args Custom arguments, passed to the event handler. See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 			 * @protected
 			 */
 			_success: function(id, obj, args) {
