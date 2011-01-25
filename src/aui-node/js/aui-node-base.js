@@ -421,27 +421,6 @@ A.mix(NODE_PROTOTYPE, {
 		return currentId;
 	},
 
-	/**
-     * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
-     * passed as argument, the className 'aui-helper-hidden' will be used by
-     * default.</p>
-     *
-     * <p><string>NOTE:</string> This method assume that your node were visible
-     * because the absence of 'aui-helper-hidden' css class. This won't
-     * manipulate the inline <code>style.display</code> property.</p>
-     *
-     * @method hide
-     * @chainable
-     * @param {string} cssClass Class name to hide the element. Optional.
-     */
-	hide: function(cssClass) {
-		var instance = this;
-
-		instance.addClass(cssClass || instance._hideClass || CSS_HELPER_HIDDEN);
-
-		return instance;
-	},
-
     /**
      * Create a hover interaction.
      *
@@ -714,28 +693,6 @@ A.mix(NODE_PROTOTYPE, {
 		return instance;
 	},
 
-	/**
-     * <p>Show the node removing a css class used to hide it. Use the same
-     * className added using the <a href="A.Node.html#method_hide">hide</a>
-     * method. If <code>cssClass</code> is not passed as argument, the
-     * className 'aui-helper-hidden' will be used by default.</p>
-     *
-     * <p><string>NOTE:</string> This method assume that your node were hidden
-     * because of the 'aui-helper-hidden' css class were being used. This won't
-     * manipulate the inline <code>style.display</code> property.</p>
-     *
-     * @method show
-     * @chainable
-     * @param {string} cssClass Class name to hide the element. Optional.
-     */
-	show: function(cssClass) {
-		var instance = this;
-
-		instance.removeClass(cssClass || instance._hideClass || CSS_HELPER_HIDDEN);
-
-		return instance;
-	},
-
     /**
      * <p>Stops the specified event(s) from bubbling and optionally prevents the
      * default action.</p>
@@ -822,19 +779,13 @@ A.mix(NODE_PROTOTYPE, {
 	 *
      * @method toggle
      * @chainable
-     * @param {String} cssClass Class name to hide or show the element. Optional.
+     * @param {Boolean} on Whether to force the toggle. Optional.
+     * @param {Function} callback A function to run after the visibility change. Optional.
      */
-	toggle: function(cssClass) {
+	toggle: function(on, callback) {
 		var instance = this;
 
-		var action = 'hide';
-		var hideClass = cssClass || instance._hideClass || CSS_HELPER_HIDDEN;
-
-		if (instance.hasClass(hideClass)) {
-			action = 'show';
-		}
-
-		instance[action](hideClass);
+		instance._toggleView.apply(instance, arguments);
 
 		return instance;
 	},
@@ -1053,6 +1004,58 @@ A.mix(NODE_PROTOTYPE, {
 	}
 }, true);
 
+NODE_PROTOTYPE.__show = NODE_PROTOTYPE._show;
+NODE_PROTOTYPE.__hide = NODE_PROTOTYPE._hide;
+NODE_PROTOTYPE.__isHidden = NODE_PROTOTYPE._isHidden;
+
+NODE_PROTOTYPE._isHidden = function() {
+	var instance = this;
+
+	return NODE_PROTOTYPE.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HELPER_HIDDEN);
+};
+/**
+ * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
+ * passed as argument, the className 'aui-helper-hidden' will be used by
+ * default.</p>
+ *
+ * <p><string>NOTE:</string> This method assume that your node were visible
+ * because the absence of 'aui-helper-hidden' css class. This won't
+ * manipulate the inline <code>style.display</code> property.</p>
+ *
+ * @method hide
+ * @chainable
+ * @param {string} cssClass Class name to hide the element. Optional.
+ */
+NODE_PROTOTYPE._hide = function() {
+	var instance = this;
+
+	instance.addClass(instance._hideClass || CSS_HELPER_HIDDEN);
+
+	return instance;
+};
+
+/**
+ * <p>Show the node removing a css class used to hide it. Use the same
+ * className added using the <a href="A.Node.html#method_hide">hide</a>
+ * method. If <code>cssClass</code> is not passed as argument, the
+ * className 'aui-helper-hidden' will be used by default.</p>
+ *
+ * <p><string>NOTE:</string> This method assume that your node were hidden
+ * because of the 'aui-helper-hidden' css class were being used. This won't
+ * manipulate the inline <code>style.display</code> property.</p>
+ *
+ * @method show
+ * @chainable
+ * @param {string} cssClass Class name to hide the element. Optional.
+ */
+NODE_PROTOTYPE._show = function() {
+	var instance = this;
+
+	instance.removeClass(instance._hideClass || CSS_HELPER_HIDDEN);
+
+	return instance;
+};
+
 if (!SUPPORT_OPTIONAL_TBODY) {
 	A.DOM._ADD_HTML = A.DOM.addHTML;
 
@@ -1115,8 +1118,6 @@ A.NodeList.importMethod(
 
 		'empty',
 
-		'hide',
-
 		'hover',
 
 		'html',
@@ -1132,8 +1133,6 @@ A.NodeList.importMethod(
 		'selectText',
 
 		'selectable',
-
-		'show',
 
 		'text',
 
