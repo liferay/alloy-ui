@@ -69,6 +69,22 @@ Component.NAME = 'component';
  */
 Component.ATTRS = {
 	/**
+	* Boolean indicating if use of the WAI-ARIA Roles and States should be
+	* enabled for the Widget.
+	*
+	* @attribute useARIA
+	* @readOnly
+	* @writeOnce
+	* @default true
+	* @type boolean
+	*/
+	useARIA: {
+		writeOnce: true,
+		value: false,
+		validator: Lang.isBoolean
+	},
+
+	/**
 	 * CSS class to be automatically added to the <code>boundingBox</code>.
 	 *
 	 * @attribute cssClass
@@ -244,7 +260,7 @@ A.extend(
 		},
 
 		/**
-		 * Set the interaction and render behavior based upon an object 
+		 * Set the interaction and render behavior based upon an object
 		 * (intercepts the default rendering behavior).
 		 *
 		 * @method _setRender
