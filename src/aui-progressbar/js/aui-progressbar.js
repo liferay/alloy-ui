@@ -35,6 +35,7 @@ var L = A.Lang,
 	STEP = 'step',
 	TEXT = 'text',
 	TEXT_NODE = 'textNode',
+	USE_ARIA = 'useARIA',
 	VALUE = 'value',
 	VERTICAL = 'vertical',
 	WIDTH = 'width',
@@ -66,7 +67,7 @@ var L = A.Lang,
  * </ul>
  *
  * Quick Example:<br/>
- * 
+ *
  * <pre><code>var progress = new A.ProgressBar({
  *	boundingBox: '#boudingBox',
  * 	orientation: 'horizontal',
@@ -104,6 +105,10 @@ var ProgressBar = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+			useARIA: {
+				value: true
+			},
+
 			/**
 			 * Display height of the progressbar.
 			 *
@@ -283,6 +288,22 @@ var ProgressBar = A.Component.create(
 
 				instance._renderStatusNode();
 				instance._renderTextNode();
+			},
+
+			syncUI: function() {
+				var instance = this;
+
+				if (instance.get(USE_ARIA)) {
+					instance.plug(A.Plugin.Aria, {
+						attributes: {
+							value: 'valuenow',
+							max: 'valuemax',
+							min: 'valuemin',
+							orientation: 'orientation',
+							label: 'label'
+						}
+					});
+				}
 			},
 
 			/**
