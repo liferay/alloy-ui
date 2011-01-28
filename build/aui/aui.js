@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.2.0
+version: 3.3.0
 build: nightly
 */
 /**
@@ -101,7 +101,7 @@ if (typeof YUI != 'undefined') {
 (function() {
 
     var proto, prop,
-        VERSION = '3.2.0',
+        VERSION = '3.3.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         DOC_LABEL = 'yui3-js-enabled',
@@ -346,6 +346,7 @@ proto = {
             useBrowserConsole: true,
             throwFail: true,
             bootstrap: true,
+            cacheUse: true,
             fetchCSS: true
         };
 
@@ -488,7 +489,7 @@ proto = {
      * @private
      */
     _attach: function(r, fromLoader) {
-        var i, name, mod, details, req, use,
+        var i, name, mod, details, req, use, after,
             mods = YUI.Env.mods,
             Y = this, j,
             done = Y.Env._attached,
@@ -511,11 +512,34 @@ proto = {
                     details = mod.details;
                     req = details.requires;
                     use = details.use;
+                    after = details.after;
 
                     if (req) {
                         for (j = 0; j < req.length; j++) {
                             if (!done[req[j]]) {
                                 if (!Y._attach(req)) {
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (after) {
+                        for (j = 0; j < after.length; j++) {
+                            if (!done[after[j]]) {
+                                if (!Y._attach(after)) {
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    if (use) {
+                        for (j = 0; j < use.length; j++) {
+                            if (!done[use[j]]) {
+                                if (!Y._attach(use)) {
                                     return false;
                                 }
                                 break;
@@ -532,16 +556,6 @@ proto = {
                         }
                     }
 
-                    if (use) {
-                        for (j = 0; j < use.length; j++) {
-                            if (!done[use[j]]) {
-                                if (!Y._attach(use)) {
-                                    return false;
-                                }
-                                break;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -607,11 +621,13 @@ proto = {
         } else {
             key = args.join();
 
-            if (Y.Env.serviced[key]) {
+            if (Y.config.cacheUse && Y.Env.serviced[key]) {
                 Y._notify(callback, ALREADY_DONE, args);
             } else {
                 Y._use(args, function(Y, response) {
-                    Y.Env.serviced[key] = true;
+                    if (Y.config.cacheUse) {
+                        Y.Env.serviced[key] = true;
+                    }
                     Y._notify(callback, response, args);
                 });
             }
@@ -621,7 +637,9 @@ proto = {
     },
 
     _notify: function(callback, response, args) {
-        if (callback) {
+        if (!response.success && this.config.loadErrorFn) {
+            this.config.loadErrorFn.call(this, this, callback, response, args);
+        } else if (callback) {
             try {
                 callback(this, response);
             } catch (e) {
@@ -882,11 +900,12 @@ proto = {
      * a JS error is thrown
      * @method error
      * @param msg {string} the error message.
-     * @param e {Error} Optional JS error that was caught.  If supplied
+     * @param e {Error|string} Optional JS error that was caught, or an error string.
+     * @param data Optional additional info
      * and throwFail is specified, this error will be re-thrown.
      * @return {YUI} this YUI instance.
      */
-    error: function(msg, e) {
+    error: function(msg, e, data) {
 
         var Y = this, ret;
 
@@ -1447,6 +1466,42 @@ proto = {
  */
 
 /**
+ * A callback to execute when the loader fails to load one or
+ * more resource.  This could be because of a script load
+ * failure.  It can also fail if a javascript module fails
+ * to register itself, but only when the 'requireRegistration'
+ * is true.  If this function is defined, the use() callback will
+ * only be called when the loader succeeds, otherwise it always
+ * executes unless there was a javascript error when attaching
+ * a module.
+ *
+ * @since 3.3.0
+ * @property loadErrorFn
+ * @type Function
+ */
+
+/**
+ * When set to true, the YUI loader will expect that all modules
+ * it is responsible for loading will be first-class YUI modules
+ * that register themselves with the YUI global.  If this is
+ * set to true, loader will fail if the module registration fails
+ * to happen after the script is loaded.
+ *
+ * @since 3.3.0
+ * @property requireRegistration
+ * @type boolean
+ * @default false
+ */
+
+/**
+ * Cache serviced use() requests.
+ * @since 3.3.0
+ * @property cacheUse
+ * @type boolean
+ * @default true
+ */
+
+/**
  * The parameter defaults for the remote loader service.
  * Requires the rls submodule.  The properties that are
  * supported:
@@ -1566,7 +1621,11 @@ SUBREGEX = /\{\s*([^\|\}]+?)\s*(?:\|([^\}]*))?\s*\}/g;
  * @param o The object to test.
  * @return {boolean} true if o is an array.
  */
-L.isArray = Array.isArray || function(o) {
+// L.isArray = Array.isArray || function(o) {
+//     return L.type(o) === ARRAY;
+// };
+
+L.isArray = function(o) {
     return L.type(o) === ARRAY;
 };
 
@@ -1709,7 +1768,7 @@ L.trim = STRING_PROTO.trim ? function(s) {
 L.trimLeft = STRING_PROTO.trimLeft ? function (s) {
     return s.trimLeft();
 } : function (s) {
-    return s.replace(/^s+/, '');
+    return s.replace(/^\s+/, '');
 };
 
 /**
@@ -1722,7 +1781,7 @@ L.trimLeft = STRING_PROTO.trimLeft ? function (s) {
 L.trimRight = STRING_PROTO.trimRight ? function (s) {
     return s.trimRight();
 } : function (s) {
-    return s.replace(/s+$/, '');
+    return s.replace(/\s+$/, '');
 };
 
 /**
@@ -2071,9 +2130,7 @@ Queue.prototype = {
      * @return {object} this queue.
      */
     add: function() {
-        Y.Array.each(Y.Array(arguments, 0, true), function(fn) {
-            this._q.push(fn);
-        }, this);
+        this._q.push.apply(this._q, arguments);
 
         return this;
     },
@@ -2092,6 +2149,7 @@ Queue.prototype = {
 Y.Queue = Queue;
 
 YUI.Env._loaderQueue = YUI.Env._loaderQueue || new Queue();
+
 /**
  * The YUI module contains the components required for building the YUI
  * seed file.  This includes the script loading mechanism, a simple queue,
@@ -2283,11 +2341,15 @@ Y.cached = function(source, cache, refetch) {
  */
 var F = function() {},
 
-O = Object.create || function(o) {
+// O = Object.create || function(o) {
+//     F.prototype = o;
+//     return new F();
+// },
+
+O = function(o) {
     F.prototype = o;
     return new F();
 },
-
 
 owns = function(o, k) {
     return o && o.hasOwnProperty && o.hasOwnProperty(k);
@@ -2331,7 +2393,11 @@ Y.Object = O;
  * @param o an object.
  * @return {string[]} the keys.
  */
-O.keys = Object.keys || function(o) {
+// O.keys = Object.keys || function(o) {
+//     return _extract(o);
+// };
+
+O.keys = function(o) {
     return _extract(o);
 };
 
@@ -2342,7 +2408,11 @@ O.keys = Object.keys || function(o) {
  * @param o an object.
  * @return {Array} the values.
  */
-O.values = Object.values || function(o) {
+// O.values = Object.values || function(o) {
+//     return _extract(o, 1);
+// };
+
+O.values = function(o) {
     return _extract(o, 1);
 };
 
@@ -2522,7 +2592,6 @@ O.isEmpty = function(o) {
     }
     return true;
 };
-
 /**
  * The YUI module contains the components required for building the YUI seed
  * file.  This includes the script loading mechanism, a simple queue, and the
@@ -2544,8 +2613,15 @@ O.isEmpty = function(o) {
  * @class UA
  * @static
  */
-Y.UA = YUI.Env.UA || function() {
-
+/**
+* Static method for parsing the UA string. Defaults to assigning it's value to Y.UA
+* @static
+* @method Env.parseUA
+* @param {String} subUA Parse this UA string instead of navigator.userAgent
+* @returns {Object} The Y.UA object
+*/
+YUI.Env.parseUA = function(subUA) {
+    
     var numberify = function(s) {
             var c = 0;
             return parseFloat(s.replace(/\./g, function() {
@@ -2681,6 +2757,13 @@ Y.UA = YUI.Env.UA || function() {
          * @static
          */
         android: 0,
+        /**
+         * Detects Palms WebOS version
+         * @property webos
+         * @type float
+         * @static
+         */
+        webos: 0,
 
         /**
          * Google Caja version number or 0.
@@ -2707,7 +2790,7 @@ Y.UA = YUI.Env.UA || function() {
 
     },
 
-    ua = nav && nav.userAgent,
+    ua = subUA || nav && nav.userAgent,
 
     loc = win && win.location,
 
@@ -2744,15 +2827,25 @@ Y.UA = YUI.Env.UA || function() {
                 if (m && m[1]) {
                     m = numberify(m[1].replace('_', '.'));
                 }
-                o.ipad = (navigator.platform == 'iPad') ? m : 0;
-                o.ipod = (navigator.platform == 'iPod') ? m : 0;
-                o.iphone = (navigator.platform == 'iPhone') ? m : 0;
-                o.ios = o.ipad || o.iphone || o.ipod;
+                o.ios = m;
+                o.ipad = o.ipod = o.iphone = 0;
+
+                m = ua.match(/iPad|iPod|iPhone/);
+                if (m && m[0]) {
+                    o[m[0].toLowerCase()] = o.ios;
+                }
             } else {
                 m = ua.match(/NokiaN[^\/]*|Android \d\.\d|webOS\/\d\.\d/);
                 if (m) {
                     // Nokia N-series, Android, webOS, ex: NokiaN95
                     o.mobile = m[0];
+                }
+                if (/webOS/.test(ua)) {
+                    o.mobile = 'WebOS';
+                    m = ua.match(/webOS\/([^\s]*);/);
+                    if (m && m[1]) {
+                        o.webos = numberify(m[1]);
+                    }
                 }
                 if (/ Android/.test(ua)) {
                     o.mobile = 'Android';
@@ -2805,10 +2898,13 @@ Y.UA = YUI.Env.UA || function() {
     YUI.Env.UA = o;
 
     return o;
-}();
+};
 
 
-}, '3.2.0' );
+Y.UA = YUI.Env.UA || YUI.Env.parseUA();
+
+
+}, '3.3.0' );
 YUI.add('get', function(Y) {
 
 
@@ -3560,7 +3656,7 @@ Y.Get = function() {
 
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -3590,7 +3686,7 @@ Y.mix(Y.namespace('Features'), {
     },
 
     test: function(cat, name, args) {
-
+        args = args || [];
         var result, ua, test,
             cat_o = feature_tests[cat],
             feature = cat_o && cat_o[name];
@@ -3626,13 +3722,76 @@ Y.mix(Y.namespace('Features'), {
 
 /* This file is auto-generated by src/loader/meta_join.py */
 var add = Y.Features.add;
-// 0
+// autocomplete-list-keys-sniff.js
 add('load', '0', {
-    "trigger": "node-base", 
+    "test": function (Y) {
+    // Only add keyboard support to autocomplete-list if this doesn't appear to
+    // be an iOS or Android-based mobile device.
+    //
+    // There's currently no feasible way to actually detect whether a device has
+    // a hardware keyboard, so this sniff will have to do. It can easily be
+    // overridden by manually loading the autocomplete-list-keys module.
+    //
+    // Worth noting: even though iOS supports bluetooth keyboards, Mobile Safari
+    // doesn't fire the keyboard events used by AutoCompleteList, so there's
+    // no point loading the -keys module even when a bluetooth keyboard may be
+    // available.
+    return !(Y.UA.ios || Y.UA.android);
+}, 
+    "trigger": "autocomplete-list"
+});
+// ie-style-test.js
+add('load', '1', {
+    "test": function (Y) {
+
+    var testFeature = Y.Features.test,
+        addFeature = Y.Features.add,
+        WINDOW = Y.config.win,
+        DOCUMENT = Y.config.doc,
+        DOCUMENT_ELEMENT = 'documentElement',
+        ret = false;
+
+    addFeature('style', 'computedStyle', {
+        test: function() {
+            return WINDOW && 'getComputedStyle' in WINDOW;
+        }
+    });
+
+    addFeature('style', 'opacity', {
+        test: function() {
+            return DOCUMENT && 'opacity' in DOCUMENT[DOCUMENT_ELEMENT].style;
+        }
+    });
+
+    ret =  (!testFeature('style', 'opacity') &&
+            !testFeature('style', 'computedStyle'));
+
+    return ret;
+}, 
+    "trigger": "dom-style"
+});
+// 0
+add('load', '2', {
+    "trigger": "widget-base", 
     "ua": "ie"
 });
+// ie-base-test.js
+add('load', '3', {
+    "test": function(Y) {
+    var imp = Y.config.doc && Y.config.doc.implementation;
+    return (imp && (!imp.hasFeature('Events', '2.0')));
+}, 
+    "trigger": "node-base"
+});
+// dd-gestures-test.js
+add('load', '4', {
+    "test": function(Y) {
+    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
+}, 
+    "trigger": "dd-drag"
+});
 // history-hash-ie-test.js
-add('load', '1', {
+add('load', '5', {
     "test": function (Y) {
     var docMode = Y.config.doc.documentMode;
 
@@ -3641,16 +3800,9 @@ add('load', '1', {
 }, 
     "trigger": "history-hash"
 });
-// dd-gestures-test.js
-add('load', '2', {
-    "test": function(Y) {
-    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
-}, 
-    "trigger": "dd-drag"
-});
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('rls', function(Y) {
 
 /**
@@ -3711,7 +3863,7 @@ Y._rls = function(what) {
 
 
 
-}, '3.2.0' ,{requires:['get','features']});
+}, '3.3.0' ,{requires:['get','features']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -3799,7 +3951,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -3905,7 +4057,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -3969,7 +4121,7 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 YUI.add('yui-throttle', function(Y) {
 
 /**
@@ -4011,10 +4163,10 @@ Y.throttle = function(fn, ms) {
 };
 
 
-}, '3.2.0' ,{requires:['yui-base']});
+}, '3.3.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','intl-base','yui-log','yui-later','yui-throttle']});
+YUI.add('yui', function(Y){}, '3.3.0' ,{use:['yui-base','get','features','rls','intl-base','yui-log','yui-later','yui-throttle']});
 
 ;(function() {
 	YUI.AUI_config = {
@@ -4032,8 +4184,9 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
             alloy: {
 	            combine: false,
                 modules: {
-						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
+						'aui-aria': {skinnable:false, requires:['aui-base','plugin']},
+						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
+						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop']},
 						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
 						'aui-calendar': {requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true},
 						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
@@ -4044,44 +4197,44 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 						'aui-component': {skinnable:false, requires:['widget']},
 						'aui-data-browser': {skinnable:true, requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel']},
 						'aui-data-set': {skinnable:false, requires:['oop','collection','base']},
-						'aui-datasource-control': {submodules: {'aui-input-text-control': {requires:['aui-base','aui-datasource-control-base','aui-form-combobox']}, 'aui-datasource-control-base': {requires:['aui-base','datasource','dataschema']} }, skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']},
+						'aui-datasource-control': {submodules: {'aui-input-text-control': {requires:['aui-base','aui-datasource-control-base','aui-form-combobox']}, 'aui-datasource-control-base': {requires:['aui-base','datasource','dataschema']} }, use:['aui-datasource-control-base','aui-input-text-control'], skinnable:true},
 						'aui-datatype': {skinnable:false, requires:['aui-base']},
-						'aui-datepicker': {submodules: {'aui-datepicker-select': {skinnable:true, requires:['aui-datepicker-base','aui-button-item']}, 'aui-datepicker-base': {skinnable:true, requires:['aui-calendar','aui-overlay-context']} }, skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']},
+						'aui-datepicker': {submodules: {'aui-datepicker-select': {skinnable:true, requires:['aui-datepicker-base','aui-button-item']}, 'aui-datepicker-base': {skinnable:true, requires:['aui-calendar','aui-overlay-context']} }, use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true},
 						'aui-delayed-task': {skinnable:false},
 						'aui-dialog-iframe': {skinnable:true, requires:['aui-base','aui-loading-mask','plugin']},
 						'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
-						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
+						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}, skinnable:false},
 						'aui-editable': {skinnable:true, requires:['aui-base','aui-form-combobox']},
-						'aui-editor': {submodules: {'aui-editor-bbcode-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-toolbar-plugin': {requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']}, 'aui-editor-menu-plugin': {requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']}, 'aui-editor-tools-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-base': {requires:['aui-base','editor-base','aui-editor-toolbar-plugin']} }, skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin']},
-						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, skinnable:false, use:['aui-event-input']},
-						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {skinnable:true, requires:['aui-form-textfield']}, 'aui-form-select': {requires:['aui-form-field']}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {skinnable:true, requires:['aui-form-textarea','aui-toolbar']}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']},
-						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']}, 'aui-image-viewer-base': {skinnable:true, requires:['anim','aui-overlay-mask','substitute']} }, skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']},
-						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io-base','json','plugin','querystring-stringify']} }, skinnable:false, use:['aui-io-request','aui-io-plugin']},
+						'aui-editor': {submodules: {'aui-editor-bbcode-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-toolbar-plugin': {requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']}, 'aui-editor-menu-plugin': {requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']}, 'aui-editor-tools-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-base': {requires:['aui-base','editor-base','aui-editor-toolbar-plugin']} }, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin'], skinnable:true},
+						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']} }, use:['aui-event-input'], skinnable:false},
+						'aui-form': {submodules: {'aui-form-validator': {requires:['aui-base','aui-event-input','selector-css3','substitute']}, 'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {skinnable:true, requires:['aui-form-textfield']}, 'aui-form-select': {requires:['aui-form-field']}, 'aui-form-field': {requires:['aui-base','aui-component','substitute']}, 'aui-form-combobox': {skinnable:true, requires:['aui-form-textarea','aui-toolbar']}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false},
+						'aui-image-viewer': {submodules: {'aui-image-viewer-gallery': {skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']}, 'aui-image-viewer-base': {skinnable:true, requires:['anim','aui-overlay-mask','substitute']} }, use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true},
+						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io-base','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
 						'aui-live-search': {skinnable:false, requires:['aui-base']},
 						'aui-loading-mask': {skinnable:true, requires:['aui-overlay-mask','plugin','substitute']},
 						'aui-nested-list': {skinnable:false, requires:['aui-base','dd-drag','dd-drop','dd-proxy']},
-						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']},
-						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']},
+						'aui-node': {submodules: {'aui-node-fx': {requires:['aui-base','anim','anim-node-plugin']}, 'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base']} }, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false},
+						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
 						'aui-paginator': {skinnable:true, requires:['aui-base','substitute']},
 						'aui-panel': {skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar']},
 						'aui-parse-content': {skinnable:false, requires:['async-queue','aui-base','plugin']},
 						'aui-portal-layout': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy']},
 						'aui-progressbar': {skinnable:true, requires:['aui-base']},
 						'aui-rating': {skinnable:true, requires:['aui-base']},
-						'aui-resize': {submodules: {'aui-resize-constrain': {skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']}, 'aui-resize-base': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']} }, skinnable:true, use:['aui-resize-base','aui-resize-constrain']},
-						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {skinnable:true, requires:['aui-scheduler-event']}, 'aui-scheduler-event': {skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute']}, 'aui-scheduler-view': {skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']}, 'aui-scheduler-base': {skinnable:true, requires:['aui-scheduler-view','datasource']} }, skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']},
+						'aui-resize': {submodules: {'aui-resize-constrain': {skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']}, 'aui-resize-base': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']} }, use:['aui-resize-base','aui-resize-constrain'], skinnable:true},
+						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {skinnable:true, requires:['aui-scheduler-event']}, 'aui-scheduler-event': {skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute']}, 'aui-scheduler-view': {skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']}, 'aui-scheduler-base': {skinnable:true, requires:['aui-scheduler-view','datasource']} }, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true},
 						'aui-selector': {skinnable:false, requires:['selector']},
-						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
-						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base'], type: 'css'},
+						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
+						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
+						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
-						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction']} }, skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']},
+						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction']} }, use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true},
 						'aui-textboxlist': {skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']},
 						'aui-toolbar': {skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']},
 						'aui-tooltip': {skinnable:true, requires:['aui-overlay-context-panel']},
-						'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']},
+						'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true},
 						'aui-video': {skinnable:true, requires:['aui-base','querystring-stringify-simple']}
 				}
 		    }
