@@ -139,7 +139,7 @@ var DialogIframePlugin = A.Component.create(
 
 					node.set('height', iframeBody.get('scrollHeight') + 5);
 
-					instance.set('uri', iframeDoc('location.href'), UI_SRC);
+					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
 
 					if (instance.get('closeOnEscape')) {
 						A.on(
