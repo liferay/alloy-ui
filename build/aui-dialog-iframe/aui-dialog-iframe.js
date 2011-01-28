@@ -9,7 +9,12 @@ var Lang = A.Lang,
 	BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
 
 	TPL_EMPTY_NODE = '<div></div>',
-	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>';
+	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>',
+
+	UI = A.Widget.UI_SRC,
+	UI_SRC = {
+		src: UI
+	};
 
 var DialogIframePlugin = A.Component.create(
 	{
@@ -115,7 +120,9 @@ var DialogIframePlugin = A.Component.create(
 			_afterUriChange: function(event) {
 				var instance = this;
 
-				instance._uiSetUri(event.newVal);
+				if (event.src != UI) {
+					instance._uiSetUri(event.newVal);
+				}
 			},
 
 			_defaultLoadIframeFn: function(event) {
@@ -131,6 +138,8 @@ var DialogIframePlugin = A.Component.create(
 					var iframeBody = iframeDoc.get('body');
 
 					node.set('height', iframeBody.get('scrollHeight') + 5);
+
+					instance.set('uri', iframeDoc('location.href'), UI_SRC);
 
 					if (instance.get('closeOnEscape')) {
 						A.on(
