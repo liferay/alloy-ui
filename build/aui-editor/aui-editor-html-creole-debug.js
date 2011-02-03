@@ -111,7 +111,7 @@ var HTML2CreoleConvertor = A.Component.create(
 					}
 
 					instance._handleElementStart(child, listTagsIn, listTagsOut);
-					instance._handleStyles(child, listTagsIn, listTagsOut);
+					instance._handleStyles(child, stylesTagsIn, stylesTagsOut);
 
 					pushTagList.call(instance, listTagsIn);
 					pushTagList.call(instance, stylesTagsIn);
