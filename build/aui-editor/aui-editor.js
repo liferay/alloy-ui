@@ -3327,12 +3327,6 @@ var HTML2CreoleConvertor = A.Component.create(
 							parentTagName = parentTagName.toLowerCase();
 						}
 					}
-
-					if (parentTagName === TAG_PRE) {
-						if (!REGEX_LASTCHAR_NEWLINE.test(data)) {
-							instance._endResult.push(NEW_LINE);
-						}
-					}
 				}
 			},
 
@@ -3514,7 +3508,7 @@ var HTML2CreoleConvertor = A.Component.create(
 				}
 
 				listTagsIn.push('{{{', NEW_LINE);
-				listTagsOut.push('}}}', NEW_LINE);
+				listTagsOut.push(NEW_LINE, '}}}', NEW_LINE);
 			},
 
 			_handleStrong: function(element, listTagsIn, listTagsOut) {
