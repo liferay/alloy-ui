@@ -821,7 +821,7 @@ var EditorToolbar = A.Component.create(
 					}
 				}
 
-				for (var i = 0; i < groups.length; i++) {
+				for (i = 0; i < groups.length; i++) {
 					var group = groups[i];
 					var groupType = GROUPS[group.type] || group;
 					var buttons = [];
@@ -830,7 +830,7 @@ var EditorToolbar = A.Component.create(
 						var groupLength = group.include.length;
 
 						for (var j = 0; j < groupLength; j++) {
-							var index = instance._isGroupIncluded('icon', groupType.children, group.include[j]);
+							index = instance._isGroupIncluded('icon', groupType.children, group.include[j]);
 
 							if (index != -1) {
 								buttons.push(groupType.children[index]);
@@ -936,7 +936,7 @@ var EditorToolbar = A.Component.create(
 
 					children = (children.length ? children : buttons);
 
-					for (var i = 0; i < children.length; i++) {
+					for (i = 0; i < children.length; i++) {
 						var item = children[i];
 						var icon = item.icon;
 
@@ -961,6 +961,8 @@ var EditorToolbar = A.Component.create(
 
 					return toolbar;
 				}
+
+				return null;
 			},
 
 			_isGroupIncluded: function(name, children, type) {
@@ -1546,6 +1548,8 @@ GROUPS[INSERT] = {
 
 									return true;
 								}
+
+								return false;
 							}
 						);
 
@@ -1926,7 +1930,7 @@ GROUPS[INSERT] = {
 										'values',
 										{
 											description: link.get('innerHTML'),
-											linkURL: link.getAttribute('href'),
+											linkURL: link.getAttribute('href')
 										}
 									);
 
