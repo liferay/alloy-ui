@@ -4,7 +4,7 @@ var NEW_LINE = '\n';
 
 var TAG_BOLD = '**';
 var TAG_EMPHASIZE = '//';
-var TAG_PRE = 'pre';
+var TAG_PARAGRAPH = 'p';
 var TAG_ORDERED_LIST = 'ol';
 var TAG_ORDEREDLIST_ITEM = '#';
 var TAG_UNORDERED_LIST = 'ul';
@@ -63,6 +63,12 @@ var HTML2CreoleConvertor = A.Component.create(
 
 			_isAllWS: function(node) {
 				return !(REGEX_NOT_WHITESPACE.test(node.data));
+			},
+
+			_isDataAvailable: function() {
+				var instance = this;
+
+				return instance._endResult && instance._endResult.length;
 			},
 
 			_isIgnorable: function(node) {
@@ -145,7 +151,7 @@ var HTML2CreoleConvertor = A.Component.create(
 				if (tagName) {
 					tagName = tagName.toLowerCase();
 
-					if (tagName == 'p') {
+					if (tagName == TAG_PARAGRAPH) {
 						instance._handleParagraph(element, listTagsIn, listTagsOut);
 					}
 					else if (tagName == 'br') {
@@ -175,7 +181,7 @@ var HTML2CreoleConvertor = A.Component.create(
 					else if (tagName == 'hr') {
 						instance._handleHr(element, listTagsIn, listTagsOut);
 					}
-					else if (tagName == TAG_PRE) {
+					else if (tagName == 'pre') {
 						instance._handlePre(element, listTagsIn, listTagsOut);
 					}
 					else if ((params = REGEX_HEADER.exec(tagName))) {
@@ -202,14 +208,19 @@ var HTML2CreoleConvertor = A.Component.create(
 					tagName = tagName.toLowerCase();
 				}
 
-				if (tagName === TAG_UNORDERED_LIST || tagName === TAG_ORDERED_LIST) {
+				if (tagName == TAG_PARAGRAPH) {
+					if (!instance._isLastItemNewLine()) {
+						instance._endResult.push(NEW_LINE);
+					}
+				}
+				else if (tagName == TAG_UNORDERED_LIST || tagName == TAG_ORDERED_LIST) {
 					instance._ulLevel -= 1;
 
 					if (!instance._isLastItemNewLine()) {
 						instance._endResult.push(NEW_LINE);
 					}
 				}
-				else if (tagName === 'table') {
+				else if (tagName == 'table') {
 					listTagsOut.push(NEW_LINE);
 				}
 			},
@@ -229,7 +240,7 @@ var HTML2CreoleConvertor = A.Component.create(
 				var res = new Array(parseInt(params[1], 10) + 1);
 				res = res.join('=');
 
-				if (!instance._isLastItemNewLine()) {
+				if (instance._isDataAvailable() && !instance._isLastItemNewLine()) {
 					listTagsIn.push(NEW_LINE);
 				}
 
@@ -240,7 +251,7 @@ var HTML2CreoleConvertor = A.Component.create(
 			_handleHr: function(element, listTagsIn, listTagsOut) {
 				var instance = this;
 
-				if (!instance._isLastItemNewLine()) {
+				if (instance._isDataAvailable() && !instance._isLastItemNewLine()) {
 					listTagsIn.push(NEW_LINE);
 				}
 
@@ -280,7 +291,7 @@ var HTML2CreoleConvertor = A.Component.create(
 				var res = new Array(curListLevel + 1);
 				res = res.join(listItemTag);
 
-				if (!instance._isLastItemNewLine()){
+				if (instance._isDataAvailable() && !instance._isLastItemNewLine()){
 					listTagsIn.push(NEW_LINE);
 				}
 
@@ -296,20 +307,22 @@ var HTML2CreoleConvertor = A.Component.create(
 			_handleParagraph: function(element, listTagsIn, listTagsOut) {
 				var instance = this;
 
-				var newLinesAtEnd = REGEX_LASTCHAR_NEWLINE.exec(instance._endResult.slice(-1));
-				var count = newLinesAtEnd ? newLinesAtEnd[1].length : 0;
+				if (instance._isDataAvailable()) {
+					var newLinesAtEnd = REGEX_LASTCHAR_NEWLINE.exec(instance._endResult.slice(-2).join(''));
+					var count = newLinesAtEnd ? newLinesAtEnd[1].length : 0;
 
-				while (count++ < 2) {
-					listTagsIn.push(NEW_LINE);
+					while (count++ < 2) {
+						listTagsIn.push(NEW_LINE);
+					}
 				}
 
-				listTagsOut.push(NEW_LINE, NEW_LINE);
+				listTagsOut.push(NEW_LINE);
 			},
 
 			_handlePre: function(element, listTagsIn, listTagsOut) {
 				var instance = this;
 
-				if (!instance._isLastItemNewLine()) {
+				if (instance._isDataAvailable() && !instance._isLastItemNewLine()) {
 					listTagsIn.push(NEW_LINE);
 				}
 
@@ -349,7 +362,12 @@ var HTML2CreoleConvertor = A.Component.create(
 			},
 
 			_handleTableRow: function(element, listTagsIn, listTagsOut) {
-				listTagsIn.push(NEW_LINE);
+				var instance = this;
+
+				if (instance._isDataAvailable()) {
+					listTagsIn.push(NEW_LINE);
+				}
+
 				listTagsOut.push('|');
 			},
 
