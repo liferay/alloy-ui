@@ -74,7 +74,7 @@ var EditorCreoleCode = A.Component.create(
 						data: data
 					});
 				} else {
-					instance.html2creole.set(data);
+					instance.html2creole.set('data', data);
 				}
 
 				return instance.html2creole.convert();
