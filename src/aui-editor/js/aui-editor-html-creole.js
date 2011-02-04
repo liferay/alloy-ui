@@ -133,16 +133,6 @@ var HTML2CreoleConvertor = A.Component.create(
 
 				if (Lang.isValue(data)) {
 					instance._endResult.push(data);
-
-					var parentNode = element.parentNode;
-
-					if (parentNode) {
-						var parentTagName = parentNode.tagName;
-
-						if (parentTagName) {
-							parentTagName = parentTagName.toLowerCase();
-						}
-					}
 				}
 			},
 
