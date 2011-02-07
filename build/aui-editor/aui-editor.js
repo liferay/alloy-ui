@@ -3594,7 +3594,11 @@ var Lang = A.Lang,
 
 	TPL_HTML_ELEMENTS = '(<[a-z][a-z0-9]*[^>]*>|</[a-z][a-z0-9]*>)',
 
-	REGEX_HTML_ELEMENTS = new RegExp(TPL_HTML_ELEMENTS, 'gi');
+	REGEX_HTML_ELEMENTS = new RegExp(TPL_HTML_ELEMENTS, 'gi'),
+	REGEX_BOLD = /<(\/?)strong>/gi,
+	REGEX_ITALIC = /<(\/?)em>/gi,
+
+	SPAN_TAG_END = '</span>';
 
 if (!YUI.AUI.defaults.EditorToolbar) {
 	YUI.AUI.defaults.EditorToolbar = {
@@ -3700,6 +3704,50 @@ var EditorCreoleCode = A.Component.create(
 				event.stopImmediatePropagation();
 			},
 
+			_normalizeParsedData: function(data){
+				var instance = this;
+
+				if (A.UA.gecko) {
+					data = instance._normalizeParsedDataGecko(data);
+				}
+				else if (A.UA.webkit) {
+					data = instance._normalizeParsedDataWebKit(data);
+				}
+
+				return data;
+			},
+
+			_normalizeParsedDataGecko: function(data) {
+				// Mozilla stores text which is both bold and italic in one span element.
+				// For simplicity we will ignore that for now and we will create always two span elements.
+				data = data.replace(REGEX_BOLD, function(str, p1, offset, s) {
+					if (!p1) {
+						return '<span style="font-weight:bold;">';
+					}
+					else {
+						return SPAN_TAG_END;
+					}
+				});
+
+				data = data.replace(REGEX_ITALIC, function(str, p1, offset, s) {
+					if (!p1) {
+						return '<span style="font-style:italic;">';
+					}
+					else {
+						return SPAN_TAG_END;
+					}
+				});
+
+				return data;
+			},
+
+			_normalizeParsedDataWebKit: function(data) {
+				data = data.replace(REGEX_BOLD, '<$1b>');
+				data = data.replace(REGEX_ITALIC, '<$1b>');
+
+				return data;
+			},
+
 			_parseCreoleCode: function(creoleCode) {
 				var instance = this;
 
@@ -3708,6 +3756,8 @@ var EditorCreoleCode = A.Component.create(
 				instance._creole.parse(div, creoleCode);
 
 				var data = div.innerHTML;
+
+				data = instance._normalizeParsedData(data);
 
 				return data;
 			}
