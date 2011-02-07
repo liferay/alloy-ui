@@ -7,9 +7,6 @@ var Lang = A.Lang,
 	NAME = 'creoleplugin',
 	CREOLE_PLUGIN = 'creole',
 
-	TPL_HTML_ELEMENTS = '(<[a-z][a-z0-9]*[^>]*>|</[a-z][a-z0-9]*>)',
-
-	REGEX_HTML_ELEMENTS = new RegExp(TPL_HTML_ELEMENTS, 'gi'),
 	REGEX_BOLD = /<(\/?)strong>/gi,
 	REGEX_ITALIC = /<(\/?)em>/gi,
 
@@ -89,8 +86,6 @@ var EditorCreoleCode = A.Component.create(
 				var content = A.Do.originalRetVal;
 
 				content = instance._convertHTML2Creole(content);
-
-				content = content.replace(REGEX_HTML_ELEMENTS, '');
 
 				return new A.Do.AlterReturn(null, content);
 			},
