@@ -3188,17 +3188,18 @@ var NEW_LINE = '\n';
 
 var TAG_BOLD = '**';
 var TAG_EMPHASIZE = '//';
-var TAG_PARAGRAPH = 'p';
 var TAG_ORDERED_LIST = 'ol';
 var TAG_ORDEREDLIST_ITEM = '#';
+var TAG_PARAGRAPH = 'p';
+var TAG_PRE = 'pre';
 var TAG_UNORDERED_LIST = 'ul';
 var TAG_UNORDEREDLIST_ITEM = '*';
 
 var REGEX_BOLD = /(?:^|\s)font-weight\s*:\s*bold\s*;?/i;
 var REGEX_HEADER = /^h([1-6])$/i;
 var REGEX_ITALIC = /(?:^|\s)font-style\s*:\s*italic\s*;?/i;
-var REGEX_NOT_WHITESPACE = /[^\t\n\r ]/;
 var REGEX_LASTCHAR_NEWLINE = /(\r?\n\s*)$/;
+var REGEX_NOT_WHITESPACE = /[^\t\n\r ]/;
 
 var SPACE = ' ';
 
@@ -3217,6 +3218,8 @@ var HTML2CreoleConvertor = A.Component.create(
 
 		prototype: {
 			_endResult: null,
+
+			_inPRE: false,
 
 			_ulLevel: 0,
 
@@ -3246,7 +3249,7 @@ var HTML2CreoleConvertor = A.Component.create(
 			},
 
 			_isAllWS: function(node) {
-				return !(REGEX_NOT_WHITESPACE.test(node.data));
+				return node.isElementContentWhitespace || !(REGEX_NOT_WHITESPACE.test(node.data));
 			},
 
 			_isDataAvailable: function() {
@@ -3260,7 +3263,7 @@ var HTML2CreoleConvertor = A.Component.create(
 
 				var nodeType = node.nodeType;
 
-				return (nodeType == 8) ||
+				return (node.isElementContentWhitespace || nodeType == 8) ||
 					((nodeType == 3) && instance._isAllWS(node));
 			},
 
@@ -3295,7 +3298,7 @@ var HTML2CreoleConvertor = A.Component.create(
 
 					child = children[i];
 
-					if (instance._isIgnorable(child)) {
+					if (instance._isIgnorable(child) && !instance._inPRE ) {
 						continue;
 					}
 
@@ -3365,7 +3368,7 @@ var HTML2CreoleConvertor = A.Component.create(
 					else if (tagName == 'hr') {
 						instance._handleHr(element, listTagsIn, listTagsOut);
 					}
-					else if (tagName == 'pre') {
+					else if (tagName == TAG_PRE) {
 						instance._handlePre(element, listTagsIn, listTagsOut);
 					}
 					else if ((params = REGEX_HEADER.exec(tagName))) {
@@ -3404,13 +3407,27 @@ var HTML2CreoleConvertor = A.Component.create(
 						instance._endResult.push(NEW_LINE);
 					}
 				}
+				else if (tagName == TAG_PRE) {
+					if (!instance._isLastItemNewLine()) {
+						instance._endResult.push(NEW_LINE);
+					}
+
+					instance._inPRE = false;
+				}
 				else if (tagName == 'table') {
 					listTagsOut.push(NEW_LINE);
 				}
 			},
 
 			_handleBreak: function(element, listTagsIn, listTagsOut) {
-				listTagsIn.push('\\\\');
+				var instance = this;
+
+				if (instance._inPRE) {
+					listTagsIn.push(NEW_LINE);
+				}
+				else {
+					listTagsIn.push('\\\\');
+				}
 			},
 
 			_handleEm: function(element, listTagsIn, listTagsOut) {
@@ -3506,12 +3523,18 @@ var HTML2CreoleConvertor = A.Component.create(
 			_handlePre: function(element, listTagsIn, listTagsOut) {
 				var instance = this;
 
+				instance._inPRE = true;
+
+				var endResult = instance._endResult;
+				var data = element.innerHTML;
+
 				if (instance._isDataAvailable() && !instance._isLastItemNewLine()) {
-					listTagsIn.push(NEW_LINE);
+					endResult.push(NEW_LINE);
 				}
 
 				listTagsIn.push('{{{', NEW_LINE);
-				listTagsOut.push(NEW_LINE, '}}}', NEW_LINE);
+
+				listTagsOut.push('}}}', NEW_LINE);
 			},
 
 			_handleStrong: function(element, listTagsIn, listTagsOut) {
@@ -3592,9 +3615,6 @@ var Lang = A.Lang,
 	NAME = 'creoleplugin',
 	CREOLE_PLUGIN = 'creole',
 
-	TPL_HTML_ELEMENTS = '(<[a-z][a-z0-9]*[^>]*>|</[a-z][a-z0-9]*>)',
-
-	REGEX_HTML_ELEMENTS = new RegExp(TPL_HTML_ELEMENTS, 'gi'),
 	REGEX_BOLD = /<(\/?)strong>/gi,
 	REGEX_ITALIC = /<(\/?)em>/gi,
 
@@ -3674,8 +3694,6 @@ var EditorCreoleCode = A.Component.create(
 				var content = A.Do.originalRetVal;
 
 				content = instance._convertHTML2Creole(content);
-
-				content = content.replace(REGEX_HTML_ELEMENTS, '');
 
 				return new A.Do.AlterReturn(null, content);
 			},
