@@ -3298,7 +3298,7 @@ var HTML2CreoleConvertor = A.Component.create(
 
 					child = children[i];
 
-					if (instance._isIgnorable(child) && !instance._inPRE ) {
+					if (instance._isIgnorable(child) && !instance._inPRE) {
 						continue;
 					}
 
@@ -3761,7 +3761,7 @@ var EditorCreoleCode = A.Component.create(
 
 			_normalizeParsedDataWebKit: function(data) {
 				data = data.replace(REGEX_BOLD, '<$1b>');
-				data = data.replace(REGEX_ITALIC, '<$1b>');
+				data = data.replace(REGEX_ITALIC, '<$1i>');
 
 				return data;
 			},

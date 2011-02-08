@@ -115,7 +115,7 @@ var HTML2CreoleConvertor = A.Component.create(
 
 					child = children[i];
 
-					if (instance._isIgnorable(child) && !instance._inPRE ) {
+					if (instance._isIgnorable(child) && !instance._inPRE) {
 						continue;
 					}
 

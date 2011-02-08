@@ -154,7 +154,7 @@ var EditorCreoleCode = A.Component.create(
 
 			_normalizeParsedDataWebKit: function(data) {
 				data = data.replace(REGEX_BOLD, '<$1b>');
-				data = data.replace(REGEX_ITALIC, '<$1b>');
+				data = data.replace(REGEX_ITALIC, '<$1i>');
 
 				return data;
 			},
