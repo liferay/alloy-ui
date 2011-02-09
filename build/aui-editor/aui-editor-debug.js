@@ -781,22 +781,29 @@ var EditorToolbar = A.Component.create(
 			}
 		},
 
+		_alignNode: null,
+
 		prototype: {
 			initializer: function() {
 				var instance = this;
 
-				var host = instance.get('host');
-				var container = host.frame.get('container');
+				var alignNode = A.Node.create(TPL_ALIGN_NODE);
 				var append = instance.get('append');
-				var groups = instance.get('groups');
-
 				var boundingBox = A.Node.create(TPL_TOOLBAR);
 				var contentBox = boundingBox.one('.' + CSS_TOOLBAR_CONTENT);
+				var groups = instance.get('groups');
+
+				var host = instance.get('host');
+				var container = host.frame.get('container');
 
 				container.placeBefore(boundingBox);
 
 				instance._boundingBox = boundingBox;
 				instance._contentBox = contentBox;
+
+				alignNode.hide();
+				A.getBody().append(alignNode);
+				instance._alignNode = alignNode;
 
 				var toolbars = [];
 
@@ -977,6 +984,35 @@ var EditorToolbar = A.Component.create(
 				return -1;
 			},
 
+			_openOverlayToAlignNode: function(overlay, iframe, iframeNode) {
+				var instance = this;
+
+				var docScrollX = iframeNode.get('docScrollX');
+				var docScrollY = iframeNode.get('docScrollY');
+				var xy = iframe.getXY();
+				var xyNode = iframeNode.getXY();
+
+				xy = [xy[0] + xyNode[0] - docScrollX, xy[1] + xyNode[1] - docScrollY];
+
+				var alignNode = instance._alignNode;
+
+				alignNode.setStyle('width', iframeNode.get('offsetWidth'));
+				alignNode.setStyle('height', iframeNode.get('offsetHeight'));
+				alignNode.setXY(xy);
+
+				alignNode.show();
+
+				overlay.set(
+					'align',
+					{
+						node: alignNode,
+						points: [ 'tl', 'bc' ]
+					}
+				);
+
+				overlay.show();
+			},
+
 			_updateToolbar: function(event, attrs) {
 				var instance = this;
 
@@ -1104,29 +1140,6 @@ EditorToolbar.generateColorPicker = function(editor, attrs, config, cmd) {
 			editor.focus();
 		}
 	);
-};
-
-EditorToolbar.openOverlayToAlignNode = function(overlay, alignNode, iframe, iframeNode) {
-	var xy = iframe.getXY();
-	var xyNode = iframeNode.getXY();
-
-	xy = [xy[0] + xyNode[0], xy[1] + xyNode[1]];
-
-	alignNode.setStyle('width', iframeNode.get('offsetWidth'));
-	alignNode.setStyle('height', iframeNode.get('offsetHeight'));
-	alignNode.setXY(xy);
-
-	alignNode.show();
-
-	overlay.set(
-		'align',
-		{
-			node: alignNode,
-			points: [ 'tl', 'bc' ]
-		}
-	);
-
-	overlay.show();
 };
 
 var EditorToolbarStrings = {
@@ -1691,7 +1704,7 @@ GROUPS[INSERT] = {
 						panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT_IMAGE);
 						insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT);
 
-						alignNode.hide();
+						instance._alignNode.hide();
 
 						overlay.set(
 							'align',
@@ -1704,12 +1717,6 @@ GROUPS[INSERT] = {
 						editNode = null;
 					}
 				);
-
-				var alignNode = A.Node.create(TPL_ALIGN_NODE);
-
-				alignNode.hide();
-
-				A.getBody().append(alignNode);
 
 				editor.on(
 					'toolbar:ready',
@@ -1726,7 +1733,7 @@ GROUPS[INSERT] = {
 
 						frame.one('body').delegate(
 							'click',
-							function(event) {
+							A.bind(function(event) {
 								var instance = this;
 
 								if (editNode != event.currentTarget) {
@@ -1773,9 +1780,9 @@ GROUPS[INSERT] = {
 
 									editNode = img;
 
-									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, img);
+									instance._openOverlayToAlignNode(overlay, iframe, img);
 								}
-							},
+							}, instance),
 							'img'
 						);
 					}
@@ -1890,7 +1897,7 @@ GROUPS[INSERT] = {
 					panel.set('title', YUI.AUI.defaults.EditorToolbar.STRINGS.CREATE_LINK);
 					insertButton.set('label', YUI.AUI.defaults.EditorToolbar.STRINGS.INSERT);
 
-					alignNode.hide();
+					instance._alignNode.hide();
 
 					overlay.set(
 						'align',
@@ -1904,12 +1911,6 @@ GROUPS[INSERT] = {
 				}
 			);
 
-			var alignNode = A.Node.create(TPL_ALIGN_NODE);
-
-			alignNode.hide();
-
-			A.getBody().append(alignNode);
-
 			editor.on(
 				'toolbar:ready',
 				function() {
@@ -1917,7 +1918,7 @@ GROUPS[INSERT] = {
 
 					frame.one('body').delegate(
 						'click',
-						function(event) {
+						A.bind(function(event) {
 							var instance = this;
 
 							if (editNode != event.currentTarget) {
@@ -1941,10 +1942,10 @@ GROUPS[INSERT] = {
 
 									editNode = link;
 
-									EditorToolbar.openOverlayToAlignNode(overlay, alignNode, iframe, link);
+									instance._openOverlayToAlignNode(overlay, iframe, link);
 								}
 							}
-						},
+						}, instance),
 						'a'
 					);
 				}
