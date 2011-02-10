@@ -3484,13 +3484,12 @@ var HTML2CreoleConvertor = A.Component.create(
 			_handleListItem: function(element, listTagsIn, listTagsOut) {
 				var instance = this;
 
-				var curListLevel = instance._ulLevel;
-				var listItemTag = (tagName === TAG_UNORDERED_LIST) ?
-					TAG_UNORDEREDLIST_ITEM : TAG_ORDEREDLIST_ITEM;
 				var parentNode = element.parentNode;
 				var tagName = parentNode.tagName.toLowerCase();
+				var listItemTag = (tagName === TAG_UNORDERED_LIST) ?
+					TAG_UNORDEREDLIST_ITEM : TAG_ORDEREDLIST_ITEM;
 
-				var res = new Array(curListLevel + 1);
+				var res = new Array(instance._ulLevel + 1);
 				res = res.join(listItemTag);
 
 				if (instance._isDataAvailable() && !instance._isLastItemNewLine()){
