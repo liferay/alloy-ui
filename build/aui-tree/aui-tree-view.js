@@ -624,6 +624,8 @@ var TreeViewDD = A.Component.create(
 									scrollDelay: instance.get(SCROLL_DELAY),
 									node: instance.get(BOUNDING_BOX)
 								});
+
+								drag.removeInvalid('a');
 							}
 
 							A.Array.removeItem(dragTimers, timer);
