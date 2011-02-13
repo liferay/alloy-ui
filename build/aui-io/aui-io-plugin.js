@@ -400,7 +400,7 @@ var IOPlugin = A.Component.create(
 							node.replace(content);
 						}
 						else {
-							A.DOM.addHTML(node._node, content, where);
+							node.insert(content, where);
 						}
 					},
 
