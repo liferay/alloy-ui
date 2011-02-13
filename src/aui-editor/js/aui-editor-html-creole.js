@@ -11,9 +11,7 @@ var TAG_PRE = 'pre';
 var TAG_UNORDERED_LIST = 'ul';
 var TAG_UNORDEREDLIST_ITEM = '*';
 
-var REGEX_BOLD = /(?:^|\s)font-weight\s*:\s*bold\s*;?/i;
 var REGEX_HEADER = /^h([1-6])$/i;
-var REGEX_ITALIC = /(?:^|\s)font-style\s*:\s*italic\s*;?/i;
 var REGEX_LASTCHAR_NEWLINE = /(\r?\n\s*)$/;
 var REGEX_NOT_WHITESPACE = /[^\t\n\r ]/;
 
@@ -361,14 +359,12 @@ var HTML2CreoleConvertor = A.Component.create(
 				var style = element.style;
 
 				if (style) {
-					var cssText = style.cssText;
-
-					if (REGEX_BOLD.test(cssText)) {
+					if (style.fontWeight.toLowerCase() == 'bold') {
 						stylesTagsIn.push(TAG_BOLD);
 						stylesTagsOut.push(TAG_BOLD);
 					}
 
-					if (REGEX_ITALIC.test(cssText)) {
+					if (style.fontStyle.toLowerCase() == 'italic') {
 						stylesTagsIn.push(TAG_EMPHASIZE);
 						stylesTagsOut.push(TAG_EMPHASIZE);
 					}
