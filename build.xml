@@ -345,67 +345,6 @@
 			</then>
 		</if>
 
-		<!-- Patch for widget-locale -->
-		<replace file="${project.dir}/lib/yui3/src/widget/js/WidgetLocale.js">
-			<replacefilter token="Y.mix(Widget.prototype, {" value="Widget.ATTRS.strings.lazyAdd = false; Y.mix(Widget.prototype, {" />
-		</replace>
-
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/widget"
-				includes="build.xml"
-			/>
-		</subant>
-		<!-- /End Patch -->
-
-		<!-- Patch for dd -->
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/dd"
-				includes="build.xml"
-			/>
-		</subant>
-
-		<!-- Patch for event -->
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/event"
-				includes="build.xml"
-			/>
-		</subant>
-
-		<!-- Patch for loader -->
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/loader"
-				includes="build.xml"
-			/>
-		</subant>
-
-		<!-- Patch for simpleyui -->
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/simpleyui"
-				includes="build.xml"
-			/>
-		</subant>
-
-		<!-- Patch for yui -->
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/yui"
-				includes="build.xml"
-			/>
-		</subant>
-
-		<!-- /End Patch -->
-
 		<!-- Patch for AUI-153 -->
 		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
 			<replacetoken><![CDATA[if (m && custom[m[1]]) {
@@ -427,44 +366,14 @@
 		</replace>
 		<!-- /End Patch for AUI-153 -->
 
-		<!-- Patch for AUI-313 -->
-		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
-			<replacetoken><![CDATA[re_tag = /<([a-z]+)/i;]]></replacetoken>
-			  <replacevalue><![CDATA[re_tag = /<([a-z]+)/i,
-
-		    createFromDIV = function(html, tag) {
-		        var div = Y.config.doc.createElement('div'),
-		            ret = true;
-
-		        div.innerHTML = html;
-		        if (!div.firstChild || div.firstChild.tagName !== tag) {
-		            ret = false;
-		        }
-
-		        return ret;
-		    };]]></replacevalue>
+		<!-- Patch for AUI-284 -->
+		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
+			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
+			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
 		</replace>
+		<!-- /End Patch for AUI-284-->
 
-		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
-			<replacetoken><![CDATA[if (Y.UA.gecko || Y.UA.ie) {]]></replacetoken>
-			<replacevalue><![CDATA[if (!createFromDIV('<tr/>', 'TR')) {]]></replacevalue>
-		</replace>
-
-		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
-			<replacetoken><![CDATA[tbody: function(html, doc) {
-			                return create(TABLE_OPEN + html + TABLE_CLOSE, doc);
-			            }]]></replacetoken>
-			<replacevalue><![CDATA[col: function(html, doc) {
-	                return create('<colgroup>' + html + '</colgroup>', doc);
-	            },
-	            tbody: 'table']]></replacevalue>
-		</replace>
-
-		<replace file="${project.dir}/lib/yui3/src/dom/js/dom.js">
-			<replacetoken><![CDATA[col: creators.tbody,]]></replacetoken>
-			<replacevalue><![CDATA[]]></replacevalue>
-		</replace>
-
+		<!-- Rebuilding YUI modules -->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
 			<fileset
@@ -472,56 +381,7 @@
 				includes="build.xml"
 			/>
 		</subant>
-		<!-- /End Patch for AUI-313 -->
 
-		<!-- Patch for AUI-284 -->
-		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
-			<replacetoken><![CDATA[if (a.hasOwnProperty(a, p)) {]]></replacetoken>
-			  <replacevalue><![CDATA[if (a.hasOwnProperty(p)) {]]></replacevalue>
-		</replace>
-		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
-			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
-			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
-		</replace>
-		<!-- /End Patch for AUI-284-->
-
-		<!-- Patch for AUI-285 -->
-		<replace file="${project.dir}/lib/yui3/src/io/js/io-base.js">
-			<replacetoken><![CDATA[function _destroy(o) {
-        // IE, when using XMLHttpRequest as an ActiveX Object, will throw
-        // a "Type Mismatch" error if the event handler is set to "null".
-        if (w && w.XMLHttpRequest) {
-            if (o.c) {
-                o.c.onreadystatechange = null;
-            }
-        }
-
-        o.c = null;
-        o = null;
-    }]]></replacetoken>
-			  <replacevalue><![CDATA[function _destroy(o) {
-        if (w) {
-            if (o.c && w.XMLHttpRequest) {
-                o.c.onreadystatechange = null;
-            }
-			else if (Y.UA.ie === 6 && !o.t) {
-				// IE, when using XMLHttpRequest as an ActiveX Object, will throw
-				// a "Type Mismatch" error if the event handler is set to "null".
-				o.c.abort();
-			}
-        }
-
-        o.c = null;
-        o = null;
-    }]]></replacevalue>
-		</replace>
-		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
-			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
-			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
-		</replace>
-		<!-- /End Patch for AUI-285-->
-
-		<!-- Patch for AUI-284 & AUI-285-->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
 			<fileset
@@ -529,22 +389,6 @@
 				includes="build.xml"
 			/>
 		</subant>
-		<!-- /End Patch for AUI-284 & AUI-285-->
-
-		<!-- Patch for AUI-297 -->
-		<replace file="${project.dir}/lib/yui3/src/event/js/event-ready-base-ie.js">
-			<replacetoken><![CDATA[GLOBAL_ENV.Env.]]></replacetoken>
-			<replacevalue><![CDATA[GLOBAL_ENV.]]></replacevalue>
-		</replace>
-
-		<subant target="all" failonerror="false">
-			<property name="lint.skip" value="true"/>
-			<fileset
-				dir="${project.dir}/lib/yui3/src/event"
-				includes="build-base-ie.xml"
-			/>
-		</subant>
-		<!-- /End Patch for AUI-297 -->
 
 	</target>
 
