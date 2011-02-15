@@ -49,4 +49,4 @@ YUI.add('dd-drop-plugin', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['dd-drop'], skinnable:false});
+}, '3.3.0' ,{skinnable:false, requires:['dd-drop']});

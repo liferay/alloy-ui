@@ -50,4 +50,4 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['dd-drag'], optional:['dd-constrain', 'dd-proxy'], skinnable:false});
+}, '3.3.0' ,{requires:['dd-drag'], skinnable:false, optional:['dd-constrain', 'dd-proxy']});
