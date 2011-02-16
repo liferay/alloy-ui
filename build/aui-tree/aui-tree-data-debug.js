@@ -239,6 +239,11 @@ var TreeData = A.Component.create(
 				if (moved) {
 					var output = instance.getEventOutputMap(node);
 
+					if (!oldParent.get('children').length) {
+						oldParent.collapse();
+						oldParent.hideHitArea();
+					}
+
 					output.tree.oldParent = oldParent;
 					output.tree.oldOwnerTree = oldOwnerTree;
 
@@ -835,4 +840,4 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});

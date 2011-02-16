@@ -239,6 +239,11 @@ var TreeData = A.Component.create(
 				if (moved) {
 					var output = instance.getEventOutputMap(node);
 
+					if (!oldParent.get('children').length) {
+						oldParent.collapse();
+						oldParent.hideHitArea();
+					}
+
 					output.tree.oldParent = oldParent;
 					output.tree.oldOwnerTree = oldOwnerTree;
 
@@ -835,7 +840,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -2599,7 +2604,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
