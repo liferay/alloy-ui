@@ -4336,6 +4336,11 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 				}
 			}
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
+			UAX.touch = ('ontouchstart' in DOC);
+
 			A.mix(UA, UAX);
 
 			var browserList = [];
@@ -4381,9 +4386,6 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 
 			UA.renderer = '';
 
-			var CONFIG = A.config,
-				DOC = CONFIG.doc;
-
 			var documentElement = DOC.documentElement;
 
 			UA.dir = documentElement.getAttribute('dir') || 'ltr';
@@ -4425,7 +4427,7 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 				selectors.push('secure');
 			}
 
-			if ('ontouchstart' in DOC) {
+			if (UA.touch) {
 				selectors.push('touch');
 			}
 
