@@ -18,6 +18,7 @@ var L = A.Lang,
 	ARROW = 'arrow',
 	ARROW_LEFT_EL = 'arrowLeftEl',
 	ARROW_RIGHT_EL = 'arrowRightEl',
+	AUTO = 'auto',
 	BD = 'bd',
 	BLANK = 'blank',
 	BODY = 'body',
@@ -102,6 +103,11 @@ var L = A.Lang,
 	CSS_IMAGE_VIEWER_LINK = getCN(IMAGE_VIEWER, LINK),
 	CSS_IMAGE_VIEWER_LOADING = getCN(IMAGE_VIEWER, LOADING),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
+
+	MAP_RESET_DIMENSIONS = {
+		height: AUTO,
+		width: AUTO
+	},
 
 	NODE_BLANK_TEXT = document.createTextNode(''),
 
@@ -543,15 +549,6 @@ var ImageViewer = A.Component.create(
 
 		prototype: {
 			/**
-			 * The index of the active image.
-			 *
-			 * @property activeImage
-			 * @type Number
-			 * @protected
-			 */
-			activeImage: 0,
-
-			/**
 			 * Handler for the key events.
 			 *
 			 * @property _keyHandler
@@ -701,31 +698,49 @@ var ImageViewer = A.Component.create(
 			 */
 			loadImage: function(src) {
 				var instance = this;
+
 				var bodyNode = instance.bodyNode;
 				var loader = instance.get(LOADER);
 
 				instance.set(LOADING, true);
 
-				// the user could navigate to the next/prev image before the current image onLoad trigger
-				// detach load event from the activeImage before create the new image placeholder
-				if (instance.activeImage) {
-					instance.activeImage.detach('load');
+				var activeImagePool = instance._activeImagePool;
+
+				if (!activeImagePool) {
+					activeImagePool = [];
+
+					// creating the placeholder image
+					var placeholder = instance.get(IMAGE);
+
+					var image0 = placeholder.clone();
+					var image1 = placeholder.clone();
+
+					// bind the onLoad handler to the image, this handler should append the loaded image
+					var onload = A.bind(instance._onLoadImage, instance);
+
+					image0.on('load', onload);
+					image1.on('load', onload);
+
+					activeImagePool.push(image0, image1);
+
+					instance._activeImagePool = activeImagePool;
 				}
 
-				// creating the placeholder image
-				instance.activeImage = instance.get(IMAGE).clone();
+				var image = activeImagePool[0];
 
-				var image = instance.activeImage;
+				image.attr(MAP_RESET_DIMENSIONS);
+				image.setStyles(MAP_RESET_DIMENSIONS);
 
 				// append the placeholder image to the loader div
-				loader.empty();
 				loader.append(image);
 
-				// bind the onLoad handler to the image, this handler should append the loaded image
-				// to the overlay and take care of all animations
-				image.on('load', A.bind(instance._onLoadImage, instance));
+				// re-sort the pool
+				activeImagePool.push(activeImagePool.shift(image));
 
-				// set the src of the image to be loaded on the placeholder image
+				// set the src of the image to be loaded on the placeholder image.
+				// dataURI allows cached images to refire load event in webkit, and bypass
+				// the MimeType error (c/o Paul Irish & Doug Jones)
+				image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
 				image.attr(SRC, src);
 
 				instance.fire('request', { image: image });
@@ -839,7 +854,7 @@ var ImageViewer = A.Component.create(
 				if (link) {
 					var src = link.attr(HREF);
 
-					instance.get(IMAGE).clone().attr(SRC, src);
+					instance._createPreloadImage(src);
 				}
 			},
 
@@ -914,6 +929,68 @@ var ImageViewer = A.Component.create(
 						currentLink.attr(HREF)
 					);
 				}
+			},
+
+			/**
+			 * Removes the references to the preload images to free up memory
+			 *
+			 * @method _clearPreloadImageFn
+			 * @protected
+			 */
+			_clearPreloadImageFn: function() {
+				var instance = this;
+
+				var preloadImagePool = instance._preloadImagePool;
+				var image;
+
+				for (var i in preloadImagePool) {
+					image = preloadImagePool[i];
+
+					if (image && image.complete) {
+						preloadImagePool[i] = null;
+					}
+				}
+			},
+
+			/**
+			 * Creates the preload image instance, and add's it 
+			 * to the internal pool.
+			 *
+			 * @method _createPreloadImage
+			 * @protected
+			 */
+			_createPreloadImage: function(src) {
+				var instance = this;
+
+				var preloadImagePool = instance._preloadImagePool;
+
+				if (!preloadImagePool) {
+					preloadImagePool = instance._preloadImagePool = {};
+
+					instance._clearPreloadImageTask = new A.DelayedTask(instance._clearPreloadImageFn, instance);
+					instance._onPLImageLoadCallback = A.bind(instance._onPLImageLoad, instance);
+				}
+
+				if (!(src in preloadImagePool)) {
+					var image = new Image();
+
+					image.onload = instance._onPLImageLoadCallback;
+					image.src = src;
+
+					preloadImagePool[src] = image;
+				}
+			},
+
+			/**
+			 * Fired when the preload image is loaded.
+			 *
+			 * @method _onPLImageLoad
+			 * @protected
+			 */
+			_onPLImageLoad: function() {
+				var instance = this;
+
+				instance._clearPreloadImageTask.delay(50);
 			},
 
 			/**
@@ -1345,7 +1422,7 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask','substitute']});
+}, '@VERSION@' ,{requires:['anim','aui-overlay-mask','substitute'], skinnable:true});
 AUI.add('aui-image-viewer-gallery', function(A) {
 /**
  * The ImageGallery Utility
@@ -2169,7 +2246,7 @@ var ImageGallery = A.Component.create(
 
 A.ImageGallery = ImageGallery;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']});
+}, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});
 
 
 AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
