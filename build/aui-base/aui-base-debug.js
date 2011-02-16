@@ -320,6 +320,11 @@
 				}
 			}
 
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
+			UAX.touch = ('ontouchstart' in DOC);
+
 			A.mix(UA, UAX);
 
 			var browserList = [];
@@ -365,9 +370,6 @@
 
 			UA.renderer = '';
 
-			var CONFIG = A.config,
-				DOC = CONFIG.doc;
-
 			var documentElement = DOC.documentElement;
 
 			UA.dir = documentElement.getAttribute('dir') || 'ltr';
@@ -409,7 +411,7 @@
 				selectors.push('secure');
 			}
 
-			if ('ontouchstart' in DOC) {
+			if (UA.touch) {
 				selectors.push('touch');
 			}
 
