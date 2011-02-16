@@ -466,7 +466,11 @@ Dialog.prototype = {
 				}
 
 				if (button.handler) {
-					node.on('click', button.handler, instance);
+					var handler = button.handler;
+					var fn = handler.fn || handler;
+					var context = handler.context || instance;
+
+					node.on('click', fn, context);
 				}
 
 				node.html(button.text || BLANK);
@@ -798,4 +802,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
