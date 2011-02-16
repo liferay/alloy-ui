@@ -291,7 +291,10 @@
 
 			UA.renderer = '';
 
-			var documentElement = A.config.doc.documentElement;
+			var CONFIG = A.config,
+				DOC = CONFIG.doc;
+
+			var documentElement = DOC.documentElement;
 
 			UA.dir = documentElement.getAttribute('dir') || 'ltr';
 
@@ -332,15 +335,17 @@
 				selectors.push('secure');
 			}
 
+			if ('ontouchstart' in DOC) {
+				selectors.push('touch');
+			}
+
 			UA.selectors = selectors.join(' ');
 
 			// The methods in this if block only run once across all instances
 			if (!documentElement._yuid) {
 				documentElement.className += ' ' + UA.selectors;
 
-				var CONFIG = A.config,
-					DOC = CONFIG.doc,
-					vml,
+				var vml,
 					svg;
 
 				vml = !(svg = !!(CONFIG.win.SVGAngle || DOC.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#BasicStructure', '1.1')));
