@@ -31,6 +31,7 @@ var L = A.Lang,
 	FIELD_CONTAINER = 'fieldContainer',
 	FIELD_STRINGS = 'fieldStrings',
 	INPUT_HANDLERS = 'inputHandlers',
+	KEY_HANDLERS = 'keyHandlers',
 	MESSAGE = 'message',
 	MESSAGE_CONTAINER = 'messageContainer',
 	NAME = 'name',
@@ -45,6 +46,7 @@ var L = A.Lang,
 	VALID = 'valid',
 	VALIDATE_ON_BLUR = 'validateOnBlur',
 	VALIDATE_ON_INPUT = 'validateOnInput',
+	VALIDATE_ON_KEY = 'validateOnKey',
 	VALID_CLASS = 'validClass',
 
 	EV_BLUR = 'blur',
@@ -70,7 +72,7 @@ var L = A.Lang,
 	TPL_MESSAGE = '<div class="'+CSS_MESSAGE+'"></div>',
 	TPL_STACK_ERROR = '<label class="'+CSS_STACK_ERROR+'"></label>',
 
-	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
+	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT, VALIDATE_ON_KEY ];
 
 YUI.AUI.defaults.FormValidator = {
 	STRINGS: {
@@ -271,6 +273,31 @@ var FormValidator = A.Component.create({
 			validator: isBoolean
 		},
 
+		validateOnKey: {
+			value: null,
+			setter: function(value) {
+				var instance = this;
+
+				if (value) {
+					value = String(value);
+
+					if ((/(press|up|down)$/).test(value)) {
+						if (!(/^key/).test(value)) {
+							value = 'key' + value;
+						}
+					}
+					else {
+						value = null;
+					}
+				}
+				else {
+					value = null;
+				}
+
+				return value;
+			}
+		},
+
 		validClass: {
 			value: CSS_VALID,
 			validator: isString
@@ -301,7 +328,10 @@ var FormValidator = A.Component.create({
 			instance.blurHandlers = [];
 			instance.errors = {};
 			instance.inputHandlers = [];
+			instance.keyHandlers = [];
 			instance.stackErrorContainers = {};
+
+			instance._validateFieldTask = new A.DelayedTask(instance.validateField, instance);
 		},
 
 		bindUI: function() {
@@ -682,6 +712,12 @@ var FormValidator = A.Component.create({
 			instance.validateField(event.currentTarget);
 		},
 
+		_onFieldKeyChange: function(event) {
+			var instance = this;
+
+			instance._validateFieldTask.delay(250, null, null, [event.currentTarget]);
+		},
+
 		_onFormSubmit: function(event) {
 			var instance = this;
 
@@ -767,6 +803,12 @@ var FormValidator = A.Component.create({
 			var instance = this;
 
 			instance._bindValidateHelper(bind, EV_INPUT, instance._onFieldInputChange, INPUT_HANDLERS);
+		},
+
+		_uiSetValidateOnKey: function(keyValue) {
+			var instance = this;
+
+			instance._bindValidateHelper(keyValue, keyValue, instance._onFieldKeyChange, KEY_HANDLERS);
 		},
 
 		_uiSetValidateOnBlur: function(bind) {
