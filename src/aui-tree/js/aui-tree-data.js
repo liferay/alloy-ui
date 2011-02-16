@@ -238,6 +238,11 @@ var TreeData = A.Component.create(
 				if (moved) {
 					var output = instance.getEventOutputMap(node);
 
+					if (!oldParent.get('children').length) {
+						oldParent.collapse();
+						oldParent.hideHitArea();
+					}
+
 					output.tree.oldParent = oldParent;
 					output.tree.oldOwnerTree = oldOwnerTree;
 
