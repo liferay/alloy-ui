@@ -330,9 +330,6 @@ var COMP_PROTO = Component.prototype;
 
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
-var DEFAULT_BIND_ATTRS = DEFAULT_UI_ATTRS.BIND;
-var DEFAULT_SYNC_ATTRS = DEFAULT_UI_ATTRS.SYNC;
-
 Component.create = function(config) {
 	config = config || {};
 
@@ -349,20 +346,29 @@ Component.create = function(config) {
 	var configProto = config.prototype;
 
 	if (configProto) {
-		var configProtoUIAttrs = configProto._UI_ATTRS || (configProto._UI_ATTRS = {
-			BIND: DEFAULT_BIND_ATTRS.slice(0),
-			SYNC: DEFAULT_SYNC_ATTRS.slice(0)
-		});
+		if (config.UI_ATTRS || config.BIND_UI_ATTRS || config.SYNC_UI_ATTRS) {
+			var BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
+			var SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
 
-		var BIND_UI_ATTRS = concat(config.BIND_UI_ATTRS, config.UI_ATTRS);
-		var SYNC_UI_ATTRS = concat(config.SYNC_UI_ATTRS, config.UI_ATTRS);
+			var extendsProto = extendsClass.prototype;
+			var extendsUIAttrs = (extendsProto && extendsProto._UI_ATTRS) || DEFAULT_UI_ATTRS;
 
-		if (BIND_UI_ATTRS.length) {
-			configProtoUIAttrs.BIND = concat(COMP_PROTO._UI_ATTRS.BIND, BIND_UI_ATTRS);
-		}
+			BIND_UI_ATTRS = concat(extendsUIAttrs.BIND, BIND_UI_ATTRS);
+			SYNC_UI_ATTRS = concat(extendsUIAttrs.SYNC, SYNC_UI_ATTRS);
 
-		if (SYNC_UI_ATTRS.length) {
-			configProtoUIAttrs.SYNC = concat(COMP_PROTO._UI_ATTRS.SYNC, SYNC_UI_ATTRS);
+			var configProtoUIAttrs = configProto._UI_ATTRS;
+
+			if (!configProtoUIAttrs) {
+				configProtoUIAttrs = configProto._UI_ATTRS = {};
+			}
+
+			if (BIND_UI_ATTRS.length) {
+				configProtoUIAttrs.BIND = BIND_UI_ATTRS;
+			}
+
+			if (SYNC_UI_ATTRS.length) {
+				configProtoUIAttrs.SYNC = SYNC_UI_ATTRS;
+			}
 		}
 	}
 
