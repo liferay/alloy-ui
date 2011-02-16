@@ -1053,7 +1053,7 @@ var IOPlugin = A.Component.create(
 							node.replace(content);
 						}
 						else {
-							A.DOM.addHTML(node._node, content, where);
+							node.insert(content, where);
 						}
 					},
 
@@ -1205,5 +1205,5 @@ A.namespace('Plugin').IO = IOPlugin;
 }, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{use:['aui-io-request','aui-io-plugin'], skinnable:false});
 
