@@ -169,11 +169,16 @@ A.extend(
 	     * <a href="Widget.html#config_visible">visible</a> attribute.
 		 *
 		 * @method toggle
+		 * @param visible Force the visibility of the component to this state.
 		 */
-		toggle: function() {
+		toggle: function(visible) {
 			var instance = this;
 
-			return instance.set('visible', !instance.get('visible'));
+			if (!Lang.isBoolean(visible)) {
+				visible = !instance.get('visible');
+			}
+
+			return instance.set('visible', visible);
 		},
 
 		/**
