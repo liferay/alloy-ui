@@ -728,7 +728,9 @@ var ImageViewer = A.Component.create(
 
 				var image = activeImagePool[0];
 
-				image.attr(MAP_RESET_DIMENSIONS);
+				image.removeAttribute('height');
+				image.removeAttribute('width');
+
 				image.setStyles(MAP_RESET_DIMENSIONS);
 
 				// append the placeholder image to the loader div
@@ -740,7 +742,10 @@ var ImageViewer = A.Component.create(
 				// set the src of the image to be loaded on the placeholder image.
 				// dataURI allows cached images to refire load event in webkit, and bypass
 				// the MimeType error (c/o Paul Irish & Doug Jones)
-				image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
+				if (A.UA.webkit) {
+					image.attr(SRC, 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==');
+				}
+
 				image.attr(SRC, src);
 
 				instance.fire('request', { image: image });
