@@ -33,6 +33,9 @@ var DialogIframePlugin = A.Component.create(
 				}
 			},
 
+			originalParent: {
+			},
+
 			uri: {
 			}
 		},
@@ -114,6 +117,10 @@ var DialogIframePlugin = A.Component.create(
 				var instance = this;
 
 				instance._bodyNode.plug(A.LoadingMask).loadingmask.show();
+
+				if (instance.get('originalParent')) {
+					instance.node.setData('originalParent', instance.get('originalParent'));
+				}
 			},
 
 			_afterUriChange: function(event) {
