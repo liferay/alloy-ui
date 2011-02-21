@@ -34,6 +34,10 @@ var DialogIframePlugin = A.Component.create(
 				}
 			},
 
+			originalParent: {
+				setter: '_setOriginalParent'
+			},
+
 			uri: {
 			}
 		},
@@ -115,6 +119,10 @@ var DialogIframePlugin = A.Component.create(
 				var instance = this;
 
 				instance._bodyNode.plug(A.LoadingMask).loadingmask.show();
+
+				instance._setOriginalParent(
+					instance.get('originalParent')
+				);
 			},
 
 			_afterUriChange: function(event) {
@@ -162,6 +170,17 @@ var DialogIframePlugin = A.Component.create(
 				BUFFER_CSS_CLASS[1] = value;
 
 				return BUFFER_CSS_CLASS.join(' ');
+			},
+
+			_setOriginalParent: function(val) {
+				var instance = this;
+				var node = instance.node;
+
+				if (node) {
+					node.setData('originalParent', val);
+				}
+
+				return val;
 			},
 
 			_uiSetUri: function(value) {
