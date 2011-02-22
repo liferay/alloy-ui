@@ -10,7 +10,7 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseScriptTag extends com.liferay.taglib.util.IncludeTag {
+public class BaseScriptTag extends AlloyIncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);

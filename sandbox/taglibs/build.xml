@@ -10,39 +10,15 @@
 		<antcall target="start" />
 		<antcall target="deploy" />
 	</target>
-
-	<target name="build-portal-service-lite">
-		<property name="temp.dir" value="${lp.service.lite.jar}/../_temp" />
-
-		<copy todir="${temp.dir}" overwrite="true">
-			<fileset dir="${lp.source.dir}/portal-impl/src/" includes="${lp.source.impl.files}" />
-			<fileset dir="${lp.source.dir}/portal-service/src/" includes="${lp.source.service.files}" />
-			<fileset dir="${lp.source.dir}/util-java/src/" includes="${lp.source.util.files}" />
-			<fileset dir="${lp.source.dir}/util-taglib/src/" includes="${lp.source.taglib.files}" />
+	
+	<target name="import-portal-libs">
+		<echo>${lp.source.dir}/portal-impl/</echo>
+		<copy todir="${project.dir}/lib/application" overwrite="true">
+			<fileset dir="${lp.source.dir}/portal-impl/" includes="portal-impl.jar" />
+			<fileset dir="${lp.source.dir}/portal-service/" includes="portal-service.jar" />
+			<fileset dir="${lp.source.dir}/util-java/" includes="util-java.jar" />
+			<fileset dir="${lp.source.dir}/util-taglib/" includes="util-taglib.jar" />
 		</copy>
-
-		<mkdir dir="${temp.dir}/classes" />
-
-		<javac
-			classpathref="project.classpath"
-			compiler="${javac.compiler}"
-			debug="${javac.debug}"
-			deprecation="${javac.deprecation}"
-			destdir="${temp.dir}/classes"
-			fork="${javac.fork}"
-			includeAntRuntime="false"
-			memoryMaximumSize="${javac.memoryMaximumSize}"
-			nowarn="${javac.nowarn}"
-			srcdir="${temp.dir}"
-			proceed="true"
-		/>
-
-		<jar
-			basedir="${temp.dir}/classes"
-			jarfile="${lp.service.lite.jar}"
-		/>
-
-		<delete dir="${temp.dir}" />
 	</target>
 
 	<target name="clean">
