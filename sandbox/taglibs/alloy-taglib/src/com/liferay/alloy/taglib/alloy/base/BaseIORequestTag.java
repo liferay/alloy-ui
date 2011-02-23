@@ -18,10 +18,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getActive() {
 		return _active;
 	}
@@ -782,6 +778,90 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onXdrChange", onXdrChange);
 	}
 
+
+	protected void cleanUp() {
+		_active = false;
+		_arguments = null;
+		_autoLoad = true;
+		_cache = true;
+		_cfg = null;
+		_context = null;
+		_data = null;
+		_dataType = null;
+		_destroyed = false;
+		_form = null;
+		_headers = null;
+		_host = null;
+		_initialized = false;
+		_method = null;
+		_responseData = null;
+		_sync = false;
+		_timeout = 0;
+		_transaction = null;
+		_uri = null;
+		_xdr = null;
+		_afterActiveChange = null;
+		_afterArgumentsChange = null;
+		_afterAutoLoadChange = null;
+		_afterCacheChange = null;
+		_afterCfgChange = null;
+		_afterContextChange = null;
+		_afterDataChange = null;
+		_afterDataTypeChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterFormChange = null;
+		_afterHeadersChange = null;
+		_afterHostChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterComplete = null;
+		_afterEnd = null;
+		_afterFailure = null;
+		_afterStart = null;
+		_afterSuccess = null;
+		_afterXdrReady = null;
+		_afterMethodChange = null;
+		_afterResponseDataChange = null;
+		_afterSyncChange = null;
+		_afterTimeoutChange = null;
+		_afterTransactionChange = null;
+		_afterUriChange = null;
+		_afterXdrChange = null;
+		_onActiveChange = null;
+		_onArgumentsChange = null;
+		_onAutoLoadChange = null;
+		_onCacheChange = null;
+		_onCfgChange = null;
+		_onContextChange = null;
+		_onDataChange = null;
+		_onDataTypeChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onFormChange = null;
+		_onHeadersChange = null;
+		_onHostChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onComplete = null;
+		_onEnd = null;
+		_onFailure = null;
+		_onStart = null;
+		_onSuccess = null;
+		_onXdrReady = null;
+		_onMethodChange = null;
+		_onResponseDataChange = null;
+		_onSyncChange = null;
+		_onTimeoutChange = null;
+		_onTransactionChange = null;
+		_onUriChange = null;
+		_onXdrChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "active", _active);
 		setNamespacedAttribute(request, "arguments", _arguments);

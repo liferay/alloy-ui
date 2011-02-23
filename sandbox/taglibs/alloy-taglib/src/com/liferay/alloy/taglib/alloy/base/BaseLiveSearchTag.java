@@ -18,10 +18,6 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getData() {
 		return _data;
 	}
@@ -362,6 +358,48 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onShowChange", onShowChange);
 	}
 
+
+	protected void cleanUp() {
+		_data = null;
+		_delay = 250;
+		_destroyed = false;
+		_hide = null;
+		_index = null;
+		_initialized = false;
+		_input = null;
+		_matchRegex = null;
+		_nodes = null;
+		_show = null;
+		_afterDataChange = null;
+		_afterDelayChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterHideChange = null;
+		_afterIndexChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterInputChange = null;
+		_afterMatchRegexChange = null;
+		_afterNodesChange = null;
+		_afterShowChange = null;
+		_onDataChange = null;
+		_onDelayChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onHideChange = null;
+		_onIndexChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onInputChange = null;
+		_onMatchRegexChange = null;
+		_onNodesChange = null;
+		_onShowChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "data", _data);
 		setNamespacedAttribute(request, "delay", _delay);

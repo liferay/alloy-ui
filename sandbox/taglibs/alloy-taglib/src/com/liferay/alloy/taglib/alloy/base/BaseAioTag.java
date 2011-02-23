@@ -18,10 +18,14 @@ public class BaseAioTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
+
+	protected void cleanUp() {
+	}
+
 	protected String getPage() {
 		return _PAGE;
 	}
-
+	
 	protected void setAttributes(HttpServletRequest request) {
 	}
 

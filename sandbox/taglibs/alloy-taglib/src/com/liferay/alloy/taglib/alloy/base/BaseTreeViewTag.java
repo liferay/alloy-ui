@@ -18,10 +18,6 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getChildren() {
 		return _children;
 	}
@@ -302,6 +298,42 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
+
+	protected void cleanUp() {
+		_children = null;
+		_container = null;
+		_destroyed = false;
+		_index = null;
+		_initialized = false;
+		_io = null;
+		_lastSelected = null;
+		_type = "file";
+		_afterChildrenChange = null;
+		_afterContainerChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterIndexChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterIoChange = null;
+		_afterLastSelectedChange = null;
+		_afterTypeChange = null;
+		_onChildrenChange = null;
+		_onContainerChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onIndexChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onIoChange = null;
+		_onLastSelectedChange = null;
+		_onTypeChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "children", _children);
 		setNamespacedAttribute(request, "container", _container);

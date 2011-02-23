@@ -18,10 +18,6 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getTest() {
 		return _test;
 	}
@@ -32,6 +28,15 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("test", test);
 	}
 
+
+	protected void cleanUp() {
+		_test = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "test", _test);
 	}

@@ -18,10 +18,6 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getAlwaysShowHitArea() {
 		return _alwaysShowHitArea;
 	}
@@ -842,6 +838,96 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
 	}
 
+
+	protected void cleanUp() {
+		_alwaysShowHitArea = true;
+		_cache = true;
+		_checkContainerEl = null;
+		_checkEl = null;
+		_checkName = "tree-node-check";
+		_checked = false;
+		_children = null;
+		_container = null;
+		_destroyed = false;
+		_draggable = true;
+		_expanded = false;
+		_hitAreaEl = null;
+		_iconEl = null;
+		_treenodetaskId = null;
+		_index = null;
+		_initialized = false;
+		_io = null;
+		_label = null;
+		_labelEl = null;
+		_leaf = true;
+		_loaded = false;
+		_loading = false;
+		_nextSibling = null;
+		_ownerTree = null;
+		_parentNode = null;
+		_prevSibling = null;
+		_afterAlwaysShowHitAreaChange = null;
+		_afterCacheChange = null;
+		_afterCheckContainerElChange = null;
+		_afterCheckElChange = null;
+		_afterCheckNameChange = null;
+		_afterCheckedChange = null;
+		_afterChildrenChange = null;
+		_afterContainerChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDraggableChange = null;
+		_afterExpandedChange = null;
+		_afterHitAreaElChange = null;
+		_afterIconElChange = null;
+		_afterIdChange = null;
+		_afterIndexChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterIoChange = null;
+		_afterLabelChange = null;
+		_afterLabelElChange = null;
+		_afterLeafChange = null;
+		_afterLoadedChange = null;
+		_afterLoadingChange = null;
+		_afterNextSiblingChange = null;
+		_afterOwnerTreeChange = null;
+		_afterParentNodeChange = null;
+		_afterPrevSiblingChange = null;
+		_onAlwaysShowHitAreaChange = null;
+		_onCacheChange = null;
+		_onCheckContainerElChange = null;
+		_onCheckElChange = null;
+		_onCheckNameChange = null;
+		_onCheckedChange = null;
+		_onChildrenChange = null;
+		_onContainerChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDraggableChange = null;
+		_onExpandedChange = null;
+		_onHitAreaElChange = null;
+		_onIconElChange = null;
+		_onIdChange = null;
+		_onIndexChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onIoChange = null;
+		_onLabelChange = null;
+		_onLabelElChange = null;
+		_onLeafChange = null;
+		_onLoadedChange = null;
+		_onLoadingChange = null;
+		_onNextSiblingChange = null;
+		_onOwnerTreeChange = null;
+		_onParentNodeChange = null;
+		_onPrevSiblingChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowHitArea", _alwaysShowHitArea);
 		setNamespacedAttribute(request, "cache", _cache);

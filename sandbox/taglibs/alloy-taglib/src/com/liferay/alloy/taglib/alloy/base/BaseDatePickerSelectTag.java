@@ -18,10 +18,6 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getAppendOrder() {
 		return _appendOrder;
 	}
@@ -1062,6 +1058,118 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
+
+	protected void cleanUp() {
+		_appendOrder = null;
+		_boundingBox = null;
+		_buttonNode = null;
+		_calendar = null;
+		_contentBox = null;
+		_cssClass = null;
+		_dayNode = null;
+		_dayNodeName = "day";
+		_destroyed = false;
+		_disabled = false;
+		_focused = false;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_datepickerselectId = null;
+		_initialized = false;
+		_monthNode = null;
+		_monthNodeName = "month";
+		_populateDay = true;
+		_populateMonth = true;
+		_populateYear = true;
+		_render = null;
+		_rendered = false;
+		_selectWrapperNode = null;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_trigger = null;
+		_visible = true;
+		_width = null;
+		_yearNode = null;
+		_yearNodeName = "year";
+		_yearRange = null;
+		_afterAppendOrderChange = null;
+		_afterBoundingBoxChange = null;
+		_afterButtonNodeChange = null;
+		_afterCalendarChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDayNodeChange = null;
+		_afterDayNodeNameChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFocusedChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterMonthNodeChange = null;
+		_afterMonthNodeNameChange = null;
+		_afterPopulateDayChange = null;
+		_afterPopulateMonthChange = null;
+		_afterPopulateYearChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSelectWrapperNodeChange = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterTriggerChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_afterYearNodeChange = null;
+		_afterYearNodeNameChange = null;
+		_afterYearRangeChange = null;
+		_onAppendOrderChange = null;
+		_onBoundingBoxChange = null;
+		_onButtonNodeChange = null;
+		_onCalendarChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDayNodeChange = null;
+		_onDayNodeNameChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFocusedChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onMonthNodeChange = null;
+		_onMonthNodeNameChange = null;
+		_onPopulateDayChange = null;
+		_onPopulateMonthChange = null;
+		_onPopulateYearChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSelectWrapperNodeChange = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onTriggerChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+		_onYearNodeChange = null;
+		_onYearNodeNameChange = null;
+		_onYearRangeChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "appendOrder", _appendOrder);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

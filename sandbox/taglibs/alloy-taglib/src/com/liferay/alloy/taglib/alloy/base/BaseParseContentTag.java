@@ -18,10 +18,6 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
@@ -152,6 +148,27 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+
+	protected void cleanUp() {
+		_destroyed = false;
+		_host = null;
+		_initialized = false;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterHostChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onHostChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);

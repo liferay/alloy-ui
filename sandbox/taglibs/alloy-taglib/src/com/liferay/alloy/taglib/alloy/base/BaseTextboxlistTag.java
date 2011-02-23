@@ -18,10 +18,6 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getAlwaysShowContainer() {
 		return _alwaysShowContainer;
 	}
@@ -1662,6 +1658,178 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_alwaysShowContainer = false;
+		_applyLocalFilter = true;
+		_autoHighlight = true;
+		_boundingBox = null;
+		_button = true;
+		_contentBox = null;
+		_cssClass = null;
+		_dataSource = null;
+		_dataSourceType = null;
+		_delimChar = null;
+		_destroyed = false;
+		_disabled = false;
+		_focused = false;
+		_forceSelection = false;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_textboxlistId = null;
+		_initialized = false;
+		_input = null;
+		_matchKey = null;
+		_maxResultsDisplayed = 10;
+		_minQueryLength = 1;
+		_queryDelay = 0.2;
+		_queryInterval = 0.5;
+		_queryMatchCase = false;
+		_queryMatchContains = false;
+		_queryQuestionMark = true;
+		_render = null;
+		_rendered = false;
+		_schema = null;
+		_schemaType = "array";
+		_srcNode = null;
+		_strings = null;
+		_suppressInputUpdate = false;
+		_tabIndex = 0;
+		_typeAhead = false;
+		_typeAheadDelay = 0.2;
+		_uniqueName = null;
+		_visible = true;
+		_width = null;
+		_afterAlwaysShowContainerChange = null;
+		_afterApplyLocalFilterChange = null;
+		_afterAutoHighlightChange = null;
+		_afterBoundingBoxChange = null;
+		_afterButtonChange = null;
+		_afterContainerCollapse = null;
+		_afterContainerExpand = null;
+		_afterContainerPopulate = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDataError = null;
+		_afterDataRequest = null;
+		_afterDataReturn = null;
+		_afterDataSourceChange = null;
+		_afterDataSourceTypeChange = null;
+		_afterDelimCharChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFocusedChange = null;
+		_afterForceSelectionChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterInputChange = null;
+		_afterItemArrowFrom = null;
+		_afterItemArrowTo = null;
+		_afterItemMouseOut = null;
+		_afterItemMouseOver = null;
+		_afterItemSelect = null;
+		_afterMatchKeyChange = null;
+		_afterMaxResultsDisplayedChange = null;
+		_afterMinQueryLengthChange = null;
+		_afterQueryDelayChange = null;
+		_afterQueryIntervalChange = null;
+		_afterQueryMatchCaseChange = null;
+		_afterQueryMatchContainsChange = null;
+		_afterQueryQuestionMarkChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSchemaChange = null;
+		_afterSchemaTypeChange = null;
+		_afterSelectionEnforce = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterSuppressInputUpdateChange = null;
+		_afterTabIndexChange = null;
+		_afterTextboxBlur = null;
+		_afterTextboxChange = null;
+		_afterTextboxFocus = null;
+		_afterTextboxKey = null;
+		_afterTypeAhead = null;
+		_afterTypeAheadChange = null;
+		_afterTypeAheadDelayChange = null;
+		_afterUniqueNameChange = null;
+		_afterUnmatchedItemSelect = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onAlwaysShowContainerChange = null;
+		_onApplyLocalFilterChange = null;
+		_onAutoHighlightChange = null;
+		_onBoundingBoxChange = null;
+		_onButtonChange = null;
+		_onContainerCollapse = null;
+		_onContainerExpand = null;
+		_onContainerPopulate = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDataError = null;
+		_onDataRequest = null;
+		_onDataReturn = null;
+		_onDataSourceChange = null;
+		_onDataSourceTypeChange = null;
+		_onDelimCharChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFocusedChange = null;
+		_onForceSelectionChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onInputChange = null;
+		_onItemArrowFrom = null;
+		_onItemArrowTo = null;
+		_onItemMouseOut = null;
+		_onItemMouseOver = null;
+		_onItemSelect = null;
+		_onMatchKeyChange = null;
+		_onMaxResultsDisplayedChange = null;
+		_onMinQueryLengthChange = null;
+		_onQueryDelayChange = null;
+		_onQueryIntervalChange = null;
+		_onQueryMatchCaseChange = null;
+		_onQueryMatchContainsChange = null;
+		_onQueryQuestionMarkChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSchemaChange = null;
+		_onSchemaTypeChange = null;
+		_onSelectionEnforce = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onSuppressInputUpdateChange = null;
+		_onTabIndexChange = null;
+		_onTextboxBlur = null;
+		_onTextboxChange = null;
+		_onTextboxFocus = null;
+		_onTextboxKey = null;
+		_onTypeAhead = null;
+		_onTypeAheadChange = null;
+		_onTypeAheadDelayChange = null;
+		_onUniqueNameChange = null;
+		_onUnmatchedItemSelect = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowContainer", _alwaysShowContainer);
 		setNamespacedAttribute(request, "applyLocalFilter", _applyLocalFilter);

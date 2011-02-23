@@ -18,10 +18,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getActiveHandle() {
 		return _activeHandle;
 	}
@@ -792,6 +788,91 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWrapperChange", onWrapperChange);
 	}
 
+
+	protected void cleanUp() {
+		_activeHandle = null;
+		_activeHandleEl = null;
+		_autoHide = false;
+		_constrain = null;
+		_destroyed = false;
+		_handles = null;
+		_initialized = false;
+		_maxHeight = 2147483647;
+		_maxWidth = 2147483647;
+		_minHeight = 15;
+		_minWidth = 15;
+		_node = null;
+		_preserveRatio = false;
+		_proxy = false;
+		_proxyEl = null;
+		_resizing = false;
+		_tickX = null;
+		_tickY = null;
+		_wrap = false;
+		_wrapTypes = null;
+		_wrapper = "div";
+		_afterActiveHandleChange = null;
+		_afterActiveHandleElChange = null;
+		_afterAutoHideChange = null;
+		_afterConstrainChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterHandlesChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterMaxHeightChange = null;
+		_afterMaxWidthChange = null;
+		_afterMinHeightChange = null;
+		_afterMinWidthChange = null;
+		_afterNodeChange = null;
+		_afterPreserveRatioChange = null;
+		_afterProxyChange = null;
+		_afterProxyElChange = null;
+		_afterAlign = null;
+		_afterEnd = null;
+		_afterMouseUp = null;
+		_afterResize = null;
+		_afterStart = null;
+		_afterResizingChange = null;
+		_afterTickXChange = null;
+		_afterTickYChange = null;
+		_afterWrapChange = null;
+		_afterWrapTypesChange = null;
+		_afterWrapperChange = null;
+		_onActiveHandleChange = null;
+		_onActiveHandleElChange = null;
+		_onAutoHideChange = null;
+		_onConstrainChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onHandlesChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onMaxHeightChange = null;
+		_onMaxWidthChange = null;
+		_onMinHeightChange = null;
+		_onMinWidthChange = null;
+		_onNodeChange = null;
+		_onPreserveRatioChange = null;
+		_onProxyChange = null;
+		_onProxyElChange = null;
+		_onAlign = null;
+		_onEnd = null;
+		_onMouseUp = null;
+		_onResize = null;
+		_onStart = null;
+		_onResizingChange = null;
+		_onTickXChange = null;
+		_onTickYChange = null;
+		_onWrapChange = null;
+		_onWrapTypesChange = null;
+		_onWrapperChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeHandle", _activeHandle);
 		setNamespacedAttribute(request, "activeHandleEl", _activeHandleEl);

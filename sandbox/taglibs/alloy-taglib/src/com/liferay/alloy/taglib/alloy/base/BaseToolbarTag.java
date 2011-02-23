@@ -18,10 +18,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getActiveDescendant() {
 		return _activeDescendant;
 	}
@@ -922,6 +918,104 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_activeDescendant = null;
+		_activeState = false;
+		_boundingBox = null;
+		_children = null;
+		_contentBox = null;
+		_cssClass = null;
+		_defaultChildType = null;
+		_defaultState = false;
+		_destroyed = false;
+		_disabled = false;
+		_focused = false;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_hoverState = false;
+		_toolbarId = null;
+		_initialized = false;
+		_multiple = false;
+		_orientation = "horizontal";
+		_render = null;
+		_rendered = false;
+		_selection = null;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_visible = true;
+		_width = null;
+		_afterActiveDescendantChange = null;
+		_afterActiveStateChange = null;
+		_afterAddChild = null;
+		_afterBoundingBoxChange = null;
+		_afterChildrenChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDefaultChildTypeChange = null;
+		_afterDefaultStateChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFocusedChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterHoverStateChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterMultipleChange = null;
+		_afterOrientationChange = null;
+		_afterRemoveChild = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSelectionChange = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onActiveDescendantChange = null;
+		_onActiveStateChange = null;
+		_onAddChild = null;
+		_onBoundingBoxChange = null;
+		_onChildrenChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDefaultChildTypeChange = null;
+		_onDefaultStateChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFocusedChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onHoverStateChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onMultipleChange = null;
+		_onOrientationChange = null;
+		_onRemoveChild = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSelectionChange = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeDescendant", _activeDescendant);
 		setNamespacedAttribute(request, "activeState", _activeState);

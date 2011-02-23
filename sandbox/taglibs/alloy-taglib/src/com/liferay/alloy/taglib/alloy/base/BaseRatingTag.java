@@ -18,10 +18,6 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
@@ -1032,6 +1028,115 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_boundingBox = null;
+		_canReset = true;
+		_contentBox = null;
+		_cssClass = null;
+		_defaultSelected = 0;
+		_destroyed = false;
+		_disabled = false;
+		_elements = null;
+		_focused = false;
+		_height = null;
+		_hiddenInput = null;
+		_hideClass = "aui-helper-hidden";
+		_ratingId = null;
+		_initialized = false;
+		_inputName = null;
+		_label = null;
+		_labelNode = null;
+		_render = null;
+		_rendered = false;
+		_selectedIndex = -1;
+		_showTitle = true;
+		_size = 5;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_title = null;
+		_ratingValue = null;
+		_visible = true;
+		_width = null;
+		_afterBoundingBoxChange = null;
+		_afterCanResetChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDefaultSelectedChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterElementsChange = null;
+		_afterFocusedChange = null;
+		_afterHeightChange = null;
+		_afterHiddenInputChange = null;
+		_afterHideClassChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterInputNameChange = null;
+		_afterItemClick = null;
+		_afterItemOut = null;
+		_afterItemSelect = null;
+		_afterLabelChange = null;
+		_afterLabelNodeChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSelectedIndexChange = null;
+		_afterShowTitleChange = null;
+		_afterSizeChange = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterTitleChange = null;
+		_afterValueChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onBoundingBoxChange = null;
+		_onCanResetChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDefaultSelectedChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onElementsChange = null;
+		_onFocusedChange = null;
+		_onHeightChange = null;
+		_onHiddenInputChange = null;
+		_onHideClassChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onInputNameChange = null;
+		_onItemClick = null;
+		_onItemOut = null;
+		_onItemSelect = null;
+		_onLabelChange = null;
+		_onLabelNodeChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSelectedIndexChange = null;
+		_onShowTitleChange = null;
+		_onSizeChange = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onTitleChange = null;
+		_onValueChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "canReset", _canReset);

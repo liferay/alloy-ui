@@ -18,10 +18,6 @@ public class BaseOverlayBaseTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getAlign() {
 		return _align;
 	}
@@ -1002,6 +998,112 @@ public class BaseOverlayBaseTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
+
+	protected void cleanUp() {
+		_align = null;
+		_overlaybaseBodyContent = null;
+		_boundingBox = null;
+		_centered = null;
+		_constrain = null;
+		_contentBox = null;
+		_cssClass = null;
+		_destroyed = false;
+		_disabled = false;
+		_fillHeight = null;
+		_focused = false;
+		_footerContent = null;
+		_headerContent = null;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_overlaybaseId = null;
+		_initialized = false;
+		_preventOverlap = false;
+		_render = null;
+		_rendered = false;
+		_shim = false;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_visible = true;
+		_width = null;
+		_x = 0;
+		_xy = null;
+		_y = 0;
+		_zIndex = 0;
+		_afterAlignChange = null;
+		_afterBodyContentChange = null;
+		_afterBoundingBoxChange = null;
+		_afterCenteredChange = null;
+		_afterConstrainChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFillHeightChange = null;
+		_afterFocusedChange = null;
+		_afterFooterContentChange = null;
+		_afterHeaderContentChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterPreventOverlapChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterShimChange = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_afterXChange = null;
+		_afterXyChange = null;
+		_afterYChange = null;
+		_afterZIndexChange = null;
+		_onAlignChange = null;
+		_onBodyContentChange = null;
+		_onBoundingBoxChange = null;
+		_onCenteredChange = null;
+		_onConstrainChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFillHeightChange = null;
+		_onFocusedChange = null;
+		_onFooterContentChange = null;
+		_onHeaderContentChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onPreventOverlapChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onShimChange = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+		_onXChange = null;
+		_onXyChange = null;
+		_onYChange = null;
+		_onZIndexChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "overlaybaseBodyContent", _overlaybaseBodyContent);

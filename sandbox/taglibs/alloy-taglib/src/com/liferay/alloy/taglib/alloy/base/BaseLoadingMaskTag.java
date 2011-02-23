@@ -18,10 +18,6 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getDestroyed() {
 		return _destroyed;
 	}
@@ -242,6 +238,36 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTargetChange", onTargetChange);
 	}
 
+
+	protected void cleanUp() {
+		_destroyed = false;
+		_host = null;
+		_initialized = false;
+		_messageEl = null;
+		_strings = null;
+		_target = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterHostChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterMessageElChange = null;
+		_afterStringsChange = null;
+		_afterTargetChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onHostChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onMessageElChange = null;
+		_onStringsChange = null;
+		_onTargetChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);

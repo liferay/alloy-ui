@@ -18,10 +18,6 @@ public class BaseOverlayContextPanelTag extends com.liferay.taglib.util.IncludeT
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getAlign() {
 		return _align;
 	}
@@ -1362,6 +1358,148 @@ public class BaseOverlayContextPanelTag extends com.liferay.taglib.util.IncludeT
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
+
+	protected void cleanUp() {
+		_align = null;
+		_anim = null;
+		_arrow = null;
+		_overlaycontextpanelBodyContent = null;
+		_boundingBox = null;
+		_cancellableHide = true;
+		_centered = null;
+		_constrain = null;
+		_contentBox = null;
+		_cssClass = null;
+		_currentNode = null;
+		_destroyed = false;
+		_disabled = false;
+		_fillHeight = null;
+		_focused = false;
+		_footerContent = null;
+		_headerContent = null;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_hideDelay = 0;
+		_hideOn = "click";
+		_hideOnDocumentClick = true;
+		_overlaycontextpanelId = null;
+		_initialized = false;
+		_preventOverlap = false;
+		_render = null;
+		_rendered = false;
+		_shim = false;
+		_showArrow = true;
+		_showDelay = 0;
+		_showOn = "click";
+		_srcNode = null;
+		_stack = true;
+		_strings = null;
+		_tabIndex = 0;
+		_trigger = null;
+		_visible = false;
+		_width = null;
+		_x = 0;
+		_xy = null;
+		_y = 0;
+		_zIndex = 0;
+		_afterAlignChange = null;
+		_afterAnimChange = null;
+		_afterArrowChange = null;
+		_afterBodyContentChange = null;
+		_afterBoundingBoxChange = null;
+		_afterCancellableHideChange = null;
+		_afterCenteredChange = null;
+		_afterConstrainChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterCurrentNodeChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFillHeightChange = null;
+		_afterFocusedChange = null;
+		_afterFooterContentChange = null;
+		_afterHeaderContentChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterHideDelayChange = null;
+		_afterHideOnChange = null;
+		_afterHideOnDocumentClickChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterPreventOverlapChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterShimChange = null;
+		_afterShowArrowChange = null;
+		_afterShowDelayChange = null;
+		_afterShowOnChange = null;
+		_afterSrcNodeChange = null;
+		_afterStackChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterTriggerChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_afterXChange = null;
+		_afterXyChange = null;
+		_afterYChange = null;
+		_afterZIndexChange = null;
+		_onAlignChange = null;
+		_onAnimChange = null;
+		_onArrowChange = null;
+		_onBodyContentChange = null;
+		_onBoundingBoxChange = null;
+		_onCancellableHideChange = null;
+		_onCenteredChange = null;
+		_onConstrainChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onCurrentNodeChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFillHeightChange = null;
+		_onFocusedChange = null;
+		_onFooterContentChange = null;
+		_onHeaderContentChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onHideDelayChange = null;
+		_onHideOnChange = null;
+		_onHideOnDocumentClickChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onPreventOverlapChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onShimChange = null;
+		_onShowArrowChange = null;
+		_onShowDelayChange = null;
+		_onShowOnChange = null;
+		_onSrcNodeChange = null;
+		_onStackChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onTriggerChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+		_onXChange = null;
+		_onXyChange = null;
+		_onYChange = null;
+		_onZIndexChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "anim", _anim);

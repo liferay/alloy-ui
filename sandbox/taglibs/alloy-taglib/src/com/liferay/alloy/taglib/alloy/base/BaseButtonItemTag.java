@@ -18,10 +18,6 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getActiveState() {
 		return _activeState;
 	}
@@ -912,6 +908,103 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_activeState = false;
+		_boundingBox = null;
+		_classNames = null;
+		_contentBox = null;
+		_cssClass = null;
+		_defaultState = true;
+		_destroyed = false;
+		_disabled = false;
+		_focused = false;
+		_handler = null;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_hoverState = true;
+		_icon = null;
+		_iconNode = null;
+		_buttonitemId = null;
+		_initialized = false;
+		_label = null;
+		_labelNode = null;
+		_render = null;
+		_rendered = false;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_title = null;
+		_visible = true;
+		_width = null;
+		_afterActiveStateChange = null;
+		_afterBoundingBoxChange = null;
+		_afterClassNamesChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDefaultStateChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFocusedChange = null;
+		_afterHandlerChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterHoverStateChange = null;
+		_afterIconChange = null;
+		_afterIconNodeChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterLabelChange = null;
+		_afterLabelNodeChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSrcNodeChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterTitleChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onActiveStateChange = null;
+		_onBoundingBoxChange = null;
+		_onClassNamesChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDefaultStateChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFocusedChange = null;
+		_onHandlerChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onHoverStateChange = null;
+		_onIconChange = null;
+		_onIconNodeChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onLabelChange = null;
+		_onLabelNodeChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSrcNodeChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onTitleChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "activeState", _activeState);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

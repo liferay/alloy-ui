@@ -18,10 +18,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
@@ -882,6 +878,100 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_boundingBox = null;
+		_contentBox = null;
+		_cssClass = null;
+		_destroyed = false;
+		_disabled = false;
+		_focused = false;
+		_height = 25;
+		_hideClass = "aui-helper-hidden";
+		_progressbarId = null;
+		_initialized = false;
+		_label = null;
+		_max = 100;
+		_min = 0;
+		_orientation = "horizontal";
+		_ratio = 0;
+		_render = null;
+		_rendered = false;
+		_srcNode = null;
+		_statusNode = null;
+		_step = 0;
+		_strings = null;
+		_tabIndex = 0;
+		_textNode = null;
+		_progressbarValue = 0;
+		_visible = true;
+		_width = null;
+		_afterBoundingBoxChange = null;
+		_afterContentBoxChange = null;
+		_afterCssClassChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterFocusedChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterLabelChange = null;
+		_afterMaxChange = null;
+		_afterMinChange = null;
+		_afterOrientationChange = null;
+		_afterRatioChange = null;
+		_afterRenderChange = null;
+		_afterRenderedChange = null;
+		_afterSrcNodeChange = null;
+		_afterStatusNodeChange = null;
+		_afterStepChange = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterTextNodeChange = null;
+		_afterValueChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onBoundingBoxChange = null;
+		_onContentBoxChange = null;
+		_onCssClassChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onFocusedChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onLabelChange = null;
+		_onMaxChange = null;
+		_onMinChange = null;
+		_onOrientationChange = null;
+		_onRatioChange = null;
+		_onRenderChange = null;
+		_onRenderedChange = null;
+		_onSrcNodeChange = null;
+		_onStatusNodeChange = null;
+		_onStepChange = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onTextNodeChange = null;
+		_onValueChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "contentBox", _contentBox);

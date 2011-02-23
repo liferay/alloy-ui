@@ -18,10 +18,6 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Boolean getAlwaysVisible() {
 		return _alwaysVisible;
 	}
@@ -902,6 +898,102 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTotalPagesChange", onTotalPagesChange);
 	}
 
+
+	protected void cleanUp() {
+		_alwaysVisible = true;
+		_containers = null;
+		_destroyed = false;
+		_firstPageLink = null;
+		_firstPageLinkLabel = "first";
+		_initialized = false;
+		_lastPageLink = null;
+		_lastPageLinkLabel = "last";
+		_maxPageLinks = 10;
+		_nextPageLink = null;
+		_nextPageLinkLabel = "next &gt;";
+		_paginatorPage = 1;
+		_pageContainerTemplate = null;
+		_pageLinkContent = null;
+		_pageLinkTemplate = null;
+		_pageReportEl = null;
+		_pageReportLabelTemplate = "({page} of {totalPages})";
+		_prevPageLink = null;
+		_prevPageLinkLabel = "&lt; prev";
+		_rowsPerPage = 1;
+		_rowsPerPageEl = null;
+		_rowsPerPageOptions = null;
+		_state = null;
+		_template = "{FirstPageLink} {PrevPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport} {Total} {RowsPerPageSelect}";
+		_total = 0;
+		_totalEl = null;
+		_totalLabel = "(Total {total})";
+		_totalPages = 0;
+		_afterAlwaysVisibleChange = null;
+		_afterContainersChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterFirstPageLinkChange = null;
+		_afterFirstPageLinkLabelChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterLastPageLinkChange = null;
+		_afterLastPageLinkLabelChange = null;
+		_afterMaxPageLinksChange = null;
+		_afterNextPageLinkChange = null;
+		_afterNextPageLinkLabelChange = null;
+		_afterPageChange = null;
+		_afterPageContainerTemplateChange = null;
+		_afterPageLinkContentChange = null;
+		_afterPageLinkTemplateChange = null;
+		_afterPageReportElChange = null;
+		_afterPageReportLabelTemplateChange = null;
+		_afterPrevPageLinkChange = null;
+		_afterPrevPageLinkLabelChange = null;
+		_afterRowsPerPageChange = null;
+		_afterRowsPerPageElChange = null;
+		_afterRowsPerPageOptionsChange = null;
+		_afterStateChange = null;
+		_afterTemplateChange = null;
+		_afterTotalChange = null;
+		_afterTotalElChange = null;
+		_afterTotalLabelChange = null;
+		_afterTotalPagesChange = null;
+		_onAlwaysVisibleChange = null;
+		_onContainersChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onFirstPageLinkChange = null;
+		_onFirstPageLinkLabelChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onLastPageLinkChange = null;
+		_onLastPageLinkLabelChange = null;
+		_onMaxPageLinksChange = null;
+		_onNextPageLinkChange = null;
+		_onNextPageLinkLabelChange = null;
+		_onPageChange = null;
+		_onPageContainerTemplateChange = null;
+		_onPageLinkContentChange = null;
+		_onPageLinkTemplateChange = null;
+		_onPageReportElChange = null;
+		_onPageReportLabelTemplateChange = null;
+		_onPrevPageLinkChange = null;
+		_onPrevPageLinkLabelChange = null;
+		_onRowsPerPageChange = null;
+		_onRowsPerPageElChange = null;
+		_onRowsPerPageOptionsChange = null;
+		_onStateChange = null;
+		_onTemplateChange = null;
+		_onTotalChange = null;
+		_onTotalElChange = null;
+		_onTotalLabelChange = null;
+		_onTotalPagesChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysVisible", _alwaysVisible);
 		setNamespacedAttribute(request, "containers", _containers);

@@ -10,16 +10,12 @@ import javax.servlet.jsp.JspException;
  * @author Bruno Basto
  * @author Nathan Cavanaugh
  */
-public class BaseScriptTag extends AlloyIncludeTag {
+public class BaseScriptTag extends com.liferay.taglib.util.IncludeTag {
 
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
 		return super.doStartTag();
-	}
-
-	protected String getPage() {
-		return _PAGE;
 	}
 
 	public java.lang.String getPosition() {
@@ -52,6 +48,17 @@ public class BaseScriptTag extends AlloyIncludeTag {
 		setScopedAttribute("use", use);
 	}
 
+
+	protected void cleanUp() {
+		_position = null;
+		_printBuffer = null;
+		_use = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "position", _position);
 		setNamespacedAttribute(request, "printBuffer", _printBuffer);

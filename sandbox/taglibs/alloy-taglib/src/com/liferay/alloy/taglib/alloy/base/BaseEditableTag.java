@@ -18,10 +18,6 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getBoundingBox() {
 		return _boundingBox;
 	}
@@ -992,6 +988,111 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+
+	protected void cleanUp() {
+		_boundingBox = null;
+		_cancelButton = null;
+		_contentBox = null;
+		_contentText = null;
+		_cssClass = null;
+		_destroyed = false;
+		_disabled = false;
+		_eventType = "click";
+		_focused = false;
+		_formatInput = null;
+		_formatOutput = null;
+		_height = null;
+		_hideClass = "aui-helper-hidden";
+		_icons = null;
+		_editableId = null;
+		_initialized = false;
+		_inputType = "text";
+		_node = null;
+		_render = null;
+		_renderTo = null;
+		_rendered = false;
+		_saveButton = null;
+		_srcNode = null;
+		_strings = null;
+		_tabIndex = 0;
+		_visible = true;
+		_width = null;
+		_afterBoundingBoxChange = null;
+		_afterCancel = null;
+		_afterCancelButtonChange = null;
+		_afterContentBoxChange = null;
+		_afterContentTextChange = null;
+		_afterCssClassChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDisabledChange = null;
+		_afterEventTypeChange = null;
+		_afterFocusedChange = null;
+		_afterFormatInputChange = null;
+		_afterFormatOutputChange = null;
+		_afterHeightChange = null;
+		_afterHideClassChange = null;
+		_afterIconsChange = null;
+		_afterIdChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterInputTypeChange = null;
+		_afterNodeChange = null;
+		_afterRenderChange = null;
+		_afterRenderToChange = null;
+		_afterRenderedChange = null;
+		_afterSave = null;
+		_afterSaveButtonChange = null;
+		_afterSrcNodeChange = null;
+		_afterStartEditing = null;
+		_afterStopEditing = null;
+		_afterStringsChange = null;
+		_afterTabIndexChange = null;
+		_afterVisibleChange = null;
+		_afterContentUpdate = null;
+		_afterRender = null;
+		_afterWidthChange = null;
+		_onBoundingBoxChange = null;
+		_onCancel = null;
+		_onCancelButtonChange = null;
+		_onContentBoxChange = null;
+		_onContentTextChange = null;
+		_onCssClassChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDisabledChange = null;
+		_onEventTypeChange = null;
+		_onFocusedChange = null;
+		_onFormatInputChange = null;
+		_onFormatOutputChange = null;
+		_onHeightChange = null;
+		_onHideClassChange = null;
+		_onIconsChange = null;
+		_onIdChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onInputTypeChange = null;
+		_onNodeChange = null;
+		_onRenderChange = null;
+		_onRenderToChange = null;
+		_onRenderedChange = null;
+		_onSave = null;
+		_onSaveButtonChange = null;
+		_onSrcNodeChange = null;
+		_onStartEditing = null;
+		_onStopEditing = null;
+		_onStringsChange = null;
+		_onTabIndexChange = null;
+		_onVisibleChange = null;
+		_onContentUpdate = null;
+		_onRender = null;
+		_onWidthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "cancelButton", _cancelButton);

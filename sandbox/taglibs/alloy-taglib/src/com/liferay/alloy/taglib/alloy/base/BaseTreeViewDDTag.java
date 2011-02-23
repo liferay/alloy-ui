@@ -18,10 +18,6 @@ public class BaseTreeViewDDTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.String getCheckContainerEl() {
 		return _checkContainerEl;
 	}
@@ -572,6 +568,69 @@ public class BaseTreeViewDDTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
+
+	protected void cleanUp() {
+		_checkContainerEl = null;
+		_checkEl = null;
+		_checkName = "tree-node-check";
+		_checked = false;
+		_children = null;
+		_container = null;
+		_destroyed = false;
+		_dropAction = null;
+		_helper = null;
+		_index = null;
+		_initialized = false;
+		_io = null;
+		_lastSelected = null;
+		_lastY = 0;
+		_nodeContent = null;
+		_scrollDelay = 100;
+		_type = "file";
+		_afterCheckContainerElChange = null;
+		_afterCheckElChange = null;
+		_afterCheckNameChange = null;
+		_afterCheckedChange = null;
+		_afterChildrenChange = null;
+		_afterContainerChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterDropActionChange = null;
+		_afterHelperChange = null;
+		_afterIndexChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterIoChange = null;
+		_afterLastSelectedChange = null;
+		_afterLastYChange = null;
+		_afterNodeContentChange = null;
+		_afterScrollDelayChange = null;
+		_afterTypeChange = null;
+		_onCheckContainerElChange = null;
+		_onCheckElChange = null;
+		_onCheckNameChange = null;
+		_onCheckedChange = null;
+		_onChildrenChange = null;
+		_onContainerChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onDropActionChange = null;
+		_onHelperChange = null;
+		_onIndexChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onIoChange = null;
+		_onLastSelectedChange = null;
+		_onLastYChange = null;
+		_onNodeContentChange = null;
+		_onScrollDelayChange = null;
+		_onTypeChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "checkContainerEl", _checkContainerEl);
 		setNamespacedAttribute(request, "checkEl", _checkEl);

@@ -18,10 +18,6 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	protected String getPage() {
-		return _PAGE;
-	}
-
 	public java.lang.Object getCounter() {
 		return _counter;
 	}
@@ -212,6 +208,33 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onMaxLengthChange", onMaxLengthChange);
 	}
 
+
+	protected void cleanUp() {
+		_counter = null;
+		_destroyed = false;
+		_initialized = false;
+		_input = null;
+		_maxLength = 2147483647;
+		_afterCounterChange = null;
+		_afterDestroy = null;
+		_afterDestroyedChange = null;
+		_afterInit = null;
+		_afterInitializedChange = null;
+		_afterInputChange = null;
+		_afterMaxLengthChange = null;
+		_onCounterChange = null;
+		_onDestroy = null;
+		_onDestroyedChange = null;
+		_onInit = null;
+		_onInitializedChange = null;
+		_onInputChange = null;
+		_onMaxLengthChange = null;
+	}
+
+	protected String getPage() {
+		return _PAGE;
+	}
+	
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "counter", _counter);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
