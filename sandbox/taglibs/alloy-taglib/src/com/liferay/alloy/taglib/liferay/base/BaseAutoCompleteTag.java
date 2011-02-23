@@ -11,7 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
- 
+
 package com.liferay.alloy.taglib.liferay.base;
 
 import javax.servlet.http.HttpServletRequest;
@@ -1852,7 +1852,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	protected String getPage() {
 		return _PAGE;
 	}
-	
+
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "test", _test);
 		setNamespacedAttribute(request, "alwaysShowContainer", _alwaysShowContainer);

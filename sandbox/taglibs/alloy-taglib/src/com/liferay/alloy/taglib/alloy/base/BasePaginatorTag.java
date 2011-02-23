@@ -11,7 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
- 
+
 package com.liferay.alloy.taglib.alloy.base;
 
 import javax.servlet.http.HttpServletRequest;
@@ -1005,7 +1005,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 	protected String getPage() {
 		return _PAGE;
 	}
-	
+
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysVisible", _alwaysVisible);
 		setNamespacedAttribute(request, "containers", _containers);
