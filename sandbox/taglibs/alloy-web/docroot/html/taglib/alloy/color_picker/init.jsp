@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:color-picker:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:color-picker:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:color-picker:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:color-picker:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

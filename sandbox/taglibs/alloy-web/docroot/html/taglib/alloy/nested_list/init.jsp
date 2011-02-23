@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:nested-list:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:nested-list:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:nested-list:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:nested-list:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

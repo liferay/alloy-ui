@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:thumb-rating:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:thumb-rating:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

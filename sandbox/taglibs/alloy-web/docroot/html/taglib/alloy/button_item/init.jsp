@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:button-item:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:button-item:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

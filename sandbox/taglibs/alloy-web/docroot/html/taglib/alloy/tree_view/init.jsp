@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:tree-view:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:tree-view:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:tree-view:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

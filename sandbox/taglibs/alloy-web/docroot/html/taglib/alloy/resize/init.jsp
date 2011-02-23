@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:resize:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:resize:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:resize:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

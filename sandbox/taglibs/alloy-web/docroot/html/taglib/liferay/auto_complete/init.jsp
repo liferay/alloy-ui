@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "liferay:auto-complete:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("liferay:auto-complete:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("liferay:auto-complete:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("liferay:auto-complete:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

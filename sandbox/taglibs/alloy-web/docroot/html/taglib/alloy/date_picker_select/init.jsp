@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:date-picker-select:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:date-picker-select:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:date-picker-select:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

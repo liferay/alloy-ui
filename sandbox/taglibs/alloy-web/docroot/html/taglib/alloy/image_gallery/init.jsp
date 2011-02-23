@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:image-gallery:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:image-gallery:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:image-gallery:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:image-gallery:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

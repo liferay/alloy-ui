@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:calendar:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:calendar:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:calendar:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:calendar:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

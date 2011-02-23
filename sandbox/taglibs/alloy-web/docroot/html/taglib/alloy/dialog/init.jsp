@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:dialog:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:dialog:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:dialog:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

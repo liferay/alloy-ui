@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:overlay-mask:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-mask:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-mask:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:overlay-mask:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

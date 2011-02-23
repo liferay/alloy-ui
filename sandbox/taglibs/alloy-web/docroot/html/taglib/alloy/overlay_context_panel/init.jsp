@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:overlay-context-panel:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-context-panel:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:overlay-context-panel:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:overlay-context-panel:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 

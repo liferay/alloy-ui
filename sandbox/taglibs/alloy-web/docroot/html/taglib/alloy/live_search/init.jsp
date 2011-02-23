@@ -5,6 +5,7 @@ java.lang.String NAMESPACE = "alloy:live-search:";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:live-search:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:live-search:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
