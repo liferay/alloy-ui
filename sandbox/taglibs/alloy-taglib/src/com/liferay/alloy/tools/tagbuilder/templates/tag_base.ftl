@@ -37,7 +37,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
- 
+
 package ${packagePath}.${component.getPackage()}.base;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,7 +100,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 		return _PAGE;
 	}
 	</#if>
-	
+
 	protected void setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
