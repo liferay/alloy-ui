@@ -1,1 +1,1 @@
-<%@ include file="init-taglib.jsp" %>
+<%@ include file="init.jsp" %>

@@ -1,4 +1,4 @@
-<%@ include file="init-taglib.jsp" %>
+<%@ include file="init.jsp" %>
 <#if component.isAlloyComponent()>
 
 <alloy:component
