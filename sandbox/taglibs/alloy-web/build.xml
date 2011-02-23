@@ -59,7 +59,7 @@
 		</replace>
 
 		<!-- Remove _initJSONFactoryUtil from init jsp -->
-		
+
 		<replace dir="${temp.dir}" includes="**/*.jsp">
 			<replacetoken><![CDATA[public static void _initJSONFactoryUtil() {
 	if (JSONFactoryUtil.getJSONFactory() == null) {
