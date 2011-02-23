@@ -295,6 +295,18 @@ public class TagBuilder {
 
 		for (Document extDoc : _componentsExtDoc) {
 			Document componentsDoc = extDoc;
+			Element extRoot = componentsDoc.getRootElement();
+
+			String extDefaultPackage = extRoot.attributeValue("short-name");
+			List<Element> allExtComponentNodes = extRoot.elements("component");
+
+			// Set package on each extNode to not inherit the shot-name from the original document
+			for (Element extNode : allExtComponentNodes) {
+				String extComponentPackage = GetterUtil.getString(
+					extNode.attributeValue("package"), extDefaultPackage);
+
+				extNode.addAttribute("package", extComponentPackage);
+			}
 
 			Document parentDoc = _getComponentsDoc(
 				extDoc.getRootElement().attributeValue("extends"));
@@ -373,11 +385,10 @@ public class TagBuilder {
 		List<Component> components = new ArrayList<Component>();
 		Element root = doc.getRootElement();
 
+		String defaultPackage = root.attributeValue("short-name");
 		List<Element> allComponentNodes = root.elements("component");
 
 		for (Element node : allComponentNodes) {
-			String defaultPackage = root.attributeValue("short-name");
-
 			String componentPackage = GetterUtil.getString(
 				node.attributeValue("package"), defaultPackage);
 
