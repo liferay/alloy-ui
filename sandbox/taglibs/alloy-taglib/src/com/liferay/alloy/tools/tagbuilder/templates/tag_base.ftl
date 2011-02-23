@@ -87,7 +87,6 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	protected String getPage() {
 		return _PAGE;
 	}
-
 	</#if>
 	
 	protected void setAttributes(HttpServletRequest request) {
