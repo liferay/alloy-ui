@@ -16,6 +16,7 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil"%>
 <%@ page import="com.liferay.portal.kernel.util.Validator"%>
+<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 
 <%!
 public static ArrayList<Object> _getArrayList(Object obj) {

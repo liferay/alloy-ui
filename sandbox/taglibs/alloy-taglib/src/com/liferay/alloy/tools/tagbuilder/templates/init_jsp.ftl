@@ -43,6 +43,7 @@ java.lang.String NAMESPACE = "${namespace}";
 
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("${namespace}dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("${namespace}customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
