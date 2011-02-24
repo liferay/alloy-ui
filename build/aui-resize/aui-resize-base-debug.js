@@ -8,6 +8,7 @@ AUI.add('aui-resize-base', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
+	isNull = Lang.isNull,
 	isString = Lang.isString,
 
 	trim = Lang.trim,
@@ -32,6 +33,7 @@ var Lang = A.Lang,
 	GRIPSMALL = 'gripsmall',
 	HANDLE = 'handle',
 	HANDLES = 'handles',
+	HANDLES_WRAPPER = 'handlesWrapper',
 	HIDDEN = 'hidden',
 	HORIZONTAL = 'horizontal',
 	ICON = 'icon',
@@ -106,6 +108,7 @@ var Lang = A.Lang,
 	CSS_RESIZE_HIDDEN_HANDLES = getCN(RESIZE, HIDDEN, HANDLES),
 	CSS_RESIZE_PROXY = getCN(RESIZE, PROXY),
 	CSS_RESIZE_WRAPPER = getCN(RESIZE, WRAPPER),
+	CSS_RESIZE_HANDLES_WRAPPER = getCN(RESIZE, HANDLES, WRAPPER),
 
 	CSS_ICON_DIAGONAL = concat(CSS_ICON, CSS_ICON_GRIPSMALL_DIAGONAL_BR),
 	CSS_ICON_HORIZONTAL = concat(CSS_ICON, CSS_ICON_GRIP_DOTTED_HORIZONTAL),
@@ -121,6 +124,8 @@ var Lang = A.Lang,
 				 '</div>',
 
 	TPL_PROXY_EL = '<div class="' + CSS_RESIZE_PROXY + '"></div>',
+
+	TPL_HANDLES_WRAP_EL = '<div class="' + CSS_RESIZE_HANDLES_WRAPPER + '"></div>',
 
 	TPL_WRAP_EL = '<div class="' + CSS_RESIZE_WRAPPER + '"></div>',
 
@@ -194,7 +199,9 @@ var Resize = A.Component.create(
 			 */
 			activeHandle: {
 				value: null,
-				validator: isString
+				validator: function(v) {
+					return isString(v) || isNull(v);
+				}
 			},
 
 			/**
@@ -264,6 +271,13 @@ var Resize = A.Component.create(
 					return handles;
 				},
 				value: ALL
+			},
+
+			handlesWrapper: {
+				setter: A.one,
+				valueFn: function() {
+					return A.Node.create(TPL_HANDLES_WRAP_EL);
+				}
 			},
 
 			/**
@@ -634,7 +648,7 @@ var Resize = A.Component.create(
 				instance.delegate = new A.DD.Delegate(
 					{
 						bubbleTargets: instance,
-						container: instance.get(WRAPPER),
+						container: instance.get(HANDLES_WRAPPER),
 						dragConfig: {
 							clickPixelThresh: 0,
 							clickTimeThresh: 0,
@@ -772,10 +786,13 @@ var Resize = A.Component.create(
 			_renderHandles: function() {
 				var instance = this;
 				var wrapper = instance.get(WRAPPER);
+				var handlesWrapper = instance.get(HANDLES_WRAPPER);
 
 				instance.eachHandle(function(handleEl) {
-					wrapper.append(handleEl);
+					handlesWrapper.append(handleEl);
 				});
+
+				wrapper.append(handlesWrapper);
 			},
 
 		    /**
@@ -1001,7 +1018,9 @@ var Resize = A.Component.create(
 					}
 				};
 
-				rules[handle](dx, dy);
+				if (handle && rules[handle]) {
+					rules[handle](dx, dy);
+				}
 			},
 
 			/**
@@ -1245,10 +1264,10 @@ var Resize = A.Component.create(
 				// syncUI when resize end
 				instance._syncUI();
 
+				instance._setActiveHandlesUI(false);
+
 				instance.set(ACTIVE_HANDLE, null);
 				instance.set(ACTIVE_HANDLE_EL, null);
-
-				instance._setActiveHandlesUI(false);
 			},
 
 		    /**
@@ -1324,6 +1343,11 @@ var Resize = A.Component.create(
 		     * @protected
 		     */
 			_handleResizeStartEvent: function(event) {
+				if (!this.get(ACTIVE_HANDLE)) {
+	                //This handles the "touch" case
+				    this._setHandleFromNode(event.target.get('node'));
+	            }
+
 				this.fire(EV_RESIZE_START, { dragEvent: event, info: this.info });
 			},
 
@@ -1358,16 +1382,15 @@ var Resize = A.Component.create(
 			},
 
 			/**
-			 * Mouseover event handler for the handles.
+			 * Handles setting the activeHandle from a node, used from startDrag (for touch) and mouseenter (for mouse).
 			 *
-			 * @method _onHandleMouseEnter
-		     * @param {EventFacade} event
+			 * @method _setHandleFromNode
+		     * @param {Node} node
 			 * @protected
 			 */
-			_onHandleMouseEnter: function(event) {
-				var instance = this;
-				var node = event.currentTarget;
-				var handle = instance._extractHandleName(node);
+	        _setHandleFromNode: function(node) {
+				var instance = this,
+					handle = instance._extractHandleName(node);
 
 				if (!instance.get(RESIZING)) {
 					instance.set(ACTIVE_HANDLE, handle);
@@ -1376,6 +1399,19 @@ var Resize = A.Component.create(
 					instance._setActiveHandlesUI(true);
 					instance._updateChangeHandleInfo(handle);
 				}
+	        },
+
+			/**
+			 * Mouseover event handler for the handles.
+			 *
+			 * @method _onHandleMouseEnter
+		     * @param {EventFacade} event
+			 * @protected
+			 */
+			_onHandleMouseEnter: function(event) {
+				var instance = this;
+
+				instance._setHandleFromNode(event.currentTarget);
 			},
 
 			/**
@@ -1409,4 +1445,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});
