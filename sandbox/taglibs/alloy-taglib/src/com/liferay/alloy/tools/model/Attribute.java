@@ -1,10 +1,10 @@
 package com.liferay.alloy.tools.model;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.liferay.alloy.util.ReservedAttributeUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.StringPool;
+
+import org.apache.commons.lang.StringUtils;
 
 public class Attribute extends BaseModel {
 
@@ -68,11 +68,15 @@ public class Attribute extends BaseModel {
 	}
 
 	public String getTypeSimpleClassName(String type) {
-		try {
-			return Class.forName(type).getSimpleName();
+		if (TypeUtil.isPrimitiveType(type)) {
+			return type;
 		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		else {
+			try {
+				return Class.forName(type).getSimpleName();
+			}
+			catch (ClassNotFoundException e) {
+			}
 		}
 
 		return StringPool.BLANK;

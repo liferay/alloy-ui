@@ -37,3 +37,5 @@ textarea {
 	onMaxLength="function(event) { alert('The max length was reach'); }"
 	useMarkup="false"
 />
+
+<liferay:test test="Eduardo" />

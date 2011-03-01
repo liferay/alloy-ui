@@ -1,29 +1,4 @@
-<#compress>
-<#assign BLANK = "">
-<#assign QUOTE = "\"">
-
-<#function isQuoted simpleClassName>
-	<#return (simpleClassName == "String") />
-</#function>
-
-<#function useDefaultValue simpleClassName>
-	<#return ((simpleClassName == "String") || (simpleClassName == "Integer") || (simpleClassName == "Boolean") || (simpleClassName == "Double") || (simpleClassName == "Float") || (simpleClassName == "Long") || (simpleClassName == "Short") || (simpleClassName == "Number")) />
-</#function>
-
-<#function getDefaultValue simpleClassName defaultValue>
-	<#assign defaultValueOutput = "null">
-
-	<#if (defaultValue?? && (defaultValue != BLANK) && useDefaultValue(simpleClassName))>
-		<#if isQuoted(simpleClassName)>
-			<#assign defaultValueOutput = QUOTE + defaultValue + QUOTE>
-		<#else>
-			<#assign defaultValueOutput = defaultValue>
-		</#if>
-	</#if>
-
-	<#return defaultValueOutput />
-</#function>
-</#compress>
+<#include "init.ftl">
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -76,11 +51,14 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 		<#compress>
 		<#assign outputSimpleClassName = attribute.getOutputTypeSimpleClassName()>
 
-		<#assign defaultValue = "null">
+		<#assign defaultValue = "">
 
 		<#if attribute.getDefaultValue()??>
-			<#assign defaultValue = getDefaultValue(outputSimpleClassName, attribute.getDefaultValue())>
+			<#assign defaultValue = attribute.getDefaultValue()>
 		</#if>
+		
+		<#assign defaultValue = getCleanUpValue(outputSimpleClassName, defaultValue)>
+		
 		</#compress>
 		_${attribute.getSafeName()} = ${defaultValue};
 	</#list>

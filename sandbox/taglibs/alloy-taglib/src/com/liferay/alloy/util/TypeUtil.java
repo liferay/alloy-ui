@@ -14,10 +14,10 @@
 
 package com.liferay.alloy.util;
 
+import com.liferay.portal.kernel.util.Validator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.liferay.portal.kernel.util.Validator;
 
 /**
  * <a href="TypeUtil.java.html"><b><i>View Source</i></b></a>
@@ -26,28 +26,40 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class TypeUtil {
 
+	public static final String BOOLEAN = "boolean";
+
+	public static final String DOUBLE = "double";
+
+	public static final String FLOAT = "float";
+
+	public static final String INT = "int";
+
+	public static final String LONG = "long";
+
+	public static final String SHORT = "short";
+
 	private TypeUtil() {
 		_INPUT_TYPES = new HashMap<String, String>();
 		_OUTPUT_TYPES = new HashMap<String, String>();
 
 		_registerTypes(_INPUT_TYPES, ARRAYS, Object.class.getName());
-		_registerTypes(_INPUT_TYPES, BOOLEANS, Boolean.class.getName());
-		_registerTypes(_INPUT_TYPES, FLOATS, Object.class.getName());
-		_registerTypes(_INPUT_TYPES, INTEGERS, Object.class.getName());
-		_registerTypes(_INPUT_TYPES, DOUBLES, Object.class.getName());
-		_registerTypes(_INPUT_TYPES, LONGS, Object.class.getName());
-		_registerTypes(_INPUT_TYPES, SHORTS, Object.class.getName());
+		_registerTypes(_INPUT_TYPES, BOOLEANS, boolean.class.getName());
+		_registerTypes(_INPUT_TYPES, FLOATS, float.class.getName());
+		_registerTypes(_INPUT_TYPES, INTEGERS, int.class.getName());
+		_registerTypes(_INPUT_TYPES, DOUBLES, double.class.getName());
+		_registerTypes(_INPUT_TYPES, LONGS, long.class.getName());
+		_registerTypes(_INPUT_TYPES, SHORTS, short.class.getName());
 		_registerTypes(_INPUT_TYPES, NUMBERS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, OBJECTS, Object.class.getName());
 		_registerTypes(_INPUT_TYPES, STRINGS, String.class.getName());
 
 		_registerTypes(_OUTPUT_TYPES, ARRAYS, ArrayList.class.getName());
-		_registerTypes(_OUTPUT_TYPES, BOOLEANS, Boolean.class.getName());
-		_registerTypes(_OUTPUT_TYPES, FLOATS, Float.class.getName());
-		_registerTypes(_OUTPUT_TYPES, INTEGERS, Integer.class.getName());
-		_registerTypes(_OUTPUT_TYPES, DOUBLES, Double.class.getName());
-		_registerTypes(_OUTPUT_TYPES, LONGS, Long.class.getName());
-		_registerTypes(_OUTPUT_TYPES, SHORTS, Short.class.getName());
+		_registerTypes(_OUTPUT_TYPES, BOOLEANS, boolean.class.getName());
+		_registerTypes(_OUTPUT_TYPES, FLOATS, float.class.getName());
+		_registerTypes(_OUTPUT_TYPES, INTEGERS, int.class.getName());
+		_registerTypes(_OUTPUT_TYPES, DOUBLES, double.class.getName());
+		_registerTypes(_OUTPUT_TYPES, LONGS, long.class.getName());
+		_registerTypes(_OUTPUT_TYPES, SHORTS, short.class.getName());
 		_registerTypes(_OUTPUT_TYPES, NUMBERS, Number.class.getName());
 		_registerTypes(_OUTPUT_TYPES, OBJECTS, HashMap.class.getName());
 		_registerTypes(_OUTPUT_TYPES, STRINGS, String.class.getName());
@@ -59,6 +71,12 @@ public class TypeUtil {
 
 	public static String getOutputJavaType(String type) {
 		return _instance._getOutputJavaType(type);
+	}
+
+	public static boolean isPrimitiveType(String type) {
+		return (TypeUtil.BOOLEAN.equals(type) || TypeUtil.DOUBLE.equals(type) ||
+				TypeUtil.FLOAT.equals(type) || TypeUtil.INT.equals(type) ||
+				TypeUtil.LONG.equals(type) || TypeUtil.SHORT.equals(type));
 	}
 
 	private String _getInputJavaType(String type) {
@@ -90,15 +108,20 @@ public class TypeUtil {
 	}
 
 	private boolean _isJavaClass(String type) {
-		try {
-			Class.forName(type);
+		if (isPrimitiveType(type)) {
 
 			return true;
 		}
-		catch (ClassNotFoundException e) {
-		}
+		else {
+			try {
+				Class.forName(type);
 
-		return false;
+				return true;
+			}
+			catch (ClassNotFoundException e) {
+				return false;
+			}
+		}
 	}
 
 	private void _registerTypes(

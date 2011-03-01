@@ -34,15 +34,59 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		return _test;
 	}
 
+	public boolean getAttrBooleanPrimitive() {
+		return _attrBooleanPrimitive;
+	}
+
+	public java.lang.Boolean getAttrBoolean() {
+		return _attrBoolean;
+	}
+
+	public int getAttrIntPrimitive() {
+		return _attrIntPrimitive;
+	}
+
+	public java.lang.Integer getAttrInteger() {
+		return _attrInteger;
+	}
+
 	public void setTest(java.lang.String test) {
 		_test = test;
 
 		setScopedAttribute("test", test);
 	}
 
+	public void setAttrBooleanPrimitive(boolean attrBooleanPrimitive) {
+		_attrBooleanPrimitive = attrBooleanPrimitive;
+
+		setScopedAttribute("attrBooleanPrimitive", attrBooleanPrimitive);
+	}
+
+	public void setAttrBoolean(java.lang.Boolean attrBoolean) {
+		_attrBoolean = attrBoolean;
+
+		setScopedAttribute("attrBoolean", attrBoolean);
+	}
+
+	public void setAttrIntPrimitive(int attrIntPrimitive) {
+		_attrIntPrimitive = attrIntPrimitive;
+
+		setScopedAttribute("attrIntPrimitive", attrIntPrimitive);
+	}
+
+	public void setAttrInteger(java.lang.Integer attrInteger) {
+		_attrInteger = attrInteger;
+
+		setScopedAttribute("attrInteger", attrInteger);
+	}
+
 
 	protected void cleanUp() {
 		_test = null;
+		_attrBooleanPrimitive = false;
+		_attrBoolean = null;
+		_attrIntPrimitive = 0;
+		_attrInteger = null;
 	}
 
 	protected String getPage() {
@@ -51,6 +95,10 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "test", _test);
+		setNamespacedAttribute(request, "attrBooleanPrimitive", _attrBooleanPrimitive);
+		setNamespacedAttribute(request, "attrBoolean", _attrBoolean);
+		setNamespacedAttribute(request, "attrIntPrimitive", _attrIntPrimitive);
+		setNamespacedAttribute(request, "attrInteger", _attrInteger);
 	}
 
 	protected static final String _ATTRIBUTE_NAMESPACE = "liferay:test:";
@@ -59,5 +107,9 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/liferay/test/page.jsp";
 
 	protected java.lang.String _test;
+	protected boolean _attrBooleanPrimitive;
+	protected java.lang.Boolean _attrBoolean;
+	protected int _attrIntPrimitive;
+	protected java.lang.Integer _attrInteger;
 
 }

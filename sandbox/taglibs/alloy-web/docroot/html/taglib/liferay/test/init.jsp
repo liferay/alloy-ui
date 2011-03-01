@@ -29,8 +29,16 @@ _options.putAll(scopedAttributes);
 _options.putAll(dynamicAttributes);
 
 java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("liferay:test:test"));
+boolean attrBooleanPrimitive = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:test:attrBooleanPrimitive")));
+java.lang.Boolean attrBoolean = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("liferay:test:attrBoolean"));
+int attrIntPrimitive = GetterUtil.getInteger(String.valueOf(request.getAttribute("liferay:test:attrIntPrimitive")));
+java.lang.Integer attrInteger = GetterUtil.getInteger(String.valueOf(request.getAttribute("liferay:test:attrInteger")));
 
 _updateOptions(_options, "test", test);
+_updateOptions(_options, "attrBooleanPrimitive", attrBooleanPrimitive);
+_updateOptions(_options, "attrBoolean", attrBoolean);
+_updateOptions(_options, "attrIntPrimitive", attrIntPrimitive);
+_updateOptions(_options, "attrInteger", attrInteger);
 %>
 
 <%@ include file="init-ext.jsp" %>
