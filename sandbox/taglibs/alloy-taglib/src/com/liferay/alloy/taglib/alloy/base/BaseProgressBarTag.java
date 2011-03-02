@@ -42,19 +42,19 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
-	public java.lang.Object getHeight() {
+	public int getHeight() {
 		return _height;
 	}
 
@@ -66,7 +66,7 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _progressbarId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -74,11 +74,11 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _label;
 	}
 
-	public java.lang.Object getMax() {
+	public int getMax() {
 		return _max;
 	}
 
-	public java.lang.Object getMin() {
+	public int getMin() {
 		return _min;
 	}
 
@@ -94,7 +94,7 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -122,11 +122,11 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _textNode;
 	}
 
-	public java.lang.Object getProgressbarValue() {
+	public int getProgressbarValue() {
 		return _progressbarValue;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -392,25 +392,25 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setHeight(java.lang.Object height) {
+	public void setHeight(int height) {
 		_height = height;
 
 		setScopedAttribute("height", height);
@@ -428,7 +428,7 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("progressbarId", progressbarId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -440,13 +440,13 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("label", label);
 	}
 
-	public void setMax(java.lang.Object max) {
+	public void setMax(int max) {
 		_max = max;
 
 		setScopedAttribute("max", max);
 	}
 
-	public void setMin(java.lang.Object min) {
+	public void setMin(int min) {
 		_min = min;
 
 		setScopedAttribute("min", min);
@@ -470,7 +470,7 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -512,13 +512,13 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("textNode", textNode);
 	}
 
-	public void setProgressbarValue(java.lang.Object progressbarValue) {
+	public void setProgressbarValue(int progressbarValue) {
 		_progressbarValue = progressbarValue;
 
 		setScopedAttribute("progressbarValue", progressbarValue);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1081,28 +1081,28 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.String _boundingBox;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
-	protected java.lang.Boolean _focused;
-	protected java.lang.Object _height;
+	protected boolean _destroyed;
+	protected boolean _disabled;
+	protected boolean _focused;
+	protected int _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.String _progressbarId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _label;
-	protected java.lang.Object _max;
-	protected java.lang.Object _min;
+	protected int _max;
+	protected int _min;
 	protected java.lang.String _orientation;
 	protected java.lang.Object _ratio;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.String _srcNode;
 	protected java.lang.String _statusNode;
 	protected java.lang.Object _step;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.String _textNode;
-	protected java.lang.Object _progressbarValue;
-	protected java.lang.Boolean _visible;
+	protected int _progressbarValue;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterBoundingBoxChange;
 	protected java.lang.Object _afterContentBoxChange;

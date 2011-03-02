@@ -33,12 +33,12 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean alwaysVisible = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:alwaysVisible"), true);
+boolean alwaysVisible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:paginator:alwaysVisible")), true);
 java.lang.String containers = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:containers"));
-java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:destroyed"), false);
+boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:paginator:destroyed")), false);
 java.lang.String firstPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLink"));
 java.lang.String firstPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:firstPageLinkLabel"), "first");
-java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:paginator:initialized"), false);
+boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:paginator:initialized")), false);
 java.lang.String lastPageLink = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLink"));
 java.lang.String lastPageLinkLabel = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:paginator:lastPageLinkLabel"), "last");
 java.lang.Number maxPageLinks = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:paginator:maxPageLinks")), 10);

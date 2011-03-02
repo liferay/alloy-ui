@@ -66,11 +66,11 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -78,7 +78,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -102,7 +102,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _overlaymaskId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -110,7 +110,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _opacity;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
@@ -118,11 +118,11 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getShim() {
+	public boolean getShim() {
 		return _shim;
 	}
 
@@ -142,7 +142,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _target;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -524,13 +524,13 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -542,7 +542,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -578,7 +578,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("overlaymaskId", overlaymaskId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -590,7 +590,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("opacity", opacity);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
@@ -602,13 +602,13 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
@@ -638,7 +638,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("target", target);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1375,26 +1375,26 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.Object _constrain;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _fillHeight;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _footerContent;
 	protected java.lang.Object _headerContent;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.String _overlaymaskId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _opacity;
-	protected java.lang.Boolean _preventOverlap;
+	protected boolean _preventOverlap;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
-	protected java.lang.Boolean _shim;
+	protected boolean _rendered;
+	protected boolean _shim;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.String _target;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _x;
 	protected java.lang.Object _xy;

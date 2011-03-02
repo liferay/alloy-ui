@@ -33,9 +33,9 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:loading-mask:destroyed"), false);
+boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:loading-mask:destroyed")), false);
 java.lang.Object host = (java.lang.Object)request.getAttribute("alloy:loading-mask:host");
-java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:loading-mask:initialized"), false);
+boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:loading-mask:initialized")), false);
 java.lang.String messageEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:loading-mask:messageEl"));
 java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:loading-mask:strings"), "{ loading: 'Loading&hellip;' }"));
 java.lang.Object target = (java.lang.Object)request.getAttribute("alloy:loading-mask:target");

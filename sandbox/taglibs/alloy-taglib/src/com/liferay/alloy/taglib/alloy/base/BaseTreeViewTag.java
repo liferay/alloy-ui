@@ -38,7 +38,7 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		return _container;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -46,7 +46,7 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -154,7 +154,7 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -166,7 +166,7 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -384,9 +384,9 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected java.lang.Object _children;
 	protected java.lang.String _container;
-	protected java.lang.Boolean _destroyed;
+	protected boolean _destroyed;
 	protected java.lang.Object _index;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _io;
 	protected java.lang.Object _lastSelected;
 	protected java.lang.String _type;

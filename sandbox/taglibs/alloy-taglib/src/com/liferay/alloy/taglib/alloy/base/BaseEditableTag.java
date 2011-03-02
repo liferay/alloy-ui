@@ -50,11 +50,11 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -62,7 +62,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _eventType;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -90,7 +90,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _editableId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -110,7 +110,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _renderTo;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -130,7 +130,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -448,13 +448,13 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -466,7 +466,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("eventType", eventType);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -508,7 +508,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("editableId", editableId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -538,7 +538,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("renderTo", renderTo);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -568,7 +568,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1215,27 +1215,27 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.String _contentBox;
 	protected java.lang.String _contentText;
 	protected java.lang.String _cssClass;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.String _eventType;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _formatInput;
 	protected java.lang.Object _formatOutput;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.Object _icons;
 	protected java.lang.String _editableId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _inputType;
 	protected java.lang.Object _node;
 	protected java.lang.Object _render;
 	protected java.lang.String _renderTo;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.String _saveButton;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterBoundingBoxChange;
 	protected java.lang.Object _afterCancel;

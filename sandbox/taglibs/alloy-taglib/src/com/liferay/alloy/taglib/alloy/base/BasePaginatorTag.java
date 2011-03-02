@@ -30,7 +30,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.Boolean getAlwaysVisible() {
+	public boolean getAlwaysVisible() {
 		return _alwaysVisible;
 	}
 
@@ -38,7 +38,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		return _containers;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -50,7 +50,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		return _firstPageLinkLabel;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -382,7 +382,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		return _onTotalPagesChange;
 	}
 
-	public void setAlwaysVisible(java.lang.Boolean alwaysVisible) {
+	public void setAlwaysVisible(boolean alwaysVisible) {
 		_alwaysVisible = alwaysVisible;
 
 		setScopedAttribute("alwaysVisible", alwaysVisible);
@@ -394,7 +394,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("containers", containers);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -412,7 +412,7 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("firstPageLinkLabel", firstPageLinkLabel);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -1102,12 +1102,12 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/paginator/page.jsp";
 
-	protected java.lang.Boolean _alwaysVisible;
+	protected boolean _alwaysVisible;
 	protected java.lang.String _containers;
-	protected java.lang.Boolean _destroyed;
+	protected boolean _destroyed;
 	protected java.lang.String _firstPageLink;
 	protected java.lang.String _firstPageLinkLabel;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _lastPageLink;
 	protected java.lang.String _lastPageLinkLabel;
 	protected java.lang.Object _maxPageLinks;

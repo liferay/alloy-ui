@@ -19,7 +19,7 @@ user is requesting them.]]></description>
 			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
@@ -27,7 +27,7 @@ method will be run on the response from the data source.]]></description>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Automatically highlight the first item in the list when the results are
@@ -35,7 +35,7 @@ made visible.]]></description>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
@@ -51,7 +51,7 @@ for skinning.]]></description>
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -100,7 +100,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -108,7 +108,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -116,7 +116,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
@@ -124,7 +124,7 @@ will clear a selection when the overlay closes unless a user explicitly selects 
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -156,7 +156,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The input field which will recieve the users input.]]></description>
@@ -208,7 +208,7 @@ setting this to true will match only results with the same case.]]></description
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
@@ -217,7 +217,7 @@ instead of just matching just items that start with the query.]]></description>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
@@ -227,7 +227,7 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -243,7 +243,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.]]></description>
@@ -278,7 +278,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number (between -32767 to 32767) indicating the widget's 
@@ -299,7 +299,7 @@ automatically selecting the portion of the text the user has not typed yet.]]></
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
@@ -322,7 +322,7 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -1087,7 +1087,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<name>activeState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
@@ -1125,7 +1125,7 @@ houses its content.]]></description>
 			<name>defaultState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -1133,7 +1133,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -1141,7 +1141,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -1149,7 +1149,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[An event callback to handle when a user interacts with the button.
@@ -1186,7 +1186,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<name>hoverState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The icon to use inside of the button. Possible values are:]]></description>
@@ -1217,7 +1217,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Text to use inside of the button.]]></description>
@@ -1249,7 +1249,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -1289,7 +1289,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -1707,7 +1707,7 @@ for skinning.]]></description>
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
@@ -1793,7 +1793,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -1801,7 +1801,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -1825,7 +1825,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -1882,7 +1882,7 @@ class and will be hide when the user click on document.]]></description>
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -1897,7 +1897,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Maximum allowable date. Values supported by the Date
@@ -1923,7 +1923,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -1939,14 +1939,14 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Wether accepts to select multiple dates.]]></description>
 			<name>selectMultipleDates</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true set the selected date with the correct
@@ -1955,7 +1955,7 @@ value of the input field which is hosting the Calendar.]]></description>
 			<name>setValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -1963,7 +1963,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of milliseconds after the show method is invoked to show the
@@ -1992,7 +1992,7 @@ OverlayContext.]]></description>
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.]]></description>
@@ -2027,7 +2027,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -2723,7 +2723,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -2731,7 +2731,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Node or Selector for the input field. Required.]]></description>
@@ -2868,7 +2868,7 @@ for skinning.]]></description>
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
@@ -2917,7 +2917,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -2925,7 +2925,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -2942,7 +2942,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -2999,7 +2999,7 @@ class and will be hide when the user click on document.]]></description>
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -3014,7 +3014,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -3024,7 +3024,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -3040,7 +3040,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -3048,7 +3048,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of milliseconds after the show method is invoked to show the
@@ -3105,7 +3105,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -3727,7 +3727,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -3735,7 +3735,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -3743,7 +3743,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -3775,7 +3775,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[DOM Node to display the month of the DatePickerSelect. If not
@@ -3800,7 +3800,7 @@ populated.]]></description>
 			<name>populateDay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true the select element for the month will be automatic
@@ -3808,7 +3808,7 @@ populated.]]></description>
 			<name>populateMonth</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true the select element for the year will be automatic
@@ -3816,7 +3816,7 @@ populated.]]></description>
 			<name>populateYear</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -3832,7 +3832,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[DOM Node to display the selects of the DatePickerSelect. If not
@@ -3882,7 +3882,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -4414,21 +4414,21 @@ Dialog header.]]></description>
 			<name>close</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the panel is displayed collapsed.]]></description>
 			<name>collapsed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the panel is able to be collapsed.]]></description>
 			<name>collapsible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The node to constrain the widget's bounding box to, when setting xy. Can also be
@@ -4468,7 +4468,7 @@ method when the dialog is closed (i.e., remove the Dialog
 			<name>destroyOnClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -4476,7 +4476,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -4484,7 +4484,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Stores the Drag instance for the <code>A.DD.Drag</code> used by
@@ -4499,7 +4499,7 @@ this Dialog.]]></description>
 			<name>draggable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -4516,7 +4516,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -4576,7 +4576,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[True if the Panel should be displayed in a modal fashion,
@@ -4586,7 +4586,7 @@ will not be removed until the Dialog is dismissed. Uses
 			<name>modal</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -4596,7 +4596,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -4612,14 +4612,14 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean specifying if the Panel should be resizable.]]></description>
 			<name>resizable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Stores the Drag instance for the
@@ -4635,7 +4635,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -4649,7 +4649,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.]]></description>
@@ -4682,7 +4682,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -5350,7 +5350,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -5358,7 +5358,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Event type to initialize the editable.]]></description>
@@ -5373,7 +5373,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Function to format the input text displayed on the input.]]></description>
@@ -5426,7 +5426,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Type of the input used to edit the <a
@@ -5464,7 +5464,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[<a href="ButtonItem.html">ButtonItem</a> constructor Object for the
@@ -5505,7 +5505,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -5946,7 +5946,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<name>active</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
@@ -5963,7 +5963,7 @@ initializing the IO transaction.]]></description>
 			<name>autoLoad</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>false</code> the current timestamp will be appended to the
@@ -5971,7 +5971,7 @@ url, avoiding the url to be cached.]]></description>
 			<name>cache</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Object containing all the
@@ -6011,7 +6011,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
@@ -6041,7 +6041,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
@@ -6067,7 +6067,7 @@ Configuration</a>.]]></description>
 			<name>sync</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
@@ -6453,7 +6453,7 @@ Configuration</a>.]]></description>
 			<name>anim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as arrow left.]]></description>
@@ -6475,7 +6475,7 @@ ImageGallery is displayed.]]></description>
 			<name>autoPlay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the body section. This will replace any existing content
@@ -6515,7 +6515,7 @@ from the title DOM attribute.]]></description>
 			<name>captionFromTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the Overlay with the image will be positioned
@@ -6523,7 +6523,7 @@ on the center of the viewport.]]></description>
 			<name>centered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as close.]]></description>
@@ -6575,7 +6575,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -6583,7 +6583,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -6600,7 +6600,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -6677,7 +6677,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Selector or NodeList containing the links where the ImageViewer
@@ -6699,7 +6699,7 @@ extracts the information to generate the thumbnails.]]></description>
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as loading.]]></description>
@@ -6758,7 +6758,7 @@ with the thumbnails.]]></description>
 			<name>paused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Label to display when the slide show is paused.]]></description>
@@ -6772,7 +6772,7 @@ with the thumbnails.]]></description>
 			<name>playing</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Label to display when the slide show is playing.]]></description>
@@ -6787,7 +6787,7 @@ href="ImageViewer.html#config_links">links</a> attribute.]]></description>
 			<name>preloadAllImages</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -6797,7 +6797,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -6813,14 +6813,14 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Restart the navigation when reach the last element.]]></description>
 			<name>repeat</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -6828,28 +6828,28 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Show the arrow controls.]]></description>
 			<name>showArrows</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Show close icon control.]]></description>
 			<name>showClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Show the player controls (i.e., pause and show buttons).]]></description>
 			<name>showPlayer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -6890,21 +6890,21 @@ href="ImageViewer.html#config_links">links</a> NodeList.]]></description>
 			<name>totalLinks</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> will use the original image as thumbnails.]]></description>
 			<name>useOriginalImage</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -7839,7 +7839,7 @@ zIndex will be converted to 0]]></description>
 			<name>anim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as arrow left.]]></description>
@@ -7893,7 +7893,7 @@ from the title DOM attribute.]]></description>
 			<name>captionFromTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the Overlay with the image will be positioned
@@ -7901,7 +7901,7 @@ on the center of the viewport.]]></description>
 			<name>centered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as close.]]></description>
@@ -7946,7 +7946,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -7954,7 +7954,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -7971,7 +7971,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -8048,7 +8048,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Selector or NodeList containing the links where the ImageViewer
@@ -8070,7 +8070,7 @@ extracts the information to generate the thumbnails.]]></description>
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The element to be used as loading.]]></description>
@@ -8107,7 +8107,7 @@ href="ImageViewer.html#config_links">links</a> attribute.]]></description>
 			<name>preloadAllImages</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -8117,7 +8117,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -8133,7 +8133,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -8141,21 +8141,21 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Show the arrow controls.]]></description>
 			<name>showArrows</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Show close icon control.]]></description>
 			<name>showClose</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -8189,14 +8189,14 @@ href="ImageViewer.html#config_links">links</a> NodeList.]]></description>
 			<name>totalLinks</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -8991,7 +8991,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Function to be executed to hide the node when the data of that node
@@ -9014,7 +9014,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The <code>value</code> of this input node is used to filter the
@@ -9204,7 +9204,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The plugin's host object.]]></description>
@@ -9219,7 +9219,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Node element to display the message.]]></description>
@@ -9351,7 +9351,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -9359,7 +9359,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -9477,7 +9477,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -9485,7 +9485,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -9502,7 +9502,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -9550,7 +9550,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -9560,7 +9560,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -9576,7 +9576,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -9584,7 +9584,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -9617,7 +9617,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -10102,7 +10102,7 @@ for skinning.]]></description>
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
@@ -10151,7 +10151,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -10159,7 +10159,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -10176,7 +10176,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -10233,7 +10233,7 @@ class and will be hide when the user click on document.]]></description>
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -10248,7 +10248,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -10258,7 +10258,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -10274,7 +10274,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -10282,7 +10282,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of milliseconds after the show method is invoked to show the
@@ -10339,7 +10339,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -10949,7 +10949,7 @@ for skinning.]]></description>
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
@@ -10998,7 +10998,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -11006,7 +11006,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -11023,7 +11023,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -11080,7 +11080,7 @@ class and will be hide when the user click on document.]]></description>
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -11095,7 +11095,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -11105,7 +11105,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -11121,7 +11121,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -11129,7 +11129,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true the OverlayContextPanel will show an arrow positioned on the
@@ -11137,7 +11137,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>showArrow</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of milliseconds after the show method is invoked to show the
@@ -11166,7 +11166,7 @@ OverlayContext.]]></description>
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.]]></description>
@@ -11201,7 +11201,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -11877,7 +11877,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -11885,7 +11885,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -11902,7 +11902,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -11950,7 +11950,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[CSS opacity of the mask.]]></description>
@@ -11967,7 +11967,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -11983,14 +11983,14 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Use shim option.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -12033,7 +12033,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -12542,7 +12542,7 @@ there is no pages to display use <code>false</code>.]]></description>
 			<name>alwaysVisible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The Paginator controls UI could be displayed in more than one
@@ -12560,7 +12560,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The <a href="Node.html">Node</a> or template to be used as the
@@ -12584,7 +12584,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The <a href="Node.html">Node</a> or template to be used as the
@@ -13155,14 +13155,14 @@ for skinning.]]></description>
 			<name>collapsed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the panel is able to be collapsed.]]></description>
 			<name>collapsible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -13185,7 +13185,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -13193,7 +13193,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -13210,7 +13210,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -13270,7 +13270,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -13286,7 +13286,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -13326,7 +13326,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -13696,7 +13696,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The plugin's host object.]]></description>
@@ -13711,7 +13711,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -13785,7 +13785,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -13793,7 +13793,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<name>afterDestroy</name>
@@ -13879,7 +13879,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -13887,7 +13887,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -13895,14 +13895,14 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Display height of the progressbar.]]></description>
 			<name>height</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
+			<type>int</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
@@ -13926,7 +13926,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Display label of the progressbar. If not specified try to query
@@ -13945,7 +13945,7 @@ be ignored.]]></description>
 			<name>max</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
+			<type>int</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Represents the lowest value for the bar. The bar will be
@@ -13954,7 +13954,7 @@ this will be ignored.]]></description>
 			<name>min</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
+			<type>int</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Display orientation of the progressbar (i.e. vertical or
@@ -13986,7 +13986,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
@@ -14046,14 +14046,14 @@ and maxValue attributes.]]></description>
 			<name>progressbarValue</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
+			<type>int</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -14444,7 +14444,7 @@ selected).]]></description>
 			<name>canReset</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -14474,7 +14474,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the Rating is disabled or not. Disabled Ratings don't allow
@@ -14482,7 +14482,7 @@ hover or click, just display selected stars.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[<a href="NodeList.html">NodeList</a> of elements used on the
@@ -14498,7 +14498,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -14538,7 +14538,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Name of the <a
@@ -14579,7 +14579,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Stores the index of the selected element.]]></description>
@@ -14595,7 +14595,7 @@ generated Rating elements.]]></description>
 			<name>showTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of Rating elements to be displayed.]]></description>
@@ -14650,7 +14650,7 @@ radio elements.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -15118,7 +15118,7 @@ display them only when the user mouses over the resizable borders.]]></descripti
 			<name>autoHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Will attempt to constrain the resize node to the boundaries. Arguments:<br>
@@ -15136,7 +15136,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The handles to use (any combination of): 't', 'b', 'r', 'l', 'bl',
@@ -15152,7 +15152,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The maximum height of the element]]></description>
@@ -15194,14 +15194,14 @@ has been through the init lifecycle phase.]]></description>
 			<name>preserveRatio</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Resize a proxy element instead of the real element.]]></description>
 			<name>proxy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The Resize proxy element.]]></description>
@@ -15215,7 +15215,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>resizing</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The number of x ticks to span the resize to.]]></description>
@@ -15239,7 +15239,7 @@ The wrapper element type (default div) could be over-riden passing the
 			<name>wrap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Elements that requires a wrapper by default. Normally are elements
@@ -15605,7 +15605,7 @@ user is requesting them.]]></description>
 			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
@@ -15613,7 +15613,7 @@ method will be run on the response from the data source.]]></description>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Automatically highlight the first item in the list when the results are
@@ -15621,7 +15621,7 @@ made visible.]]></description>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
@@ -15637,7 +15637,7 @@ for skinning.]]></description>
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -15686,7 +15686,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -15694,7 +15694,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -15702,7 +15702,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
@@ -15710,7 +15710,7 @@ will clear a selection when the overlay closes unless a user explicitly selects 
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -15742,7 +15742,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The input field which will recieve the users input.]]></description>
@@ -15794,7 +15794,7 @@ setting this to true will match only results with the same case.]]></description
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
@@ -15803,7 +15803,7 @@ instead of just matching just items that start with the query.]]></description>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
@@ -15813,7 +15813,7 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -15829,7 +15829,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.]]></description>
@@ -15864,7 +15864,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number (between -32767 to 32767) indicating the widget's 
@@ -15885,7 +15885,7 @@ automatically selecting the portion of the text the user has not typed yet.]]></
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
@@ -15908,7 +15908,7 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -16683,7 +16683,7 @@ selected).]]></description>
 			<name>canReset</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -16713,7 +16713,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the Rating is disabled or not. Disabled Ratings don't allow
@@ -16721,7 +16721,7 @@ hover or click, just display selected stars.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[<a href="NodeList.html">NodeList</a> of elements used on the
@@ -16737,7 +16737,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -16777,7 +16777,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Name of the <a
@@ -16818,7 +16818,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Stores the index of the selected element.]]></description>
@@ -16834,7 +16834,7 @@ generated Rating elements.]]></description>
 			<name>showTitle</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The size on ThumbRating is always 2 (i.e., thumb up and thumb down).]]></description>
@@ -16889,7 +16889,7 @@ radio elements.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -17349,7 +17349,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<name>activeState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
@@ -17394,7 +17394,7 @@ houses its content.]]></description>
 			<name>defaultState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
@@ -17402,7 +17402,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -17410,7 +17410,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -17418,7 +17418,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -17443,7 +17443,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 			<name>hoverState</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -17458,7 +17458,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if multiple children can be selected at 
@@ -17468,7 +17468,7 @@ in the object hierarchy.]]></description>
 			<name>multiple</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Representing the orientation of the progress bar. Could be
@@ -17492,7 +17492,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Returns the currently selected child Widget.  If the 
@@ -17535,7 +17535,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -17984,7 +17984,7 @@ for skinning.]]></description>
 			<name>cancellableHide</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A convenience attribute, which can be used as a shortcut for the align attribute.
@@ -18033,7 +18033,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -18041,7 +18041,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The section (WidgetStdMod.HEADER, WidgetStdMod.BODY or WidgetStdMod.FOOTER) which should be resized to fill the height of the standard module, when a 
@@ -18058,7 +18058,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The content to be added to the footer section. This will replace any existing content
@@ -18114,7 +18114,7 @@ class and will be hide when the user click on document.]]></description>
 			<name>hideOnDocumentClick</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[]]></description>
@@ -18129,7 +18129,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
@@ -18139,7 +18139,7 @@ for corner based alignments]]></description>
 			<name>preventOverlap</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -18155,7 +18155,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
@@ -18163,7 +18163,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>shim</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true the OverlayContextPanel will show an arrow positioned on the
@@ -18171,7 +18171,7 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
 			<name>showArrow</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of milliseconds after the show method is invoked to show the
@@ -18200,7 +18200,7 @@ OverlayContext.]]></description>
 			<name>stack</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.]]></description>
@@ -18227,7 +18227,7 @@ content.]]></description>
 			<name>title</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Node, NodeList or Selector which will be used as trigger elements
@@ -18243,7 +18243,7 @@ Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
@@ -18859,14 +18859,14 @@ zIndex will be converted to 0]]></description>
 			<name>alwaysShowHitArea</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the current TreeNode should cache the loaded content or not.]]></description>
 			<name>cache</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Container element for the checkbox.]]></description>
@@ -18894,7 +18894,7 @@ zIndex will be converted to 0]]></description>
 			<name>checked</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Array of children (i.e. could be a JSON metadata object or a TreeNode instance).]]></description>
@@ -18916,21 +18916,21 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If true the TreeNode is draggable.]]></description>
 			<name>draggable</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the TreeNode is expanded by default.]]></description>
 			<name>expanded</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Hitarea element.]]></description>
@@ -18966,7 +18966,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[IO options for the current TreeNode load the children.]]></description>
@@ -18995,21 +18995,21 @@ children is present the TreeNode is a leaf).]]></description>
 			<name>leaf</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the current TreeNode has loaded the content.]]></description>
 			<name>loaded</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Whether the current TreeNode IO transaction is loading.]]></description>
 			<name>loading</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Next sibling of the current TreeNode.]]></description>
@@ -19401,7 +19401,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Index the nodes.]]></description>
@@ -19416,7 +19416,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[IO metadata for loading the children using ajax.]]></description>
@@ -19591,7 +19591,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>checked</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Array of children (i.e. could be a JSON metadata object or a TreeNode instance).]]></description>
@@ -19613,7 +19613,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Drop action (i.e. could be 'append', 'below' or 'above').]]></description>
@@ -19642,7 +19642,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[IO metadata for loading the children using ajax.]]></description>

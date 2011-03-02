@@ -30,7 +30,7 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -38,7 +38,7 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		return _host;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -82,7 +82,7 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -94,7 +94,7 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -202,9 +202,9 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/parse_content/page.jsp";
 
-	protected java.lang.Boolean _destroyed;
+	protected boolean _destroyed;
 	protected java.lang.Object _host;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _afterDestroy;
 	protected java.lang.Object _afterDestroyedChange;
 	protected java.lang.Object _afterHostChange;

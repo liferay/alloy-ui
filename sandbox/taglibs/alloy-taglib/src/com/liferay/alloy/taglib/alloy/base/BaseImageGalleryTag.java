@@ -34,7 +34,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _align;
 	}
 
-	public java.lang.Boolean getAnim() {
+	public boolean getAnim() {
 		return _anim;
 	}
 
@@ -46,7 +46,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _arrowRightEl;
 	}
 
-	public java.lang.Boolean getAutoPlay() {
+	public boolean getAutoPlay() {
 		return _autoPlay;
 	}
 
@@ -66,11 +66,11 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _captionEl;
 	}
 
-	public java.lang.Boolean getCaptionFromTitle() {
+	public boolean getCaptionFromTitle() {
 		return _captionFromTitle;
 	}
 
-	public java.lang.Boolean getCentered() {
+	public boolean getCentered() {
 		return _centered;
 	}
 
@@ -98,11 +98,11 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _delay;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -110,7 +110,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -150,7 +150,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _infoTemplate;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -162,7 +162,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _loader;
 	}
 
-	public java.lang.Boolean getLoading() {
+	public boolean getLoading() {
 		return _loading;
 	}
 
@@ -194,7 +194,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _paginatorInstance;
 	}
 
-	public java.lang.Boolean getPaused() {
+	public boolean getPaused() {
 		return _paused;
 	}
 
@@ -202,7 +202,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _pausedLabel;
 	}
 
-	public java.lang.Boolean getPlaying() {
+	public boolean getPlaying() {
 		return _playing;
 	}
 
@@ -210,11 +210,11 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _playingLabel;
 	}
 
-	public java.lang.Boolean getPreloadAllImages() {
+	public boolean getPreloadAllImages() {
 		return _preloadAllImages;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
@@ -222,27 +222,27 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getRepeat() {
+	public boolean getRepeat() {
 		return _repeat;
 	}
 
-	public java.lang.Boolean getShim() {
+	public boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.Boolean getShowArrows() {
+	public boolean getShowArrows() {
 		return _showArrows;
 	}
 
-	public java.lang.Boolean getShowClose() {
+	public boolean getShowClose() {
 		return _showClose;
 	}
 
-	public java.lang.Boolean getShowPlayer() {
+	public boolean getShowPlayer() {
 		return _showPlayer;
 	}
 
@@ -262,15 +262,15 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _toolbar;
 	}
 
-	public java.lang.Boolean getTotalLinks() {
+	public boolean getTotalLinks() {
 		return _totalLinks;
 	}
 
-	public java.lang.Boolean getUseOriginalImage() {
+	public boolean getUseOriginalImage() {
 		return _useOriginalImage;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -884,7 +884,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
-	public void setAnim(java.lang.Boolean anim) {
+	public void setAnim(boolean anim) {
 		_anim = anim;
 
 		setScopedAttribute("anim", anim);
@@ -902,7 +902,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("arrowRightEl", arrowRightEl);
 	}
 
-	public void setAutoPlay(java.lang.Boolean autoPlay) {
+	public void setAutoPlay(boolean autoPlay) {
 		_autoPlay = autoPlay;
 
 		setScopedAttribute("autoPlay", autoPlay);
@@ -932,13 +932,13 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("captionEl", captionEl);
 	}
 
-	public void setCaptionFromTitle(java.lang.Boolean captionFromTitle) {
+	public void setCaptionFromTitle(boolean captionFromTitle) {
 		_captionFromTitle = captionFromTitle;
 
 		setScopedAttribute("captionFromTitle", captionFromTitle);
 	}
 
-	public void setCentered(java.lang.Boolean centered) {
+	public void setCentered(boolean centered) {
 		_centered = centered;
 
 		setScopedAttribute("centered", centered);
@@ -980,13 +980,13 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("delay", delay);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -998,7 +998,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -1058,7 +1058,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("infoTemplate", infoTemplate);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -1076,7 +1076,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("loader", loader);
 	}
 
-	public void setLoading(java.lang.Boolean loading) {
+	public void setLoading(boolean loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -1124,7 +1124,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("paginatorInstance", paginatorInstance);
 	}
 
-	public void setPaused(java.lang.Boolean paused) {
+	public void setPaused(boolean paused) {
 		_paused = paused;
 
 		setScopedAttribute("paused", paused);
@@ -1136,7 +1136,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("pausedLabel", pausedLabel);
 	}
 
-	public void setPlaying(java.lang.Boolean playing) {
+	public void setPlaying(boolean playing) {
 		_playing = playing;
 
 		setScopedAttribute("playing", playing);
@@ -1148,13 +1148,13 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("playingLabel", playingLabel);
 	}
 
-	public void setPreloadAllImages(java.lang.Boolean preloadAllImages) {
+	public void setPreloadAllImages(boolean preloadAllImages) {
 		_preloadAllImages = preloadAllImages;
 
 		setScopedAttribute("preloadAllImages", preloadAllImages);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
@@ -1166,37 +1166,37 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setRepeat(java.lang.Boolean repeat) {
+	public void setRepeat(boolean repeat) {
 		_repeat = repeat;
 
 		setScopedAttribute("repeat", repeat);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowArrows(java.lang.Boolean showArrows) {
+	public void setShowArrows(boolean showArrows) {
 		_showArrows = showArrows;
 
 		setScopedAttribute("showArrows", showArrows);
 	}
 
-	public void setShowClose(java.lang.Boolean showClose) {
+	public void setShowClose(boolean showClose) {
 		_showClose = showClose;
 
 		setScopedAttribute("showClose", showClose);
 	}
 
-	public void setShowPlayer(java.lang.Boolean showPlayer) {
+	public void setShowPlayer(boolean showPlayer) {
 		_showPlayer = showPlayer;
 
 		setScopedAttribute("showPlayer", showPlayer);
@@ -1226,19 +1226,19 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("toolbar", toolbar);
 	}
 
-	public void setTotalLinks(java.lang.Boolean totalLinks) {
+	public void setTotalLinks(boolean totalLinks) {
 		_totalLinks = totalLinks;
 
 		setScopedAttribute("totalLinks", totalLinks);
 	}
 
-	public void setUseOriginalImage(java.lang.Boolean useOriginalImage) {
+	public void setUseOriginalImage(boolean useOriginalImage) {
 		_useOriginalImage = useOriginalImage;
 
 		setScopedAttribute("useOriginalImage", useOriginalImage);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -2591,26 +2591,26 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/image_gallery/page.jsp";
 
 	protected java.lang.Object _align;
-	protected java.lang.Boolean _anim;
+	protected boolean _anim;
 	protected java.lang.Object _arrowLeftEl;
 	protected java.lang.Object _arrowRightEl;
-	protected java.lang.Boolean _autoPlay;
+	protected boolean _autoPlay;
 	protected java.lang.Object _imagegalleryBodyContent;
 	protected java.lang.String _boundingBox;
 	protected java.lang.String _caption;
 	protected java.lang.Object _captionEl;
-	protected java.lang.Boolean _captionFromTitle;
-	protected java.lang.Boolean _centered;
+	protected boolean _captionFromTitle;
+	protected boolean _centered;
 	protected java.lang.Object _closeEl;
 	protected java.lang.Object _constrain;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
 	protected java.lang.Object _currentIndex;
 	protected java.lang.Object _delay;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _fillHeight;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _footerContent;
 	protected java.lang.Object _headerContent;
 	protected java.lang.Object _height;
@@ -2620,10 +2620,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.Object _imageAnim;
 	protected java.lang.Object _infoEl;
 	protected java.lang.String _infoTemplate;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _links;
 	protected java.lang.Object _loader;
-	protected java.lang.Boolean _loading;
+	protected boolean _loading;
 	protected java.lang.Object _loadingEl;
 	protected java.lang.Object _maxHeight;
 	protected java.lang.Object _maxWidth;
@@ -2631,26 +2631,26 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.Object _paginator;
 	protected java.lang.Object _paginatorEl;
 	protected java.lang.Object _paginatorInstance;
-	protected java.lang.Boolean _paused;
+	protected boolean _paused;
 	protected java.lang.String _pausedLabel;
-	protected java.lang.Boolean _playing;
+	protected boolean _playing;
 	protected java.lang.String _playingLabel;
-	protected java.lang.Boolean _preloadAllImages;
-	protected java.lang.Boolean _preventOverlap;
+	protected boolean _preloadAllImages;
+	protected boolean _preventOverlap;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
-	protected java.lang.Boolean _repeat;
-	protected java.lang.Boolean _shim;
-	protected java.lang.Boolean _showArrows;
-	protected java.lang.Boolean _showClose;
-	protected java.lang.Boolean _showPlayer;
+	protected boolean _rendered;
+	protected boolean _repeat;
+	protected boolean _shim;
+	protected boolean _showArrows;
+	protected boolean _showClose;
+	protected boolean _showPlayer;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.Object _toolbar;
-	protected java.lang.Boolean _totalLinks;
-	protected java.lang.Boolean _useOriginalImage;
-	protected java.lang.Boolean _visible;
+	protected boolean _totalLinks;
+	protected boolean _useOriginalImage;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _x;
 	protected java.lang.Object _xy;

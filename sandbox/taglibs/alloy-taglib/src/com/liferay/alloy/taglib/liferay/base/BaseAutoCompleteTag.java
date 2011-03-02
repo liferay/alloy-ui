@@ -34,15 +34,15 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _test;
 	}
 
-	public java.lang.Boolean getAlwaysShowContainer() {
+	public boolean getAlwaysShowContainer() {
 		return _alwaysShowContainer;
 	}
 
-	public java.lang.Boolean getApplyLocalFilter() {
+	public boolean getApplyLocalFilter() {
 		return _applyLocalFilter;
 	}
 
-	public java.lang.Boolean getAutoHighlight() {
+	public boolean getAutoHighlight() {
 		return _autoHighlight;
 	}
 
@@ -50,7 +50,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getButton() {
+	public boolean getButton() {
 		return _button;
 	}
 
@@ -74,19 +74,19 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _delimChar;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
-	public java.lang.Boolean getForceSelection() {
+	public boolean getForceSelection() {
 		return _forceSelection;
 	}
 
@@ -102,7 +102,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _autocompleteId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -130,15 +130,15 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _queryInterval;
 	}
 
-	public java.lang.Boolean getQueryMatchCase() {
+	public boolean getQueryMatchCase() {
 		return _queryMatchCase;
 	}
 
-	public java.lang.Boolean getQueryMatchContains() {
+	public boolean getQueryMatchContains() {
 		return _queryMatchContains;
 	}
 
-	public java.lang.Boolean getQueryQuestionMark() {
+	public boolean getQueryQuestionMark() {
 		return _queryQuestionMark;
 	}
 
@@ -146,7 +146,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -166,7 +166,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _strings;
 	}
 
-	public java.lang.Boolean getSuppressInputUpdate() {
+	public boolean getSuppressInputUpdate() {
 		return _suppressInputUpdate;
 	}
 
@@ -174,7 +174,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getTypeAhead() {
+	public boolean getTypeAhead() {
 		return _typeAhead;
 	}
 
@@ -186,7 +186,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _uniqueName;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -696,19 +696,19 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("test", test);
 	}
 
-	public void setAlwaysShowContainer(java.lang.Boolean alwaysShowContainer) {
+	public void setAlwaysShowContainer(boolean alwaysShowContainer) {
 		_alwaysShowContainer = alwaysShowContainer;
 
 		setScopedAttribute("alwaysShowContainer", alwaysShowContainer);
 	}
 
-	public void setApplyLocalFilter(java.lang.Boolean applyLocalFilter) {
+	public void setApplyLocalFilter(boolean applyLocalFilter) {
 		_applyLocalFilter = applyLocalFilter;
 
 		setScopedAttribute("applyLocalFilter", applyLocalFilter);
 	}
 
-	public void setAutoHighlight(java.lang.Boolean autoHighlight) {
+	public void setAutoHighlight(boolean autoHighlight) {
 		_autoHighlight = autoHighlight;
 
 		setScopedAttribute("autoHighlight", autoHighlight);
@@ -720,7 +720,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setButton(java.lang.Boolean button) {
+	public void setButton(boolean button) {
 		_button = button;
 
 		setScopedAttribute("button", button);
@@ -756,25 +756,25 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("delimChar", delimChar);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
 	}
 
-	public void setForceSelection(java.lang.Boolean forceSelection) {
+	public void setForceSelection(boolean forceSelection) {
 		_forceSelection = forceSelection;
 
 		setScopedAttribute("forceSelection", forceSelection);
@@ -798,7 +798,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("autocompleteId", autocompleteId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -840,19 +840,19 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("queryInterval", queryInterval);
 	}
 
-	public void setQueryMatchCase(java.lang.Boolean queryMatchCase) {
+	public void setQueryMatchCase(boolean queryMatchCase) {
 		_queryMatchCase = queryMatchCase;
 
 		setScopedAttribute("queryMatchCase", queryMatchCase);
 	}
 
-	public void setQueryMatchContains(java.lang.Boolean queryMatchContains) {
+	public void setQueryMatchContains(boolean queryMatchContains) {
 		_queryMatchContains = queryMatchContains;
 
 		setScopedAttribute("queryMatchContains", queryMatchContains);
 	}
 
-	public void setQueryQuestionMark(java.lang.Boolean queryQuestionMark) {
+	public void setQueryQuestionMark(boolean queryQuestionMark) {
 		_queryQuestionMark = queryQuestionMark;
 
 		setScopedAttribute("queryQuestionMark", queryQuestionMark);
@@ -864,7 +864,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -894,7 +894,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("strings", strings);
 	}
 
-	public void setSuppressInputUpdate(java.lang.Boolean suppressInputUpdate) {
+	public void setSuppressInputUpdate(boolean suppressInputUpdate) {
 		_suppressInputUpdate = suppressInputUpdate;
 
 		setScopedAttribute("suppressInputUpdate", suppressInputUpdate);
@@ -906,7 +906,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTypeAhead(java.lang.Boolean typeAhead) {
+	public void setTypeAhead(boolean typeAhead) {
 		_typeAhead = typeAhead;
 
 		setScopedAttribute("typeAhead", typeAhead);
@@ -924,7 +924,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("uniqueName", uniqueName);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -2027,45 +2027,45 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/liferay/auto_complete/page.jsp";
 
 	protected java.lang.String _test;
-	protected java.lang.Boolean _alwaysShowContainer;
-	protected java.lang.Boolean _applyLocalFilter;
-	protected java.lang.Boolean _autoHighlight;
+	protected boolean _alwaysShowContainer;
+	protected boolean _applyLocalFilter;
+	protected boolean _autoHighlight;
 	protected java.lang.String _boundingBox;
-	protected java.lang.Boolean _button;
+	protected boolean _button;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
 	protected java.lang.Object _dataSource;
 	protected java.lang.String _dataSourceType;
 	protected java.lang.String _delimChar;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
-	protected java.lang.Boolean _focused;
-	protected java.lang.Boolean _forceSelection;
+	protected boolean _destroyed;
+	protected boolean _disabled;
+	protected boolean _focused;
+	protected boolean _forceSelection;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.String _autocompleteId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _input;
 	protected java.lang.Object _matchKey;
 	protected java.lang.Object _maxResultsDisplayed;
 	protected java.lang.Object _minQueryLength;
 	protected java.lang.Object _queryDelay;
 	protected java.lang.Object _queryInterval;
-	protected java.lang.Boolean _queryMatchCase;
-	protected java.lang.Boolean _queryMatchContains;
-	protected java.lang.Boolean _queryQuestionMark;
+	protected boolean _queryMatchCase;
+	protected boolean _queryMatchContains;
+	protected boolean _queryQuestionMark;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.Object _schema;
 	protected java.lang.String _schemaType;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
-	protected java.lang.Boolean _suppressInputUpdate;
+	protected boolean _suppressInputUpdate;
 	protected java.lang.Object _tabIndex;
-	protected java.lang.Boolean _typeAhead;
+	protected boolean _typeAhead;
 	protected java.lang.Object _typeAheadDelay;
 	protected java.lang.String _uniqueName;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterAlwaysShowContainerChange;
 	protected java.lang.Object _afterApplyLocalFilterChange;

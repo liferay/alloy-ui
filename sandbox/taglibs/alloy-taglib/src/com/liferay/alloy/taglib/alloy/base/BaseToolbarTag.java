@@ -34,7 +34,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _activeDescendant;
 	}
 
-	public java.lang.Boolean getActiveState() {
+	public boolean getActiveState() {
 		return _activeState;
 	}
 
@@ -58,19 +58,19 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _defaultChildType;
 	}
 
-	public java.lang.Boolean getDefaultState() {
+	public boolean getDefaultState() {
 		return _defaultState;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -82,7 +82,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _hideClass;
 	}
 
-	public java.lang.Boolean getHoverState() {
+	public boolean getHoverState() {
 		return _hoverState;
 	}
 
@@ -90,11 +90,11 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _toolbarId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getMultiple() {
+	public boolean getMultiple() {
 		return _multiple;
 	}
 
@@ -106,7 +106,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -126,7 +126,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -396,7 +396,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("activeDescendant", activeDescendant);
 	}
 
-	public void setActiveState(java.lang.Boolean activeState) {
+	public void setActiveState(boolean activeState) {
 		_activeState = activeState;
 
 		setScopedAttribute("activeState", activeState);
@@ -432,25 +432,25 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("defaultChildType", defaultChildType);
 	}
 
-	public void setDefaultState(java.lang.Boolean defaultState) {
+	public void setDefaultState(boolean defaultState) {
 		_defaultState = defaultState;
 
 		setScopedAttribute("defaultState", defaultState);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -468,7 +468,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("hideClass", hideClass);
 	}
 
-	public void setHoverState(java.lang.Boolean hoverState) {
+	public void setHoverState(boolean hoverState) {
 		_hoverState = hoverState;
 
 		setScopedAttribute("hoverState", hoverState);
@@ -480,13 +480,13 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("toolbarId", toolbarId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setMultiple(java.lang.Boolean multiple) {
+	public void setMultiple(boolean multiple) {
 		_multiple = multiple;
 
 		setScopedAttribute("multiple", multiple);
@@ -504,7 +504,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -534,7 +534,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1127,30 +1127,30 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/toolbar/page.jsp";
 
 	protected java.lang.Object _activeDescendant;
-	protected java.lang.Boolean _activeState;
+	protected boolean _activeState;
 	protected java.lang.String _boundingBox;
 	protected java.lang.Object _children;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
 	protected java.lang.Object _defaultChildType;
-	protected java.lang.Boolean _defaultState;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
-	protected java.lang.Boolean _focused;
+	protected boolean _defaultState;
+	protected boolean _destroyed;
+	protected boolean _disabled;
+	protected boolean _focused;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
-	protected java.lang.Boolean _hoverState;
+	protected boolean _hoverState;
 	protected java.lang.String _toolbarId;
-	protected java.lang.Boolean _initialized;
-	protected java.lang.Boolean _multiple;
+	protected boolean _initialized;
+	protected boolean _multiple;
 	protected java.lang.String _orientation;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.Object _selection;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterActiveDescendantChange;
 	protected java.lang.Object _afterActiveStateChange;

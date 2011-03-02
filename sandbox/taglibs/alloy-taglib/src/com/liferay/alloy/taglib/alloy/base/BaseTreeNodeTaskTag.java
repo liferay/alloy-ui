@@ -30,11 +30,11 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.Boolean getAlwaysShowHitArea() {
+	public boolean getAlwaysShowHitArea() {
 		return _alwaysShowHitArea;
 	}
 
-	public java.lang.Boolean getCache() {
+	public boolean getCache() {
 		return _cache;
 	}
 
@@ -50,7 +50,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _checkName;
 	}
 
-	public java.lang.Boolean getChecked() {
+	public boolean getChecked() {
 		return _checked;
 	}
 
@@ -62,15 +62,15 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _container;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDraggable() {
+	public boolean getDraggable() {
 		return _draggable;
 	}
 
-	public java.lang.Boolean getExpanded() {
+	public boolean getExpanded() {
 		return _expanded;
 	}
 
@@ -90,7 +90,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _index;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -106,15 +106,15 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _labelEl;
 	}
 
-	public java.lang.Boolean getLeaf() {
+	public boolean getLeaf() {
 		return _leaf;
 	}
 
-	public java.lang.Boolean getLoaded() {
+	public boolean getLoaded() {
 		return _loaded;
 	}
 
-	public java.lang.Boolean getLoading() {
+	public boolean getLoading() {
 		return _loading;
 	}
 
@@ -358,13 +358,13 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _onPrevSiblingChange;
 	}
 
-	public void setAlwaysShowHitArea(java.lang.Boolean alwaysShowHitArea) {
+	public void setAlwaysShowHitArea(boolean alwaysShowHitArea) {
 		_alwaysShowHitArea = alwaysShowHitArea;
 
 		setScopedAttribute("alwaysShowHitArea", alwaysShowHitArea);
 	}
 
-	public void setCache(java.lang.Boolean cache) {
+	public void setCache(boolean cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
@@ -388,7 +388,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("checkName", checkName);
 	}
 
-	public void setChecked(java.lang.Boolean checked) {
+	public void setChecked(boolean checked) {
 		_checked = checked;
 
 		setScopedAttribute("checked", checked);
@@ -406,19 +406,19 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("container", container);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDraggable(java.lang.Boolean draggable) {
+	public void setDraggable(boolean draggable) {
 		_draggable = draggable;
 
 		setScopedAttribute("draggable", draggable);
 	}
 
-	public void setExpanded(java.lang.Boolean expanded) {
+	public void setExpanded(boolean expanded) {
 		_expanded = expanded;
 
 		setScopedAttribute("expanded", expanded);
@@ -448,7 +448,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("index", index);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -472,19 +472,19 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("labelEl", labelEl);
 	}
 
-	public void setLeaf(java.lang.Boolean leaf) {
+	public void setLeaf(boolean leaf) {
 		_leaf = leaf;
 
 		setScopedAttribute("leaf", leaf);
 	}
 
-	public void setLoaded(java.lang.Boolean loaded) {
+	public void setLoaded(boolean loaded) {
 		_loaded = loaded;
 
 		setScopedAttribute("loaded", loaded);
 	}
 
-	public void setLoading(java.lang.Boolean loading) {
+	public void setLoading(boolean loading) {
 		_loading = loading;
 
 		setScopedAttribute("loading", loading);
@@ -1030,28 +1030,28 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/tree_node_task/page.jsp";
 
-	protected java.lang.Boolean _alwaysShowHitArea;
-	protected java.lang.Boolean _cache;
+	protected boolean _alwaysShowHitArea;
+	protected boolean _cache;
 	protected java.lang.String _checkContainerEl;
 	protected java.lang.String _checkEl;
 	protected java.lang.String _checkName;
-	protected java.lang.Boolean _checked;
+	protected boolean _checked;
 	protected java.lang.Object _children;
 	protected java.lang.String _container;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _draggable;
-	protected java.lang.Boolean _expanded;
+	protected boolean _destroyed;
+	protected boolean _draggable;
+	protected boolean _expanded;
 	protected java.lang.String _hitAreaEl;
 	protected java.lang.String _iconEl;
 	protected java.lang.String _treenodetaskId;
 	protected java.lang.Object _index;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _io;
 	protected java.lang.String _label;
 	protected java.lang.String _labelEl;
-	protected java.lang.Boolean _leaf;
-	protected java.lang.Boolean _loaded;
-	protected java.lang.Boolean _loading;
+	protected boolean _leaf;
+	protected boolean _loaded;
+	protected boolean _loading;
 	protected java.lang.Object _nextSibling;
 	protected java.lang.Object _ownerTree;
 	protected java.lang.Object _parentNode;

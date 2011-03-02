@@ -38,7 +38,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _activeHandleEl;
 	}
 
-	public java.lang.Boolean getAutoHide() {
+	public boolean getAutoHide() {
 		return _autoHide;
 	}
 
@@ -46,7 +46,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _constrain;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -54,7 +54,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _handles;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -78,11 +78,11 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _node;
 	}
 
-	public java.lang.Boolean getPreserveRatio() {
+	public boolean getPreserveRatio() {
 		return _preserveRatio;
 	}
 
-	public java.lang.Boolean getProxy() {
+	public boolean getProxy() {
 		return _proxy;
 	}
 
@@ -90,7 +90,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _proxyEl;
 	}
 
-	public java.lang.Boolean getResizing() {
+	public boolean getResizing() {
 		return _resizing;
 	}
 
@@ -102,7 +102,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _tickY;
 	}
 
-	public java.lang.Boolean getWrap() {
+	public boolean getWrap() {
 		return _wrap;
 	}
 
@@ -350,7 +350,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("activeHandleEl", activeHandleEl);
 	}
 
-	public void setAutoHide(java.lang.Boolean autoHide) {
+	public void setAutoHide(boolean autoHide) {
 		_autoHide = autoHide;
 
 		setScopedAttribute("autoHide", autoHide);
@@ -362,7 +362,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("constrain", constrain);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -374,7 +374,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("handles", handles);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -410,13 +410,13 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("node", node);
 	}
 
-	public void setPreserveRatio(java.lang.Boolean preserveRatio) {
+	public void setPreserveRatio(boolean preserveRatio) {
 		_preserveRatio = preserveRatio;
 
 		setScopedAttribute("preserveRatio", preserveRatio);
 	}
 
-	public void setProxy(java.lang.Boolean proxy) {
+	public void setProxy(boolean proxy) {
 		_proxy = proxy;
 
 		setScopedAttribute("proxy", proxy);
@@ -428,7 +428,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("proxyEl", proxyEl);
 	}
 
-	public void setResizing(java.lang.Boolean resizing) {
+	public void setResizing(boolean resizing) {
 		_resizing = resizing;
 
 		setScopedAttribute("resizing", resizing);
@@ -446,7 +446,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tickY", tickY);
 	}
 
-	public void setWrap(java.lang.Boolean wrap) {
+	public void setWrap(boolean wrap) {
 		_wrap = wrap;
 
 		setScopedAttribute("wrap", wrap);
@@ -972,23 +972,23 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected java.lang.String _activeHandle;
 	protected java.lang.Object _activeHandleEl;
-	protected java.lang.Boolean _autoHide;
+	protected boolean _autoHide;
 	protected java.lang.Object _constrain;
-	protected java.lang.Boolean _destroyed;
+	protected boolean _destroyed;
 	protected java.lang.Object _handles;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _maxHeight;
 	protected java.lang.Object _maxWidth;
 	protected java.lang.Object _minHeight;
 	protected java.lang.Object _minWidth;
 	protected java.lang.Object _node;
-	protected java.lang.Boolean _preserveRatio;
-	protected java.lang.Boolean _proxy;
+	protected boolean _preserveRatio;
+	protected boolean _proxy;
 	protected java.lang.String _proxyEl;
-	protected java.lang.Boolean _resizing;
+	protected boolean _resizing;
 	protected java.lang.Object _tickX;
 	protected java.lang.Object _tickY;
-	protected java.lang.Boolean _wrap;
+	protected boolean _wrap;
 	protected java.lang.Object _wrapTypes;
 	protected java.lang.String _wrapper;
 	protected java.lang.Object _afterActiveHandleChange;

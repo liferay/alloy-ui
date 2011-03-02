@@ -62,15 +62,15 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _dayNodeName;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -86,7 +86,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _datepickerselectId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -98,15 +98,15 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _monthNodeName;
 	}
 
-	public java.lang.Boolean getPopulateDay() {
+	public boolean getPopulateDay() {
 		return _populateDay;
 	}
 
-	public java.lang.Boolean getPopulateMonth() {
+	public boolean getPopulateMonth() {
 		return _populateMonth;
 	}
 
-	public java.lang.Boolean getPopulateYear() {
+	public boolean getPopulateYear() {
 		return _populateYear;
 	}
 
@@ -114,7 +114,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -138,7 +138,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _trigger;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -494,19 +494,19 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("dayNodeName", dayNodeName);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -530,7 +530,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("datepickerselectId", datepickerselectId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -548,19 +548,19 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("monthNodeName", monthNodeName);
 	}
 
-	public void setPopulateDay(java.lang.Boolean populateDay) {
+	public void setPopulateDay(boolean populateDay) {
 		_populateDay = populateDay;
 
 		setScopedAttribute("populateDay", populateDay);
 	}
 
-	public void setPopulateMonth(java.lang.Boolean populateMonth) {
+	public void setPopulateMonth(boolean populateMonth) {
 		_populateMonth = populateMonth;
 
 		setScopedAttribute("populateMonth", populateMonth);
 	}
 
-	public void setPopulateYear(java.lang.Boolean populateYear) {
+	public void setPopulateYear(boolean populateYear) {
 		_populateYear = populateYear;
 
 		setScopedAttribute("populateYear", populateYear);
@@ -572,7 +572,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -608,7 +608,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1302,26 +1302,26 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	protected java.lang.String _cssClass;
 	protected java.lang.String _dayNode;
 	protected java.lang.String _dayNodeName;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
-	protected java.lang.Boolean _focused;
+	protected boolean _destroyed;
+	protected boolean _disabled;
+	protected boolean _focused;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.String _datepickerselectId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _monthNode;
 	protected java.lang.String _monthNodeName;
-	protected java.lang.Boolean _populateDay;
-	protected java.lang.Boolean _populateMonth;
-	protected java.lang.Boolean _populateYear;
+	protected boolean _populateDay;
+	protected boolean _populateMonth;
+	protected boolean _populateYear;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.String _selectWrapperNode;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.Object _trigger;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.String _yearNode;
 	protected java.lang.String _yearNodeName;

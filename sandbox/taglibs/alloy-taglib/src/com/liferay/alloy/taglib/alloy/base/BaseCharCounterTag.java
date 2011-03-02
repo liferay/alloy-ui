@@ -34,11 +34,11 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		return _counter;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -112,13 +112,13 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("counter", counter);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -275,8 +275,8 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/char_counter/page.jsp";
 
 	protected java.lang.Object _counter;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _initialized;
+	protected boolean _destroyed;
+	protected boolean _initialized;
 	protected java.lang.Object _input;
 	protected java.lang.Object _maxLength;
 	protected java.lang.Object _afterCounterChange;

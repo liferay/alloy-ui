@@ -50,7 +50,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getCancellableHide() {
+	public boolean getCancellableHide() {
 		return _cancellableHide;
 	}
 
@@ -74,11 +74,11 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _currentNode;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -86,7 +86,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -114,7 +114,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _hideOn;
 	}
 
-	public java.lang.Boolean getHideOnDocumentClick() {
+	public boolean getHideOnDocumentClick() {
 		return _hideOnDocumentClick;
 	}
 
@@ -122,11 +122,11 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _tooltipId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
@@ -134,15 +134,15 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getShim() {
+	public boolean getShim() {
 		return _shim;
 	}
 
-	public java.lang.Boolean getShowArrow() {
+	public boolean getShowArrow() {
 		return _showArrow;
 	}
 
@@ -158,7 +158,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _srcNode;
 	}
 
-	public java.lang.Boolean getStack() {
+	public boolean getStack() {
 		return _stack;
 	}
 
@@ -170,7 +170,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _tabIndex;
 	}
 
-	public java.lang.Boolean getTitle() {
+	public boolean getTitle() {
 		return _title;
 	}
 
@@ -178,7 +178,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _trigger;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -608,7 +608,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCancellableHide(java.lang.Boolean cancellableHide) {
+	public void setCancellableHide(boolean cancellableHide) {
 		_cancellableHide = cancellableHide;
 
 		setScopedAttribute("cancellableHide", cancellableHide);
@@ -644,13 +644,13 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("currentNode", currentNode);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -662,7 +662,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -704,7 +704,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("hideOn", hideOn);
 	}
 
-	public void setHideOnDocumentClick(java.lang.Boolean hideOnDocumentClick) {
+	public void setHideOnDocumentClick(boolean hideOnDocumentClick) {
 		_hideOnDocumentClick = hideOnDocumentClick;
 
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
@@ -716,13 +716,13 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tooltipId", tooltipId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
@@ -734,19 +734,19 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
 	}
 
-	public void setShowArrow(java.lang.Boolean showArrow) {
+	public void setShowArrow(boolean showArrow) {
 		_showArrow = showArrow;
 
 		setScopedAttribute("showArrow", showArrow);
@@ -770,7 +770,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.Boolean stack) {
+	public void setStack(boolean stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -788,7 +788,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
-	public void setTitle(java.lang.Boolean title) {
+	public void setTitle(boolean title) {
 		_title = title;
 
 		setScopedAttribute("title", title);
@@ -800,7 +800,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("trigger", trigger);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1695,39 +1695,39 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.String _arrow;
 	protected java.lang.Object _tooltipBodyContent;
 	protected java.lang.String _boundingBox;
-	protected java.lang.Boolean _cancellableHide;
+	protected boolean _cancellableHide;
 	protected java.lang.Object _centered;
 	protected java.lang.Object _constrain;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
 	protected java.lang.Object _currentNode;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _fillHeight;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _footerContent;
 	protected java.lang.Object _headerContent;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.Object _hideDelay;
 	protected java.lang.String _hideOn;
-	protected java.lang.Boolean _hideOnDocumentClick;
+	protected boolean _hideOnDocumentClick;
 	protected java.lang.String _tooltipId;
-	protected java.lang.Boolean _initialized;
-	protected java.lang.Boolean _preventOverlap;
+	protected boolean _initialized;
+	protected boolean _preventOverlap;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
-	protected java.lang.Boolean _shim;
-	protected java.lang.Boolean _showArrow;
+	protected boolean _rendered;
+	protected boolean _shim;
+	protected boolean _showArrow;
 	protected java.lang.Object _showDelay;
 	protected java.lang.String _showOn;
 	protected java.lang.String _srcNode;
-	protected java.lang.Boolean _stack;
+	protected boolean _stack;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
-	protected java.lang.Boolean _title;
+	protected boolean _title;
 	protected java.lang.Object _trigger;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _x;
 	protected java.lang.Object _xy;

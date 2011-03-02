@@ -30,7 +30,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.Boolean getActive() {
+	public boolean getActive() {
 		return _active;
 	}
 
@@ -38,11 +38,11 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _arguments;
 	}
 
-	public java.lang.Boolean getAutoLoad() {
+	public boolean getAutoLoad() {
 		return _autoLoad;
 	}
 
-	public java.lang.Boolean getCache() {
+	public boolean getCache() {
 		return _cache;
 	}
 
@@ -62,7 +62,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _dataType;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
@@ -78,7 +78,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _host;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -90,7 +90,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _responseData;
 	}
 
-	public java.lang.Boolean getSync() {
+	public boolean getSync() {
 		return _sync;
 	}
 
@@ -334,7 +334,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _onXdrChange;
 	}
 
-	public void setActive(java.lang.Boolean active) {
+	public void setActive(boolean active) {
 		_active = active;
 
 		setScopedAttribute("active", active);
@@ -346,13 +346,13 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("arguments", arguments);
 	}
 
-	public void setAutoLoad(java.lang.Boolean autoLoad) {
+	public void setAutoLoad(boolean autoLoad) {
 		_autoLoad = autoLoad;
 
 		setScopedAttribute("autoLoad", autoLoad);
 	}
 
-	public void setCache(java.lang.Boolean cache) {
+	public void setCache(boolean cache) {
 		_cache = cache;
 
 		setScopedAttribute("cache", cache);
@@ -382,7 +382,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("dataType", dataType);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
@@ -406,7 +406,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("host", host);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -424,7 +424,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("responseData", responseData);
 	}
 
-	public void setSync(java.lang.Boolean sync) {
+	public void setSync(boolean sync) {
 		_sync = sync;
 
 		setScopedAttribute("sync", sync);
@@ -958,22 +958,22 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/io_request/page.jsp";
 
-	protected java.lang.Boolean _active;
+	protected boolean _active;
 	protected java.lang.Object _arguments;
-	protected java.lang.Boolean _autoLoad;
-	protected java.lang.Boolean _cache;
+	protected boolean _autoLoad;
+	protected boolean _cache;
 	protected java.lang.String _cfg;
 	protected java.lang.Object _context;
 	protected java.lang.Object _data;
 	protected java.lang.String _dataType;
-	protected java.lang.Boolean _destroyed;
+	protected boolean _destroyed;
 	protected java.lang.Object _form;
 	protected java.lang.Object _headers;
 	protected java.lang.Object _host;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _method;
 	protected java.lang.Object _responseData;
-	protected java.lang.Boolean _sync;
+	protected boolean _sync;
 	protected java.lang.Object _timeout;
 	protected java.lang.Object _transaction;
 	protected java.lang.String _uri;

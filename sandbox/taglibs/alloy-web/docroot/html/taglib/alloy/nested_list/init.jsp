@@ -33,8 +33,8 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:nested-list:destroyed"), false);
-java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:nested-list:initialized"), false);
+boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:nested-list:destroyed")), false);
+boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:nested-list:initialized")), false);
 java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroy");
 java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:nested-list:afterDestroyedChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:nested-list:afterInit");

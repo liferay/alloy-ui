@@ -38,11 +38,11 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getCollapsed() {
+	public boolean getCollapsed() {
 		return _collapsed;
 	}
 
-	public java.lang.Boolean getCollapsible() {
+	public boolean getCollapsible() {
 		return _collapsible;
 	}
 
@@ -54,11 +54,11 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -66,7 +66,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -94,7 +94,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _panelId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -102,7 +102,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -122,7 +122,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _title;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -374,13 +374,13 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCollapsed(java.lang.Boolean collapsed) {
+	public void setCollapsed(boolean collapsed) {
 		_collapsed = collapsed;
 
 		setScopedAttribute("collapsed", collapsed);
 	}
 
-	public void setCollapsible(java.lang.Boolean collapsible) {
+	public void setCollapsible(boolean collapsible) {
 		_collapsible = collapsible;
 
 		setScopedAttribute("collapsible", collapsible);
@@ -398,13 +398,13 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -416,7 +416,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -458,7 +458,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("panelId", panelId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -470,7 +470,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -500,7 +500,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("title", title);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1044,28 +1044,28 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected java.lang.Object _panelBodyContent;
 	protected java.lang.String _boundingBox;
-	protected java.lang.Boolean _collapsed;
-	protected java.lang.Boolean _collapsible;
+	protected boolean _collapsed;
+	protected boolean _collapsible;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _fillHeight;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _footerContent;
 	protected java.lang.Object _headerContent;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.Object _icons;
 	protected java.lang.String _panelId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.Object _title;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterBodyContentChange;
 	protected java.lang.Object _afterBoundingBoxChange;

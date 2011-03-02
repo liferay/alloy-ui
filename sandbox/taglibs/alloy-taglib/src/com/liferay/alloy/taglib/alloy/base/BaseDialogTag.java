@@ -50,15 +50,15 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _centered;
 	}
 
-	public java.lang.Boolean getClose() {
+	public boolean getClose() {
 		return _close;
 	}
 
-	public java.lang.Boolean getCollapsed() {
+	public boolean getCollapsed() {
 		return _collapsed;
 	}
 
-	public java.lang.Boolean getCollapsible() {
+	public boolean getCollapsible() {
 		return _collapsible;
 	}
 
@@ -78,15 +78,15 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _cssClass;
 	}
 
-	public java.lang.Boolean getDestroyOnClose() {
+	public boolean getDestroyOnClose() {
 		return _destroyOnClose;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -94,7 +94,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _dragInstance;
 	}
 
-	public java.lang.Boolean getDraggable() {
+	public boolean getDraggable() {
 		return _draggable;
 	}
 
@@ -102,7 +102,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _fillHeight;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -130,15 +130,15 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _dialogId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
-	public java.lang.Boolean getModal() {
+	public boolean getModal() {
 		return _modal;
 	}
 
-	public java.lang.Boolean getPreventOverlap() {
+	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
 
@@ -146,11 +146,11 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
-	public java.lang.Boolean getResizable() {
+	public boolean getResizable() {
 		return _resizable;
 	}
 
@@ -158,7 +158,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _resizableInstance;
 	}
 
-	public java.lang.Boolean getShim() {
+	public boolean getShim() {
 		return _shim;
 	}
 
@@ -166,7 +166,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _srcNode;
 	}
 
-	public java.lang.Boolean getStack() {
+	public boolean getStack() {
 		return _stack;
 	}
 
@@ -182,7 +182,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _title;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -620,19 +620,19 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("centered", centered);
 	}
 
-	public void setClose(java.lang.Boolean close) {
+	public void setClose(boolean close) {
 		_close = close;
 
 		setScopedAttribute("close", close);
 	}
 
-	public void setCollapsed(java.lang.Boolean collapsed) {
+	public void setCollapsed(boolean collapsed) {
 		_collapsed = collapsed;
 
 		setScopedAttribute("collapsed", collapsed);
 	}
 
-	public void setCollapsible(java.lang.Boolean collapsible) {
+	public void setCollapsible(boolean collapsible) {
 		_collapsible = collapsible;
 
 		setScopedAttribute("collapsible", collapsible);
@@ -662,19 +662,19 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("cssClass", cssClass);
 	}
 
-	public void setDestroyOnClose(java.lang.Boolean destroyOnClose) {
+	public void setDestroyOnClose(boolean destroyOnClose) {
 		_destroyOnClose = destroyOnClose;
 
 		setScopedAttribute("destroyOnClose", destroyOnClose);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -686,7 +686,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("dragInstance", dragInstance);
 	}
 
-	public void setDraggable(java.lang.Boolean draggable) {
+	public void setDraggable(boolean draggable) {
 		_draggable = draggable;
 
 		setScopedAttribute("draggable", draggable);
@@ -698,7 +698,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("fillHeight", fillHeight);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -740,19 +740,19 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("dialogId", dialogId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setModal(java.lang.Boolean modal) {
+	public void setModal(boolean modal) {
 		_modal = modal;
 
 		setScopedAttribute("modal", modal);
 	}
 
-	public void setPreventOverlap(java.lang.Boolean preventOverlap) {
+	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
 		setScopedAttribute("preventOverlap", preventOverlap);
@@ -764,13 +764,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
 	}
 
-	public void setResizable(java.lang.Boolean resizable) {
+	public void setResizable(boolean resizable) {
 		_resizable = resizable;
 
 		setScopedAttribute("resizable", resizable);
@@ -782,7 +782,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("resizableInstance", resizableInstance);
 	}
 
-	public void setShim(java.lang.Boolean shim) {
+	public void setShim(boolean shim) {
 		_shim = shim;
 
 		setScopedAttribute("shim", shim);
@@ -794,7 +794,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("srcNode", srcNode);
 	}
 
-	public void setStack(java.lang.Boolean stack) {
+	public void setStack(boolean stack) {
 		_stack = stack;
 
 		setScopedAttribute("stack", stack);
@@ -818,7 +818,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("title", title);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1731,40 +1731,40 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	protected java.lang.String _boundingBox;
 	protected java.lang.Object _buttons;
 	protected java.lang.Object _centered;
-	protected java.lang.Boolean _close;
-	protected java.lang.Boolean _collapsed;
-	protected java.lang.Boolean _collapsible;
+	protected boolean _close;
+	protected boolean _collapsed;
+	protected boolean _collapsible;
 	protected java.lang.Object _constrain;
 	protected java.lang.Object _constrain2view;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
-	protected java.lang.Boolean _destroyOnClose;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyOnClose;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _dragInstance;
-	protected java.lang.Boolean _draggable;
+	protected boolean _draggable;
 	protected java.lang.Object _fillHeight;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _footerContent;
 	protected java.lang.Object _headerContent;
 	protected java.lang.Object _height;
 	protected java.lang.String _hideClass;
 	protected java.lang.Object _icons;
 	protected java.lang.String _dialogId;
-	protected java.lang.Boolean _initialized;
-	protected java.lang.Boolean _modal;
-	protected java.lang.Boolean _preventOverlap;
+	protected boolean _initialized;
+	protected boolean _modal;
+	protected boolean _preventOverlap;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
-	protected java.lang.Boolean _resizable;
+	protected boolean _rendered;
+	protected boolean _resizable;
 	protected java.lang.Object _resizableInstance;
-	protected java.lang.Boolean _shim;
+	protected boolean _shim;
 	protected java.lang.String _srcNode;
-	protected java.lang.Boolean _stack;
+	protected boolean _stack;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.Object _title;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _x;
 	protected java.lang.Object _xy;

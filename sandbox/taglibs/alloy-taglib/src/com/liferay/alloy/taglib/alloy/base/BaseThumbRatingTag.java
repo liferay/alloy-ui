@@ -34,7 +34,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _boundingBox;
 	}
 
-	public java.lang.Boolean getCanReset() {
+	public boolean getCanReset() {
 		return _canReset;
 	}
 
@@ -50,11 +50,11 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _defaultSelected;
 	}
 
-	public java.lang.Boolean getDestroyed() {
+	public boolean getDestroyed() {
 		return _destroyed;
 	}
 
-	public java.lang.Boolean getDisabled() {
+	public boolean getDisabled() {
 		return _disabled;
 	}
 
@@ -62,7 +62,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _elements;
 	}
 
-	public java.lang.Boolean getFocused() {
+	public boolean getFocused() {
 		return _focused;
 	}
 
@@ -82,7 +82,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _thumbratingId;
 	}
 
-	public java.lang.Boolean getInitialized() {
+	public boolean getInitialized() {
 		return _initialized;
 	}
 
@@ -102,7 +102,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _render;
 	}
 
-	public java.lang.Boolean getRendered() {
+	public boolean getRendered() {
 		return _rendered;
 	}
 
@@ -110,7 +110,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _selectedIndex;
 	}
 
-	public java.lang.Boolean getShowTitle() {
+	public boolean getShowTitle() {
 		return _showTitle;
 	}
 
@@ -138,7 +138,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _thumbratingValue;
 	}
 
-	public java.lang.Boolean getVisible() {
+	public boolean getVisible() {
 		return _visible;
 	}
 
@@ -440,7 +440,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("boundingBox", boundingBox);
 	}
 
-	public void setCanReset(java.lang.Boolean canReset) {
+	public void setCanReset(boolean canReset) {
 		_canReset = canReset;
 
 		setScopedAttribute("canReset", canReset);
@@ -464,13 +464,13 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("defaultSelected", defaultSelected);
 	}
 
-	public void setDestroyed(java.lang.Boolean destroyed) {
+	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
 		setScopedAttribute("destroyed", destroyed);
 	}
 
-	public void setDisabled(java.lang.Boolean disabled) {
+	public void setDisabled(boolean disabled) {
 		_disabled = disabled;
 
 		setScopedAttribute("disabled", disabled);
@@ -482,7 +482,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("elements", elements);
 	}
 
-	public void setFocused(java.lang.Boolean focused) {
+	public void setFocused(boolean focused) {
 		_focused = focused;
 
 		setScopedAttribute("focused", focused);
@@ -512,7 +512,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("thumbratingId", thumbratingId);
 	}
 
-	public void setInitialized(java.lang.Boolean initialized) {
+	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
@@ -542,7 +542,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("render", render);
 	}
 
-	public void setRendered(java.lang.Boolean rendered) {
+	public void setRendered(boolean rendered) {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
@@ -554,7 +554,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("selectedIndex", selectedIndex);
 	}
 
-	public void setShowTitle(java.lang.Boolean showTitle) {
+	public void setShowTitle(boolean showTitle) {
 		_showTitle = showTitle;
 
 		setScopedAttribute("showTitle", showTitle);
@@ -596,7 +596,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("thumbratingValue", thumbratingValue);
 	}
 
-	public void setVisible(java.lang.Boolean visible) {
+	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
@@ -1259,33 +1259,33 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/thumb_rating/page.jsp";
 
 	protected java.lang.String _boundingBox;
-	protected java.lang.Boolean _canReset;
+	protected boolean _canReset;
 	protected java.lang.String _contentBox;
 	protected java.lang.String _cssClass;
 	protected java.lang.Object _defaultSelected;
-	protected java.lang.Boolean _destroyed;
-	protected java.lang.Boolean _disabled;
+	protected boolean _destroyed;
+	protected boolean _disabled;
 	protected java.lang.Object _elements;
-	protected java.lang.Boolean _focused;
+	protected boolean _focused;
 	protected java.lang.Object _height;
 	protected java.lang.Object _hiddenInput;
 	protected java.lang.String _hideClass;
 	protected java.lang.String _thumbratingId;
-	protected java.lang.Boolean _initialized;
+	protected boolean _initialized;
 	protected java.lang.String _inputName;
 	protected java.lang.String _label;
 	protected java.lang.String _labelNode;
 	protected java.lang.Object _render;
-	protected java.lang.Boolean _rendered;
+	protected boolean _rendered;
 	protected java.lang.Object _selectedIndex;
-	protected java.lang.Boolean _showTitle;
+	protected boolean _showTitle;
 	protected java.lang.Object _size;
 	protected java.lang.String _srcNode;
 	protected java.lang.Object _strings;
 	protected java.lang.Object _tabIndex;
 	protected java.lang.String _title;
 	protected java.lang.String _thumbratingValue;
-	protected java.lang.Boolean _visible;
+	protected boolean _visible;
 	protected java.lang.Object _width;
 	protected java.lang.Object _afterBoundingBoxChange;
 	protected java.lang.Object _afterCanResetChange;

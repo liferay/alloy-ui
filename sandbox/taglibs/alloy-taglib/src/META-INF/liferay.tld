@@ -55,7 +55,7 @@ user is requesting them.]]></description>
 			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
@@ -63,7 +63,7 @@ method will be run on the response from the data source.]]></description>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Automatically highlight the first item in the list when the results are
@@ -71,7 +71,7 @@ made visible.]]></description>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
@@ -87,7 +87,7 @@ for skinning.]]></description>
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
@@ -136,7 +136,7 @@ has been through the destroy lifecycle phase.]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
@@ -144,7 +144,7 @@ is left to the specific classes extending widget.]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
@@ -152,7 +152,7 @@ has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
@@ -160,7 +160,7 @@ will clear a selection when the overlay closes unless a user explicitly selects 
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
@@ -192,7 +192,7 @@ has been through the init lifecycle phase.]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The input field which will recieve the users input.]]></description>
@@ -244,7 +244,7 @@ setting this to true will match only results with the same case.]]></description
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
@@ -253,7 +253,7 @@ instead of just matching just items that start with the query.]]></description>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
@@ -263,7 +263,7 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
@@ -279,7 +279,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.]]></description>
@@ -314,7 +314,7 @@ has been through the render lifecycle phase.]]></description>
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number (between -32767 to 32767) indicating the widget's 
@@ -335,7 +335,7 @@ automatically selecting the portion of the text the user has not typed yet.]]></
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
@@ -358,7 +358,7 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,

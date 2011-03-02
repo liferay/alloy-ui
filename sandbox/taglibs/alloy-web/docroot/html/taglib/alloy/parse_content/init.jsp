@@ -33,9 +33,9 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.lang.Boolean destroyed = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:parse-content:destroyed"), false);
+boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:parse-content:destroyed")), false);
 java.lang.Object host = (java.lang.Object)request.getAttribute("alloy:parse-content:host");
-java.lang.Boolean initialized = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy:parse-content:initialized"), false);
+boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:parse-content:initialized")), false);
 java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroy");
 java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterDestroyedChange");
 java.lang.Object afterHostChange = (java.lang.Object)request.getAttribute("alloy:parse-content:afterHostChange");

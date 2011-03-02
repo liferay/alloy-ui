@@ -9,24 +9,24 @@
     <attributes>
       <attribute>
         <name>alwaysShowContainer</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Always show the results container, instead of only showing when the 
 user is requesting them.]]></description>
       </attribute>
       <attribute>
         <name>applyLocalFilter</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
 method will be run on the response from the data source.]]></description>
       </attribute>
       <attribute>
         <name>autoHighlight</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Automatically highlight the first item in the list when the results are
 made visible.]]></description>
@@ -42,8 +42,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>button</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[To use a button]]></description>
       </attribute>
@@ -90,32 +90,32 @@ is a ",".]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
       </attribute>
       <attribute>
         <name>forceSelection</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
 will clear a selection when the overlay closes unless a user explicitly selects an item.]]></description>
@@ -146,8 +146,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -198,16 +198,16 @@ query if the value has changed.]]></description>
       </attribute>
       <attribute>
         <name>queryMatchCase</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 setting this to true will match only results with the same case.]]></description>
       </attribute>
       <attribute>
         <name>queryMatchContains</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 setting this to true will match results which contain the query anywhere in the text,
@@ -215,8 +215,8 @@ instead of just matching just items that start with the query.]]></description>
       </attribute>
       <attribute>
         <name>queryQuestionMark</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
 the encoded query string. To prevent this behavior, you can
@@ -233,8 +233,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -269,8 +269,8 @@ has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>suppressInputUpdate</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether or not the input field should be updated with selections.]]></description>
       </attribute>
@@ -288,8 +288,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>typeAhead</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
 input field should be automatically updated with the first result as the user types, 
@@ -313,8 +313,8 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -582,8 +582,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
     <attributes>
       <attribute>
         <name>activeState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether to track the active state of the button.]]></description>
       </attribute>
@@ -620,31 +620,31 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>defaultState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Whether to apply the default interaction state to the button]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -681,8 +681,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>hoverState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Whether to track the hover interaction state of the button.]]></description>
       </attribute>
@@ -711,8 +711,8 @@ boundingBox which matches <code>aui-button-icon</code>.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -743,8 +743,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -784,8 +784,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -953,8 +953,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>cancellableHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Cancel auto hide delay if the user interact with the Overlay
 (focus, click, mouseover)]]></description>
@@ -1039,16 +1039,16 @@ localization support. The format must be valid according to
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -1071,8 +1071,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -1127,8 +1127,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>hideOnDocumentClick</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the instance is registered on the
 <a href="OverlayContextManager.html">OverlayContextManager</a> static
@@ -1143,8 +1143,8 @@ class and will be hide when the user click on document.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -1167,8 +1167,8 @@ constructor are supported.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -1185,23 +1185,23 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>selectMultipleDates</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Wether accepts to select multiple dates.]]></description>
       </attribute>
       <attribute>
         <name>setValue</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true set the selected date with the correct
 <a href="Calendar.html#config_dateFormat">dateFormat</a> to the
@@ -1209,8 +1209,8 @@ value of the input field which is hosting the Calendar.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
@@ -1239,8 +1239,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>stack</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true is able to do stacking with another overlays.]]></description>
       </attribute>
@@ -1273,8 +1273,8 @@ to show or hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the OverlayContext is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -1545,16 +1545,16 @@ zIndex will be converted to 0]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -1634,8 +1634,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>cancellableHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Cancel auto hide delay if the user interact with the Overlay
 (focus, click, mouseover)]]></description>
@@ -1683,16 +1683,16 @@ currentNode stores the current active one.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -1708,8 +1708,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -1764,8 +1764,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>hideOnDocumentClick</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the instance is registered on the
 <a href="OverlayContextManager.html">OverlayContextManager</a> static
@@ -1780,16 +1780,16 @@ class and will be hide when the user click on document.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -1806,16 +1806,16 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
@@ -1871,8 +1871,8 @@ to show or hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the OverlayContext is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -2157,24 +2157,24 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -2205,8 +2205,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -2230,24 +2230,24 @@ contentBox which matches <code>aui-datepicker-year</code>.]]></description>
       </attribute>
       <attribute>
         <name>populateDay</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the select element for the days will be automatic
 populated.]]></description>
       </attribute>
       <attribute>
         <name>populateMonth</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the select element for the month will be automatic
 populated.]]></description>
       </attribute>
       <attribute>
         <name>populateYear</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the select element for the year will be automatic
 populated.]]></description>
@@ -2262,8 +2262,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -2313,8 +2313,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -2556,23 +2556,23 @@ the Widget will be centered within the node. If set the false, no center positio
       </attribute>
       <attribute>
         <name>close</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the close icon will be displayed on the
 Dialog header.]]></description>
       </attribute>
       <attribute>
         <name>collapsed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the panel is displayed collapsed.]]></description>
       </attribute>
       <attribute>
         <name>collapsible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the panel is able to be collapsed.]]></description>
       </attribute>
@@ -2609,8 +2609,8 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyOnClose</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Invoke the <a href="Dialog.html#method_destroy">destroy</a>
 method when the dialog is closed (i.e., remove the Dialog
@@ -2618,16 +2618,16 @@ method when the dialog is closed (i.e., remove the Dialog
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -2642,8 +2642,8 @@ this Dialog.]]></description>
       </attribute>
       <attribute>
         <name>draggable</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean specifying if the Panel should be draggable.]]></description>
       </attribute>
@@ -2658,8 +2658,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -2718,16 +2718,16 @@ For more information how to use this option see
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>modal</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[True if the Panel should be displayed in a modal fashion,
 automatically creating a transparent mask over the document that
@@ -2736,8 +2736,8 @@ will not be removed until the Dialog is dismissed. Uses
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -2754,16 +2754,16 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>resizable</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean specifying if the Panel should be resizable.]]></description>
       </attribute>
@@ -2777,8 +2777,8 @@ has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
@@ -2792,8 +2792,8 @@ boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>stack</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> give stacking habilities to the Dialog.]]></description>
       </attribute>
@@ -2825,8 +2825,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -3108,16 +3108,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -3131,8 +3131,8 @@ is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -3184,8 +3184,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -3222,8 +3222,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -3264,8 +3264,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -3425,8 +3425,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
     <attributes>
       <attribute>
         <name>active</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the transaction is active or not.]]></description>
       </attribute>
@@ -3440,8 +3440,8 @@ Configuration</a>.]]></description>
       </attribute>
       <attribute>
         <name>autoLoad</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> invoke the
 <a href="IORequest.html#method_start">start</a> method automatically,
@@ -3449,8 +3449,8 @@ initializing the IO transaction.]]></description>
       </attribute>
       <attribute>
         <name>cache</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>false</code> the current timestamp will be appended to the
 url, avoiding the url to be cached.]]></description>
@@ -3489,8 +3489,8 @@ Configuration</a>.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -3519,8 +3519,8 @@ Configuration</a>.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -3545,8 +3545,8 @@ requests the <code>responseData</code>) is a JSONObject.]]></description>
       </attribute>
       <attribute>
         <name>sync</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[See <a href="http://developer.yahoo.com/yui/3/io/#configuration">IO
 Configuration</a>.]]></description>
@@ -3708,8 +3708,8 @@ Configuration</a>.]]></description>
       </attribute>
       <attribute>
         <name>anim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the navigation is animated.]]></description>
       </attribute>
@@ -3729,8 +3729,8 @@ Configuration</a>.]]></description>
       </attribute>
       <attribute>
         <name>autoPlay</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the slide show will be played when the
 ImageGallery is displayed.]]></description>
@@ -3768,8 +3768,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>captionFromTitle</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the <a
 href="ImageViewer.html#config_caption">caption</a> will be pulled
@@ -3777,8 +3777,8 @@ from the title DOM attribute.]]></description>
       </attribute>
       <attribute>
         <name>centered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the Overlay with the image will be positioned
 on the center of the viewport.]]></description>
@@ -3829,16 +3829,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -3854,8 +3854,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -3931,8 +3931,8 @@ class.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -3954,8 +3954,8 @@ extracts the information to generate the thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>loading</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the image is during a loading state.]]></description>
       </attribute>
@@ -4013,8 +4013,8 @@ with the thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>paused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the slide show is paused.]]></description>
       </attribute>
@@ -4027,8 +4027,8 @@ with the thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>playing</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> the slide show is playing.]]></description>
       </attribute>
@@ -4041,16 +4041,16 @@ with the thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>preloadAllImages</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Preload all images grabbed from the <a
 href="ImageViewer.html#config_links">links</a> attribute.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -4067,45 +4067,45 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>repeat</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Restart the navigation when reach the last element.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>showArrows</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Show the arrow controls.]]></description>
       </attribute>
       <attribute>
         <name>showClose</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Show close icon control.]]></description>
       </attribute>
       <attribute>
         <name>showPlayer</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Show the player controls (i.e., pause and show buttons).]]></description>
       </attribute>
@@ -4144,23 +4144,23 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>totalLinks</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Helper attribute to get the <code>size</code> of the <a
 href="ImageViewer.html#config_links">links</a> NodeList.]]></description>
       </attribute>
       <attribute>
         <name>useOriginalImage</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <code>true</code> will use the original image as thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -4510,8 +4510,8 @@ zIndex will be converted to 0]]></description>
       </attribute>
       <attribute>
         <name>anim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the navigation is animated.]]></description>
       </attribute>
@@ -4562,8 +4562,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>captionFromTitle</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the <a
 href="ImageViewer.html#config_caption">caption</a> will be pulled
@@ -4571,8 +4571,8 @@ from the title DOM attribute.]]></description>
       </attribute>
       <attribute>
         <name>centered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> the Overlay with the image will be positioned
 on the center of the viewport.]]></description>
@@ -4616,16 +4616,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -4641,8 +4641,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -4718,8 +4718,8 @@ class.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -4741,8 +4741,8 @@ extracts the information to generate the thumbnails.]]></description>
       </attribute>
       <attribute>
         <name>loading</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the image is during a loading state.]]></description>
       </attribute>
@@ -4777,16 +4777,16 @@ the viewport. Set to <code>false</code> to disable.]]></description>
       </attribute>
       <attribute>
         <name>preloadAllImages</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Preload all images grabbed from the <a
 href="ImageViewer.html#config_links">links</a> attribute.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -4803,31 +4803,31 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>showArrows</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Show the arrow controls.]]></description>
       </attribute>
       <attribute>
         <name>showClose</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Show close icon control.]]></description>
       </attribute>
@@ -4859,16 +4859,16 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>totalLinks</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Helper attribute to get the <code>size</code> of the <a
 href="ImageViewer.html#config_links">links</a> NodeList.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -5181,8 +5181,8 @@ after the user stop typing.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -5204,8 +5204,8 @@ not matches with the filter.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -5298,8 +5298,8 @@ matches with the filter.]]></description>
     <attributes>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -5313,8 +5313,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -5381,16 +5381,16 @@ has been through the init lifecycle phase.]]></description>
     <attributes>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -5475,16 +5475,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -5500,8 +5500,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -5548,16 +5548,16 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -5574,16 +5574,16 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
@@ -5616,8 +5616,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -5828,8 +5828,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>cancellableHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Cancel auto hide delay if the user interact with the Overlay
 (focus, click, mouseover)]]></description>
@@ -5877,16 +5877,16 @@ currentNode stores the current active one.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -5902,8 +5902,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -5958,8 +5958,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>hideOnDocumentClick</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the instance is registered on the
 <a href="OverlayContextManager.html">OverlayContextManager</a> static
@@ -5974,16 +5974,16 @@ class and will be hide when the user click on document.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -6000,16 +6000,16 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
@@ -6065,8 +6065,8 @@ to show or hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the OverlayContext is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -6339,8 +6339,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>cancellableHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Cancel auto hide delay if the user interact with the Overlay
 (focus, click, mouseover)]]></description>
@@ -6388,16 +6388,16 @@ currentNode stores the current active one.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -6413,8 +6413,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -6469,8 +6469,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>hideOnDocumentClick</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the instance is registered on the
 <a href="OverlayContextManager.html">OverlayContextManager</a> static
@@ -6485,16 +6485,16 @@ class and will be hide when the user click on document.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -6511,24 +6511,24 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>showArrow</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the OverlayContextPanel will show an arrow positioned on the
 <a href="OverlayContextPanel.html#config_arrow">arrow</a> point.]]></description>
@@ -6557,8 +6557,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>stack</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Gives stacking habilities to the OverlayContextPanel.]]></description>
       </attribute>
@@ -6591,8 +6591,8 @@ to show or hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the OverlayContext is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -6899,16 +6899,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -6924,8 +6924,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -6972,8 +6972,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -6987,8 +6987,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -7005,16 +7005,16 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Use shim option.]]></description>
       </attribute>
@@ -7055,8 +7055,8 @@ takes the full screen.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the Overlay is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -7259,8 +7259,8 @@ xy attribute. Changes in position can be monitored by listening for xyChange eve
     <attributes>
       <attribute>
         <name>alwaysVisible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the Paginator will be always visible, even when the number
 of pages is 0. To hide the paginator controls automatically when
@@ -7278,8 +7278,8 @@ containers.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -7302,8 +7302,8 @@ first link element.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -7634,15 +7634,15 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>collapsed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the panel is displayed collapsed.]]></description>
       </attribute>
       <attribute>
         <name>collapsible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the panel is able to be collapsed.]]></description>
       </attribute>
@@ -7663,16 +7663,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -7688,8 +7688,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -7748,8 +7748,8 @@ For more information how to use this option see
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -7764,8 +7764,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -7805,8 +7805,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -7942,8 +7942,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
     <attributes>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -7957,8 +7957,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -7991,16 +7991,16 @@ has been through the init lifecycle phase.]]></description>
     <attributes>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -8053,32 +8053,32 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
       </attribute>
       <attribute>
         <name>height</name>
-        <inputType>java.lang.Object</inputType>
-        <outputType>java.lang.Integer</outputType>
+        <inputType>int</inputType>
+        <outputType>int</outputType>
         <defaultValue>25</defaultValue>
         <description><![CDATA[Display height of the progressbar.]]></description>
       </attribute>
@@ -8100,8 +8100,8 @@ has focus.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -8118,8 +8118,8 @@ used as label.]]></description>
       </attribute>
       <attribute>
         <name>max</name>
-        <inputType>java.lang.Object</inputType>
-        <outputType>java.lang.Integer</outputType>
+        <inputType>int</inputType>
+        <outputType>int</outputType>
         <defaultValue>100</defaultValue>
         <description><![CDATA[Represents the top value for the bar. The bar will be fully
 extended when reaching this value. Values higher than this will
@@ -8127,8 +8127,8 @@ be ignored.]]></description>
       </attribute>
       <attribute>
         <name>min</name>
-        <inputType>java.lang.Object</inputType>
-        <outputType>java.lang.Integer</outputType>
+        <inputType>int</inputType>
+        <outputType>int</outputType>
         <defaultValue>0</defaultValue>
         <description><![CDATA[Represents the lowest value for the bar. The bar will be
 totally collapsed when reaching this value. Values lower than
@@ -8160,8 +8160,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -8220,16 +8220,16 @@ contentBox which matches <code>aui-progressbar-text</code>.]]></description>
       </attribute>
       <attribute>
         <name>value</name>
-        <inputType>java.lang.Object</inputType>
-        <outputType>java.lang.Integer</outputType>
+        <inputType>int</inputType>
+        <outputType>int</outputType>
         <defaultValue>0</defaultValue>
         <description><![CDATA[The value for the bar. Valid values are in between the minValue
 and maxValue attributes.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -8378,8 +8378,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>canReset</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> could be reseted (i.e., have no values
 selected).]]></description>
@@ -8408,16 +8408,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the Rating is disabled or not. Disabled Ratings don't allow
 hover or click, just display selected stars.]]></description>
@@ -8432,8 +8432,8 @@ Rating. Each element is one Star.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -8472,8 +8472,8 @@ replace the radio elements and keep the same name.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -8513,8 +8513,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -8528,8 +8528,8 @@ has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>showTitle</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> will extract the value of the
 <code>title</code> attribute on the radio, and use it on the
@@ -8585,8 +8585,8 @@ radio elements.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -8764,8 +8764,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>autoHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[False to ensure that the resize handles are always visible, true to
 display them only when the user mouses over the resizable borders.]]></description>
@@ -8782,8 +8782,8 @@ display them only when the user mouses over the resizable borders.]]></descripti
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -8798,8 +8798,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -8841,15 +8841,15 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preserveRatio</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Maintain the element's ratio when resizing.]]></description>
       </attribute>
       <attribute>
         <name>proxy</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Resize a proxy element instead of the real element.]]></description>
       </attribute>
@@ -8862,8 +8862,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>resizing</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[True when the element is being Resized.]]></description>
       </attribute>
@@ -8883,8 +8883,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>wrap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[True to wrap an element with a div if needed (required for textareas
 and images, defaults to false) in favor of the handles config option.
@@ -9027,24 +9027,24 @@ the handles elements.]]></description>
     <attributes>
       <attribute>
         <name>alwaysShowContainer</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Always show the results container, instead of only showing when the 
 user is requesting them.]]></description>
       </attribute>
       <attribute>
         <name>applyLocalFilter</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
 method will be run on the response from the data source.]]></description>
       </attribute>
       <attribute>
         <name>autoHighlight</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Automatically highlight the first item in the list when the results are
 made visible.]]></description>
@@ -9060,8 +9060,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>button</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[To use a button]]></description>
       </attribute>
@@ -9108,32 +9108,32 @@ is a ",".]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
       </attribute>
       <attribute>
         <name>forceSelection</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
 will clear a selection when the overlay closes unless a user explicitly selects an item.]]></description>
@@ -9164,8 +9164,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -9216,16 +9216,16 @@ query if the value has changed.]]></description>
       </attribute>
       <attribute>
         <name>queryMatchCase</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 setting this to true will match only results with the same case.]]></description>
       </attribute>
       <attribute>
         <name>queryMatchContains</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 setting this to true will match results which contain the query anywhere in the text,
@@ -9233,8 +9233,8 @@ instead of just matching just items that start with the query.]]></description>
       </attribute>
       <attribute>
         <name>queryQuestionMark</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
 the encoded query string. To prevent this behavior, you can
@@ -9251,8 +9251,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -9287,8 +9287,8 @@ has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>suppressInputUpdate</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether or not the input field should be updated with selections.]]></description>
       </attribute>
@@ -9306,8 +9306,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>typeAhead</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
 input field should be automatically updated with the first result as the user types, 
@@ -9331,8 +9331,8 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -9609,8 +9609,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>canReset</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> could be reseted (i.e., have no values
 selected).]]></description>
@@ -9639,16 +9639,16 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the Rating is disabled or not. Disabled Ratings don't allow
 hover or click, just display selected stars.]]></description>
@@ -9663,8 +9663,8 @@ Rating. Each element is one Star.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -9703,8 +9703,8 @@ replace the radio elements and keep the same name.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -9744,8 +9744,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -9759,8 +9759,8 @@ has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>showTitle</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If <code>true</code> will extract the value of the
 <code>title</code> attribute on the radio, and use it on the
@@ -9816,8 +9816,8 @@ radio elements.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -9988,8 +9988,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>activeState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Receives an interaction state of active when the user clicks on it.]]></description>
       </attribute>
@@ -10033,31 +10033,31 @@ houses its content.]]></description>
       </attribute>
       <attribute>
         <name>defaultState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Receives a default interaction state.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -10081,8 +10081,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>hoverState</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Receives an interaction state of hover during the
 <code>mouseover</code> event.]]></description>
@@ -10096,16 +10096,16 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>multiple</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if multiple children can be selected at 
 once.  Whether or not multiple selection is enabled is always delegated
@@ -10130,8 +10130,8 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
@@ -10174,8 +10174,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
       </attribute>
@@ -10366,8 +10366,8 @@ for skinning.]]></description>
       </attribute>
       <attribute>
         <name>cancellableHide</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Cancel auto hide delay if the user interact with the Overlay
 (focus, click, mouseover)]]></description>
@@ -10415,16 +10415,16 @@ currentNode stores the current active one.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>disabled</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
 is left to the specific classes extending widget.]]></description>
@@ -10440,8 +10440,8 @@ their content.]]></description>
       </attribute>
       <attribute>
         <name>focused</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
 has focus.]]></description>
@@ -10495,8 +10495,8 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
       </attribute>
       <attribute>
         <name>hideOnDocumentClick</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the instance is registered on the
 <a href="OverlayContextManager.html">OverlayContextManager</a> static
@@ -10511,16 +10511,16 @@ class and will be hide when the user click on document.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>preventOverlap</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If set to true, and WidgetPositionAlign is also added to the Widget, 
 constrained positioning will attempt to prevent the widget's bounding box from overlapping 
@@ -10537,24 +10537,24 @@ preventing the <code>.render()</code> manual call.]]></description>
       </attribute>
       <attribute>
         <name>rendered</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this Widget
 has been through the render lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>shim</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Boolean flag to indicate whether or not a shim should be added to the Widgets
 boundingBox, to protect it from select box bleedthrough.]]></description>
       </attribute>
       <attribute>
         <name>showArrow</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the OverlayContextPanel will show an arrow positioned on the
 <a href="OverlayContextPanel.html#config_arrow">arrow</a> point.]]></description>
@@ -10583,8 +10583,8 @@ OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>stack</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Gives stacking habilities to the OverlayContextPanel.]]></description>
       </attribute>
@@ -10609,8 +10609,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
       </attribute>
       <attribute>
         <name>title</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Use the content of the <code>title</code> attribute as the Tooltip
 content.]]></description>
@@ -10625,8 +10625,8 @@ to show or hide the OverlayContext.]]></description>
       </attribute>
       <attribute>
         <name>visible</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[If true the OverlayContext is visible by default after the render phase.
 Inherited from <a href="Overlay.html">Overlay</a>.]]></description>
@@ -10866,15 +10866,15 @@ zIndex will be converted to 0]]></description>
     <attributes>
       <attribute>
         <name>alwaysShowHitArea</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Always show the hitarea icon.]]></description>
       </attribute>
       <attribute>
         <name>cache</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Whether the current TreeNode should cache the loaded content or not.]]></description>
       </attribute>
@@ -10901,8 +10901,8 @@ zIndex will be converted to 0]]></description>
       </attribute>
       <attribute>
         <name>checked</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the TreeNode is checked or not.]]></description>
       </attribute>
@@ -10922,23 +10922,23 @@ zIndex will be converted to 0]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>draggable</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[If true the TreeNode is draggable.]]></description>
       </attribute>
       <attribute>
         <name>expanded</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the TreeNode is expanded by default.]]></description>
       </attribute>
@@ -10972,8 +10972,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -11001,23 +11001,23 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>leaf</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>true</defaultValue>
         <description><![CDATA[Whether the TreeNode could have children or not (i.e. if any
 children is present the TreeNode is a leaf).]]></description>
       </attribute>
       <attribute>
         <name>loaded</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the current TreeNode has loaded the content.]]></description>
       </attribute>
       <attribute>
         <name>loading</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the current TreeNode IO transaction is loading.]]></description>
       </attribute>
@@ -11183,8 +11183,8 @@ children is present the TreeNode is a leaf).]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -11198,8 +11198,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
@@ -11294,8 +11294,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>checked</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Whether the TreeNode is checked or not.]]></description>
       </attribute>
@@ -11315,8 +11315,8 @@ has been through the init lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>destroyed</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the destroy lifecycle phase.]]></description>
@@ -11344,8 +11344,8 @@ has been through the destroy lifecycle phase.]]></description>
       </attribute>
       <attribute>
         <name>initialized</name>
-        <inputType>java.lang.Boolean</inputType>
-        <outputType>java.lang.Boolean</outputType>
+        <inputType>boolean</inputType>
+        <outputType>boolean</outputType>
         <defaultValue>false</defaultValue>
         <description><![CDATA[Flag indicating whether or not this object
 has been through the init lifecycle phase.]]></description>
