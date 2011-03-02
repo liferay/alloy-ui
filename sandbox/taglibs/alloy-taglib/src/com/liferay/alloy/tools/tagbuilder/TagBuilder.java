@@ -481,33 +481,41 @@ public class TagBuilder {
 			Element doc2Component = _getComponentNode(doc2, name);
 
 			if (doc2Component != null) {
-				List<Element> doc2Attributes = doc2Component.element(
-					_ATTRIBUTES).elements(_ATTRIBUTE);
+				Element doc2AttributesNode = doc2Component.element(_ATTRIBUTES);
 
-				Element doc1AttributesNode = doc1Component.element(_ATTRIBUTES);
+				if (doc2AttributesNode != null) {
+					List<Element> doc2Attributes =
+						doc2AttributesNode.elements(_ATTRIBUTE);
 
-				for (Element doc2Attribute : doc2Attributes) {
-					Element doc1Attribute = _getElementByName(
-						doc1AttributesNode.elements("attribute"),
-						doc2Attribute.elementText("name"));
+					Element doc1AttributesNode =
+						doc1Component.element(_ATTRIBUTES);
 
-					if (doc1Attribute == null) {
-						doc1AttributesNode.add(doc2Attribute.createCopy());
+					for (Element doc2Attribute : doc2Attributes) {
+						Element doc1Attribute = _getElementByName(
+							doc1AttributesNode.elements("attribute"),
+							doc2Attribute.elementText("name"));
+
+						if (doc1Attribute == null) {
+							doc1AttributesNode.add(doc2Attribute.createCopy());
+						}
 					}
 				}
 
-				List<Element> doc2Events = doc2Component.element(
-					_EVENTS).elements(_EVENT);
+				Element doc2EventsNode = doc2Component.element(_EVENTS);
 
-				Element doc1EventsNode = doc1Component.element(_EVENTS);
+				if (doc2EventsNode != null) {
+					List<Element> doc2Events = doc2EventsNode.elements(_EVENT);
 
-				for (Element doc2Event : doc2Events) {
-					Element doc1Event = _getElementByName(
-						doc1EventsNode.elements("event"),
-						doc2Event.elementText("name"));
+					Element doc1EventsNode = doc1Component.element(_EVENTS);
 
-					if (doc1Event == null) {
-						doc1EventsNode.add(doc2Event.createCopy());
+					for (Element doc2Event : doc2Events) {
+						Element doc1Event = _getElementByName(
+							doc1EventsNode.elements("event"),
+							doc2Event.elementText("name"));
+
+						if (doc1Event == null) {
+							doc1EventsNode.add(doc2Event.createCopy());
+						}
 					}
 				}
 			}
@@ -523,10 +531,49 @@ public class TagBuilder {
 
 		doc.setRootElement(doc1.getRootElement().createCopy());
 
-		List<Element> tags = doc2.getRootElement().elements("tag");
+		List<Element> tags1 = doc1.getRootElement().elements("tag");
+		List<Element> tags2 = doc2.getRootElement().elements("tag");
 
-		for (Element tag : tags) {
-			doc.getRootElement().add(tag.createCopy());
+		Map<String, Element> tags1Index = new HashMap<String, Element>();
+		Map<String, Map<String, Element>> tags1AttributesIndex =
+			new HashMap<String, Map<String, Element>>();
+
+		for (Element tag1 : tags1) {
+			String tag1Name = tag1.elementText("name");
+
+			tags1Index.put(tag1Name, tag1);
+
+			Map<String, Element> tag1AttributesIndex =
+				new HashMap<String, Element>();
+
+			for (Element attr1 : tag1.elements("attribute")) {
+				tag1AttributesIndex.put(attr1.elementText("name"), attr1);
+			}
+
+			tags1AttributesIndex.put(tag1Name, tag1AttributesIndex);
+		}
+
+		for (Element tag2 : tags2) {
+			String tag2Name = tag2.elementText("name");
+
+			Map<String, Element> tag1AttributesIndex =
+				tags1AttributesIndex.get(tag2Name);
+
+			if (tags1Index.containsKey(tag2Name)) {
+				for (Element attr2 : tag2.elements("attribute")) {
+					String attr2Name = attr2.attributeValue("name");
+
+					if (tag1AttributesIndex.containsKey(attr2Name)) {
+						Element attr1 = tag1AttributesIndex.get(attr2Name);
+
+						tag2.remove(attr1);
+						tag2.add(attr2);
+					}
+				}
+			}
+			else {
+				doc.getRootElement().add(tag2.createCopy());
+			}
 		}
 
 		return doc;
