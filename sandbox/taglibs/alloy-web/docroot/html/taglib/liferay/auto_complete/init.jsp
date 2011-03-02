@@ -33,8 +33,8 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
+java.lang.String alwaysShowContainer = GetterUtil.getString((java.lang.String)request.getAttribute("liferay:auto-complete:alwaysShowContainer"));
 java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("liferay:auto-complete:test"));
-boolean alwaysShowContainer = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:auto-complete:alwaysShowContainer")), false);
 boolean applyLocalFilter = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:auto-complete:applyLocalFilter")), true);
 boolean autoHighlight = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:auto-complete:autoHighlight")), true);
 boolean button = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:auto-complete:button")), true);
@@ -196,8 +196,8 @@ java.lang.Object onContentUpdate = (java.lang.Object)request.getAttribute("lifer
 java.lang.Object onRender = (java.lang.Object)request.getAttribute("liferay:auto-complete:onRender");
 java.lang.Object onWidthChange = (java.lang.Object)request.getAttribute("liferay:auto-complete:onWidthChange");
 
-_updateOptions(_options, "test", test);
 _updateOptions(_options, "alwaysShowContainer", alwaysShowContainer);
+_updateOptions(_options, "test", test);
 _updateOptions(_options, "applyLocalFilter", applyLocalFilter);
 _updateOptions(_options, "autoHighlight", autoHighlight);
 _updateOptions(_options, "boundingBox", boundingBox);

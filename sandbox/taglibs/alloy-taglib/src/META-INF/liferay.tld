@@ -44,18 +44,16 @@
 		<tag-class>com.liferay.alloy.taglib.liferay.AutoCompleteTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<name>test</name>
+			<name>alwaysShowContainer</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Always show the results container, instead of only showing when the 
-user is requesting them.]]></description>
-			<name>alwaysShowContainer</name>
+			<name>test</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>boolean</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 

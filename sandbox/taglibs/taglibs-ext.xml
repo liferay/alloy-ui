@@ -38,6 +38,12 @@
 	<component name="AutoComplete" alloyComponent="true">
 		<attributes>
 			<attribute>
+				<name>alwaysShowContainer</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
 				<name>test</name>
 				<inputType>java.lang.String</inputType>
 				<outputType>java.lang.String</outputType>

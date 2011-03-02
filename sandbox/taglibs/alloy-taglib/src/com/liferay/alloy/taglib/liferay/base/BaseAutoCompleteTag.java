@@ -30,12 +30,12 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.String getTest() {
-		return _test;
+	public java.lang.String getAlwaysShowContainer() {
+		return _alwaysShowContainer;
 	}
 
-	public boolean getAlwaysShowContainer() {
-		return _alwaysShowContainer;
+	public java.lang.String getTest() {
+		return _test;
 	}
 
 	public boolean getApplyLocalFilter() {
@@ -690,16 +690,16 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _onWidthChange;
 	}
 
+	public void setAlwaysShowContainer(java.lang.String alwaysShowContainer) {
+		_alwaysShowContainer = alwaysShowContainer;
+
+		setScopedAttribute("alwaysShowContainer", alwaysShowContainer);
+	}
+
 	public void setTest(java.lang.String test) {
 		_test = test;
 
 		setScopedAttribute("test", test);
-	}
-
-	public void setAlwaysShowContainer(boolean alwaysShowContainer) {
-		_alwaysShowContainer = alwaysShowContainer;
-
-		setScopedAttribute("alwaysShowContainer", alwaysShowContainer);
 	}
 
 	public void setApplyLocalFilter(boolean applyLocalFilter) {
@@ -1682,8 +1682,8 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 
 
 	protected void cleanUp() {
+		_alwaysShowContainer = null;
 		_test = null;
-		_alwaysShowContainer = false;
 		_applyLocalFilter = true;
 		_autoHighlight = true;
 		_boundingBox = null;
@@ -1854,8 +1854,8 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	}
 
 	protected void setAttributes(HttpServletRequest request) {
-		setNamespacedAttribute(request, "test", _test);
 		setNamespacedAttribute(request, "alwaysShowContainer", _alwaysShowContainer);
+		setNamespacedAttribute(request, "test", _test);
 		setNamespacedAttribute(request, "applyLocalFilter", _applyLocalFilter);
 		setNamespacedAttribute(request, "autoHighlight", _autoHighlight);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
@@ -2026,8 +2026,8 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/liferay/auto_complete/page.jsp";
 
+	protected java.lang.String _alwaysShowContainer;
 	protected java.lang.String _test;
-	protected boolean _alwaysShowContainer;
 	protected boolean _applyLocalFilter;
 	protected boolean _autoHighlight;
 	protected java.lang.String _boundingBox;

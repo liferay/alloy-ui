@@ -259,10 +259,8 @@ public class TagBuilder {
 			Element root = doc.getRootElement();
 			String shortName = GetterUtil.getString(
 				root.attributeValue("short-name"), _DEFAULT_TAGLIB_SHORT_NAME);
-
 			String uri = GetterUtil.getString(
 				root.attributeValue("uri"), _DEFAULT_TAGLIB_URI);
-
 			String version = GetterUtil.getString(
 				root.attributeValue("tlib-version"), _DEFAULT_TAGLIB_VERSION);
 
@@ -312,7 +310,7 @@ public class TagBuilder {
 				extDoc.getRootElement().attributeValue("extends"));
 
 			if (parentDoc != null) {
-				componentsDoc = _mergeAttributes(extDoc, parentDoc);
+				componentsDoc = _mergeXMLAttributes(extDoc, parentDoc);
 			}
 
 			List<Element> extComponents =
@@ -466,7 +464,7 @@ public class TagBuilder {
 		return prefixedEvents;
 	}
 
-	private Document _mergeAttributes(Document doc1, Document doc2) {
+	private Document _mergeXMLAttributes(Document doc1, Document doc2) {
 		Element doc1Root = doc1.getRootElement();
 
 		Element docRoot = doc1Root.createCopy();
@@ -486,16 +484,31 @@ public class TagBuilder {
 				List<Element> doc2Attributes = doc2Component.element(
 					_ATTRIBUTES).elements(_ATTRIBUTE);
 
+				Element doc1AttributesNode = doc1Component.element(_ATTRIBUTES);
+
 				for (Element doc2Attribute : doc2Attributes) {
-					doc1Component.element(_ATTRIBUTES).add(
-						doc2Attribute.createCopy());
+					Element doc1Attribute = _getElementByName(
+						doc1AttributesNode.elements("attribute"),
+						doc2Attribute.elementText("name"));
+
+					if (doc1Attribute == null) {
+						doc1AttributesNode.add(doc2Attribute.createCopy());
+					}
 				}
 
 				List<Element> doc2Events = doc2Component.element(
 					_EVENTS).elements(_EVENT);
 
+				Element doc1EventsNode = doc1Component.element(_EVENTS);
+
 				for (Element doc2Event : doc2Events) {
-					doc1Component.element(_EVENTS).add(doc2Event.createCopy());
+					Element doc1Event = _getElementByName(
+						doc1EventsNode.elements("event"),
+						doc2Event.elementText("name"));
+
+					if (doc1Event == null) {
+						doc1EventsNode.add(doc2Event.createCopy());
+					}
 				}
 			}
 
@@ -517,6 +530,16 @@ public class TagBuilder {
 		}
 
 		return doc;
+	}
+
+	private Element _getElementByName(List<Element> elements, String name) {
+		for (Element element : elements) {
+			if (name.equals(element.elementText("name"))) {
+				return element;
+			}
+		}
+
+		return null;
 	}
 
 	private String _processTemplate(String name, Map<String, Object> context)
