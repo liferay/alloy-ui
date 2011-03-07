@@ -175,8 +175,9 @@ Panel.prototype = {
 			instance.set('headerContent', NODE_BLANK_TEXT);
 		}
 
+		A.Do.after(instance._afterPanelRender, instance, 'renderUI', instance);
+
 		instance.after('collapsedChange', instance._afterCollapsedChange);
-		instance.after('render', instance._afterPanelRender);
 		instance.after('titleChange', instance._afterTitleChange);
 	},
 
@@ -317,7 +318,7 @@ Panel.prototype = {
 
 		headerTextNode.addClass(CSS_PANEL_HD_TEXT);
 
-		headerNode.prepend(headerTextNode);
+		instance.set('headerContent', headerTextNode);
 
 		/**
 		 * Stores the created node for the header of the Panel.
