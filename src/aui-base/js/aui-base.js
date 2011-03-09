@@ -159,50 +159,6 @@ A.mix(
 			var instance = this;
 
 			return String(id).indexOf(A.Env._guidp) === 0;
-		},
-
-		toQueryString: function(data) {
-			var instance = this;
-
-			var querystring = data;
-
-			if (!isString(data)) {
-				var buffer = [];
-
-				var item;
-				var value;
-
-				var addToQueryString = instance._addToQueryString;
-
-				for (var i in data) {
-					item = data[i];
-
-					if (isArray(item)) {
-						for (var j = 0; j < item.length; j++) {
-							addToQueryString(i, item[j], buffer);
-						}
-					}
-					else {
-						value = item;
-
-						if (isFunction(item)) {
-							value = item();
-						}
-
-						addToQueryString(i, value, buffer);
-					}
-				}
-
-				querystring = buffer.join('&').replace(/%20/g, '+');
-			}
-
-			return querystring;
-		},
-
-		_addToQueryString: function(key, value, buffer) {
-			var instance = this;
-
-			buffer.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
 		}
 	}
 );
