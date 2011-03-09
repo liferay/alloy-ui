@@ -13,6 +13,8 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
 
+	WidgetStdMod = A.WidgetStdMod,
+
 	BOUNDING_BOX = 'boundingBox',
 	COLLAPSE = 'collapse',
 	COLLAPSED = 'collapsed',
@@ -25,6 +27,8 @@ var Lang = A.Lang,
 	TITLE = 'title',
 	ICONS = 'icons',
 	VISIBLE = 'visible',
+
+	EMPTY_STR = '',
 
 	getClassName = A.ClassNameManager.getClassName,
 
@@ -297,7 +301,11 @@ Panel.prototype = {
 		)
 		.render(instance.headerNode);
 
-		instance.icons.get(BOUNDING_BOX).addClass(CSS_PANEL_ICONS);
+		var toolbarBoundingBox = instance.icons.get(BOUNDING_BOX);
+
+		toolbarBoundingBox.addClass(CSS_PANEL_ICONS);
+
+		instance.setStdModContent(WidgetStdMod.HEADER, toolbarBoundingBox, WidgetStdMod.BEFORE);
 	},
 
 	/**
@@ -309,15 +317,12 @@ Panel.prototype = {
 	 */
 	_renderHeaderText: function() {
 		var instance = this;
-		var headerNode = instance.headerNode;
 		var headerTextNode = A.Node.create(TPL_HEADER_TEXT);
-		var html = headerNode.html();
-
-		headerNode.empty();
 
 		headerTextNode.addClass(CSS_PANEL_HD_TEXT);
 
-		headerNode.prepend(headerTextNode);
+		instance.setStdModContent(WidgetStdMod.HEADER, EMPTY_STR);
+		instance.setStdModContent(WidgetStdMod.HEADER, headerTextNode, WidgetStdMod.BEFORE);
 
 		/**
 		 * Stores the created node for the header of the Panel.
@@ -329,7 +334,7 @@ Panel.prototype = {
 		instance.headerTextNode = headerTextNode;
 
 		if (!instance.get(TITLE)) {
-			instance.set(TITLE, html);
+			instance.set(TITLE, instance.headerNode.html());
 		}
 
 		instance._syncTitleUI();
