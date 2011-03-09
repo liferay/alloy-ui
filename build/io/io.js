@@ -676,7 +676,7 @@ YUI.add('io-base', function(Y) {
 
         //To serialize an object into a key-value string, add the
         //QueryString module to the YUI instance's 'use' method.
-        if (Y.Lang.isObject(c.data) && Y.QueryString) {
+        if (Y.Lang.isObject(c.data) && Y.QueryString && Y.QueryString.stringify) {
             c.data = Y.QueryString.stringify(c.data);
         }
 

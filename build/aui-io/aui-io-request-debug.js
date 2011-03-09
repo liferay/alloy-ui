@@ -650,4 +650,4 @@ A.io.request = function(uri, config) {
 	);
 };
 
-}, '@VERSION@' ,{requires:['aui-base','io-base','json','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','io-base','json','plugin','querystring-stringify']});
