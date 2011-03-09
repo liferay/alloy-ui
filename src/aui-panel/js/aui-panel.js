@@ -18,7 +18,6 @@ var Lang = A.Lang,
 	COLLAPSED = 'collapsed',
 	COLLAPSIBLE = 'collapsible',
 	ICON = 'icon',
-	ID = 'id',
 	MINUS = 'minus',
 	PANEL = 'panel',
 	PLUS = 'plus',
@@ -142,18 +141,6 @@ Panel.ATTRS = {
 	icons: {
 		value: [],
 		validator: isArray
-	},
-
-	/**
-	 * @attribute strings
-	 * @description Collection of strings used to label elements of the Panel's UI.
-	 * @default null
-	 * @type Object
-	 */
-	strings: {
-		value: {
-			toggle: 'Toggle collapse'
-		}
 	}
 };
 
@@ -175,9 +162,8 @@ Panel.prototype = {
 			instance.set('headerContent', NODE_BLANK_TEXT);
 		}
 
-		A.Do.after(instance._afterPanelRender, instance, 'renderUI', instance);
-
 		instance.after('collapsedChange', instance._afterCollapsedChange);
+		instance.after('render', instance._afterPanelRender);
 		instance.after('titleChange', instance._afterTitleChange);
 	},
 
@@ -285,8 +271,7 @@ Panel.prototype = {
 					handler: {
 						fn: instance.toggleCollapse,
 						context: instance
-					},
-					title: instance.get('strings').toggle
+					}
 				}
 			);
 		}
@@ -318,7 +303,7 @@ Panel.prototype = {
 
 		headerTextNode.addClass(CSS_PANEL_HD_TEXT);
 
-		instance.set('headerContent', headerTextNode);
+		headerNode.prepend(headerTextNode);
 
 		/**
 		 * Stores the created node for the header of the Panel.
@@ -359,8 +344,6 @@ Panel.prototype = {
 						ICON,
 						collapsed ? PLUS : MINUS
 					);
-
-					collapseItem.get(BOUNDING_BOX).setAttribute('aria-pressed', collapsed);
 				}
 			}
 
@@ -372,8 +355,6 @@ Panel.prototype = {
 				bodyNode.show();
 				boundingBox.removeClass(CSS_COLLAPSED);
 			}
-
-			instance.bodyNode.setAttribute('aria-hidden', collapsed);
 		}
 	},
 
@@ -424,36 +405,6 @@ Panel.prototype = {
 
 		instance._renderHeaderText();
 		instance._renderIconButtons();
-
-		instance.get('contentBox').setAttribute('role', 'tablist');
-
-		var headerNodeId = instance.headerNode.get(ID);
-
-		instance.bodyNode.setAttrs({
-			'role': 'tabpanel',
-			'aria-labelledby': headerNodeId,
-			'aria-describedby': headerNodeId
-		});
-
-		var bodyNodeId = instance.bodyNode.get(ID);
-
-		if (!bodyNodeId){
-			bodyNodeId = A.guid();
-			instance.bodyNode.set(ID, bodyNodeId);
-		}
-
-		instance.headerNode.setAttrs({
-			'role': 'tab',
-			'aria-controls': bodyNodeId
-		});
-
-		if (instance.icons) {
-			var collapseItem = instance.icons.item(COLLAPSE);
-
-			if (collapseItem) {
-				collapseItem.get(BOUNDING_BOX).setAttribute('aria-controls', bodyNodeId);
-			}
-		}
 
 		instance._syncCollapsedUI();
 	},
