@@ -317,12 +317,9 @@ Panel.prototype = {
 	 */
 	_renderHeaderText: function() {
 		var instance = this;
-		var headerTextNode = A.Node.create(TPL_HEADER_TEXT);
-
-		headerTextNode.addClass(CSS_PANEL_HD_TEXT);
+		var headerTextNode = A.Node.create(TPL_HEADER_TEXT).addClass(CSS_PANEL_HD_TEXT);
 
 		instance.setStdModContent(WidgetStdMod.HEADER, EMPTY_STR);
-		instance.setStdModContent(WidgetStdMod.HEADER, headerTextNode, WidgetStdMod.BEFORE);
 
 		/**
 		 * Stores the created node for the header of the Panel.
@@ -391,9 +388,12 @@ Panel.prototype = {
 	 */
 	_syncTitleUI: function() {
 		var instance = this;
+		var headerTextNode = instance.headerTextNode;
 		var title = instance.get(TITLE);
 
-		instance.headerTextNode.html(title);
+		headerTextNode.html(title);
+
+		instance.setStdModContent(WidgetStdMod.HEADER, headerTextNode, WidgetStdMod.BEFORE);
 	},
 
 	/**
