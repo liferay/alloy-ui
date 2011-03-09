@@ -207,7 +207,7 @@ var IORequest = A.Component.create(
 					return {
 						arguments: instance.get(ARGUMENTS),
 						context: instance.get(CONTEXT),
-						data: instance.get(DATA),
+						data: instance.getFormattedData(),
 						form: instance.get(FORM),
 						headers: instance.get(HEADERS),
 						method: instance.get(METHOD),
@@ -274,8 +274,7 @@ var IORequest = A.Component.create(
 			 * @type Object
 			 */
 			data: {
-				valueFn: getDefault(DATA),
-				setter: '_setIOData'
+				valueFn: getDefault(DATA)
 			},
 
 			/**
@@ -417,6 +416,25 @@ var IORequest = A.Component.create(
 			},
 
 			/**
+			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if defined and return the formatted data.
+			 *
+			 * @method getFormattedData
+			 * @protected
+			 * @return {String}
+			 */
+			getFormattedData: function() {
+				var instance = this;
+				var value = instance.get(DATA);
+				var dataFormatter = defaults.dataFormatter;
+
+				if (isFunction(dataFormatter)) {
+					value = dataFormatter.call(instance, value);
+				}
+
+				return value;
+			},
+
+			/**
 			 * Starts the IO transaction. Used to refresh the content also.
 			 *
 			 * @method start
@@ -532,26 +550,6 @@ var IORequest = A.Component.create(
 				instance.set(RESPONSE_DATA, obj);
 
 				instance.fire(SUCCESS, id, obj, args);
-			},
-
-			/**
-			 * Applies the <code>YUI.AUI.defaults.io.dataFormatter</code> if defined.
-			 *
-			 * @method _setIOData
-			 * @param {Object} value
-			 * @protected
-			 * @return {String}
-			 */
-			_setIOData: function(value) {
-				var instance = this;
-
-				var dataFormatter = defaults.dataFormatter;
-
-				if (isFunction(dataFormatter)) {
-					value = dataFormatter.call(instance, value);
-				}
-
-				return value;
 			},
 
 			/**
