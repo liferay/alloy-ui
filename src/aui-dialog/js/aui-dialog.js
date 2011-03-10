@@ -361,6 +361,20 @@ Dialog.prototype = {
 		A.DialogManager.remove(instance);
 	},
 
+    /**
+     * Aligns the Dialog to the viewport.
+     *
+     * @method alignToViewport
+     * @param int offsetLeft An offset number to be added to the left coordinate value.
+     * @param int offsetTop An offset number to be added to the top coordinate value.
+     */
+	alignToViewport: function(offsetLeft, offsetTop) {
+		var instance = this;
+		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
+
+		instance.move([ viewportRegion.left + toNumber(offsetLeft), viewportRegion.top + toNumber(offsetTop) ]);
+	},
+
 	/**
 	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
      * to invoke the
