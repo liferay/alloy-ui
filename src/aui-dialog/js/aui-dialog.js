@@ -11,6 +11,10 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
 
+	toNumber = function(val) {
+		return parseInt(val, 10) || 0;
+	},
+
 	BLANK = '',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -39,6 +43,7 @@ var L = A.Lang,
 	RESIZABLE = 'resizable',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
+	VIEWPORT_REGION = 'viewportRegion',
 	WIDTH = 'width',
 
 	EV_RESIZE = 'resize:resize',
@@ -374,6 +379,20 @@ Dialog.prototype = {
 		A.DialogManager.remove(instance);
 	},
 
+    /**
+     * Aligns the Dialog to the viewport.
+     *
+     * @method alignToViewport
+     * @param int offsetLeft An offset number to be added to the left coordinate value.
+     * @param int offsetTop An offset number to be added to the top coordinate value.
+     */
+	alignToViewport: function(offsetLeft, offsetTop) {
+		var instance = this;
+		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
+
+		instance.move([ viewportRegion.left + toNumber(offsetLeft), viewportRegion.top + toNumber(offsetTop) ]);
+	},
+
 	/**
 	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
      * to invoke the
@@ -405,7 +424,7 @@ Dialog.prototype = {
 	 * Fires after the value of the
 	 * <a href="Dialog.html#config_constrain2view">constrain2view</a> attribute change.
 	 *
-	 * @method 
+	 * @method
 	 * @param {EventFacade} event
 	 * @protected
 	 */
