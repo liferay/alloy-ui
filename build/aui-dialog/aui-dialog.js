@@ -12,6 +12,10 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
 
+	toNumber = function(val) {
+		return parseInt(val, 10) || 0;
+	},
+
 	BLANK = '',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -41,6 +45,7 @@ var L = A.Lang,
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
 	WIDTH = 'width',
+	VIEWPORT_REGION = 'viewportRegion',
 
 	EV_RESIZE = 'resize:resize',
 	EV_RESIZE_END = 'resize:end',
