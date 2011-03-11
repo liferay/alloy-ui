@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../build/aui-button/assets/aui-button-core.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#demo {
+			background: #eee;
+			margin-bottom: 1em;
+			border: solid #999;
+			border-width: 1px 0;
+		}
+
+		#demo2 {
+			background: #ccc;
+			border: 1px solid #333;
+			width: 300px;
+			height: 200px;
+			margin-bottom: 1em;
+		}
+
+		.count-container {
+			display: block;
+		}
+
+		#demo2.aui-demo-hover {
+			background-color: #ffc;
+			border-color: #fc0;
+		}
+
+		.aui-icon-button {
+			display: inline-block;
+			float: none;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Debounce Demo</h1>
+
+	<p>A debouncer is a term that comes from electrical engineering. It helps keep functions from executing too many times, by waiting until the user has paused some task for a specific amount of time. This is useful for times when you want to do some expensive operation in javascript, but don't want it to slow down the interaction. For example, let's say that when a user types into a text box, on key press you want to: 
+		<ul>
+			<li>manipulating large sections of the DOM</li>
+			<li>perform an ajax request</li>
+			<li>do complex validation on the text they've input</li>
+		</ul>
+		these would all be good cases for debouncing.
+	</p>
+	
+	<div id="demo">
+		See it in action between a regular keypress event, and a keypress with a debounced method (and a 500ms delay):
+		<div class="aui-ctrl-holder">
+			<label for="demoInput">Type anything in this box</label>
+			<input class="aui-text-input" id="demoInput" type="text" />
+			<p class="aui-form-hint">
+				<span class="keypress count-container">The <strong>regular keypress</strong> was called <span>0</span> times.</span>
+				<span class="debounce count-container">The <strong>debounced</strong> function was called <span>0</span> times.</span>
+			</p>
+		</div>
+	</div>	
+	
+	<p>Another good use cases would be if you want to have 2 specific debounced functions for different tasks, and use interaction to cancel one and perform the other. For instance, if you have a menu, and on "mouseleave" you don't want to close the menu right away (but you do want it to disappear after a short delay). But if the user moves back over it, you don't want it to hide at all.<br />
+	In this case, you have have 2 functions, a hider and a shower. Then on the menu node, you could say, on mouseenter, hider.cancel();shower(); and you would also say on mouseleave, shower.cancel();hider(); (in this case, you would give the shower a delay of 0 by default so that it always shows right away).</p>
+
+	<div id="demo2">
+		Hover over this box, and the color will change immediately. However, when you mouseout, there will be a delay in changing the color back to normal, and any time until that happens, you can move your mouse back over the box and it will prevent the color change from happening.
+	</div>
+
+	<div class="aui-ctrl-holder">
+		<label for="username">Number</label>
+		<input class="aui-text-input" id="longNumber" name="longNumber" type="text" />
+		<p class="aui-form-hint">
+			<span>Type a long number here, and the validation will only happen once you stop typing for a small period of time.</span>
+		</p>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'aui-base',
+	'aui-debounce',
+	function(A) {
+		var demo = A.one('#demo');
+		var demoInput = A.one('#demoInput');
+		var demoKeypressCountNode = demo.one('.keypress span');
+		var demoDebouncedCountNode = demo.one('.debounce span');
+
+		var demoKeypressCount = 0;
+		var demoDebouncedCount = 0;
+
+		demoInput.on('keypress', function(event) {
+			demoKeypressCountNode.text(++demoKeypressCount);
+		});
+
+		demoInput.on('keypress', A.debounce(
+			function(event) {
+				demoDebouncedCountNode.text(++demoDebouncedCount);
+			},
+			500
+		));
+
+		var demoNode2 = A.one('#demo2');
+
+		var focusFn = A.debounce(
+			function(event) {
+				demoNode2.addClass('aui-demo-hover');
+			}
+		);
+
+		var blurFn = A.debounce(
+			function(event) {
+				demoNode2.removeClass('aui-demo-hover', demoNode2.get('className'));
+			},
+			1000
+		);
+
+		demoNode2.on('mouseover',
+			function(event) {
+				blurFn.cancel();
+				focusFn(event);
+			}
+		);
+
+		demoNode2.on('mouseout',
+			function(event) {
+				focusFn.cancel();
+				blurFn.delay(1000);
+			}
+		);
+
+		var inputNode = A.one('#longNumber');
+		var symbol = A.Node.create('<span class="aui-button aui-button-content aui-icon-button aui-helper-hidden"><span class="aui-icon"></span></span>');
+
+		inputNode.get('parentNode').insertBefore(symbol, inputNode.get('nextSibling'));
+
+		// Create a debounced version of the symbol.hide() method
+		// with a 1 second delay, and that fires in the context of "symbol"
+		var hideSymbolFn = A.debounce(symbol.hide, 1000, symbol);
+
+		inputNode.on(
+			'keypress',
+			A.debounce(
+				function(event) {
+					var value = A.Lang.trim(this.get('value'));
+
+					if (value.length) {
+						var childIcon = symbol.get('firstChild');
+
+						symbol.show();
+
+						if (/^[0-9]+$/.test(value)) {
+							childIcon.removeClass('aui-icon-alert');
+							childIcon.addClass('aui-icon-circle-check');
+						}
+						else {
+							childIcon.addClass('aui-icon-alert');
+							childIcon.removeClass('aui-icon-circle-check');
+						}
+
+						hideSymbolFn();
+					}
+					else {
+						hideSymbolFn.cancel();
+					}
+				},
+				500
+			)
+		);
+	}
+);
+
+</script>
+
+</body>
+</html>
