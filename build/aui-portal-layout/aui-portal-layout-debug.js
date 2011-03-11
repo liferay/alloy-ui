@@ -182,7 +182,7 @@ var PortalLayout = A.Component.create(
 			},
 
 			dropNodes: {
-				setter: nodeListSetter
+				setter: '_setDropNodes'
 			},
 
 			groups: {
@@ -704,6 +704,16 @@ var PortalLayout = A.Component.create(
 				instance.lastActiveDrop = null;
 
 				instance.activeDrop = DDM.activeDrop;
+			},
+
+			_setDropNodes: function(val) {
+				var instance = this;
+
+				if (isFunction(val)) {
+					val = val.call(instance);
+				}
+
+				return nodeListSetter(val);
 			}
 		}
 	}
@@ -711,4 +721,4 @@ var PortalLayout = A.Component.create(
 
 A.PortalLayout = PortalLayout;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy'], skinnable:true});
