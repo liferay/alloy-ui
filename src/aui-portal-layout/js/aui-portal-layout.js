@@ -181,7 +181,7 @@ var PortalLayout = A.Component.create(
 			},
 
 			dropNodes: {
-				setter: nodeListSetter
+				setter: '_setDropNodes'
 			},
 
 			groups: {
@@ -703,6 +703,16 @@ var PortalLayout = A.Component.create(
 				instance.lastActiveDrop = null;
 
 				instance.activeDrop = DDM.activeDrop;
+			},
+
+			_setDropNodes: function(val) {
+				var instance = this;
+
+				if (isFunction(val)) {
+					val = val.call(instance);
+				}
+
+				return nodeListSetter(val);
 			}
 		}
 	}
