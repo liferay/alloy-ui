@@ -742,7 +742,7 @@ body {
 }
 
 .aui-field-content:after,
-.aui-button-holder:after, {
+.aui-button-holder:after {
 	clear: both;
 	content: " ";
 	display: block;
