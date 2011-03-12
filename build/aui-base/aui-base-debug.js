@@ -16,7 +16,7 @@
                 modules: {
 						'aui-aria': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
-						'aui-base': {requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
+						'aui-base': {requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','event','oop'], skinnable:false},
 						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
 						'aui-calendar': {requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true},
 						'aui-carousel': {requires:['aui-base','anim'], skinnable:true},
@@ -635,4 +635,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-delayed-task','aui-selector','event','oop'], skinnable:false});
+}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','event','oop'], skinnable:false});
