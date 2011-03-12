@@ -49,17 +49,8 @@ var Video = A.Component.create(
 			renderUI: function () {
 				var instance = this;
 
-				instance._renderVideoTask = new A.DelayedTask(
-					function () {
-						instance._renderVideo();
-					}
-				);
-
-				instance._renderSwfTask = new A.DelayedTask(
-					function () {
-						instance._renderSwf();
-					}
-				);
+				instance._renderVideoTask = A.debounce(instance._renderVideo, 1, instance);
+				instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
 				instance._renderVideo(!instance.get('ogvUrl'));
 			},
@@ -159,13 +150,13 @@ var Video = A.Component.create(
 			_uiSetFixedAttributes: function (val) {
 				var instance = this;
 
-				instance._renderSwfTask.delay(1);
+				instance._renderSwfTask();
 			},
 
 			_uiSetFlashVars: function (val) {
 				var instance = this;
 
-				instance._renderSwfTask.delay(1);
+				instance._renderSwfTask();
 			},
 
 			_uiSetOgvUrl: function (val) {
@@ -179,11 +170,11 @@ var Video = A.Component.create(
 					if ((!val && usingVideo) || (val && !usingVideo)) {
 						video.remove(true);
 
-						instance._renderVideoTask(1, null, null, [!val]);
+						instance._renderVideoTask(!val);
 					}
 
 					if (!val) {
-						instance._renderSwfTask.delay(1);
+						instance._renderSwfTask();
 					}
 					else {
 						var sourceOgv = instance._sourceOgv;
@@ -210,13 +201,13 @@ var Video = A.Component.create(
 					video.setAttribute('poster', val);
 				}
 
-				instance._renderSwfTask.delay(1);
+				instance._renderSwfTask();
 			},
 
 			_uiSetSwfUrl: function (val) {
 				var instance = this;
 
-				instance._renderSwfTask.delay(1);
+				instance._renderSwfTask();
 			},
 
 			_uiSetUrl: function (val) {
@@ -249,7 +240,7 @@ var Video = A.Component.create(
 					}
 				}
 
-				instance._renderSwfTask.delay(1);
+				instance._renderSwfTask();
 			},
 
 			_usingVideo: function() {
