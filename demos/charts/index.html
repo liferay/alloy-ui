@@ -163,15 +163,6 @@ AUI().ready(
 				renderUI: function() {
 					var instance = this;
 
-					instance._validateTask = new A.DelayedTask(
-						function(field) {
-							var value = field.val() || '';
-
-							instance.set(field.get('id'), value, {src: A.Widget.UI_SRC});
-						},
-						instance
-					);
-
 					instance._output = A.Node.create(TPL_OUTPUT_CONTAINER);
 
 					var contentBox = instance.get('contentBox');
@@ -206,6 +197,8 @@ AUI().ready(
 
 				bindUI: function() {
 					var instance = this;
+
+					instance._onKeyUp = A.debounce(instance._onKeyUpFn, 250, instance);
 
 					instance._amountField.on('keypress', instance._onKeyUp, instance);
 					instance._interestField.on('keypress', instance._onKeyUp, instance);
@@ -346,10 +339,15 @@ AUI().ready(
 					return instance._output.one('#' + obj.id);
 				},
 
-				_onKeyUp: function(event) {
+				_onKeyUpFn: function(event) {
 					var instance = this;
 
-					instance._validateTask.delay(250, null, null, event.currentTarget);
+					var field = event.currentTarget;
+					var time = (+new Date);
+
+					var value = field.val() || '';
+
+					instance.set(field.get('id'), value, {src: A.Widget.UI_SRC});
 				},
 
 				_updateOutputField: function(field, value) {
