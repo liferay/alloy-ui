@@ -456,12 +456,8 @@ A.mix(NODE_PROTOTYPE, {
 
 		instance._hoverOptions = hoverOptions;
 
-		var overTask = new A.DelayedTask(instance._hoverOverTaskFn, instance);
-
-		var outTask = new A.DelayedTask(instance._hoverOutTaskFn, instance);
-
-		hoverOptions.overTask = overTask;
-		hoverOptions.outTask = outTask;
+		hoverOptions.overTask = A.debounce(instance._hoverOverTaskFn, null, instance);
+		hoverOptions.outTask = A.debounce(instance._hoverOutTaskFn, null, instance);
 
 		instance.on(hoverOptions.overEventType, instance._hoverOverHandler, instance);
 		instance.on(hoverOptions.outEventType, instance._hoverOutHandler, instance);
@@ -919,7 +915,7 @@ A.mix(NODE_PROTOTYPE, {
 
 		var hoverOptions = instance._hoverOptions;
 
-		hoverOptions.outTask.delay(hoverOptions.outDelay, null, null, [event]);
+		hoverOptions.outTask.delay(hoverOptions.outDelay, event);
 	},
 
 	/**
@@ -934,7 +930,7 @@ A.mix(NODE_PROTOTYPE, {
 
 		var hoverOptions = instance._hoverOptions;
 
-		hoverOptions.overTask.delay(hoverOptions.overDelay, null, null, [event]);
+		hoverOptions.overTask.delay(hoverOptions.overDelay, event);
 	},
 
 	/**
