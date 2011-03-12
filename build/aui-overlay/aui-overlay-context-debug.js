@@ -241,8 +241,8 @@ var OverlayContext = A.Component.create(
 		constructor: function(config) {
 			var instance = this;
 
-			instance._hideTask = new A.DelayedTask(instance.hide, instance);
-			instance._showTask = new A.DelayedTask(instance.show, instance);
+			instance._hideTask = A.debounce(instance.hide, null, instance);
+			instance._showTask = A.debounce(instance.show, null, instance);
 
 			instance._showCallback = null;
 			instance._hideCallback = null;
@@ -323,10 +323,10 @@ var OverlayContext = A.Component.create(
 				var instance = this;
 
 				if (instance.get(VISIBLE)) {
-					instance._hideTask.delay( instance.get(HIDE_DELAY), null, null, [event] );
+					instance._hideTask.delay(instance.get(HIDE_DELAY), event);
 				}
 				else {
-					instance._showTask.delay( instance.get(SHOW_DELAY), null, null, [event] );
+					instance._showTask.delay(instance.get(SHOW_DELAY), event);
 				}
 			},
 
@@ -551,7 +551,7 @@ var OverlayContext = A.Component.create(
 				var focused = instance.get(FOCUSED);
 
 				if (!focused && !cancellableHide) {
-					instance._hideTask.delay( instance.get(HIDE_DELAY) );
+					instance._hideTask.delay(instance.get(HIDE_DELAY));
 				}
 			},
 
@@ -606,7 +606,7 @@ var OverlayContext = A.Component.create(
 					var delay = instance.get(HIDE_DELAY);
 
 					instance._hideCallback = function(event) {
-						instance._hideTask.delay(delay, null, null, [event]);
+						instance._hideTask.delay(delay, event);
 
 						event.stopPropagation();
 					};
@@ -664,7 +664,7 @@ var OverlayContext = A.Component.create(
 					var delay = instance.get(SHOW_DELAY);
 
 					instance._showCallback = function(event) {
-						instance._showTask.delay(delay, null, null, [event]);
+						instance._showTask.delay(delay, event);
 
 						event.stopPropagation();
 					};
