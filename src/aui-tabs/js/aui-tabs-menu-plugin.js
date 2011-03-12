@@ -50,8 +50,8 @@ var TabViewMenu = A.Component.create(
 				instance.afterHostMethod('_onActiveTabChange', instance._onActiveTabChange);
 				instance.afterHostMethod('_renderTabs', instance._renderTabs);
 
-				instance._updateMenuTask = new A.DelayedTask(instance._updateMenu, instance);
-				instance._updateUITask = new A.DelayedTask(instance._updateUI, instance);
+				instance._updateMenuTask = A.debounce(instance._updateMenu, 1, instance);
+				instance._updateUITask = A.debounce(instance._updateUI, 1, instance);
 			},
 
 			bindUI: function() {
@@ -79,7 +79,7 @@ var TabViewMenu = A.Component.create(
 					parseFloat(listNode.getComputedStyle('marginRight'))
 				);
 
-				instance._updateUITask.delay(1);
+				instance._updateUITask();
 			},
 
 			addTab: function(tab, index) {
@@ -88,7 +88,7 @@ var TabViewMenu = A.Component.create(
 				var host = instance.get(HOST);
 
 				if (host.get(RENDERED)) {
-					instance._updateUITask.delay(1);
+					instance._updateUITask();
 				}
 			},
 
@@ -98,14 +98,14 @@ var TabViewMenu = A.Component.create(
 				var host = instance.get(HOST);
 
 				if (host.get(RENDERED)) {
-					instance._updateUITask.delay(1);
+					instance._updateUITask();
 				}
 			},
 
 			selectTab: function(index) {
 				var instance = this;
 
-				instance._updateMenuTask.delay(1);
+				instance._updateMenuTask();
 
 				instance.fire(
 					'selectTab',
@@ -134,7 +134,7 @@ var TabViewMenu = A.Component.create(
 			_onActiveTabChange: function(event) {
 				var instance = this;
 
-				instance._updateMenuTask.delay(1);
+				instance._updateMenuTask();
 			},
 
 			_onWindowResize: function(event) {
@@ -145,10 +145,10 @@ var TabViewMenu = A.Component.create(
 
 					instance._contentWidth = contentNode.get('offsetWidth') - instance._listNodeOuterWidth;
 
-					instance._updateMenuTask.delay(1);
+					instance._updateMenuTask();
 				}
 				else {
-					instance._updateUITask.delay(1);
+					instance._updateUITask();
 				}
 			},
 
@@ -340,7 +340,7 @@ var TabViewMenu = A.Component.create(
 						instance._renderMenu();
 					}
 
-					instance._updateMenuTask.delay(1);
+					instance._updateMenuTask();
 				}
 			}
 		}
