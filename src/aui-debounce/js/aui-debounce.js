@@ -24,7 +24,7 @@ A.debounce = function(fn, delay, context, args) {
 	var delayFn = function(delayTime, newArgs, newContext, newFn) {
 		wrapped.cancel();
 
-		delayTime = delayTime || delay;
+		delayTime = !Lang.isUndefined(delayTime) ? delayTime : delay;
 
 		fn = newFn || fn;
 		context = newContext || context;
