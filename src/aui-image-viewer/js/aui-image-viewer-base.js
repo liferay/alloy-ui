@@ -971,30 +971,17 @@ var ImageViewer = A.Component.create(
 				if (!preloadImagePool) {
 					preloadImagePool = instance._preloadImagePool = {};
 
-					instance._clearPreloadImageTask = new A.DelayedTask(instance._clearPreloadImageFn, instance);
-					instance._onPLImageLoadCallback = A.bind(instance._onPLImageLoad, instance);
+					instance._clearPreloadImageTask = A.debounce(instance._clearPreloadImageFn, 50, instance);
 				}
 
 				if (!(src in preloadImagePool)) {
 					var image = new Image();
 
-					image.onload = instance._onPLImageLoadCallback;
+					image.onload = instance._clearPreloadImageTask;
 					image.src = src;
 
 					preloadImagePool[src] = image;
 				}
-			},
-
-			/**
-			 * Fired when the preload image is loaded.
-			 *
-			 * @method _onPLImageLoad
-			 * @protected
-			 */
-			_onPLImageLoad: function() {
-				var instance = this;
-
-				instance._clearPreloadImageTask.delay(50);
 			},
 
 			/**
