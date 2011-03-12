@@ -868,7 +868,7 @@ var AutoComplete = A.Component.create(
 			_createDataSource: function() {
 				var instance = this;
 
-				instance._queryTask = new A.DelayedTask(instance.sendQuery, instance);
+				instance._queryTask = A.debounce(instance.sendQuery, instance.get('queryDelay'), instance);
 
 				var dataSource = instance.get('dataSource');
 				var data = dataSource;
@@ -1588,7 +1588,7 @@ var AutoComplete = A.Component.create(
 					return;
 				}
 
-				instance._queryTask.delay(instance.get('queryDelay'), null, null, [value]);
+				instance._queryTask(value);
 			},
 
 			/**
