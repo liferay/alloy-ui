@@ -1,4 +1,6 @@
 AUI.add('aui-debounce', function(A) {
+var Lang = A.Lang;
+
 var DEFAULT_ARGS = [];
 
 A.debounce = function(fn, delay, context, args) {
@@ -6,7 +8,7 @@ A.debounce = function(fn, delay, context, args) {
 
 	delay = delay || 0;
 
-	args = args ? A.Array(args) : DEFAULT_ARGS;
+	args = !Lang.isUndefined(args) ? A.Array(args) : DEFAULT_ARGS;
 
 	var clearFn = function() {
 		clearInterval(id);
@@ -28,7 +30,7 @@ A.debounce = function(fn, delay, context, args) {
 		fn = newFn || fn;
 		context = newContext || context;
 
-		args = newArgs ? A.Array(newArgs) : args;
+		args = !Lang.isUndefined(newArgs) ? A.Array(newArgs) : args;
 
 		if (delayTime > 0) {
 			id = setInterval(base, delayTime);
@@ -45,7 +47,9 @@ A.debounce = function(fn, delay, context, args) {
 	};
 
 	var wrapped = function() {
-		return wrapped.delay(delay, arguments, context || this);
+		var currentArgs = arguments.length ? arguments : args;
+
+		return wrapped.delay(delay, currentArgs, context || this);
 	};
 
 	wrapped.cancel = cancelFn;
