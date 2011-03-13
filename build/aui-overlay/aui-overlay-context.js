@@ -170,7 +170,10 @@ var OverlayContext = A.Component.create(
 			 * @type Number
 			 */
 			hideDelay: {
-				value: 0
+				lazyAdd: false,
+				setter: '_setHideDelay',
+				value: 0,
+				validator: isNumber
 			},
 
 			/**
@@ -197,6 +200,8 @@ var OverlayContext = A.Component.create(
 			 * @type Number
 			 */
 			showDelay: {
+				lazyAdd: false,
+				setter: '_setShowDelay',
 				value: 0,
 				validator: isNumber
 			},
@@ -240,9 +245,6 @@ var OverlayContext = A.Component.create(
 
 		constructor: function(config) {
 			var instance = this;
-
-			instance._hideTask = A.debounce(instance.hide, null, instance);
-			instance._showTask = A.debounce(instance.show, null, instance);
 
 			instance._showCallback = null;
 			instance._hideCallback = null;
@@ -323,10 +325,10 @@ var OverlayContext = A.Component.create(
 				var instance = this;
 
 				if (instance.get(VISIBLE)) {
-					instance._hideTask.delay(instance.get(HIDE_DELAY), event);
+					instance._hideTask(event);
 				}
 				else {
-					instance._showTask.delay(instance.get(SHOW_DELAY), event);
+					instance._showTask(event);
 				}
 			},
 
@@ -391,7 +393,7 @@ var OverlayContext = A.Component.create(
 		     * <a href="OverlayContext.html#method_toggle">toggle</a>.
 			 *
 			 * @method _toggle
-			 * @param {EventFacade} event 
+			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_toggle: function(event) {
@@ -523,7 +525,7 @@ var OverlayContext = A.Component.create(
 			/**
 			 * Cancel hide event if the user does some interaction with the
 		     * OverlayContext (focus, click or mouseover).
-			 * 
+			 *
 			 * @method _cancelAutoHide
 			 * @param {EventFacade} event
 			 * @protected
@@ -540,7 +542,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Invoke the hide event when the OverlayContext looses the focus.
-			 * 
+			 *
 			 * @method _invokeHideTaskOnInteraction
 			 * @param {EventFacade} event
 			 * @protected
@@ -551,7 +553,7 @@ var OverlayContext = A.Component.create(
 				var focused = instance.get(FOCUSED);
 
 				if (!focused && !cancellableHide) {
-					instance._hideTask.delay(instance.get(HIDE_DELAY));
+					instance._hideTask();
 				}
 			},
 
@@ -573,13 +575,31 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Helper method to invoke event.stopPropagation().
-			 * 
+			 *
 			 * @method _stopTriggerEventPropagation
 			 * @param {EventFacade} event
 			 * @protected
 			 */
 			_stopTriggerEventPropagation: function(event) {
 				event.stopPropagation();
+			},
+
+			/**
+			 * Setter for the
+		     * <a href="OverlayContext.html#config_hideDelay">hideDelay</a>
+		     * attribute.
+			 *
+			 * @method _setHideDelay
+			 * @param {number} val
+			 * @protected
+			 * @return {number}
+			 */
+			_setHideDelay: function(val) {
+				var instance = this;
+
+				instance._hideTask = A.debounce(instance.hide, val, instance);
+
+				return val;
 			},
 
 			/**
@@ -606,7 +626,7 @@ var OverlayContext = A.Component.create(
 					var delay = instance.get(HIDE_DELAY);
 
 					instance._hideCallback = function(event) {
-						instance._hideTask.delay(delay, event);
+						instance._hideTask(event);
 
 						event.stopPropagation();
 					};
@@ -641,6 +661,24 @@ var OverlayContext = A.Component.create(
 			},
 
 			/**
+			 * Setter for the
+		     * <a href="OverlayContext.html#config_showDelay">showDelay</a>
+		     * attribute.
+			 *
+			 * @method _setShowDelay
+			 * @param {number} val
+			 * @protected
+			 * @return {number}
+			 */
+			_setShowDelay: function(val) {
+				var instance = this;
+
+				instance._showTask = A.debounce(instance.show, val, instance);
+
+				return val;
+			},
+
+			/**
 			 * Setter for the <a href="OverlayContext.html#config_showOn">showOn</a>
 		     * attribute.
 			 *
@@ -664,7 +702,7 @@ var OverlayContext = A.Component.create(
 					var delay = instance.get(SHOW_DELAY);
 
 					instance._showCallback = function(event) {
-						instance._showTask.delay(delay, event);
+						instance._showTask(event);
 
 						event.stopPropagation();
 					};
