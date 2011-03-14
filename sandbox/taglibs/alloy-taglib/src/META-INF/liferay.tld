@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+
 <taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd">
 	<tlib-version>1.0</tlib-version>
 	<short-name>liferay</short-name>
@@ -56,7 +57,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a> 
+			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a>
 method will be run on the response from the data source.]]></description>
 			<name>applyLocalFilter</name>
 			<required>false</required>
@@ -72,8 +73,8 @@ made visible.]]></description>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning 
-of a Widget as well as a containing element for any decorator elements used 
+			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning
+of a Widget as well as a containing element for any decorator elements used
 for skinning.]]></description>
 			<name>boundingBox</name>
 			<required>false</required>
@@ -88,7 +89,7 @@ for skinning.]]></description>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that 
+			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that
 houses its content.]]></description>
 			<name>contentBox</name>
 			<required>false</required>
@@ -145,7 +146,7 @@ is left to the specific classes extending widget.]]></description>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants, 
+			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants,
 has focus.]]></description>
 			<name>focused</name>
 			<required>false</required>
@@ -254,7 +255,7 @@ instead of just matching just items that start with the query.]]></description>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and 
+			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 the encoded query string. To prevent this behavior, you can
 set this value to false. If you need to customize this even further, you
 can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.]]></description>
@@ -315,11 +316,11 @@ has been through the render lifecycle phase.]]></description>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Number (between -32767 to 32767) indicating the widget's 
-position in the default tab flow.  The value is used to set the 
+			<description><![CDATA[Number (between -32767 to 32767) indicating the widget's
+position in the default tab flow.  The value is used to set the
 "tabIndex" attribute on the widget's bounding box.  Negative values allow
 the widget to receive DOM focus programmatically (by calling the focus
-method), while being removed from the default tab flow.  A value of 
+method), while being removed from the default tab flow.  A value of
 null removes the "tabIndex" attribute from the widget's bounding box.]]></description>
 			<name>tabIndex</name>
 			<required>false</required>
@@ -327,8 +328,8 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the 
-input field should be automatically updated with the first result as the user types, 
+			<description><![CDATA[If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
+input field should be automatically updated with the first result as the user types,
 automatically selecting the portion of the text the user has not typed yet.]]></description>
 			<name>typeAhead</name>
 			<required>false</required>
@@ -336,7 +337,7 @@ automatically selecting the portion of the text the user has not typed yet.]]></
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds 
+			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 to delay before updating the input. In order to prevent certain race conditions, this value must
 always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.]]></description>
 			<name>typeAheadDelay</name>

@@ -288,7 +288,7 @@ public class TagBuilder {
 				outputDoc = _mergeTlds(SAXReaderUtil.read(tldFile), outputDoc);
 			}
 
-			_writeFile(tldFile, outputDoc.asXML());
+			_writeFile(tldFile, outputDoc.formattedString());
 		}
 	}
 
