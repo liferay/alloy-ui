@@ -46,7 +46,6 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	</#list>
-
 	protected void cleanUp() {
 	<#list component.getAttributesAndEvents() as attribute>
 		<#compress>
