@@ -1761,7 +1761,6 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
-
 	protected void cleanUp() {
 		_align = null;
 		_anim = true;

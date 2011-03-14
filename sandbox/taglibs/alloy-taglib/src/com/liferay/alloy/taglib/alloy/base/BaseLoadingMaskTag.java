@@ -251,7 +251,6 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTargetChange", onTargetChange);
 	}
 
-
 	protected void cleanUp() {
 		_destroyed = false;
 		_host = null;

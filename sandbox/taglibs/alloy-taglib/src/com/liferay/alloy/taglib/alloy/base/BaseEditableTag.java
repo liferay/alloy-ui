@@ -1001,7 +1001,6 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_boundingBox = null;
 		_cancelButton = null;

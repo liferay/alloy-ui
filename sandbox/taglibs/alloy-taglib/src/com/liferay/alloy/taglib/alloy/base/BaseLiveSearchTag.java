@@ -371,7 +371,6 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onShowChange", onShowChange);
 	}
 
-
 	protected void cleanUp() {
 		_data = null;
 		_delay = 250;

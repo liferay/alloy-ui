@@ -851,7 +851,6 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
 	}
 
-
 	protected void cleanUp() {
 		_alwaysShowHitArea = true;
 		_cache = true;

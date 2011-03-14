@@ -1401,7 +1401,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
-
 	protected void cleanUp() {
 		_align = null;
 		_anim = null;

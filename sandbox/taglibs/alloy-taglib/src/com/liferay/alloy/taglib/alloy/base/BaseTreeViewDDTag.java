@@ -581,7 +581,6 @@ public class BaseTreeViewDDTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
-
 	protected void cleanUp() {
 		_checkContainerEl = null;
 		_checkEl = null;

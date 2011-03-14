@@ -61,7 +61,6 @@ public class BaseScriptTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("use", use);
 	}
 
-
 	protected void cleanUp() {
 		_position = null;
 		_printBuffer = null;

@@ -81,7 +81,6 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("attrInteger", attrInteger);
 	}
 
-
 	protected void cleanUp() {
 		_test = null;
 		_attrBooleanPrimitive = false;

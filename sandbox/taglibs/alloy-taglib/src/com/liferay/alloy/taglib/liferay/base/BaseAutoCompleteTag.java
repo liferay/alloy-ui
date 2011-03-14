@@ -1681,7 +1681,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_alwaysShowContainer = null;
 		_test = null;

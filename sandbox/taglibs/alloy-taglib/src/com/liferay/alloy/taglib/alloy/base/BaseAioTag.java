@@ -31,7 +31,6 @@ public class BaseAioTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-
 	protected void cleanUp() {
 	}
 

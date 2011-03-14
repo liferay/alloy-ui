@@ -311,7 +311,6 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
-
 	protected void cleanUp() {
 		_children = null;
 		_container = null;

@@ -111,7 +111,6 @@ public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("options", options);
 	}
 
-
 	protected void cleanUp() {
 		_defineVar = true;
 		_excludeAttributes = null;

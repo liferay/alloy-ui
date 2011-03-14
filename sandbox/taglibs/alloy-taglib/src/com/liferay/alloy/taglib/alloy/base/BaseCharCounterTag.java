@@ -221,7 +221,6 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onMaxLengthChange", onMaxLengthChange);
 	}
 
-
 	protected void cleanUp() {
 		_counter = null;
 		_destroyed = false;

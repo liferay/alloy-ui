@@ -1371,7 +1371,6 @@ public class BaseOverlayContextPanelTag extends com.liferay.taglib.util.IncludeT
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
-
 	protected void cleanUp() {
 		_align = null;
 		_anim = null;

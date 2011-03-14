@@ -1071,7 +1071,6 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
-
 	protected void cleanUp() {
 		_appendOrder = null;
 		_boundingBox = null;

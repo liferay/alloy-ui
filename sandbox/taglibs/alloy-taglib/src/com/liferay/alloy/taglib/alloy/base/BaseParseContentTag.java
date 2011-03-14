@@ -161,7 +161,6 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-
 	protected void cleanUp() {
 		_destroyed = false;
 		_host = null;

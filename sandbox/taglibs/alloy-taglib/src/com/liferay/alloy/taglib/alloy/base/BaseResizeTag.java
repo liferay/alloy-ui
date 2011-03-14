@@ -801,7 +801,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWrapperChange", onWrapperChange);
 	}
 
-
 	protected void cleanUp() {
 		_activeHandle = null;
 		_activeHandleEl = null;

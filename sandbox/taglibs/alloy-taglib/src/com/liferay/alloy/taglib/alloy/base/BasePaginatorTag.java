@@ -911,7 +911,6 @@ public class BasePaginatorTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTotalPagesChange", onTotalPagesChange);
 	}
 
-
 	protected void cleanUp() {
 		_alwaysVisible = true;
 		_containers = null;

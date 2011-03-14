@@ -1671,7 +1671,6 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_alwaysShowContainer = false;
 		_applyLocalFilter = true;

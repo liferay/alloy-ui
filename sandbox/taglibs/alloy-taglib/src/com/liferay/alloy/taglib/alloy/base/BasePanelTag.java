@@ -861,7 +861,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_panelBodyContent = null;
 		_boundingBox = null;

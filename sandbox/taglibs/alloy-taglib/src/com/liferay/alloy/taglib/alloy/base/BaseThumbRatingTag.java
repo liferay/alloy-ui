@@ -1041,7 +1041,6 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_boundingBox = null;
 		_canReset = true;

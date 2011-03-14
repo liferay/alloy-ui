@@ -791,7 +791,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onXdrChange", onXdrChange);
 	}
 
-
 	protected void cleanUp() {
 		_active = false;
 		_arguments = null;

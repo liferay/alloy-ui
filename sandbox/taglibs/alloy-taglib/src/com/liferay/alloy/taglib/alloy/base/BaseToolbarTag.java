@@ -931,7 +931,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
-
 	protected void cleanUp() {
 		_activeDescendant = null;
 		_activeState = false;

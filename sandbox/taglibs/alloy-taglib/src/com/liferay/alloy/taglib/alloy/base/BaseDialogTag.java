@@ -1431,7 +1431,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
-
 	protected void cleanUp() {
 		_align = null;
 		_dialogBodyContent = null;
