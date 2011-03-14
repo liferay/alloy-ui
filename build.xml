@@ -541,6 +541,37 @@
 		</subant>
 		<!-- /End Patch for AUI-297 -->
 
+		<!-- Patch for AUI-363 -->
+		<replace file="${project.dir}/lib/yui3/src/dd/js/delegate.js">
+			<replacetoken><![CDATA[this.dd.on('dragNodeChange', Y.bind(this._onNodeChange, this));]]></replacetoken>
+			  <replacevalue><![CDATA[this.dd.on('dragNodeChange', Y.bind(this._onNodeChange, this));
+            this.dd.after('drag:mouseup', function() {
+                this._unprep();
+            });]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
+			<replacetoken><![CDATA[_handleMouseUp: function(ev) {]]></replacetoken>
+			  <replacevalue><![CDATA[_handleMouseUp: function(ev) {
+            this.fire('drag:mouseup');]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/dd/js/drag.js">
+			<replacetoken><![CDATA[node.addClass(DDM.CSS_PREFIX + '-draggable');
+
+            node.addClass(DDM.CSS_PREFIX + '-draggable');]]></replacetoken>
+			  <replacevalue><![CDATA[node.addClass(DDM.CSS_PREFIX + '-draggable');]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/dd"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-363 -->
+
 	</target>
 
 	<target name="release" depends="clean-release">
