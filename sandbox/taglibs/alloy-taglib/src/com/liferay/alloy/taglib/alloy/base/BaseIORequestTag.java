@@ -21,6 +21,7 @@ import javax.servlet.jsp.JspException;
  * @author Eduardo Lundgren
  * @author Bruno Basto
  * @author Nathan Cavanaugh
+ * @generated
  */
 public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 

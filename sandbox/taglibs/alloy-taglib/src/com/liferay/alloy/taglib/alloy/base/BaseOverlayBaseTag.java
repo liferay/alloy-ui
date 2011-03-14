@@ -21,6 +21,7 @@ import javax.servlet.jsp.JspException;
  * @author Eduardo Lundgren
  * @author Bruno Basto
  * @author Nathan Cavanaugh
+ * @generated
  */
 public class BaseOverlayBaseTag extends com.liferay.taglib.util.IncludeTag {
 
