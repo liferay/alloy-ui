@@ -32,9 +32,8 @@ public class TagBuilder {
 
 	public TagBuilder(
 			String componentsXML, String componentsExtXML, String templatesDir,
-			String javaOutputDir, String javaOutputPackage,	String jspDir,
-			String jspOutputDir, String jspCommonInitPath,
-			String jspCommonInitOutputDir, String tldDir)
+			String javaOutputDir, String docrootDir, String javaOutputPackage,
+			String jspDir, String jspCommonInitPath, String tldDir)
 		throws Exception {
 
 		if (SAXReaderUtil.getSAXReader() == null) {
@@ -45,11 +44,10 @@ public class TagBuilder {
 		_componentsXML = componentsXML;
 		_templatesDir = templatesDir;
 		_javaOutputDir = javaOutputDir;
+		_docrootDir = docrootDir;
 		_javaOutputPackage = javaOutputPackage;
 		_jspDir = jspDir;
-		_jspOutputDir = jspOutputDir;
 		_jspCommonInitPath = jspCommonInitPath;
-		_jspCommonInitOutputDir = jspCommonInitOutputDir;
 		_tldDir = tldDir;
 
 		_tplTld = _templatesDir + "tld.ftl";
@@ -82,15 +80,13 @@ public class TagBuilder {
 		String javaOutputDir = System.getProperty("tagbuilder.java.output.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
 		String jspDir = System.getProperty("tagbuilder.jsp.dir");
-		String jspCommonInitOutputDir = System.getProperty("tagbuilder.jsp.common.init.output.dir");
 		String jspCommonInitPath = System.getProperty("tagbuilder.jsp.common.init.path");
-		String jspOutputDir = System.getProperty("tagbuilder.jsp.output.dir");
 		String tldDir = System.getProperty("tagbuilder.tld.dir");
+		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 
 		new TagBuilder(
 			componentsXML, componentsExtXML, templatesDir, javaOutputDir,
-			javaOutputPackage, jspDir, jspOutputDir, jspCommonInitPath,
-			jspCommonInitOutputDir,  tldDir);
+			docrootDir, javaOutputPackage, jspDir, jspCommonInitPath, tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
@@ -137,7 +133,9 @@ public class TagBuilder {
 	public String getJspOutputDir(Component component) {
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(_jspOutputDir);
+		sb.append(_docrootDir);
+		sb.append(StringPool.SLASH);
+		sb.append(_jspDir);
 		sb.append(component.getPackage());
 		sb.append(StringPool.SLASH);
 
@@ -195,7 +193,14 @@ public class TagBuilder {
 
 		String contentCommonInitJsp = _processTemplate(_tplCommonInitJsp, context);
 
-		File commonInitFile = new File(_jspCommonInitOutputDir);
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_docrootDir);
+		sb.append(StringPool.SLASH);
+		sb.append(_jspCommonInitPath);
+
+		File commonInitFile = new File(sb.toString());
+
 		_writeFile(commonInitFile, contentCommonInitJsp, false);
 	}
 
@@ -656,11 +661,10 @@ public class TagBuilder {
 	private List<String> _componentsExtXML;
 	private String _componentsXML;
 	private String _javaOutputDir;
+	private String _docrootDir;
 	private String _javaOutputPackage;
 	private String _jspDir;
-	private String _jspOutputDir;
 	private String _jspCommonInitPath;
-	private String _jspCommonInitOutputDir;
 	private String _templatesDir;
 	private String _tldDir;
 	private String _tplCommonInitJsp;
