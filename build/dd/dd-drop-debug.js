@@ -553,4 +553,4 @@ YUI.add('dd-drop', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-drop', 'dd-drag']});
+}, '3.2.0' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});

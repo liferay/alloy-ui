@@ -415,4 +415,4 @@ YUI.add('dd-ddm-drop', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm']});
+}, '3.2.0' ,{requires:['dd-ddm'], skinnable:false});

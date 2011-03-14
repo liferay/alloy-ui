@@ -355,7 +355,7 @@ YUI.add('dd-ddm-base', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['node', 'base', 'yui-throttle', 'classnamemanager']});
+}, '3.2.0' ,{requires:['node', 'base', 'yui-throttle', 'classnamemanager'], skinnable:false});
 YUI.add('dd-ddm', function(Y) {
 
 
@@ -476,7 +476,7 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});
+}, '3.2.0' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
 YUI.add('dd-ddm-drop', function(Y) {
 
 
@@ -887,7 +887,7 @@ YUI.add('dd-ddm-drop', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm']});
+}, '3.2.0' ,{requires:['dd-ddm'], skinnable:false});
 YUI.add('dd-drag', function(Y) {
 
 
@@ -1572,6 +1572,7 @@ YUI.add('dd-drag', function(Y) {
         * @param {Event.Facade}
         */
         _handleMouseUp: function(ev) {
+            this.fire('drag:mouseup');
             this._fixIEMouseUp();
             if (DDM.activeDrag) {
                 DDM._end();
@@ -1863,8 +1864,6 @@ YUI.add('dd-drag', function(Y) {
             this._dragThreshMet = false;
             var node = this.get(NODE);
             node.addClass(DDM.CSS_PREFIX + '-draggable');
-
-            node.addClass(DDM.CSS_PREFIX + '-draggable');
             node.on(Drag.START_EVENT, Y.bind(this._handleMouseDownEvent, this));
             node.on('mouseup', Y.bind(this._handleMouseUp, this));
             node.on('dragstart', Y.bind(this._fixDragStart, this));
@@ -2113,7 +2112,7 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.2.0' ,{requires:['dd-ddm-base'], skinnable:false});
 YUI.add('dd-proxy', function(Y) {
 
 
@@ -2361,7 +2360,7 @@ YUI.add('dd-proxy', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm', 'dd-drag']});
+}, '3.2.0' ,{requires:['dd-ddm', 'dd-drag'], skinnable:false});
 YUI.add('dd-constrain', function(Y) {
 
 
@@ -2894,7 +2893,7 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-drag']});
+}, '3.2.0' ,{requires:['dd-drag'], skinnable:false});
 YUI.add('dd-scroll', function(Y) {
 
 
@@ -3321,7 +3320,7 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['dd-drag'], skinnable:false, optional:['dd-proxy']});
+}, '3.2.0' ,{optional:['dd-proxy'], skinnable:false, requires:['dd-drag']});
 YUI.add('dd-drop', function(Y) {
 
 
@@ -3869,7 +3868,7 @@ YUI.add('dd-drop', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-drop', 'dd-drag']});
+}, '3.2.0' ,{requires:['dd-ddm-drop', 'dd-drag'], skinnable:false});
 YUI.add('dd-delegate', function(Y) {
 
 
@@ -4004,6 +4003,9 @@ YUI.add('dd-delegate', function(Y) {
             //On end drag, detach the listeners
             this.dd.after('drag:end', Y.bind(this._afterDragEnd, this));
             this.dd.on('dragNodeChange', Y.bind(this._onNodeChange, this));
+            this.dd.after('drag:mouseup', function() {
+                this._unprep();
+            });
 
             //Attach the delegate to the container
             this._handles.push(Y.delegate(Y.DD.Drag.START_EVENT, Y.bind(this._delMouseDown, this), cont, this.get(NODES)));
@@ -4199,7 +4201,7 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.2.0' ,{requires:['dd-drag', 'event-mouseenter'], skinnable:false, optional:['dd-drop-plugin']});
+}, '3.2.0' ,{optional:['dd-drop-plugin'], skinnable:false, requires:['dd-drag', 'event-mouseenter']});
 
 
 YUI.add('dd', function(Y){}, '3.2.0' ,{use:['dd-ddm-base', 'dd-ddm', 'dd-ddm-drop', 'dd-drag', 'dd-proxy', 'dd-constrain', 'dd-drop', 'dd-scroll', 'dd-delegate'], skinnable:false});

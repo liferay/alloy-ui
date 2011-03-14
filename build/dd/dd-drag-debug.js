@@ -690,6 +690,7 @@ YUI.add('dd-drag', function(Y) {
         * @param {Event.Facade}
         */
         _handleMouseUp: function(ev) {
+            this.fire('drag:mouseup');
             this._fixIEMouseUp();
             if (DDM.activeDrag) {
                 DDM._end();
@@ -983,8 +984,6 @@ YUI.add('dd-drag', function(Y) {
             this._dragThreshMet = false;
             var node = this.get(NODE);
             node.addClass(DDM.CSS_PREFIX + '-draggable');
-
-            node.addClass(DDM.CSS_PREFIX + '-draggable');
             node.on(Drag.START_EVENT, Y.bind(this._handleMouseDownEvent, this));
             node.on('mouseup', Y.bind(this._handleMouseUp, this));
             node.on('dragstart', Y.bind(this._fixDragStart, this));
@@ -1233,4 +1232,4 @@ YUI.add('dd-drag', function(Y) {
 
 
 
-}, '3.2.0' ,{skinnable:false, requires:['dd-ddm-base']});
+}, '3.2.0' ,{requires:['dd-ddm-base'], skinnable:false});
