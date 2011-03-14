@@ -31,17 +31,16 @@ import java.util.Map;
 public class TagBuilder {
 
 	public TagBuilder(
-			String componentsXML, String componentsExtXML, String templatesDir,
-			String javaOutputDir, String docrootDir, String javaOutputPackage,
-			String jspDir, String jspCommonInitPath, String tldDir)
+			String componentsXML, String templatesDir, String javaOutputDir,
+			String docrootDir, String javaOutputPackage, String jspDir,
+			String jspCommonInitPath, String tldDir)
 		throws Exception {
 
 		if (SAXReaderUtil.getSAXReader() == null) {
 			(new SAXReaderUtil()).setSAXReader(new SAXReaderImpl());
 		}
 
-		_componentsExtXML = Arrays.asList(StringUtil.split(componentsExtXML));
-		_componentsXML = componentsXML;
+		_componentsXML = Arrays.asList(StringUtil.split(componentsXML));
 		_templatesDir = templatesDir;
 		_javaOutputDir = javaOutputDir;
 		_docrootDir = docrootDir;
@@ -60,9 +59,9 @@ public class TagBuilder {
 
 		_componentsExtDoc = new ArrayList<Document>();
 
-		_componentsDoc = SAXReaderUtil.read(new File(_componentsXML));
+		_componentsDoc = SAXReaderUtil.read("<taglibs></taglibs>");
 
-		for (String componentExtXML : _componentsExtXML) {
+		for (String componentExtXML : _componentsXML) {
 			File extFile = new File(componentExtXML);
 
 			if (extFile.exists()) {
@@ -75,7 +74,6 @@ public class TagBuilder {
 
 	public static void main(String[] args) throws Exception {
 		String componentsXML = System.getProperty("tagbuilder.components.xml");
-		String componentsExtXML = System.getProperty("tagbuilder.components.ext.xml");
 		String templatesDir = System.getProperty("tagbuilder.templates.dir");
 		String javaOutputDir = System.getProperty("tagbuilder.java.output.dir");
 		String javaOutputPackage = System.getProperty("tagbuilder.java.output.package");
@@ -85,8 +83,8 @@ public class TagBuilder {
 		String docrootDir = System.getProperty("tagbuilder.docroot.dir");
 
 		new TagBuilder(
-			componentsXML, componentsExtXML, templatesDir, javaOutputDir,
-			docrootDir, javaOutputPackage, jspDir, jspCommonInitPath, tldDir);
+			componentsXML, templatesDir, javaOutputDir, docrootDir,
+			javaOutputPackage, jspDir, jspCommonInitPath, tldDir);
 	}
 
 	public Map<String, Object> getDefaultTemplateContext() {
@@ -257,7 +255,6 @@ public class TagBuilder {
 		Map<String, Object> context = getDefaultTemplateContext();
 
 		List<Document> documents = new ArrayList<Document>();
-		documents.add(_componentsDoc);
 		documents.addAll(_componentsExtDoc);
 
 		for (Document doc : documents) {
@@ -423,7 +420,6 @@ public class TagBuilder {
 
 	private Document _getComponentsDoc(String name) {
 		List<Document> documents = new ArrayList<Document>();
-		documents.add(_componentsDoc);
 		documents.addAll(_componentsExtDoc);
 
 		for (Document doc : documents) {
@@ -658,8 +654,7 @@ public class TagBuilder {
 
 	private Document _componentsDoc;
 	private List<Document> _componentsExtDoc;
-	private List<String> _componentsExtXML;
-	private String _componentsXML;
+	private List<String> _componentsXML;
 	private String _javaOutputDir;
 	private String _docrootDir;
 	private String _javaOutputPackage;
