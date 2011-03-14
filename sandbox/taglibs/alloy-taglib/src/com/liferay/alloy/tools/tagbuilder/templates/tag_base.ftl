@@ -22,6 +22,7 @@ import javax.servlet.jsp.JspException;
 <#list authors as author>
  * @author ${author}
 </#list>
+ * @generated
  */
 public class Base${component.getSafeName()}Tag extends ${component.getParentClass()} {
 
