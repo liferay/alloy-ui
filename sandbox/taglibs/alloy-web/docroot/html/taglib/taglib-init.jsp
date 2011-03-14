@@ -34,6 +34,8 @@
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 
+<%@ include file="taglib-init-ext.jspf" %>
+
 <%!
 public static ArrayList<Object> _getArrayList(Object obj) {
 	return (ArrayList<Object>)_safeDeserialize(obj);

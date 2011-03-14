@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/html/taglib/init-taglib.jsp" %>
+<%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
 java.lang.String NAMESPACE = "liferay:auto-complete:";
