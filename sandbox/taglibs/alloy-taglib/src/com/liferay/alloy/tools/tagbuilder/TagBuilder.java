@@ -645,7 +645,7 @@ public class TagBuilder {
 	private static final String _END_PAGE = "/end.jsp";
 	private static final String _EVENT = "event";
 	private static final String _EVENTS = "events";
-	private static final String _INIT_EXT_PAGE = "/init-ext.jsp";
+	private static final String _INIT_EXT_PAGE = "/init-ext.jspf";
 	private static final String _INIT_PAGE = "/init.jsp";
 	private static final String _ON = "on";
 	private static final String _PAGE = "/page.jsp";

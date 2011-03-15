@@ -25,8 +25,6 @@
 <%@ include file="${jspCommonInitPath}" %>
 
 <%
-java.lang.String NAMESPACE = "${namespace}";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("${namespace}dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("${namespace}scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("${namespace}customAttributes");
@@ -80,4 +78,8 @@ _updateOptions(_options, "${attribute.getSafeName()}", ${attribute.getSafeName()
 </#list>
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%!
+private static final String _NAMESPACE = "${namespace}";
+%>
+
+<%@ include file="init-ext.jspf" %>
