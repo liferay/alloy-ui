@@ -62,9 +62,9 @@ _options.putAll(dynamicAttributes);
 		</#if>
 
 		<#if outputSimpleClassName == "ArrayList">
-			${attribute.getOutputType()} ${attribute.getSafeName()} = _getArrayList(GetterUtil.getObject(${value}${defaultValueSuffix}));
+			${attribute.getOutputType()} ${attribute.getSafeName()} = _toArrayList(GetterUtil.getObject(${value}${defaultValueSuffix}));
 		<#elseif outputSimpleClassName == "HashMap">
-			${attribute.getOutputType()} ${attribute.getSafeName()} = _getHashMap(GetterUtil.getObject(${value}${defaultValueSuffix}));
+			${attribute.getOutputType()} ${attribute.getSafeName()} = _toHashMap(GetterUtil.getObject(${value}${defaultValueSuffix}));
 		<#elseif hasGetter(outputSimpleClassName)>
 			${attribute.getOutputType()} ${attribute.getSafeName()} = GetterUtil.get${getGetterSuffix(outputSimpleClassName)}(${value}${defaultValueSuffix});
 		<#else>
