@@ -17,7 +17,7 @@ package ${packagePath}.${component.getPackage()};
 import ${packagePath}.${component.getPackage()}.base.Base${component.getSafeName()}Tag;
 
 /**
-<#list authors as author>
+<#list component.getAuthors() as author>
  * @author ${author}
 </#list>
  */

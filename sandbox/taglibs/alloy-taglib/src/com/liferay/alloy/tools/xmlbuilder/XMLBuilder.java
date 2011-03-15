@@ -14,6 +14,18 @@
 
 package com.liferay.alloy.tools.xmlbuilder;
 
+import com.liferay.alloy.tools.model.Attribute;
+import com.liferay.alloy.tools.model.Component;
+import com.liferay.alloy.util.DefaultValueUtil;
+import com.liferay.alloy.util.JSONUtil;
+import com.liferay.alloy.util.TypeUtil;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.util.FileImpl;
+import com.liferay.portal.xml.SAXReaderImpl;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,18 +43,6 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 import org.json.JSONObject;
-
-import com.liferay.alloy.tools.model.Attribute;
-import com.liferay.alloy.tools.model.Component;
-import com.liferay.alloy.util.DefaultValueUtil;
-import com.liferay.alloy.util.JSONUtil;
-import com.liferay.alloy.util.TypeUtil;
-import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.xml.SAXReaderUtil;
-import com.liferay.portal.util.FileImpl;
-import com.liferay.portal.xml.SAXReaderImpl;
 
 /**
  * <a href="XMLBuilder.java.html"><b><i>View Source</i></b></a>
@@ -121,7 +121,8 @@ public class XMLBuilder {
 				getComponentEvents(className));
 
 			Component component = new Component(
-				namespace, name, true, module, bodyContent, attributes, events);
+				namespace, name, true, module, bodyContent, attributes, events,
+				null);
 
 			if (!isExcludedComponent(component)) {
 				components.add(component);

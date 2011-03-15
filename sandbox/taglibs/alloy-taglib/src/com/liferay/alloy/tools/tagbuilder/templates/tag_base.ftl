@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 
 /**
-<#list authors as author>
+<#list component.getAuthors() as author>
  * @author ${author}
 </#list>
  * @generated

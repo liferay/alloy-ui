@@ -90,7 +90,6 @@ public class TagBuilder {
 	public Map<String, Object> getDefaultTemplateContext() {
 		Map<String, Object> context = new HashMap<String, Object>();
 
-		context.put("authors", AUTHORS);
 		context.put("jspCommonInitPath", _jspCommonInitPath);
 		context.put("jspDir", _jspDir);
 		context.put("packagePath", _javaPackage);
@@ -254,10 +253,7 @@ public class TagBuilder {
 	private void _createTld() throws Exception {
 		Map<String, Object> context = getDefaultTemplateContext();
 
-		List<Document> documents = new ArrayList<Document>();
-		documents.addAll(_componentsExtDoc);
-
-		for (Document doc : documents) {
+		for (Document doc : _componentsExtDoc) {
 			Element root = doc.getRootElement();
 			String shortName = GetterUtil.getString(
 				root.attributeValue("short-name"), _DEFAULT_TAGLIB_SHORT_NAME);
@@ -300,7 +296,8 @@ public class TagBuilder {
 			String extDefaultPackage = extRoot.attributeValue("short-name");
 			List<Element> allExtComponentNodes = extRoot.elements("component");
 
-			// Set package on each extNode to not inherit the shot-name from the original document
+			// Set package on each extNode to not inherit the shot-name
+			// from the original document
 			for (Element extNode : allExtComponentNodes) {
 				String extComponentPackage = GetterUtil.getString(
 					extNode.attributeValue("package"), extDefaultPackage);
@@ -315,11 +312,23 @@ public class TagBuilder {
 				componentsDoc = _mergeXMLAttributes(extDoc, parentDoc);
 			}
 
-			List<Element> extComponents =
-				componentsDoc.getRootElement().elements("component");
+			Element extRootAuthors = extRoot.element(_AUTHORS);
+
+			List<Element> extComponents = extRoot.elements("component");
 
 			for (Element extComponent : extComponents) {
-				root.add(extComponent.createCopy());
+				Element extComoponentCopy = extComponent.createCopy();
+
+				Element extComponentAuthors =
+					extComoponentCopy.element("authors");
+
+				if ((extRootAuthors != null) &&
+					(extComponentAuthors == null)) {
+
+					extComoponentCopy.add(extRootAuthors.createCopy());
+				}
+
+				root.add(extComoponentCopy);
 			}
 		}
 
@@ -369,6 +378,29 @@ public class TagBuilder {
 		return attributes;
 	}
 
+	private String[] _getAuthorList(Element element) {
+		List<String> authors = new ArrayList<String>();
+
+		if (element != null) {
+			Element elAuthors = element.element(_AUTHORS);
+
+			if (elAuthors != null) {
+				List<Element> authorList = elAuthors.elements(_AUTHOR);
+
+				for (Element author : authorList) {
+					authors.add(author.getText());
+				}
+			}
+		}
+
+		if (authors.isEmpty()) {
+			return DEFAULT_AUTHORS;
+		}
+		else {
+			return authors.toArray(new String[authors.size()]);
+		}
+	}
+
 	private Element _getComponentNode(Document doc, String name) {
 		List<Element> components = doc.getRootElement().elements(_COMPONENT);
 
@@ -408,7 +440,8 @@ public class TagBuilder {
 
 			Component component = new Component(
 				componentPackage, name, alloyComponent, module, bodyContent,
-				_getAttributes(node), _getPrefixedEvents(node));
+				_getAttributes(node), _getPrefixedEvents(node),
+				_getAuthorList(node));
 
 			component.setParentClass(parentClass);
 
@@ -419,14 +452,21 @@ public class TagBuilder {
 	}
 
 	private Document _getComponentsDoc(String name) {
-		List<Document> documents = new ArrayList<Document>();
-		documents.addAll(_componentsExtDoc);
-
-		for (Document doc : documents) {
+		for (Document doc : _componentsExtDoc) {
 			Element root = doc.getRootElement();
 
 			if (root.attributeValue("short-name").equals(name)) {
 				return doc;
+			}
+		}
+
+		return null;
+	}
+
+	private Element _getElementByName(List<Element> elements, String name) {
+		for (Element element : elements) {
+			if (name.equals(element.elementText("name"))) {
+				return element;
 			}
 		}
 
@@ -463,6 +503,59 @@ public class TagBuilder {
 		}
 
 		return prefixedEvents;
+	}
+
+	private Document _mergeTlds(Document doc1, Document doc2) {
+		Document doc = SAXReaderUtil.createDocument();
+
+		doc.setRootElement(doc1.getRootElement().createCopy());
+
+		List<Element> tags1 = doc1.getRootElement().elements("tag");
+		List<Element> tags2 = doc2.getRootElement().elements("tag");
+
+		Map<String, Element> tags1Index = new HashMap<String, Element>();
+		Map<String, Map<String, Element>> tags1AttributesIndex =
+			new HashMap<String, Map<String, Element>>();
+
+		for (Element tag1 : tags1) {
+			String tag1Name = tag1.elementText("name");
+
+			tags1Index.put(tag1Name, tag1);
+
+			Map<String, Element> tag1AttributesIndex =
+				new HashMap<String, Element>();
+
+			for (Element attr1 : tag1.elements("attribute")) {
+				tag1AttributesIndex.put(attr1.elementText("name"), attr1);
+			}
+
+			tags1AttributesIndex.put(tag1Name, tag1AttributesIndex);
+		}
+
+		for (Element tag2 : tags2) {
+			String tag2Name = tag2.elementText("name");
+
+			Map<String, Element> tag1AttributesIndex =
+				tags1AttributesIndex.get(tag2Name);
+
+			if (tags1Index.containsKey(tag2Name)) {
+				for (Element attr2 : tag2.elements("attribute")) {
+					String attr2Name = attr2.attributeValue("name");
+
+					if (tag1AttributesIndex.containsKey(attr2Name)) {
+						Element attr1 = tag1AttributesIndex.get(attr2Name);
+
+						tag2.remove(attr1);
+						tag2.add(attr2);
+					}
+				}
+			}
+			else {
+				doc.getRootElement().add(tag2.createCopy());
+			}
+		}
+
+		return doc;
 	}
 
 	private Document _mergeXMLAttributes(Document doc1, Document doc2) {
@@ -527,69 +620,6 @@ public class TagBuilder {
 		return doc;
 	}
 
-	private Document _mergeTlds(Document doc1, Document doc2) {
-		Document doc = SAXReaderUtil.createDocument();
-
-		doc.setRootElement(doc1.getRootElement().createCopy());
-
-		List<Element> tags1 = doc1.getRootElement().elements("tag");
-		List<Element> tags2 = doc2.getRootElement().elements("tag");
-
-		Map<String, Element> tags1Index = new HashMap<String, Element>();
-		Map<String, Map<String, Element>> tags1AttributesIndex =
-			new HashMap<String, Map<String, Element>>();
-
-		for (Element tag1 : tags1) {
-			String tag1Name = tag1.elementText("name");
-
-			tags1Index.put(tag1Name, tag1);
-
-			Map<String, Element> tag1AttributesIndex =
-				new HashMap<String, Element>();
-
-			for (Element attr1 : tag1.elements("attribute")) {
-				tag1AttributesIndex.put(attr1.elementText("name"), attr1);
-			}
-
-			tags1AttributesIndex.put(tag1Name, tag1AttributesIndex);
-		}
-
-		for (Element tag2 : tags2) {
-			String tag2Name = tag2.elementText("name");
-
-			Map<String, Element> tag1AttributesIndex =
-				tags1AttributesIndex.get(tag2Name);
-
-			if (tags1Index.containsKey(tag2Name)) {
-				for (Element attr2 : tag2.elements("attribute")) {
-					String attr2Name = attr2.attributeValue("name");
-
-					if (tag1AttributesIndex.containsKey(attr2Name)) {
-						Element attr1 = tag1AttributesIndex.get(attr2Name);
-
-						tag2.remove(attr1);
-						tag2.add(attr2);
-					}
-				}
-			}
-			else {
-				doc.getRootElement().add(tag2.createCopy());
-			}
-		}
-
-		return doc;
-	}
-
-	private Element _getElementByName(List<Element> elements, String name) {
-		for (Element element : elements) {
-			if (name.equals(element.elementText("name"))) {
-				return element;
-			}
-		}
-
-		return null;
-	}
-
 	private String _processTemplate(String name, Map<String, Object> context)
 		throws Exception {
 
@@ -625,11 +655,13 @@ public class TagBuilder {
 		}
 	}
 
-	public static final String[] AUTHORS = new String[] {
+	public static final String[] DEFAULT_AUTHORS = new String[] {
 		"Eduardo Lundgren", "Bruno Basto", "Nathan Cavanaugh"
 	};
 
 	private static final String _AFTER = "after";
+	private static final String _AUTHOR = "author";
+	private static final String _AUTHORS = "authors";
 	private static final String _ATTRIBUTE = "attribute";
 	private static final String _ATTRIBUTES = "attributes";
 	private static final String _BASE = "base";

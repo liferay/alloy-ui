@@ -1,18 +1,18 @@
 package com.liferay.alloy.tools.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Component extends BaseModel {
 
 	public Component(
 		String componentPackage, String name, boolean alloyComponent,
 		String module, boolean bodyContent, List<Attribute> attributes,
-		List<Attribute> events) {
+		List<Attribute> events, String[] authors) {
 
 		setAlloyComponent(alloyComponent);
 		setEvents(events);
@@ -21,6 +21,7 @@ public class Component extends BaseModel {
 		setModule(module);
 		setPackage(componentPackage);
 		setName(name);
+		setAuthors(authors);
 	}
 
 	public String getAttributeNamespace() {
@@ -45,6 +46,10 @@ public class Component extends BaseModel {
 		attributes.addAll(_events);
 
 		return attributes;
+	}
+
+	public String[] getAuthors() {
+		return _authors;
 	}
 
 	public String getCamelizedName() {
@@ -102,6 +107,10 @@ public class Component extends BaseModel {
 		}
 	}
 
+	public void setAuthors(String[] authors) {
+		_authors = authors;
+	}
+
 	public void setBodyContent(boolean bodyContent) {
 		_bodyContent = bodyContent;
 	}
@@ -129,5 +138,6 @@ public class Component extends BaseModel {
 	private String _module;
 	private String _package;
 	private String _parentClass;
+	private String[] _authors;
 
 }
