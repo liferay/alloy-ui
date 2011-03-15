@@ -78,8 +78,8 @@ _updateOptions(_options, "${attribute.getSafeName()}", ${attribute.getSafeName()
 </#list>
 %>
 
+<%@ include file="init-ext.jspf" %>
+
 <%!
 private static final String _NAMESPACE = "${namespace}";
 %>
-
-<%@ include file="init-ext.jspf" %>
