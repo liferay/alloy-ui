@@ -35,7 +35,7 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:align")));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:align")));
 boolean anim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:anim")), true);
 java.lang.Object arrowLeftEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:arrowLeftEl");
 java.lang.Object arrowRightEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:arrowRightEl");
@@ -58,7 +58,7 @@ java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:image-vi
 java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:hideClass"), "aui-helper-hidden");
 java.lang.String imageviewerId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:imageviewerId"));
 java.lang.Object image = (java.lang.Object)request.getAttribute("alloy:image-viewer:image");
-java.util.HashMap imageAnim = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:imageAnim")));
+java.util.HashMap imageAnim = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:imageAnim")));
 java.lang.Object infoEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:infoEl");
 java.lang.String infoTemplate = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:infoTemplate"), "Image {current} of {total}");
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:initialized")), false);
@@ -76,13 +76,13 @@ boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("al
 boolean shim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:shim")), false);
 boolean showArrows = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:showArrows")), true);
 boolean showClose = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:showClose")), true);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:tabIndex")), 0);
 boolean totalLinks = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:totalLinks")), true);
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:visible")), true);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:image-viewer:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterAlignChange");

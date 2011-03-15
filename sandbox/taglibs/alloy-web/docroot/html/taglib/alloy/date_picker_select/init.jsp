@@ -35,9 +35,9 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.ArrayList appendOrder = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:appendOrder"), "[ 'm', 'd', 'y' ]"));
+java.util.ArrayList appendOrder = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:appendOrder"), "[ 'm', 'd', 'y' ]"));
 java.lang.String buttonNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:buttonNode"));
-java.util.HashMap calendar = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:calendar"), "{}"));
+java.util.HashMap calendar = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:calendar"), "{}"));
 java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:cssClass"));
 java.lang.String dayNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:dayNode"));
 java.lang.String dayNodeName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:dayNodeName"), "day");
@@ -56,14 +56,14 @@ boolean populateYear = GetterUtil.getBoolean(String.valueOf(request.getAttribute
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:date-picker-select:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:rendered")), false);
 java.lang.String selectWrapperNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:selectWrapperNode"));
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:date-picker-select:tabIndex")), 0);
 java.lang.Object trigger = (java.lang.Object)request.getAttribute("alloy:date-picker-select:trigger");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:visible")), true);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:date-picker-select:width");
 java.lang.String yearNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:yearNode"));
 java.lang.String yearNodeName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:yearNodeName"), "year");
-java.util.ArrayList yearRange = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:yearRange"), "[ year - 10, year + 10 ]"));
+java.util.ArrayList yearRange = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:yearRange"), "[ year - 10, year + 10 ]"));
 java.lang.Object afterAppendOrderChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterAppendOrderChange");
 java.lang.Object afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterBoundingBoxChange");
 java.lang.Object afterButtonNodeChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterButtonNodeChange");

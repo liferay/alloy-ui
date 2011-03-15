@@ -35,7 +35,7 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:align"), "{ node: null, points: [ TL, BL ] }"));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object calendarBodyContent = (java.lang.Object)request.getAttribute("alloy:calendar:calendarBodyContent");
 boolean cancellableHide = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:calendar:cancellableHide")), true);
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:calendar:centered");
@@ -46,7 +46,7 @@ java.lang.Number currentMonth = GetterUtil.getNumber(String.valueOf(request.getA
 java.lang.Object currentNode = (java.lang.Object)request.getAttribute("alloy:calendar:currentNode");
 java.lang.Number currentYear = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:currentYear")), 0);
 java.lang.String dateFormat = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:calendar:dateFormat"), "%m/%d/%Y");
-java.util.ArrayList dates = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:dates")));
+java.util.ArrayList dates = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:dates")));
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:calendar:destroyed")), false);
 boolean disabled = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:calendar:disabled")), false);
 java.lang.Object fillHeight = (java.lang.Object)request.getAttribute("alloy:calendar:fillHeight");
@@ -72,13 +72,13 @@ boolean shim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:
 java.lang.Number showDelay = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:showDelay")), 0);
 java.lang.String showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:calendar:showOn"), "mouseover");
 boolean stack = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:calendar:stack")), true);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:tabIndex")), 0);
 java.lang.Object trigger = (java.lang.Object)request.getAttribute("alloy:calendar:trigger");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:calendar:visible")), false);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:calendar:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:calendar:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:calendar:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:calendar:afterAlignChange");

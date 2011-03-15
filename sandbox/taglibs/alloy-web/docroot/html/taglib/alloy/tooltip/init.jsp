@@ -35,8 +35,8 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:align"), "{ node: null, points: [ BL, TR ] }"));
-java.util.HashMap anim = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:anim"), "{ show: false }"));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:align"), "{ node: null, points: [ BL, TR ] }"));
+java.util.HashMap anim = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:anim"), "{ show: false }"));
 java.lang.String arrow = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:arrow"));
 java.lang.Object tooltipBodyContent = (java.lang.Object)request.getAttribute("alloy:tooltip:tooltipBodyContent");
 boolean cancellableHide = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:cancellableHide")), true);
@@ -65,14 +65,14 @@ boolean showArrow = GetterUtil.getBoolean(String.valueOf(request.getAttribute("a
 java.lang.Number showDelay = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:showDelay")), 0);
 java.lang.String showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:showOn"), "mouseover");
 boolean stack = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:stack")), true);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:tabIndex")), 0);
 boolean title = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:title")), false);
 java.lang.Object trigger = (java.lang.Object)request.getAttribute("alloy:tooltip:trigger");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:visible")), false);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:tooltip:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterAlignChange");

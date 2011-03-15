@@ -35,7 +35,7 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:align"), "{ node: null, points: [ TL, BL ] }"));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:align"), "{ node: null, points: [ TL, BL ] }"));
 java.lang.Object colorpickerBodyContent = (java.lang.Object)request.getAttribute("alloy:color-picker:colorpickerBodyContent");
 boolean cancellableHide = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:color-picker:cancellableHide")), true);
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:color-picker:centered");
@@ -61,13 +61,13 @@ boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("al
 boolean shim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:color-picker:shim")), false);
 java.lang.Number showDelay = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:showDelay")), 0);
 java.lang.String showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:color-picker:showOn"), "mouseover");
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:tabIndex")), 0);
 java.lang.Object trigger = (java.lang.Object)request.getAttribute("alloy:color-picker:trigger");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:color-picker:visible")), false);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:color-picker:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:color-picker:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:color-picker:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:color-picker:afterAlignChange");

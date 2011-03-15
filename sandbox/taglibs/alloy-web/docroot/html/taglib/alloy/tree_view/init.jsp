@@ -35,12 +35,12 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.ArrayList children = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children"), "[]"));
+java.util.ArrayList children = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:children"), "[]"));
 java.lang.String container = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:container"));
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tree-view:destroyed")), false);
-java.util.HashMap index = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index"), "{}"));
+java.util.HashMap index = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:index"), "{}"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tree-view:initialized")), false);
-java.util.HashMap io = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:io")));
+java.util.HashMap io = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tree-view:io")));
 java.lang.Object lastSelected = (java.lang.Object)request.getAttribute("alloy:tree-view:lastSelected");
 java.lang.String type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tree-view:type"), "file");
 java.lang.Object afterChildrenChange = (java.lang.Object)request.getAttribute("alloy:tree-view:afterChildrenChange");

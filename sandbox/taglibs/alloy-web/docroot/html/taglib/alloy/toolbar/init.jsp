@@ -37,7 +37,7 @@ _options.putAll(dynamicAttributes);
 <%
 java.lang.Object activeDescendant = (java.lang.Object)request.getAttribute("alloy:toolbar:activeDescendant");
 boolean activeState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:activeState")), false);
-java.util.ArrayList children = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:toolbar:children")));
+java.util.ArrayList children = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:toolbar:children")));
 java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:cssClass"));
 java.lang.Object defaultChildType = (java.lang.Object)request.getAttribute("alloy:toolbar:defaultChildType");
 boolean defaultState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:defaultState")), false);
@@ -54,7 +54,7 @@ java.lang.String orientation = GetterUtil.getString((java.lang.String)request.ge
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:toolbar:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:rendered")), false);
 java.lang.Object selection = (java.lang.Object)request.getAttribute("alloy:toolbar:selection");
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:toolbar:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:toolbar:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:toolbar:tabIndex")), 0);
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:visible")), true);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:toolbar:width");

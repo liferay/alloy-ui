@@ -35,8 +35,8 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:align")));
-java.util.ArrayList alignPoints = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints"), "[ 'tl', 'tl' ]"));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:align")));
+java.util.ArrayList alignPoints = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints"), "[ 'tl', 'tl' ]"));
 java.lang.String background = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:background"));
 java.lang.Object overlaymaskBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent");
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:overlay-mask:centered");
@@ -57,13 +57,13 @@ boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribu
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:overlay-mask:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-mask:rendered")), false);
 boolean shim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-mask:shim")), false);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:tabIndex")), 0);
 java.lang.String target = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:target"), "document");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-mask:visible")), false);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:overlay-mask:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:zIndex")), 1000);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterAlignChange");

@@ -35,7 +35,7 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:align")));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:align")));
 java.lang.Object overlaybaseBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-base:overlaybaseBodyContent");
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:overlay-base:centered");
 java.lang.Object constrain = (java.lang.Object)request.getAttribute("alloy:overlay-base:constrain");
@@ -54,12 +54,12 @@ boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribu
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:overlay-base:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:rendered")), false);
 boolean shim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:shim")), false);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:tabIndex")), 0);
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:visible")), true);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:overlay-base:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterAlignChange");

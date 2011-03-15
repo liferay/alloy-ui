@@ -35,8 +35,8 @@ _options.putAll(dynamicAttributes);
 <%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
 
 <%
-java.util.HashMap align = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:align"), "{ node: null, points: [ TL, BL ] }"));
-java.util.HashMap anim = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:anim"), "{ show: false }"));
+java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:align"), "{ node: null, points: [ TL, BL ] }"));
+java.util.HashMap anim = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:anim"), "{ show: false }"));
 java.lang.String arrow = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:arrow"));
 java.lang.Object overlaycontextpanelBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:overlaycontextpanelBodyContent");
 boolean cancellableHide = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context-panel:cancellableHide")), true);
@@ -65,13 +65,13 @@ boolean showArrow = GetterUtil.getBoolean(String.valueOf(request.getAttribute("a
 java.lang.Number showDelay = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context-panel:showDelay")), 0);
 java.lang.String showOn = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context-panel:showOn"), "click");
 boolean stack = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context-panel:stack")), true);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context-panel:tabIndex")), 0);
 java.lang.Object trigger = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:trigger");
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context-panel:visible")), false);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:width");
 java.lang.Number x = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context-panel:x")), 0);
-java.util.ArrayList xy = _getArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:xy"), "[0,0]"));
+java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context-panel:xy"), "[0,0]"));
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context-panel:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context-panel:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-context-panel:afterAlignChange");

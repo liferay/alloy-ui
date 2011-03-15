@@ -36,7 +36,7 @@ _options.putAll(dynamicAttributes);
 
 <%
 boolean activeState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:activeState")), false);
-java.util.HashMap classNames = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:classNames")));
+java.util.HashMap classNames = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:classNames")));
 java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:cssClass"));
 boolean defaultState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:defaultState")), true);
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:destroyed")), false);
@@ -54,7 +54,7 @@ java.lang.String label = GetterUtil.getString((java.lang.String)request.getAttri
 java.lang.String labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:button-item:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:rendered")), false);
-java.util.HashMap strings = _getHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:strings")));
+java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:button-item:tabIndex")), 0);
 java.lang.String title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:visible")), true);
