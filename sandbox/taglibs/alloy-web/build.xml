@@ -51,6 +51,23 @@
 	</target>
 	
 	<target name="prepare-liferay-war">
+		<!-- Delete uneeded files -->
+
+		<delete>
+			<fileset dir="${temp.dir}" includes="**/taglib-init-ext.jspf" />
+		</delete>
+
+		<!-- Remove imports-->
+
+		<replace dir="${temp.dir}" includes="**/*.jsp">
+			<replacetoken><![CDATA[<%@ page import="com.liferay.alloy.util.MarkupUtil"%>
+				<%@ page import="com.liferay.alloy.util.MessageUtil"%>
+				<%@ page import="com.liferay.portal.json.JSONFactoryImpl"%>
+				<%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
+]]></replacetoken>
+			<replacevalue><![CDATA[]]></replacevalue>
+		</replace>
+
 		<!-- Replace alloy-util:script -->
 
 		<replace dir="${temp.dir}" includes="**/*.jsp">
@@ -75,6 +92,7 @@
 
 		<replace dir="${temp.dir}" includes="**/*.jsp">
 			<replacetoken><![CDATA[
+
 <%
 _initJSONFactoryUtil();
 %>]]></replacetoken>
