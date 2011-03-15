@@ -45,6 +45,34 @@
 			float: none;
 			vertical-align: middle;
 		}
+
+		#demoThrottle, #demoDebounce {
+			clear: both;
+			overflow: hidden;
+			margin: 5px 0;
+		}
+
+		.tick, .marker {
+			float: left;
+			border: 1px solid #333;
+			width: 5px;
+			margin: 2px;
+			background: #eee;
+		}
+
+		.tick {
+			height: 20px;
+		}
+
+		.marker {
+			border-color: #f00;
+			height: 40px;
+		}
+
+		.play-demo {
+			font-weight: bold;
+			font-size: 1.5em;
+		}
 	</style>
 </head>
 
@@ -87,6 +115,20 @@
 		<p class="aui-form-hint">
 			<span>Type a long number here, and the validation will only happen once you stop typing for a small period of time.</span>
 		</p>
+	</div>
+
+	<div id="demo3">
+		<h3>What's the difference between throttle and debounce?</h3>
+		<p>
+			<a class="play-demo" href="javascript:;" id="showDiffDemo">Play demo</a><br />
+			We call a tick function in an interval for 1 second that creates small tick marks. To show the difference, we have a function that creates highlighted markers that even though they're called the exact same number of times that the tick function is called, it executes at different intervals.
+		</p>
+		<h4>A.throttle()</h4>
+		<p>When you create a throttled function, it will fire every Xms no matter how many times it's called.</p>
+		<div id="demoThrottle"></div>
+		<h4>A.debounce()</h4>
+		<p>When you create a debounced function, it will wait until there's a pause of Xms to fire.</p>
+		<div id="demoDebounce"></div>
 	</div>
 </div>
 
@@ -182,6 +224,70 @@ AUI().ready(
 				500
 			)
 		);
+
+		var demoThrottle = A.one('#demoThrottle');
+		var demoDebounce = A.one('#demoDebounce');
+		var showDiffDemo = A.one('#showDiffDemo');
+
+		var injectTick = function(div) {
+			div._node.innerHTML += '<div class="tick"></div>';
+		};
+
+		var injectMarker = function(div) {
+			div._node.innerHTML += '<div class="marker"></div>';
+		};
+
+		var throttleFn = A.throttle(function() {
+			injectMarker(demoThrottle);
+		}, 100);
+
+		var debounceFn = A.debounce(injectMarker, 100, window, demoDebounce);
+
+		var throttleInt;
+		var debounceInt;
+
+		var playDemo = function() {
+			if (throttleInt || debounceInt) {
+				return;
+			}
+
+			demoThrottle.html('');
+			demoDebounce.html('');
+
+			var throttleStart = A.Lang.now();
+			var debounceStart = A.Lang.now();
+
+			throttleInt = setInterval(
+				function() {
+					if (A.Lang.now() - throttleStart >= 1000) {
+						clearInterval(throttleInt);
+						throttleInt = null;
+					}
+
+					injectTick(demoThrottle);
+					throttleFn();
+				},
+				20
+			);
+
+			debounceInt = setInterval(
+				function() {
+					if (A.Lang.now() - debounceStart >= 1170) {
+						clearInterval(debounceInt);
+						debounceInt = null;
+					}
+
+					injectTick(demoDebounce);
+					debounceFn();
+				},
+				20
+			);
+		};
+
+		showDiffDemo.on('click', playDemo);
+
+		playDemo();
+
 	}
 );
 
