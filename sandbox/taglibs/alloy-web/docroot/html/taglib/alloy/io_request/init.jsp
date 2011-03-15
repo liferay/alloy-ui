@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "alloy:io-request:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:io-request:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:io-request:customAttributes");
@@ -190,4 +188,8 @@ _updateOptions(_options, "onUriChange", onUriChange);
 _updateOptions(_options, "onXdrChange", onXdrChange);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "alloy:io-request:";
+%>

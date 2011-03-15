@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "alloy:nested-list:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:nested-list:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:nested-list:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:nested-list:customAttributes");
@@ -58,4 +56,8 @@ _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "alloy:nested-list:";
+%>

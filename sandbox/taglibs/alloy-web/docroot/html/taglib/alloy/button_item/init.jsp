@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "alloy:button-item:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:button-item:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:button-item:customAttributes");
@@ -213,4 +211,8 @@ _updateOptions(_options, "onRender", onRender);
 _updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "alloy:button-item:";
+%>

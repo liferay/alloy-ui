@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "alloy:thumb-rating:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:thumb-rating:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:thumb-rating:customAttributes");
@@ -237,4 +235,8 @@ _updateOptions(_options, "onRender", onRender);
 _updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "alloy:thumb-rating:";
+%>

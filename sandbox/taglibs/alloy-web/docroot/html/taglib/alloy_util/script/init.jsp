@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "alloy_util:script:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy_util:script:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy_util:script:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy_util:script:customAttributes");
@@ -39,4 +37,8 @@ _updateOptions(_options, "printBuffer", printBuffer);
 _updateOptions(_options, "use", use);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "alloy_util:script:";
+%>

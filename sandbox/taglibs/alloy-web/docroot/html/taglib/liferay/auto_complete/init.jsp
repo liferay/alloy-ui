@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "liferay:auto-complete:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("liferay:auto-complete:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("liferay:auto-complete:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("liferay:auto-complete:customAttributes");
@@ -365,4 +363,8 @@ _updateOptions(_options, "onRender", onRender);
 _updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "liferay:auto-complete:";
+%>

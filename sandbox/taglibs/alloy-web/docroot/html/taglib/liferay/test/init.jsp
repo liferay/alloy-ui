@@ -19,8 +19,6 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-java.lang.String NAMESPACE = "liferay:test:";
-
 Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("liferay:test:dynamicAttributes");
 Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("liferay:test:scopedAttributes");
 CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("liferay:test:customAttributes");
@@ -43,4 +41,8 @@ _updateOptions(_options, "attrIntPrimitive", attrIntPrimitive);
 _updateOptions(_options, "attrInteger", attrInteger);
 %>
 
-<%@ include file="init-ext.jsp" %>
+<%@ include file="init-ext.jspf" %>
+
+<%!
+private static final String _NAMESPACE = "liferay:test:";
+%>
