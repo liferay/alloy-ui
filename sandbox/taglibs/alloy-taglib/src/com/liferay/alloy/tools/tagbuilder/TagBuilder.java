@@ -87,76 +87,11 @@ public class TagBuilder {
 			javaPackage, jspDir, jspCommonInitPath, tldDir);
 	}
 
-	public Map<String, Object> getDefaultTemplateContext() {
-		Map<String, Object> context = new HashMap<String, Object>();
-
-		context.put("jspCommonInitPath", _jspCommonInitPath);
-		context.put("jspDir", _jspDir);
-		context.put("packagePath", _javaPackage);
-
-		return context;
-	}
-
-	public String getJavaOutputBaseDir(Component component) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(getJavaOutputDir(component));
-		sb.append(_BASE);
-		sb.append(StringPool.SLASH);
-
-		return sb.toString();
-	}
-
-	public String getJavaOutputDir(Component component) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_javaDir);
-		sb.append(component.getPackage());
-		sb.append(StringPool.SLASH);
-
-		return sb.toString();
-	}
-
-	public String getJspDir(Component component) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_jspDir);
-		sb.append(component.getPackage());
-		sb.append(StringPool.SLASH);
-
-		return sb.toString();
-	}
-
-	public String getJspOutputDir(Component component) {
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_docrootDir);
-		sb.append(StringPool.SLASH);
-		sb.append(_jspDir);
-		sb.append(component.getPackage());
-		sb.append(StringPool.SLASH);
-
-		return sb.toString();
-	}
-
-	public Map<String, Object> getTemplateContext(Component component) {
-		Map<String, Object> context = getDefaultTemplateContext();
-
-		String jspRelativePath = getJspDir(component).concat(
-			component.getUncamelizedName(StringPool.UNDERLINE));
-
-		context.put("component", component);
-		context.put("namespace", component.getAttributeNamespace());
-		context.put("jspRelativePath", jspRelativePath);
-
-		return context;
-	}
-
 	private void _create() throws Exception {
 		List<Component> components = _getAllComponents();
 
 		for (Component component : components) {
-			Map<String, Object> context = getTemplateContext(component);
+			Map<String, Object> context = _getTemplateContext(component);
 
 			_createBaseTag(component, context);
 			_createPageJSP(component, context);
@@ -173,7 +108,7 @@ public class TagBuilder {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(getJavaOutputBaseDir(component));
+		sb.append(_getJavaOutputBaseDir(component));
 		sb.append(_BASE_CLASS_PREFIX);
 		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
@@ -186,7 +121,7 @@ public class TagBuilder {
 	}
 
 	private void _createCommonInitJSP() throws Exception {
-		Map<String, Object> context = getDefaultTemplateContext();
+		Map<String, Object> context = _getDefaultTemplateContext();
 
 		String contentCommonInitJsp = _processTemplate(_tplCommonInitJsp, context);
 
@@ -206,7 +141,7 @@ public class TagBuilder {
 		throws Exception {
 
 		String pathName = component.getUncamelizedName(StringPool.UNDERLINE);
-		String path = getJspOutputDir(component).concat(pathName);
+		String path = _getJspOutputDir(component).concat(pathName);
 
 		String contentJsp = _processTemplate(_tplJsp, context);
 		String contentInitJsp = _processTemplate(_tplInitJsp, context);
@@ -239,7 +174,7 @@ public class TagBuilder {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(getJavaOutputDir(component));
+		sb.append(_getJavaOutputDir(component));
 		sb.append(component.getSafeName());
 		sb.append(_CLASS_SUFFIX);
 
@@ -251,7 +186,7 @@ public class TagBuilder {
 	}
 
 	private void _createTld() throws Exception {
-		Map<String, Object> context = getDefaultTemplateContext();
+		Map<String, Object> context = _getDefaultTemplateContext();
 
 		for (Document doc : _componentsExtDoc) {
 			Element root = doc.getRootElement();
@@ -463,6 +398,16 @@ public class TagBuilder {
 		return null;
 	}
 
+	private Map<String, Object> _getDefaultTemplateContext() {
+		Map<String, Object> context = new HashMap<String, Object>();
+
+		context.put("jspCommonInitPath", _jspCommonInitPath);
+		context.put("jspDir", _jspDir);
+		context.put("packagePath", _javaPackage);
+
+		return context;
+	}
+
 	private Element _getElementByName(List<Element> elements, String name) {
 		for (Element element : elements) {
 			if (name.equals(element.elementText("name"))) {
@@ -471,6 +416,48 @@ public class TagBuilder {
 		}
 
 		return null;
+	}
+
+	private String _getJavaOutputBaseDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_getJavaOutputDir(component));
+		sb.append(_BASE);
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	private String _getJavaOutputDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_javaDir);
+		sb.append(component.getPackage());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	private String _getJspDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_jspDir);
+		sb.append(component.getPackage());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
+	}
+
+	private String _getJspOutputDir(Component component) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_docrootDir);
+		sb.append(StringPool.SLASH);
+		sb.append(_jspDir);
+		sb.append(component.getPackage());
+		sb.append(StringPool.SLASH);
+
+		return sb.toString();
 	}
 
 	private List<Attribute> _getPrefixedEvents(Element componentNode) {
@@ -503,6 +490,19 @@ public class TagBuilder {
 		}
 
 		return prefixedEvents;
+	}
+
+	private Map<String, Object> _getTemplateContext(Component component) {
+		Map<String, Object> context = _getDefaultTemplateContext();
+
+		String jspRelativePath = _getJspDir(component).concat(
+			component.getUncamelizedName(StringPool.UNDERLINE));
+
+		context.put("component", component);
+		context.put("namespace", component.getAttributeNamespace());
+		context.put("jspRelativePath", jspRelativePath);
+
+		return context;
 	}
 
 	private Document _mergeTlds(Document doc1, Document doc2) {
