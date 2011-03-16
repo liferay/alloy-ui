@@ -279,7 +279,7 @@ public class TagBuilder {
 	private List<Attribute> _getAttributes(
 		Element componentNode, String group, String nodeName) {
 
-		List<Element> nodes = Collections.EMPTY_LIST;
+		List<Element> nodes = Collections.emptyList();
 
 		List<Attribute> attributes = new ArrayList<Attribute>();
 
