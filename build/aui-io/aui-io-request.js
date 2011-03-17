@@ -567,7 +567,7 @@ var IORequest = A.Component.create(
 
 				if (xhr) {
 					var dataType = instance.get(DATA_TYPE);
-					var contentType = xhr.getResponseHeader(CONTENT_TYPE);
+					var contentType = xhr.getResponseHeader(CONTENT_TYPE) || '';
 
 					// if the dataType or the content-type is XML...
 					if ((dataType == XML) ||
