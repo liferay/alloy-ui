@@ -1771,7 +1771,7 @@ var L = A.Lang,
 
 	TPL_ADD = '<a class="' + CSS_FIELD_OPTIONS_ADD + '" href="javascript:;">Add an option</a>',
 
-	KEY_ENTER = 13
+	ENTER = 'ENTER';
 
 var FieldOptions = A.Component.create({
 
@@ -1956,10 +1956,9 @@ var FieldOptions = A.Component.create({
 			var instance = this;
 			var options = instance.get(OPTIONS);
 			var target = event.currentTarget;
-			var keyCode = event.keyCode;
 			var items = instance.items;
 
-			if (keyCode == KEY_ENTER) {
+			if (event.isKey(ENTER)) {
 				var index = instance._indexOfTarget(target);
 				var isValue = target.hasClass(CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
 
