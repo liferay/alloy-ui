@@ -4,7 +4,17 @@ var Lang = A.Lang,
 	DOMEventFacade = A.DOMEventFacade,
 	DOMEventFacadeProto = DOMEventFacade.prototype,
 
-	KeyMap = A.namespace('Event.KeyMap'),
+	BACKSPACE = 'BACKSPACE',
+	CAPS_LOCK = 'CAPS_LOCK',
+	DOWN = 'DOWN',
+	ENTER = 'ENTER',
+	ESC = 'ESC',
+	INSERT = 'INSERT',
+	PAGE_UP = 'PAGE_UP',
+	PRINT_SCREEN = 'PRINT_SCREEN',
+	SHIFT = 'SHIFT',
+	TAB = 'TAB',
+	WIN_IME = 'WIN_IME',
 
 	STR_EMPTY = '';
 
@@ -128,24 +138,17 @@ var KeyMap = {
 	isKey: function(keyCode, name) {
 		var instance = this;
 
-		name = (name && name.toUpperCase()) || STR_EMPTY;
-
-		var key = instance[name];
-
-		return key && key == keyCode;
+		return name && ((instance[name] || instance[name.toUpperCase()]) == keyCode);
 	},
 
 	isKeyInRange: function(keyCode, start, end) {
 		var instance = this;
 
-		start = start && start.toUpperCase();
-		end = end && end.toUpperCase();
-
 		var result = false;
 
 		if (start && end) {
-			var startKey = instance[start];
-			var endKey = instance[end];
+			var startKey = instance[start] || instance[start.toUpperCase()];
+			var endKey = instance[end] || instance[end.toUpperCase()];
 
 			result = startKey && endKey &&
 					(keyCode >= startKey && keyCode <= endKey);
@@ -165,7 +168,7 @@ var KeyMap = {
 	isNavKey: function(keyCode) {
 		var instance = this;
 
-		return instance.isKeyInRange(keyCode, 'PAGE_UP', 'DOWN') || instance.isKeyInSet(keyCode, 'ENTER', 'TAB', 'ESC');
+		return instance.isKeyInRange(keyCode, PAGE_UP, DOWN) || instance.isKeyInSet(keyCode, ENTER, TAB, ESC);
 	},
 
 	isSpecialKey: function(keyCode, eventType) {
@@ -175,8 +178,8 @@ var KeyMap = {
 
 		return isCtrlPress ||
 			instance.isNavKey(keyCode) ||
-			instance.isKeyInRange(keyCode, 'SHIFT', 'CAPS_LOCK') ||
-			instance.isKeyInSet(keyCode, 'BACKSPACE', 'PRINT_SCREEN', 'INSERT', 'WIN_IME');
+			instance.isKeyInRange(keyCode, SHIFT, CAPS_LOCK) ||
+			instance.isKeyInSet(keyCode, BACKSPACE, PRINT_SCREEN, INSERT, WIN_IME);
 	},
 
 	_isKeyInSet: function(keyCode, arr) {
