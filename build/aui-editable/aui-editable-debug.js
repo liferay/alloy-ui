@@ -584,14 +584,12 @@ var Editable = A.Component.create(
 			_onKeypressEditable: function(event) {
 				var instance = this;
 
-				var keyCode = event.keyCode;
-
-				if (keyCode == 27) {
+				if (event.isKey('ESC')) {
 					event.preventDefault();
 
 					instance.cancel();
 				}
-				else if (keyCode == 13 && (instance.get('inputType') == 'text')) {
+				else if (event.isKey('ENTER') && (instance.get('inputType') == 'text')) {
 					instance.save();
 				}
 			},
