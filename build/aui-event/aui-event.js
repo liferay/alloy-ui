@@ -1,5 +1,6 @@
 AUI.add('aui-event-base', function(A) {
 var Lang = A.Lang,
+	AArray = A.Array,
 	DOMEventFacade = A.DOMEventFacade,
 	DOMEventFacadeProto = DOMEventFacade.prototype,
 
@@ -134,15 +135,37 @@ var KeyMap = {
 		return key && key == keyCode;
 	},
 
+	isKeyInRange: function(keyCode, start, end) {
+		var instance = this;
+
+		start = start && start.toUpperCase();
+		end = end && end.toUpperCase();
+
+		var result = false;
+
+		if (start && end) {
+			var startKey = instance[start];
+			var endKey = instance[end];
+
+			result = startKey && endKey &&
+					(keyCode >= startKey && keyCode <= endKey);
+		}
+
+		return result;
+	},
+
+	isKeyInSet: function(keyCode, name) {
+		var instance = this;
+
+		var args = AArray(arguments, 1, true);
+
+		return instance._isKeyInSet(keyCode, args);
+	},
+
 	isNavKey: function(keyCode) {
 		var instance = this;
 
-		var navRowKey = (keyCode >= instance.PAGE_UP && keyCode <= instance.DOWN);
-
-		return navRowKey ||
-			(keyCode == instance.ENTER) ||
-			(keyCode == instance.TAB) ||
-			(keyCode == instance.ESC);
+		return instance.isKeyInRange(keyCode, 'PAGE_UP', 'DOWN') || instance.isKeyInSet(keyCode, 'ENTER', 'TAB', 'ESC');
 	},
 
 	isSpecialKey: function(keyCode, eventType) {
@@ -152,11 +175,33 @@ var KeyMap = {
 
 		return isCtrlPress ||
 			instance.isNavKey(keyCode) ||
-			(keyCode == instance.BACKSPACE) ||
-			(keyCode >= instance.SHIFT && keyCode <= instance.CAPS_LOCK) ||
-			keyCode == instance.PRINT_SCREEN ||
-			keyCode == instance.INSERT ||
-			keyCode == instance.WIN_IME;
+			instance.isKeyInRange(keyCode, 'SHIFT', 'CAPS_LOCK') ||
+			instance.isKeyInSet(keyCode, 'BACKSPACE', 'PRINT_SCREEN', 'INSERT', 'WIN_IME');
+	},
+
+	_isKeyInSet: function(keyCode, arr) {
+		var instance = this;
+
+		var i = arr.length;
+
+		var result = false;
+
+		var keyName;
+		var key;
+		var toUpperCase = String.toUpperCase;
+
+		while (i--) {
+			keyName = toUpperCase(arr[i]);
+			key = keyName && instance[keyName];
+
+			if (keyCode == key) {
+				result = true;
+
+				break;
+			}
+		}
+
+		return result;
 	}
 };
 
@@ -173,6 +218,20 @@ A.mix(
 			var instance = this;
 
 			return KeyMap.isKey(instance.keyCode, name);
+		},
+
+		isKeyInRange: function(start, end) {
+			var instance = this;
+
+			return KeyMap.isKeyInRange(instance.keyCode, start, end);
+		},
+
+		isKeyInSet: function() {
+			var instance = this;
+
+			var args = AArray(arguments, 0, true);
+
+			return KeyMap._isKeyInSet(instance.keyCode, args);
 		},
 
 		isNavKey: function() {
