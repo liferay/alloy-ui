@@ -23,7 +23,7 @@ var L = A.Lang,
 	SHOW = 'show',
 	STAR = '*',
 
-	KEY_ENTER = 13,
+	ENTER = 'ENTER',
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
@@ -389,9 +389,8 @@ var LiveSearch = A.Component.create(
 			_inputKeyUp: function(event) {
 				var instance = this;
 				var delay = instance.get(DELAY);
-				var keyCode = event.keyCode;
 
-				if (keyCode = KEY_ENTER) {
+				if (event.isKey(ENTER)) {
 					event.halt();
 				}
 
