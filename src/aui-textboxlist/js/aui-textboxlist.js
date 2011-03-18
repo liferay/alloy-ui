@@ -49,10 +49,10 @@ var Lang = A.Lang,
 
 	CSS_INPUT_CONTAINER = getClassName(NAME, 'input','container'),
 
-	KEY_BACKSPACE = 8,
-	KEY_ENTER = 13,
-	KEY_LEFT = 37,
-	KEY_RIGHT = 39,
+	BACKSPACE = 'BACKSPACE',
+	ENTER = 'ENTER',
+	LEFT = 'LEFT',
+	RIGHT = 'RIGHT',
 
 	TPL_ENTRY_CLOSE = '<span class="' + [CSS_ICON, CSS_ICON_CLOSE, CSS_ENTRY_CLOSE].join(' ') + '"></span>',
 	TPL_ENTRY_TEXT = '<span class="' + CSS_ENTRY_TEXT + '"></span>',
@@ -263,7 +263,6 @@ var TextboxList = A.Component.create(
 			_onTBLKeypress: function(event) {
 				var instance = this;
 
-				var keyCode = event.keyCode;
 				var inputNode = instance.inputNode;
 
 				if (!inputNode.val()) {
@@ -272,10 +271,10 @@ var TextboxList = A.Component.create(
 
 					var unselected = (lastSelectedEntry == -1);
 
-					var deleteEntry = (keyCode == KEY_BACKSPACE);
+					var deleteEntry = event.isKey(BACKSPACE);
 					var deleteBack = (deleteEntry && unselected);
-					var moveBack = keyCode == KEY_LEFT || deleteBack;
-					var moveForward = (keyCode == KEY_RIGHT);
+					var moveBack = event.isKey(LEFT) || deleteBack;
+					var moveForward = event.isKey(RIGHT);
 
 					var entries = instance.entries;
 
@@ -328,7 +327,7 @@ var TextboxList = A.Component.create(
 					instance._lastSelectedEntry = currentSelectedEntry;
 				}
 				else {
-					if (keyCode == KEY_ENTER && instance.get('allowAnyEntry')) {
+					if (event.isKey(ENTER) && instance.get('allowAnyEntry')) {
 						instance.addEntries();
 					}
 				}
@@ -339,7 +338,7 @@ var TextboxList = A.Component.create(
 
 				TextboxList.superclass._onTextboxKeyPress.apply(instance, arguments);
 
-				if (event.keyCode == KEY_ENTER) {
+				if (event.isKey(ENTER)) {
 					event.halt();
 				}
 			},
