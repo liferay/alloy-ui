@@ -4,6 +4,8 @@ var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 	isString = Lang.isString,
 
+	KeyMap = A.Event.KeyMap,
+
 	ALERT = 'alert',
 	BINDUI = 'bindUI',
 	CONTENT = 'content',
@@ -16,24 +18,10 @@ var Lang = A.Lang,
 	ICON_ERROR = ALERT,
 	ICON_LOADING = LOADING,
 
-	KEY_BACKSPACE = 8,
-	KEY_TAB = 9,
-	KEY_ENTER = 13,
-	KEY_SHIFT = 16,
-	KEY_CTRL = 17,
-	KEY_ALT = 18,
-	KEY_CAPS_LOCK = 20,
-	KEY_ESC = 27,
-	KEY_PAGEUP = 33,
-	KEY_END = 35,
-	KEY_HOME = 36,
-	KEY_UP = 38,
-	KEY_DOWN = 40,
-	KEY_RIGHT = 39,
-	KEY_LEFT = 37,
-	KEY_PRINT_SCREEN = 44,
-	KEY_INSERT = 44,
-	KEY_KOREAN_IME = 229,
+	BACKSPACE = 'BACKSPACE',
+	TAB = 'TAB',
+	ALT = 'ALT',
+	WIN_IME = 'WIN_IME',
 
 	OVERLAY_ALIGN = {
 		node: null,
@@ -659,36 +647,6 @@ InputTextControl.prototype = {
 	},
 
 	/**
-	 * Whether or not the pressed key triggers some functionality or if it should
-	 * be ignored.
-	 *
-	 * @method _isIgnoreKey
-	 * @param {keyCode} Number The numeric code of the key pressed
-	 * @protected
-	 * @return {String}
-	 */
-	_isIgnoreKey: function(keyCode) {
-		var instance = this;
-
-		if (
-			(keyCode == KEY_TAB) ||
-			(keyCode == KEY_ENTER) ||
-			(keyCode == KEY_SHIFT) ||
-			(keyCode == KEY_CTRL) ||
-			(keyCode >= KEY_ALT && keyCode <= KEY_CAPS_LOCK) ||
-			(keyCode == KEY_ESC) ||
-			(keyCode >= KEY_PAGEUP && keyCode <= KEY_END) ||
-			(keyCode >= KEY_HOME && keyCode <= KEY_DOWN) ||
-			(keyCode >= KEY_PRINT_SCREEN && keyCode <= KEY_INSERT) ||
-			(keyCode == KEY_KOREAN_IME)
-		) {
-			return true;
-		}
-
-		return false;
-	},
-
-	/**
 	 * Called when the user mouses down on the button element in the combobox.
 	 *
 	 * @method _onButtonMouseDown
@@ -735,7 +693,7 @@ InputTextControl.prototype = {
 	_onTextboxBlur: function(event) {
 		var instance = this;
 
-		if (!instance._overContainer || (instance._keyCode == KEY_TAB)) {
+		if (!instance._overContainer || KeyMap.isKey(instance._keyCode, TAB)) {
 			instance.fire('textboxBlur');
 		}
 		else {
@@ -780,7 +738,7 @@ InputTextControl.prototype = {
 
 		instance.fire('textboxKeyDown', event);
 
-		if (keyCode == KEY_ALT) {
+		if (event.isKey(ALT)) {
 			instance._enableIntervalDetection();
 		}
 
@@ -797,11 +755,9 @@ InputTextControl.prototype = {
 	_onTextboxKeyPress: function(event) {
 		var instance = this;
 
-		var keyCode = event.keyCode;
-
 		instance.fire('textboxKeyPress', event);
 
-		if (keyCode == KEY_KOREAN_IME) {
+		if (event.isKey(WIN_IME)) {
 			instance._enableIntervalDetection();
 		}
 	},
@@ -816,9 +772,7 @@ InputTextControl.prototype = {
 	_onTextboxKeyUp: function(event) {
 		var instance = this;
 
-		var keyCode = event.keyCode;
-
-		if (instance._isIgnoreKey(keyCode)) {
+		if (event.isSpecialKey() && !event.isKey(BACKSPACE)) {
 			return;
 		}
 
@@ -937,7 +891,7 @@ InputTextControl.prototype = {
 	_typeAhead: function(elListItem, query) {
 		var instance = this;
 
-		if (!instance.get('typeAhead') || instance._keyCode == KEY_BACKSPACE) {
+		if (!instance.get('typeAhead') || KeyMap.isKey(instance._keyCode, BACKSPACE)) {
 			return;
 		}
 
