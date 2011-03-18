@@ -84,9 +84,9 @@ var L = A.Lang,
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
-	KEY_ESC = 27,
-	KEY_RIGHT = 39,
-	KEY_LEFT = 37,
+	ESC = 'ESC',
+	RIGHT = 'RIGHT',
+	LEFT = 'LEFT',
 
 	getCN = A.ClassNameManager.getClassName,
 
@@ -1302,19 +1302,18 @@ var ImageViewer = A.Component.create(
 			 */
 			_onKeyInteraction: function(event) {
 				var instance = this;
-				var keyCode = event.keyCode;
 
 				if (!instance.get(VISIBLE)) {
 					return false; // NOTE: return
 				}
 
-				if (keyCode == KEY_LEFT) {
+				if (event.isKey(LEFT)) {
 					instance.prev();
 				}
-				else if (keyCode == KEY_RIGHT) {
+				else if (event.isKey(RIGHT)) {
 					instance.next();
 				}
-				else if (keyCode == KEY_ESC) {
+				else if (event.isKey(ESC)) {
 					instance.close();
 				}
 			},
