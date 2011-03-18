@@ -13,6 +13,8 @@ isFunction = Lang.isFunction,
 
 getClassName = A.ClassNameManager.getClassName,
 
+KeyMap = A.Event.KeyMap,
+
 ALERT = 'alert',
 CONTENT = 'content',
 HELPER = 'helper',
@@ -37,24 +39,15 @@ CSS_RESULTS_LIST = getClassName(HELPER, RESET),
 CSS_RESULTS_OVERLAY = getClassName(NAME, RESULTS),
 CSS_RESULTS_OVERLAY_CONTENT = getClassName(NAME, RESULTS, CONTENT),
 
-KEY_BACKSPACE = 8,
-KEY_TAB = 9,
-KEY_ENTER = 13,
-KEY_SHIFT = 16,
-KEY_CTRL = 17,
-KEY_ALT = 18,
-KEY_CAPS_LOCK = 20,
-KEY_ESC = 27,
-KEY_PAGEUP = 33,
-KEY_END = 35,
-KEY_HOME = 36,
-KEY_UP = 38,
-KEY_DOWN = 40,
-KEY_RIGHT = 39,
-KEY_LEFT = 37,
-KEY_PRINT_SCREEN = 44,
-KEY_INSERT = 44,
-KEY_KOREAN_IME = 229,
+BACKSPACE = 'BACKSPACE',
+TAB = 'TAB',
+ENTER = 'ENTER',
+ALT = 'ALT',
+ESC = 'ESC',
+UP = 'UP',
+DOWN = 'DOWN',
+RIGHT = 'RIGHT',
+WIN_IME = 'WIN_IME',
 
 OVERLAY_ALIGN = {
 	node: null,
@@ -1031,36 +1024,6 @@ var AutoComplete = A.Component.create(
 			},
 
 			/**
-			 * Whether or not the pressed key triggers some functionality or if it should
-			 * be ignored.
-			 *
-			 * @method _isIgnoreKey
-			 * @param {keyCode} Number The numeric code of the key pressed
-			 * @protected
-			 * @return {String}
-			 */
-			_isIgnoreKey: function(keyCode) {
-				var instance = this;
-
-				if (
-					(keyCode == KEY_TAB) ||
-					(keyCode == KEY_ENTER) ||
-					(keyCode == KEY_SHIFT) ||
-					(keyCode == KEY_CTRL) ||
-					(keyCode >= KEY_ALT && keyCode <= KEY_CAPS_LOCK) ||
-					(keyCode == KEY_ESC) ||
-					(keyCode >= KEY_PAGEUP && keyCode <= KEY_END) ||
-					(keyCode >= KEY_HOME && keyCode <= KEY_DOWN) ||
-					(keyCode >= KEY_PRINT_SCREEN && keyCode <= KEY_INSERT) ||
-					(keyCode == KEY_KOREAN_IME)
-				) {
-					return true;
-				}
-
-				return false;
-			},
-
-			/**
 			 * If there is a currently selected item, the right arrow key will select
 			 * that item and jump to the end of the input element, otherwise the container is closed.
 			 *
@@ -1099,7 +1062,7 @@ var AutoComplete = A.Component.create(
 
 					var newItemIndex = curItemIndex - 1;
 
-					if (keyCode == KEY_DOWN) {
+					if (KeyMap.isKey(keyCode, DOWN)) {
 						newItemIndex = curItemIndex + 1;
 					}
 
@@ -1159,7 +1122,7 @@ var AutoComplete = A.Component.create(
 						var contentScrollTop = elContent.get('scrollTop');
 						var contentBottom = contentHeight + contentScrollTop;
 
-						if (keyCode == KEY_DOWN) {
+						if (KeyMap.isKey(keyCode, DOWN)) {
 							if (liBottom > contentBottom) {
 								newScrollTop = (liBottom - contentHeight);
 							}
@@ -1377,7 +1340,7 @@ var AutoComplete = A.Component.create(
 			_onTextboxBlur: function(event) {
 				var instance = this;
 
-				if (!instance._overContainer || (instance._keyCode == KEY_TAB)) {
+				if (!instance._overContainer || KeyMap.isKey(instance._keyCode, TAB)) {
 					if (!instance._itemSelected) {
 						var elMatchListItem = instance._textMatchesOption();
 
@@ -1450,70 +1413,62 @@ var AutoComplete = A.Component.create(
 					clearTimeout(instance._typeAheadDelayId);
 				}
 
-				switch (keyCode) {
-					case KEY_TAB:
-						if (instance._elCurListItem) {
-							if (instance.get('delimChar') && instance._keyCode != keyCode) {
-								if (instance.overlay.get('visible')) {
-									event.halt();
-								}
+				if (event.isKey(TAB)) {
+					if (instance._elCurListItem) {
+						if (instance.get('delimChar') && instance._keyCode != keyCode) {
+							if (instance.overlay.get('visible')) {
+								event.halt();
 							}
-
-							instance._selectItem(instance._elCurListItem);
 						}
-						else {
-							instance._toggleContainer(false);
-						}
-					break;
 
-					case KEY_ENTER:
-						if (instance._elCurListItem) {
-							if (instance._keyCode != keyCode) {
-								if (instance.overlay.get('visible')) {
-									event.halt();
-								}
-							}
-
-							instance._selectItem(instance._elCurListItem);
-						}
-						else {
-							instance._toggleContainer(false);
-						}
-					break;
-
-					case KEY_ESC:
+						instance._selectItem(instance._elCurListItem);
+					}
+					else {
 						instance._toggleContainer(false);
-					return;
-
-					case KEY_UP:
-						if (instance.overlay.get('visible')) {
-							event.halt();
-
-							instance._moveSelection(keyCode);
+					}
+				}
+				else if (event.isKey(ENTER)) {
+					if (instance._elCurListItem) {
+						if (instance._keyCode != keyCode) {
+							if (instance.overlay.get('visible')) {
+								event.halt();
+							}
 						}
-					break;
 
-					case KEY_RIGHT:
-						instance._jumpSelection();
-					break;
+						instance._selectItem(instance._elCurListItem);
+					}
+					else {
+						instance._toggleContainer(false);
+					}
+				}
+				else if (event.isKey(ESC)) {
+					instance._toggleContainer(false);
+				}
+				else if (event.isKey(UP)) {
+					if (instance.overlay.get('visible')) {
+						event.halt();
 
-					case KEY_DOWN:
-						if (instance.overlay.get('visible')) {
-							event.halt();
+						instance._moveSelection(keyCode);
+					}
+				}
+				else if (event.isKey(RIGHT)) {
+					instance._jumpSelection();
+				}
+				else if (event.isKey(DOWN)) {
+					if (instance.overlay.get('visible')) {
+						event.halt();
 
-							instance._moveSelection(keyCode);
-						}
-					break;
+						instance._moveSelection(keyCode);
+					}
+				}
+				else {
+					instance._itemSelected = false;
+					instance._toggleHighlight(instance._elCurListItem, 'from');
 
-					default:
-						instance._itemSelected = false;
-						instance._toggleHighlight(instance._elCurListItem, 'from');
-
-						instance.fire('textboxKey', keyCode);
-					break;
+					instance.fire('textboxKey', keyCode);
 				}
 
-				if (keyCode == KEY_ALT) {
+				if (event.isKey(ALT)) {
 					instance._enableIntervalDetection();
 				}
 
@@ -1532,40 +1487,34 @@ var AutoComplete = A.Component.create(
 
 				var keyCode = event.keyCode;
 
-				switch (keyCode) {
-					case KEY_TAB:
-						if (instance.overlay.get('visible')) {
-							if (instance.get('delimChar')) {
-								event.halt();
-							}
-
-							if (instance._elCurListItem) {
-								instance._selectItem(instance._elCurListItem);
-							}
-							else {
-								instance._toggleContainer(false);
-							}
-						}
-					break;
-
-					case 13:
-						if (instance.overlay.get('visible')) {
+				if (event.isKey(TAB)) {
+					if (instance.overlay.get('visible')) {
+						if (instance.get('delimChar')) {
 							event.halt();
-
-							if (instance._elCurListItem) {
-								instance._selectItem(instance._elCurListItem);
-							}
-							else {
-								instance._toggleContainer(false);
-							}
 						}
-					break;
 
-					default:
-					break;
+						if (instance._elCurListItem) {
+							instance._selectItem(instance._elCurListItem);
+						}
+						else {
+							instance._toggleContainer(false);
+						}
+					}
+				}
+				else if (event.isKey(ENTER)) {
+					if (instance.overlay.get('visible')) {
+						event.halt();
+
+						if (instance._elCurListItem) {
+							instance._selectItem(instance._elCurListItem);
+						}
+						else {
+							instance._toggleContainer(false);
+						}
+					}
 				}
 
-				if (keyCode == KEY_KOREAN_IME) {
+				if (event.isKey(WIN_IME)) {
 					instance._enableIntervalDetection();
 				}
 			},
@@ -1583,9 +1532,8 @@ var AutoComplete = A.Component.create(
 				var input = instance.inputNode;
 
 				var value = input.get('value');
-				var keyCode = event.keyCode;
 
-				if (instance._isIgnoreKey(keyCode)) {
+				if (event.isSpecialKey() && !event.isKey(BACKSPACE)) {
 					return;
 				}
 
@@ -2011,7 +1959,7 @@ var AutoComplete = A.Component.create(
 			_typeAhead: function(elListItem, query) {
 				var instance = this;
 
-				if (!instance.get('typeAhead') || instance._keyCode == KEY_BACKSPACE) {
+				if (!instance.get('typeAhead') || KeyMap.isKey(instance._keyCode, BACKSPACE)) {
 					return;
 				}
 
