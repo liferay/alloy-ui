@@ -40,7 +40,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 
-	TPL_FIELDSET = '<fieldset class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '"></fieldset>',
+	TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '"></fieldset>',
 
 	TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>'
 
@@ -66,7 +66,7 @@ var FormBuilderFieldsetField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: EMPTY_STR
+			value: TPL_FIELDSET
 		},
 
 		/*
@@ -117,6 +117,35 @@ var FormBuilderFieldsetField = A.Component.create({
 			if (!contentBox.contains(labelNode)) {
 				contentBox.append(labelNode);
 			}
+		},
+
+		/**
+		 * Returns the HTML content of the field
+		 *
+		 * @method getHTML
+		 */
+		getHTML: function() {
+			var instance = this;
+			var template = instance.get(TEMPLATE);
+			var id = instance.get(ID);
+
+			return A.substitute(
+				template,
+				{
+					id: id
+				}
+			)
+		},
+
+		/**
+		 * Returns the A.Node of the field's HTML content
+		 *
+		 * @method getNode
+		 */
+		getNode: function() {
+			var instance = this;
+
+			return A.Node.create(instance.getHTML());
 		},
 
 		/**
