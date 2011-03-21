@@ -660,8 +660,6 @@ var FormBuilder = A.Component.create({
 			}
 
 			instance.appendFields(fields, container);
-
-			instance._syncNestedList();
 		},
 
 		/**
@@ -693,8 +691,7 @@ var FormBuilder = A.Component.create({
 		_afterFieldsChange: function() {
 			var instance = this;
 
-			instance.syncFieldsUI();
-			instance._syncDefaultMessage();
+			instance.syncUI();
 		},
 
 		/**
