@@ -77,6 +77,7 @@ var L = A.Lang,
 	LAST_CHILD = 'lastChild',
 	LIST = 'list',
 	MESSAGE = 'message',
+	NAME = 'name',
 	NESTED_LIST = 'nestedList',
 	NODE = 'node',
 	OVER = 'over',
@@ -184,7 +185,7 @@ var L = A.Lang,
 	TAB_INDEX_DRAG = 0,
 	TAB_INDEX_SETTINGS = 1,
 
-	INVALID_CLONE_ATTRS = A.Array([BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE])
+	INVALID_CLONE_ATTRS = A.Array([BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME])
 
 var FormBuilderFieldSupport = function() {};
 
