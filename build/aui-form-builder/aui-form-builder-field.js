@@ -284,13 +284,7 @@ var FormBuilderField = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.buttonsNode = instance.get(BUTTONS_NODE);
-			instance.contentBox = instance.get(CONTENT_BOX);
-			instance.labelNode = instance.get(LABEL_NODE);
-			instance.templateNode = instance.get(TEMPLATE_NODE);
-
-			instance.boundingBox.setData(FIELD, instance);
+			instance.get(BOUNDING_BOX).setData(FIELD, instance);
 		},
 
 		/**
@@ -310,11 +304,11 @@ var FormBuilderField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var buttonsNode = instance.buttonsNode;
-			var contentBox = instance.contentBox;
-			var labelNode = instance.labelNode;
-			var templateNode = instance.templateNode;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var contentBox = instance.get(CONTENT_BOX);
+			var labelNode = instance.get(LABEL_NODE);
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -941,7 +935,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 			A.FormBuilderCheckBoxField.superclass.bindUI.apply(instance, arguments);
 
-			var templateNode = instance.templateNode;
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.on(
 				{
@@ -957,9 +951,9 @@ var FormBuilderCheckBoxField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var contentBox = instance.contentBox;
-			var templateNode = instance.templateNode;
-			var labelNode = instance.labelNode;
+			var contentBox = instance.get(CONTENT_BOX);
+			var templateNode = instance.get(TEMPLATE_NODE);
+			var labelNode = instance.get(LABEL_NODE);
 
 			A.FormBuilderCheckBoxField.superclass.renderUI.apply(instance, arguments);
 
@@ -1170,11 +1164,11 @@ var FormBuilderFieldsetField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var buttonsNode = instance.buttonsNode;
-			var contentBox = instance.contentBox;
-			var labelNode = instance.labelNode;
-			var templateNode = instance.templateNode;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var contentBox = instance.get(CONTENT_BOX);
+			var labelNode = instance.get(LABEL_NODE);
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -1611,7 +1605,7 @@ var FormBuilderInputField = A.Component.create({
 
 			A.FormBuilderInputField.superclass.bindUI.apply(instance, arguments);
 
-			var templateNode = instance.templateNode;
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.on(
 				{
@@ -1844,16 +1838,9 @@ var FieldOptions = A.Component.create({
 
 	prototype: {
 
-		initializer: function() {
-			var instance = this;
-
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.contentBox = instance.get(CONTENT_BOX);
-		},
-
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
+			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
 			if (!addNode.inDoc()) {
@@ -1863,7 +1850,7 @@ var FieldOptions = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
+			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
 			addNode.on('click', A.bind(instance._onClickAdd, instance));
@@ -1891,17 +1878,19 @@ var FieldOptions = A.Component.create({
 
 		remove: function(index) {
 			var instance = this;
+			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
 			if (optionNode) {
 				optionNode.remove();
 			}
 
-			instance.items = instance.contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		},
 
 		_addNewOption: function() {
 			var instance = this;
+			var contentBox = instance.get(CONTENT_BOX);
 
 			var newOptionNode = instance._createOption(
 				{
@@ -1912,14 +1901,14 @@ var FieldOptions = A.Component.create({
 
 			newOptionNode = A.Node.create(newOptionNode);
 
-			instance.contentBox.append(newOptionNode);
+			contentBox.append(newOptionNode);
 
 			var newOptionNodeInput = newOptionNode.one(INPUT);
 
 			newOptionNodeInput.focus();
 			newOptionNodeInput.select();
 
-			instance.items = instance.contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 
 			return newOptionNode;
 		},
@@ -2284,10 +2273,10 @@ var FormBuilderRadioField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var buttonsNode = instance.buttonsNode;
-			var contentBox = instance.contentBox;
-			var labelNode = instance.labelNode;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var contentBox = instance.get(CONTENT_BOX);
+			var labelNode = instance.get(LABEL_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -2698,7 +2687,7 @@ var FormBuilderTextAreaField = A.Component.create({
 
 			A.FormBuilderInputField.superclass.bindUI.apply(instance, arguments);
 
-			var templateNode = instance.templateNode;
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.on(
 				{
