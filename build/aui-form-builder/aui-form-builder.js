@@ -233,6 +233,13 @@ A.mix(FormBuilderFieldSupport.prototype, {
 		return (instance.indexOf(field) > -1);
 	},
 
+	getField: function(index) {
+		var instance = this;
+		var fields = instance.get(FIELDS);
+
+		return fields[index];
+	},
+
 	indexOf: function(field) {
 		var instance = this;
 		var fields = instance.get(FIELDS);
@@ -758,19 +765,15 @@ var FormBuilder = A.Component.create({
 			}
 
 			if (!field) {
-				var config = instance._getFieldDefaultConfig(type)
-
-				field = instance._renderField(config);
+				field = instance._getFieldDefaultConfig(type);
 			}
 
 			var parent = instance._getFieldParentByNode(node);
+			var index = nodes.indexOf(node);
 
-			parent.insertField(
-				nodes.indexOf(node),
-				field
-			);
+			parent.insertField(index, field);
 
-			return field;
+			return parent.getField(index);
 		},
 
 		/**
@@ -864,9 +867,9 @@ var FormBuilder = A.Component.create({
 					instance._tabs.selectTab(TAB_INDEX_DRAG);
 				}
 
-				field.get(PARENT).removeField(field);
-
 				field.set(SELECTED, false);
+
+				field.get(PARENT).removeField(field);
 			}
 		},
 
@@ -969,9 +972,7 @@ var FormBuilder = A.Component.create({
 				instance.selectField(field);
 			}
 			else {
-				if (dragNode) {
-					dragNode.remove();
-				}
+				drag.set(NODE, instance.originalNode);
 			}
 
 			if (dragContainerNode.contains(dragNode) &&
