@@ -283,13 +283,7 @@ var FormBuilderField = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.buttonsNode = instance.get(BUTTONS_NODE);
-			instance.contentBox = instance.get(CONTENT_BOX);
-			instance.labelNode = instance.get(LABEL_NODE);
-			instance.templateNode = instance.get(TEMPLATE_NODE);
-
-			instance.boundingBox.setData(FIELD, instance);
+			instance.get(BOUNDING_BOX).setData(FIELD, instance);
 		},
 
 		/**
@@ -309,11 +303,11 @@ var FormBuilderField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var buttonsNode = instance.buttonsNode;
-			var contentBox = instance.contentBox;
-			var labelNode = instance.labelNode;
-			var templateNode = instance.templateNode;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var contentBox = instance.get(CONTENT_BOX);
+			var labelNode = instance.get(LABEL_NODE);
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);

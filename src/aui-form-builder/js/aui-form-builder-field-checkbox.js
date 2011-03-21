@@ -112,7 +112,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 			A.FormBuilderCheckBoxField.superclass.bindUI.apply(instance, arguments);
 
-			var templateNode = instance.templateNode;
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.on(
 				{
@@ -128,9 +128,9 @@ var FormBuilderCheckBoxField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var contentBox = instance.contentBox;
-			var templateNode = instance.templateNode;
-			var labelNode = instance.labelNode;
+			var contentBox = instance.get(CONTENT_BOX);
+			var templateNode = instance.get(TEMPLATE_NODE);
+			var labelNode = instance.get(LABEL_NODE);
 
 			A.FormBuilderCheckBoxField.superclass.renderUI.apply(instance, arguments);
 

@@ -133,16 +133,9 @@ var FieldOptions = A.Component.create({
 
 	prototype: {
 
-		initializer: function() {
-			var instance = this;
-
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.contentBox = instance.get(CONTENT_BOX);
-		},
-
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
+			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
 			if (!addNode.inDoc()) {
@@ -152,7 +145,7 @@ var FieldOptions = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
-			var boundingBox = instance.boundingBox;
+			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
 			addNode.on('click', A.bind(instance._onClickAdd, instance));
@@ -180,17 +173,19 @@ var FieldOptions = A.Component.create({
 
 		remove: function(index) {
 			var instance = this;
+			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
 			if (optionNode) {
 				optionNode.remove();
 			}
 
-			instance.items = instance.contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		},
 
 		_addNewOption: function() {
 			var instance = this;
+			var contentBox = instance.get(CONTENT_BOX);
 
 			var newOptionNode = instance._createOption(
 				{
@@ -201,14 +196,14 @@ var FieldOptions = A.Component.create({
 
 			newOptionNode = A.Node.create(newOptionNode);
 
-			instance.contentBox.append(newOptionNode);
+			contentBox.append(newOptionNode);
 
 			var newOptionNodeInput = newOptionNode.one(INPUT);
 
 			newOptionNodeInput.focus();
 			newOptionNodeInput.select();
 
-			instance.items = instance.contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 
 			return newOptionNode;
 		},

@@ -1159,7 +1159,7 @@ var FormBuilder = A.Component.create({
 		 */
 		_toggleFieldButtonsNode: function(field, val) {
 			var instance = this;
-			var buttonsNode = field.buttonsNode;
+			var buttonsNode = field.get(BUTTONS_NODE);
 
 			if (buttonsNode) {
 				buttonsNode.toggleClass(CSS_HELPER_HIDDEN, !val);
