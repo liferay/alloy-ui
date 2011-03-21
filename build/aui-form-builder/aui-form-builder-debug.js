@@ -35,12 +35,14 @@ var L = A.Lang,
 	CHILDREN = 'children',
 	CLONABLE_PORTAL_LAYOUT = 'clonable-portal-layout',
 	CLONE_NODE = 'cloneNode',
+	COMMA_AND_SPACE = ', ';
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
 	DELETE = 'delete',
 	DD = 'dd',
 	DEFAULT = 'default',
+	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
 	DOT = '.',
 	DUPLICATE = 'duplicate',
 	DRAG = 'drag',
@@ -74,6 +76,7 @@ var L = A.Lang,
 	LAST = 'last',
 	LAST_CHILD = 'lastChild',
 	LIST = 'list',
+	MESSAGE = 'message',
 	NESTED_LIST = 'nestedList',
 	NODE = 'node',
 	OVER = 'over',
@@ -119,6 +122,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
 	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
 	CSS_FORM_BUILDER_BUTTON_SAVE = getCN(FORM, BUILDER, BUTTON, SAVE),
+	CSS_FORM_BUILDER_DEFAULT_MESSAGE = getCN(FORM, BUILDER, DEFAULT, MESSAGE),
 	CSS_FORM_BUILDER_DRAG_CONTAINER = getCN(FORM, BUILDER, DRAG, CONTAINER),
 	CSS_FORM_BUILDER_DRAG_NODE = getCN(FORM, BUILDER, DRAG, NODE),
 	CSS_FORM_BUILDER_DROP_ACTIVE = getCN(FORM, BUILDER, DROP, ACTIVE),
@@ -140,6 +144,8 @@ var L = A.Lang,
 	CSS_TABVIEW_CONTENT = getCN(TABVIEW, CONTENT),
 	CSS_TABVIEW_LIST = getCN(TABVIEW, LIST),
 	CSS_ICON = getCN(ICON),
+
+	TPL_DEFAULT_MESSAGE = '<li class="' + CSS_FORM_BUILDER_DEFAULT_MESSAGE + '"></li>',
 
 	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
 
@@ -388,6 +394,7 @@ var FormBuilder = A.Component.create({
 		strings: {
 			value:
 			{
+				stringDefaultMessage: 'Drop a field here',
 				stringEmptySelection: 'No field selected'
 			}
 		},
@@ -395,6 +402,12 @@ var FormBuilder = A.Component.create({
 		/*
 		* HTML_PARSER attributes
 		*/
+		defaultMessageNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_DEFAULT_MESSAGE);
+			}
+		},
+
 		dragContainerNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_DRAG_CONTAINER);
@@ -446,6 +459,7 @@ var FormBuilder = A.Component.create({
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
 	HTML_PARSER: {
+		defaultMessageNode: DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE,
 		dragContainerNode: DOT + CSS_FORM_BUILDER_DRAG_CONTAINER,
 		dragNodesList: function(srcNode) {
 			var nodes = srcNode.all(DOT + CSS_FORM_BUILDER_DRAG_NODE);
@@ -546,7 +560,7 @@ var FormBuilder = A.Component.create({
 
 			settingsButtonsNode.delegate('click', A.bind(instance._onClickSettingsButton, instance), DOT + CSS_BUTTON_INPUT);
 
-			instance.after('*:fieldsChange', A.bind(instance.syncFieldsUI, instance));
+			instance.after('*:fieldsChange', A.bind(instance._afterFieldsChange, instance));
 			instance.after('*:selectedChange', A.bind(instance._afterSelectedChange, instance));
 		},
 
@@ -560,6 +574,7 @@ var FormBuilder = A.Component.create({
 
 			instance.syncFieldsUI();
 
+			instance._syncDefaultMessage();
 			instance._syncNestedList();
 		},
 
@@ -663,6 +678,18 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
+		 * Handles the afterFieldsChange event
+		 *
+		 * @method _afterFieldsChange
+		 */
+		_afterFieldsChange: function() {
+			var instance = this;
+
+			instance.syncFieldsUI();
+			instance._syncDefaultMessage();
+		},
+
+		/**
 		 * Adds/removes the selected class according to the 'selected' attribute
 		 * value
 		 *
@@ -724,6 +751,11 @@ var FormBuilder = A.Component.create({
 			var parentNode = node.get(PARENT_NODE);
 			var nodes = parentNode.all('> ' + DOT + CSS_FORM_BUILDER_FIELD);
 			var field = node.getData(FIELD);
+			var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
+
+			if (defaultMessageNode.inDoc()) {
+				defaultMessageNode.remove();
+			}
 
 			if (!field) {
 				var config = instance._getFieldDefaultConfig(type)
@@ -959,7 +991,9 @@ var FormBuilder = A.Component.create({
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
 
-			instance._dropField(dragNode);
+			if (dragNode.hasClass(CSS_FORM_BUILDER_FIELD)) {
+				instance._dropField(dragNode);
+			}
 		},
 
 		/**
@@ -1046,6 +1080,24 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
+		 * Updates the default message UI
+		 *
+		 * @method _syncDefaultMessage
+		 */
+		_syncDefaultMessage: function() {
+			var instance = this;
+
+			if (!instance.dropContainerNode.hasChildNodes()) {
+				var strings = instance.get(STRINGS);
+				var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
+
+				defaultMessageNode.setContent(strings['stringDefaultMessage']);
+
+				instance.dropContainerNode.append(defaultMessageNode);
+			}
+		},
+
+		/**
 		 * Updates the nestedList nodes
 		 *
 		 * @method _syncNestedList
@@ -1070,7 +1122,13 @@ var FormBuilder = A.Component.create({
 			var dropContainerNode = instance.dropContainerNode;
 
 			instance.dragNodes = dragContainerNode.all(DOT + CSS_FORM_BUILDER_FIELD);
-			instance.dropNodes = dropContainerNode.all(DOT + CSS_FORM_BUILDER_FIELD);
+
+			instance.dropNodes = dropContainerNode.all(
+				[
+					DOT + CSS_FORM_BUILDER_FIELD,
+					DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE
+				].join(COMMA_AND_SPACE)
+			);
 		},
 
 		/**
