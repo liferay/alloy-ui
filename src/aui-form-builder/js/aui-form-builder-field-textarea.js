@@ -93,7 +93,7 @@ var FormBuilderTextAreaField = A.Component.create({
 
 			A.FormBuilderInputField.superclass.bindUI.apply(instance, arguments);
 
-			var templateNode = instance.templateNode;
+			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.on(
 				{
