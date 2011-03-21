@@ -32,14 +32,7 @@
 			<div class="aui-widget-bd aui-helper-clearfix">
 
 				<ul class="aui-form-builder-drop-container">
-					<li id="markupField1" class="aui-widget aui-component aui-form-builder-field">
-						<div class="aui-form-builder-field-content">
-							<label for="myText" class="aui-field-label">First name</label>
-							<input id="myText" class="aui-form-builder-field-node aui-field-input aui-field-input-text" type="text" value="Bruno Basto" />
-						</div>
-
-						<ul class="aui-form-builder-drop-zone"></ul>
-					</li>
+					<li class="aui-form-builder-default-message">Drop a field here</li>
 				</ul>
 
 				<div class="aui-form-builder-tabs-container">
@@ -173,17 +166,16 @@ AUI().ready('aui-form-builder', 'aui-form-builder-field', function(A) {
 					label: 'File Upload'
 				}
 			},
-
-			fields:
+			fields: []
+			/*
 			[
 				{
-					boundingBox: '#markupField1',
-					srcNode: '#markupField1 .aui-form-builder-field-content',
 					type: 'text',
 					label: 'First name',
 					defaultValue: 'Bruno Basto'
 				}
 			]
+			*/
 		}
 	).render();
 

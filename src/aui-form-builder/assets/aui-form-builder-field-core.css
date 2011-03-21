@@ -20,9 +20,11 @@
 	width: 200px;
 }
 
-.aui-form-builder-drop-container .aui-form-builder-field {
+.aui-form-builder-drop-container .aui-form-builder-field,
+.aui-form-builder-drop-container .aui-form-builder-default-message {
 	background-image: url(form_builder_bg.png);
 	border: 1px solid #C6D9F0;
+	list-style: none;
 	margin: 5px;
 	padding: 3px;
 
@@ -36,9 +38,14 @@
 	padding: 5px;
 }
 
-.aui-form-builder-drop-container .aui-form-builder-field-selected {
+.aui-form-builder-drop-container .aui-form-builder-field-selected,
+.aui-form-builder-drop-container .aui-form-builder-default-message {
 	background: none repeat scroll 0 0 #FFFFCC;
 	border: 1px solid #FFCC00;
+}
+
+.aui-form-builder-drop-container .aui-form-builder-default-message {
+	padding: 15px 10px;
 }
 
 /* Fields */
