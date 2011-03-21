@@ -20,6 +20,8 @@ var Lang = A.Lang,
 	EMPTY_STR = '',
 	STR_REGEX = /([^a-z])/ig,
 
+	EV_PROCESS_ATTRIBUTE = 'aria:processAttribute',
+
 	_toAriaRole = A.cached(
 		function(str) {
 			return str.replace(STR_REGEX, function() {
@@ -86,6 +88,14 @@ var Aria = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
+			instance.publish(EV_PROCESS_ATTRIBUTE, {
+	            defaultFn: instance._defProcessFn,
+	            queuable: false,
+	            emitFacade: true,
+	            bubbles: true,
+	            prefix: ARIA
+	        });
+
 			instance._uiSetRoleName(
 				instance.get(ROLE_NAME)
 			);
@@ -124,7 +134,7 @@ var Aria = A.Component.create({
 		_afterHostAttributeChange: function(event) {
 			var instance = this;
 
-			instance._uiSetHostAttribute(event.aria);
+			instance._handleProcessAttribute(event);
 		},
 
 		_afterRoleNameChange: function(event) {
@@ -140,13 +150,19 @@ var Aria = A.Component.create({
 			A.each(attributes, function(aria, attrName) {
 				var ariaAttr = instance._getAriaAttribute(aria, attrName);
 
-				instance._uiSetHostAttribute(ariaAttr);
+				instance._handleProcessAttribute({ aria: ariaAttr });
 
 				instance.afterHostEvent(attrName+CHANGE_PREFIX, function(event) {
 					event.aria = ariaAttr;
 					instance._afterHostAttributeChange(event);
 				});
 			});
+		},
+
+		_defProcessFn: function(event) {
+			var instance = this;
+
+			instance._setAttribute(event.aria);
 		},
 
 		_getAriaAttribute: function(aria, attrName) {
@@ -174,19 +190,26 @@ var Aria = A.Component.create({
 			return prepared;
 		},
 
-		_uiSetHostAttribute: function(ariaAttr) {
+		_handleProcessAttribute: function(event) {
+			var instance = this;
+
+			instance.fire(EV_PROCESS_ATTRIBUTE, { aria: event.aria });
+		},
+
+		_setAttribute: function(ariaAttr) {
 			var instance = this;
 			var host = instance.get(HOST);
 			var attrValue = host.get(ariaAttr.attrName);
+			var attrNode = ariaAttr.node;
 
-			if (isFunction(ariaAttr.node)) {
-				ariaAttr.node = ariaAttr.node.apply(instance);
+			if (isFunction(attrNode)) {
+				attrNode = attrNode.apply(instance, [ariaAttr]);
 			}
 
 			instance.setAttribute(
 				ariaAttr.ariaName,
-				ariaAttr.format(attrValue),
-				ariaAttr.node
+				ariaAttr.format.apply(instance, [attrValue, ariaAttr]),
+				attrNode
 			);
 		},
 
