@@ -162,7 +162,7 @@ Panel.ATTRS = {
 	},
 
 	/**
-	 * True if Dialog should use ARIA plugin
+	 * True if Panel should use ARIA plugin
 	 *
 	 * @attribute useARIA
 	 * @default true
