@@ -306,17 +306,6 @@ A.mix(
 				value: {
 					close: 'Close dialog'
 				}
-			},
-
-			/**
-			 * True if Dialog should use ARIA plugin
-			 *
-			 * @attribute useARIA
-			 * @default true
-			 * @type Boolean
-			 */
-			useARIA: {
-				value: true
 			}
 		}
 	}
@@ -483,16 +472,6 @@ Dialog.prototype = {
 
 		instance._initButtons();
 
-		instance.get('contentBox').setAttribute('role', 'dialog');
-
-		if (instance.icons) {
-			var closeThick = instance.icons.item(CLOSETHICK);
-
-			if (closeThick){
-				closeThick.get(BOUNDING_BOX).setAttribute('aria-controls', instance.get('id'));
-			}
-		}
-
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
 		instance.get(IO);
@@ -605,6 +584,29 @@ Dialog.prototype = {
 			}
 			else {
 				dragInstance.unplug(A.Plugin.DDConstrained);
+			}
+		}
+	},
+
+	/**
+	 * Set default ARIA roles and attributes.
+	 * @method _setDefaultARIAValues
+	 * @protected
+	 */
+	_setDefaultARIAValues: function() {
+		var instance = this;
+
+		if (!instance.get(USE_ARIA)) {
+			return;
+		}
+
+		instance.aria.setRole('dialog', instance.get(BOUNDING_BOX));
+
+		if (instance.icons) {
+			var closeThick = instance.icons.item(CLOSETHICK);
+
+			if (closeThick){
+				instance.aria.setAttribute('controls', instance.get('id'), closeThick.get(BOUNDING_BOX));
 			}
 		}
 	},
