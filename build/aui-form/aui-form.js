@@ -2093,6 +2093,12 @@ var FormValidator = A.Component.create({
 			);
 		},
 
+		normalizeRuleValue: function(ruleValue) {
+			var instance = this;
+
+			return isFunction(ruleValue) ? ruleValue.apply(instance) : ruleValue;
+		},
+
 		unhighlight: function(field) {
 			var instance = this;
 
@@ -2166,7 +2172,7 @@ var FormValidator = A.Component.create({
 			var instance = this;
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
-			var required = fieldRules.required;
+			var required = instance.normalizeRuleValue(fieldRules.required);
 			var hasValue = YUI.AUI.defaults.FormValidator.RULES.required.apply(instance, [field.val(), field]);
 
 			return (required || (!required && hasValue));
@@ -2274,6 +2280,8 @@ var FormValidator = A.Component.create({
 				function(ruleValue, ruleName) {
 					var rule = YUI.AUI.defaults.FormValidator.RULES[ruleName];
 					var fieldValue = trim(field.val());
+
+					ruleValue = instance.normalizeRuleValue(ruleValue);
 
 					if (isFunction(rule) &&
 						!rule.apply(instance, [fieldValue, field, ruleValue])) {
