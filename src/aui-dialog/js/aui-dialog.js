@@ -43,6 +43,7 @@ var L = A.Lang,
 	RESIZABLE = 'resizable',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
+	USE_ARIA = 'useARIA',
 	VIEWPORT_REGION = 'viewportRegion',
 	WIDTH = 'width',
 
@@ -305,6 +306,17 @@ A.mix(
 				value: {
 					close: 'Close dialog'
 				}
+			},
+
+			/**
+			 * True if Dialog should use ARIA plugin
+			 *
+			 * @attribute useARIA
+			 * @default true
+			 * @type Boolean
+			 */
+			useARIA: {
+				value: true
 			}
 		}
 	}
@@ -362,6 +374,30 @@ Dialog.prototype = {
 		instance.publish('close', { defaultFn: instance._close });
 
 		instance.on('visibleChange', instance._afterSetVisible);
+	},
+
+	/**
+     * Refreshes the rendered UI, based on Widget State
+     *
+     * @method syncUI
+     * @protected
+     *
+     */
+	syncUI: function() {
+		var instance = this;
+
+		if (instance.get(USE_ARIA)) {
+			instance.plug(A.Plugin.Aria, {
+				attributes: {
+					visible: {
+						ariaName: 'hidden',
+						format: function(value) {
+							return !value;
+						}
+					}
+				}
+			});
+		}
 	},
 
 	/**
@@ -753,11 +789,7 @@ Dialog.prototype = {
 			else {
 				A.DialogMask.hide();
 			}
-		}
-
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		boundingBox.setAttribute('aria-hidden', !event.newVal);
+		}				
 	}
 };
 

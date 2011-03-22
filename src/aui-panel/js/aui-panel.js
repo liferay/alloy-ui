@@ -26,6 +26,7 @@ var Lang = A.Lang,
 	PLUS = 'plus',
 	TITLE = 'title',
 	ICONS = 'icons',
+	USE_ARIA = 'useARIA',
 	VISIBLE = 'visible',
 
 	EMPTY_STR = '',
@@ -158,6 +159,17 @@ Panel.ATTRS = {
 		value: {
 			toggle: 'Toggle collapse'
 		}
+	},
+
+	/**
+	 * True if Dialog should use ARIA plugin
+	 *
+	 * @attribute useARIA
+	 * @default true
+	 * @type Boolean
+	 */
+	useARIA: {
+		value: true
 	}
 };
 
@@ -182,6 +194,42 @@ Panel.prototype = {
 		instance.after('collapsedChange', instance._afterCollapsedChange);
 		instance.after('render', instance._afterPanelRender);
 		instance.after('titleChange', instance._afterTitleChange);
+	},
+
+	/**
+     * Refreshes the rendered UI, based on Widget State
+     *
+     * @method syncUI
+     * @protected
+     *
+     */
+	syncUI: function() {
+		var instance = this;
+
+		if (instance.get(USE_ARIA)) {
+			instance.plug(A.Plugin.Aria, {
+				attributes: {
+					collapsed: {
+						ariaName: 'hidden',
+						node: function(value) {
+							var bodyNode = instance.bodyNode;
+
+							/*
+							var icons = instance.icons;
+							var collapseItem = icons.item(COLLAPSE);
+
+							if (collapseItem) {
+								//.setAttribute('aria-pressed', collapsed);
+								var collapseItemBB = collapseItem.get(BOUNDING_BOX)
+							}
+
+							return new A.NodeList([bodyNode, collapseItemBB]);
+							*/
+						}
+					}
+				}
+			})
+		}
 	},
 
 	/**
@@ -357,8 +405,6 @@ Panel.prototype = {
 						ICON,
 						collapsed ? PLUS : MINUS
 					);
-
-					collapseItem.get(BOUNDING_BOX).setAttribute('aria-pressed', collapsed);
 				}
 			}
 
@@ -370,8 +416,6 @@ Panel.prototype = {
 				bodyNode.show();
 				boundingBox.removeClass(CSS_COLLAPSED);
 			}
-
-			instance.bodyNode.setAttribute('aria-hidden', collapsed);
 		}
 	},
 
