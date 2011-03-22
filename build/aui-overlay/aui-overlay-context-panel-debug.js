@@ -245,8 +245,6 @@ var OverlayContextPanel = A.Component.create(
 			syncUI: function() {
 				var instance = this;
 
-				OverlayContextPanel.superclass.syncUI.apply(instance, arguments);
-
 				instance._syncElements();
 			},
 

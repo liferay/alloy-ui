@@ -61,7 +61,6 @@ var L = A.Lang,
 	SHOW_ON = 'showOn',
 	TL = 'tl',
 	TRIGGER = 'trigger',
-	USE_ARIA = 'useARIA',
 	VISIBLE = 'visible';
 
 /**
@@ -258,17 +257,6 @@ var OverlayContext = A.Component.create(
 			},
 
 			/**
-			 * True if Overlay should use ARIA plugin
-			 *
-			 * @attribute useARIA
-			 * @default true
-			 * @type Boolean
-			 */
-			useARIA: {
-				value: true
-			},
-
-			/**
 			 * If true the OverlayContext is visible by default after the render phase.
 	         * Inherited from <a href="Overlay.html">Overlay</a>.
 			 *
@@ -353,42 +341,6 @@ var OverlayContext = A.Component.create(
 				OverlayContext.superclass.show.apply(instance, arguments);
 
 				instance.refreshAlign();
-			},
-
-			/**
-			 * Refreshes the rendered UI, based on Widget State
-			 *
-			 * @method syncUI
-			 * @protected
-			 *
-			 */
-			syncUI: function() {
-				var instance = this;
-
-				if (instance.get(USE_ARIA)) {
-					instance.plug(A.Plugin.Aria, {
-						attributes: {
-							trigger: {
-								ariaName: 'controls',
-								format: function(value) {
-									var id = instance.get(BOUNDING_BOX).generateID();
-
-									return id;
-								},
-								node: function() {
-									return instance.get(TRIGGER);
-								}
-							},
-							visible: {
-								ariaName: 'hidden',
-								format: function(value) {
-									return !value;
-								}
-							}
-						},
-						roleName: 'dialog'
-					});
-				}
 			},
 
 			/**
@@ -815,7 +767,7 @@ A.OverlayContextManager = new A.OverlayManager({});
 
 A.on(MOUSEDOWN, function() { A.OverlayContextManager.hideAll(); }, A.getDoc());
 
-}, '@VERSION@' ,{requires:['aui-overlay-manager','aui-delayed-task','aui-aria']});
+}, '@VERSION@' ,{requires:['aui-overlay-manager','aui-delayed-task']});
 AUI.add('aui-overlay-context-panel', function(A) {
 /**
  * The OverlayContextPanel Utility
@@ -1062,8 +1014,6 @@ var OverlayContextPanel = A.Component.create(
 			 */
 			syncUI: function() {
 				var instance = this;
-
-				OverlayContextPanel.superclass.syncUI.apply(instance, arguments);
 
 				instance._syncElements();
 			},
