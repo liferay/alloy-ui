@@ -122,13 +122,39 @@ var Aria = A.Component.create({
 
 			if (instance.isValidAttribute(attrName)) {
 				(node || instance.get(ATTRIBUTE_NODE)).set(ARIA_PREFIX+attrName, attrValue);
+
+				return true;
 			}
+
+			return false;
+		},
+
+		setAttributes: function(attributes) {
+			var instance = this;
+
+			A.Array.each(attributes, function(attribute, index, attributes) {
+				instance.setAttribute(attribute.name, attribute.value, attribute.node);
+			});
 		},
 
 		setRole: function(roleName, node) {
 			var instance = this;
 
-			(node || instance.get(ROLE_NODE)).set(ROLE, roleName);
+			if (instance.isValidRole(roleName)) {
+				(node || instance.get(ROLE_NODE)).set(ROLE, roleName);
+
+				return true;
+			}
+
+			return false;
+		},
+
+		setRoles: function(roles) {
+			var instance = this;
+
+			A.Array.each(roles, function(role, index, roles) {
+				instance.setRole(role.name, role.node);
+			});
 		},
 
 		_afterHostAttributeChange: function(event) {
