@@ -208,27 +208,42 @@ Panel.prototype = {
 
 		if (instance.get(USE_ARIA)) {
 			instance.plug(A.Plugin.Aria, {
-				attributes: {
-					collapsed: {
-						ariaName: 'hidden',
-						node: function(value) {
-							var bodyNode = instance.bodyNode;
+				after: {
+					processAttribute: function(event) {
+						var instance = this;
 
-							/*
-							var icons = instance.icons;
-							var collapseItem = icons.item(COLLAPSE);
+						var host = instance.get('host');
 
-							if (collapseItem) {
-								//.setAttribute('aria-pressed', collapsed);
-								var collapseItemBB = collapseItem.get(BOUNDING_BOX)
+						if (event.aria.attrName == COLLAPSED) {
+							var collapsed = host.get(COLLAPSED);
+
+							if (host.icons) {
+								var icons = host.icons;
+								var collapseItem = icons.item(COLLAPSE);
+
+								if (collapseItem) {
+									instance.setAttribute(
+										'pressed',
+										collapsed,
+										collapseItem.get(BOUNDING_BOX)
+									);
+								}
 							}
 
-							return new A.NodeList([bodyNode, collapseItemBB]);
-							*/
+							instance.setAttribute(
+								'hidden',
+								 collapsed,
+								 host.bodyNode
+							);
+
+							event.halt();
 						}
 					}
+				},
+				attributes: {
+					collapsed: 'hidden'
 				}
-			})
+			});
 		}
 	},
 
@@ -474,35 +489,9 @@ Panel.prototype = {
 
 		instance.get('contentBox').setAttribute('role', 'tablist');
 
-		var headerNodeId = instance.headerNode.get(ID);
-
-		instance.bodyNode.setAttrs({
-			'role': 'tabpanel',
-			'aria-labelledby': headerNodeId,
-			'aria-describedby': headerNodeId
-		});
-
-		var bodyNodeId = instance.bodyNode.get(ID);
-
-		if (!bodyNodeId){
-			bodyNodeId = A.guid();
-			instance.bodyNode.set(ID, bodyNodeId);
-		}
-
-		instance.headerNode.setAttrs({
-			'role': 'tab',
-			'aria-controls': bodyNodeId
-		});
-
-		if (instance.icons) {
-			var collapseItem = instance.icons.item(COLLAPSE);
-
-			if (collapseItem) {
-				collapseItem.get(BOUNDING_BOX).setAttribute('aria-controls', bodyNodeId);
-			}
-		}
-
 		instance._syncCollapsedUI();
+
+		instance._setDefaultARIAValues();
 	},
 
 	/**
@@ -517,6 +506,74 @@ Panel.prototype = {
 		var instance = this;
 
 		instance._syncTitleUI();
+	},
+
+	/**
+	 * Set default ARIA roles and attributes.
+	 * @method _setDefaultARIAValues
+	 * @protected
+	 */
+	_setDefaultARIAValues: function() {
+		var instance = this;
+
+		if (!instance.get(USE_ARIA)) {
+			return;
+		}
+
+		var headerNode = instance.headerNode;
+
+		var headerNodeId = headerNode.generateID();
+
+		var bodyNode = instance.bodyNode;
+
+		var bodyNodeId = bodyNode.generateID();
+
+		var ariaRoles = [
+			{
+				name: 'tab',
+				node: headerNode
+			},
+			{
+				name: 'tabpanel',
+				node: bodyNode
+			}
+		];
+
+		instance.aria.setRoles(ariaRoles);
+
+		var ariaAttributes = [
+			{
+				name: 'controls',
+				value: bodyNodeId,
+				node: headerNode
+			},
+			{
+				name: 'labelledby',
+				value: headerNodeId,
+				node: bodyNode
+			},
+			{
+				name: 'describedby',
+				value: headerNodeId,
+				node: bodyNode
+			}
+		];
+		
+		if (instance.icons) {
+			var collapseItem = instance.icons.item(COLLAPSE);
+
+			if (collapseItem) {
+				ariaAttributes.push(
+					{
+						name: 'controls',
+						value: bodyNodeId,
+						node: collapseItem.get(BOUNDING_BOX)
+					}
+				);
+			}
+		}
+
+		instance.aria.setAttributes(ariaAttributes);
 	}
 }
 
