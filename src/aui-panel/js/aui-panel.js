@@ -26,7 +26,6 @@ var Lang = A.Lang,
 	PLUS = 'plus',
 	TITLE = 'title',
 	ICONS = 'icons',
-	USE_ARIA = 'useARIA',
 	VISIBLE = 'visible',
 
 	EMPTY_STR = '',
@@ -159,17 +158,6 @@ Panel.ATTRS = {
 		value: {
 			toggle: 'Toggle collapse'
 		}
-	},
-
-	/**
-	 * True if Dialog should use ARIA plugin
-	 *
-	 * @attribute useARIA
-	 * @default true
-	 * @type Boolean
-	 */
-	useARIA: {
-		value: true
 	}
 };
 
@@ -194,57 +182,6 @@ Panel.prototype = {
 		instance.after('collapsedChange', instance._afterCollapsedChange);
 		instance.after('render', instance._afterPanelRender);
 		instance.after('titleChange', instance._afterTitleChange);
-	},
-
-	/**
-     * Refreshes the rendered UI, based on Widget State
-     *
-     * @method syncUI
-     * @protected
-     *
-     */
-	syncUI: function() {
-		var instance = this;
-
-		if (instance.get(USE_ARIA)) {
-			instance.plug(A.Plugin.Aria, {
-				after: {
-					processAttribute: function(event) {
-						var instance = this;
-
-						var host = instance.get('host');
-
-						if (event.aria.attrName == COLLAPSED) {
-							var collapsed = host.get(COLLAPSED);
-
-							if (host.icons) {
-								var icons = host.icons;
-								var collapseItem = icons.item(COLLAPSE);
-
-								if (collapseItem) {
-									instance.setAttribute(
-										'pressed',
-										collapsed,
-										collapseItem.get(BOUNDING_BOX)
-									);
-								}
-							}
-
-							instance.setAttribute(
-								'hidden',
-								 collapsed,
-								 host.bodyNode
-							);
-
-							event.halt();
-						}
-					}
-				},
-				attributes: {
-					collapsed: 'hidden'
-				}
-			});
-		}
 	},
 
 	/**
@@ -420,6 +357,8 @@ Panel.prototype = {
 						ICON,
 						collapsed ? PLUS : MINUS
 					);
+
+					collapseItem.get(BOUNDING_BOX).setAttribute('aria-pressed', collapsed);
 				}
 			}
 
@@ -431,6 +370,8 @@ Panel.prototype = {
 				bodyNode.show();
 				boundingBox.removeClass(CSS_COLLAPSED);
 			}
+
+			instance.bodyNode.setAttribute('aria-hidden', collapsed);
 		}
 	},
 
@@ -489,9 +430,35 @@ Panel.prototype = {
 
 		instance.get('contentBox').setAttribute('role', 'tablist');
 
-		instance._syncCollapsedUI();
+		var headerNodeId = instance.headerNode.get(ID);
 
-		instance._setDefaultARIAValues();
+		instance.bodyNode.setAttrs({
+			'role': 'tabpanel',
+			'aria-labelledby': headerNodeId,
+			'aria-describedby': headerNodeId
+		});
+
+		var bodyNodeId = instance.bodyNode.get(ID);
+
+		if (!bodyNodeId){
+			bodyNodeId = A.guid();
+			instance.bodyNode.set(ID, bodyNodeId);
+		}
+
+		instance.headerNode.setAttrs({
+			'role': 'tab',
+			'aria-controls': bodyNodeId
+		});
+
+		if (instance.icons) {
+			var collapseItem = instance.icons.item(COLLAPSE);
+
+			if (collapseItem) {
+				collapseItem.get(BOUNDING_BOX).setAttribute('aria-controls', bodyNodeId);
+			}
+		}
+
+		instance._syncCollapsedUI();
 	},
 
 	/**
@@ -506,74 +473,6 @@ Panel.prototype = {
 		var instance = this;
 
 		instance._syncTitleUI();
-	},
-
-	/**
-	 * Set default ARIA roles and attributes.
-	 * @method _setDefaultARIAValues
-	 * @protected
-	 */
-	_setDefaultARIAValues: function() {
-		var instance = this;
-
-		if (!instance.get(USE_ARIA)) {
-			return;
-		}
-
-		var headerNode = instance.headerNode;
-
-		var headerNodeId = headerNode.generateID();
-
-		var bodyNode = instance.bodyNode;
-
-		var bodyNodeId = bodyNode.generateID();
-
-		var ariaRoles = [
-			{
-				name: 'tab',
-				node: headerNode
-			},
-			{
-				name: 'tabpanel',
-				node: bodyNode
-			}
-		];
-
-		instance.aria.setRoles(ariaRoles);
-
-		var ariaAttributes = [
-			{
-				name: 'controls',
-				value: bodyNodeId,
-				node: headerNode
-			},
-			{
-				name: 'labelledby',
-				value: headerNodeId,
-				node: bodyNode
-			},
-			{
-				name: 'describedby',
-				value: headerNodeId,
-				node: bodyNode
-			}
-		];
-		
-		if (instance.icons) {
-			var collapseItem = instance.icons.item(COLLAPSE);
-
-			if (collapseItem) {
-				ariaAttributes.push(
-					{
-						name: 'controls',
-						value: bodyNodeId,
-						node: collapseItem.get(BOUNDING_BOX)
-					}
-				);
-			}
-		}
-
-		instance.aria.setAttributes(ariaAttributes);
 	}
 }
 
