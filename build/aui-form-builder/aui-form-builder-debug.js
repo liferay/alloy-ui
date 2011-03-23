@@ -1507,8 +1507,6 @@ var FormBuilderField = A.Component.create({
 		labelNode: LABEL + DOT + CSS_FIELD_LABEL
 	},
 
-	EXTENDS: A.Widget,
-
 	prototype: {
 		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
