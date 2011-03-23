@@ -36,6 +36,7 @@ var L = A.Lang,
 	CLONABLE_PORTAL_LAYOUT = 'clonable-portal-layout',
 	CLONE_NODE = 'cloneNode',
 	COMMA_AND_SPACE = ', ';
+	COMPONENT = 'component',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
@@ -111,12 +112,14 @@ var L = A.Lang,
 	VALUES = 'values',
 	ZONE = 'zone',
 	REGION = 'region',
+	WIDGET = 'widget',
 
 	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
 	getCN = A.ClassNameManager.getClassName,
 
 	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
+	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_DD_DRAGGING = getCN(DD, DRAGGING),
 	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
 	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
@@ -133,6 +136,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FORM_BUILDER_FIELD_CONTENT = getCN(FORM, BUILDER, FIELD, CONTENT),
+	CSS_FORM_BUILDER_FIELD_HIDDEN = getCN(FORM, BUILDER, FIELD, HIDDEN),
 	CSS_FORM_BUILDER_FIELD_OVER = getCN(FORM, BUILDER, FIELD, OVER),
 	CSS_FORM_BUILDER_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
 	CSS_FORM_BUILDER_HELPER = getCN(FORM, BUILDER, HELPER),
@@ -145,6 +149,7 @@ var L = A.Lang,
 	CSS_TABVIEW_CONTENT = getCN(TABVIEW, CONTENT),
 	CSS_TABVIEW_LIST = getCN(TABVIEW, LIST),
 	CSS_ICON = getCN(ICON),
+	CSS_WIDGET = getCN(WIDGET),
 
 	TPL_DEFAULT_MESSAGE = '<li class="' + CSS_FORM_BUILDER_DEFAULT_MESSAGE + '"></li>',
 
@@ -156,6 +161,8 @@ var L = A.Lang,
 					'</li>',
 
 	TPL_DROP_CONTAINER = '<ul class="' + [CSS_FORM_BUILDER_DROP_CONTAINER].join(SPACE) + '"></ul>',
+
+	TPL_FIELD_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_FORM_BUILDER_FIELD_HIDDEN].join(SPACE) + '"></li>',
 
 	TPL_HELPER = '<div class="' + CSS_FORM_BUILDER_HELPER + '"></div>',
 
@@ -289,7 +296,7 @@ A.mix(FormBuilderFieldSupport.prototype, {
 			var formBuilder = instance.get(FORM_BUILDER) || instance;
 
 			if (!isFormBuilderField(field)) {
-				field = formBuilder._renderField(field);
+				field = formBuilder._renderField(instance, i, field);
 			}
 
 			if (field) {
@@ -612,13 +619,13 @@ var FormBuilder = A.Component.create({
 		 */
 		duplicateField: function(field) {
 			var instance = this;
-			var newField = instance._cloneField(field);
+			var newFieldConfig = instance._cloneField(field);
 			var parent = field.get(PARENT);
 			var index = parent.indexOf(field);
 
-			parent.insertField(++index, newField);
+			parent.insertField(++index, newFieldConfig);
 
-			instance.selectField(newField);
+			instance.selectField(parent.get(index));
 		},
 
 		/**
@@ -742,8 +749,9 @@ var FormBuilder = A.Component.create({
 			});
 
 			config[FIELDS] = children;
+			config[TYPE] = type;
 
-			return instance._renderField(config, type);
+			return config;
 		},
 
 		/**
@@ -762,12 +770,15 @@ var FormBuilder = A.Component.create({
 				defaultMessageNode.remove();
 			}
 
-			if (!field) {
-				field = instance._getFieldDefaultConfig(type);
-			}
-
 			var parent = instance._getFieldParentByNode(node);
 			var index = nodes.indexOf(node);
+
+			if (!field) {
+				// Remove remanescent node
+				node.remove();
+
+				field = instance._getFieldDefaultConfig(type);
+			}
 
 			parent.insertField(index, field);
 
@@ -958,7 +969,6 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
-			var dragContainerNode = instance.dragContainerNode;
 			var dropContainerNode = instance.dropContainerNode;
 
 			var newFieldNode = dropContainerNode.one(DOT + CSS_FORM_BUILDER_DRAG_NODE);
@@ -971,12 +981,6 @@ var FormBuilder = A.Component.create({
 			}
 			else {
 				drag.set(NODE, instance.originalNode);
-			}
-
-			if (dragContainerNode.contains(dragNode) &&
-				dragContainerNode.contains(instance.originalNode)) {
-
-				dragNode.remove();
 			}
 		},
 
@@ -1069,13 +1073,40 @@ var FormBuilder = A.Component.create({
 		 *
 		 * @method _renderField
 		 */
-		_renderField: function(config, type) {
+		_renderField: function(parent, index, config) {
 			var instance = this;
 
-			config[FORM_BUILDER] = instance;
-			config[RENDER] = true;
+			var container = parent.get(DROP_CONTAINER_NODE);
 
-			return instance._getFieldInstance(config, type);
+			if (isFormBuilderField(parent)) {
+				container = parent.get(DROP_ZONE_NODE);
+			}
+
+			var boundingBox = A.Node.create(TPL_FIELD_BOUNDING_BOX);
+			var fields = parent.get(FIELDS);
+
+			if (fields.length > 0) {
+				container.insert(boundingBox, index);
+			}
+			else {
+				container.append(boundingBox);
+			}
+
+			A.mix(
+				config,
+				{
+					boundingBox: boundingBox,
+					formBuilder: instance,
+					visible: false,
+					after: {
+						render: function() {
+							this.set('visible', true);
+						}
+					}
+				}
+			);
+
+			return instance._getFieldInstance(config).render();
 		},
 
 		/**

@@ -1,5 +1,9 @@
 /* Fields inside drag container */
 
+.aui-form-builder-field-hidden {
+	display: none;
+}
+
 .aui-form-builder-drag-container .aui-form-builder-field {
 	border: 1px solid #CCCCCC;
 	cursor: pointer;
