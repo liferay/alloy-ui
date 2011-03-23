@@ -161,7 +161,7 @@ var L = A.Lang,
 
 	TPL_DROP_CONTAINER = '<ul class="' + [CSS_FORM_BUILDER_DROP_CONTAINER].join(SPACE) + '"></ul>',
 
-	TPL_FIELD_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_FORM_BUILDER_FIELD_HIDDEN].join(SPACE) + '"></li>',
+	TPL_FIELD_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_HELPER_HIDDEN].join(SPACE) + '"></li>',
 
 	TPL_HELPER = '<div class="' + CSS_FORM_BUILDER_HELPER + '"></div>',
 
@@ -1099,10 +1099,9 @@ var FormBuilder = A.Component.create({
 				{
 					boundingBox: boundingBox,
 					formBuilder: instance,
-					visible: false,
 					after: {
 						render: function() {
-							this.set('visible', true);
+							boundingBox.removeClass(CSS_HELPER_HIDDEN);
 						}
 					}
 				}
