@@ -699,7 +699,9 @@ var FormBuilderButtonField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_INPUT
+			valueFn: function() {
+				return TPL_INPUT;
+			}
 		}
 
 	},
@@ -898,7 +900,9 @@ var FormBuilderCheckBoxField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_CHECKBOX
+			valueFn: function() {
+				return TPL_CHECKBOX;
+			}
 		},
 
 		/*
@@ -1124,7 +1128,9 @@ var FormBuilderFieldsetField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_FIELDSET
+			valueFn: function() {
+				return TPL_FIELDSET;
+			}
 		},
 
 		/*
@@ -1350,7 +1356,9 @@ var FormBuilderFileUploadField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_FILE_UPLOAD
+			valueFn: function() {
+				return TPL_FILE_UPLOAD;
+			}
 		},
 
 		/*
@@ -1569,7 +1577,9 @@ var FormBuilderInputField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_INPUT
+			valueFn: function() {
+				return TPL_INPUT;
+			}
 		},
 
 		/*
@@ -2232,7 +2242,9 @@ var FormBuilderRadioField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_RADIO
+			valueFn: function() {
+				return TPL_RADIO;
+			}
 		},
 
 		/*
@@ -2469,8 +2481,8 @@ var FormBuilderSelectField = A.Component.create({
 		 * @attribute multiple
 		 */
 		multiple: {
-			value: false,
-			validator: isBoolean
+			setter: A.DataType.Boolean.parse,
+			value: false
 		},
 
 		/**
@@ -2479,7 +2491,9 @@ var FormBuilderSelectField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_SELECT
+			valueFn: function() {
+				return TPL_SELECT;
+			}
 		},
 
 		/*
@@ -2651,7 +2665,9 @@ var FormBuilderTextAreaField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_TEXTAREA
+			valueFn: function() {
+				return TPL_TEXTAREA;
+			}
 		},
 
 		/*
