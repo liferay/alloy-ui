@@ -44,7 +44,6 @@ var L = A.Lang,
 	RESIZABLE = 'resizable',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
-	USE_ARIA = 'useARIA',
 	VIEWPORT_REGION = 'viewportRegion',
 	WIDTH = 'width',
 
@@ -367,30 +366,6 @@ Dialog.prototype = {
 	},
 
 	/**
-     * Refreshes the rendered UI, based on Widget State
-     *
-     * @method syncUI
-     * @protected
-     *
-     */
-	syncUI: function() {
-		var instance = this;
-
-		if (instance.get(USE_ARIA)) {
-			instance.plug(A.Plugin.Aria, {
-				attributes: {
-					visible: {
-						ariaName: 'hidden',
-						format: function(value) {
-							return !value;
-						}
-					}
-				}
-			});
-		}
-	},
-
-	/**
 	 * Descructor lifecycle implementation for the Dialog class.
 	 * Purges events attached to the node (and all child nodes).
 	 *
@@ -472,6 +447,16 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance._initButtons();
+
+		instance.get('contentBox').setAttribute('role', 'dialog');
+
+		if (instance.icons) {
+			var closeThick = instance.icons.item(CLOSETHICK);
+
+			if (closeThick){
+				closeThick.get(BOUNDING_BOX).setAttribute('aria-controls', instance.get('id'));
+			}
+		}
 
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
@@ -585,29 +570,6 @@ Dialog.prototype = {
 			}
 			else {
 				dragInstance.unplug(A.Plugin.DDConstrained);
-			}
-		}
-	},
-
-	/**
-	 * Set default ARIA roles and attributes.
-	 * @method _setDefaultARIAValues
-	 * @protected
-	 */
-	_setDefaultARIAValues: function() {
-		var instance = this;
-
-		if (!instance.get(USE_ARIA)) {
-			return;
-		}
-
-		instance.aria.setRole('dialog', instance.get(BOUNDING_BOX));
-
-		if (instance.icons) {
-			var closeThick = instance.icons.item(CLOSETHICK);
-
-			if (closeThick){
-				instance.aria.setAttribute('controls', instance.get('id'), closeThick.get(BOUNDING_BOX));
 			}
 		}
 	},
@@ -792,7 +754,11 @@ Dialog.prototype = {
 			else {
 				A.DialogMask.hide();
 			}
-		}				
+		}
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		boundingBox.setAttribute('aria-hidden', !event.newVal);
 	}
 };
 
@@ -882,4 +848,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
