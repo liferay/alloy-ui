@@ -77,7 +77,9 @@ var FormBuilderCheckBoxField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_CHECKBOX
+			valueFn: function() {
+				return TPL_CHECKBOX;
+			}
 		},
 
 		/*

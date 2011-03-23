@@ -65,7 +65,9 @@ var FormBuilderInputField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_INPUT
+			valueFn: function() {
+				return TPL_INPUT;
+			}
 		},
 
 		/*

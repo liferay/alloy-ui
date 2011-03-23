@@ -79,7 +79,9 @@ var FormBuilderRadioField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_RADIO
+			valueFn: function() {
+				return TPL_RADIO;
+			}
 		},
 
 		/*

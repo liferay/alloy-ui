@@ -81,8 +81,8 @@ var FormBuilderSelectField = A.Component.create({
 		 * @attribute multiple
 		 */
 		multiple: {
-			value: false,
-			validator: isBoolean
+			setter: A.DataType.Boolean.parse,
+			value: false
 		},
 
 		/**
@@ -91,7 +91,9 @@ var FormBuilderSelectField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_SELECT
+			valueFn: function() {
+				return TPL_SELECT;
+			}
 		},
 
 		/*

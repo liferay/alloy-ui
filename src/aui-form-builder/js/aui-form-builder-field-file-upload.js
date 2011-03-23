@@ -52,7 +52,9 @@ var FormBuilderFileUploadField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_FILE_UPLOAD
+			valueFn: function() {
+				return TPL_FILE_UPLOAD;
+			}
 		},
 
 		/*
