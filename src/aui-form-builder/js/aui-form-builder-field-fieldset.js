@@ -66,7 +66,9 @@ var FormBuilderFieldsetField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_FIELDSET
+			valueFn: function() {
+				return TPL_FIELDSET;
+			}
 		},
 
 		/*

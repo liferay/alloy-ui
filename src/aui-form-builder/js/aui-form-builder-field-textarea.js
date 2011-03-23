@@ -59,7 +59,9 @@ var FormBuilderTextAreaField = A.Component.create({
 		 * @attribute template
 		 */
 		template: {
-			value: TPL_TEXTAREA
+			valueFn: function() {
+				return TPL_TEXTAREA;
+			}
 		},
 
 		/*
