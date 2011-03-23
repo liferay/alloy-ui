@@ -626,8 +626,6 @@ var FormBuilder = A.Component.create({
 			var index = parent.indexOf(field);
 
 			parent.insertField(++index, newFieldConfig);
-
-			instance.selectField(parent.get(index));
 		},
 
 		/**
@@ -971,6 +969,7 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
+			var dragContainerNode = instance.dragContainerNode;
 			var dropContainerNode = instance.dropContainerNode;
 
 			var newFieldNode = dropContainerNode.one(DOT + CSS_FORM_BUILDER_DRAG_NODE);
@@ -983,6 +982,12 @@ var FormBuilder = A.Component.create({
 			}
 			else {
 				drag.set(NODE, instance.originalNode);
+			}
+
+			if (dragContainerNode.contains(dragNode) &&
+				dragContainerNode.contains(instance.originalNode)) {
+
+				dragNode.remove();
 			}
 		},
 
