@@ -199,6 +199,9 @@ FormBuilderFieldSupport.ATTRS = {
 	fields: {
 		value: [],
 		setter: '_setFields',
+		getter: function(val) {
+			return val || [];
+		},
 		validator: isArray
 	}
 };
