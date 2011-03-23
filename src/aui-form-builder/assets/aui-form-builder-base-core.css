@@ -3,6 +3,10 @@
 	webkit-border-radius: 6px;
 }
 
+.aui-form-builder-content {
+	background-color: #F5F5F5;
+}
+
 /* Drag container */
 
 .aui-form-builder-drag-container {
@@ -24,7 +28,6 @@
 /* Drop container */
 
 .aui-form-builder-drop-container {
-	background-color: #F5F5F5;
 	border: none;
 	float: left;
 	width: 75%;
