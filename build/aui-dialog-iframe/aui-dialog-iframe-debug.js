@@ -30,7 +30,7 @@ var DialogIframePlugin = A.Component.create(
 
 			iframeId: {
 				valueFn: function() {
-					return A.guid();
+					return instance.get('id');
 				}
 			},
 
