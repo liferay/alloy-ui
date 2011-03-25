@@ -59,6 +59,7 @@ var L = A.Lang,
 	SHOW_LABEL = 'showLabel',
 	SIZE = 'size',
 	SPACE = ' ',
+	STRING = 'string',
 	TEMPLATE_NODE = 'templateNode',
 	ZONE = 'zone',
 	WIDGET = 'widget',
@@ -117,6 +118,15 @@ var FormBuilderField = A.Component.create({
 		 */
 		acceptChildren: {
 			value: true
+		},
+
+		/**
+		 * The type of the field data
+		 *
+		 * @attribute dataType
+		 */
+		dataType: {
+			value: STRING
 		},
 
 		/**
@@ -827,6 +837,7 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
+	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BODY_CONTENT = 'bodyContent',
 	CHECKBOX = 'checkbox',
@@ -883,6 +894,15 @@ var FormBuilderCheckBoxField = A.Component.create({
 	NAME: FORM_BUILDER_CHECKBOX_FIELD,
 
 	ATTRS: {
+
+		/**
+		 * The type of the field data
+		 *
+		 * @attribute dataType
+		 */
+		dataType: {
+			value: BOOLEAN
+		},
 
 		/**
 		 * The checked state of the checkbox field
