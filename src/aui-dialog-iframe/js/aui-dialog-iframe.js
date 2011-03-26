@@ -31,7 +31,7 @@ var DialogIframePlugin = A.Component.create(
 				valueFn: function() {
 					var instance = this;
 
-					return instance.get('id');
+					return instance.get('id') || A.guid();
 				}
 			},
 
