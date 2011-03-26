@@ -29,6 +29,8 @@ var DialogIframePlugin = A.Component.create(
 
 			iframeId: {
 				valueFn: function() {
+					var instance = this;
+
 					return instance.get('id');
 				}
 			},
