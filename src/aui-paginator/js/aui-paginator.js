@@ -1022,14 +1022,10 @@ var Paginator = A.Component.create(
 
 				// if !alwaysVisible and there is nothing to show, hide it
 				if (!alwaysVisible && (v === 0)) {
-					containers.each(function(container, index){
-						container.hide();
-					});
+					containers.hide();
 				}
 				else {
-					containers.each(function(container, index){
-						container.show();
-					});
+					containers.show();
 				}
 
 				return v;
