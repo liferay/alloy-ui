@@ -364,14 +364,14 @@
 	                }
 	            }]]></replacevalue>
 		</replace>
-		<!-- /End Patch for AUI-153 -->
+		<!-- /End Patch -->
 
 		<!-- Patch for AUI-284 -->
 		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
 			<replacetoken><![CDATA[f.setAttribute(p, f[p]);]]></replacetoken>
 			  <replacevalue><![CDATA[f.setAttribute(p, a[p]);]]></replacevalue>
 		</replace>
-		<!-- /End Patch for AUI-284-->
+		<!-- /End Patch -->
 
 		<!-- Patch for AUI-364 -->
 		<replace file="${project.dir}/lib/yui3/src/transition/js/transition-native.js">
@@ -557,7 +557,7 @@ Y.mix(Transition.toggles, {
 
 Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 		</replace>
-		<!-- /End Patch for AUI-364-->
+		<!-- /End Patch -->
 
 		<!-- Rebuilding YUI modules -->
 		<subant target="all" failonerror="false">
