@@ -3,3 +3,11 @@
 	overflow: auto;
 	width: 100%;
 }
+
+.aui-dialog .aui-widget-content-expanded .aui-dialog-iframe-node {
+	height: 100%;
+}
+
+.aui-dialog .aui-widget-content-expanded .aui-dialog-iframe-bd {
+	overflow-y: visible;
+}

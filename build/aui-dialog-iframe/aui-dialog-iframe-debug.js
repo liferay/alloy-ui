@@ -5,10 +5,10 @@ var Lang = A.Lang,
 	IFRAME = 'iframe',
 
 	CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
+	CSS_IFRAME_BD = getClassName('dialog', IFRAME, 'bd'),
 
 	BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
 
-	TPL_EMPTY_NODE = '<div></div>',
 	TPL_IFRAME = '<iframe class="{cssClass}" frameborder="0" id="{id}" name="{id}" src="{uri}"></iframe>',
 
 	UI = A.Widget.UI_SRC,
@@ -67,8 +67,6 @@ var DialogIframePlugin = A.Component.create(
 
 				instance._previousBodyContent = instance._host.get('bodyContent');
 
-				var bodyContent = A.Node.create(TPL_EMPTY_NODE);
-
 				var iframeTpl = Lang.sub(
 					TPL_IFRAME,
 					{
@@ -80,11 +78,13 @@ var DialogIframePlugin = A.Component.create(
 
 				var node = A.Node.create(iframeTpl);
 
-				bodyContent.append(node);
+				instance._host.set('bodyContent', node);
 
-				instance._host.set('bodyContent', bodyContent);
+				var bodyNode = instance._host.bodyNode;
 
-				instance._bodyNode = instance._host.bodyNode;
+				bodyNode.addClass(CSS_IFRAME_BD);
+
+				instance._bodyNode = bodyNode;
 				instance.node = node;
 			},
 
@@ -139,7 +139,7 @@ var DialogIframePlugin = A.Component.create(
 
 					var iframeBody = iframeDoc.get('body');
 
-					node.set('height', iframeBody.get('scrollHeight') + 5);
+					node.set('height', iframeBody.get('scrollHeight') + 10);
 
 					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
 
