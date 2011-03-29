@@ -490,6 +490,8 @@ var TabView = A.Component.create(
 				}
 				else {
 					tab = index;
+
+					index = instance.getTabIndex(tab);
 				}
 
 				if (tab) {
