@@ -14,10 +14,6 @@
 		#wrapper {
 			padding: 10px;
 		}
-
-		.dialog-iframe {
-			height: 300px;
-		}
 	</style>
 </head>
 
@@ -38,13 +34,14 @@ AUI().ready('aui-dialog','aui-dialog-iframe', function(A) {
 		{
 			title: 'My Dialog',
 			width: 640,
+			// height: 400,
 			centered: true
 		}
 	).plug(
 		A.Plugin.DialogIframe,
 		{
-			// uri: 'assets/content.html',
-			uri: 'http://google.com',
+			uri: 'assets/content.html',
+			// uri: 'http://google.com',
 			iframeCssClass: 'dialog-iframe',
 			after: {
 				load: function(event) {
