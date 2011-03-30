@@ -156,10 +156,8 @@ public class TagBuilder {
 			String contentStart = _processTemplate(_tplStartJsp, context);
 
 			File startFile = new File(path.concat(_START_PAGE));
-			File endFile = new File(path.concat(_END_PAGE));
 
 			_writeFile(startFile, contentStart, false);
-			_writeFile(endFile, contentJsp, false);
 		}
 		else {
 			File pageFile = new File(path.concat(_PAGE));
