@@ -72,7 +72,6 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	protected String getStartPage() {
 		return _START_PAGE;
 	}
-
 	<#else>
 	protected String getPage() {
 		return _PAGE;
