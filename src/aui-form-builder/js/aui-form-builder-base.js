@@ -24,6 +24,7 @@ var L = A.Lang,
 
 	ACTIVE = 'active',
 	ACCEPT_CHILDREN = 'acceptChildren',
+	AUTO_SELECT_FIELDS = 'autoSelectFields',
 	AVAILABLE_FIELDS = 'availableFields',
 	APPEND = 'append',
 	BOUNDING_BOX = 'boundingBox',
@@ -345,6 +346,15 @@ var FormBuilder = A.Component.create({
 	NAME: FORM_BUILDER,
 
 	ATTRS: {
+
+		/**
+		 * Whether to automatically select fields after dropping them
+		 *
+		 * @attribute autoSelectFields
+		 */
+		autoSelectFields: {
+			value: false
+		},
 
 		/**
 		 * The list of fields that can be used
@@ -978,7 +988,9 @@ var FormBuilder = A.Component.create({
 				var type = newFieldNode.getAttribute('data-type');
 				var field = instance._dropField(newFieldNode, type);
 
-				instance.selectField(field);
+				if (instance.get(AUTO_SELECT_FIELDS)) {
+					instance.selectField(field);
+				}
 			}
 			else {
 				drag.set(NODE, instance.originalNode);
