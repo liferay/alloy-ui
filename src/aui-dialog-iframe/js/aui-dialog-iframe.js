@@ -3,8 +3,9 @@ var Lang = A.Lang,
 
 	IFRAME = 'iframe',
 
-	CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
 	CSS_IFRAME_BD = getClassName('dialog', IFRAME, 'bd'),
+	CSS_IFRAME_NODE = getClassName('dialog', IFRAME, 'node'),
+	CSS_IFRAME_ROOT_NODE = getClassName('dialog', IFRAME, 'root', 'node'),
 
 	BUFFER_CSS_CLASS = [CSS_IFRAME_NODE],
 
@@ -134,7 +135,7 @@ var DialogIframePlugin = A.Component.create(
 				try {
 					var iframeDoc = node.get('contentWindow.document');
 
-					iframeDoc.get('documentElement').setStyle('overflow', 'visible');
+					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
 
 					var iframeBody = iframeDoc.get('body');
 
