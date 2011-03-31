@@ -42,7 +42,6 @@ var L = A.Lang,
 	CSS_FIELD_TEXTAREA = getCN(FIELD, TEXTAREA),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_FORM_BUILDER_INPUT_FIELD_NODE = getCN(FORM_BUILDER_INPUT_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
 	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>'
@@ -93,7 +92,7 @@ var FormBuilderTextAreaField = A.Component.create({
 		bindUI: function() {
 			var instance = this;
 
-			A.FormBuilderInputField.superclass.bindUI.apply(instance, arguments);
+			A.FormBuilderTextAreaField.superclass.bindUI.apply(instance, arguments);
 
 			var templateNode = instance.get(TEMPLATE_NODE);
 
@@ -145,7 +144,7 @@ var FormBuilderTextAreaField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 
-			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
+			A.FormBuilderTextAreaField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedTextareaSettings) {
 				instance._renderedTextareaSettings = true;
