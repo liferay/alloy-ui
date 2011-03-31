@@ -1232,7 +1232,7 @@ var FormBuilder = A.Component.create({
 					A.substitute(
 						TPL_DRAG_NODE,
 						{
-							icon: field.icon,
+							icon: field.iconClass,
 							label: field.fieldLabel,
 							type: type
 						}
