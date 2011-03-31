@@ -98,7 +98,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	</#if>
 
 	<#list component.getAttributesAndEvents() as attribute>
-	protected ${attribute.getInputType()} _${attribute.getSafeName()};
+	private ${attribute.getInputType()} _${attribute.getSafeName()};
 	</#list>
 
 }
