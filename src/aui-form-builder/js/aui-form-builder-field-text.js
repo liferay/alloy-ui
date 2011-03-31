@@ -26,7 +26,7 @@ var L = A.Lang,
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
-	FORM_BUILDER_INPUT_FIELD = 'form-builder-input-field',
+	FORM_BUILDER_TEXT_FIELD = 'form-builder-input-field',
 	ID = 'id',
 	ICON = 'icon',
 	INPUT = 'input',
@@ -48,14 +48,13 @@ var L = A.Lang,
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_FORM_BUILDER_INPUT_FIELD_NODE = getCN(FORM_BUILDER_INPUT_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
 	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />'
 
-var FormBuilderInputField = A.Component.create({
+var FormBuilderTextField = A.Component.create({
 
-	NAME: FORM_BUILDER_INPUT_FIELD,
+	NAME: FORM_BUILDER_TEXT_FIELD,
 
 	ATTRS: {
 
@@ -99,7 +98,7 @@ var FormBuilderInputField = A.Component.create({
 		bindUI: function() {
 			var instance = this;
 
-			A.FormBuilderInputField.superclass.bindUI.apply(instance, arguments);
+			A.FormBuilderTextField.superclass.bindUI.apply(instance, arguments);
 
 			var templateNode = instance.get(TEMPLATE_NODE);
 
@@ -151,7 +150,7 @@ var FormBuilderInputField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 
-			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
+			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedInputSettings) {
 				instance._renderedInputSettings = true;
@@ -196,6 +195,6 @@ var FormBuilderInputField = A.Component.create({
 
 });
 
-A.FormBuilderInputField = FormBuilderInputField;
+A.FormBuilderTextField = FormBuilderTextField;
 
-A.FormBuilder.types['text'] = A.FormBuilderInputField;
+A.FormBuilder.types['text'] = A.FormBuilderTextField;
