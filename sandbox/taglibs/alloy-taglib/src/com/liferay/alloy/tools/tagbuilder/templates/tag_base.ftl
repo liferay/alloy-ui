@@ -98,7 +98,19 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	</#if>
 
 	<#list component.getAttributesAndEvents() as attribute>
-	private ${attribute.getInputType()} _${attribute.getSafeName()};
+	<#compress>
+	<#assign outputSimpleClassName = attribute.getOutputTypeSimpleClassName()>
+
+	<#assign defaultValue = "">
+
+	<#if attribute.getDefaultValue()??>
+		<#assign defaultValue = attribute.getDefaultValue()>
+	</#if>
+	
+	<#assign defaultValue = getCleanUpValue(outputSimpleClassName, defaultValue)>
+	
+	</#compress>
+	private ${attribute.getInputType()} _${attribute.getSafeName()} = ${defaultValue};
 	</#list>
 
 }
