@@ -19,7 +19,13 @@ var Lang = A.Lang,
 	TPL_MENU_INDEX = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_INDEX, '">'].join(' '),
 	TPL_MENU_NEXT = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_NEXT, '">'].join(' '),
 	TPL_MENU_PLAY = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PLAY, '">'].join(' '),
-	TPL_MENU_PREV = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PREV, '">'].join(' ');
+	TPL_MENU_PREV = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PREV, '">'].join(' '),
+
+	UI_SRC = A.Widget.UI_SRC;
+
+	MAP_EVENT_INFO = {
+		src: UI_SRC
+	};
 
 var Carousel = A.Component.create(
 	{
@@ -117,7 +123,8 @@ var Carousel = A.Component.create(
 			_afterActiveIndexChange: function (e) {
 				this._uiSetActiveIndex(e.newVal, {
 					prevVal: e.prevVal,
-					animate: e.animate
+					animate: e.animate,
+					src: e.src
 				});
 			},
 
@@ -215,7 +222,7 @@ var Carousel = A.Component.create(
 
 				var instance = this;
 
-				instance.set('activeIndex', instance.nodeMenu.all('li').indexOf(e.currentTarget) - 2);
+				instance.set('activeIndex', instance.nodeMenu.all('li').indexOf(e.currentTarget) - 2,  MAP_EVENT_INFO);
 			},
 
 			_onMenuPlayClick: function (e) {
@@ -277,23 +284,33 @@ var Carousel = A.Component.create(
 					onEnd.detach();
 				});
 
-				if (objOptions && objOptions.animate) {
-					instance.animation.run();
-				}
-				else {
-					instance.animation.fire('start');
-					instance.animation.fire('end');
+				if (objOptions) {
+					if (objOptions.animate) {
+						instance.animation.run();
+					}
+					else {
+						instance.animation.fire('start');
+						instance.animation.fire('end');
+					}
+
+					if (objOptions.src == UI_SRC) {
+						instance._createIntervalRotationTask();
+					}
 				}
 			},
 
 			_updateIndexNext: function (options) {
 				var instance = this;
 
+				options.src = UI_SRC;
+
 				instance.set('activeIndex', (instance.get('activeIndex') + 1) > (instance.nodeSelection.size() - 1) ? 0 : instance.get('activeIndex') + 1, options);
 			},
 
 			_updateIndexPrev: function (options) {
 				var instance = this;
+
+				options.src = UI_SRC;
 
 				instance.set('activeIndex', (instance.get('activeIndex') - 1) < 0 ? (instance.nodeSelection.size() - 1) : instance.get('activeIndex') - 1, options);
 			},
