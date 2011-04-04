@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../../build/aui-skin-base/css/aui-skin-base.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
+
+</head>
+
+<body>
+
+<div id="gallery1" class="gallery">
+	<h2>AlloyUI</h2>
+	<h1>Dialog</h1>
+
+	<script type="text/javascript">
+		AUI({insertBefore: document.documentElement.firstChild.firstChild}).use(
+			'aui-dialog'
+		);
+	</script>
+
+	<div class="aui-widget aui-component aui-panel aui-dialog aui-widget-positioned aui-widget-stacked aui-dd-draggable aui-resize" style="height: 250px; width: 500px; left: 363px; top: 194.6px; z-index: 1004;" role="dialog" aria-hidden="false">
+		<div class="aui-panel-content aui-dialog-content aui-widget-stdmod aui-widget-content-expanded" role="tablist">
+			<div class="aui-widget-hd aui-helper-clearfix aui-panel-hd aui-dialog-hd">
+				<span class="aui-widget aui-component aui-toolbar aui-toolbar-horizontal aui-panel-icons">
+					<span class="aui-toolbar-content">
+						<button type="button" class="aui-dialog-close aui-buttonitem-content aui-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-label-only aui-toolbar-first aui-toolbar-last aui-toolbar-item" title="Close dialog">
+							<span class="aui-buttonitem-icon aui-icon aui-icon-closethick aui-helper-hidden"></span>
+							<span class="aui-buttonitem-label">Close</span>
+						</button>
+					</span>
+				</span>
+
+				<span class="aui-panel-hd-text">Dialog 2</span>
+			</div>
+
+			<div class="aui-widget-bd aui-panel-bd aui-dialog-bd" style="height: 172.6px;">
+				<b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</b>
+			</div>
+			<div class="aui-widget-ft aui-panel-ft aui-dialog-ft">
+				<div class="aui-dialog-button-container">
+					<button class="aui-dialog-button">Save</button>
+				</div>
+			</div>
+		</div>
+		<div class="aui-resize-handle aui-resize-handle-r">
+			<div class="aui-resize-handle-inner aui-resize-handle-inner-r aui-icon aui-icon-grip-dotted-vertical"></div>
+		</div>
+		<div class="aui-resize-handle aui-resize-handle-br">
+			<div class="aui-resize-handle-inner aui-resize-handle-inner-br aui-icon aui-icon-gripsmall-diagonal-br"></div>
+		</div>
+		<div class="aui-resize-handle aui-resize-handle-b">
+			<div class="aui-resize-handle-inner aui-resize-handle-inner-b aui-icon aui-icon-grip-dotted-horizontal"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
