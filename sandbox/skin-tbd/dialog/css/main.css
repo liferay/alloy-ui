@@ -3,55 +3,62 @@
 	background: #777879;
 	border: 9px solid #777879;
 }
+
 .aui-dialog .aui-widget-hd {
 	border: none;
-	padding: 0px 0px 0px 10px;
+	padding: 0 0 0 10px;
 }
+
 .aui-dialog-close {
-	background: url("../images/aui-close-dialog.png") repeat-x scroll 0 0;
+	background: url(../images/aui-close-dialog.png) repeat-x scroll 0 0;
 	border: 1px solid #323233;
 	color: #fff;
 	font-weight: normal;
-	margin: 4px 4px 0px 0px;
-	text-shadow: 0px 0px 2px #000;	
+	margin: 4px 4px 0 0;
+	text-shadow: 0 0 2px #000;	
 }
+
 .aui-dialog-content {
 	border: 1px solid #323233;
-	margin: 0px;
+	margin: 0;
 	overflow: hidden;
-	padding: 0px;
+	padding: 0;
 }
+
 .aui-panel-hd {
-	background: url("../images/dialog_panel_header_bg.png") repeat-x scroll 0 0 #323233;
+	background: url(../images/dialog_panel_header_bg.png) repeat-x scroll 0 0 #323233;
 	height: 30px;
 }
+
 .aui-panel-hd-text {
 	color: #fff;
 	font-size: 12px;
 	font-weight: normal;
-	margin: 3px 0px 0px 0px;
-	text-shadow: 1px 1px 1px #000;	
+	margin: 3px 0 0 0;
+	text-shadow: 1px 1px 1px #000;
 }
 
 /* Rounded corners and box shadows */
 .aui-dialog {
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
 	border-radius: 12px;
-    -moz-border-radius: 12px;
-    -webkit-border-radius: 12px;
 }
 .aui-dialog .aui-widget-hd {
-	border-radius: 4px 4px 0px 0px;
-	box-shadow: none;
-	-moz-border-radius: 4px 4px 0px 0px;
+	-moz-border-radius: 4px 4px 0 0;
+	-webkit-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+
 	-moz-box-shadow: none;
-	-webkit-border-radius: 4px 4px 0px 0px;
 	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 .aui-dialog-close, .aui-dialog-content {
-	border-radius: 5px;
-	box-shadow: none;
 	-moz-border-radius: 5px;
-	-moz-box-shadow: none;
 	-webkit-border-radius: 5px;
+	border-radius: 5px;
+
+	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
+	box-shadow: none;
 }
