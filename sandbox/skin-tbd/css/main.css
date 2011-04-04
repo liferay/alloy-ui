@@ -1,1 +1,13 @@
-/*Place css common across demos here*/
+/* Place css common across demos here */
+
+body {
+	background: #eef0f2;
+	color: #1f1f1f;
+}
+h1 {
+	font-size: 36px;
+	font-weight: normal;
+}
+h2 {
+	font-size: 24px;
+}

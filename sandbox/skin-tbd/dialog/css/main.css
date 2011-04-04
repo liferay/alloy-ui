@@ -1,43 +1,57 @@
+/* Base dialog dark titles styles */
 .aui-dialog {
-    -moz-border-radius: 12px;
-    border: 9px solid #777879;
-    background-color: #777879;
-}
-.aui-dialog-content {
-	padding: 0px;
-	margin: 0px;
-	border: 1px solid #323233;
-	-moz-border-radius: 5px;
-	box-shadow: none;
-	overflow: hidden;
+	background: #777879;
+	border: 9px solid #777879;
 }
 .aui-dialog .aui-widget-hd {
-	padding-left: 10px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	-moz-border-radius: 4px 4px 0px 0px;
-	box-shadow: none;
 	border: none;
-}
-.aui-panel-hd {
-	height: 30px;
-	background: url("../images/dialog_panel_header_bg.png") repeat-x scroll 0 0 #323233;
-}
-.aui-panel-hd-text {
-	color: #fff;
-	text-shadow: 1px 1px 1px #000;
-	font-size: 12px;
-	font-weight: normal;
-	margin-top: 3px;
-	font-stretch: expanded;
+	padding: 0px 0px 0px 10px;
 }
 .aui-dialog-close {
-	-moz-border-radius: 5px;
-	margin-top: 3px;
 	background: url("../images/aui-close-dialog.png") repeat-x scroll 0 0;
 	border: 1px solid #323233;
 	color: #fff;
-	text-shadow: 0px 0px 2px #000;
 	font-weight: normal;
-	
+	margin: 4px 4px 0px 0px;
+	text-shadow: 0px 0px 2px #000;	
+}
+.aui-dialog-content {
+	border: 1px solid #323233;
+	margin: 0px;
+	overflow: hidden;
+	padding: 0px;
+}
+.aui-panel-hd {
+	background: url("../images/dialog_panel_header_bg.png") repeat-x scroll 0 0 #323233;
+	height: 30px;
+}
+.aui-panel-hd-text {
+	color: #fff;
+	font-size: 12px;
+	font-weight: normal;
+	margin: 3px 0px 0px 0px;
+	text-shadow: 1px 1px 1px #000;	
+}
+
+/* Rounded corners and box shadows */
+.aui-dialog {
+	border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+}
+.aui-dialog .aui-widget-hd {
+	border-radius: 4px 4px 0px 0px;
+	box-shadow: none;
+	-moz-border-radius: 4px 4px 0px 0px;
+	-moz-box-shadow: none;
+	-webkit-border-radius: 4px 4px 0px 0px;
+	-webkit-box-shadow: none;
+}
+.aui-dialog-close, .aui-dialog-content {
+	border-radius: 5px;
+	box-shadow: none;
+	-moz-border-radius: 5px;
+	-moz-box-shadow: none;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: none;
 }
