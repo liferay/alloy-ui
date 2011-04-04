@@ -193,7 +193,16 @@ hr, .separator {
 .aui-image-viewer-hidden,
 .aui-image-gallery-hidden {
 	clip: rect(0 0 0 0);
-	position: absolute;
+	position: absolute !important;
+	/*Below is for Webkit/Opera/IE9 mishandling clipped elements*/
+	border-width: 0 !important;
+	height: 1px !important; 
+	left: auto !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	top: auto !important;
+	width: 1px !important;
 }
 
 .aui-helper-reset {
