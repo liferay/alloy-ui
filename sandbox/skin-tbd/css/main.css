@@ -4,10 +4,24 @@ body {
 	background: #eef0f2;
 	color: #1f1f1f;
 }
+
+h1, h2 {
+	line-height: 1em;
+	margin: 0;
+}
+
 h1 {
 	font-size: 36px;
 	font-weight: normal;
 }
+
 h2 {
 	font-size: 24px;
+}
+
+#wrapper {
+	margin: 0 auto;
+	padding: 10px;
+	position: relative;
+	width: 80%;
 }
