@@ -266,6 +266,22 @@ var OverlayContext = A.Component.create(
 
 		prototype: {
 			/**
+			 * Construction logic executed during OverlayManager instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
+
+				var trigger = instance.get(TRIGGER);
+
+				if (trigger && trigger.size()) {
+					instance.set('align.node', trigger.item(0));
+				}
+			},
+
+			/**
 			 * Bind the events on the OverlayContext UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -429,7 +445,7 @@ var OverlayContext = A.Component.create(
 					currentTarget = event.currentTarget;
 				}
 
-				var node = align.node || currentTarget || trigger.item(0);
+				var node = currentTarget || trigger.item(0) || align.node;
 
 				if (node) {
 					instance.set(CURRENT_NODE, node);
