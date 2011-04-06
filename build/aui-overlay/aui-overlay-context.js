@@ -252,22 +252,6 @@ var OverlayContext = A.Component.create(
 
 		prototype: {
 			/**
-			 * Construction logic executed during OverlayManager instantiation. Lifecycle.
-			 *
-			 * @method initializer
-			 * @protected
-			 */
-			initializer: function() {
-				var instance = this;
-
-				var trigger = instance.get(TRIGGER);
-
-				if (trigger && trigger.size()) {
-					instance.set('align.node', trigger.item(0));
-				}
-			},
-
-			/**
 			 * Bind the events on the OverlayContext UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -395,7 +379,7 @@ var OverlayContext = A.Component.create(
 					currentTarget = event.currentTarget;
 				}
 
-				var node = currentTarget || trigger.item(0) || align.node;
+				var node = align.node || currentTarget || trigger.item(0);
 
 				if (node) {
 					instance.set(CURRENT_NODE, node);
@@ -407,7 +391,7 @@ var OverlayContext = A.Component.create(
 		     * <a href="OverlayContext.html#method_toggle">toggle</a>.
 			 *
 			 * @method _toggle
-			 * @param {EventFacade} event
+			 * @param {EventFacade} event 
 			 * @protected
 			 */
 			_toggle: function(event) {
@@ -539,7 +523,7 @@ var OverlayContext = A.Component.create(
 			/**
 			 * Cancel hide event if the user does some interaction with the
 		     * OverlayContext (focus, click or mouseover).
-			 *
+			 * 
 			 * @method _cancelAutoHide
 			 * @param {EventFacade} event
 			 * @protected
@@ -556,7 +540,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Invoke the hide event when the OverlayContext looses the focus.
-			 *
+			 * 
 			 * @method _invokeHideTaskOnInteraction
 			 * @param {EventFacade} event
 			 * @protected
@@ -589,7 +573,7 @@ var OverlayContext = A.Component.create(
 
 			/**
 			 * Helper method to invoke event.stopPropagation().
-			 *
+			 * 
 			 * @method _stopTriggerEventPropagation
 			 * @param {EventFacade} event
 			 * @protected

@@ -12,7 +12,7 @@
 }
 
 .aui-overlaycontextpanel-hidden {
-	display: none !important;
+	visibility: hidden;
 	top: -10000px !important;
 	left: -10000px !important;
 }
