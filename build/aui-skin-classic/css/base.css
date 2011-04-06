@@ -75,6 +75,19 @@
 	width: 1px !important;
 }
 
+/*
+Remove focusable elements in the hidden area from the tab flow
+while a user is hovering over the body
+*/
+body:hover .aui-helper-hidden-accessible a,
+body:hover .aui-helper-hidden-accessible input,
+body:hover .aui-helper-hidden-accessible textarea,
+body:hover .aui-helper-hidden-accessible select,
+body:hover .aui-helper-hidden-accessible button,
+body:hover .aui-helper-hidden-accessible [tabIndex] {
+  display: none;
+}
+
 .aui-helper-reset {
 	margin: 0;
 	padding: 0;
