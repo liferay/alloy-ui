@@ -48,35 +48,35 @@
 					<div class="aui-tabview-content aui-widget-bd">
 						<div class="aui-tabview-content-item">
 							<ul class="aui-form-builder-drag-container">
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="text">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="text">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-text"></span>
 									<span class="aui-form-builder-label">Text</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="textarea">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="textarea">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-textarea"></span>
 									<span class="aui-form-builder-label">Text Area</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="checkbox">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="checkbox">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-checkbox"></span>
 									<span class="aui-form-builder-label">CheckBox</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="button">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="button">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-button"></span>
 									<span class="aui-form-builder-label">Button</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="select">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="select">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-select"></span>
 									<span class="aui-form-builder-label">Select Options</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="radio">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="radio">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-radio"></span>
 									<span class="aui-form-builder-label">Radio Buttons</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="fileupload">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="fileupload">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-fileupload"></span>
 									<span class="aui-form-builder-label">File Upload</span>
 								</li>
-								<li class="aui-form-builder-drag-node aui-form-builder-field" data-type="fieldset">
+								<li class="aui-form-builder-drag-node aui-form-builder-field" data-name="fieldset">
 									<span class="aui-form-builder-field-icon aui-form-builder-field-icon-fieldset"></span>
 									<span class="aui-form-builder-label">Fieldset</span>
 								</li>
@@ -117,55 +117,63 @@ AUI().ready('aui-form-builder', 'aui-form-builder-field', function(A) {
 			srcNode: '#formBuilderMarkup .aui-form-builder-content',
 
 			availableFields:
-			{
-				'text': {
+			[
+				{
 					fieldLabel: 'Text',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-text',
-					label: 'Text'
+					label: 'Text',
+					type: 'text'
 				},
 
-				'textarea': {
+				{
 					fieldLabel: 'Text Area',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-textarea',
-					label: 'Test'
+					label: 'Test',
+					type: 'textarea'
 				},
 
-				'checkbox': {
+				{
 					fieldLabel: 'Checkbox',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-checkbox',
-					label: 'Checkbox'
+					label: 'Checkbox',
+					type: 'checkbox'
 				},
 
-				'button': {
+				{
 					fieldLabel: 'Button',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-button',
-					label: 'Button'
+					label: 'Button',
+					type: 'button'
 				},
 
-				'select': {
+				{
 					fieldLabel: 'Select',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-select',
-					label: 'Select Options'
+					label: 'Select Options',
+					type: 'select'
 				},
 
-				'radio': {
+				{
 					fieldLabel: 'Radio',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-radio',
-					label: 'Radio Buttons'
+					label: 'Radio Buttons',
+					type: 'radio'
 				},
 
-				'fieldset': {
+				{
 					fieldLabel: 'Fieldset',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-fieldset',
-					label: 'Fieldset'
+					label: 'Fieldset',
+					type: 'fieldset'
 				},
 
-				'fileupload': {
+				{
 					fieldLabel: 'File Upload',
 					iconClass: 'aui-form-builder-field-icon aui-form-builder-field-icon-fileupload',
-					label: 'File Upload'
+					label: 'File Upload',
+					type: 'fileupload'
 				}
-			},
+			],
 			fields: []
 			/*
 			[
