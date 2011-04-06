@@ -23,6 +23,12 @@
 
 			text-indent: -9999em;
 		}
+
+		#customMenu {
+			position: relative;
+			z-index: 40;
+			background: #ccc;
+		}
 	</style>
 </head>
 
@@ -43,6 +49,15 @@
 	</div>
 </div>
 
+<!-- <ul id="customMenu">
+	<li class="aui-carousel-menu-play">Play/Pause</li>
+	<li class="aui-carousel-menu-prev">Previous</li>
+	<li class="aui-carousel-menu-next">Next</li>
+	<li class="aui-carousel-menu-index">1</li>
+	<li class="aui-carousel-menu-index">2</li>
+	<li class="aui-carousel-menu-index">3</li>
+</ul> -->
+
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-carousel', function(A) {
@@ -53,11 +68,11 @@ AUI().ready('aui-carousel', function(A) {
 			contentBox: '#demo',
 			activeIndex: 'rand',
 			height: 254,
-			width: 940
+			width: 940,
+			// nodeMenu: '#customMenu',
+			// nodeMenuItemSelector: 'li'
 		}
-	)
-	.render();
-
+	).render();
 });
 
 </script>
