@@ -275,25 +275,23 @@ var Carousel = A.Component.create(
 			_renderMenu: function() {
 				var instance = this;
 
-				var menu = A.Node.create('<menu>');
-				var li = A.Node.create(TPL_MENU_PLAY);
+				var buffer = [TPL_MENU_PLAY, TPL_MENU_PREV];
 
-				menu.appendChild(li);
+				var nodeSelectionSize = instance.nodeSelection.size();
 
-				li = A.Node.create(TPL_MENU_PREV);
-				menu.appendChild(li);
+				var strBuffer = '';
 
-				instance.nodeSelection.each(
-					function(item, index, collection) {
-						li = A.Node.create([TPL_MENU_INDEX, ''].join(index));
+				var i = 0;
 
-						menu.appendChild(li);
-					}
-				);
+				while (i <= nodeSelectionSize) {
+					strBuffer += i++;
+				}
 
-				li = A.Node.create(TPL_MENU_NEXT);
+				var indexTPL = strBuffer.split('').join(TPL_MENU_INDEX);
 
-				menu.appendChild(li);
+				buffer.push(indexTPL, TPL_MENU_NEXT);
+
+				var menu = A.Node.create('<menu>' + buffer.join('') + '</menu>');
 
 				instance.get('contentBox').appendChild(menu);
 				instance.nodeMenu = menu;
