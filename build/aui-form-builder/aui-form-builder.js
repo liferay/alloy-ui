@@ -159,7 +159,7 @@ var L = A.Lang,
 
 	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
 
-	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-type="{type}">' +
+	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-name="{name}">' +
 						'<span class="' + [CSS_FORM_BUILDER_ICON, CSS_ICON].join(SPACE) + ' {icon}"></span>' +
 						'<span class="' + CSS_FORM_BUILDER_LABEL + '">{label}</span>' +
 					'</li>',
@@ -368,8 +368,10 @@ var FormBuilder = A.Component.create({
 		 * @attribute availableFields
 		 */
 		availableFields: {
-			value: {},
-			validator: isObject
+			setter: '_indexAvaliableFieldsTypes',
+			value: [],
+			validator: isArray,
+			lazyAdd: false
 		},
 
 		/**
@@ -612,6 +614,13 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
+		 * A map of the avaliable field types
+		 *
+		 * @attribute availableFieldsTypes
+		 */
+		availableFieldsTypes: {},
+
+		/**
 		 * Append fields to the given container
 		 *
 		 * @method appendFields
@@ -775,7 +784,7 @@ var FormBuilder = A.Component.create({
 		 *
 		 * @method _dropField
 		 */
-		_dropField: function(node, type) {
+		_dropField: function(node) {
 			var instance = this;
 			var parentNode = node.get(PARENT_NODE);
 			var nodes = parentNode.all('> ' + DOT + CSS_FORM_BUILDER_FIELD);
@@ -793,29 +802,14 @@ var FormBuilder = A.Component.create({
 				// Remove remanescent node
 				node.remove();
 
-				field = instance._getFieldDefaultConfig(type);
+				var indexName = node.getAttribute('data-name');
+
+				field = instance.availableFieldsTypes[indexName];
 			}
 
 			parent.insertField(index, field);
 
 			return parent.getField(index);
-		},
-
-		/**
-		 * Returns the default config object for a field type
-		 *
-		 * @method _getFieldConfig
-		 */
-		_getFieldDefaultConfig: function(type) {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-
-			return A.merge(
-				availableFields[type],
-				{
-					type: type
-				}
-			);
 		},
 
 		/**
@@ -869,6 +863,24 @@ var FormBuilder = A.Component.create({
 			}
 
 			return instance.get(DROP_CONTAINER_NODE);
+		},
+
+		/**
+		 * Indexes the available fields types
+		 *
+		 * @method _indexAvaliableFieldsTypes
+		 */
+		_indexAvaliableFieldsTypes: function(availableFields) {
+			var instance = this;
+
+			A.each(
+				availableFields,
+				function(item, index, collection) {
+					var name = (item.name || item.type || (item.type + (++A.Env._uidx)));
+
+					instance.availableFieldsTypes[name] = item;
+				}
+			);
 		},
 
 		/**
@@ -991,8 +1003,7 @@ var FormBuilder = A.Component.create({
 			var newFieldNode = dropContainerNode.one(DOT + CSS_FORM_BUILDER_DRAG_NODE);
 
 			if (newFieldNode) {
-				var type = newFieldNode.getAttribute('data-type');
-				var field = instance._dropField(newFieldNode, type);
+				var field = instance._dropField(newFieldNode);
 
 				if (instance.get(AUTO_SELECT_FIELDS)) {
 					instance.selectField(field);
@@ -1117,7 +1128,7 @@ var FormBuilder = A.Component.create({
 				container.append(boundingBox);
 			}
 
-			A.mix(
+			config = A.merge(
 				config,
 				{
 					boundingBox: boundingBox,
@@ -1230,17 +1241,18 @@ var FormBuilder = A.Component.create({
 		 */
 		_valueDragNodesList: function() {
 			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
+			var availableFields = instance.availableFieldsTypes;
 			var buffer = [];
 
-			A.each(availableFields, function(field, type) {
+			A.each(availableFields, function(item, name, collection) {
 				buffer.push(
 					A.substitute(
 						TPL_DRAG_NODE,
 						{
-							icon: field.iconClass || DEFAULT_ICON_CLASS,
-							label: field.fieldLabel,
-							type: type
+							icon: item.iconClass || DEFAULT_ICON_CLASS,
+							label: item.label,
+							name: name,
+							type: item.type
 						}
 					)
 				);
