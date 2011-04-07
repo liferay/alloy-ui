@@ -572,6 +572,27 @@
 		</subant>
 		<!-- /End Patch for AUI-363 -->
 
+		<!-- Patch for AUI-393 -->
+		<replace file="${project.dir}/lib/yui3/src/widget/js/Widget.js">
+			<replacetoken><![CDATA[parentNode = uiEvtNode.get(PARENT_NODE),
+            key = (Y.stamp(parentNode) + type),]]></replacetoken>
+			  <replacevalue><![CDATA[key = (Y.stamp(uiEvtNode) + type),]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/widget/js/Widget.js">
+			<replacetoken><![CDATA[handle = parentNode.delegate(type, function (evt) {]]></replacetoken>
+			  <replacevalue><![CDATA[handle = uiEvtNode.delegate(type, function (evt) {]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/widget"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-393 -->
+
 	</target>
 
 	<target name="release" depends="clean-release">

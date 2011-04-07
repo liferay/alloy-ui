@@ -1235,8 +1235,7 @@ Y.extend(Widget, Y.Base, {
     _createUIEvent: function (type) {
 
         var uiEvtNode = this._getUIEventNode(),
-            parentNode = uiEvtNode.get(PARENT_NODE),
-            key = (Y.stamp(parentNode) + type),
+            key = (Y.stamp(uiEvtNode) + type),
             info = _delegates[key],
             handle;
 
@@ -1246,7 +1245,7 @@ Y.extend(Widget, Y.Base, {
         if (!info) {
             Y.log("Creating delegate for the " + type + " event.", "info", "widget");
 
-            handle = parentNode.delegate(type, function (evt) {
+            handle = uiEvtNode.delegate(type, function (evt) {
 
                 var widget = Widget.getByNode(this);
                 //  Make the DOM event a property of the custom event
