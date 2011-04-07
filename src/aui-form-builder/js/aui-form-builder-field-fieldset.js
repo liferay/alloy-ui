@@ -61,6 +61,15 @@ var FormBuilderFieldsetField = A.Component.create({
 		},
 
 		/**
+		 * The type of the field data
+		 *
+		 * @attribute dataType
+		 */
+		dataType: {
+			value: undefined
+		},
+
+		/**
 		 * The HTML template of the field
 		 *
 		 * @attribute template
