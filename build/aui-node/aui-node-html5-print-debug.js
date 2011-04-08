@@ -1,19 +1,23 @@
 AUI.add('aui-node-html5-print', function(A) {
-var IE = A.UA.ie;
+var CONFIG = A.config,
+	DOC = CONFIG.doc,
+	WIN = CONFIG.win,
+	IE = A.UA.ie,
 
-if (!IE || IE >= 9) {
+	isShivDisabled = function() {
+		return WIN.AUI_HTML5_IE === false;
+	};
+
+if (!IE || IE >= 9 || isShivDisabled()) {
 	return;
 }
 
-var WIN = A.config.win,
-	DOC = A.config.doc,
+var BUFFER_CSS_TEXT = [],
 
 	CSS_PRINTFIX = 'aui-printfix',
 	CSS_PRINTFIX_PREFIX = 'aui-printfix-',
 
 	GLOBAL_AUI = YUI.AUI,
-
-	html5shiv = GLOBAL_AUI.html5shiv,
 
 	HTML = DOC.documentElement,
 
@@ -23,6 +27,7 @@ var WIN = A.config.win,
 
 	REGEX_CLONE_NODE_CLEANUP = new RegExp('<(/?):(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
 	REGEX_ELEMENTS = new RegExp('(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
+	REGEX_ELEMENTS_FAST = new RegExp('\\b(' + HTML5_ELEMENTS_LIST + ')\\b', 'i'),
 
 	REGEX_PRINT_MEDIA = /print|all/,
 
@@ -35,25 +40,56 @@ var WIN = A.config.win,
 	STR_BLANK = ' ',
 	STR_EMPTY = '',
 
+	STR_BRACKET_OPEN = '{',
+	STR_BRACKET_CLOSE = '}',
+
 	TAG_REPLACE_ORIGINAL = '<$1$2',
 	TAG_REPLACE_FONT = '<$1font';
+
+var html5shiv = GLOBAL_AUI.html5shiv,
+	// Yes, IE does this wackiness; converting an object
+	// to a string should never result in undefined, but
+	// IE's styleSheet object sometimes becomes inaccessible
+	// after trying to print the second time
+	isStylesheetDefined = function(obj) {
+		return obj && (obj + STR_EMPTY !== undefined);
+	};
 
 	html5shiv(DOC);
 
 var PrintFix = function() {
-	WIN.attachEvent(
-		'onbeforeprint',
-		function() {
-			PrintFix.onBeforePrint();
+	var afterPrint = function() {
+		if (isShivDisabled()) {
+			destroy();
 		}
-	);
-
-	WIN.attachEvent(
-		'onafterprint',
-		function() {
+		else {
 			PrintFix.onAfterPrint();
 		}
-	);
+	};
+
+	var beforePrint = function() {
+		if (isShivDisabled()) {
+			destroy();
+		}
+		else {
+			PrintFix.onBeforePrint();
+		}
+	};
+
+	var destroy = function() {
+		WIN.detachEvent('onafterprint', afterPrint);
+		WIN.detachEvent('onbeforeprint', beforePrint);
+	};
+
+	var init = function() {
+		WIN.attachEvent('onafterprint', afterPrint);
+		WIN.attachEvent('onbeforeprint', beforePrint);
+	};
+
+	init();
+
+	PrintFix.destroy = destroy;
+	PrintFix.init = init;
 };
 
 A.mix(
@@ -63,6 +99,7 @@ A.mix(
 			var instance = this;
 
 			instance.restoreHTML();
+
 			var styleSheet = instance._getStyleSheet();
 
 			styleSheet.styleSheet.cssText = STR_EMPTY;
@@ -72,44 +109,11 @@ A.mix(
 			var instance = this;
 
 			var styleSheet = instance._getStyleSheet();
-			var cssRules = instance.getCSS(DOC.styleSheets, STR_ALL);
+			var cssRules = instance._getAllCSSText();
 
 			styleSheet.styleSheet.cssText = instance.parseCSS(cssRules);
 
 			instance.writeHTML();
-		},
-
-		getCSS: function(styleSheets, mediaType) {
-			var instance = this;
-
-			var css = STR_EMPTY;
-
-			if (styleSheets + STR_EMPTY !== undefined) {
-				var i = -1;
-				var length = styleSheets.length;
-				var buffer = [];
-				var styleSheet;
-
-				while (++i < length) {
-					styleSheet = styleSheets[i];
-
-					if (styleSheet.disabled) {
-						continue;
-					}
-
-					mediaType = styleSheet.mediaType || mediaType;
-
-					if (REGEX_PRINT_MEDIA.test(mediaType)) {
-						buffer.push(instance.getCSS(styleSheet.imports, mediaType), styleSheet.cssText);
-					}
-
-					mediaType = STR_ALL;
-				}
-
-				css = buffer.join(STR_EMPTY);
-			}
-
-			return css;
 		},
 
 		parseCSS: function(cssText) {
@@ -117,7 +121,6 @@ A.mix(
 
 			var css = STR_EMPTY;
 			var rule;
-
 			var rules = cssText.match(REGEX_RULE);
 
 			if (rules) {
@@ -192,6 +195,106 @@ A.mix(
 			bodyHTML = bodyHTML.replace(REGEX_CLONE_NODE_CLEANUP, TAG_REPLACE_ORIGINAL).replace(REGEX_TAG, TAG_REPLACE_FONT);
 
 			bodyClone.innerHTML = bodyHTML;
+		},
+
+		_getAllCSSText: function() {
+			var instance = this;
+
+			var buffer = [];
+			var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, STR_ALL);
+			var rule;
+			var cssText;
+
+			for (var i = 0; styleSheet = styleSheets[i]; i++) {
+				var rules = styleSheet.rules;
+
+				if (rules && rules.length) {
+					for (var j = 0, ruleLength = rules.length; j < ruleLength; j++) {
+						rule = rules[j];
+
+						if (!rule.href) {
+							cssText = instance._getCSSTextFromRule(rule);
+
+							buffer.push(cssText);
+						}
+					}
+				}
+			}
+
+			return buffer.join(STR_BLANK);
+		},
+
+		_getCSSTextFromRule: function(rule) {
+			var instance = this;
+
+			var cssText = STR_EMPTY;
+
+			var ruleStyle = rule.style;
+			var selectorText;
+			var ruleCSSText;
+			var ruleSelectorText;
+
+			if (ruleStyle && (ruleCSSText = ruleStyle.cssText) && (ruleSelectorText = rule.selectorText) && REGEX_ELEMENTS_FAST.test(ruleSelectorText)) {
+				BUFFER_CSS_TEXT.length = 0;
+
+				BUFFER_CSS_TEXT.push(ruleSelectorText, STR_BRACKET_OPEN, ruleCSSText, STR_BRACKET_CLOSE);
+
+				cssText = BUFFER_CSS_TEXT.join(STR_BLANK);
+			}
+
+			return cssText;
+		},
+
+		_getAllStyleSheets: function(styleSheet, mediaType, level, buffer) {
+			var instance = this;
+
+			level = level || 1;
+
+			buffer = buffer || [];
+
+			if (isStylesheetDefined(styleSheet)) {
+				var imports = styleSheet.imports;
+
+				mediaType = styleSheet.mediaType || mediaType;
+
+				if (REGEX_PRINT_MEDIA.test(mediaType)) {
+					var length;
+
+					// IE can crash when trying to access imports more than 3 levels deep
+					if (level <= 3 && isStylesheetDefined(imports) && imports.length) {
+						for (var i = 0, length = imports.length; i < length; i++) {
+							instance._getAllStyleSheets(imports[i], mediaType, level + 1, buffer);
+						}
+					}
+					else if (styleSheet.length) {
+						for (var i = 0, length = styleSheet.length; i < length; i++) {
+							instance._getAllStyleSheets(styleSheet[i], mediaType, level, buffer);
+						}
+					}
+					else {
+						var rules = styleSheet.rules;
+						var ruleStyleSheet;
+
+						if (rules && rules.length) {
+							for (var i = 0, length = rules.length; i < length; i++) {
+								ruleStyleSheet = rules[i].styleSheet;
+
+								if (ruleStyleSheet) {
+									instance._getAllStyleSheets(ruleStyleSheet, mediaType, level, buffer);
+								}
+							}
+						}
+					}
+
+					if (!styleSheet.disabled && styleSheet.rules) {
+						buffer.push(styleSheet);
+					}
+				}
+			}
+
+			mediaType = STR_ALL;
+
+			return buffer;
 		},
 
 		_getBodyEl: function() {
