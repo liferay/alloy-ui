@@ -1393,109 +1393,374 @@ if (A.UA.ie) {
 
 }, '@VERSION@' ,{requires:['collection','aui-base']});
 AUI.add('aui-node-html5-print', function(A) {
-(function(win, doc, elemsArr, elemsArrLen, elems, isIE) {
-	if (!isIE || isIE >= 9) {
-		return;
-	}
+var CONFIG = A.config,
+	DOC = CONFIG.doc,
+	WIN = CONFIG.win,
+	IE = A.UA.ie,
 
-	var DOC_FRAG = doc.createDocumentFragment(),
-		EL_BODY = doc.createElement('body'),
-		EL_STYLE = doc.createElement('style'),
+	isShivDisabled = function() {
+		return WIN.AUI_HTML5_IE === false;
+	};
 
-		HTML = doc.documentElement,
-		HEAD = HTML.firstChild,
+if (!IE || IE >= 9 || isShivDisabled()) {
+	return;
+}
 
-		REGEX_ELEM = new RegExp('(^|\\s)(' + elems + ')', 'gi'),
-		REGEX_RULE = new RegExp('(^|[^\\n]*?\\s)(' + elems + ')([^\\n]*)({[\\n\\w\\W]*?})', 'gi'),
-		REGEX_TAG = new RegExp('<(\/*)(' + elems + ')', 'gi');
+var BUFFER_CSS_TEXT = [],
 
-	var body;
+	CSS_PRINTFIX = 'aui-printfix',
+	CSS_PRINTFIX_PREFIX = 'aui-printfix-',
 
-	var shim = YUI.AUI.html5shiv;
+	GLOBAL_AUI = YUI.AUI,
 
-	function getCSS(styleSheetList, mediaType) {
-		var a = -1;
-		var len = styleSheetList.length;
-		var styleSheet;
-		var cssTextArr = [];
+	HTML = DOC.documentElement,
 
-		while (++a < len) {
-			styleSheet = styleSheetList[a];
+	HTML5_ELEMENTS = GLOBAL_AUI.HTML5_ELEMENTS,
+	HTML5_ELEMENTS_LENGTH = HTML5_ELEMENTS.length,
+	HTML5_ELEMENTS_LIST = HTML5_ELEMENTS.join('|'),
 
-			if ((mediaType = styleSheet.media || mediaType) != 'screen') {
-				cssTextArr.push(getCSS(styleSheet.imports, mediaType), styleSheet.cssText);
-			}
+	REGEX_CLONE_NODE_CLEANUP = new RegExp('<(/?):(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
+	REGEX_ELEMENTS = new RegExp('(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
+	REGEX_ELEMENTS_FAST = new RegExp('\\b(' + HTML5_ELEMENTS_LIST + ')\\b', 'i'),
+
+	REGEX_PRINT_MEDIA = /print|all/,
+
+	REGEX_RULE = new RegExp('(^|[^\\n{}]*?\\s)(' + HTML5_ELEMENTS_LIST + ').*?{([^}]*)}', 'gim'),
+	REGEX_TAG = new RegExp('<(\/*)(' + HTML5_ELEMENTS_LIST + ')', 'gi'),
+
+	SELECTOR_REPLACE_RULE = '.' + CSS_PRINTFIX_PREFIX + '$1',
+
+	STR_ALL = 'all',
+	STR_BLANK = ' ',
+	STR_EMPTY = '',
+
+	STR_BRACKET_OPEN = '{',
+	STR_BRACKET_CLOSE = '}',
+
+	TAG_REPLACE_ORIGINAL = '<$1$2',
+	TAG_REPLACE_FONT = '<$1font';
+
+var html5shiv = GLOBAL_AUI.html5shiv,
+	// Yes, IE does this wackiness; converting an object
+	// to a string should never result in undefined, but
+	// IE's styleSheet object sometimes becomes inaccessible
+	// after trying to print the second time
+	isStylesheetDefined = function(obj) {
+		return obj && (obj + STR_EMPTY !== undefined);
+	};
+
+	html5shiv(DOC);
+
+var PrintFix = function() {
+	var afterPrint = function() {
+		if (isShivDisabled()) {
+			destroy();
 		}
+		else {
+			PrintFix.onAfterPrint();
+		}
+	};
 
-		return cssTextArr.join('');
-	}
+	var beforePrint = function() {
+		if (isShivDisabled()) {
+			destroy();
+		}
+		else {
+			PrintFix.onBeforePrint();
+		}
+	};
 
-	shim(doc);
-	shim(DOC_FRAG);
+	var destroy = function() {
+		WIN.detachEvent('onafterprint', afterPrint);
+		WIN.detachEvent('onbeforeprint', beforePrint);
+	};
 
-	HEAD.insertBefore(EL_STYLE, HEAD.firstChild);
+	var init = function() {
+		WIN.attachEvent('onafterprint', afterPrint);
+		WIN.attachEvent('onbeforeprint', beforePrint);
+	};
 
-	EL_STYLE.media = 'print';
+	init();
 
-	win.attachEvent(
-		'onbeforeprint',
-		function() {
-			var a = -1;
-			var b;
-			var cssText = getCSS(doc.styleSheets, 'all');
-			var cssTextArr = [];
-			var elem;
-			var node;
-			var nodeList;
-			var nodeListLen;
+	PrintFix.destroy = destroy;
+	PrintFix.init = init;
+};
+
+A.mix(
+	PrintFix,
+	{
+		onAfterPrint: function() {
+			var instance = this;
+
+			instance.restoreHTML();
+
+			var styleSheet = instance._getStyleSheet();
+
+			styleSheet.styleSheet.cssText = STR_EMPTY;
+		},
+
+		onBeforePrint: function() {
+			var instance = this;
+
+			var styleSheet = instance._getStyleSheet();
+			var cssRules = instance._getAllCSSText();
+
+			styleSheet.styleSheet.cssText = instance.parseCSS(cssRules);
+
+			instance.writeHTML();
+		},
+
+		parseCSS: function(cssText) {
+			var instance = this;
+
+			var css = STR_EMPTY;
 			var rule;
+			var rules = cssText.match(REGEX_RULE);
 
-			body = body || doc.body;
-
-			while ((rule = REGEX_RULE.exec(cssText)) != null) {
-				cssTextArr.push((rule[1] + rule[2] + rule[3]).replace(REGEX_ELEM, '$1.iepp_$2') + rule[4]);
+			if (rules) {
+				css = rules.join('\n').replace(REGEX_ELEMENTS, SELECTOR_REPLACE_RULE);
 			}
 
-			EL_STYLE.styleSheet.cssText = cssTextArr.join('\n');
+			return css;
+		},
 
-			while (++a < elemsArrLen) {
-				elem = elemsArr[a];
-				nodeList = doc.getElementsByTagName(elem);
+		restoreHTML: function() {
+			var instance = this;
 
-				nodeListLen = nodeList.length;
+			var bodyClone = instance._getBodyClone();
+			var bodyEl = instance._getBodyEl();
 
-				b = -1;
+			bodyClone.innerHTML = STR_EMPTY;
 
-				while (++b < nodeListLen) {
-					node = nodeList[b];
+			HTML.removeChild(bodyClone);
+			HTML.appendChild(bodyEl);
+		},
 
-					if (node.className.indexOf('iepp_') < 0) {
-						node.className += ' iepp_' + elem;
+		writeHTML: function() {
+			var instance = this;
+
+			var i = -1;
+			var j;
+
+			var bodyEl = instance._getBodyEl();
+
+			var html5Element;
+
+			var cssClass;
+
+			var nodeList;
+			var nodeListLength;
+			var node;
+			var buffer = [];
+
+			while (++i < HTML5_ELEMENTS_LENGTH) {
+				html5Element = HTML5_ELEMENTS[i];
+
+				nodeList = DOC.getElementsByTagName(html5Element);
+				nodeListLength = nodeList.length;
+
+				j = -1;
+
+				while (++j < nodeListLength) {
+					node = nodeList[j];
+
+					cssClass = node.className;
+
+					if (cssClass.indexOf(CSS_PRINTFIX_PREFIX) == -1) {
+						buffer[0] = CSS_PRINTFIX_PREFIX + html5Element;
+						buffer[1] = cssClass;
+
+						node.className =  buffer.join(STR_BLANK);
 					}
 				}
 			}
 
-			DOC_FRAG.appendChild(body);
-			HTML.appendChild(EL_BODY);
+			var docFrag = instance._getDocFrag();
+			var bodyClone = instance._getBodyClone();
 
-			EL_BODY.className = body.className;
+			docFrag.appendChild(bodyEl);
+			HTML.appendChild(bodyClone);
 
-			EL_BODY.innerHTML = body.innerHTML.replace(REGEX_TAG, '<$1font');
+			bodyClone.className = bodyEl.className;
+			bodyClone.id = bodyEl.id;
+
+			var bodyHTML = bodyEl.cloneNode(true).innerHTML;
+
+			bodyHTML = bodyHTML.replace(REGEX_CLONE_NODE_CLEANUP, TAG_REPLACE_ORIGINAL).replace(REGEX_TAG, TAG_REPLACE_FONT);
+
+			bodyClone.innerHTML = bodyHTML;
+		},
+
+		_getAllCSSText: function() {
+			var instance = this;
+
+			var buffer = [];
+			var styleSheets = instance._getAllStyleSheets(DOC.styleSheets, STR_ALL);
+			var rule;
+			var cssText;
+
+			for (var i = 0; styleSheet = styleSheets[i]; i++) {
+				var rules = styleSheet.rules;
+
+				if (rules && rules.length) {
+					for (var j = 0, ruleLength = rules.length; j < ruleLength; j++) {
+						rule = rules[j];
+
+						if (!rule.href) {
+							cssText = instance._getCSSTextFromRule(rule);
+
+							buffer.push(cssText);
+						}
+					}
+				}
+			}
+
+			return buffer.join(STR_BLANK);
+		},
+
+		_getCSSTextFromRule: function(rule) {
+			var instance = this;
+
+			var cssText = STR_EMPTY;
+
+			var ruleStyle = rule.style;
+			var selectorText;
+			var ruleCSSText;
+			var ruleSelectorText;
+
+			if (ruleStyle && (ruleCSSText = ruleStyle.cssText) && (ruleSelectorText = rule.selectorText) && REGEX_ELEMENTS_FAST.test(ruleSelectorText)) {
+				BUFFER_CSS_TEXT.length = 0;
+
+				BUFFER_CSS_TEXT.push(ruleSelectorText, STR_BRACKET_OPEN, ruleCSSText, STR_BRACKET_CLOSE);
+
+				cssText = BUFFER_CSS_TEXT.join(STR_BLANK);
+			}
+
+			return cssText;
+		},
+
+		_getAllStyleSheets: function(styleSheet, mediaType, level, buffer) {
+			var instance = this;
+
+			level = level || 1;
+
+			buffer = buffer || [];
+
+			if (isStylesheetDefined(styleSheet)) {
+				var imports = styleSheet.imports;
+
+				mediaType = styleSheet.mediaType || mediaType;
+
+				if (REGEX_PRINT_MEDIA.test(mediaType)) {
+					var length;
+
+					// IE can crash when trying to access imports more than 3 levels deep
+					if (level <= 3 && isStylesheetDefined(imports) && imports.length) {
+						for (var i = 0, length = imports.length; i < length; i++) {
+							instance._getAllStyleSheets(imports[i], mediaType, level + 1, buffer);
+						}
+					}
+					else if (styleSheet.length) {
+						for (var i = 0, length = styleSheet.length; i < length; i++) {
+							instance._getAllStyleSheets(styleSheet[i], mediaType, level, buffer);
+						}
+					}
+					else {
+						var rules = styleSheet.rules;
+						var ruleStyleSheet;
+
+						if (rules && rules.length) {
+							for (var i = 0, length = rules.length; i < length; i++) {
+								ruleStyleSheet = rules[i].styleSheet;
+
+								if (ruleStyleSheet) {
+									instance._getAllStyleSheets(ruleStyleSheet, mediaType, level, buffer);
+								}
+							}
+						}
+					}
+
+					if (!styleSheet.disabled && styleSheet.rules) {
+						buffer.push(styleSheet);
+					}
+				}
+			}
+
+			mediaType = STR_ALL;
+
+			return buffer;
+		},
+
+		_getBodyEl: function() {
+			var instance = this;
+
+			var bodyEl = instance._bodyEl;
+
+			if (!bodyEl) {
+				bodyEl = DOC.body;
+
+				instance._bodyEl = bodyEl;
+			}
+
+			return bodyEl;
+		},
+
+		_getBodyClone: function() {
+			var instance = this;
+
+			var bodyClone = instance._bodyClone;
+
+			if (!bodyClone) {
+				bodyClone = DOC.createElement('body');
+
+				instance._bodyClone = bodyClone;
+			}
+
+			return bodyClone;
+		},
+
+		_getDocFrag: function() {
+			var instance = this;
+
+			var docFrag = instance._docFrag;
+
+			if (!docFrag) {
+				docFrag = DOC.createDocumentFragment();
+
+				html5shiv(docFrag);
+
+				instance._docFrag = docFrag;
+			}
+
+			return docFrag;
+		},
+
+		_getStyleSheet: function() {
+			var instance = this;
+
+			var styleSheet = instance._styleSheet;
+
+			if (!styleSheet) {
+				styleSheet = DOC.createElement('style');
+
+				var head = DOC.documentElement.firstChild;
+
+				head.insertBefore(styleSheet, head.firstChild);
+
+				styleSheet.media = 'print';
+				styleSheet.className = CSS_PRINTFIX;
+
+				instance._styleSheet = styleSheet;
+			}
+
+			return styleSheet;
 		}
-	);
+	}
+);
 
-	win.attachEvent(
-		'onafterprint',
-		function() {
-			EL_BODY.innerHTML = '';
+A.namespace('HTML5').PrintFix = PrintFix;
 
-			HTML.removeChild(EL_BODY);
-			HTML.appendChild(body);
-
-			EL_STYLE.styleSheet.cssText = '';
-		}
-	);
-})(A.config.win, A.config.doc, YUI.AUI.HTML5_ELEMENTS, YUI.AUI.HTML5_ELEMENTS.length, YUI.AUI.HTML5_ELEMENTS.join('|'), A.UA.ie);
+PrintFix();
 
 }, '@VERSION@' ,{requires:['aui-node-html5']});
 AUI.add('aui-node-fx', function(A) {
