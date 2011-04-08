@@ -52,6 +52,9 @@ var {
 	article#bar {
 		margin-left: 100px;
 	}
+	div>article#bar {
+		margin-left: 100px;
+	}
 }
  
 	</style> 
@@ -163,6 +166,9 @@ window.onload = function () {
 </section>
 
 <script>
+if (!location.hash) {
+	document.write('<iframe src="index.html#test" width="100%" height="400" id="test123"></iframe>');
+}
 
 AUI().use('aui-node-html5-print');
 
