@@ -11,6 +11,7 @@ var L = A.Lang,
 	OFFSET_TOP = 'offsetTop',
 	OFFSET_WIDTH = 'offsetWidth',
 	ORIENTATION = 'orientation',
+	PX = 'px',
 	SCROLL_HEIGHT = 'scrollHeight',
 	SCROLLER = 'scroller',
 	VERTICAL = 'vertical',
@@ -56,26 +57,14 @@ var Scroller = A.Component.create (
 				var contentBox = instance.get(CONTENT_BOX);
 				var orientation = instance.get(ORIENTATION);
 
-				instance.publish('scroll', {defaultFn: instance._defaultScrollFn});
+				instance.publish(
+					'scroll',
+					{
+						defaultFn: instance._defaultScrollFn
+					}
+				);
 
-				contentBox.on('mousemove', function (event) {
-					var boundingBoxOffsetHeight = boundingBox.get(OFFSET_HEIGHT);
-					var boundingBoxOffsetWidth = boundingBox.get(OFFSET_WIDTH);
-
-					var absMouseX = event.pageX - boundingBox.get(OFFSET_LEFT);
-					var absMouseY = event.pageY - boundingBox.get(OFFSET_TOP);
-
-					var diffX = contentBox.get(CLIENT_WIDTH) - boundingBoxOffsetWidth;
-					var diffY = contentBox.get(SCROLL_HEIGHT) - boundingBoxOffsetHeight;
-
-					var mouseFactorX = diffX/boundingBoxOffsetWidth;
-					var mouseFactorY = diffY/boundingBoxOffsetHeight;
-
-					var x = -(absMouseX * mouseFactorX);
-					var y = -(absMouseY * mouseFactorY);
-
-					instance.fire('scroll', {x: x, y: y});
-				});
+				contentBox.on('mousemove', A.rbind(instance._onMouseMove, instance, boundingBox, contentBox, orientation));
 			},
 
 			_defaultScrollFn: function (event) {
@@ -83,22 +72,53 @@ var Scroller = A.Component.create (
 
 				var contentBox = instance.get(CONTENT_BOX);
 				var orientation = instance.get(ORIENTATION);
-				var transitionConfig = {duration: 0};
+
+				var transitionConfig = {
+					duration: 0
+				};
 
 				if(orientation == HORIZONTAL) {
-					transitionConfig.left = event.x + 'px';
+					transitionConfig.left = event.x + PX;
 				}
 				else {
-					transitionConfig.top = event.y + 'px';
+					transitionConfig.top = event.y + PX;
 				}
 
 				contentBox.transition(transitionConfig);
+			},
+
+			_onMouseMove: function(event, boundingBox, contentBox, orientation) {
+				var instance = this;
+
+				var boundingBoxOffsetHeight = boundingBox.get(OFFSET_HEIGHT);
+				var boundingBoxOffsetWidth = boundingBox.get(OFFSET_WIDTH);
+
+				var absMouseX = event.pageX - boundingBox.get(OFFSET_LEFT);
+				var absMouseY = event.pageY - boundingBox.get(OFFSET_TOP);
+
+				var diffX = contentBox.get(CLIENT_WIDTH) - boundingBoxOffsetWidth;
+				var diffY = contentBox.get(SCROLL_HEIGHT) - boundingBoxOffsetHeight;
+
+				var mouseFactorX = diffX / boundingBoxOffsetWidth;
+				var mouseFactorY = diffY / boundingBoxOffsetHeight;
+
+				var x = -(absMouseX * mouseFactorX);
+				var y = -(absMouseY * mouseFactorY);
+
+				instance.fire(
+					'scroll',
+					{
+						x: x,
+						y: y
+					}
+				);
 			},
 
 			_uiSetOrientation: function (val) {
 				var instance = this;
 
 				var boundingBox = instance.get(BOUNDING_BOX);
+
 				var horizontal = (val === HORIZONTAL);
 
 				boundingBox.toggleClass(CSS_HORIZONTAL, horizontal);
@@ -108,7 +128,9 @@ var Scroller = A.Component.create (
 			_updateNodeSelection: function () {
 				var instance = this;
 
-				instance.nodeSelection = instance.get('contentBox').all(instance.get('itemSelector')).addClass(CSS_ITEM);
+				var itemSelector = instance.get('itemSelector');
+
+				instance.nodeSelection = instance.get('contentBox').all(itemSelector).addClass(CSS_ITEM);
 			}
 		}
 	}
@@ -116,4 +138,4 @@ var Scroller = A.Component.create (
 
 A.Scroller = Scroller;
 
-}, '@VERSION@' ,{requires:['aui-base','transition'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','transition']});
