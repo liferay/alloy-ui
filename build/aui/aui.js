@@ -4071,6 +4071,7 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 						'aui-rating': {requires:['aui-base'], skinnable:true},
 						'aui-resize': {submodules: {'aui-resize-constrain': {requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false}, 'aui-resize-base': {requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true} }, use:['aui-resize-base','aui-resize-constrain'], skinnable:true},
 						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {requires:['aui-scheduler-event'], skinnable:true}, 'aui-scheduler-event': {requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true}, 'aui-scheduler-view': {requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true}, 'aui-scheduler-base': {requires:['aui-scheduler-view','datasource'], skinnable:true} }, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true},
+						'aui-scroller': {requires:['aui-base','transition'], skinnable:true},
 						'aui-selector': {requires:['selector'], skinnable:false},
 						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
 						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
