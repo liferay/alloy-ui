@@ -1,0 +1,28 @@
+.aui-scroller {
+	overflow: hidden;
+	position: relative;
+}
+
+.aui-scroller-content {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+.aui-scroller-vertical .aui-scroller-content {
+	height: auto !important;
+}
+
+.aui-scroller-horizontal .aui-scroller-content {
+	float: left;
+	white-space: nowrap;
+}
+
+.aui-scroller-horizontal .aui-scroller-item {
+	display: inline-block;
+}
+
+.ie7 .aui-scroller-horizontal .aui-scroller-item, .ie6 .aui-scroller-horizontal .aui-scroller-item {
+	display: inline;
+	zoom: 1;
+}
