@@ -61,8 +61,8 @@ var Scroller = A.Component.create (
 					var boundingBoxOffsetHeight = boundingBox.get(OFFSET_HEIGHT);
 					var boundingBoxOffsetWidth = boundingBox.get(OFFSET_WIDTH);
 
-					var absMouseX = event.clientX - boundingBox.get(OFFSET_LEFT);
-					var absMouseY = event.clientY - boundingBox.get(OFFSET_TOP);
+					var absMouseX = event.pageX - boundingBox.get(OFFSET_LEFT);
+					var absMouseY = event.pageY - boundingBox.get(OFFSET_TOP);
 
 					var diffX = contentBox.get(CLIENT_WIDTH) - boundingBoxOffsetWidth;
 					var diffY = contentBox.get(SCROLL_HEIGHT) - boundingBoxOffsetHeight;
