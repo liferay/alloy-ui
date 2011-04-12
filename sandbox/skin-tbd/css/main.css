@@ -19,9 +19,41 @@ h2 {
 	font-size: 24px;
 }
 
+h3 {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.aui-button-input-submit {
+	background: url(../images/button-submit.png) repeat-x scroll 0 0;
+	border: 1px solid #9e9e9e;
+	color: #fff;
+	font-size: 13px;
+	font-weight: normal;
+	padding: 4px 8px 4px 8px;
+	text-shadow: -1px -1px 1px #000;
+}
+.portlet-msg-info {
+    background: url("../images/messages/info.png") no-repeat scroll 6px 50% #DFF4FF;
+    border: 1px solid #A7CEDF;
+    color: #34404F;
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 2px auto 14px;
+    padding: 6px 6px 6px 30px;
+    text-align: left;
+}
 #wrapper {
 	margin: 0 auto;
 	padding: 10px;
 	position: relative;
 	width: 80%;
+}
+
+/* Rounded corners */
+.aui-button-input-submit {
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
