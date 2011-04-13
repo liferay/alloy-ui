@@ -2,7 +2,8 @@ AUI.add('aui-node-html5-print', function(A) {
 var CONFIG = A.config,
 	DOC = CONFIG.doc,
 	WIN = CONFIG.win,
-	IE = A.UA.ie,
+	UA = A.UA,
+	IE = UA.ie,
 
 	isShivDisabled = function() {
 		return WIN.AUI_HTML5_IE === false;
@@ -16,6 +17,10 @@ var BUFFER_CSS_TEXT = [],
 
 	CSS_PRINTFIX = 'aui-printfix',
 	CSS_PRINTFIX_PREFIX = 'aui-printfix-',
+
+	LOCATION = WIN.location,
+
+	DOMAIN = LOCATION.protocol + '//' + LOCATION.host,
 
 	GLOBAL_AUI = YUI.AUI,
 
@@ -42,6 +47,10 @@ var BUFFER_CSS_TEXT = [],
 
 	STR_BRACKET_OPEN = '{',
 	STR_BRACKET_CLOSE = '}',
+
+	STR_HTTPS = 'https',
+	STR_URL = 'url(',
+	STR_URL_DOMAIN = STR_URL + DOMAIN,
 
 	TAG_REPLACE_ORIGINAL = '<$1$2',
 	TAG_REPLACE_FONT = '<$1font';
@@ -189,6 +198,34 @@ A.mix(
 
 			bodyClone.className = bodyEl.className;
 			bodyClone.id = bodyEl.id;
+
+			// IE will throw a mixed content warning when using https
+			// and calling clone node if the body contains elements with
+			// an inline background-image style that is relative to the domain.
+			if (UA.secure) {
+				var allElements = bodyEl.getElementsByTagName('*');
+				var bodyElStyle = bodyEl.style;
+
+				var elStyle;
+				var backgroundImage;
+
+				bodyElStyle.display = 'none';
+
+				for (var i = 0, allElementsLength = allElements.length; i < allElementsLength; i++) {
+					elStyle = allElements[i].style;
+
+					backgroundImage = elStyle.backgroundImage;
+
+					if (backgroundImage &&
+						backgroundImage.indexOf(STR_URL) > -1 &&
+						backgroundImage.indexOf(STR_HTTPS) == -1) {
+
+						elStyle.backgroundImage = backgroundImage.replace(STR_URL, STR_URL_DOMAIN);
+					}
+				}
+
+				bodyElStyle.display = STR_EMPTY;
+			}
 
 			var bodyHTML = bodyEl.cloneNode(true).innerHTML;
 
