@@ -1,9 +1,11 @@
 var L = A.Lang,
+	isNumber = L.isNumber,
 	isString = L.isString,
 
 	BOUNDING_BOX = 'boundingBox',
 	CLIENT_WIDTH = 'clientWidth',
 	CONTENT_BOX = 'contentBox',
+	DURATION = 'duration',
 	HORIZONTAL = 'horizontal',
 	OFFSET_HEIGHT = 'offsetHeight',
 	OFFSET_LEFT = 'offsetLeft',
@@ -26,15 +28,22 @@ var Scroller = A.Component.create (
 		NAME: SCROLLER,
 
 		ATTRS: {
+			duration: {
+				validator: function (val) {
+					return isNumber(val);
+				},
+				value: 0.5
+			},
+
 			itemSelector: {
 				value: '>*'
 			},
 
 			orientation: {
-				value: HORIZONTAL,
 				validator: function (val) {
 					return isString(val) && (val === HORIZONTAL || val === VERTICAL);
-				}
+				},
+				value: HORIZONTAL
 			}
 		},
 
@@ -46,15 +55,16 @@ var Scroller = A.Component.create (
 			initializer: function() {
 				var instance = this;
 
+				instance._boundingBox = instance.get(BOUNDING_BOX);
+				instance._contentBox = instance.get(CONTENT_BOX);
+				instance._duration = instance.get(DURATION);
+				instance._orientation = instance.get(ORIENTATION);
+
 				instance._updateNodeSelection();
 			},
 
 			bindUI: function () {
 				var instance = this;
-
-				var boundingBox = instance.get(BOUNDING_BOX);
-				var contentBox = instance.get(CONTENT_BOX);
-				var orientation = instance.get(ORIENTATION);
 
 				instance.publish(
 					'scroll',
@@ -63,24 +73,43 @@ var Scroller = A.Component.create (
 					}
 				);
 
-				contentBox.on('mousemove', A.rbind(instance._onMouseMove, instance, boundingBox, contentBox, orientation));
+				instance.after(
+					{
+						durationChange: instance._afterDurationChange,
+						orientationChange: instance._afterOrientationChange
+					}
+				);
+
+				instance._contentBox.on('mousemove', A.rbind(instance._onMouseMove, instance, instance._boundingBox, instance._contentBox, instance._orientation));
+			},
+
+			_afterDurationChange: function (event) {
+				var instance = this;
+
+				instance._duration = event.newVal;
+			},
+
+			_afterOrientationChange: function (event) {
+				var instance = this;
+
+				instance._orientation = event.newVal;
 			},
 
 			_defaultScrollFn: function (event) {
 				var instance = this;
 
-				var contentBox = instance.get(CONTENT_BOX);
-				var orientation = instance.get(ORIENTATION);
+				var contentBox = instance._contentBox;
+				var orientation = instance._orientation;
 
 				var transitionConfig = {
-					duration: 0
+					duration: instance._duration
 				};
 
 				if(orientation == HORIZONTAL) {
-					transitionConfig.left = event.x + PX;
+					transitionConfig.left = event.offsetX + PX;
 				}
 				else {
-					transitionConfig.top = event.y + PX;
+					transitionConfig.top = event.offsetY + PX;
 				}
 
 				contentBox.transition(transitionConfig);
@@ -98,17 +127,21 @@ var Scroller = A.Component.create (
 				var diffX = contentBox.get(CLIENT_WIDTH) - boundingBoxOffsetWidth;
 				var diffY = contentBox.get(SCROLL_HEIGHT) - boundingBoxOffsetHeight;
 
-				var mouseFactorX = diffX / boundingBoxOffsetWidth;
-				var mouseFactorY = diffY / boundingBoxOffsetHeight;
+				var factorX = diffX / boundingBoxOffsetWidth;
+				var factorY = diffY / boundingBoxOffsetHeight;
 
-				var x = -(absMouseX * mouseFactorX);
-				var y = -(absMouseY * mouseFactorY);
+				var offsetX = -(absMouseX * factorX);
+				var offsetY = -(absMouseY * factorY);
 
 				instance.fire(
 					'scroll',
 					{
-						x: x,
-						y: y
+						factorX: factorX,
+						factorY: factorY,
+						offsetX: offsetX,
+						offsetY: offsetY,
+						x: absMouseX,
+						y: absMouseY
 					}
 				);
 			},
@@ -116,7 +149,7 @@ var Scroller = A.Component.create (
 			_uiSetOrientation: function (val) {
 				var instance = this;
 
-				var boundingBox = instance.get(BOUNDING_BOX);
+				var boundingBox = instance._boundingBox;
 
 				var horizontal = (val === HORIZONTAL);
 
@@ -129,7 +162,7 @@ var Scroller = A.Component.create (
 
 				var itemSelector = instance.get('itemSelector');
 
-				instance.nodeSelection = instance.get('contentBox').all(itemSelector).addClass(CSS_ITEM);
+				instance.nodeSelection = instance._contentBox.all(itemSelector).addClass(CSS_ITEM);
 			}
 		}
 	}
