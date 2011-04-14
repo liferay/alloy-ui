@@ -469,6 +469,21 @@
 		</subant>
 		<!-- /End Patch for AUI-313 -->
 
+		<!-- Patch for AUI-401-->
+		<replace file="${project.dir}/lib/yui3/src/dom/js/dom-style-ie.js">
+			<replacetoken><![CDATA[if (Y.UA.ie && Y.UA.ie < 9) {]]></replacetoken>
+			<replacevalue><![CDATA[if (Y.UA.ie && Y.config.doc.documentMode < 9) {]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/dom"
+				includes="build.style-ie.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-401-->
+
 		<!-- Patch for AUI-284 -->
 		<replace file="${project.dir}/lib/yui3/src/io/js/io-upload-iframe.js">
 			<replacetoken><![CDATA[if (a.hasOwnProperty(a, p)) {]]></replacetoken>
