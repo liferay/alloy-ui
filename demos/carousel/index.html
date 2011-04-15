@@ -16,11 +16,16 @@
 			padding: 10px;
 		}
 
+		.aui-carousel {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+		}
+
 		.aui-carousel-item {
 			-moz-border-radius: 10px;
 			-webkit-border-radius: 10px;
 			border-radius: 10px;
-
 			text-indent: -9999em;
 		}
 
@@ -68,7 +73,7 @@ AUI().ready('aui-carousel', function(A) {
 			contentBox: '#demo',
 			activeIndex: 'rand',
 			height: 254,
-			width: 940,
+			width: 940
 			// nodeMenu: '#customMenu',
 			// nodeMenuItemSelector: 'li'
 		}
