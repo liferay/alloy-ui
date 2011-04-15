@@ -278,7 +278,7 @@ A.mix(
 			},
 
 			/**
-			 * DrResizeag configuration.
+			 * Resize configuration.
 			 *
 			 * @attribute resizableConfig
 			 * @type {}
