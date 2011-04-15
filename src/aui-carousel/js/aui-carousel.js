@@ -1,5 +1,7 @@
 var Lang = A.Lang,
 
+	STR_BLANK = ' ',
+
 	CAROUSEL = 'carousel',
 
 	getCN = A.ClassNameManager.getClassName,
@@ -14,6 +16,8 @@ var Lang = A.Lang,
 	CSS_MENU_PLAY = getCN(CAROUSEL, 'menu', 'play'),
 	CSS_MENU_PAUSE = getCN(CAROUSEL, 'menu', 'pause'),
 	CSS_MENU_PREV = getCN(CAROUSEL, 'menu', 'prev'),
+	CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(STR_BLANK),
+	CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(STR_BLANK),
 
 	DOT = '.',
 
@@ -24,10 +28,9 @@ var Lang = A.Lang,
 	SELECTOR_MENU_PLAY_OR_PAUSE = [SELECTOR_MENU_PLAY, SELECTOR_MENU_PAUSE].join(),
 	SELECTOR_MENU_PREV = DOT + CSS_MENU_PREV,
 
-	TPL_MENU_INDEX = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_INDEX, '">'].join(' '),
-	TPL_MENU_NEXT = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_NEXT, '">'].join(' '),
-	TPL_MENU_PLAY = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PLAY, '">'].join(' '),
-	TPL_MENU_PREV = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PREV, '">'].join(' '),
+	TPL_MENU_NEXT = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_NEXT, '"></a></li>'].join(STR_BLANK),
+	TPL_MENU_PLAY = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PLAY, '"></a></li>'].join(STR_BLANK),
+	TPL_MENU_PREV = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PREV, '"></a></li>'].join(STR_BLANK),
 
 	UI_SRC = A.Widget.UI_SRC;
 
@@ -159,7 +162,7 @@ var Carousel = A.Component.create(
 					event.newVal,
 					{
 						prevVal: event.prevVal,
-						animate: event.animate,
+						animate: instance.get('playing'),
 						src: event.src
 					}
 				);
@@ -332,7 +335,11 @@ var Carousel = A.Component.create(
 			_renderMenu: function() {
 				var instance = this;
 
+				var activeIndex = instance.get('activeIndex');
+
 				var buffer = [TPL_MENU_PLAY, TPL_MENU_PREV];
+
+				var cssMenu;
 
 				var nodeSelectionSize = instance.nodeSelection.size();
 
@@ -340,13 +347,18 @@ var Carousel = A.Component.create(
 
 				var i = 0;
 
-				while (i <= nodeSelectionSize) {
-					strBuffer += i++;
+				while (i < nodeSelectionSize) {
+					if (i == activeIndex) {
+						cssMenu = CSS_MENU_ITEM_ACTIVE;
+					}
+					else {
+						cssMenu = CSS_MENU_ITEM_DEFAULT;
+					}
+
+					buffer.push('<li><a class="', cssMenu, '">', i++, '</a></li>');
 				}
 
-				var indexTPL = strBuffer.split('').join(TPL_MENU_INDEX);
-
-				buffer.push(indexTPL, TPL_MENU_NEXT);
+				buffer.push(TPL_MENU_NEXT);
 
 				var menu = A.Node.create('<menu>' + buffer.join('') + '</menu>');
 
@@ -430,7 +442,7 @@ var Carousel = A.Component.create(
 						instance.animation.fire('end');
 					}
 
-					if (objOptions.src == UI_SRC) {
+					if (objOptions.src == UI_SRC && objOptions.animate) {
 						instance._createIntervalRotationTask();
 					}
 				}
