@@ -45,7 +45,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 
 	// Blue
 
-	var overlay1 = new A.Overlay({
+	var overlay1 = new A.OverlayBase({
 		bodyContent: 'Overlay1',
 		width: 150,
 		height: 150,
@@ -53,7 +53,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	})
 	.render('#overlay-blue');
 
-	var overlay2 = new A.Overlay({
+	var overlay2 = new A.OverlayBase({
 		bodyContent: 'Overlay2',
 		width: 150,
 		height: 150,
@@ -61,7 +61,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	})
 	.render('#overlay-blue');
 
-	var overlay3 = new A.Overlay({
+	var overlay3 = new A.OverlayBase({
 		bodyContent: 'Overlay3',
 		width: 150,
 		height: 150,
@@ -71,7 +71,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 
 	// Red
 
-	var overlay4 = new A.Overlay({
+	var overlay4 = new A.OverlayBase({
 		bodyContent: 'Overlay4',
 		width: 150,
 		height: 150,
@@ -79,7 +79,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	})
 	.render('#overlay-red');
 
-	var overlay5 = new A.Overlay({
+	var overlay5 = new A.OverlayBase({
 		bodyContent: 'Overlay5',
 		width: 150,
 		height: 150,
@@ -87,7 +87,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	})
 	.render('#overlay-red');
 
-	var overlay6 = new A.Overlay({
+	var overlay6 = new A.OverlayBase({
 		bodyContent: 'Overlay6',
 		width: 150,
 		height: 150,
@@ -96,7 +96,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	.render('#overlay-red');
 
 	// Mixed...
-	var overlay7 = new A.Overlay({
+	var overlay7 = new A.OverlayBase({
 		bodyContent: 'Overlay7',
 		width: 150,
 		height: 150,
@@ -105,7 +105,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	.render('#overlay-mixed');
 	overlay7.get('boundingBox').addClass('blue');
 
-	var overlay8 = new A.Overlay({
+	var overlay8 = new A.OverlayBase({
 		bodyContent: 'Overlay8',
 		width: 150,
 		height: 150,
@@ -114,7 +114,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	.render('#overlay-mixed');
 	overlay8.get('boundingBox').addClass('red');
 
-	var overlay9 = new A.Overlay({
+	var overlay9 = new A.OverlayBase({
 		bodyContent: 'Overlay9',
 		width: 150,
 		height: 150,
@@ -123,7 +123,7 @@ AUI().ready('aui-overlay-manager', 'dd', 'node', function(A) {
 	.render('#overlay-mixed');
 	overlay9.get('boundingBox').addClass('blue');
 
-	var overlay10 = new A.Overlay({
+	var overlay10 = new A.OverlayBase({
 		bodyContent: 'Overlay10',
 		width: 150,
 		height: 150,
