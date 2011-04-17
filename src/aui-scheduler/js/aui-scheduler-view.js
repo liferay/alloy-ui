@@ -154,6 +154,8 @@ var Lang = A.Lang,
 var SchedulerView = A.Component.create({
 	NAME: SCHEDULER_VIEW,
 
+	AUGMENTS: [A.WidgetStdMod],
+
 	ATTRS: {
 		bodyContent: {
 			value: EMPTY_STR
@@ -238,7 +240,6 @@ var SchedulerView = A.Component.create({
 
 			scheduler.set(CURRENT_DATE, currentDate);
 		},
-
 
 		flushViewCache: function() {
 		},
@@ -325,4 +326,4 @@ var SchedulerView = A.Component.create({
 	}
 });
 
-A.SchedulerView = A.Base.create(SCHEDULER_VIEW, SchedulerView, [A.WidgetStdMod]);
+A.SchedulerView = SchedulerView;
