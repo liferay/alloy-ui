@@ -558,7 +558,7 @@ Panel.prototype = {
 				node: bodyNode
 			}
 		];
-		
+
 		if (instance.icons) {
 			var collapseItem = instance.icons.item(COLLAPSE);
 
