@@ -47,10 +47,10 @@
 		Hover over this box, and the color will change immediately. However, when you mouseout, there will be a delay in changing the color back to normal, and any time until that happens, you can move your mouse back over the box and it will prevent the color change from happening.
 	</div>
 
-	<div class="aui-ctrl-holder">
+	<div class="yui3-aui-ctrl-holder">
 		<label for="username">Number</label>
-		<input class="aui-text-input" id="longNumber" name="longNumber" type="text" />
-		<p class="aui-form-hint">
+		<input class="yui3-aui-text-input" id="longNumber" name="longNumber" type="text" />
+		<p class="yui3-aui-form-hint">
 			<span>Type a long number here, and the validation will only happen once you stop typing for a small period of time.</span>
 		</p>
 	</div>
@@ -93,7 +93,7 @@ AUI().ready(
 		);
 
 		var inputNode = A.one('#longNumber');
-		var symbol = A.Node.create('<span class="aui-button aui-button-content aui-icon-button aui-helper-hidden"><span class="aui-icon"></span></span>');
+		var symbol = A.Node.create('<span class="yui3-aui-button yui3-aui-button-content yui3-aui-icon-button yui3-aui-helper-hidden"><span class="yui3-aui-icon"></span></span>');
 
 		inputNode.get('parentNode').insertBefore(symbol, inputNode.get('nextSibling'));
 
