@@ -2,7 +2,7 @@ AUI.add('aui-uploader-dd', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'uploaderdd',
 

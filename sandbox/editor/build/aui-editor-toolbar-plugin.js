@@ -2,7 +2,7 @@ AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editortoolbar',
 	TOOLBAR_PLUGIN = 'toolbar',

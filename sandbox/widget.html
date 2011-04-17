@@ -176,11 +176,11 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 		}
 	};
 
-	ComboBox.INPUT_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'input');
-	ComboBox.LIST_ITEM_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'list-item');
-	ComboBox.NO_RESULTS_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'no-results');
-	ComboBox.HOVER_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'selected');
-	ComboBox.LOADING_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'icon-loading');
+	ComboBox.INPUT_CLASS = A.getClassName(ComboBox.NAME, 'input');
+	ComboBox.LIST_ITEM_CLASS = A.getClassName(ComboBox.NAME, 'list-item');
+	ComboBox.NO_RESULTS_CLASS = A.getClassName(ComboBox.NAME, 'no-results');
+	ComboBox.HOVER_CLASS = A.getClassName(ComboBox.NAME, 'selected');
+	ComboBox.LOADING_CLASS = A.getClassName(ComboBox.NAME, 'icon-loading');
 
 	ComboBox.INPUT_TEMPLATE = '<input class="' + ComboBox.INPUT_CLASS + '" type="text" />';
 	ComboBox.BTN_TEMPLATE = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>';
@@ -853,7 +853,7 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 		}
 	};
 
-	AutoComplete.HIGHLIGHT_CLASS = A.ClassNameManager.getClassName(ComboBox.NAME, 'selected');
+	AutoComplete.HIGHLIGHT_CLASS = A.getClassName(ComboBox.NAME, 'selected');
 
 	AutoComplete.AC_GUID = 0;
 

@@ -4,7 +4,7 @@ var Lang = A.Lang,
 	isNull = Lang.isNull,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'databrowser',
 	SEARCH_VIEW = 'searchView',

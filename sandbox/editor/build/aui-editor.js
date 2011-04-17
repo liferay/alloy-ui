@@ -204,7 +204,7 @@ AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editormenu',
 	NAME_PLUGIN = 'editormenuplugin',
@@ -371,7 +371,7 @@ AUI.add('aui-editor-toolbar-plugin', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editortoolbar',
 	TOOLBAR_PLUGIN = 'toolbar',
