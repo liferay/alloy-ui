@@ -3,4 +3,12 @@
 	<import file="properties.xml" description="Alloy Default Build Properties"/>
 	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
+
+	<target name="all" depends="YuiSharedTargets.all, postclean" />
+
+	<!-- if we try to pass clean at the very end of the depends,
+		it will be ignored because local calls it first -->
+	<target name="postclean" depends="clean">
+		<antcall target="clean" />
+	</target>
 </project>
