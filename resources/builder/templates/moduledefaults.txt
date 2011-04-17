@@ -10,7 +10,7 @@
 
 		groups: {
             alloy: {
-	            combine: false,
+				combine: false,
                 modules: {
 @MODULES@
 				}
