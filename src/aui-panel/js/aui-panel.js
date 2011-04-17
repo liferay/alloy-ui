@@ -577,4 +577,4 @@ Panel.prototype = {
 	}
 }
 
-A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
+A.Panel = A.Component.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);

@@ -287,8 +287,9 @@ var ToolbarSpacer = A.Component.create(
 		{
 			NAME: TOOLBARSPACER,
 
+			AUGMENTS: [A.WidgetChild],
+
 			ATTRS: {
-				
 			},
 
 			prototype: {
@@ -297,8 +298,6 @@ var ToolbarSpacer = A.Component.create(
 			}
 		}
 	);
-
-A.ToolbarSpacer = A.Base.build(NAME, ToolbarSpacer, [A.WidgetChild], { dynamic: false });
 
 var WidgetParentId = function() {
 	var instance = this;
@@ -364,6 +363,6 @@ WidgetParentId.prototype = {
 	}
 };
 
-A.Toolbar = A.Base.build(NAME, Toolbar, [A.WidgetParent, WidgetParentId], { dynamic: false });
+A.Toolbar = A.Component.build(NAME, Toolbar, [A.WidgetParent, WidgetParentId], { dynamic: false });
 
 }, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true});

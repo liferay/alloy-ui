@@ -252,7 +252,7 @@ SearchBrowserView.prototype = {
 	}
 };
 
-var SearchBrowser = A.Base.build(SEARCHBROWSER, A.Component, [A.DataSourceControl, A.InputTextControl, SearchBrowserView]);
+var SearchBrowser = A.Component.build(SEARCHBROWSER, A.Component, [A.DataSourceControl, A.InputTextControl, SearchBrowserView]);
 
 var TreeBrowserView = function() {
 	var instance = this;
@@ -415,7 +415,7 @@ TreeBrowserView.prototype = {
 	}
 };
 
-var TreeBrowser = A.Base.build(TREEBROWSER, A.Component, [A.DataSourceControl, TreeBrowserView]);
+var TreeBrowser = A.Component.build(TREEBROWSER, A.Component, [A.DataSourceControl, TreeBrowserView]);
 
 var DataBrowser = A.Component.create(
 	{
