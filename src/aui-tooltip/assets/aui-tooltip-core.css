@@ -1,8 +1,8 @@
-.aui-tooltip {
+.yui3-aui-tooltip {
 	max-width: 600px;
 }
 
-.aui-tooltip-content {
+.yui3-aui-tooltip-content {
 	border-width: 2px;
 	padding: 8px;
 	position: relative;

@@ -1,13 +1,13 @@
-.aui-colorpickergrid {
+.yui3-aui-colorpickergrid {
 	width: 340px;
 }
-.aui-colorpickergrid .aui-colorpicker-container {
+.yui3-aui-colorpickergrid .yui3-aui-colorpicker-container {
 	height: auto;
 	line-height: 0;
 	text-align: center;
 }
 
-.aui-colorpickergrid-item {
+.yui3-aui-colorpickergrid-item {
 	cursor: pointer;
 	display: inline-block;
 	height: 15px;
@@ -16,7 +16,7 @@
 	width: 15px;
 }
 
-.aui-colorpickergrid-item-content {
+.yui3-aui-colorpickergrid-item-content {
 	display: block;
 	height: 100%;
 }

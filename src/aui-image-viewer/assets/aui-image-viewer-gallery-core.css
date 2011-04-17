@@ -1,19 +1,19 @@
-.aui-image-gallery-paginator {
+.yui3-aui-image-gallery-paginator {
 	bottom: 0;
 	position: fixed;
 	width: 100%;
 	z-index: 2000;
 }
 
-.ie6 .aui-image-gallery-paginator {
+.ie6 .yui3-aui-image-gallery-paginator {
 	position: absolute;
 }
 
-.aui-image-gallery-paginator-content {
+.yui3-aui-image-gallery-paginator-content {
 	padding: 30px 30px 5px;
 }
 
-.aui-image-gallery-paginator .aui-paginator-link {
+.yui3-aui-image-gallery-paginator .yui3-aui-paginator-link {
 	color: white;
 	font-size: larger;
 	font-weight: bold;
@@ -21,7 +21,7 @@
 	padding: 0;
 }
 
-.aui-image-gallery-paginator .aui-image-gallery-paginator-thumb {
+.yui3-aui-image-gallery-paginator .yui3-aui-image-gallery-paginator-thumb {
 	background: transparent url() no-repeat 50% 50%;
 	border: 0;
 	cursor: pointer;
@@ -33,16 +33,16 @@
 	margin: 1px;
 }
 
-.aui-image-gallery-paginator .aui-paginator-current-page .aui-image-gallery-paginator-thumb {
+.yui3-aui-image-gallery-paginator .yui3-aui-paginator-current-page .yui3-aui-image-gallery-paginator-thumb {
 	border: 3px solid #fff;
 	padding: 0;
 }
 
-.aui-image-gallery-paginator-links {
+.yui3-aui-image-gallery-paginator-links {
 	text-align: center;
 }
 
-.aui-image-gallery-player {
+.yui3-aui-image-gallery-player {
 	padding-bottom: 10px;
 	text-align: center;
 }

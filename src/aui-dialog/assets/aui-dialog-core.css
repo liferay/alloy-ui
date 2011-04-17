@@ -1,19 +1,19 @@
-.aui-dialog {
+.yui3-aui-dialog {
 	position: absolute;
 }
 
-.aui-dialog .aui-icon-loading {
+.yui3-aui-dialog .yui3-aui-icon-loading {
 	margin: 0 auto;
 }
 
-.aui-dd-draggable .aui-dialog-hd {
+.yui3-aui-dd-draggable .yui3-aui-dialog-hd {
 	cursor: move;
 }
 
-.aui-dialog-bd {
+.yui3-aui-dialog-bd {
 	overflow-y: auto;
 }
 
-.aui-dialog-button {
+.yui3-aui-dialog-button {
 	margin-right: 2px;
 }

@@ -1,13 +1,13 @@
-.aui-dialog-iframe-node {
+.yui3-aui-dialog-iframe-node {
 	border-width: 0;
 	overflow: auto;
 	width: 100%;
 }
 
-.aui-dialog .aui-widget-content-expanded .aui-dialog-iframe-node {
+.yui3-aui-dialog .yui3-aui-widget-content-expanded .yui3-aui-dialog-iframe-node {
 	height: 100%;
 }
 
-.aui-dialog .aui-widget-content-expanded .aui-dialog-iframe-bd {
+.yui3-aui-dialog .yui3-aui-widget-content-expanded .yui3-aui-dialog-iframe-bd {
 	overflow-y: visible;
 }

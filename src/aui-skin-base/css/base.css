@@ -1,67 +1,67 @@
 /* ---------- Interaction styles ---------- */
 
-.aui-state-default,
-.aui-state-active,
-.aui-state-hover {
+.yui3-aui-state-default,
+.yui3-aui-state-active,
+.yui3-aui-state-hover {
 	background: #eee;
 	border: 1px solid #ccc;
 	border-color: #bbb #999 #999 #bbb;
 }
 
-.aui-state-active {
+.yui3-aui-state-active {
 	background: #efefef;
 	border-color: #333;
 }
 
-.aui-state-hover {
+.yui3-aui-state-hover {
 	background: #ddd;
 	border-color: #999 #bbb #bbb #999;
 	cursor: pointer;
 }
 
-.aui-state-disabled {
+.yui3-aui-state-disabled {
 	cursor: default !important;
 }
 
-.aui-state-highlight {
+.yui3-aui-state-highlight {
 
 }
 
-.aui-state-error {
+.yui3-aui-state-error {
 
 }
 
-.aui-state-error-text {
+.yui3-aui-state-error-text {
 
 }
 
-.aui-priority-primary {
+.yui3-aui-priority-primary {
 
 }
 
-.aui-priority-secondary {
+.yui3-aui-priority-secondary {
 
 }
 
-.aui-html-template {
+.yui3-aui-html-template {
 	display: none;
 }
 
-.aui-helper-hidden {
+.yui3-aui-helper-hidden {
 	display: none !important;
 }
 
-.aui-helper-hidden-accessible,
-.aui-overlay-hidden,
-.aui-overlaycontext-hidden,
-.aui-overlaymask-hidden,
-.aui-calendar-hidden,
-.aui-date-picker-hidden,
-.aui-datepicker-hidden,
-.aui-colorpicker-hidden,
-.aui-tooltip-hidden,
-.aui-image-viewer-hidden,
-.aui-image-gallery-hidden {
+.yui3-aui-helper-hidden-accessible,
+.yui3-aui-overlay-hidden,
+.yui3-aui-overlaycontext-hidden,
+.yui3-aui-overlaymask-hidden,
+.yui3-aui-calendar-hidden,
+.yui3-aui-date-picker-hidden,
+.yui3-aui-datepicker-hidden,
+.yui3-aui-colorpicker-hidden,
+.yui3-aui-tooltip-hidden,
+.yui3-aui-image-viewer-hidden,
+.yui3-aui-image-gallery-hidden {
 	clip: rect(0 0 0 0);
 	position: fixed !important;
 	position: absolute; /*IE6*/
@@ -79,16 +79,16 @@
 Remove focusable elements in the hidden area from the tab flow
 while a user is hovering over the body
 */
-body:hover .aui-helper-hidden-accessible a,
-body:hover .aui-helper-hidden-accessible input,
-body:hover .aui-helper-hidden-accessible textarea,
-body:hover .aui-helper-hidden-accessible select,
-body:hover .aui-helper-hidden-accessible button,
-body:hover .aui-helper-hidden-accessible [tabIndex] {
+body:hover .yui3-aui-helper-hidden-accessible a,
+body:hover .yui3-aui-helper-hidden-accessible input,
+body:hover .yui3-aui-helper-hidden-accessible textarea,
+body:hover .yui3-aui-helper-hidden-accessible select,
+body:hover .yui3-aui-helper-hidden-accessible button,
+body:hover .yui3-aui-helper-hidden-accessible [tabIndex] {
   display: none;
 }
 
-.aui-helper-reset {
+.yui3-aui-helper-reset {
 	margin: 0;
 	padding: 0;
 	outline: 0;
@@ -98,19 +98,19 @@ body:hover .aui-helper-hidden-accessible [tabIndex] {
 	border: 0;
 }
 
-.aui-helper-clearfix:after {
+.yui3-aui-helper-clearfix:after {
 	clear: both;
 	content: "";
 	display: block;
 	height: 0;
 }
 
-.aui-helper-clearfix {
+.yui3-aui-helper-clearfix {
 	/* IE7/IE6 */
 	zoom: 1;
 }
 
-.aui-helper-zfix {
+.yui3-aui-helper-zfix {
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -126,13 +126,13 @@ body:hover .aui-helper-hidden-accessible [tabIndex] {
 
 /* unselectable */
 
-.aui-helper-unselectable, .aui-helper-unselectable * {
+.yui3-aui-helper-unselectable, .yui3-aui-helper-unselectable * {
    -moz-user-select: none;
    -khtml-user-select: none;
 }
 
 /* scroll lock */
-.aui-helper-scroll-lock {
+.yui3-aui-helper-scroll-lock {
 	height: 100%;
 	margin: 0;
 	overflow: hidden;

@@ -1,26 +1,26 @@
-.aui-panel {
+.yui3-aui-panel {
 }
 
-.aui-panel-content {
+.yui3-aui-panel-content {
 	border: 1px solid #999;
 }
 
-.aui-panel-icons {
+.yui3-aui-panel-icons {
 	float: right;
 }
 
-.aui-panel-hd {
+.yui3-aui-panel-hd {
 	background: #ccc;
 	border-bottom: 1px solid #999;
 	font-weight: bold;
 	padding: 2px 3px 2px 4px;
 }
 
-.aui-panel-bd {
+.yui3-aui-panel-bd {
 	padding: 3px;
 }
 
-.aui-panel-ft {
+.yui3-aui-panel-ft {
 	background: #eee;
 	border-top: 1px solid #ccc;
 	padding: 5px 10px;
@@ -28,11 +28,11 @@
 	visibility: inherit;
 }
 
-.aui-panel-collapsed .aui-panel-hd {
+.yui3-aui-panel-collapsed .yui3-aui-panel-hd {
 	border-bottom-width: 0;
 }
 
-.aui-panel-hd-text {
+.yui3-aui-panel-hd-text {
 	float: left;
 	line-height: 2;
 }
