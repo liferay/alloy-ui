@@ -853,7 +853,13 @@ Dialog.prototype = {
 	}
 };
 
-A.Dialog = A.Base.build(DIALOG, A.Panel, [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain]);
+A.Dialog = A.Component.create(
+	{
+		NAME: DIALOG,
+		EXTENDS: A.Panel,
+		AUGMENTS: [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain]
+	}
+);
 
 /**
  * A base class for DialogManager:

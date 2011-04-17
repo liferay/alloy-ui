@@ -77,6 +77,16 @@ var ButtonItem = A.Component.create(
 		NAME: NAME,
 
 		/**
+		 * Static property provides an array to specify which classes augment this one.
+		 *
+		 * @property ButtonItem.AUGMENTS
+		 * @type array
+		 * @static
+		 */
+
+		AUGMENTS: [A.WidgetChild],
+
+		/**
 		 * Static property used to define the default attribute
 		 * configuration for the ButtonItem.
 		 *
@@ -531,4 +541,4 @@ var ButtonItem = A.Component.create(
 	}
 );
 
-A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });
+A.ButtonItem = ButtonItem;
