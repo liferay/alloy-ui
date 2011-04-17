@@ -1,6 +1,6 @@
 var Lang = A.Lang,
 	UA = A.UA,
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'video',
 

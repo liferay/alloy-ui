@@ -17,7 +17,7 @@ var L = A.Lang,
 	SCROLLER = 'scroller',
 	VERTICAL = 'vertical',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HORIZONTAL = getCN(SCROLLER, HORIZONTAL),
 	CSS_ITEM = getCN(SCROLLER, 'item'),

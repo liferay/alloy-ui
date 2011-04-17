@@ -90,7 +90,7 @@ var L = A.Lang,
 
 	EV_CALENDAR_SELECT = 'calendar:select',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_CALENDAR_DISABLED = getCN(CALENDAR, DISABLED),
 	CSS_CALENDAR_LINK = getCN(CALENDAR, LINK),

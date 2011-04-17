@@ -10,7 +10,7 @@ isString = Lang.isString,
 isNull = Lang.isNull,
 isFunction = Lang.isFunction,
 
-getClassName = A.ClassNameManager.getClassName,
+getClassName = A.getClassName,
 
 KeyMap = A.Event.KeyMap,
 

@@ -35,7 +35,7 @@ var L = A.Lang,
 	TEXTAREA = 'textarea',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_TEXT = getCN(FIELD, TEXT),

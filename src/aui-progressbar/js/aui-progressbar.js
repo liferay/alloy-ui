@@ -44,7 +44,7 @@ var L = A.Lang,
 		return parseFloat(v) || 0;
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HORIZONTAL = getCN(PROGRESS_BAR, HORIZONTAL),
 	CSS_STATUS = getCN(PROGRESS_BAR, STATUS),

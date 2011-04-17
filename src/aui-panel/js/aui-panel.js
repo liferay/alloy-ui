@@ -31,7 +31,7 @@ var Lang = A.Lang,
 
 	EMPTY_STR = '',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_CLEARFIX = getClassName('helper', 'clearfix'),
 	CSS_COLLAPSED = getClassName(PANEL, COLLAPSED),

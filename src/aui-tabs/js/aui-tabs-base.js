@@ -1,6 +1,6 @@
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	TAB = 'tab',
 	TABVIEW = 'tabview',

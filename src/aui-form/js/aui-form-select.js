@@ -2,7 +2,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'select',
 

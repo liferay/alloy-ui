@@ -13,7 +13,7 @@ var Lang = A.Lang,
 	TOOLBARSPACER = 'toolbarspacer',
 	VERTICAL = 'vertical',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_FIRST = getClassName(NAME, 'first'),
 	CSS_HORIZONTAL = getClassName(NAME, HORIZONTAL),

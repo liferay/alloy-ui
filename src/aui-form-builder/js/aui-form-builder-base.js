@@ -117,7 +117,7 @@ var L = A.Lang,
 
 	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
 	CSS_COMPONENT = getCN(COMPONENT),

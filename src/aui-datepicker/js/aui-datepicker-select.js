@@ -60,7 +60,7 @@ var Lang = A.Lang,
 	YEAR_NODE_NAME = 'yearNodeName',
 	YEAR_RANGE = 'yearRange',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_BUTTONITEM = getClassName(BUTTONITEM),
 	CSS_DATEPICKER = getClassName(DATEPICKER),

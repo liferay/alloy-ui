@@ -2,7 +2,7 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	STATE = 'state',
 

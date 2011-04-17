@@ -58,7 +58,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),

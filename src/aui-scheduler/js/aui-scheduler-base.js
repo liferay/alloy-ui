@@ -78,7 +78,7 @@ var Lang = A.Lang,
 	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
 	EVENT_RECORDER = 'eventRecorder',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
