@@ -967,5 +967,5 @@ A.namespace('Plugin').TabViewMenu = TabViewMenu;
 }, '@VERSION@' ,{requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']});
 
 
-AUI.add('aui-tabs', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']});
+AUI.add('aui-tabs', function(A){}, '@VERSION@' ,{use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true});
 
