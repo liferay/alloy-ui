@@ -16,7 +16,7 @@
 	width: 16px;
 }
 
-.yui3-aui-image-viewer-content .yui3-aui-widget-ft {
+.yui3-aui-image-viewer-content .yui3-widget-ft {
 	background: #fff;
 	color: #222;
 	padding: 0 10px 10px;
@@ -24,7 +24,7 @@
 	font-weight: bold;
 }
 
-.yui3-aui-image-viewer-loading .yui3-aui-image-viewer-content .yui3-aui-widget-ft {
+.yui3-aui-image-viewer-loading .yui3-aui-image-viewer-content .yui3-widget-ft {
 	visibility: hidden;
 }
 
