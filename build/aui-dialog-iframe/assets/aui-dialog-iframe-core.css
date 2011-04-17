@@ -4,10 +4,10 @@
 	width: 100%;
 }
 
-.yui3-aui-dialog .yui3-aui-widget-content-expanded .yui3-aui-dialog-iframe-node {
+.yui3-aui-dialog .yui3-widget-content-expanded .yui3-aui-dialog-iframe-node {
 	height: 100%;
 }
 
-.yui3-aui-dialog .yui3-aui-widget-content-expanded .yui3-aui-dialog-iframe-bd {
+.yui3-aui-dialog .yui3-widget-content-expanded .yui3-aui-dialog-iframe-bd {
 	overflow-y: visible;
 }
