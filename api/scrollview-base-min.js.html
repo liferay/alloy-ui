@@ -1,0 +1,734 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: scrollview-base-ie   scrollview-base-min.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			scrollview-base-ie&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">scrollview-base-min.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="scrollview-base-ie-min.js.html" title="scrollview-base-ie-min.js">scrollview-base-ie-min.js</a></li>
+
+
+			                                <li class=""><a href="scrollview-base-ie.js.html" title="scrollview-base-ie.js">scrollview-base-ie.js</a></li>
+
+
+			                                <li class="selected"><a href="scrollview-base-min.js.html" title="scrollview-base-min.js">scrollview-base-min.js</a></li>
+
+
+			                                <li class=""><a href="scrollview-base.js.html" title="scrollview-base.js">scrollview-base.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;scrollview-base&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">b</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span><span class="nx">t</span><span class="o">=</span><span class="s2">&quot;scrollview&quot;</span><span class="p">,</span><span class="nx">s</span><span class="o">=</span><span class="p">{</span><span class="nx">vertical</span><span class="o">:</span><span class="nx">f</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="s2">&quot;vert&quot;</span><span class="p">),</span><span class="nx">horizontal</span><span class="o">:</span><span class="nx">f</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="s2">&quot;horiz&quot;</span><span class="p">)},</span><span class="nx">x</span><span class="o">=</span><span class="s2">&quot;scrollEnd&quot;</span><span class="p">,</span><span class="nx">i</span><span class="o">=</span><span class="s2">&quot;flick&quot;</span><span class="p">,</span><span class="nx">a</span><span class="o">=</span><span class="nx">i</span><span class="p">,</span><span class="nx">h</span><span class="o">=</span><span class="s2">&quot;ui&quot;</span><span class="p">,</span><span class="nx">l</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="nx">o</span><span class="o">=</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="nx">e</span><span class="o">=</span><span class="s2">&quot;px&quot;</span><span class="p">,</span><span class="nx">m</span><span class="o">=</span><span class="s2">&quot;scrollY&quot;</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="s2">&quot;scrollX&quot;</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="s2">&quot;bounce&quot;</span><span class="p">,</span><span class="nx">r</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="nx">q</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="nx">u</span><span class="o">=</span><span class="s2">&quot;boundingBox&quot;</span><span class="p">,</span><span class="nx">k</span><span class="o">=</span><span class="s2">&quot;contentBox&quot;</span><span class="p">,</span><span class="nx">w</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="nx">p</span><span class="o">=</span><span class="s2">&quot;0s&quot;</span><span class="p">,</span><span class="nx">g</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">,</span><span class="nx">d</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">Transition</span><span class="p">.</span><span class="nx">useNative</span><span class="p">,</span><span class="nx">j</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">z</span><span class="p">,</span><span class="nx">y</span><span class="p">){</span><span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="nx">z</span><span class="p">),</span><span class="nx">y</span><span class="p">);};</span><span class="nx">b</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">.</span><span class="nx">DOMSubtreeModified</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="kd">function</span> <span class="nx">v</span><span class="p">(){</span><span class="nx">v</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);}</span><span class="nx">b</span><span class="p">.</span><span class="nx">ScrollView</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,{</span><span class="nx">initializer</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_cb</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span><span class="nx">y</span><span class="p">.</span><span class="nx">_bb</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">u</span><span class="p">);},</span><span class="nx">_uiSizeCB</span><span class="o">:</span><span class="kd">function</span><span class="p">(){},</span><span class="nx">_onTransEnd</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">y</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">x</span><span class="p">);},</span><span class="nx">bindUI</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">z</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">y</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">_cb</span><span class="p">,</span><span class="nx">D</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">_bb</span><span class="p">,</span><span class="nx">C</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">_afterScrollChange</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">_afterDimChange</span><span class="p">,</span><span class="nx">A</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="nx">D</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;gesturemovestart&quot;</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">_onGestureMoveStart</span><span class="p">,</span><span class="nx">z</span><span class="p">));</span><span class="k">if</span><span class="p">(</span><span class="nx">g</span><span class="p">){</span><span class="nx">z</span><span class="p">.</span><span class="nx">_fixIESelect</span><span class="p">(</span><span class="nx">D</span><span class="p">,</span><span class="nx">y</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;DOMSubtreeModified&quot;</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">_uiDimensionsChange</span><span class="p">,</span><span class="nx">z</span><span class="p">));}</span><span class="k">if</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;flick&quot;</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">_flick</span><span class="p">,</span><span class="nx">z</span><span class="p">),</span><span class="nx">A</span><span class="p">);}</span><span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">({</span><span class="s2">&quot;scrollYChange&quot;</span><span class="o">:</span><span class="nx">C</span><span class="p">,</span><span class="s2">&quot;scrollXChange&quot;</span><span class="o">:</span><span class="nx">C</span><span class="p">,</span><span class="s2">&quot;heightChange&quot;</span><span class="o">:</span><span class="nx">B</span><span class="p">,</span><span class="s2">&quot;widthChange&quot;</span><span class="o">:</span><span class="nx">B</span><span class="p">});},</span><span class="nx">syncUI</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_uiDimensionsChange</span><span class="p">();</span><span class="k">this</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">n</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">m</span><span class="p">));},</span><span class="nx">scrollTo</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">J</span><span class="p">,</span><span class="nx">I</span><span class="p">,</span><span class="nx">D</span><span class="p">,</span><span class="nx">G</span><span class="p">){</span><span class="kd">var</span> <span class="nx">C</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_cb</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="p">(</span><span class="nx">J</span><span class="o">!==</span><span class="kc">null</span><span class="p">),</span><span class="nx">B</span><span class="o">=</span><span class="p">(</span><span class="nx">I</span><span class="o">!==</span><span class="kc">null</span><span class="p">),</span><span class="nx">A</span><span class="o">=</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span><span class="o">?</span><span class="nx">J</span><span class="o">*-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">z</span><span class="o">=</span><span class="p">(</span><span class="nx">B</span><span class="p">)</span><span class="o">?</span><span class="nx">I</span><span class="o">*-</span><span class="mi">1</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">F</span><span class="p">,</span><span class="nx">H</span><span class="o">=</span><span class="nx">v</span><span class="p">.</span><span class="nx">_TRANSITION</span><span class="p">,</span><span class="nx">K</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_transEndCB</span><span class="p">;</span><span class="nx">D</span><span class="o">=</span><span class="nx">D</span><span class="o">||</span><span class="mi">0</span><span class="p">;</span><span class="nx">G</span><span class="o">=</span><span class="nx">G</span><span class="o">||</span><span class="nx">v</span><span class="p">.</span><span class="nx">EASING</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">E</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">J</span><span class="p">,{</span><span class="nx">src</span><span class="o">:</span><span class="nx">h</span><span class="p">});}</span><span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">I</span><span class="p">,{</span><span class="nx">src</span><span class="o">:</span><span class="nx">h</span><span class="p">});}</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="nx">C</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">DURATION</span><span class="p">,</span><span class="nx">p</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">PROPERTY</span><span class="p">,</span><span class="nx">w</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">D</span><span class="o">!==</span><span class="mi">0</span><span class="p">){</span><span class="nx">F</span><span class="o">=</span><span class="p">{</span><span class="nx">easing</span><span class="o">:</span><span class="nx">G</span><span class="p">,</span><span class="nx">duration</span><span class="o">:</span><span class="nx">D</span><span class="o">/</span><span class="mi">1000</span><span class="p">};</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="nx">F</span><span class="p">.</span><span class="nx">transform</span><span class="o">=</span><span class="s2">&quot;translate3D(&quot;</span><span class="o">+</span><span class="nx">A</span><span class="o">+</span><span class="s2">&quot;px,&quot;</span><span class="o">+</span><span class="nx">z</span><span class="o">+</span><span class="s2">&quot;px, 0px)&quot;</span><span class="p">;}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">E</span><span class="p">){</span><span class="nx">F</span><span class="p">.</span><span class="nx">left</span><span class="o">=</span><span class="nx">A</span><span class="o">+</span><span class="nx">e</span><span class="p">;}</span><span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">){</span><span class="nx">F</span><span class="p">.</span><span class="nx">top</span><span class="o">=</span><span class="nx">z</span><span class="o">+</span><span class="nx">e</span><span class="p">;}}</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">K</span><span class="p">){</span><span class="nx">K</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_transEndCB</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onTransEnd</span><span class="p">,</span><span class="k">this</span><span class="p">);}</span><span class="nx">C</span><span class="p">.</span><span class="nx">transition</span><span class="p">(</span><span class="nx">F</span><span class="p">,</span><span class="nx">K</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="nx">C</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span><span class="s2">&quot;translate3D(&quot;</span><span class="o">+</span><span class="nx">A</span><span class="o">+</span><span class="s2">&quot;px,&quot;</span><span class="o">+</span><span class="nx">z</span><span class="o">+</span><span class="s2">&quot;px, 0px)&quot;</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">E</span><span class="p">){</span><span class="nx">C</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span><span class="nx">A</span><span class="o">+</span><span class="nx">e</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">B</span><span class="p">){</span><span class="nx">C</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">z</span><span class="o">+</span><span class="nx">e</span><span class="p">);}}}},</span><span class="nx">_prevent</span><span class="o">:</span><span class="p">{</span><span class="nx">start</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span><span class="nx">move</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="nx">end</span><span class="o">:</span><span class="kc">false</span><span class="p">},</span><span class="nx">_onGestureMoveStart</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">z</span><span class="p">){</span><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">A</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">_bb</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_prevent</span><span class="p">.</span><span class="nx">start</span><span class="p">){</span><span class="nx">z</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();}</span><span class="nx">y</span><span class="p">.</span><span class="nx">_killTimer</span><span class="p">();</span><span class="nx">y</span><span class="p">.</span><span class="nx">_hm</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;gesturemove&quot;</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_onGestureMove</span><span class="p">,</span><span class="nx">y</span><span class="p">));</span><span class="nx">y</span><span class="p">.</span><span class="nx">_hme</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;gesturemoveend&quot;</span><span class="p">,</span><span class="nx">b</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_onGestureMoveEnd</span><span class="p">,</span><span class="nx">y</span><span class="p">));</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startY</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientY</span><span class="o">+</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">m</span><span class="p">);</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startX</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientX</span><span class="o">+</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startClientY</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">_endClientY</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startClientX</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">_endClientX</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_isDragging</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flicking</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">false</span><span class="p">;},</span><span class="nx">_onGestureMove</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">z</span><span class="p">){</span><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_prevent</span><span class="p">.</span><span class="nx">move</span><span class="p">){</span><span class="nx">z</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();}</span><span class="nx">y</span><span class="p">.</span><span class="nx">_isDragging</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_endClientY</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_endClientX</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_scrollsVertical</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientY</span><span class="o">-</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startY</span><span class="p">));}</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_scrollsHorizontal</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="o">-</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">clientX</span><span class="o">-</span><span class="nx">y</span><span class="p">.</span><span class="nx">_startX</span><span class="p">));}},</span><span class="nx">_onGestureMoveEnd</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">H</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevent</span><span class="p">.</span><span class="nx">end</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();}</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">D</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_minScrollY</span><span class="p">,</span><span class="nx">z</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_maxScrollY</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_minScrollX</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_maxScrollX</span><span class="p">,</span><span class="nx">G</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_scrollsVertical</span><span class="p">,</span><span class="nx">P</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_scrollsHorizontal</span><span class="p">,</span><span class="nx">C</span><span class="o">=</span><span class="nx">G</span><span class="o">?</span><span class="nx">O</span><span class="p">.</span><span class="nx">_startClientY</span><span class="o">:</span><span class="nx">O</span><span class="p">.</span><span class="nx">_startClientX</span><span class="p">,</span><span class="nx">M</span><span class="o">=</span><span class="nx">G</span><span class="o">?</span><span class="nx">O</span><span class="p">.</span><span class="nx">_endClientY</span><span class="o">:</span><span class="nx">O</span><span class="p">.</span><span class="nx">_endClientX</span><span class="p">,</span><span class="nx">A</span><span class="o">=</span><span class="nx">C</span><span class="o">-</span><span class="nx">M</span><span class="p">,</span><span class="nx">F</span><span class="o">=</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">A</span><span class="p">),</span><span class="nx">J</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_bb</span><span class="p">,</span><span class="nx">N</span><span class="p">,</span><span class="nx">L</span><span class="p">,</span><span class="nx">K</span><span class="p">,</span><span class="nx">I</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">_hm</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span><span class="nx">O</span><span class="p">.</span><span class="nx">_hme</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span><span class="nx">O</span><span class="p">.</span><span class="nx">_scrolledHalfway</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">_isDragging</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">lastScrolledAmt</span><span class="o">=</span><span class="nx">A</span><span class="p">;</span><span class="k">if</span><span class="p">((</span><span class="nx">P</span><span class="o">&amp;&amp;</span><span class="nx">F</span><span class="o">&gt;</span><span class="nx">J</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;offsetWidth&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">||</span><span class="p">(</span><span class="nx">G</span><span class="o">&amp;&amp;</span><span class="nx">F</span><span class="o">&gt;</span><span class="nx">J</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;offsetHeight&quot;</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)){</span><span class="nx">O</span><span class="p">.</span><span class="nx">_scrolledHalfway</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">_scrolledForward</span><span class="o">=</span><span class="nx">A</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">;}</span><span class="k">if</span><span class="p">(</span><span class="nx">G</span><span class="p">){</span><span class="nx">I</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">m</span><span class="p">);</span><span class="nx">L</span><span class="o">=</span><span class="nx">j</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">D</span><span class="p">,</span><span class="nx">z</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">P</span><span class="p">){</span><span class="nx">K</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span><span class="nx">N</span><span class="o">=</span><span class="nx">j</span><span class="p">(</span><span class="nx">K</span><span class="p">,</span><span class="nx">E</span><span class="p">,</span><span class="nx">B</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">N</span><span class="o">!==</span><span class="nx">K</span><span class="o">||</span><span class="nx">L</span><span class="o">!==</span><span class="nx">I</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">G</span><span class="p">){</span><span class="nx">O</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">L</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">P</span><span class="p">){</span><span class="nx">O</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">N</span><span class="p">);}}</span><span class="k">if</span><span class="p">(</span><span class="nx">O</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="p">){</span><span class="k">return</span><span class="p">;}</span><span class="nx">O</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">x</span><span class="p">,{</span><span class="nx">onGestureMoveEnd</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span><span class="k">return</span><span class="p">;},</span><span class="nx">_afterScrollChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">z</span><span class="p">){</span><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">duration</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">easing</span><span class="p">,</span><span class="nx">A</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">newVal</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">src</span><span class="o">!==</span><span class="nx">h</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">z</span><span class="p">.</span><span class="nx">attrName</span><span class="o">==</span><span class="nx">n</span><span class="p">){</span><span class="k">this</span><span class="p">.</span><span class="nx">_uiScrollTo</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">B</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">_uiScrollTo</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="nx">A</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">B</span><span class="p">);}}},</span><span class="nx">_uiScrollTo</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">z</span><span class="p">,</span><span class="nx">C</span><span class="p">,</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">){</span><span class="nx">A</span><span class="o">=</span><span class="nx">A</span><span class="o">||</span><span class="k">this</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">?</span><span class="mi">400</span><span class="o">:</span><span class="mi">0</span><span class="p">;</span><span class="nx">B</span><span class="o">=</span><span class="nx">B</span><span class="o">||</span><span class="k">this</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">?</span><span class="nx">v</span><span class="p">.</span><span class="nx">SNAP_EASING</span><span class="o">:</span><span class="kc">null</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">scrollTo</span><span class="p">(</span><span class="nx">z</span><span class="p">,</span><span class="nx">C</span><span class="p">,</span><span class="nx">A</span><span class="p">,</span><span class="nx">B</span><span class="p">);},</span><span class="nx">_afterDimChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_uiDimensionsChange</span><span class="p">();},</span><span class="nx">_uiDimensionsChange</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">z</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">_bb</span><span class="p">,</span><span class="nx">D</span><span class="o">=</span><span class="nx">v</span><span class="p">.</span><span class="nx">CLASS_NAMES</span><span class="p">,</span><span class="nx">y</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">),</span><span class="nx">C</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">),</span><span class="nx">B</span><span class="o">=</span><span class="nx">E</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;scrollHeight&quot;</span><span class="p">),</span><span class="nx">A</span><span class="o">=</span><span class="nx">E</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;scrollWidth&quot;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="o">&amp;&amp;</span><span class="nx">B</span><span class="o">&gt;</span><span class="nx">y</span><span class="p">){</span><span class="nx">z</span><span class="p">.</span><span class="nx">_scrollsVertical</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_maxScrollY</span><span class="o">=</span><span class="nx">B</span><span class="o">-</span><span class="nx">y</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_minScrollY</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_scrollHeight</span><span class="o">=</span><span class="nx">B</span><span class="p">;</span><span class="nx">E</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">D</span><span class="p">.</span><span class="nx">vertical</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">C</span><span class="o">&amp;&amp;</span><span class="nx">A</span><span class="o">&gt;</span><span class="nx">C</span><span class="p">){</span><span class="nx">z</span><span class="p">.</span><span class="nx">_scrollsHorizontal</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_maxScrollX</span><span class="o">=</span><span class="nx">A</span><span class="o">-</span><span class="nx">C</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_minScrollX</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">z</span><span class="p">.</span><span class="nx">_scrollWidth</span><span class="o">=</span><span class="nx">A</span><span class="p">;</span><span class="nx">E</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">D</span><span class="p">.</span><span class="nx">horizontal</span><span class="p">);}},</span><span class="nx">_flick</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){</span><span class="kd">var</span> <span class="nx">z</span><span class="o">=</span><span class="nx">A</span><span class="p">.</span><span class="nx">flick</span><span class="p">,</span><span class="nx">y</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_currentVelocity</span><span class="o">=</span><span class="nx">z</span><span class="p">.</span><span class="nx">velocity</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flicking</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_cDecel</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;deceleration&quot;</span><span class="p">);</span><span class="nx">y</span><span class="p">.</span><span class="nx">_cBounce</span><span class="o">=</span><span class="nx">y</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;bounce&quot;</span><span class="p">);</span><span class="nx">y</span><span class="p">.</span><span class="nx">_pastYEdge</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_pastXEdge</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flickFrame</span><span class="p">();</span><span class="nx">y</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">i</span><span class="p">);},</span><span class="nx">_flickFrame</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">H</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">K</span><span class="p">,</span><span class="nx">z</span><span class="p">,</span><span class="nx">C</span><span class="p">,</span><span class="nx">y</span><span class="p">,</span><span class="nx">A</span><span class="p">,</span><span class="nx">D</span><span class="p">,</span><span class="nx">I</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_scrollsVertical</span><span class="p">,</span><span class="nx">F</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_scrollsHorizontal</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_cDecel</span><span class="p">,</span><span class="nx">J</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_cBounce</span><span class="p">,</span><span class="nx">G</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_currentVelocity</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="nx">v</span><span class="p">.</span><span class="nx">FRAME_STEP</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">I</span><span class="p">){</span><span class="nx">z</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_maxScrollY</span><span class="p">;</span><span class="nx">C</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_minScrollY</span><span class="p">;</span><span class="nx">K</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nx">G</span><span class="o">*</span><span class="nx">B</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">F</span><span class="p">){</span><span class="nx">A</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_maxScrollX</span><span class="p">;</span><span class="nx">D</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_minScrollX</span><span class="p">;</span><span class="nx">y</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nx">G</span><span class="o">*</span><span class="nx">B</span><span class="p">);}</span><span class="nx">G</span><span class="o">=</span><span class="nx">H</span><span class="p">.</span><span class="nx">_currentVelocity</span><span class="o">=</span><span class="p">(</span><span class="nx">G</span><span class="o">*</span><span class="nx">E</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">G</span><span class="p">).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">&lt;=</span><span class="mf">0.015</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_flicking</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">_killTimer</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">_pastYEdge</span><span class="o">||</span><span class="nx">H</span><span class="p">.</span><span class="nx">_pastXEdge</span><span class="p">));</span><span class="k">if</span><span class="p">(</span><span class="nx">I</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">K</span><span class="o">&lt;</span><span class="nx">C</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">C</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">K</span><span class="o">&gt;</span><span class="nx">z</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">z</span><span class="p">);}}}</span><span class="k">if</span><span class="p">(</span><span class="nx">F</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="o">&lt;</span><span class="nx">D</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">D</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="o">&gt;</span><span class="nx">A</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_snapToEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">A</span><span class="p">);}}}</span><span class="k">return</span><span class="p">;}</span><span class="k">if</span><span class="p">(</span><span class="nx">I</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">K</span><span class="o">&lt;</span><span class="nx">C</span><span class="o">||</span><span class="nx">K</span><span class="o">&gt;</span><span class="nx">z</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_pastYEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">_currentVelocity</span><span class="o">*=</span><span class="nx">J</span><span class="p">;}</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">K</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="nx">F</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="o">&lt;</span><span class="nx">D</span><span class="o">||</span><span class="nx">y</span><span class="o">&gt;</span><span class="nx">A</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_pastXEdge</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span><span class="nx">H</span><span class="p">.</span><span class="nx">_currentVelocity</span><span class="o">*=</span><span class="nx">J</span><span class="p">;}</span><span class="nx">H</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span><span class="nx">y</span><span class="p">);}</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">H</span><span class="p">.</span><span class="nx">_flickTimer</span><span class="p">){</span><span class="nx">H</span><span class="p">.</span><span class="nx">_flickTimer</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span><span class="nx">H</span><span class="p">,</span><span class="s2">&quot;_flickFrame&quot;</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="kc">true</span><span class="p">);}},</span><span class="nx">_killTimer</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">z</span><span class="p">){</span><span class="kd">var</span> <span class="nx">y</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flickTimer</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flickTimer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span><span class="nx">y</span><span class="p">.</span><span class="nx">_flickTimer</span><span class="o">=</span><span class="kc">null</span><span class="p">;}</span><span class="k">if</span><span class="p">(</span><span class="nx">z</span><span class="p">){</span><span class="nx">y</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">x</span><span class="p">);}},</span><span class="nx">_setScroll</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">E</span><span class="p">,</span><span class="nx">D</span><span class="p">){</span><span class="kd">var</span> <span class="nx">A</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_cachedBounce</span><span class="o">||</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">c</span><span class="p">),</span><span class="nx">z</span><span class="o">=</span><span class="nx">v</span><span class="p">.</span><span class="nx">BOUNCE_RANGE</span><span class="p">,</span><span class="nx">C</span><span class="o">=</span><span class="p">(</span><span class="nx">D</span><span class="o">==</span><span class="nx">r</span><span class="p">)</span><span class="o">?</span><span class="k">this</span><span class="p">.</span><span class="nx">_maxScrollX</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_maxScrollY</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="nx">A</span><span class="o">?-</span><span class="nx">z</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">y</span><span class="o">=</span><span class="nx">A</span><span class="o">?</span><span class="nx">C</span><span class="o">+</span><span class="nx">z</span><span class="o">:</span><span class="nx">C</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">A</span><span class="o">||!</span><span class="k">this</span><span class="p">.</span><span class="nx">_isDragging</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">E</span><span class="o">&lt;</span><span class="nx">B</span><span class="p">){</span><span class="nx">E</span><span class="o">=</span><span class="nx">B</span><span class="p">;}</span><span class="k">else</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="nx">E</span><span class="o">&gt;</span><span class="nx">y</span><span class="p">){</span><span class="nx">E</span><span class="o">=</span><span class="nx">y</span><span class="p">;}}}</span><span class="k">return</span> <span class="nx">E</span><span class="p">;},</span><span class="nx">_setScrollX</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">y</span><span class="p">){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setScroll</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span><span class="nx">r</span><span class="p">);},</span><span class="nx">_setScrollY</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">y</span><span class="p">){</span><span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setScroll</span><span class="p">(</span><span class="nx">y</span><span class="p">,</span><span class="nx">q</span><span class="p">);}},{</span><span class="nx">NAME</span><span class="o">:</span><span class="s2">&quot;scrollview&quot;</span><span class="p">,</span><span class="nx">ATTRS</span><span class="o">:</span><span class="p">{</span><span class="nx">scrollY</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="s2">&quot;_setScrollY&quot;</span><span class="p">},</span><span class="nx">scrollX</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span><span class="nx">setter</span><span class="o">:</span><span class="s2">&quot;_setScrollX&quot;</span><span class="p">},</span><span class="nx">deceleration</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mf">0.93</span><span class="p">},</span><span class="nx">bounce</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="mf">0.1</span><span class="p">},</span><span class="nx">flick</span><span class="o">:</span><span class="p">{</span><span class="nx">value</span><span class="o">:</span><span class="p">{</span><span class="nx">minDistance</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="nx">minVelocity</span><span class="o">:</span><span class="mf">0.3</span><span class="p">}}},</span><span class="nx">CLASS_NAMES</span><span class="o">:</span><span class="nx">s</span><span class="p">,</span><span class="nx">UI_SRC</span><span class="o">:</span><span class="nx">h</span><span class="p">,</span><span class="nx">BOUNCE_RANGE</span><span class="o">:</span><span class="mi">150</span><span class="p">,</span><span class="nx">FRAME_STEP</span><span class="o">:</span><span class="mi">30</span><span class="p">,</span><span class="nx">EASING</span><span class="o">:</span><span class="s2">&quot;cubic-bezier(0, 0.1, 0, 1.0)&quot;</span><span class="p">,</span><span class="nx">SNAP_EASING</span><span class="o">:</span><span class="s2">&quot;ease-out&quot;</span><span class="p">,</span><span class="nx">_TRANSITION</span><span class="o">:</span><span class="p">{</span><span class="nx">DURATION</span><span class="o">:</span><span class="s2">&quot;WebkitTransitionDuration&quot;</span><span class="p">,</span><span class="nx">PROPERTY</span><span class="o">:</span><span class="s2">&quot;WebkitTransitionProperty&quot;</span><span class="p">}});},</span><span class="s2">&quot;3.3.0&quot;</span><span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;widget&quot;</span><span class="p">,</span><span class="s2">&quot;event-gestures&quot;</span><span class="p">,</span><span class="s2">&quot;transition&quot;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [];
+</script>
+</body>
+</html>

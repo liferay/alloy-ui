@@ -1,0 +1,755 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: resize   resize-proxy-min.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			resize&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_resize.html" title="resize">resize</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">resize-proxy-min.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Resize.html" title="Resize">Resize</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="resize-base-debug.js.html" title="resize-base-debug.js">resize-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="resize-base-min.js.html" title="resize-base-min.js">resize-base-min.js</a></li>
+
+
+			                                <li class=""><a href="resize-proxy-debug.js.html" title="resize-proxy-debug.js">resize-proxy-debug.js</a></li>
+
+
+			                                <li class="selected"><a href="resize-proxy-min.js.html" title="resize-proxy-min.js">resize-proxy-min.js</a></li>
+
+
+			                                <li class=""><a href="resize-proxy.js.html" title="resize-proxy.js">resize-proxy.js</a></li>
+
+
+			                                <li class=""><a href="resize.js.html" title="resize.js">resize.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;resize-proxy&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">C</span><span class="p">){</span><span class="kd">var</span> <span class="nx">N</span><span class="o">=</span><span class="s2">&quot;activeHandleNode&quot;</span><span class="p">,</span><span class="nx">I</span><span class="o">=</span><span class="s2">&quot;cursor&quot;</span><span class="p">,</span><span class="nx">G</span><span class="o">=</span><span class="s2">&quot;dragCursor&quot;</span><span class="p">,</span><span class="nx">L</span><span class="o">=</span><span class="s2">&quot;host&quot;</span><span class="p">,</span><span class="nx">K</span><span class="o">=</span><span class="s2">&quot;parentNode&quot;</span><span class="p">,</span><span class="nx">F</span><span class="o">=</span><span class="s2">&quot;proxy&quot;</span><span class="p">,</span><span class="nx">D</span><span class="o">=</span><span class="s2">&quot;proxyNode&quot;</span><span class="p">,</span><span class="nx">B</span><span class="o">=</span><span class="s2">&quot;resize&quot;</span><span class="p">,</span><span class="nx">A</span><span class="o">=</span><span class="s2">&quot;resize-proxy&quot;</span><span class="p">,</span><span class="nx">J</span><span class="o">=</span><span class="s2">&quot;wrapper&quot;</span><span class="p">,</span><span class="nx">E</span><span class="o">=</span><span class="nx">C</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span><span class="nx">M</span><span class="o">=</span><span class="nx">E</span><span class="p">(</span><span class="nx">B</span><span class="p">,</span><span class="nx">F</span><span class="p">);</span><span class="kd">function</span> <span class="nx">H</span><span class="p">(){</span><span class="nx">H</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">arguments</span><span class="p">);}</span><span class="nx">C</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">H</span><span class="p">,{</span><span class="nx">NAME</span><span class="o">:</span><span class="nx">A</span><span class="p">,</span><span class="nx">NS</span><span class="o">:</span><span class="nx">F</span><span class="p">,</span><span class="nx">ATTRS</span><span class="o">:</span><span class="p">{</span><span class="nx">proxyNode</span><span class="o">:</span><span class="p">{</span><span class="nx">setter</span><span class="o">:</span><span class="nx">C</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span><span class="nx">valueFn</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="nx">C</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">PROXY_TEMPLATE</span><span class="p">);}}}});</span><span class="nx">C</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">H</span><span class="p">,</span><span class="nx">C</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,{</span><span class="nx">PROXY_TEMPLATE</span><span class="o">:</span><span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">M</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span><span class="nx">initializer</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">afterHostEvent</span><span class="p">(</span><span class="s2">&quot;resize:start&quot;</span><span class="p">,</span><span class="nx">O</span><span class="p">.</span><span class="nx">_afterResizeStart</span><span class="p">);</span><span class="nx">O</span><span class="p">.</span><span class="nx">beforeHostMethod</span><span class="p">(</span><span class="s2">&quot;_resize&quot;</span><span class="p">,</span><span class="nx">O</span><span class="p">.</span><span class="nx">_beforeHostResize</span><span class="p">);</span><span class="nx">O</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_resizeEnd&quot;</span><span class="p">,</span><span class="nx">O</span><span class="p">.</span><span class="nx">_afterHostResizeEnd</span><span class="p">);},</span><span class="nx">destructor</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="kc">true</span><span class="p">);},</span><span class="nx">_afterHostResizeEnd</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">Q</span><span class="p">){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">P</span><span class="o">=</span><span class="nx">Q</span><span class="p">.</span><span class="nx">dragEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span><span class="nx">P</span><span class="p">.</span><span class="nx">actXY</span><span class="o">=</span><span class="p">[];</span><span class="nx">O</span><span class="p">.</span><span class="nx">_syncProxyUI</span><span class="p">();</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">).</span><span class="nx">hide</span><span class="p">();},</span><span class="nx">_afterResizeStart</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">P</span><span class="p">){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">;</span><span class="nx">O</span><span class="p">.</span><span class="nx">_renderProxy</span><span class="p">();},</span><span class="nx">_beforeHostResize</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">Q</span><span class="p">){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">P</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">L</span><span class="p">);</span><span class="nx">P</span><span class="p">.</span><span class="nx">_handleResizeAlignEvent</span><span class="p">(</span><span class="nx">Q</span><span class="p">.</span><span class="nx">dragEvent</span><span class="p">);</span><span class="nx">O</span><span class="p">.</span><span class="nx">_syncProxyUI</span><span class="p">();</span><span class="k">return</span> <span class="k">new</span> <span class="nx">C</span><span class="p">.</span><span class="nx">Do</span><span class="p">.</span><span class="nx">Prevent</span><span class="p">();},</span><span class="nx">_renderProxy</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">Q</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">L</span><span class="p">),</span><span class="nx">P</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">P</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">()){</span><span class="nx">Q</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">J</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="nx">K</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">P</span><span class="p">.</span><span class="nx">hide</span><span class="p">());}},</span><span class="nx">_syncProxyUI</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">O</span><span class="o">=</span><span class="k">this</span><span class="p">,</span><span class="nx">Q</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">L</span><span class="p">),</span><span class="nx">S</span><span class="o">=</span><span class="nx">Q</span><span class="p">.</span><span class="nx">info</span><span class="p">,</span><span class="nx">R</span><span class="o">=</span><span class="nx">Q</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">N</span><span class="p">),</span><span class="nx">P</span><span class="o">=</span><span class="nx">O</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">D</span><span class="p">),</span><span class="nx">T</span><span class="o">=</span><span class="nx">R</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="nx">I</span><span class="p">);</span><span class="nx">P</span><span class="p">.</span><span class="nx">show</span><span class="p">().</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">I</span><span class="p">,</span><span class="nx">T</span><span class="p">);</span><span class="nx">Q</span><span class="p">.</span><span class="nx">delegate</span><span class="p">.</span><span class="nx">dd</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">G</span><span class="p">,</span><span class="nx">T</span><span class="p">);</span><span class="nx">P</span><span class="p">.</span><span class="nx">sizeTo</span><span class="p">(</span><span class="nx">S</span><span class="p">.</span><span class="nx">offsetWidth</span><span class="p">,</span><span class="nx">S</span><span class="p">.</span><span class="nx">offsetHeight</span><span class="p">);</span><span class="nx">P</span><span class="p">.</span><span class="nx">setXY</span><span class="p">([</span><span class="nx">S</span><span class="p">.</span><span class="nx">left</span><span class="p">,</span><span class="nx">S</span><span class="p">.</span><span class="nx">top</span><span class="p">]);}});</span><span class="nx">C</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Plugin&quot;</span><span class="p">);</span><span class="nx">C</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">ResizeProxy</span><span class="o">=</span><span class="nx">H</span><span class="p">;},</span><span class="s2">&quot;3.3.0&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;resize-base&quot;</span><span class="p">,</span><span class="s2">&quot;plugin&quot;</span><span class="p">],</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Resize.html#event_activeHandleChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleChange"}, {"url": "Resize.html#event_activeHandleElChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleElChange"}, {"url": "Resize.html#event_activeHandleNodeChange", "access": "", "host": "Resize", "type": "event", "name": "activeHandleNodeChange"}, {"url": "Resize.html#property_ALL_HANDLES", "access": "", "host": "Resize", "type": "property", "name": "ALL_HANDLES"}, {"url": "Resize.html#config_autoHide", "access": "", "host": "Resize", "type": "config", "name": "autoHide"}, {"url": "Resize.html#event_autoHideChange", "access": "", "host": "Resize", "type": "event", "name": "autoHideChange"}, {"url": "Resize.html#method_bindUI", "access": "protected", "host": "Resize", "type": "method", "name": "bindUI"}, {"url": "Resize.html#method__buildHandle", "access": "protected", "host": "Resize", "type": "method", "name": "_buildHandle"}, {"url": "Resize.html#method__calcResize", "access": "protected", "host": "Resize", "type": "method", "name": "_calcResize"}, {"url": "Resize.html#property_changeHeightHandles", "access": "", "host": "Resize", "type": "property", "name": "changeHeightHandles"}, {"url": "Resize.html#property_changeLeftHandles", "access": "", "host": "Resize", "type": "property", "name": "changeLeftHandles"}, {"url": "Resize.html#property_changeTopHandles", "access": "", "host": "Resize", "type": "property", "name": "changeTopHandles"}, {"url": "Resize.html#property_changeWidthHandles", "access": "", "host": "Resize", "type": "property", "name": "changeWidthHandles"}, {"url": "Resize.html#method__checkConstrain", "access": "protected", "host": "Resize", "type": "method", "name": "_checkConstrain"}, {"url": "Resize.html#method__checkHeight", "access": "protected", "host": "Resize", "type": "method", "name": "_checkHeight"}, {"url": "Resize.html#method__checkRatio", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRatio"}, {"url": "Resize.html#method__checkRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_checkRegion"}, {"url": "Resize.html#method__checkSize", "access": "protected", "host": "Resize", "type": "method", "name": "_checkSize"}, {"url": "Resize.html#method__checkWidth", "access": "protected", "host": "Resize", "type": "method", "name": "_checkWidth"}, {"url": "Resize.html#config_constrain", "access": "", "host": "Resize", "type": "config", "name": "constrain"}, {"url": "Resize.html#property_constrainBorderInfo", "access": "", "host": "Resize", "type": "property", "name": "constrainBorderInfo"}, {"url": "Resize.html#event_constrainChange", "access": "", "host": "Resize", "type": "event", "name": "constrainChange"}, {"url": "Resize.html#property_constrainSurrounding", "access": "", "host": "Resize", "type": "property", "name": "constrainSurrounding"}, {"url": "Resize.html#method__copyStyles", "access": "protected", "host": "Resize", "type": "method", "name": "_copyStyles"}, {"url": "Resize.html#config_defMinHeight", "access": "", "host": "Resize", "type": "config", "name": "defMinHeight"}, {"url": "Resize.html#event_defMinHeightChange", "access": "", "host": "Resize", "type": "event", "name": "defMinHeightChange"}, {"url": "Resize.html#config_defMinWidth", "access": "", "host": "Resize", "type": "config", "name": "defMinWidth"}, {"url": "Resize.html#event_defMinWidthChange", "access": "", "host": "Resize", "type": "event", "name": "defMinWidthChange"}, {"url": "Resize.html#method__defMouseUpFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defMouseUpFn"}, {"url": "Resize.html#method__defResizeAlignFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeAlignFn"}, {"url": "Resize.html#method__defResizeEndFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeEndFn"}, {"url": "Resize.html#method__defResizeFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeFn"}, {"url": "Resize.html#method__defResizeStartFn", "access": "protected", "host": "Resize", "type": "method", "name": "_defResizeStartFn"}, {"url": "Resize.html#property_delegate", "access": "", "host": "Resize", "type": "property", "name": "delegate"}, {"url": "Resize.html#method_destructor", "access": "protected", "host": "Resize", "type": "method", "name": "destructor"}, {"url": "Resize.html#method_eachHandle", "access": "", "host": "Resize", "type": "method", "name": "eachHandle"}, {"url": "Resize.html#method__getConstrainRegion", "access": "protected", "host": "Resize", "type": "method", "name": "_getConstrainRegion"}, {"url": "Resize.html#method__handleMouseUpEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleMouseUpEvent"}, {"url": "Resize.html#method__handleResizeAlignEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeAlignEvent"}, {"url": "Resize.html#method__handleResizeEndEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEndEvent"}, {"url": "Resize.html#method__handleResizeEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeEvent"}, {"url": "Resize.html#method__handleResizeStartEvent", "access": "protected", "host": "Resize", "type": "method", "name": "_handleResizeStartEvent"}, {"url": "Resize.html#config_handles", "access": "", "host": "Resize", "type": "config", "name": "handles"}, {"url": "Resize.html#event_handlesChange", "access": "", "host": "Resize", "type": "event", "name": "handlesChange"}, {"url": "Resize.html#property_HANDLE_TEMPLATE", "access": "", "host": "Resize", "type": "property", "name": "HANDLE_TEMPLATE"}, {"url": "Resize.html#property_info", "access": "protected", "host": "Resize", "type": "property", "name": "info"}, {"url": "Resize.html#method_initializer", "access": "protected", "host": "Resize", "type": "method", "name": "initializer"}, {"url": "Resize.html#property_lastInfo", "access": "protected", "host": "Resize", "type": "property", "name": "lastInfo"}, {"url": "Resize.html#config_maxHeight", "access": "", "host": "Resize", "type": "config", "name": "maxHeight"}, {"url": "Resize.html#event_maxHeightChange", "access": "", "host": "Resize", "type": "event", "name": "maxHeightChange"}, {"url": "Resize.html#config_maxWidth", "access": "", "host": "Resize", "type": "config", "name": "maxWidth"}, {"url": "Resize.html#event_maxWidthChange", "access": "", "host": "Resize", "type": "event", "name": "maxWidthChange"}, {"url": "Resize.html#config_minHeight", "access": "", "host": "Resize", "type": "config", "name": "minHeight"}, {"url": "Resize.html#event_minHeightChange", "access": "", "host": "Resize", "type": "event", "name": "minHeightChange"}, {"url": "Resize.html#config_minWidth", "access": "", "host": "Resize", "type": "config", "name": "minWidth"}, {"url": "Resize.html#event_minWidthChange", "access": "", "host": "Resize", "type": "event", "name": "minWidthChange"}, {"url": "Resize.html#config_node", "access": "", "host": "Resize", "type": "config", "name": "node"}, {"url": "Resize.html#event_nodeChange", "access": "", "host": "Resize", "type": "event", "name": "nodeChange"}, {"url": "Resize.html#property_nodeSurrounding", "access": "", "host": "Resize", "type": "property", "name": "nodeSurrounding"}, {"url": "Resize.html#method__onHandleMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseEnter"}, {"url": "Resize.html#method__onHandleMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onHandleMouseLeave"}, {"url": "Resize.html#method__onWrapperMouseEnter", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseEnter"}, {"url": "Resize.html#method__onWrapperMouseLeave", "access": "protected", "host": "Resize", "type": "method", "name": "_onWrapperMouseLeave"}, {"url": "Resize.html#property_originalInfo", "access": "protected", "host": "Resize", "type": "property", "name": "originalInfo"}, {"url": "Resize.html#config_preserveRatio", "access": "", "host": "Resize", "type": "config", "name": "preserveRatio"}, {"url": "Resize.html#event_preserveRatioChange", "access": "", "host": "Resize", "type": "event", "name": "preserveRatioChange"}, {"url": "Resize.html#config_proxy", "access": "", "host": "Resize", "type": "config", "name": "proxy"}, {"url": "Resize.html#event_proxyChange", "access": "", "host": "Resize", "type": "event", "name": "proxyChange"}, {"url": "Resize.html#config_proxyEl", "access": "", "host": "Resize", "type": "config", "name": "proxyEl"}, {"url": "Resize.html#event_proxyElChange", "access": "", "host": "Resize", "type": "event", "name": "proxyElChange"}, {"url": "Resize.html#config_proxyNode", "access": "", "host": "Resize", "type": "config", "name": "proxyNode"}, {"url": "Resize.html#event_proxyNodeChange", "access": "", "host": "Resize", "type": "event", "name": "proxyNodeChange"}, {"url": "Resize.html#property_PROXY_TEMPLATE", "access": "", "host": "Resize", "type": "property", "name": "PROXY_TEMPLATE"}, {"url": "Resize.html#property_REGEX_CHANGE_HEIGHT", "access": "", "host": "Resize", "type": "property", "name": "REGEX_CHANGE_HEIGHT"}, {"url": "Resize.html#property_REGEX_CHANGE_LEFT", "access": "", "host": "Resize", "type": "property", "name": "REGEX_CHANGE_LEFT"}, {"url": "Resize.html#property_REGEX_CHANGE_TOP", "access": "", "host": "Resize", "type": "property", "name": "REGEX_CHANGE_TOP"}, {"url": "Resize.html#property_REGEX_CHANGE_WIDTH", "access": "", "host": "Resize", "type": "property", "name": "REGEX_CHANGE_WIDTH"}, {"url": "Resize.html#method_renderer", "access": "protected", "host": "Resize", "type": "method", "name": "renderer"}, {"url": "Resize.html#method__renderHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_renderHandles"}, {"url": "Resize.html#method__renderProxy", "access": "protected", "host": "Resize", "type": "method", "name": "_renderProxy"}, {"url": "Resize.html#method_renderUI", "access": "protected", "host": "Resize", "type": "method", "name": "renderUI"}, {"url": "Resize.html#method__resize", "access": "protected", "host": "Resize", "type": "method", "name": "_resize"}, {"url": "Resize.html#event_resize:align", "access": "", "host": "Resize", "type": "event", "name": "resize:align"}, {"url": "Resize.html#event_resize:end", "access": "", "host": "Resize", "type": "event", "name": "resize:end"}, {"url": "Resize.html#event_resize:mouseUp", "access": "", "host": "Resize", "type": "event", "name": "resize:mouseUp"}, {"url": "Resize.html#event_resize:resize", "access": "", "host": "Resize", "type": "event", "name": "resize:resize"}, {"url": "Resize.html#event_resize:start", "access": "", "host": "Resize", "type": "event", "name": "resize:start"}, {"url": "Resize.html#method__resizeAlign", "access": "protected", "host": "Resize", "type": "method", "name": "_resizeAlign"}, {"url": "Resize.html#property_Resize.ATTRS", "access": "", "host": "Resize", "type": "property", "name": "Resize.ATTRS"}, {"url": "Resize.html#method__resizeEnd", "access": "protected", "host": "Resize", "type": "method", "name": "_resizeEnd"}, {"url": "Resize.html#property_Resize.NAME", "access": "", "host": "Resize", "type": "property", "name": "Resize.NAME"}, {"url": "Resize.html#method__resizeStart", "access": "protected", "host": "Resize", "type": "method", "name": "_resizeStart"}, {"url": "Resize.html#config_resizing", "access": "", "host": "Resize", "type": "config", "name": "resizing"}, {"url": "Resize.html#event_resizingChange", "access": "", "host": "Resize", "type": "event", "name": "resizingChange"}, {"url": "Resize.html#method__setActiveHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setActiveHandlesUI"}, {"url": "Resize.html#method__setHandleFromNode", "access": "protected", "host": "Resize", "type": "method", "name": "_setHandleFromNode"}, {"url": "Resize.html#method__setHandles", "access": "protected", "host": "Resize", "type": "method", "name": "_setHandles"}, {"url": "Resize.html#method__setHideHandlesUI", "access": "protected", "host": "Resize", "type": "method", "name": "_setHideHandlesUI"}, {"url": "Resize.html#method__setOffset", "access": "protected", "host": "Resize", "type": "method", "name": "_setOffset"}, {"url": "Resize.html#method__setWrap", "access": "protected", "host": "Resize", "type": "method", "name": "_setWrap"}, {"url": "Resize.html#method__syncProxyUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncProxyUI"}, {"url": "Resize.html#method__syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "_syncUI"}, {"url": "Resize.html#method_syncUI", "access": "protected", "host": "Resize", "type": "method", "name": "syncUI"}, {"url": "Resize.html#config_tickX", "access": "", "host": "Resize", "type": "config", "name": "tickX"}, {"url": "Resize.html#event_tickXChange", "access": "", "host": "Resize", "type": "event", "name": "tickXChange"}, {"url": "Resize.html#config_tickY", "access": "", "host": "Resize", "type": "config", "name": "tickY"}, {"url": "Resize.html#event_tickYChange", "access": "", "host": "Resize", "type": "event", "name": "tickYChange"}, {"url": "Resize.html#property_totalHSurrounding", "access": "", "host": "Resize", "type": "property", "name": "totalHSurrounding"}, {"url": "Resize.html#property_totalVSurrounding", "access": "", "host": "Resize", "type": "property", "name": "totalVSurrounding"}, {"url": "Resize.html#method__valueWrapper", "access": "protected", "host": "Resize", "type": "method", "name": "_valueWrapper"}, {"url": "Resize.html#config_wrap", "access": "", "host": "Resize", "type": "config", "name": "wrap"}, {"url": "Resize.html#event_wrapChange", "access": "", "host": "Resize", "type": "event", "name": "wrapChange"}, {"url": "Resize.html#config_wrapper", "access": "", "host": "Resize", "type": "config", "name": "wrapper"}, {"url": "Resize.html#event_wrapperChange", "access": "", "host": "Resize", "type": "event", "name": "wrapperChange"}, {"url": "Resize.html#property_wrapperSurrounding", "access": "", "host": "Resize", "type": "property", "name": "wrapperSurrounding"}, {"url": "Resize.html#property_WRAP_TEMPLATE", "access": "", "host": "Resize", "type": "property", "name": "WRAP_TEMPLATE"}, {"url": "Resize.html#config_wrapTypes", "access": "", "host": "Resize", "type": "config", "name": "wrapTypes"}, {"url": "Resize.html#event_wrapTypesChange", "access": "", "host": "Resize", "type": "event", "name": "wrapTypesChange"}];
+</script>
+</body>
+</html>

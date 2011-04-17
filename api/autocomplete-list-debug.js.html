@@ -1,0 +1,1632 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: autocomplete   autocomplete-list-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			autocomplete&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_autocomplete.html" title="autocomplete">autocomplete</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">autocomplete-list-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AutoComplete.html" title="AutoComplete">AutoComplete</a></li>
+
+
+				                                <li class=""><a href="AutoCompleteBase.html" title="AutoCompleteBase">AutoCompleteBase</a></li>
+
+
+				                                <li class=""><a href="AutoCompleteFilters.html" title="AutoCompleteFilters">AutoCompleteFilters</a></li>
+
+
+				                                <li class=""><a href="AutoCompleteHighlighters.html" title="AutoCompleteHighlighters">AutoCompleteHighlighters</a></li>
+
+
+				                                <li class=""><a href="AutoCompleteList.html" title="AutoCompleteList">AutoCompleteList</a></li>
+
+
+				                                <li class=""><a href="Plugin.AutoComplete.html" title="Plugin.AutoComplete">Plugin.AutoComplete</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="autocomplete-base-debug.js.html" title="autocomplete-base-debug.js">autocomplete-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-base-min.js.html" title="autocomplete-base-min.js">autocomplete-base-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-base.js.html" title="autocomplete-base.js">autocomplete-base.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-debug.js.html" title="autocomplete-debug.js">autocomplete-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters-accentfold-debug.js.html" title="autocomplete-filters-accentfold-debug.js">autocomplete-filters-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters-accentfold-min.js.html" title="autocomplete-filters-accentfold-min.js">autocomplete-filters-accentfold-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters-accentfold.js.html" title="autocomplete-filters-accentfold.js">autocomplete-filters-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters-debug.js.html" title="autocomplete-filters-debug.js">autocomplete-filters-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters-min.js.html" title="autocomplete-filters-min.js">autocomplete-filters-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-filters.js.html" title="autocomplete-filters.js">autocomplete-filters.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters-accentfold-debug.js.html" title="autocomplete-highlighters-accentfold-debug.js">autocomplete-highlighters-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters-accentfold-min.js.html" title="autocomplete-highlighters-accentfold-min.js">autocomplete-highlighters-accentfold-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters-accentfold.js.html" title="autocomplete-highlighters-accentfold.js">autocomplete-highlighters-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters-debug.js.html" title="autocomplete-highlighters-debug.js">autocomplete-highlighters-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters-min.js.html" title="autocomplete-highlighters-min.js">autocomplete-highlighters-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-highlighters.js.html" title="autocomplete-highlighters.js">autocomplete-highlighters.js</a></li>
+
+
+			                                <li class="selected"><a href="autocomplete-list-debug.js.html" title="autocomplete-list-debug.js">autocomplete-list-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list-keys-debug.js.html" title="autocomplete-list-keys-debug.js">autocomplete-list-keys-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list-keys-min.js.html" title="autocomplete-list-keys-min.js">autocomplete-list-keys-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list-keys.js.html" title="autocomplete-list-keys.js">autocomplete-list-keys.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list-min.js.html" title="autocomplete-list-min.js">autocomplete-list-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list.js.html" title="autocomplete-list.js">autocomplete-list.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-list_en.js.html" title="autocomplete-list_en.js">autocomplete-list_en.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-min.js.html" title="autocomplete-min.js">autocomplete-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-plugin-debug.js.html" title="autocomplete-plugin-debug.js">autocomplete-plugin-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-plugin-min.js.html" title="autocomplete-plugin-min.js">autocomplete-plugin-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-plugin.js.html" title="autocomplete-plugin.js">autocomplete-plugin.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-sources-debug.js.html" title="autocomplete-sources-debug.js">autocomplete-sources-debug.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-sources-min.js.html" title="autocomplete-sources-min.js">autocomplete-sources-min.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete-sources.js.html" title="autocomplete-sources.js">autocomplete-sources.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete.js.html" title="autocomplete.js">autocomplete.js</a></li>
+
+
+			                                <li class=""><a href="autocomplete_en.js.html" title="autocomplete_en.js">autocomplete_en.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;autocomplete-list&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Traditional autocomplete dropdown list widget, just like Mom used to make.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module autocomplete</span>
+<span class="cm"> * @submodule autocomplete-list</span>
+<span class="cm"> * @class AutoCompleteList</span>
+<span class="cm"> * @extends Widget</span>
+<span class="cm"> * @uses AutoCompleteBase</span>
+<span class="cm"> * @uses WidgetPosition</span>
+<span class="cm"> * @uses WidgetPositionAlign</span>
+<span class="cm"> * @uses WidgetStack</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param {Object} config Configuration object.</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Lang</span>   <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">Node</span>   <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">,</span>
+    <span class="nx">YArray</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span>
+
+    <span class="c1">// keyCode constants.</span>
+    <span class="nx">KEY_TAB</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+
+    <span class="c1">// String shorthand.</span>
+    <span class="nx">_CLASS_ITEM</span>        <span class="o">=</span> <span class="s1">&#39;_CLASS_ITEM&#39;</span><span class="p">,</span>
+    <span class="nx">_CLASS_ITEM_ACTIVE</span> <span class="o">=</span> <span class="s1">&#39;_CLASS_ITEM_ACTIVE&#39;</span><span class="p">,</span>
+    <span class="nx">_CLASS_ITEM_HOVER</span>  <span class="o">=</span> <span class="s1">&#39;_CLASS_ITEM_HOVER&#39;</span><span class="p">,</span>
+    <span class="nx">_SELECTOR_ITEM</span>     <span class="o">=</span> <span class="s1">&#39;_SELECTOR_ITEM&#39;</span><span class="p">,</span>
+
+    <span class="nx">ACTIVE_ITEM</span>      <span class="o">=</span> <span class="s1">&#39;activeItem&#39;</span><span class="p">,</span>
+    <span class="nx">ALWAYS_SHOW_LIST</span> <span class="o">=</span> <span class="s1">&#39;alwaysShowList&#39;</span><span class="p">,</span>
+    <span class="nx">CIRCULAR</span>         <span class="o">=</span> <span class="s1">&#39;circular&#39;</span><span class="p">,</span>
+    <span class="nx">HOVERED_ITEM</span>     <span class="o">=</span> <span class="s1">&#39;hoveredItem&#39;</span><span class="p">,</span>
+    <span class="nx">ID</span>               <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="nx">ITEM</span>             <span class="o">=</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>
+    <span class="nx">LIST</span>             <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+    <span class="nx">RESULT</span>           <span class="o">=</span> <span class="s1">&#39;result&#39;</span><span class="p">,</span>
+    <span class="nx">RESULTS</span>          <span class="o">=</span> <span class="s1">&#39;results&#39;</span><span class="p">,</span>
+    <span class="nx">VISIBLE</span>          <span class="o">=</span> <span class="s1">&#39;visible&#39;</span><span class="p">,</span>
+    <span class="nx">WIDTH</span>            <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span>
+
+    <span class="c1">// Event names.</span>
+    <span class="nx">EVT_SELECT</span> <span class="o">=</span> <span class="s1">&#39;select&#39;</span><span class="p">,</span>
+
+<span class="nx">List</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;autocompleteList&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span> <span class="p">[</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">AutoCompleteBase</span><span class="p">,</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPosition</span><span class="p">,</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span><span class="p">,</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetStack</span>
+<span class="p">],</span> <span class="p">{</span>
+    <span class="c1">// -- Prototype Properties -------------------------------------------------</span>
+    <span class="nx">ARIA_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;div/&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">ITEM_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;li/&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">LIST_TEMPLATE</span><span class="o">:</span> <span class="s1">&#39;&lt;ul/&gt;&#39;</span><span class="p">,</span>
+
+    <span class="c1">// -- Lifecycle Prototype Methods ------------------------------------------</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">inputNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;inputNode&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">inputNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;No inputNode specified.&#39;</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span>  <span class="o">=</span> <span class="nx">inputNode</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listEvents</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="c1">// This ensures that the list is rendered inside the same parent as the</span>
+        <span class="c1">// input node by default, which is necessary for proper ARIA support.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">DEF_PARENT_NODE</span> <span class="o">=</span> <span class="nx">inputNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">);</span>
+
+        <span class="c1">// Cache commonly used classnames and selectors for performance.</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM</span><span class="p">]</span>        <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">ITEM</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_ACTIVE</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">ITEM</span><span class="p">,</span> <span class="s1">&#39;active&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_HOVER</span><span class="p">]</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">ITEM</span><span class="p">,</span> <span class="s1">&#39;hover&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">]</span>     <span class="o">=</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM</span><span class="p">];</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Fires when an autocomplete suggestion is selected from the list,</span>
+<span class="cm">         * typically via a keyboard action or mouse click.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @event select</span>
+<span class="cm">         * @param {EventFacade} e Event facade with the following additional</span>
+<span class="cm">         *   properties:</span>
+<span class="cm">         *</span>
+<span class="cm">         * &lt;dl&gt;</span>
+<span class="cm">         *   &lt;dt&gt;itemNode (Node)&lt;/dt&gt;</span>
+<span class="cm">         *   &lt;dd&gt;</span>
+<span class="cm">         *     List item node that was selected.</span>
+<span class="cm">         *   &lt;/dd&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         *   &lt;dt&gt;result (Object)&lt;/dt&gt;</span>
+<span class="cm">         *   &lt;dd&gt;</span>
+<span class="cm">         *     AutoComplete result object.</span>
+<span class="cm">         *   &lt;/dd&gt;</span>
+<span class="cm">         * &lt;/dl&gt;</span>
+<span class="cm">         *</span>
+<span class="cm">         * @preventable _defSelectFn</span>
+<span class="cm">         */</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">EVT_SELECT</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defSelectFn</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_listEvents</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_listEvents</span><span class="p">.</span><span class="nx">pop</span><span class="p">().</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bindInput</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bindList</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ariaNode</span>   <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_createAriaNode</span><span class="p">(),</span>
+            <span class="nx">contentBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">),</span>
+            <span class="nx">inputNode</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span><span class="p">,</span>
+            <span class="nx">listNode</span><span class="p">,</span>
+            <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">inputNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">);</span>
+
+        <span class="nx">listNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_createListNode</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="s1">&#39;listNode&#39;</span><span class="p">,</span> <span class="nx">listNode</span><span class="p">);</span>
+        <span class="nx">contentBox</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">listNode</span><span class="p">);</span>
+
+        <span class="nx">inputNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">)).</span><span class="nx">setAttrs</span><span class="p">({</span>
+            <span class="s1">&#39;aria-autocomplete&#39;</span><span class="o">:</span> <span class="nx">LIST</span><span class="p">,</span>
+            <span class="s1">&#39;aria-expanded&#39;</span>    <span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="s1">&#39;aria-owns&#39;</span>        <span class="o">:</span> <span class="nx">listNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">),</span>
+            <span class="nx">role</span>               <span class="o">:</span> <span class="s1">&#39;combobox&#39;</span>
+        <span class="p">});</span>
+
+        <span class="c1">// ARIA node must be outside the widget or announcements won&#39;t be made</span>
+        <span class="c1">// when the widget is hidden.</span>
+        <span class="nx">parentNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">ariaNode</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ariaNode</span>    <span class="o">=</span> <span class="nx">ariaNode</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_boundingBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_contentBox</span>  <span class="o">=</span> <span class="nx">contentBox</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span>    <span class="o">=</span> <span class="nx">listNode</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentNode</span>  <span class="o">=</span> <span class="nx">parentNode</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncResults</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncVisibility</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Public Prototype Methods ---------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Hides the list, unless the &lt;code&gt;alwaysShowList&lt;/code&gt; attribute is</span>
+<span class="cm">     * &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method hide</span>
+<span class="cm">     * @see show</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ALWAYS_SHOW_LIST</span><span class="p">)</span> <span class="o">?</span> <span class="k">this</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Selects the specified &lt;i&gt;itemNode&lt;/i&gt;, or the current</span>
+<span class="cm">     * &lt;code&gt;activeItem&lt;/code&gt; if &lt;i&gt;itemNode&lt;/i&gt; is not specified.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method selectItem</span>
+<span class="cm">     * @param {Node} itemNode (optional) Item node to select.</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     */</span>
+    <span class="nx">selectItem</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">itemNode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">itemNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">itemNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">itemNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">itemNode</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EVT_SELECT</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">itemNode</span><span class="o">:</span> <span class="nx">itemNode</span><span class="p">,</span>
+            <span class="nx">result</span>  <span class="o">:</span> <span class="nx">itemNode</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">RESULT</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Prototype Methods ------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Activates the next item after the currently active item. If there is no</span>
+<span class="cm">     * next item and the &lt;code&gt;circular&lt;/code&gt; attribute is &lt;code&gt;true&lt;/code&gt;,</span>
+<span class="cm">     * focus will wrap back to the input node.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _activateNextItem</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_activateNextItem</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">),</span>
+            <span class="nx">nextItem</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nextItem</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">])</span> <span class="o">||</span>
+                    <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CIRCULAR</span><span class="p">)</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="nx">item</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">nextItem</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getFirstItemNode</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="nx">nextItem</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Activates the item previous to the currently active item. If there is no</span>
+<span class="cm">     * previous item and the &lt;code&gt;circular&lt;/code&gt; attribute is</span>
+<span class="cm">     * &lt;code&gt;true&lt;/code&gt;, focus will wrap back to the input node.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _activatePrevItem</span>
+<span class="cm">     * @chainable</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_activatePrevItem</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">item</span>     <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">),</span>
+            <span class="nx">prevItem</span> <span class="o">=</span> <span class="nx">item</span> <span class="o">?</span> <span class="nx">item</span><span class="p">.</span><span class="nx">previous</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">])</span> <span class="o">:</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CIRCULAR</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getLastItemNode</span><span class="p">();</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="nx">prevItem</span> <span class="o">||</span> <span class="kc">null</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Appends the specified result &lt;i&gt;items&lt;/i&gt; to the list inside a new item</span>
+<span class="cm">     * node.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _add</span>
+<span class="cm">     * @param {Array|Node|HTMLElement|String} items Result item or array of</span>
+<span class="cm">     *   result items.</span>
+<span class="cm">     * @return {NodeList} Added nodes.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_add</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">itemNodes</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="nx">YArray</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">items</span><span class="p">)</span> <span class="o">?</span> <span class="nx">items</span> <span class="o">:</span> <span class="p">[</span><span class="nx">items</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">itemNodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_createItemNode</span><span class="p">(</span><span class="nx">item</span><span class="p">).</span><span class="nx">setData</span><span class="p">(</span><span class="nx">RESULT</span><span class="p">,</span> <span class="nx">item</span><span class="p">));</span>
+        <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+
+        <span class="nx">itemNodes</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">itemNodes</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">itemNodes</span><span class="p">.</span><span class="nx">toFrag</span><span class="p">());</span>
+
+        <span class="k">return</span> <span class="nx">itemNodes</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Updates the ARIA live region with the specified message.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _ariaSay</span>
+<span class="cm">     * @param {String} stringId String id (from the &lt;code&gt;strings&lt;/code&gt;</span>
+<span class="cm">     *   attribute) of the message to speak.</span>
+<span class="cm">     * @param {Object} subs (optional) Substitutions for placeholders in the</span>
+<span class="cm">     *   string.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_ariaSay</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">stringId</span><span class="p">,</span> <span class="nx">subs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;strings.&#39;</span> <span class="o">+</span> <span class="nx">stringId</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ariaNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">subs</span> <span class="o">?</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">subs</span><span class="p">)</span> <span class="o">:</span> <span class="nx">message</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Binds &lt;code&gt;inputNode&lt;/code&gt; events and behavior.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _bindInput</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_bindInput</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">inputNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span><span class="p">,</span>
+            <span class="nx">alignNode</span><span class="p">,</span> <span class="nx">alignWidth</span><span class="p">,</span> <span class="nx">tokenInput</span><span class="p">;</span>
+
+        <span class="c1">// Null align means we can auto-align. Set align to false to prevent</span>
+        <span class="c1">// auto-alignment, or a valid alignment config to customize the</span>
+        <span class="c1">// alignment.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;align&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// If this is a tokenInput, align with its bounding box.</span>
+            <span class="c1">// Otherwise, align with the inputNode. Bit of a cheat.</span>
+            <span class="nx">tokenInput</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;tokenInput&#39;</span><span class="p">);</span>
+            <span class="nx">alignNode</span>  <span class="o">=</span> <span class="p">(</span><span class="nx">tokenInput</span> <span class="o">&amp;&amp;</span> <span class="nx">tokenInput</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;boundingBox&#39;</span><span class="p">))</span> <span class="o">||</span> <span class="nx">inputNode</span><span class="p">;</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;align&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">node</span>  <span class="o">:</span> <span class="nx">alignNode</span><span class="p">,</span>
+                <span class="nx">points</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;tl&#39;</span><span class="p">,</span> <span class="s1">&#39;bl&#39;</span><span class="p">]</span>
+            <span class="p">});</span>
+
+            <span class="c1">// If no width config is set, attempt to set the list&#39;s width to the</span>
+            <span class="c1">// width of the alignment node. If the alignment node&#39;s width is</span>
+            <span class="c1">// falsy, do nothing.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">WIDTH</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">alignWidth</span> <span class="o">=</span> <span class="nx">alignNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)))</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">WIDTH</span><span class="p">,</span> <span class="nx">alignWidth</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Attach inputNode events.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listEvents</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">inputNode</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onListInputBlur</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Binds list events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _bindList</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_bindList</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listEvents</span><span class="p">.</span><span class="nx">concat</span><span class="p">([</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">after</span><span class="p">({</span>
+              <span class="nx">mouseover</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterMouseOver</span><span class="p">,</span>
+              <span class="nx">mouseout</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterMouseOut</span><span class="p">,</span>
+
+              <span class="nx">activeItemChange</span>    <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterActiveItemChange</span><span class="p">,</span>
+              <span class="nx">alwaysShowListChange</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterAlwaysShowListChange</span><span class="p">,</span>
+              <span class="nx">hoveredItemChange</span>   <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterHoveredItemChange</span><span class="p">,</span>
+              <span class="nx">resultsChange</span>       <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterResultsChange</span><span class="p">,</span>
+              <span class="nx">visibleChange</span>       <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterVisibleChange</span>
+            <span class="p">}),</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_onItemClick</span><span class="p">,</span> <span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">],</span> <span class="k">this</span><span class="p">)</span>
+        <span class="p">]);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Clears the contents of the tray.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _clear</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_clear</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">HOVERED_ITEM</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates and returns an ARIA live region node.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _createAriaNode</span>
+<span class="cm">     * @return {Node} ARIA node.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_createAriaNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ariaNode</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ARIA_TEMPLATE</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">ariaNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;aria&#39;</span><span class="p">)).</span><span class="nx">setAttrs</span><span class="p">({</span>
+            <span class="s1">&#39;aria-live&#39;</span><span class="o">:</span> <span class="s1">&#39;polite&#39;</span><span class="p">,</span>
+            <span class="nx">role</span>       <span class="o">:</span> <span class="s1">&#39;status&#39;</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates and returns an item node with the specified &lt;i&gt;content&lt;/i&gt;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _createItemNode</span>
+<span class="cm">     * @param {Object} result Result object.</span>
+<span class="cm">     * @return {Node} Item node.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_createItemNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">itemNode</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ITEM_TEMPLATE</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">itemNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM</span><span class="p">]).</span><span class="nx">setAttrs</span><span class="p">({</span>
+            <span class="nx">id</span>  <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">itemNode</span><span class="p">),</span>
+            <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;option&#39;</span>
+        <span class="p">}).</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;data-text&#39;</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">text</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">display</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates and returns a list node.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _createListNode</span>
+<span class="cm">     * @return {Node} List node.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_createListNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">listNode</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">LIST_TEMPLATE</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">listNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="nx">LIST</span><span class="p">)).</span><span class="nx">setAttrs</span><span class="p">({</span>
+            <span class="nx">id</span>  <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">listNode</span><span class="p">),</span>
+            <span class="nx">role</span><span class="o">:</span> <span class="s1">&#39;listbox&#39;</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets the first item node in the list, or &lt;code&gt;null&lt;/code&gt; if the list is</span>
+<span class="cm">     * empty.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _getFirstItemNode</span>
+<span class="cm">     * @return {Node|null}</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_getFirstItemNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">]);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Gets the last item node in the list, or &lt;code&gt;null&lt;/code&gt; if the list is</span>
+<span class="cm">     * empty.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _getLastItemNode</span>
+<span class="cm">     * @return {Node|null}</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_getLastItemNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_listNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;:last-child&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Synchronizes the results displayed in the list with those in the</span>
+<span class="cm">     * &lt;i&gt;results&lt;/i&gt; argument, or with the &lt;code&gt;results&lt;/code&gt; attribute if an</span>
+<span class="cm">     * argument is not provided.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncResults</span>
+<span class="cm">     * @param {Array} results (optional) Results.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncResults</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">items</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">results</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RESULTS</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_clear</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_add</span><span class="p">(</span><span class="nx">results</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_ariaSay</span><span class="p">(</span><span class="s1">&#39;items_available&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;activateFirstItem&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getFirstItemNode</span><span class="p">());</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Synchronizes the visibility of the tray with the &lt;i&gt;visible&lt;/i&gt; argument,</span>
+<span class="cm">     * or with the &lt;code&gt;visible&lt;/code&gt; attribute if an argument is not</span>
+<span class="cm">     * provided.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncVisibility</span>
+<span class="cm">     * @param {Boolean} visible (optional) Visibility.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncVisibility</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ALWAYS_SHOW_LIST</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="nx">visible</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">visible</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">visible</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-expanded&#39;</span><span class="p">,</span> <span class="nx">visible</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_boundingBox</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-hidden&#39;</span><span class="p">,</span> <span class="o">!</span><span class="nx">visible</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Force WidgetPositionAlign to refresh its alignment.</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_syncUIPosAlign</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">HOVERED_ITEM</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+            <span class="c1">// Force a reflow to work around a glitch in IE6 and 7 where some of</span>
+            <span class="c1">// the contents of the list will sometimes remain visible after the</span>
+            <span class="c1">// container is hidden.</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_boundingBox</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Event Handlers ---------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;activeItemChange&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterActiveItemChange</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterActiveItemChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">inputNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span><span class="p">,</span>
+            <span class="nx">newVal</span>    <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span>
+            <span class="nx">prevVal</span>   <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">;</span>
+
+        <span class="c1">// The previous item may have disappeared by the time this handler runs,</span>
+        <span class="c1">// so we need to be careful.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prevVal</span> <span class="o">&amp;&amp;</span> <span class="nx">prevVal</span><span class="p">.</span><span class="nx">_node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">prevVal</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_ACTIVE</span><span class="p">]);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">newVal</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_ACTIVE</span><span class="p">]);</span>
+            <span class="nx">inputNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-activedescendant&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">inputNode</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s1">&#39;aria-activedescendant&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollIntoView&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="p">(</span><span class="nx">newVal</span> <span class="o">||</span> <span class="nx">inputNode</span><span class="p">).</span><span class="nx">scrollIntoView</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;alwaysShowListChange&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterAlwaysShowListChange</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterAlwaysShowListChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RESULTS</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;hoveredItemChange&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterHoveredItemChange</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterHoveredItemChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">newVal</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">,</span>
+            <span class="nx">prevVal</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">prevVal</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prevVal</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">prevVal</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_HOVER</span><span class="p">]);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">newVal</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">newVal</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_CLASS_ITEM_HOVER</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;mouseover&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterMouseOver</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterMouseOver</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">itemNode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">domEvent</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">_SELECTOR_ITEM</span><span class="p">],</span> <span class="kc">true</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_mouseOverList</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">itemNode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">HOVERED_ITEM</span><span class="p">,</span> <span class="nx">itemNode</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;mouseout&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterMouseOut</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterMouseOut</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_mouseOverList</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">HOVERED_ITEM</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;resultsChange&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterResultsChange</span>
+<span class="cm">     * @param {EventFacade} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterResultsChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncResults</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ALWAYS_SHOW_LIST</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">VISIBLE</span><span class="p">,</span> <span class="o">!!</span><span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;visibleChange&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _afterVisibleChange</span>
+<span class="cm">     * @param {EventFacade} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_afterVisibleChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncVisibility</span><span class="p">(</span><span class="o">!!</span><span class="nx">e</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Handles &lt;code&gt;inputNode&lt;/code&gt; &lt;code&gt;blur&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onListInputBlur</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_onListInputBlur</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Hide the list on inputNode blur events, unless the mouse is currently</span>
+        <span class="c1">// over the list (which indicates that the user is probably interacting</span>
+        <span class="c1">// with it). The _lastInputKey property comes from the</span>
+        <span class="c1">// autocomplete-list-keys module.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_mouseOverList</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">_lastInputKey</span> <span class="o">===</span> <span class="nx">KEY_TAB</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Delegated event handler for item &lt;code&gt;click&lt;/code&gt; events.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _onItemClick</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_onItemClick</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">itemNode</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">ACTIVE_ITEM</span><span class="p">,</span> <span class="nx">itemNode</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">selectItem</span><span class="p">(</span><span class="nx">itemNode</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Default Event Handlers -------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Default &lt;code&gt;select&lt;/code&gt; event handler.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _defSelectFn</span>
+<span class="cm">     * @param {EventTarget} e</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">_defSelectFn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+
+        <span class="c1">// TODO: support typeahead completion, etc.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_inputNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_updateValue</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ariaSay</span><span class="p">(</span><span class="s1">&#39;item_selected&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">item</span><span class="o">:</span> <span class="nx">text</span><span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         * If &lt;code&gt;true&lt;/code&gt;, the first item in the list will be activated by</span>
+<span class="cm">         * default when the list is initially displayed and when results change.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute activateFirstItem</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default false</span>
+<span class="cm">         */</span>
+        <span class="nx">activateFirstItem</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Item that&#39;s currently active, if any. When the user presses enter,</span>
+<span class="cm">         * this is the item that will be selected.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute activeItem</span>
+<span class="cm">         * @type Node</span>
+<span class="cm">         */</span>
+        <span class="nx">activeItem</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">setter</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">,</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * If &lt;code&gt;true&lt;/code&gt;, the list will remain visible even when there</span>
+<span class="cm">         * are no results to display.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute alwaysShowList</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default false</span>
+<span class="cm">         */</span>
+        <span class="nx">alwaysShowList</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * If &lt;code&gt;true&lt;/code&gt;, keyboard navigation will wrap around to the</span>
+<span class="cm">         * opposite end of the list when navigating past the first or last item.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute circular</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default true</span>
+<span class="cm">         */</span>
+        <span class="nx">circular</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Item currently being hovered over by the mouse, if any.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute hoveredItem</span>
+<span class="cm">         * @type Node|null</span>
+<span class="cm">         * @readonly</span>
+<span class="cm">         */</span>
+        <span class="nx">hoveredItem</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Node that will contain result items.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute listNode</span>
+<span class="cm">         * @type Node|null</span>
+<span class="cm">         * @readonly</span>
+<span class="cm">         */</span>
+        <span class="nx">listNode</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * If &lt;code&gt;true&lt;/code&gt;, the viewport will be scrolled to ensure that</span>
+<span class="cm">         * the active list item is visible when necessary.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute scrollIntoView</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default false</span>
+<span class="cm">         */</span>
+        <span class="nx">scrollIntoView</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * Translatable strings used by the AutoCompleteList widget.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute strings</span>
+<span class="cm">         * @type Object</span>
+<span class="cm">         */</span>
+        <span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Intl</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;autocomplete-list&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * If &lt;code&gt;true&lt;/code&gt;, pressing the tab key while the list is visible</span>
+<span class="cm">         * will select the active item, if any.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute tabSelect</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default true</span>
+<span class="cm">         */</span>
+        <span class="nx">tabSelect</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+
+        <span class="c1">// The &quot;visible&quot; attribute is documented in Widget.</span>
+        <span class="nx">visible</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">CSS_PREFIX</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="s1">&#39;aclist&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">AutoCompleteList</span> <span class="o">=</span> <span class="nx">List</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Alias for &lt;a href=&quot;AutoCompleteList.html&quot;&gt;&lt;code&gt;AutoCompleteList&lt;/code&gt;&lt;/a&gt;.</span>
+<span class="cm"> * See that class for API docs.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class AutoComplete</span>
+<span class="cm"> */</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">AutoComplete</span> <span class="o">=</span> <span class="nx">List</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">],</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;autocomplete-base&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css3&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-position&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-position-align&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-stack&#39;</span><span class="p">],</span> <span class="nx">after</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;autocomplete-sources&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "AutoCompleteList.html#config_activateFirstItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activateFirstItem"}, {"url": "AutoCompleteList.html#event_activateFirstItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activateFirstItemChange"}, {"url": "AutoCompleteList.html#method__activateNextItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activateNextItem"}, {"url": "AutoCompleteList.html#method__activatePrevItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activatePrevItem"}, {"url": "AutoCompleteList.html#config_activeItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activeItem"}, {"url": "AutoCompleteList.html#event_activeItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activeItemChange"}, {"url": "AutoCompleteList.html#method__add", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_add"}, {"url": "AutoCompleteList.html#method__afterActiveItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterActiveItemChange"}, {"url": "AutoCompleteList.html#method__afterAlwaysShowListChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterAlwaysShowListChange"}, {"url": "AutoCompleteList.html#method__afterHoveredItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterHoveredItemChange"}, {"url": "AutoCompleteList.html#method__afterMouseOut", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOut"}, {"url": "AutoCompleteList.html#method__afterMouseOver", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOver"}, {"url": "AutoCompleteList.html#method__afterResultsChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterResultsChange"}, {"url": "AutoCompleteBase.html#method__afterValueChange", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_afterValueChange"}, {"url": "AutoCompleteList.html#method__afterVisibleChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterVisibleChange"}, {"url": "AutoCompleteBase.html#config_allowBrowserAutocomplete", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "allowBrowserAutocomplete"}, {"url": "AutoCompleteBase.html#event_allowBrowserAutocompleteChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "allowBrowserAutocompleteChange"}, {"url": "AutoCompleteBase.html#config_allowTrailingDelimiter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "allowTrailingDelimiter"}, {"url": "AutoCompleteBase.html#event_allowTrailingDelimiterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "allowTrailingDelimiterChange"}, {"url": "AutoComplete.html#config_alwaysShowContainer", "access": "", "host": "AutoComplete", "type": "config", "name": "alwaysShowContainer"}, {"url": "AutoComplete.html#event_alwaysShowContainerChange", "access": "", "host": "AutoComplete", "type": "event", "name": "alwaysShowContainerChange"}, {"url": "AutoCompleteList.html#config_alwaysShowList", "access": "", "host": "AutoCompleteList", "type": "config", "name": "alwaysShowList"}, {"url": "AutoCompleteList.html#event_alwaysShowListChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "alwaysShowListChange"}, {"url": "AutoComplete.html#config_applyLocalFilter", "access": "", "host": "AutoComplete", "type": "config", "name": "applyLocalFilter"}, {"url": "AutoComplete.html#event_applyLocalFilterChange", "access": "", "host": "AutoComplete", "type": "event", "name": "applyLocalFilterChange"}, {"url": "AutoCompleteList.html#method__ariaSay", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_ariaSay"}, {"url": "AutoComplete.html#property_AutoComplete.ATTRS", "access": "", "host": "AutoComplete", "type": "property", "name": "AutoComplete.ATTRS"}, {"url": "AutoComplete.html#property_AutoComplete.NAME", "access": "", "host": "AutoComplete", "type": "property", "name": "AutoComplete.NAME"}, {"url": "AutoComplete.html#config_autoHighlight", "access": "", "host": "AutoComplete", "type": "config", "name": "autoHighlight"}, {"url": "AutoComplete.html#event_autoHighlightChange", "access": "", "host": "AutoComplete", "type": "event", "name": "autoHighlightChange"}, {"url": "AutoCompleteList.html#method__bindInput", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindInput"}, {"url": "AutoCompleteList.html#method__bindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindKeys"}, {"url": "AutoCompleteList.html#method__bindList", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindList"}, {"url": "AutoComplete.html#method_bindUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "bindUI"}, {"url": "AutoCompleteBase.html#method__bindUIACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_bindUIACBase"}, {"url": "AutoComplete.html#config_button", "access": "", "host": "AutoComplete", "type": "config", "name": "button"}, {"url": "AutoComplete.html#event_buttonChange", "access": "", "host": "AutoComplete", "type": "event", "name": "buttonChange"}, {"url": "AutoCompleteFilters.html#method_charMatch", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "charMatch"}, {"url": "AutoCompleteHighlighters.html#method_charMatch", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "charMatch"}, {"url": "AutoCompleteFilters.html#method_charMatchCase", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "charMatchCase"}, {"url": "AutoCompleteHighlighters.html#method_charMatchCase", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "charMatchCase"}, {"url": "AutoCompleteFilters.html#method_charMatchFold", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "charMatchFold"}, {"url": "AutoCompleteHighlighters.html#method_charMatchFold", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "charMatchFold"}, {"url": "AutoCompleteList.html#config_circular", "access": "", "host": "AutoCompleteList", "type": "config", "name": "circular"}, {"url": "AutoCompleteList.html#event_circularChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "circularChange"}, {"url": "AutoCompleteBase.html#event_clear", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "clear"}, {"url": "AutoCompleteList.html#method__clear", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_clear"}, {"url": "AutoComplete.html#method__clearSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_clearSelection"}, {"url": "AutoComplete.html#event_containerCollapse", "access": "", "host": "AutoComplete", "type": "event", "name": "containerCollapse"}, {"url": "AutoComplete.html#event_containerExpand", "access": "", "host": "AutoComplete", "type": "event", "name": "containerExpand"}, {"url": "AutoComplete.html#event_containerPopulate", "access": "", "host": "AutoComplete", "type": "event", "name": "containerPopulate"}, {"url": "AutoCompleteList.html#method__createAriaNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createAriaNode"}, {"url": "AutoCompleteBase.html#method__createArraySource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createArraySource"}, {"url": "AutoComplete.html#method__createDataSource", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_createDataSource"}, {"url": "AutoCompleteBase.html#method__createFunctionSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createFunctionSource"}, {"url": "AutoCompleteBase.html#method__createIOSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createIOSource"}, {"url": "AutoCompleteList.html#method__createItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createItemNode"}, {"url": "AutoCompleteBase.html#method__createJSONPSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createJSONPSource"}, {"url": "AutoCompleteList.html#method__createListNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createListNode"}, {"url": "AutoCompleteBase.html#method__createObjectSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createObjectSource"}, {"url": "AutoCompleteBase.html#method__createStringSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createStringSource"}, {"url": "AutoCompleteBase.html#method__createYQLSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createYQLSource"}, {"url": "AutoComplete.html#event_dataError", "access": "", "host": "AutoComplete", "type": "event", "name": "dataError"}, {"url": "AutoComplete.html#event_dataRequest", "access": "", "host": "AutoComplete", "type": "event", "name": "dataRequest"}, {"url": "AutoComplete.html#event_dataReturn", "access": "", "host": "AutoComplete", "type": "event", "name": "dataReturn"}, {"url": "AutoComplete.html#config_dataSource", "access": "", "host": "AutoComplete", "type": "config", "name": "dataSource"}, {"url": "AutoComplete.html#event_dataSourceChange", "access": "", "host": "AutoComplete", "type": "event", "name": "dataSourceChange"}, {"url": "AutoComplete.html#config_dataSourceType", "access": "", "host": "AutoComplete", "type": "config", "name": "dataSourceType"}, {"url": "AutoComplete.html#event_dataSourceTypeChange", "access": "", "host": "AutoComplete", "type": "event", "name": "dataSourceTypeChange"}, {"url": "AutoCompleteBase.html#method__defaultYQLLocator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defaultYQLLocator"}, {"url": "AutoCompleteBase.html#method__defClearFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defClearFn"}, {"url": "AutoCompleteBase.html#method__defQueryFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defQueryFn"}, {"url": "AutoCompleteBase.html#method__defResultsFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defResultsFn"}, {"url": "AutoCompleteList.html#method__defSelectFn", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_defSelectFn"}, {"url": "AutoComplete.html#config_delimChar", "access": "", "host": "AutoComplete", "type": "config", "name": "delimChar"}, {"url": "AutoComplete.html#event_delimCharChange", "access": "", "host": "AutoComplete", "type": "event", "name": "delimCharChange"}, {"url": "AutoComplete.html#method_destructor", "access": "protected", "host": "AutoComplete", "type": "method", "name": "destructor"}, {"url": "AutoCompleteBase.html#method__destructorACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_destructorACBase"}, {"url": "AutoComplete.html#method_doBeforeExpandContainer", "access": "", "host": "AutoComplete", "type": "method", "name": "doBeforeExpandContainer"}, {"url": "AutoComplete.html#method_doBeforeLoadData", "access": "", "host": "AutoComplete", "type": "method", "name": "doBeforeLoadData"}, {"url": "AutoComplete.html#method__enableIntervalDetection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_enableIntervalDetection"}, {"url": "AutoComplete.html#method__extractQuery", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_extractQuery"}, {"url": "AutoComplete.html#method_filterResults", "access": "", "host": "AutoComplete", "type": "method", "name": "filterResults"}, {"url": "AutoComplete.html#method__focus", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_focus"}, {"url": "AutoComplete.html#config_forceSelection", "access": "", "host": "AutoComplete", "type": "config", "name": "forceSelection"}, {"url": "AutoComplete.html#event_forceSelectionChange", "access": "", "host": "AutoComplete", "type": "event", "name": "forceSelectionChange"}, {"url": "AutoComplete.html#method_formatResult", "access": "", "host": "AutoComplete", "type": "method", "name": "formatResult"}, {"url": "AutoCompleteBase.html#method__functionValidator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_functionValidator"}, {"url": "AutoComplete.html#method_generateRequest", "access": "", "host": "AutoComplete", "type": "method", "name": "generateRequest"}, {"url": "AutoCompleteList.html#method__getFirstItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getFirstItemNode"}, {"url": "AutoCompleteList.html#method__getLastItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getLastItemNode"}, {"url": "AutoCompleteBase.html#method__getObjectValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_getObjectValue"}, {"url": "AutoComplete.html#method_handleResponse", "access": "", "host": "AutoComplete", "type": "method", "name": "handleResponse"}, {"url": "AutoCompleteList.html#method_hide", "access": "", "host": "AutoCompleteList", "type": "method", "name": "hide"}, {"url": "AutoCompleteList.html#config_hoveredItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "hoveredItem"}, {"url": "AutoCompleteList.html#event_hoveredItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "hoveredItemChange"}, {"url": "AutoComplete.html#method_initializer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "initializer"}, {"url": "AutoCompleteList.html#method__initKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_initKeys"}, {"url": "AutoComplete.html#config_input", "access": "", "host": "AutoComplete", "type": "config", "name": "input"}, {"url": "AutoComplete.html#event_inputChange", "access": "", "host": "AutoComplete", "type": "event", "name": "inputChange"}, {"url": "AutoCompleteBase.html#config_inputNode", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "inputNode"}, {"url": "AutoCompleteBase.html#event_inputNodeChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "inputNodeChange"}, {"url": "AutoComplete.html#event_itemArrowFrom", "access": "", "host": "AutoComplete", "type": "event", "name": "itemArrowFrom"}, {"url": "AutoComplete.html#event_itemArrowTo", "access": "", "host": "AutoComplete", "type": "event", "name": "itemArrowTo"}, {"url": "AutoComplete.html#event_itemMouseOut", "access": "", "host": "AutoComplete", "type": "event", "name": "itemMouseOut"}, {"url": "AutoComplete.html#event_itemMouseOver", "access": "", "host": "AutoComplete", "type": "event", "name": "itemMouseOver"}, {"url": "AutoComplete.html#event_itemSelect", "access": "", "host": "AutoComplete", "type": "event", "name": "itemSelect"}, {"url": "AutoCompleteBase.html#method__jsonpFormatter", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_jsonpFormatter"}, {"url": "AutoComplete.html#method__jumpSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_jumpSelection"}, {"url": "AutoCompleteList.html#method__keyDown", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyDown"}, {"url": "AutoCompleteList.html#method__keyEnter", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEnter"}, {"url": "AutoCompleteList.html#method__keyEsc", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEsc"}, {"url": "AutoCompleteList.html#method__keyTab", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyTab"}, {"url": "AutoCompleteList.html#method__keyUp", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyUp"}, {"url": "AutoCompleteList.html#config_listNode", "access": "", "host": "AutoCompleteList", "type": "config", "name": "listNode"}, {"url": "AutoCompleteList.html#event_listNodeChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "listNodeChange"}, {"url": "AutoComplete.html#config_matchKey", "access": "", "host": "AutoComplete", "type": "config", "name": "matchKey"}, {"url": "AutoComplete.html#event_matchKeyChange", "access": "", "host": "AutoComplete", "type": "event", "name": "matchKeyChange"}, {"url": "AutoCompleteBase.html#config_maxResults", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "maxResults"}, {"url": "AutoCompleteBase.html#event_maxResultsChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "maxResultsChange"}, {"url": "AutoComplete.html#config_maxResultsDisplayed", "access": "", "host": "AutoComplete", "type": "config", "name": "maxResultsDisplayed"}, {"url": "AutoComplete.html#event_maxResultsDisplayedChange", "access": "", "host": "AutoComplete", "type": "event", "name": "maxResultsDisplayedChange"}, {"url": "AutoCompleteBase.html#config_minQueryLength", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "minQueryLength"}, {"url": "AutoComplete.html#config_minQueryLength", "access": "", "host": "AutoComplete", "type": "config", "name": "minQueryLength"}, {"url": "AutoCompleteBase.html#event_minQueryLengthChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "minQueryLengthChange"}, {"url": "AutoComplete.html#event_minQueryLengthChange", "access": "", "host": "AutoComplete", "type": "event", "name": "minQueryLengthChange"}, {"url": "AutoComplete.html#method__moveSelection", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_moveSelection"}, {"url": "AutoComplete.html#method__onButtonMouseDown", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onButtonMouseDown"}, {"url": "AutoComplete.html#method__onContainerClick", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerClick"}, {"url": "AutoComplete.html#method__onContainerMouseout", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerMouseout"}, {"url": "AutoComplete.html#method__onContainerMouseover", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerMouseover"}, {"url": "AutoComplete.html#method__onContainerScroll", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onContainerScroll"}, {"url": "AutoCompleteBase.html#method__onInputBlur", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onInputBlur"}, {"url": "AutoCompleteList.html#method__onInputKey", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onInputKey"}, {"url": "AutoCompleteBase.html#method__onInputValueChange", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onInputValueChange"}, {"url": "AutoComplete.html#method__onInterval", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onInterval"}, {"url": "AutoCompleteList.html#method__onItemClick", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onItemClick"}, {"url": "AutoCompleteList.html#method__onListInputBlur", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onListInputBlur"}, {"url": "AutoCompleteBase.html#method__onResponse", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onResponse"}, {"url": "AutoComplete.html#method__onTextboxBlur", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxBlur"}, {"url": "AutoComplete.html#method__onTextboxFocus", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxFocus"}, {"url": "AutoComplete.html#method__onTextboxKeyDown", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyDown"}, {"url": "AutoComplete.html#method__onTextboxKeyPress", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyPress"}, {"url": "AutoComplete.html#method__onTextboxKeyUp", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_onTextboxKeyUp"}, {"url": "AutoCompleteBase.html#method__parseResponse", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_parseResponse"}, {"url": "AutoCompleteBase.html#method__parseValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_parseValue"}, {"url": "AutoCompleteFilters.html#method_phraseMatch", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "phraseMatch"}, {"url": "AutoCompleteHighlighters.html#method_phraseMatch", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "phraseMatch"}, {"url": "AutoCompleteFilters.html#method_phraseMatchCase", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "phraseMatchCase"}, {"url": "AutoCompleteHighlighters.html#method_phraseMatchCase", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "phraseMatchCase"}, {"url": "AutoCompleteFilters.html#method_phraseMatchFold", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "phraseMatchFold"}, {"url": "AutoCompleteHighlighters.html#method_phraseMatchFold", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "phraseMatchFold"}, {"url": "AutoComplete.html#method__populateList", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_populateList"}, {"url": "AutoCompleteBase.html#event_query", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "query"}, {"url": "AutoCompleteBase.html#config_query", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "query"}, {"url": "AutoCompleteBase.html#event_queryChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryChange"}, {"url": "AutoCompleteBase.html#config_queryDelay", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "queryDelay"}, {"url": "AutoComplete.html#config_queryDelay", "access": "", "host": "AutoComplete", "type": "config", "name": "queryDelay"}, {"url": "AutoCompleteBase.html#event_queryDelayChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryDelayChange"}, {"url": "AutoComplete.html#event_queryDelayChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryDelayChange"}, {"url": "AutoCompleteBase.html#config_queryDelimiter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "queryDelimiter"}, {"url": "AutoCompleteBase.html#event_queryDelimiterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryDelimiterChange"}, {"url": "AutoComplete.html#config_queryInterval", "access": "", "host": "AutoComplete", "type": "config", "name": "queryInterval"}, {"url": "AutoComplete.html#event_queryIntervalChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryIntervalChange"}, {"url": "AutoComplete.html#config_queryMatchCase", "access": "", "host": "AutoComplete", "type": "config", "name": "queryMatchCase"}, {"url": "AutoComplete.html#event_queryMatchCaseChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryMatchCaseChange"}, {"url": "AutoComplete.html#config_queryMatchContains", "access": "", "host": "AutoComplete", "type": "config", "name": "queryMatchContains"}, {"url": "AutoComplete.html#event_queryMatchContainsChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryMatchContainsChange"}, {"url": "AutoComplete.html#config_queryQuestionMark", "access": "", "host": "AutoComplete", "type": "config", "name": "queryQuestionMark"}, {"url": "AutoComplete.html#event_queryQuestionMarkChange", "access": "", "host": "AutoComplete", "type": "event", "name": "queryQuestionMarkChange"}, {"url": "AutoComplete.html#method__realignContainer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_realignContainer"}, {"url": "AutoComplete.html#method__renderInput", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderInput"}, {"url": "AutoComplete.html#method__renderListElements", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderListElements"}, {"url": "AutoComplete.html#method__renderOverlay", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_renderOverlay"}, {"url": "AutoComplete.html#method_renderUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "renderUI"}, {"url": "AutoCompleteBase.html#config_requestTemplate", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "requestTemplate"}, {"url": "AutoCompleteBase.html#event_requestTemplateChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "requestTemplateChange"}, {"url": "AutoCompleteBase.html#config_resultFilters", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultFilters"}, {"url": "AutoCompleteBase.html#event_resultFiltersChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultFiltersChange"}, {"url": "AutoCompleteBase.html#config_resultFormatter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultFormatter"}, {"url": "AutoCompleteBase.html#event_resultFormatterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultFormatterChange"}, {"url": "AutoCompleteBase.html#config_resultHighlighter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultHighlighter"}, {"url": "AutoCompleteBase.html#event_resultHighlighterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultHighlighterChange"}, {"url": "AutoCompleteBase.html#config_resultListLocator", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultListLocator"}, {"url": "AutoCompleteBase.html#event_resultListLocatorChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultListLocatorChange"}, {"url": "AutoCompleteBase.html#event_results", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "results"}, {"url": "AutoCompleteBase.html#config_results", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "results"}, {"url": "AutoCompleteBase.html#event_resultsChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultsChange"}, {"url": "AutoCompleteBase.html#config_resultTextLocator", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultTextLocator"}, {"url": "AutoCompleteBase.html#event_resultTextLocatorChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultTextLocatorChange"}, {"url": "AutoComplete.html#config_schema", "access": "", "host": "AutoComplete", "type": "config", "name": "schema"}, {"url": "AutoComplete.html#event_schemaChange", "access": "", "host": "AutoComplete", "type": "event", "name": "schemaChange"}, {"url": "AutoComplete.html#config_schemaType", "access": "", "host": "AutoComplete", "type": "config", "name": "schemaType"}, {"url": "AutoComplete.html#event_schemaTypeChange", "access": "", "host": "AutoComplete", "type": "event", "name": "schemaTypeChange"}, {"url": "AutoCompleteList.html#config_scrollIntoView", "access": "", "host": "AutoCompleteList", "type": "config", "name": "scrollIntoView"}, {"url": "AutoCompleteList.html#event_scrollIntoViewChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "scrollIntoViewChange"}, {"url": "AutoCompleteList.html#event_select", "access": "", "host": "AutoCompleteList", "type": "event", "name": "select"}, {"url": "AutoComplete.html#event_selectionEnforce", "access": "", "host": "AutoComplete", "type": "event", "name": "selectionEnforce"}, {"url": "AutoCompleteList.html#method_selectItem", "access": "", "host": "AutoCompleteList", "type": "method", "name": "selectItem"}, {"url": "AutoComplete.html#method__selectItem", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_selectItem"}, {"url": "AutoComplete.html#method__sendQuery", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_sendQuery"}, {"url": "AutoComplete.html#method_sendQuery", "access": "", "host": "AutoComplete", "type": "method", "name": "sendQuery"}, {"url": "AutoCompleteBase.html#method_sendRequest", "access": "", "host": "AutoCompleteBase", "type": "method", "name": "sendRequest"}, {"url": "AutoCompleteBase.html#method__setLocator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setLocator"}, {"url": "AutoCompleteBase.html#method__setRequestTemplate", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setRequestTemplate"}, {"url": "AutoCompleteBase.html#method__setResultFilters", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setResultFilters"}, {"url": "AutoCompleteBase.html#method__setResultHighlighter", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setResultHighlighter"}, {"url": "AutoCompleteBase.html#method__setSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setSource"}, {"url": "AutoCompleteBase.html#config_source", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "source"}, {"url": "AutoCompleteBase.html#event_sourceChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "sourceChange"}, {"url": "AutoCompleteBase.html#method__sourceSuccess", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_sourceSuccess"}, {"url": "AutoCompleteFilters.html#method_startsWith", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "startsWith"}, {"url": "AutoCompleteHighlighters.html#method_startsWith", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "startsWith"}, {"url": "AutoCompleteFilters.html#method_startsWithCase", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "startsWithCase"}, {"url": "AutoCompleteHighlighters.html#method_startsWithCase", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "startsWithCase"}, {"url": "AutoCompleteFilters.html#method_startsWithFold", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "startsWithFold"}, {"url": "AutoCompleteHighlighters.html#method_startsWithFold", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "startsWithFold"}, {"url": "AutoCompleteList.html#config_strings", "access": "", "host": "AutoCompleteList", "type": "config", "name": "strings"}, {"url": "AutoCompleteList.html#event_stringsChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "stringsChange"}, {"url": "AutoComplete.html#config_suppressInputUpdate", "access": "", "host": "AutoComplete", "type": "config", "name": "suppressInputUpdate"}, {"url": "AutoComplete.html#event_suppressInputUpdateChange", "access": "", "host": "AutoComplete", "type": "event", "name": "suppressInputUpdateChange"}, {"url": "AutoCompleteBase.html#method__syncBrowserAutocomplete", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_syncBrowserAutocomplete"}, {"url": "AutoCompleteList.html#method__syncResults", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncResults"}, {"url": "AutoComplete.html#method_syncUI", "access": "protected", "host": "AutoComplete", "type": "method", "name": "syncUI"}, {"url": "AutoCompleteBase.html#method__syncUIACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_syncUIACBase"}, {"url": "AutoCompleteList.html#method__syncVisibility", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncVisibility"}, {"url": "AutoCompleteList.html#config_tabSelect", "access": "", "host": "AutoCompleteList", "type": "config", "name": "tabSelect"}, {"url": "AutoCompleteList.html#event_tabSelectChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "tabSelectChange"}, {"url": "AutoComplete.html#event_textboxBlur", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxBlur"}, {"url": "AutoComplete.html#event_textboxChange", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxChange"}, {"url": "AutoComplete.html#event_textboxFocus", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxFocus"}, {"url": "AutoComplete.html#event_textboxKey", "access": "", "host": "AutoComplete", "type": "event", "name": "textboxKey"}, {"url": "AutoComplete.html#method__textMatchesOption", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_textMatchesOption"}, {"url": "AutoComplete.html#method__toggleContainer", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_toggleContainer"}, {"url": "AutoComplete.html#method__toggleHighlight", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_toggleHighlight"}, {"url": "AutoCompleteBase.html#config_tokenInput", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "tokenInput"}, {"url": "AutoCompleteBase.html#event_tokenInputChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "tokenInputChange"}, {"url": "AutoComplete.html#method__typeAhead", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_typeAhead"}, {"url": "AutoComplete.html#event_typeAhead", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAhead"}, {"url": "AutoComplete.html#config_typeAhead", "access": "", "host": "AutoComplete", "type": "config", "name": "typeAhead"}, {"url": "AutoComplete.html#event_typeAheadChange", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAheadChange"}, {"url": "AutoComplete.html#config_typeAheadDelay", "access": "", "host": "AutoComplete", "type": "config", "name": "typeAheadDelay"}, {"url": "AutoComplete.html#event_typeAheadDelayChange", "access": "", "host": "AutoComplete", "type": "event", "name": "typeAheadDelayChange"}, {"url": "AutoCompleteList.html#method__unbindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_unbindKeys"}, {"url": "AutoComplete.html#config_uniqueName", "access": "", "host": "AutoComplete", "type": "config", "name": "uniqueName"}, {"url": "AutoComplete.html#event_uniqueNameChange", "access": "", "host": "AutoComplete", "type": "event", "name": "uniqueNameChange"}, {"url": "AutoComplete.html#event_unmatchedItemSelect", "access": "", "host": "AutoComplete", "type": "event", "name": "unmatchedItemSelect"}, {"url": "AutoCompleteBase.html#method__updateValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_updateValue"}, {"url": "AutoComplete.html#method__updateValue", "access": "protected", "host": "AutoComplete", "type": "method", "name": "_updateValue"}, {"url": "AutoCompleteBase.html#config_value", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "value"}, {"url": "AutoCompleteBase.html#event_valueChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "valueChange"}, {"url": "AutoCompleteFilters.html#method_wordMatch", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "wordMatch"}, {"url": "AutoCompleteHighlighters.html#method_wordMatch", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "wordMatch"}, {"url": "AutoCompleteFilters.html#method_wordMatchCase", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "wordMatchCase"}, {"url": "AutoCompleteHighlighters.html#method_wordMatchCase", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "wordMatchCase"}, {"url": "AutoCompleteFilters.html#method_wordMatchFold", "access": "", "host": "AutoCompleteFilters", "type": "method", "name": "wordMatchFold"}, {"url": "AutoCompleteHighlighters.html#method_wordMatchFold", "access": "", "host": "AutoCompleteHighlighters", "type": "method", "name": "wordMatchFold"}, {"url": "AutoCompleteBase.html#config_yqlEnv", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "yqlEnv"}, {"url": "AutoCompleteBase.html#event_yqlEnvChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "yqlEnvChange"}, {"url": "AutoCompleteBase.html#config_yqlProtocol", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "yqlProtocol"}, {"url": "AutoCompleteBase.html#event_yqlProtocolChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "yqlProtocolChange"}, {"url": "AutoCompleteBase.html#property__YQL_SOURCE_REGEX", "access": "protected", "host": "AutoCompleteBase", "type": "property", "name": "_YQL_SOURCE_REGEX"}];
+</script>
+</body>
+</html>

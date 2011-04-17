@@ -1,0 +1,2740 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: charts  ComboSeries   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			charts&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_charts.html" title="charts">charts</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">ComboSeries</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AreaSeries.html" title="AreaSeries">AreaSeries</a></li>
+
+
+				                                <li class=""><a href="AreaSplineSeries.html" title="AreaSplineSeries">AreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="Axis.html" title="Axis">Axis</a></li>
+
+
+				                                <li class=""><a href="AxisType.html" title="AxisType">AxisType</a></li>
+
+
+				                                <li class=""><a href="BarSeries.html" title="BarSeries">BarSeries</a></li>
+
+
+				                                <li class=""><a href="BottomAxisLayout.html" title="BottomAxisLayout">BottomAxisLayout</a></li>
+
+
+				                                <li class=""><a href="CanvasDrawingUtil.html" title="CanvasDrawingUtil">CanvasDrawingUtil</a></li>
+
+
+				                                <li class=""><a href="CanvasGraphics.html" title="CanvasGraphics">CanvasGraphics</a></li>
+
+
+				                                <li class=""><a href="CanvasShape.html" title="CanvasShape">CanvasShape</a></li>
+
+
+				                                <li class=""><a href="CartesianChart.html" title="CartesianChart">CartesianChart</a></li>
+
+
+				                                <li class=""><a href="CartesianSeries.html" title="CartesianSeries">CartesianSeries</a></li>
+
+
+				                                <li class=""><a href="CategoryAxis.html" title="CategoryAxis">CategoryAxis</a></li>
+
+
+				                                <li class=""><a href="Chart.html" title="Chart">Chart</a></li>
+
+
+				                                <li class=""><a href="ChartBase.html" title="ChartBase">ChartBase</a></li>
+
+
+				                                <li class=""><a href="ColumnSeries.html" title="ColumnSeries">ColumnSeries</a></li>
+
+
+				                                <li class="selected"><a href="ComboSeries.html" title="ComboSeries">ComboSeries</a></li>
+
+
+				                                <li class=""><a href="ComboSplineSeries.html" title="ComboSplineSeries">ComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="CurveUtil.html" title="CurveUtil">CurveUtil</a></li>
+
+
+				                                <li class=""><a href="Fills.html" title="Fills">Fills</a></li>
+
+
+				                                <li class=""><a href="Graph.html" title="Graph">Graph</a></li>
+
+
+				                                <li class=""><a href="Graphic.html" title="Graphic">Graphic</a></li>
+
+
+				                                <li class=""><a href="Gridlines.html" title="Gridlines">Gridlines</a></li>
+
+
+				                                <li class=""><a href="Histogram.html" title="Histogram">Histogram</a></li>
+
+
+				                                <li class=""><a href="LeftAxisLayout.html" title="LeftAxisLayout">LeftAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Lines.html" title="Lines">Lines</a></li>
+
+
+				                                <li class=""><a href="LineSeries.html" title="LineSeries">LineSeries</a></li>
+
+
+				                                <li class=""><a href="MarkerSeries.html" title="MarkerSeries">MarkerSeries</a></li>
+
+
+				                                <li class=""><a href="NumericAxis.html" title="NumericAxis">NumericAxis</a></li>
+
+
+				                                <li class=""><a href="PieChart.html" title="PieChart">PieChart</a></li>
+
+
+				                                <li class=""><a href="PieSeries.html" title="PieSeries">PieSeries</a></li>
+
+
+				                                <li class=""><a href="Plots.html" title="Plots">Plots</a></li>
+
+
+				                                <li class=""><a href="Renderer.html" title="Renderer">Renderer</a></li>
+
+
+				                                <li class=""><a href="RightAxisLayout.html" title="RightAxisLayout">RightAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Shape.html" title="Shape">Shape</a></li>
+
+
+				                                <li class=""><a href="SplineSeries.html" title="SplineSeries">SplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSeries.html" title="StackedAreaSeries">StackedAreaSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSplineSeries.html" title="StackedAreaSplineSeries">StackedAreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAxis.html" title="StackedAxis">StackedAxis</a></li>
+
+
+				                                <li class=""><a href="StackedBarSeries.html" title="StackedBarSeries">StackedBarSeries</a></li>
+
+
+				                                <li class=""><a href="StackedColumnSeries.html" title="StackedColumnSeries">StackedColumnSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSeries.html" title="StackedComboSeries">StackedComboSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSplineSeries.html" title="StackedComboSplineSeries">StackedComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedLineSeries.html" title="StackedLineSeries">StackedLineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedMarkerSeries.html" title="StackedMarkerSeries">StackedMarkerSeries</a></li>
+
+
+				                                <li class=""><a href="StackedSplineSeries.html" title="StackedSplineSeries">StackedSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackingUtil.html" title="StackingUtil">StackingUtil</a></li>
+
+
+				                                <li class=""><a href="TimeAxis.html" title="TimeAxis">TimeAxis</a></li>
+
+
+				                                <li class=""><a href="TopAxisLayout.html" title="TopAxisLayout">TopAxisLayout</a></li>
+
+
+				                                <li class=""><a href="VMLGraphics.html" title="VMLGraphics">VMLGraphics</a></li>
+
+
+				                                <li class=""><a href="VMLShape.html" title="VMLShape">VMLShape</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-configuration">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-configuration-hd">
+										<span class="yui3-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_area" title="area">area</a></li>
+												<li class=""><a href="#config_line" title="line">line</a></li>
+												<li class=""><a href="#config_marker" title="marker">marker</a></li>
+												<li class=""><a href="#config_showAreaFill" title="showAreaFill">showAreaFill</a></li>
+												<li class=""><a href="#config_showLines" title="showLines">showLines</a></li>
+												<li class=""><a href="#config_showMarkers" title="showMarkers">showMarkers</a></li>
+												<li class=""><a href="#config_styles" title="styles">styles</a></li>
+												<li class=""><a href="#config_type" title="type">type</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__getDefaultStyles" title="_getDefaultStyles">_getDefaultStyles</a></li>
+				                               <li class="protected"><a href="#method_drawSeries" title="drawSeries">drawSeries</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-events">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-events-hd">
+										<span class="yui3-widget-hd-text">Events</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_areaChange" title="areaChange">areaChange</a></li>
+												<li class=""><a href="#event_lineChange" title="lineChange">lineChange</a></li>
+												<li class=""><a href="#event_markerChange" title="markerChange">markerChange</a></li>
+												<li class=""><a href="#event_showAreaFillChange" title="showAreaFillChange">showAreaFillChange</a></li>
+												<li class=""><a href="#event_showLinesChange" title="showLinesChange">showLinesChange</a></li>
+												<li class=""><a href="#event_showMarkersChange" title="showMarkersChange">showMarkersChange</a></li>
+												<li class=""><a href="#event_stylesChange" title="stylesChange">stylesChange</a></li>
+												<li class=""><a href="#event_typeChange" title="typeChange">typeChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="charts-debug.js.html" title="charts-debug.js">charts-debug.js</a></li>
+
+
+			                                <li class=""><a href="charts-min.js.html" title="charts-min.js">charts-min.js</a></li>
+
+
+			                                <li class=""><a href="charts.js.html" title="charts.js">charts.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">ComboSeries</b>
+
+									<span class="extends">- extends <a href="CartesianSeries.html" title="CartesianSeries">CartesianSeries</a></span>
+
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="Fills.html">
+												<a href="Fills.html" property="yui:name" title="Fills">Fills</a>
+												
+											</span>
+										, 
+											<span rel="extend" resource="Lines.html">
+												<a href="Lines.html" property="yui:name" title="Lines">Lines</a>
+												
+											</span>
+										, 
+											<span rel="extend" resource="Plots.html">
+												<a href="Plots.html" property="yui:name" title="Plots">Plots</a>
+												
+											</span>
+										
+									</span>
+							</h2>
+
+							<!-- class tree goes here -->
+								<dl class="subclasses" rel="yui:subclasses">
+									<dt>Known Subclasses:</dt>
+									<dd>
+											<span rel="yui:subclass" resource="ComboSplineSeries.html">
+												<a href="ComboSplineSeries.html" property="yui:name" title="ComboSplineSeries">ComboSplineSeries</a>
+											</span>
+											<span rel="yui:subclass" resource="StackedComboSeries.html">
+												<a href="StackedComboSeries.html" property="yui:name" title="StackedComboSeries">StackedComboSeries</a>
+											</span>
+									</dd>
+							   </dl>
+
+
+
+							<div class="summary description" property="yui:description">
+								The ComboSeries class renders a combination of lines, plots and area fills in a single series. Each
+series type has a corresponding boolean attribute indicating if it is rendered. By default, lines and plots 
+are rendered and area is not.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">ComboSeries</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Plugin.Host.html">
+
+										<h4>
+											Properties inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Plugin.Host.html#property_PluginHost">
+													<a href="Plugin.Host.html#property_PluginHost" property="yui:name" title="PluginHost">PluginHost</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Fills.html">
+
+										<h4>
+											Properties inherited from <a href="Fills.html" property="yui:name" title="Fills">Fills</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Lines.html">
+
+										<h4>
+											Properties inherited from <a href="Lines.html" property="yui:name" title="Lines">Lines</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="CartesianSeries.html">
+
+										<h4>
+											Properties inherited from <a href="CartesianSeries.html" property="yui:name" title="CartesianSeries">CartesianSeries</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="CartesianSeries.html#property__defaultBorderColors">
+													<a href="CartesianSeries.html#property__defaultBorderColors" property="yui:name" title="_defaultBorderColors">_defaultBorderColors</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="CartesianSeries.html#property__defaultFillColors">
+													<a href="CartesianSeries.html#property__defaultFillColors" property="yui:name" title="_defaultFillColors">_defaultFillColors</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="CartesianSeries.html#property__defaultLineColors">
+													<a href="CartesianSeries.html#property__defaultLineColors" property="yui:name" title="_defaultLineColors">_defaultLineColors</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="protected" rel="yui:property" resource="CartesianSeries.html#property__defaultSliceColors">
+													<a href="CartesianSeries.html#property__defaultSliceColors" property="yui:name" title="_defaultSliceColors">_defaultSliceColors</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Renderer.html">
+
+										<h4>
+											Properties inherited from <a href="Renderer.html" property="yui:name" title="Renderer">Renderer</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Plots.html">
+
+										<h4>
+											Properties inherited from <a href="Plots.html" property="yui:name" title="Plots">Plots</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_area">
+
+													<h4>
+														<a name="config_area">area</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Reference to the styles of the area fills. These styles can also be accessed through the <code>styles</code> attribute.
+Below are the default values:
+<dl>
+<dt>color</dt><dd>The color of the fill. The default value is determined by the order of the series on the graph. The color will be 
+retrieved from the following array:
+<code>["#66007f", "#a86f41", "#295454", "#996ab2", "#e8cdb7", "#90bdbd","#000000","#c3b8ca", "#968373", "#678585"]</code>
+</dd>
+<dt>alpha</dt><dd>Number between 0 and 1 that indicates the opacity of the fill. The default value is 1</dd>
+</dl>
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_line">
+
+													<h4>
+														<a name="config_line">line</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Reference to the styles of the lines. These styles can also be accessed through the <code>styles</code> attribute.
+Below are the default values:
+<dl>
+<dt>color</dt><dd>The color of the line. The default value is determined by the order of the series on the graph. The color will be
+retrieved from the following array: 
+<code>["#426ab3", "#d09b2c", "#000000", "#b82837", "#b384b5", "#ff7200", "#779de3", "#cbc8ba", "#7ed7a6", "#007a6c"]</code>
+<dt>weight</dt><dd>Number that indicates the width of the line. The default value is 6.</dd>
+<dt>alpha</dt><dd>Number between 0 and 1 that indicates the opacity of the line. The default value is 1.</dd>
+<dt>lineType</dt><dd>Indicates whether the line is solid or dashed. The default value is solid.</dd> 
+<dt>dashLength</dt><dd>When the <code>lineType</code> is dashed, indicates the length of the dash. The default value is 10.</dd>
+<dt>gapSpace</dt><dd>When the <code>lineType</code> is dashed, indicates the distance between dashes. The default value is 10.</dd>
+<dt>connectDiscontinuousPoints</dt><dd>Indicates whether or not to connect lines when there is a missing or null value between points. The default value is true.</dd> 
+<dt>discontinuousType</dt><dd>Indicates whether the line between discontinuous points is solid or dashed. The default value is solid.</dd>
+<dt>discontinuousDashLength</dt><dd>When the <code>discontinuousType</code> is dashed, indicates the length of the dash. The default value is 10.</dd>
+<dt>discontinuousGapSpace</dt><dd>When the <code>discontinuousType</code> is dashed, indicates the distance between dashes. The default value is 10.</dd>
+</dl>
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_marker">
+
+													<h4>
+														<a name="config_marker">marker</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Reference to the styles of the markers. These styles can also
+be accessed through the <code>styles</code> attribute. Below are default
+values:
+<dl>
+<dt>fill</dt><dd>A hash containing the following values:
+<dl>
+<dt>color</dt><dd>Color of the fill. The default value is determined by the order of the series on the graph. The color
+will be retrieved from the below array:<br/>
+<code>["#6084d0", "#eeb647", "#6c6b5f", "#d6484f", "#ce9ed1", "#ff9f3b", "#93b7ff", "#e0ddd0", "#94ecba", "#309687"]</code>
+</dd>
+<dt>alpha</dt><dd>Number from 0 to 1 indicating the opacity of the marker fill. The default value is 1.</dd>
+</dl>
+</dd>
+<dt>border</dt><dd>A hash containing the following values:
+<dl>
+<dt>color</dt><dd>Color of the border. The default value is determined by the order of the series on the graph. The color
+will be retrieved from the below array:<br/>
+<code>["#205096", "#b38206", "#000000", "#94001e", "#9d6fa0", "#e55b00", "#5e85c9", "#adab9e", "#6ac291", "#006457"]</code>
+<dt>alpha</dt><dd>Number from 0 to 1 indicating the opacity of the marker border. The default value is 1.</dd>
+<dt>weight</dt><dd>Number indicating the width of the border. The default value is 1.</dd>
+</dl>
+</dd>
+<dt>width</dt><dd>indicates the width of the marker. The default value is 10.</dd>
+<dt>height</dt><dd>indicates the height of the marker The default value is 10.</dd>
+<dt>over</dt><dd>hash containing styles for markers when highlighted by a <code>mouseover</code> event. The default 
+values for each style is null. When an over style is not set, the non-over value will be used. For example,
+the default value for <code>marker.over.fill.color</code> is equivalent to <code>marker.fill.color</code>.</dd>
+</dl>
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_showAreaFill">
+
+													<h4>
+														<a name="config_showAreaFill">showAreaFill</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Indicates whether a fill is displayed.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>false</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_showLines">
+
+													<h4>
+														<a name="config_showLines">showLines</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Indicates whether lines are displayed.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_showMarkers">
+
+													<h4>
+														<a name="config_showMarkers">showMarkers</a>
+														<code>- <span property="yui:type">Boolean</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Indicates whether markers are displayed.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>true</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_styles">
+
+													<h4>
+														<a name="config_styles">styles</a>
+														<code>- <span property="yui:type">Object</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Style properties for the series. Contains a key indexed hash of the following:
+<dl>
+<dt>marker</dt><dd>Style properties for the markers in the series. Specific style attributes are listed
+<a href="#config_marker">here</a>.</dd>
+<dt>line</dt><dd>Style properties for the lines in the series. Specific
+style attributes are listed <a href="#config_line">here</a>.</dd>
+<dt>area</dt><dd>Style properties for the area fills in the series. Specific style attributes are listed
+<a href="#config_area">here</a>.</dd>
+</dl>
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_type">
+
+													<h4>
+														<a name="config_type">type</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Read-only attribute indicating the type of series.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>combo</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="CartesianSeries.html">
+												<h4>Configuration attributes inherited from <a href="CartesianSeries.html" property="yui:name" title="CartesianSeries">CartesianSeries</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_categoryDisplayName">
+															<a href="CartesianSeries.html#config_categoryDisplayName" property="yui:name" title="categoryDisplayName">categoryDisplayName</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_direction">
+															<a href="CartesianSeries.html#config_direction" property="yui:name" title="direction">direction</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_graph">
+															<a href="CartesianSeries.html#config_graph" property="yui:name" title="graph">graph</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_graphOrder">
+															<a href="CartesianSeries.html#config_graphOrder" property="yui:name" title="graphOrder">graphOrder</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_height">
+															<a href="CartesianSeries.html#config_height" property="yui:name" title="height">height</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_order">
+															<a href="CartesianSeries.html#config_order" property="yui:name" title="order">order</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_rendered">
+															<a href="CartesianSeries.html#config_rendered" property="yui:name" title="rendered">rendered</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_type">
+															<a href="CartesianSeries.html#config_type" property="yui:name" title="type">type</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_valueDisplayName">
+															<a href="CartesianSeries.html#config_valueDisplayName" property="yui:name" title="valueDisplayName">valueDisplayName</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_visible">
+															<a href="CartesianSeries.html#config_visible" property="yui:name" title="visible">visible</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xAxis">
+															<a href="CartesianSeries.html#config_xAxis" property="yui:name" title="xAxis">xAxis</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xcoords">
+															<a href="CartesianSeries.html#config_xcoords" property="yui:name" title="xcoords">xcoords</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xData">
+															<a href="CartesianSeries.html#config_xData" property="yui:name" title="xData">xData</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xDisplayName">
+															<a href="CartesianSeries.html#config_xDisplayName" property="yui:name" title="xDisplayName">xDisplayName</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xKey">
+															<a href="CartesianSeries.html#config_xKey" property="yui:name" title="xKey">xKey</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xMarkerPlane">
+															<a href="CartesianSeries.html#config_xMarkerPlane" property="yui:name" title="xMarkerPlane">xMarkerPlane</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_xMarkerPlaneOffset">
+															<a href="CartesianSeries.html#config_xMarkerPlaneOffset" property="yui:name" title="xMarkerPlaneOffset">xMarkerPlaneOffset</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yAxis">
+															<a href="CartesianSeries.html#config_yAxis" property="yui:name" title="yAxis">yAxis</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_ycoords">
+															<a href="CartesianSeries.html#config_ycoords" property="yui:name" title="ycoords">ycoords</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yData">
+															<a href="CartesianSeries.html#config_yData" property="yui:name" title="yData">yData</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yDisplayName">
+															<a href="CartesianSeries.html#config_yDisplayName" property="yui:name" title="yDisplayName">yDisplayName</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yKey">
+															<a href="CartesianSeries.html#config_yKey" property="yui:name" title="yKey">yKey</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yMarkerPlane">
+															<a href="CartesianSeries.html#config_yMarkerPlane" property="yui:name" title="yMarkerPlane">yMarkerPlane</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="CartesianSeries.html#config_yMarkerPlaneOffset">
+															<a href="CartesianSeries.html#config_yMarkerPlaneOffset" property="yui:name" title="yMarkerPlaneOffset">yMarkerPlaneOffset</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Renderer.html">
+												<h4>Configuration attributes inherited from <a href="Renderer.html" property="yui:name" title="Renderer">Renderer</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Renderer.html#config_graphic">
+															<a href="Renderer.html#config_graphic" property="yui:name" title="graphic">graphic</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Renderer.html#config_styles">
+															<a href="Renderer.html#config_styles" property="yui:name" title="styles">styles</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getDefaultStyles">
+
+													<h4>
+														<a name="method__getDefaultStyles">_getDefaultStyles</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														
+															<strong property="yui:name">_getDefaultStyles</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the default hash for the <code>styles</code> attribute.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">Object</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_drawSeries">
+
+													<h4>
+														<a name="method_drawSeries">drawSeries</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">drawSeries</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws the series.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Fills.html">
+
+											<h4>
+												Methods inherited from <a href="Fills.html" property="yui:name" title="Fills">Fills</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Fills.html#method__getClosingPoints">
+														<a href="Fills.html#method__getClosingPoints" property="yui:name" title="_getClosingPoints">_getClosingPoints</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Fills.html#method__getStackedClosingPoints">
+														<a href="Fills.html#method__getStackedClosingPoints" property="yui:name" title="_getStackedClosingPoints">_getStackedClosingPoints</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Fills.html#method_drawAreaSpline">
+														<a href="Fills.html#method_drawAreaSpline" property="yui:name" title="drawAreaSpline">drawAreaSpline</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Fills.html#method_drawFill">
+														<a href="Fills.html#method_drawFill" property="yui:name" title="drawFill">drawFill</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Fills.html#method_drawStackedAreaSpline">
+														<a href="Fills.html#method_drawStackedAreaSpline" property="yui:name" title="drawStackedAreaSpline">drawStackedAreaSpline</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrCfg">
+														<a href="Attribute.html#method__getAttrCfg" property="yui:name" title="_getAttrCfg">_getAttrCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Lines.html">
+
+											<h4>
+												Methods inherited from <a href="Lines.html" property="yui:name" title="Lines">Lines</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Lines.html#method__getLineDefaults">
+														<a href="Lines.html#method__getLineDefaults" property="yui:name" title="_getLineDefaults">_getLineDefaults</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Lines.html#method_drawLines">
+														<a href="Lines.html#method_drawLines" property="yui:name" title="drawLines">drawLines</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Lines.html#method_drawSpline">
+														<a href="Lines.html#method_drawSpline" property="yui:name" title="drawSpline">drawSpline</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
+														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="CartesianSeries.html">
+
+											<h4>
+												Methods inherited from <a href="CartesianSeries.html" property="yui:name" title="CartesianSeries">CartesianSeries</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method__getDefaultColor">
+														<a href="CartesianSeries.html#method__getDefaultColor" property="yui:name" title="_getDefaultColor">_getDefaultColor</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method__getDefaultStyles">
+														<a href="CartesianSeries.html#method__getDefaultStyles" property="yui:name" title="_getDefaultStyles">_getDefaultStyles</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method__setCanvas">
+														<a href="CartesianSeries.html#method__setCanvas" property="yui:name" title="_setCanvas">_setCanvas</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method__toggleVisible">
+														<a href="CartesianSeries.html#method__toggleVisible" property="yui:name" title="_toggleVisible">_toggleVisible</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method_draw">
+														<a href="CartesianSeries.html#method_draw" property="yui:name" title="draw">draw</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="CartesianSeries.html#method_setAreaData">
+														<a href="CartesianSeries.html#method_setAreaData" property="yui:name" title="setAreaData">setAreaData</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Renderer.html">
+
+											<h4>
+												Methods inherited from <a href="Renderer.html" property="yui:name" title="Renderer">Renderer</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Renderer.html#method__getDefaultStyles">
+														<a href="Renderer.html#method__getDefaultStyles" property="yui:name" title="_getDefaultStyles">_getDefaultStyles</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Renderer.html#method__mergeStyles">
+														<a href="Renderer.html#method__mergeStyles" property="yui:name" title="_mergeStyles">_mergeStyles</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Renderer.html#method__setStyles">
+														<a href="Renderer.html#method__setStyles" property="yui:name" title="_setStyles">_setStyles</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plots.html">
+
+											<h4>
+												Methods inherited from <a href="Plots.html" property="yui:name" title="Plots">Plots</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method__getItemColor">
+														<a href="Plots.html#method__getItemColor" property="yui:name" title="_getItemColor">_getItemColor</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method__getPlotDefaults">
+														<a href="Plots.html#method__getPlotDefaults" property="yui:name" title="_getPlotDefaults">_getPlotDefaults</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method__getState">
+														<a href="Plots.html#method__getState" property="yui:name" title="_getState">_getState</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method__setStyles">
+														<a href="Plots.html#method__setStyles" property="yui:name" title="_setStyles">_setStyles</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method_drawPlots">
+														<a href="Plots.html#method_drawPlots" property="yui:name" title="drawPlots">drawPlots</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method_getHotspot">
+														<a href="Plots.html#method_getHotspot" property="yui:name" title="getHotspot">getHotspot</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method_getMarker">
+														<a href="Plots.html#method_getMarker" property="yui:name" title="getMarker">getMarker</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Plots.html#method_updateMarkerState">
+														<a href="Plots.html#method_updateMarkerState" property="yui:name" title="updateMarkerState">updateMarkerState</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_areaChange">
+
+													<h4>
+														<a name="event_areaChange">areaChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">areaChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'area' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_lineChange">
+
+													<h4>
+														<a name="event_lineChange">lineChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">lineChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'line' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_markerChange">
+
+													<h4>
+														<a name="event_markerChange">markerChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">markerChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'marker' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_showAreaFillChange">
+
+													<h4>
+														<a name="event_showAreaFillChange">showAreaFillChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">showAreaFillChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'showAreaFill' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_showLinesChange">
+
+													<h4>
+														<a name="event_showLinesChange">showLinesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">showLinesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'showLines' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_showMarkersChange">
+
+													<h4>
+														<a name="event_showMarkersChange">showMarkersChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">showMarkersChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'showMarkers' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_stylesChange">
+
+													<h4>
+														<a name="event_stylesChange">stylesChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">stylesChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'styles' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_typeChange">
+
+													<h4>
+														<a name="event_typeChange">typeChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">typeChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'type' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="CartesianSeries.html">
+											<h4>
+												Events inherited from <a href="CartesianSeries.html" property="yui:name" title="CartesianSeries">CartesianSeries</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_categoryDisplayNameChange">
+														<a href="CartesianSeries.html#event_categoryDisplayNameChange" property="yui:name" title="categoryDisplayNameChange">categoryDisplayNameChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_directionChange">
+														<a href="CartesianSeries.html#event_directionChange" property="yui:name" title="directionChange">directionChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_graphChange">
+														<a href="CartesianSeries.html#event_graphChange" property="yui:name" title="graphChange">graphChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_graphOrderChange">
+														<a href="CartesianSeries.html#event_graphOrderChange" property="yui:name" title="graphOrderChange">graphOrderChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_heightChange">
+														<a href="CartesianSeries.html#event_heightChange" property="yui:name" title="heightChange">heightChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_orderChange">
+														<a href="CartesianSeries.html#event_orderChange" property="yui:name" title="orderChange">orderChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_renderedChange">
+														<a href="CartesianSeries.html#event_renderedChange" property="yui:name" title="renderedChange">renderedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_typeChange">
+														<a href="CartesianSeries.html#event_typeChange" property="yui:name" title="typeChange">typeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_valueDisplayNameChange">
+														<a href="CartesianSeries.html#event_valueDisplayNameChange" property="yui:name" title="valueDisplayNameChange">valueDisplayNameChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_visibleChange">
+														<a href="CartesianSeries.html#event_visibleChange" property="yui:name" title="visibleChange">visibleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xAxisChange">
+														<a href="CartesianSeries.html#event_xAxisChange" property="yui:name" title="xAxisChange">xAxisChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xcoordsChange">
+														<a href="CartesianSeries.html#event_xcoordsChange" property="yui:name" title="xcoordsChange">xcoordsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xDataChange">
+														<a href="CartesianSeries.html#event_xDataChange" property="yui:name" title="xDataChange">xDataChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xDisplayNameChange">
+														<a href="CartesianSeries.html#event_xDisplayNameChange" property="yui:name" title="xDisplayNameChange">xDisplayNameChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xKeyChange">
+														<a href="CartesianSeries.html#event_xKeyChange" property="yui:name" title="xKeyChange">xKeyChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xMarkerPlaneChange">
+														<a href="CartesianSeries.html#event_xMarkerPlaneChange" property="yui:name" title="xMarkerPlaneChange">xMarkerPlaneChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_xMarkerPlaneOffsetChange">
+														<a href="CartesianSeries.html#event_xMarkerPlaneOffsetChange" property="yui:name" title="xMarkerPlaneOffsetChange">xMarkerPlaneOffsetChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yAxisChange">
+														<a href="CartesianSeries.html#event_yAxisChange" property="yui:name" title="yAxisChange">yAxisChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_ycoordsChange">
+														<a href="CartesianSeries.html#event_ycoordsChange" property="yui:name" title="ycoordsChange">ycoordsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yDataChange">
+														<a href="CartesianSeries.html#event_yDataChange" property="yui:name" title="yDataChange">yDataChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yDisplayNameChange">
+														<a href="CartesianSeries.html#event_yDisplayNameChange" property="yui:name" title="yDisplayNameChange">yDisplayNameChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yKeyChange">
+														<a href="CartesianSeries.html#event_yKeyChange" property="yui:name" title="yKeyChange">yKeyChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yMarkerPlaneChange">
+														<a href="CartesianSeries.html#event_yMarkerPlaneChange" property="yui:name" title="yMarkerPlaneChange">yMarkerPlaneChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="CartesianSeries.html#event_yMarkerPlaneOffsetChange">
+														<a href="CartesianSeries.html#event_yMarkerPlaneOffsetChange" property="yui:name" title="yMarkerPlaneOffsetChange">yMarkerPlaneOffsetChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Renderer.html">
+											<h4>
+												Events inherited from <a href="Renderer.html" property="yui:name" title="Renderer">Renderer</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Renderer.html#event_graphicChange">
+														<a href="Renderer.html#event_graphicChange" property="yui:name" title="graphicChange">graphicChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Renderer.html#event_stylesChange">
+														<a href="Renderer.html#event_stylesChange" property="yui:name" title="stylesChange">stylesChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Shape.html#method_addClass", "access": "", "host": "Shape", "type": "method", "name": "addClass"}, {"url": "CanvasShape.html#method_addClass", "access": "", "host": "CanvasShape", "type": "method", "name": "addClass"}, {"url": "VMLShape.html#method_addClass", "access": "", "host": "VMLShape", "type": "method", "name": "addClass"}, {"url": "AxisType.html#method_addKey", "access": "", "host": "AxisType", "type": "method", "name": "addKey"}, {"url": "NumericAxis.html#config_alwaysShowZero", "access": "", "host": "NumericAxis", "type": "config", "name": "alwaysShowZero"}, {"url": "NumericAxis.html#event_alwaysShowZeroChange", "access": "", "host": "NumericAxis", "type": "event", "name": "alwaysShowZeroChange"}, {"url": "ComboSeries.html#config_area", "access": "", "host": "ComboSeries", "type": "config", "name": "area"}, {"url": "ComboSeries.html#event_areaChange", "access": "", "host": "ComboSeries", "type": "event", "name": "areaChange"}, {"url": "Graphic.html#property_autoSize", "access": "", "host": "Graphic", "type": "property", "name": "autoSize"}, {"url": "VMLGraphics.html#property_autoSize", "access": "", "host": "VMLGraphics", "type": "property", "name": "autoSize"}, {"url": "Shape.html#property_autoSize", "access": "", "host": "Shape", "type": "property", "name": "autoSize"}, {"url": "CanvasShape.html#property_autoSize", "access": "", "host": "CanvasShape", "type": "property", "name": "autoSize"}, {"url": "LeftAxisLayout.html#config_axisRenderer", "access": "protected", "host": "LeftAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "RightAxisLayout.html#config_axisRenderer", "access": "protected", "host": "RightAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "BottomAxisLayout.html#config_axisRenderer", "access": "protected", "host": "BottomAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "TopAxisLayout.html#config_axisRenderer", "access": "protected", "host": "TopAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "LeftAxisLayout.html#event_axisRendererChange", "access": "", "host": "LeftAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "RightAxisLayout.html#event_axisRendererChange", "access": "", "host": "RightAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "BottomAxisLayout.html#event_axisRendererChange", "access": "", "host": "BottomAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "TopAxisLayout.html#event_axisRendererChange", "access": "", "host": "TopAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "Graphic.html#method_beginBitmapFill", "access": "", "host": "Graphic", "type": "method", "name": "beginBitmapFill"}, {"url": "CanvasDrawingUtil.html#method_beginBitmapFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginBitmapFill"}, {"url": "VMLGraphics.html#method_beginBitmapFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginBitmapFill"}, {"url": "Graphic.html#method_beginFill", "access": "", "host": "Graphic", "type": "method", "name": "beginFill"}, {"url": "CanvasDrawingUtil.html#method_beginFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginFill"}, {"url": "VMLGraphics.html#method_beginFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginFill"}, {"url": "Graphic.html#method_beginGradientFill", "access": "", "host": "Graphic", "type": "method", "name": "beginGradientFill"}, {"url": "CanvasDrawingUtil.html#method_beginGradientFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginGradientFill"}, {"url": "VMLGraphics.html#method_beginGradientFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginGradientFill"}, {"url": "Axis.html#config_bottomTickOffset", "access": "", "host": "Axis", "type": "config", "name": "bottomTickOffset"}, {"url": "Axis.html#event_bottomTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "bottomTickOffsetChange"}, {"url": "CartesianSeries.html#config_categoryDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "categoryDisplayName"}, {"url": "CartesianSeries.html#event_categoryDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "categoryDisplayNameChange"}, {"url": "Graphic.html#method_clear", "access": "", "host": "Graphic", "type": "method", "name": "clear"}, {"url": "CanvasDrawingUtil.html#method_clear", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "clear"}, {"url": "VMLGraphics.html#method_clear", "access": "", "host": "VMLGraphics", "type": "method", "name": "clear"}, {"url": "Graphic.html#method_curveTo", "access": "", "host": "Graphic", "type": "method", "name": "curveTo"}, {"url": "CanvasDrawingUtil.html#method_curveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "curveTo"}, {"url": "VMLGraphics.html#method_curveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "curveTo"}, {"url": "AxisType.html#config_data", "access": "", "host": "AxisType", "type": "config", "name": "data"}, {"url": "AxisType.html#event_dataChange", "access": "", "host": "AxisType", "type": "event", "name": "dataChange"}, {"url": "AxisType.html#config_dataMaximum", "access": "", "host": "AxisType", "type": "config", "name": "dataMaximum"}, {"url": "AxisType.html#event_dataMaximumChange", "access": "", "host": "AxisType", "type": "event", "name": "dataMaximumChange"}, {"url": "AxisType.html#config_dataMinimum", "access": "", "host": "AxisType", "type": "config", "name": "dataMinimum"}, {"url": "AxisType.html#event_dataMinimumChange", "access": "", "host": "AxisType", "type": "event", "name": "dataMinimumChange"}, {"url": "AxisType.html#config_dataProvider", "access": "", "host": "AxisType", "type": "config", "name": "dataProvider"}, {"url": "AxisType.html#event_dataProviderChange", "access": "", "host": "AxisType", "type": "event", "name": "dataProviderChange"}, {"url": "CartesianSeries.html#property__defaultBorderColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultBorderColors"}, {"url": "CartesianSeries.html#property__defaultFillColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultFillColors"}, {"url": "CartesianSeries.html#property__defaultLineColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultLineColors"}, {"url": "CartesianSeries.html#property__defaultSliceColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultSliceColors"}, {"url": "Graphic.html#method_destroy", "access": "", "host": "Graphic", "type": "method", "name": "destroy"}, {"url": "CanvasGraphics.html#method_destroy", "access": "", "host": "CanvasGraphics", "type": "method", "name": "destroy"}, {"url": "VMLGraphics.html#method_destroy", "access": "", "host": "VMLGraphics", "type": "method", "name": "destroy"}, {"url": "CartesianSeries.html#config_direction", "access": "", "host": "CartesianSeries", "type": "config", "name": "direction"}, {"url": "BarSeries.html#config_direction", "access": "", "host": "BarSeries", "type": "config", "name": "direction"}, {"url": "CartesianSeries.html#event_directionChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "directionChange"}, {"url": "BarSeries.html#event_directionChange", "access": "", "host": "BarSeries", "type": "event", "name": "directionChange"}, {"url": "CartesianSeries.html#method_draw", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "draw"}, {"url": "Fills.html#method_drawAreaSpline", "access": "protected", "host": "Fills", "type": "method", "name": "drawAreaSpline"}, {"url": "Graphic.html#method_drawCircle", "access": "", "host": "Graphic", "type": "method", "name": "drawCircle"}, {"url": "CanvasDrawingUtil.html#method_drawCircle", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawCircle"}, {"url": "VMLGraphics.html#method_drawCircle", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawCircle"}, {"url": "Graphic.html#method_drawEllipse", "access": "", "host": "Graphic", "type": "method", "name": "drawEllipse"}, {"url": "CanvasDrawingUtil.html#method_drawEllipse", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawEllipse"}, {"url": "VMLGraphics.html#method_drawEllipse", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawEllipse"}, {"url": "Fills.html#method_drawFill", "access": "protected", "host": "Fills", "type": "method", "name": "drawFill"}, {"url": "Lines.html#method_drawLines", "access": "protected", "host": "Lines", "type": "method", "name": "drawLines"}, {"url": "Plots.html#method_drawPlots", "access": "protected", "host": "Plots", "type": "method", "name": "drawPlots"}, {"url": "Graphic.html#method_drawRect", "access": "", "host": "Graphic", "type": "method", "name": "drawRect"}, {"url": "CanvasDrawingUtil.html#method_drawRect", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawRect"}, {"url": "VMLGraphics.html#method_drawRect", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawRect"}, {"url": "Histogram.html#method_drawSeries", "access": "protected", "host": "Histogram", "type": "method", "name": "drawSeries"}, {"url": "MarkerSeries.html#method_drawSeries", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "drawSeries"}, {"url": "LineSeries.html#method_drawSeries", "access": "protected", "host": "LineSeries", "type": "method", "name": "drawSeries"}, {"url": "SplineSeries.html#method_drawSeries", "access": "protected", "host": "SplineSeries", "type": "method", "name": "drawSeries"}, {"url": "AreaSplineSeries.html#method_drawSeries", "access": "protected", "host": "AreaSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "AreaSeries.html#method_drawSeries", "access": "protected", "host": "AreaSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedAreaSplineSeries.html#method_drawSeries", "access": "protected", "host": "StackedAreaSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "ComboSeries.html#method_drawSeries", "access": "protected", "host": "ComboSeries", "type": "method", "name": "drawSeries"}, {"url": "Lines.html#method_drawSpline", "access": "protected", "host": "Lines", "type": "method", "name": "drawSpline"}, {"url": "Fills.html#method_drawStackedAreaSpline", "access": "protected", "host": "Fills", "type": "method", "name": "drawStackedAreaSpline"}, {"url": "LeftAxisLayout.html#method_drawTick", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "drawTick"}, {"url": "RightAxisLayout.html#method_drawTick", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "drawTick"}, {"url": "BottomAxisLayout.html#method_drawTick", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "drawTick"}, {"url": "TopAxisLayout.html#method_drawTick", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "drawTick"}, {"url": "Graphic.html#method_drawWedge", "access": "", "host": "Graphic", "type": "method", "name": "drawWedge"}, {"url": "VMLGraphics.html#method_drawWedge", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawWedge"}, {"url": "Axis.html#config_edgeOffset", "access": "protected", "host": "Axis", "type": "config", "name": "edgeOffset"}, {"url": "Axis.html#event_edgeOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "edgeOffsetChange"}, {"url": "Graphic.html#method_end", "access": "", "host": "Graphic", "type": "method", "name": "end"}, {"url": "CanvasDrawingUtil.html#method_end", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "end"}, {"url": "VMLGraphics.html#method_end", "access": "", "host": "VMLGraphics", "type": "method", "name": "end"}, {"url": "Shape.html#method_end", "access": "", "host": "Shape", "type": "method", "name": "end"}, {"url": "Fills.html#method__getClosingPoints", "access": "protected", "host": "Fills", "type": "method", "name": "_getClosingPoints"}, {"url": "CurveUtil.html#method_getCurveControlPoints", "access": "protected", "host": "CurveUtil", "type": "method", "name": "getCurveControlPoints"}, {"url": "AxisType.html#method_getDataByKey", "access": "", "host": "AxisType", "type": "method", "name": "getDataByKey"}, {"url": "CategoryAxis.html#method_getDataByKey", "access": "", "host": "CategoryAxis", "type": "method", "name": "getDataByKey"}, {"url": "CartesianSeries.html#method__getDefaultColor", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_getDefaultColor"}, {"url": "Renderer.html#method__getDefaultStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_getDefaultStyles"}, {"url": "Axis.html#method__getDefaultStyles", "access": "protected", "host": "Axis", "type": "method", "name": "_getDefaultStyles"}, {"url": "CartesianSeries.html#method__getDefaultStyles", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "MarkerSeries.html#method__getDefaultStyles", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "LineSeries.html#method__getDefaultStyles", "access": "protected", "host": "LineSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "AreaSeries.html#method__getDefaultStyles", "access": "protected", "host": "AreaSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "ComboSeries.html#method__getDefaultStyles", "access": "protected", "host": "ComboSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "AxisType.html#config_getEdgeOffset", "access": "", "host": "AxisType", "type": "config", "name": "getEdgeOffset"}, {"url": "CategoryAxis.html#method_getEdgeOffset", "access": "", "host": "CategoryAxis", "type": "method", "name": "getEdgeOffset"}, {"url": "AxisType.html#event_getEdgeOffsetChange", "access": "", "host": "AxisType", "type": "event", "name": "getEdgeOffsetChange"}, {"url": "Plots.html#method_getHotspot", "access": "protected", "host": "Plots", "type": "method", "name": "getHotspot"}, {"url": "Plots.html#method__getItemColor", "access": "protected", "host": "Plots", "type": "method", "name": "_getItemColor"}, {"url": "AxisType.html#method_getKeyValueAt", "access": "", "host": "AxisType", "type": "method", "name": "getKeyValueAt"}, {"url": "AxisType.html#method_getLabelByIndex", "access": "", "host": "AxisType", "type": "method", "name": "getLabelByIndex"}, {"url": "NumericAxis.html#method_getLabelByIndex", "access": "", "host": "NumericAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "TimeAxis.html#method_getLabelByIndex", "access": "", "host": "TimeAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "CategoryAxis.html#method_getLabelByIndex", "access": "", "host": "CategoryAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "LeftAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "RightAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "BottomAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "TopAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "Lines.html#method__getLineDefaults", "access": "protected", "host": "Lines", "type": "method", "name": "_getLineDefaults"}, {"url": "LeftAxisLayout.html#method_getLineStart", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "RightAxisLayout.html#method_getLineStart", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "BottomAxisLayout.html#method_getLineStart", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "TopAxisLayout.html#method_getLineStart", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "AxisType.html#method_getMajorUnitDistance", "access": "", "host": "AxisType", "type": "method", "name": "getMajorUnitDistance"}, {"url": "CategoryAxis.html#method_getMajorUnitDistance", "access": "", "host": "CategoryAxis", "type": "method", "name": "getMajorUnitDistance"}, {"url": "Plots.html#method_getMarker", "access": "protected", "host": "Plots", "type": "method", "name": "getMarker"}, {"url": "Plots.html#method__getPlotDefaults", "access": "protected", "host": "Plots", "type": "method", "name": "_getPlotDefaults"}, {"url": "Graphic.html#method_getShape", "access": "", "host": "Graphic", "type": "method", "name": "getShape"}, {"url": "CanvasDrawingUtil.html#method_getShape", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "getShape"}, {"url": "VMLGraphics.html#method_getShape", "access": "", "host": "VMLGraphics", "type": "method", "name": "getShape"}, {"url": "Fills.html#method__getStackedClosingPoints", "access": "protected", "host": "Fills", "type": "method", "name": "_getStackedClosingPoints"}, {"url": "Plots.html#method__getState", "access": "protected", "host": "Plots", "type": "method", "name": "_getState"}, {"url": "AxisType.html#method_getTotalMajorUnits", "access": "", "host": "AxisType", "type": "method", "name": "getTotalMajorUnits"}, {"url": "CategoryAxis.html#method_getTotalMajorUnits", "access": "", "host": "CategoryAxis", "type": "method", "name": "getTotalMajorUnits"}, {"url": "CartesianSeries.html#config_graph", "access": "", "host": "CartesianSeries", "type": "config", "name": "graph"}, {"url": "CartesianSeries.html#event_graphChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "graphChange"}, {"url": "Renderer.html#config_graphic", "access": "", "host": "Renderer", "type": "config", "name": "graphic"}, {"url": "Axis.html#config_graphic", "access": "", "host": "Axis", "type": "config", "name": "graphic"}, {"url": "Renderer.html#event_graphicChange", "access": "", "host": "Renderer", "type": "event", "name": "graphicChange"}, {"url": "Axis.html#event_graphicChange", "access": "", "host": "Axis", "type": "event", "name": "graphicChange"}, {"url": "CartesianSeries.html#config_graphOrder", "access": "", "host": "CartesianSeries", "type": "config", "name": "graphOrder"}, {"url": "CartesianSeries.html#event_graphOrderChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "graphOrderChange"}, {"url": "CartesianSeries.html#config_height", "access": "", "host": "CartesianSeries", "type": "config", "name": "height"}, {"url": "CartesianSeries.html#event_heightChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "heightChange"}, {"url": "AxisType.html#config_keyCollection", "access": "", "host": "AxisType", "type": "config", "name": "keyCollection"}, {"url": "AxisType.html#event_keyCollectionChange", "access": "", "host": "AxisType", "type": "event", "name": "keyCollectionChange"}, {"url": "AxisType.html#config_keys", "access": "", "host": "AxisType", "type": "config", "name": "keys"}, {"url": "AxisType.html#event_keysChange", "access": "", "host": "AxisType", "type": "event", "name": "keysChange"}, {"url": "NumericAxis.html#config_labelFormat", "access": "", "host": "NumericAxis", "type": "config", "name": "labelFormat"}, {"url": "TimeAxis.html#config_labelFormat", "access": "", "host": "TimeAxis", "type": "config", "name": "labelFormat"}, {"url": "NumericAxis.html#event_labelFormatChange", "access": "", "host": "NumericAxis", "type": "event", "name": "labelFormatChange"}, {"url": "TimeAxis.html#event_labelFormatChange", "access": "", "host": "TimeAxis", "type": "event", "name": "labelFormatChange"}, {"url": "AxisType.html#config_labelFunction", "access": "", "host": "AxisType", "type": "config", "name": "labelFunction"}, {"url": "NumericAxis.html#config_labelFunction", "access": "", "host": "NumericAxis", "type": "config", "name": "labelFunction"}, {"url": "TimeAxis.html#config_labelFunction", "access": "", "host": "TimeAxis", "type": "config", "name": "labelFunction"}, {"url": "AxisType.html#event_labelFunctionChange", "access": "", "host": "AxisType", "type": "event", "name": "labelFunctionChange"}, {"url": "NumericAxis.html#event_labelFunctionChange", "access": "", "host": "NumericAxis", "type": "event", "name": "labelFunctionChange"}, {"url": "TimeAxis.html#event_labelFunctionChange", "access": "", "host": "TimeAxis", "type": "event", "name": "labelFunctionChange"}, {"url": "Axis.html#config_labelFunctionScope", "access": "", "host": "Axis", "type": "config", "name": "labelFunctionScope"}, {"url": "Axis.html#event_labelFunctionScopeChange", "access": "", "host": "Axis", "type": "event", "name": "labelFunctionScopeChange"}, {"url": "Axis.html#config_labels", "access": "", "host": "Axis", "type": "config", "name": "labels"}, {"url": "Axis.html#event_labelsChange", "access": "", "host": "Axis", "type": "event", "name": "labelsChange"}, {"url": "Axis.html#config_leftTickOffset", "access": "", "host": "Axis", "type": "config", "name": "leftTickOffset"}, {"url": "Axis.html#event_leftTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "leftTickOffsetChange"}, {"url": "ComboSeries.html#config_line", "access": "", "host": "ComboSeries", "type": "config", "name": "line"}, {"url": "ComboSeries.html#event_lineChange", "access": "", "host": "ComboSeries", "type": "event", "name": "lineChange"}, {"url": "Graphic.html#method_lineStyle", "access": "", "host": "Graphic", "type": "method", "name": "lineStyle"}, {"url": "CanvasDrawingUtil.html#method_lineStyle", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "lineStyle"}, {"url": "VMLGraphics.html#method_lineStyle", "access": "", "host": "VMLGraphics", "type": "method", "name": "lineStyle"}, {"url": "Graphic.html#method_lineTo", "access": "", "host": "Graphic", "type": "method", "name": "lineTo"}, {"url": "CanvasDrawingUtil.html#method_lineTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "lineTo"}, {"url": "VMLGraphics.html#method_lineTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "lineTo"}, {"url": "ComboSeries.html#config_marker", "access": "", "host": "ComboSeries", "type": "config", "name": "marker"}, {"url": "ComboSeries.html#event_markerChange", "access": "", "host": "ComboSeries", "type": "event", "name": "markerChange"}, {"url": "AxisType.html#config_maximum", "access": "", "host": "AxisType", "type": "config", "name": "maximum"}, {"url": "TimeAxis.html#config_maximum", "access": "", "host": "TimeAxis", "type": "config", "name": "maximum"}, {"url": "AxisType.html#event_maximumChange", "access": "", "host": "AxisType", "type": "event", "name": "maximumChange"}, {"url": "TimeAxis.html#event_maximumChange", "access": "", "host": "TimeAxis", "type": "event", "name": "maximumChange"}, {"url": "BottomAxisLayout.html#config_maxLabelSize", "access": "protected", "host": "BottomAxisLayout", "type": "config", "name": "maxLabelSize"}, {"url": "TopAxisLayout.html#config_maxLabelSize", "access": "protected", "host": "TopAxisLayout", "type": "config", "name": "maxLabelSize"}, {"url": "BottomAxisLayout.html#event_maxLabelSizeChange", "access": "", "host": "BottomAxisLayout", "type": "event", "name": "maxLabelSizeChange"}, {"url": "TopAxisLayout.html#event_maxLabelSizeChange", "access": "", "host": "TopAxisLayout", "type": "event", "name": "maxLabelSizeChange"}, {"url": "Renderer.html#method__mergeStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_mergeStyles"}, {"url": "AxisType.html#config_minimum", "access": "", "host": "AxisType", "type": "config", "name": "minimum"}, {"url": "TimeAxis.html#config_minimum", "access": "", "host": "TimeAxis", "type": "config", "name": "minimum"}, {"url": "AxisType.html#event_minimumChange", "access": "", "host": "AxisType", "type": "event", "name": "minimumChange"}, {"url": "TimeAxis.html#event_minimumChange", "access": "", "host": "TimeAxis", "type": "event", "name": "minimumChange"}, {"url": "Graphic.html#method_moveTo", "access": "", "host": "Graphic", "type": "method", "name": "moveTo"}, {"url": "CanvasDrawingUtil.html#method_moveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "moveTo"}, {"url": "VMLGraphics.html#method_moveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "moveTo"}, {"url": "Axis.html#config_node", "access": "", "host": "Axis", "type": "config", "name": "node"}, {"url": "Axis.html#event_nodeChange", "access": "", "host": "Axis", "type": "event", "name": "nodeChange"}, {"url": "LeftAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "RightAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "BottomAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "TopAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "CartesianSeries.html#config_order", "access": "", "host": "CartesianSeries", "type": "config", "name": "order"}, {"url": "CartesianSeries.html#event_orderChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "orderChange"}, {"url": "Axis.html#config_overlapGraph", "access": "", "host": "Axis", "type": "config", "name": "overlapGraph"}, {"url": "Axis.html#event_overlapGraphChange", "access": "", "host": "Axis", "type": "event", "name": "overlapGraphChange"}, {"url": "Shape.html#property_pointerEvents", "access": "", "host": "Shape", "type": "property", "name": "pointerEvents"}, {"url": "Axis.html#config_position", "access": "", "host": "Axis", "type": "config", "name": "position"}, {"url": "Axis.html#event_positionChange", "access": "", "host": "Axis", "type": "event", "name": "positionChange"}, {"url": "LeftAxisLayout.html#method_positionLabel", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "RightAxisLayout.html#method_positionLabel", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "BottomAxisLayout.html#method_positionLabel", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "TopAxisLayout.html#method_positionLabel", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "Graphic.html#method_quadraticCurveTo", "access": "", "host": "Graphic", "type": "method", "name": "quadraticCurveTo"}, {"url": "CanvasDrawingUtil.html#method_quadraticCurveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "quadraticCurveTo"}, {"url": "VMLGraphics.html#method_quadraticCurveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "quadraticCurveTo"}, {"url": "AxisType.html#method_removeKey", "access": "", "host": "AxisType", "type": "method", "name": "removeKey"}, {"url": "Graphic.html#method_render", "access": "", "host": "Graphic", "type": "method", "name": "render"}, {"url": "CanvasGraphics.html#method_render", "access": "", "host": "CanvasGraphics", "type": "method", "name": "render"}, {"url": "VMLGraphics.html#method_render", "access": "", "host": "VMLGraphics", "type": "method", "name": "render"}, {"url": "CartesianSeries.html#config_rendered", "access": "", "host": "CartesianSeries", "type": "config", "name": "rendered"}, {"url": "CartesianSeries.html#event_renderedChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "renderedChange"}, {"url": "Axis.html#config_rightTickOffset", "access": "", "host": "Axis", "type": "config", "name": "rightTickOffset"}, {"url": "Axis.html#event_rightTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "rightTickOffsetChange"}, {"url": "AxisType.html#config_roundingMethod", "access": "", "host": "AxisType", "type": "config", "name": "roundingMethod"}, {"url": "AxisType.html#event_roundingMethodChange", "access": "", "host": "AxisType", "type": "event", "name": "roundingMethodChange"}, {"url": "CartesianSeries.html#method_setAreaData", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedSplineSeries.html#method_setAreaData", "access": "protected", "host": "StackedSplineSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedMarkerSeries.html#method_setAreaData", "access": "protected", "host": "StackedMarkerSeries", "type": "method", "name": "setAreaData"}, {"url": "LeftAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "RightAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "BottomAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "TopAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "CartesianSeries.html#method__setCanvas", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_setCanvas"}, {"url": "AxisType.html#config_setMax", "access": "", "host": "AxisType", "type": "config", "name": "setMax"}, {"url": "AxisType.html#event_setMaxChange", "access": "", "host": "AxisType", "type": "event", "name": "setMaxChange"}, {"url": "AxisType.html#config_setMin", "access": "", "host": "AxisType", "type": "config", "name": "setMin"}, {"url": "AxisType.html#event_setMinChange", "access": "", "host": "AxisType", "type": "event", "name": "setMinChange"}, {"url": "Graphic.html#method_setPosition", "access": "", "host": "Graphic", "type": "method", "name": "setPosition"}, {"url": "CanvasGraphics.html#method_setPosition", "access": "", "host": "CanvasGraphics", "type": "method", "name": "setPosition"}, {"url": "VMLGraphics.html#method_setPosition", "access": "", "host": "VMLGraphics", "type": "method", "name": "setPosition"}, {"url": "Shape.html#method_setPosition", "access": "", "host": "Shape", "type": "method", "name": "setPosition"}, {"url": "CanvasShape.html#method_setPosition", "access": "", "host": "CanvasShape", "type": "method", "name": "setPosition"}, {"url": "VMLShape.html#method_setPosition", "access": "", "host": "VMLShape", "type": "method", "name": "setPosition"}, {"url": "Graphic.html#method_setSize", "access": "", "host": "Graphic", "type": "method", "name": "setSize"}, {"url": "CanvasDrawingUtil.html#method_setSize", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "setSize"}, {"url": "CanvasGraphics.html#method_setSize", "access": "", "host": "CanvasGraphics", "type": "method", "name": "setSize"}, {"url": "VMLGraphics.html#method_setSize", "access": "", "host": "VMLGraphics", "type": "method", "name": "setSize"}, {"url": "LeftAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "RightAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "BottomAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "TopAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "Renderer.html#method__setStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_setStyles"}, {"url": "Plots.html#method__setStyles", "access": "protected", "host": "Plots", "type": "method", "name": "_setStyles"}, {"url": "MarkerSeries.html#method__setStyles", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "_setStyles"}, {"url": "LineSeries.html#method__setStyles", "access": "protected", "host": "LineSeries", "type": "method", "name": "_setStyles"}, {"url": "AreaSeries.html#method__setStyles", "access": "protected", "host": "AreaSeries", "type": "method", "name": "_setStyles"}, {"url": "LeftAxisLayout.html#method_setTickOffset", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setTickOffset"}, {"url": "RightAxisLayout.html#method_setTickOffset", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setTickOffset"}, {"url": "BottomAxisLayout.html#method_setTickOffsets", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setTickOffsets"}, {"url": "TopAxisLayout.html#method_setTickOffsets", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setTickOffsets"}, {"url": "ComboSeries.html#config_showAreaFill", "access": "", "host": "ComboSeries", "type": "config", "name": "showAreaFill"}, {"url": "ComboSeries.html#event_showAreaFillChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showAreaFillChange"}, {"url": "ComboSeries.html#config_showLines", "access": "", "host": "ComboSeries", "type": "config", "name": "showLines"}, {"url": "ComboSeries.html#event_showLinesChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showLinesChange"}, {"url": "ComboSeries.html#config_showMarkers", "access": "", "host": "ComboSeries", "type": "config", "name": "showMarkers"}, {"url": "ComboSeries.html#event_showMarkersChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showMarkersChange"}, {"url": "StackingUtil.html#method__stackCoordinates", "access": "protected", "host": "StackingUtil", "type": "method", "name": "_stackCoordinates"}, {"url": "Renderer.html#config_styles", "access": "", "host": "Renderer", "type": "config", "name": "styles"}, {"url": "Axis.html#config_styles", "access": "", "host": "Axis", "type": "config", "name": "styles"}, {"url": "MarkerSeries.html#config_styles", "access": "", "host": "MarkerSeries", "type": "config", "name": "styles"}, {"url": "LineSeries.html#config_styles", "access": "", "host": "LineSeries", "type": "config", "name": "styles"}, {"url": "SplineSeries.html#config_styles", "access": "", "host": "SplineSeries", "type": "config", "name": "styles"}, {"url": "AreaSplineSeries.html#config_styles", "access": "", "host": "AreaSplineSeries", "type": "config", "name": "styles"}, {"url": "ColumnSeries.html#config_styles", "access": "", "host": "ColumnSeries", "type": "config", "name": "styles"}, {"url": "BarSeries.html#config_styles", "access": "", "host": "BarSeries", "type": "config", "name": "styles"}, {"url": "AreaSeries.html#config_styles", "access": "", "host": "AreaSeries", "type": "config", "name": "styles"}, {"url": "ComboSeries.html#config_styles", "access": "", "host": "ComboSeries", "type": "config", "name": "styles"}, {"url": "Renderer.html#event_stylesChange", "access": "", "host": "Renderer", "type": "event", "name": "stylesChange"}, {"url": "Axis.html#event_stylesChange", "access": "", "host": "Axis", "type": "event", "name": "stylesChange"}, {"url": "MarkerSeries.html#event_stylesChange", "access": "", "host": "MarkerSeries", "type": "event", "name": "stylesChange"}, {"url": "LineSeries.html#event_stylesChange", "access": "", "host": "LineSeries", "type": "event", "name": "stylesChange"}, {"url": "SplineSeries.html#event_stylesChange", "access": "", "host": "SplineSeries", "type": "event", "name": "stylesChange"}, {"url": "AreaSplineSeries.html#event_stylesChange", "access": "", "host": "AreaSplineSeries", "type": "event", "name": "stylesChange"}, {"url": "ColumnSeries.html#event_stylesChange", "access": "", "host": "ColumnSeries", "type": "event", "name": "stylesChange"}, {"url": "BarSeries.html#event_stylesChange", "access": "", "host": "BarSeries", "type": "event", "name": "stylesChange"}, {"url": "AreaSeries.html#event_stylesChange", "access": "", "host": "AreaSeries", "type": "event", "name": "stylesChange"}, {"url": "ComboSeries.html#event_stylesChange", "access": "", "host": "ComboSeries", "type": "event", "name": "stylesChange"}, {"url": "Axis.html#config_tickPoints", "access": "", "host": "Axis", "type": "config", "name": "tickPoints"}, {"url": "Axis.html#event_tickPointsChange", "access": "", "host": "Axis", "type": "event", "name": "tickPointsChange"}, {"url": "Graphic.html#method_toggleVisible", "access": "", "host": "Graphic", "type": "method", "name": "toggleVisible"}, {"url": "CanvasGraphics.html#method_toggleVisible", "access": "", "host": "CanvasGraphics", "type": "method", "name": "toggleVisible"}, {"url": "VMLGraphics.html#method_toggleVisible", "access": "", "host": "VMLGraphics", "type": "method", "name": "toggleVisible"}, {"url": "Shape.html#method_toggleVisible", "access": "", "host": "Shape", "type": "method", "name": "toggleVisible"}, {"url": "CanvasShape.html#method_toggleVisible", "access": "", "host": "CanvasShape", "type": "method", "name": "toggleVisible"}, {"url": "VMLShape.html#method_toggleVisible", "access": "", "host": "VMLShape", "type": "method", "name": "toggleVisible"}, {"url": "CartesianSeries.html#method__toggleVisible", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_toggleVisible"}, {"url": "Axis.html#config_topTickOffset", "access": "", "host": "Axis", "type": "config", "name": "topTickOffset"}, {"url": "Axis.html#event_topTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "topTickOffsetChange"}, {"url": "Shape.html#property_type", "access": "", "host": "Shape", "type": "property", "name": "type"}, {"url": "CanvasShape.html#property_type", "access": "", "host": "CanvasShape", "type": "property", "name": "type"}, {"url": "VMLShape.html#property_type", "access": "", "host": "VMLShape", "type": "property", "name": "type"}, {"url": "AxisType.html#config_type", "access": "", "host": "AxisType", "type": "config", "name": "type"}, {"url": "CartesianSeries.html#config_type", "access": "", "host": "CartesianSeries", "type": "config", "name": "type"}, {"url": "MarkerSeries.html#config_type", "access": "", "host": "MarkerSeries", "type": "config", "name": "type"}, {"url": "LineSeries.html#config_type", "access": "", "host": "LineSeries", "type": "config", "name": "type"}, {"url": "SplineSeries.html#config_type", "access": "", "host": "SplineSeries", "type": "config", "name": "type"}, {"url": "AreaSplineSeries.html#config_type", "access": "", "host": "AreaSplineSeries", "type": "config", "name": "type"}, {"url": "StackedSplineSeries.html#config_type", "access": "", "host": "StackedSplineSeries", "type": "config", "name": "type"}, {"url": "StackedMarkerSeries.html#config_type", "access": "", "host": "StackedMarkerSeries", "type": "config", "name": "type"}, {"url": "ColumnSeries.html#config_type", "access": "", "host": "ColumnSeries", "type": "config", "name": "type"}, {"url": "BarSeries.html#config_type", "access": "", "host": "BarSeries", "type": "config", "name": "type"}, {"url": "AreaSeries.html#config_type", "access": "", "host": "AreaSeries", "type": "config", "name": "type"}, {"url": "StackedAreaSplineSeries.html#config_type", "access": "", "host": "StackedAreaSplineSeries", "type": "config", "name": "type"}, {"url": "ComboSeries.html#config_type", "access": "", "host": "ComboSeries", "type": "config", "name": "type"}, {"url": "AxisType.html#event_typeChange", "access": "", "host": "AxisType", "type": "event", "name": "typeChange"}, {"url": "CartesianSeries.html#event_typeChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "typeChange"}, {"url": "MarkerSeries.html#event_typeChange", "access": "", "host": "MarkerSeries", "type": "event", "name": "typeChange"}, {"url": "LineSeries.html#event_typeChange", "access": "", "host": "LineSeries", "type": "event", "name": "typeChange"}, {"url": "SplineSeries.html#event_typeChange", "access": "", "host": "SplineSeries", "type": "event", "name": "typeChange"}, {"url": "AreaSplineSeries.html#event_typeChange", "access": "", "host": "AreaSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedSplineSeries.html#event_typeChange", "access": "", "host": "StackedSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedMarkerSeries.html#event_typeChange", "access": "", "host": "StackedMarkerSeries", "type": "event", "name": "typeChange"}, {"url": "ColumnSeries.html#event_typeChange", "access": "", "host": "ColumnSeries", "type": "event", "name": "typeChange"}, {"url": "BarSeries.html#event_typeChange", "access": "", "host": "BarSeries", "type": "event", "name": "typeChange"}, {"url": "AreaSeries.html#event_typeChange", "access": "", "host": "AreaSeries", "type": "event", "name": "typeChange"}, {"url": "StackedAreaSplineSeries.html#event_typeChange", "access": "", "host": "StackedAreaSplineSeries", "type": "event", "name": "typeChange"}, {"url": "ComboSeries.html#event_typeChange", "access": "", "host": "ComboSeries", "type": "event", "name": "typeChange"}, {"url": "Shape.html#method_update", "access": "", "host": "Shape", "type": "method", "name": "update"}, {"url": "CanvasShape.html#method_update", "access": "", "host": "CanvasShape", "type": "method", "name": "update"}, {"url": "VMLShape.html#method_update", "access": "", "host": "VMLShape", "type": "method", "name": "update"}, {"url": "Plots.html#method_updateMarkerState", "access": "protected", "host": "Plots", "type": "method", "name": "updateMarkerState"}, {"url": "ColumnSeries.html#method_updateMarkerState", "access": "protected", "host": "ColumnSeries", "type": "method", "name": "updateMarkerState"}, {"url": "BarSeries.html#method_updateMarkerState", "access": "protected", "host": "BarSeries", "type": "method", "name": "updateMarkerState"}, {"url": "LeftAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "RightAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "BottomAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "TopAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "CartesianSeries.html#config_valueDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "valueDisplayName"}, {"url": "CartesianSeries.html#event_valueDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "valueDisplayNameChange"}, {"url": "CartesianSeries.html#config_visible", "access": "", "host": "CartesianSeries", "type": "config", "name": "visible"}, {"url": "CartesianSeries.html#event_visibleChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "visibleChange"}, {"url": "CartesianSeries.html#config_xAxis", "access": "", "host": "CartesianSeries", "type": "config", "name": "xAxis"}, {"url": "CartesianSeries.html#event_xAxisChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xAxisChange"}, {"url": "CartesianSeries.html#config_xcoords", "access": "", "host": "CartesianSeries", "type": "config", "name": "xcoords"}, {"url": "CartesianSeries.html#event_xcoordsChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xcoordsChange"}, {"url": "CartesianSeries.html#config_xData", "access": "", "host": "CartesianSeries", "type": "config", "name": "xData"}, {"url": "CartesianSeries.html#event_xDataChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xDataChange"}, {"url": "CartesianSeries.html#config_xDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "xDisplayName"}, {"url": "CartesianSeries.html#event_xDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xDisplayNameChange"}, {"url": "CartesianSeries.html#config_xKey", "access": "", "host": "CartesianSeries", "type": "config", "name": "xKey"}, {"url": "CartesianSeries.html#event_xKeyChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xKeyChange"}, {"url": "CartesianSeries.html#config_xMarkerPlane", "access": "", "host": "CartesianSeries", "type": "config", "name": "xMarkerPlane"}, {"url": "CartesianSeries.html#event_xMarkerPlaneChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xMarkerPlaneChange"}, {"url": "CartesianSeries.html#config_xMarkerPlaneOffset", "access": "", "host": "CartesianSeries", "type": "config", "name": "xMarkerPlaneOffset"}, {"url": "CartesianSeries.html#event_xMarkerPlaneOffsetChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xMarkerPlaneOffsetChange"}, {"url": "CartesianSeries.html#config_yAxis", "access": "", "host": "CartesianSeries", "type": "config", "name": "yAxis"}, {"url": "CartesianSeries.html#event_yAxisChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yAxisChange"}, {"url": "CartesianSeries.html#config_ycoords", "access": "", "host": "CartesianSeries", "type": "config", "name": "ycoords"}, {"url": "CartesianSeries.html#event_ycoordsChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "ycoordsChange"}, {"url": "CartesianSeries.html#config_yData", "access": "", "host": "CartesianSeries", "type": "config", "name": "yData"}, {"url": "CartesianSeries.html#event_yDataChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yDataChange"}, {"url": "CartesianSeries.html#config_yDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "yDisplayName"}, {"url": "CartesianSeries.html#event_yDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yDisplayNameChange"}, {"url": "CartesianSeries.html#config_yKey", "access": "", "host": "CartesianSeries", "type": "config", "name": "yKey"}, {"url": "CartesianSeries.html#event_yKeyChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yKeyChange"}, {"url": "CartesianSeries.html#config_yMarkerPlane", "access": "", "host": "CartesianSeries", "type": "config", "name": "yMarkerPlane"}, {"url": "CartesianSeries.html#event_yMarkerPlaneChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yMarkerPlaneChange"}, {"url": "CartesianSeries.html#config_yMarkerPlaneOffset", "access": "", "host": "CartesianSeries", "type": "config", "name": "yMarkerPlaneOffset"}, {"url": "CartesianSeries.html#event_yMarkerPlaneOffsetChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yMarkerPlaneOffsetChange"}];
+</script>
+</body>
+</html>

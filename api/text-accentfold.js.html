@@ -1,0 +1,946 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: text   text-accentfold.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			text&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_text.html" title="text">text</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">text-accentfold.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Text.AccentFold.html" title="Text.AccentFold">Text.AccentFold</a></li>
+
+
+				                                <li class=""><a href="Text.WordBreak.html" title="Text.WordBreak">Text.WordBreak</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="text-accentfold-debug.js.html" title="text-accentfold-debug.js">text-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-accentfold-min.js.html" title="text-accentfold-min.js">text-accentfold-min.js</a></li>
+
+
+			                                <li class="selected"><a href="text-accentfold.js.html" title="text-accentfold.js">text-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold-debug.js.html" title="text-data-accentfold-debug.js">text-data-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold-min.js.html" title="text-data-accentfold-min.js">text-data-accentfold-min.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold.js.html" title="text-data-accentfold.js">text-data-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak-debug.js.html" title="text-data-wordbreak-debug.js">text-data-wordbreak-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak-min.js.html" title="text-data-wordbreak-min.js">text-data-wordbreak-min.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak.js.html" title="text-data-wordbreak.js">text-data-wordbreak.js</a></li>
+
+
+			                                <li class=""><a href="text-debug.js.html" title="text-debug.js">text-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-min.js.html" title="text-min.js">text-min.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak-debug.js.html" title="text-wordbreak-debug.js">text-wordbreak-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak-min.js.html" title="text-wordbreak-min.js">text-wordbreak-min.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak.js.html" title="text-wordbreak.js">text-wordbreak.js</a></li>
+
+
+			                                <li class=""><a href="text.js.html" title="text.js">text.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text-accentfold&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Text utilities.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module text</span>
+<span class="cm"> * @since 3.3.0</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides a basic accent folding implementation that converts common accented</span>
+<span class="cm"> * letters (like &quot;á&quot;) to their non-accented forms (like &quot;a&quot;).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module text</span>
+<span class="cm"> * @submodule text-accentfold</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Provides a basic accent folding implementation that converts common accented</span>
+<span class="cm"> * letters (like &quot;á&quot;) to their non-accented forms (like &quot;a&quot;).</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * This implementation is not comprehensive, and should only be used as a last</span>
+<span class="cm"> * resort when accent folding can&#39;t be done on the server. A comprehensive</span>
+<span class="cm"> * accent folding implementation would require much more character data to be</span>
+<span class="cm"> * sent to the browser, resulting in a significant performance penalty. This</span>
+<span class="cm"> * implementation strives for a compromise between usefulness and performance.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Accent folding is a destructive operation that can&#39;t be reversed, and may</span>
+<span class="cm"> * change or destroy the actual meaning of the text depending on the language.</span>
+<span class="cm"> * It should not be used on strings that will later be displayed to a user,</span>
+<span class="cm"> * unless this is done with the understanding that linguistic meaning may be</span>
+<span class="cm"> * lost and that you may in fact confuse or insult the user by doing so.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * When used for matching, accent folding is likely to produce erroneous matches</span>
+<span class="cm"> * for languages in which characters with diacritics are considered different</span>
+<span class="cm"> * from their base characters, or where correct folding would map to other</span>
+<span class="cm"> * character sequences than just stripped characters. For example, in German</span>
+<span class="cm"> * &quot;ü&quot; is a character that&#39;s clearly different from &quot;u&quot; and should match &quot;ue&quot;</span>
+<span class="cm"> * instead. The word &quot;betrügen&quot; means &quot;to defraud&quot;, while &quot;betrugen&quot; is the past</span>
+<span class="cm"> * tense of &quot;to behave&quot;. The name &quot;Müller&quot; is expected to match &quot;Mueller&quot;, but</span>
+<span class="cm"> * not &quot;Muller&quot;. On the other hand, accent folding falls short for languages</span>
+<span class="cm"> * where different base characters are expected to match. In Japanese, for</span>
+<span class="cm"> * example, hiragana and katakana characters with the same pronunciation (&quot;あ&quot;</span>
+<span class="cm"> * and &quot;ア&quot;) are commonly treated as equivalent for lookups, but accent folding</span>
+<span class="cm"> * treats them as different.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class Text.AccentFold</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">YArray</span>   <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span>
+    <span class="nx">Text</span>     <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Text</span><span class="p">,</span>
+    <span class="nx">FoldData</span> <span class="o">=</span> <span class="nx">Text</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">AccentFold</span><span class="p">,</span>
+
+<span class="nx">AccentFold</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// -- Public Static Methods ------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns &lt;code&gt;true&lt;/code&gt; if the specified string contains one or more</span>
+<span class="cm">     * characters that can be folded, &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method canFold</span>
+<span class="cm">     * @param {String} string String to test.</span>
+<span class="cm">     * @return {Boolean}</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">canFold</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">letter</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">letter</span> <span class="k">in</span> <span class="nx">FoldData</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">FoldData</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                    <span class="nx">string</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">FoldData</span><span class="p">[</span><span class="nx">letter</span><span class="p">])</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Compares the accent-folded versions of two strings and returns</span>
+<span class="cm">     * &lt;code&gt;true&lt;/code&gt; if they&#39;re the same, &lt;code&gt;false&lt;/code&gt; otherwise. If</span>
+<span class="cm">     * a custom comparison function is supplied, the accent-folded strings will</span>
+<span class="cm">     * be passed to that function for comparison.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method compare</span>
+<span class="cm">     * @param {String} a First string to compare.</span>
+<span class="cm">     * @param {String} b Second string to compare.</span>
+<span class="cm">     * @param {Function} func (optional) Custom comparison function. Should</span>
+<span class="cm">     *   return a truthy or falsy value.</span>
+<span class="cm">     * @return {Boolean} Results of the comparison.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">compare</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">aFolded</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">a</span><span class="p">),</span>
+            <span class="nx">bFolded</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">func</span> <span class="o">?</span> <span class="o">!!</span><span class="nx">func</span><span class="p">(</span><span class="nx">aFolded</span><span class="p">,</span> <span class="nx">bFolded</span><span class="p">)</span> <span class="o">:</span> <span class="nx">aFolded</span> <span class="o">===</span> <span class="nx">bFolded</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Returns a copy of &lt;em&gt;haystack&lt;/em&gt; containing only the strings for which</span>
+<span class="cm">     * the supplied function returns &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * While comparisons will be made using accent-folded strings, the returned</span>
+<span class="cm">     * array of matches will contain the original strings that were passed in.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method filter</span>
+<span class="cm">     * @param {Array} haystack Array of strings to filter.</span>
+<span class="cm">     * @param {Function} func Comparison function. Will receive an accent-folded</span>
+<span class="cm">     *   haystack string as an argument, and should return a truthy or falsy</span>
+<span class="cm">     *   value.</span>
+<span class="cm">     * @return {Array} Filtered copy of &lt;em&gt;haystack&lt;/em&gt;.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">func</span><span class="p">(</span><span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Accent-folds the specified string or array of strings and returns a copy</span>
+<span class="cm">     * in which common accented letters have been converted to their closest</span>
+<span class="cm">     * non-accented, lowercase forms.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method fold</span>
+<span class="cm">     * @param {String|Array} input String or array of strings to be folded.</span>
+<span class="cm">     * @return {String|Array} Folded string or array of strings.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">fold</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">input</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+
+        <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">FoldData</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="nx">letter</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="nx">letter</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="nx">input</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Text</span><span class="p">.</span><span class="nx">AccentFold</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;text-data-accentfold&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Text.AccentFold.html#method_canFold", "access": "", "host": "Text.AccentFold", "type": "method", "name": "canFold"}, {"url": "Text.WordBreak.html#method__classify", "access": "protected", "host": "Text.WordBreak", "type": "method", "name": "_classify"}, {"url": "Text.AccentFold.html#method_compare", "access": "", "host": "Text.AccentFold", "type": "method", "name": "compare"}, {"url": "Text.AccentFold.html#method_filter", "access": "", "host": "Text.AccentFold", "type": "method", "name": "filter"}, {"url": "Text.AccentFold.html#method_fold", "access": "", "host": "Text.AccentFold", "type": "method", "name": "fold"}, {"url": "Text.WordBreak.html#method_getUniqueWords", "access": "", "host": "Text.WordBreak", "type": "method", "name": "getUniqueWords"}, {"url": "Text.WordBreak.html#method_getWords", "access": "", "host": "Text.WordBreak", "type": "method", "name": "getWords"}, {"url": "Text.WordBreak.html#method__isWordBoundary", "access": "protected", "host": "Text.WordBreak", "type": "method", "name": "_isWordBoundary"}, {"url": "Text.WordBreak.html#method_isWordBoundary", "access": "", "host": "Text.WordBreak", "type": "method", "name": "isWordBoundary"}];
+</script>
+</body>
+</html>

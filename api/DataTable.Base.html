@@ -1,0 +1,3695 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: datatable  DataTable.Base   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			datatable&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_datatable.html" title="datatable">datatable</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">DataTable.Base</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Column.html" title="Column">Column</a></li>
+
+
+				                                <li class=""><a href="Columnset.html" title="Columnset">Columnset</a></li>
+
+
+				                                <li class="selected"><a href="DataTable.Base.html" title="DataTable.Base">DataTable.Base</a></li>
+
+
+				                                <li class=""><a href="DataTableDataSource.html" title="DataTableDataSource">DataTableDataSource</a></li>
+
+
+				                                <li class=""><a href="DataTableScroll.html" title="DataTableScroll">DataTableScroll</a></li>
+
+
+				                                <li class=""><a href="DataTableSort.html" title="DataTableSort">DataTableSort</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-configuration">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-configuration-hd">
+										<span class="yui3-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_caption" title="caption">caption</a></li>
+												<li class=""><a href="#config_columnset" title="columnset">columnset</a></li>
+												<li class=""><a href="#config_recordset" title="recordset">recordset</a></li>
+												<li class=""><a href="#config_summary" title="summary">summary</a></li>
+												<li class=""><a href="#config_tdValueTemplate" title="tdValueTemplate">tdValueTemplate</a></li>
+												<li class=""><a href="#config_thValueTemplate" title="thValueTemplate">thValueTemplate</a></li>
+												<li class=""><a href="#config_trTemplate" title="trTemplate">trTemplate</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-properties">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-properties-hd">
+										<span class="yui3-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_NAME" title="NAME">NAME</a></li>
+
+				                                <li class=""><a href="#property_tdTemplate" title="tdTemplate">tdTemplate</a></li>
+
+				                                <li class=""><a href="#property_thTemplate" title="thTemplate">thTemplate</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__addCaptionNode" title="_addCaptionNode">_addCaptionNode</a></li>
+				                               <li class="protected"><a href="#method__addColgroupNode" title="_addColgroupNode">_addColgroupNode</a></li>
+				                               <li class="protected"><a href="#method__addMessageNode" title="_addMessageNode">_addMessageNode</a></li>
+				                               <li class="protected"><a href="#method__addTableNode" title="_addTableNode">_addTableNode</a></li>
+				                               <li class="protected"><a href="#method__addTbodyNode" title="_addTbodyNode">_addTbodyNode</a></li>
+				                               <li class="protected"><a href="#method__addTbodyTdNode" title="_addTbodyTdNode">_addTbodyTdNode</a></li>
+				                               <li class="protected"><a href="#method__addTbodyTrNode" title="_addTbodyTrNode">_addTbodyTrNode</a></li>
+				                               <li class="protected"><a href="#method__addTheadNode" title="_addTheadNode">_addTheadNode</a></li>
+				                               <li class="protected"><a href="#method__addTheadThNode" title="_addTheadThNode">_addTheadThNode</a></li>
+				                               <li class="protected"><a href="#method__addTheadTrNode" title="_addTheadTrNode">_addTheadTrNode</a></li>
+				                               <li class="protected"><a href="#method__afterCaptionChange" title="_afterCaptionChange">_afterCaptionChange</a></li>
+				                               <li class="protected"><a href="#method__afterColumnsetChange" title="_afterColumnsetChange">_afterColumnsetChange</a></li>
+				                               <li class="protected"><a href="#method__afterRecordsetChange" title="_afterRecordsetChange">_afterRecordsetChange</a></li>
+				                               <li class="protected"><a href="#method__afterSummaryChange" title="_afterSummaryChange">_afterSummaryChange</a></li>
+				                               <li class="protected"><a href="#method__attachTbodyTdNode" title="_attachTbodyTdNode">_attachTbodyTdNode</a></li>
+				                               <li class="protected"><a href="#method__attachTbodyTrNode" title="_attachTbodyTrNode">_attachTbodyTrNode</a></li>
+				                               <li class="protected"><a href="#method__attachTheadThNode" title="_attachTheadThNode">_attachTheadThNode</a></li>
+				                               <li class="protected"><a href="#method__attachTheadTrNode" title="_attachTheadTrNode">_attachTheadTrNode</a></li>
+				                               <li class="protected"><a href="#method__createTbodyTdNode" title="_createTbodyTdNode">_createTbodyTdNode</a></li>
+				                               <li class="protected"><a href="#method__createTbodyTrNode" title="_createTbodyTrNode">_createTbodyTrNode</a></li>
+				                               <li class="protected"><a href="#method__createTheadThNode" title="_createTheadThNode">_createTheadThNode</a></li>
+				                               <li class="protected"><a href="#method__createTheadTrNode" title="_createTheadTrNode">_createTheadTrNode</a></li>
+				                               <li class="protected"><a href="#method__uiSetCaption" title="_uiSetCaption">_uiSetCaption</a></li>
+				                               <li class="protected"><a href="#method__uiSetColumnset" title="_uiSetColumnset">_uiSetColumnset</a></li>
+				                               <li class="protected"><a href="#method__uiSetRecordset" title="_uiSetRecordset">_uiSetRecordset</a></li>
+				                               <li class="protected"><a href="#method__uiSetSummary" title="_uiSetSummary">_uiSetSummary</a></li>
+				                               <li class=""><a href="#method_formatDataCell" title="formatDataCell">formatDataCell</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-events">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-events-hd">
+										<span class="yui3-widget-hd-text">Events</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_captionChange" title="captionChange">captionChange</a></li>
+												<li class=""><a href="#event_columnsetChange" title="columnsetChange">columnsetChange</a></li>
+												<li class=""><a href="#event_recordsetChange" title="recordsetChange">recordsetChange</a></li>
+												<li class=""><a href="#event_summaryChange" title="summaryChange">summaryChange</a></li>
+												<li class=""><a href="#event_tdValueTemplateChange" title="tdValueTemplateChange">tdValueTemplateChange</a></li>
+												<li class=""><a href="#event_thValueTemplateChange" title="thValueTemplateChange">thValueTemplateChange</a></li>
+												<li class=""><a href="#event_trTemplateChange" title="trTemplateChange">trTemplateChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="datatable-base-debug.js.html" title="datatable-base-debug.js">datatable-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatable-base-min.js.html" title="datatable-base-min.js">datatable-base-min.js</a></li>
+
+
+			                                <li class=""><a href="datatable-base.js.html" title="datatable-base.js">datatable-base.js</a></li>
+
+
+			                                <li class=""><a href="datatable-base_en.js.html" title="datatable-base_en.js">datatable-base_en.js</a></li>
+
+
+			                                <li class=""><a href="datatable-datasource-debug.js.html" title="datatable-datasource-debug.js">datatable-datasource-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatable-datasource-min.js.html" title="datatable-datasource-min.js">datatable-datasource-min.js</a></li>
+
+
+			                                <li class=""><a href="datatable-datasource.js.html" title="datatable-datasource.js">datatable-datasource.js</a></li>
+
+
+			                                <li class=""><a href="datatable-debug.js.html" title="datatable-debug.js">datatable-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatable-min.js.html" title="datatable-min.js">datatable-min.js</a></li>
+
+
+			                                <li class=""><a href="datatable-scroll-debug.js.html" title="datatable-scroll-debug.js">datatable-scroll-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatable-scroll-min.js.html" title="datatable-scroll-min.js">datatable-scroll-min.js</a></li>
+
+
+			                                <li class=""><a href="datatable-scroll.js.html" title="datatable-scroll.js">datatable-scroll.js</a></li>
+
+
+			                                <li class=""><a href="datatable-sort-debug.js.html" title="datatable-sort-debug.js">datatable-sort-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatable-sort-min.js.html" title="datatable-sort-min.js">datatable-sort-min.js</a></li>
+
+
+			                                <li class=""><a href="datatable-sort.js.html" title="datatable-sort.js">datatable-sort.js</a></li>
+
+
+			                                <li class=""><a href="datatable-sort_en.js.html" title="datatable-sort_en.js">datatable-sort_en.js</a></li>
+
+
+			                                <li class=""><a href="datatable.js.html" title="datatable.js">datatable.js</a></li>
+
+
+			                                <li class=""><a href="datatable_en.js.html" title="datatable_en.js">datatable_en.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">DataTable.Base</b>
+
+									<span class="extends">- extends <a href="Widget.html" title="Widget">Widget</a></span>
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								Base class for the DataTable widget.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">DataTable.Base</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_NAME">
+
+											<h4>
+												<a name="property_NAME" property="yui:name">NAME</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Class name.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_tdTemplate">
+
+											<h4>
+												<a name="property_tdTemplate" property="yui:name">tdTemplate</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Tokenized markup template for TD node creation.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>'<td headers="{headers}"><div class="'+CLASS_LINER+'">{value}</div></td>'</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_thTemplate">
+
+											<h4>
+												<a name="property_thTemplate" property="yui:name">thTemplate</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Tokenized markup template for TH node creation.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>'<th id="{id}" rowspan="{rowspan}" colspan="{colspan}" class="{classnames}" abbr="{abbr}"><div class="'+CLASS_LINER+'">{value}</div></th>'</strong>
+												</div>
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Plugin.Host.html">
+
+										<h4>
+											Properties inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Plugin.Host.html#property_PluginHost">
+													<a href="Plugin.Host.html#property_PluginHost" property="yui:name" title="PluginHost">PluginHost</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Widget.html">
+
+										<h4>
+											Properties inherited from <a href="Widget.html" property="yui:name" title="Widget">Widget</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Widget.html#property_BOUNDING_TEMPLATE">
+													<a href="Widget.html#property_BOUNDING_TEMPLATE" property="yui:name" title="BOUNDING_TEMPLATE">BOUNDING_TEMPLATE</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Widget.html#property_CONTENT_TEMPLATE">
+													<a href="Widget.html#property_CONTENT_TEMPLATE" property="yui:name" title="CONTENT_TEMPLATE">CONTENT_TEMPLATE</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Widget.html#property_DEF_PARENT_NODE">
+													<a href="Widget.html#property_DEF_PARENT_NODE" property="yui:name" title="DEF_PARENT_NODE">DEF_PARENT_NODE</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Widget.html#property_DEF_UNIT">
+													<a href="Widget.html#property_DEF_UNIT" property="yui:name" title="DEF_UNIT">DEF_UNIT</a><span>,</span>
+													</div>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Widget.html#property_UI_EVENTS">
+													<a href="Widget.html#property_UI_EVENTS" property="yui:name" title="UI_EVENTS">UI_EVENTS</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_caption">
+
+													<h4>
+														<a name="config_caption">caption</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Caption
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_columnset">
+
+													<h4>
+														<a name="config_columnset">columnset</a>
+														<code>- <span property="yui:type">Array | Y.Columnset</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Pointer to Columnset instance.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_recordset">
+
+													<h4>
+														<a name="config_recordset">recordset</a>
+														<code>- <span property="yui:type">Array | Y.Recordset</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Pointer to Recordset instance.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_summary">
+
+													<h4>
+														<a name="config_summary">summary</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Summary.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_tdValueTemplate">
+
+													<h4>
+														<a name="config_tdValueTemplate">tdValueTemplate</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Tokenized markup template for TD value.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'{value}'</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_thValueTemplate">
+
+													<h4>
+														<a name="config_thValueTemplate">thValueTemplate</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Tokenized markup template for TH value.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'{value}'</strong>
+													</div>
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_trTemplate">
+
+													<h4>
+														<a name="config_trTemplate">trTemplate</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Tokenized markup template for TR node creation.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>'<tr id="{id}"></tr>'</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Widget.html">
+												<h4>Configuration attributes inherited from <a href="Widget.html" property="yui:name" title="Widget">Widget</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_boundingBox">
+															<a href="Widget.html#config_boundingBox" property="yui:name" title="boundingBox">boundingBox</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_contentBox">
+															<a href="Widget.html#config_contentBox" property="yui:name" title="contentBox">contentBox</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_disabled">
+															<a href="Widget.html#config_disabled" property="yui:name" title="disabled">disabled</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_focused">
+															<a href="Widget.html#config_focused" property="yui:name" title="focused">focused</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_height">
+															<a href="Widget.html#config_height" property="yui:name" title="height">height</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_id">
+															<a href="Widget.html#config_id" property="yui:name" title="id">id</a><span>,</span>
+															</div>
+														
+															
+															
+
+															<div class="deprecated" rel="yui:attribute" resource="Widget.html#config_locale">
+															<a href="Widget.html#config_locale" property="yui:name" title="locale">locale</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_render">
+															<a href="Widget.html#config_render" property="yui:name" title="render">render</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_rendered">
+															<a href="Widget.html#config_rendered" property="yui:name" title="rendered">rendered</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_srcNode">
+															<a href="Widget.html#config_srcNode" property="yui:name" title="srcNode">srcNode</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_strings">
+															<a href="Widget.html#config_strings" property="yui:name" title="strings">strings</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_tabIndex">
+															<a href="Widget.html#config_tabIndex" property="yui:name" title="tabIndex">tabIndex</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_visible">
+															<a href="Widget.html#config_visible" property="yui:name" title="visible">visible</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Widget.html#config_width">
+															<a href="Widget.html#config_width" property="yui:name" title="width">width</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addCaptionNode">
+
+													<h4>
+														<a name="method__addCaptionNode">_addCaptionNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addCaptionNode</strong>
+														   (
+																
+																		
+																		 tableNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches CAPTION element to given container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tableNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addColgroupNode">
+
+													<h4>
+														<a name="method__addColgroupNode">_addColgroupNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addColgroupNode</strong>
+														   (
+																
+																		
+																		 tableNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches COLGROUP element to given TABLE.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tableNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addMessageNode">
+
+													<h4>
+														<a name="method__addMessageNode">_addMessageNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addMessageNode</strong>
+														   (
+																
+																		
+																		 tableNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches message display element to given container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tableNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTableNode">
+
+													<h4>
+														<a name="method__addTableNode">_addTableNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTableNode</strong>
+														   (
+																
+																		
+																		 containerNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches TABLE element to given container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">containerNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTbodyNode">
+
+													<h4>
+														<a name="method__addTbodyNode">_addTbodyNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTbodyNode</strong>
+														   (
+																
+																		
+																		 tableNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches TBODY element to given container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tableNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTbodyTdNode">
+
+													<h4>
+														<a name="method__addTbodyTdNode">_addTbodyTdNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTbodyTdNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches data cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {record, column, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTbodyTrNode">
+
+													<h4>
+														<a name="method__addTbodyTrNode">_addTbodyTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTbodyTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches data row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {tbody, record</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTheadNode">
+
+													<h4>
+														<a name="method__addTheadNode">_addTheadNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTheadNode</strong>
+														   (
+																
+																		
+																		 tableNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches THEAD element to given container.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">tableNode</span>
+																		&lt;<span property="yui:type">Y.Node</span>&gt;
+																		</code>
+																		<span property="yui:description">  Parent node.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTheadThNode">
+
+													<h4>
+														<a name="method__addTheadThNode">_addTheadThNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTheadThNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches header cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {value, column, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__addTheadTrNode">
+
+													<h4>
+														<a name="method__addTheadTrNode">_addTheadTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_addTheadTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 isFirst
+																	
+																
+
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates and attaches header row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {thead, columns</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">isFirst</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Is first row.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">isFirst</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Is last row.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterCaptionChange">
+
+													<h4>
+														<a name="method__afterCaptionChange">_afterCaptionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterCaptionChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI if caption is changed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">Event</span>&gt;
+																		</code>
+																		<span property="yui:description">  Custom event for the attribute change.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterColumnsetChange">
+
+													<h4>
+														<a name="method__afterColumnsetChange">_afterColumnsetChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterColumnsetChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI if Columnset is changed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">Event</span>&gt;
+																		</code>
+																		<span property="yui:description">  Custom event for the attribute change.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterRecordsetChange">
+
+													<h4>
+														<a name="method__afterRecordsetChange">_afterRecordsetChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterRecordsetChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI if Recordset is changed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">Event</span>&gt;
+																		</code>
+																		<span property="yui:description">  Custom event for the attribute change.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterSummaryChange">
+
+													<h4>
+														<a name="method__afterSummaryChange">_afterSummaryChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterSummaryChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates the UI if summary is changed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">Event</span>&gt;
+																		</code>
+																		<span property="yui:description">  Custom event for the attribute change.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__attachTbodyTdNode">
+
+													<h4>
+														<a name="method__attachTbodyTdNode">_attachTbodyTdNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_attachTbodyTdNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attaches data cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {record, column, tr, headers, classnames, value</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__attachTbodyTrNode">
+
+													<h4>
+														<a name="method__attachTbodyTrNode">_attachTbodyTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_attachTbodyTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attaches data row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {tbody, record, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__attachTheadThNode">
+
+													<h4>
+														<a name="method__attachTheadThNode">_attachTheadThNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_attachTheadThNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attaches header cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {value, column, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__attachTheadTrNode">
+
+													<h4>
+														<a name="method__attachTheadTrNode">_attachTheadTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_attachTheadTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Attaches header row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {thead, columns, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createTbodyTdNode">
+
+													<h4>
+														<a name="method__createTbodyTdNode">_createTbodyTdNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_createTbodyTdNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates data cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {record, column, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createTbodyTrNode">
+
+													<h4>
+														<a name="method__createTbodyTrNode">_createTbodyTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_createTbodyTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates data row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {tbody, record</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createTheadThNode">
+
+													<h4>
+														<a name="method__createTheadThNode">_createTheadThNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_createTheadThNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates header cell element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {value, column, tr</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__createTheadTrNode">
+
+													<h4>
+														<a name="method__createTheadTrNode">_createTheadTrNode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_createTheadTrNode</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 isFirst
+																	
+																
+																		, 
+																		 isLast
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates header row element.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">Object} {thead, columns</span>&gt;
+																		</code>
+																		<span property="yui:description"> .</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">isFirst</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Is first row.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">isLast</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Is last row.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetCaption">
+
+													<h4>
+														<a name="method__uiSetCaption">_uiSetCaption</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetCaption</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates caption.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  New caption.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetColumnset">
+
+													<h4>
+														<a name="method__uiSetColumnset">_uiSetColumnset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetColumnset</strong>
+														   (
+																
+																		
+																		 cs
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates THEAD.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cs</span>
+																		&lt;<span property="yui:type">Y.Columnset</span>&gt;
+																		</code>
+																		<span property="yui:description">  New Columnset.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetRecordset">
+
+													<h4>
+														<a name="method__uiSetRecordset">_uiSetRecordset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetRecordset</strong>
+														   (
+																
+																		
+																		 rs
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates TBODY.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">rs</span>
+																		&lt;<span property="yui:type">Y.Recordset</span>&gt;
+																		</code>
+																		<span property="yui:description">  New Recordset.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetSummary">
+
+													<h4>
+														<a name="method__uiSetSummary">_uiSetSummary</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_uiSetSummary</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Updates summary.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  New summary.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_formatDataCell">
+
+													<h4>
+														<a name="method_formatDataCell">formatDataCell</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">formatDataCell</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns markup to insert into data cell element.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
+														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrCfg">
+														<a href="Attribute.html#method__getAttrCfg" property="yui:name" title="_getAttrCfg">_getAttrCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Widget.html">
+
+											<h4>
+												Methods inherited from <a href="Widget.html" property="yui:name" title="Widget">Widget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParsedConfig">
+														<a href="Widget.html#method__applyParsedConfig" property="yui:name" title="_applyParsedConfig">_applyParsedConfig</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParser">
+														<a href="Widget.html#method__applyParser" property="yui:name" title="_applyParser">_applyParser</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__bindDOM">
+														<a href="Widget.html#method__bindDOM" property="yui:name" title="_bindDOM">_bindDOM</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUI">
+														<a href="Widget.html#method__bindUI" property="yui:name" title="_bindUI">_bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
+														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__defRenderFn">
+														<a href="Widget.html#method__defRenderFn" property="yui:name" title="_defRenderFn">_defRenderFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__getSrcNode">
+														<a href="Widget.html#method__getSrcNode" property="yui:name" title="_getSrcNode">_getSrcNode</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__getStrings">
+														<a href="Widget.html#method__getStrings" property="yui:name" title="_getStrings">_getStrings</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__getUIEventNode">
+														<a href="Widget.html#method__getUIEventNode" property="yui:name" title="_getUIEventNode">_getUIEventNode</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__guid">
+														<a href="Widget.html#method__guid" property="yui:name" title="_guid">_guid</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__onDocFocus">
+														<a href="Widget.html#method__onDocFocus" property="yui:name" title="_onDocFocus">_onDocFocus</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__onDocMouseDown">
+														<a href="Widget.html#method__onDocMouseDown" property="yui:name" title="_onDocMouseDown">_onDocMouseDown</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__removeLoadingClassNames">
+														<a href="Widget.html#method__removeLoadingClassNames" property="yui:name" title="_removeLoadingClassNames">_removeLoadingClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__renderBoxClassNames">
+														<a href="Widget.html#method__renderBoxClassNames" property="yui:name" title="_renderBoxClassNames">_renderBoxClassNames</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__renderUI">
+														<a href="Widget.html#method__renderUI" property="yui:name" title="_renderUI">_renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__setStrings">
+														<a href="Widget.html#method__setStrings" property="yui:name" title="_setStrings">_setStrings</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__strSetter">
+														<a href="Widget.html#method__strSetter" property="yui:name" title="_strSetter">_strSetter</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__syncUI">
+														<a href="Widget.html#method__syncUI" property="yui:name" title="_syncUI">_syncUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetDisabled">
+														<a href="Widget.html#method__uiSetDisabled" property="yui:name" title="_uiSetDisabled">_uiSetDisabled</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetFocused">
+														<a href="Widget.html#method__uiSetFocused" property="yui:name" title="_uiSetFocused">_uiSetFocused</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetHeight">
+														<a href="Widget.html#method__uiSetHeight" property="yui:name" title="_uiSetHeight">_uiSetHeight</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetTabIndex">
+														<a href="Widget.html#method__uiSetTabIndex" property="yui:name" title="_uiSetTabIndex">_uiSetTabIndex</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetVisible">
+														<a href="Widget.html#method__uiSetVisible" property="yui:name" title="_uiSetVisible">_uiSetVisible</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetWidth">
+														<a href="Widget.html#method__uiSetWidth" property="yui:name" title="_uiSetWidth">_uiSetWidth</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSizeCB">
+														<a href="Widget.html#method__uiSizeCB" property="yui:name" title="_uiSizeCB">_uiSizeCB</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__unbindDOM">
+														<a href="Widget.html#method__unbindDOM" property="yui:name" title="_unbindDOM">_unbindDOM</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__unbindUI">
+														<a href="Widget.html#method__unbindUI" property="yui:name" title="_unbindUI">_unbindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__validTabIndex">
+														<a href="Widget.html#method__validTabIndex" property="yui:name" title="_validTabIndex">_validTabIndex</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_bindUI">
+														<a href="Widget.html#method_bindUI" property="yui:name" title="bindUI">bindUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_blur">
+														<a href="Widget.html#method_blur" property="yui:name" title="blur">blur</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_destructor">
+														<a href="Widget.html#method_destructor" property="yui:name" title="destructor">destructor</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_disable">
+														<a href="Widget.html#method_disable" property="yui:name" title="disable">disable</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_enable">
+														<a href="Widget.html#method_enable" property="yui:name" title="enable">enable</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_focus">
+														<a href="Widget.html#method_focus" property="yui:name" title="focus">focus</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_getClassName">
+														<a href="Widget.html#method_getClassName" property="yui:name" title="getClassName">getClassName</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_getDefaultLocale">
+														<a href="Widget.html#method_getDefaultLocale" property="yui:name" title="getDefaultLocale">getDefaultLocale</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_getSkinName">
+														<a href="Widget.html#method_getSkinName" property="yui:name" title="getSkinName">getSkinName</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="Widget.html#method_getString">
+														<a href="Widget.html#method_getString" property="yui:name" title="getString">getString</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_getStrings">
+														<a href="Widget.html#method_getStrings" property="yui:name" title="getStrings">getStrings</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_hide">
+														<a href="Widget.html#method_hide" property="yui:name" title="hide">hide</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_initializer">
+														<a href="Widget.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_render">
+														<a href="Widget.html#method_render" property="yui:name" title="render">render</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_renderer">
+														<a href="Widget.html#method_renderer" property="yui:name" title="renderer">renderer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_renderUI">
+														<a href="Widget.html#method_renderUI" property="yui:name" title="renderUI">renderUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_show">
+														<a href="Widget.html#method_show" property="yui:name" title="show">show</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method_syncUI">
+														<a href="Widget.html#method_syncUI" property="yui:name" title="syncUI">syncUI</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_toString">
+														<a href="Widget.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_captionChange">
+
+													<h4>
+														<a name="event_captionChange">captionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">captionChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'caption' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_columnsetChange">
+
+													<h4>
+														<a name="event_columnsetChange">columnsetChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">columnsetChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'columnset' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_recordsetChange">
+
+													<h4>
+														<a name="event_recordsetChange">recordsetChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">recordsetChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'recordset' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_summaryChange">
+
+													<h4>
+														<a name="event_summaryChange">summaryChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">summaryChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'summary' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_tdValueTemplateChange">
+
+													<h4>
+														<a name="event_tdValueTemplateChange">tdValueTemplateChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">tdValueTemplateChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'tdValueTemplate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_thValueTemplateChange">
+
+													<h4>
+														<a name="event_thValueTemplateChange">thValueTemplateChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">thValueTemplateChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'thValueTemplate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_trTemplateChange">
+
+													<h4>
+														<a name="event_trTemplateChange">trTemplateChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">trTemplateChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'trTemplate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Widget.html">
+											<h4>
+												Events inherited from <a href="Widget.html" property="yui:name" title="Widget">Widget</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_boundingBoxChange">
+														<a href="Widget.html#event_boundingBoxChange" property="yui:name" title="boundingBoxChange">boundingBoxChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_contentBoxChange">
+														<a href="Widget.html#event_contentBoxChange" property="yui:name" title="contentBoxChange">contentBoxChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_disabledChange">
+														<a href="Widget.html#event_disabledChange" property="yui:name" title="disabledChange">disabledChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_focusedChange">
+														<a href="Widget.html#event_focusedChange" property="yui:name" title="focusedChange">focusedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_heightChange">
+														<a href="Widget.html#event_heightChange" property="yui:name" title="heightChange">heightChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_idChange">
+														<a href="Widget.html#event_idChange" property="yui:name" title="idChange">idChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_localeChange">
+														<a href="Widget.html#event_localeChange" property="yui:name" title="localeChange">localeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_renderChange">
+														<a href="Widget.html#event_renderChange" property="yui:name" title="renderChange">renderChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_renderedChange">
+														<a href="Widget.html#event_renderedChange" property="yui:name" title="renderedChange">renderedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_srcNodeChange">
+														<a href="Widget.html#event_srcNodeChange" property="yui:name" title="srcNodeChange">srcNodeChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_stringsChange">
+														<a href="Widget.html#event_stringsChange" property="yui:name" title="stringsChange">stringsChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_tabIndexChange">
+														<a href="Widget.html#event_tabIndexChange" property="yui:name" title="tabIndexChange">tabIndexChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_visibleChange">
+														<a href="Widget.html#event_visibleChange" property="yui:name" title="visibleChange">visibleChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_widget:contentUpdate">
+														<a href="Widget.html#event_widget:contentUpdate" property="yui:name" title="widget:contentUpdate">widget:contentUpdate</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_widget:render">
+														<a href="Widget.html#event_widget:render" property="yui:name" title="widget:render">widget:render</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Widget.html#event_widthChange">
+														<a href="Widget.html#event_widthChange" property="yui:name" title="widthChange">widthChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Column.html#config_abbr", "access": "", "host": "Column", "type": "config", "name": "abbr"}, {"url": "Column.html#event_abbrChange", "access": "", "host": "Column", "type": "event", "name": "abbrChange"}, {"url": "DataTable.Base.html#method__addCaptionNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addCaptionNode"}, {"url": "DataTable.Base.html#method__addColgroupNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addColgroupNode"}, {"url": "DataTable.Base.html#method__addMessageNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addMessageNode"}, {"url": "DataTable.Base.html#method__addTableNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTableNode"}, {"url": "DataTable.Base.html#method__addTbodyNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyNode"}, {"url": "DataTable.Base.html#method__addTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTdNode"}, {"url": "DataTable.Base.html#method__addTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTrNode"}, {"url": "DataTable.Base.html#method__addTheadNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadNode"}, {"url": "DataTable.Base.html#method__addTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadThNode"}, {"url": "DataTable.Base.html#method__addTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadTrNode"}, {"url": "DataTable.Base.html#method__afterCaptionChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterCaptionChange"}, {"url": "DataTable.Base.html#method__afterColumnsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterColumnsetChange"}, {"url": "DataTable.Base.html#method__afterRecordsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterRecordsetChange"}, {"url": "DataTable.Base.html#method__afterSummaryChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterSummaryChange"}, {"url": "DataTable.Base.html#method__attachTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTdNode"}, {"url": "DataTable.Base.html#method__attachTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTrNode"}, {"url": "DataTable.Base.html#method__attachTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadThNode"}, {"url": "DataTable.Base.html#method__attachTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadTrNode"}, {"url": "DataTable.Base.html#config_caption", "access": "", "host": "DataTable.Base", "type": "config", "name": "caption"}, {"url": "DataTable.Base.html#event_captionChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "captionChange"}, {"url": "Column.html#config_children", "access": "", "host": "Column", "type": "config", "name": "children"}, {"url": "Column.html#event_childrenChange", "access": "", "host": "Column", "type": "event", "name": "childrenChange"}, {"url": "Column.html#property_colSpan", "access": "", "host": "Column", "type": "property", "name": "colSpan"}, {"url": "DataTable.Base.html#config_columnset", "access": "", "host": "DataTable.Base", "type": "config", "name": "columnset"}, {"url": "DataTable.Base.html#event_columnsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "columnsetChange"}, {"url": "DataTable.Base.html#method__createTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTdNode"}, {"url": "DataTable.Base.html#method__createTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTrNode"}, {"url": "DataTable.Base.html#method__createTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadThNode"}, {"url": "DataTable.Base.html#method__createTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadTrNode"}, {"url": "Columnset.html#config_definitions", "access": "", "host": "Columnset", "type": "config", "name": "definitions"}, {"url": "Columnset.html#event_definitionsChange", "access": "", "host": "Columnset", "type": "event", "name": "definitionsChange"}, {"url": "Column.html#config_field", "access": "", "host": "Column", "type": "config", "name": "field"}, {"url": "Column.html#event_fieldChange", "access": "", "host": "Column", "type": "event", "name": "fieldChange"}, {"url": "DataTable.Base.html#method_formatDataCell", "access": "", "host": "DataTable.Base", "type": "method", "name": "formatDataCell"}, {"url": "Column.html#property_headers", "access": "", "host": "Column", "type": "property", "name": "headers"}, {"url": "Column.html#config_id", "access": "", "host": "Column", "type": "config", "name": "id"}, {"url": "Column.html#event_idChange", "access": "", "host": "Column", "type": "event", "name": "idChange"}, {"url": "Columnset.html#property_idHash", "access": "", "host": "Columnset", "type": "property", "name": "idHash"}, {"url": "Column.html#config_key", "access": "", "host": "Column", "type": "config", "name": "key"}, {"url": "Column.html#event_keyChange", "access": "", "host": "Column", "type": "event", "name": "keyChange"}, {"url": "Columnset.html#property_keyHash", "access": "", "host": "Columnset", "type": "property", "name": "keyHash"}, {"url": "Column.html#property_keyIndex", "access": "", "host": "Column", "type": "property", "name": "keyIndex"}, {"url": "Columnset.html#property_keys", "access": "", "host": "Columnset", "type": "property", "name": "keys"}, {"url": "Column.html#config_label", "access": "", "host": "Column", "type": "config", "name": "label"}, {"url": "Column.html#event_labelChange", "access": "", "host": "Column", "type": "event", "name": "labelChange"}, {"url": "Column.html#property_NAME", "access": "", "host": "Column", "type": "property", "name": "NAME"}, {"url": "Columnset.html#property_NAME", "access": "", "host": "Columnset", "type": "property", "name": "NAME"}, {"url": "DataTable.Base.html#property_NAME", "access": "", "host": "DataTable.Base", "type": "property", "name": "NAME"}, {"url": "Column.html#property_parent", "access": "", "host": "Column", "type": "property", "name": "parent"}, {"url": "DataTable.Base.html#config_recordset", "access": "", "host": "DataTable.Base", "type": "config", "name": "recordset"}, {"url": "DataTable.Base.html#event_recordsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "recordsetChange"}, {"url": "Column.html#property_rowSpan", "access": "", "host": "Column", "type": "property", "name": "rowSpan"}, {"url": "DataTable.Base.html#config_summary", "access": "", "host": "DataTable.Base", "type": "config", "name": "summary"}, {"url": "DataTable.Base.html#event_summaryChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "summaryChange"}, {"url": "DataTable.Base.html#property_tdTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "tdTemplate"}, {"url": "DataTable.Base.html#config_tdValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "tdValueTemplate"}, {"url": "DataTable.Base.html#event_tdValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "tdValueTemplateChange"}, {"url": "Column.html#property_thNode", "access": "", "host": "Column", "type": "property", "name": "thNode"}, {"url": "DataTable.Base.html#property_thTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "thTemplate"}, {"url": "DataTable.Base.html#config_thValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "thValueTemplate"}, {"url": "DataTable.Base.html#event_thValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "thValueTemplateChange"}, {"url": "Columnset.html#property_tree", "access": "", "host": "Columnset", "type": "property", "name": "tree"}, {"url": "DataTable.Base.html#config_trTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "trTemplate"}, {"url": "DataTable.Base.html#event_trTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "trTemplateChange"}, {"url": "Column.html#method__uiSetAbbr", "access": "protected", "host": "Column", "type": "method", "name": "_uiSetAbbr"}, {"url": "DataTable.Base.html#method__uiSetCaption", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetCaption"}, {"url": "DataTable.Base.html#method__uiSetColumnset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetColumnset"}, {"url": "DataTable.Base.html#method__uiSetRecordset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetRecordset"}, {"url": "DataTable.Base.html#method__uiSetSummary", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetSummary"}];
+</script>
+</body>
+</html>

@@ -1,0 +1,1000 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: recordset   recordset-sort-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			recordset&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_recordset.html" title="recordset">recordset</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">recordset-sort-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Record.html" title="Record">Record</a></li>
+
+
+				                                <li class=""><a href="Recordset.html" title="Recordset">Recordset</a></li>
+
+
+				                                <li class=""><a href="RecordsetFilter.html" title="RecordsetFilter">RecordsetFilter</a></li>
+
+
+				                                <li class=""><a href="RecordsetIndexer.html" title="RecordsetIndexer">RecordsetIndexer</a></li>
+
+
+				                                <li class=""><a href="RecordsetSort.html" title="RecordsetSort">RecordsetSort</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="recordset-base-debug.js.html" title="recordset-base-debug.js">recordset-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="recordset-base-min.js.html" title="recordset-base-min.js">recordset-base-min.js</a></li>
+
+
+			                                <li class=""><a href="recordset-base.js.html" title="recordset-base.js">recordset-base.js</a></li>
+
+
+			                                <li class=""><a href="recordset-debug.js.html" title="recordset-debug.js">recordset-debug.js</a></li>
+
+
+			                                <li class=""><a href="recordset-filter-debug.js.html" title="recordset-filter-debug.js">recordset-filter-debug.js</a></li>
+
+
+			                                <li class=""><a href="recordset-filter-min.js.html" title="recordset-filter-min.js">recordset-filter-min.js</a></li>
+
+
+			                                <li class=""><a href="recordset-filter.js.html" title="recordset-filter.js">recordset-filter.js</a></li>
+
+
+			                                <li class=""><a href="recordset-indexer-debug.js.html" title="recordset-indexer-debug.js">recordset-indexer-debug.js</a></li>
+
+
+			                                <li class=""><a href="recordset-indexer-min.js.html" title="recordset-indexer-min.js">recordset-indexer-min.js</a></li>
+
+
+			                                <li class=""><a href="recordset-indexer.js.html" title="recordset-indexer.js">recordset-indexer.js</a></li>
+
+
+			                                <li class=""><a href="recordset-min.js.html" title="recordset-min.js">recordset-min.js</a></li>
+
+
+			                                <li class="selected"><a href="recordset-sort-debug.js.html" title="recordset-sort-debug.js">recordset-sort-debug.js</a></li>
+
+
+			                                <li class=""><a href="recordset-sort-min.js.html" title="recordset-sort-min.js">recordset-sort-min.js</a></li>
+
+
+			                                <li class=""><a href="recordset-sort.js.html" title="recordset-sort.js">recordset-sort.js</a></li>
+
+
+			                                <li class=""><a href="recordset.js.html" title="recordset.js">recordset.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;recordset-sort&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Adds default and custom sorting functionality to the Recordset utility</span>
+<span class="cm"> * @module recordset</span>
+<span class="cm"> * @submodule recordset-sort</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Compare</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ArraySort</span><span class="p">.</span><span class="nx">compare</span><span class="p">,</span>
+<span class="nx">isValue</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isValue</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Plugin that adds default and custom sorting functionality to the Recordset utility</span>
+<span class="cm"> * @class RecordsetSort</span>
+<span class="cm"> */</span>
+
+<span class="kd">function</span> <span class="nx">RecordsetSort</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">desc</span><span class="p">,</span> <span class="nx">sorter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">RecordsetSort</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">RecordsetSort</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">NS</span><span class="o">:</span> <span class="s2">&quot;sort&quot;</span><span class="p">,</span>
+
+    <span class="nx">NAME</span><span class="o">:</span> <span class="s2">&quot;recordsetSort&quot;</span><span class="p">,</span>
+
+    <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+
+        <span class="cm">/**</span>
+<span class="cm">	    * @description The last properties used to sort. Consists of an object literal with the keys &quot;field&quot;, &quot;desc&quot;, and &quot;sorter&quot;</span>
+<span class="cm">	    *</span>
+<span class="cm">	    * @attribute lastSortProperties</span>
+<span class="cm">	    * @public</span>
+<span class="cm">	    * @type object</span>
+<span class="cm">	    */</span>
+        <span class="nx">lastSortProperties</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">field</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
+                <span class="nx">desc</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">sorter</span><span class="o">:</span> <span class="kc">undefined</span>
+            <span class="p">},</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="p">(</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">desc</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">isValue</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">sorter</span><span class="p">));</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">	    * @description Default sort function to use if none is specified by the user.</span>
+<span class="cm">		* Takes two records, the key to sort by, and whether sorting direction is descending or not (boolean).</span>
+<span class="cm">		* If two records have the same value for a given key, the ID is used as the tie-breaker.</span>
+<span class="cm">	    *</span>
+<span class="cm">	    * @attribute defaultSorter</span>
+<span class="cm">	    * @public</span>
+<span class="cm">	    * @type function</span>
+<span class="cm">	    */</span>
+        <span class="nx">defaultSorter</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">recA</span><span class="p">,</span> <span class="nx">recB</span><span class="p">,</span> <span class="nx">field</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="nx">Compare</span><span class="p">(</span><span class="nx">recA</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">field</span><span class="p">),</span> <span class="nx">recB</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">field</span><span class="p">),</span> <span class="nx">desc</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">sorted</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">Compare</span><span class="p">(</span><span class="nx">recA</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="nx">recB</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">),</span> <span class="nx">desc</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">sorted</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">	    * @description A boolean telling if the recordset is in a sorted state.</span>
+<span class="cm">	    *</span>
+<span class="cm">	    * @attribute defaultSorter</span>
+<span class="cm">	    * @public</span>
+<span class="cm">	    * @type function</span>
+<span class="cm">	    */</span>
+        <span class="nx">isSorted</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">RecordsetSort</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Sets up the default function to use when the &quot;sort&quot; event is fired.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method initializer</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+        <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">);</span>
+
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">&quot;_defSortFn&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="c1">//Toggle the isSorted ATTR based on events.</span>
+        <span class="c1">//Remove events dont affect isSorted, as they are just popped/sliced out</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;isSorted&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">onHostEvent</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;isSorted&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">host</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">onHostEvent</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span>
+        <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;isSorted&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">host</span><span class="p">);</span>
+
+    <span class="p">},</span>
+
+    <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Method that all sort calls go through. </span>
+<span class="cm">	 * Sets up the lastSortProperties object with the details of the sort, and passes in parameters </span>
+<span class="cm">	 * to the &quot;defaultSorter&quot; or a custom specified sort function.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _defSortFn</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_defSortFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//have to work directly with _items here - changing the recordset.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">).</span><span class="nx">_items</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">sorter</span><span class="p">)(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">field</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">desc</span><span class="p">);</span>
+        <span class="p">});</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;lastSortProperties&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Sorts the recordset.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @method sort</span>
+<span class="cm">     * @param field {string} A key to sort by.</span>
+<span class="cm">     * @param desc {boolean} True if you want sort order to be descending, false if you want sort order to be ascending</span>
+<span class="cm">     * @public</span>
+<span class="cm">     */</span>
+    <span class="nx">sort</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">desc</span><span class="p">,</span> <span class="nx">sorter</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">field</span><span class="o">:</span> <span class="nx">field</span><span class="p">,</span>
+            <span class="nx">desc</span><span class="o">:</span> <span class="nx">desc</span><span class="p">,</span>
+            <span class="nx">sorter</span><span class="o">:</span> <span class="nx">sorter</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;defaultSorter&quot;</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Resorts the recordset based on the last-used sort parameters (stored in &#39;lastSortProperties&#39; ATTR)</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method resort</span>
+<span class="cm">     * @public</span>
+<span class="cm">     */</span>
+    <span class="nx">resort</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;lastSortProperties&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">field</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">field</span><span class="p">,</span>
+            <span class="nx">desc</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">desc</span><span class="p">,</span>
+            <span class="nx">sorter</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">sorter</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;defaultSorter&quot;</span><span class="p">)</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Reverses the recordset calling the standard array.reverse() method.</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method reverse</span>
+<span class="cm">     * @public</span>
+<span class="cm">     */</span>
+    <span class="nx">reverse</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_items</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * @description Sorts the recordset based on the last-used sort parameters, but flips the order. (ie: Descending becomes ascending, and vice versa).</span>
+<span class="cm">	 *</span>
+<span class="cm">     * @method flip</span>
+<span class="cm">     * @public</span>
+<span class="cm">     */</span>
+    <span class="nx">flip</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;lastSortProperties&#39;</span><span class="p">);</span>
+
+        <span class="c1">//If a predefined field is not provided by which to sort by, throw an error</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">field</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">field</span><span class="p">,</span>
+                <span class="nx">desc</span><span class="o">:</span> <span class="o">!</span><span class="nx">p</span><span class="p">.</span><span class="nx">desc</span><span class="p">,</span>
+                <span class="nx">sorter</span><span class="o">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">sorter</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;defaultSorter&quot;</span><span class="p">)</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;You called flip before setting a field by which to sort by. Maybe you meant to call reverse().&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Plugin&quot;</span><span class="p">).</span><span class="nx">RecordsetSort</span> <span class="o">=</span> <span class="nx">RecordsetSort</span><span class="p">;</span>
+
+
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;arraysort&#39;</span><span class="p">,</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}];
+</script>
+</body>
+</html>

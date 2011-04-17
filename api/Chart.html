@@ -1,0 +1,936 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: charts  Chart   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			charts&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_charts.html" title="charts">charts</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Chart</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AreaSeries.html" title="AreaSeries">AreaSeries</a></li>
+
+
+				                                <li class=""><a href="AreaSplineSeries.html" title="AreaSplineSeries">AreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="Axis.html" title="Axis">Axis</a></li>
+
+
+				                                <li class=""><a href="AxisType.html" title="AxisType">AxisType</a></li>
+
+
+				                                <li class=""><a href="BarSeries.html" title="BarSeries">BarSeries</a></li>
+
+
+				                                <li class=""><a href="BottomAxisLayout.html" title="BottomAxisLayout">BottomAxisLayout</a></li>
+
+
+				                                <li class=""><a href="CanvasDrawingUtil.html" title="CanvasDrawingUtil">CanvasDrawingUtil</a></li>
+
+
+				                                <li class=""><a href="CanvasGraphics.html" title="CanvasGraphics">CanvasGraphics</a></li>
+
+
+				                                <li class=""><a href="CanvasShape.html" title="CanvasShape">CanvasShape</a></li>
+
+
+				                                <li class=""><a href="CartesianChart.html" title="CartesianChart">CartesianChart</a></li>
+
+
+				                                <li class=""><a href="CartesianSeries.html" title="CartesianSeries">CartesianSeries</a></li>
+
+
+				                                <li class=""><a href="CategoryAxis.html" title="CategoryAxis">CategoryAxis</a></li>
+
+
+				                                <li class="selected"><a href="Chart.html" title="Chart">Chart</a></li>
+
+
+				                                <li class=""><a href="ChartBase.html" title="ChartBase">ChartBase</a></li>
+
+
+				                                <li class=""><a href="ColumnSeries.html" title="ColumnSeries">ColumnSeries</a></li>
+
+
+				                                <li class=""><a href="ComboSeries.html" title="ComboSeries">ComboSeries</a></li>
+
+
+				                                <li class=""><a href="ComboSplineSeries.html" title="ComboSplineSeries">ComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="CurveUtil.html" title="CurveUtil">CurveUtil</a></li>
+
+
+				                                <li class=""><a href="Fills.html" title="Fills">Fills</a></li>
+
+
+				                                <li class=""><a href="Graph.html" title="Graph">Graph</a></li>
+
+
+				                                <li class=""><a href="Graphic.html" title="Graphic">Graphic</a></li>
+
+
+				                                <li class=""><a href="Gridlines.html" title="Gridlines">Gridlines</a></li>
+
+
+				                                <li class=""><a href="Histogram.html" title="Histogram">Histogram</a></li>
+
+
+				                                <li class=""><a href="LeftAxisLayout.html" title="LeftAxisLayout">LeftAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Lines.html" title="Lines">Lines</a></li>
+
+
+				                                <li class=""><a href="LineSeries.html" title="LineSeries">LineSeries</a></li>
+
+
+				                                <li class=""><a href="MarkerSeries.html" title="MarkerSeries">MarkerSeries</a></li>
+
+
+				                                <li class=""><a href="NumericAxis.html" title="NumericAxis">NumericAxis</a></li>
+
+
+				                                <li class=""><a href="PieChart.html" title="PieChart">PieChart</a></li>
+
+
+				                                <li class=""><a href="PieSeries.html" title="PieSeries">PieSeries</a></li>
+
+
+				                                <li class=""><a href="Plots.html" title="Plots">Plots</a></li>
+
+
+				                                <li class=""><a href="Renderer.html" title="Renderer">Renderer</a></li>
+
+
+				                                <li class=""><a href="RightAxisLayout.html" title="RightAxisLayout">RightAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Shape.html" title="Shape">Shape</a></li>
+
+
+				                                <li class=""><a href="SplineSeries.html" title="SplineSeries">SplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSeries.html" title="StackedAreaSeries">StackedAreaSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSplineSeries.html" title="StackedAreaSplineSeries">StackedAreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAxis.html" title="StackedAxis">StackedAxis</a></li>
+
+
+				                                <li class=""><a href="StackedBarSeries.html" title="StackedBarSeries">StackedBarSeries</a></li>
+
+
+				                                <li class=""><a href="StackedColumnSeries.html" title="StackedColumnSeries">StackedColumnSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSeries.html" title="StackedComboSeries">StackedComboSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSplineSeries.html" title="StackedComboSplineSeries">StackedComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedLineSeries.html" title="StackedLineSeries">StackedLineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedMarkerSeries.html" title="StackedMarkerSeries">StackedMarkerSeries</a></li>
+
+
+				                                <li class=""><a href="StackedSplineSeries.html" title="StackedSplineSeries">StackedSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackingUtil.html" title="StackingUtil">StackingUtil</a></li>
+
+
+				                                <li class=""><a href="TimeAxis.html" title="TimeAxis">TimeAxis</a></li>
+
+
+				                                <li class=""><a href="TopAxisLayout.html" title="TopAxisLayout">TopAxisLayout</a></li>
+
+
+				                                <li class=""><a href="VMLGraphics.html" title="VMLGraphics">VMLGraphics</a></li>
+
+
+				                                <li class=""><a href="VMLShape.html" title="VMLShape">VMLShape</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="charts-debug.js.html" title="charts-debug.js">charts-debug.js</a></li>
+
+
+			                                <li class=""><a href="charts-min.js.html" title="charts-min.js">charts-min.js</a></li>
+
+
+			                                <li class=""><a href="charts.js.html" title="charts.js">charts.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Chart</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								The Chart class is the basic application used to create a chart.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Chart</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Shape.html#method_addClass", "access": "", "host": "Shape", "type": "method", "name": "addClass"}, {"url": "CanvasShape.html#method_addClass", "access": "", "host": "CanvasShape", "type": "method", "name": "addClass"}, {"url": "VMLShape.html#method_addClass", "access": "", "host": "VMLShape", "type": "method", "name": "addClass"}, {"url": "Graph.html#method_addDispatcher", "access": "protected", "host": "Graph", "type": "method", "name": "addDispatcher"}, {"url": "AxisType.html#method_addKey", "access": "", "host": "AxisType", "type": "method", "name": "addKey"}, {"url": "NumericAxis.html#config_alwaysShowZero", "access": "", "host": "NumericAxis", "type": "config", "name": "alwaysShowZero"}, {"url": "NumericAxis.html#event_alwaysShowZeroChange", "access": "", "host": "NumericAxis", "type": "event", "name": "alwaysShowZeroChange"}, {"url": "ComboSeries.html#config_area", "access": "", "host": "ComboSeries", "type": "config", "name": "area"}, {"url": "ComboSeries.html#event_areaChange", "access": "", "host": "ComboSeries", "type": "event", "name": "areaChange"}, {"url": "Graphic.html#property_autoSize", "access": "", "host": "Graphic", "type": "property", "name": "autoSize"}, {"url": "VMLGraphics.html#property_autoSize", "access": "", "host": "VMLGraphics", "type": "property", "name": "autoSize"}, {"url": "Shape.html#property_autoSize", "access": "", "host": "Shape", "type": "property", "name": "autoSize"}, {"url": "CanvasShape.html#property_autoSize", "access": "", "host": "CanvasShape", "type": "property", "name": "autoSize"}, {"url": "CartesianChart.html#config_axes", "access": "", "host": "CartesianChart", "type": "config", "name": "axes"}, {"url": "PieChart.html#config_axes", "access": "", "host": "PieChart", "type": "config", "name": "axes"}, {"url": "CartesianChart.html#event_axesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "axesChange"}, {"url": "PieChart.html#event_axesChange", "access": "", "host": "PieChart", "type": "event", "name": "axesChange"}, {"url": "ChartBase.html#config_axesCollection", "access": "", "host": "ChartBase", "type": "config", "name": "axesCollection"}, {"url": "ChartBase.html#event_axesCollectionChange", "access": "", "host": "ChartBase", "type": "event", "name": "axesCollectionChange"}, {"url": "CartesianChart.html#event_axesStylesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "axesStylesChange"}, {"url": "Gridlines.html#config_axis", "access": "", "host": "Gridlines", "type": "config", "name": "axis"}, {"url": "Gridlines.html#event_axisChange", "access": "", "host": "Gridlines", "type": "event", "name": "axisChange"}, {"url": "LeftAxisLayout.html#config_axisRenderer", "access": "protected", "host": "LeftAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "RightAxisLayout.html#config_axisRenderer", "access": "protected", "host": "RightAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "BottomAxisLayout.html#config_axisRenderer", "access": "protected", "host": "BottomAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "TopAxisLayout.html#config_axisRenderer", "access": "protected", "host": "TopAxisLayout", "type": "config", "name": "axisRenderer"}, {"url": "LeftAxisLayout.html#event_axisRendererChange", "access": "", "host": "LeftAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "RightAxisLayout.html#event_axisRendererChange", "access": "", "host": "RightAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "BottomAxisLayout.html#event_axisRendererChange", "access": "", "host": "BottomAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "TopAxisLayout.html#event_axisRendererChange", "access": "", "host": "TopAxisLayout", "type": "event", "name": "axisRendererChange"}, {"url": "Graphic.html#method_beginBitmapFill", "access": "", "host": "Graphic", "type": "method", "name": "beginBitmapFill"}, {"url": "CanvasDrawingUtil.html#method_beginBitmapFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginBitmapFill"}, {"url": "VMLGraphics.html#method_beginBitmapFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginBitmapFill"}, {"url": "Graphic.html#method_beginFill", "access": "", "host": "Graphic", "type": "method", "name": "beginFill"}, {"url": "CanvasDrawingUtil.html#method_beginFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginFill"}, {"url": "VMLGraphics.html#method_beginFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginFill"}, {"url": "Graphic.html#method_beginGradientFill", "access": "", "host": "Graphic", "type": "method", "name": "beginGradientFill"}, {"url": "CanvasDrawingUtil.html#method_beginGradientFill", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "beginGradientFill"}, {"url": "VMLGraphics.html#method_beginGradientFill", "access": "", "host": "VMLGraphics", "type": "method", "name": "beginGradientFill"}, {"url": "CartesianChart.html#event_bottomAxesCollectionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "bottomAxesCollectionChange"}, {"url": "Axis.html#config_bottomTickOffset", "access": "", "host": "Axis", "type": "config", "name": "bottomTickOffset"}, {"url": "Axis.html#event_bottomTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "bottomTickOffsetChange"}, {"url": "PieSeries.html#config_categoryAxis", "access": "", "host": "PieSeries", "type": "config", "name": "categoryAxis"}, {"url": "CartesianChart.html#config_categoryAxis", "access": "", "host": "CartesianChart", "type": "config", "name": "categoryAxis"}, {"url": "PieSeries.html#event_categoryAxisChange", "access": "", "host": "PieSeries", "type": "event", "name": "categoryAxisChange"}, {"url": "CartesianChart.html#event_categoryAxisChange", "access": "", "host": "CartesianChart", "type": "event", "name": "categoryAxisChange"}, {"url": "CartesianChart.html#config_categoryAxisName", "access": "", "host": "CartesianChart", "type": "config", "name": "categoryAxisName"}, {"url": "CartesianChart.html#event_categoryAxisNameChange", "access": "", "host": "CartesianChart", "type": "event", "name": "categoryAxisNameChange"}, {"url": "CartesianSeries.html#config_categoryDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "categoryDisplayName"}, {"url": "PieSeries.html#config_categoryDisplayName", "access": "", "host": "PieSeries", "type": "config", "name": "categoryDisplayName"}, {"url": "CartesianSeries.html#event_categoryDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "categoryDisplayNameChange"}, {"url": "PieSeries.html#event_categoryDisplayNameChange", "access": "", "host": "PieSeries", "type": "event", "name": "categoryDisplayNameChange"}, {"url": "PieSeries.html#property_categoryKey", "access": "", "host": "PieSeries", "type": "property", "name": "categoryKey"}, {"url": "ChartBase.html#config_categoryKey", "access": "", "host": "ChartBase", "type": "config", "name": "categoryKey"}, {"url": "ChartBase.html#event_categoryKeyChange", "access": "", "host": "ChartBase", "type": "event", "name": "categoryKeyChange"}, {"url": "ChartBase.html#config_categoryType", "access": "", "host": "ChartBase", "type": "config", "name": "categoryType"}, {"url": "ChartBase.html#event_categoryTypeChange", "access": "", "host": "ChartBase", "type": "event", "name": "categoryTypeChange"}, {"url": "Graphic.html#method_clear", "access": "", "host": "Graphic", "type": "method", "name": "clear"}, {"url": "CanvasDrawingUtil.html#method_clear", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "clear"}, {"url": "VMLGraphics.html#method_clear", "access": "", "host": "VMLGraphics", "type": "method", "name": "clear"}, {"url": "Graphic.html#method_curveTo", "access": "", "host": "Graphic", "type": "method", "name": "curveTo"}, {"url": "CanvasDrawingUtil.html#method_curveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "curveTo"}, {"url": "VMLGraphics.html#method_curveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "curveTo"}, {"url": "AxisType.html#config_data", "access": "", "host": "AxisType", "type": "config", "name": "data"}, {"url": "AxisType.html#event_dataChange", "access": "", "host": "AxisType", "type": "event", "name": "dataChange"}, {"url": "AxisType.html#config_dataMaximum", "access": "", "host": "AxisType", "type": "config", "name": "dataMaximum"}, {"url": "AxisType.html#event_dataMaximumChange", "access": "", "host": "AxisType", "type": "event", "name": "dataMaximumChange"}, {"url": "AxisType.html#config_dataMinimum", "access": "", "host": "AxisType", "type": "config", "name": "dataMinimum"}, {"url": "AxisType.html#event_dataMinimumChange", "access": "", "host": "AxisType", "type": "event", "name": "dataMinimumChange"}, {"url": "AxisType.html#config_dataProvider", "access": "", "host": "AxisType", "type": "config", "name": "dataProvider"}, {"url": "ChartBase.html#config_dataProvider", "access": "", "host": "ChartBase", "type": "config", "name": "dataProvider"}, {"url": "AxisType.html#event_dataProviderChange", "access": "", "host": "AxisType", "type": "event", "name": "dataProviderChange"}, {"url": "ChartBase.html#event_dataProviderChange", "access": "", "host": "ChartBase", "type": "event", "name": "dataProviderChange"}, {"url": "CartesianSeries.html#property__defaultBorderColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultBorderColors"}, {"url": "CartesianSeries.html#property__defaultFillColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultFillColors"}, {"url": "CartesianSeries.html#property__defaultLineColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultLineColors"}, {"url": "CartesianSeries.html#property__defaultSliceColors", "access": "protected", "host": "CartesianSeries", "type": "property", "name": "_defaultSliceColors"}, {"url": "Graphic.html#method_destroy", "access": "", "host": "Graphic", "type": "method", "name": "destroy"}, {"url": "CanvasGraphics.html#method_destroy", "access": "", "host": "CanvasGraphics", "type": "method", "name": "destroy"}, {"url": "VMLGraphics.html#method_destroy", "access": "", "host": "VMLGraphics", "type": "method", "name": "destroy"}, {"url": "CartesianSeries.html#config_direction", "access": "", "host": "CartesianSeries", "type": "config", "name": "direction"}, {"url": "BarSeries.html#config_direction", "access": "", "host": "BarSeries", "type": "config", "name": "direction"}, {"url": "StackedBarSeries.html#config_direction", "access": "", "host": "StackedBarSeries", "type": "config", "name": "direction"}, {"url": "Gridlines.html#config_direction", "access": "", "host": "Gridlines", "type": "config", "name": "direction"}, {"url": "CartesianChart.html#config_direction", "access": "", "host": "CartesianChart", "type": "config", "name": "direction"}, {"url": "CartesianSeries.html#event_directionChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "directionChange"}, {"url": "BarSeries.html#event_directionChange", "access": "", "host": "BarSeries", "type": "event", "name": "directionChange"}, {"url": "StackedBarSeries.html#event_directionChange", "access": "", "host": "StackedBarSeries", "type": "event", "name": "directionChange"}, {"url": "Gridlines.html#event_directionChange", "access": "", "host": "Gridlines", "type": "event", "name": "directionChange"}, {"url": "CartesianChart.html#event_directionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "directionChange"}, {"url": "CartesianSeries.html#method_draw", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "draw"}, {"url": "PieSeries.html#method_draw", "access": "protected", "host": "PieSeries", "type": "method", "name": "draw"}, {"url": "Gridlines.html#method_draw", "access": "protected", "host": "Gridlines", "type": "method", "name": "draw"}, {"url": "Fills.html#method_drawAreaSpline", "access": "protected", "host": "Fills", "type": "method", "name": "drawAreaSpline"}, {"url": "Graphic.html#method_drawCircle", "access": "", "host": "Graphic", "type": "method", "name": "drawCircle"}, {"url": "CanvasDrawingUtil.html#method_drawCircle", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawCircle"}, {"url": "VMLGraphics.html#method_drawCircle", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawCircle"}, {"url": "Graphic.html#method_drawEllipse", "access": "", "host": "Graphic", "type": "method", "name": "drawEllipse"}, {"url": "CanvasDrawingUtil.html#method_drawEllipse", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawEllipse"}, {"url": "VMLGraphics.html#method_drawEllipse", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawEllipse"}, {"url": "Fills.html#method_drawFill", "access": "protected", "host": "Fills", "type": "method", "name": "drawFill"}, {"url": "Lines.html#method_drawLines", "access": "protected", "host": "Lines", "type": "method", "name": "drawLines"}, {"url": "Plots.html#method_drawPlots", "access": "protected", "host": "Plots", "type": "method", "name": "drawPlots"}, {"url": "Graphic.html#method_drawRect", "access": "", "host": "Graphic", "type": "method", "name": "drawRect"}, {"url": "CanvasDrawingUtil.html#method_drawRect", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "drawRect"}, {"url": "VMLGraphics.html#method_drawRect", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawRect"}, {"url": "Histogram.html#method_drawSeries", "access": "protected", "host": "Histogram", "type": "method", "name": "drawSeries"}, {"url": "MarkerSeries.html#method_drawSeries", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "drawSeries"}, {"url": "LineSeries.html#method_drawSeries", "access": "protected", "host": "LineSeries", "type": "method", "name": "drawSeries"}, {"url": "SplineSeries.html#method_drawSeries", "access": "protected", "host": "SplineSeries", "type": "method", "name": "drawSeries"}, {"url": "AreaSplineSeries.html#method_drawSeries", "access": "protected", "host": "AreaSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "AreaSeries.html#method_drawSeries", "access": "protected", "host": "AreaSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedAreaSplineSeries.html#method_drawSeries", "access": "protected", "host": "StackedAreaSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "ComboSeries.html#method_drawSeries", "access": "protected", "host": "ComboSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedComboSeries.html#method_drawSeries", "access": "protected", "host": "StackedComboSeries", "type": "method", "name": "drawSeries"}, {"url": "ComboSplineSeries.html#method_drawSeries", "access": "protected", "host": "ComboSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedComboSplineSeries.html#method_drawSeries", "access": "protected", "host": "StackedComboSplineSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedAreaSeries.html#method_drawSeries", "access": "protected", "host": "StackedAreaSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedColumnSeries.html#method_drawSeries", "access": "protected", "host": "StackedColumnSeries", "type": "method", "name": "drawSeries"}, {"url": "StackedBarSeries.html#method_drawSeries", "access": "protected", "host": "StackedBarSeries", "type": "method", "name": "drawSeries"}, {"url": "Lines.html#method_drawSpline", "access": "protected", "host": "Lines", "type": "method", "name": "drawSpline"}, {"url": "Fills.html#method_drawStackedAreaSpline", "access": "protected", "host": "Fills", "type": "method", "name": "drawStackedAreaSpline"}, {"url": "LeftAxisLayout.html#method_drawTick", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "drawTick"}, {"url": "RightAxisLayout.html#method_drawTick", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "drawTick"}, {"url": "BottomAxisLayout.html#method_drawTick", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "drawTick"}, {"url": "TopAxisLayout.html#method_drawTick", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "drawTick"}, {"url": "Graphic.html#method_drawWedge", "access": "", "host": "Graphic", "type": "method", "name": "drawWedge"}, {"url": "VMLGraphics.html#method_drawWedge", "access": "", "host": "VMLGraphics", "type": "method", "name": "drawWedge"}, {"url": "Axis.html#config_edgeOffset", "access": "protected", "host": "Axis", "type": "config", "name": "edgeOffset"}, {"url": "Axis.html#event_edgeOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "edgeOffsetChange"}, {"url": "Graphic.html#method_end", "access": "", "host": "Graphic", "type": "method", "name": "end"}, {"url": "CanvasDrawingUtil.html#method_end", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "end"}, {"url": "VMLGraphics.html#method_end", "access": "", "host": "VMLGraphics", "type": "method", "name": "end"}, {"url": "Shape.html#method_end", "access": "", "host": "Shape", "type": "method", "name": "end"}, {"url": "ChartBase.html#method_getAxisByKey", "access": "", "host": "ChartBase", "type": "method", "name": "getAxisByKey"}, {"url": "ChartBase.html#method_getCategoryAxis", "access": "", "host": "ChartBase", "type": "method", "name": "getCategoryAxis"}, {"url": "Fills.html#method__getClosingPoints", "access": "protected", "host": "Fills", "type": "method", "name": "_getClosingPoints"}, {"url": "CurveUtil.html#method_getCurveControlPoints", "access": "protected", "host": "CurveUtil", "type": "method", "name": "getCurveControlPoints"}, {"url": "AxisType.html#method_getDataByKey", "access": "", "host": "AxisType", "type": "method", "name": "getDataByKey"}, {"url": "CategoryAxis.html#method_getDataByKey", "access": "", "host": "CategoryAxis", "type": "method", "name": "getDataByKey"}, {"url": "CartesianSeries.html#method__getDefaultColor", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_getDefaultColor"}, {"url": "Renderer.html#method__getDefaultStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_getDefaultStyles"}, {"url": "Axis.html#method__getDefaultStyles", "access": "protected", "host": "Axis", "type": "method", "name": "_getDefaultStyles"}, {"url": "CartesianSeries.html#method__getDefaultStyles", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "MarkerSeries.html#method__getDefaultStyles", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "LineSeries.html#method__getDefaultStyles", "access": "protected", "host": "LineSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "AreaSeries.html#method__getDefaultStyles", "access": "protected", "host": "AreaSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "ComboSeries.html#method__getDefaultStyles", "access": "protected", "host": "ComboSeries", "type": "method", "name": "_getDefaultStyles"}, {"url": "Gridlines.html#method__getDefaultStyles", "access": "protected", "host": "Gridlines", "type": "method", "name": "_getDefaultStyles"}, {"url": "Graph.html#method__getDefaultStyles", "access": "protected", "host": "Graph", "type": "method", "name": "_getDefaultStyles"}, {"url": "AxisType.html#config_getEdgeOffset", "access": "", "host": "AxisType", "type": "config", "name": "getEdgeOffset"}, {"url": "CategoryAxis.html#method_getEdgeOffset", "access": "", "host": "CategoryAxis", "type": "method", "name": "getEdgeOffset"}, {"url": "AxisType.html#event_getEdgeOffsetChange", "access": "", "host": "AxisType", "type": "event", "name": "getEdgeOffsetChange"}, {"url": "Plots.html#method_getHotspot", "access": "protected", "host": "Plots", "type": "method", "name": "getHotspot"}, {"url": "Plots.html#method__getItemColor", "access": "protected", "host": "Plots", "type": "method", "name": "_getItemColor"}, {"url": "AxisType.html#method_getKeyValueAt", "access": "", "host": "AxisType", "type": "method", "name": "getKeyValueAt"}, {"url": "AxisType.html#method_getLabelByIndex", "access": "", "host": "AxisType", "type": "method", "name": "getLabelByIndex"}, {"url": "NumericAxis.html#method_getLabelByIndex", "access": "", "host": "NumericAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "TimeAxis.html#method_getLabelByIndex", "access": "", "host": "TimeAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "CategoryAxis.html#method_getLabelByIndex", "access": "", "host": "CategoryAxis", "type": "method", "name": "getLabelByIndex"}, {"url": "LeftAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "RightAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "BottomAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "TopAxisLayout.html#method_getLabelPoint", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "getLabelPoint"}, {"url": "Lines.html#method__getLineDefaults", "access": "protected", "host": "Lines", "type": "method", "name": "_getLineDefaults"}, {"url": "LeftAxisLayout.html#method_getLineStart", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "RightAxisLayout.html#method_getLineStart", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "BottomAxisLayout.html#method_getLineStart", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "TopAxisLayout.html#method_getLineStart", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "getLineStart"}, {"url": "AxisType.html#method_getMajorUnitDistance", "access": "", "host": "AxisType", "type": "method", "name": "getMajorUnitDistance"}, {"url": "CategoryAxis.html#method_getMajorUnitDistance", "access": "", "host": "CategoryAxis", "type": "method", "name": "getMajorUnitDistance"}, {"url": "Plots.html#method_getMarker", "access": "protected", "host": "Plots", "type": "method", "name": "getMarker"}, {"url": "Plots.html#method__getPlotDefaults", "access": "protected", "host": "Plots", "type": "method", "name": "_getPlotDefaults"}, {"url": "StackedBarSeries.html#method__getPlotDefaults", "access": "protected", "host": "StackedBarSeries", "type": "method", "name": "_getPlotDefaults"}, {"url": "ChartBase.html#method_getSeries", "access": "", "host": "ChartBase", "type": "method", "name": "getSeries"}, {"url": "Graph.html#method_getSeriesByIndex", "access": "", "host": "Graph", "type": "method", "name": "getSeriesByIndex"}, {"url": "Graph.html#method_getSeriesByKey", "access": "", "host": "Graph", "type": "method", "name": "getSeriesByKey"}, {"url": "CartesianChart.html#method_getSeriesItem", "access": "", "host": "CartesianChart", "type": "method", "name": "getSeriesItem"}, {"url": "PieChart.html#method_getSeriesItem", "access": "", "host": "PieChart", "type": "method", "name": "getSeriesItem"}, {"url": "Graphic.html#method_getShape", "access": "", "host": "Graphic", "type": "method", "name": "getShape"}, {"url": "CanvasDrawingUtil.html#method_getShape", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "getShape"}, {"url": "VMLGraphics.html#method_getShape", "access": "", "host": "VMLGraphics", "type": "method", "name": "getShape"}, {"url": "Fills.html#method__getStackedClosingPoints", "access": "protected", "host": "Fills", "type": "method", "name": "_getStackedClosingPoints"}, {"url": "Plots.html#method__getState", "access": "protected", "host": "Plots", "type": "method", "name": "_getState"}, {"url": "AxisType.html#method_getTotalMajorUnits", "access": "", "host": "AxisType", "type": "method", "name": "getTotalMajorUnits"}, {"url": "CategoryAxis.html#method_getTotalMajorUnits", "access": "", "host": "CategoryAxis", "type": "method", "name": "getTotalMajorUnits"}, {"url": "CartesianSeries.html#config_graph", "access": "", "host": "CartesianSeries", "type": "config", "name": "graph"}, {"url": "PieSeries.html#config_graph", "access": "", "host": "PieSeries", "type": "config", "name": "graph"}, {"url": "Gridlines.html#config_graph", "access": "", "host": "Gridlines", "type": "config", "name": "graph"}, {"url": "ChartBase.html#config_graph", "access": "", "host": "ChartBase", "type": "config", "name": "graph"}, {"url": "CartesianSeries.html#event_graphChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "graphChange"}, {"url": "PieSeries.html#event_graphChange", "access": "", "host": "PieSeries", "type": "event", "name": "graphChange"}, {"url": "Gridlines.html#event_graphChange", "access": "", "host": "Gridlines", "type": "event", "name": "graphChange"}, {"url": "ChartBase.html#event_graphChange", "access": "", "host": "ChartBase", "type": "event", "name": "graphChange"}, {"url": "Renderer.html#config_graphic", "access": "", "host": "Renderer", "type": "config", "name": "graphic"}, {"url": "Axis.html#config_graphic", "access": "", "host": "Axis", "type": "config", "name": "graphic"}, {"url": "Renderer.html#event_graphicChange", "access": "", "host": "Renderer", "type": "event", "name": "graphicChange"}, {"url": "Axis.html#event_graphicChange", "access": "", "host": "Axis", "type": "event", "name": "graphicChange"}, {"url": "CartesianSeries.html#config_graphOrder", "access": "", "host": "CartesianSeries", "type": "config", "name": "graphOrder"}, {"url": "CartesianSeries.html#event_graphOrderChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "graphOrderChange"}, {"url": "CartesianChart.html#event_graphStylesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "graphStylesChange"}, {"url": "CartesianSeries.html#config_height", "access": "", "host": "CartesianSeries", "type": "config", "name": "height"}, {"url": "CartesianSeries.html#event_heightChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "heightChange"}, {"url": "ChartBase.html#method_hideTooltip", "access": "", "host": "ChartBase", "type": "method", "name": "hideTooltip"}, {"url": "Graph.html#config_horizontalGridlines", "access": "", "host": "Graph", "type": "config", "name": "horizontalGridlines"}, {"url": "CartesianChart.html#config_horizontalGridlines", "access": "", "host": "CartesianChart", "type": "config", "name": "horizontalGridlines"}, {"url": "Graph.html#event_horizontalGridlinesChange", "access": "", "host": "Graph", "type": "event", "name": "horizontalGridlinesChange"}, {"url": "CartesianChart.html#event_horizontalGridlinesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "horizontalGridlinesChange"}, {"url": "ChartBase.html#config_interactionType", "access": "", "host": "ChartBase", "type": "config", "name": "interactionType"}, {"url": "ChartBase.html#event_interactionTypeChange", "access": "", "host": "ChartBase", "type": "event", "name": "interactionTypeChange"}, {"url": "AxisType.html#config_keyCollection", "access": "", "host": "AxisType", "type": "config", "name": "keyCollection"}, {"url": "AxisType.html#event_keyCollectionChange", "access": "", "host": "AxisType", "type": "event", "name": "keyCollectionChange"}, {"url": "AxisType.html#config_keys", "access": "", "host": "AxisType", "type": "config", "name": "keys"}, {"url": "AxisType.html#event_keysChange", "access": "", "host": "AxisType", "type": "event", "name": "keysChange"}, {"url": "NumericAxis.html#config_labelFormat", "access": "", "host": "NumericAxis", "type": "config", "name": "labelFormat"}, {"url": "TimeAxis.html#config_labelFormat", "access": "", "host": "TimeAxis", "type": "config", "name": "labelFormat"}, {"url": "NumericAxis.html#event_labelFormatChange", "access": "", "host": "NumericAxis", "type": "event", "name": "labelFormatChange"}, {"url": "TimeAxis.html#event_labelFormatChange", "access": "", "host": "TimeAxis", "type": "event", "name": "labelFormatChange"}, {"url": "AxisType.html#config_labelFunction", "access": "", "host": "AxisType", "type": "config", "name": "labelFunction"}, {"url": "NumericAxis.html#config_labelFunction", "access": "", "host": "NumericAxis", "type": "config", "name": "labelFunction"}, {"url": "TimeAxis.html#config_labelFunction", "access": "", "host": "TimeAxis", "type": "config", "name": "labelFunction"}, {"url": "AxisType.html#event_labelFunctionChange", "access": "", "host": "AxisType", "type": "event", "name": "labelFunctionChange"}, {"url": "NumericAxis.html#event_labelFunctionChange", "access": "", "host": "NumericAxis", "type": "event", "name": "labelFunctionChange"}, {"url": "TimeAxis.html#event_labelFunctionChange", "access": "", "host": "TimeAxis", "type": "event", "name": "labelFunctionChange"}, {"url": "Axis.html#config_labelFunctionScope", "access": "", "host": "Axis", "type": "config", "name": "labelFunctionScope"}, {"url": "Axis.html#event_labelFunctionScopeChange", "access": "", "host": "Axis", "type": "event", "name": "labelFunctionScopeChange"}, {"url": "Axis.html#config_labels", "access": "", "host": "Axis", "type": "config", "name": "labels"}, {"url": "Axis.html#event_labelsChange", "access": "", "host": "Axis", "type": "event", "name": "labelsChange"}, {"url": "CartesianChart.html#event_leftAxesCollectionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "leftAxesCollectionChange"}, {"url": "Axis.html#config_leftTickOffset", "access": "", "host": "Axis", "type": "config", "name": "leftTickOffset"}, {"url": "Axis.html#event_leftTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "leftTickOffsetChange"}, {"url": "ComboSeries.html#config_line", "access": "", "host": "ComboSeries", "type": "config", "name": "line"}, {"url": "ComboSeries.html#event_lineChange", "access": "", "host": "ComboSeries", "type": "event", "name": "lineChange"}, {"url": "Graphic.html#method_lineStyle", "access": "", "host": "Graphic", "type": "method", "name": "lineStyle"}, {"url": "CanvasDrawingUtil.html#method_lineStyle", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "lineStyle"}, {"url": "VMLGraphics.html#method_lineStyle", "access": "", "host": "VMLGraphics", "type": "method", "name": "lineStyle"}, {"url": "Graphic.html#method_lineTo", "access": "", "host": "Graphic", "type": "method", "name": "lineTo"}, {"url": "CanvasDrawingUtil.html#method_lineTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "lineTo"}, {"url": "VMLGraphics.html#method_lineTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "lineTo"}, {"url": "ComboSeries.html#config_marker", "access": "", "host": "ComboSeries", "type": "config", "name": "marker"}, {"url": "ComboSeries.html#event_markerChange", "access": "", "host": "ComboSeries", "type": "event", "name": "markerChange"}, {"url": "ChartBase.html#event_markerEvent:click", "access": "", "host": "ChartBase", "type": "event", "name": "markerEvent:click"}, {"url": "ChartBase.html#event_markerEvent:mousedown", "access": "", "host": "ChartBase", "type": "event", "name": "markerEvent:mousedown"}, {"url": "ChartBase.html#event_markerEvent:mouseout", "access": "", "host": "ChartBase", "type": "event", "name": "markerEvent:mouseout"}, {"url": "ChartBase.html#event_markerEvent:mouseover", "access": "", "host": "ChartBase", "type": "event", "name": "markerEvent:mouseover"}, {"url": "ChartBase.html#event_markerEvent:mouseup", "access": "", "host": "ChartBase", "type": "event", "name": "markerEvent:mouseup"}, {"url": "AxisType.html#config_maximum", "access": "", "host": "AxisType", "type": "config", "name": "maximum"}, {"url": "TimeAxis.html#config_maximum", "access": "", "host": "TimeAxis", "type": "config", "name": "maximum"}, {"url": "AxisType.html#event_maximumChange", "access": "", "host": "AxisType", "type": "event", "name": "maximumChange"}, {"url": "TimeAxis.html#event_maximumChange", "access": "", "host": "TimeAxis", "type": "event", "name": "maximumChange"}, {"url": "BottomAxisLayout.html#config_maxLabelSize", "access": "protected", "host": "BottomAxisLayout", "type": "config", "name": "maxLabelSize"}, {"url": "TopAxisLayout.html#config_maxLabelSize", "access": "protected", "host": "TopAxisLayout", "type": "config", "name": "maxLabelSize"}, {"url": "BottomAxisLayout.html#event_maxLabelSizeChange", "access": "", "host": "BottomAxisLayout", "type": "event", "name": "maxLabelSizeChange"}, {"url": "TopAxisLayout.html#event_maxLabelSizeChange", "access": "", "host": "TopAxisLayout", "type": "event", "name": "maxLabelSizeChange"}, {"url": "Renderer.html#method__mergeStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_mergeStyles"}, {"url": "AxisType.html#config_minimum", "access": "", "host": "AxisType", "type": "config", "name": "minimum"}, {"url": "TimeAxis.html#config_minimum", "access": "", "host": "TimeAxis", "type": "config", "name": "minimum"}, {"url": "AxisType.html#event_minimumChange", "access": "", "host": "AxisType", "type": "event", "name": "minimumChange"}, {"url": "TimeAxis.html#event_minimumChange", "access": "", "host": "TimeAxis", "type": "event", "name": "minimumChange"}, {"url": "Graphic.html#method_moveTo", "access": "", "host": "Graphic", "type": "method", "name": "moveTo"}, {"url": "CanvasDrawingUtil.html#method_moveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "moveTo"}, {"url": "VMLGraphics.html#method_moveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "moveTo"}, {"url": "StackedColumnSeries.html#event_negativeBaseValuesChange", "access": "", "host": "StackedColumnSeries", "type": "event", "name": "negativeBaseValuesChange"}, {"url": "StackedBarSeries.html#event_negativeBaseValuesChange", "access": "", "host": "StackedBarSeries", "type": "event", "name": "negativeBaseValuesChange"}, {"url": "Axis.html#config_node", "access": "", "host": "Axis", "type": "config", "name": "node"}, {"url": "Axis.html#event_nodeChange", "access": "", "host": "Axis", "type": "event", "name": "nodeChange"}, {"url": "LeftAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "RightAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "BottomAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "TopAxisLayout.html#method_offsetNodeForTick", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "offsetNodeForTick"}, {"url": "CartesianSeries.html#config_order", "access": "", "host": "CartesianSeries", "type": "config", "name": "order"}, {"url": "PieSeries.html#config_order", "access": "", "host": "PieSeries", "type": "config", "name": "order"}, {"url": "CartesianSeries.html#event_orderChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "orderChange"}, {"url": "PieSeries.html#event_orderChange", "access": "", "host": "PieSeries", "type": "event", "name": "orderChange"}, {"url": "Axis.html#config_overlapGraph", "access": "", "host": "Axis", "type": "config", "name": "overlapGraph"}, {"url": "Axis.html#event_overlapGraphChange", "access": "", "host": "Axis", "type": "event", "name": "overlapGraphChange"}, {"url": "CartesianChart.html#event_planarEvent:mouseout", "access": "", "host": "CartesianChart", "type": "event", "name": "planarEvent:mouseout"}, {"url": "CartesianChart.html#event_planarEvent:mouseover", "access": "", "host": "CartesianChart", "type": "event", "name": "planarEvent:mouseover"}, {"url": "Shape.html#property_pointerEvents", "access": "", "host": "Shape", "type": "property", "name": "pointerEvents"}, {"url": "Axis.html#config_position", "access": "", "host": "Axis", "type": "config", "name": "position"}, {"url": "Axis.html#event_positionChange", "access": "", "host": "Axis", "type": "event", "name": "positionChange"}, {"url": "LeftAxisLayout.html#method_positionLabel", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "RightAxisLayout.html#method_positionLabel", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "BottomAxisLayout.html#method_positionLabel", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "TopAxisLayout.html#method_positionLabel", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "positionLabel"}, {"url": "StackedColumnSeries.html#event_positiveBaseValuesChange", "access": "", "host": "StackedColumnSeries", "type": "event", "name": "positiveBaseValuesChange"}, {"url": "StackedBarSeries.html#event_positiveBaseValuesChange", "access": "", "host": "StackedBarSeries", "type": "event", "name": "positiveBaseValuesChange"}, {"url": "Graphic.html#method_quadraticCurveTo", "access": "", "host": "Graphic", "type": "method", "name": "quadraticCurveTo"}, {"url": "CanvasDrawingUtil.html#method_quadraticCurveTo", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "quadraticCurveTo"}, {"url": "VMLGraphics.html#method_quadraticCurveTo", "access": "", "host": "VMLGraphics", "type": "method", "name": "quadraticCurveTo"}, {"url": "AxisType.html#method_removeKey", "access": "", "host": "AxisType", "type": "method", "name": "removeKey"}, {"url": "Graphic.html#method_render", "access": "", "host": "Graphic", "type": "method", "name": "render"}, {"url": "CanvasGraphics.html#method_render", "access": "", "host": "CanvasGraphics", "type": "method", "name": "render"}, {"url": "VMLGraphics.html#method_render", "access": "", "host": "VMLGraphics", "type": "method", "name": "render"}, {"url": "CartesianSeries.html#config_rendered", "access": "", "host": "CartesianSeries", "type": "config", "name": "rendered"}, {"url": "CartesianSeries.html#event_renderedChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "renderedChange"}, {"url": "CartesianChart.html#event_rightAxesCollectionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "rightAxesCollectionChange"}, {"url": "Axis.html#config_rightTickOffset", "access": "", "host": "Axis", "type": "config", "name": "rightTickOffset"}, {"url": "Axis.html#event_rightTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "rightTickOffsetChange"}, {"url": "AxisType.html#config_roundingMethod", "access": "", "host": "AxisType", "type": "config", "name": "roundingMethod"}, {"url": "AxisType.html#event_roundingMethodChange", "access": "", "host": "AxisType", "type": "event", "name": "roundingMethodChange"}, {"url": "Graph.html#config_seriesCollection", "access": "", "host": "Graph", "type": "config", "name": "seriesCollection"}, {"url": "CartesianChart.html#config_seriesCollection", "access": "", "host": "CartesianChart", "type": "config", "name": "seriesCollection"}, {"url": "PieChart.html#config_seriesCollection", "access": "", "host": "PieChart", "type": "config", "name": "seriesCollection"}, {"url": "Graph.html#event_seriesCollectionChange", "access": "", "host": "Graph", "type": "event", "name": "seriesCollectionChange"}, {"url": "CartesianChart.html#event_seriesCollectionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "seriesCollectionChange"}, {"url": "PieChart.html#event_seriesCollectionChange", "access": "", "host": "PieChart", "type": "event", "name": "seriesCollectionChange"}, {"url": "Graph.html#config_seriesDictionary", "access": "", "host": "Graph", "type": "config", "name": "seriesDictionary"}, {"url": "Graph.html#event_seriesDictionaryChange", "access": "", "host": "Graph", "type": "event", "name": "seriesDictionaryChange"}, {"url": "ChartBase.html#config_seriesKeys", "access": "", "host": "ChartBase", "type": "config", "name": "seriesKeys"}, {"url": "ChartBase.html#event_seriesKeysChange", "access": "", "host": "ChartBase", "type": "event", "name": "seriesKeysChange"}, {"url": "CartesianChart.html#event_seriesStylesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "seriesStylesChange"}, {"url": "CartesianSeries.html#method_setAreaData", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedSplineSeries.html#method_setAreaData", "access": "protected", "host": "StackedSplineSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedMarkerSeries.html#method_setAreaData", "access": "protected", "host": "StackedMarkerSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedComboSeries.html#method_setAreaData", "access": "protected", "host": "StackedComboSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedLineSeries.html#method_setAreaData", "access": "protected", "host": "StackedLineSeries", "type": "method", "name": "setAreaData"}, {"url": "StackedAreaSeries.html#method_setAreaData", "access": "protected", "host": "StackedAreaSeries", "type": "method", "name": "setAreaData"}, {"url": "LeftAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "RightAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "BottomAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "TopAxisLayout.html#method_setCalculatedSize", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setCalculatedSize"}, {"url": "CartesianSeries.html#method__setCanvas", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_setCanvas"}, {"url": "AxisType.html#config_setMax", "access": "", "host": "AxisType", "type": "config", "name": "setMax"}, {"url": "AxisType.html#event_setMaxChange", "access": "", "host": "AxisType", "type": "event", "name": "setMaxChange"}, {"url": "AxisType.html#config_setMin", "access": "", "host": "AxisType", "type": "config", "name": "setMin"}, {"url": "AxisType.html#event_setMinChange", "access": "", "host": "AxisType", "type": "event", "name": "setMinChange"}, {"url": "Graphic.html#method_setPosition", "access": "", "host": "Graphic", "type": "method", "name": "setPosition"}, {"url": "CanvasGraphics.html#method_setPosition", "access": "", "host": "CanvasGraphics", "type": "method", "name": "setPosition"}, {"url": "VMLGraphics.html#method_setPosition", "access": "", "host": "VMLGraphics", "type": "method", "name": "setPosition"}, {"url": "Shape.html#method_setPosition", "access": "", "host": "Shape", "type": "method", "name": "setPosition"}, {"url": "CanvasShape.html#method_setPosition", "access": "", "host": "CanvasShape", "type": "method", "name": "setPosition"}, {"url": "VMLShape.html#method_setPosition", "access": "", "host": "VMLShape", "type": "method", "name": "setPosition"}, {"url": "Graphic.html#method_setSize", "access": "", "host": "Graphic", "type": "method", "name": "setSize"}, {"url": "CanvasDrawingUtil.html#method_setSize", "access": "", "host": "CanvasDrawingUtil", "type": "method", "name": "setSize"}, {"url": "CanvasGraphics.html#method_setSize", "access": "", "host": "CanvasGraphics", "type": "method", "name": "setSize"}, {"url": "VMLGraphics.html#method_setSize", "access": "", "host": "VMLGraphics", "type": "method", "name": "setSize"}, {"url": "LeftAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "RightAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "BottomAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "TopAxisLayout.html#method_setSizeAndPosition", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setSizeAndPosition"}, {"url": "Renderer.html#method__setStyles", "access": "protected", "host": "Renderer", "type": "method", "name": "_setStyles"}, {"url": "Plots.html#method__setStyles", "access": "protected", "host": "Plots", "type": "method", "name": "_setStyles"}, {"url": "MarkerSeries.html#method__setStyles", "access": "protected", "host": "MarkerSeries", "type": "method", "name": "_setStyles"}, {"url": "LineSeries.html#method__setStyles", "access": "protected", "host": "LineSeries", "type": "method", "name": "_setStyles"}, {"url": "AreaSeries.html#method__setStyles", "access": "protected", "host": "AreaSeries", "type": "method", "name": "_setStyles"}, {"url": "LeftAxisLayout.html#method_setTickOffset", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "setTickOffset"}, {"url": "RightAxisLayout.html#method_setTickOffset", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "setTickOffset"}, {"url": "BottomAxisLayout.html#method_setTickOffsets", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "setTickOffsets"}, {"url": "TopAxisLayout.html#method_setTickOffsets", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "setTickOffsets"}, {"url": "ComboSeries.html#config_showAreaFill", "access": "", "host": "ComboSeries", "type": "config", "name": "showAreaFill"}, {"url": "StackedComboSeries.html#config_showAreaFill", "access": "", "host": "StackedComboSeries", "type": "config", "name": "showAreaFill"}, {"url": "StackedComboSplineSeries.html#config_showAreaFill", "access": "", "host": "StackedComboSplineSeries", "type": "config", "name": "showAreaFill"}, {"url": "CartesianChart.html#config_showAreaFill", "access": "", "host": "CartesianChart", "type": "config", "name": "showAreaFill"}, {"url": "ComboSeries.html#event_showAreaFillChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showAreaFillChange"}, {"url": "StackedComboSeries.html#event_showAreaFillChange", "access": "", "host": "StackedComboSeries", "type": "event", "name": "showAreaFillChange"}, {"url": "StackedComboSplineSeries.html#event_showAreaFillChange", "access": "", "host": "StackedComboSplineSeries", "type": "event", "name": "showAreaFillChange"}, {"url": "CartesianChart.html#event_showAreaFillChange", "access": "", "host": "CartesianChart", "type": "event", "name": "showAreaFillChange"}, {"url": "Graph.html#config_showBackground", "access": "", "host": "Graph", "type": "config", "name": "showBackground"}, {"url": "Graph.html#event_showBackgroundChange", "access": "", "host": "Graph", "type": "event", "name": "showBackgroundChange"}, {"url": "ComboSeries.html#config_showLines", "access": "", "host": "ComboSeries", "type": "config", "name": "showLines"}, {"url": "CartesianChart.html#config_showLines", "access": "", "host": "CartesianChart", "type": "config", "name": "showLines"}, {"url": "ComboSeries.html#event_showLinesChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showLinesChange"}, {"url": "CartesianChart.html#event_showLinesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "showLinesChange"}, {"url": "ComboSeries.html#config_showMarkers", "access": "", "host": "ComboSeries", "type": "config", "name": "showMarkers"}, {"url": "CartesianChart.html#config_showMarkers", "access": "", "host": "CartesianChart", "type": "config", "name": "showMarkers"}, {"url": "ComboSeries.html#event_showMarkersChange", "access": "", "host": "ComboSeries", "type": "event", "name": "showMarkersChange"}, {"url": "CartesianChart.html#event_showMarkersChange", "access": "", "host": "CartesianChart", "type": "event", "name": "showMarkersChange"}, {"url": "StackingUtil.html#method__stackCoordinates", "access": "protected", "host": "StackingUtil", "type": "method", "name": "_stackCoordinates"}, {"url": "CartesianChart.html#config_stacked", "access": "", "host": "CartesianChart", "type": "config", "name": "stacked"}, {"url": "CartesianChart.html#event_stackedChange", "access": "", "host": "CartesianChart", "type": "event", "name": "stackedChange"}, {"url": "Renderer.html#config_styles", "access": "", "host": "Renderer", "type": "config", "name": "styles"}, {"url": "Axis.html#config_styles", "access": "", "host": "Axis", "type": "config", "name": "styles"}, {"url": "MarkerSeries.html#config_styles", "access": "", "host": "MarkerSeries", "type": "config", "name": "styles"}, {"url": "LineSeries.html#config_styles", "access": "", "host": "LineSeries", "type": "config", "name": "styles"}, {"url": "SplineSeries.html#config_styles", "access": "", "host": "SplineSeries", "type": "config", "name": "styles"}, {"url": "AreaSplineSeries.html#config_styles", "access": "", "host": "AreaSplineSeries", "type": "config", "name": "styles"}, {"url": "ColumnSeries.html#config_styles", "access": "", "host": "ColumnSeries", "type": "config", "name": "styles"}, {"url": "BarSeries.html#config_styles", "access": "", "host": "BarSeries", "type": "config", "name": "styles"}, {"url": "AreaSeries.html#config_styles", "access": "", "host": "AreaSeries", "type": "config", "name": "styles"}, {"url": "ComboSeries.html#config_styles", "access": "", "host": "ComboSeries", "type": "config", "name": "styles"}, {"url": "StackedColumnSeries.html#config_styles", "access": "", "host": "StackedColumnSeries", "type": "config", "name": "styles"}, {"url": "StackedBarSeries.html#config_styles", "access": "", "host": "StackedBarSeries", "type": "config", "name": "styles"}, {"url": "PieSeries.html#config_styles", "access": "", "host": "PieSeries", "type": "config", "name": "styles"}, {"url": "Graph.html#config_styles", "access": "", "host": "Graph", "type": "config", "name": "styles"}, {"url": "CartesianChart.html#config_styles", "access": "", "host": "CartesianChart", "type": "config", "name": "styles"}, {"url": "Renderer.html#event_stylesChange", "access": "", "host": "Renderer", "type": "event", "name": "stylesChange"}, {"url": "Axis.html#event_stylesChange", "access": "", "host": "Axis", "type": "event", "name": "stylesChange"}, {"url": "MarkerSeries.html#event_stylesChange", "access": "", "host": "MarkerSeries", "type": "event", "name": "stylesChange"}, {"url": "LineSeries.html#event_stylesChange", "access": "", "host": "LineSeries", "type": "event", "name": "stylesChange"}, {"url": "SplineSeries.html#event_stylesChange", "access": "", "host": "SplineSeries", "type": "event", "name": "stylesChange"}, {"url": "AreaSplineSeries.html#event_stylesChange", "access": "", "host": "AreaSplineSeries", "type": "event", "name": "stylesChange"}, {"url": "ColumnSeries.html#event_stylesChange", "access": "", "host": "ColumnSeries", "type": "event", "name": "stylesChange"}, {"url": "BarSeries.html#event_stylesChange", "access": "", "host": "BarSeries", "type": "event", "name": "stylesChange"}, {"url": "AreaSeries.html#event_stylesChange", "access": "", "host": "AreaSeries", "type": "event", "name": "stylesChange"}, {"url": "ComboSeries.html#event_stylesChange", "access": "", "host": "ComboSeries", "type": "event", "name": "stylesChange"}, {"url": "StackedColumnSeries.html#event_stylesChange", "access": "", "host": "StackedColumnSeries", "type": "event", "name": "stylesChange"}, {"url": "StackedBarSeries.html#event_stylesChange", "access": "", "host": "StackedBarSeries", "type": "event", "name": "stylesChange"}, {"url": "PieSeries.html#event_stylesChange", "access": "", "host": "PieSeries", "type": "event", "name": "stylesChange"}, {"url": "Graph.html#event_stylesChange", "access": "", "host": "Graph", "type": "event", "name": "stylesChange"}, {"url": "CartesianChart.html#event_stylesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "stylesChange"}, {"url": "Axis.html#config_tickPoints", "access": "", "host": "Axis", "type": "config", "name": "tickPoints"}, {"url": "Axis.html#event_tickPointsChange", "access": "", "host": "Axis", "type": "event", "name": "tickPointsChange"}, {"url": "ChartBase.html#method_toggleTooltip", "access": "", "host": "ChartBase", "type": "method", "name": "toggleTooltip"}, {"url": "Graphic.html#method_toggleVisible", "access": "", "host": "Graphic", "type": "method", "name": "toggleVisible"}, {"url": "CanvasGraphics.html#method_toggleVisible", "access": "", "host": "CanvasGraphics", "type": "method", "name": "toggleVisible"}, {"url": "VMLGraphics.html#method_toggleVisible", "access": "", "host": "VMLGraphics", "type": "method", "name": "toggleVisible"}, {"url": "Shape.html#method_toggleVisible", "access": "", "host": "Shape", "type": "method", "name": "toggleVisible"}, {"url": "CanvasShape.html#method_toggleVisible", "access": "", "host": "CanvasShape", "type": "method", "name": "toggleVisible"}, {"url": "VMLShape.html#method_toggleVisible", "access": "", "host": "VMLShape", "type": "method", "name": "toggleVisible"}, {"url": "CartesianSeries.html#method__toggleVisible", "access": "protected", "host": "CartesianSeries", "type": "method", "name": "_toggleVisible"}, {"url": "ChartBase.html#config_tooltip", "access": "", "host": "ChartBase", "type": "config", "name": "tooltip"}, {"url": "ChartBase.html#event_tooltipChange", "access": "", "host": "ChartBase", "type": "event", "name": "tooltipChange"}, {"url": "CartesianChart.html#event_topAxesCollectionChange", "access": "", "host": "CartesianChart", "type": "event", "name": "topAxesCollectionChange"}, {"url": "Axis.html#config_topTickOffset", "access": "", "host": "Axis", "type": "config", "name": "topTickOffset"}, {"url": "Axis.html#event_topTickOffsetChange", "access": "", "host": "Axis", "type": "event", "name": "topTickOffsetChange"}, {"url": "Shape.html#property_type", "access": "", "host": "Shape", "type": "property", "name": "type"}, {"url": "CanvasShape.html#property_type", "access": "", "host": "CanvasShape", "type": "property", "name": "type"}, {"url": "VMLShape.html#property_type", "access": "", "host": "VMLShape", "type": "property", "name": "type"}, {"url": "AxisType.html#config_type", "access": "", "host": "AxisType", "type": "config", "name": "type"}, {"url": "CartesianSeries.html#config_type", "access": "", "host": "CartesianSeries", "type": "config", "name": "type"}, {"url": "MarkerSeries.html#config_type", "access": "", "host": "MarkerSeries", "type": "config", "name": "type"}, {"url": "LineSeries.html#config_type", "access": "", "host": "LineSeries", "type": "config", "name": "type"}, {"url": "SplineSeries.html#config_type", "access": "", "host": "SplineSeries", "type": "config", "name": "type"}, {"url": "AreaSplineSeries.html#config_type", "access": "", "host": "AreaSplineSeries", "type": "config", "name": "type"}, {"url": "StackedSplineSeries.html#config_type", "access": "", "host": "StackedSplineSeries", "type": "config", "name": "type"}, {"url": "StackedMarkerSeries.html#config_type", "access": "", "host": "StackedMarkerSeries", "type": "config", "name": "type"}, {"url": "ColumnSeries.html#config_type", "access": "", "host": "ColumnSeries", "type": "config", "name": "type"}, {"url": "BarSeries.html#config_type", "access": "", "host": "BarSeries", "type": "config", "name": "type"}, {"url": "AreaSeries.html#config_type", "access": "", "host": "AreaSeries", "type": "config", "name": "type"}, {"url": "StackedAreaSplineSeries.html#config_type", "access": "", "host": "StackedAreaSplineSeries", "type": "config", "name": "type"}, {"url": "ComboSeries.html#config_type", "access": "", "host": "ComboSeries", "type": "config", "name": "type"}, {"url": "StackedComboSeries.html#config_type", "access": "", "host": "StackedComboSeries", "type": "config", "name": "type"}, {"url": "ComboSplineSeries.html#config_type", "access": "", "host": "ComboSplineSeries", "type": "config", "name": "type"}, {"url": "StackedComboSplineSeries.html#config_type", "access": "", "host": "StackedComboSplineSeries", "type": "config", "name": "type"}, {"url": "StackedLineSeries.html#config_type", "access": "", "host": "StackedLineSeries", "type": "config", "name": "type"}, {"url": "StackedAreaSeries.html#config_type", "access": "", "host": "StackedAreaSeries", "type": "config", "name": "type"}, {"url": "StackedColumnSeries.html#config_type", "access": "", "host": "StackedColumnSeries", "type": "config", "name": "type"}, {"url": "StackedBarSeries.html#config_type", "access": "", "host": "StackedBarSeries", "type": "config", "name": "type"}, {"url": "PieSeries.html#config_type", "access": "", "host": "PieSeries", "type": "config", "name": "type"}, {"url": "CartesianChart.html#config_type", "access": "", "host": "CartesianChart", "type": "config", "name": "type"}, {"url": "PieChart.html#config_type", "access": "", "host": "PieChart", "type": "config", "name": "type"}, {"url": "AxisType.html#event_typeChange", "access": "", "host": "AxisType", "type": "event", "name": "typeChange"}, {"url": "CartesianSeries.html#event_typeChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "typeChange"}, {"url": "MarkerSeries.html#event_typeChange", "access": "", "host": "MarkerSeries", "type": "event", "name": "typeChange"}, {"url": "LineSeries.html#event_typeChange", "access": "", "host": "LineSeries", "type": "event", "name": "typeChange"}, {"url": "SplineSeries.html#event_typeChange", "access": "", "host": "SplineSeries", "type": "event", "name": "typeChange"}, {"url": "AreaSplineSeries.html#event_typeChange", "access": "", "host": "AreaSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedSplineSeries.html#event_typeChange", "access": "", "host": "StackedSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedMarkerSeries.html#event_typeChange", "access": "", "host": "StackedMarkerSeries", "type": "event", "name": "typeChange"}, {"url": "ColumnSeries.html#event_typeChange", "access": "", "host": "ColumnSeries", "type": "event", "name": "typeChange"}, {"url": "BarSeries.html#event_typeChange", "access": "", "host": "BarSeries", "type": "event", "name": "typeChange"}, {"url": "AreaSeries.html#event_typeChange", "access": "", "host": "AreaSeries", "type": "event", "name": "typeChange"}, {"url": "StackedAreaSplineSeries.html#event_typeChange", "access": "", "host": "StackedAreaSplineSeries", "type": "event", "name": "typeChange"}, {"url": "ComboSeries.html#event_typeChange", "access": "", "host": "ComboSeries", "type": "event", "name": "typeChange"}, {"url": "StackedComboSeries.html#event_typeChange", "access": "", "host": "StackedComboSeries", "type": "event", "name": "typeChange"}, {"url": "ComboSplineSeries.html#event_typeChange", "access": "", "host": "ComboSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedComboSplineSeries.html#event_typeChange", "access": "", "host": "StackedComboSplineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedLineSeries.html#event_typeChange", "access": "", "host": "StackedLineSeries", "type": "event", "name": "typeChange"}, {"url": "StackedAreaSeries.html#event_typeChange", "access": "", "host": "StackedAreaSeries", "type": "event", "name": "typeChange"}, {"url": "StackedColumnSeries.html#event_typeChange", "access": "", "host": "StackedColumnSeries", "type": "event", "name": "typeChange"}, {"url": "StackedBarSeries.html#event_typeChange", "access": "", "host": "StackedBarSeries", "type": "event", "name": "typeChange"}, {"url": "PieSeries.html#event_typeChange", "access": "", "host": "PieSeries", "type": "event", "name": "typeChange"}, {"url": "CartesianChart.html#event_typeChange", "access": "", "host": "CartesianChart", "type": "event", "name": "typeChange"}, {"url": "PieChart.html#event_typeChange", "access": "", "host": "PieChart", "type": "event", "name": "typeChange"}, {"url": "Shape.html#method_update", "access": "", "host": "Shape", "type": "method", "name": "update"}, {"url": "CanvasShape.html#method_update", "access": "", "host": "CanvasShape", "type": "method", "name": "update"}, {"url": "VMLShape.html#method_update", "access": "", "host": "VMLShape", "type": "method", "name": "update"}, {"url": "Plots.html#method_updateMarkerState", "access": "protected", "host": "Plots", "type": "method", "name": "updateMarkerState"}, {"url": "ColumnSeries.html#method_updateMarkerState", "access": "protected", "host": "ColumnSeries", "type": "method", "name": "updateMarkerState"}, {"url": "BarSeries.html#method_updateMarkerState", "access": "protected", "host": "BarSeries", "type": "method", "name": "updateMarkerState"}, {"url": "StackedColumnSeries.html#method_updateMarkerState", "access": "protected", "host": "StackedColumnSeries", "type": "method", "name": "updateMarkerState"}, {"url": "StackedBarSeries.html#method_updateMarkerState", "access": "protected", "host": "StackedBarSeries", "type": "method", "name": "updateMarkerState"}, {"url": "PieSeries.html#method_updateMarkerState", "access": "protected", "host": "PieSeries", "type": "method", "name": "updateMarkerState"}, {"url": "LeftAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "LeftAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "RightAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "RightAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "BottomAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "BottomAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "TopAxisLayout.html#method_updateMaxLabelSize", "access": "protected", "host": "TopAxisLayout", "type": "method", "name": "updateMaxLabelSize"}, {"url": "CartesianChart.html#config_valueAxisName", "access": "", "host": "CartesianChart", "type": "config", "name": "valueAxisName"}, {"url": "CartesianChart.html#event_valueAxisNameChange", "access": "", "host": "CartesianChart", "type": "event", "name": "valueAxisNameChange"}, {"url": "CartesianSeries.html#config_valueDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "valueDisplayName"}, {"url": "PieSeries.html#config_valueDisplayName", "access": "", "host": "PieSeries", "type": "config", "name": "valueDisplayName"}, {"url": "CartesianSeries.html#event_valueDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "valueDisplayNameChange"}, {"url": "PieSeries.html#event_valueDisplayNameChange", "access": "", "host": "PieSeries", "type": "event", "name": "valueDisplayNameChange"}, {"url": "PieSeries.html#property_valueKey", "access": "", "host": "PieSeries", "type": "property", "name": "valueKey"}, {"url": "Graph.html#config_verticalGridlines", "access": "", "host": "Graph", "type": "config", "name": "verticalGridlines"}, {"url": "CartesianChart.html#config_verticalGridlines", "access": "", "host": "CartesianChart", "type": "config", "name": "verticalGridlines"}, {"url": "Graph.html#event_verticalGridlinesChange", "access": "", "host": "Graph", "type": "event", "name": "verticalGridlinesChange"}, {"url": "CartesianChart.html#event_verticalGridlinesChange", "access": "", "host": "CartesianChart", "type": "event", "name": "verticalGridlinesChange"}, {"url": "CartesianSeries.html#config_visible", "access": "", "host": "CartesianSeries", "type": "config", "name": "visible"}, {"url": "CartesianSeries.html#event_visibleChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "visibleChange"}, {"url": "CartesianSeries.html#config_xAxis", "access": "", "host": "CartesianSeries", "type": "config", "name": "xAxis"}, {"url": "CartesianSeries.html#event_xAxisChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xAxisChange"}, {"url": "CartesianSeries.html#config_xcoords", "access": "", "host": "CartesianSeries", "type": "config", "name": "xcoords"}, {"url": "CartesianSeries.html#event_xcoordsChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xcoordsChange"}, {"url": "CartesianSeries.html#config_xData", "access": "", "host": "CartesianSeries", "type": "config", "name": "xData"}, {"url": "CartesianSeries.html#event_xDataChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xDataChange"}, {"url": "CartesianSeries.html#config_xDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "xDisplayName"}, {"url": "CartesianSeries.html#event_xDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xDisplayNameChange"}, {"url": "CartesianSeries.html#config_xKey", "access": "", "host": "CartesianSeries", "type": "config", "name": "xKey"}, {"url": "CartesianSeries.html#event_xKeyChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xKeyChange"}, {"url": "CartesianSeries.html#config_xMarkerPlane", "access": "", "host": "CartesianSeries", "type": "config", "name": "xMarkerPlane"}, {"url": "CartesianSeries.html#event_xMarkerPlaneChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xMarkerPlaneChange"}, {"url": "CartesianSeries.html#config_xMarkerPlaneOffset", "access": "", "host": "CartesianSeries", "type": "config", "name": "xMarkerPlaneOffset"}, {"url": "CartesianSeries.html#event_xMarkerPlaneOffsetChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "xMarkerPlaneOffsetChange"}, {"url": "CartesianSeries.html#config_yAxis", "access": "", "host": "CartesianSeries", "type": "config", "name": "yAxis"}, {"url": "CartesianSeries.html#event_yAxisChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yAxisChange"}, {"url": "CartesianSeries.html#config_ycoords", "access": "", "host": "CartesianSeries", "type": "config", "name": "ycoords"}, {"url": "CartesianSeries.html#event_ycoordsChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "ycoordsChange"}, {"url": "CartesianSeries.html#config_yData", "access": "", "host": "CartesianSeries", "type": "config", "name": "yData"}, {"url": "CartesianSeries.html#event_yDataChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yDataChange"}, {"url": "CartesianSeries.html#config_yDisplayName", "access": "", "host": "CartesianSeries", "type": "config", "name": "yDisplayName"}, {"url": "CartesianSeries.html#event_yDisplayNameChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yDisplayNameChange"}, {"url": "CartesianSeries.html#config_yKey", "access": "", "host": "CartesianSeries", "type": "config", "name": "yKey"}, {"url": "CartesianSeries.html#event_yKeyChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yKeyChange"}, {"url": "CartesianSeries.html#config_yMarkerPlane", "access": "", "host": "CartesianSeries", "type": "config", "name": "yMarkerPlane"}, {"url": "CartesianSeries.html#event_yMarkerPlaneChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yMarkerPlaneChange"}, {"url": "CartesianSeries.html#config_yMarkerPlaneOffset", "access": "", "host": "CartesianSeries", "type": "config", "name": "yMarkerPlaneOffset"}, {"url": "CartesianSeries.html#event_yMarkerPlaneOffsetChange", "access": "", "host": "CartesianSeries", "type": "event", "name": "yMarkerPlaneOffsetChange"}];
+</script>
+</body>
+</html>

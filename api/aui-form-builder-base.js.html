@@ -1,0 +1,2121 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-event   aui-form-builder-base.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-event&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-event.html" title="aui-event">aui-event</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-form-builder-base.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AUI~event~input.html" title="AUI~event~input">AUI~event~input</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-event-base-debug.js.html" title="aui-event-base-debug.js">aui-event-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-base-min.js.html" title="aui-event-base-min.js">aui-event-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-base.js.html" title="aui-event-base.js">aui-event-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-debug.js.html" title="aui-event-debug.js">aui-event-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input-debug.js.html" title="aui-event-input-debug.js">aui-event-input-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input-min.js.html" title="aui-event-input-min.js">aui-event-input-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-input.js.html" title="aui-event-input.js">aui-event-input.js</a></li>
+
+
+			                                <li class=""><a href="aui-event-min.js.html" title="aui-event-min.js">aui-event-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-event.js.html" title="aui-event.js">aui-event.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-base-debug.js.html" title="aui-form-base-debug.js">aui-form-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-base-min.js.html" title="aui-form-base-min.js">aui-form-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-base.js.html" title="aui-form-base.js">aui-form-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-base-debug.js.html" title="aui-form-builder-base-debug.js">aui-form-builder-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-base-min.js.html" title="aui-form-builder-base-min.js">aui-form-builder-base-min.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-form-builder-base.js.html" title="aui-form-builder-base.js">aui-form-builder-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-debug.js.html" title="aui-form-builder-debug.js">aui-form-builder-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-field-debug.js.html" title="aui-form-builder-field-debug.js">aui-form-builder-field-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-field-min.js.html" title="aui-form-builder-field-min.js">aui-form-builder-field-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-field.js.html" title="aui-form-builder-field.js">aui-form-builder-field.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder-min.js.html" title="aui-form-builder-min.js">aui-form-builder-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-builder.js.html" title="aui-form-builder.js">aui-form-builder.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-combobox-debug.js.html" title="aui-form-combobox-debug.js">aui-form-combobox-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-combobox-min.js.html" title="aui-form-combobox-min.js">aui-form-combobox-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-combobox.js.html" title="aui-form-combobox.js">aui-form-combobox.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-debug.js.html" title="aui-form-debug.js">aui-form-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-field-debug.js.html" title="aui-form-field-debug.js">aui-form-field-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-field-min.js.html" title="aui-form-field-min.js">aui-form-field-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-field.js.html" title="aui-form-field.js">aui-form-field.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-min.js.html" title="aui-form-min.js">aui-form-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-select.js.html" title="aui-form-select.js">aui-form-select.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textarea-debug.js.html" title="aui-form-textarea-debug.js">aui-form-textarea-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textarea-min.js.html" title="aui-form-textarea-min.js">aui-form-textarea-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textarea.js.html" title="aui-form-textarea.js">aui-form-textarea.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textfield-debug.js.html" title="aui-form-textfield-debug.js">aui-form-textfield-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textfield-min.js.html" title="aui-form-textfield-min.js">aui-form-textfield-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-textfield.js.html" title="aui-form-textfield.js">aui-form-textfield.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator-debug.js.html" title="aui-form-validator-debug.js">aui-form-validator-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator-min.js.html" title="aui-form-validator-min.js">aui-form-validator-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-form-validator.js.html" title="aui-form-validator.js">aui-form-validator.js</a></li>
+
+
+			                                <li class=""><a href="aui-form.js.html" title="aui-form.js">aui-form.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-builder-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
+	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+	<span class="nx">isObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isObject</span><span class="p">,</span>
+	<span class="nx">isValue</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isValue</span><span class="p">,</span>
+
+	<span class="nx">isNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">isNodeList</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">isFormBuilder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilder</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">isFormBuilderField</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span><span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilderField</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">DDM</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">DDM</span><span class="p">,</span>
+
+	<span class="nx">ACTIVE</span> <span class="o">=</span> <span class="s1">&#39;active&#39;</span><span class="p">,</span>
+	<span class="nx">ACCEPT_CHILDREN</span> <span class="o">=</span> <span class="s1">&#39;acceptChildren&#39;</span><span class="p">,</span>
+	<span class="nx">AUTO_SELECT_FIELDS</span> <span class="o">=</span> <span class="s1">&#39;autoSelectFields&#39;</span><span class="p">,</span>
+	<span class="nx">AVAILABLE_FIELDS</span> <span class="o">=</span> <span class="s1">&#39;availableFields&#39;</span><span class="p">,</span>
+	<span class="nx">APPEND</span> <span class="o">=</span> <span class="s1">&#39;append&#39;</span><span class="p">,</span>
+	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
+	<span class="nx">BUILDER</span> <span class="o">=</span> <span class="s1">&#39;builder&#39;</span><span class="p">,</span>
+	<span class="nx">BUTTON</span> <span class="o">=</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>
+	<span class="nx">BUTTONS</span> <span class="o">=</span> <span class="s1">&#39;buttons&#39;</span><span class="p">,</span>
+	<span class="nx">BUTTONS_NODE</span> <span class="o">=</span> <span class="s1">&#39;buttonsNode&#39;</span><span class="p">,</span>
+	<span class="nx">CHILDREN</span> <span class="o">=</span> <span class="s1">&#39;children&#39;</span><span class="p">,</span>
+	<span class="nx">CLONABLE_PORTAL_LAYOUT</span> <span class="o">=</span> <span class="s1">&#39;clonable-portal-layout&#39;</span><span class="p">,</span>
+	<span class="nx">CLONE_NODE</span> <span class="o">=</span> <span class="s1">&#39;cloneNode&#39;</span><span class="p">,</span>
+	<span class="nx">COMMA_AND_SPACE</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="p">;</span>
+	<span class="nx">COMPONENT</span> <span class="o">=</span> <span class="s1">&#39;component&#39;</span><span class="p">,</span>
+	<span class="nx">CONTENT</span> <span class="o">=</span> <span class="s1">&#39;content&#39;</span><span class="p">,</span>
+	<span class="nx">CONTENT_BOX</span> <span class="o">=</span> <span class="s1">&#39;contentBox&#39;</span><span class="p">,</span>
+	<span class="nx">CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;container&#39;</span><span class="p">,</span>
+	<span class="nx">DELETE</span> <span class="o">=</span> <span class="s1">&#39;delete&#39;</span><span class="p">,</span>
+	<span class="nx">DD</span> <span class="o">=</span> <span class="s1">&#39;dd&#39;</span><span class="p">,</span>
+	<span class="nx">DEFAULT</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+	<span class="nx">DEFAULT_MESSAGE_NODE</span> <span class="o">=</span> <span class="s1">&#39;defaultMessageNode&#39;</span><span class="p">,</span>
+	<span class="nx">DOT</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span>
+	<span class="nx">DUPLICATE</span> <span class="o">=</span> <span class="s1">&#39;duplicate&#39;</span><span class="p">,</span>
+	<span class="nx">DRAG</span> <span class="o">=</span> <span class="s1">&#39;drag&#39;</span><span class="p">,</span>
+	<span class="nx">DRAGGING</span> <span class="o">=</span> <span class="s1">&#39;dragging&#39;</span><span class="p">,</span>
+	<span class="nx">DRAG_CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;dragContainer&#39;</span><span class="p">,</span>
+	<span class="nx">DRAG_CONTAINER_NODE</span> <span class="o">=</span> <span class="s1">&#39;dragContainerNode&#39;</span><span class="p">,</span>
+	<span class="nx">DRAG_NODES_LIST</span> <span class="o">=</span> <span class="s1">&#39;dragNodesList&#39;</span><span class="p">,</span>
+	<span class="nx">DRAG_PORTAL_LAYOUT</span> <span class="o">=</span> <span class="s1">&#39;dragPortalLayout&#39;</span><span class="p">,</span>
+	<span class="nx">DROP</span> <span class="o">=</span> <span class="s1">&#39;drop&#39;</span><span class="p">,</span>
+	<span class="nx">DROP_CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;dropContainer&#39;</span><span class="p">,</span>
+	<span class="nx">DROP_CONTAINER_NODE</span> <span class="o">=</span> <span class="s1">&#39;dropContainerNode&#39;</span><span class="p">,</span>
+	<span class="nx">DROP_PORTAL_LAYOUT</span> <span class="o">=</span> <span class="s1">&#39;dropPortalLayout&#39;</span><span class="p">,</span>
+	<span class="nx">DROP_NODE</span> <span class="o">=</span> <span class="s1">&#39;dropNode&#39;</span><span class="p">,</span>
+	<span class="nx">DROP_ZONE_NODE</span> <span class="o">=</span> <span class="s1">&#39;dropZoneNode&#39;</span><span class="p">,</span>
+	<span class="nx">EDIT</span> <span class="o">=</span> <span class="s1">&#39;edit&#39;</span><span class="p">,</span>
+	<span class="nx">EMPTY_STR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+	<span class="nx">FIELD</span> <span class="o">=</span> <span class="s1">&#39;field&#39;</span><span class="p">,</span>
+	<span class="nx">FIELDS</span> <span class="o">=</span> <span class="s1">&#39;fields&#39;</span><span class="p">,</span>
+	<span class="nx">FIRST</span> <span class="o">=</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span>
+	<span class="nx">FIRST_CHILD</span> <span class="o">=</span> <span class="s1">&#39;firstChild&#39;</span><span class="p">,</span>
+	<span class="nx">FOCUSED</span> <span class="o">=</span> <span class="s1">&#39;focused&#39;</span><span class="p">,</span>
+	<span class="nx">FORM</span> <span class="o">=</span> <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+	<span class="nx">FORM_BUILDER</span> <span class="o">=</span> <span class="s1">&#39;formBuilder&#39;</span><span class="p">,</span>
+	<span class="nx">FORM_LAYOUT</span> <span class="o">=</span> <span class="s1">&#39;form-layout&#39;</span><span class="p">,</span>
+	<span class="nx">ID</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
+	<span class="nx">ICON</span> <span class="o">=</span> <span class="s1">&#39;icon&#39;</span><span class="p">,</span>
+	<span class="nx">INPUT</span> <span class="o">=</span> <span class="s1">&#39;input&#39;</span><span class="p">,</span>
+	<span class="nx">ITEMS</span> <span class="o">=</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span>
+	<span class="nx">LABEL</span> <span class="o">=</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span>
+	<span class="nx">LABEL_NODE</span> <span class="o">=</span> <span class="s1">&#39;labelNode&#39;</span><span class="p">,</span>
+	<span class="nx">LAST</span> <span class="o">=</span> <span class="s1">&#39;last&#39;</span><span class="p">,</span>
+	<span class="nx">LAST_CHILD</span> <span class="o">=</span> <span class="s1">&#39;lastChild&#39;</span><span class="p">,</span>
+	<span class="nx">LIST</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+	<span class="nx">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span>
+	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
+	<span class="nx">NESTED_LIST</span> <span class="o">=</span> <span class="s1">&#39;nestedList&#39;</span><span class="p">,</span>
+	<span class="nx">NODE</span> <span class="o">=</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span>
+	<span class="nx">OVER</span> <span class="o">=</span> <span class="s1">&#39;over&#39;</span><span class="p">,</span>
+	<span class="nx">PARENT</span> <span class="o">=</span> <span class="s1">&#39;parent&#39;</span><span class="p">,</span>
+	<span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span>
+	<span class="nx">PLACEHOLDER</span> <span class="o">=</span> <span class="s1">&#39;placeholder&#39;</span><span class="p">,</span>
+	<span class="nx">PLACE_AFTER</span> <span class="o">=</span> <span class="s1">&#39;placeAfter&#39;</span><span class="p">,</span>
+	<span class="nx">PLACE_BEFORE</span> <span class="o">=</span> <span class="s1">&#39;placeBefore&#39;</span><span class="p">,</span>
+	<span class="nx">PREPEND</span> <span class="o">=</span> <span class="s1">&#39;prepend&#39;</span><span class="p">,</span>
+	<span class="nx">HELPER</span> <span class="o">=</span> <span class="s1">&#39;helper&#39;</span><span class="p">,</span>
+	<span class="nx">HIDDEN</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span>
+	<span class="nx">RENDER</span> <span class="o">=</span> <span class="s1">&#39;render&#39;</span><span class="p">,</span>
+	<span class="nx">SAVE</span> <span class="o">=</span> <span class="s1">&#39;save&#39;</span><span class="p">,</span>
+	<span class="nx">SELECTED</span> <span class="o">=</span> <span class="s1">&#39;selected&#39;</span><span class="p">,</span>
+	<span class="nx">SETTINGS</span> <span class="o">=</span> <span class="s1">&#39;settings&#39;</span><span class="p">,</span>
+	<span class="nx">SETTINGS_FORM_NODE</span> <span class="o">=</span> <span class="s1">&#39;settingsFormNode&#39;</span><span class="p">,</span>
+	<span class="nx">SETTINGS_BUTTONS_NODE</span> <span class="o">=</span> <span class="s1">&#39;settingsButtonsNode&#39;</span><span class="p">,</span>
+	<span class="nx">SRC_NODE</span> <span class="o">=</span> <span class="s1">&#39;srcNode&#39;</span><span class="p">,</span>
+	<span class="nx">SPACE</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
+	<span class="nx">STATE</span> <span class="o">=</span> <span class="s1">&#39;state&#39;</span><span class="p">,</span>
+	<span class="nx">STRINGS</span> <span class="o">=</span> <span class="s1">&#39;strings&#39;</span><span class="p">,</span>
+	<span class="nx">TABS</span> <span class="o">=</span> <span class="s1">&#39;tabs&#39;</span><span class="p">,</span>
+	<span class="nx">TABS_NODE</span> <span class="o">=</span> <span class="s1">&#39;tabsNode&#39;</span><span class="p">,</span>
+	<span class="nx">TABS_CONTENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;tabsContentNode&#39;</span><span class="p">,</span>
+	<span class="nx">TABS_LIST_NODE</span> <span class="o">=</span> <span class="s1">&#39;tabsListNode&#39;</span><span class="p">,</span>
+	<span class="nx">TABVIEW</span> <span class="o">=</span> <span class="s1">&#39;tabview&#39;</span><span class="p">,</span>
+	<span class="nx">TARGET</span> <span class="o">=</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span>
+	<span class="nx">TEMPLATE_NODE</span> <span class="o">=</span> <span class="s1">&#39;templateNode&#39;</span><span class="p">,</span>
+	<span class="nx">TEXT</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+	<span class="nx">TYPE</span> <span class="o">=</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span>
+	<span class="nx">VALUE</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+	<span class="nx">VALUES</span> <span class="o">=</span> <span class="s1">&#39;values&#39;</span><span class="p">,</span>
+	<span class="nx">ZONE</span> <span class="o">=</span> <span class="s1">&#39;zone&#39;</span><span class="p">,</span>
+	<span class="nx">REGION</span> <span class="o">=</span> <span class="s1">&#39;region&#39;</span><span class="p">,</span>
+	<span class="nx">WIDGET</span> <span class="o">=</span> <span class="s1">&#39;widget&#39;</span><span class="p">,</span>
+
+	<span class="nx">STRING_EMPTY_SELECTION</span> <span class="o">=</span> <span class="s1">&#39;stringEmptySelection&#39;</span><span class="p">,</span>
+
+	<span class="nx">getCN</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+
+	<span class="nx">CSS_BUTTON_INPUT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">INPUT</span><span class="p">),</span>
+	<span class="nx">CSS_COMPONENT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">COMPONENT</span><span class="p">),</span>
+	<span class="nx">CSS_DD_DRAGGING</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">DD</span><span class="p">,</span> <span class="nx">DRAGGING</span><span class="p">),</span>
+	<span class="nx">CSS_HELPER_HIDDEN</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">HELPER</span><span class="p">,</span> <span class="nx">HIDDEN</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_BUTTON_DELETE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">DELETE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_BUTTON_DUPLICATE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">DUPLICATE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_BUTTON_EDIT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">EDIT</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_BUTTON_SAVE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">BUTTON</span><span class="p">,</span> <span class="nx">SAVE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DEFAULT_MESSAGE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DEFAULT</span><span class="p">,</span> <span class="nx">MESSAGE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DRAG_CONTAINER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DRAG</span><span class="p">,</span> <span class="nx">CONTAINER</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DRAG_NODE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DRAG</span><span class="p">,</span> <span class="nx">NODE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DROP_ACTIVE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DROP</span><span class="p">,</span> <span class="nx">ACTIVE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DROP_CONTAINER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DROP</span><span class="p">,</span> <span class="nx">CONTAINER</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DROP_NODE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DROP</span><span class="p">,</span> <span class="nx">NODE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_DROP_ZONE</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">DROP</span><span class="p">,</span> <span class="nx">ZONE</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_BUTTONS</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">BUTTONS</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_CONTENT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">CONTENT</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_HIDDEN</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">HIDDEN</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_ICON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">ICON</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_ICON_TEXT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">ICON</span><span class="p">,</span> <span class="nx">TEXT</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_OVER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">OVER</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_FIELD_SELECTED</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">FIELD</span><span class="p">,</span> <span class="nx">SELECTED</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_HELPER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">HELPER</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_ICON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">ICON</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_LABEL</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">LABEL</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_PLACEHOLDER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">PLACEHOLDER</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_SETTINGS</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">SETTINGS</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_SETTINGS_BUTTONS</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">SETTINGS</span><span class="p">,</span> <span class="nx">BUTTONS</span><span class="p">),</span>
+	<span class="nx">CSS_FORM_BUILDER_TABS_CONTAINER</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">FORM</span><span class="p">,</span> <span class="nx">BUILDER</span><span class="p">,</span> <span class="nx">TABS</span><span class="p">,</span> <span class="nx">CONTAINER</span><span class="p">),</span>
+	<span class="nx">CSS_TABVIEW_CONTENT</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TABVIEW</span><span class="p">,</span> <span class="nx">CONTENT</span><span class="p">),</span>
+	<span class="nx">CSS_TABVIEW_LIST</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TABVIEW</span><span class="p">,</span> <span class="nx">LIST</span><span class="p">),</span>
+	<span class="nx">CSS_ICON</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">ICON</span><span class="p">),</span>
+	<span class="nx">CSS_WIDGET</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">WIDGET</span><span class="p">),</span>
+
+	<span class="nx">TPL_DEFAULT_MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;&lt;li class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DEFAULT_MESSAGE</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/li&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_DRAG_CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;&lt;ul class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DRAG_CONTAINER</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/ul&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_DRAG_NODE</span> <span class="o">=</span> <span class="s1">&#39;&lt;li class=&quot;&#39;</span> <span class="o">+</span> <span class="p">[</span><span class="nx">CSS_FORM_BUILDER_DRAG_NODE</span><span class="p">,</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot; data-name=&quot;{name}&quot;&gt;&#39;</span> <span class="o">+</span>
+						<span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="p">[</span><span class="nx">CSS_FORM_BUILDER_ICON</span><span class="p">,</span> <span class="nx">CSS_ICON</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; {icon}&quot;&gt;&lt;/span&gt;&#39;</span> <span class="o">+</span>
+						<span class="s1">&#39;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_LABEL</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{label}&lt;/span&gt;&#39;</span> <span class="o">+</span>
+					<span class="s1">&#39;&lt;/li&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_DROP_CONTAINER</span> <span class="o">=</span> <span class="s1">&#39;&lt;ul class=&quot;&#39;</span> <span class="o">+</span> <span class="p">[</span><span class="nx">CSS_FORM_BUILDER_DROP_CONTAINER</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/ul&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_FIELD_BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;&lt;li class=&quot;&#39;</span> <span class="o">+</span> <span class="p">[</span><span class="nx">CSS_WIDGET</span><span class="p">,</span> <span class="nx">CSS_COMPONENT</span><span class="p">,</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">,</span> <span class="nx">CSS_HELPER_HIDDEN</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/li&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_HELPER</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_HELPER</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_PLACEHOLDER</span> <span class="o">=</span> <span class="s1">&#39;&lt;li class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_PLACEHOLDER</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/li&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_TABS</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_TABS_CONTAINER</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_TABS_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_TABVIEW_CONTENT</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_TABS_LIST</span> <span class="o">=</span> <span class="s1">&#39;&lt;ul class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_TABVIEW_LIST</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/ul&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_SETTINGS</span> <span class="o">=</span> <span class="s1">&#39;&lt;form class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_SETTINGS</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/form&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TPL_SETTINGS_BUTTONS</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;yui3-aui-button-row&quot;&gt;&#39;</span> <span class="o">+</span>
+								<span class="s1">&#39;&lt;span class=&quot;yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-primary&quot;&gt;&#39;</span> <span class="o">+</span>
+									<span class="s1">&#39;&lt;span class=&quot;yui3-aui-button-content&quot;&gt;&#39;</span> <span class="o">+</span>
+										<span class="s1">&#39;&lt;input type=&quot;button&quot; value=&quot;Save&quot; class=&quot;yui3-aui-button-input yui3-aui-form-builder-button-save&quot;&gt;&#39;</span> <span class="o">+</span>
+									<span class="s1">&#39;&lt;/span&gt;&#39;</span> <span class="o">+</span>
+								<span class="s1">&#39;&lt;/span&gt;&#39;</span> <span class="o">+</span>
+								<span class="s1">&#39;&lt;span class=&quot;yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-secondary&quot;&gt;&#39;</span> <span class="o">+</span>
+									<span class="s1">&#39;&lt;span class=&quot;yui3-aui-button-content&quot;&gt;&#39;</span> <span class="o">+</span>
+										<span class="s1">&#39;&lt;input type=&quot;button&quot; value=&quot;Close&quot; class=&quot;yui3-aui-button-input yui3-aui-form-builder-button-close&quot;&gt;&#39;</span> <span class="o">+</span>
+									<span class="s1">&#39;&lt;/span&gt;&#39;</span> <span class="o">+</span>
+								<span class="s1">&#39;&lt;/span&gt;&#39;</span> <span class="o">+</span>
+							<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">,</span>
+
+	<span class="nx">TAB_INDEX_DRAG</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+	<span class="nx">TAB_INDEX_SETTINGS</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+
+	<span class="nx">DEFAULT_ICON_CLASS</span> <span class="o">=</span> <span class="p">[</span><span class="nx">CSS_FORM_BUILDER_FIELD_ICON</span><span class="p">,</span> <span class="nx">CSS_FORM_BUILDER_FIELD_ICON_TEXT</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">SPACE</span><span class="p">),</span>
+
+	<span class="nx">INVALID_CLONE_ATTRS</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">([</span><span class="nx">BOUNDING_BOX</span><span class="p">,</span> <span class="nx">CONTENT_BOX</span><span class="p">,</span> <span class="nx">SRC_NODE</span><span class="p">,</span> <span class="nx">FIELDS</span><span class="p">,</span> <span class="nx">ID</span><span class="p">,</span> <span class="nx">SELECTED</span><span class="p">,</span> <span class="nx">TEMPLATE_NODE</span><span class="p">,</span> <span class="nx">LABEL_NODE</span><span class="p">,</span> <span class="nx">NAME</span><span class="p">])</span>
+
+<span class="kd">var</span> <span class="nx">FormBuilderFieldSupport</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+
+<span class="nx">FormBuilderFieldSupport</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">fields</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
+		<span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setFields&#39;</span><span class="p">,</span>
+		<span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="nx">val</span> <span class="o">||</span> <span class="p">[];</span>
+		<span class="p">},</span>
+		<span class="nx">validator</span><span class="o">:</span> <span class="nx">isArray</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">FormBuilderFieldSupport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="p">{</span>
+	<span class="nx">addField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_removeFromParent</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+		<span class="nx">fields</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">,</span> <span class="nx">fields</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">addFields</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeFields</span><span class="p">(</span><span class="nx">fields</span><span class="p">),</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">addField</span><span class="p">,</span> <span class="nx">instance</span><span class="p">)</span>
+		<span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">contains</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">deep</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">deep</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+				<span class="k">if</span> <span class="p">((</span><span class="nx">item</span> <span class="o">==</span> <span class="nx">field</span><span class="p">)</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">deep</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">getField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">fields</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span>
+	<span class="p">},</span>
+
+	<span class="nx">indexOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">insertField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_removeFromParent</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+		<span class="nx">fields</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">,</span> <span class="nx">fields</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">removeField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_removeFromParent</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+		<span class="nx">field</span><span class="p">.</span><span class="nx">removeTarget</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+
+		<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">,</span> <span class="nx">fields</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">removeFields</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeFields</span><span class="p">(</span><span class="nx">fields</span><span class="p">),</span>
+			<span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">removeField</span><span class="p">,</span> <span class="nx">instance</span><span class="p">)</span>
+		<span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">_normalizeFields</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="p">[];</span>
+
+		<span class="nx">fields</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">fields</span><span class="p">);</span>
+
+		<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">formBuilder</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FORM_BUILDER</span><span class="p">)</span> <span class="o">||</span> <span class="nx">instance</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">isFormBuilderField</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">field</span> <span class="o">=</span> <span class="nx">formBuilder</span><span class="p">.</span><span class="nx">_renderField</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">output</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+				<span class="nx">field</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">formBuilder</span><span class="p">);</span>
+
+				<span class="nx">field</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">PARENT</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">});</span>
+
+		<span class="k">return</span> <span class="nx">output</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">_removeFromParent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">isFormBuilderField</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="nx">parent</span> <span class="o">!=</span> <span class="nx">instance</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">parent</span><span class="p">.</span><span class="nx">removeField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">field</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">removeItem</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="k">return</span> <span class="nx">fields</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">_setFields</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+		<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_normalizeFields</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilderFieldSupport</span> <span class="o">=</span> <span class="nx">FormBuilderFieldSupport</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">FormBuilder</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+
+	<span class="nx">NAME</span><span class="o">:</span> <span class="nx">FORM_BUILDER</span><span class="p">,</span>
+
+	<span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Whether to automatically select fields after dropping them</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute autoSelectFields</span>
+<span class="cm">		 */</span>
+		<span class="nx">autoSelectFields</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * The list of fields that can be used</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute availableFields</span>
+<span class="cm">		 */</span>
+		<span class="nx">availableFields</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_indexAvaliableFieldsTypes&#39;</span><span class="p">,</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
+			<span class="nx">validator</span><span class="o">:</span> <span class="nx">isArray</span><span class="p">,</span>
+			<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * The A.NestedList configuration object</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute nestedList</span>
+<span class="cm">		*/</span>
+		<span class="nx">nestedList</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">({</span>
+					<span class="nx">dd</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+							<span class="p">{</span>
+								<span class="nx">cfg</span><span class="o">:</span> <span class="p">{</span>
+									<span class="nx">horizontal</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+									<span class="nx">scrollDelay</span><span class="o">:</span> <span class="mi">30</span>
+								<span class="p">},</span>
+								<span class="nx">fn</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DDWinScroll</span>
+							<span class="p">}</span>
+						<span class="p">]</span>
+					<span class="p">},</span>
+					<span class="nx">dropCondition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">dropCondition</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+						<span class="kd">var</span> <span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+						<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">dropNode</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="o">&amp;&amp;</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ACCEPT_CHILDREN</span><span class="p">))</span> <span class="p">{</span>
+							<span class="nx">dropCondition</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+						<span class="p">}</span>
+
+						<span class="k">return</span> <span class="nx">dropCondition</span><span class="p">;</span>
+					<span class="p">},</span>
+					<span class="nx">dropOn</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DROP_ZONE</span><span class="p">,</span>
+					<span class="nx">placeholder</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_PLACEHOLDER</span><span class="p">),</span>
+					<span class="nx">sortCondition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">dropContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER_NODE</span><span class="p">);</span>
+
+						<span class="k">return</span> <span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">drop</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">));</span>
+					<span class="p">}</span>
+				<span class="p">},</span> <span class="nx">val</span><span class="p">);</span>
+
+				<span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+			<span class="p">},</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">{}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Strings messages</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute strings</span>
+<span class="cm">		 */</span>
+		<span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span>
+			<span class="p">{</span>
+				<span class="nx">stringDefaultMessage</span><span class="o">:</span> <span class="s1">&#39;Drop a field here&#39;</span><span class="p">,</span>
+				<span class="nx">stringEmptySelection</span><span class="o">:</span> <span class="s1">&#39;No field selected&#39;</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/*</span>
+<span class="cm">		* HTML_PARSER attributes</span>
+<span class="cm">		*/</span>
+		<span class="nx">defaultMessageNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_DEFAULT_MESSAGE</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">dragContainerNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_DRAG_CONTAINER</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">dragNodesList</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="s1">&#39;_valueDragNodesList&#39;</span>
+		<span class="p">},</span>
+
+		<span class="nx">dropContainerNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_DROP_CONTAINER</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">settingsButtonsNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_SETTINGS_BUTTONS</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">settingsFormNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_SETTINGS</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">tabsNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_TABS</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">tabsContentNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_TABS_CONTENT</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">tabsListNode</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_TABS_LIST</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+	<span class="p">},</span>
+
+	<span class="nx">AUGMENTS</span><span class="o">:</span> <span class="p">[</span><span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilderFieldSupport</span><span class="p">],</span>
+
+	<span class="nx">HTML_PARSER</span><span class="o">:</span> <span class="p">{</span>
+		<span class="nx">defaultMessageNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DEFAULT_MESSAGE</span><span class="p">,</span>
+		<span class="nx">dragContainerNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DRAG_CONTAINER</span><span class="p">,</span>
+		<span class="nx">dragNodesList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">srcNode</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">srcNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DRAG_NODE</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="p">(</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="kc">null</span> <span class="o">:</span> <span class="nx">nodes</span><span class="p">;</span>
+		<span class="p">},</span>
+		<span class="nx">dropContainerNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DROP_CONTAINER</span><span class="p">,</span>
+		<span class="nx">settingsFormNode</span><span class="o">:</span> <span class="nx">FORM</span> <span class="o">+</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_SETTINGS</span><span class="p">,</span>
+		<span class="nx">settingsButtonsNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_SETTINGS_BUTTONS</span><span class="p">,</span>
+		<span class="nx">tabsNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_TABS_CONTAINER</span><span class="p">,</span>
+		<span class="nx">tabsContentNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_TABVIEW_CONTENT</span><span class="p">,</span>
+		<span class="nx">tabsListNode</span><span class="o">:</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_TABVIEW_LIST</span>
+	<span class="p">},</span>
+
+	<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Widget</span><span class="p">,</span>
+
+	<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Initializer</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method initializer</span>
+<span class="cm">		 */</span>
+		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dragContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_CONTAINER_NODE</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dragNodesList</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DRAG_NODES_LIST</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER_NODE</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">settingsButtonsNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SETTINGS_BUTTONS_NODE</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">settingsFormNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SETTINGS_FORM_NODE</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">tabsNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TABS_NODE</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">tabsContentNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TABS_CONTENT_NODE</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">tabsListNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TABS_LIST_NODE</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dragNestedList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NestedList</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NESTED_LIST</span><span class="p">));</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dropNestedList</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NestedList</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NESTED_LIST</span><span class="p">));</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TabView</span><span class="p">(</span>
+				<span class="p">{</span>
+					<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">tabsNode</span><span class="p">,</span>
+					<span class="nx">contentNode</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">tabsContentNode</span><span class="p">,</span>
+					<span class="nx">listNode</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">tabsListNode</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">tabsContentNode</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+					<span class="nx">ITEMS</span><span class="p">,</span>
+					<span class="p">[</span>
+						<span class="p">{</span><span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Add a field&#39;</span><span class="p">,</span> <span class="nx">contentNode</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dragContainerNode</span><span class="p">},</span>
+						<span class="p">{</span><span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Field settings&#39;</span><span class="p">,</span> <span class="nx">content</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">settingsFormNode</span><span class="p">}</span>
+					<span class="p">]</span>
+				<span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Render phase</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method renderUI</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dragContainerNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dragNodesList</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">render</span><span class="p">()</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Bind phase</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method bindUI</span>
+<span class="cm">		 */</span>
+		<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">boundingBox</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dropContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">settingsButtonsNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">settingsButtonsNode</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dragNestedList</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEndDragNestedList</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dragNestedList</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:start&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragStartDragNestedList</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dropNestedList</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;drag:end&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDragEndDropNestedList</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;activeTabChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterActiveTabChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickFieldDelete</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_BUTTON_DELETE</span><span class="p">);</span>
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickFieldDuplicate</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_BUTTON_DUPLICATE</span><span class="p">);</span>
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickFieldEdit</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_BUTTON_EDIT</span><span class="p">);</span>
+
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;dblclick&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onDbClickField</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseEnterField</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onMouseLeaveField</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+
+			<span class="nx">settingsButtonsNode</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_onClickSettingsButton</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_BUTTON_INPUT</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;*:fieldsChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterFieldsChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;*:selectedChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterSelectedChange</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Sync phase</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method syncUI</span>
+<span class="cm">		 */</span>
+		<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">syncFieldsUI</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncDefaultMessage</span><span class="p">();</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncNestedList</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * A map of the avaliable field types</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @attribute availableFieldsTypes</span>
+<span class="cm">		 */</span>
+		<span class="nx">availableFieldsTypes</span><span class="o">:</span> <span class="p">{},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Append fields to the given container</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method appendFields</span>
+<span class="cm">		 */</span>
+		<span class="nx">appendFields</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">container</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">EMPTY_STR</span><span class="p">);</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+				<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">));</span>
+
+			    <span class="nx">instance</span><span class="p">.</span><span class="nx">appendFields</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ZONE_NODE</span><span class="p">));</span>
+			<span class="p">});</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Duplicates the given field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method duplicateField</span>
+<span class="cm">		 */</span>
+		<span class="nx">duplicateField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">newFieldConfig</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_cloneField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+			<span class="nx">parent</span><span class="p">.</span><span class="nx">insertField</span><span class="p">(</span><span class="o">++</span><span class="nx">index</span><span class="p">,</span> <span class="nx">newFieldConfig</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Selects the given field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method selectField</span>
+<span class="cm">		 */</span>
+		<span class="nx">selectField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">field</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">firstSettingInput</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">settingsFormNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">INPUT</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">firstSettingInput</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">firstSettingInput</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+				<span class="nx">firstSettingInput</span><span class="p">.</span><span class="nx">select</span><span class="p">();</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">selectTab</span><span class="p">(</span><span class="nx">TAB_INDEX_SETTINGS</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Pupulates the dropContainerNode with the boundingBox nodes of each</span>
+<span class="cm">		 * of the fields components</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method syncFieldsUI</span>
+<span class="cm">		 */</span>
+		<span class="nx">syncFieldsUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER_NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">event</span> <span class="o">&amp;&amp;</span> <span class="nx">isFormBuilderField</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">))</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+				<span class="nx">fields</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+				<span class="nx">container</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ZONE_NODE</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">appendFields</span><span class="p">(</span><span class="nx">fields</span><span class="p">,</span> <span class="nx">container</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the activeTabChange event</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _afterActiveTabChange</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterActiveTabChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">selectedField</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">settingsFormNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SETTINGS_FORM_NODE</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">settingsButtonsNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SETTINGS_BUTTONS_NODE</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">containsField</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">selectedField</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">containsField</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">settingsFormNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">strings</span><span class="p">[</span><span class="nx">STRING_EMPTY_SELECTION</span><span class="p">]);</span>
+			<span class="p">}</span>
+
+			<span class="nx">settingsButtonsNode</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_HELPER_HIDDEN</span><span class="p">,</span> <span class="o">!</span><span class="nx">containsField</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the afterFieldsChange event</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _afterFieldsChange</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterFieldsChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Adds/removes the selected class according to the &#39;selected&#39; attribute</span>
+<span class="cm">		 * value</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _afterSelectedChange</span>
+<span class="cm">		 */</span>
+		<span class="nx">_afterSelectedChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">prevSelected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncSelectedFieldUI</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span> <span class="o">=</span> <span class="nx">field</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">prevSelected</span> <span class="o">&amp;&amp;</span> <span class="nx">prevSelected</span> <span class="o">!=</span> <span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">prevSelected</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">field</span><span class="p">.</span><span class="nx">renderSettings</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Clones a field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _cloneField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_cloneField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TYPE</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{};</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">getAttrs</span><span class="p">(),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">INVALID_CLONE_ATTRS</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">isNode</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">});</span>
+
+			<span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="p">[];</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">children</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_cloneField</span><span class="p">(</span><span class="nx">child</span><span class="p">));</span>
+			<span class="p">});</span>
+
+			<span class="nx">config</span><span class="p">[</span><span class="nx">FIELDS</span><span class="p">]</span> <span class="o">=</span> <span class="nx">children</span><span class="p">;</span>
+			<span class="nx">config</span><span class="p">[</span><span class="nx">TYPE</span><span class="p">]</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+
+			<span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Add a field to the dropContainer</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _dropField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_dropField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt; &#39;</span> <span class="o">+</span> <span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">defaultMessageNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEFAULT_MESSAGE_NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">defaultMessageNode</span><span class="p">.</span><span class="nx">inDoc</span><span class="p">())</span> <span class="p">{</span>
+				<span class="nx">defaultMessageNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+			<span class="p">}</span>
+
+			<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getFieldParentByNode</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// Remove remanescent node</span>
+				<span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+
+				<span class="kd">var</span> <span class="nx">indexName</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;data-name&#39;</span><span class="p">);</span>
+
+				<span class="nx">field</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">availableFieldsTypes</span><span class="p">[</span><span class="nx">indexName</span><span class="p">];</span>
+			<span class="p">}</span>
+
+			<span class="nx">parent</span><span class="p">.</span><span class="nx">insertField</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">field</span><span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">getField</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Return the instance of a A.FormBuilderField for the given type</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getFieldInstance</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getFieldInstance</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span> <span class="o">||</span> <span class="nx">config</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">typesMap</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilder</span><span class="p">.</span><span class="nx">types</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">fieldClass</span> <span class="o">=</span> <span class="nx">isString</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="o">?</span> <span class="nx">typesMap</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">:</span> <span class="nx">type</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">fieldClass</span> <span class="o">!==</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="k">new</span> <span class="nx">fieldClass</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;The field type: [&#39;</span> <span class="o">+</span> <span class="nx">type</span> <span class="o">+</span> <span class="s1">&#39;] couldn\&#39;t be found.&#39;</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Returns the parent of the field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getFieldParentByNode</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getFieldParentByNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">parentNode</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Return the parent node for a given field or the dropContainerNode</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getFieldParentNode</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getFieldParentNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">parent</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">isFormBuilderField</span><span class="p">(</span><span class="nx">parent</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">return</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER_NODE</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Indexes the available fields types</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _indexAvaliableFieldsTypes</span>
+<span class="cm">		 */</span>
+		<span class="nx">_indexAvaliableFieldsTypes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">availableFields</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+				<span class="nx">availableFields</span><span class="p">,</span>
+				<span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="nx">item</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">type</span> <span class="o">+</span> <span class="p">(</span><span class="o">++</span><span class="nx">A</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">_uidx</span><span class="p">)));</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">availableFieldsTypes</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">item</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the click event for the delete button of each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onClickFieldDelete</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onClickFieldDelete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">fieldBB</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">selectedField</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">field</span> <span class="o">==</span> <span class="nx">selectedField</span> <span class="o">||</span>
+					<span class="nx">field</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">selectedField</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span> <span class="p">{</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">selectTab</span><span class="p">(</span><span class="nx">TAB_INDEX_DRAG</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">field</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+				<span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT</span><span class="p">).</span><span class="nx">removeField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the click event for the delete button of each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onClickFieldDelete</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onClickFieldDuplicate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">fieldBB</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">duplicateField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the click event for the delete button of each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onClickFieldDelete</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onClickFieldEdit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">fieldBB</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">selectField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the click event for the settings buttons</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onClickSettingsButton</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onClickSettingsButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">CSS_FORM_BUILDER_BUTTON_SAVE</span><span class="p">))</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">selectedField</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">selectedField</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">selectedField</span><span class="p">.</span><span class="nx">saveSettings</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_tabs</span><span class="p">.</span><span class="nx">selectTab</span><span class="p">(</span><span class="nx">TAB_INDEX_DRAG</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handles the dblclick event for each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onDbClickField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onDbClickField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">target</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">target</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">ancestor</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">selectField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handle the drag:end event for the _dragNestedList instance</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onDragEndDragNestedList</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onDragEndDragNestedList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">dragContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dragContainerNode</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dropContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">newFieldNode</span> <span class="o">=</span> <span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DRAG_NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">newFieldNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_dropField</span><span class="p">(</span><span class="nx">newFieldNode</span><span class="p">);</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">AUTO_SELECT_FIELDS</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">selectField</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">NODE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">originalNode</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">dragContainerNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+				<span class="nx">dragContainerNode</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">originalNode</span><span class="p">))</span> <span class="p">{</span>
+
+				<span class="nx">dragNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handle the drag:end event for the _dropNestedList instance</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onDragEndDropNestedList</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onDragEndDropNestedList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">dragNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_dropField</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handle the drag:start event</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onDragStartDragNestedList</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onDragStartDragNestedList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">drag</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NODE</span><span class="p">);</span>
+
+			<span class="kd">var</span> <span class="nx">clonedDragNode</span> <span class="o">=</span> <span class="nx">dragNode</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
+
+			<span class="nx">clonedDragNode</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">dragNode</span><span class="p">);</span>
+
+			<span class="nx">drag</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">NODE</span><span class="p">,</span> <span class="nx">clonedDragNode</span><span class="p">);</span>
+
+			<span class="nx">clonedDragNode</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">ID</span><span class="p">,</span> <span class="nx">EMPTY_STR</span><span class="p">);</span>
+			<span class="nx">clonedDragNode</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+			<span class="nx">dragNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_DD_DRAGGING</span><span class="p">);</span>
+			<span class="nx">dragNode</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">originalNode</span> <span class="o">=</span> <span class="nx">dragNode</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">NESTED_LIST</span><span class="p">),</span>
+				<span class="p">{</span>
+					<span class="nx">nodes</span><span class="o">:</span> <span class="nx">clonedDragNode</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="p">(</span><span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NestedList</span><span class="p">(</span><span class="nx">config</span><span class="p">));</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handle the mouseenter event for each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onMouseEnterField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onMouseEnterField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">fieldBB</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_toggleFieldButtonsNode</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Handle the mouseleave event for each field</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _onMouseLeaveField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_onMouseLeaveField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">fieldBB</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">FIELD</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">val</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_toggleFieldButtonsNode</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Renders a field using the given configuration object</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _renderField</span>
+<span class="cm">		 */</span>
+		<span class="nx">_renderField</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_CONTAINER_NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">isFormBuilderField</span><span class="p">(</span><span class="nx">parent</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">container</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DROP_ZONE_NODE</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="kd">var</span> <span class="nx">boundingBox</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TPL_FIELD_BOUNDING_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">FIELDS</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">container</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">,</span> <span class="nx">index</span><span class="p">);</span>
+			<span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+				<span class="nx">container</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">boundingBox</span><span class="p">);</span>
+			<span class="p">}</span>
+
+			<span class="nx">config</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span>
+				<span class="nx">config</span><span class="p">,</span>
+				<span class="p">{</span>
+					<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">boundingBox</span><span class="p">,</span>
+					<span class="nx">formBuilder</span><span class="o">:</span> <span class="nx">instance</span><span class="p">,</span>
+					<span class="nx">after</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+							<span class="nx">boundingBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_HELPER_HIDDEN</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">);</span>
+
+			<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_getFieldInstance</span><span class="p">(</span><span class="nx">config</span><span class="p">).</span><span class="nx">render</span><span class="p">();</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Updates the default message UI</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _syncDefaultMessage</span>
+<span class="cm">		 */</span>
+		<span class="nx">_syncDefaultMessage</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">hasChildNodes</span><span class="p">())</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">strings</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">STRINGS</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">defaultMessageNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">DEFAULT_MESSAGE_NODE</span><span class="p">);</span>
+
+				<span class="nx">defaultMessageNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">strings</span><span class="p">[</span><span class="s1">&#39;stringDefaultMessage&#39;</span><span class="p">]);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">defaultMessageNode</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Updates the nestedList nodes</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _syncNestedList</span>
+<span class="cm">		 */</span>
+		<span class="nx">_syncNestedList</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncNodes</span><span class="p">();</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dragNestedList</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dragNodes</span><span class="p">);</span>
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_dropNestedList</span><span class="p">.</span><span class="nx">addAll</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">dropNodes</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Updates the dragNodes and dropNodes variables</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _syncNodes</span>
+<span class="cm">		 */</span>
+		<span class="nx">_syncNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dragContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dragContainerNode</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">dropContainerNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">dropContainerNode</span><span class="p">;</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dragNodes</span> <span class="o">=</span> <span class="nx">dragContainerNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">);</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">dropNodes</span> <span class="o">=</span> <span class="nx">dropContainerNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span>
+				<span class="p">[</span>
+					<span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_FIELD</span><span class="p">,</span>
+					<span class="nx">DOT</span> <span class="o">+</span> <span class="nx">CSS_FORM_BUILDER_DEFAULT_MESSAGE</span>
+				<span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="nx">COMMA_AND_SPACE</span><span class="p">)</span>
+			<span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * description</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _syncSelectedFieldUI</span>
+<span class="cm">		 */</span>
+		<span class="nx">_syncSelectedFieldUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTED</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">fieldBB</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selectedField</span><span class="p">;</span>
+
+			<span class="nx">fieldBB</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span>
+				<span class="nx">CSS_FORM_BUILDER_FIELD_SELECTED</span><span class="p">,</span>
+				<span class="nx">value</span>
+			<span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="nx">field</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">selected</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">_toggleFieldButtonsNode</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Toggle the visibility of the field buttons node</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _toggleButtonsNode</span>
+<span class="cm">		 */</span>
+		<span class="nx">_toggleFieldButtonsNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">buttonsNode</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BUTTONS_NODE</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">buttonsNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">buttonsNode</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_HELPER_HIDDEN</span><span class="p">,</span> <span class="o">!</span><span class="nx">val</span><span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Populates the dragNodesList attribute with values provided by the</span>
+<span class="cm">		 * availableFields attribute</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _valueDragNodesList</span>
+<span class="cm">		 */</span>
+		<span class="nx">_valueDragNodesList</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">availableFields</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">availableFieldsTypes</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="p">[];</span>
+
+			<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">availableFields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">buffer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span>
+						<span class="nx">TPL_DRAG_NODE</span><span class="p">,</span>
+						<span class="p">{</span>
+							<span class="nx">icon</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">iconClass</span> <span class="o">||</span> <span class="nx">DEFAULT_ICON_CLASS</span><span class="p">,</span>
+							<span class="nx">label</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+							<span class="nx">name</span><span class="o">:</span> <span class="nx">name</span><span class="p">,</span>
+							<span class="nx">type</span><span class="o">:</span> <span class="nx">item</span><span class="p">.</span><span class="nx">type</span>
+						<span class="p">}</span>
+					<span class="p">)</span>
+				<span class="p">);</span>
+			<span class="p">});</span>
+
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">NodeList</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">EMPTY_STR</span><span class="p">));</span>
+		<span class="p">}</span>
+
+	<span class="p">}</span>
+
+<span class="p">});</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilder</span> <span class="o">=</span> <span class="nx">FormBuilder</span><span class="p">;</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilder</span><span class="p">.</span><span class="nx">types</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-nested-list&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tabs&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "AUI~event~input.html#property_A.Node.DOM_EVENTS.input", "access": "", "host": "AUI~event~input", "type": "property", "name": "A.Node.DOM_EVENTS.input"}, {"url": "AUI~event~input.html#event_input", "access": "", "host": "AUI~event~input", "type": "event", "name": "input"}, {"url": "AUI~event~input.html#method_void();", "access": "", "host": "AUI~event~input", "type": "method", "name": "void();"}];
+</script>
+</body>
+</html>

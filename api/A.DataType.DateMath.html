@@ -1,0 +1,2747 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-datatype  A.DataType.DateMath   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-datatype&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-datatype.html" title="aui-datatype">aui-datatype</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">A.DataType.DateMath</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="A.DataType.DateMath.html" title="A.DataType.DateMath">A.DataType.DateMath</a></li>
+
+
+				                                <li class=""><a href="DataType.Boolean.html" title="DataType.Boolean">DataType.Boolean</a></li>
+
+
+				                                <li class=""><a href="DataType.String.html" title="DataType.String">DataType.String</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-properties">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-properties-hd">
+										<span class="yui3-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_DAY" title="DAY">DAY</a></li>
+
+				                                <li class=""><a href="#property_HOUR" title="HOUR">HOUR</a></li>
+
+				                                <li class=""><a href="#property_MAX_MONTH_LENGTH" title="MAX_MONTH_LENGTH">MAX_MONTH_LENGTH</a></li>
+
+				                                <li class=""><a href="#property_MINUTES" title="MINUTES">MINUTES</a></li>
+
+				                                <li class=""><a href="#property_MONTH" title="MONTH">MONTH</a></li>
+
+				                                <li class=""><a href="#property_ONE_DAY_MS" title="ONE_DAY_MS">ONE_DAY_MS</a></li>
+
+				                                <li class=""><a href="#property_ONE_HOUR_MS" title="ONE_HOUR_MS">ONE_HOUR_MS</a></li>
+
+				                                <li class=""><a href="#property_ONE_MINUTE_MS" title="ONE_MINUTE_MS">ONE_MINUTE_MS</a></li>
+
+				                                <li class=""><a href="#property_ONE_SECOND_MS" title="ONE_SECOND_MS">ONE_SECOND_MS</a></li>
+
+				                                <li class=""><a href="#property_SECONDS" title="SECONDS">SECONDS</a></li>
+
+				                                <li class=""><a href="#property_WEEK" title="WEEK">WEEK</a></li>
+
+				                                <li class=""><a href="#property_WEEK_LENGTH" title="WEEK_LENGTH">WEEK_LENGTH</a></li>
+
+				                                <li class=""><a href="#property_WEEK_ONE_JAN_DATE" title="WEEK_ONE_JAN_DATE">WEEK_ONE_JAN_DATE</a></li>
+
+				                                <li class=""><a href="#property_YEAR" title="YEAR">YEAR</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+				                               <li class=""><a href="#method_add" title="add">add</a></li>
+				                               <li class=""><a href="#method_after" title="after">after</a></li>
+				                               <li class=""><a href="#method_before" title="before">before</a></li>
+				                               <li class=""><a href="#method_between" title="between">between</a></li>
+				                               <li class=""><a href="#method_clearTime" title="clearTime">clearTime</a></li>
+				                               <li class=""><a href="#method_clone" title="clone">clone</a></li>
+				                               <li class=""><a href="#method_compare" title="compare">compare</a></li>
+				                               <li class=""><a href="#method_findMonthEnd" title="findMonthEnd">findMonthEnd</a></li>
+				                               <li class=""><a href="#method_findMonthStart" title="findMonthStart">findMonthStart</a></li>
+				                               <li class=""><a href="#method_getDate" title="getDate">getDate</a></li>
+				                               <li class=""><a href="#method_getDayOffset" title="getDayOffset">getDayOffset</a></li>
+				                               <li class=""><a href="#method_getFirstDayOfWeek" title="getFirstDayOfWeek">getFirstDayOfWeek</a></li>
+				                               <li class=""><a href="#method_getHoursOffset" title="getHoursOffset">getHoursOffset</a></li>
+				                               <li class=""><a href="#method_getJan1" title="getJan1">getJan1</a></li>
+				                               <li class=""><a href="#method_getMinutesOffset" title="getMinutesOffset">getMinutesOffset</a></li>
+				                               <li class=""><a href="#method_getSecondsOffset" title="getSecondsOffset">getSecondsOffset</a></li>
+				                               <li class=""><a href="#method_getWeekNumber" title="getWeekNumber">getWeekNumber</a></li>
+				                               <li class=""><a href="#method_isDayOverlap" title="isDayOverlap">isDayOverlap</a></li>
+				                               <li class=""><a href="#method_isMonthOverlapWeek" title="isMonthOverlapWeek">isMonthOverlapWeek</a></li>
+				                               <li class=""><a href="#method_isMonWedOrFri" title="isMonWedOrFri">isMonWedOrFri</a></li>
+				                               <li class=""><a href="#method_isSameMonth" title="isSameMonth">isSameMonth</a></li>
+				                               <li class=""><a href="#method_isToday" title="isToday">isToday</a></li>
+				                               <li class=""><a href="#method_isTueOrThu" title="isTueOrThu">isTueOrThu</a></li>
+				                               <li class=""><a href="#method_isWeekDay" title="isWeekDay">isWeekDay</a></li>
+				                               <li class=""><a href="#method_isYearOverlapWeek" title="isYearOverlapWeek">isYearOverlapWeek</a></li>
+				                               <li class=""><a href="#method_safeClearTime" title="safeClearTime">safeClearTime</a></li>
+				                               <li class=""><a href="#method_subtract" title="subtract">subtract</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-datatype-debug.js.html" title="aui-datatype-debug.js">aui-datatype-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-datatype-min.js.html" title="aui-datatype-min.js">aui-datatype-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-datatype.js.html" title="aui-datatype.js">aui-datatype.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">A.DataType.DateMath</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								A.DataType.DateMath is used for simple date manipulation. The class is a static utility
+used for adding, subtracting, and comparing dates. Based on YAHOO.widget.DateMath.
+							</div>
+
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_DAY">
+
+											<h4>
+												<a name="property_DAY" property="yui:name">DAY</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Day
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_HOUR">
+
+											<h4>
+												<a name="property_HOUR" property="yui:name">HOUR</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Hour
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_MAX_MONTH_LENGTH">
+
+											<h4>
+												<a name="property_MAX_MONTH_LENGTH" property="yui:name">MAX_MONTH_LENGTH</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing the number of maximum days in a month
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_MINUTES">
+
+											<h4>
+												<a name="property_MINUTES" property="yui:name">MINUTES</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Minutes
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_MONTH">
+
+											<h4>
+												<a name="property_MONTH" property="yui:name">MONTH</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Month
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ONE_DAY_MS">
+
+											<h4>
+												<a name="property_ONE_DAY_MS" property="yui:name">ONE_DAY_MS</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing one day, in milliseconds
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ONE_HOUR_MS">
+
+											<h4>
+												<a name="property_ONE_HOUR_MS" property="yui:name">ONE_HOUR_MS</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing one hour, in milliseconds
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ONE_MINUTE_MS">
+
+											<h4>
+												<a name="property_ONE_MINUTE_MS" property="yui:name">ONE_MINUTE_MS</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing one minute, in milliseconds
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_ONE_SECOND_MS">
+
+											<h4>
+												<a name="property_ONE_SECOND_MS" property="yui:name">ONE_SECOND_MS</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing one second, in milliseconds
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_SECONDS">
+
+											<h4>
+												<a name="property_SECONDS" property="yui:name">SECONDS</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Seconds
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_WEEK">
+
+											<h4>
+												<a name="property_WEEK" property="yui:name">WEEK</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Week
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_WEEK_LENGTH">
+
+											<h4>
+												<a name="property_WEEK_LENGTH" property="yui:name">WEEK_LENGTH</a>
+												- <code>static final <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing the number of maximum days in a week
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_WEEK_ONE_JAN_DATE">
+
+											<h4>
+												<a name="property_WEEK_ONE_JAN_DATE" property="yui:name">WEEK_ONE_JAN_DATE</a>
+												- <code>static <span property="yui:type">Number</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing the date in first week of January
+which identifies the first week of the year.
+<p>
+In the U.S, Jan 1st is normally used based on a Sunday start of week.
+ISO 8601, used widely throughout Europe, uses Jan 4th, based on a Monday start of week.
+</p>
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_YEAR">
+
+											<h4>
+												<a name="property_YEAR" property="yui:name">YEAR</a>
+												- <code>static final <span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Constant field representing Year
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_add">
+
+													<h4>
+														<a name="method_add">add</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">add</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 field
+																	
+																
+																		, 
+																		 amount
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds the specified amount of time to the this instance.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date object to perform addition on</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">field</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">	The field constant to be used for performing addition.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">amount</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">	The number of units (measured in the field constant) to add to the date.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The resulting Date object</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_after">
+
+													<h4>
+														<a name="method_after">after</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">after</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 compareTo
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether a given date is after another date on the calendar.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">		The Date object to compare with the compare argument</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">compareTo</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The Date object to use for the comparison</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">true if the date occurs after the compared date; false if not.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_before">
+
+													<h4>
+														<a name="method_before">before</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">before</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 compareTo
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether a given date is before another date on the calendar.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">		The Date object to compare with the compare argument</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">compareTo</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The Date object to use for the comparison</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">true if the date occurs before the compared date; false if not.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_between">
+
+													<h4>
+														<a name="method_between">between</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">between</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 dateBegin
+																	
+																
+																		, 
+																		 dateEnd
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines whether a given date is between two other dates on the calendar.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">		The date to check for</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">dateBegin</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The start of the range</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">dateEnd</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">		The end of the range</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">true if the date occurs between the compared dates; false if not.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clearTime">
+
+													<h4>
+														<a name="method_clearTime">clearTime</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">clearTime</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clears the time fields from a given date, effectively setting the time to 12 noon.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date for which the time fields will be cleared</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript Date cleared of all time fields</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clone">
+
+													<h4>
+														<a name="method_clone">clone</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">clone</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clone the passed date object.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date to clone</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript Date cloned</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_compare">
+
+													<h4>
+														<a name="method_compare">compare</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														boolean
+															<strong property="yui:name">compare</strong>
+														   (
+																
+																		
+																		 d1
+																	
+																
+																		, 
+																		 d2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Compare dates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date object to compare</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date object to compare</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_findMonthEnd">
+
+													<h4>
+														<a name="method_findMonthEnd">findMonthEnd</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">findMonthEnd</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the last day of a month containing a given date.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date used to calculate the month end</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript Date representing the last day of the month</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_findMonthStart">
+
+													<h4>
+														<a name="method_findMonthStart">findMonthStart</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">findMonthStart</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the first day of a month containing a given date.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date used to calculate the month start</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript Date representing the first day of the month</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getDate">
+
+													<h4>
+														<a name="method_getDate">getDate</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">getDate</strong>
+														   (
+																
+																		
+																		 y
+																	
+																
+																		, 
+																		 m
+																	
+																
+																		, 
+																		 d
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns a new JavaScript Date object, representing the given year, month and date. Time fields (hr, min, sec, ms) on the new Date object
+are set to 0. The method allows Date instances to be created with the a year less than 100. "new Date(year, month, date)" implementations
+set the year to 19xx if a year (xx) which is less than 100 is provided.
+<p>
+<em>NOTE:</em>Validation on argument values is not performed. It is the caller's responsibility to ensure
+arguments are valid as per the ECMAScript-262 Date object specification for the new Date(year, month[, date]) constructor.
+</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Year.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">m</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Month index from 0 (Jan) to 11 (Dec).</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> (optional) Date from 1 to 31. If not provided, defaults to 1.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript date object with year, month, date set as provided.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getDayOffset">
+
+													<h4>
+														<a name="method_getDayOffset">getDayOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getDayOffset</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 calendarYear
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates the number of days the specified date is from January 1 of the specified calendar year.
+Passing January 1 to this function would return an offset value of zero.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript date for which to find the offset</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">calendarYear</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">	The calendar year to use for determining the offset</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The number of days since January 1 of the given year</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getFirstDayOfWeek">
+
+													<h4>
+														<a name="method_getFirstDayOfWeek">getFirstDayOfWeek</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">getFirstDayOfWeek</strong>
+														   (
+																
+																		
+																		 dt
+																	
+																
+																		, 
+																		 startOfWeek
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Get the first day of the week, for the give date.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">dt</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> The date in the week for which the first day is required.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">startOfWeek</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The index for the first day of the week, 0 = Sun, 1 = Mon ... 6 = Sat (defaults to 0)</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The first day of the week</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getHoursOffset">
+
+													<h4>
+														<a name="method_getHoursOffset">getHoursOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getHoursOffset</strong>
+														   (
+																
+																		
+																		 d1
+																	
+																
+																		, 
+																		 d2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates the number of hours between the specified dates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 1</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 2</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The number of hours</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getJan1">
+
+													<h4>
+														<a name="method_getJan1">getJan1</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">getJan1</strong>
+														   (
+																
+																		
+																		 calendarYear
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Retrieves a JavaScript Date object representing January 1 of any given year.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">calendarYear</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">		The calendar year for which to retrieve January 1</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">January 1 of the calendar year specified.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getMinutesOffset">
+
+													<h4>
+														<a name="method_getMinutesOffset">getMinutesOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getMinutesOffset</strong>
+														   (
+																
+																		
+																		 d1
+																	
+																
+																		, 
+																		 d2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates the number of minutes between the specified dates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 1</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 2</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The number of minutes</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getSecondsOffset">
+
+													<h4>
+														<a name="method_getSecondsOffset">getSecondsOffset</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getSecondsOffset</strong>
+														   (
+																
+																		
+																		 d1
+																	
+																
+																		, 
+																		 d2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates the number of seconds between the specified dates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 1</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date 2</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The number of seconds</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getWeekNumber">
+
+													<h4>
+														<a name="method_getWeekNumber">getWeekNumber</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Number
+															<strong property="yui:name">getWeekNumber</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 firstDayOfWeek
+																	
+																
+																		, 
+																		 janDate
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calculates the week number for the given date. Can currently support standard
+U.S. week numbers, based on Jan 1st defining the 1st week of the year, and
+ISO8601 week numbers, based on Jan 4th defining the 1st week of the year.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> The JavaScript date for which to find the week number</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">firstDayOfWeek</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The index of the first day of the week (0 = Sun, 1 = Mon ... 6 = Sat).
+Defaults to 0</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">janDate</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> The date in the first week of January which defines week one for the year
+Defaults to the value of YAHOO.widget.DateMath.WEEK_ONE_JAN_DATE, which is 1 (Jan 1st).
+For the U.S, this is normally Jan 1st. ISO8601 uses Jan 4th to define the first week of the year.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Number
+																	</code></dt>
+																	<dd property="yui:returnInfo">The number of the week containing the given date.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isDayOverlap">
+
+													<h4>
+														<a name="method_isDayOverlap">isDayOverlap</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isDayOverlap</strong>
+														   (
+																
+																		
+																		 date1
+																	
+																
+																		, 
+																		 date2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed date is between two days.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isMonthOverlapWeek">
+
+													<h4>
+														<a name="method_isMonthOverlapWeek">isMonthOverlapWeek</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">isMonthOverlapWeek</strong>
+														   (
+																
+																		
+																		 weekBeginDate
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines if a given week overlaps two different months.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">weekBeginDate</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date representing the first day of the week.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">true if the date overlaps two different months.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isMonWedOrFri">
+
+													<h4>
+														<a name="method_isMonWedOrFri">isMonWedOrFri</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isMonWedOrFri</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed date is a Monday, Wednesday or Friday.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isSameMonth">
+
+													<h4>
+														<a name="method_isSameMonth">isSameMonth</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isSameMonth</strong>
+														   (
+																
+																		
+																		 d1
+																	
+																
+																		, 
+																		 d2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed dates are in the same month.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d1</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">d2</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isToday">
+
+													<h4>
+														<a name="method_isToday">isToday</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isToday</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed date is today.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isTueOrThu">
+
+													<h4>
+														<a name="method_isTueOrThu">isTueOrThu</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isTueOrThu</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed date is a Tuesday or Thursday.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isWeekDay">
+
+													<h4>
+														<a name="method_isWeekDay">isWeekDay</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">isWeekDay</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Chechs if the passed date is a week day.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description"> Date</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">boolean</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isYearOverlapWeek">
+
+													<h4>
+														<a name="method_isYearOverlapWeek">isYearOverlapWeek</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">isYearOverlapWeek</strong>
+														   (
+																
+																		
+																		 weekBeginDate
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Determines if a given week overlaps two different years.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">weekBeginDate</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date representing the first day of the week.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">true if the date overlaps two different years.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_safeClearTime">
+
+													<h4>
+														<a name="method_safeClearTime">safeClearTime</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">safeClearTime</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clears the time fields from a given date, effectively setting the time to
+12 noon. This is "safe" because clones the date before clear, not affecting
+the passed reference.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date for which the time fields will be cleared</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The JavaScript Date cleared of all time fields</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_subtract">
+
+													<h4>
+														<a name="method_subtract">subtract</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Date
+															<strong property="yui:name">subtract</strong>
+														   (
+																
+																		
+																		 date
+																	
+																
+																		, 
+																		 field
+																	
+																
+																		, 
+																		 amount
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Subtracts the specified amount of time from the this instance.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">date</span>
+																		&lt;<span property="yui:type">Date</span>&gt;
+																		</code>
+																		<span property="yui:description">	The JavaScript Date object to perform subtraction on</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">field</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">	The this field constant to be used for performing subtraction.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">amount</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">	The number of units (measured in the field constant) to subtract from the date.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Date
+																	</code></dt>
+																	<dd property="yui:returnInfo">The resulting Date object</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "A.DataType.DateMath.html#method_add", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "add"}, {"url": "A.DataType.DateMath.html#method_after", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "after"}, {"url": "A.DataType.DateMath.html#method_before", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "before"}, {"url": "A.DataType.DateMath.html#method_between", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "between"}, {"url": "A.DataType.DateMath.html#method_clearTime", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "clearTime"}, {"url": "A.DataType.DateMath.html#method_clone", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "clone"}, {"url": "A.DataType.DateMath.html#method_compare", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "compare"}, {"url": "A.DataType.DateMath.html#property_DAY", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "DAY"}, {"url": "DataType.String.html#method_evaluate", "access": "", "host": "DataType.String", "type": "method", "name": "evaluate"}, {"url": "A.DataType.DateMath.html#method_findMonthEnd", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "findMonthEnd"}, {"url": "A.DataType.DateMath.html#method_findMonthStart", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "findMonthStart"}, {"url": "A.DataType.DateMath.html#method_getDate", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getDate"}, {"url": "A.DataType.DateMath.html#method_getDayOffset", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getDayOffset"}, {"url": "A.DataType.DateMath.html#method_getFirstDayOfWeek", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getFirstDayOfWeek"}, {"url": "A.DataType.DateMath.html#method_getHoursOffset", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getHoursOffset"}, {"url": "A.DataType.DateMath.html#method_getJan1", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getJan1"}, {"url": "A.DataType.DateMath.html#method_getMinutesOffset", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getMinutesOffset"}, {"url": "A.DataType.DateMath.html#method_getSecondsOffset", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getSecondsOffset"}, {"url": "A.DataType.DateMath.html#method_getWeekNumber", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "getWeekNumber"}, {"url": "A.DataType.DateMath.html#property_HOUR", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "HOUR"}, {"url": "A.DataType.DateMath.html#method_isDayOverlap", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isDayOverlap"}, {"url": "A.DataType.DateMath.html#method_isMonthOverlapWeek", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isMonthOverlapWeek"}, {"url": "A.DataType.DateMath.html#method_isMonWedOrFri", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isMonWedOrFri"}, {"url": "A.DataType.DateMath.html#method_isSameMonth", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isSameMonth"}, {"url": "A.DataType.DateMath.html#method_isToday", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isToday"}, {"url": "A.DataType.DateMath.html#method_isTueOrThu", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isTueOrThu"}, {"url": "A.DataType.DateMath.html#method_isWeekDay", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isWeekDay"}, {"url": "A.DataType.DateMath.html#method_isYearOverlapWeek", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "isYearOverlapWeek"}, {"url": "A.DataType.DateMath.html#property_MAX_MONTH_LENGTH", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "MAX_MONTH_LENGTH"}, {"url": "A.DataType.DateMath.html#property_MINUTES", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "MINUTES"}, {"url": "A.DataType.DateMath.html#property_MONTH", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "MONTH"}, {"url": "A.DataType.DateMath.html#property_ONE_DAY_MS", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "ONE_DAY_MS"}, {"url": "A.DataType.DateMath.html#property_ONE_HOUR_MS", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "ONE_HOUR_MS"}, {"url": "A.DataType.DateMath.html#property_ONE_MINUTE_MS", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "ONE_MINUTE_MS"}, {"url": "A.DataType.DateMath.html#property_ONE_SECOND_MS", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "ONE_SECOND_MS"}, {"url": "DataType.Boolean.html#method_parse", "access": "", "host": "DataType.Boolean", "type": "method", "name": "parse"}, {"url": "A.DataType.DateMath.html#method_safeClearTime", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "safeClearTime"}, {"url": "A.DataType.DateMath.html#property_SECONDS", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "SECONDS"}, {"url": "A.DataType.DateMath.html#method_subtract", "access": "", "host": "A.DataType.DateMath", "type": "method", "name": "subtract"}, {"url": "A.DataType.DateMath.html#property_WEEK", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "WEEK"}, {"url": "A.DataType.DateMath.html#property_WEEK_LENGTH", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "WEEK_LENGTH"}, {"url": "A.DataType.DateMath.html#property_WEEK_ONE_JAN_DATE", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "WEEK_ONE_JAN_DATE"}, {"url": "A.DataType.DateMath.html#property_YEAR", "access": "", "host": "A.DataType.DateMath", "type": "property", "name": "YEAR"}];
+</script>
+</body>
+</html>

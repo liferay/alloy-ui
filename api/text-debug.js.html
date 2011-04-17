@@ -1,0 +1,1386 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: text   text-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			text&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_text.html" title="text">text</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">text-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Text.AccentFold.html" title="Text.AccentFold">Text.AccentFold</a></li>
+
+
+				                                <li class=""><a href="Text.WordBreak.html" title="Text.WordBreak">Text.WordBreak</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="text-accentfold-debug.js.html" title="text-accentfold-debug.js">text-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-accentfold-min.js.html" title="text-accentfold-min.js">text-accentfold-min.js</a></li>
+
+
+			                                <li class=""><a href="text-accentfold.js.html" title="text-accentfold.js">text-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold-debug.js.html" title="text-data-accentfold-debug.js">text-data-accentfold-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold-min.js.html" title="text-data-accentfold-min.js">text-data-accentfold-min.js</a></li>
+
+
+			                                <li class=""><a href="text-data-accentfold.js.html" title="text-data-accentfold.js">text-data-accentfold.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak-debug.js.html" title="text-data-wordbreak-debug.js">text-data-wordbreak-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak-min.js.html" title="text-data-wordbreak-min.js">text-data-wordbreak-min.js</a></li>
+
+
+			                                <li class=""><a href="text-data-wordbreak.js.html" title="text-data-wordbreak.js">text-data-wordbreak.js</a></li>
+
+
+			                                <li class="selected"><a href="text-debug.js.html" title="text-debug.js">text-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-min.js.html" title="text-min.js">text-min.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak-debug.js.html" title="text-wordbreak-debug.js">text-wordbreak-debug.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak-min.js.html" title="text-wordbreak-min.js">text-wordbreak-min.js</a></li>
+
+
+			                                <li class=""><a href="text-wordbreak.js.html" title="text-wordbreak.js">text-wordbreak.js</a></li>
+
+
+			                                <li class=""><a href="text.js.html" title="text.js">text.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.3.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text-accentfold&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Text utilities.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module text</span>
+<span class="cm"> * @since 3.3.0</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides a basic accent folding implementation that converts common accented</span>
+<span class="cm"> * letters (like &quot;á&quot;) to their non-accented forms (like &quot;a&quot;).</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module text</span>
+<span class="cm"> * @submodule text-accentfold</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Provides a basic accent folding implementation that converts common accented</span>
+<span class="cm"> * letters (like &quot;á&quot;) to their non-accented forms (like &quot;a&quot;).</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * This implementation is not comprehensive, and should only be used as a last</span>
+<span class="cm"> * resort when accent folding can&#39;t be done on the server. A comprehensive</span>
+<span class="cm"> * accent folding implementation would require much more character data to be</span>
+<span class="cm"> * sent to the browser, resulting in a significant performance penalty. This</span>
+<span class="cm"> * implementation strives for a compromise between usefulness and performance.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Accent folding is a destructive operation that can&#39;t be reversed, and may</span>
+<span class="cm"> * change or destroy the actual meaning of the text depending on the language.</span>
+<span class="cm"> * It should not be used on strings that will later be displayed to a user,</span>
+<span class="cm"> * unless this is done with the understanding that linguistic meaning may be</span>
+<span class="cm"> * lost and that you may in fact confuse or insult the user by doing so.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * When used for matching, accent folding is likely to produce erroneous matches</span>
+<span class="cm"> * for languages in which characters with diacritics are considered different</span>
+<span class="cm"> * from their base characters, or where correct folding would map to other</span>
+<span class="cm"> * character sequences than just stripped characters. For example, in German</span>
+<span class="cm"> * &quot;ü&quot; is a character that&#39;s clearly different from &quot;u&quot; and should match &quot;ue&quot;</span>
+<span class="cm"> * instead. The word &quot;betrügen&quot; means &quot;to defraud&quot;, while &quot;betrugen&quot; is the past</span>
+<span class="cm"> * tense of &quot;to behave&quot;. The name &quot;Müller&quot; is expected to match &quot;Mueller&quot;, but</span>
+<span class="cm"> * not &quot;Muller&quot;. On the other hand, accent folding falls short for languages</span>
+<span class="cm"> * where different base characters are expected to match. In Japanese, for</span>
+<span class="cm"> * example, hiragana and katakana characters with the same pronunciation (&quot;あ&quot;</span>
+<span class="cm"> * and &quot;ア&quot;) are commonly treated as equivalent for lookups, but accent folding</span>
+<span class="cm"> * treats them as different.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class Text.AccentFold</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">YArray</span>   <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span>
+    <span class="nx">Text</span>     <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Text</span><span class="p">,</span>
+    <span class="nx">FoldData</span> <span class="o">=</span> <span class="nx">Text</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">AccentFold</span><span class="p">,</span>
+
+<span class="nx">AccentFold</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// -- Public Static Methods ------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns &lt;code&gt;true&lt;/code&gt; if the specified string contains one or more</span>
+<span class="cm">     * characters that can be folded, &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method canFold</span>
+<span class="cm">     * @param {String} string String to test.</span>
+<span class="cm">     * @return {Boolean}</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">canFold</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">letter</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="nx">letter</span> <span class="k">in</span> <span class="nx">FoldData</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">FoldData</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                    <span class="nx">string</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">FoldData</span><span class="p">[</span><span class="nx">letter</span><span class="p">])</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Compares the accent-folded versions of two strings and returns</span>
+<span class="cm">     * &lt;code&gt;true&lt;/code&gt; if they&#39;re the same, &lt;code&gt;false&lt;/code&gt; otherwise. If</span>
+<span class="cm">     * a custom comparison function is supplied, the accent-folded strings will</span>
+<span class="cm">     * be passed to that function for comparison.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method compare</span>
+<span class="cm">     * @param {String} a First string to compare.</span>
+<span class="cm">     * @param {String} b Second string to compare.</span>
+<span class="cm">     * @param {Function} func (optional) Custom comparison function. Should</span>
+<span class="cm">     *   return a truthy or falsy value.</span>
+<span class="cm">     * @return {Boolean} Results of the comparison.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">compare</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">aFolded</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">a</span><span class="p">),</span>
+            <span class="nx">bFolded</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">func</span> <span class="o">?</span> <span class="o">!!</span><span class="nx">func</span><span class="p">(</span><span class="nx">aFolded</span><span class="p">,</span> <span class="nx">bFolded</span><span class="p">)</span> <span class="o">:</span> <span class="nx">aFolded</span> <span class="o">===</span> <span class="nx">bFolded</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Returns a copy of &lt;em&gt;haystack&lt;/em&gt; containing only the strings for which</span>
+<span class="cm">     * the supplied function returns &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * While comparisons will be made using accent-folded strings, the returned</span>
+<span class="cm">     * array of matches will contain the original strings that were passed in.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method filter</span>
+<span class="cm">     * @param {Array} haystack Array of strings to filter.</span>
+<span class="cm">     * @param {Function} func Comparison function. Will receive an accent-folded</span>
+<span class="cm">     *   haystack string as an argument, and should return a truthy or falsy</span>
+<span class="cm">     *   value.</span>
+<span class="cm">     * @return {Array} Filtered copy of &lt;em&gt;haystack&lt;/em&gt;.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">func</span><span class="p">(</span><span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">item</span><span class="p">));</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Accent-folds the specified string or array of strings and returns a copy</span>
+<span class="cm">     * in which common accented letters have been converted to their closest</span>
+<span class="cm">     * non-accented, lowercase forms.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method fold</span>
+<span class="cm">     * @param {String|Array} input String or array of strings to be folded.</span>
+<span class="cm">     * @return {String|Array} Folded string or array of strings.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">fold</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">input</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">input</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+
+        <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">FoldData</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="nx">letter</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">input</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">regex</span><span class="p">,</span> <span class="nx">letter</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="nx">input</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Text</span><span class="p">.</span><span class="nx">AccentFold</span> <span class="o">=</span> <span class="nx">AccentFold</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;text-data-accentfold&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text-data-accentfold&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="c1">// The following tool was very helpful in creating these mappings:</span>
+<span class="c1">// http://unicode.org/cldr/utility/list-unicodeset.jsp?a=[:toNFKD%3D/^a/:]&amp;abb=on</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Text.Data&#39;</span><span class="p">).</span><span class="nx">AccentFold</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">0</span><span class="o">:</span> <span class="sr">/[⁰₀⓪０]/gi</span><span class="p">,</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="sr">/[¹₁①１]/gi</span><span class="p">,</span>
+    <span class="mi">2</span><span class="o">:</span> <span class="sr">/[²₂②２]/gi</span><span class="p">,</span>
+    <span class="mi">3</span><span class="o">:</span> <span class="sr">/[³₃③３]/gi</span><span class="p">,</span>
+    <span class="mi">4</span><span class="o">:</span> <span class="sr">/[⁴₄④４]/gi</span><span class="p">,</span>
+    <span class="mi">5</span><span class="o">:</span> <span class="sr">/[⁵₅⑤５]/gi</span><span class="p">,</span>
+    <span class="mi">6</span><span class="o">:</span> <span class="sr">/[⁶₆⑥６]/gi</span><span class="p">,</span>
+    <span class="mi">7</span><span class="o">:</span> <span class="sr">/[⁷₇⑦７]/gi</span><span class="p">,</span>
+    <span class="mi">8</span><span class="o">:</span> <span class="sr">/[⁸₈⑧８]/gi</span><span class="p">,</span>
+    <span class="mi">9</span><span class="o">:</span> <span class="sr">/[⁹₉⑨９]/gi</span><span class="p">,</span>
+    <span class="nx">a</span><span class="o">:</span> <span class="sr">/[ªà-åāăąǎǟǡǻȁȃȧᵃḁẚạảấầẩẫậắằẳẵặⓐａ]/gi</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span> <span class="sr">/[ᵇḃḅḇⓑｂ]/gi</span><span class="p">,</span>
+    <span class="nx">c</span><span class="o">:</span> <span class="sr">/[çćĉċčᶜḉⓒｃ]/gi</span><span class="p">,</span>
+    <span class="nx">d</span><span class="o">:</span> <span class="sr">/[ďᵈḋḍḏḑḓⅾⓓｄ]/gi</span><span class="p">,</span>
+    <span class="nx">e</span><span class="o">:</span> <span class="sr">/[è-ëēĕėęěȅȇȩᵉḕḗḙḛḝẹẻẽếềểễệₑℯⓔｅ]/gi</span><span class="p">,</span>
+    <span class="nx">f</span><span class="o">:</span> <span class="sr">/[ᶠḟⓕｆ]/gi</span><span class="p">,</span>
+    <span class="nx">g</span><span class="o">:</span> <span class="sr">/[ĝğġģǧǵᵍḡℊⓖｇ]/gi</span><span class="p">,</span>
+    <span class="nx">h</span><span class="o">:</span> <span class="sr">/[ĥȟʰḣḥḧḩḫẖℎⓗｈ]/gi</span><span class="p">,</span>
+    <span class="nx">i</span><span class="o">:</span> <span class="sr">/[ì-ïĩīĭįĳǐȉȋᵢḭḯỉịⁱℹⅰⓘｉ]/gi</span><span class="p">,</span>
+    <span class="nx">j</span><span class="o">:</span> <span class="sr">/[ĵǰʲⓙⱼｊ]/gi</span><span class="p">,</span>
+    <span class="nx">k</span><span class="o">:</span> <span class="sr">/[ķǩᵏḱḳḵⓚｋ]/gi</span><span class="p">,</span>
+    <span class="nx">l</span><span class="o">:</span> <span class="sr">/[ĺļľŀǉˡḷḹḻḽℓⅼⓛｌ]/gi</span><span class="p">,</span>
+    <span class="nx">m</span><span class="o">:</span> <span class="sr">/[ᵐḿṁṃⅿⓜｍ]/gi</span><span class="p">,</span>
+    <span class="nx">n</span><span class="o">:</span> <span class="sr">/[ñńņňǹṅṇṉṋⁿⓝｎ]/gi</span><span class="p">,</span>
+    <span class="nx">o</span><span class="o">:</span> <span class="sr">/[ºò-öōŏőơǒǫǭȍȏȫȭȯȱᵒṍṏṑṓọỏốồổỗộớờởỡợₒℴⓞｏ]/gi</span><span class="p">,</span>
+    <span class="nx">p</span><span class="o">:</span> <span class="sr">/[ᵖṕṗⓟｐ]/gi</span><span class="p">,</span>
+    <span class="nx">q</span><span class="o">:</span> <span class="sr">/[ʠⓠｑ]/gi</span><span class="p">,</span>
+    <span class="nx">r</span><span class="o">:</span> <span class="sr">/[ŕŗřȑȓʳᵣṙṛṝṟⓡｒ]/gi</span><span class="p">,</span>
+    <span class="nx">s</span><span class="o">:</span> <span class="sr">/[śŝşšſșˢṡṣṥṧṩẛⓢｓ]/gi</span><span class="p">,</span>
+    <span class="nx">t</span><span class="o">:</span> <span class="sr">/[ţťțᵗṫṭṯṱẗⓣｔ]/gi</span><span class="p">,</span>
+    <span class="nx">u</span><span class="o">:</span> <span class="sr">/[ù-üũūŭůűųưǔǖǘǚǜȕȗᵘᵤṳṵṷṹṻụủứừửữựⓤｕ]/gi</span><span class="p">,</span>
+    <span class="nx">v</span><span class="o">:</span> <span class="sr">/[ᵛᵥṽṿⅴⓥｖ]/gi</span><span class="p">,</span>
+    <span class="nx">w</span><span class="o">:</span> <span class="sr">/[ŵʷẁẃẅẇẉẘⓦｗ]/gi</span><span class="p">,</span>
+    <span class="nx">x</span><span class="o">:</span> <span class="sr">/[ˣẋẍₓⅹⓧｘ]/gi</span><span class="p">,</span>
+    <span class="nx">y</span><span class="o">:</span> <span class="sr">/[ýÿŷȳʸẏẙỳỵỷỹⓨｙ]/gi</span><span class="p">,</span>
+    <span class="nx">z</span><span class="o">:</span> <span class="sr">/[źżžᶻẑẓẕⓩｚ]/gi</span>
+<span class="p">};</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text-data-wordbreak&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Text.Data&#39;</span><span class="p">).</span><span class="nx">WordBreak</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// The UnicodeSet utility is helpful for enumerating the specific code</span>
+    <span class="c1">// points covered by each of these regular expressions:</span>
+    <span class="c1">// http://unicode.org/cldr/utility/list-unicodeset.jsp</span>
+    <span class="c1">//</span>
+    <span class="c1">// The code sets from which these regexes were derived can be generated</span>
+    <span class="c1">// by the UnicodeSet utility using the links here:</span>
+    <span class="c1">// http://unicode.org/cldr/utility/properties.jsp?a=Word_Break#Word_Break</span>
+
+    <span class="nx">aletter</span>     <span class="o">:</span> <span class="s1">&#39;[A-Za-zªµºÀ-ÖØ-öø-ˁˆ-ˑˠ-ˤˬˮͰ-ʹͶͷͺ-ͽΆΈ-ΊΌΎ-ΡΣ-ϵϷ-ҁҊ-ԧԱ-Ֆՙա-ևא-תװ-׳ؠ-يٮٯٱ-ۓەۥۦۮۯۺ-ۼۿܐܒ-ܯݍ-ޥޱߊ-ߪߴߵߺࠀ-ࠕࠚࠤࠨࡀ-ࡘऄ-हऽॐक़-ॡॱ-ॷॹ-ॿঅ-ঌএঐও-নপ-রলশ-হঽৎড়ঢ়য়-ৡৰৱਅ-ਊਏਐਓ-ਨਪ-ਰਲਲ਼ਵਸ਼ਸਹਖ਼-ੜਫ਼ੲ-ੴઅ-ઍએ-ઑઓ-નપ-રલળવ-હઽૐૠૡଅ-ଌଏଐଓ-ନପ-ରଲଳଵ-ହଽଡ଼ଢ଼ୟ-ୡୱஃஅ-ஊஎ-ஐஒ-கஙசஜஞடணதந-பம-ஹௐఅ-ఌఎ-ఐఒ-నప-ళవ-హఽౘౙౠౡಅ-ಌಎ-ಐಒ-ನಪ-ಳವ-ಹಽೞೠೡೱೲഅ-ഌഎ-ഐഒ-ഺഽൎൠൡൺ-ൿඅ-ඖක-නඳ-රලව-ෆༀཀ-ཇཉ-ཬྈ-ྌႠ-Ⴥა-ჺჼᄀ-ቈቊ-ቍቐ-ቖቘቚ-ቝበ-ኈኊ-ኍነ-ኰኲ-ኵኸ-ኾዀዂ-ዅወ-ዖዘ-ጐጒ-ጕጘ-ፚᎀ-ᎏᎠ-Ᏼᐁ-ᙬᙯ-ᙿᚁ-ᚚᚠ-ᛪᛮ-ᛰᜀ-ᜌᜎ-ᜑᜠ-ᜱᝀ-ᝑᝠ-ᝬᝮ-ᝰᠠ-ᡷᢀ-ᢨᢪᢰ-ᣵᤀ-ᤜᨀ-ᨖᬅ-ᬳᭅ-ᭋᮃ-ᮠᮮᮯᯀ-ᯥᰀ-ᰣᱍ-ᱏᱚ-ᱽᳩ-ᳬᳮ-ᳱᴀ-ᶿḀ-ἕἘ-Ἕἠ-ὅὈ-Ὅὐ-ὗὙὛὝὟ-ώᾀ-ᾴᾶ-ᾼιῂ-ῄῆ-ῌῐ-ΐῖ-Ίῠ-Ῥῲ-ῴῶ-ῼⁱⁿₐ-ₜℂℇℊ-ℓℕℙ-ℝℤΩℨK-ℭℯ-ℹℼ-ℿⅅ-ⅉⅎⅠ-ↈⒶ-ⓩⰀ-Ⱞⰰ-ⱞⱠ-ⳤⳫ-ⳮⴀ-ⴥⴰ-ⵥⵯⶀ-ⶖⶠ-ⶦⶨ-ⶮⶰ-ⶶⶸ-ⶾⷀ-ⷆⷈ-ⷎⷐ-ⷖⷘ-ⷞⸯ々〻〼ㄅ-ㄭㄱ-ㆎㆠ-ㆺꀀ-ꒌꓐ-ꓽꔀ-ꘌꘐ-ꘟꘪꘫꙀ-ꙮꙿ-ꚗꚠ-ꛯꜗ-ꜟꜢ-ꞈꞋ-ꞎꞐꞑꞠ-ꞩꟺ-ꠁꠃ-ꠅꠇ-ꠊꠌ-ꠢꡀ-ꡳꢂ-ꢳꣲ-ꣷꣻꤊ-ꤥꤰ-ꥆꥠ-ꥼꦄ-ꦲꧏꨀ-ꨨꩀ-ꩂꩄ-ꩋꬁ-ꬆꬉ-ꬎꬑ-ꬖꬠ-ꬦꬨ-ꬮꯀ-ꯢ가-힣ힰ-ퟆퟋ-ퟻﬀ-ﬆﬓ-ﬗיִײַ-ﬨשׁ-זּטּ-לּמּנּסּףּפּצּ-ﮱﯓ-ﴽﵐ-ﶏﶒ-ﷇﷰ-ﷻﹰ-ﹴﹶ-ﻼＡ-Ｚａ-ｚﾠ-ﾾￂ-ￇￊ-ￏￒ-ￗￚ-ￜ]&#39;</span><span class="p">,</span> 
+    <span class="nx">midnumlet</span>   <span class="o">:</span> <span class="s2">&quot;[&#39;\\.‘’․﹒＇．]&quot;</span><span class="p">,</span>
+    <span class="nx">midletter</span>   <span class="o">:</span> <span class="s1">&#39;[:··״‧︓﹕：]&#39;</span><span class="p">,</span>
+    <span class="nx">midnum</span>      <span class="o">:</span> <span class="s1">&#39;[,;;։،؍٬߸⁄︐︔﹐﹔，；]&#39;</span><span class="p">,</span>
+    <span class="nx">numeric</span>     <span class="o">:</span> <span class="s1">&#39;[0-9٠-٩٫۰-۹߀-߉०-९০-৯੦-੯૦-૯୦-୯௦-௯౦-౯೦-೯൦-൯๐-๙໐-໙༠-༩၀-၉႐-႙០-៩᠐-᠙᥆-᥏᧐-᧙᪀-᪉᪐-᪙᭐-᭙᮰-᮹᱀-᱉᱐-᱙꘠-꘩꣐-꣙꤀-꤉꧐-꧙꩐-꩙꯰-꯹]&#39;</span><span class="p">,</span>
+    <span class="nx">cr</span>          <span class="o">:</span> <span class="s1">&#39;\\r&#39;</span><span class="p">,</span>
+    <span class="nx">lf</span>          <span class="o">:</span> <span class="s1">&#39;\\n&#39;</span><span class="p">,</span>
+    <span class="nx">newline</span>     <span class="o">:</span> <span class="s1">&#39;[\u000B\u000C\u0085\u2028\u2029]&#39;</span><span class="p">,</span>
+    <span class="nx">extend</span>      <span class="o">:</span> <span class="s1">&#39;[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u0900-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C01-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C82\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D02\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B6-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAA\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2\u1DC0-\u1DE6\u1DFC-\u1DFF\u200C\u200D\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA67C\uA67D\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE26\uFF9E\uFF9F]&#39;</span><span class="p">,</span>
+    <span class="nx">format</span>      <span class="o">:</span> <span class="s1">&#39;[\u00AD\u0600-\u0603\u06DD\u070F\u17B4\u17B5\u200E\u200F\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\uFFF9-\uFFFB]&#39;</span><span class="p">,</span>
+    <span class="nx">katakana</span>    <span class="o">:</span> <span class="s1">&#39;[〱-〵゛゜゠-ヺー-ヿㇰ-ㇿ㋐-㋾㌀-㍗ｦ-ﾝ]&#39;</span><span class="p">,</span>
+    <span class="nx">extendnumlet</span><span class="o">:</span> <span class="s1">&#39;[_‿⁀⁔︳︴﹍-﹏＿]&#39;</span><span class="p">,</span>
+    <span class="nx">punctuation</span> <span class="o">:</span> <span class="s1">&#39;[!-#%-*,-\\/:;?@\\[-\\]_{}¡«·»¿;·՚-՟։֊־׀׃׆׳״؉؊،؍؛؞؟٪-٭۔܀-܍߷-߹࠰-࠾࡞।॥॰෴๏๚๛༄-༒༺-༽྅࿐-࿔࿙࿚၊-၏჻፡-፨᐀᙭᙮᚛᚜᛫-᛭᜵᜶។-៖៘-៚᠀-᠊᥄᥅᨞᨟᪠-᪦᪨-᪭᭚-᭠᯼-᯿᰻-᰿᱾᱿᳓‐-‧‰-⁃⁅-⁑⁓-⁞⁽⁾₍₎〈〉❨-❵⟅⟆⟦-⟯⦃-⦘⧘-⧛⧼⧽⳹-⳼⳾⳿⵰⸀-⸮⸰⸱、-〃〈-】〔-〟〰〽゠・꓾꓿꘍-꘏꙳꙾꛲-꛷꡴-꡷꣎꣏꣸-꣺꤮꤯꥟꧁-꧍꧞꧟꩜-꩟꫞꫟꯫﴾﴿︐-︙︰-﹒﹔-﹡﹣﹨﹪﹫！-＃％-＊，-／：；？＠［-］＿｛｝｟-･]&#39;</span>
+<span class="p">};</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">);</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text-wordbreak&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provides utility methods for splitting strings on word breaks and determining</span>
+<span class="cm"> * whether a character index represents a word boundary.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module text</span>
+<span class="cm"> * @submodule text-wordbreak</span>
+<span class="cm"> */</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * Provides utility methods for splitting strings on word breaks and determining</span>
+<span class="cm"> * whether a character index represents a word boundary, using the generic word</span>
+<span class="cm"> * breaking algorithm defined in the Unicode Text Segmentation guidelines</span>
+<span class="cm"> * (&lt;a href=&quot;http://unicode.org/reports/tr29/#Word_Boundaries&quot;&gt;Unicode Standard</span>
+<span class="cm"> * Annex #29&lt;/a&gt;).</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;</span>
+<span class="cm"> * This algorithm provides a reasonable default for many languages. However, it</span>
+<span class="cm"> * does not cover language or context specific requirements, and it does not</span>
+<span class="cm"> * provide meaningful results at all for languages that don&#39;t use spaces between</span>
+<span class="cm"> * words, such as Chinese, Japanese, Thai, Lao, Khmer, and others. Server-based</span>
+<span class="cm"> * word breaking services usually provide significantly better results with</span>
+<span class="cm"> * better performance.</span>
+<span class="cm"> * &lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class Text.WordBreak</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+
+<span class="kd">var</span> <span class="nx">Text</span>   <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Text</span><span class="p">,</span>
+    <span class="nx">WBData</span> <span class="o">=</span> <span class="nx">Text</span><span class="p">.</span><span class="nx">Data</span><span class="p">.</span><span class="nx">WordBreak</span><span class="p">,</span>
+
+<span class="c1">// Constants representing code point classifications.</span>
+<span class="nx">ALETTER</span>      <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<span class="nx">MIDNUMLET</span>    <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="nx">MIDLETTER</span>    <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="nx">MIDNUM</span>       <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+<span class="nx">NUMERIC</span>      <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+<span class="nx">CR</span>           <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+<span class="nx">LF</span>           <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+<span class="nx">NEWLINE</span>      <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+<span class="nx">EXTEND</span>       <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+<span class="nx">FORMAT</span>       <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+<span class="nx">KATAKANA</span>     <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<span class="nx">EXTENDNUMLET</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span>
+<span class="nx">OTHER</span>        <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+
+<span class="c1">// RegExp objects generated from code point data. Each regex matches a single</span>
+<span class="c1">// character against a set of Unicode code points. The index of each item in</span>
+<span class="c1">// this array must match its corresponding code point constant value defined</span>
+<span class="c1">// above.</span>
+<span class="nx">SETS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">aletter</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">midnumlet</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">midletter</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">midnum</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">numeric</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">cr</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">lf</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">newline</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">extend</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">format</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">katakana</span><span class="p">),</span>
+    <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">WBData</span><span class="p">.</span><span class="nx">extendnumlet</span><span class="p">)</span>
+<span class="p">],</span>
+
+<span class="nx">EMPTY_STRING</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="nx">PUNCTUATION</span>  <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;^&#39;</span> <span class="o">+</span> <span class="nx">WBData</span><span class="p">.</span><span class="nx">punctuation</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span><span class="p">),</span>
+<span class="nx">WHITESPACE</span>   <span class="o">=</span> <span class="sr">/\s/</span><span class="p">,</span>
+
+<span class="nx">WordBreak</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// -- Public Static Methods ------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Splits the specified string into an array of individual words.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method getWords</span>
+<span class="cm">     * @param {String} string String to split.</span>
+<span class="cm">     * @param {Object} options (optional) Options object containing zero or more</span>
+<span class="cm">     *   of the following properties:</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;dl&gt;</span>
+<span class="cm">     *   &lt;dt&gt;ignoreCase (Boolean)&lt;/dt&gt;</span>
+<span class="cm">     *   &lt;dd&gt;</span>
+<span class="cm">     *     If &lt;code&gt;true&lt;/code&gt;, the string will be converted to lowercase</span>
+<span class="cm">     *     before being split. Default is &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">     *   &lt;/dd&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     *   &lt;dt&gt;includePunctuation (Boolean)&lt;/dt&gt;</span>
+<span class="cm">     *   &lt;dd&gt;</span>
+<span class="cm">     *     If &lt;code&gt;true&lt;/code&gt;, the returned array will include punctuation</span>
+<span class="cm">     *     characters. Default is &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">     *   &lt;/dd&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     *   &lt;dt&gt;includeWhitespace (Boolean)&lt;/dt&gt;</span>
+<span class="cm">     *   &lt;dd&gt;</span>
+<span class="cm">     *     If &lt;code&gt;true&lt;/code&gt;, the returned array will include whitespace</span>
+<span class="cm">     *     characters. Default is &lt;code&gt;false&lt;/code&gt;.</span>
+<span class="cm">     *   &lt;/dd&gt;</span>
+<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @return {Array} Array of words.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">getWords</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">i</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">map</span>   <span class="o">=</span> <span class="nx">WordBreak</span><span class="p">.</span><span class="nx">_classify</span><span class="p">(</span><span class="nx">string</span><span class="p">),</span>
+            <span class="nx">len</span>   <span class="o">=</span> <span class="nx">map</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="nx">word</span>  <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">words</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">chr</span><span class="p">,</span>
+            <span class="nx">includePunctuation</span><span class="p">,</span>
+            <span class="nx">includeWhitespace</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">options</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">ignoreCase</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">string</span> <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="nx">includePunctuation</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">includePunctuation</span><span class="p">;</span>
+        <span class="nx">includeWhitespace</span>  <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">includeWhitespace</span><span class="p">;</span>
+
+        <span class="c1">// Loop through each character in the classification map and determine</span>
+        <span class="c1">// whether it precedes a word boundary, building an array of distinct</span>
+        <span class="c1">// words as we go.</span>
+        <span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">chr</span> <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+            <span class="c1">// Append this character to the current word.</span>
+            <span class="nx">word</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">chr</span><span class="p">);</span>
+
+            <span class="c1">// If there&#39;s a word boundary between the current character and the</span>
+            <span class="c1">// next character, append the current word to the words array and</span>
+            <span class="c1">// start building a new word. </span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">WordBreak</span><span class="p">.</span><span class="nx">_isWordBoundary</span><span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">word</span> <span class="o">=</span> <span class="nx">word</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">EMPTY_STRING</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">word</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="nx">includeWhitespace</span>  <span class="o">||</span> <span class="o">!</span><span class="nx">WHITESPACE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">word</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="nx">includePunctuation</span> <span class="o">||</span> <span class="o">!</span><span class="nx">PUNCTUATION</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">word</span><span class="p">)))</span> <span class="p">{</span>
+                    <span class="nx">words</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">word</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nx">word</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">words</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns an array containing only unique words from the specified string.</span>
+<span class="cm">     * For example, the string &lt;code&gt;&#39;foo bar baz foo&#39;&lt;/code&gt; would result in</span>
+<span class="cm">     * the array &lt;code&gt;[&#39;foo&#39;, &#39;bar&#39;, &#39;baz&#39;]&lt;/code&gt;.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method getUniqueWords</span>
+<span class="cm">     * @param {String} string String to split.</span>
+<span class="cm">     * @param {Object} options (optional) Options (see &lt;code&gt;getWords()&lt;/code&gt;</span>
+<span class="cm">     *   for details).</span>
+<span class="cm">     * @return {Array} Array of unique words.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">getUniqueWords</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">unique</span><span class="p">(</span><span class="nx">WordBreak</span><span class="p">.</span><span class="nx">getWords</span><span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">options</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Returns &lt;code&gt;true&lt;/code&gt; if there is a word boundary between the</span>
+<span class="cm">     * specified character index and the next character index (or the end of the</span>
+<span class="cm">     * string).</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Note that there are always word breaks at the beginning and end of a</span>
+<span class="cm">     * string, so &lt;code&gt;isWordBoundary(&#39;&#39;, 0)&lt;/code&gt; and</span>
+<span class="cm">     * &lt;code&gt;isWordBoundary(&#39;a&#39;, 0)&lt;/code&gt; will both return &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method isWordBoundary</span>
+<span class="cm">     * @param {String} string String to test.</span>
+<span class="cm">     * @param {Number} index Character index to test within the string.</span>
+<span class="cm">     * @return {Boolean} &lt;code&gt;true&lt;/code&gt; for a word boundary,</span>
+<span class="cm">     *   &lt;code&gt;false&lt;/code&gt; otherwise.</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">isWordBoundary</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">WordBreak</span><span class="p">.</span><span class="nx">_isWordBoundary</span><span class="p">(</span><span class="nx">WordBreak</span><span class="p">.</span><span class="nx">_classify</span><span class="p">(</span><span class="nx">string</span><span class="p">),</span> <span class="nx">index</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Static Methods ---------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * Returns a character classification map for the specified string.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _classify</span>
+<span class="cm">     * @param {String} string String to classify.</span>
+<span class="cm">     * @return {Array} Classification map.</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">_classify</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">chr</span><span class="p">,</span>
+            <span class="nx">map</span>          <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">i</span>            <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">j</span><span class="p">,</span>
+            <span class="nx">set</span><span class="p">,</span>
+            <span class="nx">stringLength</span> <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="nx">setsLength</span>   <span class="o">=</span> <span class="nx">SETS</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="nx">type</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">stringLength</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">chr</span>  <span class="o">=</span> <span class="nx">string</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+            <span class="nx">type</span> <span class="o">=</span> <span class="nx">OTHER</span><span class="p">;</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">setsLength</span><span class="p">;</span> <span class="o">++</span><span class="nx">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">set</span> <span class="o">=</span> <span class="nx">SETS</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">set</span> <span class="o">&amp;&amp;</span> <span class="nx">set</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">chr</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">type</span> <span class="o">=</span> <span class="nx">j</span><span class="p">;</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">map</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">type</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">map</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Returns &lt;code&gt;true&lt;/code&gt; if there is a word boundary between the</span>
+<span class="cm">     * specified character index and the next character index (or the end of the</span>
+<span class="cm">     * string).</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;</span>
+<span class="cm">     * Note that there are always word breaks at the beginning and end of a</span>
+<span class="cm">     * string, so &lt;code&gt;_isWordBoundary(&#39;&#39;, 0)&lt;/code&gt; and</span>
+<span class="cm">     * &lt;code&gt;_isWordBoundary(&#39;a&#39;, 0)&lt;/code&gt; will both return &lt;code&gt;true&lt;/code&gt;.</span>
+<span class="cm">     * &lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _isWordBoundary</span>
+<span class="cm">     * @param {Array} map Character classification map generated by</span>
+<span class="cm">     *   &lt;code&gt;_classify&lt;/code&gt;.</span>
+<span class="cm">     * @param {Number} index Character index to test.</span>
+<span class="cm">     * @return {Boolean}</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     * @static</span>
+<span class="cm">     */</span>
+    <span class="nx">_isWordBoundary</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">map</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">prevType</span><span class="p">,</span>
+            <span class="nx">type</span>     <span class="o">=</span> <span class="nx">map</span><span class="p">[</span><span class="nx">index</span><span class="p">],</span>
+            <span class="nx">nextType</span> <span class="o">=</span> <span class="nx">map</span><span class="p">[</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="nx">nextNextType</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="nx">map</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">index</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;isWordBoundary: index out of bounds&#39;</span><span class="p">,</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span> <span class="s1">&#39;text-wordbreak&#39;</span><span class="p">);</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB5. Don&#39;t break between most letters.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">ALETTER</span> <span class="o">&amp;&amp;</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">ALETTER</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">nextNextType</span> <span class="o">=</span> <span class="nx">map</span><span class="p">[</span><span class="nx">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+
+        <span class="c1">// WB6. Don&#39;t break letters across certain punctuation.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">ALETTER</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">MIDLETTER</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">MIDNUMLET</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">nextNextType</span> <span class="o">===</span> <span class="nx">ALETTER</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">prevType</span> <span class="o">=</span> <span class="nx">map</span><span class="p">[</span><span class="nx">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+
+        <span class="c1">// WB7. Don&#39;t break letters across certain punctuation.</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">MIDLETTER</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">MIDNUMLET</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">ALETTER</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">prevType</span> <span class="o">===</span> <span class="nx">ALETTER</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB8/WB9/WB10. Don&#39;t break inside sequences of digits or digits</span>
+        <span class="c1">// adjacent to letters.</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">ALETTER</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">ALETTER</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB11. Don&#39;t break inside numeric sequences like &quot;3.2&quot; or</span>
+        <span class="c1">// &quot;3,456.789&quot;.</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">MIDNUM</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">MIDNUMLET</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">prevType</span> <span class="o">===</span> <span class="nx">NUMERIC</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB12. Don&#39;t break inside numeric sequences like &quot;3.2&quot; or</span>
+        <span class="c1">// &quot;3,456.789&quot;.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">MIDNUM</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">MIDNUMLET</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+                <span class="nx">nextNextType</span> <span class="o">===</span> <span class="nx">NUMERIC</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB4. Ignore format and extend characters.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">EXTEND</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">FORMAT</span> <span class="o">||</span>
+                <span class="nx">prevType</span> <span class="o">===</span> <span class="nx">EXTEND</span> <span class="o">||</span> <span class="nx">prevType</span> <span class="o">===</span> <span class="nx">FORMAT</span> <span class="o">||</span>
+                <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">EXTEND</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">FORMAT</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB3. Don&#39;t break inside CRLF.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">CR</span> <span class="o">&amp;&amp;</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">LF</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB3a. Break before newlines (including CR and LF).</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">NEWLINE</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">CR</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">LF</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB3b. Break after newlines (including CR and LF).</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">NEWLINE</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">CR</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">LF</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB13. Don&#39;t break between Katakana characters.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">KATAKANA</span> <span class="o">&amp;&amp;</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">KATAKANA</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB13a. Don&#39;t break from extenders.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">EXTENDNUMLET</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">ALETTER</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">||</span> <span class="nx">type</span> <span class="o">===</span> <span class="nx">KATAKANA</span> <span class="o">||</span>
+                <span class="nx">type</span> <span class="o">===</span> <span class="nx">EXTENDNUMLET</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// WB13b. Don&#39;t break from extenders.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">EXTENDNUMLET</span> <span class="o">&amp;&amp;</span>
+                <span class="p">(</span><span class="nx">nextType</span> <span class="o">===</span> <span class="nx">ALETTER</span> <span class="o">||</span> <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">NUMERIC</span> <span class="o">||</span>
+                <span class="nx">nextType</span> <span class="o">===</span> <span class="nx">KATAKANA</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Break after any character not covered by the rules above.</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">Text</span><span class="p">.</span><span class="nx">WordBreak</span> <span class="o">=</span> <span class="nx">WordBreak</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;text-data-wordbreak&#39;</span><span class="p">]});</span>
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;text-accentfold&#39;</span><span class="p">,</span> <span class="s1">&#39;text-wordbreak&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Text.AccentFold.html#method_canFold", "access": "", "host": "Text.AccentFold", "type": "method", "name": "canFold"}, {"url": "Text.WordBreak.html#method__classify", "access": "protected", "host": "Text.WordBreak", "type": "method", "name": "_classify"}, {"url": "Text.AccentFold.html#method_compare", "access": "", "host": "Text.AccentFold", "type": "method", "name": "compare"}, {"url": "Text.AccentFold.html#method_filter", "access": "", "host": "Text.AccentFold", "type": "method", "name": "filter"}, {"url": "Text.AccentFold.html#method_fold", "access": "", "host": "Text.AccentFold", "type": "method", "name": "fold"}, {"url": "Text.WordBreak.html#method_getUniqueWords", "access": "", "host": "Text.WordBreak", "type": "method", "name": "getUniqueWords"}, {"url": "Text.WordBreak.html#method_getWords", "access": "", "host": "Text.WordBreak", "type": "method", "name": "getWords"}, {"url": "Text.WordBreak.html#method__isWordBoundary", "access": "protected", "host": "Text.WordBreak", "type": "method", "name": "_isWordBoundary"}, {"url": "Text.WordBreak.html#method_isWordBoundary", "access": "", "host": "Text.WordBreak", "type": "method", "name": "isWordBoundary"}];
+</script>
+</body>
+</html>

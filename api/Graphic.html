@@ -1,0 +1,2187 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: charts  Graphic   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			charts&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_charts.html" title="charts">charts</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Graphic</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AreaSeries.html" title="AreaSeries">AreaSeries</a></li>
+
+
+				                                <li class=""><a href="AreaSplineSeries.html" title="AreaSplineSeries">AreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="Axis.html" title="Axis">Axis</a></li>
+
+
+				                                <li class=""><a href="AxisType.html" title="AxisType">AxisType</a></li>
+
+
+				                                <li class=""><a href="BarSeries.html" title="BarSeries">BarSeries</a></li>
+
+
+				                                <li class=""><a href="BottomAxisLayout.html" title="BottomAxisLayout">BottomAxisLayout</a></li>
+
+
+				                                <li class=""><a href="CanvasDrawingUtil.html" title="CanvasDrawingUtil">CanvasDrawingUtil</a></li>
+
+
+				                                <li class=""><a href="CanvasGraphics.html" title="CanvasGraphics">CanvasGraphics</a></li>
+
+
+				                                <li class=""><a href="CanvasShape.html" title="CanvasShape">CanvasShape</a></li>
+
+
+				                                <li class=""><a href="CartesianChart.html" title="CartesianChart">CartesianChart</a></li>
+
+
+				                                <li class=""><a href="CartesianSeries.html" title="CartesianSeries">CartesianSeries</a></li>
+
+
+				                                <li class=""><a href="CategoryAxis.html" title="CategoryAxis">CategoryAxis</a></li>
+
+
+				                                <li class=""><a href="Chart.html" title="Chart">Chart</a></li>
+
+
+				                                <li class=""><a href="ChartBase.html" title="ChartBase">ChartBase</a></li>
+
+
+				                                <li class=""><a href="ColumnSeries.html" title="ColumnSeries">ColumnSeries</a></li>
+
+
+				                                <li class=""><a href="ComboSeries.html" title="ComboSeries">ComboSeries</a></li>
+
+
+				                                <li class=""><a href="ComboSplineSeries.html" title="ComboSplineSeries">ComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="CurveUtil.html" title="CurveUtil">CurveUtil</a></li>
+
+
+				                                <li class=""><a href="Fills.html" title="Fills">Fills</a></li>
+
+
+				                                <li class=""><a href="Graph.html" title="Graph">Graph</a></li>
+
+
+				                                <li class="selected"><a href="Graphic.html" title="Graphic">Graphic</a></li>
+
+
+				                                <li class=""><a href="Gridlines.html" title="Gridlines">Gridlines</a></li>
+
+
+				                                <li class=""><a href="Histogram.html" title="Histogram">Histogram</a></li>
+
+
+				                                <li class=""><a href="LeftAxisLayout.html" title="LeftAxisLayout">LeftAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Lines.html" title="Lines">Lines</a></li>
+
+
+				                                <li class=""><a href="LineSeries.html" title="LineSeries">LineSeries</a></li>
+
+
+				                                <li class=""><a href="MarkerSeries.html" title="MarkerSeries">MarkerSeries</a></li>
+
+
+				                                <li class=""><a href="NumericAxis.html" title="NumericAxis">NumericAxis</a></li>
+
+
+				                                <li class=""><a href="PieChart.html" title="PieChart">PieChart</a></li>
+
+
+				                                <li class=""><a href="PieSeries.html" title="PieSeries">PieSeries</a></li>
+
+
+				                                <li class=""><a href="Plots.html" title="Plots">Plots</a></li>
+
+
+				                                <li class=""><a href="Renderer.html" title="Renderer">Renderer</a></li>
+
+
+				                                <li class=""><a href="RightAxisLayout.html" title="RightAxisLayout">RightAxisLayout</a></li>
+
+
+				                                <li class=""><a href="Shape.html" title="Shape">Shape</a></li>
+
+
+				                                <li class=""><a href="SplineSeries.html" title="SplineSeries">SplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSeries.html" title="StackedAreaSeries">StackedAreaSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAreaSplineSeries.html" title="StackedAreaSplineSeries">StackedAreaSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedAxis.html" title="StackedAxis">StackedAxis</a></li>
+
+
+				                                <li class=""><a href="StackedBarSeries.html" title="StackedBarSeries">StackedBarSeries</a></li>
+
+
+				                                <li class=""><a href="StackedColumnSeries.html" title="StackedColumnSeries">StackedColumnSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSeries.html" title="StackedComboSeries">StackedComboSeries</a></li>
+
+
+				                                <li class=""><a href="StackedComboSplineSeries.html" title="StackedComboSplineSeries">StackedComboSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedLineSeries.html" title="StackedLineSeries">StackedLineSeries</a></li>
+
+
+				                                <li class=""><a href="StackedMarkerSeries.html" title="StackedMarkerSeries">StackedMarkerSeries</a></li>
+
+
+				                                <li class=""><a href="StackedSplineSeries.html" title="StackedSplineSeries">StackedSplineSeries</a></li>
+
+
+				                                <li class=""><a href="StackingUtil.html" title="StackingUtil">StackingUtil</a></li>
+
+
+				                                <li class=""><a href="TimeAxis.html" title="TimeAxis">TimeAxis</a></li>
+
+
+				                                <li class=""><a href="TopAxisLayout.html" title="TopAxisLayout">TopAxisLayout</a></li>
+
+
+				                                <li class=""><a href="VMLGraphics.html" title="VMLGraphics">VMLGraphics</a></li>
+
+
+				                                <li class=""><a href="VMLShape.html" title="VMLShape">VMLShape</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-properties">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-properties-hd">
+										<span class="yui3-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_autoSize" title="autoSize">autoSize</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+				                               <li class=""><a href="#method_beginBitmapFill" title="beginBitmapFill">beginBitmapFill</a></li>
+				                               <li class=""><a href="#method_beginFill" title="beginFill">beginFill</a></li>
+				                               <li class=""><a href="#method_beginGradientFill" title="beginGradientFill">beginGradientFill</a></li>
+				                               <li class=""><a href="#method_clear" title="clear">clear</a></li>
+				                               <li class=""><a href="#method_curveTo" title="curveTo">curveTo</a></li>
+				                               <li class=""><a href="#method_destroy" title="destroy">destroy</a></li>
+				                               <li class=""><a href="#method_drawCircle" title="drawCircle">drawCircle</a></li>
+				                               <li class=""><a href="#method_drawEllipse" title="drawEllipse">drawEllipse</a></li>
+				                               <li class=""><a href="#method_drawRect" title="drawRect">drawRect</a></li>
+				                               <li class=""><a href="#method_drawWedge" title="drawWedge">drawWedge</a></li>
+				                               <li class=""><a href="#method_end" title="end">end</a></li>
+				                               <li class=""><a href="#method_getShape" title="getShape">getShape</a></li>
+				                               <li class=""><a href="#method_lineStyle" title="lineStyle">lineStyle</a></li>
+				                               <li class=""><a href="#method_lineTo" title="lineTo">lineTo</a></li>
+				                               <li class=""><a href="#method_moveTo" title="moveTo">moveTo</a></li>
+				                               <li class=""><a href="#method_quadraticCurveTo" title="quadraticCurveTo">quadraticCurveTo</a></li>
+				                               <li class=""><a href="#method_render" title="render">render</a></li>
+				                               <li class=""><a href="#method_setPosition" title="setPosition">setPosition</a></li>
+				                               <li class=""><a href="#method_setSize" title="setSize">setSize</a></li>
+				                               <li class=""><a href="#method_toggleVisible" title="toggleVisible">toggleVisible</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="charts-debug.js.html" title="charts-debug.js">charts-debug.js</a></li>
+
+
+			                                <li class=""><a href="charts-min.js.html" title="charts-min.js">charts-min.js</a></li>
+
+
+			                                <li class=""><a href="charts.js.html" title="charts.js">charts.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Graphic</b>
+
+
+							</h2>
+
+							<!-- class tree goes here -->
+								<dl class="subclasses" rel="yui:subclasses">
+									<dt>Known Subclasses:</dt>
+									<dd>
+											<span rel="yui:subclass" resource="Shape.html">
+												<a href="Shape.html" property="yui:name" title="Shape">Shape</a>
+											</span>
+									</dd>
+							   </dl>
+
+
+
+							<div class="summary description" property="yui:description">
+								Graphic is a simple drawing api that allows for basic drawing operations.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Graphic</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_autoSize">
+
+											<h4>
+												<a name="property_autoSize" property="yui:name">autoSize</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Indicates whether or not the instance will size itself based on its contents.
+												</div>
+											</div>
+
+
+
+
+											</div>
+									</div>
+								</div>
+
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_beginBitmapFill">
+
+													<h4>
+														<a name="method_beginBitmapFill">beginBitmapFill</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">beginBitmapFill</strong>
+														   (
+																
+																		
+																		 config
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Specifies a bitmap fill used by subsequent calls to other drawing methods.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">config</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_beginFill">
+
+													<h4>
+														<a name="method_beginFill">beginFill</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">beginFill</strong>
+														   (
+																
+																		
+																		 color
+																	
+																
+																		, 
+																		 alpha
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Specifes a solid fill used by subsequent calls to other drawing methods.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">color</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Hex color value for the fill.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">alpha</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Value between 0 and 1 used to specify the opacity of the fill.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_beginGradientFill">
+
+													<h4>
+														<a name="method_beginGradientFill">beginGradientFill</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">beginGradientFill</strong>
+														   (
+																
+																		
+																		 config
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Specifies a gradient fill used by subsequent calls to other drawing methods.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">config</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_clear">
+
+													<h4>
+														<a name="method_clear">clear</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">clear</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Clears the graphics object.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_curveTo">
+
+													<h4>
+														<a name="method_curveTo">curveTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">curveTo</strong>
+														   (
+																
+																		
+																		 cp1x
+																	
+																
+																		, 
+																		 cp1y
+																	
+																
+																		, 
+																		 cp2x
+																	
+																
+																		, 
+																		 cp2y
+																	
+																
+																		, 
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a bezier curve.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cp1x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the first control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cp1y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the first control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cp2x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the second control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cp2y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the second control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the end point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the end point.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_destroy">
+
+													<h4>
+														<a name="method_destroy">destroy</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">destroy</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Removes all nodes.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_drawCircle">
+
+													<h4>
+														<a name="method_drawCircle">drawCircle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">drawCircle</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+																		, 
+																		 r
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a circle.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">r</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> radius</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_drawEllipse">
+
+													<h4>
+														<a name="method_drawEllipse">drawEllipse</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">drawEllipse</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+																		, 
+																		 w
+																	
+																
+																		, 
+																		 h
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws an ellipse.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">w</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> width</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">h</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> height</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_drawRect">
+
+													<h4>
+														<a name="method_drawRect">drawRect</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">drawRect</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+																		, 
+																		 w
+																	
+																
+																		, 
+																		 h
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a rectangle.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">w</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> width</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">h</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> height</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_drawWedge">
+
+													<h4>
+														<a name="method_drawWedge">drawWedge</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">drawWedge</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+																		, 
+																		 startAngle
+																	
+																
+																		, 
+																		 arc
+																	
+																
+																		, 
+																		 radius
+																	
+																
+																		, 
+																		 yRadius
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a wedge.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">			x-coordinate of the wedge's center point</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">			y-coordinate of the wedge's center point</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">startAngle</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">	starting angle in degrees</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">arc</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">			sweep of the wedge. Negative values draw clockwise.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">radius</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">		radius of wedge. If [optional] yRadius is defined, then radius is the x radius.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">yRadius</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">		[optional] y radius for wedge.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_end">
+
+													<h4>
+														<a name="method_end">end</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">end</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Completes a drawing operation.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getShape">
+
+													<h4>
+														<a name="method_getShape">getShape</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														
+															<strong property="yui:name">getShape</strong>
+														   (
+																
+																		
+																		 config
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates a Shape instance and adds it to the graphics object.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">config</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Object literal of properties used to construct a Shape.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">Shape</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_lineStyle">
+
+													<h4>
+														<a name="method_lineStyle">lineStyle</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">lineStyle</strong>
+														   (
+																
+																		
+																		 thickness
+																	
+																
+																		, 
+																		 color
+																	
+																
+																		, 
+																		 alpha
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Specifies a line style used for subsequent calls to drawing methods.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">thickness</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> indicates the thickness of the line</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">color</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> hex color value for the line</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">alpha</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> Value between 0 and 1 used to specify the opacity of the fill.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_lineTo">
+
+													<h4>
+														<a name="method_lineTo">lineTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">lineTo</strong>
+														   (
+																
+																		
+																		 point1
+																	
+																
+																		, 
+																		 point2
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a line segment using the current line style from the current drawing position to the specified x and y coordinates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">point1</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the end point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">point2</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the end point.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_moveTo">
+
+													<h4>
+														<a name="method_moveTo">moveTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">moveTo</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Moves the current drawing position to specified x and y coordinates.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the end point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the end point.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_quadraticCurveTo">
+
+													<h4>
+														<a name="method_quadraticCurveTo">quadraticCurveTo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">quadraticCurveTo</strong>
+														   (
+																
+																		
+																		 cpx
+																	
+																
+																		, 
+																		 cpy
+																	
+																
+																		, 
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Draws a quadratic bezier curve.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cpx</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cpy</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the control point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the end point.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the end point.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_render">
+
+													<h4>
+														<a name="method_render">render</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">render</strong>
+														   (
+																
+																		
+																		 parentNode
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds the graphics node to the dom.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">parentNode</span>
+																		&lt;<span property="yui:type">HTMLElement</span>&gt;
+																		</code>
+																		<span property="yui:description"> node in which to render the graphics node into.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setPosition">
+
+													<h4>
+														<a name="method_setPosition">setPosition</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setPosition</strong>
+														   (
+																
+																		
+																		 x
+																	
+																
+																		, 
+																		 y
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the positon of the graphics object.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">x</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> x-coordinate for the object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">y</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description"> y-coordinate for the object.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setSize">
+
+													<h4>
+														<a name="method_setSize">setSize</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setSize</strong>
+														   (
+																
+																		
+																		 w
+																	
+																
+																		, 
+																		 h
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the size of the graphics object.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">w</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">  width to set for the instance.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">h</span>
+																		&lt;<span property="yui:type">Number</span>&gt;
+																		</code>
+																		<span property="yui:description">  height to set for the instance.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toggleVisible">
+
+													<h4>
+														<a name="method_toggleVisible">toggleVisible</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">toggleVisible</strong>
+														   (
+																
+																		
+																		 val
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Shows and and hides a the graphic instance.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">val</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  indicates whether the instance should be visible.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+							</div>
+
+							<div rel="yui:events" resource="#events">
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Graphic.html#property_autoSize", "access": "", "host": "Graphic", "type": "property", "name": "autoSize"}, {"url": "Graphic.html#method_beginBitmapFill", "access": "", "host": "Graphic", "type": "method", "name": "beginBitmapFill"}, {"url": "Graphic.html#method_beginFill", "access": "", "host": "Graphic", "type": "method", "name": "beginFill"}, {"url": "Graphic.html#method_beginGradientFill", "access": "", "host": "Graphic", "type": "method", "name": "beginGradientFill"}, {"url": "Graphic.html#method_clear", "access": "", "host": "Graphic", "type": "method", "name": "clear"}, {"url": "Graphic.html#method_curveTo", "access": "", "host": "Graphic", "type": "method", "name": "curveTo"}, {"url": "Graphic.html#method_destroy", "access": "", "host": "Graphic", "type": "method", "name": "destroy"}, {"url": "Graphic.html#method_drawCircle", "access": "", "host": "Graphic", "type": "method", "name": "drawCircle"}, {"url": "Graphic.html#method_drawEllipse", "access": "", "host": "Graphic", "type": "method", "name": "drawEllipse"}, {"url": "Graphic.html#method_drawRect", "access": "", "host": "Graphic", "type": "method", "name": "drawRect"}, {"url": "Graphic.html#method_drawWedge", "access": "", "host": "Graphic", "type": "method", "name": "drawWedge"}, {"url": "Graphic.html#method_end", "access": "", "host": "Graphic", "type": "method", "name": "end"}, {"url": "Graphic.html#method_getShape", "access": "", "host": "Graphic", "type": "method", "name": "getShape"}, {"url": "Graphic.html#method_lineStyle", "access": "", "host": "Graphic", "type": "method", "name": "lineStyle"}, {"url": "Graphic.html#method_lineTo", "access": "", "host": "Graphic", "type": "method", "name": "lineTo"}, {"url": "Graphic.html#method_moveTo", "access": "", "host": "Graphic", "type": "method", "name": "moveTo"}, {"url": "Graphic.html#method_quadraticCurveTo", "access": "", "host": "Graphic", "type": "method", "name": "quadraticCurveTo"}, {"url": "Graphic.html#method_render", "access": "", "host": "Graphic", "type": "method", "name": "render"}, {"url": "Graphic.html#method_setPosition", "access": "", "host": "Graphic", "type": "method", "name": "setPosition"}, {"url": "Graphic.html#method_setSize", "access": "", "host": "Graphic", "type": "method", "name": "setSize"}, {"url": "Graphic.html#method_toggleVisible", "access": "", "host": "Graphic", "type": "method", "name": "toggleVisible"}];
+</script>
+</body>
+</html>

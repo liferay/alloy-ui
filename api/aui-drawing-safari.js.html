@@ -1,0 +1,844 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: aui-dialog   aui-drawing-safari.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="yui3-aui-header">
+		<h1>
+			<a class="yui3-aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			aui-dialog&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_aui-dialog.html" title="aui-dialog">aui-dialog</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">aui-drawing-safari.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
+						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="yui3-aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_private">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_protected">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
+					<span class="yui3-aui-field-content">
+						<label class="yui3-aui-field-label" for="show_deprecated">
+							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="yui3-aui-layout">
+			<div class="yui3-aui-layout-content">
+				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
+					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+			                        </ul>
+
+									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd yui3-aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Dialog.html" title="Dialog">Dialog</a></li>
+
+
+				                                <li class=""><a href="DialogManager.html" title="DialogManager">DialogManager</a></li>
+
+
+				                                <li class=""><a href="DialogMask.html" title="DialogMask">DialogMask</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd yui3-aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="aui-dialog-debug.js.html" title="aui-dialog-debug.js">aui-dialog-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-dialog-iframe-debug.js.html" title="aui-dialog-iframe-debug.js">aui-dialog-iframe-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-dialog-iframe-min.js.html" title="aui-dialog-iframe-min.js">aui-dialog-iframe-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-dialog-iframe.js.html" title="aui-dialog-iframe.js">aui-dialog-iframe.js</a></li>
+
+
+			                                <li class=""><a href="aui-dialog-min.js.html" title="aui-dialog-min.js">aui-dialog-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-dialog.js.html" title="aui-dialog.js">aui-dialog.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-animate-debug.js.html" title="aui-drawing-animate-debug.js">aui-drawing-animate-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-animate-min.js.html" title="aui-drawing-animate-min.js">aui-drawing-animate-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-animate.js.html" title="aui-drawing-animate.js">aui-drawing-animate.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-base-debug.js.html" title="aui-drawing-base-debug.js">aui-drawing-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-base-min.js.html" title="aui-drawing-base-min.js">aui-drawing-base-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-base.js.html" title="aui-drawing-base.js">aui-drawing-base.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-debug.js.html" title="aui-drawing-debug.js">aui-drawing-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-drag-debug.js.html" title="aui-drawing-drag-debug.js">aui-drawing-drag-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-drag-min.js.html" title="aui-drawing-drag-min.js">aui-drawing-drag-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-drag.js.html" title="aui-drawing-drag.js">aui-drawing-drag.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-fonts-debug.js.html" title="aui-drawing-fonts-debug.js">aui-drawing-fonts-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-fonts-min.js.html" title="aui-drawing-fonts-min.js">aui-drawing-fonts-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-fonts.js.html" title="aui-drawing-fonts.js">aui-drawing-fonts.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-min.js.html" title="aui-drawing-min.js">aui-drawing-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-safari-debug.js.html" title="aui-drawing-safari-debug.js">aui-drawing-safari-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-safari-min.js.html" title="aui-drawing-safari-min.js">aui-drawing-safari-min.js</a></li>
+
+
+			                                <li class="selected"><a href="aui-drawing-safari.js.html" title="aui-drawing-safari.js">aui-drawing-safari.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-svg-debug.js.html" title="aui-drawing-svg-debug.js">aui-drawing-svg-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-svg-min.js.html" title="aui-drawing-svg-min.js">aui-drawing-svg-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-svg.js.html" title="aui-drawing-svg.js">aui-drawing-svg.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-vml-debug.js.html" title="aui-drawing-vml-debug.js">aui-drawing-vml-debug.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-vml-min.js.html" title="aui-drawing-vml-min.js">aui-drawing-vml-min.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing-vml.js.html" title="aui-drawing-vml.js">aui-drawing-vml.js</a></li>
+
+
+			                                <li class=""><a href="aui-drawing.js.html" title="aui-drawing.js">aui-drawing.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
+					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-drawing-safari&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">Drawing</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">safari</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+	<span class="kd">var</span> <span class="nx">rect</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="o">-</span><span class="mi">99</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">99</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">99</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span>
+		<span class="p">{</span>
+			<span class="nx">stroke</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span>
+		<span class="p">}</span>
+	<span class="p">);</span>
+
+	<span class="nx">setTimeout</span><span class="p">(</span>
+		<span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="nx">rect</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+		<span class="p">},</span>
+		<span class="mi">0</span>
+	<span class="p">);</span>
+<span class="p">};</span>
+
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-drawing-base&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="yui3-aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Dialog.html#method_", "access": "protected", "host": "Dialog", "type": "method", "name": ""}, {"url": "Dialog.html#method__afterRenderer", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterRenderer"}, {"url": "Dialog.html#method__afterSetVisible", "access": "protected", "host": "Dialog", "type": "method", "name": "_afterSetVisible"}, {"url": "Dialog.html#method_alignToViewport", "access": "", "host": "Dialog", "type": "method", "name": "alignToViewport"}, {"url": "Dialog.html#method_bindUI", "access": "protected", "host": "Dialog", "type": "method", "name": "bindUI"}, {"url": "Dialog.html#config_bodyContent", "access": "", "host": "Dialog", "type": "config", "name": "bodyContent"}, {"url": "Dialog.html#event_bodyContentChange", "access": "", "host": "Dialog", "type": "event", "name": "bodyContentChange"}, {"url": "Dialog.html#config_buttons", "access": "", "host": "Dialog", "type": "config", "name": "buttons"}, {"url": "Dialog.html#event_buttonsChange", "access": "", "host": "Dialog", "type": "event", "name": "buttonsChange"}, {"url": "Dialog.html#method_close", "access": "", "host": "Dialog", "type": "method", "name": "close"}, {"url": "Dialog.html#config_close", "access": "", "host": "Dialog", "type": "config", "name": "close"}, {"url": "DialogManager.html#method_closeByChild", "access": "", "host": "DialogManager", "type": "method", "name": "closeByChild"}, {"url": "Dialog.html#event_closeChange", "access": "", "host": "Dialog", "type": "event", "name": "closeChange"}, {"url": "Dialog.html#config_constrain2view", "access": "", "host": "Dialog", "type": "config", "name": "constrain2view"}, {"url": "Dialog.html#event_constrain2viewChange", "access": "", "host": "Dialog", "type": "event", "name": "constrain2viewChange"}, {"url": "Dialog.html#config_destroyOnClose", "access": "", "host": "Dialog", "type": "config", "name": "destroyOnClose"}, {"url": "Dialog.html#event_destroyOnCloseChange", "access": "", "host": "Dialog", "type": "event", "name": "destroyOnCloseChange"}, {"url": "Dialog.html#method_destructor", "access": "protected", "host": "Dialog", "type": "method", "name": "destructor"}, {"url": "Dialog.html#property_Dialog.ATTRS", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.ATTRS"}, {"url": "Dialog.html#property_Dialog.NAME", "access": "", "host": "Dialog", "type": "property", "name": "Dialog.NAME"}, {"url": "Dialog.html#config_draggable", "access": "", "host": "Dialog", "type": "config", "name": "draggable"}, {"url": "Dialog.html#event_draggableChange", "access": "", "host": "Dialog", "type": "event", "name": "draggableChange"}, {"url": "Dialog.html#config_dragInstance", "access": "", "host": "Dialog", "type": "config", "name": "dragInstance"}, {"url": "Dialog.html#event_dragInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "dragInstanceChange"}, {"url": "DialogManager.html#method_findByChild", "access": "", "host": "DialogManager", "type": "method", "name": "findByChild"}, {"url": "Dialog.html#method__handleEvent", "access": "protected", "host": "Dialog", "type": "method", "name": "_handleEvent"}, {"url": "Dialog.html#method__initButtons", "access": "protected", "host": "Dialog", "type": "method", "name": "_initButtons"}, {"url": "Dialog.html#method_initializer", "access": "protected", "host": "Dialog", "type": "method", "name": "initializer"}, {"url": "Dialog.html#config_modal", "access": "", "host": "Dialog", "type": "config", "name": "modal"}, {"url": "Dialog.html#event_modalChange", "access": "", "host": "Dialog", "type": "event", "name": "modalChange"}, {"url": "DialogManager.html#method_refreshByChild", "access": "", "host": "DialogManager", "type": "method", "name": "refreshByChild"}, {"url": "Dialog.html#config_resizable", "access": "", "host": "Dialog", "type": "config", "name": "resizable"}, {"url": "Dialog.html#event_resizableChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableChange"}, {"url": "Dialog.html#config_resizableInstance", "access": "", "host": "Dialog", "type": "config", "name": "resizableInstance"}, {"url": "Dialog.html#event_resizableInstanceChange", "access": "", "host": "Dialog", "type": "event", "name": "resizableInstanceChange"}, {"url": "Dialog.html#method__setConstrain2view", "access": "protected", "host": "Dialog", "type": "method", "name": "_setConstrain2view"}, {"url": "Dialog.html#method__setDefaultARIAValues", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDefaultARIAValues"}, {"url": "Dialog.html#method__setDraggable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setDraggable"}, {"url": "Dialog.html#method__setModal", "access": "protected", "host": "Dialog", "type": "method", "name": "_setModal"}, {"url": "Dialog.html#method__setResizable", "access": "protected", "host": "Dialog", "type": "method", "name": "_setResizable"}, {"url": "Dialog.html#method__setStack", "access": "protected", "host": "Dialog", "type": "method", "name": "_setStack"}, {"url": "Dialog.html#config_stack", "access": "", "host": "Dialog", "type": "config", "name": "stack"}, {"url": "Dialog.html#event_stackChange", "access": "", "host": "Dialog", "type": "event", "name": "stackChange"}, {"url": "Dialog.html#config_strings", "access": "", "host": "Dialog", "type": "config", "name": "strings"}, {"url": "Dialog.html#event_stringsChange", "access": "", "host": "Dialog", "type": "event", "name": "stringsChange"}, {"url": "Dialog.html#method_syncUI", "access": "protected", "host": "Dialog", "type": "method", "name": "syncUI"}];
+</script>
+</body>
+</html>
