@@ -11,11 +11,9 @@ var Lang = A.Lang,
 		return (arr || []).concat(arr2 || []);
 	},
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'component',
-
-	CSS_COMPONENT = getClassName(NAME),
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
 	CONSTRUCTOR_OBJECT = Object.prototype.constructor;
@@ -394,9 +392,15 @@ Component.create = function(config) {
 		component = A.Base.build(config.NAME, component, augmentsClasses, { dynamic: false });
 	}
 
+	if (!('CSS_PREFIX' in component)) {
+		component.CSS_PREFIX = A.getClassName(component.NAME);
+	}
+
 	return component;
 };
 
+Component.CSS_PREFIX = getClassName('component');
+
 A.Component = Component;
 
-}, '@VERSION@' ,{skinnable:false, requires:['widget']});
+}, '@VERSION@' ,{skinnable:false, requires:['widget','aui-classnamemanager']});
