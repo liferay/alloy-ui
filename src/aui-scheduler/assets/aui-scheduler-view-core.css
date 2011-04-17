@@ -86,13 +86,13 @@
 	border-top: 1px solid #DDDDDD;
 }
 
-.yui3-aui-scheduler-view-day-content .yui3-aui-widget-hd {
+.yui3-aui-scheduler-view-day-content .yui3-widget-hd {
 	background-color: #E3E9FF;
 	border-bottom: 1px solid #BBCCFF;
 	color: #AAADBC;
 }
 
-.yui3-aui-scheduler-view-day-content .yui3-aui-widget-bd {
+.yui3-aui-scheduler-view-day-content .yui3-widget-bd {
 	height: 600px;
 }
 
