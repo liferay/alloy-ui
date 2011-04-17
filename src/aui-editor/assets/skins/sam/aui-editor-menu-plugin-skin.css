@@ -1,8 +1,8 @@
-.aui-editormenu {
+.yui3-aui-editormenu {
 	background-color: #fff;
 }
 
-.aui-editormenu-content-text {
+.yui3-aui-editormenu-content-text {
 	font-size: 1.1em;
 	font-weight: bold;
 	background-color: #ddd;
@@ -10,7 +10,7 @@
 	margin-bottom: 1px;
 }
 
-.aui-editormenu-content-item {
+.yui3-aui-editormenu-content-item {
 	border: 1px solid #eee;
 	background-color: #eee;
 	margin: 1px;
@@ -18,7 +18,7 @@
 	cursor: pointer;
 }
 
-.aui-editormenu-content-item:hover {
+.yui3-aui-editormenu-content-item:hover {
 	color: #0066cc;
 	border: 1px solid #316ac5;
 	background-color: #dff1ff;

@@ -1,4 +1,4 @@
-.aui-textarea-height-monitor {
+.yui3-aui-textarea-height-monitor {
 	line-height: normal;
 	left: 0;
 	padding: 0;
@@ -11,7 +11,7 @@
 	word-wrap: break-word;
 }
 
-.ie .aui-textarea-height-monitor {
+.ie .yui3-aui-textarea-height-monitor {
 	border: 1px solid #000;
 	zoom: 1;
 }

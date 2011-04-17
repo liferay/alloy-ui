@@ -1,23 +1,23 @@
-.aui-dd-proxy {
+.yui3-aui-dd-proxy {
 	moz-border-radius: 6px;
 	webkit-border-radius: 6px;
 }
 
-.aui-form-builder-content {
+.yui3-aui-form-builder-content {
 	background-color: #F5F5F5;
 }
 
 /* Drag container */
 
-.aui-form-builder-drag-container {
+.yui3-aui-form-builder-drag-container {
 	margin: 0;
 }
 
-.aui-form-builder-drag-container .aui-form-builder-drag-node {
+.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-drag-node {
 	margin: 10px;
 }
 
-.aui-form-builder-drag-container .aui-form-builder-icon {
+.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-icon {
 	float: left;
 	height: 15px;
 	margin-right: 6px;
@@ -27,21 +27,21 @@
 
 /* Drop container */
 
-.aui-form-builder-drop-container {
+.yui3-aui-form-builder-drop-container {
 	border: none;
 	float: left;
 	width: 75%;
 }
-.aui-form-builder-drop-container .aui-dd-dragging {
+.yui3-aui-form-builder-drop-container .yui3-aui-dd-dragging {
 	border-style: dashed;
 	opacity: .5;
 }
-.aui-form-builder-drop-container .aui-form-builder-drop-zone {
+.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-drop-zone {
 	margin: 0;
 	padding: 0;
 }
 
-.aui-form-builder-drop-container, .aui-form-builder-tabs-container {
+.yui3-aui-form-builder-drop-container, .yui3-aui-form-builder-tabs-container {
 	margin: 0;
 	min-height: 450px;
 	padding: 0;
@@ -49,7 +49,7 @@
 
 /* Button icons */
 
-.aui-form-builder-field-buttons .aui-form-builder-button {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-button {
 	background: url(buttons-bg.png) no-repeat 0 -21px transparent;
 	border: 1px solid #BCC7D4;
 	display: inline;
@@ -65,7 +65,7 @@
 	-webkit-border-radius: 2px;
 }
 
-.aui-form-builder-field-buttons .aui-form-builder-icon {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-icon {
 	background: url(field-icons.png) no-repeat;
 	height: 16px;
 	left: 4px;
@@ -74,80 +74,80 @@
 	width: 16px;
 }
 
-.aui-form-builder-field-buttons .aui-form-builder-icon-delete {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-icon-delete {
 	background-position: -32px 0;
 }
 
-.aui-form-builder-field-buttons .aui-form-builder-icon-duplicate {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-icon-duplicate {
 	background-position: -17px 0;
 }
 
-.aui-form-builder-field-buttons .aui-form-builder-icon-edit {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-icon-edit {
 	background-position: 0 0;
 }
 
 /* Placeholder */
 
-.aui-form-builder-placeholder {
+.yui3-aui-form-builder-placeholder {
 	border: 1px dashed #CCCCCC;
 	height: 2px;
 	list-style: none;
 }
 
-.aui-form-builder-drag-container .aui-form-builder-placeholder {
+.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-placeholder {
 	display: none;
 }
 
 /* Settings */
 
-.aui-form-builder-settings-buttons .aui-button-input {
+.yui3-aui-form-builder-settings-buttons .yui3-aui-button-input {
 	font-size: 11px;
 }
 
 /* Tabs */
 
-.aui-form-builder-tabs-container {
+.yui3-aui-form-builder-tabs-container {
 	background-color: #F0F0F0;
 	float: right;
 	width: 25%;
 }
 
-.aui-form-builder-tabs-container .aui-form-builder-tab-add .aui-tab-label {
+.yui3-aui-form-builder-tabs-container .yui3-aui-form-builder-tab-add .yui3-aui-tab-label {
 	background: url(add.png) no-repeat 0px -1px;
 }
 
-.aui-form-builder-tabs-container .aui-form-builder-tab-settings .aui-tab-label {
+.yui3-aui-form-builder-tabs-container .yui3-aui-form-builder-tab-settings .yui3-aui-tab-label {
 	background: url(configuration.png) no-repeat 0px -1px;
 }
 
-.aui-form-builder-tabs-container .aui-panel {
+.yui3-aui-form-builder-tabs-container .yui3-aui-panel {
 	margin: 10px 0;
 }
 
-.aui-form-builder-tabs-container .aui-tab-content {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tab-content {
 	padding: 3px 0;
 }
 
-.aui-form-builder-tabs-container .aui-tab-label {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tab-label {
 	padding-bottom: 5px;
 	padding-left: 22px;
 }
 
-.aui-form-builder-tabs-container .aui-tabview-content-item {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tabview-content-item {
 	padding: 0 5px;
 }
 
-.aui-form-builder-tabs-container .aui-tabview-list {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tabview-list {
 	border: none;
 }
 
-.aui-form-builder-tabs-container .aui-tabview-list .aui-tab {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tabview-list .yui3-aui-tab {
 	margin: 0;
 	text-align: center;
 	width: 50%;
 }
 
-.aui-form-builder-tabs-container .aui-tabview-list .aui-tab .aui-tab-content {
+.yui3-aui-form-builder-tabs-container .yui3-aui-tabview-list .yui3-aui-tab .yui3-aui-tab-content {
 	display: block;
 	float: none;
 	margin: 0 auto;
@@ -155,11 +155,11 @@
 
 /* Field buttons */
 
-.aui-form-builder-field-buttons .aui-form-builder-field-button-icon {
+.yui3-aui-form-builder-field-buttons .yui3-aui-form-builder-field-button-icon {
 	background: url(button.png) no-repeat center center;
 }
 
-.aui-form-builder-field-buttons {
+.yui3-aui-form-builder-field-buttons {
 	padding: 5px;
 	position: absolute;
 	right: 0;

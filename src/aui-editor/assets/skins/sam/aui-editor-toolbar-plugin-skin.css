@@ -1,12 +1,12 @@
-.aui-editormenu-content {
+.yui3-aui-editormenu-content {
 	background-color: #fff;
 }
 
-.aui-editortoolbar-content select {
+.yui3-aui-editortoolbar-content select {
 	margin: 3px 3px 0 0;
 }
 
-.aui-editormenu-content-text {
+.yui3-aui-editormenu-content-text {
 	font-size: 1.1em;
 	font-weight: bold;
 	background-color: #ddd;
@@ -14,7 +14,7 @@
 	margin-bottom: 1px;
 }
 
-.aui-editormenu-content-item {
+.yui3-aui-editormenu-content-item {
 	border: 1px solid #eee;
 	background-color: #eee;
 	margin: 1px;
@@ -22,113 +22,113 @@
 	cursor: pointer;
 }
 
-.aui-editormenu-content-item:hover {
+.yui3-aui-editormenu-content-item:hover {
 	color: #0066cc;
 	border: 1px solid #316ac5;
 	background-color: #dff1ff;
 }
 
-.aui-editortoolbar-content .aui-icon-styles {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-styles {
 	background: url(styles.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-forecolor {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-forecolor {
 	background: url(forecolor.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-backcolor {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-backcolor {
 	background: url(backcolor.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-bold {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-bold {
 	background: url(bold.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-italic {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-italic {
 	background: url(italic.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-underline {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-underline {
 	background: url(underline.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-strikethrough {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-strikethrough {
 	background: url(strike.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-insertimage {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-insertimage {
 	background: url(image.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-insertlink {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-insertlink {
 	background: url(hyperlink.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-justifyleft {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-justifyleft {
 	background: url(justify_left.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-justifycenter {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-justifycenter {
 	background: url(justify_center.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-justifyright {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-justifyright {
 	background: url(justify_right.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-insertunorderedlist {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-insertunorderedlist {
 	background: url(unordered_list.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-insertorderedlist {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-insertorderedlist {
 	background: url(ordered_list.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-indent {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-indent {
 	background: url(indent.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-outdent {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-outdent {
 	background: url(outdent.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-format {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-format {
 	background: url(format.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-content .aui-icon-source {
+.yui3-aui-editortoolbar-content .yui3-aui-icon-source {
 	background: url(source.png) no-repeat transparent;
 }
 
-.aui-editortoolbar-insertimage-content .aui-icon-align-block {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-icon-align-block {
 	background: url(align_block.png) no-repeat;
 }
 
-.aui-editortoolbar-insertimage-content .aui-icon-align-left {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-icon-align-left {
 	background: url(align_left.png) no-repeat;
 }
 
-.aui-editortoolbar-insertimage-content .aui-icon-align-inline {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-icon-align-inline {
 	background: url(align_inline.png) no-repeat;
 }
 
-.aui-editortoolbar-insertimage-content .aui-icon-align-right {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-icon-align-right {
 	background: url(align_right.png) no-repeat;
 }
 
-.aui-editortoolbar-insertimage-content, .aui-editortoolbar-insertlink-content {
+.yui3-aui-editortoolbar-insertimage-content, .yui3-aui-editortoolbar-insertlink-content {
 	padding: 10px;
 }
 
-.aui-editortoolbar-insertimage-content .aui-field-numeric, .aui-editortoolbar-size-separator {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-field-numeric, .yui3-aui-editortoolbar-size-separator {
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.aui-editortoolbar-insertimage-content .aui-field-numeric input, .aui-editortoolbar-size-separator {
+.yui3-aui-editortoolbar-insertimage-content .yui3-aui-field-numeric input, .yui3-aui-editortoolbar-size-separator {
 	width: 30px;
 }
 
-.aui-editortoolbar-size-separator {
+.yui3-aui-editortoolbar-size-separator {
 	text-align: center;
 }

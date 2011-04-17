@@ -1,22 +1,22 @@
-.aui-image-viewer {
+.yui3-aui-image-viewer {
 	z-index: 3000;
 }
 
-.aui-image-viewer-link {
+.yui3-aui-image-viewer-link {
 	outline: 0 none;
 }
 
-.aui-image-viewer-content .aui-icon-loading {
+.yui3-aui-image-viewer-content .yui3-aui-icon-loading {
 	margin: 0 auto;
 }
 
-.aui-image-viewer-bd {
+.yui3-aui-image-viewer-bd {
 	background: #fff;
 	padding: 5px;
 	width: 16px;
 }
 
-.aui-image-viewer-content .aui-widget-ft {
+.yui3-aui-image-viewer-content .yui3-aui-widget-ft {
 	background: #fff;
 	color: #222;
 	padding: 0 10px 10px;
@@ -24,15 +24,15 @@
 	font-weight: bold;
 }
 
-.aui-image-viewer-loading .aui-image-viewer-content .aui-widget-ft {
+.yui3-aui-image-viewer-loading .yui3-aui-image-viewer-content .yui3-aui-widget-ft {
 	visibility: hidden;
 }
 
-.aui-image-viewer-info {
+.yui3-aui-image-viewer-info {
 	color: #777;
 }
 
-.aui-image-viewer-arrow {
+.yui3-aui-image-viewer-arrow {
 	height: 54px;
 	outline: 0;
 	position: absolute;
@@ -40,17 +40,17 @@
 	z-index: 3000;
 }
 
-.aui-image-viewer-arrow-left {
+.yui3-aui-image-viewer-arrow-left {
 	background-image: url(arrow-left.png);
 	left: 100px;
 }
 
-.aui-image-viewer-arrow-right {
+.yui3-aui-image-viewer-arrow-right {
 	background-image: url(arrow-right.png);
 	right: 100px;
 }
 
-.aui-image-viewer-close {
+.yui3-aui-image-viewer-close {
 	background-image: url(close.png);
 	background-repeat: no-repeat;
 	height: 19px;
@@ -62,6 +62,6 @@
 	z-index: 3000;
 }
 
-.ie6 .aui-image-viewer-close {
+.ie6 .yui3-aui-image-viewer-close {
 	position: absolute;
 }
