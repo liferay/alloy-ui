@@ -859,8 +859,8 @@ var Field = A.Component.create(
 				fieldWidget = _FIELD_INSTANCES[fieldId];
 
 				if (!fieldWidget) {
-					var boundingBox = field.ancestor('.aui-field');
-					var contentBox = field.ancestor('.aui-field-content');
+					var boundingBox = field.ancestor('.yui3-aui-field');
+					var contentBox = field.ancestor('.yui3-aui-field-content');
 
 					fieldWidget = new Field(
 						{
@@ -2456,5 +2456,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
 
