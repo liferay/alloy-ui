@@ -3,9 +3,9 @@ var L = A.Lang,
 
 	@module.base.name.constant@ = '@module.base.name.camelcase@',
 
-	getCN = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
-	CSS_ = getCN(@module.base.name.constant@);
+	CSS_ = getClassName(@module.base.name.constant@);
 
 function @module.base.name.camelcase@(config) {
 	@module.base.name.camelcase@.superclass.constructor.apply(this, arguments);
