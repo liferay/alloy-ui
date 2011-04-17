@@ -334,6 +334,14 @@ var COMP_PROTO = Component.prototype;
 
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
+Component._applyCssPrefix = function(component) {
+	if (component && !('CSS_PREFIX' in component)) {
+		component.CSS_PREFIX = A.getClassName(component.NAME);
+	}
+
+	return component;
+};
+
 Component.create = function(config) {
 	config = config || {};
 
@@ -392,15 +400,23 @@ Component.create = function(config) {
 		component = A.Base.build(config.NAME, component, augmentsClasses, { dynamic: false });
 	}
 
-	if (!('CSS_PREFIX' in component)) {
-		component.CSS_PREFIX = A.getClassName(component.NAME);
-	}
+	Component._applyCssPrefix(component);
 
 	return component;
 };
 
 Component.CSS_PREFIX = getClassName('component');
 
+var Base = A.Base;
+
+Component.build = function() {
+	var component = Base.build.apply(Base, arguments);
+
+	Component._applyCssPrefix(component);
+
+	return component;
+};
+
 A.Component = Component;
 
-}, '@VERSION@' ,{requires:['widget','aui-classnamemanager'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['widget','aui-classnamemanager']});
