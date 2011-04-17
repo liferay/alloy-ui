@@ -213,7 +213,7 @@ var Calendar = A.Component.create(
 			 * NodeList containing all the DOM elements for
 			 * each blank day. If not specified try to query using HTML_PARSER
 			 * an element inside contentBox which matches
-			 * <code>aui-calendar-day-blank</code>.
+			 * <code>yui3-aui-calendar-day-blank</code>.
 			 *
 			 * @attribute paddingDaysEnd
 			 * @default Generated div element.
@@ -227,7 +227,7 @@ var Calendar = A.Component.create(
 			 * NodeList containing all the DOM elements for
 			 * each blank day. If not specified try to query using HTML_PARSER
 			 * an element inside contentBox which matches
-			 * <code>aui-calendar-day-blank</code>.
+			 * <code>yui3-aui-calendar-day-blank</code>.
 			 *
 			 * @attribute paddingDaysStart
 			 * @default Generated div element.
@@ -241,7 +241,7 @@ var Calendar = A.Component.create(
 			 * NodeList containing all the DOM elements for
 			 * each blank day. If not specified try to query using HTML_PARSER
 			 * an element inside contentBox which matches
-			 * <code>aui-calendar-day-blank</code>.
+			 * <code>yui3-aui-calendar-day-blank</code>.
 			 *
 			 * @attribute blankDays
 			 * @default Generated div element.
@@ -330,7 +330,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the header of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-hd</code>.
+             * contentBox which matches <code>yui3-aui-calendar-hd</code>.
 			 *
 			 * @attribute headerContentNode
 			 * @default Generated div element.
@@ -345,7 +345,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the title of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
+             * contentBox which matches <code>yui3-aui-calendar-title</code>.
 			 *
 			 * @attribute headerTitleNode
 			 * @default Generated div element.
@@ -360,7 +360,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the icon next of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-prev</code>.
+             * contentBox which matches <code>yui3-aui-calendar-prev</code>.
 			 *
 			 * @attribute iconNextNode
 			 * @default Generated div element.
@@ -375,7 +375,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the icon prev of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-prev</code>.
+             * contentBox which matches <code>yui3-aui-calendar-prev</code>.
 			 *
 			 * @attribute iconPrevNode
 			 * @default Generated div element.
@@ -416,7 +416,7 @@ var Calendar = A.Component.create(
 			/**
 			 * NodeList reference containing the days of the month of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-day</code>.
+             * contentBox which matches <code>yui3-aui-calendar-day</code>.
 			 *
 			 * @attribute monthDays
 			 * @default Generated div element.
@@ -429,7 +429,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference which contains all month days nodes of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-monthdays</code>.
+             * contentBox which matches <code>yui3-aui-calendar-monthdays</code>.
 			 *
 			 * @attribute monthDaysNode
 			 * @default Generated div element.
@@ -444,7 +444,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the "none" link of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
+             * contentBox which matches <code>yui3-aui-calendar-title</code>.
 			 *
 			 * @attribute noneLinkNode
 			 * @default Generated div element.
@@ -459,7 +459,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference to be the "today" link of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
+             * contentBox which matches <code>yui3-aui-calendar-title</code>.
 			 *
 			 * @attribute todayLinkNode
 			 * @default Generated div element.
@@ -523,7 +523,7 @@ var Calendar = A.Component.create(
 			/**
 			 * NodeList reference containing the days of the week of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-week</code>.
+             * contentBox which matches <code>yui3-aui-calendar-week</code>.
 			 *
 			 * @attribute weekDays
 			 * @default Generated div element.
@@ -536,7 +536,7 @@ var Calendar = A.Component.create(
 			/**
 			 * DOM node reference which contains all week days nodes of the Calendar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-weekdays</code>.
+             * contentBox which matches <code>yui3-aui-calendar-weekdays</code>.
 			 *
 			 * @attribute weekDaysNode
 			 * @default Generated div element.
