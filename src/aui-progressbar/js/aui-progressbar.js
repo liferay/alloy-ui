@@ -125,7 +125,7 @@ var ProgressBar = A.Component.create(
 			/**
 			 * Display label of the progressbar. If not specified try to query
              * using HTML_PARSER an element inside contentBox which matches
-             * <code>aui-progressbar-text</code> and get its innerHTML to be
+             * <code>yui3-aui-progressbar-text</code> and get its innerHTML to be
              * used as label.
 			 *
 			 * @attribute label
@@ -208,7 +208,7 @@ var ProgressBar = A.Component.create(
 			/**
 			 * DOM Node to display the satus bar of the progressbar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-progressbar-status</code>.
+             * contentBox which matches <code>yui3-aui-progressbar-status</code>.
 			 *
 			 * @attribute statusNode
 			 * @default Generated div element.
@@ -223,7 +223,7 @@ var ProgressBar = A.Component.create(
 			/**
 			 * DOM Node to display the text of the progressbar. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-progressbar-text</code>.
+             * contentBox which matches <code>yui3-aui-progressbar-text</code>.
 			 *
 			 * @attribute textNode
 			 * @default Generated div element.

@@ -465,7 +465,7 @@ var TreeNode = A.Component.create(
 			_createNodeContainer: function() {
 				var instance = this;
 
-				// creating <ul class="aui-tree-container">
+				// creating <ul class="yui3-aui-tree-container">
 				var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
 
 				nodeContainer.addClass(CSS_TREE_CONTAINER);
