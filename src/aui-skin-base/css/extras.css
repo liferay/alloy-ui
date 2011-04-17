@@ -68,7 +68,7 @@ shadow or rounded corners.
 
 /* No corners */
 
-.yui3-aui-dialog .yui3-aui-widget-hd,
+.yui3-aui-dialog .yui3-widget-hd,
 .yui3-aui-editable-hover,
 .yui3-aui-tab,
 .yui3-aui-overlaycontextpanel-pointer.yui3-aui-state-default,
@@ -124,7 +124,7 @@ shadow or rounded corners.
 
 /* Bottom left */
 
-.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-image-viewer-content .yui3-widget-ft,
 .yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-bottom-left-radius: 4px;
@@ -133,7 +133,7 @@ shadow or rounded corners.
 
 /* Bottom right */
 
-.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-image-viewer-content .yui3-widget-ft,
 .yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;

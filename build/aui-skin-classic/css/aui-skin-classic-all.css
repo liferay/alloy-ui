@@ -1540,31 +1540,31 @@ body {
 	width: 16px;
 	height: 16px;
 }
-.yui3-aui-widget {
+.yui3-widget {
 }
 
-/*.yui3-aui-widget-hidden {
+/*.yui3-widget-hidden {
 	display: none;
 }*/
 
-.yui3-aui-widget-content {
+.yui3-widget-content {
 	overflow: hidden;
 }
 
-.yui3-aui-widget-hd {
+.yui3-widget-hd {
 }
 
-.yui3-aui-widget-bd {
+.yui3-widget-bd {
 }
 
-.yui3-aui-widget-ft {
+.yui3-widget-ft {
 }
 
-.yui3-aui-widget-close {
+.yui3-widget-close {
 	float: right;
 }
 
-.yui3-aui-widget-stacked .yui3-aui-widget-shim {
+.yui3-widget-stacked .yui3-widget-shim {
 	border: 0;
 	height: 100%;
 	left: 0;
@@ -1585,7 +1585,7 @@ body {
 	_height:0;
 }
 
-.yui3-aui-widget-content-expanded {
+.yui3-widget-content-expanded {
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -1598,11 +1598,11 @@ body {
 	position: absolute;
 }
 
-.yui3-aui-widget-tmp-forcesize {
+.yui3-widget-tmp-forcesize {
 	overflow: hidden !important;
 }
 
-.yui3-aui-widget-stacked .yui3-aui-widget-shim {
+.yui3-widget-stacked .yui3-widget-shim {
 	border-width: 0;
 	height: 100%;
 	left: 0px;
@@ -1699,7 +1699,7 @@ shadow or rounded corners.
 
 /* No corners */
 
-.yui3-aui-dialog .yui3-aui-widget-hd,
+.yui3-aui-dialog .yui3-widget-hd,
 .yui3-aui-editable-hover,
 .yui3-aui-tab,
 .yui3-aui-overlaycontextpanel-pointer.yui3-aui-state-default,
@@ -1755,7 +1755,7 @@ shadow or rounded corners.
 
 /* Bottom left */
 
-.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-image-viewer-content .yui3-widget-ft,
 .yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-bottom-left-radius: 4px;
@@ -1764,7 +1764,7 @@ shadow or rounded corners.
 
 /* Bottom right */
 
-.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-image-viewer-content .yui3-widget-ft,
 .yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;
@@ -1828,7 +1828,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* ---------- Rounded corners ---------- */
 
-.yui3-aui-tabview-list, .yui3-aui-tabview-wrapper, .yui3-aui-tabviewmenu-list, .yui3-aui-tab-active, .yui3-aui-dialog-content, .yui3-aui-dialog .yui3-aui-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .yui3-aui-panel-content, .yui3-aui-panel-collapsed .yui3-aui-panel-hd {
+.yui3-aui-tabview-list, .yui3-aui-tabview-wrapper, .yui3-aui-tabviewmenu-list, .yui3-aui-tab-active, .yui3-aui-dialog-content, .yui3-aui-dialog .yui3-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .yui3-aui-panel-content, .yui3-aui-panel-collapsed .yui3-aui-panel-hd {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
