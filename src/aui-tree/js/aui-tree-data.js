@@ -30,7 +30,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_TREE_NODE = getCN(TREE, NODE);
 

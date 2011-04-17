@@ -40,7 +40,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	WHERE = 'where',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ICON_LOADING = getCN(ICON, LOADING);
 

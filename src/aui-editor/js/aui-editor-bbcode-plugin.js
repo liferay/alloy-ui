@@ -2,7 +2,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'bbcodeplugin',
 	BBCODE_PLUGIN = 'bbcode',

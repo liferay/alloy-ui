@@ -12,7 +12,7 @@ var Lang = A.Lang,
 	isUndefined = Lang.isUndefined,
 	isValue = Lang.isValue,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CONFIG = A.config,
 

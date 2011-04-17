@@ -63,7 +63,7 @@ var L = A.Lang,
 	ZONE = 'zone',
 	WIDGET = 'widget',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),

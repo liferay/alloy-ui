@@ -6,7 +6,7 @@
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	ENTRY_NAME = 'textboxlistentry',
 	NAME = 'textboxlist',

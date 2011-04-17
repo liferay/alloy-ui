@@ -19,7 +19,7 @@ var Lang = A.Lang,
 	TARGET = 'target',
 	TOGGLE = 'toggle',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_LOADINGMASK = getClassName(NAME),
 	CSS_MASKED = getClassName(NAME, 'masked'),
