@@ -73,7 +73,7 @@
 	table-layout: fixed;
 }
 
-.yui3-aui-scheduler-view-month-content .yui3-aui-widget-hd {
+.yui3-aui-scheduler-view-month-content .yui3-widget-hd {
 	background-color: #E3E9FF;
 	border-bottom: 1px solid #BBCCFF;
 	color: #AAADBC;
@@ -84,7 +84,7 @@
 	font-weight: normal;
 }
 
-.yui3-aui-scheduler-view-month-content .yui3-aui-widget-bd {
+.yui3-aui-scheduler-view-month-content .yui3-widget-bd {
 /*	height: 500px;*/
 }
 
@@ -139,7 +139,7 @@
 	border-left: 0 none;
 }
 
-.yui3-aui-scheduler-view-month-content .yui3-aui-widget-bd {
+.yui3-aui-scheduler-view-month-content .yui3-widget-bd {
 /*	position: relative;*/
 /*	position: relative;
 	overflow: scroll;

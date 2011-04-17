@@ -3737,8 +3737,8 @@ var SchedulerCalendar = A.Component.create({
 
 A.SchedulerCalendar = SchedulerCalendar;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event']});
+}, '@VERSION@' ,{requires:['aui-scheduler-event'], skinnable:true});
 
 
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true});
 
