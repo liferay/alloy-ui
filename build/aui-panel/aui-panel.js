@@ -559,7 +559,7 @@ Panel.prototype = {
 				node: bodyNode
 			}
 		];
-		
+
 		if (instance.icons) {
 			var collapseItem = instance.icons.item(COLLAPSE);
 
@@ -578,6 +578,6 @@ Panel.prototype = {
 	}
 }
 
-A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
+A.Panel = A.Component.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 
 }, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true});
