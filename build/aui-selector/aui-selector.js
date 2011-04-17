@@ -4,9 +4,9 @@ var Lang = A.Lang,
 
 	SELECTOR = A.Selector,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
-	CSS_HIDDEN_PREFIX = A.ClassNameManager.getClassName('helper', 'hidden'),
+	CSS_HIDDEN_PREFIX = A.getClassName('helper', 'hidden'),
 	REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDDEN_PREFIX);
 
 	SELECTOR._isNodeHidden = function(node) {

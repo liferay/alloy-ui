@@ -32,7 +32,7 @@ var Lang = A.Lang,
 
 	EMPTY_STR = '',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_CLEARFIX = getClassName('helper', 'clearfix'),
 	CSS_COLLAPSED = getClassName(PANEL, COLLAPSED),
@@ -580,4 +580,4 @@ Panel.prototype = {
 
 A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria']});
+}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true});

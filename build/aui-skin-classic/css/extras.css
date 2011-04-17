@@ -5,12 +5,12 @@ shadow or rounded corners.
 */
 
 /* ---------- CSS3 shadows ---------- */
-.aui-dialog-content,
-.aui-date-picker-content,
-.aui-overlaycontextpanel-content,
-.aui-tooltip-content,
-.aui-colorpicker-content,
-.aui-tree-drag-helper-content {
+.yui3-aui-dialog-content,
+.yui3-aui-date-picker-content,
+.yui3-aui-overlaycontextpanel-content,
+.yui3-aui-tooltip-content,
+.yui3-aui-colorpicker-content,
+.yui3-aui-tree-drag-helper-content {
 	-moz-box-shadow: 4px 4px 14px #777;
 	-webkit-box-shadow: 4px 4px 14px #777;
 	box-shadow: 4px 4px 14px #777;
@@ -18,7 +18,7 @@ shadow or rounded corners.
 
 /* No shadow */
 
-.aui-null-selector {
+.yui3-aui-null-selector {
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -28,38 +28,38 @@ shadow or rounded corners.
 
 /* All corners */
 
-.aui-state-default,
-.aui-state-active,
-.aui-state-hover,
-.aui-calendar-content,
-.aui-colorpicker-content,
-.aui-colorpicker-panel-content,
-.aui-image-gallery-paginator .aui-image-gallery-paginator-thumb,
-.aui-image-viewer-loading .aui-image-viewer-bd,
-.aui-loadingmask-message,
-.aui-loadingmask-message-content,
-.aui-progress-bar-content,
-.aui-progress-bar-status {
+.yui3-aui-state-default,
+.yui3-aui-state-active,
+.yui3-aui-state-hover,
+.yui3-aui-calendar-content,
+.yui3-aui-colorpicker-content,
+.yui3-aui-colorpicker-panel-content,
+.yui3-aui-image-gallery-paginator .yui3-aui-image-gallery-paginator-thumb,
+.yui3-aui-image-viewer-loading .yui3-aui-image-viewer-bd,
+.yui3-aui-loadingmask-message,
+.yui3-aui-loadingmask-message-content,
+.yui3-aui-progress-bar-content,
+.yui3-aui-progress-bar-status {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 }
 
-.aui-carousel menu {
+.yui3-aui-carousel menu {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
 
-.aui-carousel menu a {
+.yui3-aui-carousel menu a {
 	-moz-border-radius: 9px;
 	-webkit-border-radius: 9px;
 	border-radius: 9px;
 }
 
 /* Large corners */
-.aui-textboxlistentry,
-.aui-textboxlistentry-close {
+.yui3-aui-textboxlistentry,
+.yui3-aui-textboxlistentry-close {
 	-moz-border-radius: 14px;
 	-webkit-border-radius: 14px;
 	border-radius: 14px;
@@ -68,13 +68,13 @@ shadow or rounded corners.
 
 /* No corners */
 
-.aui-dialog .aui-widget-hd,
-.aui-editable-hover,
-.aui-tab,
-.aui-overlaycontextpanel-pointer.aui-state-default,
-.aui-toolbar-item-content,
-.aui-toolbar-item,
-.aui-toolbar-vertical .aui-toolbar-item {
+.yui3-aui-dialog .yui3-aui-widget-hd,
+.yui3-aui-editable-hover,
+.yui3-aui-tab,
+.yui3-aui-overlaycontextpanel-pointer.yui3-aui-state-default,
+.yui3-aui-toolbar-item-content,
+.yui3-aui-toolbar-item,
+.yui3-aui-toolbar-vertical .yui3-aui-toolbar-item {
 	-moz-border-radius: 0;
 	-webkit-border-radius: 0;
 	border-radius: 0;
@@ -82,7 +82,7 @@ shadow or rounded corners.
 
 /* Left corners */
 
-.aui-toolbar-first {
+.yui3-aui-toolbar-first {
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-top-left-radius: 4px;
@@ -93,7 +93,7 @@ shadow or rounded corners.
 
 /* Right corners */
 
-.aui-toolbar-last {
+.yui3-aui-toolbar-last {
 	-moz-border-radius-topright: 4px;
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-top-right-radius: 4px;
@@ -104,9 +104,9 @@ shadow or rounded corners.
 
 /* Top left */
 
-.aui-image-viewer-bd,
-.aui-tab,
-.aui-toolbar-vertical .aui-toolbar-first {
+.yui3-aui-image-viewer-bd,
+.yui3-aui-tab,
+.yui3-aui-toolbar-vertical .yui3-aui-toolbar-first {
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-left-radius: 4px;
 	border-top-left-radius: 4px;
@@ -114,9 +114,9 @@ shadow or rounded corners.
 
 /* Top right */
 
-.aui-image-viewer-bd,
-.aui-tab,
-.aui-toolbar-vertical .aui-toolbar-first {
+.yui3-aui-image-viewer-bd,
+.yui3-aui-tab,
+.yui3-aui-toolbar-vertical .yui3-aui-toolbar-first {
 	-moz-border-radius-topright: 4px;
 	-webkit-border-top-right-radius: 4px;
 	border-top-right-radius: 4px;
@@ -124,8 +124,8 @@ shadow or rounded corners.
 
 /* Bottom left */
 
-.aui-image-viewer-content .aui-widget-ft,
-.aui-toolbar-vertical .aui-toolbar-last {
+.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomleft: 4px;
 	-webkit-border-bottom-left-radius: 4px;
 	border-bottom-left-radius: 4px;
@@ -133,8 +133,8 @@ shadow or rounded corners.
 
 /* Bottom right */
 
-.aui-image-viewer-content .aui-widget-ft,
-.aui-toolbar-vertical .aui-toolbar-last {
+.yui3-aui-image-viewer-content .yui3-aui-widget-ft,
+.yui3-aui-toolbar-vertical .yui3-aui-toolbar-last {
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;
 	border-bottom-right-radius: 4px;

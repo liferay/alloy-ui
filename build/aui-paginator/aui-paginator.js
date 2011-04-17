@@ -69,7 +69,7 @@ var L = A.Lang,
 		return parseInt(n, 10) || 0;
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_PAGINATOR = getCN(PAGINATOR),
 	CSS_PAGINATOR_CONTAINER = getCN(PAGINATOR, CONTAINER),

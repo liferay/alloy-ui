@@ -3,7 +3,7 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	STATE = 'state',
 
@@ -197,4 +197,4 @@ var StateInteraction = A.Component.create(
 
 A.namespace('Plugin').StateInteraction = StateInteraction;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','plugin'], skinnable:false});

@@ -31,7 +31,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_TREE_NODE = getCN(TREE, NODE);
 
@@ -840,4 +840,4 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});

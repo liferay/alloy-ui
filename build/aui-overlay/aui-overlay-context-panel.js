@@ -43,7 +43,7 @@ var L = A.Lang,
 	RC = 'rc',
 	RL = 'rl',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_CONTEXTPANEL = getCN(CONTEXTPANEL),
 	CSS_CONTEXTPANEL_ARROW = getCN(CONTEXTPANEL, ARROW, BLANK),

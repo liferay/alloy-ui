@@ -9,7 +9,7 @@ var Lang = A.Lang,
 	LString = Lang.String,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	HOVER = 'hover',
 	NAME = 'editable',

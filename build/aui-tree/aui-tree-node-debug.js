@@ -52,7 +52,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeView );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
@@ -466,7 +466,7 @@ var TreeNode = A.Component.create(
 			_createNodeContainer: function() {
 				var instance = this;
 
-				// creating <ul class="aui-tree-container">
+				// creating <ul class="yui3-aui-tree-container">
 				var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
 
 				nodeContainer.addClass(CSS_TREE_CONTAINER);
@@ -1761,4 +1761,4 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});

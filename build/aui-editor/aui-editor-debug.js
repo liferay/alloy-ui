@@ -417,7 +417,7 @@ AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editormenu',
 	NAME_PLUGIN = 'editormenuplugin',
@@ -633,7 +633,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editortoolbar',
 	TOOLBAR_PLUGIN = 'toolbar',
@@ -2179,7 +2179,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'bbcodeplugin',
 	BBCODE_PLUGIN = 'bbcode',
@@ -3606,7 +3606,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'creoleplugin',
 	CREOLE_PLUGIN = 'creole',
@@ -3784,5 +3784,5 @@ A.namespace('Plugin').EditorCreoleCode = EditorCreoleCode;
 }, '@VERSION@' ,{requires:['aui-base','editor-base','aui-editor-html-creole','aui-editor-creole-parser']});
 
 
-AUI.add('aui-editor', function(A){}, '@VERSION@' ,{use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin'], skinnable:true});
+AUI.add('aui-editor', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin']});
 

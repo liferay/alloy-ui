@@ -88,7 +88,7 @@ var L = A.Lang,
 	RIGHT = 'RIGHT',
 	LEFT = 'LEFT',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_SCROLL_LOCK = getCN(HELPER, SCROLL, LOCK),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),

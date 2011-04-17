@@ -2,7 +2,7 @@ AUI.add('aui-editor-menu-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'editormenu',
 	NAME_PLUGIN = 'editormenuplugin',

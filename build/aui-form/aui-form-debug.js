@@ -1,7 +1,7 @@
 AUI.add('aui-form-base', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'form',
 
@@ -535,7 +535,7 @@ A.Form = Form;
 AUI.add('aui-form-combobox', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'combobox',
 
@@ -617,7 +617,7 @@ A.Combobox = Combobox;
 AUI.add('aui-form-field', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'field',
 
@@ -1188,7 +1188,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'select',
 
@@ -1291,7 +1291,7 @@ A.Select = Select;
 AUI.add('aui-form-textarea', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'textarea',
 
@@ -1520,7 +1520,7 @@ A.Textarea = Textarea;
 AUI.add('aui-form-textfield', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'textfield',
 
@@ -1700,7 +1700,7 @@ var L = A.Lang,
 	EV_VALIDATE_FIELD = 'validateField',
 	EV_VALID_FIELD = 'validField',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ERROR = getCN(FORM_VALIDATOR, ERROR),
 	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),
@@ -2456,5 +2456,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']});
 

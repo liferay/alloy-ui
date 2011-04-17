@@ -53,7 +53,7 @@ var L = A.Lang,
 	EV_RESIZE = 'resize:resize',
 	EV_RESIZE_END = 'resize:end',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_DIALOG = getCN(DIALOG),
 	CSS_DIALOG_BUTTON = getCN(DIALOG, BUTTON),

@@ -56,7 +56,7 @@ var L = A.Lang,
 	EV_RATING_ITEM_OUT = 'itemOut',
 	EV_RATING_ITEM_OVER = 'itemOver',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_CLEAR_FIX = getCN(HELPER, CLEARFIX),
 	CSS_RATING_LABEL_EL = getCN(RATING, LABEL, ELEMENT),
@@ -226,7 +226,7 @@ var Rating = A.Component.create(
 			/**
 			 * DOM Node to display the text of the StarRating. If not
              * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-rating-label-element</code>.
+             * boundingBox which matches <code>yui3-aui-rating-label-element</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.
@@ -1001,4 +1001,4 @@ A.Rating = Rating;
 A.StarRating = Rating;
 A.ThumbRating = ThumbRating;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:true});

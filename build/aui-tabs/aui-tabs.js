@@ -1,7 +1,7 @@
 AUI.add('aui-tabs-base', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	TAB = 'tab',
 	TABVIEW = 'tabview',
@@ -615,7 +615,7 @@ A.TabView = TabView;
 AUI.add('aui-tabs-menu-plugin', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	TAB = 'tab',
 	TABVIEW = 'tabview',
@@ -967,5 +967,5 @@ A.namespace('Plugin').TabViewMenu = TabViewMenu;
 }, '@VERSION@' ,{requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']});
 
 
-AUI.add('aui-tabs', function(A){}, '@VERSION@' ,{use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true});
+AUI.add('aui-tabs', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']});
 

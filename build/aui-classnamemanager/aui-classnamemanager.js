@@ -12,4 +12,4 @@ A.getClassName = function() {
 	return _getClassName.apply(ClassNameManager, args);
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['classnamemanager'], condition: {trigger: 'classnamemanager', test: function(){return true;}}});
+}, '@VERSION@' ,{requires:['classnamemanager'], skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}});

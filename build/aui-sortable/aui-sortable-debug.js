@@ -1,7 +1,7 @@
 AUI.add('aui-sortable', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'sortable',
 
@@ -352,4 +352,4 @@ var SortableItem = A.Component.create(
 A.Sortable = Sortable;
 A.SortableItem = SortableItem;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true});

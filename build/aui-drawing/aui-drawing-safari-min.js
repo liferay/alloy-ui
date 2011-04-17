@@ -1,1 +1,1 @@
-AUI.add("aui-drawing-safari",function(B){B.Drawing.prototype.safari=function(){var A=this;var C=A.rect(-99,-99,A.get("width")+99,A.get("height")+99).attr({stroke:"none"});setTimeout(function(){C.remove();},0);};},"@VERSION@",{requires:["aui-drawing-base"]});
+AUI.add("aui-drawing-safari",function(a){a.Drawing.prototype.safari=function(){var b=this;var c=b.rect(-99,-99,b.get("width")+99,b.get("height")+99).attr({stroke:"none"});setTimeout(function(){c.remove();},0);};},"@VERSION@",{requires:["aui-drawing-base"]});

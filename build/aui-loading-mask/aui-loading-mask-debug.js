@@ -20,7 +20,7 @@ var Lang = A.Lang,
 	TARGET = 'target',
 	TOGGLE = 'toggle',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_LOADINGMASK = getClassName(NAME),
 	CSS_MASKED = getClassName(NAME, 'masked'),
@@ -345,4 +345,4 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 A.LoadingMask = LoadingMask;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-mask','plugin','substitute']});
+}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin','substitute'], skinnable:true});

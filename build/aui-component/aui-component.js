@@ -403,4 +403,4 @@ Component.CSS_PREFIX = getClassName('component');
 
 A.Component = Component;
 
-}, '@VERSION@' ,{skinnable:false, requires:['widget','aui-classnamemanager']});
+}, '@VERSION@' ,{requires:['widget','aui-classnamemanager'], skinnable:false});

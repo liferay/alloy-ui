@@ -91,7 +91,7 @@ var Lang = A.Lang,
 		}
 	),
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_GRIPSMALL_DIAGONAL_BR = getCN(ICON, GRIPSMALL, DIAGONAL, BR),
@@ -1409,4 +1409,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});

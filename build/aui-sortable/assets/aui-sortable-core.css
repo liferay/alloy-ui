@@ -1,25 +1,25 @@
-.aui-sortable {
+.yui3-aui-sortable {
 }
 
-.aui-sortable-item {
+.yui3-aui-sortable-item {
 }
 
-.aui-sortable-proxy {
+.yui3-aui-sortable-proxy {
 	background: #ccc;
 }
 
-.aui-sortable-placeholder {
+.yui3-aui-sortable-placeholder {
 	padding: 0;
 	margin: 0;
 	border: 1px solid #ccc;
 	background: #eee;
 }
 
-.aui-sortable-dragging {
+.yui3-aui-sortable-dragging {
 	visibility: hidden;
 }
 
-.aui-sortable-handle,
-.aui-sortable-no-handles {
+.yui3-aui-sortable-handle,
+.yui3-aui-sortable-no-handles {
 	cursor: move;
 }

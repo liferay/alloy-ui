@@ -13,7 +13,7 @@ var Lang = A.Lang,
 	isUndefined = Lang.isUndefined,
 	isValue = Lang.isValue,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CONFIG = A.config,
 
@@ -2130,5 +2130,5 @@ A.mix(
 }, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx'], skinnable:false});
 

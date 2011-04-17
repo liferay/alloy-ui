@@ -1,7 +1,7 @@
 AUI.add('aui-form-textarea', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'textarea',
 

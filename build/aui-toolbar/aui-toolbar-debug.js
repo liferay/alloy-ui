@@ -14,7 +14,7 @@ var Lang = A.Lang,
 	TOOLBARSPACER = 'toolbarspacer',
 	VERTICAL = 'vertical',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	CSS_FIRST = getClassName(NAME, 'first'),
 	CSS_HORIZONTAL = getClassName(NAME, HORIZONTAL),
@@ -366,4 +366,4 @@ WidgetParentId.prototype = {
 
 A.Toolbar = A.Base.build(NAME, Toolbar, [A.WidgetParent, WidgetParentId], { dynamic: false });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true});

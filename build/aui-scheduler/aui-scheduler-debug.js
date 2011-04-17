@@ -79,7 +79,7 @@ var Lang = A.Lang,
 	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
 	EVENT_RECORDER = 'eventRecorder',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_ICON = getCN(ICON),
@@ -840,7 +840,7 @@ var Lang = A.Lang,
 	PERCENT = '%',
 	SPACE = ' ',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_SCHEDULER_VIEW_NOSCROLL = getCN(SCHEDULER_VIEW, NOSCROLL),
 	CSS_SCHEDULER_VIEW_SCROLLABLE = getCN(SCHEDULER_VIEW, SCROLLABLE);
@@ -2457,7 +2457,7 @@ var Lang = A.Lang,
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
@@ -3211,7 +3211,7 @@ var ACTIVE_VIEW = 'activeView',
 
 	TPL_EVT_REC_OVERLAY = '<form id="auiSchedulerEventRecorderForm" class="' + [ CSS_SCHEDULER_EVENT_RECORDER_FORM, CSS_LAYOUT_CONTENT, CSS_FORM ].join(SPACE) + '">' +
 							'<div class="' + [ CSS_FIELDSET, CSS_W100, CSS_COLUMN ].join(SPACE) + '">' +
-								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'aui-fieldset-content aui-column-content">' +
+								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'yui3-aui-fieldset-content yui3-aui-column-content">' +
 
 									'<div class="' + CSS_FIELDSET_BD + '">' +
 										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +
@@ -3737,8 +3737,8 @@ var SchedulerCalendar = A.Component.create({
 
 A.SchedulerCalendar = SchedulerCalendar;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-scheduler-event']});
 
 
-AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true});
+AUI.add('aui-scheduler', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']});
 

@@ -5,7 +5,7 @@ var Lang = A.Lang,
 
 	CAROUSEL = 'carousel',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ITEM = getCN(CAROUSEL, 'item'),
 	CSS_ITEM_ACTIVE = getCN(CAROUSEL, 'item', 'active'),

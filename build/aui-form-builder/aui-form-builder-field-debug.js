@@ -64,7 +64,7 @@ var L = A.Lang,
 	ZONE = 'zone',
 	WIDGET = 'widget',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
@@ -630,7 +630,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -873,7 +873,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_CHECKBOX = getCN(FIELD, CHECKBOX),
@@ -1115,7 +1115,7 @@ var L = A.Lang,
 	VALUE = 'value',
 	ZONE = 'zone',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
@@ -1364,7 +1364,7 @@ var L = A.Lang,
 	TEXT = 'text',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
@@ -1604,7 +1604,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -2021,7 +2021,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_CHOICE = getCN(FIELD, CHOICE),
@@ -2284,7 +2284,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -2473,7 +2473,7 @@ var L = A.Lang,
 	TEXT = 'text',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -2666,7 +2666,7 @@ var L = A.Lang,
 	TEXTAREA = 'textarea',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_TEXT = getCN(FIELD, TEXT),

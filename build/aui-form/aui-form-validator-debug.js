@@ -57,7 +57,7 @@ var L = A.Lang,
 	EV_VALIDATE_FIELD = 'validateField',
 	EV_VALID_FIELD = 'validField',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ERROR = getCN(FORM_VALIDATOR, ERROR),
 	CSS_ERROR_CONTAINER = getCN(FORM_VALIDATOR, ERROR, CONTAINER),

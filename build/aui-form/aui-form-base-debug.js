@@ -1,7 +1,7 @@
 AUI.add('aui-form-base', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'form',
 

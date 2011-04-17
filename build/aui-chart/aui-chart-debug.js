@@ -1,7 +1,7 @@
 AUI.add('aui-chart', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'chart',
 
@@ -479,7 +479,7 @@ A.Chart = Chart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'piechart';
 
@@ -558,7 +558,7 @@ A.PieChart = PieChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'cartesianchart',
 
@@ -807,7 +807,7 @@ A.CartesianChart = CartesianChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'linechart',
 
@@ -831,7 +831,7 @@ A.LineChart = LineChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'columnchart',
 
@@ -855,7 +855,7 @@ A.ColumnChart = ColumnChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'barchart',
 
@@ -879,7 +879,7 @@ A.BarChart = BarChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'stackedcolumnchart',
 
@@ -903,7 +903,7 @@ A.StackedColumnChart = StackedColumnChart;
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'stackedbarchart',
 
@@ -1118,4 +1118,4 @@ A.extend(
 
 A.Chart.StackedColumnSeries = StackedColumnSeries;
 
-}, '@VERSION@' ,{skinnable:false, requires:['datasource','aui-swf','json']});
+}, '@VERSION@' ,{requires:['datasource','aui-swf','json'], skinnable:false});

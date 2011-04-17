@@ -13,7 +13,7 @@ var Lang = A.Lang,
 
 	NAME = 'colorpicker',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	WidgetStdMod = A.WidgetStdMod,
 
@@ -852,7 +852,7 @@ var Lang = A.Lang,
 	COLOR_PICKER_GRID_NS = 'cpgrid',
 	COLOR_PICKER_GRID_PLUGIN = 'ColorPickerGridPlugin',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	ITEM = 'item',
 
@@ -1041,5 +1041,5 @@ A.Plugin.ColorPickerGrid = ColorPickerGrid;
 }, '@VERSION@' ,{requires:['aui-color-picker','plugin'], skinnable:true});
 
 
-AUI.add('aui-color-picker', function(A){}, '@VERSION@' ,{use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true});
+AUI.add('aui-color-picker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']});
 

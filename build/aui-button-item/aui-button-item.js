@@ -7,7 +7,7 @@ AUI.add('aui-button-item', function(A) {
 
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'buttonitem',
 
@@ -177,7 +177,7 @@ var ButtonItem = A.Component.create(
 			/**
 			 * DOM Node to display the icon of the ButtonItem. If not
              * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-button-icon</code>.
+             * boundingBox which matches <code>yui3-aui-button-icon</code>.
 			 *
 			 * @attribute iconNode
 			 * @default Generated div element.
@@ -214,7 +214,7 @@ var ButtonItem = A.Component.create(
 			/**
 			 * DOM Node to display the text of the ButtonItem. If not
              * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>aui-button-label</code>.
+             * boundingBox which matches <code>yui3-aui-button-label</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.
@@ -534,4 +534,4 @@ var ButtonItem = A.Component.create(
 
 A.ButtonItem = A.Base.build(NAME, ButtonItem, [A.WidgetChild], { dynamic: false });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']});
+}, '@VERSION@' ,{requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true});

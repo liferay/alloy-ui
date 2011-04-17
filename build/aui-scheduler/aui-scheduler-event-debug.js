@@ -63,7 +63,7 @@ var Lang = A.Lang,
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ICON = getCN(ICON),
 	CSS_SCHEDULER_EVENT = getCN(SCHEDULER_EVENT),
@@ -817,7 +817,7 @@ var ACTIVE_VIEW = 'activeView',
 
 	TPL_EVT_REC_OVERLAY = '<form id="auiSchedulerEventRecorderForm" class="' + [ CSS_SCHEDULER_EVENT_RECORDER_FORM, CSS_LAYOUT_CONTENT, CSS_FORM ].join(SPACE) + '">' +
 							'<div class="' + [ CSS_FIELDSET, CSS_W100, CSS_COLUMN ].join(SPACE) + '">' +
-								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'aui-fieldset-content aui-column-content">' +
+								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'yui3-aui-fieldset-content yui3-aui-column-content">' +
 
 									'<div class="' + CSS_FIELDSET_BD + '">' +
 										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +

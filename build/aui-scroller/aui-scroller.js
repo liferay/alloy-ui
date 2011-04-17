@@ -18,7 +18,7 @@ var L = A.Lang,
 	SCROLLER = 'scroller',
 	VERTICAL = 'vertical',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HORIZONTAL = getCN(SCROLLER, HORIZONTAL),
 	CSS_ITEM = getCN(SCROLLER, 'item'),
@@ -171,4 +171,4 @@ var Scroller = A.Component.create (
 
 A.Scroller = Scroller;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','transition']});
+}, '@VERSION@' ,{requires:['aui-base','transition'], skinnable:true});

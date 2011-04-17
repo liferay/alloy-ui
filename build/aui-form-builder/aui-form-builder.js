@@ -118,7 +118,7 @@ var L = A.Lang,
 
 	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
 	CSS_COMPONENT = getCN(COMPONENT),
@@ -180,15 +180,15 @@ var L = A.Lang,
 
 	TPL_SETTINGS = '<form class="' + CSS_FORM_BUILDER_SETTINGS + '"></form>',
 
-	TPL_SETTINGS_BUTTONS = '<div class="aui-button-row">' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Save" class="aui-button-input aui-form-builder-button-save">' +
+	TPL_SETTINGS_BUTTONS = '<div class="yui3-aui-button-row">' +
+								'<span class="yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-primary">' +
+									'<span class="yui3-aui-button-content">' +
+										'<input type="button" value="Save" class="yui3-aui-button-input yui3-aui-form-builder-button-save">' +
 									'</span>' +
 								'</span>' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-secondary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Close" class="aui-button-input aui-form-builder-button-close">' +
+								'<span class="yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-secondary">' +
+									'<span class="yui3-aui-button-content">' +
+										'<input type="button" value="Close" class="yui3-aui-button-input yui3-aui-form-builder-button-close">' +
 									'</span>' +
 								'</span>' +
 							'</div>',
@@ -1336,7 +1336,7 @@ var L = A.Lang,
 	ZONE = 'zone',
 	WIDGET = 'widget',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_COMPONENT = getCN(COMPONENT),
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
@@ -1902,7 +1902,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -2145,7 +2145,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_CHECKBOX = getCN(FIELD, CHECKBOX),
@@ -2387,7 +2387,7 @@ var L = A.Lang,
 	VALUE = 'value',
 	ZONE = 'zone',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
@@ -2636,7 +2636,7 @@ var L = A.Lang,
 	TEXT = 'text',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
@@ -2876,7 +2876,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -3293,7 +3293,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_CHOICE = getCN(FIELD, CHOICE),
@@ -3556,7 +3556,7 @@ var L = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -3745,7 +3745,7 @@ var L = A.Lang,
 	TEXT = 'text',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
@@ -3938,7 +3938,7 @@ var L = A.Lang,
 	TEXTAREA = 'textarea',
 	VALUE = 'value',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_TEXT = getCN(FIELD, TEXT),

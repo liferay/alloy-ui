@@ -1140,5 +1140,5 @@ A.InputTextControl = InputTextControl;
 }, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-form-combobox']});
 
 
-AUI.add('aui-datasource-control', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']});
+AUI.add('aui-datasource-control', function(A){}, '@VERSION@' ,{use:['aui-datasource-control-base','aui-input-text-control'], skinnable:true});
 

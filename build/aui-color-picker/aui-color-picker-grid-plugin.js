@@ -6,7 +6,7 @@ var Lang = A.Lang,
 	COLOR_PICKER_GRID_NS = 'cpgrid',
 	COLOR_PICKER_GRID_PLUGIN = 'ColorPickerGridPlugin',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	ITEM = 'item',
 

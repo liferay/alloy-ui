@@ -31,7 +31,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_TREE_NODE = getCN(TREE, NODE);
 
@@ -840,7 +840,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -895,7 +895,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeView );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
@@ -1309,7 +1309,7 @@ var TreeNode = A.Component.create(
 			_createNodeContainer: function() {
 				var instance = this;
 
-				// creating <ul class="aui-tree-container">
+				// creating <ul class="yui3-aui-tree-container">
 				var nodeContainer = instance.get(CONTAINER) || A.Node.create(NODE_CONTAINER_TPL);
 
 				nodeContainer.addClass(CSS_TREE_CONTAINER);
@@ -2604,7 +2604,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -2645,7 +2645,7 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
@@ -3592,5 +3592,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
 

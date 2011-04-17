@@ -1,7 +1,7 @@
 AUI.add('aui-video', function(A) {
 var Lang = A.Lang,
 	UA = A.UA,
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'video',
 
@@ -255,4 +255,4 @@ var Video = A.Component.create(
 
 A.Video = Video;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','querystring-stringify-simple']});
+}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:true});

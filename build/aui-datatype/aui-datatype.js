@@ -807,4 +807,4 @@ A.mix(A.DataType.DateMath, {
 	}
 });
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});

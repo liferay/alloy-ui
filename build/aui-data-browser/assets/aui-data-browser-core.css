@@ -1,36 +1,36 @@
-.aui-databrowser {
+.yui3-aui-databrowser {
 	overflow: hidden;
 }
 
-.aui-databrowser-search {
+.yui3-aui-databrowser-search {
 	overflow-y: auto;
 }
 
-.aui-databrowser-tree {
+.yui3-aui-databrowser-tree {
 	overflow-y: auto;
 }
 
-.aui-databrowser .aui-combobox-content {
+.yui3-aui-databrowser .yui3-aui-combobox-content {
 	float: right;
 }
 
-.aui-databrowser .aui-databrowser-search-view-only .aui-combobox-content {
+.yui3-aui-databrowser .yui3-aui-databrowser-search-view-only .yui3-aui-combobox-content {
 	float: none;
 }
 
-.aui-databrowser .aui-databrowser-search-list {
+.yui3-aui-databrowser .yui3-aui-databrowser-search-list {
 	margin: 0;
 	list-style: none;
 	overflow: hidden;
 	clear: left;
 }
 
-.aui-databrowser .aui-databrowser-search-list li {
+.yui3-aui-databrowser .yui3-aui-databrowser-search-list li {
 	text-align: center;
 	list-style: none;
 	float: left;
 }
 
-.aui-databrowser-search-list-item-icon span {
+.yui3-aui-databrowser-search-list-item-icon span {
 	margin: 0 auto;
 }

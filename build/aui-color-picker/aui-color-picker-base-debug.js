@@ -13,7 +13,7 @@ var Lang = A.Lang,
 
 	NAME = 'colorpicker',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	WidgetStdMod = A.WidgetStdMod,
 

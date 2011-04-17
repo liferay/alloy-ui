@@ -220,4 +220,4 @@ var Tooltip = A.Component.create(
 
 A.Tooltip = Tooltip;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context-panel']});
+}, '@VERSION@' ,{requires:['aui-overlay-context-panel'], skinnable:true});

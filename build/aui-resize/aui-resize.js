@@ -91,7 +91,7 @@ var Lang = A.Lang,
 		}
 	),
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_ICON = getCN(ICON),
 	CSS_ICON_GRIPSMALL_DIAGONAL_BR = getCN(ICON, GRIPSMALL, DIAGONAL, BR),
@@ -1409,7 +1409,7 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});
 AUI.add('aui-resize-constrain', function(A) {
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
@@ -1868,8 +1868,8 @@ A.extend(ResizeConstrained, A.Plugin.Base, {
 A.namespace('Plugin');
 A.Plugin.ResizeConstrained = ResizeConstrained;
 
-}, '@VERSION@' ,{requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']});
 
 
-AUI.add('aui-resize', function(A){}, '@VERSION@' ,{use:['aui-resize-base','aui-resize-constrain'], skinnable:true});
+AUI.add('aui-resize', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-resize-base','aui-resize-constrain']});
 

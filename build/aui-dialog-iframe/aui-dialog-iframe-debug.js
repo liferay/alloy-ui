@@ -1,6 +1,6 @@
 AUI.add('aui-dialog-iframe', function(A) {
 var Lang = A.Lang,
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	IFRAME = 'iframe',
 

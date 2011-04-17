@@ -88,7 +88,7 @@ var L = A.Lang,
 	RIGHT = 'RIGHT',
 	LEFT = 'LEFT',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_HELPER_SCROLL_LOCK = getCN(HELPER, SCROLL, LOCK),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
@@ -1471,7 +1471,7 @@ var L = A.Lang,
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_IMAGE_GALLERY_PAGINATOR = getCN(IMAGE_GALLERY, PAGINATOR),
 	CSS_IMAGE_GALLERY_PAGINATOR_CONTENT = getCN(IMAGE_GALLERY, PAGINATOR, CONTENT),
@@ -2240,5 +2240,5 @@ A.ImageGallery = ImageGallery;
 }, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']});
 

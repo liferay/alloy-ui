@@ -5,7 +5,7 @@ var Lang = A.Lang,
 	isNull = Lang.isNull,
 	isFunction = Lang.isFunction,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	NAME = 'databrowser',
 
@@ -607,4 +607,4 @@ var DataBrowser = A.Component.create(
 
 A.DataBrowser = DataBrowser;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel']});
+}, '@VERSION@' ,{requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel'], skinnable:true});

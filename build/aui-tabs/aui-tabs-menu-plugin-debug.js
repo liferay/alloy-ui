@@ -1,7 +1,7 @@
 AUI.add('aui-tabs-menu-plugin', function(A) {
 var Lang = A.Lang,
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	TAB = 'tab',
 	TABVIEW = 'tabview',

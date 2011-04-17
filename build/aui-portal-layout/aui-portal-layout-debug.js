@@ -78,7 +78,7 @@ var Lang = A.Lang,
 		return parseInt(elem.getStyle(styleName), 10) || 0;
 	},
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_DRAG_INDICATOR = getCN(PORTAL_LAYOUT, DRAG, INDICATOR),
 	CSS_DRAG_INDICATOR_ICON = getCN(PORTAL_LAYOUT, DRAG, INDICATOR, ICON),
@@ -106,7 +106,7 @@ var Lang = A.Lang,
  * <pre><code>var portalLayout = new A.PortalLayout({
  *  	dragNodes: '.portlet',
  *  	dropNodes: '.column',
- *  	proxyNode: A.Node.create('<div class="aui-portal-layout-proxy"></div>'),
+ *  	proxyNode: A.Node.create('<div class="yui3-aui-portal-layout-proxy"></div>'),
  *  	lazyStart: true
  * </code></pre>
  *

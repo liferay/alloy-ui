@@ -1,24 +1,24 @@
-.aui-editable-content-wrapper {
+.yui3-aui-editable-content-wrapper {
 	border: 1px solid transparent;
 	padding: 3px;
 }
 
-.aui-editable-ctrl-holder {
+.yui3-aui-editable-ctrl-holder {
 }
 
-.aui-editable {
+.yui3-aui-editable {
 	position: absolute;
 }
 
-.aui-editable-editing {
+.yui3-aui-editable-editing {
 	visibility: hidden;
 }
 
-.aui-editable-hidden {
+.yui3-aui-editable-hidden {
 	display: none;
 }
 
-.aui-editable-form-triggers {
+.yui3-aui-editable-form-triggers {
 	background-color: transparent;
 	border-width: 0;
 	padding: 0;
@@ -27,10 +27,10 @@
 	top: 0;
 }
 
-.aui-editable-input {
+.yui3-aui-editable-input {
 	width: 100%;
 }
 
-.aui-editable-content {
+.yui3-aui-editable-content {
 	padding-right: 60px;
 }

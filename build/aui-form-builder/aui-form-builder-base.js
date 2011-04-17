@@ -118,7 +118,7 @@ var L = A.Lang,
 
 	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
-	getCN = A.ClassNameManager.getClassName,
+	getCN = A.getClassName,
 
 	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
 	CSS_COMPONENT = getCN(COMPONENT),
@@ -180,15 +180,15 @@ var L = A.Lang,
 
 	TPL_SETTINGS = '<form class="' + CSS_FORM_BUILDER_SETTINGS + '"></form>',
 
-	TPL_SETTINGS_BUTTONS = '<div class="aui-button-row">' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Save" class="aui-button-input aui-form-builder-button-save">' +
+	TPL_SETTINGS_BUTTONS = '<div class="yui3-aui-button-row">' +
+								'<span class="yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-primary">' +
+									'<span class="yui3-aui-button-content">' +
+										'<input type="button" value="Save" class="yui3-aui-button-input yui3-aui-form-builder-button-save">' +
 									'</span>' +
 								'</span>' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-secondary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Close" class="aui-button-input aui-form-builder-button-close">' +
+								'<span class="yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-secondary">' +
+									'<span class="yui3-aui-button-content">' +
+										'<input type="button" value="Close" class="yui3-aui-button-input yui3-aui-form-builder-button-close">' +
 									'</span>' +
 								'</span>' +
 							'</div>',
