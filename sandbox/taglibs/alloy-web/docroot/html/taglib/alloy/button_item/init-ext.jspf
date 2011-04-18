@@ -2,10 +2,10 @@
 String _iconTypeClass = StringPool.BLANK;
 
 if (Validator.isNull(label) && Validator.isNotNull(icon)) {
-	_iconTypeClass = "aui-buttonitem-icon-only";
+	_iconTypeClass = "yui3-aui-buttonitem-icon-only";
 }
 else if (Validator.isNotNull(label) && Validator.isNull(icon)) {
-	_iconTypeClass = "aui-buttonitem-label-only";
+	_iconTypeClass = "yui3-aui-buttonitem-label-only";
 }
 
 final String CSS_BUTTON_ITEM = MarkupUtil.getClassName("buttonitem");

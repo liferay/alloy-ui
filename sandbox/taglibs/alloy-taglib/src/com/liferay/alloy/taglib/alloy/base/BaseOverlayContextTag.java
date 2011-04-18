@@ -1268,7 +1268,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_hideDelay = 0;
 		_hideOn = "mouseout";
 		_hideOnDocumentClick = true;

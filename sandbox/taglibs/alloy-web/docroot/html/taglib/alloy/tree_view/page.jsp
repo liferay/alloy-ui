@@ -11,7 +11,7 @@
 	    <div class="<%= BOUNDING_BOX_CLASS %>" id="<%= uniqueId %>BoundingBox">
 	</c:if>
 
-	<ul class="aui-tree-data-content aui-tree-view-content aui-tree-file aui-tree-root-container aui-widget-content-expanded" id="<%= uniqueId %>SrcNode">
+	<ul class="yui3-aui-tree-data-content yui3-aui-tree-view-content yui3-aui-tree-file yui3-aui-tree-root-container yui3-widget-content-expanded" id="<%= uniqueId %>SrcNode">
 
 		<%
 		StringBundler sb = new StringBundler();

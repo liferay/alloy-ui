@@ -1053,7 +1053,7 @@ public class BaseThumbRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_height = null;
 		_hiddenInput = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_thumbratingId = null;
 		_initialized = false;
 		_inputName = null;

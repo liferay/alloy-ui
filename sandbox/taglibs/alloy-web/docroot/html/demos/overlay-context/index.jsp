@@ -87,7 +87,7 @@
 		<a href="javascript:;">Menu item 1 - multiple triggers</a>
 	</span>
 
-	<div class="extended-menus aui-helper-clearfix">
+	<div class="extended-menus yui3-aui-helper-clearfix">
 
 		<span id="menuItem2">
 			<a href="javascript:;">Menu Trigger 1</a>
@@ -98,7 +98,7 @@
 	</div>
 </div>
 
-<div id="contextOverlay1" class="aui-overlaycontext-hidden">
+<div id="contextOverlay1" class="yui3-aui-overlaycontext-hidden">
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 

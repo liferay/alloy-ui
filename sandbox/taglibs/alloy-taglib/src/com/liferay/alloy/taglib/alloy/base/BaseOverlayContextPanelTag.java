@@ -1390,7 +1390,7 @@ public class BaseOverlayContextPanelTag extends com.liferay.taglib.util.IncludeT
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_hideDelay = 0;
 		_hideOn = "click";
 		_hideOnDocumentClick = true;

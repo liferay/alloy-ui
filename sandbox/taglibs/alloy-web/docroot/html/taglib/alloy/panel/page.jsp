@@ -12,7 +12,7 @@
 			</span>
 			<span class="<%= TOOLBAR_CLASS %>">
 				<span class="<%= CSS_TOOLBAR_CONTENT %>">
-					<alloy:button-item cssClass="aui-toolbar-first aui-toolbar-last aui-toolbar-item" icon="minus" useMarkup="true"/>
+					<alloy:button-item cssClass="yui3-aui-toolbar-first yui3-aui-toolbar-last yui3-aui-toolbar-item" icon="minus" useMarkup="true"/>
 				</span>
 			</span>
 		</div>

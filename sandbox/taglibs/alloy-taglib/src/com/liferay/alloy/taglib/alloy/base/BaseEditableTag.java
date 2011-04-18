@@ -1014,7 +1014,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_formatInput = null;
 		_formatOutput = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_icons = null;
 		_editableId = null;
 		_initialized = false;

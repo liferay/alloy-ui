@@ -1,7 +1,7 @@
 <%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css">
-.aui-paginator-container {
+.yui3-aui-paginator-container {
 	margin: 30px;
 }
 

@@ -11,6 +11,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= _options %>"
-	module="aui-char-counter"
+	module="yui3-aui-char-counter"
 	name="CharCounter"
 />

@@ -933,7 +933,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_handler = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_hoverState = true;
 		_icon = null;
 		_iconNode = null;

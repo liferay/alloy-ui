@@ -899,7 +899,7 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_disabled = false;
 		_focused = false;
 		_height = 25;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_progressbarId = null;
 		_initialized = false;
 		_label = null;

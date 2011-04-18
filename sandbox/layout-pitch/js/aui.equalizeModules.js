@@ -13,7 +13,7 @@
 		shave;
 
 		if (win.innerHeight != winxy[0] || win.innerWidth != winxy[1]) {
-			($node = $node || $('.aui-row')).each(
+			($node = $node || $('.yui3-aui-row')).each(
 				function () {
 					maxHeight = 0;
 

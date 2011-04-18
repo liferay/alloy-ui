@@ -1199,7 +1199,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		<attribute>
 			<description><![CDATA[DOM Node to display the icon of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-button-icon</code>.]]></description>
+boundingBox which matches <code>yui3-aui-button-icon</code>.]]></description>
 			<name>iconNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1230,7 +1230,7 @@ has been through the init lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-button-label</code>.]]></description>
+boundingBox which matches <code>yui3-aui-button-label</code>.]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3677,7 +3677,7 @@ for skinning.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the button of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-buttonitem</code>.]]></description>
+contentBox which matches <code>yui3-aui-buttonitem</code>.]]></description>
 			<name>buttonNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3708,7 +3708,7 @@ houses its content.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the day of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
 			<name>dayNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3781,7 +3781,7 @@ has been through the init lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the month of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
 			<name>monthNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3838,7 +3838,7 @@ has been through the render lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the selects of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-select-wrapper</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-select-wrapper</code>.]]></description>
 			<name>selectWrapperNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -3896,7 +3896,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		<attribute>
 			<description><![CDATA[DOM Node to display the year of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
 			<name>yearNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -13932,7 +13932,7 @@ has been through the init lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[Display label of the progressbar. If not specified try to query
 using HTML_PARSER an element inside contentBox which matches
-<code>aui-progressbar-text</code> and get its innerHTML to be
+<code>yui3-aui-progressbar-text</code> and get its innerHTML to be
 used as label.]]></description>
 			<name>label</name>
 			<required>false</required>
@@ -13999,7 +13999,7 @@ has been through the render lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the satus bar of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-progressbar-status</code>.]]></description>
+contentBox which matches <code>yui3-aui-progressbar-status</code>.]]></description>
 			<name>statusNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -14035,7 +14035,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-progressbar-text</code>.]]></description>
+contentBox which matches <code>yui3-aui-progressbar-text</code>.]]></description>
 			<name>textNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -14560,7 +14560,7 @@ not specified will use the name of the replaced radio.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-rating-label-element</code>.]]></description>
+boundingBox which matches <code>yui3-aui-rating-label-element</code>.]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -16799,7 +16799,7 @@ not specified will use the name of the replaced radio.]]></description>
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-rating-label-element</code>.]]></description>
+boundingBox which matches <code>yui3-aui-rating-label-element</code>.]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

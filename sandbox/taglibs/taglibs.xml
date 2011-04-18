@@ -132,7 +132,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -674,7 +674,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -700,7 +700,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the icon of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-button-icon</code>.]]></description>
+boundingBox which matches <code>yui3-aui-button-icon</code>.]]></description>
       </attribute>
       <attribute>
         <name>id</name>
@@ -731,7 +731,7 @@ has been through the init lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the text of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-button-label</code>.]]></description>
+boundingBox which matches <code>yui3-aui-button-label</code>.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
@@ -1105,7 +1105,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -1742,7 +1742,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -2114,7 +2114,7 @@ for skinning.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the button of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-buttonitem</code>.]]></description>
+contentBox which matches <code>yui3-aui-buttonitem</code>.]]></description>
       </attribute>
       <attribute>
         <name>calendar</name>
@@ -2145,7 +2145,7 @@ houses its content.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the day of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
       </attribute>
       <attribute>
         <name>dayNodeName</name>
@@ -2191,7 +2191,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -2218,7 +2218,7 @@ has been through the init lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the month of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
       </attribute>
       <attribute>
         <name>monthNodeName</name>
@@ -2275,7 +2275,7 @@ has been through the render lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the selects of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-select-wrapper</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-select-wrapper</code>.]]></description>
       </attribute>
       <attribute>
         <name>srcNode</name>
@@ -2333,7 +2333,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the year of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-datepicker-year</code>.]]></description>
+contentBox which matches <code>yui3-aui-datepicker-year</code>.]]></description>
       </attribute>
       <attribute>
         <name>yearNodeName</name>
@@ -2692,7 +2692,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -3163,7 +3163,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -3888,7 +3888,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -4675,7 +4675,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -5534,7 +5534,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -5936,7 +5936,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -6447,7 +6447,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -6958,7 +6958,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -7722,7 +7722,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -8086,7 +8086,7 @@ has focus.]]></description>
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -8113,7 +8113,7 @@ has been through the init lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[Display label of the progressbar. If not specified try to query
 using HTML_PARSER an element inside contentBox which matches
-<code>aui-progressbar-text</code> and get its innerHTML to be
+<code>yui3-aui-progressbar-text</code> and get its innerHTML to be
 used as label.]]></description>
       </attribute>
       <attribute>
@@ -8180,7 +8180,7 @@ has been through the render lifecycle phase.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the satus bar of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-progressbar-status</code>.]]></description>
+contentBox which matches <code>yui3-aui-progressbar-status</code>.]]></description>
       </attribute>
       <attribute>
         <name>step</name>
@@ -8216,7 +8216,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the text of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>aui-progressbar-text</code>.]]></description>
+contentBox which matches <code>yui3-aui-progressbar-text</code>.]]></description>
       </attribute>
       <attribute>
         <name>value</name>
@@ -8458,7 +8458,7 @@ replace the radio elements and keep the same name.]]></description>
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -8501,7 +8501,7 @@ not specified will use the name of the replaced radio.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-rating-label-element</code>.]]></description>
+boundingBox which matches <code>yui3-aui-rating-label-element</code>.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
@@ -9150,7 +9150,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -9689,7 +9689,7 @@ replace the radio elements and keep the same name.]]></description>
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -9732,7 +9732,7 @@ not specified will use the name of the replaced radio.]]></description>
         <defaultValue></defaultValue>
         <description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>aui-rating-label-element</code>.]]></description>
+boundingBox which matches <code>yui3-aui-rating-label-element</code>.]]></description>
       </attribute>
       <attribute>
         <name>render</name>
@@ -10074,7 +10074,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>
@@ -10474,7 +10474,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
         <name>hideClass</name>
         <inputType>java.lang.String</inputType>
         <outputType>java.lang.String</outputType>
-        <defaultValue>aui-helper-hidden</defaultValue>
+        <defaultValue>yui3-aui-helper-hidden</defaultValue>
         <description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
 <code>false</code>.]]></description>

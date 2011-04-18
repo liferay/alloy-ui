@@ -6,7 +6,7 @@
 	width: 300px;
 }
 
-#contextpanel1 .aui-contentpanel-content {
+#contextpanel1 .yui3-aui-contentpanel-content {
 	padding: 11px;
 }
 </style>

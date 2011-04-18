@@ -1,15 +1,15 @@
 /* Base dialog dark titles styles */
-.aui-dialog {
+.yui3-aui-dialog {
 	background: #777879;
 	border: 9px solid #777879;
 }
 
-.aui-dialog .aui-widget-hd {
+.yui3-aui-dialog .yui3-yui3-widget-hd {
 	border: none;
 	padding: 0 0 0 10px;
 }
 
-.aui-dialog-close {
+.yui3-aui-dialog-close {
 	background: url(../images/aui-close-dialog.png) repeat-x scroll 0 0;
 	border: 1px solid #323233;
 	color: #fff;
@@ -18,19 +18,19 @@
 	text-shadow: 0 0 2px #000;	
 }
 
-.aui-dialog-content {
+.yui3-aui-dialog-content {
 	border: 1px solid #323233;
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
 }
 
-.aui-panel-hd {
+.yui3-aui-panel-hd {
 	background: url(../images/dialog_panel_header_bg.png) repeat-x scroll 0 0 #323233;
 	height: 30px;
 }
 
-.aui-panel-hd-text {
+.yui3-aui-panel-hd-text {
 	color: #fff;
 	font-size: 12px;
 	font-weight: normal;
@@ -39,12 +39,12 @@
 }
 
 /* Rounded corners and box shadows */
-.aui-dialog {
+.yui3-aui-dialog {
 	-moz-border-radius: 12px;
 	-webkit-border-radius: 12px;
 	border-radius: 12px;
 }
-.aui-dialog .aui-widget-hd {
+.yui3-aui-dialog .yui3-yui3-widget-hd {
 	-moz-border-radius: 4px 4px 0 0;
 	-webkit-border-radius: 4px 4px 0 0;
 	border-radius: 4px 4px 0 0;
@@ -53,7 +53,7 @@
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
-.aui-dialog-close, .aui-dialog-content {
+.yui3-aui-dialog-close, .yui3-aui-dialog-content {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;

@@ -1687,7 +1687,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_forceSelection = false;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
+		_hideClass = "yui3-aui-helper-hidden";
 		_autocompleteId = null;
 		_initialized = false;
 		_input = null;

@@ -1,14 +1,14 @@
-.aui-editormenu {
+.yui3-aui-editormenu {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
 
-.aui-editormenu-content-list {
+.yui3-aui-editormenu-content-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.aui-editormenu-content-list li {
+.yui3-aui-editormenu-content-list li {
 	list-style: none;
 }
