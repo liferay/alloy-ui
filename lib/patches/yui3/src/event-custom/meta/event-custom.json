@@ -1,0 +1,16 @@
+{
+    "event-custom": {
+        "submodules": {
+            "event-custom-base": {
+                "requires": [
+                    "oop"
+                ]
+            },
+            "event-custom-complex": {
+                "requires": [
+                    "event-custom-base"
+                ]
+            }
+        }
+    }
+}
