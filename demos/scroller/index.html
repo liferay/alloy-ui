@@ -9,80 +9,137 @@
 	<style type="text/css" media="screen">
 		body {
 			font-size: 12px;
-			margin:0 auto;
-			width:960px;
 		}
 
 		#wrapper {
 			padding: 10px;
-/*			position: relative;*/
 		}
 		
-		#scroller1 {
-			width: 834px;
+		.demo {
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+			-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+			background-image: -moz-linear-gradient(#DDDDDD, #F0F0F0);
+			background-image: -webkit-gradient(
+				linear,
+				left bottom,
+				left top,
+				color-stop(1, #DDDDDD),
+				color-stop(0.5, #F0F0F0)
+			);
+			margin: 5px;
 		}
-			.scroller {
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 5px;
-				-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-				-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-				background-image: -moz-linear-gradient(#DDDDDD, #F0F0F0);
-				background-image: -webkit-gradient(
-					linear,
-					left bottom,
-					left top,
-					color-stop(1, #DDDDDD),
-					color-stop(0.5, #F0F0F0)
-				);
-			}
 
-			.scroller h1 {
-				color: #474A4B;
-				font-weight: bold;
-				font-size: 1em;
-				line-height: 45px;
-				margin: 0;
-				padding: 0 20px;
-			}
+		.demo h1 {
+			color: #474A4B;
+			font-weight: bold;
+			font-size: 1em;
+			line-height: 45px;
+			margin: 0;
+			padding: 0 20px;
+		}
 
-			.scroller h1 a:link {
-				color: #474A4B;
-				text-decoration: none;
-			}
+		.demo h1 a:link {
+			color: #474A4B;
+			text-decoration: none;
+		}
 
-			.scroller {
-				height: 45px;
-			}
+		#demo1 {
+			height: 45px;
+			width: 750px;
+		}
 
-			.scroller h1 {
-				border-right: 1px solid #F0F0F0;
-				float: left;
-			}
+		#demo1 h1 {
+			border-right: 1px solid #F0F0F0;
+			float: left;
+		}
 
-			.advanced .aui-scroller-item {
-				background-position: center;
-				background-repeat: no-repeat;
-			}
+		#demo2 {
+			height: 200px;
+			width: 200px;
+		}
 
-			.advanced .aui-scroller-item img {
-		/*		opacity: 0;
-				filter: alpha(opacity = 0);*/
-			}
+		#demo2 h1 {
+			border-bottom: 1px solid #F0F0F0;
+			float: left;
+			padding: 0;
+			text-align: center;
+			width: 100%;
+		}
 
-			.advanced .aui-scroller-horizontal {
-				border-left: 1px solid #CACACA;
-			}
+		.advanced .aui-scroller-item {
+			background-position: center;
+			background-repeat: no-repeat;
+		}
 
-			.advanced .aui-scroller-horizontal .aui-scroller-item {
-				height: 100%;
-				padding: 0 10px;
-			}
+		.advanced .aui-scroller-item img {
+			opacity: 0;
+			filter: alpha(opacity = 0);
+		}
 
-			.advanced .aui-scroller-horizontal .aui-scroller-item img {
-				height: 100%;
-				vertical-align: middle;
-			}
+		.advanced .aui-scroller-vertical {
+			border-top: 1px solid #CACACA;
+			clear: left;
+		}
 
+		.advanced .aui-scroller-vertical .aui-scroller-item {
+			width: 100%;
+			padding: 10px 0;
+		}
+
+		.advanced .aui-scroller-vertical .aui-scroller-item img {
+			width: 100%;
+		}
+
+		.advanced .aui-scroller-horizontal {
+			border-left: 1px solid #CACACA;
+		}
+
+		.advanced .aui-scroller-horizontal .aui-scroller-item {
+			height: 100%;
+			padding: 0 10px;
+		}
+
+		.advanced .aui-scroller-horizontal .aui-scroller-item img {
+			height: 100%;
+		}
+
+		.advanced .aui-scroller-content .cisco {
+			background-image: url('1.png');
+		}
+
+		.advanced .aui-scroller-content .sesame-street {
+			background-image: url('2.png');
+		}
+
+		.advanced .aui-scroller-content .t-mobile {
+			background-image: url('3.png');
+		}
+
+		.advanced .aui-scroller-content .societe-generale {
+			background-image: url('4.png');
+		}
+
+		.advanced .aui-scroller-content .barclays {
+			background-image: url('5.png');
+		}
+
+		.advanced .aui-scroller-content .autozone {
+			background-image: url('6.png');
+		}
+
+		.advanced .aui-scroller-content .china-mobile {
+			background-image: url('7.png');
+		}
+
+		.basic .aui-scroller {
+			border:1px solid #CCCCCC;
+		}
+
+		.basic .aui-scroller-item {
+			padding: 10px;
+		}
 	</style>
 </head>
 
@@ -93,37 +150,162 @@
 
 	<h2>Scroller Demo with styling</h2>
 
-<div id="scroller1" class="scroller">
+	<div id="demo1" class="demo">
+		<h1>
+			<a href="#">Our Clients</a>
+		</h1>
+		<div class="advanced">
+			<div id="scroller-content">
+				<div class="cisco">
+					<a href="#">
+						<img src="1.png" width="81" height="37" alt="Cisco"/>
+					</a>
+				</div>
+				<div class="sesame-street">
+					<a href="#">
+						<img src="2.png" width="81" height="37" alt="Sesame Street"/>
+					</a>
+				</div>
+				<div class="t-mobile">
+					<a href="#">
+						<img src="3.png" width="93" height="20" alt="T-Mobile"/>
+					</a>
+				</div>
+				<div class="societe-generale">
+					<a href="#">
+						<img src="4.png" width="127" height="35" alt="Societe Generale"/>
+					</a>
+				</div>
+				<div class="barclays">
+					<a href="#">
+						<img src="5.png" width="144" height="35" alt="Barclays"/>
+					</a>
+				</div>
+				<div class="autozone">
+					<a href="#">
+						<img src="6.png" width="191" height="35" alt="Autozone"/>
+					</a>
+				</div>
+				<div class="china-mobile">
+					<a href="#">
+						<img src="7.png" width="105" height="38" alt="China Mobile" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-<h1> <a href="#">Our Clients</a> </h1>
+	<div id="demo2" class="demo">
+		<h1>
+			<a href="#">Our Clients</a>
+		</h1>
+		<div class="advanced">
+			<div id="scroller-content2">
+				<div class="cisco">
+					<a href="#">
+						<img src="1.png" width="81" height="37" alt="Cisco"/>
+					</a>
+				</div>
+				<div class="sesame-street">
+					<a href="#">
+						<img src="2.png" width="81" height="37" alt="Sesame Street"/>
+					</a>
+				</div>
+				<div class="t-mobile">
+					<a href="#">
+						<img src="3.png" width="93" height="20" alt="T-Mobile"/>
+					</a>
+				</div>
+				<div class="societe-generale">
+					<a href="#">
+						<img src="4.png" width="127" height="35" alt="Societe Generale"/>
+					</a>
+				</div>
+				<div class="barclays">
+					<a href="#">
+						<img src="5.png" width="144" height="35" alt="Barclays"/>
+					</a>
+				</div>
+				<div class="autozone">
+					<a href="#">
+						<img src="6.png" width="191" height="35" alt="Autozone"/>
+					</a>
+				</div>
+				<div class="china-mobile">
+					<a href="#">
+						<img src="7.png" width="105" height="38" alt="China Mobile" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<div class="advanced"> <div id="scroller1-content"> <div class="scroller-item-1 aui-scroller-item"> <a href="#1"> <img
-alt="Cisco"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=34196c51-4b06-4927-8afd-5233aed6ee63&amp;groupId=10161&amp;t=1302878908072">
-</a> </div> <div class="scroller-item-2 aui-scroller-item"> <a href="#2"> <img alt="Sesame Street"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=c0111af1-82b2-4d33-a980-4cf719dee702&amp;groupId=10161&amp;t=1302878908072">
-</a> </div> <div class="scroller-item-3 aui-scroller-item"> <a href="#3"> <img alt="T Mobile"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=3a9394d1-e532-4a77-9bac-8dc3bddec754&amp;groupId=10161&amp;t=1302878908073">
-</a> </div> <div class="scroller-item-4 aui-scroller-item"> <a href="#4"> <img alt="Societe Generale"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=756cd9a4-2ab4-47ff-86e2-82595238e801&amp;groupId=10161&amp;t=1302878908073">
-</a> </div> <div class="scroller-item-5 aui-scroller-item"> <a href="#5"> <img alt="Barclays"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=fe4dcee5-aebc-4fd9-ab7f-dfd52f7bfe1e&amp;groupId=10161&amp;t=1302878908070">
-</a> </div> <div class="scroller-item-6 aui-scroller-item"> <a href="#6"> <img alt="Autozone"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=27e9e191-bc25-4ed0-ab8c-453174672314&amp;groupId=10161&amp;t=1302878908069">
-</a> </div> <div class="scroller-item-7 aui-scroller-item"> <a href="#7"> <img alt="China Mobile"
-src="http://vm-29.liferay.com/image/image_gallery?uuid=8cdaf6bd-3b0a-4227-9eb3-eb467e53478b&amp;groupId=10161&amp;t=1302878908071">
-</a> </div> </div></div>
-</div>
+	<h2>Scroller Demo without styling</h2>
+
+	<div id="demo3">
+		<div class="basic">
+			<div id="scroller-content3">
+				<div>sample 1</div>
+				<div>sample 2</div>
+				<div>sample 3</div>
+				<div>sample 4</div>
+				<div>sample 5</div>
+				<div>sample 6</div>
+				<div>sample 7</div>
+				<div>sample 8</div>
+				<div>sample 9</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="demo4">
+		<div class="basic">
+			<div id="scroller-content4">
+				<div>sample 1</div>
+				<div>sample 2</div>
+				<div>sample 3</div>
+				<div>sample 4</div>
+				<div>sample 5</div>
+				<div>sample 6</div>
+				<div>sample 7</div>
+				<div>sample 8</div>
+				<div>sample 9</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-AUI().ready('aui-scroller', function (A) {
+AUI().ready('aui-scroller', 'transition', function (A) {
 	var component = new A.Scroller({
-			contentBox: '#scroller1-content',
+			contentBox: '#scroller-content',
 			height: 45,
+			//width: 640,
 			orientation: 'horizontal'
+		}).render();
+
+	var component2 = new A.Scroller({
+			contentBox: '#scroller-content2',
+			height: 150,
+			//width: 200,
+			orientation: 'vertical'
+		}).render();
+
+	var component3 = new A.Scroller({
+			contentBox: '#scroller-content3',
+			height: 50,
+			orientation: 'horizontal',
+			width: 200
+		}).render();
+
+	var component4 = new A.Scroller({
+			contentBox: '#scroller-content4',
+			height: 150,
+			orientation: 'vertical',
+			width: 75
 		}).render();
 });
 </script>
+
 </body>
 </html>
