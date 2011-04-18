@@ -61,6 +61,8 @@ var Scroller = A.Component.create (
 				instance._duration = instance.get(DURATION);
 				instance._orientation = instance.get(ORIENTATION);
 
+				instance._boundingBoxXY = instance._boundingBox.getXY();
+
 				instance._updateNodeSelection();
 			},
 
@@ -80,6 +82,8 @@ var Scroller = A.Component.create (
 						orientationChange: instance._afterOrientationChange
 					}
 				);
+
+				instance._contentBox.on('mouseenter', A.rbind(instance._updateXY, instance, instance._boundingBox));
 
 				instance._contentBox.on('mousemove', A.rbind(instance._onMouseMove, instance, instance._boundingBox, instance._contentBox, instance._orientation));
 			},
@@ -107,10 +111,10 @@ var Scroller = A.Component.create (
 				};
 
 				if(orientation == HORIZONTAL) {
-					transitionConfig.left = event.offsetX + PX;
+					transitionConfig.left = -event.offsetX + PX;
 				}
 				else {
-					transitionConfig.top = event.offsetY + PX;
+					transitionConfig.top = -event.offsetY + PX;
 				}
 
 				contentBox.transition(transitionConfig);
@@ -122,8 +126,8 @@ var Scroller = A.Component.create (
 				var boundingBoxOffsetHeight = boundingBox.get(OFFSET_HEIGHT);
 				var boundingBoxOffsetWidth = boundingBox.get(OFFSET_WIDTH);
 
-				var absMouseX = event.pageX - boundingBox.get(OFFSET_LEFT);
-				var absMouseY = event.pageY - boundingBox.get(OFFSET_TOP);
+				var absMouseX = event.pageX - instance._boundingBoxXY[0];
+				var absMouseY = event.pageY - instance._boundingBoxXY[1];
 
 				var diffX = contentBox.get(CLIENT_WIDTH) - boundingBoxOffsetWidth;
 				var diffY = contentBox.get(SCROLL_HEIGHT) - boundingBoxOffsetHeight;
@@ -131,8 +135,8 @@ var Scroller = A.Component.create (
 				var factorX = diffX / boundingBoxOffsetWidth;
 				var factorY = diffY / boundingBoxOffsetHeight;
 
-				var offsetX = -(absMouseX * factorX);
-				var offsetY = -(absMouseY * factorY);
+				var offsetX = absMouseX * factorX;
+				var offsetY = absMouseY * factorY;
 
 				instance.fire(
 					'scroll',
@@ -145,6 +149,12 @@ var Scroller = A.Component.create (
 						y: absMouseY
 					}
 				);
+			},
+
+			_updateXY: function (event, boundingBox) {
+				var instance = this;
+
+				instance._boundingBoxXY = boundingBox.getXY();
 			},
 
 			_uiSetOrientation: function (val) {
@@ -171,4 +181,4 @@ var Scroller = A.Component.create (
 
 A.Scroller = Scroller;
 
-}, '@VERSION@' ,{requires:['aui-base','transition'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','transition']});
