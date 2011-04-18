@@ -29,7 +29,7 @@
 
 		<div id="scheduler1" class="yui3-aui-scheduler-base">
 			<div id="content" class="yui3-aui-scheduler-base-content">
-				<div class="yui3-aui-widget-hd">
+				<div class="yui3-widget-hd">
 					<div class="yui3-aui-scheduler-base-hd yui3-aui-helper-clearfix">
 						<div class="yui3-aui-scheduler-base-controls">
 							<a href="#" class="yui3-aui-scheduler-base-today">Today</a>
@@ -48,11 +48,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="yui3-aui-widget-bd">
+				<div class="yui3-widget-bd">
 					<div class="yui3-aui-scheduler-view-day">
 						<div class="yui3-aui-scheduler-view-day-content">
 
-							<div class="yui3-aui-widget-hd">
+							<div class="yui3-widget-hd">
 								<table class="yui3-aui-scheduler-view-day-header-table">
 									<tbody>
 										<tr class="yui3-aui-scheduler-view-day-header-col">
@@ -62,7 +62,7 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="yui3-aui-widget-bd">
+							<div class="yui3-widget-bd">
 								<table class="yui3-aui-scheduler-view-table">
 									<tbody>
 										<tr class="yui3-aui-scheduler-view-colgrid" height="1">
@@ -194,7 +194,7 @@
 					<div class="yui3-aui-scheduler-view-month yui3-aui-scheduler-view-month-hidden">
 						<div class="yui3-aui-scheduler-view-month-content">
 
-							<div class="yui3-aui-widget-hd">
+							<div class="yui3-widget-hd">
 								<table class="yui3-aui-scheduler-view-month-header-table">
 									<tbody>
 										<tr class="yui3-aui-scheduler-view-month-header-col">
@@ -209,7 +209,7 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="yui3-aui-widget-bd">
+							<div class="yui3-widget-bd">
 
 								<!-- <div class="yui3-aui-scheduler-view-month-container">
 									<div class="yui3-aui-scheduler-view-month-row-container">
@@ -337,19 +337,19 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 	];
 
 	var view11 = new A.SchedulerDayView({
-		boundingBox: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-day',
-		srcNode: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-day-content'
+		boundingBox: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-day',
+		srcNode: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-day-content'
 	});
 
 	var view12 = new A.SchedulerWeekView({
-		boundingBox: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-week',
-		srcNode: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-week-content',
+		boundingBox: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-week',
+		srcNode: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-week-content',
 		isoTime: true
 	});
 
 	var view13 = new A.SchedulerMonthView({
-		boundingBox: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-month',
-		srcNode: '#scheduler1 .yui3-aui-widget-bd .yui3-aui-scheduler-view-month-content'
+		boundingBox: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-month',
+		srcNode: '#scheduler1 .yui3-widget-bd .yui3-aui-scheduler-view-month-content'
 	});
 
 	window.eventRecorder = new A.SchedulerEventRecorder({});
