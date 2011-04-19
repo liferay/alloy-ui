@@ -28,7 +28,7 @@ Map<String, Object> _options = new HashMap<String, Object>();
 _options.putAll(scopedAttributes);
 _options.putAll(dynamicAttributes);
 
-java.lang.Boolean defineVar = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy_util:component:defineVar"), true);
+boolean defineVar = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy_util:component:defineVar")), true);
 java.lang.String excludeAttributes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:excludeAttributes"));
 java.lang.String javaScriptAttributes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:javaScriptAttributes"));
 javax.servlet.jsp.JspContext tagPageContext = (javax.servlet.jsp.JspContext)request.getAttribute("alloy_util:component:tagPageContext");

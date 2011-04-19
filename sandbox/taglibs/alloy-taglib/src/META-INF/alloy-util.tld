@@ -12,7 +12,7 @@
 			<name>defineVar</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Boolean</type>
+			<type>boolean</type>
 		</attribute>
 		<attribute>
 			<name>excludeAttributes</name>

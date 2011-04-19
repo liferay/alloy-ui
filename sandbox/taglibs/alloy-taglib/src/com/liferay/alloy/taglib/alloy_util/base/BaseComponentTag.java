@@ -31,7 +31,7 @@ public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 		return super.doStartTag();
 	}
 
-	public java.lang.Boolean getDefineVar() {
+	public boolean getDefineVar() {
 		return _defineVar;
 	}
 
@@ -63,7 +63,7 @@ public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 		return _options;
 	}
 
-	public void setDefineVar(java.lang.Boolean defineVar) {
+	public void setDefineVar(boolean defineVar) {
 		_defineVar = defineVar;
 
 		setScopedAttribute("defineVar", defineVar);
@@ -142,7 +142,7 @@ public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/component/page.jsp";
 
-	private java.lang.Boolean _defineVar = null;
+	private boolean _defineVar = true;
 	private java.lang.String _excludeAttributes = null;
 	private java.lang.String _javaScriptAttributes = null;
 	private java.lang.Object _tagPageContext = null;
