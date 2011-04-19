@@ -117,6 +117,10 @@ public class Component extends BaseModel {
 
 	public void setEvents(List<Attribute> events) {
 		_events = events;
+
+		for (Attribute event : events) {
+			event.setComponent(this);
+		}
 	}
 
 	public void setModule(String type) {

@@ -4,6 +4,8 @@ import com.liferay.alloy.util.ReservedAttributeUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
 
 public class Attribute extends BaseModel {
@@ -80,6 +82,12 @@ public class Attribute extends BaseModel {
 		}
 
 		return StringPool.BLANK;
+	}
+
+	public boolean isEvent() {
+		List<Attribute> events = _component.getEvents();
+
+		return events.contains(this);
 	}
 
 	public boolean isRequired() {

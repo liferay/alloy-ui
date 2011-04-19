@@ -21,6 +21,7 @@ import com.liferay.alloy.util.JSONUtil;
 import com.liferay.alloy.util.TypeUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.util.FileImpl;
@@ -42,6 +43,7 @@ import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -186,16 +188,18 @@ public class XMLBuilder {
 				inputTypeNode.setText(attribute.getInputType());
 				outputTypeNode.setText(attribute.getOutputType());
 				defaultValueNode.setText(attribute.getDefaultValue());
-				descriptionNode.addCDATA(attribute.getDescription());
+				descriptionNode.addCDATA(_getAttributeDescription(attribute));
 			}
 
 			for (Attribute event : component.getEvents()) {
 				Element eventNode = eventsNode.addElement("event");
 				Element nameNode = eventNode.addElement("name");
 				Element typeNode = eventNode.addElement("type");
+				Element descriptionNode = eventNode.addElement("description");
 
 				nameNode.setText(event.getName());
 				typeNode.setText(event.getInputType());
+				descriptionNode.addCDATA(_getAttributeDescription(event));
 			}
 		}
 
@@ -214,6 +218,30 @@ public class XMLBuilder {
 		catch(IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private String _getAttributeDescription(Attribute attribute) {
+
+		JSONObject descriptionJSON = new JSONObject();
+
+		try{
+			descriptionJSON.put("event", attribute.isEvent());
+			descriptionJSON.put("inputType", attribute.getInputType());
+			descriptionJSON.put("outputType", attribute.getOutputType());
+			descriptionJSON.put("required", attribute.isRequired());
+		}
+		catch (JSONException jsone) {
+			jsone.printStackTrace();
+		}
+
+		StringBundler sb = new StringBundler(attribute.getDescription());
+
+		sb.append(_HTML_COMMENT_START);
+		sb.append(descriptionJSON.toString());
+		sb.append(_HTML_COMMENT_END);
+
+
+		return sb.toString();
 	}
 
 	private ArrayList<Attribute> _getComponentAttributes(
@@ -315,12 +343,14 @@ public class XMLBuilder {
 		return hierarchy;
 	}
 
-	private static final String AUI_PREFIX = "yui3-aui-";
+	private static final String AUI_PREFIX = "aui-";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _DEFAULT_TAGLIB_SHORT_NAME = "alloy";
 	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
 	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
 	private static final String _DEFAULT_TYPE = Object.class.getName();
+	private static final String _HTML_COMMENT_END = "-->";
+	private static final String _HTML_COMMENT_START = "<!--";
 
 	private JSONObject _classMapJSON;
 	private List<String> _componentExcluded;
