@@ -2029,7 +2029,7 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _focused = false;
 	private boolean _forceSelection = false;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "aui-helper-hidden";
+	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
 	private java.lang.String _autocompleteId = null;
 	private boolean _initialized = false;
 	private java.lang.String _input = null;

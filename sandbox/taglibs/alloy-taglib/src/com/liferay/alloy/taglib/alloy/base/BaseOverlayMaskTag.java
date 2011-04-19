@@ -1382,7 +1382,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "aui-helper-hidden";
+	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
 	private java.lang.String _overlaymaskId = null;
 	private boolean _initialized = false;
 	private java.lang.Object _opacity = 0.5;
