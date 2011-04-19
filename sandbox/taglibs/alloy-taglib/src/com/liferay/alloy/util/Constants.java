@@ -4,6 +4,6 @@ public class Constants {
 
 	public static final String CSS_CLASS_DELIMITER = "-";
 
-	public static final String CSS_CLASS_PREFIX = "aui";
+	public static final String CSS_CLASS_PREFIX = "yui3-aui";
 
 }
