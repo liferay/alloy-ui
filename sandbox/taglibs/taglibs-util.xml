@@ -5,8 +5,8 @@
 		<attributes>
 			<attribute>
 				<name>defineVar</name>
-				<inputType>java.lang.Boolean</inputType>
-				<outputType>java.lang.Boolean</outputType>
+				<inputType>boolean</inputType>
+				<outputType>boolean</outputType>
 				<defaultValue>true</defaultValue>
 			</attribute>
 			<attribute>
