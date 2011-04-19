@@ -64,7 +64,7 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dxmlbuilder.components.json=${xmlbuilder.components.json}" />
-			<jvmarg value="-Dtagbuilder.components.xml=${tagbuilder.components.xml}" />
+			<jvmarg value="-Dtagbuilder.components.xml=${xmlbuilder.components.xml}" />
 			<jvmarg value="-Dxmlbuilder.components.excluded=${xmlbuilder.components.excluded}" />
 		</java>
 	</target>
