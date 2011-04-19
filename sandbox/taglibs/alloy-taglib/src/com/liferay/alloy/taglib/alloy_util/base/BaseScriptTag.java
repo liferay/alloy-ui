@@ -82,8 +82,8 @@ public class BaseScriptTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/script/page.jsp";
 
-	protected java.lang.String _position;
-	protected java.lang.Boolean _printBuffer;
-	protected java.lang.String _use;
+	private java.lang.String _position = null;
+	private java.lang.Boolean _printBuffer = null;
+	private java.lang.String _use = null;
 
 }

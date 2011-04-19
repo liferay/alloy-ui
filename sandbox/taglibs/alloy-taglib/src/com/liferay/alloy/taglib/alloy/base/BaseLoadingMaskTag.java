@@ -310,27 +310,27 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/loading_mask/page.jsp";
 
-	protected boolean _destroyed;
-	protected java.lang.Object _host;
-	protected boolean _initialized;
-	protected java.lang.String _messageEl;
-	protected java.lang.Object _strings;
-	protected java.lang.Object _target;
-	protected java.lang.Object _afterDestroy;
-	protected java.lang.Object _afterDestroyedChange;
-	protected java.lang.Object _afterHostChange;
-	protected java.lang.Object _afterInit;
-	protected java.lang.Object _afterInitializedChange;
-	protected java.lang.Object _afterMessageElChange;
-	protected java.lang.Object _afterStringsChange;
-	protected java.lang.Object _afterTargetChange;
-	protected java.lang.Object _onDestroy;
-	protected java.lang.Object _onDestroyedChange;
-	protected java.lang.Object _onHostChange;
-	protected java.lang.Object _onInit;
-	protected java.lang.Object _onInitializedChange;
-	protected java.lang.Object _onMessageElChange;
-	protected java.lang.Object _onStringsChange;
-	protected java.lang.Object _onTargetChange;
+	private boolean _destroyed = false;
+	private java.lang.Object _host = null;
+	private boolean _initialized = false;
+	private java.lang.String _messageEl = null;
+	private java.lang.Object _strings = null;
+	private java.lang.Object _target = null;
+	private java.lang.Object _afterDestroy = null;
+	private java.lang.Object _afterDestroyedChange = null;
+	private java.lang.Object _afterHostChange = null;
+	private java.lang.Object _afterInit = null;
+	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterMessageElChange = null;
+	private java.lang.Object _afterStringsChange = null;
+	private java.lang.Object _afterTargetChange = null;
+	private java.lang.Object _onDestroy = null;
+	private java.lang.Object _onDestroyedChange = null;
+	private java.lang.Object _onHostChange = null;
+	private java.lang.Object _onInit = null;
+	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onMessageElChange = null;
+	private java.lang.Object _onStringsChange = null;
+	private java.lang.Object _onTargetChange = null;
 
 }

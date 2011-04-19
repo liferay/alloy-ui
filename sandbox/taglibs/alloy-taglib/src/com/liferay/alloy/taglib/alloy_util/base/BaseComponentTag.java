@@ -142,13 +142,13 @@ public class BaseComponentTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy_util/component/page.jsp";
 
-	protected java.lang.Boolean _defineVar;
-	protected java.lang.String _excludeAttributes;
-	protected java.lang.String _javaScriptAttributes;
-	protected java.lang.Object _tagPageContext;
-	protected java.lang.String _var;
-	protected java.lang.String _module;
-	protected java.lang.String _name;
-	protected java.util.Map _options;
+	private java.lang.Boolean _defineVar = null;
+	private java.lang.String _excludeAttributes = null;
+	private java.lang.String _javaScriptAttributes = null;
+	private java.lang.Object _tagPageContext = null;
+	private java.lang.String _var = null;
+	private java.lang.String _module = null;
+	private java.lang.String _name = null;
+	private java.util.Map _options = null;
 
 }

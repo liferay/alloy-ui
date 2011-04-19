@@ -202,18 +202,18 @@ public class BaseParseContentTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/parse_content/page.jsp";
 
-	protected boolean _destroyed;
-	protected java.lang.Object _host;
-	protected boolean _initialized;
-	protected java.lang.Object _afterDestroy;
-	protected java.lang.Object _afterDestroyedChange;
-	protected java.lang.Object _afterHostChange;
-	protected java.lang.Object _afterInit;
-	protected java.lang.Object _afterInitializedChange;
-	protected java.lang.Object _onDestroy;
-	protected java.lang.Object _onDestroyedChange;
-	protected java.lang.Object _onHostChange;
-	protected java.lang.Object _onInit;
-	protected java.lang.Object _onInitializedChange;
+	private boolean _destroyed = false;
+	private java.lang.Object _host = null;
+	private boolean _initialized = false;
+	private java.lang.Object _afterDestroy = null;
+	private java.lang.Object _afterDestroyedChange = null;
+	private java.lang.Object _afterHostChange = null;
+	private java.lang.Object _afterInit = null;
+	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _onDestroy = null;
+	private java.lang.Object _onDestroyedChange = null;
+	private java.lang.Object _onHostChange = null;
+	private java.lang.Object _onInit = null;
+	private java.lang.Object _onInitializedChange = null;
 
 }

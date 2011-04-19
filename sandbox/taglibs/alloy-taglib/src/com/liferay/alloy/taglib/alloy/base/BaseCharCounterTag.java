@@ -274,24 +274,24 @@ public class BaseCharCounterTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/alloy/char_counter/page.jsp";
 
-	protected java.lang.Object _counter;
-	protected boolean _destroyed;
-	protected boolean _initialized;
-	protected java.lang.Object _input;
-	protected java.lang.Object _maxLength;
-	protected java.lang.Object _afterCounterChange;
-	protected java.lang.Object _afterDestroy;
-	protected java.lang.Object _afterDestroyedChange;
-	protected java.lang.Object _afterInit;
-	protected java.lang.Object _afterInitializedChange;
-	protected java.lang.Object _afterInputChange;
-	protected java.lang.Object _afterMaxLengthChange;
-	protected java.lang.Object _onCounterChange;
-	protected java.lang.Object _onDestroy;
-	protected java.lang.Object _onDestroyedChange;
-	protected java.lang.Object _onInit;
-	protected java.lang.Object _onInitializedChange;
-	protected java.lang.Object _onInputChange;
-	protected java.lang.Object _onMaxLengthChange;
+	private java.lang.Object _counter = null;
+	private boolean _destroyed = false;
+	private boolean _initialized = false;
+	private java.lang.Object _input = null;
+	private java.lang.Object _maxLength = 2147483647;
+	private java.lang.Object _afterCounterChange = null;
+	private java.lang.Object _afterDestroy = null;
+	private java.lang.Object _afterDestroyedChange = null;
+	private java.lang.Object _afterInit = null;
+	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterInputChange = null;
+	private java.lang.Object _afterMaxLengthChange = null;
+	private java.lang.Object _onCounterChange = null;
+	private java.lang.Object _onDestroy = null;
+	private java.lang.Object _onDestroyedChange = null;
+	private java.lang.Object _onInit = null;
+	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onInputChange = null;
+	private java.lang.Object _onMaxLengthChange = null;
 
 }

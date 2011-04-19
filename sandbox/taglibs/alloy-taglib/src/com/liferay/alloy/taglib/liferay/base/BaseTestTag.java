@@ -106,10 +106,10 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 	private static final String _PAGE =
 		"/html/taglib/liferay/test/page.jsp";
 
-	protected java.lang.String _test;
-	protected boolean _attrBooleanPrimitive;
-	protected java.lang.Boolean _attrBoolean;
-	protected int _attrIntPrimitive;
-	protected java.lang.Integer _attrInteger;
+	private java.lang.String _test = null;
+	private boolean _attrBooleanPrimitive = false;
+	private java.lang.Boolean _attrBoolean = null;
+	private int _attrIntPrimitive = 0;
+	private java.lang.Integer _attrInteger = null;
 
 }
