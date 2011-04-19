@@ -91,6 +91,10 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _responseData;
 	}
 
+	public java.lang.String getSelector() {
+		return _selector;
+	}
+
 	public boolean getSync() {
 		return _sync;
 	}
@@ -201,6 +205,10 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterResponseDataChange() {
 		return _afterResponseDataChange;
+	}
+
+	public java.lang.Object getAfterSelectorChange() {
+		return _afterSelectorChange;
 	}
 
 	public java.lang.Object getAfterSyncChange() {
@@ -315,6 +323,10 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _onResponseDataChange;
 	}
 
+	public java.lang.Object getOnSelectorChange() {
+		return _onSelectorChange;
+	}
+
 	public java.lang.Object getOnSyncChange() {
 		return _onSyncChange;
 	}
@@ -423,6 +435,12 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_responseData = responseData;
 
 		setScopedAttribute("responseData", responseData);
+	}
+
+	public void setSelector(java.lang.String selector) {
+		_selector = selector;
+
+		setScopedAttribute("selector", selector);
 	}
 
 	public void setSync(boolean sync) {
@@ -593,6 +611,12 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterResponseDataChange", afterResponseDataChange);
 	}
 
+	public void setAfterSelectorChange(java.lang.Object afterSelectorChange) {
+		_afterSelectorChange = afterSelectorChange;
+
+		setScopedAttribute("afterSelectorChange", afterSelectorChange);
+	}
+
 	public void setAfterSyncChange(java.lang.Object afterSyncChange) {
 		_afterSyncChange = afterSyncChange;
 
@@ -761,6 +785,12 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onResponseDataChange", onResponseDataChange);
 	}
 
+	public void setOnSelectorChange(java.lang.Object onSelectorChange) {
+		_onSelectorChange = onSelectorChange;
+
+		setScopedAttribute("onSelectorChange", onSelectorChange);
+	}
+
 	public void setOnSyncChange(java.lang.Object onSyncChange) {
 		_onSyncChange = onSyncChange;
 
@@ -807,6 +837,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_initialized = false;
 		_method = null;
 		_responseData = null;
+		_selector = null;
 		_sync = false;
 		_timeout = 0;
 		_transaction = null;
@@ -835,6 +866,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_afterXdrReady = null;
 		_afterMethodChange = null;
 		_afterResponseDataChange = null;
+		_afterSelectorChange = null;
 		_afterSyncChange = null;
 		_afterTimeoutChange = null;
 		_afterTransactionChange = null;
@@ -863,6 +895,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_onXdrReady = null;
 		_onMethodChange = null;
 		_onResponseDataChange = null;
+		_onSelectorChange = null;
 		_onSyncChange = null;
 		_onTimeoutChange = null;
 		_onTransactionChange = null;
@@ -890,6 +923,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "method", _method);
 		setNamespacedAttribute(request, "responseData", _responseData);
+		setNamespacedAttribute(request, "selector", _selector);
 		setNamespacedAttribute(request, "sync", _sync);
 		setNamespacedAttribute(request, "timeout", _timeout);
 		setNamespacedAttribute(request, "transaction", _transaction);
@@ -918,6 +952,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterXdrReady", _afterXdrReady);
 		setNamespacedAttribute(request, "afterMethodChange", _afterMethodChange);
 		setNamespacedAttribute(request, "afterResponseDataChange", _afterResponseDataChange);
+		setNamespacedAttribute(request, "afterSelectorChange", _afterSelectorChange);
 		setNamespacedAttribute(request, "afterSyncChange", _afterSyncChange);
 		setNamespacedAttribute(request, "afterTimeoutChange", _afterTimeoutChange);
 		setNamespacedAttribute(request, "afterTransactionChange", _afterTransactionChange);
@@ -946,6 +981,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onXdrReady", _onXdrReady);
 		setNamespacedAttribute(request, "onMethodChange", _onMethodChange);
 		setNamespacedAttribute(request, "onResponseDataChange", _onResponseDataChange);
+		setNamespacedAttribute(request, "onSelectorChange", _onSelectorChange);
 		setNamespacedAttribute(request, "onSyncChange", _onSyncChange);
 		setNamespacedAttribute(request, "onTimeoutChange", _onTimeoutChange);
 		setNamespacedAttribute(request, "onTransactionChange", _onTransactionChange);
@@ -973,6 +1009,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _initialized = false;
 	private java.lang.String _method = null;
 	private java.lang.Object _responseData = null;
+	private java.lang.String _selector = null;
 	private boolean _sync = false;
 	private java.lang.Object _timeout = 0;
 	private java.lang.Object _transaction = null;
@@ -1001,6 +1038,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterXdrReady = null;
 	private java.lang.Object _afterMethodChange = null;
 	private java.lang.Object _afterResponseDataChange = null;
+	private java.lang.Object _afterSelectorChange = null;
 	private java.lang.Object _afterSyncChange = null;
 	private java.lang.Object _afterTimeoutChange = null;
 	private java.lang.Object _afterTransactionChange = null;
@@ -1029,6 +1067,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onXdrReady = null;
 	private java.lang.Object _onMethodChange = null;
 	private java.lang.Object _onResponseDataChange = null;
+	private java.lang.Object _onSelectorChange = null;
 	private java.lang.Object _onSyncChange = null;
 	private java.lang.Object _onTimeoutChange = null;
 	private java.lang.Object _onTransactionChange = null;

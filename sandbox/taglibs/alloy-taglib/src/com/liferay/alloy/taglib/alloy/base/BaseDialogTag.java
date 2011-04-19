@@ -91,6 +91,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _disabled;
 	}
 
+	public java.lang.Object getDragConfig() {
+		return _dragConfig;
+	}
+
 	public java.lang.Object getDragInstance() {
 		return _dragInstance;
 	}
@@ -135,6 +139,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public boolean getModal() {
 		return _modal;
 	}
@@ -153,6 +161,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public boolean getResizable() {
 		return _resizable;
+	}
+
+	public java.lang.Object getResizableConfig() {
+		return _resizableConfig;
 	}
 
 	public java.lang.Object getResizableInstance() {
@@ -181,6 +193,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getTitle() {
 		return _title;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -271,6 +287,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterDisabledChange;
 	}
 
+	public java.lang.Object getAfterDragConfigChange() {
+		return _afterDragConfigChange;
+	}
+
 	public java.lang.Object getAfterDragInstanceChange() {
 		return _afterDragInstanceChange;
 	}
@@ -319,6 +339,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterModalChange() {
 		return _afterModalChange;
 	}
@@ -337,6 +361,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterResizableChange() {
 		return _afterResizableChange;
+	}
+
+	public java.lang.Object getAfterResizableConfigChange() {
+		return _afterResizableConfigChange;
 	}
 
 	public java.lang.Object getAfterResizableInstanceChange() {
@@ -365,6 +393,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTitleChange() {
 		return _afterTitleChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -463,6 +495,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _onDisabledChange;
 	}
 
+	public java.lang.Object getOnDragConfigChange() {
+		return _onDragConfigChange;
+	}
+
 	public java.lang.Object getOnDragInstanceChange() {
 		return _onDragInstanceChange;
 	}
@@ -511,6 +547,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnModalChange() {
 		return _onModalChange;
 	}
@@ -529,6 +569,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnResizableChange() {
 		return _onResizableChange;
+	}
+
+	public java.lang.Object getOnResizableConfigChange() {
+		return _onResizableConfigChange;
 	}
 
 	public java.lang.Object getOnResizableInstanceChange() {
@@ -557,6 +601,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTitleChange() {
 		return _onTitleChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -681,6 +729,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("disabled", disabled);
 	}
 
+	public void setDragConfig(java.lang.Object dragConfig) {
+		_dragConfig = dragConfig;
+
+		setScopedAttribute("dragConfig", dragConfig);
+	}
+
 	public void setDragInstance(java.lang.Object dragInstance) {
 		_dragInstance = dragInstance;
 
@@ -747,6 +801,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setModal(boolean modal) {
 		_modal = modal;
 
@@ -775,6 +835,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_resizable = resizable;
 
 		setScopedAttribute("resizable", resizable);
+	}
+
+	public void setResizableConfig(java.lang.Object resizableConfig) {
+		_resizableConfig = resizableConfig;
+
+		setScopedAttribute("resizableConfig", resizableConfig);
 	}
 
 	public void setResizableInstance(java.lang.Object resizableInstance) {
@@ -817,6 +883,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_title = title;
 
 		setScopedAttribute("title", title);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -951,6 +1023,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterDisabledChange", afterDisabledChange);
 	}
 
+	public void setAfterDragConfigChange(java.lang.Object afterDragConfigChange) {
+		_afterDragConfigChange = afterDragConfigChange;
+
+		setScopedAttribute("afterDragConfigChange", afterDragConfigChange);
+	}
+
 	public void setAfterDragInstanceChange(java.lang.Object afterDragInstanceChange) {
 		_afterDragInstanceChange = afterDragInstanceChange;
 
@@ -1023,6 +1101,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterModalChange(java.lang.Object afterModalChange) {
 		_afterModalChange = afterModalChange;
 
@@ -1051,6 +1135,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterResizableChange = afterResizableChange;
 
 		setScopedAttribute("afterResizableChange", afterResizableChange);
+	}
+
+	public void setAfterResizableConfigChange(java.lang.Object afterResizableConfigChange) {
+		_afterResizableConfigChange = afterResizableConfigChange;
+
+		setScopedAttribute("afterResizableConfigChange", afterResizableConfigChange);
 	}
 
 	public void setAfterResizableInstanceChange(java.lang.Object afterResizableInstanceChange) {
@@ -1093,6 +1183,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTitleChange = afterTitleChange;
 
 		setScopedAttribute("afterTitleChange", afterTitleChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -1239,6 +1335,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onDisabledChange", onDisabledChange);
 	}
 
+	public void setOnDragConfigChange(java.lang.Object onDragConfigChange) {
+		_onDragConfigChange = onDragConfigChange;
+
+		setScopedAttribute("onDragConfigChange", onDragConfigChange);
+	}
+
 	public void setOnDragInstanceChange(java.lang.Object onDragInstanceChange) {
 		_onDragInstanceChange = onDragInstanceChange;
 
@@ -1311,6 +1413,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnModalChange(java.lang.Object onModalChange) {
 		_onModalChange = onModalChange;
 
@@ -1339,6 +1447,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onResizableChange = onResizableChange;
 
 		setScopedAttribute("onResizableChange", onResizableChange);
+	}
+
+	public void setOnResizableConfigChange(java.lang.Object onResizableConfigChange) {
+		_onResizableConfigChange = onResizableConfigChange;
+
+		setScopedAttribute("onResizableConfigChange", onResizableConfigChange);
 	}
 
 	public void setOnResizableInstanceChange(java.lang.Object onResizableInstanceChange) {
@@ -1381,6 +1495,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onTitleChange = onTitleChange;
 
 		setScopedAttribute("onTitleChange", onTitleChange);
+	}
+
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
 	}
 
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
@@ -1447,6 +1567,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_destroyOnClose = false;
 		_destroyed = false;
 		_disabled = false;
+		_dragConfig = null;
 		_dragInstance = null;
 		_draggable = true;
 		_fillHeight = null;
@@ -1458,11 +1579,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_icons = null;
 		_dialogId = null;
 		_initialized = false;
+		_locale = "en";
 		_modal = false;
 		_preventOverlap = false;
 		_render = null;
 		_rendered = false;
 		_resizable = true;
+		_resizableConfig = null;
 		_resizableInstance = null;
 		_shim = false;
 		_srcNode = null;
@@ -1470,6 +1593,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_strings = null;
 		_tabIndex = 0;
 		_title = null;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_x = 0;
@@ -1492,6 +1616,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterDestroyOnCloseChange = null;
 		_afterDestroyedChange = null;
 		_afterDisabledChange = null;
+		_afterDragConfigChange = null;
 		_afterDragInstanceChange = null;
 		_afterDraggableChange = null;
 		_afterFillHeightChange = null;
@@ -1504,11 +1629,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
+		_afterLocaleChange = null;
 		_afterModalChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
 		_afterResizableChange = null;
+		_afterResizableConfigChange = null;
 		_afterResizableInstanceChange = null;
 		_afterShimChange = null;
 		_afterSrcNodeChange = null;
@@ -1516,6 +1643,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTitleChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1540,6 +1668,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onDestroyOnCloseChange = null;
 		_onDestroyedChange = null;
 		_onDisabledChange = null;
+		_onDragConfigChange = null;
 		_onDragInstanceChange = null;
 		_onDraggableChange = null;
 		_onFillHeightChange = null;
@@ -1552,11 +1681,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
+		_onLocaleChange = null;
 		_onModalChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
 		_onResizableChange = null;
+		_onResizableConfigChange = null;
 		_onResizableInstanceChange = null;
 		_onShimChange = null;
 		_onSrcNodeChange = null;
@@ -1564,6 +1695,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTitleChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1594,6 +1726,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "destroyOnClose", _destroyOnClose);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
+		setNamespacedAttribute(request, "dragConfig", _dragConfig);
 		setNamespacedAttribute(request, "dragInstance", _dragInstance);
 		setNamespacedAttribute(request, "draggable", _draggable);
 		setNamespacedAttribute(request, "fillHeight", _fillHeight);
@@ -1605,11 +1738,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "icons", _icons);
 		setNamespacedAttribute(request, "dialogId", _dialogId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "modal", _modal);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "resizable", _resizable);
+		setNamespacedAttribute(request, "resizableConfig", _resizableConfig);
 		setNamespacedAttribute(request, "resizableInstance", _resizableInstance);
 		setNamespacedAttribute(request, "shim", _shim);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
@@ -1617,6 +1752,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "title", _title);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "x", _x);
@@ -1639,6 +1775,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterDestroyOnCloseChange", _afterDestroyOnCloseChange);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
+		setNamespacedAttribute(request, "afterDragConfigChange", _afterDragConfigChange);
 		setNamespacedAttribute(request, "afterDragInstanceChange", _afterDragInstanceChange);
 		setNamespacedAttribute(request, "afterDraggableChange", _afterDraggableChange);
 		setNamespacedAttribute(request, "afterFillHeightChange", _afterFillHeightChange);
@@ -1651,11 +1788,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterResizableChange", _afterResizableChange);
+		setNamespacedAttribute(request, "afterResizableConfigChange", _afterResizableConfigChange);
 		setNamespacedAttribute(request, "afterResizableInstanceChange", _afterResizableInstanceChange);
 		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
@@ -1663,6 +1802,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTitleChange", _afterTitleChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1687,6 +1827,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onDestroyOnCloseChange", _onDestroyOnCloseChange);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
+		setNamespacedAttribute(request, "onDragConfigChange", _onDragConfigChange);
 		setNamespacedAttribute(request, "onDragInstanceChange", _onDragInstanceChange);
 		setNamespacedAttribute(request, "onDraggableChange", _onDraggableChange);
 		setNamespacedAttribute(request, "onFillHeightChange", _onFillHeightChange);
@@ -1699,11 +1840,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onResizableChange", _onResizableChange);
+		setNamespacedAttribute(request, "onResizableConfigChange", _onResizableConfigChange);
 		setNamespacedAttribute(request, "onResizableInstanceChange", _onResizableInstanceChange);
 		setNamespacedAttribute(request, "onShimChange", _onShimChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
@@ -1711,6 +1854,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTitleChange", _onTitleChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1741,6 +1885,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _destroyOnClose = false;
 	private boolean _destroyed = false;
 	private boolean _disabled = false;
+	private java.lang.Object _dragConfig = null;
 	private java.lang.Object _dragInstance = null;
 	private boolean _draggable = true;
 	private java.lang.Object _fillHeight = null;
@@ -1752,11 +1897,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _icons = null;
 	private java.lang.String _dialogId = null;
 	private boolean _initialized = false;
+	private java.lang.String _locale = "en";
 	private boolean _modal = false;
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
 	private boolean _resizable = true;
+	private java.lang.Object _resizableConfig = null;
 	private java.lang.Object _resizableInstance = null;
 	private boolean _shim = false;
 	private java.lang.String _srcNode = null;
@@ -1764,6 +1911,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.Object _title = null;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _x = 0;
@@ -1786,6 +1934,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterDestroyOnCloseChange = null;
 	private java.lang.Object _afterDestroyedChange = null;
 	private java.lang.Object _afterDisabledChange = null;
+	private java.lang.Object _afterDragConfigChange = null;
 	private java.lang.Object _afterDragInstanceChange = null;
 	private java.lang.Object _afterDraggableChange = null;
 	private java.lang.Object _afterFillHeightChange = null;
@@ -1798,11 +1947,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterModalChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
 	private java.lang.Object _afterResizableChange = null;
+	private java.lang.Object _afterResizableConfigChange = null;
 	private java.lang.Object _afterResizableInstanceChange = null;
 	private java.lang.Object _afterShimChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
@@ -1810,6 +1961,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTitleChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1834,6 +1986,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onDestroyOnCloseChange = null;
 	private java.lang.Object _onDestroyedChange = null;
 	private java.lang.Object _onDisabledChange = null;
+	private java.lang.Object _onDragConfigChange = null;
 	private java.lang.Object _onDragInstanceChange = null;
 	private java.lang.Object _onDraggableChange = null;
 	private java.lang.Object _onFillHeightChange = null;
@@ -1846,11 +1999,13 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onModalChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
 	private java.lang.Object _onResizableChange = null;
+	private java.lang.Object _onResizableConfigChange = null;
 	private java.lang.Object _onResizableInstanceChange = null;
 	private java.lang.Object _onShimChange = null;
 	private java.lang.Object _onSrcNodeChange = null;
@@ -1858,6 +2013,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTitleChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

@@ -99,6 +99,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getRender() {
 		return _render;
 	}
@@ -121,6 +125,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getTitle() {
 		return _title;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -207,6 +215,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
@@ -229,6 +241,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTitleChange() {
 		return _afterTitleChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -323,6 +339,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
@@ -345,6 +365,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTitleChange() {
 		return _onTitleChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -465,6 +489,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setRender(java.lang.Object render) {
 		_render = render;
 
@@ -499,6 +529,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_title = title;
 
 		setScopedAttribute("title", title);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -627,6 +663,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -661,6 +703,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTitleChange = afterTitleChange;
 
 		setScopedAttribute("afterTitleChange", afterTitleChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -801,6 +849,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -835,6 +889,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onTitleChange = onTitleChange;
 
 		setScopedAttribute("onTitleChange", onTitleChange);
+	}
+
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
 	}
 
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
@@ -879,12 +939,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_icons = null;
 		_panelId = null;
 		_initialized = false;
+		_locale = "en";
 		_render = null;
 		_rendered = false;
 		_srcNode = null;
 		_strings = null;
 		_tabIndex = 0;
 		_title = null;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_afterBodyContentChange = null;
@@ -906,12 +968,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
+		_afterLocaleChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
 		_afterSrcNodeChange = null;
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTitleChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -935,12 +999,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
+		_onLocaleChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
 		_onSrcNodeChange = null;
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTitleChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -969,12 +1035,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "icons", _icons);
 		setNamespacedAttribute(request, "panelId", _panelId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "title", _title);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
@@ -996,12 +1064,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTitleChange", _afterTitleChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1025,12 +1095,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTitleChange", _onTitleChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1059,12 +1131,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _icons = null;
 	private java.lang.String _panelId = null;
 	private boolean _initialized = false;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
 	private java.lang.String _srcNode = null;
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.Object _title = null;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _afterBodyContentChange = null;
@@ -1086,12 +1160,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTitleChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1115,12 +1191,14 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
 	private java.lang.Object _onSrcNodeChange = null;
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTitleChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

@@ -171,6 +171,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _loadingEl;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getMaxHeight() {
 		return _maxHeight;
 	}
@@ -265,6 +269,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 
 	public boolean getTotalLinks() {
 		return _totalLinks;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getUseOriginalImage() {
@@ -451,6 +459,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterLoadingElChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterMaxHeightChange() {
 		return _afterMaxHeightChange;
 	}
@@ -549,6 +561,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTotalLinksChange() {
 		return _afterTotalLinksChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterUseOriginalImageChange() {
@@ -743,6 +759,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		return _onLoadingElChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnMaxHeightChange() {
 		return _onMaxHeightChange;
 	}
@@ -841,6 +861,10 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTotalLinksChange() {
 		return _onTotalLinksChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnUseOriginalImageChange() {
@@ -1089,6 +1113,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("loadingEl", loadingEl);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setMaxHeight(java.lang.Object maxHeight) {
 		_maxHeight = maxHeight;
 
@@ -1231,6 +1261,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_totalLinks = totalLinks;
 
 		setScopedAttribute("totalLinks", totalLinks);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setUseOriginalImage(boolean useOriginalImage) {
@@ -1509,6 +1545,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterLoadingElChange", afterLoadingElChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterMaxHeightChange(java.lang.Object afterMaxHeightChange) {
 		_afterMaxHeightChange = afterMaxHeightChange;
 
@@ -1657,6 +1699,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTotalLinksChange = afterTotalLinksChange;
 
 		setScopedAttribute("afterTotalLinksChange", afterTotalLinksChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterUseOriginalImageChange(java.lang.Object afterUseOriginalImageChange) {
@@ -1947,6 +1995,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onLoadingElChange", onLoadingElChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnMaxHeightChange(java.lang.Object onMaxHeightChange) {
 		_onMaxHeightChange = onMaxHeightChange;
 
@@ -2097,6 +2151,12 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTotalLinksChange", onTotalLinksChange);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnUseOriginalImageChange(java.lang.Object onUseOriginalImageChange) {
 		_onUseOriginalImageChange = onUseOriginalImageChange;
 
@@ -2187,6 +2247,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_loader = null;
 		_loading = false;
 		_loadingEl = null;
+		_locale = "en";
 		_maxHeight = 2147483647;
 		_maxWidth = 2147483647;
 		_modal = null;
@@ -2211,6 +2272,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_tabIndex = 0;
 		_toolbar = null;
 		_totalLinks = true;
+		_useARIA = true;
 		_useOriginalImage = false;
 		_visible = true;
 		_width = null;
@@ -2257,6 +2319,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_afterLoaderChange = null;
 		_afterLoadingChange = null;
 		_afterLoadingElChange = null;
+		_afterLocaleChange = null;
 		_afterMaxHeightChange = null;
 		_afterMaxWidthChange = null;
 		_afterModalChange = null;
@@ -2282,6 +2345,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTabIndexChange = null;
 		_afterToolbarChange = null;
 		_afterTotalLinksChange = null;
+		_afterUseARIAChange = null;
 		_afterUseOriginalImageChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
@@ -2330,6 +2394,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_onLoaderChange = null;
 		_onLoadingChange = null;
 		_onLoadingElChange = null;
+		_onLocaleChange = null;
 		_onMaxHeightChange = null;
 		_onMaxWidthChange = null;
 		_onModalChange = null;
@@ -2355,6 +2420,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_onTabIndexChange = null;
 		_onToolbarChange = null;
 		_onTotalLinksChange = null;
+		_onUseARIAChange = null;
 		_onUseOriginalImageChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
@@ -2406,6 +2472,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "loader", _loader);
 		setNamespacedAttribute(request, "loading", _loading);
 		setNamespacedAttribute(request, "loadingEl", _loadingEl);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "maxHeight", _maxHeight);
 		setNamespacedAttribute(request, "maxWidth", _maxWidth);
 		setNamespacedAttribute(request, "modal", _modal);
@@ -2430,6 +2497,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "toolbar", _toolbar);
 		setNamespacedAttribute(request, "totalLinks", _totalLinks);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "useOriginalImage", _useOriginalImage);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
@@ -2476,6 +2544,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterLoaderChange", _afterLoaderChange);
 		setNamespacedAttribute(request, "afterLoadingChange", _afterLoadingChange);
 		setNamespacedAttribute(request, "afterLoadingElChange", _afterLoadingElChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMaxHeightChange", _afterMaxHeightChange);
 		setNamespacedAttribute(request, "afterMaxWidthChange", _afterMaxWidthChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
@@ -2501,6 +2570,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterToolbarChange", _afterToolbarChange);
 		setNamespacedAttribute(request, "afterTotalLinksChange", _afterTotalLinksChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterUseOriginalImageChange", _afterUseOriginalImageChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
@@ -2549,6 +2619,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onLoaderChange", _onLoaderChange);
 		setNamespacedAttribute(request, "onLoadingChange", _onLoadingChange);
 		setNamespacedAttribute(request, "onLoadingElChange", _onLoadingElChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMaxHeightChange", _onMaxHeightChange);
 		setNamespacedAttribute(request, "onMaxWidthChange", _onMaxWidthChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
@@ -2574,6 +2645,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onToolbarChange", _onToolbarChange);
 		setNamespacedAttribute(request, "onTotalLinksChange", _onTotalLinksChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onUseOriginalImageChange", _onUseOriginalImageChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
@@ -2625,6 +2697,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _loader = null;
 	private boolean _loading = false;
 	private java.lang.Object _loadingEl = null;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _maxHeight = 2147483647;
 	private java.lang.Object _maxWidth = 2147483647;
 	private java.lang.Object _modal = null;
@@ -2649,6 +2722,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.Object _toolbar = null;
 	private boolean _totalLinks = true;
+	private boolean _useARIA = true;
 	private boolean _useOriginalImage = false;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
@@ -2695,6 +2769,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterLoaderChange = null;
 	private java.lang.Object _afterLoadingChange = null;
 	private java.lang.Object _afterLoadingElChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMaxHeightChange = null;
 	private java.lang.Object _afterMaxWidthChange = null;
 	private java.lang.Object _afterModalChange = null;
@@ -2720,6 +2795,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterToolbarChange = null;
 	private java.lang.Object _afterTotalLinksChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterUseOriginalImageChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
@@ -2768,6 +2844,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onLoaderChange = null;
 	private java.lang.Object _onLoadingChange = null;
 	private java.lang.Object _onLoadingElChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMaxHeightChange = null;
 	private java.lang.Object _onMaxWidthChange = null;
 	private java.lang.Object _onModalChange = null;
@@ -2793,6 +2870,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onToolbarChange = null;
 	private java.lang.Object _onTotalLinksChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onUseOriginalImageChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;

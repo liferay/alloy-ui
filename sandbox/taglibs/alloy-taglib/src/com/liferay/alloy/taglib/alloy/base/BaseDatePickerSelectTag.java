@@ -75,6 +75,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _focused;
 	}
 
+	public java.lang.Object getFormatter() {
+		return _formatter;
+	}
+
 	public java.lang.Object getHeight() {
 		return _height;
 	}
@@ -89,6 +93,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public boolean getInitialized() {
 		return _initialized;
+	}
+
+	public java.lang.String getLocale() {
+		return _locale;
 	}
 
 	public java.lang.String getMonthNode() {
@@ -123,8 +131,16 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _selectWrapperNode;
 	}
 
+	public boolean getSetValue() {
+		return _setValue;
+	}
+
 	public java.lang.String getSrcNode() {
 		return _srcNode;
+	}
+
+	public boolean getStack() {
+		return _stack;
 	}
 
 	public java.lang.Object getStrings() {
@@ -137,6 +153,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public java.lang.Object getTrigger() {
 		return _trigger;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -207,6 +227,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _afterFocusedChange;
 	}
 
+	public java.lang.Object getAfterFormatterChange() {
+		return _afterFormatterChange;
+	}
+
 	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
@@ -225,6 +249,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
+	}
+
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterMonthNodeChange() {
@@ -259,8 +287,16 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _afterSelectWrapperNodeChange;
 	}
 
+	public java.lang.Object getAfterSetValueChange() {
+		return _afterSetValueChange;
+	}
+
 	public java.lang.Object getAfterSrcNodeChange() {
 		return _afterSrcNodeChange;
+	}
+
+	public java.lang.Object getAfterStackChange() {
+		return _afterStackChange;
 	}
 
 	public java.lang.Object getAfterStringsChange() {
@@ -273,6 +309,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public java.lang.Object getAfterTriggerChange() {
 		return _afterTriggerChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -351,6 +391,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _onFocusedChange;
 	}
 
+	public java.lang.Object getOnFormatterChange() {
+		return _onFormatterChange;
+	}
+
 	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
@@ -369,6 +413,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
+	}
+
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
 	}
 
 	public java.lang.Object getOnMonthNodeChange() {
@@ -403,8 +451,16 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _onSelectWrapperNodeChange;
 	}
 
+	public java.lang.Object getOnSetValueChange() {
+		return _onSetValueChange;
+	}
+
 	public java.lang.Object getOnSrcNodeChange() {
 		return _onSrcNodeChange;
+	}
+
+	public java.lang.Object getOnStackChange() {
+		return _onStackChange;
 	}
 
 	public java.lang.Object getOnStringsChange() {
@@ -417,6 +473,10 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 
 	public java.lang.Object getOnTriggerChange() {
 		return _onTriggerChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -513,6 +573,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("focused", focused);
 	}
 
+	public void setFormatter(java.lang.Object formatter) {
+		_formatter = formatter;
+
+		setScopedAttribute("formatter", formatter);
+	}
+
 	public void setHeight(java.lang.Object height) {
 		_height = height;
 
@@ -535,6 +601,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
+	}
+
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
 	}
 
 	public void setMonthNode(java.lang.String monthNode) {
@@ -585,10 +657,22 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("selectWrapperNode", selectWrapperNode);
 	}
 
+	public void setSetValue(boolean setValue) {
+		_setValue = setValue;
+
+		setScopedAttribute("setValue", setValue);
+	}
+
 	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
+	}
+
+	public void setStack(boolean stack) {
+		_stack = stack;
+
+		setScopedAttribute("stack", stack);
 	}
 
 	public void setStrings(java.lang.Object strings) {
@@ -607,6 +691,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_trigger = trigger;
 
 		setScopedAttribute("trigger", trigger);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -711,6 +801,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("afterFocusedChange", afterFocusedChange);
 	}
 
+	public void setAfterFormatterChange(java.lang.Object afterFormatterChange) {
+		_afterFormatterChange = afterFormatterChange;
+
+		setScopedAttribute("afterFormatterChange", afterFormatterChange);
+	}
+
 	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
@@ -739,6 +835,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
+	}
+
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterMonthNodeChange(java.lang.Object afterMonthNodeChange) {
@@ -789,10 +891,22 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("afterSelectWrapperNodeChange", afterSelectWrapperNodeChange);
 	}
 
+	public void setAfterSetValueChange(java.lang.Object afterSetValueChange) {
+		_afterSetValueChange = afterSetValueChange;
+
+		setScopedAttribute("afterSetValueChange", afterSetValueChange);
+	}
+
 	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
+	}
+
+	public void setAfterStackChange(java.lang.Object afterStackChange) {
+		_afterStackChange = afterStackChange;
+
+		setScopedAttribute("afterStackChange", afterStackChange);
 	}
 
 	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
@@ -811,6 +925,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterTriggerChange = afterTriggerChange;
 
 		setScopedAttribute("afterTriggerChange", afterTriggerChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -927,6 +1047,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onFocusedChange", onFocusedChange);
 	}
 
+	public void setOnFormatterChange(java.lang.Object onFormatterChange) {
+		_onFormatterChange = onFormatterChange;
+
+		setScopedAttribute("onFormatterChange", onFormatterChange);
+	}
+
 	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
@@ -955,6 +1081,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
+	}
+
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
 	}
 
 	public void setOnMonthNodeChange(java.lang.Object onMonthNodeChange) {
@@ -1005,10 +1137,22 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onSelectWrapperNodeChange", onSelectWrapperNodeChange);
 	}
 
+	public void setOnSetValueChange(java.lang.Object onSetValueChange) {
+		_onSetValueChange = onSetValueChange;
+
+		setScopedAttribute("onSetValueChange", onSetValueChange);
+	}
+
 	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
+	}
+
+	public void setOnStackChange(java.lang.Object onStackChange) {
+		_onStackChange = onStackChange;
+
+		setScopedAttribute("onStackChange", onStackChange);
 	}
 
 	public void setOnStringsChange(java.lang.Object onStringsChange) {
@@ -1027,6 +1171,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onTriggerChange = onTriggerChange;
 
 		setScopedAttribute("onTriggerChange", onTriggerChange);
+	}
+
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
 	}
 
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
@@ -1083,10 +1233,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_destroyed = false;
 		_disabled = false;
 		_focused = false;
+		_formatter = null;
 		_height = null;
 		_hideClass = "yui3-aui-helper-hidden";
 		_datepickerselectId = null;
 		_initialized = false;
+		_locale = "en";
 		_monthNode = null;
 		_monthNodeName = "month";
 		_populateDay = true;
@@ -1095,10 +1247,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_render = null;
 		_rendered = false;
 		_selectWrapperNode = null;
+		_setValue = true;
 		_srcNode = null;
+		_stack = true;
 		_strings = null;
 		_tabIndex = 0;
 		_trigger = null;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_yearNode = null;
@@ -1116,11 +1271,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterDestroyedChange = null;
 		_afterDisabledChange = null;
 		_afterFocusedChange = null;
+		_afterFormatterChange = null;
 		_afterHeightChange = null;
 		_afterHideClassChange = null;
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
+		_afterLocaleChange = null;
 		_afterMonthNodeChange = null;
 		_afterMonthNodeNameChange = null;
 		_afterPopulateDayChange = null;
@@ -1129,10 +1286,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
 		_afterSelectWrapperNodeChange = null;
+		_afterSetValueChange = null;
 		_afterSrcNodeChange = null;
+		_afterStackChange = null;
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTriggerChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1152,11 +1312,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onDestroyedChange = null;
 		_onDisabledChange = null;
 		_onFocusedChange = null;
+		_onFormatterChange = null;
 		_onHeightChange = null;
 		_onHideClassChange = null;
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
+		_onLocaleChange = null;
 		_onMonthNodeChange = null;
 		_onMonthNodeNameChange = null;
 		_onPopulateDayChange = null;
@@ -1165,10 +1327,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onRenderChange = null;
 		_onRenderedChange = null;
 		_onSelectWrapperNodeChange = null;
+		_onSetValueChange = null;
 		_onSrcNodeChange = null;
+		_onStackChange = null;
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTriggerChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1194,10 +1359,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
 		setNamespacedAttribute(request, "focused", _focused);
+		setNamespacedAttribute(request, "formatter", _formatter);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "datepickerselectId", _datepickerselectId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "monthNode", _monthNode);
 		setNamespacedAttribute(request, "monthNodeName", _monthNodeName);
 		setNamespacedAttribute(request, "populateDay", _populateDay);
@@ -1206,10 +1373,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "selectWrapperNode", _selectWrapperNode);
+		setNamespacedAttribute(request, "setValue", _setValue);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
+		setNamespacedAttribute(request, "stack", _stack);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "trigger", _trigger);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "yearNode", _yearNode);
@@ -1227,11 +1397,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
+		setNamespacedAttribute(request, "afterFormatterChange", _afterFormatterChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMonthNodeChange", _afterMonthNodeChange);
 		setNamespacedAttribute(request, "afterMonthNodeNameChange", _afterMonthNodeNameChange);
 		setNamespacedAttribute(request, "afterPopulateDayChange", _afterPopulateDayChange);
@@ -1240,10 +1412,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterSelectWrapperNodeChange", _afterSelectWrapperNodeChange);
+		setNamespacedAttribute(request, "afterSetValueChange", _afterSetValueChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
+		setNamespacedAttribute(request, "afterStackChange", _afterStackChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTriggerChange", _afterTriggerChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1263,11 +1438,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
+		setNamespacedAttribute(request, "onFormatterChange", _onFormatterChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMonthNodeChange", _onMonthNodeChange);
 		setNamespacedAttribute(request, "onMonthNodeNameChange", _onMonthNodeNameChange);
 		setNamespacedAttribute(request, "onPopulateDayChange", _onPopulateDayChange);
@@ -1276,10 +1453,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onSelectWrapperNodeChange", _onSelectWrapperNodeChange);
+		setNamespacedAttribute(request, "onSetValueChange", _onSetValueChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
+		setNamespacedAttribute(request, "onStackChange", _onStackChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTriggerChange", _onTriggerChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1305,10 +1485,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private boolean _destroyed = false;
 	private boolean _disabled = false;
 	private boolean _focused = false;
+	private java.lang.Object _formatter = null;
 	private java.lang.Object _height = null;
 	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
 	private java.lang.String _datepickerselectId = null;
 	private boolean _initialized = false;
+	private java.lang.String _locale = "en";
 	private java.lang.String _monthNode = null;
 	private java.lang.String _monthNodeName = "month";
 	private boolean _populateDay = true;
@@ -1317,10 +1499,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
 	private java.lang.String _selectWrapperNode = null;
+	private boolean _setValue = true;
 	private java.lang.String _srcNode = null;
+	private boolean _stack = true;
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.Object _trigger = null;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.String _yearNode = null;
@@ -1338,11 +1523,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _afterDestroyedChange = null;
 	private java.lang.Object _afterDisabledChange = null;
 	private java.lang.Object _afterFocusedChange = null;
+	private java.lang.Object _afterFormatterChange = null;
 	private java.lang.Object _afterHeightChange = null;
 	private java.lang.Object _afterHideClassChange = null;
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMonthNodeChange = null;
 	private java.lang.Object _afterMonthNodeNameChange = null;
 	private java.lang.Object _afterPopulateDayChange = null;
@@ -1351,10 +1538,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
 	private java.lang.Object _afterSelectWrapperNodeChange = null;
+	private java.lang.Object _afterSetValueChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
+	private java.lang.Object _afterStackChange = null;
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTriggerChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1374,11 +1564,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _onDestroyedChange = null;
 	private java.lang.Object _onDisabledChange = null;
 	private java.lang.Object _onFocusedChange = null;
+	private java.lang.Object _onFormatterChange = null;
 	private java.lang.Object _onHeightChange = null;
 	private java.lang.Object _onHideClassChange = null;
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMonthNodeChange = null;
 	private java.lang.Object _onMonthNodeNameChange = null;
 	private java.lang.Object _onPopulateDayChange = null;
@@ -1387,10 +1579,13 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
 	private java.lang.Object _onSelectWrapperNodeChange = null;
+	private java.lang.Object _onSetValueChange = null;
 	private java.lang.Object _onSrcNodeChange = null;
+	private java.lang.Object _onStackChange = null;
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTriggerChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

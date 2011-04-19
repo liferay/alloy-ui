@@ -58,7 +58,7 @@
 		</attribute>
 		<attribute>
 			<description><![CDATA[If set to true, the <a href="AutoComplete.html#method_filterResults">filterResults</a>
-method will be run on the response from the data source.]]></description>
+method will be run on the response from the data source.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>applyLocalFilter</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -66,7 +66,7 @@ method will be run on the response from the data source.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Automatically highlight the first item in the list when the results are
-made visible.]]></description>
+made visible.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>autoHighlight</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -75,29 +75,29 @@ made visible.]]></description>
 		<attribute>
 			<description><![CDATA[The outermost DOM node for the Widget, used for sizing and positioning
 of a Widget as well as a containing element for any decorator elements used
-for skinning.]]></description>
+for skinning.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>boundingBox</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[To use a button]]></description>
+			<description><![CDATA[To use a button<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>button</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[A DOM node that is a direct descendent of a Widget's bounding box that
-houses its content.]]></description>
+			<description><![CDATA[A DOM node that is a direct descendant of a Widget's bounding box that
+houses its content.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>contentBox</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[CSS class to be automatically added to the <code>boundingBox</code>.]]></description>
+			<description><![CDATA[CSS class to be automatically added to the <code>boundingBox</code>.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>cssClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -106,7 +106,7 @@ houses its content.]]></description>
 		<attribute>
 			<description><![CDATA[The data source that results will be read from. This can either be
 an existing <a href="DataSource.html">DataSource</a> object, or it can be a
-value that would be passed to <a href="DataSource.html">DataSource</a>.]]></description>
+value that would be passed to <a href="DataSource.html">DataSource</a>.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>dataSource</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -115,7 +115,7 @@ value that would be passed to <a href="DataSource.html">DataSource</a>.]]></desc
 		<attribute>
 			<description><![CDATA[The type of the data source passed into <a href="AutoComplete.html#config_dataSource">dataSource</a>.
 This can be used to explicitly declare what kind of <a href="DataSource.html">DataSource</a> object will
-be created.]]></description>
+be created.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>dataSourceType</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -123,7 +123,7 @@ be created.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The character used to indicate the beginning or ending of a new value. Most commonly used
-is a ",".]]></description>
+is a ",".<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>delimChar</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -131,7 +131,7 @@ is a ",".]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
-has been through the destroy lifecycle phase.]]></description>
+has been through the destroy lifecycle phase.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>destroyed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -139,7 +139,7 @@ has been through the destroy lifecycle phase.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget should be disabled. The disabled implementation
-is left to the specific classes extending widget.]]></description>
+is left to the specific classes extending widget.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -147,7 +147,7 @@ is left to the specific classes extending widget.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean indicating if the Widget, or one of its descendants,
-has focus.]]></description>
+has focus.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>focused</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -155,7 +155,7 @@ has focus.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, this
-will clear a selection when the overlay closes unless a user explicitly selects an item.]]></description>
+will clear a selection when the overlay closes unless a user explicitly selects an item.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>forceSelection</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -163,7 +163,7 @@ will clear a selection when the overlay closes unless a user explicitly selects 
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the height of the Widget. If a number is provided,
-the default unit, defined by the Widgets DEF_UNIT, property is used.]]></description>
+the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>height</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -172,14 +172,14 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.]]></description>
+<code>false</code>.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[]]></description>
+			<description><![CDATA[<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>autocompleteId</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -187,42 +187,50 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.]]></descrip
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this object
-has been through the init lifecycle phase.]]></description>
+has been through the init lifecycle phase.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>initialized</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The input field which will recieve the users input.]]></description>
+			<description><![CDATA[The input field which will recieve the users input.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>input</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The key or numeric index in the schema to match the result against.]]></description>
+			<description><![CDATA[The default locale for the widget. NOTE: Using get/set on the "strings" attribute will
+return/set strings for this locale.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The key or numeric index in the schema to match the result against.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>matchKey</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The maximum number of results to display.]]></description>
+			<description><![CDATA[The maximum number of results to display.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>maxResultsDisplayed</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The minimum number of characters required to query the data source.]]></description>
+			<description><![CDATA[The minimum number of characters required to query the data source.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>minQueryLength</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The amount of time in seconds to delay before submitting the query.]]></description>
+			<description><![CDATA[The amount of time in seconds to delay before submitting the query.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>queryDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -231,7 +239,7 @@ has been through the init lifecycle phase.]]></description>
 		<attribute>
 			<description><![CDATA[When IME usage is detected or interval detection is explicitly enabled,
 AutoComplete will detect the input value at the given interval and send a
-query if the value has changed.]]></description>
+query if the value has changed.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>queryInterval</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -239,7 +247,7 @@ query if the value has changed.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
-setting this to true will match only results with the same case.]]></description>
+setting this to true will match only results with the same case.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>queryMatchCase</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -248,7 +256,7 @@ setting this to true will match only results with the same case.]]></description
 		<attribute>
 			<description><![CDATA[When <a href="AutoComplete.html#config_applyLocalFilter">applyLocalFilter</a> is true,
 setting this to true will match results which contain the query anywhere in the text,
-instead of just matching just items that start with the query.]]></description>
+instead of just matching just items that start with the query.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>queryMatchContains</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -258,7 +266,7 @@ instead of just matching just items that start with the query.]]></description>
 			<description><![CDATA[For IO DataSources, AutoComplete will automatically insert a "?" between the server URI and
 the encoded query string. To prevent this behavior, you can
 set this value to false. If you need to customize this even further, you
-can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.]]></description>
+can override the <a href="AutoComplete.html#method_generateRequest">generateRequest</a> method.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>queryQuestionMark</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -266,7 +274,7 @@ can override the <a href="AutoComplete.html#method_generateRequest">generateRequ
 		</attribute>
 		<attribute>
 			<description><![CDATA[If <code>true</code> the render phase will be autimatically invoked
-preventing the <code>.render()</code> manual call.]]></description>
+preventing the <code>.render()</code> manual call.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>render</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -274,42 +282,42 @@ preventing the <code>.render()</code> manual call.]]></description>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating whether or not this Widget
-has been through the render lifecycle phase.]]></description>
+has been through the render lifecycle phase.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>rendered</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.]]></description>
+			<description><![CDATA[A valid configuration object for any of <a href="module_datasource.html">DataSource</a> schema plugins.<!--{"outputType":"java.util.HashMap","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>schema</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.]]></description>
+			<description><![CDATA[A valid type of <a href="module_datasource.html">DataSource</a> schema plugin, such as array, json, xml, etc.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>schemaType</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition]]></description>
+			<description><![CDATA[The DOM node to parse for configuration values, passed to the Widget's HTML_PARSER definition<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>srcNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.]]></description>
+			<description><![CDATA[Collection of strings used to label elements of the Widget's UI.<!--{"outputType":"java.util.HashMap","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>strings</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Whether or not the input field should be updated with selections.]]></description>
+			<description><![CDATA[Whether or not the input field should be updated with selections.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>suppressInputUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -321,7 +329,7 @@ position in the default tab flow.  The value is used to set the
 "tabIndex" attribute on the widget's bounding box.  Negative values allow
 the widget to receive DOM focus programmatically (by calling the focus
 method), while being removed from the default tab flow.  A value of
-null removes the "tabIndex" attribute from the widget's bounding box.]]></description>
+null removes the "tabIndex" attribute from the widget's bounding box.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>tabIndex</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -330,7 +338,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.]]></descri
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_autoHighlight">autoHighlight</a> is enabled, whether or not the
 input field should be automatically updated with the first result as the user types,
-automatically selecting the portion of the text the user has not typed yet.]]></description>
+automatically selecting the portion of the text the user has not typed yet.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":true}-->]]></description>
 			<name>typeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -339,21 +347,29 @@ automatically selecting the portion of the text the user has not typed yet.]]></
 		<attribute>
 			<description><![CDATA[If <a href="AutoComplete.html#config_typeAhead">typeAhead</a> is true, number of seconds
 to delay before updating the input. In order to prevent certain race conditions, this value must
-always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.]]></description>
+always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDelay</a>.<!--{"outputType":"java.lang.Number","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>typeAheadDelay</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The unique ID of the input element.]]></description>
+			<description><![CDATA[The unique ID of the input element.<!--{"outputType":"java.lang.String","inputType":"java.lang.String","required":false,"event":false}-->]]></description>
 			<name>uniqueName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Boolean indicating weather or not the Widget is visible.]]></description>
+			<description><![CDATA[Boolean indicating if use of the WAI-ARIA Roles and States should be
+enabled for the Widget.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
+			<name>useARIA</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean indicating weather or not the Widget is visible.<!--{"outputType":"boolean","inputType":"boolean","required":false,"event":false}-->]]></description>
 			<name>visible</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -361,751 +377,973 @@ always be greater than the <a href="AutoComplete.html#config_queryDelay">queryDe
 		</attribute>
 		<attribute>
 			<description><![CDATA[String with units, or number, representing the width of the Widget. If a number is provided,
-the default unit, defined by the Widgets DEF_UNIT, property is used.]]></description>
+the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":false}-->]]></description>
 			<name>width</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'alwaysShowContainer' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterAlwaysShowContainerChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'applyLocalFilter' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterApplyLocalFilterChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'autoHighlight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterAutoHighlightChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'boundingBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterBoundingBoxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'button' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterButtonChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerCollapse event. Fired when the container is hidden.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterContainerCollapse</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerExpand event. Fired when the container is shown.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterContainerExpand</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerPopulate event. Fired when the container is populated.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterContainerPopulate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'contentBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterContentBoxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'cssClass' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterCssClassChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataError event. Fired when there is an error accessing the data.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDataError</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataRequest event. Fired when ever a query is sent to the data source.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDataRequest</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataReturn event. Fired when data successfully comes back from the data request.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDataReturn</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'dataSource' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDataSourceChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'dataSourceType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDataSourceTypeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'delimChar' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDelimCharChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[<p>
+Lifecycle event for the destroy phase,
+fired prior to destruction. Invoking the preventDefault
+method on the event object provided to subscribers will
+prevent destruction from proceeding.
+</p>
+<p>
+Subscribers to the "after" moment of this event, will be notified
+after destruction is complete (and as a result cannot prevent
+destruction).
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDestroy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'destroyed' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDestroyedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'disabled' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterDisabledChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'focused' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterFocusedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'forceSelection' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterForceSelectionChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'height' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterHeightChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'hideClass' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterHideClassChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'id' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterIdChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[<p>
+Lifecycle event for the init phase, fired prior to initialization.
+Invoking the preventDefault() method on the event object provided
+to subscribers will prevent initialization from occuring.
+</p>
+<p>
+Subscribers to the "after" momemt of this event, will be notified
+after initialization of the object is complete (and therefore
+cannot prevent initialization).
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterInit</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'initialized' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterInitializedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'input' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterInputChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemArrowFrom event. Fired when the user navigates via the keyboard away from
+a selected item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterItemArrowFrom</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemArrowTo event. Fired when the user navigates via the keyboard to a selected item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterItemArrowTo</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemMouseOut event. Fired when the user mouses away from an item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterItemMouseOut</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemMouseOver event. Fired when the user mouses over an item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterItemMouseOver</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemSelect event. Fired when an item in the list is selected.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterItemSelect</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'locale' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
+			<name>afterLocaleChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'matchKey' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterMatchKeyChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'maxResultsDisplayed' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterMaxResultsDisplayedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'minQueryLength' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterMinQueryLengthChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterQueryDelayChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryInterval' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterQueryIntervalChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryMatchCase' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterQueryMatchCaseChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryMatchContains' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterQueryMatchContainsChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryQuestionMark' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterQueryQuestionMarkChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'render' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'rendered' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterRenderedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'schema' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterSchemaChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'schemaType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterSchemaTypeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the selectionEnforce event. Fired if <a href="Autocomplete.html#config_forceSelection">forceSelection</a>
+is enabled and the users input element has been cleared because it did not match one of the results.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterSelectionEnforce</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'srcNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterSrcNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'strings' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterStringsChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'suppressInputUpdate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterSuppressInputUpdateChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'tabIndex' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTabIndexChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxBlur event. Fired when the user leaves the input element.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTextboxBlur</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxChange event. Fired when the value in the input element is changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTextboxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxFocus event. Fired when user moves focus to the input element.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTextboxFocus</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxKey event. Fired when the input element receives key input.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTextboxKey</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the typeAhead event. Fired when the input element has been pre-filled by the type-ahead feature.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTypeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'typeAhead' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTypeAheadChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'typeAheadDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterTypeAheadDelayChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'uniqueName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterUniqueNameChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the unmatchedItemSelect event. Fired when a user selects something that does
+not match any of the displayed results.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterUnmatchedItemSelect</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'useARIA' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
+			<name>afterUseARIAChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'visible' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterVisibleChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Notification event, which widget implementations can fire, when
+they change the content of the widget. This event has no default
+behavior and cannot be prevented, so the "on" or "after"
+moments are effectively equivalent (with on listeners being invoked before
+after listeners).<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterContentUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Lifecycle event for the render phase, fired prior to rendering the UI
+for the widget (prior to invoking the widget's renderer method).
+<p>
+Subscribers to the "on" moment of this event, will be notified
+before the widget is rendered.
+</p>
+<p>
+Subscribers to the "after" moment of this event, will be notified
+after rendering is complete.
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterRender</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'width' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>afterWidthChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'alwaysShowContainer' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onAlwaysShowContainerChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'applyLocalFilter' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onApplyLocalFilterChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'autoHighlight' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onAutoHighlightChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'boundingBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onBoundingBoxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'button' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onButtonChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerCollapse event. Fired when the container is hidden.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onContainerCollapse</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerExpand event. Fired when the container is shown.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onContainerExpand</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the containerPopulate event. Fired when the container is populated.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onContainerPopulate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'contentBox' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onContentBoxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'cssClass' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onCssClassChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataError event. Fired when there is an error accessing the data.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDataError</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataRequest event. Fired when ever a query is sent to the data source.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDataRequest</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the dataReturn event. Fired when data successfully comes back from the data request.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDataReturn</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'dataSource' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDataSourceChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'dataSourceType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDataSourceTypeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'delimChar' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDelimCharChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[<p>
+Lifecycle event for the destroy phase,
+fired prior to destruction. Invoking the preventDefault
+method on the event object provided to subscribers will
+prevent destruction from proceeding.
+</p>
+<p>
+Subscribers to the "after" moment of this event, will be notified
+after destruction is complete (and as a result cannot prevent
+destruction).
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDestroy</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'destroyed' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDestroyedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'disabled' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onDisabledChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'focused' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onFocusedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'forceSelection' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onForceSelectionChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'height' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onHeightChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'hideClass' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onHideClassChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'id' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onIdChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[<p>
+Lifecycle event for the init phase, fired prior to initialization.
+Invoking the preventDefault() method on the event object provided
+to subscribers will prevent initialization from occuring.
+</p>
+<p>
+Subscribers to the "after" momemt of this event, will be notified
+after initialization of the object is complete (and therefore
+cannot prevent initialization).
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onInit</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'initialized' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onInitializedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'input' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onInputChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemArrowFrom event. Fired when the user navigates via the keyboard away from
+a selected item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onItemArrowFrom</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemArrowTo event. Fired when the user navigates via the keyboard to a selected item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onItemArrowTo</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemMouseOut event. Fired when the user mouses away from an item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onItemMouseOut</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemMouseOver event. Fired when the user mouses over an item.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onItemMouseOver</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the itemSelect event. Fired when an item in the list is selected.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onItemSelect</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'locale' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
+			<name>onLocaleChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'matchKey' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onMatchKeyChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'maxResultsDisplayed' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onMaxResultsDisplayedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'minQueryLength' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onMinQueryLengthChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onQueryDelayChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryInterval' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onQueryIntervalChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryMatchCase' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onQueryMatchCaseChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryMatchContains' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onQueryMatchContainsChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'queryQuestionMark' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onQueryQuestionMarkChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'render' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onRenderChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'rendered' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onRenderedChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'schema' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onSchemaChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'schemaType' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onSchemaTypeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the selectionEnforce event. Fired if <a href="Autocomplete.html#config_forceSelection">forceSelection</a>
+is enabled and the users input element has been cleared because it did not match one of the results.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onSelectionEnforce</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'srcNode' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onSrcNodeChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'strings' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onStringsChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'suppressInputUpdate' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onSuppressInputUpdateChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'tabIndex' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTabIndexChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxBlur event. Fired when the user leaves the input element.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTextboxBlur</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxChange event. Fired when the value in the input element is changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTextboxChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxFocus event. Fired when user moves focus to the input element.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTextboxFocus</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the textboxKey event. Fired when the input element receives key input.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTextboxKey</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the typeAhead event. Fired when the input element has been pre-filled by the type-ahead feature.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTypeAhead</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'typeAhead' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTypeAheadChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'typeAheadDelay' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onTypeAheadDelayChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'uniqueName' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onUniqueNameChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Handles the unmatchedItemSelect event. Fired when a user selects something that does
+not match any of the displayed results.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onUnmatchedItemSelect</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'useARIA' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
+			<name>onUseARIAChange</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'visible' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onVisibleChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Notification event, which widget implementations can fire, when
+they change the content of the widget. This event has no default
+behavior and cannot be prevented, so the "on" or "after"
+moments are effectively equivalent (with on listeners being invoked before
+after listeners).<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onContentUpdate</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Lifecycle event for the render phase, fired prior to rendering the UI
+for the widget (prior to invoking the widget's renderer method).
+<p>
+Subscribers to the "on" moment of this event, will be notified
+before the widget is rendered.
+</p>
+<p>
+Subscribers to the "after" moment of this event, will be notified
+after rendering is complete.
+</p><!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onRender</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Fires when the value for the configuration attribute 'width' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"outputType":"java.lang.Object","inputType":"java.lang.Object","required":false,"event":true}-->]]></description>
 			<name>onWidthChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

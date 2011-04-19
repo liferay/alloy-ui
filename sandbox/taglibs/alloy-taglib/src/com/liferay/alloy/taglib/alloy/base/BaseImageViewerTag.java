@@ -163,6 +163,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		return _loadingEl;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getMaxHeight() {
 		return _maxHeight;
 	}
@@ -217,6 +221,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 
 	public boolean getTotalLinks() {
 		return _totalLinks;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -391,6 +399,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterLoadingElChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterMaxHeightChange() {
 		return _afterMaxHeightChange;
 	}
@@ -449,6 +461,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTotalLinksChange() {
 		return _afterTotalLinksChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -631,6 +647,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		return _onLoadingElChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnMaxHeightChange() {
 		return _onMaxHeightChange;
 	}
@@ -689,6 +709,10 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTotalLinksChange() {
 		return _onTotalLinksChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -921,6 +945,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("loadingEl", loadingEl);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setMaxHeight(java.lang.Object maxHeight) {
 		_maxHeight = maxHeight;
 
@@ -1003,6 +1033,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_totalLinks = totalLinks;
 
 		setScopedAttribute("totalLinks", totalLinks);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -1263,6 +1299,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterLoadingElChange", afterLoadingElChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterMaxHeightChange(java.lang.Object afterMaxHeightChange) {
 		_afterMaxHeightChange = afterMaxHeightChange;
 
@@ -1351,6 +1393,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTotalLinksChange = afterTotalLinksChange;
 
 		setScopedAttribute("afterTotalLinksChange", afterTotalLinksChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -1623,6 +1671,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onLoadingElChange", onLoadingElChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnMaxHeightChange(java.lang.Object onMaxHeightChange) {
 		_onMaxHeightChange = onMaxHeightChange;
 
@@ -1713,6 +1767,12 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTotalLinksChange", onTotalLinksChange);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
@@ -1795,6 +1855,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_loader = null;
 		_loading = false;
 		_loadingEl = null;
+		_locale = "en";
 		_maxHeight = 2147483647;
 		_maxWidth = 2147483647;
 		_modal = null;
@@ -1809,6 +1870,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_strings = null;
 		_tabIndex = 0;
 		_totalLinks = true;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_x = 0;
@@ -1852,6 +1914,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_afterLoaderChange = null;
 		_afterLoadingChange = null;
 		_afterLoadingElChange = null;
+		_afterLocaleChange = null;
 		_afterMaxHeightChange = null;
 		_afterMaxWidthChange = null;
 		_afterModalChange = null;
@@ -1867,6 +1930,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTotalLinksChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1912,6 +1976,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_onLoaderChange = null;
 		_onLoadingChange = null;
 		_onLoadingElChange = null;
+		_onLocaleChange = null;
 		_onMaxHeightChange = null;
 		_onMaxWidthChange = null;
 		_onModalChange = null;
@@ -1927,6 +1992,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTotalLinksChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1975,6 +2041,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "loader", _loader);
 		setNamespacedAttribute(request, "loading", _loading);
 		setNamespacedAttribute(request, "loadingEl", _loadingEl);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "maxHeight", _maxHeight);
 		setNamespacedAttribute(request, "maxWidth", _maxWidth);
 		setNamespacedAttribute(request, "modal", _modal);
@@ -1989,6 +2056,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "totalLinks", _totalLinks);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "x", _x);
@@ -2032,6 +2100,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterLoaderChange", _afterLoaderChange);
 		setNamespacedAttribute(request, "afterLoadingChange", _afterLoadingChange);
 		setNamespacedAttribute(request, "afterLoadingElChange", _afterLoadingElChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMaxHeightChange", _afterMaxHeightChange);
 		setNamespacedAttribute(request, "afterMaxWidthChange", _afterMaxWidthChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
@@ -2047,6 +2116,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTotalLinksChange", _afterTotalLinksChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -2092,6 +2162,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onLoaderChange", _onLoaderChange);
 		setNamespacedAttribute(request, "onLoadingChange", _onLoadingChange);
 		setNamespacedAttribute(request, "onLoadingElChange", _onLoadingElChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMaxHeightChange", _onMaxHeightChange);
 		setNamespacedAttribute(request, "onMaxWidthChange", _onMaxWidthChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
@@ -2107,6 +2178,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTotalLinksChange", _onTotalLinksChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -2155,6 +2227,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _loader = null;
 	private boolean _loading = false;
 	private java.lang.Object _loadingEl = null;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _maxHeight = 2147483647;
 	private java.lang.Object _maxWidth = 2147483647;
 	private java.lang.Object _modal = null;
@@ -2169,6 +2242,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private boolean _totalLinks = true;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _x = 0;
@@ -2212,6 +2286,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterLoaderChange = null;
 	private java.lang.Object _afterLoadingChange = null;
 	private java.lang.Object _afterLoadingElChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMaxHeightChange = null;
 	private java.lang.Object _afterMaxWidthChange = null;
 	private java.lang.Object _afterModalChange = null;
@@ -2227,6 +2302,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTotalLinksChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -2272,6 +2348,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onLoaderChange = null;
 	private java.lang.Object _onLoadingChange = null;
 	private java.lang.Object _onLoadingElChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMaxHeightChange = null;
 	private java.lang.Object _onMaxWidthChange = null;
 	private java.lang.Object _onModalChange = null;
@@ -2287,6 +2364,7 @@ public class BaseImageViewerTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTotalLinksChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

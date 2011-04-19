@@ -107,6 +107,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		return _input;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getMatchKey() {
 		return _matchKey;
 	}
@@ -181,6 +185,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getUniqueName() {
 		return _uniqueName;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -319,6 +327,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterItemSelect;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterMatchKeyChange() {
 		return _afterMatchKeyChange;
 	}
@@ -421,6 +433,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterUnmatchedItemSelect() {
 		return _afterUnmatchedItemSelect;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -567,6 +583,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		return _onItemSelect;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnMatchKeyChange() {
 		return _onMatchKeyChange;
 	}
@@ -669,6 +689,10 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnUnmatchedItemSelect() {
 		return _onUnmatchedItemSelect;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -801,6 +825,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("input", input);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setMatchKey(java.lang.Object matchKey) {
 		_matchKey = matchKey;
 
@@ -913,6 +943,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_uniqueName = uniqueName;
 
 		setScopedAttribute("uniqueName", uniqueName);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -1119,6 +1155,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterItemSelect", afterItemSelect);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterMatchKeyChange(java.lang.Object afterMatchKeyChange) {
 		_afterMatchKeyChange = afterMatchKeyChange;
 
@@ -1273,6 +1315,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_afterUnmatchedItemSelect = afterUnmatchedItemSelect;
 
 		setScopedAttribute("afterUnmatchedItemSelect", afterUnmatchedItemSelect);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -1491,6 +1539,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onItemSelect", onItemSelect);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnMatchKeyChange(java.lang.Object onMatchKeyChange) {
 		_onMatchKeyChange = onMatchKeyChange;
 
@@ -1647,6 +1701,12 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onUnmatchedItemSelect", onUnmatchedItemSelect);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
@@ -1691,6 +1751,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_textboxlistId = null;
 		_initialized = false;
 		_input = null;
+		_locale = "en";
 		_matchKey = null;
 		_maxResultsDisplayed = 10;
 		_minQueryLength = 1;
@@ -1710,6 +1771,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_typeAhead = false;
 		_typeAheadDelay = 0.2;
 		_uniqueName = null;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_afterAlwaysShowContainerChange = null;
@@ -1744,6 +1806,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_afterItemMouseOut = null;
 		_afterItemMouseOver = null;
 		_afterItemSelect = null;
+		_afterLocaleChange = null;
 		_afterMatchKeyChange = null;
 		_afterMaxResultsDisplayedChange = null;
 		_afterMinQueryLengthChange = null;
@@ -1770,6 +1833,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTypeAheadDelayChange = null;
 		_afterUniqueNameChange = null;
 		_afterUnmatchedItemSelect = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1806,6 +1870,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_onItemMouseOut = null;
 		_onItemMouseOver = null;
 		_onItemSelect = null;
+		_onLocaleChange = null;
 		_onMatchKeyChange = null;
 		_onMaxResultsDisplayedChange = null;
 		_onMinQueryLengthChange = null;
@@ -1832,6 +1897,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_onTypeAheadDelayChange = null;
 		_onUniqueNameChange = null;
 		_onUnmatchedItemSelect = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1862,6 +1928,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "textboxlistId", _textboxlistId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "input", _input);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "matchKey", _matchKey);
 		setNamespacedAttribute(request, "maxResultsDisplayed", _maxResultsDisplayed);
 		setNamespacedAttribute(request, "minQueryLength", _minQueryLength);
@@ -1881,6 +1948,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "typeAhead", _typeAhead);
 		setNamespacedAttribute(request, "typeAheadDelay", _typeAheadDelay);
 		setNamespacedAttribute(request, "uniqueName", _uniqueName);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "afterAlwaysShowContainerChange", _afterAlwaysShowContainerChange);
@@ -1915,6 +1983,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterItemMouseOut", _afterItemMouseOut);
 		setNamespacedAttribute(request, "afterItemMouseOver", _afterItemMouseOver);
 		setNamespacedAttribute(request, "afterItemSelect", _afterItemSelect);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMatchKeyChange", _afterMatchKeyChange);
 		setNamespacedAttribute(request, "afterMaxResultsDisplayedChange", _afterMaxResultsDisplayedChange);
 		setNamespacedAttribute(request, "afterMinQueryLengthChange", _afterMinQueryLengthChange);
@@ -1941,6 +2010,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterTypeAheadDelayChange", _afterTypeAheadDelayChange);
 		setNamespacedAttribute(request, "afterUniqueNameChange", _afterUniqueNameChange);
 		setNamespacedAttribute(request, "afterUnmatchedItemSelect", _afterUnmatchedItemSelect);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1977,6 +2047,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onItemMouseOut", _onItemMouseOut);
 		setNamespacedAttribute(request, "onItemMouseOver", _onItemMouseOver);
 		setNamespacedAttribute(request, "onItemSelect", _onItemSelect);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMatchKeyChange", _onMatchKeyChange);
 		setNamespacedAttribute(request, "onMaxResultsDisplayedChange", _onMaxResultsDisplayedChange);
 		setNamespacedAttribute(request, "onMinQueryLengthChange", _onMinQueryLengthChange);
@@ -2003,6 +2074,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onTypeAheadDelayChange", _onTypeAheadDelayChange);
 		setNamespacedAttribute(request, "onUniqueNameChange", _onUniqueNameChange);
 		setNamespacedAttribute(request, "onUnmatchedItemSelect", _onUnmatchedItemSelect);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -2033,6 +2105,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _textboxlistId = null;
 	private boolean _initialized = false;
 	private java.lang.String _input = null;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _matchKey = null;
 	private java.lang.Object _maxResultsDisplayed = 10;
 	private java.lang.Object _minQueryLength = 1;
@@ -2052,6 +2125,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _typeAhead = false;
 	private java.lang.Object _typeAheadDelay = 0.2;
 	private java.lang.String _uniqueName = null;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _afterAlwaysShowContainerChange = null;
@@ -2086,6 +2160,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterItemMouseOut = null;
 	private java.lang.Object _afterItemMouseOver = null;
 	private java.lang.Object _afterItemSelect = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMatchKeyChange = null;
 	private java.lang.Object _afterMaxResultsDisplayedChange = null;
 	private java.lang.Object _afterMinQueryLengthChange = null;
@@ -2112,6 +2187,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterTypeAheadDelayChange = null;
 	private java.lang.Object _afterUniqueNameChange = null;
 	private java.lang.Object _afterUnmatchedItemSelect = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -2148,6 +2224,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onItemMouseOut = null;
 	private java.lang.Object _onItemMouseOver = null;
 	private java.lang.Object _onItemSelect = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMatchKeyChange = null;
 	private java.lang.Object _onMaxResultsDisplayedChange = null;
 	private java.lang.Object _onMinQueryLengthChange = null;
@@ -2174,6 +2251,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onTypeAheadDelayChange = null;
 	private java.lang.Object _onUniqueNameChange = null;
 	private java.lang.Object _onUnmatchedItemSelect = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

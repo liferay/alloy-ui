@@ -107,6 +107,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getOpacity() {
 		return _opacity;
 	}
@@ -141,6 +145,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getTarget() {
 		return _target;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -251,6 +259,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterOpacityChange() {
 		return _afterOpacityChange;
 	}
@@ -285,6 +297,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTargetChange() {
 		return _afterTargetChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -403,6 +419,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnOpacityChange() {
 		return _onOpacityChange;
 	}
@@ -437,6 +457,10 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTargetChange() {
 		return _onTargetChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -585,6 +609,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setOpacity(java.lang.Object opacity) {
 		_opacity = opacity;
 
@@ -637,6 +667,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_target = target;
 
 		setScopedAttribute("target", target);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -801,6 +837,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterOpacityChange(java.lang.Object afterOpacityChange) {
 		_afterOpacityChange = afterOpacityChange;
 
@@ -853,6 +895,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTargetChange = afterTargetChange;
 
 		setScopedAttribute("afterTargetChange", afterTargetChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -1029,6 +1077,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnOpacityChange(java.lang.Object onOpacityChange) {
 		_onOpacityChange = onOpacityChange;
 
@@ -1081,6 +1135,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onTargetChange = onTargetChange;
 
 		setScopedAttribute("onTargetChange", onTargetChange);
+	}
+
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
 	}
 
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
@@ -1151,6 +1211,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_hideClass = "yui3-aui-helper-hidden";
 		_overlaymaskId = null;
 		_initialized = false;
+		_locale = "en";
 		_opacity = 0.5;
 		_preventOverlap = false;
 		_render = null;
@@ -1160,6 +1221,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_strings = null;
 		_tabIndex = 0;
 		_target = "document";
+		_useARIA = true;
 		_visible = false;
 		_width = null;
 		_x = 0;
@@ -1187,6 +1249,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
+		_afterLocaleChange = null;
 		_afterOpacityChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
@@ -1196,6 +1259,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTargetChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1225,6 +1289,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
+		_onLocaleChange = null;
 		_onOpacityChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
@@ -1234,6 +1299,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTargetChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1268,6 +1334,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "overlaymaskId", _overlaymaskId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "opacity", _opacity);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
@@ -1277,6 +1344,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "target", _target);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "x", _x);
@@ -1304,6 +1372,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterOpacityChange", _afterOpacityChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
@@ -1313,6 +1382,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTargetChange", _afterTargetChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1342,6 +1412,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onOpacityChange", _onOpacityChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
@@ -1351,6 +1422,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTargetChange", _onTargetChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1385,6 +1457,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
 	private java.lang.String _overlaymaskId = null;
 	private boolean _initialized = false;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _opacity = 0.5;
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
@@ -1394,6 +1467,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.String _target = "document";
+	private boolean _useARIA = true;
 	private boolean _visible = false;
 	private java.lang.Object _width = null;
 	private java.lang.Object _x = 0;
@@ -1421,6 +1495,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterOpacityChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
@@ -1430,6 +1505,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTargetChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1459,6 +1535,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onOpacityChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;
@@ -1468,6 +1545,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTargetChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

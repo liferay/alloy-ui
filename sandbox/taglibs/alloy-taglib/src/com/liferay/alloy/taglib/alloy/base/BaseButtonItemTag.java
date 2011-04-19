@@ -55,6 +55,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _defaultState;
 	}
 
+	public java.lang.Object getDepth() {
+		return _depth;
+	}
+
 	public boolean getDestroyed() {
 		return _destroyed;
 	}
@@ -95,6 +99,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _buttonitemId;
 	}
 
+	public java.lang.Object getIndex() {
+		return _index;
+	}
+
 	public boolean getInitialized() {
 		return _initialized;
 	}
@@ -107,12 +115,28 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _labelNode;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
+	public java.lang.Object getButtonitemParent() {
+		return _buttonitemParent;
+	}
+
 	public java.lang.Object getRender() {
 		return _render;
 	}
 
 	public boolean getRendered() {
 		return _rendered;
+	}
+
+	public java.lang.Object getRoot() {
+		return _root;
+	}
+
+	public java.lang.Object getSelected() {
+		return _selected;
 	}
 
 	public java.lang.String getSrcNode() {
@@ -129,6 +153,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getTitle() {
 		return _title;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -161,6 +189,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterDefaultStateChange() {
 		return _afterDefaultStateChange;
+	}
+
+	public java.lang.Object getAfterDepthChange() {
+		return _afterDepthChange;
 	}
 
 	public java.lang.Object getAfterDestroy() {
@@ -207,6 +239,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterIdChange;
 	}
 
+	public java.lang.Object getAfterIndexChange() {
+		return _afterIndexChange;
+	}
+
 	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
@@ -223,12 +259,28 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterLabelNodeChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
+	public java.lang.Object getAfterParentChange() {
+		return _afterParentChange;
+	}
+
 	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
 
 	public java.lang.Object getAfterRenderedChange() {
 		return _afterRenderedChange;
+	}
+
+	public java.lang.Object getAfterRootChange() {
+		return _afterRootChange;
+	}
+
+	public java.lang.Object getAfterSelectedChange() {
+		return _afterSelectedChange;
 	}
 
 	public java.lang.Object getAfterSrcNodeChange() {
@@ -245,6 +297,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTitleChange() {
 		return _afterTitleChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -285,6 +341,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnDefaultStateChange() {
 		return _onDefaultStateChange;
+	}
+
+	public java.lang.Object getOnDepthChange() {
+		return _onDepthChange;
 	}
 
 	public java.lang.Object getOnDestroy() {
@@ -331,6 +391,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _onIdChange;
 	}
 
+	public java.lang.Object getOnIndexChange() {
+		return _onIndexChange;
+	}
+
 	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
@@ -347,12 +411,28 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		return _onLabelNodeChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
+	public java.lang.Object getOnParentChange() {
+		return _onParentChange;
+	}
+
 	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
 
 	public java.lang.Object getOnRenderedChange() {
 		return _onRenderedChange;
+	}
+
+	public java.lang.Object getOnRootChange() {
+		return _onRootChange;
+	}
+
+	public java.lang.Object getOnSelectedChange() {
+		return _onSelectedChange;
 	}
 
 	public java.lang.Object getOnSrcNodeChange() {
@@ -369,6 +449,10 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTitleChange() {
 		return _onTitleChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -421,6 +505,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_defaultState = defaultState;
 
 		setScopedAttribute("defaultState", defaultState);
+	}
+
+	public void setDepth(java.lang.Object depth) {
+		_depth = depth;
+
+		setScopedAttribute("depth", depth);
 	}
 
 	public void setDestroyed(boolean destroyed) {
@@ -483,6 +573,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("buttonitemId", buttonitemId);
 	}
 
+	public void setIndex(java.lang.Object index) {
+		_index = index;
+
+		setScopedAttribute("index", index);
+	}
+
 	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
@@ -501,6 +597,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("labelNode", labelNode);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
+	public void setButtonitemParent(java.lang.Object buttonitemParent) {
+		_buttonitemParent = buttonitemParent;
+
+		setScopedAttribute("buttonitemParent", buttonitemParent);
+	}
+
 	public void setRender(java.lang.Object render) {
 		_render = render;
 
@@ -511,6 +619,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_rendered = rendered;
 
 		setScopedAttribute("rendered", rendered);
+	}
+
+	public void setRoot(java.lang.Object root) {
+		_root = root;
+
+		setScopedAttribute("root", root);
+	}
+
+	public void setSelected(java.lang.Object selected) {
+		_selected = selected;
+
+		setScopedAttribute("selected", selected);
 	}
 
 	public void setSrcNode(java.lang.String srcNode) {
@@ -535,6 +655,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_title = title;
 
 		setScopedAttribute("title", title);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -583,6 +709,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_afterDefaultStateChange = afterDefaultStateChange;
 
 		setScopedAttribute("afterDefaultStateChange", afterDefaultStateChange);
+	}
+
+	public void setAfterDepthChange(java.lang.Object afterDepthChange) {
+		_afterDepthChange = afterDepthChange;
+
+		setScopedAttribute("afterDepthChange", afterDepthChange);
 	}
 
 	public void setAfterDestroy(java.lang.Object afterDestroy) {
@@ -651,6 +783,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterIdChange", afterIdChange);
 	}
 
+	public void setAfterIndexChange(java.lang.Object afterIndexChange) {
+		_afterIndexChange = afterIndexChange;
+
+		setScopedAttribute("afterIndexChange", afterIndexChange);
+	}
+
 	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
@@ -675,6 +813,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterLabelNodeChange", afterLabelNodeChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
+	public void setAfterParentChange(java.lang.Object afterParentChange) {
+		_afterParentChange = afterParentChange;
+
+		setScopedAttribute("afterParentChange", afterParentChange);
+	}
+
 	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -685,6 +835,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_afterRenderedChange = afterRenderedChange;
 
 		setScopedAttribute("afterRenderedChange", afterRenderedChange);
+	}
+
+	public void setAfterRootChange(java.lang.Object afterRootChange) {
+		_afterRootChange = afterRootChange;
+
+		setScopedAttribute("afterRootChange", afterRootChange);
+	}
+
+	public void setAfterSelectedChange(java.lang.Object afterSelectedChange) {
+		_afterSelectedChange = afterSelectedChange;
+
+		setScopedAttribute("afterSelectedChange", afterSelectedChange);
 	}
 
 	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
@@ -709,6 +871,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTitleChange = afterTitleChange;
 
 		setScopedAttribute("afterTitleChange", afterTitleChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -769,6 +937,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_onDefaultStateChange = onDefaultStateChange;
 
 		setScopedAttribute("onDefaultStateChange", onDefaultStateChange);
+	}
+
+	public void setOnDepthChange(java.lang.Object onDepthChange) {
+		_onDepthChange = onDepthChange;
+
+		setScopedAttribute("onDepthChange", onDepthChange);
 	}
 
 	public void setOnDestroy(java.lang.Object onDestroy) {
@@ -837,6 +1011,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onIdChange", onIdChange);
 	}
 
+	public void setOnIndexChange(java.lang.Object onIndexChange) {
+		_onIndexChange = onIndexChange;
+
+		setScopedAttribute("onIndexChange", onIndexChange);
+	}
+
 	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
@@ -861,6 +1041,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onLabelNodeChange", onLabelNodeChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
+	public void setOnParentChange(java.lang.Object onParentChange) {
+		_onParentChange = onParentChange;
+
+		setScopedAttribute("onParentChange", onParentChange);
+	}
+
 	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -871,6 +1063,18 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_onRenderedChange = onRenderedChange;
 
 		setScopedAttribute("onRenderedChange", onRenderedChange);
+	}
+
+	public void setOnRootChange(java.lang.Object onRootChange) {
+		_onRootChange = onRootChange;
+
+		setScopedAttribute("onRootChange", onRootChange);
+	}
+
+	public void setOnSelectedChange(java.lang.Object onSelectedChange) {
+		_onSelectedChange = onSelectedChange;
+
+		setScopedAttribute("onSelectedChange", onSelectedChange);
 	}
 
 	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
@@ -895,6 +1099,12 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_onTitleChange = onTitleChange;
 
 		setScopedAttribute("onTitleChange", onTitleChange);
+	}
+
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
 	}
 
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
@@ -928,6 +1138,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_contentBox = null;
 		_cssClass = null;
 		_defaultState = true;
+		_depth = -1;
 		_destroyed = false;
 		_disabled = false;
 		_focused = false;
@@ -938,15 +1149,21 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_icon = null;
 		_iconNode = null;
 		_buttonitemId = null;
+		_index = 0;
 		_initialized = false;
 		_label = null;
 		_labelNode = null;
+		_locale = "en";
+		_buttonitemParent = null;
 		_render = null;
 		_rendered = false;
+		_root = null;
+		_selected = 0;
 		_srcNode = null;
 		_strings = null;
 		_tabIndex = 0;
 		_title = null;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_afterActiveStateChange = null;
@@ -955,6 +1172,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_afterContentBoxChange = null;
 		_afterCssClassChange = null;
 		_afterDefaultStateChange = null;
+		_afterDepthChange = null;
 		_afterDestroy = null;
 		_afterDestroyedChange = null;
 		_afterDisabledChange = null;
@@ -966,16 +1184,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIconChange = null;
 		_afterIconNodeChange = null;
 		_afterIdChange = null;
+		_afterIndexChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
 		_afterLabelChange = null;
 		_afterLabelNodeChange = null;
+		_afterLocaleChange = null;
+		_afterParentChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
+		_afterRootChange = null;
+		_afterSelectedChange = null;
 		_afterSrcNodeChange = null;
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTitleChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -986,6 +1210,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_onContentBoxChange = null;
 		_onCssClassChange = null;
 		_onDefaultStateChange = null;
+		_onDepthChange = null;
 		_onDestroy = null;
 		_onDestroyedChange = null;
 		_onDisabledChange = null;
@@ -997,16 +1222,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		_onIconChange = null;
 		_onIconNodeChange = null;
 		_onIdChange = null;
+		_onIndexChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
 		_onLabelChange = null;
 		_onLabelNodeChange = null;
+		_onLocaleChange = null;
+		_onParentChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
+		_onRootChange = null;
+		_onSelectedChange = null;
 		_onSrcNodeChange = null;
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTitleChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1024,6 +1255,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "contentBox", _contentBox);
 		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "defaultState", _defaultState);
+		setNamespacedAttribute(request, "depth", _depth);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
 		setNamespacedAttribute(request, "focused", _focused);
@@ -1034,15 +1266,21 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "icon", _icon);
 		setNamespacedAttribute(request, "iconNode", _iconNode);
 		setNamespacedAttribute(request, "buttonitemId", _buttonitemId);
+		setNamespacedAttribute(request, "index", _index);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "label", _label);
 		setNamespacedAttribute(request, "labelNode", _labelNode);
+		setNamespacedAttribute(request, "locale", _locale);
+		setNamespacedAttribute(request, "buttonitemParent", _buttonitemParent);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
+		setNamespacedAttribute(request, "root", _root);
+		setNamespacedAttribute(request, "selected", _selected);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "title", _title);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "afterActiveStateChange", _afterActiveStateChange);
@@ -1051,6 +1289,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
 		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterDefaultStateChange", _afterDefaultStateChange);
+		setNamespacedAttribute(request, "afterDepthChange", _afterDepthChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
@@ -1062,16 +1301,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIconChange", _afterIconChange);
 		setNamespacedAttribute(request, "afterIconNodeChange", _afterIconNodeChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
+		setNamespacedAttribute(request, "afterIndexChange", _afterIndexChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
 		setNamespacedAttribute(request, "afterLabelChange", _afterLabelChange);
 		setNamespacedAttribute(request, "afterLabelNodeChange", _afterLabelNodeChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
+		setNamespacedAttribute(request, "afterParentChange", _afterParentChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
+		setNamespacedAttribute(request, "afterRootChange", _afterRootChange);
+		setNamespacedAttribute(request, "afterSelectedChange", _afterSelectedChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTitleChange", _afterTitleChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1082,6 +1327,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
 		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onDefaultStateChange", _onDefaultStateChange);
+		setNamespacedAttribute(request, "onDepthChange", _onDepthChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
@@ -1093,16 +1339,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIconChange", _onIconChange);
 		setNamespacedAttribute(request, "onIconNodeChange", _onIconNodeChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
+		setNamespacedAttribute(request, "onIndexChange", _onIndexChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 		setNamespacedAttribute(request, "onLabelChange", _onLabelChange);
 		setNamespacedAttribute(request, "onLabelNodeChange", _onLabelNodeChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
+		setNamespacedAttribute(request, "onParentChange", _onParentChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
+		setNamespacedAttribute(request, "onRootChange", _onRootChange);
+		setNamespacedAttribute(request, "onSelectedChange", _onSelectedChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTitleChange", _onTitleChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1120,6 +1372,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _contentBox = null;
 	private java.lang.String _cssClass = null;
 	private boolean _defaultState = true;
+	private java.lang.Object _depth = -1;
 	private boolean _destroyed = false;
 	private boolean _disabled = false;
 	private boolean _focused = false;
@@ -1130,15 +1383,21 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _icon = null;
 	private java.lang.String _iconNode = null;
 	private java.lang.String _buttonitemId = null;
+	private java.lang.Object _index = 0;
 	private boolean _initialized = false;
 	private java.lang.String _label = null;
 	private java.lang.String _labelNode = null;
+	private java.lang.String _locale = "en";
+	private java.lang.Object _buttonitemParent = null;
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
+	private java.lang.Object _root = null;
+	private java.lang.Object _selected = 0;
 	private java.lang.String _srcNode = null;
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.String _title = null;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _afterActiveStateChange = null;
@@ -1147,6 +1406,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterContentBoxChange = null;
 	private java.lang.Object _afterCssClassChange = null;
 	private java.lang.Object _afterDefaultStateChange = null;
+	private java.lang.Object _afterDepthChange = null;
 	private java.lang.Object _afterDestroy = null;
 	private java.lang.Object _afterDestroyedChange = null;
 	private java.lang.Object _afterDisabledChange = null;
@@ -1158,16 +1418,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIconChange = null;
 	private java.lang.Object _afterIconNodeChange = null;
 	private java.lang.Object _afterIdChange = null;
+	private java.lang.Object _afterIndexChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
 	private java.lang.Object _afterLabelChange = null;
 	private java.lang.Object _afterLabelNodeChange = null;
+	private java.lang.Object _afterLocaleChange = null;
+	private java.lang.Object _afterParentChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
+	private java.lang.Object _afterRootChange = null;
+	private java.lang.Object _afterSelectedChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTitleChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1178,6 +1444,7 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onContentBoxChange = null;
 	private java.lang.Object _onCssClassChange = null;
 	private java.lang.Object _onDefaultStateChange = null;
+	private java.lang.Object _onDepthChange = null;
 	private java.lang.Object _onDestroy = null;
 	private java.lang.Object _onDestroyedChange = null;
 	private java.lang.Object _onDisabledChange = null;
@@ -1189,16 +1456,22 @@ public class BaseButtonItemTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIconChange = null;
 	private java.lang.Object _onIconNodeChange = null;
 	private java.lang.Object _onIdChange = null;
+	private java.lang.Object _onIndexChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
 	private java.lang.Object _onLabelChange = null;
 	private java.lang.Object _onLabelNodeChange = null;
+	private java.lang.Object _onLocaleChange = null;
+	private java.lang.Object _onParentChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
+	private java.lang.Object _onRootChange = null;
+	private java.lang.Object _onSelectedChange = null;
 	private java.lang.Object _onSrcNodeChange = null;
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTitleChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

@@ -35,6 +35,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _align;
 	}
 
+	public boolean getAllowNone() {
+		return _allowNone;
+	}
+
+	public java.lang.String getBlankDays() {
+		return _blankDays;
+	}
+
 	public java.lang.Object getCalendarBodyContent() {
 		return _calendarBodyContent;
 	}
@@ -115,6 +123,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _headerContent;
 	}
 
+	public java.lang.String getHeaderContentNode() {
+		return _headerContentNode;
+	}
+
+	public java.lang.String getHeaderTitleNode() {
+		return _headerTitleNode;
+	}
+
 	public java.lang.Object getHeight() {
 		return _height;
 	}
@@ -135,6 +151,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _hideOnDocumentClick;
 	}
 
+	public java.lang.String getIconNextNode() {
+		return _iconNextNode;
+	}
+
+	public java.lang.String getIconPrevNode() {
+		return _iconPrevNode;
+	}
+
 	public java.lang.String getCalendarId() {
 		return _calendarId;
 	}
@@ -143,12 +167,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getMaxDate() {
 		return _maxDate;
 	}
 
 	public java.lang.Object getMinDate() {
 		return _minDate;
+	}
+
+	public java.lang.String getMonthDays() {
+		return _monthDays;
+	}
+
+	public java.lang.String getMonthDaysNode() {
+		return _monthDaysNode;
+	}
+
+	public java.lang.Object getNoneLinkNode() {
+		return _noneLinkNode;
+	}
+
+	public java.lang.Object getPaddingDaysEnd() {
+		return _paddingDaysEnd;
+	}
+
+	public java.lang.Object getPaddingDaysStart() {
+		return _paddingDaysStart;
 	}
 
 	public boolean getPreventOverlap() {
@@ -183,12 +231,16 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _showOn;
 	}
 
-	public java.lang.String getSrcNode() {
-		return _srcNode;
+	public boolean getShowOtherMonth() {
+		return _showOtherMonth;
 	}
 
-	public boolean getStack() {
-		return _stack;
+	public boolean getShowToday() {
+		return _showToday;
+	}
+
+	public java.lang.String getSrcNode() {
+		return _srcNode;
 	}
 
 	public java.lang.Object getStrings() {
@@ -199,12 +251,28 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _tabIndex;
 	}
 
+	public java.lang.Object getTodayLinkNode() {
+		return _todayLinkNode;
+	}
+
 	public java.lang.Object getTrigger() {
 		return _trigger;
 	}
 
+	public boolean getUseARIA() {
+		return _useARIA;
+	}
+
 	public boolean getVisible() {
 		return _visible;
+	}
+
+	public java.lang.String getWeekDays() {
+		return _weekDays;
+	}
+
+	public java.lang.String getWeekDaysNode() {
+		return _weekDaysNode;
 	}
 
 	public java.lang.Object getWidth() {
@@ -229,6 +297,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterAlignChange() {
 		return _afterAlignChange;
+	}
+
+	public java.lang.Object getAfterAllowNoneChange() {
+		return _afterAllowNoneChange;
+	}
+
+	public java.lang.Object getAfterBlankDaysChange() {
+		return _afterBlankDaysChange;
 	}
 
 	public java.lang.Object getAfterBodyContentChange() {
@@ -315,6 +391,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterHeaderContentChange;
 	}
 
+	public java.lang.Object getAfterHeaderContentNodeChange() {
+		return _afterHeaderContentNodeChange;
+	}
+
+	public java.lang.Object getAfterHeaderTitleNodeChange() {
+		return _afterHeaderTitleNodeChange;
+	}
+
 	public java.lang.Object getAfterHeightChange() {
 		return _afterHeightChange;
 	}
@@ -335,6 +419,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterHideOnDocumentClickChange;
 	}
 
+	public java.lang.Object getAfterIconNextNodeChange() {
+		return _afterIconNextNodeChange;
+	}
+
+	public java.lang.Object getAfterIconPrevNodeChange() {
+		return _afterIconPrevNodeChange;
+	}
+
 	public java.lang.Object getAfterIdChange() {
 		return _afterIdChange;
 	}
@@ -347,12 +439,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterMaxDateChange() {
 		return _afterMaxDateChange;
 	}
 
 	public java.lang.Object getAfterMinDateChange() {
 		return _afterMinDateChange;
+	}
+
+	public java.lang.Object getAfterMonthDaysChange() {
+		return _afterMonthDaysChange;
+	}
+
+	public java.lang.Object getAfterMonthDaysNodeChange() {
+		return _afterMonthDaysNodeChange;
+	}
+
+	public java.lang.Object getAfterNoneLinkNodeChange() {
+		return _afterNoneLinkNodeChange;
+	}
+
+	public java.lang.Object getAfterPaddingDaysEndChange() {
+		return _afterPaddingDaysEndChange;
+	}
+
+	public java.lang.Object getAfterPaddingDaysStartChange() {
+		return _afterPaddingDaysStartChange;
 	}
 
 	public java.lang.Object getAfterPreventOverlapChange() {
@@ -387,12 +503,16 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterShowOnChange;
 	}
 
-	public java.lang.Object getAfterSrcNodeChange() {
-		return _afterSrcNodeChange;
+	public java.lang.Object getAfterShowOtherMonthChange() {
+		return _afterShowOtherMonthChange;
 	}
 
-	public java.lang.Object getAfterStackChange() {
-		return _afterStackChange;
+	public java.lang.Object getAfterShowTodayChange() {
+		return _afterShowTodayChange;
+	}
+
+	public java.lang.Object getAfterSrcNodeChange() {
+		return _afterSrcNodeChange;
 	}
 
 	public java.lang.Object getAfterStringsChange() {
@@ -403,12 +523,28 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterTabIndexChange;
 	}
 
+	public java.lang.Object getAfterTodayLinkNodeChange() {
+		return _afterTodayLinkNodeChange;
+	}
+
 	public java.lang.Object getAfterTriggerChange() {
 		return _afterTriggerChange;
 	}
 
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
+	}
+
 	public java.lang.Object getAfterVisibleChange() {
 		return _afterVisibleChange;
+	}
+
+	public java.lang.Object getAfterWeekDaysChange() {
+		return _afterWeekDaysChange;
+	}
+
+	public java.lang.Object getAfterWeekDaysNodeChange() {
+		return _afterWeekDaysNodeChange;
 	}
 
 	public java.lang.Object getAfterContentUpdate() {
@@ -441,6 +577,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnAlignChange() {
 		return _onAlignChange;
+	}
+
+	public java.lang.Object getOnAllowNoneChange() {
+		return _onAllowNoneChange;
+	}
+
+	public java.lang.Object getOnBlankDaysChange() {
+		return _onBlankDaysChange;
 	}
 
 	public java.lang.Object getOnBodyContentChange() {
@@ -527,6 +671,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _onHeaderContentChange;
 	}
 
+	public java.lang.Object getOnHeaderContentNodeChange() {
+		return _onHeaderContentNodeChange;
+	}
+
+	public java.lang.Object getOnHeaderTitleNodeChange() {
+		return _onHeaderTitleNodeChange;
+	}
+
 	public java.lang.Object getOnHeightChange() {
 		return _onHeightChange;
 	}
@@ -547,6 +699,14 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _onHideOnDocumentClickChange;
 	}
 
+	public java.lang.Object getOnIconNextNodeChange() {
+		return _onIconNextNodeChange;
+	}
+
+	public java.lang.Object getOnIconPrevNodeChange() {
+		return _onIconPrevNodeChange;
+	}
+
 	public java.lang.Object getOnIdChange() {
 		return _onIdChange;
 	}
@@ -559,12 +719,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnMaxDateChange() {
 		return _onMaxDateChange;
 	}
 
 	public java.lang.Object getOnMinDateChange() {
 		return _onMinDateChange;
+	}
+
+	public java.lang.Object getOnMonthDaysChange() {
+		return _onMonthDaysChange;
+	}
+
+	public java.lang.Object getOnMonthDaysNodeChange() {
+		return _onMonthDaysNodeChange;
+	}
+
+	public java.lang.Object getOnNoneLinkNodeChange() {
+		return _onNoneLinkNodeChange;
+	}
+
+	public java.lang.Object getOnPaddingDaysEndChange() {
+		return _onPaddingDaysEndChange;
+	}
+
+	public java.lang.Object getOnPaddingDaysStartChange() {
+		return _onPaddingDaysStartChange;
 	}
 
 	public java.lang.Object getOnPreventOverlapChange() {
@@ -599,12 +783,16 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _onShowOnChange;
 	}
 
-	public java.lang.Object getOnSrcNodeChange() {
-		return _onSrcNodeChange;
+	public java.lang.Object getOnShowOtherMonthChange() {
+		return _onShowOtherMonthChange;
 	}
 
-	public java.lang.Object getOnStackChange() {
-		return _onStackChange;
+	public java.lang.Object getOnShowTodayChange() {
+		return _onShowTodayChange;
+	}
+
+	public java.lang.Object getOnSrcNodeChange() {
+		return _onSrcNodeChange;
 	}
 
 	public java.lang.Object getOnStringsChange() {
@@ -615,12 +803,28 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		return _onTabIndexChange;
 	}
 
+	public java.lang.Object getOnTodayLinkNodeChange() {
+		return _onTodayLinkNodeChange;
+	}
+
 	public java.lang.Object getOnTriggerChange() {
 		return _onTriggerChange;
 	}
 
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
+	}
+
 	public java.lang.Object getOnVisibleChange() {
 		return _onVisibleChange;
+	}
+
+	public java.lang.Object getOnWeekDaysChange() {
+		return _onWeekDaysChange;
+	}
+
+	public java.lang.Object getOnWeekDaysNodeChange() {
+		return _onWeekDaysNodeChange;
 	}
 
 	public java.lang.Object getOnContentUpdate() {
@@ -655,6 +859,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_align = align;
 
 		setScopedAttribute("align", align);
+	}
+
+	public void setAllowNone(boolean allowNone) {
+		_allowNone = allowNone;
+
+		setScopedAttribute("allowNone", allowNone);
+	}
+
+	public void setBlankDays(java.lang.String blankDays) {
+		_blankDays = blankDays;
+
+		setScopedAttribute("blankDays", blankDays);
 	}
 
 	public void setCalendarBodyContent(java.lang.Object calendarBodyContent) {
@@ -777,6 +993,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("headerContent", headerContent);
 	}
 
+	public void setHeaderContentNode(java.lang.String headerContentNode) {
+		_headerContentNode = headerContentNode;
+
+		setScopedAttribute("headerContentNode", headerContentNode);
+	}
+
+	public void setHeaderTitleNode(java.lang.String headerTitleNode) {
+		_headerTitleNode = headerTitleNode;
+
+		setScopedAttribute("headerTitleNode", headerTitleNode);
+	}
+
 	public void setHeight(java.lang.Object height) {
 		_height = height;
 
@@ -807,6 +1035,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("hideOnDocumentClick", hideOnDocumentClick);
 	}
 
+	public void setIconNextNode(java.lang.String iconNextNode) {
+		_iconNextNode = iconNextNode;
+
+		setScopedAttribute("iconNextNode", iconNextNode);
+	}
+
+	public void setIconPrevNode(java.lang.String iconPrevNode) {
+		_iconPrevNode = iconPrevNode;
+
+		setScopedAttribute("iconPrevNode", iconPrevNode);
+	}
+
 	public void setCalendarId(java.lang.String calendarId) {
 		_calendarId = calendarId;
 
@@ -819,6 +1059,12 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setMaxDate(java.lang.Object maxDate) {
 		_maxDate = maxDate;
 
@@ -829,6 +1075,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_minDate = minDate;
 
 		setScopedAttribute("minDate", minDate);
+	}
+
+	public void setMonthDays(java.lang.String monthDays) {
+		_monthDays = monthDays;
+
+		setScopedAttribute("monthDays", monthDays);
+	}
+
+	public void setMonthDaysNode(java.lang.String monthDaysNode) {
+		_monthDaysNode = monthDaysNode;
+
+		setScopedAttribute("monthDaysNode", monthDaysNode);
+	}
+
+	public void setNoneLinkNode(java.lang.Object noneLinkNode) {
+		_noneLinkNode = noneLinkNode;
+
+		setScopedAttribute("noneLinkNode", noneLinkNode);
+	}
+
+	public void setPaddingDaysEnd(java.lang.Object paddingDaysEnd) {
+		_paddingDaysEnd = paddingDaysEnd;
+
+		setScopedAttribute("paddingDaysEnd", paddingDaysEnd);
+	}
+
+	public void setPaddingDaysStart(java.lang.Object paddingDaysStart) {
+		_paddingDaysStart = paddingDaysStart;
+
+		setScopedAttribute("paddingDaysStart", paddingDaysStart);
 	}
 
 	public void setPreventOverlap(boolean preventOverlap) {
@@ -879,16 +1155,22 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("showOn", showOn);
 	}
 
+	public void setShowOtherMonth(boolean showOtherMonth) {
+		_showOtherMonth = showOtherMonth;
+
+		setScopedAttribute("showOtherMonth", showOtherMonth);
+	}
+
+	public void setShowToday(boolean showToday) {
+		_showToday = showToday;
+
+		setScopedAttribute("showToday", showToday);
+	}
+
 	public void setSrcNode(java.lang.String srcNode) {
 		_srcNode = srcNode;
 
 		setScopedAttribute("srcNode", srcNode);
-	}
-
-	public void setStack(boolean stack) {
-		_stack = stack;
-
-		setScopedAttribute("stack", stack);
 	}
 
 	public void setStrings(java.lang.Object strings) {
@@ -903,16 +1185,40 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("tabIndex", tabIndex);
 	}
 
+	public void setTodayLinkNode(java.lang.Object todayLinkNode) {
+		_todayLinkNode = todayLinkNode;
+
+		setScopedAttribute("todayLinkNode", todayLinkNode);
+	}
+
 	public void setTrigger(java.lang.Object trigger) {
 		_trigger = trigger;
 
 		setScopedAttribute("trigger", trigger);
 	}
 
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
+	}
+
 	public void setVisible(boolean visible) {
 		_visible = visible;
 
 		setScopedAttribute("visible", visible);
+	}
+
+	public void setWeekDays(java.lang.String weekDays) {
+		_weekDays = weekDays;
+
+		setScopedAttribute("weekDays", weekDays);
+	}
+
+	public void setWeekDaysNode(java.lang.String weekDaysNode) {
+		_weekDaysNode = weekDaysNode;
+
+		setScopedAttribute("weekDaysNode", weekDaysNode);
 	}
 
 	public void setWidth(java.lang.Object width) {
@@ -949,6 +1255,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterAlignChange = afterAlignChange;
 
 		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
+	public void setAfterAllowNoneChange(java.lang.Object afterAllowNoneChange) {
+		_afterAllowNoneChange = afterAllowNoneChange;
+
+		setScopedAttribute("afterAllowNoneChange", afterAllowNoneChange);
+	}
+
+	public void setAfterBlankDaysChange(java.lang.Object afterBlankDaysChange) {
+		_afterBlankDaysChange = afterBlankDaysChange;
+
+		setScopedAttribute("afterBlankDaysChange", afterBlankDaysChange);
 	}
 
 	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
@@ -1077,6 +1395,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterHeaderContentChange", afterHeaderContentChange);
 	}
 
+	public void setAfterHeaderContentNodeChange(java.lang.Object afterHeaderContentNodeChange) {
+		_afterHeaderContentNodeChange = afterHeaderContentNodeChange;
+
+		setScopedAttribute("afterHeaderContentNodeChange", afterHeaderContentNodeChange);
+	}
+
+	public void setAfterHeaderTitleNodeChange(java.lang.Object afterHeaderTitleNodeChange) {
+		_afterHeaderTitleNodeChange = afterHeaderTitleNodeChange;
+
+		setScopedAttribute("afterHeaderTitleNodeChange", afterHeaderTitleNodeChange);
+	}
+
 	public void setAfterHeightChange(java.lang.Object afterHeightChange) {
 		_afterHeightChange = afterHeightChange;
 
@@ -1107,6 +1437,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterHideOnDocumentClickChange", afterHideOnDocumentClickChange);
 	}
 
+	public void setAfterIconNextNodeChange(java.lang.Object afterIconNextNodeChange) {
+		_afterIconNextNodeChange = afterIconNextNodeChange;
+
+		setScopedAttribute("afterIconNextNodeChange", afterIconNextNodeChange);
+	}
+
+	public void setAfterIconPrevNodeChange(java.lang.Object afterIconPrevNodeChange) {
+		_afterIconPrevNodeChange = afterIconPrevNodeChange;
+
+		setScopedAttribute("afterIconPrevNodeChange", afterIconPrevNodeChange);
+	}
+
 	public void setAfterIdChange(java.lang.Object afterIdChange) {
 		_afterIdChange = afterIdChange;
 
@@ -1125,6 +1467,12 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterMaxDateChange(java.lang.Object afterMaxDateChange) {
 		_afterMaxDateChange = afterMaxDateChange;
 
@@ -1135,6 +1483,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterMinDateChange = afterMinDateChange;
 
 		setScopedAttribute("afterMinDateChange", afterMinDateChange);
+	}
+
+	public void setAfterMonthDaysChange(java.lang.Object afterMonthDaysChange) {
+		_afterMonthDaysChange = afterMonthDaysChange;
+
+		setScopedAttribute("afterMonthDaysChange", afterMonthDaysChange);
+	}
+
+	public void setAfterMonthDaysNodeChange(java.lang.Object afterMonthDaysNodeChange) {
+		_afterMonthDaysNodeChange = afterMonthDaysNodeChange;
+
+		setScopedAttribute("afterMonthDaysNodeChange", afterMonthDaysNodeChange);
+	}
+
+	public void setAfterNoneLinkNodeChange(java.lang.Object afterNoneLinkNodeChange) {
+		_afterNoneLinkNodeChange = afterNoneLinkNodeChange;
+
+		setScopedAttribute("afterNoneLinkNodeChange", afterNoneLinkNodeChange);
+	}
+
+	public void setAfterPaddingDaysEndChange(java.lang.Object afterPaddingDaysEndChange) {
+		_afterPaddingDaysEndChange = afterPaddingDaysEndChange;
+
+		setScopedAttribute("afterPaddingDaysEndChange", afterPaddingDaysEndChange);
+	}
+
+	public void setAfterPaddingDaysStartChange(java.lang.Object afterPaddingDaysStartChange) {
+		_afterPaddingDaysStartChange = afterPaddingDaysStartChange;
+
+		setScopedAttribute("afterPaddingDaysStartChange", afterPaddingDaysStartChange);
 	}
 
 	public void setAfterPreventOverlapChange(java.lang.Object afterPreventOverlapChange) {
@@ -1185,16 +1563,22 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterShowOnChange", afterShowOnChange);
 	}
 
+	public void setAfterShowOtherMonthChange(java.lang.Object afterShowOtherMonthChange) {
+		_afterShowOtherMonthChange = afterShowOtherMonthChange;
+
+		setScopedAttribute("afterShowOtherMonthChange", afterShowOtherMonthChange);
+	}
+
+	public void setAfterShowTodayChange(java.lang.Object afterShowTodayChange) {
+		_afterShowTodayChange = afterShowTodayChange;
+
+		setScopedAttribute("afterShowTodayChange", afterShowTodayChange);
+	}
+
 	public void setAfterSrcNodeChange(java.lang.Object afterSrcNodeChange) {
 		_afterSrcNodeChange = afterSrcNodeChange;
 
 		setScopedAttribute("afterSrcNodeChange", afterSrcNodeChange);
-	}
-
-	public void setAfterStackChange(java.lang.Object afterStackChange) {
-		_afterStackChange = afterStackChange;
-
-		setScopedAttribute("afterStackChange", afterStackChange);
 	}
 
 	public void setAfterStringsChange(java.lang.Object afterStringsChange) {
@@ -1209,16 +1593,40 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
 	}
 
+	public void setAfterTodayLinkNodeChange(java.lang.Object afterTodayLinkNodeChange) {
+		_afterTodayLinkNodeChange = afterTodayLinkNodeChange;
+
+		setScopedAttribute("afterTodayLinkNodeChange", afterTodayLinkNodeChange);
+	}
+
 	public void setAfterTriggerChange(java.lang.Object afterTriggerChange) {
 		_afterTriggerChange = afterTriggerChange;
 
 		setScopedAttribute("afterTriggerChange", afterTriggerChange);
 	}
 
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
+	}
+
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
 		_afterVisibleChange = afterVisibleChange;
 
 		setScopedAttribute("afterVisibleChange", afterVisibleChange);
+	}
+
+	public void setAfterWeekDaysChange(java.lang.Object afterWeekDaysChange) {
+		_afterWeekDaysChange = afterWeekDaysChange;
+
+		setScopedAttribute("afterWeekDaysChange", afterWeekDaysChange);
+	}
+
+	public void setAfterWeekDaysNodeChange(java.lang.Object afterWeekDaysNodeChange) {
+		_afterWeekDaysNodeChange = afterWeekDaysNodeChange;
+
+		setScopedAttribute("afterWeekDaysNodeChange", afterWeekDaysNodeChange);
 	}
 
 	public void setAfterContentUpdate(java.lang.Object afterContentUpdate) {
@@ -1267,6 +1675,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_onAlignChange = onAlignChange;
 
 		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
+	public void setOnAllowNoneChange(java.lang.Object onAllowNoneChange) {
+		_onAllowNoneChange = onAllowNoneChange;
+
+		setScopedAttribute("onAllowNoneChange", onAllowNoneChange);
+	}
+
+	public void setOnBlankDaysChange(java.lang.Object onBlankDaysChange) {
+		_onBlankDaysChange = onBlankDaysChange;
+
+		setScopedAttribute("onBlankDaysChange", onBlankDaysChange);
 	}
 
 	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
@@ -1395,6 +1815,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onHeaderContentChange", onHeaderContentChange);
 	}
 
+	public void setOnHeaderContentNodeChange(java.lang.Object onHeaderContentNodeChange) {
+		_onHeaderContentNodeChange = onHeaderContentNodeChange;
+
+		setScopedAttribute("onHeaderContentNodeChange", onHeaderContentNodeChange);
+	}
+
+	public void setOnHeaderTitleNodeChange(java.lang.Object onHeaderTitleNodeChange) {
+		_onHeaderTitleNodeChange = onHeaderTitleNodeChange;
+
+		setScopedAttribute("onHeaderTitleNodeChange", onHeaderTitleNodeChange);
+	}
+
 	public void setOnHeightChange(java.lang.Object onHeightChange) {
 		_onHeightChange = onHeightChange;
 
@@ -1425,6 +1857,18 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onHideOnDocumentClickChange", onHideOnDocumentClickChange);
 	}
 
+	public void setOnIconNextNodeChange(java.lang.Object onIconNextNodeChange) {
+		_onIconNextNodeChange = onIconNextNodeChange;
+
+		setScopedAttribute("onIconNextNodeChange", onIconNextNodeChange);
+	}
+
+	public void setOnIconPrevNodeChange(java.lang.Object onIconPrevNodeChange) {
+		_onIconPrevNodeChange = onIconPrevNodeChange;
+
+		setScopedAttribute("onIconPrevNodeChange", onIconPrevNodeChange);
+	}
+
 	public void setOnIdChange(java.lang.Object onIdChange) {
 		_onIdChange = onIdChange;
 
@@ -1443,6 +1887,12 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnMaxDateChange(java.lang.Object onMaxDateChange) {
 		_onMaxDateChange = onMaxDateChange;
 
@@ -1453,6 +1903,36 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_onMinDateChange = onMinDateChange;
 
 		setScopedAttribute("onMinDateChange", onMinDateChange);
+	}
+
+	public void setOnMonthDaysChange(java.lang.Object onMonthDaysChange) {
+		_onMonthDaysChange = onMonthDaysChange;
+
+		setScopedAttribute("onMonthDaysChange", onMonthDaysChange);
+	}
+
+	public void setOnMonthDaysNodeChange(java.lang.Object onMonthDaysNodeChange) {
+		_onMonthDaysNodeChange = onMonthDaysNodeChange;
+
+		setScopedAttribute("onMonthDaysNodeChange", onMonthDaysNodeChange);
+	}
+
+	public void setOnNoneLinkNodeChange(java.lang.Object onNoneLinkNodeChange) {
+		_onNoneLinkNodeChange = onNoneLinkNodeChange;
+
+		setScopedAttribute("onNoneLinkNodeChange", onNoneLinkNodeChange);
+	}
+
+	public void setOnPaddingDaysEndChange(java.lang.Object onPaddingDaysEndChange) {
+		_onPaddingDaysEndChange = onPaddingDaysEndChange;
+
+		setScopedAttribute("onPaddingDaysEndChange", onPaddingDaysEndChange);
+	}
+
+	public void setOnPaddingDaysStartChange(java.lang.Object onPaddingDaysStartChange) {
+		_onPaddingDaysStartChange = onPaddingDaysStartChange;
+
+		setScopedAttribute("onPaddingDaysStartChange", onPaddingDaysStartChange);
 	}
 
 	public void setOnPreventOverlapChange(java.lang.Object onPreventOverlapChange) {
@@ -1503,16 +1983,22 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onShowOnChange", onShowOnChange);
 	}
 
+	public void setOnShowOtherMonthChange(java.lang.Object onShowOtherMonthChange) {
+		_onShowOtherMonthChange = onShowOtherMonthChange;
+
+		setScopedAttribute("onShowOtherMonthChange", onShowOtherMonthChange);
+	}
+
+	public void setOnShowTodayChange(java.lang.Object onShowTodayChange) {
+		_onShowTodayChange = onShowTodayChange;
+
+		setScopedAttribute("onShowTodayChange", onShowTodayChange);
+	}
+
 	public void setOnSrcNodeChange(java.lang.Object onSrcNodeChange) {
 		_onSrcNodeChange = onSrcNodeChange;
 
 		setScopedAttribute("onSrcNodeChange", onSrcNodeChange);
-	}
-
-	public void setOnStackChange(java.lang.Object onStackChange) {
-		_onStackChange = onStackChange;
-
-		setScopedAttribute("onStackChange", onStackChange);
 	}
 
 	public void setOnStringsChange(java.lang.Object onStringsChange) {
@@ -1527,16 +2013,40 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
+	public void setOnTodayLinkNodeChange(java.lang.Object onTodayLinkNodeChange) {
+		_onTodayLinkNodeChange = onTodayLinkNodeChange;
+
+		setScopedAttribute("onTodayLinkNodeChange", onTodayLinkNodeChange);
+	}
+
 	public void setOnTriggerChange(java.lang.Object onTriggerChange) {
 		_onTriggerChange = onTriggerChange;
 
 		setScopedAttribute("onTriggerChange", onTriggerChange);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
 		setScopedAttribute("onVisibleChange", onVisibleChange);
+	}
+
+	public void setOnWeekDaysChange(java.lang.Object onWeekDaysChange) {
+		_onWeekDaysChange = onWeekDaysChange;
+
+		setScopedAttribute("onWeekDaysChange", onWeekDaysChange);
+	}
+
+	public void setOnWeekDaysNodeChange(java.lang.Object onWeekDaysNodeChange) {
+		_onWeekDaysNodeChange = onWeekDaysNodeChange;
+
+		setScopedAttribute("onWeekDaysNodeChange", onWeekDaysNodeChange);
 	}
 
 	public void setOnContentUpdate(java.lang.Object onContentUpdate) {
@@ -1583,6 +2093,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected void cleanUp() {
 		_align = null;
+		_allowNone = true;
+		_blankDays = null;
 		_calendarBodyContent = null;
 		_boundingBox = null;
 		_cancellableHide = true;
@@ -1603,15 +2115,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_footerContent = null;
 		_headerContent = null;
+		_headerContentNode = null;
+		_headerTitleNode = null;
 		_height = null;
 		_hideClass = "yui3-aui-helper-hidden";
 		_hideDelay = 0;
 		_hideOn = "mouseout";
 		_hideOnDocumentClick = true;
+		_iconNextNode = null;
+		_iconPrevNode = null;
 		_calendarId = null;
 		_initialized = false;
+		_locale = "en";
 		_maxDate = null;
 		_minDate = null;
+		_monthDays = null;
+		_monthDaysNode = null;
+		_noneLinkNode = null;
+		_paddingDaysEnd = null;
+		_paddingDaysStart = null;
 		_preventOverlap = false;
 		_render = null;
 		_rendered = false;
@@ -1620,18 +2142,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_shim = false;
 		_showDelay = 0;
 		_showOn = "mouseover";
+		_showOtherMonth = true;
+		_showToday = true;
 		_srcNode = null;
-		_stack = true;
 		_strings = null;
 		_tabIndex = 0;
+		_todayLinkNode = null;
 		_trigger = null;
+		_useARIA = true;
 		_visible = false;
+		_weekDays = null;
+		_weekDaysNode = null;
 		_width = null;
 		_x = 0;
 		_xy = null;
 		_y = 0;
 		_zIndex = 0;
 		_afterAlignChange = null;
+		_afterAllowNoneChange = null;
+		_afterBlankDaysChange = null;
 		_afterBodyContentChange = null;
 		_afterBoundingBoxChange = null;
 		_afterCancellableHideChange = null;
@@ -1653,16 +2182,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterFocusedChange = null;
 		_afterFooterContentChange = null;
 		_afterHeaderContentChange = null;
+		_afterHeaderContentNodeChange = null;
+		_afterHeaderTitleNodeChange = null;
 		_afterHeightChange = null;
 		_afterHideClassChange = null;
 		_afterHideDelayChange = null;
 		_afterHideOnChange = null;
 		_afterHideOnDocumentClickChange = null;
+		_afterIconNextNodeChange = null;
+		_afterIconPrevNodeChange = null;
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
+		_afterLocaleChange = null;
 		_afterMaxDateChange = null;
 		_afterMinDateChange = null;
+		_afterMonthDaysChange = null;
+		_afterMonthDaysNodeChange = null;
+		_afterNoneLinkNodeChange = null;
+		_afterPaddingDaysEndChange = null;
+		_afterPaddingDaysStartChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
@@ -1671,12 +2210,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterShimChange = null;
 		_afterShowDelayChange = null;
 		_afterShowOnChange = null;
+		_afterShowOtherMonthChange = null;
+		_afterShowTodayChange = null;
 		_afterSrcNodeChange = null;
-		_afterStackChange = null;
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
+		_afterTodayLinkNodeChange = null;
 		_afterTriggerChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
+		_afterWeekDaysChange = null;
+		_afterWeekDaysNodeChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
 		_afterWidthChange = null;
@@ -1685,6 +2229,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterYChange = null;
 		_afterZIndexChange = null;
 		_onAlignChange = null;
+		_onAllowNoneChange = null;
+		_onBlankDaysChange = null;
 		_onBodyContentChange = null;
 		_onBoundingBoxChange = null;
 		_onCancellableHideChange = null;
@@ -1706,16 +2252,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_onFocusedChange = null;
 		_onFooterContentChange = null;
 		_onHeaderContentChange = null;
+		_onHeaderContentNodeChange = null;
+		_onHeaderTitleNodeChange = null;
 		_onHeightChange = null;
 		_onHideClassChange = null;
 		_onHideDelayChange = null;
 		_onHideOnChange = null;
 		_onHideOnDocumentClickChange = null;
+		_onIconNextNodeChange = null;
+		_onIconPrevNodeChange = null;
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
+		_onLocaleChange = null;
 		_onMaxDateChange = null;
 		_onMinDateChange = null;
+		_onMonthDaysChange = null;
+		_onMonthDaysNodeChange = null;
+		_onNoneLinkNodeChange = null;
+		_onPaddingDaysEndChange = null;
+		_onPaddingDaysStartChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
@@ -1724,12 +2280,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_onShimChange = null;
 		_onShowDelayChange = null;
 		_onShowOnChange = null;
+		_onShowOtherMonthChange = null;
+		_onShowTodayChange = null;
 		_onSrcNodeChange = null;
-		_onStackChange = null;
 		_onStringsChange = null;
 		_onTabIndexChange = null;
+		_onTodayLinkNodeChange = null;
 		_onTriggerChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
+		_onWeekDaysChange = null;
+		_onWeekDaysNodeChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
 		_onWidthChange = null;
@@ -1745,6 +2306,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
+		setNamespacedAttribute(request, "allowNone", _allowNone);
+		setNamespacedAttribute(request, "blankDays", _blankDays);
 		setNamespacedAttribute(request, "calendarBodyContent", _calendarBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "cancellableHide", _cancellableHide);
@@ -1765,15 +2328,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "focused", _focused);
 		setNamespacedAttribute(request, "footerContent", _footerContent);
 		setNamespacedAttribute(request, "headerContent", _headerContent);
+		setNamespacedAttribute(request, "headerContentNode", _headerContentNode);
+		setNamespacedAttribute(request, "headerTitleNode", _headerTitleNode);
 		setNamespacedAttribute(request, "height", _height);
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "hideDelay", _hideDelay);
 		setNamespacedAttribute(request, "hideOn", _hideOn);
 		setNamespacedAttribute(request, "hideOnDocumentClick", _hideOnDocumentClick);
+		setNamespacedAttribute(request, "iconNextNode", _iconNextNode);
+		setNamespacedAttribute(request, "iconPrevNode", _iconPrevNode);
 		setNamespacedAttribute(request, "calendarId", _calendarId);
 		setNamespacedAttribute(request, "initialized", _initialized);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "maxDate", _maxDate);
 		setNamespacedAttribute(request, "minDate", _minDate);
+		setNamespacedAttribute(request, "monthDays", _monthDays);
+		setNamespacedAttribute(request, "monthDaysNode", _monthDaysNode);
+		setNamespacedAttribute(request, "noneLinkNode", _noneLinkNode);
+		setNamespacedAttribute(request, "paddingDaysEnd", _paddingDaysEnd);
+		setNamespacedAttribute(request, "paddingDaysStart", _paddingDaysStart);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
@@ -1782,18 +2355,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "shim", _shim);
 		setNamespacedAttribute(request, "showDelay", _showDelay);
 		setNamespacedAttribute(request, "showOn", _showOn);
+		setNamespacedAttribute(request, "showOtherMonth", _showOtherMonth);
+		setNamespacedAttribute(request, "showToday", _showToday);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
-		setNamespacedAttribute(request, "stack", _stack);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
+		setNamespacedAttribute(request, "todayLinkNode", _todayLinkNode);
 		setNamespacedAttribute(request, "trigger", _trigger);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
+		setNamespacedAttribute(request, "weekDays", _weekDays);
+		setNamespacedAttribute(request, "weekDaysNode", _weekDaysNode);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "x", _x);
 		setNamespacedAttribute(request, "xy", _xy);
 		setNamespacedAttribute(request, "y", _y);
 		setNamespacedAttribute(request, "zIndex", _zIndex);
 		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
+		setNamespacedAttribute(request, "afterAllowNoneChange", _afterAllowNoneChange);
+		setNamespacedAttribute(request, "afterBlankDaysChange", _afterBlankDaysChange);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterCancellableHideChange", _afterCancellableHideChange);
@@ -1815,16 +2395,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterFocusedChange", _afterFocusedChange);
 		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
 		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
+		setNamespacedAttribute(request, "afterHeaderContentNodeChange", _afterHeaderContentNodeChange);
+		setNamespacedAttribute(request, "afterHeaderTitleNodeChange", _afterHeaderTitleNodeChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
 		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterHideDelayChange", _afterHideDelayChange);
 		setNamespacedAttribute(request, "afterHideOnChange", _afterHideOnChange);
 		setNamespacedAttribute(request, "afterHideOnDocumentClickChange", _afterHideOnDocumentClickChange);
+		setNamespacedAttribute(request, "afterIconNextNodeChange", _afterIconNextNodeChange);
+		setNamespacedAttribute(request, "afterIconPrevNodeChange", _afterIconPrevNodeChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMaxDateChange", _afterMaxDateChange);
 		setNamespacedAttribute(request, "afterMinDateChange", _afterMinDateChange);
+		setNamespacedAttribute(request, "afterMonthDaysChange", _afterMonthDaysChange);
+		setNamespacedAttribute(request, "afterMonthDaysNodeChange", _afterMonthDaysNodeChange);
+		setNamespacedAttribute(request, "afterNoneLinkNodeChange", _afterNoneLinkNodeChange);
+		setNamespacedAttribute(request, "afterPaddingDaysEndChange", _afterPaddingDaysEndChange);
+		setNamespacedAttribute(request, "afterPaddingDaysStartChange", _afterPaddingDaysStartChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
@@ -1833,12 +2423,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterShimChange", _afterShimChange);
 		setNamespacedAttribute(request, "afterShowDelayChange", _afterShowDelayChange);
 		setNamespacedAttribute(request, "afterShowOnChange", _afterShowOnChange);
+		setNamespacedAttribute(request, "afterShowOtherMonthChange", _afterShowOtherMonthChange);
+		setNamespacedAttribute(request, "afterShowTodayChange", _afterShowTodayChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
-		setNamespacedAttribute(request, "afterStackChange", _afterStackChange);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
+		setNamespacedAttribute(request, "afterTodayLinkNodeChange", _afterTodayLinkNodeChange);
 		setNamespacedAttribute(request, "afterTriggerChange", _afterTriggerChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
+		setNamespacedAttribute(request, "afterWeekDaysChange", _afterWeekDaysChange);
+		setNamespacedAttribute(request, "afterWeekDaysNodeChange", _afterWeekDaysNodeChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
 		setNamespacedAttribute(request, "afterWidthChange", _afterWidthChange);
@@ -1847,6 +2442,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterYChange", _afterYChange);
 		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
 		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
+		setNamespacedAttribute(request, "onAllowNoneChange", _onAllowNoneChange);
+		setNamespacedAttribute(request, "onBlankDaysChange", _onBlankDaysChange);
 		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCancellableHideChange", _onCancellableHideChange);
@@ -1868,16 +2465,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onFocusedChange", _onFocusedChange);
 		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
 		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
+		setNamespacedAttribute(request, "onHeaderContentNodeChange", _onHeaderContentNodeChange);
+		setNamespacedAttribute(request, "onHeaderTitleNodeChange", _onHeaderTitleNodeChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
 		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onHideDelayChange", _onHideDelayChange);
 		setNamespacedAttribute(request, "onHideOnChange", _onHideOnChange);
 		setNamespacedAttribute(request, "onHideOnDocumentClickChange", _onHideOnDocumentClickChange);
+		setNamespacedAttribute(request, "onIconNextNodeChange", _onIconNextNodeChange);
+		setNamespacedAttribute(request, "onIconPrevNodeChange", _onIconPrevNodeChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMaxDateChange", _onMaxDateChange);
 		setNamespacedAttribute(request, "onMinDateChange", _onMinDateChange);
+		setNamespacedAttribute(request, "onMonthDaysChange", _onMonthDaysChange);
+		setNamespacedAttribute(request, "onMonthDaysNodeChange", _onMonthDaysNodeChange);
+		setNamespacedAttribute(request, "onNoneLinkNodeChange", _onNoneLinkNodeChange);
+		setNamespacedAttribute(request, "onPaddingDaysEndChange", _onPaddingDaysEndChange);
+		setNamespacedAttribute(request, "onPaddingDaysStartChange", _onPaddingDaysStartChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
@@ -1886,12 +2493,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onShimChange", _onShimChange);
 		setNamespacedAttribute(request, "onShowDelayChange", _onShowDelayChange);
 		setNamespacedAttribute(request, "onShowOnChange", _onShowOnChange);
+		setNamespacedAttribute(request, "onShowOtherMonthChange", _onShowOtherMonthChange);
+		setNamespacedAttribute(request, "onShowTodayChange", _onShowTodayChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
-		setNamespacedAttribute(request, "onStackChange", _onStackChange);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
+		setNamespacedAttribute(request, "onTodayLinkNodeChange", _onTodayLinkNodeChange);
 		setNamespacedAttribute(request, "onTriggerChange", _onTriggerChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
+		setNamespacedAttribute(request, "onWeekDaysChange", _onWeekDaysChange);
+		setNamespacedAttribute(request, "onWeekDaysNodeChange", _onWeekDaysNodeChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
 		setNamespacedAttribute(request, "onWidthChange", _onWidthChange);
@@ -1907,6 +2519,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/calendar/page.jsp";
 
 	private java.lang.Object _align = null;
+	private boolean _allowNone = true;
+	private java.lang.String _blankDays = null;
 	private java.lang.Object _calendarBodyContent = null;
 	private java.lang.String _boundingBox = null;
 	private boolean _cancellableHide = true;
@@ -1927,15 +2541,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _focused = false;
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
+	private java.lang.String _headerContentNode = null;
+	private java.lang.String _headerTitleNode = null;
 	private java.lang.Object _height = null;
 	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
 	private java.lang.Object _hideDelay = 0;
 	private java.lang.String _hideOn = "mouseout";
 	private boolean _hideOnDocumentClick = true;
+	private java.lang.String _iconNextNode = null;
+	private java.lang.String _iconPrevNode = null;
 	private java.lang.String _calendarId = null;
 	private boolean _initialized = false;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _maxDate = null;
 	private java.lang.Object _minDate = null;
+	private java.lang.String _monthDays = null;
+	private java.lang.String _monthDaysNode = null;
+	private java.lang.Object _noneLinkNode = null;
+	private java.lang.Object _paddingDaysEnd = null;
+	private java.lang.Object _paddingDaysStart = null;
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
@@ -1944,18 +2568,25 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _shim = false;
 	private java.lang.Object _showDelay = 0;
 	private java.lang.String _showOn = "mouseover";
+	private boolean _showOtherMonth = true;
+	private boolean _showToday = true;
 	private java.lang.String _srcNode = null;
-	private boolean _stack = true;
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
+	private java.lang.Object _todayLinkNode = null;
 	private java.lang.Object _trigger = null;
+	private boolean _useARIA = true;
 	private boolean _visible = false;
+	private java.lang.String _weekDays = null;
+	private java.lang.String _weekDaysNode = null;
 	private java.lang.Object _width = null;
 	private java.lang.Object _x = 0;
 	private java.lang.Object _xy = null;
 	private java.lang.Object _y = 0;
 	private java.lang.Object _zIndex = 0;
 	private java.lang.Object _afterAlignChange = null;
+	private java.lang.Object _afterAllowNoneChange = null;
+	private java.lang.Object _afterBlankDaysChange = null;
 	private java.lang.Object _afterBodyContentChange = null;
 	private java.lang.Object _afterBoundingBoxChange = null;
 	private java.lang.Object _afterCancellableHideChange = null;
@@ -1977,16 +2608,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterFocusedChange = null;
 	private java.lang.Object _afterFooterContentChange = null;
 	private java.lang.Object _afterHeaderContentChange = null;
+	private java.lang.Object _afterHeaderContentNodeChange = null;
+	private java.lang.Object _afterHeaderTitleNodeChange = null;
 	private java.lang.Object _afterHeightChange = null;
 	private java.lang.Object _afterHideClassChange = null;
 	private java.lang.Object _afterHideDelayChange = null;
 	private java.lang.Object _afterHideOnChange = null;
 	private java.lang.Object _afterHideOnDocumentClickChange = null;
+	private java.lang.Object _afterIconNextNodeChange = null;
+	private java.lang.Object _afterIconPrevNodeChange = null;
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMaxDateChange = null;
 	private java.lang.Object _afterMinDateChange = null;
+	private java.lang.Object _afterMonthDaysChange = null;
+	private java.lang.Object _afterMonthDaysNodeChange = null;
+	private java.lang.Object _afterNoneLinkNodeChange = null;
+	private java.lang.Object _afterPaddingDaysEndChange = null;
+	private java.lang.Object _afterPaddingDaysStartChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
@@ -1995,12 +2636,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterShimChange = null;
 	private java.lang.Object _afterShowDelayChange = null;
 	private java.lang.Object _afterShowOnChange = null;
+	private java.lang.Object _afterShowOtherMonthChange = null;
+	private java.lang.Object _afterShowTodayChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
-	private java.lang.Object _afterStackChange = null;
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
+	private java.lang.Object _afterTodayLinkNodeChange = null;
 	private java.lang.Object _afterTriggerChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
+	private java.lang.Object _afterWeekDaysChange = null;
+	private java.lang.Object _afterWeekDaysNodeChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
 	private java.lang.Object _afterWidthChange = null;
@@ -2009,6 +2655,8 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterYChange = null;
 	private java.lang.Object _afterZIndexChange = null;
 	private java.lang.Object _onAlignChange = null;
+	private java.lang.Object _onAllowNoneChange = null;
+	private java.lang.Object _onBlankDaysChange = null;
 	private java.lang.Object _onBodyContentChange = null;
 	private java.lang.Object _onBoundingBoxChange = null;
 	private java.lang.Object _onCancellableHideChange = null;
@@ -2030,16 +2678,26 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onFocusedChange = null;
 	private java.lang.Object _onFooterContentChange = null;
 	private java.lang.Object _onHeaderContentChange = null;
+	private java.lang.Object _onHeaderContentNodeChange = null;
+	private java.lang.Object _onHeaderTitleNodeChange = null;
 	private java.lang.Object _onHeightChange = null;
 	private java.lang.Object _onHideClassChange = null;
 	private java.lang.Object _onHideDelayChange = null;
 	private java.lang.Object _onHideOnChange = null;
 	private java.lang.Object _onHideOnDocumentClickChange = null;
+	private java.lang.Object _onIconNextNodeChange = null;
+	private java.lang.Object _onIconPrevNodeChange = null;
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMaxDateChange = null;
 	private java.lang.Object _onMinDateChange = null;
+	private java.lang.Object _onMonthDaysChange = null;
+	private java.lang.Object _onMonthDaysNodeChange = null;
+	private java.lang.Object _onNoneLinkNodeChange = null;
+	private java.lang.Object _onPaddingDaysEndChange = null;
+	private java.lang.Object _onPaddingDaysStartChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
@@ -2048,12 +2706,17 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onShimChange = null;
 	private java.lang.Object _onShowDelayChange = null;
 	private java.lang.Object _onShowOnChange = null;
+	private java.lang.Object _onShowOtherMonthChange = null;
+	private java.lang.Object _onShowTodayChange = null;
 	private java.lang.Object _onSrcNodeChange = null;
-	private java.lang.Object _onStackChange = null;
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
+	private java.lang.Object _onTodayLinkNodeChange = null;
 	private java.lang.Object _onTriggerChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
+	private java.lang.Object _onWeekDaysChange = null;
+	private java.lang.Object _onWeekDaysNodeChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;
 	private java.lang.Object _onWidthChange = null;

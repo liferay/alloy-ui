@@ -99,6 +99,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _inputType;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getNode() {
 		return _node;
 	}
@@ -129,6 +133,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getTabIndex() {
 		return _tabIndex;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public boolean getVisible() {
@@ -219,6 +227,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInputTypeChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterNodeChange() {
 		return _afterNodeChange;
 	}
@@ -261,6 +273,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTabIndexChange() {
 		return _afterTabIndexChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterVisibleChange() {
@@ -359,6 +375,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInputTypeChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnNodeChange() {
 		return _onNodeChange;
 	}
@@ -401,6 +421,10 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTabIndexChange() {
 		return _onTabIndexChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnVisibleChange() {
@@ -521,6 +545,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("inputType", inputType);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setNode(java.lang.Object node) {
 		_node = node;
 
@@ -567,6 +597,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_tabIndex = tabIndex;
 
 		setScopedAttribute("tabIndex", tabIndex);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setVisible(boolean visible) {
@@ -701,6 +737,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInputTypeChange", afterInputTypeChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterNodeChange(java.lang.Object afterNodeChange) {
 		_afterNodeChange = afterNodeChange;
 
@@ -765,6 +807,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTabIndexChange = afterTabIndexChange;
 
 		setScopedAttribute("afterTabIndexChange", afterTabIndexChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterVisibleChange(java.lang.Object afterVisibleChange) {
@@ -911,6 +959,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInputTypeChange", onInputTypeChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnNodeChange(java.lang.Object onNodeChange) {
 		_onNodeChange = onNodeChange;
 
@@ -977,6 +1031,12 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTabIndexChange", onTabIndexChange);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnVisibleChange(java.lang.Object onVisibleChange) {
 		_onVisibleChange = onVisibleChange;
 
@@ -1019,6 +1079,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_editableId = null;
 		_initialized = false;
 		_inputType = "text";
+		_locale = "en";
 		_node = null;
 		_render = null;
 		_renderTo = null;
@@ -1027,6 +1088,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_srcNode = null;
 		_strings = null;
 		_tabIndex = 0;
+		_useARIA = true;
 		_visible = true;
 		_width = null;
 		_afterBoundingBoxChange = null;
@@ -1049,6 +1111,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInit = null;
 		_afterInitializedChange = null;
 		_afterInputTypeChange = null;
+		_afterLocaleChange = null;
 		_afterNodeChange = null;
 		_afterRenderChange = null;
 		_afterRenderToChange = null;
@@ -1060,6 +1123,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_afterStopEditing = null;
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
+		_afterUseARIAChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
 		_afterRender = null;
@@ -1084,6 +1148,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_onInit = null;
 		_onInitializedChange = null;
 		_onInputTypeChange = null;
+		_onLocaleChange = null;
 		_onNodeChange = null;
 		_onRenderChange = null;
 		_onRenderToChange = null;
@@ -1095,6 +1160,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		_onStopEditing = null;
 		_onStringsChange = null;
 		_onTabIndexChange = null;
+		_onUseARIAChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
 		_onRender = null;
@@ -1123,6 +1189,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "editableId", _editableId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "inputType", _inputType);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "node", _node);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "renderTo", _renderTo);
@@ -1131,6 +1198,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "srcNode", _srcNode);
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
@@ -1153,6 +1221,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
 		setNamespacedAttribute(request, "afterInputTypeChange", _afterInputTypeChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterNodeChange", _afterNodeChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderToChange", _afterRenderToChange);
@@ -1164,6 +1233,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterStopEditing", _afterStopEditing);
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
 		setNamespacedAttribute(request, "afterRender", _afterRender);
@@ -1188,6 +1258,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 		setNamespacedAttribute(request, "onInputTypeChange", _onInputTypeChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onNodeChange", _onNodeChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderToChange", _onRenderToChange);
@@ -1199,6 +1270,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onStopEditing", _onStopEditing);
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
 		setNamespacedAttribute(request, "onRender", _onRender);
@@ -1227,6 +1299,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _editableId = null;
 	private boolean _initialized = false;
 	private java.lang.String _inputType = "text";
+	private java.lang.String _locale = "en";
 	private java.lang.Object _node = null;
 	private java.lang.Object _render = null;
 	private java.lang.String _renderTo = null;
@@ -1235,6 +1308,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _srcNode = null;
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
+	private boolean _useARIA = true;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
 	private java.lang.Object _afterBoundingBoxChange = null;
@@ -1257,6 +1331,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
 	private java.lang.Object _afterInputTypeChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterNodeChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderToChange = null;
@@ -1268,6 +1343,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterStopEditing = null;
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
 	private java.lang.Object _afterRender = null;
@@ -1292,6 +1368,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
 	private java.lang.Object _onInputTypeChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onNodeChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderToChange = null;
@@ -1303,6 +1380,7 @@ public class BaseEditableTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onStopEditing = null;
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
 	private java.lang.Object _onRender = null;

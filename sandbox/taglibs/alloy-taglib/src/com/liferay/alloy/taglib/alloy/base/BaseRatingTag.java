@@ -99,6 +99,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _labelNode;
 	}
 
+	public java.lang.String getLocale() {
+		return _locale;
+	}
+
 	public java.lang.Object getRender() {
 		return _render;
 	}
@@ -133,6 +137,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getTitle() {
 		return _title;
+	}
+
+	public boolean getUseARIA() {
+		return _useARIA;
 	}
 
 	public java.lang.String getRatingValue() {
@@ -235,6 +243,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterLabelNodeChange;
 	}
 
+	public java.lang.Object getAfterLocaleChange() {
+		return _afterLocaleChange;
+	}
+
 	public java.lang.Object getAfterRenderChange() {
 		return _afterRenderChange;
 	}
@@ -269,6 +281,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterTitleChange() {
 		return _afterTitleChange;
+	}
+
+	public java.lang.Object getAfterUseARIAChange() {
+		return _afterUseARIAChange;
 	}
 
 	public java.lang.Object getAfterValueChange() {
@@ -379,6 +395,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		return _onLabelNodeChange;
 	}
 
+	public java.lang.Object getOnLocaleChange() {
+		return _onLocaleChange;
+	}
+
 	public java.lang.Object getOnRenderChange() {
 		return _onRenderChange;
 	}
@@ -413,6 +433,10 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnTitleChange() {
 		return _onTitleChange;
+	}
+
+	public java.lang.Object getOnUseARIAChange() {
+		return _onUseARIAChange;
 	}
 
 	public java.lang.Object getOnValueChange() {
@@ -537,6 +561,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("labelNode", labelNode);
 	}
 
+	public void setLocale(java.lang.String locale) {
+		_locale = locale;
+
+		setScopedAttribute("locale", locale);
+	}
+
 	public void setRender(java.lang.Object render) {
 		_render = render;
 
@@ -589,6 +619,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_title = title;
 
 		setScopedAttribute("title", title);
+	}
+
+	public void setUseARIA(boolean useARIA) {
+		_useARIA = useARIA;
+
+		setScopedAttribute("useARIA", useARIA);
 	}
 
 	public void setRatingValue(java.lang.String ratingValue) {
@@ -741,6 +777,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterLabelNodeChange", afterLabelNodeChange);
 	}
 
+	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
+		_afterLocaleChange = afterLocaleChange;
+
+		setScopedAttribute("afterLocaleChange", afterLocaleChange);
+	}
+
 	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
 		_afterRenderChange = afterRenderChange;
 
@@ -793,6 +835,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_afterTitleChange = afterTitleChange;
 
 		setScopedAttribute("afterTitleChange", afterTitleChange);
+	}
+
+	public void setAfterUseARIAChange(java.lang.Object afterUseARIAChange) {
+		_afterUseARIAChange = afterUseARIAChange;
+
+		setScopedAttribute("afterUseARIAChange", afterUseARIAChange);
 	}
 
 	public void setAfterValueChange(java.lang.Object afterValueChange) {
@@ -957,6 +1005,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onLabelNodeChange", onLabelNodeChange);
 	}
 
+	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
+		_onLocaleChange = onLocaleChange;
+
+		setScopedAttribute("onLocaleChange", onLocaleChange);
+	}
+
 	public void setOnRenderChange(java.lang.Object onRenderChange) {
 		_onRenderChange = onRenderChange;
 
@@ -1011,6 +1065,12 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTitleChange", onTitleChange);
 	}
 
+	public void setOnUseARIAChange(java.lang.Object onUseARIAChange) {
+		_onUseARIAChange = onUseARIAChange;
+
+		setScopedAttribute("onUseARIAChange", onUseARIAChange);
+	}
+
 	public void setOnValueChange(java.lang.Object onValueChange) {
 		_onValueChange = onValueChange;
 
@@ -1059,6 +1119,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_inputName = null;
 		_label = null;
 		_labelNode = null;
+		_locale = "en";
 		_render = null;
 		_rendered = false;
 		_selectedIndex = -1;
@@ -1068,6 +1129,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_strings = null;
 		_tabIndex = 0;
 		_title = null;
+		_useARIA = true;
 		_ratingValue = null;
 		_visible = true;
 		_width = null;
@@ -1093,6 +1155,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_afterItemSelect = null;
 		_afterLabelChange = null;
 		_afterLabelNodeChange = null;
+		_afterLocaleChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
 		_afterSelectedIndexChange = null;
@@ -1102,6 +1165,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_afterStringsChange = null;
 		_afterTabIndexChange = null;
 		_afterTitleChange = null;
+		_afterUseARIAChange = null;
 		_afterValueChange = null;
 		_afterVisibleChange = null;
 		_afterContentUpdate = null;
@@ -1129,6 +1193,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_onItemSelect = null;
 		_onLabelChange = null;
 		_onLabelNodeChange = null;
+		_onLocaleChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
 		_onSelectedIndexChange = null;
@@ -1138,6 +1203,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_onStringsChange = null;
 		_onTabIndexChange = null;
 		_onTitleChange = null;
+		_onUseARIAChange = null;
 		_onValueChange = null;
 		_onVisibleChange = null;
 		_onContentUpdate = null;
@@ -1167,6 +1233,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "inputName", _inputName);
 		setNamespacedAttribute(request, "label", _label);
 		setNamespacedAttribute(request, "labelNode", _labelNode);
+		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "selectedIndex", _selectedIndex);
@@ -1176,6 +1243,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "strings", _strings);
 		setNamespacedAttribute(request, "tabIndex", _tabIndex);
 		setNamespacedAttribute(request, "title", _title);
+		setNamespacedAttribute(request, "useARIA", _useARIA);
 		setNamespacedAttribute(request, "ratingValue", _ratingValue);
 		setNamespacedAttribute(request, "visible", _visible);
 		setNamespacedAttribute(request, "width", _width);
@@ -1201,6 +1269,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterItemSelect", _afterItemSelect);
 		setNamespacedAttribute(request, "afterLabelChange", _afterLabelChange);
 		setNamespacedAttribute(request, "afterLabelNodeChange", _afterLabelNodeChange);
+		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterSelectedIndexChange", _afterSelectedIndexChange);
@@ -1210,6 +1279,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterStringsChange", _afterStringsChange);
 		setNamespacedAttribute(request, "afterTabIndexChange", _afterTabIndexChange);
 		setNamespacedAttribute(request, "afterTitleChange", _afterTitleChange);
+		setNamespacedAttribute(request, "afterUseARIAChange", _afterUseARIAChange);
 		setNamespacedAttribute(request, "afterValueChange", _afterValueChange);
 		setNamespacedAttribute(request, "afterVisibleChange", _afterVisibleChange);
 		setNamespacedAttribute(request, "afterContentUpdate", _afterContentUpdate);
@@ -1237,6 +1307,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onItemSelect", _onItemSelect);
 		setNamespacedAttribute(request, "onLabelChange", _onLabelChange);
 		setNamespacedAttribute(request, "onLabelNodeChange", _onLabelNodeChange);
+		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onSelectedIndexChange", _onSelectedIndexChange);
@@ -1246,6 +1317,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onStringsChange", _onStringsChange);
 		setNamespacedAttribute(request, "onTabIndexChange", _onTabIndexChange);
 		setNamespacedAttribute(request, "onTitleChange", _onTitleChange);
+		setNamespacedAttribute(request, "onUseARIAChange", _onUseARIAChange);
 		setNamespacedAttribute(request, "onValueChange", _onValueChange);
 		setNamespacedAttribute(request, "onVisibleChange", _onVisibleChange);
 		setNamespacedAttribute(request, "onContentUpdate", _onContentUpdate);
@@ -1275,6 +1347,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _inputName = null;
 	private java.lang.String _label = null;
 	private java.lang.String _labelNode = null;
+	private java.lang.String _locale = "en";
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
 	private java.lang.Object _selectedIndex = -1;
@@ -1284,6 +1357,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _strings = null;
 	private java.lang.Object _tabIndex = 0;
 	private java.lang.String _title = null;
+	private boolean _useARIA = true;
 	private java.lang.String _ratingValue = null;
 	private boolean _visible = true;
 	private java.lang.Object _width = null;
@@ -1309,6 +1383,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterItemSelect = null;
 	private java.lang.Object _afterLabelChange = null;
 	private java.lang.Object _afterLabelNodeChange = null;
+	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
 	private java.lang.Object _afterSelectedIndexChange = null;
@@ -1318,6 +1393,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterStringsChange = null;
 	private java.lang.Object _afterTabIndexChange = null;
 	private java.lang.Object _afterTitleChange = null;
+	private java.lang.Object _afterUseARIAChange = null;
 	private java.lang.Object _afterValueChange = null;
 	private java.lang.Object _afterVisibleChange = null;
 	private java.lang.Object _afterContentUpdate = null;
@@ -1345,6 +1421,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onItemSelect = null;
 	private java.lang.Object _onLabelChange = null;
 	private java.lang.Object _onLabelNodeChange = null;
+	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
 	private java.lang.Object _onSelectedIndexChange = null;
@@ -1354,6 +1431,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onStringsChange = null;
 	private java.lang.Object _onTabIndexChange = null;
 	private java.lang.Object _onTitleChange = null;
+	private java.lang.Object _onUseARIAChange = null;
 	private java.lang.Object _onValueChange = null;
 	private java.lang.Object _onVisibleChange = null;
 	private java.lang.Object _onContentUpdate = null;
