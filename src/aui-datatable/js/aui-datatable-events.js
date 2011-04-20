@@ -244,7 +244,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 	}
 },
 {
-    NS: "edit",
+    NS: "events",
 
     NAME: "dataTableEvents",
 
