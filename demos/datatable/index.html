@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css">
+	.example {
+		margin: 30px;
+	}
+
+	.yui3-aui-hover-cell {
+		background: #ddd;
+	}
+	</style>
+</head>
+
+<body class="yui3-skin-sam">
+
+<h1>Alloy - DataTable - Events</h1>
+
+<div class="example">
+	<div id="dt1"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().use('aui-datatable', 'console', function(A) {
+
+	new A.Console().render();
+
+	// Creates a Columnset with 3 Columns. "cost" is not rendered.
+	var cols = ["name","address","city", "state", "amount", "active", "colors", "fruit", "last_login"];
+
+	// Columns must match data parameter names
+	var data = [
+		{name:"John A. Smith<b>dfsdf</b>", address:"1236 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana","cherry"], last_login:"4/19/2007"},
+		{name:"Joan B. Jones", address:"3271 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"John D. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
+		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"},
+		{name:"Bob F. Uncle", address:"9899 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["banana"], last_login:"1/23/2004"},
+		{name:"John G. Smith", address:"1723 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple"], last_login:"4/19/2007"},
+		{name:"Joan H. Jones", address:"3241 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["kiwi"], last_login:"2/15/2006"},
+		{name:"Bob I. Uncle", address:"9909 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple","banana"], last_login:"1/23/2004"},
+		{name:"John J. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple","cherry"], last_login:"4/19/2007"},
+		{name:"Joan K. Jones", address:"3721 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["banana"], last_login:"2/15/2006"},
+		{name:"Bob L. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"John M. Smith", address:"1293 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
+		{name:"Joan N. Jones", address:"3621 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob O. Uncle", address:"9959 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["kiwi","cherry"], last_login:"1/23/2004"},
+		{name:"John P. Smith", address:"6123 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana"], last_login:"4/19/2007"},
+		{name:"Joan Q. Jones", address:"3281 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob R. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple"], last_login:"1/23/2004"}
+	];
+
+	var nestedCols = [
+	{
+	    label: "Users",
+	    children: [
+	        {
+				label: "Name",
+				children: [
+					{key: "name", label: "Name column"}
+				]
+			},
+	        {
+	            label: "Information",
+	            children: [
+	                {key:"address"},
+	                {key:"city"},
+	                {key:"state"},
+	                {key:"amount"},
+	                {key:"active"},
+	                {key:"colors"},
+	                {key:"fruit"},
+	                {key:"last_login"}
+	            ]
+	        }
+	    ]
+	}
+	];
+
+	var infoAfter = function(event) {
+		A.log('after', event.type);
+		console.log('after', event.type);
+	};
+
+	var infoBefore = function(event) {
+		A.log('before', event.type);
+
+		// console.log('before', event.type, event.column, event.inHead, event.record);
+
+		if (event.record) {
+			var cellValue = event.record.getValue( event.column.get('key') );
+
+			console.log( cellValue );
+		}
+
+		if (event.type == 'dataTable:cellMouseenter') {
+			event.liner.addClass('yui3-aui-hover-cell');
+		}
+		else if (event.type == 'dataTable:cellMouseleave') {
+			event.liner.removeClass('yui3-aui-hover-cell');
+		}
+
+		// event.halt();
+	};
+
+	// Creates a DataTable with 3 columns and 3 rows
+	table = new A.DataTable.Base({
+		columnset: nestedCols,
+
+		recordset: data,
+
+		plugins: [ A.Plugin.DataTableEvents ],
+
+		after: {
+			// columnClick: infoAfter,
+			// columnKeydown: infoAfter,
+			// columnKeyup: infoAfter,
+			// columnMousedown: infoAfter,
+			// columnMouseenter: infoAfter,
+			// columnMouseleave: infoAfter,
+			// columnMouseup: infoAfter,
+			// tableClick: infoAfter,
+			// tableKeydown: infoAfter,
+			// tableKeyup: infoAfter,
+			// tableMousedown: infoAfter,
+			// tableMouseenter: infoAfter,
+			// tableMouseleave: infoAfter,
+			// tableMouseup: infoAfter,
+			// theadClick: infoAfter,
+			// theadKeydown: infoAfter,
+			// theadKeyup: infoAfter,
+			// theadMousedown: infoAfter,
+			// theadMouseenter: infoAfter,
+			// theadMouseleave: infoAfter,
+			// theadMouseup: infoAfter,
+			// tbodyClick: infoAfter,
+			// tbodyKeydown: infoAfter,
+			// tbodyKeyup: infoAfter,
+			// tbodyMousedown: infoAfter,
+			// tbodyMouseenter: infoAfter,
+			// tbodyMouseleave: infoAfter,
+			// tbodyMouseup: infoAfter,
+			// rowClick: infoAfter,
+			// rowKeydown: infoAfter,
+			// rowKeyup: infoAfter,
+			// rowMousedown: infoAfter,
+			// rowMouseenter: infoAfter,
+			// rowMouseleave: infoAfter,
+			// rowMouseup: infoAfter,
+			// headerClick: infoAfter,
+			// headerKeydown: infoAfter,
+			// headerKeyup: infoAfter,
+			// headerMousedown: infoAfter,
+			// headerMouseenter: infoAfter,
+			// headerMouseleave: infoAfter,
+			// headerMouseup: infoAfter,
+			cellClick: infoAfter,
+			// cellKeydown: infoAfter,
+			// cellKeyup: infoAfter,
+			// cellMousedown: infoAfter,
+			// cellMouseenter: infoAfter,
+			// cellMouseleave: infoAfter,
+			// cellMouseup: infoAfter,
+		},
+
+		on: {
+			columnClick: infoBefore,
+			// columnKeydown: infoBefore,
+			// columnKeyup: infoBefore,
+			// columnMousedown: infoBefore,
+			// columnMouseenter: infoBefore,
+			// columnMouseleave: infoBefore,
+			// columnMouseup: infoBefore,
+			tableClick: infoBefore,
+			// tableKeydown: infoBefore,
+			// tableKeyup: infoBefore,
+			// tableMousedown: infoBefore,
+			// tableMouseenter: infoBefore,
+			// tableMouseleave: infoBefore,
+			// tableMouseup: infoBefore,
+			theadClick: infoBefore,
+			// theadKeydown: infoBefore,
+			// theadKeyup: infoBefore,
+			// theadMousedown: infoBefore,
+			// theadMouseenter: infoBefore,
+			// theadMouseleave: infoBefore,
+			// theadMouseup: infoBefore,
+			tbodyClick: infoBefore,
+			// tbodyKeydown: infoBefore,
+			// tbodyKeyup: infoBefore,
+			// tbodyMousedown: infoBefore,
+			// tbodyMouseenter: infoBefore,
+			// tbodyMouseleave: infoBefore,
+			// tbodyMouseup: infoBefore,
+			rowClick: infoBefore,
+			// rowKeydown: infoBefore,
+			// rowKeyup: infoBefore,
+			// rowMousedown: infoBefore,
+			// rowMouseenter: infoBefore,
+			// rowMouseleave: infoBefore,
+			// rowMouseup: infoBefore,
+			headerClick: infoBefore,
+			// headerKeydown: infoBefore,
+			// headerKeyup: infoBefore,
+			// headerMousedown: infoBefore,
+			// headerMouseenter: infoBefore,
+			// headerMouseleave: infoBefore,
+			// headerMouseup: infoBefore,
+			cellClick: infoBefore,
+			// cellKeydown: infoBefore,
+			// cellKeyup: infoBefore,
+			// cellMousedown: infoBefore,
+			cellMouseenter: infoBefore,
+			cellMouseleave: infoBefore,
+			// cellMouseup: infoBefore
+		}
+	})
+	.render("#dt1");
+
+});
+
+</script>
+
+<button onclick="table.unplug(AUI().Plugin.DataTableEvents);">Unplug A.Plugin.DataTableEvents</button>
+
+</body>
+</html>
