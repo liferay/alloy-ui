@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#animation {
+			position: relative;
+			height: 55px;
+			width: 500px;
+		}
+
+		#animationBox {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			background: #eee;
+			border: 1px solid #ccc;
+		}
+		.yui3-aui-button {
+			clear: both;
+			display: block;
+		}
+
+		.yui3-aui-field-content {
+			margin: 10px 0;
+		}
+
+		.yui3-aui-field-input {
+			width: 40px;
+		}
+
+		.info-box {
+			background-color: #eee;
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin: 1em 1em 2em;
+		}
+
+		.info-box.running-task-manager {
+			background-color: #dff4ff;
+			border-color: #a7cedf;
+		}
+
+		.info-box.running-no-task-manager {
+			background-color: #ffc;
+			border-color: #fc0;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - TaskManager Demo</h1>
+	<div id="animation">
+		<div id="animationBox"></div>
+	</div>
+
+	<div id="demo">
+		<form class="yui3-aui-form">
+			<span class="yui3-aui-field yui3-aui-field-text">
+				<span class="yui3-aui-field-content">
+					<label class="yui3-aui-field-label" for="textField">Number of timers</label>
+					<input class="yui3-aui-field-input yui3-aui-field-input-text" id="numTimers" type="text" value="30" />
+				</span>
+			</span>
+
+			<span class="yui3-aui-field yui3-aui-field-text">
+				<span class="yui3-aui-field-content">
+					<label class="yui3-aui-field-label" for="textField">Each timer should block for</label>
+					<input class="yui3-aui-field-input yui3-aui-field-input-text" id="taskLength" type="text" value="20" /> milliseconds
+				</span>
+			</span>
+
+			<p>
+				<a href="javascript:;" id="withoutTaskManager">Test without the Task Manager</a>
+			</p>
+
+			<p>
+				<a href="javascript:;" id="withTaskManager">Test <strong>with</strong> the Task Manager</a>
+			</p>
+			<p>
+				<a href="javascript:;" id="stopTasks">Stop</a>
+			</p>
+
+			<div class="info-box" id="infoBox">
+				<p>Scroll around while the counter increments to feel the responsiveness of the browser's UI. The smoother the performance the better.</p>
+				<div class="counter-box">
+					This counter will increment (to keep the browser busy) <strong class="counter-box-content" id="counter">0</strong>
+				</div>
+			</div>
+
+			<p>This test is based on the one done at <a href="http://media.fitzgeraldnick.com/code-samples/chronos-test.html">http://media.fitzgeraldnick.com/code-samples/chronos-test.html</a> and his work on <a href="http://fitzgeraldnick.com/weblog/40/" title="JavaScript Timer Congestion">Timer Congestion</a>.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-task-manager', 'aui-base', function(A) {
+
+	var numTimersNode = A.one('#numTimers');
+	var taskLengthNode = A.one('#numTimers');
+	var infoBoxNode = A.one('#infoBox');
+
+	function getNumTimers() {
+		return parseInt(numTimersNode.val());
+	}
+
+	function getTaskLength() {
+		return parseInt(taskLengthNode.val());
+	}
+
+	var ids = [];
+
+	function stopTasks() {
+		infoBoxNode.removeClass('running-task-manager').removeClass('running-no-task-manager');
+
+		A.Array.each(
+			ids,
+			function(item, index, collection) {
+				A.clearInterval(item);
+				window.clearInterval(item);
+			}
+		);
+
+		ids = [];
+	}
+
+	var now = A.Lang.now;
+
+	var counter = 0;
+	var counterNode = A.one('#counter');
+
+	var incrementCounter = function() {
+		counterNode.html(counter++);
+	};
+
+	function createTest(hostObject) {
+		return function() {
+			var numTimers = getNumTimers();
+			var taskLength = getTaskLength();
+
+			for (var i = 0; i < numTimers; i++) {
+				ids.push(
+					hostObject.setInterval(
+						function() {
+							var start = now();
+
+							while (now() - start < taskLength) {
+								incrementCounter();
+							}
+						},
+						50
+					)
+				);
+			}
+		}
+	}
+
+	var withTaskManager = createTest(A);
+	var withoutTaskManager = createTest(window);
+
+	var withTaskManagerNode = A.one('#withTaskManager');
+	var withoutTaskManagerNode = A.one('#withoutTaskManager');
+	var stopTasksNode = A.one('#stopTasks');
+
+	withTaskManagerNode.on(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			stopTasks();
+			withTaskManager();
+
+			infoBoxNode.addClass('running-task-manager');
+		}
+	);
+
+	withoutTaskManagerNode.on(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			stopTasks();
+			withoutTaskManager();
+
+			infoBoxNode.addClass('running-no-task-manager');
+		}
+	);
+
+	stopTasksNode.on(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			stopTasks();
+		}
+	);
+
+	// Start animation (simple animation done to show direct performance impact on setInterval)
+	var animationBox =  A.one('#animationBox').getDOM();
+	var animation = A.one('#animation').getDOM();
+
+	var animationBoxWidth = animationBox.offsetWidth;
+	var animationWidth = animation.offsetWidth;
+	var move = animationWidth / 100;
+
+	var left = 0;
+	var reverse = false;
+
+	setInterval(function() {
+		var maxLeft = animationWidth - animationBoxWidth;
+
+		left += reverse ? -move : move;
+
+		left = Math.max(0, Math.min(maxLeft, left));
+
+		if (left == maxLeft) {
+			reverse = true;
+		}
+		else if (left == 0) {
+			reverse = false;
+		}
+
+		animationBox.style.left = left + 'px';
+	}, 15);
+});
+
+</script>
+
+</body>
+</html>
