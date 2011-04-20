@@ -4180,7 +4180,7 @@ YUI.add('yui', function(Y){}, '3.3.0' ,{use:['yui-base','get','features','rls','
 
 		groups: {
             alloy: {
-	            combine: false,
+				combine: false,
                 modules: {
 						'aui-aria': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
@@ -4233,6 +4233,7 @@ YUI.add('yui', function(Y){}, '3.3.0' ,{use:['yui-base','get','features','rls','
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
 						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction']} }, skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']},
+						'aui-task-manager': {skinnable:false, requires:['aui-base']},
 						'aui-textboxlist': {skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']},
 						'aui-toolbar': {skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']},
 						'aui-tooltip': {skinnable:true, requires:['aui-overlay-context-panel']},
