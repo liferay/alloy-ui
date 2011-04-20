@@ -1,0 +1,1 @@
+AUI.add("aui-datatable-edit",function(a){},"@VERSION@",{requires:["aui-base","datatable","plugin"],skinnable:true});
