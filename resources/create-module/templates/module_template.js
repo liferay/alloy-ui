@@ -1,5 +1,5 @@
-var L = A.Lang,
-	isString = L.isString,
+var Lang = A.Lang,
+	isString = Lang.isString,
 
 	@module.base.name.constant@ = '@module.base.name.camelcase@',
 
@@ -7,36 +7,34 @@ var L = A.Lang,
 
 	CSS_ = getClassName(@module.base.name.constant@);
 
-function @module.base.name.camelcase@(config) {
-	@module.base.name.camelcase@.superclass.constructor.apply(this, arguments);
-}
+@module.base.name.camelcase@ = A.Component.create(
+	{
+		NAME: @module.base.name.constant@,
 
-A.mix(@module.base.name.camelcase@, {
-	NAME: @module.base.name.constant@,
+		ATTRS: {
 
-	ATTRS: {
+		},
 
+		prototype: {
+			/*
+			* Lifecycle
+			*/
+			initializer: function() {
+				var instance = this;
+
+
+			},
+
+			/*
+			* Methods
+			*/
+			method_name: function() {
+				var instance = this;
+
+
+			}
+		}
 	}
-});
-
-A.extend(@module.base.name.camelcase@, A.Widget, {
-	/*
-	* Lifecycle
-	*/
-	initializer: function() {
-		var instance = this;
-
-
-	},
-
-	/*
-	* Methods
-	*/
-	method_name: function() {
-		var instance = this;
-
-
-	}
-});
+);
 
 A.@module.base.name.camelcase@ = @module.base.name.camelcase@;
