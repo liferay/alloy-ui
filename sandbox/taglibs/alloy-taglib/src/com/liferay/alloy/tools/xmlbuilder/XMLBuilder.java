@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.util.FileImpl;
 import com.liferay.portal.xml.SAXReaderImpl;
@@ -225,6 +226,12 @@ public class XMLBuilder {
 		JSONObject descriptionJSON = new JSONObject();
 
 		try{
+			String defaultValue = attribute.getDefaultValue();
+
+			if (Validator.isNotNull(defaultValue)) {
+				descriptionJSON.put("defaultValue", defaultValue);
+			}
+
 			descriptionJSON.put("event", attribute.isEvent());
 			descriptionJSON.put("inputType", attribute.getInputType());
 			descriptionJSON.put("outputType", attribute.getOutputType());
