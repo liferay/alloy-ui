@@ -340,18 +340,6 @@ WidgetParentId.prototype = {
 		}
 	},
 
-	_getItemById: function(id) {
-		var instance = this;
-
-		var index = -1;
-
-		if (Lang.isString(id)) {
-			index = instance._CHILD_MAP[id];
-		}
-
-		return index;
-	},
-
 	_onAddChildById: function(event) {
 		var instance = this;
 
