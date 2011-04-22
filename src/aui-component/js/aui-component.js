@@ -335,7 +335,7 @@ var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
 Component._applyCssPrefix = function(component) {
 	if (component && !('CSS_PREFIX' in component)) {
-		component.CSS_PREFIX = A.getClassName(component.NAME);
+		component.CSS_PREFIX = A.getClassName(component.NAME.toLowerCase());
 	}
 
 	return component;
