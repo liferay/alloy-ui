@@ -64,7 +64,6 @@ var Record = Y.Base.create('record', Y.Base, [], {
 });
 
 Y.Record = Record;
-
 /**
  * The Recordset utility provides a standard way for dealing with
  * a collection of similar objects.
@@ -367,7 +366,7 @@ Recordset = Y.Base.create('recordset', Y.Base, [], {
         function(e) {
             this._defUpdateHash(e);
         });
-        this.after('update',
+        this.after('empty',
         function(e) {
             this._defEmptyHash();
         });
@@ -648,7 +647,6 @@ Recordset = Y.Base.create('recordset', Y.Base, [], {
 });
 Y.augment(Recordset, ArrayList);
 Y.Recordset = Recordset;
-
 
 
 

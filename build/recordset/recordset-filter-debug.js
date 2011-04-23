@@ -117,5 +117,4 @@ Y.namespace("Plugin").RecordsetFilter = RecordsetFilter;
 
 
 
-
 }, '3.3.0' ,{requires:['recordset-base','array-extras','plugin']});
