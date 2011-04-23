@@ -439,7 +439,7 @@ Y.mix(Transition.fx, {
         },
         duration: 0.5,
         easing: 'ease-in',
-        
+
         on: {
             start: function() {
                 var overflow = this.getStyle('overflow');
@@ -454,14 +454,14 @@ Y.mix(Transition.fx, {
                     this.setStyle('overflow', this._transitionOverflow);
                 }
             }
-        } 
+        }
     }
 });
 
 Y.mix(Transition.toggles, {
     size: ['sizeIn', 'sizeOut'],
     fade: ['fadeOut', 'fadeIn']
-});]]></replacetoken> 
+});]]></replacetoken>
 			    <replacevalue><![CDATA[Y.Node.prototype.toggleView = function(name, on, callback) {
     this._toggles = this._toggles || [];
     callback = arguments[arguments.length - 1];
@@ -546,7 +546,7 @@ Y.mix(Transition.fx, {
                     this.setStyle('overflow', this._transitionOverflow);
                 }
             }
-        } 
+        }
     }
 });
 
@@ -556,6 +556,19 @@ Y.mix(Transition.toggles, {
 });
 
 Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
+		</replace>
+		<!-- /End Patch -->
+
+		<!-- Patch for #2529861 -->
+		<replace file="${project.dir}/lib/yui3/src/recordset/js/recordset-base.js">
+			<replacetoken><![CDATA[this.after('update',
+        function(e) {
+            this._defEmptyHash();
+        });]]></replacetoken>
+			  <replacevalue><![CDATA[this.after('empty',
+        function(e) {
+            this._defEmptyHash();
+        });]]></replacevalue>
 		</replace>
 		<!-- /End Patch -->
 
@@ -584,6 +597,13 @@ Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 			/>
 		</subant>
 
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/recordset"
+				includes="build.xml"
+			/>
+		</subant>
 	</target>
 
 	<target name="release" depends="clean-release">
