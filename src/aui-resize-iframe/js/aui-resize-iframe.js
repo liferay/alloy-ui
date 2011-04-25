@@ -94,7 +94,7 @@ ResizeIframe = A.Component.create(
 					var docEl = iframeDoc.documentElement;
 
 					if (docEl) {
-						docEl.style.overflow = '';
+						docEl.style.overflowY = '';
 					}
 				}
 
@@ -125,7 +125,7 @@ ResizeIframe = A.Component.create(
 					var docEl = iframeDoc.documentElement;
 
 					if (docEl) {
-						docEl.style.overflow = HIDDEN;
+						docEl.style.overflowY = HIDDEN;
 					}
 				}
 
