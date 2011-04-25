@@ -10,12 +10,16 @@ var Lang = A.Lang,
 		return (arr || []).concat(arr2 || []);
 	},
 
+	toLowerCase = String.toLowerCase,
+
 	getClassName = A.getClassName,
 
 	NAME = 'component',
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
-	CONSTRUCTOR_OBJECT = Object.prototype.constructor;
+	CONSTRUCTOR_OBJECT = Object.prototype.constructor,
+
+	ENV = AUI.Env;
 
 /**
  * A base class for Component, providing:
@@ -253,7 +257,7 @@ A.extend(
 			var buffer = [];
 
 			for (var i = classes.length - 4; i >= 0; i--) {
-				name = classes[i].NAME.toLowerCase();
+				name = toLowerCase(classes[i].NAME);
 
 				buffer.push(getClassName(name, 'content'));
 			}
@@ -335,7 +339,7 @@ var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
 Component._applyCssPrefix = function(component) {
 	if (component && !('CSS_PREFIX' in component)) {
-		component.CSS_PREFIX = A.getClassName(component.NAME.toLowerCase());
+		component.CSS_PREFIX = A.getClassName(toLowerCase(component.NAME));
 	}
 
 	return component;
@@ -352,6 +356,10 @@ Component.create = function(config) {
 		component = function(){
 			component.superclass.constructor.apply(this, arguments);
 		};
+	}
+
+	if (!component.NAME) {
+		component.NAME = NAME + (++ENV._uidx)
 	}
 
 	var configProto = config.prototype;
