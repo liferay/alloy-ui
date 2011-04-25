@@ -218,6 +218,12 @@ body:hover .yui3-aui-helper-hidden-accessible [tabIndex] {
   display: none;
 }
 
+.yui3-aui-helper-force-offset {
+	display: block !important;
+	position: absolute !important;
+	visibility: hidden !important;
+}
+
 .yui3-aui-helper-reset {
 	margin: 0;
 	padding: 0;

@@ -24,16 +24,21 @@ var Lang = A.Lang,
 	ARRAY_EMPTY_STRINGS = [STR_EMPTY, STR_EMPTY],
 
 	HELPER = 'helper',
+	OFFSET = 'offset',
 
+	CSS_HELPER_FORCE_OFFSET = getClassName(HELPER, 'force', OFFSET),
 	CSS_HELPER_HIDDEN = getClassName(HELPER, 'hidden'),
 	CSS_HELPER_UNSELECTABLE = getClassName(HELPER, 'unselectable'),
 
 	CHILD_NODES = 'childNodes',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
+	INNER = 'inner',
 	INNER_HTML = 'innerHTML',
 	NEXT_SIBLING = 'nextSibling',
 	NONE = 'none',
+	OUTER = 'outer',
 	PARENT_NODE = 'parentNode',
+	REGION = 'region',
 	SCRIPT = 'script',
 
 	SUPPORT_CLONED_EVENTS = false,
@@ -307,8 +312,8 @@ A.mix(NODE_PROTOTYPE, {
 
 		centerWith = (centerWith && A.one(centerWith)) || A.getBody();
 
-		var centerWithRegion = centerWith.get('region');
-		var nodeRegion = instance.get('region');
+		var centerWithRegion = centerWith.get(REGION);
+		var nodeRegion = instance.get(REGION);
 
 		var xCenterWith = centerWithRegion.left + (centerWithRegion.width / 2);
 		var yCenterWith = centerWithRegion.top + (centerWithRegion.height / 2);
@@ -1053,6 +1058,168 @@ NODE_PROTOTYPE._show = function() {
 	return instance;
 };
 
+/**
+ * Returns the width of the content, not including
+ * the padding, border or margin. If a width is passed,
+ * the node's overall width is set to that size.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.width(); //returns content width
+ * node.width(100); // sets box width 
+ * </code></pre>
+ *
+ * @method width
+ * @return {number}
+ */
+
+/**
+ * Returns the height of the content, not including
+ * the padding, border or margin. If a height is passed,
+ * the node's overall height is set to that size.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.height(); //returns content height
+ * node.height(100); // sets box height 
+ * </code></pre>
+ *
+ * @method height
+ * @return {number}
+ */
+
+/**
+ * Returns the size of the box from inside of the border,
+ * which is the offsetWidth plus the padding on the left and right.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.innerWidth();
+ * </code></pre>
+ *
+ * @method innerWidth
+ * @return {number}
+ */
+
+/**
+ * Returns the size of the box from inside of the border,
+ * which is offsetHeight plus the padding on the top and bottom.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.innerHeight();
+ * </code></pre>
+ *
+ * @method innerHeight
+ * @return {number}
+ */
+
+/**
+ * Returns the outer width of the box including the border,
+ * if true is passed as the first argument, the margin is included.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.outerWidth();
+ * node.outerWidth(true); // includes margin
+ * </code></pre>
+ *
+ * @method outerWidth
+ * @return {number}
+ */
+
+/**
+ * Returns the outer height of the box including the border,
+ * if true is passed as the first argument, the margin is included.
+ *
+ * Example:
+ *
+ * <pre><code>var node = A.one('#nodeId');
+ * node.outerHeight();
+ * node.outerHeight(true); // includes margin
+ * </code></pre>
+ *
+ * @method outerHeight
+ * @return {number}
+ */
+
+A.each(
+	['Height', 'Width'],
+	function(item, index, collection) {
+		var sides = index ? 'lr' : 'tb';
+
+		var dimensionType = item.toLowerCase();
+
+		NODE_PROTOTYPE[dimensionType] = function(size) {
+			var instance = this;
+
+			var returnValue = instance;
+
+			if (isUndefined(size)) {
+				var node = instance._node;
+				var dimension;
+
+				if (node) {
+					if ((!node.tagName && node.nodeType === 9) || node.alert) {
+						dimension = instance.get(REGION)[dimensionType];
+					}
+					else {
+						dimension = instance.get(OFFSET + item);
+
+						var previous = {};
+						var styleObj = node.style;
+
+						if (!dimension) {
+							instance.addClass(CSS_HELPER_FORCE_OFFSET);
+
+							dimension = instance.get(OFFSET + item);
+
+							instance.removeClass(CSS_HELPER_FORCE_OFFSET);
+						}
+
+						if (dimension) {
+							dimension -= (instance.getPadding(sides) + instance.getBorderWidth(sides));
+						}
+					}
+				}
+
+				returnValue = dimension;
+			}
+			else {
+				instance.setStyle(dimensionType, size);
+			}
+
+			return returnValue;
+		};
+
+		NODE_PROTOTYPE[INNER + item] = function() {
+			var instance = this;
+
+			return instance[dimensionType]() + instance.getPadding(sides);
+		};
+
+		NODE_PROTOTYPE[OUTER + item] = function(margin) {
+			var instance = this;
+
+			var innerSize = instance[INNER + item]();
+			var borderSize = instance.getBorderWidth(sides);
+
+			var size = innerSize + borderSize;
+
+			if (margin) {
+				size += instance.getMargin(sides);
+			}
+
+			return size;
+		};
+	}
+);
+
 if (!SUPPORT_OPTIONAL_TBODY) {
 	A.DOM._ADD_HTML = A.DOM.addHTML;
 
@@ -1119,7 +1286,15 @@ A.NodeList.importMethod(
 
 		'html',
 
+		'innerHeight',
+
+		'innerWidth',
+
+		'outerHeight',
+
 		'outerHTML',
+
+		'outerWidth',
 
 		'prepend',
 
