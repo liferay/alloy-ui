@@ -78,6 +78,8 @@ var DialogIframePlugin = A.Component.create(
 
 				var node = A.Node.create(iframeTpl);
 
+				node.plug(A.Plugin.ResizeIframe);
+
 				instance._host.set('bodyContent', node);
 
 				var bodyNode = instance._host.bodyNode;
@@ -107,12 +109,6 @@ var DialogIframePlugin = A.Component.create(
 				instance.node.remove(true);
 			},
 
-			_adjustSize: A.cached(
-				function(number) {
-					return ((parseInt(number, 10) || 0) - 5);
-				}
-			),
-
 			_afterRender: function() {
 				var instance = this;
 
@@ -136,10 +132,6 @@ var DialogIframePlugin = A.Component.create(
 					var iframeDoc = node.get('contentWindow.document');
 
 					iframeDoc.get('documentElement').addClass(CSS_IFRAME_ROOT_NODE);
-
-					var iframeBody = iframeDoc.get('body');
-
-					node.set('height', iframeBody.get('scrollHeight') + 10);
 
 					instance.set('uri', iframeDoc.get('location.href'), UI_SRC);
 
@@ -179,8 +171,6 @@ var DialogIframePlugin = A.Component.create(
 			_updateIframeSize: function(event) {
 				var instance = this;
 
-				var adjustSize = instance._adjustSize;
-
 				var bodyNode = instance._bodyNode;
 				var node = instance.node;
 
@@ -190,7 +180,7 @@ var DialogIframePlugin = A.Component.create(
 					updateIframeSizeUI = function() {
 						var bodyHeight = bodyNode.getStyle('height');
 
-						node.setStyle('height', adjustSize(bodyHeight));
+						node.resizeiframe.set('height', bodyHeight);
 
 						bodyNode.loadingmask.refreshMask();
 					};
@@ -198,7 +188,7 @@ var DialogIframePlugin = A.Component.create(
 					instance._updateIframeSizeUI = updateIframeSizeUI;
 				}
 
-				setTimeout(updateIframeSizeUI, 50);
+				A.setTimeout(updateIframeSizeUI, 50);
 			}
 		}
 	}
