@@ -10,8 +10,6 @@ var Lang = A.Lang,
 		return (arr || []).concat(arr2 || []);
 	},
 
-	toLowerCase = String.toLowerCase,
-
 	getClassName = A.getClassName,
 
 	NAME = 'component',
@@ -255,7 +253,7 @@ A.extend(
 			var buffer = [];
 
 			for (var i = classes.length - 4; i >= 0; i--) {
-				name = toLowerCase(classes[i].NAME);
+				name = String(classes[i].NAME).toLowerCase();
 
 				buffer.push(getClassName(name, 'content'));
 			}
@@ -337,7 +335,7 @@ var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
 Component._applyCssPrefix = function(component) {
 	if (component && component.NAME && !('CSS_PREFIX' in component)) {
-		component.CSS_PREFIX = A.getClassName(toLowerCase(component.NAME));
+		component.CSS_PREFIX = A.getClassName(String(component.NAME).toLowerCase());
 	}
 
 	return component;
