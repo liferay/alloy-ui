@@ -38,7 +38,7 @@ ResizeIframe = A.Component.create(
 
 				var frame = instance.get('host');
 
-				instance._iframe = frame;
+				instance.node = frame;
 				instance._iframeEl = frame.getDOM();
 
 				instance.bindUI();
@@ -153,14 +153,14 @@ ResizeIframe = A.Component.create(
 				if (instance._iframeHeight != value) {
 					instance._iframeHeight = value;
 
-					instance._iframe.setStyle(HEIGHT, value);
+					instance.node.setStyle(HEIGHT, value);
 				}
 			},
 
 			_uiSetMonitorHeight: function(monitorHeight) {
 				var instance = this;
 
-				var iframe = instance._iframe;
+				var iframe = instance.node;
 
 				if (monitorHeight) {
 					instance._setInterval();
@@ -183,7 +183,7 @@ ResizeIframe = A.Component.create(
 			_uiSetWidth: function(value) {
 				var instance = this;
 
-				instance._iframe.setStyle(WIDTH, value);
+				instance.node.setStyle(WIDTH, value);
 			},
 
 			_iframeHeight: 0
