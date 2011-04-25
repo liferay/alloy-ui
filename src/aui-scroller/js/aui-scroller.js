@@ -63,6 +63,15 @@ var Scroller = A.Component.create (
 				instance._boundingBoxXY = instance._boundingBox.getXY();
 
 				instance._updateNodeSelection();
+
+				instance._contentBox.plug(
+					A.Plugin.NodeFX, 
+					{
+						duration: instance._duration,
+						easing: A.Easing.easeOutStrong,
+						to: {}
+					}
+				);
 			},
 
 			bindUI: function () {
@@ -105,18 +114,25 @@ var Scroller = A.Component.create (
 				var contentBox = instance._contentBox;
 				var orientation = instance._orientation;
 
-				var transitionConfig = {
-					duration: instance._duration
-				};
+				var fx = contentBox.fx;
+
+				var key;
+				var value;
 
 				if(orientation == HORIZONTAL) {
-					transitionConfig.left = -event.offsetX + PX;
+					key= 'to.left';
+					value = -event.offsetX + PX;
 				}
 				else {
-					transitionConfig.top = -event.offsetY + PX;
+					key = 'to.top';
+					value = -event.offsetY + PX;
 				}
 
-				contentBox.transition(transitionConfig);
+				fx.stop();
+
+				fx.set(key, value);
+
+				fx.run();
 			},
 
 			_onMouseMove: function(event, boundingBox, contentBox, orientation) {
