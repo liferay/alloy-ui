@@ -197,4 +197,4 @@ var Scroller = A.Component.create (
 
 A.Scroller = Scroller;
 
-}, '@VERSION@' ,{requires:['aui-base','transition','anim-node-plugin'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','anim-node-plugin'], skinnable:true});
