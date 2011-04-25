@@ -9,6 +9,7 @@ var Lang = A.Lang,
 	HIDDEN = 'hidden',
 	NO = 'no',
 	SCROLLING = 'scrolling',
+	WIDTH = 'width',
 
 	CSS_RESIZE_IFRAME_MONITORED_HEIGHT = getClassName(RESIZE_IFRAME, 'monitored', HEIGHT);
 
@@ -25,6 +26,9 @@ ResizeIframe = A.Component.create(
 			},
 			monitorHeight: {
 				value: true
+			},
+			width: {
+				value: null
 			}
 		},
 
@@ -46,6 +50,7 @@ ResizeIframe = A.Component.create(
 
 				instance.after('heightChange', instance._afterHeightChange);
 				instance.after('monitorHeightChange', instance._afterMonitorHeightChange);
+				instance.after('widthChange', instance._afterWidthChange);
 			},
 
 			syncUI: function() {
@@ -72,6 +77,12 @@ ResizeIframe = A.Component.create(
 				var instance = this;
 
 				instance._uiSetMonitorHeight(event.newVal);
+			},
+
+			_afterWidthChange: function(event) {
+				var instance = this;
+
+				instance._uiSetWidth(event.newVal);
 			},
 
 			_clearInterval: function() {
@@ -167,6 +178,12 @@ ResizeIframe = A.Component.create(
 
 					iframe.removeClass(CSS_RESIZE_IFRAME_MONITORED_HEIGHT);
 				}
+			},
+
+			_uiSetWidth: function(value) {
+				var instance = this;
+
+				instance._iframe.setStyle(WIDTH, value);
 			},
 
 			_iframeHeight: 0
