@@ -18,9 +18,7 @@ var Lang = A.Lang,
 	NAME = 'component',
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
-	CONSTRUCTOR_OBJECT = Object.prototype.constructor,
-
-	ENV = AUI.Env;
+	CONSTRUCTOR_OBJECT = Object.prototype.constructor;
 
 /**
  * A base class for Component, providing:
@@ -339,7 +337,7 @@ var COMP_PROTO = Component.prototype;
 var DEFAULT_UI_ATTRS = A.Widget.prototype._UI_ATTRS;
 
 Component._applyCssPrefix = function(component) {
-	if (component && !('CSS_PREFIX' in component)) {
+	if (component && component.NAME && !('CSS_PREFIX' in component)) {
 		component.CSS_PREFIX = A.getClassName(toLowerCase(component.NAME));
 	}
 
@@ -357,10 +355,6 @@ Component.create = function(config) {
 		component = function(){
 			component.superclass.constructor.apply(this, arguments);
 		};
-	}
-
-	if (!component.NAME) {
-		component.NAME = NAME + (++ENV._uidx)
 	}
 
 	var configProto = config.prototype;
