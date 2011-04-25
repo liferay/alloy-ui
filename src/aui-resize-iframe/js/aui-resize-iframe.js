@@ -6,6 +6,7 @@ var Lang = A.Lang,
 	getClassName = A.getClassName,
 
 	HEIGHT = 'height',
+	HIDDEN = 'hidden',
 	NO = 'no',
 	SCROLLING = 'scrolling',
 
@@ -19,6 +20,9 @@ ResizeIframe = A.Component.create(
 		EXTENDS: A.Plugin.Base,
 
 		ATTRS: {
+			height: {
+				value: 0
+			},
 			monitorHeight: {
 				value: true
 			}
@@ -40,6 +44,7 @@ ResizeIframe = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
+				instance.after('heightChange', instance._afterHeightChange);
 				instance.after('monitorHeightChange', instance._afterMonitorHeightChange);
 			},
 
@@ -55,6 +60,14 @@ ResizeIframe = A.Component.create(
 				instance._uiSetMonitorHeight(false);
 			},
 
+			_afterHeightChange: function(event) {
+				var instance = this;
+
+				instance.set('monitorHeight', false);
+
+				instance._uiSetHeight(event.newVal);
+			},
+
 			_afterMonitorHeightChange: function(event) {
 				var instance = this;
 
@@ -64,64 +77,72 @@ ResizeIframe = A.Component.create(
 			_clearInterval: function() {
 				var instance = this;
 
+				var iframeDoc = instance._iframeDoc;
+
+				if (iframeDoc) {
+					var docEl = iframeDoc.documentElement;
+
+					if (docEl) {
+						docEl.style.overflow = '';
+					}
+				}
+
 				if (instance._intervalId) {
 					A.clearInterval(instance._intervalId);
+
 					instance._intervalId = null;
 				}
 			},
 
-			_isIframeLoaded: function() {
+			_onResize: function() {
 				var instance = this;
 
-				var loaded = false;
+				instance._iframeDoc = null;
+
+				var newHeight = instance._iframeHeight;
+				var iframeDoc;
 
 				try {
-					var readyState = instance._iframe.contentWindow.document.readyState;
+					iframeDoc = instance._iframeEl.contentWindow.document;
 
-					loaded = (readyState == 'complete' || readyState == 'loaded');
+					instance._iframeDoc = iframeDoc;
 				}
 				catch (e) {
 				}
 
-				return loaded;
-			},
+				if (iframeDoc) {
+					var docEl = iframeDoc.documentElement;
 
-			_onResize: function(event) {
-				var instance = this;
-
-				instance._sameDomain = null;
-
-				var iframeHeight = instance._iframeHeight;
-				var newHeight = iframeHeight;
-				var doc;
-
-				try {
-					doc = instance._iframeEl.contentWindow.document;
-
-					instance._sameDomain = true;
-				}
-				catch (e) {
-				}
-
-				if (doc && doc.body) {
-					newHeight = doc.body.offsetHeight;
-
-					if (iframeHeight != newHeight) {
-						instance._iframeHeight = newHeight;
-
-						instance._iframe.setStyle(HEIGHT, newHeight);
+					if (docEl) {
+						docEl.style.overflow = HIDDEN;
 					}
 				}
-				else if (!doc) {
+
+				if (iframeDoc && iframeDoc.body) {
+					newHeight = iframeDoc.body.offsetHeight;
+
+					instance._uiSetHeight(newHeight);
+				}
+				else if (!iframeDoc) {
 					instance._clearInterval();
 				}
 			},
 
-			_setInterval: function() {
+			_setInterval: function(event) {
 				var instance = this;
 
 				if (!instance._intervalId) {
 					instance._intervalId = A.setInterval(instance._onResize, 100, instance);
+				}
+			},
+
+			_uiSetHeight: function(value) {
+				var instance = this;
+
+				if (instance._iframeHeight != value) {
+					instance._iframeHeight = value;
+
+					instance._iframe.setStyle(HEIGHT, value);
 				}
 			},
 
@@ -134,9 +155,6 @@ ResizeIframe = A.Component.create(
 					instance._setInterval();
 
 					instance._loadHandle = iframe.on('load', instance._setInterval, instance);
-					instance._previousScrolling = iframe.attr(SCROLLING);
-
-					iframe.attr(SCROLLING, NO);
 
 					iframe.addClass(CSS_RESIZE_IFRAME_MONITORED_HEIGHT);
 				}
@@ -146,8 +164,6 @@ ResizeIframe = A.Component.create(
 					if (instance._loadHandle) {
 						instance._loadHandle.detach();
 					}
-
-					iframe.attr(SCROLLING, instance._previousScrolling);
 
 					iframe.removeClass(CSS_RESIZE_IFRAME_MONITORED_HEIGHT);
 				}
