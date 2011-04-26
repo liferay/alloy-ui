@@ -51,6 +51,13 @@
 	display: none !important;
 }
 
+.yui3-aui-basecelleditor-hidden,
+.yui3-aui-datecelleditor-hidden,
+.yui3-aui-dropdowncelleditor-hidden,
+.yui3-aui-textcelleditor-hidden,
+.yui3-aui-textareacelleditor-hidden,
+.yui3-aui-checkboxcelleditor-hidden,
+.yui3-aui-radiocelleditor-hidden,
 .yui3-aui-helper-hidden-accessible,
 .yui3-aui-overlay-hidden,
 .yui3-aui-overlaycontext-hidden,
