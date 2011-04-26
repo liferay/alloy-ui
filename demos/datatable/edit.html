@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css">
+	.example {
+		margin: 30px;
+	}
+
+	.yui3-aui-hover-cell {
+		background: #ddd;
+	}
+	</style>
+</head>
+
+<body class="yui3-skin-sam">
+
+<h1>Alloy - DataTable - Inline Cell Editing</h1>
+
+<div class="example">
+	<div id="dt1"></div>
+</div>
+
+<script type="text/javascript">
+
+AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
+
+	new A.Console().render();
+
+	// Creates a Columnset with 3 Columns. "cost" is not rendered.
+	var cols = ["name","address","city", "state", "amount", "active", "colors", "fruit", "last_login"];
+
+	// Columns must match data parameter names
+	var data = [
+		{name:"John A. Smith<b>dfsdf</b>&gt;ABC&lt;", address:"1236 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana","cherry"], last_login:"4/19/2007"},
+		{name:"Joan B. Jones", address:"3271 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"John D. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
+		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"},
+		{name:"Bob F. Uncle", address:"9899 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["banana"], last_login:"1/23/2004"},
+		{name:"John G. Smith", address:"1723 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple"], last_login:"4/19/2007"},
+		{name:"Joan H. Jones", address:"3241 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["kiwi"], last_login:"2/15/2006"},
+		{name:"Bob I. Uncle", address:"9909 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple","banana"], last_login:"1/23/2004"},
+		{name:"John J. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple","cherry"], last_login:"4/19/2007"},
+		{name:"Joan K. Jones", address:"3721 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["banana"], last_login:"2/15/2006"},
+		{name:"Bob L. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
+		{name:"John M. Smith", address:"1293 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
+		{name:"Joan N. Jones", address:"3621 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob O. Uncle", address:"9959 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["kiwi","cherry"], last_login:"1/23/2004"},
+		{name:"John P. Smith", address:"6123 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana"], last_login:"4/19/2007"},
+		{name:"Joan Q. Jones", address:"3281 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
+		{name:"Bob R. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple"], last_login:"1/23/2004"}
+	];
+
+	window.gEditor = new A.TextAreaCellEditor({
+		after: {
+			save: function(event) {
+				console.log('saving', event.prevVal, '===', event.newVal, ' === ' , this.get('value'));
+
+				// event.halt();
+			}
+		},
+		// inputFormatter: null,
+		// outputFormatter: null,
+		validator: {
+			rules: {
+				name: {
+					required: true,
+					email: true
+				}
+			}
+		}
+	});
+
+	var nestedCols = [
+		{ key:"name", editor: gEditor },
+		{
+			key:"address",
+			editor: new A.TextCellEditor({
+				on: {
+					save: function(event) {
+						// A.log('saving', event.prevVal, event.newVal);
+						// event.halt();
+					}
+				}
+			}),
+			formatter: function(column) {
+				return column.value;
+			}
+		},
+        { key:"city", editor: new A.TextAreaCellEditor() },
+        {
+			key:"state",
+			editor: new A.DropDownCellEditor({
+				options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+			})
+		},
+        {
+			key:"amount",
+			editor: new A.TextCellEditor({
+				inputFormatter: A.DataType.String.evaluate,
+				validator: {
+					rules: {
+						value: {
+							required: true,
+							number: true
+						}
+					}
+				}
+			})
+		},
+        {
+			key:"active",
+			editor: new A.RadioCellEditor({
+				// options: [ 'yes', 'no', 'maybe' ]
+				options: {
+					yes: 'Yes',
+					no: 'No',
+					maybe: 'Maybe'
+				}
+			})
+		},
+        {
+			key:"colors",
+			editor: new A.CheckboxCellEditor({
+				multiple: true,
+				options: {
+					red: 'Red',
+					green: 'Green',
+					blue: 'Blue'
+				}
+			})
+		},
+        {
+			key:"fruit",
+			editor: new A.DropDownCellEditor({
+				multiple: true,
+				validator: {
+					rules: {
+						value: {
+							required: true
+						}
+					}
+				},
+				options: {
+					apple: 'Apple',
+					cherry: 'Cherry',
+					banana: 'Banana',
+					kiwi: 'Kiwi'
+				}
+			})
+		},
+        {
+			key:"last_login",
+			editor: new A.DateCellEditor({
+				calendar: {
+					selectMultipleDates: true
+				},
+				validator: {
+					rules: {
+						value: {
+							required: true
+						}
+					}
+				}
+			})
+		}
+	];
+
+	// Creates a DataTable with 3 columns and 3 rows
+	table = new A.DataTable.Base({
+		columnset: nestedCols,
+		recordset: data
+	})
+	.render("#dt1");
+
+});
+
+</script>
+
+<button onclick="table.unplug(AUI().Plugin.DataTableEvents);">Unplug A.Plugin.DataTableEvents</button>
+
+</body>
+</html>
