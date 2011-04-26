@@ -65,6 +65,20 @@ ResizeIframe = A.Component.create(
 				instance._uiSetMonitorHeight(false);
 			},
 
+			pauseMonitor: function() {
+				var instance = this;
+
+				instance._clearInterval();
+			},
+
+			restartMonitor: function() {
+				var instance = this;
+
+				if (instance.get('monitorHeight')) {
+					instance._setInterval();
+				}
+			},
+
 			_afterHeightChange: function(event) {
 				var instance = this;
 
