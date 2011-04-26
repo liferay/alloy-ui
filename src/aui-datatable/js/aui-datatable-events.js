@@ -22,16 +22,11 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CELL = 'cell',
 	CELL_SELECTOR = 'cellSelector',
-	CHILD_NODES = 'childNodes',
 	CLICK = 'click',
 	COLUMN = 'column',
-	COLUMNSET = 'columnset',
-	COLUMN_INDEX = 'columnIndex',
 	EVENTS = 'events',
 	HEADER = 'header',
-	HEADERS = 'headers',
 	HOST = 'host',
-	ID = 'id',
 	IN_HEAD = 'inHead',
 	KEYDOWN = 'keydown',
 	KEYUP = 'keyup',
@@ -46,15 +41,12 @@ var Lang = A.Lang,
 	TAGS = 'tags',
 	TAG_NAME = 'tagName',
 	TBODY = 'tbody',
-	TH = 'th',
 	THEAD = 'thead',
 	TR = 'tr',
     DATATABLE = 'datatable',
 
 	_COMMA = ',',
 	_DOT = '.',
-	_HASH = '#',
-	_SPACE = ' ',
 
 	CSS_DATATABLE_LINER = YgetClassName(DATATABLE, LINER);
 
@@ -81,49 +73,6 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		}
 	},
 
-	getColumn: function(i) {
-		var instance = this;
-		var host = instance.get(HOST);
-
-		return host.get(COLUMNSET).idHash[i];
-	},
-
-	getColumnByCell: function(cell) {
-		var instance = this;
-		var dataHeaderId = cell.getAttribute(HEADERS).split(_SPACE).pop() || cell.get(ID);
-
-		return instance.getColumn(dataHeaderId);
-	},
-
-	getColumnIndex: function(column) {
-		return column.keyIndex;
-	},
-
-	getColumnNode: function(column) {
-		return column.thNode;
-	},
-
-	getColNode: function(cell) {
-		var instance = this;
-		var host = instance.get(HOST);
-		var index = instance.getColumnIndex(instance.getColumnByCell(cell));
-
-		return host._colgroupNode.get(CHILD_NODES).item(index);
-	},
-
-	getRecord: function(i) {
-		var instance = this;
-		var host = instance.get(HOST);
-
-		return host.get(RECORDSET).getRecord(i);
-	},
-
-	getRecordByRow: function(row) {
-		var instance = this;
-
-		return instance.getRecord(row.get(ID));
-	},
-
 	_filterBubble: function(target) {
 		var instance = this;
 		var host = instance.get(HOST);
@@ -148,7 +97,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		// Adding respective col node to the nodes array in such a way
 		// that the bubble order is: (td|th), tr, col, (tbody|thead) and table.
 		if (nodes.length) {
-			var column = instance.getColNode(A.one(nodes[0]));
+			var column = host.getColNode(A.one(nodes[0]));
 
 			if (column) {
 				nodes.splice(2, 0, column.getDOM());
@@ -188,12 +137,12 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 
 		var payload = {
 			cell: currentTarget,
-			column: instance.getColumnByCell(currentTarget),
+			column: host.getColumnByCell(currentTarget),
 			inHead: inHead,
 			liner: liner,
 			originalEvent: event,
 			row: row,
-			record: instance.getRecordByRow(row)
+			record: host.get(RECORDSET).getRecordByRow(row)
 		};
 
 		var nodes = instance._filterBubble(event.currentTarget.getDOM());
