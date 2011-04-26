@@ -110,10 +110,31 @@ var DialogIframePlugin = A.Component.create(
 				instance.node.remove(true);
 			},
 
+			_afterMaskVisibleChange: function(event) {
+				var instance = this;
+
+				var resizeIframe = instance.node.resizeiframe;
+
+				if (event.newVal) {
+					resizeIframe.pauseMonitor();
+				}
+				else {
+					resizeIframe.restartMonitor();
+				}
+			},
+
 			_afterRender: function() {
 				var instance = this;
 
-				instance._bodyNode.plug(A.LoadingMask).loadingmask.show();
+				var bodyNode = instance._bodyNode;
+
+				bodyNode.plug(A.LoadingMask);
+
+				var loadingMask = bodyNode.loadingmask;
+
+				loadingMask.overlayMask.after('visibleChange', instance._afterMaskVisibleChange, instance);
+
+				loadingMask.show();
 			},
 
 			_afterUriChange: function(event) {
