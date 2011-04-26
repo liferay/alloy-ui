@@ -197,7 +197,9 @@ var L = A.Lang,
 
 	DEFAULT_ICON_CLASS = [CSS_FORM_BUILDER_FIELD_ICON, CSS_FORM_BUILDER_FIELD_ICON_TEXT].join(SPACE),
 
-	INVALID_CLONE_ATTRS = A.Array([BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME])
+	INVALID_CLONE_ATTRS = A.Array([BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME]),
+
+	INVALID_DBCLICK_TARGETS = 'button,input,label,select,textarea';
 
 var FormBuilderFieldSupport = function() {};
 
@@ -587,7 +589,6 @@ var FormBuilder = A.Component.create({
 			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDelete, instance), DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
 			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDuplicate, instance), DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE);
 			dropContainerNode.delegate('click', A.bind(instance._onClickFieldEdit, instance), DOT + CSS_FORM_BUILDER_BUTTON_EDIT);
-
 			dropContainerNode.delegate('dblclick', A.bind(instance._onDbClickField, instance), DOT + CSS_FORM_BUILDER_FIELD);
 			dropContainerNode.delegate('mouseenter', A.bind(instance._onMouseEnterField, instance), DOT + CSS_FORM_BUILDER_FIELD);
 			dropContainerNode.delegate('mouseleave', A.bind(instance._onMouseLeaveField, instance), DOT + CSS_FORM_BUILDER_FIELD);
@@ -971,6 +972,12 @@ var FormBuilder = A.Component.create({
 		_onDbClickField: function(event) {
 			var instance = this;
 			var target = event.target;
+
+			if (target.test(INVALID_DBCLICK_TARGETS)) {
+				event.stopPropagation();
+
+				return false;
+			}
 
 			if (!target.getData(FIELD)) {
 				target = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
