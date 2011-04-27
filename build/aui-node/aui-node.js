@@ -1239,7 +1239,7 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 				tagName = content.nodeName;
 			}
 
-			tagName = tagName.toLowerCase();
+			tagName = tagName && tagName.toLowerCase();
 		}
 
 		if (nodeName == 'table' && tagName == 'tr') {
