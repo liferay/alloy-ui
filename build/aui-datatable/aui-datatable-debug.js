@@ -923,7 +923,7 @@ var BaseCellEditor = A.Component.create({
 					instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
 				);
 
-				A.later(0, elements, elements.selectText);
+				A.later(30, elements, elements.selectText);
 			}
 		}
 
