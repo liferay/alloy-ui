@@ -283,20 +283,22 @@ var Toolbar = A.Component.create(
 );
 
 var ToolbarSpacer = A.Component.create(
-		{
-			NAME: TOOLBARSPACER,
+	{
+		NAME: TOOLBARSPACER,
 
-			AUGMENTS: [A.WidgetChild],
+		AUGMENTS: [A.WidgetChild],
 
-			ATTRS: {
-			},
+		ATTRS: {
+		},
 
-			prototype: {
-				BOUNDING_TEMPLATE: TPL_GENERIC,
-				CONTENT_TEMPLATE: null
-			}
+		prototype: {
+			BOUNDING_TEMPLATE: TPL_GENERIC,
+			CONTENT_TEMPLATE: null
 		}
-	);
+	}
+);
+
+A.ToolbarSpacer = ToolbarSpacer;
 
 var WidgetParentId = function() {
 	var instance = this;
