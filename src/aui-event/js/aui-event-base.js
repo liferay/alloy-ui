@@ -190,11 +190,10 @@ var KeyMap = {
 
 		var keyName;
 		var key;
-		var toUpperCase = String.toUpperCase;
 
 		while (i--) {
-			keyName = toUpperCase(arr[i]);
-			key = keyName && instance[keyName];
+			keyName = arr[i];
+			key = keyName && (instance[keyName] || instance[String(keyName).toUpperCase()]);
 
 			if (keyCode == key) {
 				result = true;
