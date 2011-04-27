@@ -270,7 +270,7 @@ A.mix(NODE_PROTOTYPE, {
 				if (el.nodeType != 3) {
 					var outerHTML = this.outerHTML();
 
-					outerHTML = outerHTML.replace(REGEX_IE8_ACTION, '="$1">').replace(REGEX_LEADING_WHITE_SPACE, '');
+					outerHTML = outerHTML.replace(REGEX_IE8_ACTION, '="$1">').replace(REGEX_LEADING_WHITE_SPACE, STR_EMPTY);
 
 					clone = A.Node.create(outerHTML);
 				}
@@ -684,8 +684,8 @@ A.mix(NODE_PROTOTYPE, {
 
 		instance.setStyles(
 			{
-				'MozUserSelect': '',
-				'KhtmlUserSelect': ''
+				'MozUserSelect': STR_EMPTY,
+				'KhtmlUserSelect': STR_EMPTY
 			}
 		);
 
@@ -904,7 +904,7 @@ A.mix(NODE_PROTOTYPE, {
 			}
 		}
 
-		return str.join('');
+		return str.join(STR_EMPTY);
 	},
 
 	/**
@@ -1223,9 +1223,9 @@ if (!SUPPORT_OPTIONAL_TBODY) {
 	A.DOM._ADD_HTML = A.DOM.addHTML;
 
 	A.DOM.addHTML = function(node, content, where) {
-		var nodeName = (node.nodeName && node.nodeName.toLowerCase()) || '';
+		var nodeName = (node.nodeName && node.nodeName.toLowerCase()) || STR_EMPTY;
 
-		var tagName;
+		var tagName = STR_EMPTY;
 
 		if (!isUndefined(content)) {
 			if (isString(content)) {
