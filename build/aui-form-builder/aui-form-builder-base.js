@@ -63,7 +63,7 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FIELD_ID = 'fieldId',
+	KEY = 'key',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
 	FOCUSED = 'focused',
@@ -164,7 +164,7 @@ var L = A.Lang,
 
 	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
 
-	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-fieldId="{fieldId}">' +
+	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-key="{key}">' +
 						'<span class="' + [CSS_FORM_BUILDER_ICON, CSS_ICON].join(SPACE) + ' {icon}"></span>' +
 						'<span class="' + CSS_FORM_BUILDER_LABEL + '">{label}</span>' +
 					'</li>',
@@ -332,11 +332,11 @@ A.mix(FormBuilderFieldSupport.prototype, {
 		A.Array.each(fields, function(field, i) {
 			field = instance._getRenderedField(i, field);
 
-			var fieldId = field.get(FIELD_ID);
+			var key = field.get(KEY);
 			var unique = field.get(UNIQUE);
 
-			if (unique && !uniqueFields.containsKey(fieldId)) {
-				uniqueFields.add(fieldId, field);
+			if (unique && !uniqueFields.containsKey(key)) {
+				uniqueFields.add(key, field);
 			}
 
 			if (unique && uniqueFields.contains(field)) {
@@ -406,7 +406,7 @@ var FormBuilder = A.Component.create({
 			validator: isArray,
 			setter: function(val) {
 				A.each(val, function(availableField, index) {
-					availableField.fieldId = availableField.fieldId || index
+					availableField.key = availableField.key || index
 				});
 
 				return val;
@@ -656,6 +656,7 @@ var FormBuilder = A.Component.create({
 			instance.syncFieldsUI();
 
 			instance._syncDefaultMessage();
+			instance._syncUniqueFields();
 			instance._syncNestedList();
 		},
 
@@ -769,7 +770,6 @@ var FormBuilder = A.Component.create({
 		_afterFieldsChange: function() {
 			var instance = this;
 
-			instance._syncUniqueFields();
 			instance.syncUI();
 		},
 
@@ -804,9 +804,8 @@ var FormBuilder = A.Component.create({
 		 */
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var index = event.attrName;
-			var dragNodesList = instance.get(DRAG_NODES_LIST);
-			var dragNode = dragNodesList.item(index);
+			var key = event.attrName;
+			var dragNode = instance._getDragNodeByKey(key);
 
 			dragNode.addClass(CSS_FORM_BUILDER_INACTIVE);
 			dragNode.unselectable();
@@ -819,9 +818,8 @@ var FormBuilder = A.Component.create({
 		 */
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var index = event.attrName;
-			var dragNodesList = instance.get(DRAG_NODES_LIST);
-			var dragNode = dragNodesList.item(index);
+			var key = event.attrName;
+			var dragNode = instance._getDragNodeByKey(key);
 
 			dragNode.removeClass(CSS_FORM_BUILDER_INACTIVE);
 			dragNode.selectable();
@@ -887,6 +885,25 @@ var FormBuilder = A.Component.create({
 			parent.insertField(index, field);
 
 			return parent.getField(index);
+		},
+
+		/**
+		 * Return the dragNode to the given key
+		 *
+		 * @method _getDragNodeByKey
+		 */
+		_getDragNodeByKey: function(key) {
+			var instance = this;
+			var dragNodesList = instance.get(DRAG_NODES_LIST);
+			var availableFields = instance.get(AVAILABLE_FIELDS);
+
+			for (var i = 0; i < availableFields.length; i++) {
+				if (key == availableFields[i].key) {
+					return dragNodesList.item(i);
+				}
+			}
+
+			return null;
 		},
 
 		/**
@@ -1199,7 +1216,7 @@ var FormBuilder = A.Component.create({
 				config,
 				{
 					boundingBox: boundingBox,
-					fieldId: config.fieldId,
+					key: config.key,
 					formBuilder: instance,
 					render: true,
 					after: {
@@ -1246,7 +1263,7 @@ var FormBuilder = A.Component.create({
 			instance.dragNodes.each(function(node, i) {
 				var field = availableFields[i];
 
-				if (!uniqueFields.containsKey(field.fieldId)) {
+				if (!uniqueFields.containsKey(field.key)) {
 					instance._dragNestedList.add(node);
 				}
 			});
@@ -1304,11 +1321,27 @@ var FormBuilder = A.Component.create({
 		 */
 		_syncUniqueFields: function() {
 			var instance = this;
+			var availableFields = instance.get(AVAILABLE_FIELDS);
+			var fields = instance.get(FIELDS);
 			var uniqueFields = instance.uniqueFields;
 
 			uniqueFields.each(function(uniqueField, index){
 				if (!instance.contains(uniqueField, true)) {
 					uniqueFields.remove(uniqueField);
+				}
+			});
+
+			A.each(availableFields, function(availableField, index) {
+				if (availableField.unique) {
+					var key = availableField.key;
+
+					A.each(fields, function(field){
+						if (field.get(KEY) == key) {
+							field.set(UNIQUE, true);
+
+							uniqueFields.add(key, field);
+						}
+					});
 				}
 			});
 		},
@@ -1345,7 +1378,7 @@ var FormBuilder = A.Component.create({
 						{
 							icon: item.iconClass || DEFAULT_ICON_CLASS,
 							label: item.label,
-							fieldId: item.fieldId || index,
+							key: item.key || index,
 							type: item.type,
 							unique: item.unique
 						}

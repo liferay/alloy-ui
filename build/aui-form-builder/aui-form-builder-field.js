@@ -134,10 +134,10 @@ var FormBuilderField = A.Component.create({
 		/**
 		 * The id of the available field that originated the field
 		 *
-		 * @attribute fieldId
+		 * @attribute key
 		 * @private
 		 */
-		fieldId: {
+		key: {
 			value: EMPTY_STR
 		},
 
