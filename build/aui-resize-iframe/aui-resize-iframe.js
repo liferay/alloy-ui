@@ -120,16 +120,70 @@ ResizeIframe = A.Component.create(
 				}
 			},
 
+			_getQuirksHeight: function(iframeWin) {
+				var instance = this;
+
+				var contentHeight = 0;
+
+				var iframeDoc = iframeWin.document;
+				var docEl = iframeDoc && iframeDoc.documentElement;
+				var iframeBody = iframeDoc && iframeDoc.body;
+
+				var viewPortHeight = 0;
+
+				if (iframeWin.innerHeight) {
+					viewPortHeight = iframeWin.innerHeight;
+				}
+				else if (docEl && docEl.clientHeight) {
+					viewPortHeight = docEl.clientHeight;
+				}
+				else if (iframeBody) {
+					viewPortHeight = iframeBody.clientHeight;
+				}
+
+				if (iframeDoc) {
+					var docClientHeight;
+					var docScrollHeight;
+					var docOffsetHeight = (iframeBody && iframeBody.offsetHeight);
+
+					if (docEl) {
+						docClientHeight = docEl.clientHeight;
+						docScrollHeight = docEl.scrollHeight;
+						docOffsetHeight = docEl.offsetHeight;
+					}
+
+					if (docClientHeight != docOffsetHeight && iframeBody) {
+						docOffsetHeight = iframeBody.offsetHeight;
+						docScrollHeight = iframeBody.scrollHeight;
+					}
+
+					var compareNum;
+
+					if (docScrollHeight > viewPortHeight) {
+						compareNum = Math.max;
+					}
+					else {
+						compareNum = Math.min;
+					}
+
+					contentHeight = compareNum(docScrollHeight, docOffsetHeight);
+				}
+
+				return contentHeight;
+			},
+
 			_onResize: function() {
 				var instance = this;
 
 				instance._iframeDoc = null;
 
 				var newHeight = instance._iframeHeight;
+				var iframeWin = instance._iframeEl.contentWindow;
+
 				var iframeDoc;
 
 				try {
-					iframeDoc = instance._iframeEl.contentWindow.document;
+					iframeDoc = iframeWin.document;
 
 					instance._iframeDoc = iframeDoc;
 				}
@@ -138,18 +192,26 @@ ResizeIframe = A.Component.create(
 
 				if (iframeDoc) {
 					var docEl = iframeDoc.documentElement;
+					var iframeBody = iframeDoc.body;
 
 					if (docEl) {
 						docEl.style.overflowY = HIDDEN;
 					}
-				}
 
-				if (iframeDoc && iframeDoc.body) {
-					newHeight = iframeDoc.body.offsetHeight;
+					var docOffsetHeight = (iframeBody && iframeBody.offsetHeight) || 0;
+
+					var standardsMode = (iframeDoc.compatMode == 'CSS1Compat');
+
+					if (standardsMode && docOffsetHeight) {
+						newHeight = docOffsetHeight;
+					}
+					else {
+						newHeight = instance._getQuirksHeight(iframeWin) || instance._iframeHeight;
+					}
 
 					instance._uiSetHeight(newHeight);
 				}
-				else if (!iframeDoc) {
+				else {
 					instance._clearInterval();
 				}
 			},
