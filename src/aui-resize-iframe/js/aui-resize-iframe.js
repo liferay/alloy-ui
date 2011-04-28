@@ -119,58 +119,6 @@ ResizeIframe = A.Component.create(
 				}
 			},
 
-			_getQuirksHeight: function(iframeWin) {
-				var instance = this;
-
-				var contentHeight = 0;
-
-				var iframeDoc = iframeWin.document;
-				var docEl = iframeDoc && iframeDoc.documentElement;
-				var iframeBody = iframeDoc && iframeDoc.body;
-
-				var viewPortHeight = 0;
-
-				if (iframeWin.innerHeight) {
-					viewPortHeight = iframeWin.innerHeight;
-				}
-				else if (docEl && docEl.clientHeight) {
-					viewPortHeight = docEl.clientHeight;
-				}
-				else if (iframeBody) {
-					viewPortHeight = iframeBody.clientHeight;
-				}
-
-				if (iframeDoc) {
-					var docClientHeight;
-					var docScrollHeight;
-					var docOffsetHeight = (iframeBody && iframeBody.offsetHeight);
-
-					if (docEl) {
-						docClientHeight = docEl.clientHeight;
-						docScrollHeight = docEl.scrollHeight;
-						docOffsetHeight = docEl.offsetHeight;
-					}
-
-					if (docClientHeight != docOffsetHeight && iframeBody) {
-						docOffsetHeight = iframeBody.offsetHeight;
-						docScrollHeight = iframeBody.scrollHeight;
-					}
-
-					var compareNum;
-
-					if (docScrollHeight > viewPortHeight) {
-						compareNum = Math.max;
-					}
-					else {
-						compareNum = Math.min;
-					}
-
-					contentHeight = compareNum(docScrollHeight, docOffsetHeight);
-				}
-
-				return contentHeight;
-			},
-
 			_onResize: function() {
 				var instance = this;
 
@@ -190,23 +138,7 @@ ResizeIframe = A.Component.create(
 				}
 
 				if (iframeDoc) {
-					var docEl = iframeDoc.documentElement;
-					var iframeBody = iframeDoc.body;
-
-					if (docEl) {
-						docEl.style.overflowY = HIDDEN;
-					}
-
-					var docOffsetHeight = (iframeBody && iframeBody.offsetHeight) || 0;
-
-					var standardsMode = (iframeDoc.compatMode == 'CSS1Compat');
-
-					if (standardsMode && docOffsetHeight) {
-						newHeight = docOffsetHeight;
-					}
-					else {
-						newHeight = instance._getQuirksHeight(iframeWin) || instance._iframeHeight;
-					}
+					newHeight = ResizeIframe._getContentHeight(iframeWin, iframeDoc, instance._iframeHeight);
 
 					instance._uiSetHeight(newHeight);
 				}
@@ -263,6 +195,110 @@ ResizeIframe = A.Component.create(
 			},
 
 			_iframeHeight: 0
+		}
+	}
+);
+
+A.mix(
+	ResizeIframe,
+	{
+		getContentHeight: function(iframeWin) {
+			var contentHeight = null;
+
+			try {
+				var iframeDoc;
+
+				if (iframeWin.nodeName && iframeWin.nodeName.toLowerCase() == 'iframe') {
+					iframeWin = iframeWin.contentWindow;
+				}
+				else if (A.instanceOf(iframeWin, A.Node)) {
+					iframeWin = iframeWin.getDOM().contentWindow;
+				}
+
+				iframeDoc = iframeWin.document;
+
+				contentHeight = ResizeIframe._getContentHeight(iframeWin, iframeDoc);
+			}
+			catch (e) {
+			}
+
+			return contentHeight;
+		},
+
+		_getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {
+			var contentHeight = null;
+
+			if (iframeDoc) {
+				var docEl = iframeDoc.documentElement;
+				var iframeBody = iframeDoc.body;
+
+				if (docEl) {
+					docEl.style.overflowY = HIDDEN;
+				}
+
+				var docOffsetHeight = (iframeBody && iframeBody.offsetHeight) || 0;
+
+				var standardsMode = (iframeDoc.compatMode == 'CSS1Compat');
+
+				if (standardsMode && docOffsetHeight) {
+					contentHeight = docOffsetHeight;
+				}
+				else {
+					contentHeight = ResizeIframe._getQuirksHeight(iframeWin) || fallbackHeight;
+				}
+			}
+
+			return contentHeight;
+		},
+
+		_getQuirksHeight: function(iframeWin) {
+			var contentHeight = 0;
+
+			var iframeDoc = iframeWin.document;
+			var docEl = iframeDoc && iframeDoc.documentElement;
+			var iframeBody = iframeDoc && iframeDoc.body;
+
+			var viewPortHeight = 0;
+
+			if (iframeWin.innerHeight) {
+				viewPortHeight = iframeWin.innerHeight;
+			}
+			else if (docEl && docEl.clientHeight) {
+				viewPortHeight = docEl.clientHeight;
+			}
+			else if (iframeBody) {
+				viewPortHeight = iframeBody.clientHeight;
+			}
+
+			if (iframeDoc) {
+				var docClientHeight;
+				var docScrollHeight;
+				var docOffsetHeight = (iframeBody && iframeBody.offsetHeight);
+
+				if (docEl) {
+					docClientHeight = docEl.clientHeight;
+					docScrollHeight = docEl.scrollHeight;
+					docOffsetHeight = docEl.offsetHeight;
+				}
+
+				if (docClientHeight != docOffsetHeight && iframeBody) {
+					docOffsetHeight = iframeBody.offsetHeight;
+					docScrollHeight = iframeBody.scrollHeight;
+				}
+
+				var compareNum;
+
+				if (docScrollHeight > viewPortHeight) {
+					compareNum = Math.max;
+				}
+				else {
+					compareNum = Math.min;
+				}
+
+				contentHeight = compareNum(docScrollHeight, docOffsetHeight);
+			}
+
+			return contentHeight;
 		}
 	}
 );
