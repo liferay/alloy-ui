@@ -97,6 +97,8 @@ var DialogIframePlugin = A.Component.create(
 				instance.afterHostEvent('heightChange', instance._updateIframeSize, instance);
 				instance.afterHostEvent('widthChange', instance._updateIframeSize, instance);
 
+				instance.afterHostEvent('visibleChange', instance._afterDialogVisibleChange);
+
 				instance.after('uriChange', instance._afterUriChange);
 
 				instance.node.on('load', A.bind(instance.fire, instance, 'load'));
@@ -110,17 +112,16 @@ var DialogIframePlugin = A.Component.create(
 				instance.node.remove(true);
 			},
 
+			_afterDialogVisibleChange: function(event) {
+				var instance = this;
+
+				instance._uiSetMonitor(event.newVal);
+			},
+
 			_afterMaskVisibleChange: function(event) {
 				var instance = this;
 
-				var resizeIframe = instance.node.resizeiframe;
-
-				if (event.newVal) {
-					resizeIframe.pauseMonitor();
-				}
-				else {
-					resizeIframe.restartMonitor();
-				}
+				instance._uiSetMonitor(!event.newVal);
 			},
 
 			_afterRender: function() {
@@ -178,6 +179,19 @@ var DialogIframePlugin = A.Component.create(
 				BUFFER_CSS_CLASS[1] = value;
 
 				return BUFFER_CSS_CLASS.join(' ');
+			},
+
+			_uiSetMonitor: function(start) {
+				var instance = this;
+
+				var resizeIframe = instance.node.resizeiframe;
+
+				if (start) {
+					resizeIframe.restartMonitor();
+				}
+				else {
+					resizeIframe.pauseMonitor();
+				}
 			},
 
 			_uiSetUri: function(value) {
