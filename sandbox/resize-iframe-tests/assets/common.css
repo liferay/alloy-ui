@@ -4,6 +4,18 @@ body {
 	padding: 10px;
 }
 
+body.info {
+	background-color: #fff;
+	color: #000;
+	padding: 0;
+}
+
+.note {
+	padding: 3px;
+	background: #DFF4FF;
+	border: 1px solid #A7CEDF;
+}
+
 a {
 	color: #0881D5;
 }

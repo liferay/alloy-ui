@@ -6,14 +6,17 @@
 
 	<title>content</title>
 	<link rel="stylesheet" href="../../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="common.css" type="text/css" media="screen" />
 </head>
 
-<body>
+<body class="info">
 	<h2>Test in the following engines/browsers:</h2>
 	<p><a href="../index.html" target="_top">Standards</a> and <a href="../index_quirks.html" target="_top">Quirks mode</a></p>
 	<ul>
 		<li>IE (6/7/8/9)</li>
-		<li>Webkit (Chrome/Safari)</li>
+		<li>Webkit (Chrome/Safari)
+			<p class="note">Chrome in quirks mode does not resize to smaller window properly as there appears to be no way to grab the height of just the contents.</p>
+		</li>
 		<li>Gecko (Firefox)</li>
 	</ul>
 </body>

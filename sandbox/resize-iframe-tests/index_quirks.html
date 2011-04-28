@@ -37,7 +37,7 @@
 	<h1>Alloy - ResizeIframe Demo</h1>
 
 	<div id="demo">
-		<iframe src="assets/info.html" frameborder="0" border="0" scrolling="no" height="150" width="100%"></iframe>
+		<iframe src="assets/info.html" id="infoFrame" frameborder="0" border="0" scrolling="no" height="200" width="100%"></iframe>
 
 		<a href="javascript:;" id="resetIframes">Reset Iframe Sources</a>
 
@@ -69,6 +69,7 @@ AUI().ready('aui-resize-iframe', function(A) {
 	nodeList.appendTo(demo);
 
 	demo.one('#test123').plug(A.Plugin.ResizeIframe);
+	demo.one('#infoFrame').plug(A.Plugin.ResizeIframe);
 
 	demo.one('#resetIframes').on('click', function(event) {
 		A.all('iframe').attr('src', 'assets/short_text.html');
