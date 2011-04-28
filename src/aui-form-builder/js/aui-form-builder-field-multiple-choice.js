@@ -342,7 +342,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		optionTemplate: {
 			value: '<option value="{value}">{name}</option>'
-		},
+		}
 
 	},
 

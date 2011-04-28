@@ -240,7 +240,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
 			}
-		},
+		}
 
 	}
 
