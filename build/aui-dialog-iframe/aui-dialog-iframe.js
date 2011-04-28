@@ -81,6 +81,8 @@ var DialogIframePlugin = A.Component.create(
 
 				node.plug(A.Plugin.ResizeIframe);
 
+				node.resizeiframe.addTarget(instance);
+
 				instance._host.set('bodyContent', node);
 
 				var bodyNode = instance._host.bodyNode;
@@ -181,12 +183,12 @@ var DialogIframePlugin = A.Component.create(
 				return BUFFER_CSS_CLASS.join(' ');
 			},
 
-			_uiSetMonitor: function(start) {
+			_uiSetMonitor: function(value) {
 				var instance = this;
 
 				var resizeIframe = instance.node.resizeiframe;
 
-				if (start) {
+				if (value) {
 					resizeIframe.restartMonitor();
 				}
 				else {
