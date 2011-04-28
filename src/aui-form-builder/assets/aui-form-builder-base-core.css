@@ -34,6 +34,7 @@
 }
 .yui3-aui-form-builder-drop-container .yui3-aui-dd-dragging {
 	border-style: dashed;
+	filter:alpha(opacity=50);
 	opacity: .5;
 }
 .yui3-aui-form-builder-drop-container .yui3-aui-form-builder-drop-zone {

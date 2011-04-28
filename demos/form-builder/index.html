@@ -48,35 +48,35 @@
 					<div class="yui3-aui-tabview-content yui3-aui-widget-bd">
 						<div class="yui3-aui-tabview-content-item">
 							<ul class="yui3-aui-form-builder-drag-container">
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="text">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-text"></span>
 									<span class="yui3-aui-form-builder-label">Text</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="textarea">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-textarea"></span>
 									<span class="yui3-aui-form-builder-label">Text Area</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="checkbox">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-checkbox"></span>
 									<span class="yui3-aui-form-builder-label">CheckBox</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="button">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-button"></span>
 									<span class="yui3-aui-form-builder-label">Button</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="select">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-select"></span>
 									<span class="yui3-aui-form-builder-label">Select Options</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="radio">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-radio"></span>
 									<span class="yui3-aui-form-builder-label">Radio Buttons</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="fileupload">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-fileupload"></span>
 									<span class="yui3-aui-form-builder-label">File Upload</span>
 								</li>
-								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field" data-name="fieldset">
+								<li class="yui3-aui-form-builder-drag-node yui3-aui-form-builder-field">
 									<span class="yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-fieldset"></span>
 									<span class="yui3-aui-form-builder-label">Fieldset</span>
 								</li>
@@ -136,7 +136,8 @@ AUI().ready('aui-form-builder', 'aui-form-builder-field', function(A) {
 					fieldLabel: 'Checkbox',
 					iconClass: 'yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-checkbox',
 					label: 'Checkbox',
-					type: 'checkbox'
+					type: 'checkbox',
+					unique: true
 				},
 
 				{
@@ -161,26 +162,29 @@ AUI().ready('aui-form-builder', 'aui-form-builder-field', function(A) {
 				},
 
 				{
-					fieldLabel: 'Fieldset',
-					iconClass: 'yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-fieldset',
-					label: 'Fieldset',
-					type: 'fieldset'
-				},
-
-				{
 					fieldLabel: 'File Upload',
 					iconClass: 'yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-fileupload',
 					label: 'File Upload',
 					type: 'fileupload'
+				},
+
+				{
+					fieldLabel: 'Fieldset',
+					iconClass: 'yui3-aui-form-builder-field-icon yui3-aui-form-builder-field-icon-fieldset',
+					label: 'Fieldset',
+					type: 'fieldset'
 				}
-			],
-			fields: []
+
+			]
 			/*
+			fields:
 			[
 				{
 					type: 'text',
 					label: 'First name',
-					defaultValue: 'Bruno Basto'
+					defaultValue: 'Bruno Basto',
+					unique: true,
+					fieldId: 2
 				}
 			]
 			*/
