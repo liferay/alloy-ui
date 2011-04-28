@@ -1470,4 +1470,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base']});
+}, '@VERSION@' ,{requires:['node','aui-classnamemanager']});
