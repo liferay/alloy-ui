@@ -80,6 +80,8 @@ var DialogIframePlugin = A.Component.create(
 
 				node.plug(A.Plugin.ResizeIframe);
 
+				node.resizeiframe.addTarget(instance);
+
 				instance._host.set('bodyContent', node);
 
 				var bodyNode = instance._host.bodyNode;
