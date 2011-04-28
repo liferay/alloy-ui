@@ -1067,7 +1067,7 @@ NODE_PROTOTYPE._show = function() {
  *
  * <pre><code>var node = A.one('#nodeId');
  * node.width(); //returns content width
- * node.width(100); // sets box width 
+ * node.width(100); // sets box width
  * </code></pre>
  *
  * @method width
@@ -1083,7 +1083,7 @@ NODE_PROTOTYPE._show = function() {
  *
  * <pre><code>var node = A.one('#nodeId');
  * node.height(); //returns content height
- * node.height(100); // sets box height 
+ * node.height(100); // sets box height
  * </code></pre>
  *
  * @method height
@@ -1973,4 +1973,3 @@ PrintFix();
 
 
 AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']});
-

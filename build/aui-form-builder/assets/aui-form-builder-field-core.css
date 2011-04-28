@@ -14,6 +14,17 @@
 	border: 1px solid #000000;
 }
 
+.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-inactive {
+	cursor: auto;
+	filter:alpha(opacity=50);
+	opacity: .5;
+	zoom: 1;
+}
+
+.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-inactive:hover {
+	border: 1px solid #CCCCCC;
+}
+
 /* Fields inside drop container */
 
 .yui3-aui-form-builder-drop-container .yui3-aui-field-textarea, .yui3-aui-form-builder-drop-container .yui3-aui-field-input-text {

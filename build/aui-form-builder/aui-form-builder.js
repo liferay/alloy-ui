@@ -63,6 +63,7 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
+	FIELD_ID = 'fieldId',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
 	FOCUSED = 'focused',
@@ -71,6 +72,8 @@ var L = A.Lang,
 	FORM_LAYOUT = 'form-layout',
 	ID = 'id',
 	ICON = 'icon',
+	INACTIVE = 'inactive',
+	INDEX = 'index',
 	INPUT = 'input',
 	ITEMS = 'items',
 	LABEL = 'label',
@@ -110,6 +113,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
 	TYPE = 'type',
+	UNIQUE = 'unique',
 	VALUE = 'value',
 	VALUES = 'values',
 	ZONE = 'zone',
@@ -145,6 +149,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
 	CSS_FORM_BUILDER_HELPER = getCN(FORM, BUILDER, HELPER),
 	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
+	CSS_FORM_BUILDER_INACTIVE = getCN(FORM, BUILDER, INACTIVE),
 	CSS_FORM_BUILDER_LABEL = getCN(FORM, BUILDER, LABEL),
 	CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
 	CSS_FORM_BUILDER_SETTINGS = getCN(FORM, BUILDER, SETTINGS),
@@ -159,7 +164,7 @@ var L = A.Lang,
 
 	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
 
-	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-name="{name}">' +
+	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-fieldId="{fieldId}">' +
 						'<span class="' + [CSS_FORM_BUILDER_ICON, CSS_ICON].join(SPACE) + ' {icon}"></span>' +
 						'<span class="' + CSS_FORM_BUILDER_LABEL + '">{label}</span>' +
 					'</li>',
@@ -198,7 +203,7 @@ var L = A.Lang,
 
 	DEFAULT_ICON_CLASS = [CSS_FORM_BUILDER_FIELD_ICON, CSS_FORM_BUILDER_FIELD_ICON_TEXT].join(SPACE),
 
-	INVALID_CLONE_ATTRS = A.Array([BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME]),
+	INVALID_CLONE_ATTRS = [BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME],
 
 	INVALID_DBCLICK_TARGETS = 'button,input,label,select,textarea';
 
@@ -297,25 +302,51 @@ A.mix(FormBuilderFieldSupport.prototype, {
 		);
 	},
 
+	_getFormBuilder: function() {
+		return (this.get(FORM_BUILDER) || this);
+	},
+
+	_getRenderedField: function(index, field) {
+		var instance = this;
+		var fm = instance._getFormBuilder();
+
+		if (!isFormBuilderField(field)) {
+			field = fm._renderField(instance, index, field);
+		}
+
+		field.addTarget(fm);
+		field.set(PARENT, instance);
+
+		return field;
+	},
+
 	_normalizeFields: function(fields) {
 		var instance = this;
 		var output = [];
+		var fm = instance._getFormBuilder();
+		var availableFields = fm.get(AVAILABLE_FIELDS);
+		var uniqueFields = fm.uniqueFields;
 
 		fields = A.Array(fields);
 
 		A.Array.each(fields, function(field, i) {
-			var formBuilder = instance.get(FORM_BUILDER) || instance;
+			field = instance._getRenderedField(i, field);
 
-			if (!isFormBuilderField(field)) {
-				field = formBuilder._renderField(instance, i, field);
+			var fieldId = field.get(FIELD_ID);
+			var unique = field.get(UNIQUE);
+
+			if (unique && !uniqueFields.containsKey(fieldId)) {
+				uniqueFields.add(fieldId, field);
 			}
 
-			if (field) {
+			if (unique && uniqueFields.contains(field)) {
 				output.push(field);
-
-				field.addTarget(formBuilder);
-
-				field.set(PARENT, instance);
+			}
+			else if (unique && !uniqueFields.contains(field)) {
+				field.destroy();
+			}
+			else {
+				output.push(field);
 			}
 		});
 
@@ -370,10 +401,16 @@ var FormBuilder = A.Component.create({
 		 * @attribute availableFields
 		 */
 		availableFields: {
-			setter: '_indexAvaliableFieldsTypes',
+			lazyAdd: false,
 			value: [],
 			validator: isArray,
-			lazyAdd: false
+			setter: function(val) {
+				A.each(val, function(availableField, index) {
+					availableField.fieldId = availableField.fieldId || index
+				});
+
+				return val;
+			}
 		},
 
 		/**
@@ -452,6 +489,11 @@ var FormBuilder = A.Component.create({
 		},
 
 		dragNodesList: {
+			setter: function(val) {
+				A.each(val, function(node, index) {
+					node.setData(INDEX, index);
+				});
+			},
 			valueFn: '_valueDragNodesList'
 		},
 
@@ -565,7 +607,7 @@ var FormBuilder = A.Component.create({
 		renderUI: function() {
 			var instance = this;
 
-			instance.dragContainerNode.setContent(instance.dragNodesList);
+			instance.dragNodesList.appendTo(instance.dragContainerNode);
 
 			instance._tabs.render()
 		},
@@ -586,6 +628,9 @@ var FormBuilder = A.Component.create({
 			instance._dropNestedList.on('drag:end', A.bind(instance._onDragEndDropNestedList, instance));
 
 			instance._tabs.after('activeTabChange', A.bind(instance._afterActiveTabChange, instance));
+
+			instance.uniqueFields.after('add', A.bind(instance._afterUniqueFieldsAdd, instance));
+			instance.uniqueFields.after('remove', A.bind(instance._afterUniqueFieldsRemove, instance));
 
 			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDelete, instance), DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
 			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDuplicate, instance), DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE);
@@ -615,11 +660,11 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-		 * A map of the avaliable field types
+		 * Stores the unique fields instanciated
 		 *
-		 * @attribute availableFieldsTypes
+		 * @attribute uniqueFields
 		 */
-		availableFieldsTypes: {},
+		uniqueFields: new A.DataSet(),
 
 		/**
 		 * Append fields to the given container
@@ -647,9 +692,9 @@ var FormBuilder = A.Component.create({
 		 */
 		duplicateField: function(field) {
 			var instance = this;
-			var newFieldConfig = instance._cloneField(field);
 			var parent = field.get(PARENT);
 			var index = parent.indexOf(field);
+			var newFieldConfig = instance._cloneField(field);
 
 			parent.insertField(++index, newFieldConfig);
 		},
@@ -675,7 +720,7 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-		 * Pupulates the dropContainerNode with the boundingBox nodes of each
+		 * Populates the dropContainerNode with the boundingBox nodes of each
 		 * of the fields components
 		 *
 		 * @method syncFieldsUI
@@ -724,6 +769,7 @@ var FormBuilder = A.Component.create({
 		_afterFieldsChange: function() {
 			var instance = this;
 
+			instance._syncUniqueFields();
 			instance.syncUI();
 		},
 
@@ -752,6 +798,36 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
+		 * Handles the add event for the unique fields
+		 *
+		 * @method _afterUniqueFieldsAdd
+		 */
+		_afterUniqueFieldsAdd: function(event) {
+			var instance = this;
+			var index = event.attrName;
+			var dragNodesList = instance.get(DRAG_NODES_LIST);
+			var dragNode = dragNodesList.item(index);
+
+			dragNode.addClass(CSS_FORM_BUILDER_INACTIVE);
+			dragNode.unselectable();
+		},
+
+		/**
+		 * Handles the remove event for the unique fields
+		 *
+		 * @method _afterUniqueFieldsRemove
+		 */
+		_afterUniqueFieldsRemove: function(event) {
+			var instance = this;
+			var index = event.attrName;
+			var dragNodesList = instance.get(DRAG_NODES_LIST);
+			var dragNode = dragNodesList.item(index);
+
+			dragNode.removeClass(CSS_FORM_BUILDER_INACTIVE);
+			dragNode.selectable();
+		},
+
+		/**
 		 * Clones a field
 		 *
 		 * @method _cloneField
@@ -763,7 +839,7 @@ var FormBuilder = A.Component.create({
 			var config = {};
 
 			A.each(field.getAttrs(), function(value, key) {
-				if (INVALID_CLONE_ATTRS.indexOf(key) === -1 && !isNode(value)) {
+				if (A.Array.indexOf(INVALID_CLONE_ATTRS) === -1 && !isNode(value)) {
 					config[key] = value;
 				}
 			});
@@ -800,12 +876,12 @@ var FormBuilder = A.Component.create({
 			var index = nodes.indexOf(node);
 
 			if (!field) {
+				var availableFields = instance.get(AVAILABLE_FIELDS);
+
+				field = availableFields[node.getData(INDEX)];
+
 				// Remove remanescent node
 				node.remove();
-
-				var indexName = node.getAttribute('data-name');
-
-				field = instance.availableFieldsTypes[indexName];
 			}
 
 			parent.insertField(index, field);
@@ -867,24 +943,6 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-		 * Indexes the available fields types
-		 *
-		 * @method _indexAvaliableFieldsTypes
-		 */
-		_indexAvaliableFieldsTypes: function(availableFields) {
-			var instance = this;
-
-			A.each(
-				availableFields,
-				function(item, index, collection) {
-					var name = (item.name || item.type || (item.type + (++A.Env._uidx)));
-
-					instance.availableFieldsTypes[name] = item;
-				}
-			);
-		},
-
-		/**
 		 * Handles the click event for the delete button of each field
 		 *
 		 * @method _onClickFieldDelete
@@ -896,7 +954,7 @@ var FormBuilder = A.Component.create({
 			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
 			var field = fieldBB.getData(FIELD);
 
-			if (field) {
+			if (isFormBuilderField(field)) {
 				var selectedField = instance.selectedField;
 
 				if (field == selectedField ||
@@ -912,9 +970,9 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-		 * Handles the click event for the delete button of each field
+		 * Handles the click event for the duplicate button of each field
 		 *
-		 * @method _onClickFieldDelete
+		 * @method _onClickFieldDuplicate
 		 */
 		_onClickFieldDuplicate: function(event) {
 			var instance = this;
@@ -929,9 +987,9 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
-		 * Handles the click event for the delete button of each field
+		 * Handles the click event for the edit button of each field
 		 *
-		 * @method _onClickFieldDelete
+		 * @method _onClickFieldEdit
 		 */
 		_onClickFieldEdit: function(event) {
 			var instance = this;
@@ -1051,15 +1109,17 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
+			var index = dragNode.getData(INDEX);
 
 			var clonedDragNode = dragNode.clone();
 
-			clonedDragNode.placeBefore(dragNode);
+			dragNode.placeBefore(clonedDragNode);
+			clonedDragNode.setData(INDEX, index);
 
 			drag.set(NODE, clonedDragNode);
 
 			clonedDragNode.attr(ID, EMPTY_STR);
-			clonedDragNode.show();
+			clonedDragNode.hide();
 
 			dragNode.removeClass(CSS_DD_DRAGGING);
 			dragNode.show();
@@ -1139,7 +1199,9 @@ var FormBuilder = A.Component.create({
 				config,
 				{
 					boundingBox: boundingBox,
+					fieldId: config.fieldId,
 					formBuilder: instance,
+					render: true,
 					after: {
 						render: function() {
 							boundingBox.removeClass(CSS_HELPER_HIDDEN);
@@ -1148,7 +1210,7 @@ var FormBuilder = A.Component.create({
 				}
 			);
 
-			return instance._getFieldInstance(config).render();
+			return instance._getFieldInstance(config);
 		},
 
 		/**
@@ -1176,10 +1238,19 @@ var FormBuilder = A.Component.create({
 		 */
 		_syncNestedList: function() {
 			var instance = this;
+			var availableFields = instance.get(AVAILABLE_FIELDS);
+			var uniqueFields = instance.uniqueFields;
 
 			instance._syncNodes();
 
-			instance._dragNestedList.addAll(instance.dragNodes);
+			instance.dragNodes.each(function(node, i) {
+				var field = availableFields[i];
+
+				if (!uniqueFields.containsKey(field.fieldId)) {
+					instance._dragNestedList.add(node);
+				}
+			});
+
 			instance._dropNestedList.addAll(instance.dropNodes);
 		},
 
@@ -1227,6 +1298,22 @@ var FormBuilder = A.Component.create({
 		},
 
 		/**
+		 * Sync the unique fields
+		 *
+		 * @method _syncUniqueFields
+		 */
+		_syncUniqueFields: function() {
+			var instance = this;
+			var uniqueFields = instance.uniqueFields;
+
+			uniqueFields.each(function(uniqueField, index){
+				if (!instance.contains(uniqueField, true)) {
+					uniqueFields.remove(uniqueField);
+				}
+			});
+		},
+
+		/**
 		 * Toggle the visibility of the field buttons node
 		 *
 		 * @method _toggleButtonsNode
@@ -1248,18 +1335,19 @@ var FormBuilder = A.Component.create({
 		 */
 		_valueDragNodesList: function() {
 			var instance = this;
-			var availableFields = instance.availableFieldsTypes;
+			var availableFields = instance.get(AVAILABLE_FIELDS);
 			var buffer = [];
 
-			A.each(availableFields, function(item, name, collection) {
+			A.each(availableFields, function(item, index, collection) {
 				buffer.push(
 					A.substitute(
 						TPL_DRAG_NODE,
 						{
 							icon: item.iconClass || DEFAULT_ICON_CLASS,
 							label: item.label,
-							name: name,
-							type: item.type
+							fieldId: item.fieldId || index,
+							type: item.type,
+							unique: item.unique
 						}
 					)
 				);
@@ -1340,6 +1428,7 @@ var L = A.Lang,
 	SPACE = ' ',
 	STRING = 'string',
 	TEMPLATE_NODE = 'templateNode',
+	UNIQUE = 'unique',
 	ZONE = 'zone',
 	WIDGET = 'widget',
 
@@ -1362,6 +1451,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
+	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
 
 	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD].join(SPACE) + '"></li>',
@@ -1406,6 +1496,16 @@ var FormBuilderField = A.Component.create({
 		 */
 		dataType: {
 			value: STRING
+		},
+
+		/**
+		 * The id of the available field that originated the field
+		 *
+		 * @attribute fieldId
+		 * @private
+		 */
+		fieldId: {
+			value: EMPTY_STR
 		},
 
 		/**
@@ -1523,6 +1623,16 @@ var FormBuilderField = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		/**
+		 * Whether the field is unique or not
+		 *
+		 * @attribute unique
+		 */
+		unique: {
+			setter: A.DataType.Boolean.parse,
+			value: false
+		},
+
 		/*
 		* HTML_PARSER attributes
 		*/
@@ -1552,7 +1662,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
+	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -1840,6 +1950,16 @@ var FormBuilderField = A.Component.create({
 			var labelNode = instance.get(LABEL_NODE);
 
 			labelNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+		},
+
+		_uiSetUnique: function(val) {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+
+			boundingBox.toggleClass(CSS_FORM_BUILDER_UNIQUE, val);
+
+			buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE).toggleClass(CSS_HELPER_HIDDEN, val);
 		}
 
 	}
@@ -2600,7 +2720,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
 			}
-		},
+		}
 
 	}
 
@@ -3161,7 +3281,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		optionTemplate: {
 			value: '<option value="{value}">{name}</option>'
-		},
+		}
 
 	},
 

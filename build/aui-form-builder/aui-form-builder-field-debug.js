@@ -61,6 +61,7 @@ var L = A.Lang,
 	SPACE = ' ',
 	STRING = 'string',
 	TEMPLATE_NODE = 'templateNode',
+	UNIQUE = 'unique',
 	ZONE = 'zone',
 	WIDGET = 'widget',
 
@@ -83,6 +84,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
+	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
 
 	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD].join(SPACE) + '"></li>',
@@ -127,6 +129,16 @@ var FormBuilderField = A.Component.create({
 		 */
 		dataType: {
 			value: STRING
+		},
+
+		/**
+		 * The id of the available field that originated the field
+		 *
+		 * @attribute fieldId
+		 * @private
+		 */
+		fieldId: {
+			value: EMPTY_STR
 		},
 
 		/**
@@ -244,6 +256,16 @@ var FormBuilderField = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		/**
+		 * Whether the field is unique or not
+		 *
+		 * @attribute unique
+		 */
+		unique: {
+			setter: A.DataType.Boolean.parse,
+			value: false
+		},
+
 		/*
 		* HTML_PARSER attributes
 		*/
@@ -273,7 +295,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
+	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -561,6 +583,16 @@ var FormBuilderField = A.Component.create({
 			var labelNode = instance.get(LABEL_NODE);
 
 			labelNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+		},
+
+		_uiSetUnique: function(val) {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+			var buttonsNode = instance.get(BUTTONS_NODE);
+
+			boundingBox.toggleClass(CSS_FORM_BUILDER_UNIQUE, val);
+
+			buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE).toggleClass(CSS_HELPER_HIDDEN, val);
 		}
 
 	}
@@ -1321,7 +1353,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
 			}
-		},
+		}
 
 	}
 
@@ -1882,7 +1914,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		optionTemplate: {
 			value: '<option value="{value}">{name}</option>'
-		},
+		}
 
 	},
 
