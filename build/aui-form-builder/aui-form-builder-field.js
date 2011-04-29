@@ -1597,7 +1597,7 @@ var L = A.Lang,
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
 	DEFAULT = 'default',
-	DEFAULT_NAME = 'defaultName',
+	DEFAULT_LABEL = 'defaultLabel',
 	DEFAULT_OPTIONS = 'defaultOptions',
 	DEFAULT_VALUE = 'defaultValue',
 	DOT = '.',
@@ -1643,7 +1643,7 @@ var L = A.Lang,
 	CSS_FIELD_OPTIONS_ADD = getCN(FIELD, OPTIONS, ADD),
 	CSS_FIELD_OPTIONS_ITEM = getCN(FIELD, OPTIONS, ITEM),
 	CSS_FIELD_OPTIONS_ITEM_INPUT = getCN(FIELD, OPTIONS, ITEM, INPUT),
-	CSS_FIELD_OPTIONS_ITEM_INPUT_NAME = getCN(FIELD, OPTIONS, ITEM, INPUT, NAME),
+	CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL = getCN(FIELD, OPTIONS, ITEM, INPUT, LABEL),
 	CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE = getCN(FIELD, OPTIONS, ITEM, INPUT, VALUE),
 	CSS_FIELD_OPTIONS_ITEM_REMOVE = getCN(FIELD, OPTIONS, ITEM, REMOVE),
 
@@ -1653,7 +1653,7 @@ var L = A.Lang,
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
 	TPL_OPTION = '<div class="' + [CSS_FIELD_OPTIONS_ITEM, CSS_FIELD_LABELS_INLINE, CSS_HELPER_CLEARFIX].join(SPACE) + '">' +
-					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_NAME, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{name}" />' +
+					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{label}" />' +
 					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{value}" />' +
 					'<a href="javascript:;" class="' + CSS_FIELD_OPTIONS_ITEM_REMOVE + '">&nbsp;</a>' +
 				 '</div>';
@@ -1672,7 +1672,7 @@ var FieldOptions = A.Component.create({
 			value: false
 		},
 
-		defaultName: {
+		defaultLabel: {
 			value: EMPTY_STR
 		},
 
@@ -1760,7 +1760,7 @@ var FieldOptions = A.Component.create({
 
 			var newOptionNode = instance._createOption(
 				{
-					name: instance.get(DEFAULT_NAME),
+					label: instance.get(DEFAULT_LABEL),
 					value: instance.get(DEFAULT_VALUE)
 				}
 			);
@@ -1797,12 +1797,12 @@ var FieldOptions = A.Component.create({
 
 			if (instance.items) {
 				A.each(instance.items, function(option) {
-					var nameInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_NAME);
+					var labelInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
 					var valueInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
 
 					options.push(
 						{
-							name: nameInput.val(),
+							label: labelInput.val(),
 							value: valueInput.val()
 						}
 					);
@@ -1893,15 +1893,15 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			value:
 			[
 				{
-					name: 'option 1',
+					label: 'option 1',
 					value: 'value 1'
 				},
 				{
-					name: 'option 2',
+					label: 'option 2',
 					value: 'value 2'
 				},
 				{
-					name: 'option 3',
+					label: 'option 3',
 					value: 'value 3'
 				}
 			]
@@ -1913,7 +1913,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 * @attribute optionTemplate
 		 */
 		optionTemplate: {
-			value: '<option value="{value}">{name}</option>'
+			value: '<option value="{value}">{label}</option>'
 		}
 
 	},
@@ -2218,7 +2218,7 @@ var FormBuilderRadioField = A.Component.create({
 					{
 						type: RADIO,
 						name: instance.get(NAME),
-						labelText: item.name,
+						labelText: item.label,
 						labelAlign: 'left',
 						value: item.value
 					}
