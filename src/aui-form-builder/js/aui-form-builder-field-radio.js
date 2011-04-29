@@ -197,7 +197,7 @@ var FormBuilderRadioField = A.Component.create({
 					{
 						type: RADIO,
 						name: instance.get(NAME),
-						labelText: item.name,
+						labelText: item.label,
 						labelAlign: 'left',
 						value: item.value
 					}
