@@ -1,0 +1,29 @@
+body {
+	background-color: #333;
+	color: #fff;
+	padding: 10px;
+}
+
+body.info {
+	background-color: #fff;
+	color: #000;
+	padding: 0;
+}
+
+.note {
+	padding: 3px;
+	background: #DFF4FF;
+	border: 1px solid #A7CEDF;
+}
+
+a {
+	color: #0881D5;
+}
+
+.quirks {
+	background: #555;
+	padding: 3px;
+}
+.quirks a {
+	color: #fff;
+}
