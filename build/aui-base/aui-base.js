@@ -51,6 +51,7 @@
 						'aui-portal-layout': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy']},
 						'aui-progressbar': {skinnable:true, requires:['aui-base']},
 						'aui-rating': {skinnable:true, requires:['aui-base']},
+						'aui-resize-iframe': {skinnable:true, requires:['aui-base','aui-task-manager','plugin']},
 						'aui-resize': {submodules: {'aui-resize-constrain': {skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']}, 'aui-resize-base': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute']} }, skinnable:true, use:['aui-resize-base','aui-resize-constrain']},
 						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {skinnable:true, requires:['aui-scheduler-event']}, 'aui-scheduler-event': {skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute']}, 'aui-scheduler-view': {skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain']}, 'aui-scheduler-base': {skinnable:true, requires:['aui-scheduler-view','datasource']} }, skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']},
 						'aui-scroller': {skinnable:true, requires:['aui-base','anim-node-plugin']},
