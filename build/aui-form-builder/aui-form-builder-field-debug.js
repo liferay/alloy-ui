@@ -20,6 +20,7 @@ var L = A.Lang,
 	DATA_TYPE = 'dataType',
 	DEFAULT = 'default',
 	DELETE = 'delete',
+	DISABLED = 'disabled',
 	DOT = '.',
 	DRAG = 'drag',
 	DRAG_CONTAINER = 'dragContainer',
@@ -139,6 +140,15 @@ var FormBuilderField = A.Component.create({
 		 */
 		dataType: {
 			value: STRING
+		},
+
+		/**
+		 * Wether the field is disbaled for editing
+		 *
+		 * @attribute disbaled
+		 */
+		disbaled: {
+			value: false
 		},
 
 		/**
@@ -305,7 +315,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -584,6 +594,18 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var templateNode = instance.get(TEMPLATE_NODE);
+
+			if (val) {
+				templateNode.setAttribute(DISABLED, val);
+			}
+			else {
+				templateNode.removeAttribute(DISABLED);
+			}
+		},
+
 		_uiSetLabel: function(val) {
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
@@ -774,7 +796,7 @@ var FormBuilderButtonField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, BUTTON_TYPE, SHOW_LABEL],
+	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -991,8 +1013,6 @@ var FormBuilderCheckBoxField = A.Component.create({
 		}
 
 	},
-
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -1479,8 +1499,6 @@ var FormBuilderFileUploadField = A.Component.create({
 		}
 
 	},
-
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -2187,8 +2205,6 @@ var FormBuilderRadioField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, OPTIONS],
-
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
 	HTML_PARSER: {
@@ -2272,6 +2288,20 @@ var FormBuilderRadioField = A.Component.create({
 			instance.set(PREDEFINED_VALUE, target.val());
 		},
 
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
+
+			optionsContainerNode.all(INPUT).each(function(input){
+				if (val) {
+					input.setAttribute(DISABLED, val);
+				}
+				else {
+					input.removeAttribute(DISABLED);
+				}
+			});
+		},
+
 		_uiSetOptions: function(val) {
 			var instance = this;
 			var contentBox = instance.get(CONTENT_BOX);
@@ -2284,6 +2314,7 @@ var FormBuilderRadioField = A.Component.create({
 				var radioField = new A.Field(
 					{
 						type: RADIO,
+						disabled: instance.get(DISABLED),
 						name: instance.get(NAME),
 						labelText: item.label,
 						labelAlign: 'left',
@@ -2295,6 +2326,13 @@ var FormBuilderRadioField = A.Component.create({
 
 				if (item.value == instance.get(PREDEFINED_VALUE)) {
 					radioFieldNode.set(CHECKED, true);
+				}
+
+				if (instance.get(DISABLED)) {
+					radioFieldNode.setAttribute(DISABLED, val);
+				}
+				else {
+					radioFieldNode.removeAttribute(DISABLED);
 				}
 
 				radioFieldNode.on(
@@ -2429,7 +2467,7 @@ var FormBuilderSelectField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, OPTIONS, SHOW_LABEL, MULTIPLE],
+	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([MULTIPLE]),
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -2608,8 +2646,6 @@ var FormBuilderTextField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
-
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
 	HTML_PARSER: {
@@ -2705,20 +2741,6 @@ var FormBuilderTextField = A.Component.create({
 			var target = event.target;
 
 			instance.set(PREDEFINED_VALUE, target.val());
-		},
-
-		_uiSetPredefinedValue: function(val) {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var predefinedValueNode = formNode.one('input[name=predefinedValue]');
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.val(val);
-
-			if (predefinedValueNode && instance.get(SELECTED)) {
-				predefinedValueNode.val(val);
-			}
 		}
 
 	}
@@ -2801,8 +2823,6 @@ var FormBuilderTextAreaField = A.Component.create({
 		}
 
 	},
-
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -2899,20 +2919,6 @@ var FormBuilderTextAreaField = A.Component.create({
 			var target = event.target;
 
 			instance.set(PREDEFINED_VALUE, target.val());
-		},
-
-		_uiSetPredefinedValue: function(val) {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var predefinedValueNode = formNode.one('input[name=predefinedValue]');
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.val(val);
-
-			if (predefinedValueNode && instance.get(SELECTED)) {
-				predefinedValueNode.val(val);
-			}
 		}
 
 	}

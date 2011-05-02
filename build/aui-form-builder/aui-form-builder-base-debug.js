@@ -63,6 +63,7 @@ var L = A.Lang,
 	EDIT = 'edit',
 	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
+	ENABLE_EDITING = 'enableEditing',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	KEY = 'key',
@@ -411,6 +412,15 @@ var FormBuilder = A.Component.create({
 
 				return val;
 			}
+		},
+
+		/**
+		 * Wether the user can edit the fields value
+		 *
+		 * @attribute enableEditing
+		 */
+		enableEditing: {
+			value: true
 		},
 
 		/**
@@ -1227,6 +1237,10 @@ var FormBuilder = A.Component.create({
 					}
 				}
 			);
+
+			if (config.disabled === undefined) {
+				config.disabled = !instance.get(ENABLE_EDITING);
+			}
 
 			return instance._getFieldInstance(config);
 		},
