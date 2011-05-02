@@ -99,8 +99,6 @@ var FormBuilderRadioField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, OPTIONS],
-
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
 	HTML_PARSER: {
@@ -184,6 +182,20 @@ var FormBuilderRadioField = A.Component.create({
 			instance.set(PREDEFINED_VALUE, target.val());
 		},
 
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
+
+			optionsContainerNode.all(INPUT).each(function(input){
+				if (val) {
+					input.setAttribute(DISABLED, val);
+				}
+				else {
+					input.removeAttribute(DISABLED);
+				}
+			});
+		},
+
 		_uiSetOptions: function(val) {
 			var instance = this;
 			var contentBox = instance.get(CONTENT_BOX);
@@ -196,6 +208,7 @@ var FormBuilderRadioField = A.Component.create({
 				var radioField = new A.Field(
 					{
 						type: RADIO,
+						disabled: instance.get(DISABLED),
 						name: instance.get(NAME),
 						labelText: item.label,
 						labelAlign: 'left',
@@ -207,6 +220,13 @@ var FormBuilderRadioField = A.Component.create({
 
 				if (item.value == instance.get(PREDEFINED_VALUE)) {
 					radioFieldNode.set(CHECKED, true);
+				}
+
+				if (instance.get(DISABLED)) {
+					radioFieldNode.setAttribute(DISABLED, val);
+				}
+				else {
+					radioFieldNode.removeAttribute(DISABLED);
 				}
 
 				radioFieldNode.on(

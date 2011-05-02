@@ -69,8 +69,6 @@ var FormBuilderFileUploadField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
-
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
 	HTML_PARSER: {

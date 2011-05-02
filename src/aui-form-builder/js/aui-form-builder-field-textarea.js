@@ -72,8 +72,6 @@ var FormBuilderTextAreaField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL],
-
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
 	HTML_PARSER: {
@@ -169,20 +167,6 @@ var FormBuilderTextAreaField = A.Component.create({
 			var target = event.target;
 
 			instance.set(PREDEFINED_VALUE, target.val());
-		},
-
-		_uiSetPredefinedValue: function(val) {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var predefinedValueNode = formNode.one('input[name=predefinedValue]');
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.val(val);
-
-			if (predefinedValueNode && instance.get(SELECTED)) {
-				predefinedValueNode.val(val);
-			}
 		}
 
 	}
