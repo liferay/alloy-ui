@@ -44,6 +44,7 @@ var L = A.Lang,
 	DELETE = 'delete',
 	DD = 'dd',
 	DEFAULT = 'default',
+	DEFAULT_MESSAGE = 'defaultMessage',
 	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
 	DOT = '.',
 	DUPLICATE = 'duplicate',
@@ -60,6 +61,7 @@ var L = A.Lang,
 	DROP_NODE = 'dropNode',
 	DROP_ZONE_NODE = 'dropZoneNode',
 	EDIT = 'edit',
+	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
@@ -119,8 +121,6 @@ var L = A.Lang,
 	ZONE = 'zone',
 	REGION = 'region',
 	WIDGET = 'widget',
-
-	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
 	getCN = A.getClassName,
 
@@ -468,8 +468,9 @@ var FormBuilder = A.Component.create({
 		strings: {
 			value:
 			{
-				stringDefaultMessage: 'Drop a field here',
-				stringEmptySelection: 'No field selected'
+				defaultMessage: 'Drop a field here',
+				emptySelection: 'No field selected',
+				type: 'Type'
 			}
 		},
 
@@ -756,7 +757,7 @@ var FormBuilder = A.Component.create({
 			var containsField = instance.contains(selectedField, true);
 
 			if (!containsField) {
-				settingsFormNode.setContent(strings[STRING_EMPTY_SELECTION]);
+				settingsFormNode.setContent(strings[EMPTY_SELECTION]);
 			}
 
 			settingsButtonsNode.toggleClass(CSS_HELPER_HIDDEN, !containsField);
@@ -1242,7 +1243,7 @@ var FormBuilder = A.Component.create({
 				var strings = instance.get(STRINGS);
 				var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
 
-				defaultMessageNode.setContent(strings['stringDefaultMessage']);
+				defaultMessageNode.setContent(strings[DEFAULT_MESSAGE]);
 
 				instance.dropContainerNode.append(defaultMessageNode);
 			}
@@ -1417,6 +1418,7 @@ var L = A.Lang,
 	COMPONENT = 'component',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	DATA_TYPE = 'dataType',
 	DEFAULT = 'default',
 	DELETE = 'delete',
 	DOT = '.',
@@ -1460,7 +1462,10 @@ var L = A.Lang,
 	SIZE = 'size',
 	SPACE = ' ',
 	STRING = 'string',
+	STRINGS = 'strings',
 	TEMPLATE_NODE = 'templateNode',
+	TEXT = 'text',
+	TYPE = 'type',
 	UNIQUE = 'unique',
 	ZONE = 'zone',
 	WIDGET = 'widget',
@@ -1472,6 +1477,8 @@ var L = A.Lang,
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
+	CSS_FIELD = getCN(FIELD),
+	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
 	CSS_FORM_BUILDER_BUTTON = getCN(FORM, BUILDER, BUTTON),
 	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
 	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
@@ -1503,9 +1510,13 @@ var L = A.Lang,
 
 	TPL_DIV = '<div class="' + CSS_HELPER_CLEARFIX + '"></div>',
 
+	TPL_DROP_ZONE = '<ul class="' + CSS_FORM_BUILDER_DROP_ZONE + '"></ul>',
+
+	TPL_FIELD_TEXT = '<span class="' + [CSS_FIELD, CSS_FIELD_TEXT].join(SPACE) + '"></span>',
+
 	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
 
-	TPL_DROP_ZONE = '<ul class="' + CSS_FORM_BUILDER_DROP_ZONE + '"></ul>'
+	TPL_TEXT = '<p></p>'
 
 var FormBuilderField = A.Component.create({
 
@@ -1788,11 +1799,28 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var strings = formBuilder.get(STRINGS);
 
 			if (!instance.fieldSettingsNode) {
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
+
+				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+
+				var typeLabel = A.Node.create(TPL_LABEL);
+
+				typeLabel.setContent(strings[TYPE]);
+
+				var typeText = A.Node.create(TPL_TEXT);
+
+				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
+
+				typeText.setContent(type);
+
+				fieldText.append(typeLabel);
+				fieldText.append(typeText);
+				fieldText.appendTo(propertiesNode);
 
 				instance.labelField = new A.Field(
 					{
@@ -2527,6 +2555,7 @@ var L = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	DATA_TYPE = 'dataType',
 	DOT = '.',
 	DROP = 'drop',
 	EMPTY_STR = '',
@@ -2541,9 +2570,11 @@ var L = A.Lang,
 	NODE = 'node',
 	PREDEFINED_VALUE = 'predefinedValue',
 	SPACE = ' ',
+	STRINGS = 'strings',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TYPE = 'type',
 	VALUE = 'value',
 	ZONE = 'zone',
 
@@ -2681,6 +2712,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var strings = formBuilder.get(STRINGS);
 
 			if (!instance._renderedFieldsetSettings) {
 				instance._renderedFieldsetSettings = true;
@@ -2688,6 +2720,22 @@ var FormBuilderFieldsetField = A.Component.create({
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
+
+				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+
+				var typeLabel = A.Node.create(TPL_LABEL);
+
+				typeLabel.setContent(strings[TYPE]);
+
+				var typeText = A.Node.create(TPL_TEXT);
+
+				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
+
+				typeText.setContent(type);
+
+				fieldText.append(typeLabel);
+				fieldText.append(typeText);
+				fieldText.appendTo(propertiesNode);
 
 				instance.labelField = new A.Field(
 					{
@@ -2778,6 +2826,7 @@ var L = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	DATA_TYPE = 'dataType',
 	DOT = '.',
 	EMPTY_STR = '',
 	FIELD = 'field',
@@ -2791,9 +2840,11 @@ var L = A.Lang,
 	NODE = 'node',
 	PREDEFINED_VALUE = 'predefinedValue',
 	SPACE = ' ',
+	STRINGS = 'strings',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TYPE = 'type',
 	VALUE = 'value',
 
 	getCN = A.getClassName,
@@ -2887,6 +2938,7 @@ var FormBuilderFileUploadField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var strings = formBuilder.get(STRINGS);
 
 			if (!instance._renderedFileUploadSettings) {
 				instance._renderedFileUploadSettings = true;
@@ -2894,6 +2946,22 @@ var FormBuilderFileUploadField = A.Component.create({
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
+
+				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+
+				var typeLabel = A.Node.create(TPL_LABEL);
+
+				typeLabel.setContent(strings[TYPE]);
+
+				var typeText = A.Node.create(TPL_TEXT);
+
+				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
+
+				typeText.setContent(type);
+
+				fieldText.append(typeLabel);
+				fieldText.append(typeText);
+				fieldText.appendTo(propertiesNode);
 
 				instance.labelField = new A.Field(
 					{
