@@ -19,6 +19,7 @@ var L = A.Lang,
 	DATA_TYPE = 'dataType',
 	DEFAULT = 'default',
 	DELETE = 'delete',
+	DISABLED = 'disabled',
 	DOT = '.',
 	DRAG = 'drag',
 	DRAG_CONTAINER = 'dragContainer',
@@ -138,6 +139,15 @@ var FormBuilderField = A.Component.create({
 		 */
 		dataType: {
 			value: STRING
+		},
+
+		/**
+		 * Wether the field is disbaled for editing
+		 *
+		 * @attribute disbaled
+		 */
+		disbaled: {
+			value: false
 		},
 
 		/**
@@ -304,7 +314,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, SHOW_LABEL, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -580,6 +590,18 @@ var FormBuilderField = A.Component.create({
 			}
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
+			}
+		},
+
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var templateNode = instance.get(TEMPLATE_NODE);
+
+			if (val) {
+				templateNode.setAttribute(DISABLED, val);
+			}
+			else {
+				templateNode.removeAttribute(DISABLED);
 			}
 		},
 

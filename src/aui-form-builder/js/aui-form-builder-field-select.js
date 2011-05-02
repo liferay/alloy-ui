@@ -104,7 +104,7 @@ var FormBuilderSelectField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, OPTIONS, SHOW_LABEL, MULTIPLE],
+	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([MULTIPLE]),
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 

@@ -143,7 +143,7 @@ var FormBuilderButtonField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, BUTTON_TYPE, SHOW_LABEL],
+	UI_ATTRS: A.FormBuilderField.UI_ATTRS.concat([BUTTON_TYPE]),
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
