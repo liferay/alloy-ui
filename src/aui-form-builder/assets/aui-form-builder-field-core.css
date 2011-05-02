@@ -143,6 +143,10 @@
 
 /* Options */
 
+.yui3-aui-form-builder-settings .yui3-aui-field-text p {
+	margin: 0;
+}
+
 .yui3-aui-form-builder-settings .yui3-aui-field-options-item-input {
 	width: 90px;
 }

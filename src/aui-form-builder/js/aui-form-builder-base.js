@@ -43,6 +43,7 @@ var L = A.Lang,
 	DELETE = 'delete',
 	DD = 'dd',
 	DEFAULT = 'default',
+	DEFAULT_MESSAGE = 'defaultMessage',
 	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
 	DOT = '.',
 	DUPLICATE = 'duplicate',
@@ -59,6 +60,7 @@ var L = A.Lang,
 	DROP_NODE = 'dropNode',
 	DROP_ZONE_NODE = 'dropZoneNode',
 	EDIT = 'edit',
+	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
@@ -118,8 +120,6 @@ var L = A.Lang,
 	ZONE = 'zone',
 	REGION = 'region',
 	WIDGET = 'widget',
-
-	STRING_EMPTY_SELECTION = 'stringEmptySelection',
 
 	getCN = A.getClassName,
 
@@ -467,8 +467,9 @@ var FormBuilder = A.Component.create({
 		strings: {
 			value:
 			{
-				stringDefaultMessage: 'Drop a field here',
-				stringEmptySelection: 'No field selected'
+				defaultMessage: 'Drop a field here',
+				emptySelection: 'No field selected',
+				type: 'Type'
 			}
 		},
 
@@ -755,7 +756,7 @@ var FormBuilder = A.Component.create({
 			var containsField = instance.contains(selectedField, true);
 
 			if (!containsField) {
-				settingsFormNode.setContent(strings[STRING_EMPTY_SELECTION]);
+				settingsFormNode.setContent(strings[EMPTY_SELECTION]);
 			}
 
 			settingsButtonsNode.toggleClass(CSS_HELPER_HIDDEN, !containsField);
@@ -1241,7 +1242,7 @@ var FormBuilder = A.Component.create({
 				var strings = instance.get(STRINGS);
 				var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
 
-				defaultMessageNode.setContent(strings['stringDefaultMessage']);
+				defaultMessageNode.setContent(strings[DEFAULT_MESSAGE]);
 
 				instance.dropContainerNode.append(defaultMessageNode);
 			}

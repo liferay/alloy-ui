@@ -14,6 +14,7 @@ var L = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	DATA_TYPE = 'dataType',
 	DOT = '.',
 	DROP = 'drop',
 	EMPTY_STR = '',
@@ -28,9 +29,11 @@ var L = A.Lang,
 	NODE = 'node',
 	PREDEFINED_VALUE = 'predefinedValue',
 	SPACE = ' ',
+	STRINGS = 'strings',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TYPE = 'type',
 	VALUE = 'value',
 	ZONE = 'zone',
 
@@ -168,6 +171,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var strings = formBuilder.get(STRINGS);
 
 			if (!instance._renderedFieldsetSettings) {
 				instance._renderedFieldsetSettings = true;
@@ -175,6 +179,22 @@ var FormBuilderFieldsetField = A.Component.create({
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
+
+				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+
+				var typeLabel = A.Node.create(TPL_LABEL);
+
+				typeLabel.setContent(strings[TYPE]);
+
+				var typeText = A.Node.create(TPL_TEXT);
+
+				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
+
+				typeText.setContent(type);
+
+				fieldText.append(typeLabel);
+				fieldText.append(typeText);
+				fieldText.appendTo(propertiesNode);
 
 				instance.labelField = new A.Field(
 					{
