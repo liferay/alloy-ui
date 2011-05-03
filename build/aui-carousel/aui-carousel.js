@@ -406,6 +406,8 @@ var Carousel = A.Component.create(
 				if (objOptions && !Lang.isUndefined(objOptions.prevVal)) {
 					var prevVal = objOptions.prevVal;
 
+					newImage.setStyle('opacity', '0');
+
 					oldMenuItem = menuNodes.item(prevVal);
 					oldImage = instance.nodeSelection.item(prevVal);
 
@@ -413,8 +415,11 @@ var Carousel = A.Component.create(
 
 					instance.animation.stop();
 				}
+				else {
+					newImage.addClass(CSS_ITEM_ACTIVE);
 
-				newImage.setStyle('opacity', '0');
+					newImage.setStyle('opacity', '1');
+				}
 
 				onStart = instance.animation.on(
 					'start',
