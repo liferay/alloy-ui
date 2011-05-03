@@ -108,6 +108,11 @@ var FieldOptions = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		disabled: {
+			value: false,
+			validator: isBoolean
+		},
+
 		options: {
 			value: [],
 			getter: '_getOptions',
@@ -126,7 +131,7 @@ var FieldOptions = A.Component.create({
 		addNode: DOT + CSS_FIELD_OPTIONS_ADD
 	},
 
-	UI_ATTRS: [OPTIONS],
+	UI_ATTRS: [OPTIONS, DISABLED],
 
 	EXTENDS: A.Widget,
 
@@ -175,6 +180,10 @@ var FieldOptions = A.Component.create({
 			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
+			if (instance.get(DISABLED)) {
+				return false;
+			}
+
 			if (optionNode) {
 				optionNode.remove();
 			}
@@ -185,6 +194,10 @@ var FieldOptions = A.Component.create({
 		_addNewOption: function() {
 			var instance = this;
 			var contentBox = instance.get(CONTENT_BOX);
+
+			if (instance.get(DISABLED)) {
+				return false;
+			}
 
 			var newOptionNode = instance._createOption(
 				{
@@ -277,6 +290,22 @@ var FieldOptions = A.Component.create({
 				if ((index == items.size() - 1) && isValue) {
 					instance._addNewOption();
 				}
+			}
+		},
+
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var addNode = instance.get(ADD_NODE);
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			addNode.toggleClass(CSS_HELPER_HIDDEN, val);
+			boundingBox.all(DOT + CSS_FIELD_OPTIONS_ITEM_REMOVE).toggleClass(CSS_HELPER_HIDDEN, val);
+
+			if (val) {
+				boundingBox.all(INPUT).setAttribute(DISABLED, val);
+			}
+			else {
+				boundingBox.all(INPUT).removeAttribute(DISABLED);
 			}
 		},
 
@@ -387,6 +416,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		renderSettings: function() {
 			var instance = this;
+			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.FormBuilderMultipleChoiceField.superclass.renderSettings.apply(instance, arguments);
 
@@ -403,8 +433,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 					}
 				).render();
 
+				var optionsDisabled = A.Array.indexOf(readOnlyAttributes, OPTIONS) > -1;
+
 				instance.options = new FieldOptions(
 					{
+						disabled: optionsDisabled,
 						options: instance.get(OPTIONS)
 					}
 				).render(optionsPanelBody);

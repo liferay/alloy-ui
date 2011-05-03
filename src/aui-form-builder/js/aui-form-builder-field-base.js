@@ -53,6 +53,7 @@ var L = A.Lang,
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
+	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	REQUIRED = 'required',
 	STATE = 'state',
 	SETTINGS = 'settings',
@@ -142,11 +143,11 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-		 * Wether the field is disbaled for editing
+		 * Wether the field is disabled for editing
 		 *
-		 * @attribute disbaled
+		 * @attribute disabled
 		 */
-		disbaled: {
+		disabled: {
 			value: false
 		},
 
@@ -225,6 +226,16 @@ var FormBuilderField = A.Component.create({
 		 */
 		predefinedValue: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * The readOnly attributes
+		 *
+		 * @attribute readOnlyAttributes
+		 */
+		readOnlyAttributes: {
+			value: [],
+			validator: isArray
 		},
 
 		/**
@@ -378,6 +389,13 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * Settings nodes map
+		 *
+		 * @attribute settingsNodesMap
+		 */
+		settingsNodesMap: {},
+
+		/**
 		 * Saves the settings info from the settings form to the settings
 		 * attribute
 		 *
@@ -408,65 +426,39 @@ var FormBuilderField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var strings = formBuilder.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			if (!instance.fieldSettingsNode) {
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
 
-				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+				var fieldType = A.Node.create(TPL_FIELD_TEXT);
+				var fieldTypeLabel = A.Node.create(TPL_LABEL);
+				var fieldTypeText = A.Node.create(TPL_TEXT);
 
-				var typeLabel = A.Node.create(TPL_LABEL);
+				fieldTypeLabel.setContent(strings[TYPE]);
+				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
 
-				typeLabel.setContent(strings[TYPE]);
-
-				var typeText = A.Node.create(TPL_TEXT);
-
-				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
-
-				typeText.setContent(type);
-
-				fieldText.append(typeLabel);
-				fieldText.append(typeText);
-				fieldText.appendTo(propertiesNode);
-
-				instance.labelField = new A.Field(
-					{
-						type: 'text',
-						name: LABEL,
-						labelText: 'Label',
-						value: instance.get(LABEL)
-					}
-				).render(propertiesNode);
-
-				instance.labelField.get(NODE).on(
-					{
-						keyup: A.bind(instance._onLabelKeyUp, instance)
-					}
-				);
-
-				instance.showLabelField = new A.Field(
-					{
-						type: 'checkbox',
-						name: SHOW_LABEL,
-						labelText: 'Show label',
-						labelAlign: 'left',
-						value: instance.get(SHOW_LABEL)
-					}
-				).render(propertiesNode);
-
-				var showLabelFieldNode = instance.showLabelField.get(NODE);
-
-				showLabelFieldNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelFieldNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
+				fieldType.append(fieldTypeLabel);
+				fieldType.append(fieldTypeText);
+				fieldType.appendTo(propertiesNode);
 
 				instance._renderSettingsFields(
 					[
+						{
+							type: 'text',
+							name: LABEL,
+							labelText: 'Label',
+							value: instance.get(LABEL)
+						},
+						{
+							type: 'checkbox',
+							name: SHOW_LABEL,
+							labelText: 'Show label',
+							labelAlign: 'left',
+							value: instance.get(SHOW_LABEL)
+						},
 						{
 							type: 'text',
 							name: NAME,
@@ -478,26 +470,41 @@ var FormBuilderField = A.Component.create({
 							name: PREDEFINED_VALUE,
 							labelText: 'Default value',
 							value: instance.get(PREDEFINED_VALUE)
+						},
+						{
+							type: 'checkbox',
+							name: REQUIRED,
+							labelText: 'Required',
+							labelAlign: 'left',
+							value: REQUIRED
 						}
 					],
 					propertiesNode
 				);
 
-				instance.requiredField = new A.Field(
+				var labelNode = settingsNodesMap['labelSettingNode'];
+
+				labelNode.on(
 					{
-						type: 'checkbox',
-						name: REQUIRED,
-						labelText: 'Required',
-						labelAlign: 'left',
-						value: REQUIRED
+						input: A.bind(instance._onLabelInput, instance)
 					}
-				).render(propertiesNode);
+				);
 
-				var requiredFieldNode = instance.requiredField.get(NODE);
+				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
 
-				requiredFieldNode.set(CHECKED, instance.get(REQUIRED));
+				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
 
-				requiredFieldNode.on(
+				showLabelNode.on(
+					{
+						change: A.bind(instance._onSettingsFieldChange, instance)
+					}
+				);
+
+				var requiredNode = settingsNodesMap['requiredSettingNode'];
+
+				requiredNode.set(CHECKED, instance.get(REQUIRED));
+
+				requiredNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
@@ -511,7 +518,9 @@ var FormBuilderField = A.Component.create({
 					}
 				).render();
 
-				instance.fieldSettingsNode.append(instance.propertiesPanel.get(BOUNDING_BOX));
+				instance.fieldSettingsNode.append(
+					instance.propertiesPanel.get(BOUNDING_BOX)
+				);
 			}
 
 			formNode.setContent(instance.fieldSettingsNode);
@@ -535,7 +544,7 @@ var FormBuilderField = A.Component.create({
 			//
 		},
 
-		_onLabelKeyUp: function(event) {
+		_onLabelInput: function(event) {
 			var instance = this;
 			var target = event.target;
 			var value = target.val();
@@ -563,16 +572,31 @@ var FormBuilderField = A.Component.create({
 		 */
 		_renderSettingsFields: function(fields, container) {
 			var instance = this;
+			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.each(fields, function(config) {
-				var field = new A.Field(config).render(container);
+				var field;
+
+				if (A.Array.indexOf(readOnlyAttributes, config.name) > -1) {
+					config.disabled = true;
+				}
+
+				if (config.type == 'select') {
+					field = new A.Select(config);
+				}
+				else {
+					field = new A.Field(config);
+				}
+
+				field.render(container);
+
 				var fieldNode = field.get(NODE);
 
 				if (config.type == CHECKBOX) {
 					fieldNode.set(CHECKED, config.value);
 				}
 
-				instance[config.name + 'Field'] = field;
+				instance.settingsNodesMap[config.name + 'SettingNode'] = fieldNode;
 			});
 		},
 

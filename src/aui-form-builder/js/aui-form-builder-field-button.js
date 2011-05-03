@@ -198,6 +198,7 @@ var FormBuilderButtonField = A.Component.create({
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var buttonType = instance.get(BUTTON_TYPE);
 			var strings = instance.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);
 
@@ -217,23 +218,27 @@ var FormBuilderButtonField = A.Component.create({
 					);
 				});
 
-				var selectField = new A.Select(
-					{
-						labelText: 'Button type',
-						name: BUTTON_TYPE,
-						options: selectFieldOptions
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							labelText: 'Button type',
+							name: BUTTON_TYPE,
+							options: selectFieldOptions,
+							type: 'select'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				var selectFieldNode = selectField.get(NODE);
+				var buttonTypeNode = settingsNodesMap['buttonTypeSettingNode'];
 
-				selectFieldNode.on({
+				buttonTypeNode.on({
 					change: A.bind(instance._onButtonTypeChange, instance)
 				});
 
 				var selectedIndex = A.Array(BUTTON_TYPES).indexOf(buttonType);
 
-				selectFieldNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
+				buttonTypeNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
 			}
 		},
 
@@ -248,7 +253,7 @@ var FormBuilderButtonField = A.Component.create({
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
 
-			templateNode.set(TYPE, val);
+			templateNode.setAttribute(TYPE, val);
 		}
 
 	}
