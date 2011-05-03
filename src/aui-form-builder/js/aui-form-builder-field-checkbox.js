@@ -188,34 +188,38 @@ var FormBuilderCheckBoxField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedCheckboxSettings) {
 				instance._renderedCheckboxSettings = true;
 
-				instance.predefinedValueField.destroy();
+				settingsNodesMap['predefinedValueSettingNode'].remove();
 
 				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
 
-				var checkedField = new A.Field(
-					{
-						type: 'checkbox',
-						name: PREDEFINED_VALUE,
-						labelText: 'Checked',
-						labelAlign: 'left'
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							type: 'checkbox',
+							name: PREDEFINED_VALUE,
+							labelText: 'Checked',
+							labelAlign: 'left'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				instance.checkedFieldNode = checkedField.get(NODE);
+				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
-				instance.checkedFieldNode.on(
+				predefinedValueNode.on(
 					{
 						change: A.bind(instance._onValueChange, instance)
 					}
 				);
 
-				instance.checkedFieldNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
+				predefinedValueNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
 			}
 		},
 
@@ -229,10 +233,11 @@ var FormBuilderCheckBoxField = A.Component.create({
 		_uiSetPredefinedValue: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
-			var checkedFieldNode = instance.checkedFieldNode;
+			var settingsNodesMap = instance.settingsNodesMap;
+			var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
-			if (checkedFieldNode) {
-				checkedFieldNode.set(CHECKED, val);
+			if (predefinedValueNode) {
+				predefinedValueNode.set(CHECKED, val);
 			}
 
 			templateNode.set(CHECKED, val);

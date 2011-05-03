@@ -155,6 +155,7 @@ var FormBuilderSelectField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderSelectField.superclass.renderSettings.apply(instance, arguments);
 
@@ -163,24 +164,27 @@ var FormBuilderSelectField = A.Component.create({
 
 				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
 
-				var multipleField = new A.Field(
-					{
-						type: 'checkbox',
-						name: MULTIPLE,
-						labelText: 'Multiple',
-						labelAlign: 'left'
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							type: 'checkbox',
+							name: MULTIPLE,
+							labelText: 'Multiple',
+							labelAlign: 'left'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				var multipleFieldNode = multipleField.get(NODE);
+				var multipleNode = settingsNodesMap['multipleSettingNode'];
 
-				multipleFieldNode.on(
+				multipleNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
 				);
 
-				multipleFieldNode.set(CHECKED, instance.get(MULTIPLE));
+				multipleNode.set(CHECKED, instance.get(MULTIPLE));
 			}
 		},
 

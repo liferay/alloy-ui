@@ -147,17 +147,18 @@ var FormBuilderTextField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedInputSettings) {
 				instance._renderedInputSettings = true;
 
-				var predefinedValueNode = formNode.one('input[name=predefinedValue]');
+				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
 				predefinedValueNode.on(
 					{
-						'keyup': A.bind(instance._onValueKeyUp, instance)
+						input: A.bind(instance._onValueInput, instance)
 					}
 				);
 			}
@@ -168,7 +169,7 @@ var FormBuilderTextField = A.Component.create({
 		 *
 		 * @method _onValueKeyUp
 		 */
-		_onValueKeyUp: function(event) {
+		_onValueInput: function(event) {
 			var instance = this;
 			var target = event.target;
 
