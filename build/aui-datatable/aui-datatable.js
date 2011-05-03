@@ -93,6 +93,7 @@ var Lang = A.Lang,
 	CELL_SELECTOR = 'cellSelector',
 	CLICK = 'click',
 	COLUMN = 'column',
+	DBLCLICK = 'dblclick',
 	EVENTS = 'events',
 	HEADER = 'header',
 	HOST = 'host',
@@ -274,7 +275,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 
 		events: {
 			validator: isArray,
-            value: [ CLICK, KEYDOWN, KEYUP, MOUSEDOWN, MOUSEENTER, MOUSELEAVE, MOUSEUP ]
+            value: [ CLICK, DBLCLICK, KEYDOWN, KEYUP, MOUSEDOWN, MOUSEENTER, MOUSELEAVE, MOUSEUP ]
         },
 
 		tags: {
@@ -306,6 +307,10 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	LString = Lang.String,
 
+	_toInitialCap = A.cached(function(str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }),
+
 	isBaseEditor = function(val) {
 		return (val instanceof A.BaseCellEditor);
 	},
@@ -317,15 +322,18 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	CALENDAR = 'calendar',
 	CANCEL = 'cancel',
+	CELL = 'cell',
 	CELLEDITOR = 'celleditor',
 	CHECKBOX_CELL_EDITOR = 'checkboxCellEditor',
 	CHECKED = 'checked',
+	CLICK = 'click',
 	COLUMNSET = 'columnset',
 	CONTENT_BOX = 'contentBox',
 	DATATABLE = 'datatable',
 	DATE_CELL_EDITOR = 'dateCellEditor',
 	DISK = 'disk',
 	DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
+	EDIT_EVENT = 'editEvent',
 	EDITABLE = 'editable',
 	EDITOR = 'editor',
 	ELEMENT = 'element',
@@ -396,6 +404,12 @@ var CellEditorSupport = function() {};
 CellEditorSupport.NAME = 'dataTableCellEditorSupport';
 
 CellEditorSupport.ATTRS = {
+	editEvent: {
+		setter: '_setEditEvent',
+		validator: isString,
+		value: CLICK
+	},
+
 	lazySyncUI: {
 		value: true
 	}
@@ -414,10 +428,7 @@ A.mix(CellEditorSupport.prototype, {
 			render: instance._afterRenderEditor
 		});
 
-		instance.on({
-			cellClick: instance._onCellClickEditor,
-			cellMousedown: instance._onCellMousedownEditor
-		});
+		instance.on(instance.get(EDIT_EVENT), instance._onCellEdit);
 	},
 
 	lazySyncUI: function() {
@@ -470,7 +481,7 @@ A.mix(CellEditorSupport.prototype, {
 		instance.syncEditableColumnsUI();
 	},
 
-	_onCellClickEditor: function(event) {
+	_onCellEdit: function(event) {
 		var instance = this;
 		var column = event.column;
 		var editor = column.get(EDITOR);
@@ -479,6 +490,11 @@ A.mix(CellEditorSupport.prototype, {
 		instance.activeRecord = event.record;
 
 		if (isBaseEditor(editor)) {
+			if (!editor.get(RENDERED)) {
+				editor.on(SAVE, A.bind(instance._onEditorSave, instance));
+				editor.render();
+			}
+
 			editor.set(
 				VALUE,
 				instance.getRecordColumnValue(event.record, column)
@@ -504,14 +520,10 @@ A.mix(CellEditorSupport.prototype, {
 		instance.set(RECORDSET, recordset);
 	},
 
-	_onCellMousedownEditor: function(event) {
+	_setEditEvent: function(val) {
 		var instance = this;
-		var editor = event.column.get(EDITOR);
 
-		if (isBaseEditor(editor) && !editor.get(RENDERED)) {
-			editor.on(SAVE, A.bind(instance._onEditorSave, instance));
-			editor.render();
-		}
+		return CELL + _toInitialCap(val);
 	}
 });
 
@@ -923,7 +935,7 @@ var BaseCellEditor = A.Component.create({
 					instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
 				);
 
-				A.later(30, elements, elements.selectText);
+				A.later(100, elements, elements.selectText);
 			}
 		}
 

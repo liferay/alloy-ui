@@ -25,6 +25,7 @@ var Lang = A.Lang,
 	CELL_SELECTOR = 'cellSelector',
 	CLICK = 'click',
 	COLUMN = 'column',
+	DBLCLICK = 'dblclick',
 	EVENTS = 'events',
 	HEADER = 'header',
 	HOST = 'host',
@@ -206,7 +207,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 
 		events: {
 			validator: isArray,
-            value: [ CLICK, KEYDOWN, KEYUP, MOUSEDOWN, MOUSEENTER, MOUSELEAVE, MOUSEUP ]
+            value: [ CLICK, DBLCLICK, KEYDOWN, KEYUP, MOUSEDOWN, MOUSEENTER, MOUSELEAVE, MOUSEUP ]
         },
 
 		tags: {
