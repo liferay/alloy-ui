@@ -82,6 +82,11 @@ var Field = A.Component.create(
 				}
 			},
 
+			disabled: {
+				value: false,
+				validator: Lang.isBoolean
+			},
+
 			id: {
 				getter: function(value) {
 					var instance = this;
@@ -220,6 +225,7 @@ var Field = A.Component.create(
 		},
 
 		BIND_UI_ATTRS: [
+			'disabled',
 			'id',
 			'readOnly',
 			'name',
@@ -499,6 +505,18 @@ var Field = A.Component.create(
 				instance._uiSetValue(value);
 
 				return value;
+			},
+
+			_uiSetDisabled: function(val) {
+				var instance = this;
+				var node = instance.get('node');
+
+				if (val) {
+					node.setAttribute('disabled', val);
+				}
+				else {
+					node.removeAttribute('disabled');
+				}
 			},
 
 			_uiSetFieldHint: function(newVal, prevVal) {

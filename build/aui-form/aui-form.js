@@ -698,6 +698,11 @@ var Field = A.Component.create(
 				}
 			},
 
+			disabled: {
+				value: false,
+				validator: Lang.isBoolean
+			},
+
 			id: {
 				getter: function(value) {
 					var instance = this;
@@ -836,6 +841,7 @@ var Field = A.Component.create(
 		},
 
 		BIND_UI_ATTRS: [
+			'disabled',
 			'id',
 			'readOnly',
 			'name',
@@ -1115,6 +1121,18 @@ var Field = A.Component.create(
 				instance._uiSetValue(value);
 
 				return value;
+			},
+
+			_uiSetDisabled: function(val) {
+				var instance = this;
+				var node = instance.get('node');
+
+				if (val) {
+					node.setAttribute('disabled', val);
+				}
+				else {
+					node.removeAttribute('disabled');
+				}
 			},
 
 			_uiSetFieldHint: function(newVal, prevVal) {
@@ -2456,5 +2474,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']});
 
