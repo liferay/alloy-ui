@@ -44,14 +44,14 @@
 	<h1>Alloy - Carousel Demo</h1>
 
 	<div id="demo">
-		<div style="background: url(article0.png); width: 940px; height: 253px;">Article0</div>
-		<div style="background: url(article1.png); width: 940px; height: 253px;">Article1</div>
-		<div style="background: url(article2.png); width: 940px; height: 253px;">Article2</div>
-		<div style="background: url(article3.png); width: 940px; height: 253px;">Article3</div>
-		<div style="background: url(article0.png); width: 940px; height: 253px;">Article4</div>
-		<div style="background: url(article1.png); width: 940px; height: 253px;">Article5</div>
-		<div style="background: url(article2.png); width: 940px; height: 253px;">Article6</div>
-		<div style="background: url(article3.png); width: 940px; height: 253px;">Article7</div>
+		<div style="background: url(article0.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item yui3-aui-carousel-item-active">Article0</div>
+		<div style="background: url(article1.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article1</div>
+		<div style="background: url(article2.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article2</div>
+		<div style="background: url(article3.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article3</div>
+		<div style="background: url(article0.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article4</div>
+		<div style="background: url(article1.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article5</div>
+		<div style="background: url(article2.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article6</div>
+		<div style="background: url(article3.png); width: 940px; height: 253px;" class="yui3-aui-carousel-item">Article7</div>
 	</div>
 </div>
 
@@ -72,7 +72,8 @@ AUI().ready('aui-carousel', function(A) {
 		{
 			intervalTime: 1,
 			contentBox: '#demo',
-			activeIndex: 'rand',
+			activeIndex: 0,
+			// activeIndex: 'rand',
 			height: 254,
 			width: 940
 			// nodeMenu: '#customMenu',
