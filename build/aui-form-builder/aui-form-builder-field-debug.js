@@ -54,6 +54,7 @@ var L = A.Lang,
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
+	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	REQUIRED = 'required',
 	STATE = 'state',
 	SETTINGS = 'settings',
@@ -143,11 +144,11 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-		 * Wether the field is disbaled for editing
+		 * Wether the field is disabled for editing
 		 *
-		 * @attribute disbaled
+		 * @attribute disabled
 		 */
-		disbaled: {
+		disabled: {
 			value: false
 		},
 
@@ -226,6 +227,16 @@ var FormBuilderField = A.Component.create({
 		 */
 		predefinedValue: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * The readOnly attributes
+		 *
+		 * @attribute readOnlyAttributes
+		 */
+		readOnlyAttributes: {
+			value: [],
+			validator: isArray
 		},
 
 		/**
@@ -379,6 +390,13 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * Settings nodes map
+		 *
+		 * @attribute settingsNodesMap
+		 */
+		settingsNodesMap: {},
+
+		/**
 		 * Saves the settings info from the settings form to the settings
 		 * attribute
 		 *
@@ -409,65 +427,39 @@ var FormBuilderField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var strings = formBuilder.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			if (!instance.fieldSettingsNode) {
 				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
 
 				var propertiesNode = A.Node.create(TPL_DIV);
 
-				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+				var fieldType = A.Node.create(TPL_FIELD_TEXT);
+				var fieldTypeLabel = A.Node.create(TPL_LABEL);
+				var fieldTypeText = A.Node.create(TPL_TEXT);
 
-				var typeLabel = A.Node.create(TPL_LABEL);
+				fieldTypeLabel.setContent(strings[TYPE]);
+				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
 
-				typeLabel.setContent(strings[TYPE]);
-
-				var typeText = A.Node.create(TPL_TEXT);
-
-				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
-
-				typeText.setContent(type);
-
-				fieldText.append(typeLabel);
-				fieldText.append(typeText);
-				fieldText.appendTo(propertiesNode);
-
-				instance.labelField = new A.Field(
-					{
-						type: 'text',
-						name: LABEL,
-						labelText: 'Label',
-						value: instance.get(LABEL)
-					}
-				).render(propertiesNode);
-
-				instance.labelField.get(NODE).on(
-					{
-						keyup: A.bind(instance._onLabelKeyUp, instance)
-					}
-				);
-
-				instance.showLabelField = new A.Field(
-					{
-						type: 'checkbox',
-						name: SHOW_LABEL,
-						labelText: 'Show label',
-						labelAlign: 'left',
-						value: instance.get(SHOW_LABEL)
-					}
-				).render(propertiesNode);
-
-				var showLabelFieldNode = instance.showLabelField.get(NODE);
-
-				showLabelFieldNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelFieldNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
+				fieldType.append(fieldTypeLabel);
+				fieldType.append(fieldTypeText);
+				fieldType.appendTo(propertiesNode);
 
 				instance._renderSettingsFields(
 					[
+						{
+							type: 'text',
+							name: LABEL,
+							labelText: 'Label',
+							value: instance.get(LABEL)
+						},
+						{
+							type: 'checkbox',
+							name: SHOW_LABEL,
+							labelText: 'Show label',
+							labelAlign: 'left',
+							value: instance.get(SHOW_LABEL)
+						},
 						{
 							type: 'text',
 							name: NAME,
@@ -479,26 +471,41 @@ var FormBuilderField = A.Component.create({
 							name: PREDEFINED_VALUE,
 							labelText: 'Default value',
 							value: instance.get(PREDEFINED_VALUE)
+						},
+						{
+							type: 'checkbox',
+							name: REQUIRED,
+							labelText: 'Required',
+							labelAlign: 'left',
+							value: REQUIRED
 						}
 					],
 					propertiesNode
 				);
 
-				instance.requiredField = new A.Field(
+				var labelNode = settingsNodesMap['labelSettingNode'];
+
+				labelNode.on(
 					{
-						type: 'checkbox',
-						name: REQUIRED,
-						labelText: 'Required',
-						labelAlign: 'left',
-						value: REQUIRED
+						input: A.bind(instance._onLabelInput, instance)
 					}
-				).render(propertiesNode);
+				);
 
-				var requiredFieldNode = instance.requiredField.get(NODE);
+				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
 
-				requiredFieldNode.set(CHECKED, instance.get(REQUIRED));
+				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
 
-				requiredFieldNode.on(
+				showLabelNode.on(
+					{
+						change: A.bind(instance._onSettingsFieldChange, instance)
+					}
+				);
+
+				var requiredNode = settingsNodesMap['requiredSettingNode'];
+
+				requiredNode.set(CHECKED, instance.get(REQUIRED));
+
+				requiredNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
@@ -512,7 +519,9 @@ var FormBuilderField = A.Component.create({
 					}
 				).render();
 
-				instance.fieldSettingsNode.append(instance.propertiesPanel.get(BOUNDING_BOX));
+				instance.fieldSettingsNode.append(
+					instance.propertiesPanel.get(BOUNDING_BOX)
+				);
 			}
 
 			formNode.setContent(instance.fieldSettingsNode);
@@ -536,7 +545,7 @@ var FormBuilderField = A.Component.create({
 			//
 		},
 
-		_onLabelKeyUp: function(event) {
+		_onLabelInput: function(event) {
 			var instance = this;
 			var target = event.target;
 			var value = target.val();
@@ -564,16 +573,31 @@ var FormBuilderField = A.Component.create({
 		 */
 		_renderSettingsFields: function(fields, container) {
 			var instance = this;
+			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.each(fields, function(config) {
-				var field = new A.Field(config).render(container);
+				var field;
+
+				if (A.Array.indexOf(readOnlyAttributes, config.name) > -1) {
+					config.disabled = true;
+				}
+
+				if (config.type == 'select') {
+					field = new A.Select(config);
+				}
+				else {
+					field = new A.Field(config);
+				}
+
+				field.render(container);
+
 				var fieldNode = field.get(NODE);
 
 				if (config.type == CHECKBOX) {
 					fieldNode.set(CHECKED, config.value);
 				}
 
-				instance[config.name + 'Field'] = field;
+				instance.settingsNodesMap[config.name + 'SettingNode'] = fieldNode;
 			});
 		},
 
@@ -851,6 +875,7 @@ var FormBuilderButtonField = A.Component.create({
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var buttonType = instance.get(BUTTON_TYPE);
 			var strings = instance.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);
 
@@ -870,23 +895,27 @@ var FormBuilderButtonField = A.Component.create({
 					);
 				});
 
-				var selectField = new A.Select(
-					{
-						labelText: 'Button type',
-						name: BUTTON_TYPE,
-						options: selectFieldOptions
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							labelText: 'Button type',
+							name: BUTTON_TYPE,
+							options: selectFieldOptions,
+							type: 'select'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				var selectFieldNode = selectField.get(NODE);
+				var buttonTypeNode = settingsNodesMap['buttonTypeSettingNode'];
 
-				selectFieldNode.on({
+				buttonTypeNode.on({
 					change: A.bind(instance._onButtonTypeChange, instance)
 				});
 
 				var selectedIndex = A.Array(BUTTON_TYPES).indexOf(buttonType);
 
-				selectFieldNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
+				buttonTypeNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
 			}
 		},
 
@@ -901,7 +930,7 @@ var FormBuilderButtonField = A.Component.create({
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
 
-			templateNode.set(TYPE, val);
+			templateNode.setAttribute(TYPE, val);
 		}
 
 	}
@@ -1101,34 +1130,38 @@ var FormBuilderCheckBoxField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedCheckboxSettings) {
 				instance._renderedCheckboxSettings = true;
 
-				instance.predefinedValueField.destroy();
+				settingsNodesMap['predefinedValueSettingNode'].remove();
 
 				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
 
-				var checkedField = new A.Field(
-					{
-						type: 'checkbox',
-						name: PREDEFINED_VALUE,
-						labelText: 'Checked',
-						labelAlign: 'left'
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							type: 'checkbox',
+							name: PREDEFINED_VALUE,
+							labelText: 'Checked',
+							labelAlign: 'left'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				instance.checkedFieldNode = checkedField.get(NODE);
+				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
-				instance.checkedFieldNode.on(
+				predefinedValueNode.on(
 					{
 						change: A.bind(instance._onValueChange, instance)
 					}
 				);
 
-				instance.checkedFieldNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
+				predefinedValueNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
 			}
 		},
 
@@ -1142,10 +1175,11 @@ var FormBuilderCheckBoxField = A.Component.create({
 		_uiSetPredefinedValue: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
-			var checkedFieldNode = instance.checkedFieldNode;
+			var settingsNodesMap = instance.settingsNodesMap;
+			var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
-			if (checkedFieldNode) {
-				checkedFieldNode.set(CHECKED, val);
+			if (predefinedValueNode) {
+				predefinedValueNode.set(CHECKED, val);
 			}
 
 			templateNode.set(CHECKED, val);
@@ -1332,6 +1366,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var strings = formBuilder.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			if (!instance._renderedFieldsetSettings) {
 				instance._renderedFieldsetSettings = true;
@@ -1340,52 +1375,49 @@ var FormBuilderFieldsetField = A.Component.create({
 
 				var propertiesNode = A.Node.create(TPL_DIV);
 
-				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+				var fieldType = A.Node.create(TPL_FIELD_TEXT);
+				var fieldTypeLabel = A.Node.create(TPL_LABEL);
+				var fieldTypeText = A.Node.create(TPL_TEXT);
 
-				var typeLabel = A.Node.create(TPL_LABEL);
+				fieldTypeLabel.setContent(strings[TYPE]);
+				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
 
-				typeLabel.setContent(strings[TYPE]);
+				fieldType.append(fieldTypeLabel);
+				fieldType.append(fieldTypeText);
+				fieldType.appendTo(propertiesNode);
 
-				var typeText = A.Node.create(TPL_TEXT);
+				instance._renderSettingsFields(
+					[
+						{
+							type: 'text',
+							name: LABEL,
+							labelText: 'Label',
+							value: instance.get(LABEL)
+						},
+						{
+							type: 'checkbox',
+							name: SHOW_LABEL,
+							labelText: 'Show label',
+							labelAlign: 'left',
+							value: instance.get(SHOW_LABEL)
+						}
+					],
+					propertiesNode
+				);
 
-				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
+				var labelNode = settingsNodesMap['labelSettingNode'];
 
-				typeText.setContent(type);
-
-				fieldText.append(typeLabel);
-				fieldText.append(typeText);
-				fieldText.appendTo(propertiesNode);
-
-				instance.labelField = new A.Field(
+				labelNode.on(
 					{
-						type: 'text',
-						name: LABEL,
-						labelText: 'Label',
-						value: instance.get(LABEL)
-					}
-				).render(propertiesNode);
-
-				instance.labelField.get(NODE).on(
-					{
-						keyup: A.bind(instance._onLabelKeyUp, instance)
+						input: A.bind(instance._onLabelInput, instance)
 					}
 				);
 
-				instance.showLabelField = new A.Field(
-					{
-						type: 'checkbox',
-						name: SHOW_LABEL,
-						labelText: 'Show label',
-						labelAlign: 'left',
-						value: instance.get(SHOW_LABEL)
-					}
-				).render(propertiesNode);
+				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
 
-				var showLabelFieldNode = instance.showLabelField.get(NODE);
+				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
 
-				showLabelFieldNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelFieldNode.on(
+				showLabelNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
@@ -1399,7 +1431,9 @@ var FormBuilderFieldsetField = A.Component.create({
 					}
 				).render();
 
-				instance.fieldSettingsNode.append(instance.propertiesPanel.get(BOUNDING_BOX));
+				instance.fieldSettingsNode.append(
+					instance.propertiesPanel.get(BOUNDING_BOX)
+				);
 			}
 
 			formNode.setContent(instance.fieldSettingsNode);
@@ -1556,6 +1590,7 @@ var FormBuilderFileUploadField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var strings = formBuilder.get(STRINGS);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			if (!instance._renderedFileUploadSettings) {
 				instance._renderedFileUploadSettings = true;
@@ -1564,59 +1599,32 @@ var FormBuilderFileUploadField = A.Component.create({
 
 				var propertiesNode = A.Node.create(TPL_DIV);
 
-				var fieldText = A.Node.create(TPL_FIELD_TEXT);
+				var fieldType = A.Node.create(TPL_FIELD_TEXT);
+				var fieldTypeLabel = A.Node.create(TPL_LABEL);
+				var fieldTypeText = A.Node.create(TPL_TEXT);
 
-				var typeLabel = A.Node.create(TPL_LABEL);
+				fieldTypeLabel.setContent(strings[TYPE]);
+				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
 
-				typeLabel.setContent(strings[TYPE]);
-
-				var typeText = A.Node.create(TPL_TEXT);
-
-				var type = instance.get(DATA_TYPE) || instance.get(TYPE);
-
-				typeText.setContent(type);
-
-				fieldText.append(typeLabel);
-				fieldText.append(typeText);
-				fieldText.appendTo(propertiesNode);
-
-				instance.labelField = new A.Field(
-					{
-						type: 'text',
-						name: LABEL,
-						labelText: 'Label',
-						value: instance.get(LABEL)
-					}
-				).render(propertiesNode);
-
-				instance.labelField.get(NODE).on(
-					{
-						keyup: A.bind(instance._onLabelKeyUp, instance)
-					}
-				);
-
-				instance.showLabelField = new A.Field(
-					{
-						type: 'checkbox',
-						name: SHOW_LABEL,
-						labelText: 'Show label',
-						labelAlign: 'left',
-						value: instance.get(SHOW_LABEL)
-					}
-				).render(propertiesNode);
-
-				var showLabelFieldNode = instance.showLabelField.get(NODE);
-
-				showLabelFieldNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelFieldNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
+				fieldType.append(fieldTypeLabel);
+				fieldType.append(fieldTypeText);
+				fieldType.appendTo(propertiesNode);
 
 				instance._renderSettingsFields(
 					[
+						{
+							type: 'text',
+							name: LABEL,
+							labelText: 'Label',
+							value: instance.get(LABEL)
+						},
+						{
+							type: 'checkbox',
+							name: SHOW_LABEL,
+							labelText: 'Show label',
+							labelAlign: 'left',
+							value: instance.get(SHOW_LABEL)
+						},
 						{
 							type: 'text',
 							name: NAME,
@@ -1632,6 +1640,24 @@ var FormBuilderFileUploadField = A.Component.create({
 						}
 					],
 					propertiesNode
+				);
+
+				var labelNode = settingsNodesMap['labelSettingNode'];
+
+				labelNode.on(
+					{
+						input: A.bind(instance._onLabelInput, instance)
+					}
+				);
+
+				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
+
+				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
+
+				showLabelNode.on(
+					{
+						change: A.bind(instance._onSettingsFieldChange, instance)
+					}
 				);
 
 				instance.propertiesPanel = new A.Panel(
@@ -1765,6 +1791,11 @@ var FieldOptions = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		disabled: {
+			value: false,
+			validator: isBoolean
+		},
+
 		options: {
 			value: [],
 			getter: '_getOptions',
@@ -1783,7 +1814,7 @@ var FieldOptions = A.Component.create({
 		addNode: DOT + CSS_FIELD_OPTIONS_ADD
 	},
 
-	UI_ATTRS: [OPTIONS],
+	UI_ATTRS: [OPTIONS, DISABLED],
 
 	EXTENDS: A.Widget,
 
@@ -1832,6 +1863,10 @@ var FieldOptions = A.Component.create({
 			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
+			if (instance.get(DISABLED)) {
+				return false;
+			}
+
 			if (optionNode) {
 				optionNode.remove();
 			}
@@ -1842,6 +1877,10 @@ var FieldOptions = A.Component.create({
 		_addNewOption: function() {
 			var instance = this;
 			var contentBox = instance.get(CONTENT_BOX);
+
+			if (instance.get(DISABLED)) {
+				return false;
+			}
 
 			var newOptionNode = instance._createOption(
 				{
@@ -1934,6 +1973,22 @@ var FieldOptions = A.Component.create({
 				if ((index == items.size() - 1) && isValue) {
 					instance._addNewOption();
 				}
+			}
+		},
+
+		_uiSetDisabled: function(val) {
+			var instance = this;
+			var addNode = instance.get(ADD_NODE);
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			addNode.toggleClass(CSS_HELPER_HIDDEN, val);
+			boundingBox.all(DOT + CSS_FIELD_OPTIONS_ITEM_REMOVE).toggleClass(CSS_HELPER_HIDDEN, val);
+
+			if (val) {
+				boundingBox.all(INPUT).setAttribute(DISABLED, val);
+			}
+			else {
+				boundingBox.all(INPUT).removeAttribute(DISABLED);
 			}
 		},
 
@@ -2044,6 +2099,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		renderSettings: function() {
 			var instance = this;
+			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.FormBuilderMultipleChoiceField.superclass.renderSettings.apply(instance, arguments);
 
@@ -2060,8 +2116,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 					}
 				).render();
 
+				var optionsDisabled = A.Array.indexOf(readOnlyAttributes, OPTIONS) > -1;
+
 				instance.options = new FieldOptions(
 					{
+						disabled: optionsDisabled,
 						options: instance.get(OPTIONS)
 					}
 				).render(optionsPanelBody);
@@ -2518,6 +2577,7 @@ var FormBuilderSelectField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderSelectField.superclass.renderSettings.apply(instance, arguments);
 
@@ -2526,24 +2586,27 @@ var FormBuilderSelectField = A.Component.create({
 
 				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
 
-				var multipleField = new A.Field(
-					{
-						type: 'checkbox',
-						name: MULTIPLE,
-						labelText: 'Multiple',
-						labelAlign: 'left'
-					}
-				).render(panelBody.item(0));
+				instance._renderSettingsFields(
+					[
+						{
+							type: 'checkbox',
+							name: MULTIPLE,
+							labelText: 'Multiple',
+							labelAlign: 'left'
+						}
+					],
+					panelBody.item(0)
+				);
 
-				var multipleFieldNode = multipleField.get(NODE);
+				var multipleNode = settingsNodesMap['multipleSettingNode'];
 
-				multipleFieldNode.on(
+				multipleNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
 				);
 
-				multipleFieldNode.set(CHECKED, instance.get(MULTIPLE));
+				multipleNode.set(CHECKED, instance.get(MULTIPLE));
 			}
 		},
 
@@ -2715,17 +2778,18 @@ var FormBuilderTextField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedInputSettings) {
 				instance._renderedInputSettings = true;
 
-				var predefinedValueNode = formNode.one('input[name=predefinedValue]');
+				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
 				predefinedValueNode.on(
 					{
-						'keyup': A.bind(instance._onValueKeyUp, instance)
+						input: A.bind(instance._onValueInput, instance)
 					}
 				);
 			}
@@ -2736,7 +2800,7 @@ var FormBuilderTextField = A.Component.create({
 		 *
 		 * @method _onValueKeyUp
 		 */
-		_onValueKeyUp: function(event) {
+		_onValueInput: function(event) {
 			var instance = this;
 			var target = event.target;
 
@@ -2893,17 +2957,18 @@ var FormBuilderTextAreaField = A.Component.create({
 			var instance = this;
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
+			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderTextAreaField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedTextareaSettings) {
 				instance._renderedTextareaSettings = true;
 
-				var predefinedValueNode = formNode.one('input[name=predefinedValue]');
+				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
 				predefinedValueNode.on(
 					{
-						'keyup': A.bind(instance._onValueKeyUp, instance)
+						input: A.bind(instance._onValueInput, instance)
 					}
 				);
 			}
@@ -2914,7 +2979,7 @@ var FormBuilderTextAreaField = A.Component.create({
 		 *
 		 * @method _onValueKeyUp
 		 */
-		_onValueKeyUp: function(event) {
+		_onValueInput: function(event) {
 			var instance = this;
 			var target = event.target;
 

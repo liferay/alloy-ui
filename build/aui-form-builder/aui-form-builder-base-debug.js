@@ -97,6 +97,7 @@ var L = A.Lang,
 	PREPEND = 'prepend',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
+	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	RENDER = 'render',
 	SAVE = 'save',
 	SELECTED = 'selected',
@@ -706,7 +707,7 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var parent = field.get(PARENT);
 			var index = parent.indexOf(field);
-			var newFieldConfig = instance._cloneField(field);
+			var newFieldConfig = instance._cloneField(field, true);
 
 			parent.insertField(++index, newFieldConfig);
 		},
@@ -841,25 +842,28 @@ var FormBuilder = A.Component.create({
 		 *
 		 * @method _cloneField
 		 */
-		_cloneField: function(field) {
+		_cloneField: function(field, deep) {
 			var instance = this;
 			var type = field.get(TYPE);
 
 			var config = {};
 
 			A.each(field.getAttrs(), function(value, key) {
-				if (A.Array.indexOf(INVALID_CLONE_ATTRS) === -1 && !isNode(value)) {
+				if (A.Array.indexOf(INVALID_CLONE_ATTRS, key) === -1 && !isNode(value)) {
 					config[key] = value;
 				}
 			});
 
-			var children = [];
+			if (deep) {
+				var children = [];
 
-			A.each(field.get(FIELDS), function(child) {
-				children.push(instance._cloneField(child));
-			});
+				A.each(field.get(FIELDS), function(child) {
+					children.push(instance._cloneField(child, deep));
+				});
 
-			config[FIELDS] = children;
+				config[FIELDS] = children;
+			}
+
 			config[TYPE] = type;
 
 			return config;
@@ -1352,7 +1356,15 @@ var FormBuilder = A.Component.create({
 
 					A.each(fields, function(field){
 						if (field.get(KEY) == key) {
+							var config = A.merge(
+								instance._cloneField(field, false),
+								availableField
+							);
+
+							field.set(READ_ONLY_ATTRIBUTES, config.readOnlyAttributes);
 							field.set(UNIQUE, true);
+
+							availableFields[index] = config;
 
 							uniqueFields.add(key, field);
 						}
