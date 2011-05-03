@@ -174,9 +174,12 @@ AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
 	// Creates a DataTable with 3 columns and 3 rows
 	table = new A.DataTable.Base({
 		columnset: nestedCols,
-		recordset: data
+		recordset: data,
+		editEvent: 'dblclick'
 	})
 	.render("#dt1");
+
+	table.get('boundingBox').unselectable();
 
 });
 
