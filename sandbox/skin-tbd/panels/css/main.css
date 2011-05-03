@@ -1,0 +1,72 @@
+/* Base panel styles */
+.panel-content {
+	background-color: #fff;
+	border-bottom: 1px solid #c9c9c9;
+	border-left: 1px solid #c9c9c9;
+	border-right: 1px solid #c9c9c9;
+	min-height: 120px;
+	padding: 10px;
+}
+.panel-controls {
+	padding-left: 10px;
+	padding-right: 4px;
+}
+.panel-table {
+	width: 100%;
+}
+.panel-table td {
+	font-size: 12px;
+	padding: 20px;
+}
+.panel-title {
+	background: url(../images/panel-title.png) repeat-x;
+	border: 1px solid #c9c9c9;
+	position: relative;
+}
+.panel-title h1, .panel-title-hover h1 {
+	font-size: 12px;
+	font-weight: normal;
+	text-shadow: 1px 1px 1px #fff;
+}
+.panel-title-hover {
+	background: url(../images/panel-title-hover.png) repeat-x;
+	border: 1px solid #c9c9c9;
+	height: 30px;
+}
+.panels-title {
+	font-size: 12px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.simplified {
+	border-top: 1px solid #c9c9c9;
+	position: absolute;
+	right: 0;
+	top: 11px;
+	width: 100%;
+	z-index: -1;
+}
+.variant-a {
+	height: 30px;
+}
+.variant-a h1 {
+	padding-top: 10px;
+}
+.variant-b {
+	height: 20px;
+}
+.variant-b h1 {
+	padding-top: 4px;
+}
+.variant-simplified {
+	background: none;
+	border: none;
+	height: 20px;
+}
+.variant-simplified h1 {
+	padding-top: 4px;
+}
+.variant-simplified-background {
+	background-color: #f1f1f1;
+	padding-right: 6px;
+}
