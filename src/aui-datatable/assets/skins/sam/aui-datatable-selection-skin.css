@@ -1,0 +1,5 @@
+.yui3-skin-sam .yui3-datatable td.yui3-aui-datatable-cell-selected,
+.yui3-skin-sam tr.yui3-datatable-even td.yui3-datatable-asc.yui3-aui-datatable-cell-selected, .yui3-skin-sam tr.yui3-datatable-even td.yui3-datatable-desc.yui3-aui-datatable-cell-selected {
+	background-color: #6688EE;
+	color: #fff;
+}
