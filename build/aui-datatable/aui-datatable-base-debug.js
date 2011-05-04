@@ -7,9 +7,16 @@ var CHILD_NODES = 'childNodes',
 	HEADERS = 'headers',
 	ID = 'id',
 
+	_HASH = '#',
 	_SPACE = ' ';
 
 A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
+	getCellNode: function(record, column) {
+		var row = A.one(_HASH+record.get(ID));
+
+		return row.get(CHILD_NODES).item(column.keyIndex);
+	},
+
 	getColumnByCell: function(cell) {
 		var instance = this;
 		var dataHeaderId = cell.getAttribute(HEADERS).split(_SPACE).pop() || cell.get(ID);
