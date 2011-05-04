@@ -1097,7 +1097,7 @@ var TreeNodeIO = A.Component.create(
 					loader(io.url, io.cfg, instance);
 				}
 				else {
-					A.io(io.url, io.cfg);
+					A.io.request(io.url, io.cfg);
 				}
 			},
 
@@ -1142,11 +1142,11 @@ var TreeNodeIO = A.Component.create(
 				var length = args.length;
 
 				// if using the first argument as the JSON object
-				var nodes = args[0];
+				var nodes = args[1];
 
-				// if using (id, o) yui callback syntax
-				if (length >= 2) {
-					var o = args[1];
+				// if using (event, id, o) yui callback syntax
+				if (length >= 3) {
+					var o = args[2];
 					// try to convert responseText to JSON
 					try {
 						nodes = A.JSON.parse(o.responseText);
