@@ -2,15 +2,22 @@
 
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
+	isString = Lang.isString,
 
 	AgetClassName = A.getClassName,
+
+	_toInitialCap = A.cached(function(str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }),
 
 	CELL = 'cell',
 	DATATABLE = 'datatable',
 	ID = 'id',
+	MOUSEDOWN = 'mousedown',
 	MULTIPLE = 'multiple',
 	SELECTED = 'selected',
 	SELECT_CELL_ON_EDIT = 'selectCellOnEdit',
+	SELECT_EVENT = 'selectEvent',
 
 	CSS_DATATABLE_CELL_SELECTED = AgetClassName(DATATABLE, CELL, SELECTED);
 
@@ -27,6 +34,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		instance.selectedRowHash = {};
 
 		instance.afterHostMethod('_editCell', instance._editCell);
+
+		instance.afterHostEvent(instance.get(SELECT_EVENT), instance._afterSelectEvent);
 	},
 
 	isCellSelected: function(cell) {
@@ -112,12 +121,22 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		// TODO
 	},
 
+	_afterSelectEvent: function(event) {
+		var instance = this;
+
+		instance.selectCell(event.cell);
+	},
+
 	_editCell: function(event) {
 		var instance = this;
 
 		if (instance.get(SELECT_CELL_ON_EDIT)) {
 			instance.selectCell(event.cell);
 		}
+	},
+
+	_setSelectEvent: function(val) {
+		return CELL + _toInitialCap(val);
 	}
 },
 {
@@ -129,6 +148,12 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		selectCellOnEdit: {
 			value: true,
 			validator: isBoolean
+		},
+
+		selectEvent: {
+			setter: '_setSelectEvent',
+			value: MOUSEDOWN,
+			validator: isString
 		},
 
 		multiple: {
