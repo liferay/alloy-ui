@@ -840,7 +840,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -1941,7 +1941,7 @@ var TreeNodeIO = A.Component.create(
 					loader(io.url, io.cfg, instance);
 				}
 				else {
-					A.io(io.url, io.cfg);
+					A.io.request(io.url, io.cfg);
 				}
 			},
 
@@ -1986,11 +1986,11 @@ var TreeNodeIO = A.Component.create(
 				var length = args.length;
 
 				// if using the first argument as the JSON object
-				var nodes = args[0];
+				var nodes = args[1];
 
-				// if using (id, o) yui callback syntax
-				if (length >= 2) {
-					var o = args[1];
+				// if using (event, id, o) yui callback syntax
+				if (length >= 3) {
+					var o = args[2];
 					// try to convert responseText to JSON
 					try {
 						nodes = A.JSON.parse(o.responseText);
@@ -2604,7 +2604,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-tree-data','io-base','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3592,5 +3592,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
 
