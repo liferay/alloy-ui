@@ -14,6 +14,11 @@
 	.yui3-aui-hover-cell {
 		background: #ddd;
 	}
+
+	.yui3-skin-sam .yui3-datatable td.yui3-aui-datatable-cell-selected {
+		background-color: #6688EE !important;
+		color: #fff;
+	}
 	</style>
 </head>
 
@@ -27,7 +32,7 @@
 
 <script type="text/javascript">
 
-AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
+AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 
 	new A.Console().render();
 
@@ -137,6 +142,7 @@ AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
 		},
         {
 			key:"fruit",
+			sortable: true,
 			editor: new A.DropDownCellEditor({
 				multiple: true,
 				validator: {
@@ -156,6 +162,7 @@ AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
 		},
         {
 			key:"last_login",
+			sortable: true,
 			editor: new A.DateCellEditor({
 				calendar: {
 					selectMultipleDates: true
@@ -172,14 +179,23 @@ AUI().use('aui-datatable-edit', 'aui-datatype', 'console', function(A) {
 	];
 
 	// Creates a DataTable with 3 columns and 3 rows
-	table = new A.DataTable.Base({
+	window.dtable = new A.DataTable.Base({
 		columnset: nestedCols,
 		recordset: data,
 		editEvent: 'dblclick'
 	})
+	.plug(A.Plugin.DataTableSelection, {
+		multiple: false,
+		selectEvent: 'mousedown'
+	})
+	.plug(A.Plugin.DataTableScroll, {
+		height: 800,
+		width: 1000
+	})
+	.plug(A.Plugin.DataTableSort)
 	.render("#dt1");
 
-	table.get('boundingBox').unselectable();
+	dtable.get('boundingBox').unselectable();
 
 });
 
