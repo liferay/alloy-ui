@@ -8,6 +8,7 @@ var Lang = A.Lang,
 	CELL = 'cell',
 	DATATABLE = 'datatable',
 	ID = 'id',
+	MULTIPLE = 'multiple',
 	SELECTED = 'selected',
 	SELECT_CELL_ON_EDIT = 'selectCellOnEdit',
 
@@ -44,6 +45,10 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 	selectCell: function(cell) {
 		var instance = this;
+
+		if (!instance.get(MULTIPLE)) {
+			instance.unselectAllCells();
+		}
 
 		instance.selectedCellHash[cell.get(ID)] = cell;
 
@@ -123,6 +128,11 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
     ATTRS: {
 		selectCellOnEdit: {
 			value: true,
+			validator: isBoolean
+		},
+
+		multiple: {
+			value: false,
 			validator: isBoolean
 		}
     }
