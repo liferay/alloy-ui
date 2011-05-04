@@ -14,6 +14,7 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		var instance = this;
 
 		instance.after('render', instance._afterRender);
+		instance.after('recordsetChange', instance._afterRecordsetChangeExt);
 	},
 
 	getCellNode: function(record, column) {
@@ -40,6 +41,12 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		var instance = this;
 
 		instance._bindPluginsEvents();
+		instance._fixPluginsUI();
+	},
+
+	_afterRecordsetChangeExt: function(event) {
+		var instance = this;
+
 		instance._fixPluginsUI();
 	},
 
