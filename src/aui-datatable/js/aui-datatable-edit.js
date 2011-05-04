@@ -181,7 +181,7 @@ A.mix(CellEditorSupport.prototype, {
 		instance.syncEditableColumnsUI();
 	},
 
-	_onCellEdit: function(event) {
+	_editCell: function(event) {
 		var instance = this;
 		var column = event.column;
 		var editor = column.get(EDITOR);
@@ -204,6 +204,12 @@ A.mix(CellEditorSupport.prototype, {
 		}
 	},
 
+	_onCellEdit: function(event) {
+		var instance = this;
+
+		instance._editCell(event);
+	},
+
 	_onEditorSave: function(event) {
 		var instance = this;
 		var editor = event.currentTarget;
@@ -221,8 +227,6 @@ A.mix(CellEditorSupport.prototype, {
 	},
 
 	_setEditEvent: function(val) {
-		var instance = this;
-
 		return CELL + _toInitialCap(val);
 	}
 });
