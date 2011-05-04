@@ -11,6 +11,12 @@ var CHILD_NODES = 'childNodes',
 	_SPACE = ' ';
 
 A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
+	initializer: function() {
+		var instance = this;
+
+		instance.after('render', instance._afterRender);
+	},
+
 	getCellNode: function(record, column) {
 		var row = A.one(_HASH+record.get(ID));
 
@@ -29,6 +35,32 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		var index = instance.get(COLUMNSET).getColumnIndex(instance.getColumnByCell(cell));
 
 		return instance._colgroupNode.get(CHILD_NODES).item(index);
+	},
+
+	_afterRender: function() {
+		var instance = this;
+
+		instance._bindPluginsEvents();
+		instance._fixPluginsUI();
+	},
+
+	_bindPluginsEvents: function() {
+		var instance = this;
+		var sort = instance.sort;
+
+		if (sort) {
+			sort.after('lastSortedByChange', A.bind(instance._fixPluginsUI, instance));
+		}
+	},
+
+	_fixPluginsUI: function() {
+		var instance = this;
+		var sort = instance.sort;
+		var scroll = instance.scroll;
+
+		if (sort && scroll) {
+			scroll.syncUI();
+		}
 	}
 }, {});
 
