@@ -164,7 +164,7 @@ var TaskManager = {
 					instance._resetNextRunTime(task);
 				}
 				else {
-					delete tasks[taskId];
+					instance.unregister(false, taskId);
 				}
 			}
 		}
