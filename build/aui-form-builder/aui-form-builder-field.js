@@ -56,6 +56,7 @@ var L = A.Lang,
 	PROXY = 'proxy',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	REQUIRED = 'required',
+	REQUIRED_FLAG_NODE = 'requiredFlagNode',
 	STATE = 'state',
 	SETTINGS = 'settings',
 	SETTINGS_FORM_NODE = 'settingsFormNode',
@@ -84,14 +85,15 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
 	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
 	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
+	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
+	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
 	CSS_FORM_BUILDER_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
 	CSS_FORM_BUILDER_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
 	CSS_FORM_BUILDER_ICON_EDIT = getCN(FORM, BUILDER, ICON, EDIT),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
-	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
-	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
+	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
 	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
 
@@ -116,6 +118,8 @@ var L = A.Lang,
 	TPL_FIELD_TEXT = '<span class="' + [CSS_FIELD, CSS_FIELD_TEXT].join(SPACE) + '"></span>',
 
 	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
+
+	TPL_REQUIRED_FLAG = '<span class="' + CSS_FORM_BUILDER_REQUIRED + '">*</span>',
 
 	TPL_TEXT = '<p></p>'
 
@@ -318,6 +322,12 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		requiredFlagNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_REQUIRED_FLAG);
+			}
+		},
+
 		templateNode: {
 			valueFn: 'getNode'
 		}
@@ -326,12 +336,13 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, SHOW_LABEL, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
 		dropZoneNode: DOT + CSS_FORM_BUILDER_DROP_ZONE,
-		labelNode: LABEL + DOT + CSS_FIELD_LABEL
+		labelNode: LABEL + DOT + CSS_FIELD_LABEL,
+		requiredFlagNode: DOT + CSS_FORM_BUILDER_REQUIRED
 	},
 
 	prototype: {
@@ -369,7 +380,10 @@ var FormBuilderField = A.Component.create({
 			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
 			var labelNode = instance.get(LABEL_NODE);
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
 			var templateNode = instance.get(TEMPLATE_NODE);
+
+			contentBox.addClass(CSS_HELPER_CLEARFIX);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -377,12 +391,15 @@ var FormBuilderField = A.Component.create({
 
 			if (!contentBox.contains(labelNode)) {
 				contentBox.append(labelNode);
+				contentBox.append(requiredFlagNode);
 
 				labelNode.setAttribute(
 					FOR,
 					templateNode.get(ID)
 				);
 			}
+
+			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
 
 			if (!contentBox.contains(templateNode)) {
 				contentBox.append(templateNode);
@@ -467,17 +484,17 @@ var FormBuilderField = A.Component.create({
 							value: instance.get(NAME)
 						},
 						{
-							type: 'text',
-							name: PREDEFINED_VALUE,
-							labelText: 'Default value',
-							value: instance.get(PREDEFINED_VALUE)
-						},
-						{
 							type: 'checkbox',
 							name: REQUIRED,
 							labelText: 'Required',
 							labelAlign: 'left',
 							value: REQUIRED
+						},
+						{
+							type: 'text',
+							name: PREDEFINED_VALUE,
+							labelText: 'Default value',
+							value: instance.get(PREDEFINED_VALUE)
 						}
 					],
 					propertiesNode
@@ -651,6 +668,13 @@ var FormBuilderField = A.Component.create({
 			templateNode.val(val);
 		},
 
+		_uiSetRequired: function(val) {
+			var instance = this;
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
+
+			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+		},
+
 		_uiSetShowLabel: function(val)  {
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
@@ -794,20 +818,6 @@ var FormBuilderButtonField = A.Component.create({
 		},
 
 		/**
-		 * Strings messages
-		 *
-		 * @attribute strings
-		 */
-		strings: {
-			value:
-			{
-				button: 'Button',
-				reset: 'Reset',
-				submit: 'Submit'
-			}
-		},
-
-		/**
 		 * The HTML template of the field
 		 *
 		 * @attribute template
@@ -874,7 +884,7 @@ var FormBuilderButtonField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var buttonType = instance.get(BUTTON_TYPE);
-			var strings = instance.get(STRINGS);
+			var strings = formBuilder.get(STRINGS);
 			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);
@@ -2071,17 +2081,6 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 	prototype: {
 
 		/**
-		 * Initializer
-		 *
-		 * @method initializer
-		 */
-		initializer: function() {
-			var instance = this;
-
-			A.FormBuilderMultipleChoiceField.superclass.initializer.apply(instance, arguments);
-		},
-
-		/**
 		 * Returns the A.Node of the field's HTML content
 		 *
 		 * @method getFieldNode
@@ -2287,6 +2286,7 @@ var FormBuilderRadioField = A.Component.create({
 			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
 			var labelNode = instance.get(LABEL_NODE);
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -2294,7 +2294,10 @@ var FormBuilderRadioField = A.Component.create({
 
 			if (!contentBox.contains(labelNode)) {
 				contentBox.append(labelNode);
+				contentBox.append(requiredFlagNode);
 			}
+
+			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
 
 			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
 
@@ -2672,6 +2675,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
 	VALUE = 'value',
+	WIDTH = 'width',
 
 	getCN = A.getClassName,
 
@@ -2681,7 +2685,9 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
-	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />'
+	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />',
+
+	WIDTH_VALUES_MAP = { small: 25, medium: 50, large: 100 }
 
 var FormBuilderTextField = A.Component.create({
 
@@ -2705,6 +2711,16 @@ var FormBuilderTextField = A.Component.create({
 		*/
 		templateNode: {
 			valueFn: 'getNode'
+		},
+
+		/**
+		 * The width of the input
+		 *
+		 * @attribute width
+		 */
+		width: {
+			setter: A.DataType.String.evaluate,
+			value: 25
 		}
 
 	},
@@ -2733,7 +2749,7 @@ var FormBuilderTextField = A.Component.create({
 
 			templateNode.on(
 				{
-					'keyup': A.bind(instance._onValueKeyUp, instance)
+					input: A.bind(instance._onValueInput, instance)
 				}
 			);
 		},
@@ -2749,8 +2765,8 @@ var FormBuilderTextField = A.Component.create({
 			var id = instance.get(ID);
 			var label = instance.get(LABEL);
 			var name = instance.get(NAME);
-			var size = instance.get(SIZE);
 			var value = instance.get(PREDEFINED_VALUE);
+			var width = instance.get(WIDTH);
 
 			return A.substitute(
 				template,
@@ -2758,7 +2774,8 @@ var FormBuilderTextField = A.Component.create({
 					id: id,
 					label: label,
 					name: name,
-					value: value
+					value: value,
+					width: width
 				}
 			)
 		},
@@ -2779,11 +2796,46 @@ var FormBuilderTextField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var settingsNodesMap = instance.settingsNodesMap;
+			var strings = formBuilder.get(STRINGS);
 
 			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedInputSettings) {
 				instance._renderedInputSettings = true;
+
+				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
+
+				var counter = 0;
+				var selectedIndex = -1;
+				var widthOptions = [];
+
+				A.each(WIDTH_VALUES_MAP, function(value, key) {
+					if (value == instance.get(WIDTH)) {
+						selectedIndex = counter;
+					}
+
+					widthOptions.push(
+						{
+							labelText: strings[key],
+							value: value
+						}
+					);
+
+					counter++;
+				});
+
+				instance._renderSettingsFields(
+					[
+						{
+							labelText: 'Width',
+							name: WIDTH,
+							options: widthOptions,
+							type: 'select',
+							value: instance.get(WIDTH)
+						}
+					],
+					panelBody.item(0)
+				);
 
 				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
@@ -2792,6 +2844,16 @@ var FormBuilderTextField = A.Component.create({
 						input: A.bind(instance._onValueInput, instance)
 					}
 				);
+
+				var widthNode = settingsNodesMap['widthSettingNode'];
+
+				widthNode.on(
+					{
+						change: A.bind(instance._onWidthChange, instance)
+					}
+				);
+
+				widthNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
 			}
 		},
 
@@ -2805,6 +2867,23 @@ var FormBuilderTextField = A.Component.create({
 			var target = event.target;
 
 			instance.set(PREDEFINED_VALUE, target.val());
+		},
+
+		_onWidthChange: function(event) {
+			var instance = this;
+			var target = event.target;
+
+			instance.set(WIDTH, target.val());
+		},
+
+		_uiSetWidth: function(val) {
+			var instance = this;
+			var templateNode = instance.get(TEMPLATE_NODE);
+
+			templateNode.addClass(getCN('w' + val));
+			templateNode.removeClass(getCN('w' + instance.prevWidth));
+
+			instance.prevWidth = val;
 		}
 
 	}
@@ -2894,28 +2973,9 @@ var FormBuilderTextAreaField = A.Component.create({
 		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
 	},
 
-	EXTENDS: A.FormBuilderField,
+	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-			A.FormBuilderTextAreaField.superclass.bindUI.apply(instance, arguments);
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.on(
-				{
-					'keyup': A.bind(instance._onValueKeyUp, instance)
-				}
-			);
-		},
 
 		/**
 		 * Returns the HTML content of the field
@@ -2945,45 +3005,12 @@ var FormBuilderTextAreaField = A.Component.create({
 		/**
 		 * Returns the A.Node of the field's HTML content
 		 *
-		 * @method getFieldNode
+		 * @method getNode
 		 */
 		getNode: function() {
 			var instance = this;
 
 			return A.Node.create(instance.getHTML());
-		},
-
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderTextAreaField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedTextareaSettings) {
-				instance._renderedTextareaSettings = true;
-
-				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
-
-				predefinedValueNode.on(
-					{
-						input: A.bind(instance._onValueInput, instance)
-					}
-				);
-			}
-		},
-
-		/**
-		 * Handles the onKeyUp event for the value nodes
-		 *
-		 * @method _onValueKeyUp
-		 */
-		_onValueInput: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.val());
 		}
 
 	}
