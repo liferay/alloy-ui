@@ -388,17 +388,6 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 	prototype: {
 
 		/**
-		 * Initializer
-		 *
-		 * @method initializer
-		 */
-		initializer: function() {
-			var instance = this;
-
-			A.FormBuilderMultipleChoiceField.superclass.initializer.apply(instance, arguments);
-		},
-
-		/**
 		 * Returns the A.Node of the field's HTML content
 		 *
 		 * @method getFieldNode
