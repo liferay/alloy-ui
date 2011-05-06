@@ -478,8 +478,14 @@ var FormBuilder = A.Component.create({
 		strings: {
 			value:
 			{
+				button: 'Button',
 				defaultMessage: 'Drop a field here',
 				emptySelection: 'No field selected',
+				large: 'Large',
+				medium: 'Medium',
+				reset: 'Reset',
+				small: 'Small',
+				submit: 'Submit',
 				type: 'Type'
 			}
 		},
