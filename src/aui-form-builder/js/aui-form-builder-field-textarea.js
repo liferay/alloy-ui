@@ -78,28 +78,9 @@ var FormBuilderTextAreaField = A.Component.create({
 		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
 	},
 
-	EXTENDS: A.FormBuilderField,
+	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-			A.FormBuilderTextAreaField.superclass.bindUI.apply(instance, arguments);
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.on(
-				{
-					'keyup': A.bind(instance._onValueKeyUp, instance)
-				}
-			);
-		},
 
 		/**
 		 * Returns the HTML content of the field
@@ -129,45 +110,12 @@ var FormBuilderTextAreaField = A.Component.create({
 		/**
 		 * Returns the A.Node of the field's HTML content
 		 *
-		 * @method getFieldNode
+		 * @method getNode
 		 */
 		getNode: function() {
 			var instance = this;
 
 			return A.Node.create(instance.getHTML());
-		},
-
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderTextAreaField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedTextareaSettings) {
-				instance._renderedTextareaSettings = true;
-
-				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
-
-				predefinedValueNode.on(
-					{
-						input: A.bind(instance._onValueInput, instance)
-					}
-				);
-			}
-		},
-
-		/**
-		 * Handles the onKeyUp event for the value nodes
-		 *
-		 * @method _onValueKeyUp
-		 */
-		_onValueInput: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.val());
 		}
 
 	}

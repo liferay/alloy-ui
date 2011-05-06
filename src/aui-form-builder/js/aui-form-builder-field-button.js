@@ -117,20 +117,6 @@ var FormBuilderButtonField = A.Component.create({
 		},
 
 		/**
-		 * Strings messages
-		 *
-		 * @attribute strings
-		 */
-		strings: {
-			value:
-			{
-				button: 'Button',
-				reset: 'Reset',
-				submit: 'Submit'
-			}
-		},
-
-		/**
 		 * The HTML template of the field
 		 *
 		 * @attribute template
@@ -197,7 +183,7 @@ var FormBuilderButtonField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var buttonType = instance.get(BUTTON_TYPE);
-			var strings = instance.get(STRINGS);
+			var strings = formBuilder.get(STRINGS);
 			var settingsNodesMap = instance.settingsNodesMap;
 
 			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);

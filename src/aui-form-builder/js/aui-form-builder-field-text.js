@@ -41,6 +41,7 @@ var L = A.Lang,
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
 	VALUE = 'value',
+	WIDTH = 'width',
 
 	getCN = A.getClassName,
 
@@ -50,7 +51,9 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
-	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />'
+	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />',
+
+	WIDTH_VALUES_MAP = { small: 25, medium: 50, large: 100 }
 
 var FormBuilderTextField = A.Component.create({
 
@@ -74,6 +77,16 @@ var FormBuilderTextField = A.Component.create({
 		*/
 		templateNode: {
 			valueFn: 'getNode'
+		},
+
+		/**
+		 * The width of the input
+		 *
+		 * @attribute width
+		 */
+		width: {
+			setter: A.DataType.String.evaluate,
+			value: 25
 		}
 
 	},
@@ -102,7 +115,7 @@ var FormBuilderTextField = A.Component.create({
 
 			templateNode.on(
 				{
-					'keyup': A.bind(instance._onValueKeyUp, instance)
+					input: A.bind(instance._onValueInput, instance)
 				}
 			);
 		},
@@ -118,8 +131,8 @@ var FormBuilderTextField = A.Component.create({
 			var id = instance.get(ID);
 			var label = instance.get(LABEL);
 			var name = instance.get(NAME);
-			var size = instance.get(SIZE);
 			var value = instance.get(PREDEFINED_VALUE);
+			var width = instance.get(WIDTH);
 
 			return A.substitute(
 				template,
@@ -127,7 +140,8 @@ var FormBuilderTextField = A.Component.create({
 					id: id,
 					label: label,
 					name: name,
-					value: value
+					value: value,
+					width: width
 				}
 			)
 		},
@@ -148,11 +162,46 @@ var FormBuilderTextField = A.Component.create({
 			var formBuilder = instance.get(FORM_BUILDER);
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 			var settingsNodesMap = instance.settingsNodesMap;
+			var strings = formBuilder.get(STRINGS);
 
 			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
 
 			if (!instance._renderedInputSettings) {
 				instance._renderedInputSettings = true;
+
+				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
+
+				var counter = 0;
+				var selectedIndex = -1;
+				var widthOptions = [];
+
+				A.each(WIDTH_VALUES_MAP, function(value, key) {
+					if (value == instance.get(WIDTH)) {
+						selectedIndex = counter;
+					}
+
+					widthOptions.push(
+						{
+							labelText: strings[key],
+							value: value
+						}
+					);
+
+					counter++;
+				});
+
+				instance._renderSettingsFields(
+					[
+						{
+							labelText: 'Width',
+							name: WIDTH,
+							options: widthOptions,
+							type: 'select',
+							value: instance.get(WIDTH)
+						}
+					],
+					panelBody.item(0)
+				);
 
 				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
 
@@ -161,6 +210,16 @@ var FormBuilderTextField = A.Component.create({
 						input: A.bind(instance._onValueInput, instance)
 					}
 				);
+
+				var widthNode = settingsNodesMap['widthSettingNode'];
+
+				widthNode.on(
+					{
+						change: A.bind(instance._onWidthChange, instance)
+					}
+				);
+
+				widthNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
 			}
 		},
 
@@ -174,6 +233,23 @@ var FormBuilderTextField = A.Component.create({
 			var target = event.target;
 
 			instance.set(PREDEFINED_VALUE, target.val());
+		},
+
+		_onWidthChange: function(event) {
+			var instance = this;
+			var target = event.target;
+
+			instance.set(WIDTH, target.val());
+		},
+
+		_uiSetWidth: function(val) {
+			var instance = this;
+			var templateNode = instance.get(TEMPLATE_NODE);
+
+			templateNode.addClass(getCN('w' + val));
+			templateNode.removeClass(getCN('w' + instance.prevWidth));
+
+			instance.prevWidth = val;
 		}
 
 	}
