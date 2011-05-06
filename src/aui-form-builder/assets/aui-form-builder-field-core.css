@@ -25,11 +25,13 @@
 	border: 1px solid #CCCCCC;
 }
 
-/* Fields inside drop container */
-
-.yui3-aui-form-builder-drop-container .yui3-aui-field-textarea, .yui3-aui-form-builder-drop-container .yui3-aui-field-input-text {
-	width: 200px;
+.yui3-aui-form-builder-field-node,
+.yui3-aui-field-choice {
+	clear: both;
+	display: block;
 }
+
+/* Fields inside drop container */
 
 .yui3-aui-form-builder-drop-container .yui3-aui-form-builder-field,
 .yui3-aui-form-builder-drop-container .yui3-aui-form-builder-default-message {
@@ -78,11 +80,31 @@
 }
 
 .yui3-aui-form-builder-field .yui3-aui-field-label {
-	float: none;
+	float: left;
+	margin-top: 0;
+}
+
+.yui3-aui-form-builder-field .yui3-aui-form-builder-required {
+	color: #FF0000;
+	margin: 0 5px;
 }
 
 .yui3-aui-form-builder-field .yui3-aui-form-builder-field-content {
 	padding: 15px;
+}
+
+/* Reset priority */
+
+.yui3-aui-form-builder-field-node.yui3-aui-w25 {
+	width: 25%;
+}
+
+.yui3-aui-form-builder-field-node.yui3-aui-w50 {
+	width: 50%;
+}
+
+.yui3-aui-form-builder-field-node.yui3-aui-w100 {
+	width: 100%;
 }
 
 /* Field icons */

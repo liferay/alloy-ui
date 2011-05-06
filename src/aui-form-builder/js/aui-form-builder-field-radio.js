@@ -122,6 +122,7 @@ var FormBuilderRadioField = A.Component.create({
 			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
 			var labelNode = instance.get(LABEL_NODE);
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -129,7 +130,10 @@ var FormBuilderRadioField = A.Component.create({
 
 			if (!contentBox.contains(labelNode)) {
 				contentBox.append(labelNode);
+				contentBox.append(requiredFlagNode);
 			}
+
+			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
 
 			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
 

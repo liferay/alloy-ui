@@ -55,6 +55,7 @@ var L = A.Lang,
 	PROXY = 'proxy',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	REQUIRED = 'required',
+	REQUIRED_FLAG_NODE = 'requiredFlagNode',
 	STATE = 'state',
 	SETTINGS = 'settings',
 	SETTINGS_FORM_NODE = 'settingsFormNode',
@@ -83,14 +84,15 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
 	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
 	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
+	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
+	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
 	CSS_FORM_BUILDER_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
 	CSS_FORM_BUILDER_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
 	CSS_FORM_BUILDER_ICON_EDIT = getCN(FORM, BUILDER, ICON, EDIT),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
-	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
-	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
+	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
 	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
 
@@ -115,6 +117,8 @@ var L = A.Lang,
 	TPL_FIELD_TEXT = '<span class="' + [CSS_FIELD, CSS_FIELD_TEXT].join(SPACE) + '"></span>',
 
 	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
+
+	TPL_REQUIRED_FLAG = '<span class="' + CSS_FORM_BUILDER_REQUIRED + '">*</span>',
 
 	TPL_TEXT = '<p></p>'
 
@@ -317,6 +321,12 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		requiredFlagNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_REQUIRED_FLAG);
+			}
+		},
+
 		templateNode: {
 			valueFn: 'getNode'
 		}
@@ -325,12 +335,13 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, SHOW_LABEL, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
 		dropZoneNode: DOT + CSS_FORM_BUILDER_DROP_ZONE,
-		labelNode: LABEL + DOT + CSS_FIELD_LABEL
+		labelNode: LABEL + DOT + CSS_FIELD_LABEL,
+		requiredFlagNode: DOT + CSS_FORM_BUILDER_REQUIRED
 	},
 
 	prototype: {
@@ -368,7 +379,10 @@ var FormBuilderField = A.Component.create({
 			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
 			var labelNode = instance.get(LABEL_NODE);
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
 			var templateNode = instance.get(TEMPLATE_NODE);
+
+			contentBox.addClass(CSS_HELPER_CLEARFIX);
 
 			if (!boundingBox.contains(buttonsNode)) {
 				boundingBox.prepend(buttonsNode);
@@ -376,12 +390,15 @@ var FormBuilderField = A.Component.create({
 
 			if (!contentBox.contains(labelNode)) {
 				contentBox.append(labelNode);
+				contentBox.append(requiredFlagNode);
 
 				labelNode.setAttribute(
 					FOR,
 					templateNode.get(ID)
 				);
 			}
+
+			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
 
 			if (!contentBox.contains(templateNode)) {
 				contentBox.append(templateNode);
@@ -466,17 +483,17 @@ var FormBuilderField = A.Component.create({
 							value: instance.get(NAME)
 						},
 						{
-							type: 'text',
-							name: PREDEFINED_VALUE,
-							labelText: 'Default value',
-							value: instance.get(PREDEFINED_VALUE)
-						},
-						{
 							type: 'checkbox',
 							name: REQUIRED,
 							labelText: 'Required',
 							labelAlign: 'left',
 							value: REQUIRED
+						},
+						{
+							type: 'text',
+							name: PREDEFINED_VALUE,
+							labelText: 'Default value',
+							value: instance.get(PREDEFINED_VALUE)
 						}
 					],
 					propertiesNode
@@ -648,6 +665,13 @@ var FormBuilderField = A.Component.create({
 			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.val(val);
+		},
+
+		_uiSetRequired: function(val) {
+			var instance = this;
+			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
+
+			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
 		},
 
 		_uiSetShowLabel: function(val)  {
