@@ -94,7 +94,7 @@ A.Recordset = A.Base.create('recordset', A.Recordset, [], {
 	getRecordIndex: function(record) {
 		var instance = this;
 
-		return instance._items.indexOf(record);
+		return A.Array.indexOf(instance._items, record);
 	},
 
 	updateRecordDataByKey: function(record, key, value) {
