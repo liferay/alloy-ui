@@ -81,12 +81,13 @@
 
 .yui3-aui-form-builder-field .yui3-aui-field-label {
 	float: left;
-	margin-top: 0;
+	margin-right: 5px;
 }
 
 .yui3-aui-form-builder-field .yui3-aui-form-builder-required {
 	color: #FF0000;
-	margin: 0 5px;
+	float: left;
+	margin: 0 5px 0 0;
 }
 
 .yui3-aui-form-builder-field .yui3-aui-form-builder-field-content {
@@ -151,6 +152,10 @@
 
 .yui3-aui-form-builder-settings .yui3-aui-field-input-checkbox {
 	margin: 5px 5px 0 0;
+}
+
+.yui3-aui-form-builder-settings .yui3-aui-field-input-select {
+	width: 100%;
 }
 
 .yui3-aui-form-builder-settings .yui3-aui-field-checkbox {

@@ -3,6 +3,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
+	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	BUTTON = 'button',
@@ -40,12 +41,14 @@ var L = A.Lang,
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
 	FORM_BUILDER_FIELD = 'form-builder-field',
+	HELP = 'help',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
 	ICON = 'icon',
 	ID = 'id',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
+	LIGHTBULB = 'lightbulb',
 	METADATA = 'metadata',
 	NAME = 'name',
 	NODE = 'node',
@@ -66,6 +69,8 @@ var L = A.Lang,
 	STRINGS = 'strings',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TIP = 'tip',
+	TIP_ICON_NODE = 'tipIconNode',
 	TYPE = 'type',
 	UNIQUE = 'unique',
 	ZONE = 'zone',
@@ -77,6 +82,8 @@ var L = A.Lang,
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
+	CSS_ICON = getCN(ICON),
+	CSS_ICON_LIGHTBULB = getCN(ICON, LIGHTBULB),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
@@ -90,6 +97,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
 	CSS_FORM_BUILDER_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
 	CSS_FORM_BUILDER_ICON_EDIT = getCN(FORM, BUILDER, ICON, EDIT),
+	CSS_FORM_BUILDER_ICON_TIP = getCN(FORM, BUILDER, ICON, TIP),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
@@ -120,7 +128,9 @@ var L = A.Lang,
 
 	TPL_REQUIRED_FLAG = '<span class="' + CSS_FORM_BUILDER_REQUIRED + '">*</span>',
 
-	TPL_TEXT = '<p></p>'
+	TPL_TEXT = '<p></p>',
+
+	TPL_TIP_ICON = '<a href="javascript:;" class="' + [CSS_ICON, CSS_ICON_LIGHTBULB, CSS_FORM_BUILDER_ICON_TIP].join(SPACE) + '"></a>';
 
 var FormBuilderField = A.Component.create({
 
@@ -282,6 +292,15 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * A tip for the user
+		 *
+		 * @attribute tip
+		 */
+		tip: {
+			value: EMPTY_STR
+		},
+
+		/**
 		 * The type of the field. It's a unique identifier per field
 		 *
 		 * @attribute type
@@ -329,19 +348,26 @@ var FormBuilderField = A.Component.create({
 
 		templateNode: {
 			valueFn: 'getNode'
+		},
+
+		tipIconNode: {
+			valueFn: function() {
+				return A.Node.create(TPL_TIP_ICON);
+			}
 		}
 
 	},
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
 		dropZoneNode: DOT + CSS_FORM_BUILDER_DROP_ZONE,
 		labelNode: LABEL + DOT + CSS_FIELD_LABEL,
-		requiredFlagNode: DOT + CSS_FORM_BUILDER_REQUIRED
+		requiredFlagNode: DOT + CSS_FORM_BUILDER_REQUIRED,
+		tipIconNode: DOT + CSS_FORM_BUILDER_ICON_TIP
 	},
 
 	prototype: {
@@ -356,6 +382,11 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 
 			instance.get(BOUNDING_BOX).setData(FIELD, instance);
+
+			instance.toolTip = new A.Tooltip({
+				trigger: instance.get(TIP_ICON_NODE),
+				hideDelay: 100
+			});
 		},
 
 		/**
@@ -381,28 +412,18 @@ var FormBuilderField = A.Component.create({
 			var labelNode = instance.get(LABEL_NODE);
 			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
 			var templateNode = instance.get(TEMPLATE_NODE);
+			var tipIconNode = instance.get(TIP_ICON_NODE);
 
 			contentBox.addClass(CSS_HELPER_CLEARFIX);
 
-			if (!boundingBox.contains(buttonsNode)) {
-				boundingBox.prepend(buttonsNode);
-			}
+			boundingBox.prepend(buttonsNode);
 
-			if (!contentBox.contains(labelNode)) {
-				contentBox.append(labelNode);
-				contentBox.append(requiredFlagNode);
+			contentBox.append(labelNode);
+			contentBox.append(requiredFlagNode);
+			contentBox.append(tipIconNode);
+			contentBox.append(templateNode);
 
-				labelNode.setAttribute(
-					FOR,
-					templateNode.get(ID)
-				);
-			}
-
-			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
-
-			if (!contentBox.contains(templateNode)) {
-				contentBox.append(templateNode);
-			}
+			instance.toolTip.render();
 		},
 
 		/**
@@ -494,12 +515,18 @@ var FormBuilderField = A.Component.create({
 							name: PREDEFINED_VALUE,
 							labelText: 'Default value',
 							value: instance.get(PREDEFINED_VALUE)
+						},
+						{
+							type: 'text',
+							name: TIP,
+							labelText: 'Tip',
+							value: instance.get(TIP)
 						}
 					],
 					propertiesNode
 				);
 
-				var labelNode = settingsNodesMap['labelSettingNode'];
+				var labelNode = settingsNodesMap.labelSettingNode;
 
 				labelNode.on(
 					{
@@ -507,7 +534,7 @@ var FormBuilderField = A.Component.create({
 					}
 				);
 
-				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
+				var showLabelNode = settingsNodesMap.showLabelSettingNode;
 
 				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
 
@@ -517,7 +544,7 @@ var FormBuilderField = A.Component.create({
 					}
 				);
 
-				var requiredNode = settingsNodesMap['requiredSettingNode'];
+				var requiredNode = settingsNodesMap.requiredSettingNode;
 
 				requiredNode.set(CHECKED, instance.get(REQUIRED));
 
@@ -574,7 +601,7 @@ var FormBuilderField = A.Component.create({
 			var target = event.target;
 			var value = target.val();
 
-			if (target.get(TYPE) == CHECKBOX) {
+			if (target.get(TYPE) === CHECKBOX) {
 				value = target.get(CHECKED);
 			}
 
@@ -598,7 +625,7 @@ var FormBuilderField = A.Component.create({
 					config.disabled = true;
 				}
 
-				if (config.type == 'select') {
+				if (config.type === 'select') {
 					field = new A.Select(config);
 				}
 				else {
@@ -609,7 +636,7 @@ var FormBuilderField = A.Component.create({
 
 				var fieldNode = field.get(NODE);
 
-				if (config.type == CHECKBOX) {
+				if (config.type === CHECKBOX) {
 					fieldNode.set(CHECKED, config.value);
 				}
 
@@ -679,6 +706,15 @@ var FormBuilderField = A.Component.create({
 			var labelNode = instance.get(LABEL_NODE);
 
 			labelNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+		},
+
+		_uiSetTip: function(val) {
+			var instance = this;
+			var tipIconNode = instance.get(TIP_ICON_NODE);
+			
+			tipIconNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+
+			instance.toolTip.set(BODY_CONTENT, val);
 		},
 
 		_uiSetUnique: function(val) {

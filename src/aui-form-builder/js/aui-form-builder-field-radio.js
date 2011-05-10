@@ -47,7 +47,9 @@ var L = A.Lang,
 
 	TPL_OPTIONS_CONTAINER = '<div class="' + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER + '"></div>',
 
-	TPL_RADIO = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="radio" value="{value}" {checked} />'
+	TPL_RADIO = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="radio" value="{value}" {checked} />',
+
+	TPL_FIELD = '<input type="hidden" />';
 
 var FormBuilderRadioField = A.Component.create({
 
@@ -118,54 +120,12 @@ var FormBuilderRadioField = A.Component.create({
 		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
-			var labelNode = instance.get(LABEL_NODE);
-			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
-
-			if (!boundingBox.contains(buttonsNode)) {
-				boundingBox.prepend(buttonsNode);
-			}
-
-			if (!contentBox.contains(labelNode)) {
-				contentBox.append(labelNode);
-				contentBox.append(requiredFlagNode);
-			}
-
-			requiredFlagNode.insert(labelNode, requiredFlagNode, 'after');
-
 			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
 
-			if (!contentBox.contains(optionsContainerNode)) {
-				contentBox.append(optionsContainerNode);
-			}
-		},
+			A.FormBuilderRadioField.superclass.renderUI.apply(instance, arguments);
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
-		getHTML: function() {
-			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var checked = instance.get(CHECKED);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
-
-			return A.substitute(
-				template,
-				{
-					checked: checked ? 'checked="checked"' : EMPTY_STR,
-					id: id,
-					label: label,
-					name: name,
-					value: value
-				}
-			)
+			contentBox.append(optionsContainerNode);
 		},
 
 		/**
@@ -176,7 +136,7 @@ var FormBuilderRadioField = A.Component.create({
 		getNode: function() {
 			var instance = this;
 
-			return A.Node.create(instance.getHTML());
+			return A.Node.create(TPL_FIELD);
 		},
 
 		_onFieldChange: function(event) {
