@@ -32,6 +32,7 @@ var L = A.Lang,
 	LABELS = 'labels',
 	NAME = 'name',
 	NODE = 'node',
+	PARENT_NODE = 'parentNode',
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
@@ -195,7 +196,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 			if (!instance._renderedCheckboxSettings) {
 				instance._renderedCheckboxSettings = true;
 
-				settingsNodesMap['predefinedValueSettingNode'].remove();
+				settingsNodesMap.predefinedValueSettingNode.get(PARENT_NODE).remove();
 
 				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
 
@@ -211,7 +212,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 					panelBody.item(0)
 				);
 
-				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
+				var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
 
 				predefinedValueNode.on(
 					{
@@ -234,7 +235,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
 			var settingsNodesMap = instance.settingsNodesMap;
-			var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
+			var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
 
 			if (predefinedValueNode) {
 				predefinedValueNode.set(CHECKED, val);
