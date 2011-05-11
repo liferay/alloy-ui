@@ -174,7 +174,7 @@ var FormBuilderFileUploadField = A.Component.create({
 							value: instance.get(REQUIRED)
 						},
 						{
-							type: 'text',
+							type: 'textarea',
 							name: TIP,
 							labelText: 'Tip',
 							value: instance.get(TIP)
