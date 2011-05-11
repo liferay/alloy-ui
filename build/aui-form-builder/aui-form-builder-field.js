@@ -61,6 +61,7 @@ var L = A.Lang,
 	REQUIRED = 'required',
 	REQUIRED_FLAG_NODE = 'requiredFlagNode',
 	STATE = 'state',
+	SELECT = 'select',
 	SETTINGS = 'settings',
 	SETTINGS_FORM_NODE = 'settingsFormNode',
 	SHOW_LABEL = 'showLabel',
@@ -70,6 +71,7 @@ var L = A.Lang,
 	STRINGS = 'strings',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TEXTAREA = 'textarea',
 	TIP = 'tip',
 	TIP_ICON_NODE = 'tipIconNode',
 	TYPE = 'type',
@@ -83,8 +85,6 @@ var L = A.Lang,
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
-	CSS_ICON = getCN(ICON),
-	CSS_ICON_LIGHTBULB = getCN(ICON, LIGHTBULB),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
@@ -131,7 +131,7 @@ var L = A.Lang,
 
 	TPL_TEXT = '<p></p>',
 
-	TPL_TIP_ICON = '<a href="javascript:;" class="' + [CSS_ICON, CSS_ICON_LIGHTBULB, CSS_FORM_BUILDER_ICON_TIP].join(SPACE) + '"></a>';
+	TPL_TIP_ICON = '<a href="javascript:;" class="' + CSS_FORM_BUILDER_ICON_TIP + '"></a>';
 
 var FormBuilderField = A.Component.create({
 
@@ -518,7 +518,7 @@ var FormBuilderField = A.Component.create({
 							value: instance.get(PREDEFINED_VALUE)
 						},
 						{
-							type: 'text',
+							type: 'textarea',
 							name: TIP,
 							labelText: 'Tip',
 							value: instance.get(TIP)
@@ -626,8 +626,11 @@ var FormBuilderField = A.Component.create({
 					config.disabled = true;
 				}
 
-				if (config.type === 'select') {
+				if (config.type === SELECT) {
 					field = new A.Select(config);
+				}
+				else if (config.type === TEXTAREA) {
+					field = new A.Textarea(config);
 				}
 				else {
 					field = new A.Field(config);
@@ -1686,7 +1689,7 @@ var FormBuilderFileUploadField = A.Component.create({
 							value: instance.get(REQUIRED)
 						},
 						{
-							type: 'text',
+							type: 'textarea',
 							name: TIP,
 							labelText: 'Tip',
 							value: instance.get(TIP)
