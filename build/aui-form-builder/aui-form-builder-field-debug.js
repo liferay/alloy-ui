@@ -1684,12 +1684,18 @@ var FormBuilderFileUploadField = A.Component.create({
 							labelText: 'Required',
 							labelAlign: 'left',
 							value: instance.get(REQUIRED)
+						},
+						{
+							type: 'text',
+							name: TIP,
+							labelText: 'Tip',
+							value: instance.get(TIP)
 						}
 					],
 					propertiesNode
 				);
 
-				var labelNode = settingsNodesMap['labelSettingNode'];
+				var labelNode = settingsNodesMap.labelSettingNode;
 
 				labelNode.on(
 					{
@@ -1697,11 +1703,21 @@ var FormBuilderFileUploadField = A.Component.create({
 					}
 				);
 
-				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
+				var showLabelNode = settingsNodesMap.showLabelSettingNode;
 
 				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
 
 				showLabelNode.on(
+					{
+						change: A.bind(instance._onSettingsFieldChange, instance)
+					}
+				);
+
+				var requiredNode = settingsNodesMap.requiredSettingNode;
+
+				requiredNode.set(CHECKED, instance.get(REQUIRED));
+
+				requiredNode.on(
 					{
 						change: A.bind(instance._onSettingsFieldChange, instance)
 					}
