@@ -90,6 +90,10 @@ var Panel = function() {};
  * @static
  */
 Panel.ATTRS = {
+	bodyContent: {
+		value: EMPTY_STR
+	},
+
 	/**
 	 * Whether the panel is displayed collapsed.
 	 *
@@ -112,6 +116,10 @@ Panel.ATTRS = {
 	collapsible: {
 		value: false,
 		validator: isBoolean
+	},
+
+	headerContent: {
+		value: EMPTY_STR
 	},
 
 	/**
@@ -158,14 +166,6 @@ Panel.prototype = {
 	 */
 	initializer: function(config) {
 		var instance = this;
-
-		if (!config.bodyContent) {
-			instance.set('bodyContent', NODE_BLANK_TEXT);
-		}
-
-		if (!config.headerContent) {
-			instance.set('headerContent', NODE_BLANK_TEXT);
-		}
 
 		instance.after('collapsedChange', instance._afterCollapsedChange);
 		instance.after('render', instance._afterPanelRender);
@@ -308,8 +308,6 @@ Panel.prototype = {
 
 		headerTextNode.addClass(CSS_PANEL_HD_TEXT);
 
-		instance.setStdModContent(WidgetStdMod.HEADER, EMPTY_STR);
-
 		/**
 		 * Stores the created node for the header of the Panel.
 		 *
@@ -322,6 +320,8 @@ Panel.prototype = {
 		if (!instance.get(TITLE)) {
 			instance.set(TITLE, instance.headerNode.html());
 		}
+
+		instance.setStdModContent(WidgetStdMod.HEADER, EMPTY_STR);
 
 		instance._syncTitleUI();
 	},
@@ -432,6 +432,6 @@ Panel.prototype = {
 	}
 }
 
-A.Panel = A.Base.build(PANEL, A.Component, [Panel, A.WidgetStdMod]);
+A.Panel = A.Base.build(PANEL, A.Component, [A.WidgetStdMod, Panel]);
 
 }, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar'], skinnable:true});
