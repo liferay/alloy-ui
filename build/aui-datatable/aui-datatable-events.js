@@ -75,6 +75,41 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		}
 	},
 
+	getEvtPayload: function(node, originalEvent) {
+		var instance = this;
+		var host = instance.get(HOST);
+		var thead  = host._theadNode;
+
+		var inHead = node.getData(IN_HEAD);
+		var liner = node.getData(LINER);
+		var row = node.getData(ROW);
+
+		if (!isValue(inHead)) {
+			inHead = thead.contains(node);
+			node.setData(IN_HEAD, inHead);
+		}
+
+		if (!isValue(liner)) {
+			liner = node.one(_DOT+CSS_DATATABLE_LINER);
+			node.setData(LINER, liner);
+		}
+
+		if (!isValue(row)) {
+			row = node.ancestor(TR);
+			node.setData(ROW, row);
+		}
+
+		return {
+			cell: node,
+			column: host.getColumnByCell(node),
+			inHead: inHead,
+			liner: liner,
+			originalEvent: originalEvent,
+			row: row,
+			record: host.get(RECORDSET).getRecordByRow(row)
+		};
+	},
+
 	_filterBubble: function(target) {
 		var instance = this;
 		var host = instance.get(HOST);
@@ -113,41 +148,12 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		var i, length;
 		var instance = this;
 		var host = instance.get(HOST);
-		var thead  = host._theadNode;
 		var tags = instance.get(TAGS);
 		var currentTarget = event.currentTarget;
-		var eventType = event.type;
 
-		var inHead = currentTarget.getData(IN_HEAD);
-		var liner = currentTarget.getData(LINER);
-		var row = currentTarget.getData(ROW);
+		var nodes = instance._filterBubble(currentTarget.getDOM());
 
-		if (!isValue(inHead)) {
-			inHead = thead.contains(currentTarget);
-			currentTarget.setData(IN_HEAD, inHead);
-		}
-
-		if (!isValue(liner)) {
-			liner = currentTarget.one(_DOT+CSS_DATATABLE_LINER);
-			currentTarget.setData(LINER, liner);
-		}
-
-		if (!isValue(row)) {
-			row = currentTarget.ancestor(TR);
-			currentTarget.setData(ROW, row);
-		}
-
-		var payload = {
-			cell: currentTarget,
-			column: host.getColumnByCell(currentTarget),
-			inHead: inHead,
-			liner: liner,
-			originalEvent: event,
-			row: row,
-			record: host.get(RECORDSET).getRecordByRow(row)
-		};
-
-		var nodes = instance._filterBubble(event.currentTarget.getDOM());
+		var payload = instance.getEvtPayload(currentTarget, event);
 
 		instance._bubbling = true;
 
@@ -159,7 +165,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 			payload.property = propertyName;
 
 			host.fire(
-				_getEvtType(propertyName, eventType),
+				_getEvtType(propertyName, event.type),
 				payload
 			);
 		}

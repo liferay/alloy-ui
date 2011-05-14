@@ -1,7 +1,11 @@
 AUI.add('aui-datatable-base', function(A) {
 // DataTable component is beta, over-writing buggy logic on it before they get fixed on YUI
 
-var CHILD_NODES = 'childNodes',
+var Lang = A.Lang,
+	isNumber = Lang.isNumber,
+	isString = Lang.isString,
+
+	CHILD_NODES = 'childNodes',
 	COLUMNSET = 'columnset',
 	DATA = 'data',
 	HEADERS = 'headers',
@@ -73,11 +77,26 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 
 A.Columnset = A.Base.create('columnset', A.Columnset, [], {
 	getColumn: function(i) {
-		return this.idHash[i];
+		var instance = this;
+
+		if (isString(i)) {
+			return this.idHash[i];
+		}
+		else if (isNumber(i)) {
+			return instance.keys[i];
+		}
+
+		return null;
 	},
 
 	getColumnIndex: function(column) {
 		return column.keyIndex;
+	},
+
+	getLength: function() {
+		var instance = this;
+
+		return instance.keys.length;
 	},
 
 	_setDefinitions: function(val) {

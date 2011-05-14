@@ -1,7 +1,11 @@
 AUI.add('aui-datatable-base', function(A) {
 // DataTable component is beta, over-writing buggy logic on it before they get fixed on YUI
 
-var CHILD_NODES = 'childNodes',
+var Lang = A.Lang,
+	isNumber = Lang.isNumber,
+	isString = Lang.isString,
+
+	CHILD_NODES = 'childNodes',
 	COLUMNSET = 'columnset',
 	DATA = 'data',
 	HEADERS = 'headers',
@@ -73,11 +77,26 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 
 A.Columnset = A.Base.create('columnset', A.Columnset, [], {
 	getColumn: function(i) {
-		return this.idHash[i];
+		var instance = this;
+
+		if (isString(i)) {
+			return this.idHash[i];
+		}
+		else if (isNumber(i)) {
+			return instance.keys[i];
+		}
+
+		return null;
 	},
 
 	getColumnIndex: function(column) {
 		return column.keyIndex;
+	},
+
+	getLength: function() {
+		var instance = this;
+
+		return instance.keys.length;
 	},
 
 	_setDefinitions: function(val) {
@@ -189,6 +208,41 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		}
 	},
 
+	getEvtPayload: function(node, originalEvent) {
+		var instance = this;
+		var host = instance.get(HOST);
+		var thead  = host._theadNode;
+
+		var inHead = node.getData(IN_HEAD);
+		var liner = node.getData(LINER);
+		var row = node.getData(ROW);
+
+		if (!isValue(inHead)) {
+			inHead = thead.contains(node);
+			node.setData(IN_HEAD, inHead);
+		}
+
+		if (!isValue(liner)) {
+			liner = node.one(_DOT+CSS_DATATABLE_LINER);
+			node.setData(LINER, liner);
+		}
+
+		if (!isValue(row)) {
+			row = node.ancestor(TR);
+			node.setData(ROW, row);
+		}
+
+		return {
+			cell: node,
+			column: host.getColumnByCell(node),
+			inHead: inHead,
+			liner: liner,
+			originalEvent: originalEvent,
+			row: row,
+			record: host.get(RECORDSET).getRecordByRow(row)
+		};
+	},
+
 	_filterBubble: function(target) {
 		var instance = this;
 		var host = instance.get(HOST);
@@ -227,41 +281,12 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		var i, length;
 		var instance = this;
 		var host = instance.get(HOST);
-		var thead  = host._theadNode;
 		var tags = instance.get(TAGS);
 		var currentTarget = event.currentTarget;
-		var eventType = event.type;
 
-		var inHead = currentTarget.getData(IN_HEAD);
-		var liner = currentTarget.getData(LINER);
-		var row = currentTarget.getData(ROW);
+		var nodes = instance._filterBubble(currentTarget.getDOM());
 
-		if (!isValue(inHead)) {
-			inHead = thead.contains(currentTarget);
-			currentTarget.setData(IN_HEAD, inHead);
-		}
-
-		if (!isValue(liner)) {
-			liner = currentTarget.one(_DOT+CSS_DATATABLE_LINER);
-			currentTarget.setData(LINER, liner);
-		}
-
-		if (!isValue(row)) {
-			row = currentTarget.ancestor(TR);
-			currentTarget.setData(ROW, row);
-		}
-
-		var payload = {
-			cell: currentTarget,
-			column: host.getColumnByCell(currentTarget),
-			inHead: inHead,
-			liner: liner,
-			originalEvent: event,
-			row: row,
-			record: host.get(RECORDSET).getRecordByRow(row)
-		};
-
-		var nodes = instance._filterBubble(event.currentTarget.getDOM());
+		var payload = instance.getEvtPayload(currentTarget, event);
 
 		instance._bubbling = true;
 
@@ -273,7 +298,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 			payload.property = propertyName;
 
 			host.fire(
-				_getEvtType(propertyName, eventType),
+				_getEvtType(propertyName, event.type),
 				payload
 			);
 		}
@@ -462,8 +487,8 @@ CellEditorSupport.ATTRS = {
 };
 
 A.mix(CellEditorSupport.prototype, {
-	activeColumn: null,
-	activeRecord: null,
+	activeColumnIndex: -1,
+	activeRecordIndex: -1,
 
 	initializer: function() {
 		var instance = this;
@@ -481,6 +506,18 @@ A.mix(CellEditorSupport.prototype, {
 		var instance = this;
 
 		instance.syncEditableColumnsUI();
+	},
+
+	getActiveColumn: function() {
+		var instance = this;
+
+		return instance.get(COLUMNSET).getColumn(instance.activeColumnIndex);
+	},
+
+	getActiveRecord: function() {
+		var instance = this;
+
+		return instance.get(RECORDSET).getRecord(instance.activeRecordIndex);
 	},
 
 	getRecordColumnValue: function(record, column) {
@@ -529,15 +566,21 @@ A.mix(CellEditorSupport.prototype, {
 
 	_editCell: function(event) {
 		var instance = this;
+		var columnset = instance.get(COLUMNSET);
+		var recordset = instance.get(RECORDSET);
 		var column = event.column;
 		var editor = column.get(EDITOR);
 
-		instance.activeColumn = column;
-		instance.activeRecord = event.record;
+		instance.activeColumnIndex = columnset.getColumnIndex(column);
+		instance.activeRecordIndex = recordset.getRecordIndex(event.record);
 
 		if (isBaseEditor(editor)) {
 			if (!editor.get(RENDERED)) {
-				editor.on(SAVE, A.bind(instance._onEditorSave, instance));
+				editor.on({
+					visibleChange: A.bind(instance._onEditorVisibleChange, instance),
+					save: A.bind(instance._onEditorSave, instance)
+				});
+
 				editor.render();
 			}
 
@@ -556,6 +599,20 @@ A.mix(CellEditorSupport.prototype, {
 		instance._editCell(event);
 	},
 
+	_onEditorVisibleChange: function(event) {
+		var instance = this;
+		var selection = instance.selection;
+
+		if (selection) {
+			var cellNode = instance.getCellNode(
+				instance.getActiveRecord(),
+				instance.getActiveColumn()
+			);
+
+			selection.select(cellNode);
+		}
+	},
+
 	_onEditorSave: function(event) {
 		var instance = this;
 		var editor = event.currentTarget;
@@ -564,8 +621,8 @@ A.mix(CellEditorSupport.prototype, {
 		editor.set(VALUE, event.newVal);
 
 		recordset.updateRecordDataByKey(
-			instance.activeRecord,
-			instance.activeColumn.get(KEY),
+			instance.getActiveRecord(),
+			instance.getActiveColumn().get(KEY),
 			event.newVal
 		);
 
@@ -1424,13 +1481,25 @@ var Lang = A.Lang,
     }),
 
 	CELL = 'cell',
+	CELL_KEYDOWN = 'cellKeydown',
+	COLUMNSET = 'columnset',
 	DATATABLE = 'datatable',
+	DOWN = 'down',
+	EDITOR = 'editor',
+	ESC = 'esc',
+	HOST = 'host',
 	ID = 'id',
+	LEFT = 'left',
 	MOUSEDOWN = 'mousedown',
+	MOUSE_EVENT = 'mouseEvent',
 	MULTIPLE = 'multiple',
+	RECORDSET = 'recordset',
+	RETURN = 'return',
+	RIGHT = 'right',
+	SELECT = 'select',
 	SELECTED = 'selected',
-	SELECT_CELL_ON_EDIT = 'selectCellOnEdit',
-	SELECT_EVENT = 'selectEvent',
+	TABINDEX = 'tabindex',
+	UP = 'up',
 
 	CSS_DATATABLE_CELL_SELECTED = AgetClassName(DATATABLE, CELL, SELECTED);
 
@@ -1446,9 +1515,15 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		instance.selectedColumnHash = {};
 		instance.selectedRowHash = {};
 
-		instance.afterHostMethod('_editCell', instance._editCell);
+		instance.publish({
+			select: {
+				defaultFn: instance._defSelectFn
+			}
+		});
 
-		instance.afterHostEvent(instance.get(SELECT_EVENT), instance._afterSelectEvent);
+		// TODO - should we expose key event as well?
+		instance.afterHostEvent(CELL_KEYDOWN, instance._afterKeyEvent);
+		instance.afterHostEvent(instance.get(MOUSE_EVENT), instance._afterMouseEvent);
 	},
 
 	isCellSelected: function(cell) {
@@ -1465,6 +1540,12 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		// TODO
 	},
 
+	select: function(node) {
+		var instance = this;
+
+		instance.selectCell(node);
+	},
+
 	selectCell: function(cell) {
 		var instance = this;
 
@@ -1473,6 +1554,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		}
 
 		instance.selectedCellHash[cell.get(ID)] = cell;
+
+		cell.setAttribute(TABINDEX, 0).focus();
 
 		cell.addClass(CSS_DATATABLE_CELL_SELECTED);
 	},
@@ -1509,6 +1592,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 		delete instance.selectedCellHash[cell.get(ID)];
 
+		cell.removeAttribute(TABINDEX);
+
 		cell.removeClass(CSS_DATATABLE_CELL_SELECTED);
 	},
 
@@ -1534,21 +1619,114 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		// TODO
 	},
 
-	_afterSelectEvent: function(event) {
+	_afterMouseEvent: function(event) {
+		var instance = this;
+
+		instance._handleSelectEvent(event);
+	},
+
+	_afterKeyEvent: function(event) {
+		var instance = this;
+		var originalEvent = event.originalEvent;
+
+		if (originalEvent.isNavKey()) {
+			if (originalEvent.isKey(ESC)) {
+				instance._onEscKey(event);
+			}
+			else if (originalEvent.isKey(RETURN)) {
+				instance._onReturnKey(event);
+			}
+			else {
+				instance._navigate(event);
+			}
+
+			originalEvent.halt();
+		}
+	},
+
+	_defSelectFn: function(event) {
 		var instance = this;
 
 		instance.selectCell(event.cell);
 	},
 
-	_editCell: function(event) {
+	_navigate: function(event) {
 		var instance = this;
 
-		if (instance.get(SELECT_CELL_ON_EDIT)) {
-			instance.selectCell(event.cell);
+		instance._updateNavKeyInfo(event);
+
+		instance._handleSelectEvent(event);
+	},
+
+	_onEscKey: function(event) {
+		var instance = this;
+		var editor = event.column.get(EDITOR);
+
+		if (editor) {
+			editor.hide();
 		}
 	},
 
-	_setSelectEvent: function(val) {
+	_onReturnKey: function(event) {
+		var instance = this;
+		var host = instance.get(HOST);
+
+		host._editCell(event);
+	},
+
+	_handleSelectEvent: function(event) {
+		var instance = this;
+
+		instance.fire(SELECT, {
+			cell: event.cell,
+			column: event.column,
+			inHead: event.inHead,
+			liner: event.liner,
+			originalEvent: event.originalEvent,
+			row: event.row,
+			record: event.record
+		});
+	},
+
+	_updateNavKeyInfo: function(event) {
+		var instance = this;
+		var host = instance.get(HOST);
+		var originalEvent = event.originalEvent;
+
+		var columnset = host.get(COLUMNSET);
+		var columnIndex = event.column.keyIndex;
+
+		var recordset = host.get(RECORDSET);
+		var recordIndex = recordset.getRecordIndex(event.record);
+
+		if (originalEvent.isKey(DOWN)) {
+			recordIndex++;
+		}
+		else if (originalEvent.isKey(LEFT)) {
+			columnIndex--;
+		}
+		else if (originalEvent.isKey(RIGHT)) {
+			columnIndex++;
+		}
+		else if (originalEvent.isKey(UP)) {
+			recordIndex--;
+		}
+
+		// Fixing indexes range
+		columnIndex = Math.max(Math.min(columnIndex, columnset.getLength() - 1), 0);
+		recordIndex = Math.max(Math.min(recordIndex, recordset.getLength() - 1), 0);
+
+		var column = columnset.getColumn(columnIndex);
+		var record = recordset.getRecord(recordIndex);
+		var cell = host.getCellNode(record, column);
+
+		if (host.events) {
+			// Update event with the new payload information for the next "cell" calculated by the "events" module.
+			A.mix(event, host.events.getEvtPayload(cell, event), true);
+		}
+	},
+
+	_setMouseEvent: function(val) {
 		return CELL + _toInitialCap(val);
 	}
 },
@@ -1558,20 +1736,15 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
     NAME: "dataTableSelection",
 
     ATTRS: {
-		selectCellOnEdit: {
-			value: true,
-			validator: isBoolean
-		},
-
-		selectEvent: {
-			setter: '_setSelectEvent',
-			value: MOUSEDOWN,
-			validator: isString
-		},
-
 		multiple: {
 			value: false,
 			validator: isBoolean
+		},
+
+		mouseEvent: {
+			setter: '_setMouseEvent',
+			value: MOUSEDOWN,
+			validator: isString
 		}
     }
 });
