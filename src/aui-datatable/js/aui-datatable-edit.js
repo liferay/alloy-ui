@@ -116,8 +116,8 @@ CellEditorSupport.ATTRS = {
 };
 
 A.mix(CellEditorSupport.prototype, {
-	activeColumn: null,
-	activeRecord: null,
+	activeColumnIndex: -1,
+	activeRecordIndex: -1,
 
 	initializer: function() {
 		var instance = this;
@@ -135,6 +135,18 @@ A.mix(CellEditorSupport.prototype, {
 		var instance = this;
 
 		instance.syncEditableColumnsUI();
+	},
+
+	getActiveColumn: function() {
+		var instance = this;
+
+		return instance.get(COLUMNSET).getColumn(instance.activeColumnIndex);
+	},
+
+	getActiveRecord: function() {
+		var instance = this;
+
+		return instance.get(RECORDSET).getRecord(instance.activeRecordIndex);
 	},
 
 	getRecordColumnValue: function(record, column) {
@@ -183,15 +195,21 @@ A.mix(CellEditorSupport.prototype, {
 
 	_editCell: function(event) {
 		var instance = this;
+		var columnset = instance.get(COLUMNSET);
+		var recordset = instance.get(RECORDSET);
 		var column = event.column;
 		var editor = column.get(EDITOR);
 
-		instance.activeColumn = column;
-		instance.activeRecord = event.record;
+		instance.activeColumnIndex = columnset.getColumnIndex(column);
+		instance.activeRecordIndex = recordset.getRecordIndex(event.record);
 
 		if (isBaseEditor(editor)) {
 			if (!editor.get(RENDERED)) {
-				editor.on(SAVE, A.bind(instance._onEditorSave, instance));
+				editor.on({
+					visibleChange: A.bind(instance._onEditorVisibleChange, instance),
+					save: A.bind(instance._onEditorSave, instance)
+				});
+
 				editor.render();
 			}
 
@@ -210,6 +228,20 @@ A.mix(CellEditorSupport.prototype, {
 		instance._editCell(event);
 	},
 
+	_onEditorVisibleChange: function(event) {
+		var instance = this;
+		var selection = instance.selection;
+
+		if (selection) {
+			var cellNode = instance.getCellNode(
+				instance.getActiveRecord(),
+				instance.getActiveColumn()
+			);
+
+			selection.select(cellNode);
+		}
+	},
+
 	_onEditorSave: function(event) {
 		var instance = this;
 		var editor = event.currentTarget;
@@ -218,8 +250,8 @@ A.mix(CellEditorSupport.prototype, {
 		editor.set(VALUE, event.newVal);
 
 		recordset.updateRecordDataByKey(
-			instance.activeRecord,
-			instance.activeColumn.get(KEY),
+			instance.getActiveRecord(),
+			instance.getActiveColumn().get(KEY),
 			event.newVal
 		);
 
