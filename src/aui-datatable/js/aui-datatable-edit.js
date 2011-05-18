@@ -506,7 +506,7 @@ var BaseCellEditor = A.Component.create({
 
 			if (event.newVal) {
 				if (!hDocMouseDown) {
-					instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDown, instance));
+					instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt, instance));
 				}
 			}
 			else if (hDocMouseDown) {
@@ -548,7 +548,7 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
-		_onDocMouseDown: function(event) {
+		_onDocMouseDownExt: function(event) {
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
 

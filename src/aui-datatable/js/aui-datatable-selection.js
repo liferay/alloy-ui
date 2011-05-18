@@ -13,6 +13,7 @@ var Lang = A.Lang,
 	CELL = 'cell',
 	CELL_KEYDOWN = 'cellKeydown',
 	COLUMNSET = 'columnset',
+	COLUMNSET_CHANGE = 'columnsetChange',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
 	EDITOR = 'editor',
@@ -24,10 +25,12 @@ var Lang = A.Lang,
 	MOUSE_EVENT = 'mouseEvent',
 	MULTIPLE = 'multiple',
 	RECORDSET = 'recordset',
+	RECORDSET_CHANGE = 'recordsetChange',
 	RETURN = 'return',
 	RIGHT = 'right',
 	SELECT = 'select',
 	SELECTED = 'selected',
+	TAB = 'tab',
 	TABINDEX = 'tabindex',
 	UP = 'up',
 
@@ -54,6 +57,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		// TODO - should we expose key event as well?
 		instance.afterHostEvent(CELL_KEYDOWN, instance._afterKeyEvent);
 		instance.afterHostEvent(instance.get(MOUSE_EVENT), instance._afterMouseEvent);
+		instance.afterHostEvent(COLUMNSET_CHANGE, instance._afterHostColumnsetChange);
+		instance.afterHostEvent(RECORDSET_CHANGE, instance._afterHostRecordsetChange);
 	},
 
 	isCellSelected: function(cell) {
@@ -149,6 +154,18 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		// TODO
 	},
 
+	_afterHostColumnsetChange: function(event) {
+		var instance = this;
+
+		instance._cleanUp();
+	},
+
+	_afterHostRecordsetChange: function(event) {
+		var instance = this;
+
+		instance._cleanUp();
+	},
+
 	_afterMouseEvent: function(event) {
 		var instance = this;
 
@@ -172,6 +189,14 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 			originalEvent.halt();
 		}
+	},
+
+	_cleanUp: function() {
+		var instance = this;
+
+		instance.selectedCellHash = {};
+		instance.selectedColumnHash = {};
+		instance.selectedRowHash = {};
 	},
 
 	_defSelectFn: function(event) {
@@ -229,17 +254,34 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		var recordset = host.get(RECORDSET);
 		var recordIndex = recordset.getRecordIndex(event.record);
 
-		if (originalEvent.isKey(DOWN)) {
-			recordIndex++;
-		}
-		else if (originalEvent.isKey(LEFT)) {
+		var ctrlKey = originalEvent.ctrlKey || originalEvent.metaKey;
+		var shiftKey = originalEvent.shiftKey;
+
+		if (originalEvent.isKey(LEFT) ||
+			(shiftKey && originalEvent.isKey(TAB))) {
+
 			columnIndex--;
 		}
-		else if (originalEvent.isKey(RIGHT)) {
+		else if (originalEvent.isKey(RIGHT) ||
+				(!shiftKey && originalEvent.isKey(TAB))) {
+
 			columnIndex++;
 		}
+		else if (originalEvent.isKey(DOWN)) {
+			if (ctrlKey) {
+				recordIndex = recordset.getLength() - 1;
+			}
+			else {
+				recordIndex++;
+			}
+		}
 		else if (originalEvent.isKey(UP)) {
-			recordIndex--;
+			if (ctrlKey) {
+				recordIndex = 0;
+			}
+			else {
+				recordIndex--;
+			}
 		}
 
 		// Fixing indexes range
