@@ -69,6 +69,7 @@ var L = A.Lang,
 	KEY = 'key',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
+	FIXED = 'fixed',
 	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -246,17 +247,36 @@ A.mix(FormBuilderFieldSupport.prototype, {
 		var instance = this;
 		var fields = instance.get(FIELDS);
 
-		if (deep) {
-			for (var i = 0; i < fields.length; i++) {
-				var item = fields[i];
+		if (field === undefined) {
+			return false;
+		}
 
-				if ((item == field) || item.contains(field, deep)) {
-					return true;
-				}
-			}
+		if (deep) {
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			return boundingBox.contains(field.get(BOUNDING_BOX));
 		}
 
 		return (instance.indexOf(field) > -1);
+	},
+
+	eachField: function(fn, deep) {
+		var instance = this;
+		var fields = instance.get(FIELDS);
+
+		for (var i = 0; i < fields.length; i++) {
+			var field = fields[i];
+
+			if (deep) {
+				field.eachField(fn, deep);
+			}
+
+			if (fn.call(instance, field, i, fields) === false) {
+				return false;
+			}
+		}
+
+		return true;
 	},
 
 	getField: function(index) {
@@ -264,6 +284,19 @@ A.mix(FormBuilderFieldSupport.prototype, {
 		var fields = instance.get(FIELDS);
 
 		return fields[index];
+	},
+
+	getFixedFields: function() {
+		var instance = this;
+		var fields = [];
+
+		instance.eachField(function(field) {
+			if (field.get(FIXED)) {
+				fields.push(field);
+			}
+		}, true);
+
+		return fields;
 	},
 
 	indexOf: function(field) {
@@ -287,6 +320,13 @@ A.mix(FormBuilderFieldSupport.prototype, {
 	removeField: function(field) {
 		var instance = this;
 		var fields = instance.get(FIELDS);
+
+		if (isFormBuilderField(field) && (field.get(FIXED) || field.getFixedFields().length > 0)) {
+			return false;
+		}
+		else if (field.fixed === true) {
+			return false;
+		}
 
 		fields = instance._removeFromParent(field);
 
@@ -363,7 +403,7 @@ A.mix(FormBuilderFieldSupport.prototype, {
 			var parent = field.get(PARENT);
 
 			if (parent && parent != instance) {
-				parent.removeField(field);
+				parent._removeFromParent(field);
 			}
 			else if (instance.contains(field)) {
 				A.Array.removeItem(fields, field);
@@ -1360,13 +1400,14 @@ var FormBuilder = A.Component.create({
 				if (availableField.unique) {
 					var key = availableField.key;
 
-					A.each(fields, function(field){
+					instance.eachField(function(field) {
 						if (field.get(KEY) == key) {
 							var config = A.merge(
 								instance._cloneField(field, false),
 								availableField
 							);
 
+							field.set(FIXED, config.fixed);
 							field.set(READ_ONLY_ATTRIBUTES, config.readOnlyAttributes);
 							field.set(UNIQUE, true);
 
@@ -1374,7 +1415,7 @@ var FormBuilder = A.Component.create({
 
 							uniqueFields.add(key, field);
 						}
-					});
+					}, true);
 				}
 			});
 		},
@@ -1471,6 +1512,7 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
+	FIXED = 'fixed',
 	FOR = 'for',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -1534,6 +1576,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_ICON_TIP = getCN(FORM, BUILDER, ICON, TIP),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
+	CSS_FORM_BUILDER_FIXED = getCN(FORM, BUILDER, FIXED),
 	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
 	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
@@ -1607,6 +1650,15 @@ var FormBuilderField = A.Component.create({
 		 */
 		key: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * A fixed field cannot be removed once instanciated
+		 *
+		 * @attribute fixed
+		 */
+		fixed: {
+			value: false
 		},
 
 		/**
@@ -1794,7 +1846,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -2108,6 +2160,14 @@ var FormBuilderField = A.Component.create({
 			else {
 				templateNode.removeAttribute(DISABLED);
 			}
+		},
+
+		_uiSetFixed: function(val) {
+			var instance = this;
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var deleteNode = buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
+
+			deleteNode.toggleClass(CSS_HELPER_HIDDEN, val);
 		},
 
 		_uiSetLabel: function(val) {
