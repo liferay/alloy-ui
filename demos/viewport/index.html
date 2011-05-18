@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+			font-family: Helvetica, Arial, "MS Trebuchet", sans-serif;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		.demo {
+			-webkit-transition: all 0.3s ease-out;
+			-moz-transition: all 0.3s ease-out;
+			-o-transition: all 0.3s ease-out;
+
+			position: relative;
+			width: 40px;
+			left: 20px;
+			height: 120px;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			-o-border-radius: 2px;
+			-ms-border-radius: 2px;
+			border-radius: 2px;
+			background: transparent;
+			opacity: 0;
+		}
+
+		.demo:before {
+			position: absolute;
+			content: '';
+			display: block;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: #333;
+			z-index: 5;
+		}
+
+		.demo:after {
+			position: absolute;
+			content: '';
+			display: block;
+			left: 100%;
+			font-size: 2em;
+			margin-left: 1em;
+			text-shadow: -1px -1px #000;
+			color: #fff;
+			background: #333;
+			padding: 0.5em;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			-o-border-radius: 2px;
+			-ms-border-radius: 2px;
+			border-radius: 2px;
+			z-index: 5;
+		}
+
+		.demo-content {
+			-webkit-transition: all 0.3s ease-out;
+			-moz-transition: all 0.3s ease-out;
+			-o-transition: all 0.3s ease-out;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: #eee;
+
+			-webkit-background-size: 100%;
+			background-size: 100%;
+
+			background: -webkit-gradient(linear, right top, 34 171, from(rgba(255,255,255, 0.4)), to(rgba(255,255,255, 0)), color-stop(0.5, rgba(255,255,255, 0.075)), color-stop(0.5, rgba(255,255,255, 0)));
+			z-index: 6;
+		}
+
+		.demo-content:before {
+			-webkit-transition: all 0.2s ease-out;
+			-moz-transition: all 0.2s ease-out;
+			-o-transition: all 0.2s ease-out;
+
+			content: '';
+			display: block;
+
+			background: #bbb;
+			position: absolute;
+			top: 0;
+			width: 0;
+			height: 0;
+			margin: 0 auto;
+			margin-top: -8px;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-o-border-radius: 0;
+			-ms-border-radius: 0;
+			border-radius: 0;
+
+			border-left: 0 solid #eeedeb;
+			border-right: 0 solid #eeedeb;
+			border-bottom: 0 solid transparent;
+
+			-webkit-box-shadow: #888 0px 1px 0px;
+			-moz-box-shadow: #888 0px 1px 0px;
+			-o-box-shadow: #888 0px 1px 0px;
+			-ms-box-shadow: #888 0px 1px 0px;
+			box-shadow: #888 0px 1px 0px;
+		}
+
+		.demo-content:after {
+			-webkit-transition: all 0.3s ease-out;
+			-moz-transition: all 0.3s ease-out;
+			-o-transition: all 0.3s ease-out;
+
+			content: '';
+			display: block;
+
+			position: absolute;
+			background: #bbb;
+			left: 0;
+			right: 0;
+			top: 2px;
+			height: 0;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-o-border-radius: 0;
+			-ms-border-radius: 0;
+			border-radius: 0;
+		}
+
+		.yui3-aui-view-lt720 .demo, .yui3-aui-view-720 .demo, .yui3-aui-view-960 .demo {
+			background: #999;
+			opacity: 1;
+		}
+
+		/* iPhone
+		---------------------------------------- */
+
+		.yui3-aui-view-lt720 .demo {
+			width: 54px;
+			height: 102px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			-o-border-radius: 5px;
+			-ms-border-radius: 5px;
+			border-radius: 5px;
+		}
+
+		.yui3-aui-view-lt720 .demo:after {
+			content: 'Smart Phone (320px)';
+		}
+
+		.yui3-aui-view-lt720 .demo:before, .yui3-aui-view-lt720 .demo-content {
+			top: 10px;
+			left: 2px;
+			right: 2px;
+			bottom: 10px;
+		}
+
+		.yui3-aui-view-lt720 .demo-content {
+			background: -webkit-gradient(linear, right top, -49% 38%, from(rgba(255,255,255, 0.4)), to(rgba(255,255,255, 0)), color-stop(0.5, rgba(255,255,255, 0.075)), color-stop(0.5, rgba(255,255,255, 0)));
+		}
+
+		.yui3-aui-view-lt720 .demo-content:before {
+			top: 3px;
+			width: 10px;
+			margin-left: -3px;
+			left: 50%;
+			height: 1px;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-o-border-radius: 0;
+			-ms-border-radius: 0;
+			border-radius: 0;
+		}
+
+		.yui3-aui-view-lt720 .demo-content:after {
+			top: 100%;
+			width: 6px;
+			height: 6px;
+			margin: 0 auto;
+			margin-top: 2px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			-o-border-radius: 3px;
+			-ms-border-radius: 3px;
+			border-radius: 3px;
+		}
+
+		/* iPhone landscape
+		---------------------------------------- */
+		.yui3-aui-view-480 .demo {
+			width: 102px;
+			height: 54px;
+		}
+
+		.yui3-aui-view-480 .demo:after {
+			content: 'Smart Phone Landscape (480px)';
+		}
+
+		.yui3-aui-view-480 .demo:before, .yui3-aui-view-480 .demo-content {
+			left: 10px;
+			top: 2px;
+			bottom: 2px;
+			right: 10px;
+		}
+
+		.yui3-aui-view-480 .demo-content {
+			background: -webkit-gradient(linear, right top, 25% 141%, from(rgba(255,255,255, 0.4)), to(rgba(255,255,255, 0)), color-stop(0.5, rgba(255,255,255, 0.075)), color-stop(0.5, rgba(255,255,255, 0)));
+		}
+
+		.yui3-aui-view-480 .demo-content:before {
+			right: -5px;
+			left: auto;
+			width: 1px;
+			margin-top: -3px;
+			top: 50%;
+			height: 10px;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-o-border-radius: 0;
+			-ms-border-radius: 0;
+			border-radius: 0;
+			-webkit-box-shadow: #888 1px 0px;
+			-moz-box-shadow: #888 1px 0px;
+			-o-box-shadow: #888 1px 0px;
+			-ms-box-shadow: #888 1px 0px;
+			box-shadow: #888 1px 0px;
+		}
+
+		.yui3-aui-view-480 .demo-content:after {
+			right: 100%;
+			width: 6px;
+			height: 6px;
+			top: 50%;
+			margin: 0;
+			margin-top: -3px;
+			margin-left: -8px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			-o-border-radius: 3px;
+			-ms-border-radius: 3px;
+			border-radius: 3px;
+		}
+
+		
+		/* Ipad
+		---------------------------------------- */
+		.yui3-aui-view-720 .demo {
+			width: 114px;
+			height: 153px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			-o-border-radius: 5px;
+			-ms-border-radius: 5px;
+			border-radius: 5px;
+		}
+
+		.yui3-aui-view-720 .demo:after {
+			content: 'Tablet (720px)';
+		}
+
+		.yui3-aui-view-720 .demo:before, .yui3-aui-view-720 .demo-content {
+			top: 9px;
+			left: 9px;
+			right: 9px;
+			bottom: 9px;
+		}
+
+		.yui3-aui-view-720 .demo-content {
+			background: -webkit-gradient(linear, right top, -37% 57%, from(rgba(255,255,255, 0.4)), to(rgba(255,255,255, 0)), color-stop(0.5, rgba(255,255,255, 0.075)), color-stop(0.5, rgba(255,255,255, 0)));
+		}
+
+		.yui3-aui-view-720 .demo-content:after {
+			top: 100%;
+			width: 5px;
+			height: 5px;
+			margin: 0 auto;
+			margin-top: 2px;
+			-webkit-border-radius: 2px;
+			-moz-border-radius: 2px;
+			-o-border-radius: 2px;
+			-ms-border-radius: 2px;
+			border-radius: 2px;
+		}
+
+		/* Desktop
+		---------------------------------------- */
+
+		.yui3-aui-view-960 .demo {
+			width: 207px;
+			height: 160px;	  
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			-o-border-radius: 4px;
+			-ms-border-radius: 4px;
+			border-radius: 4px;
+		}
+
+		.yui3-aui-view-960 .demo:after {
+			content: 'Desktop (>= 960px)';
+			white-space: nowrap;
+		}
+
+		.yui3-aui-view-960 .demo:before, .yui3-aui-view-960 .demo-content {
+			top: 5px;
+			left: 5px;	  
+			right: 5px;
+			bottom: 25px;
+		}
+
+		.yui3-aui-view-960 .demo-content:before {
+			top: 100%;
+			left: 50%;
+			width: 30px;
+			height: 5px;
+			margin: 0 auto;
+			margin-top: 25px;
+			margin-left: -20px;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			-o-border-radius: 0;
+			-ms-border-radius: 0;
+			border-radius: 0;
+
+			border-left: 8px solid #fff;
+			border-right: 8px solid #fff;
+			border-bottom: 5px solid transparent;
+
+			-webkit-box-shadow: #999 0px 2px 0px;
+			-moz-box-shadow: #999 0px 2px 0px;
+			-o-box-shadow: #999 0px 2px 0px;
+			-ms-box-shadow: #999 0px 2px 0px;
+			box-shadow: #999 0px 2px 0px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Viewport Demo</h1>
+
+	<h2>Resize your browser window to see more info.</h2>
+
+	<div class="demo" id="demo">
+		<div class="demo-content"></div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().use('aui-viewport');
+
+</script>
+
+</body>
+</html>
