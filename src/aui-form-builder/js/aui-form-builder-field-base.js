@@ -37,6 +37,7 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
+	FIXED = 'fixed',
 	FOR = 'for',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -100,6 +101,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_ICON_TIP = getCN(FORM, BUILDER, ICON, TIP),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
+	CSS_FORM_BUILDER_FIXED = getCN(FORM, BUILDER, FIXED),
 	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
 	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
@@ -173,6 +175,15 @@ var FormBuilderField = A.Component.create({
 		 */
 		key: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * A fixed field cannot be removed once instanciated
+		 *
+		 * @attribute fixed
+		 */
+		fixed: {
+			value: false
 		},
 
 		/**
@@ -360,7 +371,7 @@ var FormBuilderField = A.Component.create({
 
 	AUGMENTS: [A.FormBuilderFieldSupport],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
 
 	HTML_PARSER: {
 		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
@@ -674,6 +685,14 @@ var FormBuilderField = A.Component.create({
 			else {
 				templateNode.removeAttribute(DISABLED);
 			}
+		},
+
+		_uiSetFixed: function(val) {
+			var instance = this;
+			var buttonsNode = instance.get(BUTTONS_NODE);
+			var deleteNode = buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
+
+			deleteNode.toggleClass(CSS_HELPER_HIDDEN, val);
 		},
 
 		_uiSetLabel: function(val) {
