@@ -71,6 +71,10 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 
 		if (sort && scroll) {
 			scroll.syncUI();
+
+			// Workaround: Invoke _syncWidths twice from DataTableScroll, otherwise it's misscalculating the paddings for the sortable columns.
+			// TODO: Fix this on DataTable DataTableScroll
+			scroll._syncWidths();
 		}
 	}
 }, {});
