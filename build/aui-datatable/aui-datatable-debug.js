@@ -1730,12 +1730,22 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		if (originalEvent.isKey(LEFT) ||
 			(shiftKey && originalEvent.isKey(TAB))) {
 
-			columnIndex--;
+			if (ctrlKey) {
+				columnIndex = 0;
+			}
+			else {
+				columnIndex--;
+			}
 		}
 		else if (originalEvent.isKey(RIGHT) ||
 				(!shiftKey && originalEvent.isKey(TAB))) {
 
-			columnIndex++;
+			if (ctrlKey) {
+				columnIndex = columnset.getLength() - 1;
+			}
+			else {
+				columnIndex++;
+			}
 		}
 		else if (originalEvent.isKey(DOWN)) {
 			if (ctrlKey) {
