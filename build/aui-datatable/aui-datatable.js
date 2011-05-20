@@ -404,13 +404,14 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	COLUMNSET = 'columnset',
 	CONTENT_BOX = 'contentBox',
+	DATA = 'data',
 	DATATABLE = 'datatable',
 	DATE_CELL_EDITOR = 'dateCellEditor',
 	DISK = 'disk',
 	DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
-	EDIT_EVENT = 'editEvent',
 	EDITABLE = 'editable',
 	EDITOR = 'editor',
+	EDIT_EVENT = 'editEvent',
 	ELEMENT = 'element',
 	ELEMENT_NAME = 'elementName',
 	FIELD = 'field',
@@ -431,6 +432,7 @@ var Lang = A.Lang,
 	OPTIONS_CELL_EDITOR = 'optionsCellEditor',
 	OUTPUT_FORMATTER = 'outputFormatter',
 	RADIO_CELL_EDITOR = 'radioCellEditor',
+	RECORDS = 'records',
 	RECORDSET = 'recordset',
 	RENDERED = 'rendered',
 	SAVE = 'save',
@@ -447,9 +449,10 @@ var Lang = A.Lang,
 	VISIBLE = 'visible',
 	WRAPPER = 'wrapper',
 
-	_NL = '\n',
-	_EMPTY_STR = '',
 	_COMMA = ',',
+	_EMPTY_STR = '',
+	_HASH = '#',
+	_NL = '\n',
 
 	REGEX_BR = /<br\s*\/?>/gi,
 	REGEX_NL = /[\r\n]/g,
@@ -524,6 +527,18 @@ A.mix(CellEditorSupport.prototype, {
 		return instance.get(RECORDSET).getRecord(instance.activeRecordIndex);
 	},
 
+	getCellEditor: function(record, column) {
+		var instance = this;
+		var columnEditor = column.get(EDITOR);
+		var recordEditor = record.get(DATA).editor;
+
+		if (columnEditor === false) {
+			return null;
+		}
+
+		return isBaseEditor(columnEditor) ? columnEditor : recordEditor;
+	},
+
 	getRecordColumnValue: function(record, column) {
 		return record.getValue(column.get(FIELD));
 	},
@@ -531,12 +546,27 @@ A.mix(CellEditorSupport.prototype, {
 	syncEditableColumnsUI: function() {
 		var instance = this;
 		var columnset = instance.get(COLUMNSET);
+		var recordset = instance.get(RECORDSET);
 
 		A.each(columnset.idHash, function(column) {
 			var editor = column.get(EDITOR);
 
 			if (isBaseEditor(editor)) {
 				A.all('[headers='+column.get(ID)+']').addClass(CSS_DATATABLE_EDITABLE);
+			}
+		});
+
+		A.each(recordset.get(RECORDS), function(record) {
+			var editor = record.get(DATA).editor;
+
+			if (isBaseEditor(editor)) {
+				A.all(_HASH + record.get("id") + '>td').each(function(td, index) {
+					var column = columnset.getColumn(index);
+
+					if (column.get(EDITOR) !== false) {
+						td.addClass(CSS_DATATABLE_EDITABLE);
+					}
+				});
 			}
 		});
 	},
@@ -573,10 +603,12 @@ A.mix(CellEditorSupport.prototype, {
 		var columnset = instance.get(COLUMNSET);
 		var recordset = instance.get(RECORDSET);
 		var column = event.column;
-		var editor = column.get(EDITOR);
+		var record = event.record;
 
 		instance.activeColumnIndex = columnset.getColumnIndex(column);
-		instance.activeRecordIndex = recordset.getRecordIndex(event.record);
+		instance.activeRecordIndex = recordset.getRecordIndex(record);
+
+		var editor = instance.getCellEditor(record, column);
 
 		if (isBaseEditor(editor)) {
 			if (!editor.get(RENDERED)) {
@@ -590,10 +622,10 @@ A.mix(CellEditorSupport.prototype, {
 
 			editor.set(
 				VALUE,
-				instance.getRecordColumnValue(event.record, column)
+				instance.getRecordColumnValue(record, column)
 			);
 
-			editor.show().move(event.liner.getXY());
+			editor.show().move(event.cell.getXY());
 		}
 	},
 
@@ -1490,7 +1522,6 @@ var Lang = A.Lang,
 	COLUMNSET_CHANGE = 'columnsetChange',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
-	EDITOR = 'editor',
 	ESC = 'esc',
 	HOST = 'host',
 	ID = 'id',
@@ -1689,7 +1720,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 	_onEscKey: function(event) {
 		var instance = this;
-		var editor = event.column.get(EDITOR);
+		var host = instance.get(HOST);
+		var editor = host.getCellEditor(event.record, event.column);
 
 		if (editor) {
 			editor.hide();
