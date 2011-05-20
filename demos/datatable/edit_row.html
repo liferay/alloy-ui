@@ -121,16 +121,15 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 	window.dtable = new A.DataTable.Base({
 		columnset: cols,
 		recordset: data,
-		editEvent: 'dblclick',
+		editEvent: 'click',
 		on: {
-			rowClick: function(event) {
-				// console.log(event.record.get('data'));
-			}
 		}
 	})
 	.plug(A.Plugin.DataTableSelection, {
-		multiple: false,
-		mouseEvent: 'mousedown'
+		// multiple: true,
+		selectRow: true,
+		// mouseEvent: 'mousedown'
+		// mouseEvent: 'mouseenter'
 	})
 	.plug(A.Plugin.DataTableScroll, {
 		height: 250,
