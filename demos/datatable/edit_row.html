@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src='../../build/aui/aui.js' type='text/javascript'></script>
+
+	<link rel='stylesheet' href='../../build/aui-skin-classic/css/aui-skin-classic-all-min.css' type='text/css' media='screen' />
+
+	<style type='text/css'>
+	.example {
+		margin: 30px;
+	}
+
+	.yui3-aui-hover-cell {
+		background: #ddd;
+	}
+	</style>
+</head>
+
+<body class='yui3-skin-sam'>
+
+<h1>Alloy - DataTable - Inline Row Editing</h1>
+
+<div class='example'>
+	<div id='dt1'></div>
+</div>
+
+<script type='text/javascript'>
+
+AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
+
+	new A.Console().render();
+
+	var cols = [
+		{ label: 'Name', key: 'name', editor: false, sortable: true },
+		{ label: 'Value', key: 'value', sortable: true }
+	];
+
+	var data = [
+		{
+			editor: new A.CheckboxCellEditor({
+				options: [ 'Boolean value' ]
+			}),
+			name: 'Boolean',
+			value: 'Boolean value'
+		},
+		{
+			editor: new A.DateCellEditor(),
+			name: 'Date',
+			value: '10/10/2011'
+		},
+		{
+			editor: new A.TextCellEditor(),
+			name: 'Decimal',
+			value: 'Decimal'
+		},
+		{
+			editor: new A.TextCellEditor(),
+			name: 'Integer',
+			value: 'Integer'
+		},
+		{
+			editor: new A.TextCellEditor(),
+			name: 'Number',
+			value: '123'
+		},
+		{
+			editor: new A.RadioCellEditor({
+				options: [ 'Yes', 'No' ]
+			}),
+			name: 'Radio',
+			value: 'Yes'
+		},
+		{
+			editor: new A.DropDownCellEditor({
+				options: {
+					apple: 'Apple',
+					cherry: 'Cherry',
+					banana: 'Banana',
+					kiwi: 'Kiwi'
+				}
+			}),
+			name: 'Select',
+			value: 'Apple'
+		},
+		{
+			editor: new A.DropDownCellEditor({
+				multiple: true,
+				options: {
+					apple: 'Apple',
+					cherry: 'Cherry',
+					banana: 'Banana',
+					kiwi: 'Kiwi'
+				}
+			}),
+			name: 'Select multiple',
+			value: 'apple'
+		},
+		{
+			editor: new A.TextCellEditor({
+				// inputFormatter: A.DataType.String.evaluate,
+				// validator: {
+				// 	rules: {
+				// 		value: {
+				// 			required: true,
+				// 			number: true
+				// 		}
+				// 	}
+				// }
+			}),
+			name: 'Text',
+			value: 'Text value'
+		},
+		{
+			editor: new A.TextAreaCellEditor(),
+			name: 'Text-box',
+			value: 'Text-box value'
+		}
+	];
+
+	window.dtable = new A.DataTable.Base({
+		columnset: cols,
+		recordset: data,
+		editEvent: 'dblclick',
+		on: {
+			rowClick: function(event) {
+				// console.log(event.record.get('data'));
+			}
+		}
+	})
+	.plug(A.Plugin.DataTableSelection, {
+		multiple: false,
+		mouseEvent: 'mousedown'
+	})
+	.plug(A.Plugin.DataTableScroll, {
+		height: 250,
+		width: 250
+	})
+	.plug(A.Plugin.DataTableSort)
+	.render('#dt1');
+
+	dtable.get('boundingBox').unselectable();
+
+});
+
+</script>
+
+</body>
+</html>
