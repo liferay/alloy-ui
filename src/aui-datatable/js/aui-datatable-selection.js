@@ -16,7 +16,6 @@ var Lang = A.Lang,
 	COLUMNSET_CHANGE = 'columnsetChange',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
-	EDITOR = 'editor',
 	ESC = 'esc',
 	HOST = 'host',
 	ID = 'id',
@@ -215,7 +214,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 	_onEscKey: function(event) {
 		var instance = this;
-		var editor = event.column.get(EDITOR);
+		var host = instance.get(HOST);
+		var editor = host.getCellEditor(event.record, event.column);
 
 		if (editor) {
 			editor.hide();
