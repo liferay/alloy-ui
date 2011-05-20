@@ -5,3 +5,11 @@
 	color: #fff;
 	outline: 0;
 }
+
+.yui3-skin-sam .yui3-datatable tr.yui3-aui-datatable-row-selected,
+.yui3-skin-sam tr.yui3-datatable-odd.yui3-aui-datatable-row-selected td.yui3-datatable-asc, .yui3-skin-sam tr.yui3-datatable-odd.yui3-aui-datatable-row-selected td.yui3-datatable-desc,
+.yui3-skin-sam tr.yui3-datatable-even.yui3-aui-datatable-row-selected td.yui3-datatable-asc, .yui3-skin-sam tr.yui3-datatable-even.yui3-aui-datatable-row-selected td.yui3-datatable-desc {
+	background-color: #6688EE;
+	color: #fff;
+	outline: 0;
+}
