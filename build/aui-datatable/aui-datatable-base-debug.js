@@ -23,9 +23,9 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	},
 
 	getCellNode: function(record, column) {
-		var row = A.one(_HASH+record.get(ID));
+		var instance = this;
 
-		return row.get(CHILD_NODES).item(column.keyIndex);
+		return instance.getRowNode(record).get(CHILD_NODES).item(column.keyIndex);
 	},
 
 	getColumnByCell: function(cell) {
@@ -40,6 +40,10 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		var index = instance.get(COLUMNSET).getColumnIndex(instance.getColumnByCell(cell));
 
 		return instance._colgroupNode.get(CHILD_NODES).item(index);
+	},
+
+	getRowNode: function(record) {
+		return A.one(_HASH+record.get(ID));
 	},
 
 	_afterRender: function() {

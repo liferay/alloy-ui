@@ -23,9 +23,9 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	},
 
 	getCellNode: function(record, column) {
-		var row = A.one(_HASH+record.get(ID));
+		var instance = this;
 
-		return row.get(CHILD_NODES).item(column.keyIndex);
+		return instance.getRowNode(record).get(CHILD_NODES).item(column.keyIndex);
 	},
 
 	getColumnByCell: function(cell) {
@@ -40,6 +40,10 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		var index = instance.get(COLUMNSET).getColumnIndex(instance.getColumnByCell(cell));
 
 		return instance._colgroupNode.get(CHILD_NODES).item(index);
+	},
+
+	getRowNode: function(record) {
+		return A.one(_HASH+record.get(ID));
 	},
 
 	_afterRender: function() {
@@ -422,9 +426,7 @@ var Lang = A.Lang,
 	INPUT_FORMATTER = 'inputFormatter',
 	KEY = 'key',
 	LABEL = 'label',
-	LAZY_SYNC_UI = 'lazySyncUI',
 	MOUSEDOWN = 'mousedown',
-	MOUSEMOVE = 'mousemove',
 	MULTIPLE = 'multiple',
 	NAME = 'name',
 	OPTION = 'option',
@@ -486,10 +488,6 @@ CellEditorSupport.ATTRS = {
 		setter: '_setEditEvent',
 		validator: isString,
 		value: CLICK
-	},
-
-	lazySyncUI: {
-		value: true
 	}
 };
 
@@ -501,18 +499,12 @@ A.mix(CellEditorSupport.prototype, {
 		var instance = this;
 
 		instance.after({
-			columnsetChange: instance._afterColumnsetChangeEditor,
-			recordsetChange: instance._afterRecordsetChangeEditor,
 			render: instance._afterRenderEditor
 		});
 
 		instance.on(instance.get(EDIT_EVENT), instance._onCellEdit);
-	},
 
-	lazySyncUI: function() {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
+		instance.after(instance._afterUiSetRecordset, instance, '_uiSetRecordset');
 	},
 
 	getActiveColumn: function() {
@@ -571,31 +563,18 @@ A.mix(CellEditorSupport.prototype, {
 		});
 	},
 
-	_afterRenderEditor: function(event) {
+	_afterUiSetRecordset: function(event) {
 		var instance = this;
 
-		if (instance.get(LAZY_SYNC_UI)) {
-			instance.get(BOUNDING_BOX).once(MOUSEMOVE, A.bind(instance.lazySyncUI, instance));
-		}
-		else {
-			instance.lazySyncUI();
-		}
+		instance.syncEditableColumnsUI();
+	},
+
+	_afterRenderEditor: function(event) {
+		var instance = this;
 
 		if (!instance.events) {
 			instance.plug(A.Plugin.DataTableEvents);
 		}
-	},
-
-	_afterColumnsetChangeEditor: function(event) {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
-	},
-
-	_afterRecordsetChangeEditor: function(event) {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
 	},
 
 	_editCell: function(event) {
@@ -640,12 +619,12 @@ A.mix(CellEditorSupport.prototype, {
 		var selection = instance.selection;
 
 		if (selection) {
-			var cellNode = instance.getCellNode(
-				instance.getActiveRecord(),
-				instance.getActiveColumn()
-			);
+			var activeRecord = instance.getActiveRecord();
+			var activeColumn = instance.getActiveColumn();
+			var cell = instance.getCellNode(activeRecord, activeColumn);
+			var row = instance.getRowNode(activeRecord);
 
-			selection.select(cellNode);
+			selection.select(cell, row);
 		}
 	},
 
@@ -1517,9 +1496,9 @@ var Lang = A.Lang,
     }),
 
 	CELL = 'cell',
-	CELL_KEYDOWN = 'cellKeydown',
 	COLUMNSET = 'columnset',
 	COLUMNSET_CHANGE = 'columnsetChange',
+	COLUMN_KEYDOWN = 'columnKeydown',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
 	ESC = 'esc',
@@ -1533,13 +1512,16 @@ var Lang = A.Lang,
 	RECORDSET_CHANGE = 'recordsetChange',
 	RETURN = 'return',
 	RIGHT = 'right',
+	ROW = 'row',
 	SELECT = 'select',
 	SELECTED = 'selected',
+	SELECT_ROW = 'selectRow',
 	TAB = 'tab',
 	TABINDEX = 'tabindex',
 	UP = 'up',
 
-	CSS_DATATABLE_CELL_SELECTED = AgetClassName(DATATABLE, CELL, SELECTED);
+	CSS_DATATABLE_CELL_SELECTED = AgetClassName(DATATABLE, CELL, SELECTED),
+	CSS_DATATABLE_ROW_SELECTED = AgetClassName(DATATABLE, ROW, SELECTED);
 
 var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], {
 	selectedCellHash: null,
@@ -1559,8 +1541,7 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 			}
 		});
 
-		// TODO - should we expose key event as well?
-		instance.afterHostEvent(CELL_KEYDOWN, instance._afterKeyEvent);
+		instance.afterHostEvent(COLUMN_KEYDOWN, instance._afterKeyEvent);
 		instance.afterHostEvent(instance.get(MOUSE_EVENT), instance._afterMouseEvent);
 		instance.afterHostEvent(COLUMNSET_CHANGE, instance._afterHostColumnsetChange);
 		instance.afterHostEvent(RECORDSET_CHANGE, instance._afterHostRecordsetChange);
@@ -1577,13 +1558,21 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	},
 
 	isRowSelected: function(row) {
-		// TODO
-	},
-
-	select: function(node) {
 		var instance = this;
 
-		instance.selectCell(node);
+		return instance.selectedRowHash[row.get(ID)];
+	},
+
+	select: function(cell, row) {
+		var instance = this;
+
+		if (cell) {
+			instance.selectCell(cell);
+		}
+
+		if (instance.get(SELECT_ROW) && row) {
+			instance.selectRow(row);
+		}
 	},
 
 	selectCell: function(cell) {
@@ -1605,7 +1594,15 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	},
 
 	selectRow: function(row) {
-		// TODO
+		var instance = this;
+
+		if (!instance.get(MULTIPLE)) {
+			instance.unselectAllRows();
+		}
+
+		instance.selectedRowHash[row.get(ID)] = row;
+
+		row.addClass(CSS_DATATABLE_ROW_SELECTED);
 	},
 
 	toggleCell: function(cell, forceAdd) {
@@ -1624,7 +1621,14 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	},
 
 	toggleRow: function(row, forceAdd) {
-		// TODO
+		var instance = this;
+
+		if (forceAdd || !instance.isRowSelected(row)) {
+			instance.selectRow(row);
+		}
+		else {
+			instance.unselectRow(row);
+		}
 	},
 
 	unselectCell: function(cell) {
@@ -1642,7 +1646,11 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	},
 
 	unselectRow: function(row) {
-		// TODO
+		var instance = this;
+
+		delete instance.selectedRowHash[row.get(ID)];
+
+		row.removeClass(CSS_DATATABLE_ROW_SELECTED);
 	},
 
 	unselectAllCells: function() {
@@ -1656,7 +1664,9 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	},
 
 	unselectAllRows: function() {
-		// TODO
+		var instance = this;
+
+		A.each(instance.selectedRowHash, A.bind(instance.unselectRow, instance));
 	},
 
 	_afterHostColumnsetChange: function(event) {
@@ -1707,7 +1717,7 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	_defSelectFn: function(event) {
 		var instance = this;
 
-		instance.selectCell(event.cell);
+		instance.select(event.cell, event.row);
 	},
 
 	_navigate: function(event) {
@@ -1824,6 +1834,11 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
     NAME: "dataTableSelection",
 
     ATTRS: {
+		selectRow: {
+			value: false,
+			validator: isBoolean
+		},
+
 		multiple: {
 			value: false,
 			validator: isBoolean

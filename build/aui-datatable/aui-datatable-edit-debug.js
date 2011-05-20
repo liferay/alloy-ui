@@ -48,9 +48,7 @@ var Lang = A.Lang,
 	INPUT_FORMATTER = 'inputFormatter',
 	KEY = 'key',
 	LABEL = 'label',
-	LAZY_SYNC_UI = 'lazySyncUI',
 	MOUSEDOWN = 'mousedown',
-	MOUSEMOVE = 'mousemove',
 	MULTIPLE = 'multiple',
 	NAME = 'name',
 	OPTION = 'option',
@@ -112,10 +110,6 @@ CellEditorSupport.ATTRS = {
 		setter: '_setEditEvent',
 		validator: isString,
 		value: CLICK
-	},
-
-	lazySyncUI: {
-		value: true
 	}
 };
 
@@ -127,18 +121,12 @@ A.mix(CellEditorSupport.prototype, {
 		var instance = this;
 
 		instance.after({
-			columnsetChange: instance._afterColumnsetChangeEditor,
-			recordsetChange: instance._afterRecordsetChangeEditor,
 			render: instance._afterRenderEditor
 		});
 
 		instance.on(instance.get(EDIT_EVENT), instance._onCellEdit);
-	},
 
-	lazySyncUI: function() {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
+		instance.after(instance._afterUiSetRecordset, instance, '_uiSetRecordset');
 	},
 
 	getActiveColumn: function() {
@@ -197,31 +185,18 @@ A.mix(CellEditorSupport.prototype, {
 		});
 	},
 
-	_afterRenderEditor: function(event) {
+	_afterUiSetRecordset: function(event) {
 		var instance = this;
 
-		if (instance.get(LAZY_SYNC_UI)) {
-			instance.get(BOUNDING_BOX).once(MOUSEMOVE, A.bind(instance.lazySyncUI, instance));
-		}
-		else {
-			instance.lazySyncUI();
-		}
+		instance.syncEditableColumnsUI();
+	},
+
+	_afterRenderEditor: function(event) {
+		var instance = this;
 
 		if (!instance.events) {
 			instance.plug(A.Plugin.DataTableEvents);
 		}
-	},
-
-	_afterColumnsetChangeEditor: function(event) {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
-	},
-
-	_afterRecordsetChangeEditor: function(event) {
-		var instance = this;
-
-		instance.syncEditableColumnsUI();
 	},
 
 	_editCell: function(event) {
@@ -266,12 +241,12 @@ A.mix(CellEditorSupport.prototype, {
 		var selection = instance.selection;
 
 		if (selection) {
-			var cellNode = instance.getCellNode(
-				instance.getActiveRecord(),
-				instance.getActiveColumn()
-			);
+			var activeRecord = instance.getActiveRecord();
+			var activeColumn = instance.getActiveColumn();
+			var cell = instance.getCellNode(activeRecord, activeColumn);
+			var row = instance.getRowNode(activeRecord);
 
-			selection.select(cellNode);
+			selection.select(cell, row);
 		}
 	},
 
