@@ -29,7 +29,7 @@
 
 AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 
-	new A.Console().render();
+	// new A.Console().render();
 
 	var cols = [
 		{ label: 'Name', key: 'name', editor: false, sortable: true },
@@ -129,7 +129,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 		// multiple: true,
 		selectRow: true,
 		// mouseEvent: 'mousedown'
-		// mouseEvent: 'mouseenter'
+		mouseEvent: 'mouseenter'
 	})
 	.plug(A.Plugin.DataTableScroll, {
 		height: 250,
