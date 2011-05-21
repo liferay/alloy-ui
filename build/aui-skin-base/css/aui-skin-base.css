@@ -181,6 +181,7 @@ hr, .separator {
 	display: none !important;
 }
 
+/* Currently removed support for VoiceOver on Snow Leopard */
 .aui-helper-hidden-accessible,
 .aui-overlay-hidden,
 .aui-overlaycontext-hidden,
@@ -192,30 +193,15 @@ hr, .separator {
 .aui-tooltip-hidden,
 .aui-image-viewer-hidden,
 .aui-image-gallery-hidden {
-	clip: rect(0 0 0 0);
-	position: fixed !important;
-	position: absolute; /*IE6*/
-	/*Below is for Webkit/Opera/IE7 mishandling clipped elements*/
-	border-width: 0 !important;
-	height: 1px !important; 
-	margin-left: -1px !important;
-	margin-top: -1px !important;
-	overflow: hidden !important;
-	padding: 0 !important;
-	width: 1px !important;
+	height: 0;
+	overflow: hidden;
+	position: absolute;
 }
 
-/*
-Remove focusable elements in the hidden area from the tab flow
-while a user is hovering over the body
-*/
-body:hover .aui-helper-hidden-accessible a,
-body:hover .aui-helper-hidden-accessible input,
-body:hover .aui-helper-hidden-accessible textarea,
-body:hover .aui-helper-hidden-accessible select,
-body:hover .aui-helper-hidden-accessible button,
-body:hover .aui-helper-hidden-accessible [tabIndex] {
-  display: none;
+.aui-helper-force-offset {
+	display: block !important;
+	position: absolute !important;
+	visibility: hidden !important;
 }
 
 .aui-helper-reset {
