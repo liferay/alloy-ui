@@ -39,18 +39,21 @@ var Lang = A.Lang,
 		var viewportMaxColumns = DEFAULTS_MIN_COLUMNS;
 
 		var gtLt;
+		var col;
 
 		for (var i in DEFAULTS_COLUMNS) {
-			if (viewportWidth >= DEFAULTS_COLUMNS[i]) {
+			col = DEFAULTS_COLUMNS[i];
+
+			if (viewportWidth >= col) {
 				gtLt = STR_GT;
+
+				viewportMaxColumns = Math.max(viewportMaxColumns, col);
 			}
 			else {
 				gtLt = STR_LT;
-
-				viewportMaxColumns = Math.max(viewportMaxColumns, i);
 			}
 
-			buffer.push(CSS_PREFIX + gtLt + i);
+			buffer.push(CSS_PREFIX + gtLt + col);
 		}
 
 		buffer.push(CSS_PREFIX + viewportMaxColumns);
