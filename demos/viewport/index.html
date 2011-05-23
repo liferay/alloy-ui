@@ -16,6 +16,7 @@
 			padding: 10px;
 		}
 
+
 		.demo {
 			-webkit-transition: all 0.3s ease-out;
 			-moz-transition: all 0.3s ease-out;
@@ -342,6 +343,40 @@
 			-ms-box-shadow: #999 0px 2px 0px;
 			box-shadow: #999 0px 2px 0px;
 		}
+
+		.yui3-aui-view-960 .demo-content {
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/desktop.png', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/desktop.png',sizingMethod='scale')";
+		}
+
+		.yui3-aui-view-720 .demo-content {
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/tablet_portrait.png', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/tablet_portrait.png',sizingMethod='scale')";
+		}
+
+		.yui3-aui-view-lt720 .demo-content {
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/phone_portrait.png', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/phone_portrait.png',sizingMethod='scale')";
+		}
+
+		.yui3-aui-view-480 .demo-content {
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/phone_landscape.png', sizingMethod='scale');
+			-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='assets/phone_landscape.png',sizingMethod='scale')";
+		}
+
+		#demo, #demo .demo-content {
+			background: none\9;
+		}
+
+		.demo-content {
+			width: 100%\9;
+			height: 100%\9;
+		}
+
+		.demo:before, .demo-content:before, .demo-content:after {
+			display: none\9;
+		}
+
 	</style>
 </head>
 
