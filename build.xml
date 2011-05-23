@@ -572,6 +572,13 @@ Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 		</replace>
 		<!-- /End Patch -->
 
+		<!-- Patch for #2529933 -->
+		<replace file="${project.dir}/lib/yui3/src/node/js/nodelist-array.js">
+			<replacetoken><![CDATA[while ((arg = arguments[i++])) {]]></replacetoken>
+			  <replacevalue><![CDATA[while (typeof (arg = arguments[i++]) != 'undefined') {]]></replacevalue>
+		</replace>
+		<!-- /End Patch -->
+
 		<!-- Rebuilding YUI modules -->
 		<subant target="all" failonerror="false">
 			<property name="lint.skip" value="true"/>
@@ -601,6 +608,14 @@ Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 			<property name="lint.skip" value="true"/>
 			<fileset
 				dir="${project.dir}/lib/yui3/src/recordset"
+				includes="build.xml"
+			/>
+		</subant>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/node"
 				includes="build.xml"
 			/>
 		</subant>
