@@ -2186,7 +2186,7 @@ Y.Array.each(ArrayMethods, function(name) {
             i = 0,
             arg;
 
-        while ((arg = arguments[i++])) { // use DOM nodes/nodeLists 
+        while (typeof (arg = arguments[i++]) != 'undefined') { // use DOM nodes/nodeLists 
             args.push(arg._node || arg._nodes || arg);
         }
         return Y.Node.scrubVal(ArrayProto[name].apply(this._nodes, args));
@@ -2621,5 +2621,5 @@ Y.Node.prototype.delegate = function(type) {
 }, '3.3.0' ,{requires:['node-base', 'event-delegate']});
 
 
-YUI.add('node', function(Y){}, '3.3.0' ,{requires:['dom', 'event-base', 'event-delegate', 'pluginhost'], use:['node-base', 'node-style', 'node-screen', 'node-pluginhost', 'node-event-delegate'], skinnable:false});
+YUI.add('node', function(Y){}, '3.3.0' ,{use:['node-base', 'node-style', 'node-screen', 'node-pluginhost', 'node-event-delegate'], skinnable:false, requires:['dom', 'event-base', 'event-delegate', 'pluginhost']});
 
