@@ -70,9 +70,10 @@
 .yui3-aui-tooltip-hidden,
 .yui3-aui-image-viewer-hidden,
 .yui3-aui-image-gallery-hidden {
-	height: 0;
-	overflow: hidden;
-	position: absolute;
+	height: 0 !important;
+	overflow: hidden !important;
+	position: absolute !important;
+	visibility: hidden !important;
 }
 
 .yui3-aui-helper-force-offset {
