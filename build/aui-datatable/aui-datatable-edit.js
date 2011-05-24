@@ -150,7 +150,7 @@ A.mix(CellEditorSupport.prototype, {
 			return null;
 		}
 
-		return isBaseEditor(columnEditor) ? columnEditor : recordEditor;
+		return recordEditor || columnEditor;
 	},
 
 	getRecordColumnValue: function(record, column) {
