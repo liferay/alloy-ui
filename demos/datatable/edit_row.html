@@ -121,7 +121,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 	window.dtable = new A.DataTable.Base({
 		columnset: cols,
 		recordset: data,
-		editEvent: 'click',
+		editEvent: 'mousedown',
 		on: {
 		}
 	})
@@ -129,7 +129,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 		// multiple: true,
 		selectRow: true,
 		// mouseEvent: 'mousedown'
-		mouseEvent: 'mouseenter'
+		// mouseEvent: 'mouseenter'
 	})
 	.plug(A.Plugin.DataTableScroll, {
 		height: 250,
