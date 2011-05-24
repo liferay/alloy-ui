@@ -587,6 +587,7 @@ A.mix(CellEditorSupport.prototype, {
 		instance.activeColumnIndex = columnset.getColumnIndex(column);
 		instance.activeRecordIndex = recordset.getRecordIndex(record);
 
+		var alignNode = event.alignNode || event.cell;
 		var editor = instance.getCellEditor(record, column);
 
 		if (isBaseEditor(editor)) {
@@ -604,7 +605,7 @@ A.mix(CellEditorSupport.prototype, {
 				instance.getRecordColumnValue(record, column)
 			);
 
-			editor.show().move(event.cell.getXY());
+			editor.show().move(alignNode.getXY());
 		}
 	},
 

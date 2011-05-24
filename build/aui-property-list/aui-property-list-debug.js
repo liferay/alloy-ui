@@ -3,13 +3,16 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 
 	AUTO = 'auto',
+	COLUMNSET = 'columnset',
 	EDITOR = 'editor',
 	HEIGHT = 'height',
+	KEY = 'key',
 	NAME = 'name',
 	PROPERTY_LIST = 'propertyList',
 	SCROLL = 'scroll',
 	SELECTION = 'selection',
 	SORT = 'sort',
+	TD = 'td',
 	VALUE = 'value',
 	WIDTH = 'width',
 
@@ -77,6 +80,18 @@ var PropertyList = A.Component.create({
 			instance.after(instance._syncScrollHeight, instance, '_uiSetHeight');
 
 			instance._plugDependencies();
+		},
+
+		_editCell: function(event) {
+			var instance = this;
+			var columnset = instance.get(COLUMNSET);
+
+			if (event.column.get(KEY) === NAME) {
+				event.alignNode = event.cell.next(TD);
+				event.column = columnset.keyHash[VALUE];
+			}
+
+			return PropertyList.superclass._editCell.apply(this, [event]);
 		},
 
 		getDefaultEditor: function() {
