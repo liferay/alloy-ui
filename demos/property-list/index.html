@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src='../../build/aui/aui.js'></script>
+
+	<link rel='stylesheet' href='../../build/aui-skin-classic/css/aui-skin-classic-all-min.css' type='text/css' media='screen' />
+
+	<style type='text/css'>
+	.example {
+		margin: 30px;
+	}
+
+	.yui3-aui-hover-cell {
+		background: #ddd;
+	}
+	</style>
+</head>
+
+<body class='yui3-skin-sam'>
+
+<h1>Alloy - PropertyList</h1>
+
+<div class='example'>
+	<div id='dt1'></div>
+</div>
+
+<script type='text/javascript'>
+
+AUI().use('aui-property-list', function(A) {
+
+	var properties = [
+		{
+			editor: new A.CheckboxCellEditor({
+				options: [ 'Boolean value' ]
+			}),
+			name: 'Boolean',
+			value: 'Boolean value'
+		},
+		{
+			editor: new A.DateCellEditor(),
+			name: 'Date',
+			value: '10/10/2011'
+		},
+		{
+			name: 'Decimal',
+			value: 'Decimal'
+		},
+		{
+			name: 'Integer',
+			value: 'Integer'
+		},
+		{
+			name: 'Number',
+			value: '123'
+		},
+		{
+			editor: new A.RadioCellEditor({
+				options: [ 'Yes', 'No' ]
+			}),
+			name: 'Radio',
+			value: 'Yes'
+		},
+		{
+			editor: new A.DropDownCellEditor({
+				options: {
+					apple: 'Apple',
+					cherry: 'Cherry',
+					banana: 'Banana',
+					kiwi: 'Kiwi'
+				}
+			}),
+			name: 'Select',
+			value: 'Apple'
+		},
+		{
+			editor: new A.DropDownCellEditor({
+				multiple: true,
+				options: {
+					apple: 'Apple',
+					cherry: 'Cherry',
+					banana: 'Banana',
+					kiwi: 'Kiwi'
+				}
+			}),
+			name: 'Select multiple',
+			value: 'apple'
+		},
+		{
+			name: 'Text',
+			value: 'Text value'
+		},
+		{
+			editor: new A.TextAreaCellEditor(),
+			name: 'Text-box',
+			value: 'Text-box value'
+		}
+	];
+
+	window.pList = new A.PropertyList({
+		recordset: properties,
+		width: 250,
+		on: {
+			'recordset:update': function(event) {
+				var record = event.updated[0];
+
+				console.log('save', record.get('data'));
+			}
+		}
+	})
+	.render('#dt1');
+
+	pList.get('boundingBox').unselectable();
+
+});
+
+</script>
+
+</body>
+</html>
