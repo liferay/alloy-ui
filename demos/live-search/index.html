@@ -28,6 +28,21 @@
 		font-size: 14px;
 	}
 
+	.matched {
+		background-color: #fec;
+		color: #333;
+	}
+
+	.matched b {
+		background-color: #fc0;
+		color: #222;
+	}
+
+	.excluded {
+		background-color: #eee;
+		color: #888;
+	}
+
 	</style>
 </head>
 
@@ -79,7 +94,7 @@
 
 	<div class="entry excluded">
 		Excluded node<br/>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		This node will be ignored from the search results.
 	</div>
 </div>
 
@@ -96,30 +111,57 @@ AUI().ready('aui-live-search', 'aui-tooltip', function(A) {
 		},
 
 		show: function(node) {
-			return node.show().setAttribute('nodeStatus', 'show');
+			if (!node.hasClass('excluded')) {
+				var data = node._OLD_DATA;
+
+				if (!data) {
+					data = node.html();
+					node._OLD_DATA = data;
+				}
+
+				var search = this.get('searchValue');
+
+				if (search) {
+					data = data.replace(new RegExp(search, 'gi'), '<b>' + search + '</b>');
+				}
+
+				node.html(data);
+
+				node.show();
+				node.setAttribute('nodeStatus', 'show');
+				node.addClass('matched');
+			}
+
+			return node;
 		},
 
 		hide: function(node) {
 			if (!node.hasClass('excluded')) {
-				node.hide().setAttribute('nodeStatus', 'hide');
+				node.hide();
+				node.setAttribute('nodeStatus', 'hide');
+				node.removeClass('matched');
 			}
 		},
 
 		on: {
 			search: function(event) {
-				console.log('before search');
+				// console.log('before search');
 				// console.log(event);
 			}
 		},
 
 		after: {
 			search: function(event) {
-				console.log('after search');
+				// console.log('after search');
 				// console.log(event);
+
+				if (!this.get('searchValue')) {
+					this.get('nodes').removeClass('matched');
+				}
 			}
 		}
 	});
-
+window.liveSearch = liveSearch;
 	// extras
 
 	var tooltip = new A.Tooltip({
