@@ -10,6 +10,8 @@ var L = A.Lang,
 	isString = L.isString,
 	isObject = L.isObject,
 	isFunction = L.isFunction,
+	isValue = L.isValue,
+	trim = L.trim,
 
 	BLANK = '',
 	DATA = 'data',
@@ -20,8 +22,11 @@ var L = A.Lang,
 	LIVE_SEARCH = 'live-search',
 	MATCH_REGEX = 'matchRegex',
 	NODES = 'nodes',
+	SEARCH_VALUE = 'searchValue',
 	SHOW = 'show',
 	STAR = '*',
+
+	UI_SRC = A.Widget.UI_SRC,
 
 	ENTER = 'ENTER',
 
@@ -170,9 +175,19 @@ var LiveSearch = A.Component.create(
 			 * @type Node | NodeList
 			 */
 			nodes: {
-				setter: function(v) {
-					return this._setNodes(v);
-				}
+				setter: '_setNodes'
+			},
+
+			/**
+			 * The text value to search for
+			 *
+			 * @attribute searchValue
+			 * @type String
+			 */
+			searchValue: {
+				getter: '_getSearchValue',
+				setter: String,
+				value: ''
 			},
 
 			/**
@@ -233,6 +248,8 @@ var LiveSearch = A.Component.create(
 
 				instance.refreshIndex();
 
+				instance._fireSearchTask = A.debounce(instance._fireSearchFn, instance.get(DELAY), instance);
+
 				instance.bindUI();
 			},
 
@@ -244,11 +261,19 @@ var LiveSearch = A.Component.create(
 			 */
 			bindUI: function() {
 				var instance = this;
+
 				var input = instance.get(INPUT);
 
-				input.on('keyup', A.bind(instance._inputKeyUp, instance));
+				input.on('keyup', instance._inputKeyUp, instance);
 
-				instance.publish('search', { defaultFn: instance.search });
+				instance.after('searchValueChange', instance._afterSearchValueChange);
+
+				instance.publish(
+					'search',
+					{
+						defaultFn: instance._defSearchFn
+					}
+				);
 			},
 
 			/**
@@ -260,6 +285,7 @@ var LiveSearch = A.Component.create(
 			 */
 			destroy: function() {
 				var instance = this;
+
 				var input = instance.get(INPUT);
 
 				input.detach('keyup');
@@ -275,6 +301,7 @@ var LiveSearch = A.Component.create(
 			 */
 			filter: function(query) {
 				var instance = this;
+
 				var results = [];
 				var nodes = instance.get(NODES);
 				var index = instance.get(INDEX);
@@ -306,48 +333,143 @@ var LiveSearch = A.Component.create(
 			 */
 			refreshIndex: function() {
 				var instance = this;
-				var index = [];
+
+				var indexBuffer = [];
 
 				var nodes = instance.get(NODES);
 
 				nodes.refresh();
 
-				nodes.each(function(node) {
-					var content = L.trim(
-						instance.get(DATA).apply(instance, [node]).toLowerCase()
-					);
+				var dataFn = instance.get(DATA);
 
-					index.push(content);
-				});
+				nodes.each(
+					function(item, index, collection) {
+						var content = dataFn.call(instance, item);
 
-				instance.set(INDEX, index);
+						indexBuffer.push(trim(content).toLowerCase());
+					}
+				);
+
+				instance.set(INDEX, indexBuffer);
 			},
 
 			/**
-			 * Fires the search event.
+			 * Searches for the user supplied value.
 			 *
 			 * @method search
+			 * @param {String|Number} value The text to search for
+			 */
+			search: function(value) {
+				var instance = this;
+
+				return instance.set(
+					SEARCH_VALUE,
+					value,
+					{
+						SRC: UI_SRC
+					}
+				);
+			},
+
+			/**
+			 * Fires after the value of the
+			 * <a href="LiveSearch.html#config_searchValue">searchValue</a> attribute changes.
+			 *
+			 * @method _afterSearchValueChange
+			 * @param {EventFacade} event
+			 * @protected
+			 */
+			_afterSearchValueChange: function(event) {
+				var instance = this;
+
+				instance.fire('search');
+
+				if (event.SRC == UI_SRC) {
+					instance.get(INPUT).val(event.newVal);
+				}
+			},
+
+			/**
+			 * Default method that handles the search event.
+			 *
+			 * @method _defSearchFn
 			 * @param {EventFacade} event search event facade
 			 * @protected
 			 */
-			search: function(event) {
+			_defSearchFn: function(event) {
 				var instance = this;
-				var value = instance.get(INPUT).val();
+
+				var value = instance.get(SEARCH_VALUE);
 
 				var results = instance.filter(value);
 
-				A.each(results, function(search) {
-					var node = search.node;
+				A.Array.each(results, instance._iterateResults, instance);
 
-					if (search.match) {
-						instance.get(SHOW).apply(instance, [node]);
-					}
-					else {
-						instance.get(HIDE).apply(instance, [node]);
-					}
-				});
+				var liveSearch = A.namespace.call(event, 'liveSearch');
 
-				event.liveSearch.results = results;
+				liveSearch.results = results;
+			},
+
+			/**
+			 * Implementation for the debounced task to fire the search event.
+			 *
+			 * @method search
+			 * @param {EventFacade} event the input key event object
+			 * @protected
+			 */
+			_fireSearchFn: function(event) {
+				var instance = this;
+
+				instance.set(SEARCH_VALUE, event.currentTarget.val());
+
+				instance.fire(
+					'search',
+					{
+						liveSearch: {
+							inputEvent: event
+						}
+					}
+				);
+			},
+
+			/**
+			 * Getter method for the
+			 * <a href="LiveSearch.html#config_searchValue">searchValue</a> attribute.
+			 *
+			 * @method _getSearchValue
+			 * @param {String} value
+			 * @protected
+			 */
+			_getSearchValue: function(value) {
+				var instance = this;
+
+				if (!isValue(value)) {
+					value = instance.get(INPUT).val();
+				}
+
+				return value;
+			},
+
+			/**
+			 * Iterator for the result set that determines
+			 * whether to show or hide the result nodes.
+			 *
+			 * @method _iterateResults
+			 * @param {Object} item The current result item
+			 * @param {Number} index The current index of the result collection
+			 * @param {Array} result  The results array being iterated
+			 * @protected
+			 */
+			_iterateResults: function(item, index, collection) {
+				var instance = this;
+
+				var fnType = HIDE;
+
+				if (item.match) {
+					fnType = SHOW;
+				}
+
+				instance.get(fnType).call(instance, item.node);
 			},
 
 			/**
@@ -362,6 +484,7 @@ var LiveSearch = A.Component.create(
 			 */
 			_normalizeQuery: function(query) {
 				var instance = this;
+
 				var matchRegex = instance.get(MATCH_REGEX);
 
 				// trim the user query and lowercase it
@@ -388,23 +511,12 @@ var LiveSearch = A.Component.create(
 			 */
 			_inputKeyUp: function(event) {
 				var instance = this;
-				var delay = instance.get(DELAY);
 
 				if (event.isKey(ENTER)) {
 					event.halt();
 				}
 
-				if (isObject(instance.timer)) {
-					instance.timer.cancel();
-				}
-
-				instance.timer = A.later(delay, instance, function() {
-					instance.fire('search', {
-						liveSearch: {
-							inputEvent: event
-						}
-					});
-				});
+				instance._fireSearchTask(event);
 			},
 
 			/**
@@ -418,14 +530,16 @@ var LiveSearch = A.Component.create(
 			_setNodes: function(v) {
 				var instance = this;
 
-				if (isNodeList(v)) {
-					return v;
-				}
-				else if (isString(v)) {
-					return A.all(v);
+				if (!isNodeList(v)) {
+					if (isString(v)) {
+						v = A.all(v);
+					}
+					else {
+						v = new A.NodeList([v]);
+					}
 				}
 
-				return new A.NodeList([v]);
+				return v;
 			}
 		}
 	}
@@ -433,4 +547,4 @@ var LiveSearch = A.Component.create(
 
 A.LiveSearch = LiveSearch;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
