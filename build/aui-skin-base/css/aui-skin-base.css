@@ -200,9 +200,12 @@ hr, .separator {
 .yui3-aui-tooltip-hidden,
 .yui3-aui-image-viewer-hidden,
 .yui3-aui-image-gallery-hidden {
-	height: 0 !important;
+	clip: rect(0 0 0 0) !important;
 	overflow: hidden !important;
 	position: absolute !important;
+	/*Note to future self, if you remove the visibility: hidden, remove the top.
+	otherwise the screen will jump when focusing child elements*/
+	top: -9999em !important;
 	visibility: hidden !important;
 }
 
