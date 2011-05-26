@@ -132,9 +132,6 @@ CellEditorSupport.ATTRS = {
 };
 
 A.mix(CellEditorSupport.prototype, {
-	activeColumnIndex: -1,
-	activeRecordIndex: -1,
-
 	initializer: function() {
 		var instance = this;
 
@@ -145,18 +142,6 @@ A.mix(CellEditorSupport.prototype, {
 		instance.on(instance.get(EDIT_EVENT), instance._onCellEdit);
 
 		instance.after(instance._afterUiSetRecordset, instance, '_uiSetRecordset');
-	},
-
-	getActiveColumn: function() {
-		var instance = this;
-
-		return instance.get(COLUMNSET).getColumn(instance.activeColumnIndex);
-	},
-
-	getActiveRecord: function() {
-		var instance = this;
-
-		return instance.get(RECORDSET).getRecord(instance.activeRecordIndex);
 	},
 
 	getCellEditor: function(record, column) {
@@ -260,8 +245,8 @@ A.mix(CellEditorSupport.prototype, {
 		var selection = instance.selection;
 
 		if (selection) {
-			var activeRecord = instance.getActiveRecord();
-			var activeColumn = instance.getActiveColumn();
+			var activeRecord = selection.getActiveRecord();
+			var activeColumn = selection.getActiveColumn();
 			var cell = instance.getCellNode(activeRecord, activeColumn);
 			var row = instance.getRowNode(activeRecord);
 
@@ -276,13 +261,17 @@ A.mix(CellEditorSupport.prototype, {
 
 		editor.set(VALUE, event.newVal);
 
-		recordset.updateRecordDataByKey(
-			instance.getActiveRecord(),
-			instance.getActiveColumn().get(KEY),
-			event.newVal
-		);
+		var selection = instance.selection;
 
-		instance.set(RECORDSET, recordset);
+		if (selection) {
+			recordset.updateRecordDataByKey(
+				selection.getActiveRecord(),
+				selection.getActiveColumn().get(KEY),
+				event.newVal
+			);
+
+			instance.set(RECORDSET, recordset);
+		}
 	},
 
 	_setEditEvent: function(val) {
