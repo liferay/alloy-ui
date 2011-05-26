@@ -839,10 +839,16 @@ var BaseOptionsCellEditor = A.Component.create({
 		addCurrentOption: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
-			var option = instance.getCurrentOptionValue();
+			var currentOpt = instance.getCurrentOptionValue();
 
-			if (option) {
-				options[option.name] = option.value;
+			if (!currentOpt.name) {
+				instance.editInputName.selectText();
+			}
+			else if (!currentOpt.value) {
+				instance.editInputValue.selectText();
+			}
+			else {
+				options[currentOpt.name] = currentOpt.value;
 
 				instance.set(OPTIONS, options);
 
@@ -852,9 +858,6 @@ var BaseOptionsCellEditor = A.Component.create({
 
 				instance.clearCurrentOption();
 			}
-			else {
-				instance.editInputValue.selectText();
-			}
 		},
 
 		clearCurrentOption: function() {
@@ -862,7 +865,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 			if (instance.editContainer) {
 				instance.editInputValue.val(_EMPTY_STR);
-				instance.editInputName.val(_EMPTY_STR).selectText();
+				instance.editInputName.val(_EMPTY_STR).focus();
 			}
 		},
 
@@ -889,20 +892,13 @@ var BaseOptionsCellEditor = A.Component.create({
 
 		getCurrentOptionValue: function() {
 			var instance = this;
+			var editInputName = instance.editInputName;
+			var editInputValue = instance.editInputValue;
 
-			if (instance.editContainer) {
-				var optionName = instance.editInputName.val();
-				var optionValue = instance.editInputValue.val();
-
-				if (optionName && optionValue) {
-					return {
-						name: optionName,
-						value: optionValue
-					};
-				}
-			}
-
-			return null;
+			return {
+				name: editInputName ? editInputName.val() : _EMPTY_STR,
+				value: editInputValue ? editInputValue.val() : _EMPTY_STR
+			};
 		},
 
 		toggleEdit: function() {
