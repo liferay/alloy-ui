@@ -838,7 +838,7 @@ var BaseOptionsCellEditor = A.Component.create({
 				instance.editInputValue.selectText();
 			}
 			else {
-				options[currentOpt.name] = currentOpt.value;
+				options[currentOpt.value] = currentOpt.name;
 
 				instance.set(OPTIONS, options);
 
