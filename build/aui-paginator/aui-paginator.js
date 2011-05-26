@@ -540,7 +540,7 @@ var Paginator = A.Component.create(
 			 */
 			totalEl: {
 				setter: A.one,
-				valueFn: function() {
+				getter: function() {
 					var label = this.get(TOTAL_LABEL);
 
 					return A.Node.create(TOTAL_TPL).html(label);
@@ -1225,4 +1225,4 @@ var Paginator = A.Component.create(
 
 A.Paginator = Paginator;
 
-}, '@VERSION@' ,{requires:['aui-base','substitute'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','substitute']});
