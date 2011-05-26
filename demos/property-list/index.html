@@ -32,6 +32,7 @@ AUI().use('aui-property-list', function(A) {
 	var properties = [
 		{
 			editor: new A.CheckboxCellEditor({
+				editable: true,
 				options: [ 'Boolean value' ]
 			}),
 			name: 'Boolean',
@@ -56,6 +57,7 @@ AUI().use('aui-property-list', function(A) {
 		},
 		{
 			editor: new A.RadioCellEditor({
+				editable: true,
 				options: [ 'Yes', 'No' ]
 			}),
 			name: 'Radio',
@@ -63,6 +65,7 @@ AUI().use('aui-property-list', function(A) {
 		},
 		{
 			editor: new A.DropDownCellEditor({
+				editable: true,
 				options: {
 					apple: 'Apple',
 					cherry: 'Cherry',
@@ -75,6 +78,7 @@ AUI().use('aui-property-list', function(A) {
 		},
 		{
 			editor: new A.DropDownCellEditor({
+				editable: true,
 				multiple: true,
 				options: {
 					apple: 'Apple',
