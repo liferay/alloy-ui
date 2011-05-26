@@ -3,10 +3,14 @@ var ClassNameManager = A.ClassNameManager,
 
 	PREFIX = 'aui';
 
-A.getClassName = function() {
-	var args = A.Array(arguments, 0, true);
+A.getClassName = A.cached(
+	function() {
+		var args = A.Array(arguments, 0, true);
 
-	args.unshift(PREFIX);
+		args.unshift(PREFIX);
 
-	return _getClassName.apply(ClassNameManager, args);
-};
+		args[args.length] = true;
+
+		return _getClassName.apply(ClassNameManager, args);
+	}
+);

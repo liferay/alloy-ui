@@ -4,12 +4,16 @@ var ClassNameManager = A.ClassNameManager,
 
 	PREFIX = 'aui';
 
-A.getClassName = function() {
-	var args = A.Array(arguments, 0, true);
+A.getClassName = A.cached(
+	function() {
+		var args = A.Array(arguments, 0, true);
 
-	args.unshift(PREFIX);
+		args.unshift(PREFIX);
 
-	return _getClassName.apply(ClassNameManager, args);
-};
+		args[args.length] = true;
 
-}, '@VERSION@' ,{requires:['classnamemanager'], skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}});
+		return _getClassName.apply(ClassNameManager, args);
+	}
+);
+
+}, '@VERSION@' ,{skinnable:false, requires:['classnamemanager'], condition: {trigger: 'classnamemanager', test: function(){return true;}}});
