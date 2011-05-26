@@ -13,12 +13,13 @@ var Lang = A.Lang,
 	CELL = 'cell',
 	COLUMNSET = 'columnset',
 	COLUMNSET_CHANGE = 'columnsetChange',
-	COLUMN_KEYDOWN = 'columnKeydown',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
 	ESC = 'esc',
+	FOCUSED = 'focused',
 	HOST = 'host',
 	ID = 'id',
+	KEYDOWN = 'keydown',
 	LEFT = 'left',
 	MOUSEDOWN = 'mousedown',
 	MOUSE_EVENT = 'mouseEvent',
@@ -33,12 +34,16 @@ var Lang = A.Lang,
 	SELECT_ROW = 'selectRow',
 	TAB = 'tab',
 	TABINDEX = 'tabindex',
+	TR = 'tr',
 	UP = 'up',
 
 	CSS_DATATABLE_CELL_SELECTED = AgetClassName(DATATABLE, CELL, SELECTED),
 	CSS_DATATABLE_ROW_SELECTED = AgetClassName(DATATABLE, ROW, SELECTED);
 
 var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], {
+	activeColumnIndex: -1,
+	activeRecordIndex: -1,
+	handlerKeyDown: null,
 	selectedCellHash: null,
 	selectedColumnHash: null,
 	selectedRowHash: null,
@@ -56,10 +61,33 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 			}
 		});
 
-		instance.afterHostEvent(COLUMN_KEYDOWN, instance._afterKeyEvent);
 		instance.afterHostEvent(instance.get(MOUSE_EVENT), instance._afterMouseEvent);
 		instance.afterHostEvent(COLUMNSET_CHANGE, instance._afterHostColumnsetChange);
 		instance.afterHostEvent(RECORDSET_CHANGE, instance._afterHostRecordsetChange);
+		instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
+	},
+
+	destroy: function() {
+		var instance = this;
+		var handlerKeyDown = instance.handlerKeyDown;
+
+		if (handlerKeyDown) {
+			handlerKeyDown.detach();
+		}
+	},
+
+	getActiveColumn: function() {
+		var instance = this;
+		var host = instance.get(HOST);
+
+		return host.get(COLUMNSET).getColumn(instance.activeColumnIndex);
+	},
+
+	getActiveRecord: function() {
+		var instance = this;
+		var host = instance.get(HOST);
+
+		return host.get(RECORDSET).getRecord(instance.activeRecordIndex);
 	},
 
 	isCellSelected: function(cell) {
@@ -80,6 +108,14 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 	select: function(cell, row) {
 		var instance = this;
+		var host = instance.get(HOST);
+		var columnset = host.get(COLUMNSET);
+		var recordset = host.get(RECORDSET);
+		var column = columnset.getColumnByCell(cell);
+		var record = recordset.getRecordByRow(row || cell.ancestor(TR));
+
+		instance.activeColumnIndex = columnset.getColumnIndex(column);
+		instance.activeRecordIndex = recordset.getRecordIndex(record);
 
 		if (cell) {
 			instance.selectCell(cell);
@@ -204,20 +240,35 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 	_afterKeyEvent: function(event) {
 		var instance = this;
-		var originalEvent = event.originalEvent;
+		var host = instance.get(HOST);
+		var column = instance.getActiveColumn();
+		var record = instance.getActiveRecord();
 
-		if (originalEvent.isNavKey()) {
-			if (originalEvent.isKey(ESC)) {
+		if (!host.get(FOCUSED) || !column || !record) {
+			// Don't process keys if the wigdet is not focused or column or record is undefined.
+			return;
+		}
+
+		if (host.events) {
+			// Update event with the new payload information for the next "cell" calculated by the "events" module.
+			host.events.updateEventPayload(
+				host.getCellNode(record, column),
+				event
+			);
+		}
+
+		if (event.isNavKey()) {
+			if (event.isKey(ESC)) {
 				instance._onEscKey(event);
 			}
-			else if (originalEvent.isKey(RETURN)) {
+			else if (event.isKey(RETURN)) {
 				instance._onReturnKey(event);
 			}
 			else {
 				instance._navigate(event);
 			}
 
-			originalEvent.halt();
+			event.halt();
 		}
 	},
 
@@ -329,13 +380,15 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		columnIndex = Math.max(Math.min(columnIndex, columnset.getLength() - 1), 0);
 		recordIndex = Math.max(Math.min(recordIndex, recordset.getLength() - 1), 0);
 
-		var column = columnset.getColumn(columnIndex);
-		var record = recordset.getRecord(recordIndex);
-		var cell = host.getCellNode(record, column);
-
 		if (host.events) {
+			var newColumn = columnset.getColumn(columnIndex);
+			var newRecord = recordset.getRecord(recordIndex);
+
 			// Update event with the new payload information for the next "cell" calculated by the "events" module.
-			A.mix(event, host.events.getEvtPayload(cell, event), true);
+			host.events.updateEventPayload(
+				host.getCellNode(newRecord, newColumn),
+				event
+			);
 		}
 	},
 
