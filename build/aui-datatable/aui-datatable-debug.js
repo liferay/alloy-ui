@@ -397,6 +397,7 @@ var Lang = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 	AgetClassName = A.getClassName,
 
+	ADD = 'add',
 	BASE_CELL_EDITOR = 'baseCellEditor',
 	BOUNDING_BOX = 'boundingBox',
 	CALENDAR = 'calendar',
@@ -411,21 +412,28 @@ var Lang = A.Lang,
 	DATA = 'data',
 	DATATABLE = 'datatable',
 	DATE_CELL_EDITOR = 'dateCellEditor',
+	DELETE = 'delete',
+	DELETE_SELECTED_OPTIONS = 'deleteSelectedOptions',
 	DISK = 'disk',
 	DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
+	EDIT = 'edit',
 	EDITABLE = 'editable',
 	EDITOR = 'editor',
 	EDIT_EVENT = 'editEvent',
 	ELEMENT = 'element',
 	ELEMENT_NAME = 'elementName',
 	FIELD = 'field',
+	HIDE = 'hide',
 	HIDE_ON_SAVE = 'hideOnSave',
 	ID = 'id',
+	INIT_EDIT = 'initEdit',
 	INIT_TOOLBAR = 'initToolbar',
 	INIT_VALIDATOR = 'initValidator',
+	INPUT = 'input',
 	INPUT_FORMATTER = 'inputFormatter',
 	KEY = 'key',
 	LABEL = 'label',
+	LINK = 'link',
 	MOUSEDOWN = 'mousedown',
 	MULTIPLE = 'multiple',
 	NAME = 'name',
@@ -433,10 +441,12 @@ var Lang = A.Lang,
 	OPTIONS = 'options',
 	OPTIONS_CELL_EDITOR = 'optionsCellEditor',
 	OUTPUT_FORMATTER = 'outputFormatter',
+	PENCIL = 'pencil',
 	RADIO_CELL_EDITOR = 'radioCellEditor',
 	RECORDS = 'records',
 	RECORDSET = 'recordset',
 	RENDERED = 'rendered',
+	RETURN = 'return',
 	SAVE = 'save',
 	SELECTED = 'selected',
 	SELECTED_ATTR_NAME = 'selectedAttrName',
@@ -452,13 +462,22 @@ var Lang = A.Lang,
 	WRAPPER = 'wrapper',
 
 	_COMMA = ',',
+	_DOT = '.',
 	_EMPTY_STR = '',
 	_HASH = '#',
 	_NL = '\n',
+	_SPACE = ' ',
 
 	REGEX_BR = /<br\s*\/?>/gi,
 	REGEX_NL = /[\r\n]/g,
 
+	CSS_CELLEDITOR_EDIT = AgetClassName(CELLEDITOR, EDIT),
+	CSS_CELLEDITOR_EDIT_ADD_OPTION = AgetClassName(CELLEDITOR, EDIT, ADD, OPTION),
+	CSS_CELLEDITOR_EDIT_DELETE_OPTION = AgetClassName(CELLEDITOR, EDIT, DELETE, OPTION),
+	CSS_CELLEDITOR_EDIT_HIDE_OPTION = AgetClassName(CELLEDITOR, EDIT, HIDE, OPTION),
+	CSS_CELLEDITOR_EDIT_INPUT_NAME = AgetClassName(CELLEDITOR, EDIT, INPUT, NAME),
+	CSS_CELLEDITOR_EDIT_INPUT_VALUE = AgetClassName(CELLEDITOR, EDIT, INPUT, VALUE),
+	CSS_CELLEDITOR_EDIT_LINK = AgetClassName(CELLEDITOR, EDIT, LINK),
 	CSS_CELLEDITOR_ELEMENT = AgetClassName(CELLEDITOR, ELEMENT),
 	CSS_CELLEDITOR_LABEL = AgetClassName(CELLEDITOR, LABEL),
 	CSS_CELLEDITOR_OPTION = AgetClassName(CELLEDITOR, OPTION),
@@ -671,6 +690,11 @@ var BaseCellEditor = A.Component.create({
 	NAME: BASE_CELL_EDITOR,
 
     ATTRS: {
+		editable: {
+			value: false,
+			validator: isBoolean
+		},
+
 		elementName: {
 			value: VALUE,
 			validator: isString
@@ -718,6 +742,7 @@ var BaseCellEditor = A.Component.create({
 
 		strings: {
 			value: {
+				edit: 'Edit',
 				save: 'Save',
 				cancel: 'Cancel'
 			}
@@ -755,7 +780,7 @@ var BaseCellEditor = A.Component.create({
 
 	EXTENDS: A.Overlay,
 
-	UI_ATTRS: [ SHOW_TOOLBAR, VALUE ],
+	UI_ATTRS: [ EDITABLE, SHOW_TOOLBAR, VALUE ],
 
 	prototype: {
 		CONTENT_TEMPLATE: '<form></form>',
@@ -824,6 +849,11 @@ var BaseCellEditor = A.Component.create({
 					defaultFn: instance._defCancelFn
 				},
 
+				initEdit: {
+					defaultFn: instance._defInitEditFn,
+					fireOnce: true
+				},
+
 				initValidator: {
 					defaultFn: instance._defInitValidatorFn,
 					fireOnce: true
@@ -872,11 +902,16 @@ var BaseCellEditor = A.Component.create({
 
 		_defInitToolbarFn: function(event) {
 			var instance = this;
+			var editable = instance.get(EDITABLE);
 
 			instance.toolbar = new A.Toolbar(
 				instance.get(TOOLBAR)
 			)
 			.render(instance.footerNode);
+
+			if (editable) {
+				instance._uiSetEditable(editable);
+			}
 		},
 
 		_defSaveFn: function(event) {
@@ -906,6 +941,20 @@ var BaseCellEditor = A.Component.create({
 			var instance = this;
 
 			instance.fire(CANCEL);
+		},
+
+		_handleEditEvent: function() {
+			var instance = this;
+
+			instance.fire(EDIT);
+		},
+
+		_handleInitEditEvent: function() {
+			var instance = this;
+
+			if (instance.get(RENDERED)) {
+				this.fire(INIT_EDIT);
+			}
 		},
 
 		_handleInitValidatorEvent: function() {
@@ -1040,6 +1089,9 @@ var BaseCellEditor = A.Component.create({
 			}
 		},
 
+		_defInitEditFn: function(event) {
+		},
+
 		_syncElementsName: function() {
 			var instance = this;
 
@@ -1047,6 +1099,27 @@ var BaseCellEditor = A.Component.create({
 				NAME,
 				instance.get(ELEMENT_NAME)
 			);
+		},
+
+		_uiSetEditable: function(val) {
+			var instance = this;
+			var toolbar = instance.toolbar;
+
+			if (instance.get(RENDERED) && toolbar) {
+				if (val) {
+					toolbar.add(
+						{
+							handler: A.bind(instance._handleEditEvent, instance),
+							icon: PENCIL,
+							label: instance.getString(EDIT)
+						},
+						1
+					);
+				}
+				else {
+					toolbar.remove(1);
+				}
+			}
 		},
 
 		_uiSetValue: function(val) {
@@ -1058,7 +1131,7 @@ var BaseCellEditor = A.Component.create({
 					instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
 				);
 
-				A.later(100, elements, elements.selectText);
+				A.later(30, elements, elements.selectText);
 			}
 		}
 
@@ -1103,6 +1176,17 @@ var BaseOptionsCellEditor = A.Component.create({
 		selectedAttrName: {
 			value: SELECTED,
 			validator: isString
+		},
+
+		strings: {
+			value: {
+				add: 'Add',
+				cancel: 'Cancel',
+				deleteSelectedOptions: 'Delete selected option(s)?',
+				edit: 'Edit options',
+				save: 'Save',
+				stopEditing: 'Stop editing'
+			}
 		}
 	},
 
@@ -1111,7 +1195,100 @@ var BaseOptionsCellEditor = A.Component.create({
 	UI_ATTRS: [OPTIONS],
 
 	prototype: {
+		EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '">' +
+							'<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{deleteSelectedOptions}</a>' +
+							'<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="Name" title="Name" type="text" /> ' +
+							'<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="Value" title="Value" type="text" /> ' +
+							'<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{add}</a> ' +
+							'<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_HIDE_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{stopEditing}</a>' +
+						'</div>',
+
+		editContainer: null,
+		editInputName: null,
+		editInputValue: null,
 		options: null,
+
+		initializer: function() {
+			var instance = this;
+
+			instance.on(EDIT, instance._onEditEvent);
+			instance.after(INIT_TOOLBAR, instance._afterInitToolbar);
+		},
+
+		addCurrentOption: function() {
+			var instance = this;
+			var options = instance.get(OPTIONS);
+			var option = instance.getCurrentOptionValue();
+
+			if (option) {
+				options[option.name] = option.value;
+
+				instance.set(OPTIONS, options);
+
+				instance._uiSetValue(
+					instance.get(VALUE)
+				);
+
+				instance.clearCurrentOption();
+			}
+			else {
+				instance.editInputValue.selectText();
+			}
+		},
+
+		clearCurrentOption: function() {
+			var instance = this;
+
+			if (instance.editContainer) {
+				instance.editInputValue.val(_EMPTY_STR);
+				instance.editInputName.val(_EMPTY_STR).selectText();
+			}
+		},
+
+		deleteSelectedOptions: function() {
+			var instance = this;
+			var options = instance.get(OPTIONS);
+
+			instance._getSelectedOptions().each(function(node) {
+				var value = node.val();
+
+				if (options.hasOwnProperty(value)) {
+					delete options[value];
+				}
+			});
+
+			instance.set(OPTIONS, options);
+
+			instance._uiSetValue(
+				instance.get(VALUE)
+			);
+
+			instance.clearCurrentOption();
+		},
+
+		getCurrentOptionValue: function() {
+			var instance = this;
+
+			if (instance.editContainer) {
+				var optionName = instance.editInputName.val();
+				var optionValue = instance.editInputValue.val();
+
+				if (optionName && optionValue) {
+					return {
+						name: optionName,
+						value: optionValue
+					};
+				}
+			}
+
+			return null;
+		},
+
+		toggleEdit: function() {
+			var instance = this;
+
+			instance.editContainer.toggle();
+		},
 
 		// TODO - rewrite this method
 		_createOptions: function(val) {
@@ -1156,6 +1333,30 @@ var BaseOptionsCellEditor = A.Component.create({
 			instance.options = options;
 		},
 
+		_defInitEditFn: function(event) {
+			var instance = this;
+
+			var editContainer = A.Node.create(
+				Lang.sub(
+					instance.EDIT_TEMPLATE,
+					instance.getStrings()
+				)
+			);
+
+			instance.setStdModContent(
+				WidgetStdMod.BODY,
+				editContainer.hide(),
+				WidgetStdMod.AFTER
+			);
+
+			editContainer.delegate('click', A.bind(instance._onEditLinkClickEvent, instance), _DOT+CSS_CELLEDITOR_EDIT_LINK);
+			editContainer.delegate('keydown', A.bind(instance._onEditKeyEvent, instance), INPUT);
+
+			instance.editContainer = editContainer;
+			instance.editInputName = editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_INPUT_NAME);
+			instance.editInputValue = editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_INPUT_VALUE);
+		},
+
 		_getSelectedOptions: function() {
 			var instance = this;
 			var options = [];
@@ -1167,6 +1368,47 @@ var BaseOptionsCellEditor = A.Component.create({
 			});
 
 			return A.all(options);
+		},
+
+		_onEditEvent: function(event) {
+			var instance = this;
+
+			instance._handleInitEditEvent();
+
+			instance.toggleEdit();
+
+			instance.clearCurrentOption();
+		},
+
+		_onEditLinkClickEvent: function(event) {
+			var instance = this;
+			var currentTarget = event.currentTarget;
+
+			if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
+				instance.addCurrentOption();
+			}
+			else if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_HIDE_OPTION)) {
+				instance.toggleEdit();
+			}
+			else if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_DELETE_OPTION)) {
+				var confirmation = instance.getString(DELETE_SELECTED_OPTIONS);
+
+				if (confirm(confirmation)) {
+					instance.deleteSelectedOptions();
+				}
+			}
+
+			event.halt();
+		},
+
+		_onEditKeyEvent: function(event) {
+			var instance = this;
+
+			if (event.isKey(RETURN)) {
+				instance.addCurrentOption();
+
+				event.halt();
+			}
 		},
 
 		_setOptions: function(val) {
