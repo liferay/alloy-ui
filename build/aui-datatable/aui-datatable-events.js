@@ -46,6 +46,7 @@ var Lang = A.Lang,
 	THEAD = 'thead',
 	TR = 'tr',
     DATATABLE = 'datatable',
+	COLUMNSET = 'columnset',
 
 	_COMMA = ',',
 	_DOT = '.',
@@ -75,7 +76,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 		}
 	},
 
-	getEvtPayload: function(node, originalEvent) {
+	updateEventPayload: function(node, originalEvent) {
 		var instance = this;
 		var host = instance.get(HOST);
 		var thead  = host._theadNode;
@@ -99,15 +100,19 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 			node.setData(ROW, row);
 		}
 
-		return {
-			cell: node,
-			column: host.getColumnByCell(node),
-			inHead: inHead,
-			liner: liner,
-			originalEvent: originalEvent,
-			row: row,
-			record: host.get(RECORDSET).getRecordByRow(row)
-		};
+		return A.mix(
+			originalEvent,
+			{
+				cell: node,
+				column: host.get(COLUMNSET).getColumnByCell(node),
+				inHead: inHead,
+				liner: liner,
+				originalEvent: originalEvent,
+				row: row,
+				record: host.get(RECORDSET).getRecordByRow(row)
+			},
+			true
+		);
 	},
 
 	_filterBubble: function(target) {
@@ -153,7 +158,7 @@ var DataTableEvents = A.Base.create("dataTableEvents", A.Plugin.Base, [], {
 
 		var nodes = instance._filterBubble(currentTarget.getDOM());
 
-		var payload = instance.getEvtPayload(currentTarget, event);
+		var payload = instance.updateEventPayload(currentTarget, event);
 
 		instance._bubbling = true;
 

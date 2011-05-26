@@ -28,16 +28,10 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		return instance.getRowNode(record).get(CHILD_NODES).item(column.keyIndex);
 	},
 
-	getColumnByCell: function(cell) {
-		var instance = this;
-		var dataHeaderId = cell.getAttribute(HEADERS).split(_SPACE).pop() || cell.get(ID);
-
-		return instance.get(COLUMNSET).getColumn(dataHeaderId);
-	},
-
 	getColNode: function(cell) {
 		var instance = this;
-		var index = instance.get(COLUMNSET).getColumnIndex(instance.getColumnByCell(cell));
+		var columnset = instance.get(COLUMNSET);
+		var index = columnset.getColumnIndex(columnset.getColumnByCell(cell));
 
 		return instance._colgroupNode.get(CHILD_NODES).item(index);
 	},
@@ -95,6 +89,13 @@ A.Columnset = A.Base.create('columnset', A.Columnset, [], {
 		}
 
 		return null;
+	},
+
+	getColumnByCell: function(cell) {
+		var instance = this;
+		var dataHeaderId = cell.getAttribute(HEADERS).split(_SPACE).pop() || cell.get(ID);
+
+		return instance.getColumn(dataHeaderId);
 	},
 
 	getColumnIndex: function(column) {
