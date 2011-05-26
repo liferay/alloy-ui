@@ -1,7 +1,7 @@
-.yui3-aui-progress-bar {
+.aui-progress-bar {
 }
 
-.yui3-aui-progress-bar-content {
+.aui-progress-bar-content {
 	background: white;
 	border: 1px solid #949DAD;
 	margin: 2px;
@@ -10,31 +10,31 @@
 	position: relative;
 }
 
-.yui3-aui-progress-bar-horizontal {
+.aui-progress-bar-horizontal {
 }
 
-.yui3-aui-progress-bar-vertical {
+.aui-progress-bar-vertical {
 }
 
-.yui3-aui-progress-bar-content {
+.aui-progress-bar-content {
 	height: 100%;
 }
 
-.yui3-aui-progress-bar-status {
+.aui-progress-bar-status {
 	background: #D4E4FF;
 	overflow: hidden;
 	position: relative;
 }
 
-.yui3-aui-progress-bar-horizontal .yui3-aui-progress-bar-status {
+.aui-progress-bar-horizontal .aui-progress-bar-status {
 	height: 100%;
 }
 
-.yui3-aui-progress-bar-vertical .yui3-aui-progress-bar-status {
+.aui-progress-bar-vertical .aui-progress-bar-status {
 	width: 100%;
 }
 
-.yui3-aui-progress-bar-text {
+.aui-progress-bar-text {
 	left: 0;
 	position: absolute;
 	text-align: center;

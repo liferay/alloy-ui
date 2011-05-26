@@ -1,26 +1,26 @@
-.yui3-aui-panel {
+.aui-panel {
 }
 
-.yui3-aui-panel-content {
+.aui-panel-content {
 	border: 1px solid #999;
 }
 
-.yui3-aui-panel-icons {
+.aui-panel-icons {
 	float: right;
 }
 
-.yui3-aui-panel-hd {
+.aui-panel-hd {
 	background: #ccc;
 	border-bottom: 1px solid #999;
 	font-weight: bold;
 	padding: 2px 3px 2px 4px;
 }
 
-.yui3-aui-panel-bd {
+.aui-panel-bd {
 	padding: 3px;
 }
 
-.yui3-aui-panel-ft {
+.aui-panel-ft {
 	background: #eee;
 	border-top: 1px solid #ccc;
 	padding: 5px 10px;
@@ -28,11 +28,11 @@
 	visibility: inherit;
 }
 
-.yui3-aui-panel-collapsed .yui3-aui-panel-hd {
+.aui-panel-collapsed .aui-panel-hd {
 	border-bottom-width: 0;
 }
 
-.yui3-aui-panel-hd-text {
+.aui-panel-hd-text {
 	float: left;
 	line-height: 2;
 }

@@ -1,8 +1,8 @@
-.yui3-aui-editormenu-content .yui3-aui-panel-bd {
+.aui-editormenu-content .aui-panel-bd {
 	padding: 0px;
 }
 
-.yui3-aui-editormenu-content-list {
+.aui-editormenu-content-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -10,6 +10,6 @@
 	overflow-y: auto;
 }
 
-.yui3-aui-editormenu-content-list li {
+.aui-editormenu-content-list li {
 	list-style: none;
 }

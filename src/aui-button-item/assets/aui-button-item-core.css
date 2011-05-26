@@ -1,4 +1,4 @@
-.yui3-aui-buttonitem-content {
+.aui-buttonitem-content {
 	font-size: 1em;
 	line-height: 130%;
 	padding: 4px 5px 3px 4px;
@@ -11,7 +11,7 @@
 	*width: 1;
 }
 
-.yui3-aui-buttonitem-icon {
+.aui-buttonitem-icon {
 	display: inline-block;
 	margin-top: -3px;
 	vertical-align: middle;
@@ -21,7 +21,7 @@
 	*margin-top: 1px;
 }
 
-.yui3-aui-buttonitem-label {
+.aui-buttonitem-label {
 	line-height: 1em;
 	display: inline-block;
 
@@ -29,11 +29,11 @@
 	*line-height: 1.4em;
 }
 
-.yui3-aui-buttonitem-label {
+.aui-buttonitem-label {
 	padding: 0 5px;
 }
 
-.yui3-aui-buttonitem-icon-only {
+.aui-buttonitem-icon-only {
 	font-size: 0;
 	height: 16px;
 	width: 16px;
@@ -49,7 +49,7 @@
 	*width: 24px;
 }
 
-.yui3-aui-buttonitem-icon-only .yui3-aui-buttonitem-icon {
+.aui-buttonitem-icon-only .aui-buttonitem-icon {
 	margin-top: 0;
 
 	/* IE6/7 */
@@ -57,6 +57,6 @@
 	*margin-left: -1px;
 }
 
-.gecko .yui3-aui-buttonitem-icon-only .yui3-aui-buttonitem-icon {
+.gecko .aui-buttonitem-icon-only .aui-buttonitem-icon {
 	margin-top: -3px;
 }

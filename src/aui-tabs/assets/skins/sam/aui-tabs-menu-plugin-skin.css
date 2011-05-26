@@ -1,9 +1,9 @@
-.yui3-aui-tabview-wrapper {
+.aui-tabview-wrapper {
 	border: 1px solid #C8C9CA;
 	margin-bottom: 1em;
 }
 
-.yui3-aui-tabview-wrapper .yui3-aui-tab-active:after {
+.aui-tabview-wrapper .aui-tab-active:after {
 	border: 10px solid;
 	border-top-width: 0;
 	border-color: transparent transparent #fff;
@@ -19,43 +19,43 @@
 	z-index: 20;
 }
 
-.yui3-aui-tabviewmenu-trigger {
+.aui-tabviewmenu-trigger {
 	background: url(menu_trigger_bg.png) no-repeat 0 50%;	
 }
 
-.yui3-aui-tabviewmenu-item {
+.aui-tabviewmenu-item {
 	border-bottom: 1px solid #DEDEDE;
 	padding: 2px;
 }
 
-.yui3-aui-tabviewmenu-item a {
+.aui-tabviewmenu-item a {
 	padding: 2px 5px;
 	text-decoration: none;
 	color: #336699;
 }
 
-.yui3-aui-tabviewmenu-item a:hover {
+.aui-tabviewmenu-item a:hover {
 	background: #ccc;
 }
 
-.yui3-aui-tabviewmenu-list {
+.aui-tabviewmenu-list {
 	position: absolute;
 	width: auto;
 }
 
-.yui3-aui-tabviewmenu-list-content {
+.aui-tabviewmenu-list-content {
 	background: #FFF;
 	min-width: 150px;
 }
 
-.yui3-aui-tabviewmenu-list-content {
+.aui-tabviewmenu-list-content {
 	background: #CCC9C9 url(../../../../../build/aui-skin-classic/images/menu/bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #AEAFB1 #777879 #777879 #AEAFB1;
 	padding: 2px 0;
 }
 
-.yui3-aui-tabviewmenu-list-content li {
+.aui-tabviewmenu-list-content li {
 	border-bottom: 1px solid #BCBBBB;
 	border-top: 1px solid #EEE;
 	display: block;
@@ -64,32 +64,32 @@
 	padding: 0;
 }
 
-.ie7 .yui3-aui-tabviewmenu-list-content li {
+.ie7 .aui-tabviewmenu-list-content li {
 	z-index: 10;
 }
 
-.yui3-aui-tabviewmenu-list-content li.first {
+.aui-tabviewmenu-list-content li.first {
 	border-top-width: 0;
 }
 
-.yui3-aui-tabviewmenu-list-content li.last {
+.aui-tabviewmenu-list-content li.last {
 	border-bottom-width: 0;
 }
 
-.yui3-aui-tabviewmenu-list-content li a {
+.aui-tabviewmenu-list-content li a {
 	color: #2C2F34;
 	display: block;
 	padding: 4px 5px;
 	text-decoration: none;
 }
 
-.yui3-aui-tabviewmenu-list-content li a:hover {
+.aui-tabviewmenu-list-content li a:hover {
 	background-color: #5B677D;
 	color: #FFF;
 	text-shadow: -1px -1px #2C2F34;
 }
 
-.yui3-aui-tabviewmenu-list-content a {
+.aui-tabviewmenu-list-content a {
 	font-weight: bold;
 	text-shadow: 1px 1px #FFF;
 }
