@@ -1,139 +1,139 @@
-.yui3-aui-tree-view {
+.aui-tree-view {
 	overflow: auto;
 }
 
-.yui3-aui-tree-view-content {
+.aui-tree-view-content {
 	margin: 0;
 }
 
-.yui3-aui-tree-view ul {
+.aui-tree-view ul {
 	list-style: none;
 }
 
-.yui3-aui-tree-container {
+.aui-tree-container {
 	margin: 0 0 0 20px;
 }
 
-.yui3-aui-tree-node-content .yui3-aui-tree-hitarea {
+.aui-tree-node-content .aui-tree-hitarea {
 	height: 18px;
 	width: 16px;
 	cursor: pointer;
 }
 
-.yui3-aui-tree-node .yui3-dd-draggable, .yui3-aui-tree-node .yui3-dd-draggable .yui3-aui-tree-label {
+.aui-tree-node .yui3-dd-draggable, .aui-tree-node .yui3-dd-draggable .aui-tree-label {
 	cursor: pointer;
 }
 
-.yui3-aui-tree-collapsed .yui3-aui-tree-hitarea {
+.aui-tree-collapsed .aui-tree-hitarea {
 	background-image: url(arrows.png);
 	background-repeat: no-repeat;
 }
 
-.yui3-aui-tree-expanded .yui3-aui-tree-hitarea {
+.aui-tree-expanded .aui-tree-hitarea {
 	background-image: url(arrows.png);
 	background-repeat: no-repeat;
 	background-position: -16px 50%;
 }
 
-.yui3-aui-tree-collapsed.yui3-aui-tree-node-over .yui3-aui-tree-hitarea {
+.aui-tree-collapsed.aui-tree-node-over .aui-tree-hitarea {
 	background-position: -32px 50%;
 }
 
-.yui3-aui-tree-expanded.yui3-aui-tree-node-over .yui3-aui-tree-hitarea {
+.aui-tree-expanded.aui-tree-node-over .aui-tree-hitarea {
 	background-position: -48px 50%;
 }
 
-.yui3-aui-tree-hitarea, .yui3-aui-tree-label, .yui3-aui-tree-icon {
+.aui-tree-hitarea, .aui-tree-label, .aui-tree-icon {
 	float: left;
 }
 
-.yui3-aui-tree-label {
+.aui-tree-label {
 	cursor: default;
 	line-height: 19px;
 	margin-left: 2px;
 }
 
-.yui3-aui-tree-node-leaf {
+.aui-tree-node-leaf {
 	margin-left: 15px;
 }
 
-.yui3-aui-tree-hidden {
+.aui-tree-hidden {
 	display: none;
 }
 
-.yui3-aui-tree-node-selected .yui3-aui-tree-label {
+.aui-tree-node-selected .aui-tree-label {
 	background: #eee;
 }
 
 /* TreeView file */
 
-.yui3-aui-tree-file .yui3-aui-tree-icon {
+.aui-tree-file .aui-tree-icon {
 	height: 18px;
 	width: 18px;
 }
 
-.yui3-aui-tree-node-leaf .yui3-aui-tree-icon {
+.aui-tree-node-leaf .aui-tree-icon {
 	background: transparent url(file.png) no-repeat 50% 50%;
 }
 
-.yui3-aui-tree-file .yui3-aui-tree-expanded .yui3-aui-tree-icon {
+.aui-tree-file .aui-tree-expanded .aui-tree-icon {
 	background: transparent url(folder_opened.png) no-repeat 50% 50%;
 }
 
-.yui3-aui-tree-file .yui3-aui-tree-collapsed .yui3-aui-tree-icon {
+.aui-tree-file .aui-tree-collapsed .aui-tree-icon {
 	background: transparent url(folder_closed.png) no-repeat 50% 50%;
 }
 
-.yui3-aui-tree-collapsed .yui3-aui-tree-node-hidden-hitarea,
-.yui3-aui-tree-expanded .yui3-aui-tree-node-hidden-hitarea {
+.aui-tree-collapsed .aui-tree-node-hidden-hitarea,
+.aui-tree-expanded .aui-tree-node-hidden-hitarea {
 	background-image: none;
 }
 
 /* TreeNodeIO */
 
-.yui3-aui-tree-view-content .yui3-aui-tree-node-io-loading .yui3-aui-tree-icon {
+.aui-tree-view-content .aui-tree-node-io-loading .aui-tree-icon {
 	background: url(../../../../../build/aui-skin-base/images/loading_indicator.gif) no-repeat 50% 50% !important;
 }
 
 /* TreeNodeCheck */
 
-.yui3-aui-tree-node-checkbox-container {
+.aui-tree-node-checkbox-container {
 	float: left;
 	background: transparent url(checks.png) no-repeat 0 50%;
 	height: 18px;
 	width: 16px;
 }
 
-.yui3-aui-tree-node-checked .yui3-aui-tree-node-checkbox-container {
+.aui-tree-node-checked .aui-tree-node-checkbox-container {
 	background-position: -18px 50%;
 }
 
-.yui3-aui-tree-node-child-unchecked .yui3-aui-tree-node-checkbox-container {
+.aui-tree-node-child-unchecked .aui-tree-node-checkbox-container {
 	background-position: -36px 50%;
 }
 
 /* TreeViewDragDrop */
 
-.yui3-aui-tree-drag-insert-above {
+.aui-tree-drag-insert-above {
 	border-top: 1px dotted #555;
 }
 
-.yui3-aui-tree-drag-insert-below {
+.aui-tree-drag-insert-below {
 	border-bottom: 1px dotted #555;
 }
 
-.yui3-aui-tree-drag-insert-append .yui3-aui-tree-label {
+.aui-tree-drag-insert-append .aui-tree-label {
 	background: #eee;
 	border: 1px dotted #555;
 }
 
-.yui3-aui-tree-drag-helper {
+.aui-tree-drag-helper {
 	min-width: 100px;
 	line-height: 18px;
 	position: absolute;
 }
 
-.yui3-aui-tree-drag-helper-content {
+.aui-tree-drag-helper-content {
 	background: #fff;
 	border: 1px solid #aaa;
 	margin: 20px 0 0 60px;
@@ -142,27 +142,27 @@
 	filter: alpha(opacity=90);
 }
 
-.yui3-aui-tree-drag-helper-content .yui3-aui-icon {
+.aui-tree-drag-helper-content .aui-icon {
 	background-position: -32px -192px;
 	float: left;
 }
 
-.yui3-aui-tree-drag-state-append .yui3-aui-icon {
+.aui-tree-drag-state-append .aui-icon {
 	background-position: 0 -192px;
 }
 
-.yui3-aui-tree-drag-state-insert-above .yui3-aui-icon,
-.yui3-aui-tree-drag-state-insert-below .yui3-aui-icon {
+.aui-tree-drag-state-insert-above .aui-icon,
+.aui-tree-drag-state-insert-below .aui-icon {
 
 	background-position: -64px -64px;
 }
 
-.yui3-aui-tree-drag-helper-label {
+.aui-tree-drag-helper-label {
 	float: left;
 	font-size: 12px;
 	padding-left: 2px;
 }
 
-.yui3-aui-tree-node-paginator {
+.aui-tree-node-paginator {
 	margin-left: 18px;
 }

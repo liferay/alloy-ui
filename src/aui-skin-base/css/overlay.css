@@ -1,7 +1,7 @@
-.yui3-aui-autocomplete-results-content,
-.yui3-aui-calendar-content,
-.yui3-aui-colorpicker-content,
-.yui3-aui-dialog-content,
-.yui3-aui-overlaycontext-content {
+.aui-autocomplete-results-content,
+.aui-calendar-content,
+.aui-colorpicker-content,
+.aui-dialog-content,
+.aui-overlaycontext-content {
 	background: #fff;
 }

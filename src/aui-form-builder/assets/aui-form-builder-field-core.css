@@ -1,6 +1,6 @@
 /* Fields inside drag container */
 
-.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-field {
+.aui-form-builder-drag-container .aui-form-builder-field {
 	border: 1px solid #CCCCCC;
 	cursor: pointer;
 	margin: 5px 0;
@@ -10,31 +10,31 @@
 	-webkit-border-radius: 6px;
 }
 
-.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-field:hover {
+.aui-form-builder-drag-container .aui-form-builder-field:hover {
 	border: 1px solid #000000;
 }
 
-.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-inactive {
+.aui-form-builder-drag-container .aui-form-builder-inactive {
 	cursor: auto;
 	filter:alpha(opacity=50);
 	opacity: .5;
 	zoom: 1;
 }
 
-.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-inactive:hover {
+.aui-form-builder-drag-container .aui-form-builder-inactive:hover {
 	border: 1px solid #CCCCCC;
 }
 
-.yui3-aui-form-builder-field-node,
-.yui3-aui-field-choice {
+.aui-form-builder-field-node,
+.aui-field-choice {
 	clear: both;
 	display: block;
 }
 
 /* Fields inside drop container */
 
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-field,
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-default-message {
+.aui-form-builder-drop-container .aui-form-builder-field,
+.aui-form-builder-drop-container .aui-form-builder-default-message {
 	background-image: url(form_builder_bg.png);
 	border: 1px solid #C6D9F0;
 	list-style: none;
@@ -45,52 +45,52 @@
 	-webkit-border-radius: 4px;
 }
 
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-field fieldset {
+.aui-form-builder-drop-container .aui-form-builder-field fieldset {
 	border: 2px solid #CCCCCC;
 	margin: 20px 10px 10px 10px;
 	padding: 5px;
 }
 
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-field-selected,
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-default-message {
+.aui-form-builder-drop-container .aui-form-builder-field-selected,
+.aui-form-builder-drop-container .aui-form-builder-default-message {
 	background: none repeat scroll 0 0 #FFFFCC;
 	border: 1px solid #FFCC00;
 }
 
-.yui3-aui-form-builder-drop-container .yui3-aui-form-builder-default-message {
+.aui-form-builder-drop-container .aui-form-builder-default-message {
 	padding: 15px 10px;
 }
 
 /* Fields */
 
-.yui3-aui-form-builder-field {
+.aui-form-builder-field {
 	list-style: none;
 	margin: 15px 5px;
 	padding: 10px 10px 10px 0;
 	position: relative;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-field-input-radio {
+.aui-form-builder-field .aui-field-input-radio {
 	margin: 2px 5px 0 0;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-field-checkbox {
+.aui-form-builder-field .aui-field-checkbox {
 	float: left;
 	margin: 1px 5px 0 0;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-field-label {
+.aui-form-builder-field .aui-field-label {
 	float: left;
 	margin-right: 5px;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-form-builder-required {
+.aui-form-builder-field .aui-form-builder-required {
 	color: #FF0000;
 	float: left;
 	margin: 0 5px 0 0;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-form-builder-icon-tip {
+.aui-form-builder-field .aui-form-builder-icon-tip {
 	background: transparent url(help.png) no-repeat;
 	display: block;
 	float: left;
@@ -98,27 +98,27 @@
 	width: 16px;
 }
 
-.yui3-aui-form-builder-field .yui3-aui-form-builder-field-content {
+.aui-form-builder-field .aui-form-builder-field-content {
 	padding: 15px;
 }
 
 /* Reset priority */
 
-.yui3-aui-form-builder-field-node.yui3-aui-w25 {
+.aui-form-builder-field-node.aui-w25 {
 	width: 25%;
 }
 
-.yui3-aui-form-builder-field-node.yui3-aui-w50 {
+.aui-form-builder-field-node.aui-w50 {
 	width: 50%;
 }
 
-.yui3-aui-form-builder-field-node.yui3-aui-w100 {
+.aui-form-builder-field-node.aui-w100 {
 	width: 100%;
 }
 
 /* Field icons */
 
-.yui3-aui-form-builder-drag-container .yui3-aui-form-builder-field-icon {
+.aui-form-builder-drag-container .aui-form-builder-field-icon {
 	display: block;
 	float: left;
 	margin: 2px 5px 0px 5px;
@@ -126,71 +126,71 @@
 	width: 15px;
 }
 
-.yui3-aui-form-builder-field-icon-button {
+.aui-form-builder-field-icon-button {
 	background: url(button.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-checkbox {
+.aui-form-builder-field-icon-checkbox {
 	background: url(checkbox.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-fieldset {
+.aui-form-builder-field-icon-fieldset {
 	background: url(form_group.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-fileupload {
+.aui-form-builder-field-icon-fileupload {
 	background: url(image_uploader.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-radio {
+.aui-form-builder-field-icon-radio {
 	background: url(options.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-select {
+.aui-form-builder-field-icon-select {
 	background: url(selectbox.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-textarea {
+.aui-form-builder-field-icon-textarea {
 	background: url(textbox.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-field-icon-text {
+.aui-form-builder-field-icon-text {
 	background: url(text_field.png) no-repeat center center;
 }
 
-.yui3-aui-form-builder-settings .yui3-aui-field-input-checkbox {
+.aui-form-builder-settings .aui-field-input-checkbox {
 	margin: 5px 5px 0 0;
 }
 
-.yui3-aui-form-builder-settings .yui3-aui-field-input-select {
+.aui-form-builder-settings .aui-field-input-select {
 	width: 100%;
 }
 
-.yui3-aui-form-builder-settings .yui3-aui-field-checkbox {
+.aui-form-builder-settings .aui-field-checkbox {
 	float: left;
 	width: 100%;
 }
 
-.yui3-aui-form-builder-tabs-container .yui3-aui-tabview-content .yui3-aui-field-text {
+.aui-form-builder-tabs-container .aui-tabview-content .aui-field-text {
 	display: block;
 	margin: 5px 0;
 }
 
-.yui3-aui-form-builder-tabs-container .yui3-aui-textarea-content textarea {
+.aui-form-builder-tabs-container .aui-textarea-content textarea {
 	width: 97% !important;
 }
 
 /* Options */
 
-.yui3-aui-form-builder-settings .yui3-aui-field-text p {
+.aui-form-builder-settings .aui-field-text p {
 	margin: 0;
 }
 
-.yui3-aui-form-builder-settings .yui3-aui-field-options-item-input {
+.aui-form-builder-settings .aui-field-options-item-input {
 	width: 90px;
 }
 
-.yui3-aui-form-builder-settings .yui3-aui-field-options-item-remove {
+.aui-form-builder-settings .aui-field-options-item-remove {
 	background: url(remove.png) no-repeat center center;
 	display: block;
 	float: right;
@@ -200,7 +200,7 @@
 	width: 15px;
 }
 
-.yui3-aui-form-builder-settings  .yui3-aui-field-options-add {
+.aui-form-builder-settings  .aui-field-options-add {
 	background: url(add.png) no-repeat 0 center;
 	color: #000000;
 	display: block;

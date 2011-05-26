@@ -1,8 +1,8 @@
-.yui3-aui-tabview-wrapper {
+.aui-tabview-wrapper {
 	position: relative;
 }
 
-.yui3-aui-tabview-wrapper .yui3-aui-tabview-list {
+.aui-tabview-wrapper .aui-tabview-list {
 	border-width: 0;
 	margin: 0;
 	padding: 0;
@@ -10,31 +10,31 @@
 	width: 9999px;
 }
 
-.yui3-aui-tabview-wrapper {
+.aui-tabview-wrapper {
 	overflow: hidden;
 }
 
-.yui3-aui-tabviewmenu-trigger {
+.aui-tabviewmenu-trigger {
 	position: absolute;
 	top: 0;
 	z-index: 10;
 }
 
-.yui3-aui-tabviewmenu-list-content {
+.aui-tabviewmenu-list-content {
 	list-style: none;
 	margin: 0;
 }
 
-.yui3-aui-tabviewmenu-item {
+.aui-tabviewmenu-item {
 	margin: 0;
 }
 
-.yui3-aui-tabview-list-content {
+.aui-tabview-list-content {
 	border-width: 0;
 	margin-bottom: 0;
 }
 
-.yui3-aui-tabviewmenu-trigger {
+.aui-tabviewmenu-trigger {
 	height: 100%;
 	right: 0;
 	width: 20px;

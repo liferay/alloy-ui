@@ -1,14 +1,14 @@
-.yui3-aui-basecelleditor {
+.aui-basecelleditor {
 	background-color: #F2F2F2;
 	border: 1px solid #808080;
 	padding: 6px;
 	text-align: left;
 }
 
-.yui3-aui-celleditor-edit {
+.aui-celleditor-edit {
 	padding: 0 0 5px;
 }
 
-.yui3-aui-celleditor-edit-option-row {
+.aui-celleditor-edit-option-row {
 	padding: 0 0 2px 0;
 }

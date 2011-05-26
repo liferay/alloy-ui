@@ -1,9 +1,9 @@
-.yui3-aui-resize, .yui3-aui-resize-wrapper {
+.aui-resize, .aui-resize-wrapper {
 	z-index: 0;
 	zoom: 1;
 }
 
-.yui3-aui-resize-handle {
+.aui-resize-handle {
 /*	background: #eee;*/
 	position: absolute;
 	display: block;
@@ -11,108 +11,108 @@
 	zoom: 1;
 }
 
-.yui3-aui-resize-proxy {
+.aui-resize-proxy {
 	position: absolute;
 	border: 1px dashed #000;
     position: absolute;
     z-index: 10000;
 }
 
-.yui3-aui-resize-hidden-handles .yui3-aui-resize-handle {
+.aui-resize-hidden-handles .aui-resize-handle {
 	opacity: 0;
 
     filter: alpha(opacity=0);
 }
 
-.yui3-aui-resize-handle-t, .yui3-aui-resize-handle-b {
+.aui-resize-handle-t, .aui-resize-handle-b {
 	width: 100%;
 	left: 0;
 	height: 6px;
 }
 
-.yui3-aui-resize-handle-l, .yui3-aui-resize-handle-r {
+.aui-resize-handle-l, .aui-resize-handle-r {
 	height: 100%;
 	top: 0;
 	width: 6px;
 }
 
-.yui3-aui-resize-handle-t {
+.aui-resize-handle-t {
 	cursor: n-resize;
 	top: 0;
 }
 
-.yui3-aui-resize-handle-b {
+.aui-resize-handle-b {
 	cursor: s-resize;
 	bottom: 0;
 }
 
-.yui3-aui-resize-handle-l {
+.aui-resize-handle-l {
 	cursor: w-resize;
 	left: 0;
 }
 
-.yui3-aui-resize-handle-r {
+.aui-resize-handle-r {
 	cursor: e-resize;
 	right: 0;
 }
 
-.yui3-aui-resize-handle-inner {
+.aui-resize-handle-inner {
 	position: absolute;
 	zoom: 1;
 }
 
-.yui3-aui-resize-handle-inner-t, .yui3-aui-resize-handle-inner-b {
+.aui-resize-handle-inner-t, .aui-resize-handle-inner-b {
 	margin-left: -8px;
 	left: 50%;
 }
 
-.yui3-aui-resize-handle-inner-l, .yui3-aui-resize-handle-inner-r {
+.aui-resize-handle-inner-l, .aui-resize-handle-inner-r {
 	margin-top: -8px;
 	top: 50%;
 }
 
-.yui3-aui-resize-handle-inner-t {
+.aui-resize-handle-inner-t {
 	top: -5px;
 }
 
-.yui3-aui-resize-handle-inner-b {
+.aui-resize-handle-inner-b {
 	bottom: -4px;
 }
 
-.yui3-aui-resize-handle-inner-l {
+.aui-resize-handle-inner-l {
 	left: -4px;
 }
 
-.yui3-aui-resize-handle-inner-r {
+.aui-resize-handle-inner-r {
 	right: -5px;
 }
 
 
-.yui3-aui-resize-handle-tr, .yui3-aui-resize-handle-br, .yui3-aui-resize-handle-tl, .yui3-aui-resize-handle-bl {
+.aui-resize-handle-tr, .aui-resize-handle-br, .aui-resize-handle-tl, .aui-resize-handle-bl {
 	height: 16px;
 	width: 16px;
 	z-index: 200;
 }
 
-.yui3-aui-resize-handle-tr {
+.aui-resize-handle-tr {
 	cursor: ne-resize;
 	top: 0;
 	right: 0;
 }
 
-.yui3-aui-resize-handle-tl {
+.aui-resize-handle-tl {
 	cursor: nw-resize;
 	top: 0;
 	left: 0;
 }
 
-.yui3-aui-resize-handle-br {
+.aui-resize-handle-br {
 	cursor: se-resize;
 	bottom: 0;
 	right: 0;
 }
 
-.yui3-aui-resize-handle-bl {
+.aui-resize-handle-bl {
 	cursor: sw-resize;
 	bottom: 0;
 	left: 0;

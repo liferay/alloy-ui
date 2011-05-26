@@ -1,31 +1,31 @@
-.yui3-aui-databrowser {
+.aui-databrowser {
 	padding: 10px;
 	border: solid 1px #999;
 	background-color: #fff;
 }
 
-.yui3-aui-databrowser .yui3-aui-combobox {
+.aui-databrowser .aui-combobox {
 	margin-bottom: 4px;
 }
 
-.yui3-aui-databrowser-search {
+.aui-databrowser-search {
 	border: solid 1px #ccc;
 }
 
-.yui3-aui-databrowser-tree {
+.aui-databrowser-tree {
 	border: solid 1px #ccc;
 	padding: 5px;
 }
 
-.yui3-aui-databrowser .yui3-aui-databrowser-search-list li {
+.aui-databrowser .aui-databrowser-search-list li {
 	margin: 10px;
 }
 
-.yui3-aui-databrowser .yui3-aui-databrowser-search-list li div {
+.aui-databrowser .aui-databrowser-search-list li div {
 	font-size: 9px;
 }
 
-.yui3-aui-databrowser-search-list-item-icon span {
+.aui-databrowser-search-list-item-icon span {
 	width: 16px;
 	height: 16px;
 }

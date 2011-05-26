@@ -14,8 +14,8 @@ if (!IE || IE >= 9 || isShivDisabled()) {
 
 var BUFFER_CSS_TEXT = [],
 
-	CSS_PRINTFIX = 'yui3-aui-printfix',
-	CSS_PRINTFIX_PREFIX = 'yui3-aui-printfix-',
+	CSS_PRINTFIX = 'aui-printfix',
+	CSS_PRINTFIX_PREFIX = 'aui-printfix-',
 
 	LOCATION = WIN.location,
 

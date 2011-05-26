@@ -1,28 +1,28 @@
-.yui3-aui-scroller {
+.aui-scroller {
 	overflow: hidden;
 	position: relative;
 }
 
-.yui3-aui-scroller-content {
+.aui-scroller-content {
 	left: 0;
 	position: absolute;
 	top: 0;
 }
 
-.yui3-aui-scroller-vertical .yui3-aui-scroller-content {
+.aui-scroller-vertical .aui-scroller-content {
 	height: auto !important;
 }
 
-.yui3-aui-scroller-horizontal .yui3-aui-scroller-content {
+.aui-scroller-horizontal .aui-scroller-content {
 	float: left;
 	white-space: nowrap;
 }
 
-.yui3-aui-scroller-horizontal .yui3-aui-scroller-item {
+.aui-scroller-horizontal .aui-scroller-item {
 	display: inline-block;
 }
 
-.ie7 .yui3-aui-scroller-horizontal .yui3-aui-scroller-item, .ie6 .yui3-aui-scroller-horizontal .yui3-aui-scroller-item {
+.ie7 .aui-scroller-horizontal .aui-scroller-item, .ie6 .aui-scroller-horizontal .aui-scroller-item {
 	display: inline;
 	zoom: 1;
 }

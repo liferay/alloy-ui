@@ -1,38 +1,38 @@
-.yui3-aui-editormenu-content-list {
+.aui-editormenu-content-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.yui3-aui-editormenu-content-list li {
+.aui-editormenu-content-list li {
 	list-style: none;
 }
 
-.yui3-aui-editortoolbar-content .yui3-aui-toolbar-horizontal {
+.aui-editortoolbar-content .aui-toolbar-horizontal {
 	margin-right: 3px;
 }
 
-.yui3-aui-editormenu-hidden {
+.aui-editormenu-hidden {
 	position: absolute;
 	clip: rect(0pt, 0pt, 0pt, 0pt);
 }
 
-.yui3-aui-editortoolbar-source-textarea {
+.aui-editortoolbar-source-textarea {
 	width: 100%;
 }
 
-.yui3-aui-editortoolbar-insertimage-content .yui3-aui-button-holder, .yui3-aui-editortoolbar-insertlink-content .yui3-aui-button-holder {
+.aui-editortoolbar-insertimage-content .aui-button-holder, .aui-editortoolbar-insertlink-content .aui-button-holder {
 	text-align: right;
 }
 
-.yui3-aui-editortoolbar-insertimage-content .yui3-aui-field-content, .yui3-aui-editortoolbar-insertlink-content .yui3-aui-field-content {
+.aui-editortoolbar-insertimage-content .aui-field-content, .aui-editortoolbar-insertlink-content .aui-field-content {
 	clear: both;
 }
 
-.yui3-aui-editortoolbar-align-node {
+.aui-editortoolbar-align-node {
 	position: absolute;
 }
 
-.yui3-aui-editortoolbar-insertlink-content {
+.aui-editortoolbar-insertlink-content {
 	padding: 10px;
 }

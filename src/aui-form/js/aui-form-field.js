@@ -248,8 +248,8 @@ var Field = A.Component.create(
 				fieldWidget = _FIELD_INSTANCES[fieldId];
 
 				if (!fieldWidget) {
-					var boundingBox = field.ancestor('.yui3-aui-field');
-					var contentBox = field.ancestor('.yui3-aui-field-content');
+					var boundingBox = field.ancestor('.aui-field');
+					var contentBox = field.ancestor('.aui-field-content');
 
 					fieldWidget = new Field(
 						{

@@ -99,7 +99,7 @@ Component.ATTRS = {
      * <code>false</code>.
 	 *
 	 * @attribute hideClass
-	 * @default 'yui3-aui-helper-hidden'
+	 * @default 'aui-helper-hidden'
 	 * @type String
 	 */
 	hideClass: {

@@ -1,13 +1,13 @@
-.yui3-aui-colorpicker {
+.aui-colorpicker {
 	width: 315px;
 }
 
-.yui3-aui-colorpicker-container {
+.aui-colorpicker-container {
 	height: 192px;
 	position: relative;
 }
 
-.yui3-aui-colorpicker-canvas {
+.aui-colorpicker-canvas {
 	background: #f00 url(picker_bg.png);
 	background-color: #f00;
 	height: 184px;
@@ -18,7 +18,7 @@
 	width: 184px;
 }
 
-.yui3-aui-colorpicker-controls {
+.aui-colorpicker-controls {
 	height: 115px;
 	left: 226px;
 	position: absolute;
@@ -26,28 +26,28 @@
 	width: 80px;
 }
 
-.yui3-aui-colorpicker-controls .yui3-aui-field-content .yui3-aui-field-label {
+.aui-colorpicker-controls .aui-field-content .aui-field-label {
 	margin-top: 0;
 	width: 20%;
 }
 
-.yui3-aui-colorpicker-controls .yui3-aui-field-content .yui3-aui-field-input-text {
+.aui-colorpicker-controls .aui-field-content .aui-field-input-text {
 	width: 60%;
 }
 
-.yui3-aui-colorpicker-controls .yui3-aui-field-content {
+.aui-colorpicker-controls .aui-field-content {
 	clear: both;
 	padding: 3px 0;
 }
 
-.yui3-aui-colorpicker-hue-thumb {
+.aui-colorpicker-hue-thumb {
 	cursor: default;
 	height: 7px;
 	position: absolute;
 	width: 18px;
 }
 
-.yui3-aui-colorpicker-hue-thumb-image {
+.aui-colorpicker-hue-thumb-image {
 	background: url(color_indic.png) no-repeat 0 0;
 	display: block;
 	height: 7px;
@@ -56,7 +56,7 @@
 	width: 18px;
 }
 
-.yui3-aui-colorpicker-hue-canvas {
+.aui-colorpicker-hue-canvas {
 	background: url(hue.png) no-repeat -2px -2px;
 	height: 186px;
 	left: 200px;
@@ -66,13 +66,13 @@
 	width: 14px;
 }
 
-.yui3-aui-colorpicker-mask {
+.aui-colorpicker-mask {
 	left: 0;
 	position: absolute;
 	top: 0;
 }
 
-.yui3-aui-colorpicker-swatch {
+.aui-colorpicker-swatch {
 	border: 2px solid #727C81;
 	height: 60px;
 	left: 226px;
@@ -81,8 +81,8 @@
 	width: 60px;
 }
 
-.yui3-aui-colorpicker-swatch-current,
-.yui3-aui-colorpicker-swatch-original {
+.aui-colorpicker-swatch-current,
+.aui-colorpicker-swatch-original {
 	background: #fff;
 	height: 30px;
 	left: 0;
@@ -91,25 +91,25 @@
 	width: 100%;
 }
 
-.yui3-aui-colorpicker-swatch-original {
+.aui-colorpicker-swatch-original {
 	top: auto;
 	bottom: 0;
 	cursor: pointer;
 }
 
-.yui3-aui-colorpicker-thumb {
+.aui-colorpicker-thumb {
 	cursor: default;
 	position: absolute;
 }
 
-.yui3-aui-colorpicker-thumb-image {
+.aui-colorpicker-thumb-image {
 	background: url(select.png) no-repeat 0 0;
 	display: block;
 	height: 11px;
 	width: 11px;
 }
 
-.yui3-aui-colorpicker-hue-slider-content {
+.aui-colorpicker-hue-slider-content {
 	display: inline;
 	position: static;
 }

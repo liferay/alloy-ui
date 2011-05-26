@@ -1,10 +1,10 @@
-.yui3-aui-rating {}
+.aui-rating {}
 
-.yui3-aui-rating-content {}
+.aui-rating-content {}
 
-.yui3-aui-rating-disabled {}
+.aui-rating-disabled {}
 
-.yui3-aui-rating-element {
+.aui-rating-element {
 	background: transparent url(rating.png) no-repeat scroll 0 0;
 	width: 17px;
 	height: 16px;
@@ -14,45 +14,45 @@
 	text-indent: -9999em;
 }
 
-.yui3-aui-rating-element-off {}
+.aui-rating-element-off {}
 
-.yui3-aui-rating-element-on {
+.aui-rating-element-on {
 	background-position: 0 -16px;
 }
 
-.yui3-aui-rating-element-hover {
+.aui-rating-element-hover {
 	background-position: 0 -32px;
 }
 
-.yui3-aui-rating-label-element {
+.aui-rating-label-element {
 	display: block;
 	font-size: 12px;
 	padding: 0 2px;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-element {
+.aui-thumbrating .aui-rating-element {
 	background: transparent url(rating_thumbs.png) no-repeat scroll 0 0;
 	height: 18px;
 	width: 18px;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-thumb-up.yui3-aui-rating-element-off {
+.aui-thumbrating .aui-rating-thumb-up.aui-rating-element-off {
 	background-position: 0 -57px;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-thumb-up.yui3-aui-rating-element-hover, .yui3-aui-thumbrating .yui3-aui-rating-thumb-up.yui3-aui-rating-element-on {
+.aui-thumbrating .aui-rating-thumb-up.aui-rating-element-hover, .aui-thumbrating .aui-rating-thumb-up.aui-rating-element-on {
 	background-position: 0 -38px;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-thumb-down.yui3-aui-rating-element-off {
+.aui-thumbrating .aui-rating-thumb-down.aui-rating-element-off {
 	background-position: 0 -19px;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-thumb-down.yui3-aui-rating-element-hover, .yui3-aui-thumbrating .yui3-aui-rating-thumb-down.yui3-aui-rating-element-on {
+.aui-thumbrating .aui-rating-thumb-down.aui-rating-element-hover, .aui-thumbrating .aui-rating-thumb-down.aui-rating-element-on {
 	background-position: 0 0;
 }
 
-.yui3-aui-thumbrating .yui3-aui-rating-label-element {
+.aui-thumbrating .aui-rating-label-element {
 	padding: 0 2px;
 	float: left;
 }
