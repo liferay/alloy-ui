@@ -5,11 +5,10 @@
 	text-align: left;
 }
 
-.yui3-aui-celleditor-edit-delete-option {
-	display: block;
-	padding: 0 0 3px 0;
-}
-
 .yui3-aui-celleditor-edit {
 	padding: 0 0 5px;
+}
+
+.yui3-aui-celleditor-edit-option-row {
+	padding: 0 0 2px 0;
 }
