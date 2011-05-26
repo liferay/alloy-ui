@@ -837,6 +837,7 @@ var BaseOptionsCellEditor = A.Component.create({
 			var instance = this;
 
 			instance.on(EDIT, instance._onEditEvent);
+			instance.on(SAVE, instance._onSave);
 			instance.after(INIT_TOOLBAR, instance._afterInitToolbar);
 		},
 
@@ -1061,6 +1062,12 @@ var BaseOptionsCellEditor = A.Component.create({
 
 				event.halt();
 			}
+		},
+
+		_onSave: function(event) {
+			var instance = this;
+
+			instance.saveOptions();
 		},
 
 		_setOptions: function(val) {
