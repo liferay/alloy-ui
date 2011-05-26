@@ -76,6 +76,24 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
 		}
 	});
 
+	window.dropDownEditor = new A.DropDownCellEditor({
+		editable: true,
+		multiple: true,
+		validator: {
+			rules: {
+				value: {
+					required: true
+				}
+			}
+		},
+		options: {
+			apple: 'Apple',
+			cherry: 'Cherry',
+			banana: 'Banana',
+			kiwi: 'Kiwi'
+		}
+	});
+
 	var nestedCols = [
 		{ key:"name", editor: gEditor },
 		{
@@ -96,6 +114,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
         {
 			key:"state",
 			editor: new A.DropDownCellEditor({
+				editable: true,
 				options: ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
 			})
 		},
@@ -116,6 +135,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
         {
 			key:"active",
 			editor: new A.RadioCellEditor({
+				editable: true,
 				// options: [ 'yes', 'no', 'maybe' ]
 				options: {
 					yes: 'Yes',
@@ -127,6 +147,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
         {
 			key:"colors",
 			editor: new A.CheckboxCellEditor({
+				editable: true,
 				multiple: true,
 				options: {
 					red: 'Red',
@@ -138,22 +159,7 @@ AUI().use('aui-datatable', 'aui-datatype', 'console', function(A) {
         {
 			key:"fruit",
 			sortable: true,
-			editor: new A.DropDownCellEditor({
-				multiple: true,
-				validator: {
-					rules: {
-						value: {
-							required: true
-						}
-					}
-				},
-				options: {
-					apple: 'Apple',
-					cherry: 'Cherry',
-					banana: 'Banana',
-					kiwi: 'Kiwi'
-				}
-			})
+			editor: dropDownEditor
 		},
         {
 			key:"last_login",
