@@ -1235,7 +1235,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_focused = false;
 		_formatter = null;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_datepickerselectId = null;
 		_initialized = false;
 		_locale = "en";
@@ -1487,7 +1487,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private boolean _focused = false;
 	private java.lang.Object _formatter = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _datepickerselectId = null;
 	private boolean _initialized = false;
 	private java.lang.String _locale = "en";

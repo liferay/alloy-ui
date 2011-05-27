@@ -9,7 +9,7 @@
 	top:100px;
 }
 
-.yui3-aui-datepicker-example {
+.aui-datepicker-example {
 	clear: both;
 	margin-bottom: 2em;
 }
@@ -17,7 +17,7 @@
 
 <h1>Alloy - DatePicker</h1>
 
-<div class="yui3-aui-datepicker-example yui3-aui-helper-clearfix" id="dynamicDatePicker">
+<div class="aui-datepicker-example aui-helper-clearfix" id="dynamicDatePicker">
 	<h1>Creating dynamically</h1>
 
 	<alloy:date-picker-select
@@ -26,7 +26,7 @@
 	/>
 </div>
 
-<div class="yui3-aui-datepicker-example yui3-aui-helper-clearfix" id="staticDatePicker">
+<div class="aui-datepicker-example aui-helper-clearfix" id="staticDatePicker">
 	<h1>Creating from HTML Markup</h1>
 
 	<%

@@ -1086,7 +1086,7 @@ public class BaseOverlayBaseTag extends com.liferay.taglib.util.IncludeTag {
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_overlaybaseId = null;
 		_initialized = false;
 		_locale = "en";
@@ -1308,7 +1308,7 @@ public class BaseOverlayBaseTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _overlaybaseId = null;
 	private boolean _initialized = false;
 	private java.lang.String _locale = "en";

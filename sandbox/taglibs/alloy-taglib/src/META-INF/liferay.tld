@@ -172,7 +172,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

@@ -14,7 +14,7 @@
 			width: 960px;
 		}
 
-		.yui3-aui-column {
+		.aui-column {
 			position: relative;
 		}
 
@@ -41,7 +41,7 @@
 
 		<a href="javascript:;" id="resetIframes">Reset Iframe Sources</a>
 
-		<div class="yui3-aui-column markup-iframe yui3-aui-w100"><div class="yui3-aui-column-content"><strong class="frame-label">Iframe from markup</strong>
+		<div class="aui-column markup-iframe aui-w100"><div class="aui-column-content"><strong class="frame-label">Iframe from markup</strong>
 		<iframe frameborder="0" border="0" scrolling="no" src="assets/short_text.html" width="100%" height="400" id="test123" name="test123"></iframe></div></div>
 	</div>
 </div>
@@ -57,7 +57,7 @@ AUI().ready('aui-resize-iframe', function(A) {
 	for (var i = 0; i < 9; i++) {
 		var frameName = 'test123' + A.guid();
 
-		buffer.push('<div class="yui3-aui-column yui3-aui-w33"><div class="yui3-aui-column-content"><strong class="frame-label">Dynamic iframe</strong><iframe src="assets/short_text.html" frameborder="0" border="0" width="100%" height="400" ' + scrolling + ' name="' + frameName + '" id="' + frameName + '"></iframe></div></div>');
+		buffer.push('<div class="aui-column aui-w33"><div class="aui-column-content"><strong class="frame-label">Dynamic iframe</strong><iframe src="assets/short_text.html" frameborder="0" border="0" width="100%" height="400" ' + scrolling + ' name="' + frameName + '" id="' + frameName + '"></iframe></div></div>');
 	}
 
 	var demo = A.one('#demo');

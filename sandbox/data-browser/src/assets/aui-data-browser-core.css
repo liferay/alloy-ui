@@ -1,27 +1,27 @@
-.yui3-aui-databrowser {
+.aui-databrowser {
 	overflow: hidden;
 }
 
-.yui3-aui-databrowser-search {
+.aui-databrowser-search {
 	overflow-y: auto;
 }
 
-.yui3-aui-databrowser-tree {
+.aui-databrowser-tree {
 	overflow-y: auto;
 }
 
-.yui3-aui-databrowser .yui3-aui-panel-bd ul {
+.aui-databrowser .aui-panel-bd ul {
 	margin: 0;
 	list-style: none;
 	overflow: hidden;
 	clear: left;
 }
 
-.yui3-aui-databrowser .yui3-aui-panel-bd ul li {
+.aui-databrowser .aui-panel-bd ul li {
 	text-align: center;
 	float: left;
 }
 
-.yui3-aui-databrowser-search-list-item-icon span {
+.aui-databrowser-search-list-item-icon span {
 	margin: 0 auto;
 }

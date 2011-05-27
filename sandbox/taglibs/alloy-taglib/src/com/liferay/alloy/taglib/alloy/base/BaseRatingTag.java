@@ -1113,7 +1113,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_height = null;
 		_hiddenInput = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_ratingId = null;
 		_initialized = false;
 		_inputName = null;
@@ -1341,7 +1341,7 @@ public class BaseRatingTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _focused = false;
 	private java.lang.Object _height = null;
 	private java.lang.Object _hiddenInput = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _ratingId = null;
 	private boolean _initialized = false;
 	private java.lang.String _inputName = null;

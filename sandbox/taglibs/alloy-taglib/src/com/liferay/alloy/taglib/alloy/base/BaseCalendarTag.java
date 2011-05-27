@@ -2118,7 +2118,7 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 		_headerContentNode = null;
 		_headerTitleNode = null;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_hideDelay = 0;
 		_hideOn = "mouseout";
 		_hideOnDocumentClick = true;
@@ -2544,7 +2544,7 @@ public class BaseCalendarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _headerContentNode = null;
 	private java.lang.String _headerTitleNode = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.Object _hideDelay = 0;
 	private java.lang.String _hideOn = "mouseout";
 	private boolean _hideOnDocumentClick = true;

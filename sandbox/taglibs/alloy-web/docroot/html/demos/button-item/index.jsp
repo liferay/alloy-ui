@@ -11,7 +11,7 @@
 		margin: 0 auto;
 	}
 
-	#withLabel .yui3-aui-buttonitem, #iconOnly .yui3-aui-buttonitem {
+	#withLabel .aui-buttonitem, #iconOnly .aui-buttonitem {
 		display: block;
 		clear: both;
 	}
@@ -200,9 +200,9 @@ String[] allIcons = new String[] {
 	<h1>Alloy - Button Demo</h1>
 
 	<div id="demo">
-		<div class="yui3-aui-layout">
-			<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
-				<div class="yui3-aui-column-content yui3-aui-column-content-first" id="withLabel">
+		<div class="aui-layout">
+			<div class="aui-column aui-w25 aui-column-first">
+				<div class="aui-column-content aui-column-content-first" id="withLabel">
 					<%
 						for (String curIcon : allIcons) {
 					%>
@@ -213,8 +213,8 @@ String[] allIcons = new String[] {
 				</div>
 			</div>
 
-			<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
-				<div class="yui3-aui-column-content yui3-aui-column-content-last" id="iconOnly">
+			<div class="aui-column aui-w75 aui-column-last">
+				<div class="aui-column-content aui-column-content-last" id="iconOnly">
 					<%
 						for (String curIcon : allIcons) {
 					%>

@@ -1747,7 +1747,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 		_focused = false;
 		_forceSelection = false;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_textboxlistId = null;
 		_initialized = false;
 		_input = null;
@@ -2101,7 +2101,7 @@ public class BaseTextboxlistTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _focused = false;
 	private boolean _forceSelection = false;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _textboxlistId = null;
 	private boolean _initialized = false;
 	private java.lang.String _input = null;

@@ -16,7 +16,7 @@
 	margin: 10px;
 }
 
-.yui3-aui-portal-layout-proxy {
+.aui-portal-layout-proxy {
 	position: absolute;
 	width: 100px;
 	height: 20px;
@@ -41,7 +41,7 @@
 	width: 100px;
 }
 
-.yui3-aui-portal-layout-drag-target-indicator  {
+.aui-portal-layout-drag-target-indicator  {
 	margin: 2px 0;
 }
 </style>

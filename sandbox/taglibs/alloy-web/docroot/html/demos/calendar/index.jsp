@@ -32,7 +32,7 @@
 
 <alloy:calendar
 	firstDayOfWeek="0"
-	trigger=".yui3-aui-buttonitem-content"
+	trigger=".aui-buttonitem-content"
 	onSelect="function(event) { alert( event.date.formatted ) }"
 />
 

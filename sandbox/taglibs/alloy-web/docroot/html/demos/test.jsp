@@ -58,7 +58,7 @@
 
 <br /><br />
 
-<div class="yui3-aui-helper-clearfix">
+<div class="aui-helper-clearfix">
 	<alloy:date-picker-select
 		appendOrder='<%= new String[] {"d", "m", "y"} %>'
 	/>

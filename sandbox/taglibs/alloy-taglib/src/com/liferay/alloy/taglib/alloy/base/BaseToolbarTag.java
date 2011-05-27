@@ -1004,7 +1004,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_disabled = false;
 		_focused = false;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_hoverState = false;
 		_toolbarId = null;
 		_initialized = false;
@@ -1210,7 +1210,7 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _disabled = false;
 	private boolean _focused = false;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private boolean _hoverState = false;
 	private java.lang.String _toolbarId = null;
 	private boolean _initialized = false;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project name="AlloyComponent" default="local">
-	<property file="build.yui3-aui-editor-toolbar-plugin.properties" />
+	<property file="build.aui-editor-toolbar-plugin.properties" />
 
 	<import file="../../resources/builder/bootstrap.xml" />
 </project>

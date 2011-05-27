@@ -1,80 +1,80 @@
-.yui3-aui-editormenu-content {
+.aui-editormenu-content {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
 
-.yui3-aui-editormenu-content-list {
+.aui-editormenu-content-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.yui3-aui-editormenu-content-list li {
+.aui-editormenu-content-list li {
 	list-style: none;
 }
 
-.yui3-aui-editortoolbar-content .yui3-aui-toolbar-horizontal {
+.aui-editortoolbar-content .aui-toolbar-horizontal {
 	margin-right: 3px;
 }
 
-.yui3-aui-editormenu-hidden {
+.aui-editormenu-hidden {
 	position: absolute;
 	clip: rect(0pt, 0pt, 0pt, 0pt);
 }
 
-.yui3-aui-editortoolbar-source-textarea {
+.aui-editortoolbar-source-textarea {
 	width: 100%;
 }
 
-.yui3-aui-editortoolbar-insertimage-content {
+.aui-editortoolbar-insertimage-content {
 	text-align: center;
 }
 
-.yui3-aui-editortoolbar-insertimage-content ul {
+.aui-editortoolbar-insertimage-content ul {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 }
 
-.yui3-aui-editortoolbar-insertimage-content li {
+.aui-editortoolbar-insertimage-content li {
 	margin: 0 0 4px 0;
 	overflow: hidden;
 	clear: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content .yui3-aui-field-label {
+.aui-editortoolbar-insertimage-content .aui-field-label {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content .yui3-aui-field-input {
+.aui-editortoolbar-insertimage-content .aui-field-input {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content li span {
+.aui-editortoolbar-insertimage-content li span {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content-target {
+.aui-editortoolbar-insertimage-content-target {
 	display: inline-block;
 	clear: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content-target input {
+.aui-editortoolbar-insertimage-content-target input {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content-target label {
+.aui-editortoolbar-insertimage-content-target label {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content-align {
+.aui-editortoolbar-insertimage-content-align {
 	float: left;
 }
 
-.yui3-aui-editortoolbar-insertimage-content li .yui3-aui-editortoolbar-insertimage-content-align span {
+.aui-editortoolbar-insertimage-content li .aui-editortoolbar-insertimage-content-align span {
 	padding: 0;
 }
 
-.yui3-aui-editortoolbar-insertimage-content .yui3-aui-button-holder {
+.aui-editortoolbar-insertimage-content .aui-button-holder {
 	text-align: right;
 }

@@ -24,7 +24,7 @@ h3 {
 	font-weight: normal;
 }
 
-.yui3-aui-button-input-submit {
+.aui-button-input-submit {
 	background: url(../images/button-submit.png) repeat-x scroll 0 0;
 	border: 1px solid #9e9e9e;
 	color: #fff;
@@ -52,7 +52,7 @@ h3 {
 }
 
 /* Rounded corners */
-.yui3-aui-button-input-submit {
+.aui-button-input-submit {
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;

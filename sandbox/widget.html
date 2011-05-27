@@ -28,56 +28,56 @@
 	/* ---------- These elements get a shadow ---------- */
 
 
-	.yui3-aui-combobox-content {
+	.aui-combobox-content {
 		float: left;
 	}
 
-	.yui3-aui-combobox-input {
+	.aui-combobox-input {
 	}
 
-	.yui3-aui-combobox-input, .yui3-aui-combobox-trigger {
+	.aui-combobox-input, .aui-combobox-trigger {
 		vertical-align: middle;
 	}
 
-	.yui3-aui-combobox-trigger {
+	.aui-combobox-trigger {
 		cursor: pointer;
 		float: right;
 		margin: 0;
 		border-width: 0;
 	}
 
-	.yui3-aui-combobox-results {
+	.aui-combobox-results {
 		
 	}
 
-	.yui3-aui-combobox-results ul {
+	.aui-combobox-results ul {
 		list-style: none;
 		margin: 0;
 	}
 
-	.yui3-aui-combobox-list-item {
+	.aui-combobox-list-item {
 		margin: 0;
 		list-style: none;
 		padding: 0 3px;
 		border: 1px solid #fff;
 	}
 
-	.yui3-aui-combobox-results-content {
+	.aui-combobox-results-content {
 		border: 1px solid #98c0f4;
 		overflow-y: auto;
 		height: 100%;
 	}
 
-	.yui3-aui-overlay-hidden {
+	.aui-overlay-hidden {
 		visibility: hidden;
 	}
 
-	.yui3-aui-combobox-selected {
+	.aui-combobox-selected {
 		background: #dfe8f6;
 		border-color: #a3bae9;
 	}
 
-	.yui3-aui-combobox-icon-loading {
+	.aui-combobox-icon-loading {
 		background-image: url(../themes/base/images/loading_indicator.gif);
 		background-position: 0 0;
 	}
@@ -85,7 +85,7 @@
 <body>
 <!--
 <input id="myTestWidget" type="text" value="" />
-<input class="yui3-aui-combobox-input" id="comboBox" type="text" value="" />-->
+<input class="aui-combobox-input" id="comboBox" type="text" value="" />-->
 
 <div id="wrapper">
 	<h1>Alloy Base File</h1>
@@ -183,7 +183,7 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 	ComboBox.LOADING_CLASS = A.getClassName(ComboBox.NAME, 'icon-loading');
 
 	ComboBox.INPUT_TEMPLATE = '<input class="' + ComboBox.INPUT_CLASS + '" type="text" />';
-	ComboBox.BTN_TEMPLATE = '<span class="yui3-aui-state-default yui3-aui-tool"><span class="yui3-aui-icon yui3-aui-icon-trigger"></span></span>';
+	ComboBox.BTN_TEMPLATE = '<span class="aui-state-default aui-tool"><span class="aui-icon aui-icon-trigger"></span></span>';
 
 	A.extend(
 		ComboBox,
@@ -519,7 +519,7 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 				var icon = button.get('firstChild');
 
 				icon.addClass(instance.getClassName('trigger', 'icon'));
-				icon.addClass('yui3-aui-icon-circle-triangle-s');
+				icon.addClass('aui-icon-circle-triangle-s');
 
 				contentBox.appendChild(button);
 
@@ -1774,10 +1774,10 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 										node._resultData = result;
 										node.set('innerHTML', instance.formatResult(result, currentQuery, resultMatch));
 
-										node.removeClass('yui3-aui-helper-hidden');
+										node.removeClass('aui-helper-hidden');
 									}
 									else {
-										node.addClass('yui3-aui-helper-hidden');
+										node.addClass('aui-helper-hidden');
 									}
 								}
 							);
@@ -2012,7 +2012,7 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 				var icon = button.get('firstChild');
 
 				icon.addClass(instance.getClassName('trigger', 'icon'));
-				icon.addClass('yui3-aui-icon-circle-triangle-s');
+				icon.addClass('aui-icon-circle-triangle-s');
 
 				contentBox.appendChild(button);
 
@@ -2050,7 +2050,7 @@ AUI().use('overlay', 'datasource', 'dataschema-array', 'node-event-simulate', fu
 				var listClassName = ComboBox.LIST_ITEM_CLASS;
 
 				while (maxResultsDisplayed--) {
-					listItems[maxResultsDisplayed] = '<li class="yui3-aui-helper-hidden ' + listClassName + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
+					listItems[maxResultsDisplayed] = '<li class="aui-helper-hidden ' + listClassName + '" data-listItemIndex="' + maxResultsDisplayed + '"></li>';
 				}
 
 				resultList.set('innerHTML', listItems.join(''));

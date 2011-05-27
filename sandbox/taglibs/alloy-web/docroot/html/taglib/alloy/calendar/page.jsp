@@ -4,6 +4,6 @@
 	excludeAttributes="var,javaScriptAttributes,useMarkup,useJavaScript"
 	tagPageContext="<%= pageContext %>"
 	options="<%= _options %>"
-	module="yui3-aui-calendar"
+	module="aui-calendar"
 	name="Calendar"
 />

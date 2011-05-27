@@ -15,7 +15,7 @@ p a {
 	font-weight: bold;
 }
 
-.yui3-aui-tooltip {
+.aui-tooltip {
 	color: #999;
 	font-size: 14px;
 }

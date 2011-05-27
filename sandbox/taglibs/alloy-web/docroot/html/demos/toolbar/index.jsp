@@ -9,7 +9,7 @@
 	.testing {
 		display: block;
 	}
-	.yui3-aui-buttonitem-content {
+	.aui-buttonitem-content {
 		margin: 0;
 	}
 </style>
@@ -68,8 +68,8 @@
 	<h2>Icon only</h2>
 
 	<alloy:toolbar orientation="vertical">
-		<alloy:button-item activeState="true" cssClass="yui3-aui-toolbar-first" icon="plus" />
+		<alloy:button-item activeState="true" cssClass="aui-toolbar-first" icon="plus" />
 		<alloy:button-item activeState="true" icon="minus" />
-		<alloy:button-item activeState="true" cssClass="yui3-aui-toolbar-last" icon="gear" />
+		<alloy:button-item activeState="true" cssClass="aui-toolbar-last" icon="gear" />
 	</alloy:toolbar>
 </div>

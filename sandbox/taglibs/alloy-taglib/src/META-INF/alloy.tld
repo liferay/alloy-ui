@@ -138,7 +138,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1422,7 +1422,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1445,7 +1445,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[DOM Node to display the icon of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>yui3-aui-button-icon</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+boundingBox which matches <code>aui-button-icon</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>iconNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1484,7 +1484,7 @@ has been through the init lifecycle phase.<!--{"event":false,"inputType":"boolea
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the ButtonItem. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>yui3-aui-button-label</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+boundingBox which matches <code>aui-button-label</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2412,7 +2412,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2520,7 +2520,7 @@ contentBox which matches <code>aui-calendar-monthdays</code>.<!--{"event":false,
 		<attribute>
 			<description><![CDATA[DOM node reference to be the "none" link of the Calendar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-calendar-title</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
+contentBox which matches <code>aui-calendar-title</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>noneLinkNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2530,7 +2530,7 @@ contentBox which matches <code>yui3-aui-calendar-title</code>.<!--{"event":false
 			<description><![CDATA[NodeList containing all the DOM elements for
 each blank day. If not specified try to query using HTML_PARSER
 an element inside contentBox which matches
-<code>yui3-aui-calendar-day-blank</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
+<code>aui-calendar-day-blank</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>paddingDaysEnd</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2540,7 +2540,7 @@ an element inside contentBox which matches
 			<description><![CDATA[NodeList containing all the DOM elements for
 each blank day. If not specified try to query using HTML_PARSER
 an element inside contentBox which matches
-<code>yui3-aui-calendar-day-blank</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
+<code>aui-calendar-day-blank</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>paddingDaysStart</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2654,7 +2654,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.<!--{"event
 		<attribute>
 			<description><![CDATA[DOM node reference to be the "today" link of the Calendar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-calendar-title</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
+contentBox which matches <code>aui-calendar-title</code>.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>todayLinkNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4103,7 +4103,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -4999,7 +4999,7 @@ for skinning.<!--{"event":false,"inputType":"java.lang.String","outputType":"jav
 		<attribute>
 			<description><![CDATA[DOM Node to display the button of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-buttonitem</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-buttonitem</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>buttonNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5030,7 +5030,7 @@ houses its content.<!--{"event":false,"inputType":"java.lang.String","outputType
 		<attribute>
 			<description><![CDATA[DOM Node to display the day of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>dayNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5087,7 +5087,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5119,7 +5119,7 @@ return/set strings for this locale.<!--{"event":false,"inputType":"java.lang.Str
 		<attribute>
 			<description><![CDATA[DOM Node to display the month of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>monthNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5176,7 +5176,7 @@ has been through the render lifecycle phase.<!--{"event":false,"inputType":"bool
 		<attribute>
 			<description><![CDATA[DOM Node to display the selects of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-datepicker-select-wrapper</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-datepicker-select-wrapper</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>selectWrapperNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -5258,7 +5258,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[DOM Node to display the year of the DatePickerSelect. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-datepicker-year</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>yearNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -6121,7 +6121,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -7214,7 +7214,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -8747,7 +8747,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -10372,7 +10372,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -12293,7 +12293,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -13143,7 +13143,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -14181,7 +14181,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -15259,7 +15259,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -16849,7 +16849,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -17776,7 +17776,7 @@ has focus.<!--{"event":false,"inputType":"boolean","outputType":"boolean","requi
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -17800,7 +17800,7 @@ has been through the init lifecycle phase.<!--{"event":false,"inputType":"boolea
 		<attribute>
 			<description><![CDATA[Display label of the progressbar. If not specified try to query
 using HTML_PARSER an element inside contentBox which matches
-<code>yui3-aui-progressbar-text</code> and get its innerHTML to be
+<code>aui-progressbar-text</code> and get its innerHTML to be
 used as label.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>label</name>
 			<required>false</required>
@@ -17875,7 +17875,7 @@ has been through the render lifecycle phase.<!--{"event":false,"inputType":"bool
 		<attribute>
 			<description><![CDATA[DOM Node to display the satus bar of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-progressbar-status</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-progressbar-status</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>statusNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -17911,7 +17911,7 @@ null removes the "tabIndex" attribute from the widget's bounding box.<!--{"event
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the progressbar. If not
 specified try to query using HTML_PARSER an element inside
-contentBox which matches <code>yui3-aui-progressbar-text</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+contentBox which matches <code>aui-progressbar-text</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>textNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -18556,7 +18556,7 @@ replace the radio elements and keep the same name.<!--{"event":false,"inputType"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -18596,7 +18596,7 @@ not specified will use the name of the replaced radio.<!--{"event":false,"inputT
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>yui3-aui-rating-label-element</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+boundingBox which matches <code>aui-rating-label-element</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -20128,7 +20128,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -21401,7 +21401,7 @@ replace the radio elements and keep the same name.<!--{"event":false,"inputType"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -21441,7 +21441,7 @@ not specified will use the name of the replaced radio.<!--{"event":false,"inputT
 		<attribute>
 			<description><![CDATA[DOM Node to display the text of the StarRating. If not
 specified try to query using HTML_PARSER an element inside
-boundingBox which matches <code>yui3-aui-rating-label-element</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
+boundingBox which matches <code>aui-rating-label-element</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false}-->]]></description>
 			<name>labelNode</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -22254,7 +22254,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -23124,7 +23124,7 @@ the default unit, defined by the Widgets DEF_UNIT, property is used.<!--{"event"
 		<attribute>
 			<description><![CDATA[css class added to hide the <code>boundingBox</code> when
 <a href="Component.html#config_visible">visible</a> is set to
-<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"yui3-aui-helper-hidden"}-->]]></description>
+<code>false</code>.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"aui-helper-hidden"}-->]]></description>
 			<name>hideClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

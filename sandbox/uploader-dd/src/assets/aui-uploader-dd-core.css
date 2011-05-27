@@ -1,23 +1,23 @@
-.yui3-aui-uploaderdd-image a {
+.aui-uploaderdd-image a {
 	text-decoration: none;
 	cursor: text;
 	display: block;
 	overflow: hidden;
 }
 
-.yui3-aui-uploaderdd-image a:visited {
+.aui-uploaderdd-image a:visited {
 	background-position: 0 0;
 }
 
-.yui3-aui-uploaderdd-html form, .yui3-aui-uploaderdd-image form, .yui3-aui-uploaderdd-html object {
+.aui-uploaderdd-html form, .aui-uploaderdd-image form, .aui-uploaderdd-html object {
 	position: absolute;
 	opacity: 0;
 }
 
-.yui3-aui-uploaderdd-image form {
+.aui-uploaderdd-image form {
 	opacity: 0;
 }
 
-.yui3-aui-uploaderdd-html form input, .yui3-aui-uploaderdd-image form input {
+.aui-uploaderdd-html form input, .aui-uploaderdd-image form input {
 	display: block;
 }

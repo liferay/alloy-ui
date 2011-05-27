@@ -1,7 +1,7 @@
 <%@ include file="/html/demos/init.jsp" %>
 
 <style type="text/css" media="screen">
-	.yui3-aui-tree-view {
+	.aui-tree-view {
 		margin: 30px;
 		font-size: 12px;
 	}

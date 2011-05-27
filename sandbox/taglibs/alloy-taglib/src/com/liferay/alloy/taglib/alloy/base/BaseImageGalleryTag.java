@@ -2236,7 +2236,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "yui3-aui-helper-hidden";
+		_hideClass = "aui-helper-hidden";
 		_imagegalleryId = null;
 		_image = null;
 		_imageAnim = null;
@@ -2686,7 +2686,7 @@ public class BaseImageGalleryTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "yui3-aui-helper-hidden";
+	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _imagegalleryId = null;
 	private java.lang.Object _image = null;
 	private java.lang.Object _imageAnim = null;
