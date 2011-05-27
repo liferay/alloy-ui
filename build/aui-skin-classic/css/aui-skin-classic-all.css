@@ -207,6 +207,22 @@ hr, .separator {
 	otherwise the screen will jump when focusing child elements*/
 	top: -9999em !important;
 	visibility: hidden !important;
+	left: 0 !important;
+}
+
+.rtl .aui-helper-hidden-accessible,
+.rtl .aui-overlay-hidden,
+.rtl .aui-overlaycontext-hidden,
+.rtl .aui-overlaymask-hidden,
+.rtl .aui-calendar-hidden,
+.rtl .aui-date-picker-hidden,
+.rtl .aui-datepicker-hidden,
+.rtl .aui-colorpicker-hidden,
+.rtl .aui-tooltip-hidden,
+.rtl .aui-image-viewer-hidden,
+.rtl .aui-image-gallery-hidden {
+	left: auto !important;
+	right: 0 !important;
 }
 
 .aui-helper-force-offset {
