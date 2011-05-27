@@ -1,16 +1,16 @@
-.yui3-aui-combobox-content .yui3-aui-field-content {
+.aui-combobox-content .aui-field-content {
 	float: none;
 }
 
-.yui3-aui-combobox-content {
+.aui-combobox-content {
 	white-space: nowrap;
 	vertical-align: middle;
 }
 
-.yui3-aui-combobox-content .yui3-aui-field-content {
+.aui-combobox-content .aui-field-content {
 	display: inline-block;
 }
 
-.yui3-aui-combobox-content .yui3-aui-field-input {
+.aui-combobox-content .aui-field-input {
 	display: block;
 }

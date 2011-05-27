@@ -22,18 +22,18 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 	border-color: #555;
 }
 
-.yui3-aui-state-default {
+.aui-state-default {
 	background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
 	border: 1px solid;
 	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
 }
 
-.yui3-aui-state-hover {
+.aui-state-hover {
 	background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
 	border-color: #627782;
 }
 
-.yui3-aui-state-active {
+.aui-state-active {
 	background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
 	border-color: #555;
 }
@@ -42,13 +42,13 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* ---------- Drop shadows ---------- */
 
-.yui3-aui-dialog-content {
+.aui-dialog-content {
 	-moz-box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
 	box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.5);
 }
 
-.yui3-aui-dialog-hd {
+.aui-dialog-hd {
 	-moz-box-shadow: 1px 1px 0 #fff;
 	-webkit-box-shadow: 1px 1px 0 #fff;
 	box-shadow: 1px 1px 0 #fff;
@@ -56,7 +56,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* ---------- Rounded corners ---------- */
 
-.yui3-aui-tabview-list, .yui3-aui-tabview-wrapper, .yui3-aui-tabviewmenu-list, .yui3-aui-tab-active, .yui3-aui-dialog-content, .yui3-aui-dialog .yui3-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .yui3-aui-panel-content, .yui3-aui-panel-collapsed .yui3-aui-panel-hd {
+.aui-tabview-list, .aui-tabview-wrapper, .aui-tabviewmenu-list, .aui-tab-active, .aui-dialog-content, .aui-dialog .yui3-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .aui-panel-content, .aui-panel-collapsed .aui-panel-hd {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
@@ -64,7 +64,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* Top left */
 
-.yui3-aui-panel-hd {
+.aui-panel-hd {
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-left-radius: 4px;
 	border-top-left-radius: 4px;
@@ -72,7 +72,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* Top right */
 
-.yui3-aui-panel-hd {
+.aui-panel-hd {
 	-moz-border-radius-topright: 4px;
 	-webkit-border-top-right-radius: 4px;
 	border-top-right-radius: 4px;

@@ -1,21 +1,21 @@
-.yui3-aui-carousel {
+.aui-carousel {
 	position: relative;
 }
 
-.yui3-aui-carousel-item {
+.aui-carousel-item {
 	position: absolute;
 	z-index: 1;
 }
 
-.yui3-aui-carousel-item-transition {
+.aui-carousel-item-transition {
 	z-index: 2;
 }
 
-.yui3-aui-carousel-item-active {
+.aui-carousel-item-active {
 	z-index: 3;
 }
 
-.yui3-aui-carousel menu {
+.aui-carousel menu {
 	background: #000;
 	bottom: 6px;
 	position: absolute;
@@ -26,12 +26,12 @@
 	z-index: 4;
 }
 
-.yui3-aui-carousel menu li,
-.yui3-aui-carousel menu a {
+.aui-carousel menu li,
+.aui-carousel menu a {
 	float: left;
 }
 
-.yui3-aui-carousel-menu-item {
+.aui-carousel-menu-item {
 	background: #474A4B;
 	cursor: pointer;
 	display: block;
@@ -39,37 +39,37 @@
 	text-indent: -999999px;
 }
 
-.yui3-aui-carousel-menu-next,
-.yui3-aui-carousel-menu-play,
-.yui3-aui-carousel-menu-pause,
-.yui3-aui-carousel-menu-prev {
+.aui-carousel-menu-next,
+.aui-carousel-menu-play,
+.aui-carousel-menu-pause,
+.aui-carousel-menu-prev {
 	height: 18px;
 	width: 18px;
 	margin: 0 3px;
 }
 
-.yui3-aui-carousel-menu-next {
+.aui-carousel-menu-next {
 	background-image: url(next.png);
 }
 
-.yui3-aui-carousel-menu-play {
+.aui-carousel-menu-play {
 	background-image: url(play.png);
 }
 
-.yui3-aui-carousel-menu-pause {
+.aui-carousel-menu-pause {
 	background-image: url(pause.png);
 }
 
-.yui3-aui-carousel-menu-prev {
+.aui-carousel-menu-prev {
 	background-image: url(prev.png);
 }
 
-.yui3-aui-carousel-menu-index {
+.aui-carousel-menu-index {
 	height: 9px;
 	margin: 4px 3px;
 	width: 9px;
 }
 
-.yui3-aui-carousel-menu-active {
+.aui-carousel-menu-active {
 	background: #FFF;
 }

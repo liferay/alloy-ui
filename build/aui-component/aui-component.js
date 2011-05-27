@@ -100,7 +100,7 @@ Component.ATTRS = {
      * <code>false</code>.
 	 *
 	 * @attribute hideClass
-	 * @default 'yui3-aui-helper-hidden'
+	 * @default 'aui-helper-hidden'
 	 * @type String
 	 */
 	hideClass: {
@@ -419,4 +419,4 @@ Component.build = function() {
 
 A.Component = Component;
 
-}, '@VERSION@' ,{skinnable:false, requires:['widget','aui-classnamemanager']});
+}, '@VERSION@' ,{requires:['widget','aui-classnamemanager'], skinnable:false});

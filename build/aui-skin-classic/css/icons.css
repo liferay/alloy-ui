@@ -1,4 +1,4 @@
-.yui3-aui-icon {
+.aui-icon {
 	background-repeat: no-repeat;
 	background: url(../images/icon_sprite.png) no-repeat 0 0;
 	display: block;
@@ -8,699 +8,699 @@
 	width: 16px;
 }
 
-.yui3-aui-icon-carat-1-t {
+.aui-icon-carat-1-t {
 	background-position: 0 0; 
 }
 
-.yui3-aui-icon-carat-1-tr {
+.aui-icon-carat-1-tr {
 	background-position: -16px 0; 
 }
 
-.yui3-aui-icon-carat-1-r {
+.aui-icon-carat-1-r {
 	background-position: -32px 0; 
 }
 
-.yui3-aui-icon-carat-1-br {
+.aui-icon-carat-1-br {
 	background-position: -48px 0; 
 }
 
-.yui3-aui-icon-carat-1-b {
+.aui-icon-carat-1-b {
 	background-position: -64px 0; 
 }
 
-.yui3-aui-icon-carat-1-bl {
+.aui-icon-carat-1-bl {
 	background-position: -80px 0; 
 }
 
-.yui3-aui-icon-carat-1-l {
+.aui-icon-carat-1-l {
 	background-position: -96px 0; 
 }
 
-.yui3-aui-icon-carat-1-tl {
+.aui-icon-carat-1-tl {
 	background-position: -112px 0; 
 }
 
-.yui3-aui-icon-carat-2-t-b {
+.aui-icon-carat-2-t-b {
 	background-position: -128px 0; 
 }
 
-.yui3-aui-icon-carat-2-r-l {
+.aui-icon-carat-2-r-l {
 	background-position: -144px 0; 
 }
 
-.yui3-aui-icon-triangle-1-t {
+.aui-icon-triangle-1-t {
 	background-position: 0 -16px; 
 }
 
-.yui3-aui-icon-triangle-1-tr {
+.aui-icon-triangle-1-tr {
 	background-position: -16px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-r {
+.aui-icon-triangle-1-r {
 	background-position: -32px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-br {
+.aui-icon-triangle-1-br {
 	background-position: -48px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-b {
+.aui-icon-triangle-1-b {
 	background-position: -64px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-bl {
+.aui-icon-triangle-1-bl {
 	background-position: -80px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-l {
+.aui-icon-triangle-1-l {
 	background-position: -96px -16px; 
 }
 
-.yui3-aui-icon-triangle-1-tl {
+.aui-icon-triangle-1-tl {
 	background-position: -112px -16px; 
 }
 
-.yui3-aui-icon-triangle-2-t-b {
+.aui-icon-triangle-2-t-b {
 	background-position: -128px -16px; 
 }
 
-.yui3-aui-icon-triangle-2-r-l {
+.aui-icon-triangle-2-r-l {
 	background-position: -144px -16px; 
 }
 
-.yui3-aui-icon-arrow-1-t {
+.aui-icon-arrow-1-t {
 	background-position: 0 -32px; 
 }
 
-.yui3-aui-icon-arrow-1-tr {
+.aui-icon-arrow-1-tr {
 	background-position: -16px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-r {
+.aui-icon-arrow-1-r {
 	background-position: -32px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-br {
+.aui-icon-arrow-1-br {
 	background-position: -48px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-b {
+.aui-icon-arrow-1-b {
 	background-position: -64px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-bl {
+.aui-icon-arrow-1-bl {
 	background-position: -80px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-l {
+.aui-icon-arrow-1-l {
 	background-position: -96px -32px; 
 }
 
-.yui3-aui-icon-arrow-1-tl {
+.aui-icon-arrow-1-tl {
 	background-position: -112px -32px; 
 }
 
-.yui3-aui-icon-arrow-2-t-b {
+.aui-icon-arrow-2-t-b {
 	background-position: -128px -32px; 
 }
 
-.yui3-aui-icon-arrow-2-tr-bl {
+.aui-icon-arrow-2-tr-bl {
 	background-position: -144px -32px; 
 }
 
-.yui3-aui-icon-arrow-2-r-l {
+.aui-icon-arrow-2-r-l {
 	background-position: -160px -32px; 
 }
 
-.yui3-aui-icon-arrow-2-br-tl {
+.aui-icon-arrow-2-br-tl {
 	background-position: -176px -32px; 
 }
 
-.yui3-aui-icon-arrowstop-1-t {
+.aui-icon-arrowstop-1-t {
 	background-position: -192px -32px; 
 }
 
-.yui3-aui-icon-arrowstop-1-r {
+.aui-icon-arrowstop-1-r {
 	background-position: -208px -32px; 
 }
 
-.yui3-aui-icon-arrowstop-1-b {
+.aui-icon-arrowstop-1-b {
 	background-position: -224px -32px; 
 }
 
-.yui3-aui-icon-arrowstop-1-l {
+.aui-icon-arrowstop-1-l {
 	background-position: -240px -32px; 
 }
 
-.yui3-aui-icon-arrowthick-1-t {
+.aui-icon-arrowthick-1-t {
 	background-position: 0 -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-tr {
+.aui-icon-arrowthick-1-tr {
 	background-position: -16px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-r {
+.aui-icon-arrowthick-1-r {
 	background-position: -32px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-br {
+.aui-icon-arrowthick-1-br {
 	background-position: -48px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-b {
+.aui-icon-arrowthick-1-b {
 	background-position: -64px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-bl {
+.aui-icon-arrowthick-1-bl {
 	background-position: -80px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-l {
+.aui-icon-arrowthick-1-l {
 	background-position: -96px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-1-tl {
+.aui-icon-arrowthick-1-tl {
 	background-position: -112px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-2-t-b {
+.aui-icon-arrowthick-2-t-b {
 	background-position: -128px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-2-tr-bl {
+.aui-icon-arrowthick-2-tr-bl {
 	background-position: -144px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-2-r-l {
+.aui-icon-arrowthick-2-r-l {
 	background-position: -160px -48px; 
 }
 
-.yui3-aui-icon-arrowthick-2-br-tl {
+.aui-icon-arrowthick-2-br-tl {
 	background-position: -176px -48px; 
 }
 
-.yui3-aui-icon-arrowthickstop-1-t {
+.aui-icon-arrowthickstop-1-t {
 	background-position: -192px -48px; 
 }
 
-.yui3-aui-icon-arrowthickstop-1-r {
+.aui-icon-arrowthickstop-1-r {
 	background-position: -208px -48px; 
 }
 
-.yui3-aui-icon-arrowthickstop-1-b {
+.aui-icon-arrowthickstop-1-b {
 	background-position: -224px -48px; 
 }
 
-.yui3-aui-icon-arrowthickstop-1-l {
+.aui-icon-arrowthickstop-1-l {
 	background-position: -240px -48px; 
 }
 
-.yui3-aui-icon-arrowreturnthick-1-l {
+.aui-icon-arrowreturnthick-1-l {
 	background-position: 0 -64px; 
 }
 
-.yui3-aui-icon-arrowreturnthick-1-t {
+.aui-icon-arrowreturnthick-1-t {
 	background-position: -16px -64px; 
 }
 
-.yui3-aui-icon-arrowreturnthick-1-r {
+.aui-icon-arrowreturnthick-1-r {
 	background-position: -32px -64px; 
 }
 
-.yui3-aui-icon-arrowreturnthick-1-b {
+.aui-icon-arrowreturnthick-1-b {
 	background-position: -48px -64px; 
 }
 
-.yui3-aui-icon-arrowreturn-1-l {
+.aui-icon-arrowreturn-1-l {
 	background-position: -64px -64px; 
 }
 
-.yui3-aui-icon-arrowreturn-1-t {
+.aui-icon-arrowreturn-1-t {
 	background-position: -80px -64px; 
 }
 
-.yui3-aui-icon-arrowreturn-1-r {
+.aui-icon-arrowreturn-1-r {
 	background-position: -96px -64px; 
 }
 
-.yui3-aui-icon-arrowreturn-1-b {
+.aui-icon-arrowreturn-1-b {
 	background-position: -112px -64px; 
 }
 
-.yui3-aui-icon-arrowrefresh-1-l {
+.aui-icon-arrowrefresh-1-l {
 	background-position: -128px -64px; 
 }
 
-.yui3-aui-icon-arrowrefresh-1-t {
+.aui-icon-arrowrefresh-1-t {
 	background-position: -144px -64px; 
 }
 
-.yui3-aui-icon-arrowrefresh-1-r {
+.aui-icon-arrowrefresh-1-r {
 	background-position: -160px -64px; 
 }
 
-.yui3-aui-icon-arrowrefresh-1-b {
+.aui-icon-arrowrefresh-1-b {
 	background-position: -176px -64px; 
 }
 
-.yui3-aui-icon-arrow-4 {
+.aui-icon-arrow-4 {
 	background-position: 0 -80px; 
 }
 
-.yui3-aui-icon-arrow-4-diag {
+.aui-icon-arrow-4-diag {
 	background-position: -16px -80px; 
 }
 
-.yui3-aui-icon-extlink {
+.aui-icon-extlink {
 	background-position: -32px -80px; 
 }
 
-.yui3-aui-icon-newwin {
+.aui-icon-newwin {
 	background-position: -48px -80px; 
 }
 
-.yui3-aui-icon-refresh {
+.aui-icon-refresh {
 	background-position: -64px -80px; 
 }
 
-.yui3-aui-icon-shuffle {
+.aui-icon-shuffle {
 	background-position: -80px -80px; 
 }
 
-.yui3-aui-icon-transfer-r-l {
+.aui-icon-transfer-r-l {
 	background-position: -96px -80px; 
 }
 
-.yui3-aui-icon-transferthick-r-l {
+.aui-icon-transferthick-r-l {
 	background-position: -112px -80px; 
 }
 
-.yui3-aui-icon-folder-collapsed {
+.aui-icon-folder-collapsed {
 	background-position: 0 -96px; 
 }
 
-.yui3-aui-icon-folder-open {
+.aui-icon-folder-open {
 	background-position: -16px -96px; 
 }
 
-.yui3-aui-icon-document {
+.aui-icon-document {
 	background-position: -32px -96px; 
 }
 
-.yui3-aui-icon-document-b {
+.aui-icon-document-b {
 	background-position: -48px -96px; 
 }
 
-.yui3-aui-icon-note {
+.aui-icon-note {
 	background-position: -64px -96px; 
 }
 
-.yui3-aui-icon-mail-closed {
+.aui-icon-mail-closed {
 	background-position: -80px -96px; 
 }
 
-.yui3-aui-icon-mail-open {
+.aui-icon-mail-open {
 	background-position: -96px -96px; 
 }
 
-.yui3-aui-icon-suitcase {
+.aui-icon-suitcase {
 	background-position: -112px -96px; 
 }
 
-.yui3-aui-icon-comment {
+.aui-icon-comment {
 	background-position: -128px -96px; 
 }
 
-.yui3-aui-icon-person {
+.aui-icon-person {
 	background-position: -144px -96px; 
 }
 
-.yui3-aui-icon-print {
+.aui-icon-print {
 	background-position: -160px -96px; 
 }
 
-.yui3-aui-icon-trash {
+.aui-icon-trash {
 	background-position: -176px -96px; 
 }
 
-.yui3-aui-icon-locked {
+.aui-icon-locked {
 	background-position: -192px -96px; 
 }
 
-.yui3-aui-icon-unlocked {
+.aui-icon-unlocked {
 	background-position: -208px -96px; 
 }
 
-.yui3-aui-icon-bookmark {
+.aui-icon-bookmark {
 	background-position: -224px -96px; 
 }
 
-.yui3-aui-icon-tag {
+.aui-icon-tag {
 	background-position: -240px -96px; 
 }
 
-.yui3-aui-icon-home {
+.aui-icon-home {
 	background-position: 0 -112px; 
 }
 
-.yui3-aui-icon-flag {
+.aui-icon-flag {
 	background-position: -16px -112px; 
 }
 
-.yui3-aui-icon-calendar {
+.aui-icon-calendar {
 	background-position: -32px -112px; 
 }
 
-.yui3-aui-icon-cart {
+.aui-icon-cart {
 	background-position: -48px -112px; 
 }
 
-.yui3-aui-icon-pencil {
+.aui-icon-pencil {
 	background-position: -64px -112px; 
 }
 
-.yui3-aui-icon-clock {
+.aui-icon-clock {
 	background-position: -80px -112px; 
 }
 
-.yui3-aui-icon-disk {
+.aui-icon-disk {
 	background-position: -96px -112px; 
 }
 
-.yui3-aui-icon-calculator {
+.aui-icon-calculator {
 	background-position: -112px -112px; 
 }
 
-.yui3-aui-icon-zoomin {
+.aui-icon-zoomin {
 	background-position: -128px -112px; 
 }
 
-.yui3-aui-icon-zoomout {
+.aui-icon-zoomout {
 	background-position: -144px -112px; 
 }
 
-.yui3-aui-icon-search {
+.aui-icon-search {
 	background-position: -160px -112px; 
 }
 
-.yui3-aui-icon-wrench {
+.aui-icon-wrench {
 	background-position: -176px -112px; 
 }
 
-.yui3-aui-icon-gear {
+.aui-icon-gear {
 	background-position: -192px -112px; 
 }
 
-.yui3-aui-icon-heart {
+.aui-icon-heart {
 	background-position: -208px -112px; 
 }
 
-.yui3-aui-icon-star {
+.aui-icon-star {
 	background-position: -224px -112px; 
 }
 
-.yui3-aui-icon-link {
+.aui-icon-link {
 	background-position: -240px -112px; 
 }
 
-.yui3-aui-icon-cancel {
+.aui-icon-cancel {
 	background-position: 0 -128px; 
 }
 
-.yui3-aui-icon-plus {
+.aui-icon-plus {
 	background-position: -16px -128px; 
 }
 
-.yui3-aui-icon-plusthick {
+.aui-icon-plusthick {
 	background-position: -32px -128px; 
 }
 
-.yui3-aui-icon-minus {
+.aui-icon-minus {
 	background-position: -48px -128px; 
 }
 
-.yui3-aui-icon-minusthick {
+.aui-icon-minusthick {
 	background-position: -64px -128px; 
 }
 
-.yui3-aui-icon-close {
+.aui-icon-close {
 	background-position: -80px -128px; 
 }
 
-.yui3-aui-icon-closethick {
+.aui-icon-closethick {
 	background-position: -96px -128px; 
 }
 
-.yui3-aui-icon-key {
+.aui-icon-key {
 	background-position: -112px -128px; 
 }
 
-.yui3-aui-icon-lightbulb {
+.aui-icon-lightbulb {
 	background-position: -128px -128px; 
 }
 
-.yui3-aui-icon-scissors {
+.aui-icon-scissors {
 	background-position: -144px -128px; 
 }
 
-.yui3-aui-icon-clipboard {
+.aui-icon-clipboard {
 	background-position: -160px -128px; 
 }
 
-.yui3-aui-icon-copy {
+.aui-icon-copy {
 	background-position: -176px -128px; 
 }
 
-.yui3-aui-icon-contact {
+.aui-icon-contact {
 	background-position: -192px -128px; 
 }
 
-.yui3-aui-icon-image {
+.aui-icon-image {
 	background-position: -208px -128px; 
 }
 
-.yui3-aui-icon-video {
+.aui-icon-video {
 	background-position: -224px -128px; 
 }
 
-.yui3-aui-icon-script {
+.aui-icon-script {
 	background-position: -240px -128px; 
 }
 
-.yui3-aui-icon-alert {
+.aui-icon-alert {
 	background-position: 0 -144px; 
 }
 
-.yui3-aui-icon-info {
+.aui-icon-info {
 	background-position: -16px -144px; 
 }
 
-.yui3-aui-icon-notice {
+.aui-icon-notice {
 	background-position: -32px -144px; 
 }
 
-.yui3-aui-icon-help {
+.aui-icon-help {
 	background-position: -48px -144px; 
 }
 
-.yui3-aui-icon-check {
+.aui-icon-check {
 	background-position: -64px -144px; 
 }
 
-.yui3-aui-icon-bullet {
+.aui-icon-bullet {
 	background-position: -80px -144px; 
 }
 
-.yui3-aui-icon-radio-off {
+.aui-icon-radio-off {
 	background-position: -96px -144px; 
 }
 
-.yui3-aui-icon-radio-on {
+.aui-icon-radio-on {
 	background-position: -112px -144px; 
 }
 
-.yui3-aui-icon-pin-l {
+.aui-icon-pin-l {
 	background-position: -128px -144px; 
 }
 
-.yui3-aui-icon-pin-b {
+.aui-icon-pin-b {
 	background-position: -144px -144px; 
 }
 
-.yui3-aui-icon-play {
+.aui-icon-play {
 	background-position: 0 -160px; 
 }
 
-.yui3-aui-icon-pause {
+.aui-icon-pause {
 	background-position: -16px -160px; 
 }
 
-.yui3-aui-icon-seek-next {
+.aui-icon-seek-next {
 	background-position: -32px -160px; 
 }
 
-.yui3-aui-icon-seek-prev {
+.aui-icon-seek-prev {
 	background-position: -48px -160px; 
 }
 
-.yui3-aui-icon-seek-end {
+.aui-icon-seek-end {
 	background-position: -64px -160px; 
 }
 
-.yui3-aui-icon-seek-first {
+.aui-icon-seek-first {
 	background-position: -80px -160px; 
 }
 
-.yui3-aui-icon-stop {
+.aui-icon-stop {
 	background-position: -96px -160px; 
 }
 
-.yui3-aui-icon-eject {
+.aui-icon-eject {
 	background-position: -112px -160px; 
 }
 
-.yui3-aui-icon-volume-off {
+.aui-icon-volume-off {
 	background-position: -128px -160px; 
 }
 
-.yui3-aui-icon-volume-on {
+.aui-icon-volume-on {
 	background-position: -144px -160px; 
 }
 
-.yui3-aui-icon-power {
+.aui-icon-power {
 	background-position: 0 -176px; 
 }
 
-.yui3-aui-icon-signal-diag {
+.aui-icon-signal-diag {
 	background-position: -16px -176px; 
 }
 
-.yui3-aui-icon-signal {
+.aui-icon-signal {
 	background-position: -32px -176px; 
 }
 
-.yui3-aui-icon-battery-0 {
+.aui-icon-battery-0 {
 	background-position: -48px -176px; 
 }
 
-.yui3-aui-icon-battery-1 {
+.aui-icon-battery-1 {
 	background-position: -64px -176px; 
 }
 
-.yui3-aui-icon-battery-2 {
+.aui-icon-battery-2 {
 	background-position: -80px -176px; 
 }
 
-.yui3-aui-icon-battery-3 {
+.aui-icon-battery-3 {
 	background-position: -96px -176px; 
 }
 
-.yui3-aui-icon-circle-plus {
+.aui-icon-circle-plus {
 	background-position: 0 -192px; 
 }
 
-.yui3-aui-icon-circle-minus {
+.aui-icon-circle-minus {
 	background-position: -16px -192px; 
 }
 
-.yui3-aui-icon-circle-close {
+.aui-icon-circle-close {
 	background-position: -32px -192px; 
 }
 
-.yui3-aui-icon-circle-triangle-r {
+.aui-icon-circle-triangle-r {
 	background-position: -48px -192px; 
 }
 
-.yui3-aui-icon-circle-triangle-b {
+.aui-icon-circle-triangle-b {
 	background-position: -64px -192px; 
 }
 
-.yui3-aui-icon-circle-triangle-l {
+.aui-icon-circle-triangle-l {
 	background-position: -80px -192px; 
 }
 
-.yui3-aui-icon-circle-triangle-t {
+.aui-icon-circle-triangle-t {
 	background-position: -96px -192px; 
 }
 
-.yui3-aui-icon-circle-arrow-r {
+.aui-icon-circle-arrow-r {
 	background-position: -112px -192px; 
 }
 
-.yui3-aui-icon-circle-arrow-b {
+.aui-icon-circle-arrow-b {
 	background-position: -128px -192px; 
 }
 
-.yui3-aui-icon-circle-arrow-l {
+.aui-icon-circle-arrow-l {
 	background-position: -144px -192px; 
 }
 
-.yui3-aui-icon-circle-arrow-t {
+.aui-icon-circle-arrow-t {
 	background-position: -160px -192px; 
 }
 
-.yui3-aui-icon-circle-zoomin {
+.aui-icon-circle-zoomin {
 	background-position: -176px -192px; 
 }
 
-.yui3-aui-icon-circle-zoomout {
+.aui-icon-circle-zoomout {
 	background-position: -192px -192px; 
 }
 
-.yui3-aui-icon-circle-check {
+.aui-icon-circle-check {
 	background-position: -208px -192px; 
 }
 
-.yui3-aui-icon-circlesmall-plus {
+.aui-icon-circlesmall-plus {
 	background-position: 0 -208px; 
 }
 
-.yui3-aui-icon-circlesmall-minus {
+.aui-icon-circlesmall-minus {
 	background-position: -16px -208px; 
 }
 
-.yui3-aui-icon-circlesmall-close {
+.aui-icon-circlesmall-close {
 	background-position: -32px -208px; 
 }
 
-.yui3-aui-icon-squaresmall-plus {
+.aui-icon-squaresmall-plus {
 	background-position: -48px -208px; 
 }
 
-.yui3-aui-icon-squaresmall-minus {
+.aui-icon-squaresmall-minus {
 	background-position: -64px -208px; 
 }
 
-.yui3-aui-icon-squaresmall-close {
+.aui-icon-squaresmall-close {
 	background-position: -80px -208px; 
 }
 
-.yui3-aui-icon-grip-dotted-vertical {
+.aui-icon-grip-dotted-vertical {
 	background-position: 0 -224px; 
 }
 
-.yui3-aui-icon-grip-dotted-horizontal {
+.aui-icon-grip-dotted-horizontal {
 	background-position: -16px -224px; 
 }
 
-.yui3-aui-icon-grip-solid-vertical {
+.aui-icon-grip-solid-vertical {
 	background-position: -32px -224px; 
 }
 
-.yui3-aui-icon-grip-solid-horizontal {
+.aui-icon-grip-solid-horizontal {
 	background-position: -48px -224px; 
 }
 
-.yui3-aui-icon-gripsmall-diagonal-br {
+.aui-icon-gripsmall-diagonal-br {
 	background-position: -64px -224px; 
 }
 
-.yui3-aui-icon-grip-diagonal-br {
+.aui-icon-grip-diagonal-br {
 	background-position: -80px -224px; 
 }
 
-.yui3-aui-icon-loading {
+.aui-icon-loading {
 	background: url(../images/loading_indicator.gif) no-repeat 0 0;
 	width: 16px;
 	height: 16px;

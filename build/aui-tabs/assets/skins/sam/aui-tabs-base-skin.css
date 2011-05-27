@@ -1,36 +1,36 @@
-.yui3-aui-tabview-list, .yui3-aui-tabview-list-content {
+.aui-tabview-list, .aui-tabview-list-content {
 	border: 1px solid #c8c9ca;
 	padding: 4px;
 }
 
-.ie7 .yui3-aui-tabview-list, .ie7 .yui3-aui-tabview-list-content {
+.ie7 .aui-tabview-list, .ie7 .aui-tabview-list-content {
 	overflow: hidden;
 }
 
-.yui3-aui-tab {
+.aui-tab {
 	background: transparent;
 	border-width: 0;
 	font-weight: bold;
 }
 
-.yui3-aui-tab-content {
+.aui-tab-content {
 	padding: 3px 10px;
 }
 
-.yui3-aui-tab-active {
+.aui-tab-active {
 	background: #333;
 	padding: 0;
 	position: relative;
 	z-index: 10;
 }
 
-.yui3-aui-tab-active, .yui3-aui-tab-active a {
+.aui-tab-active, .aui-tab-active a {
 	color: #fff;
 	text-decoration: none;
 	text-shadow: -1px -1px #000;
 }
 
-.yui3-aui-tab-active:after {
+.aui-tab-active:after {
 	border: 10px solid;
 	border-bottom-width: 0;
 	border-color: #333 transparent transparent;

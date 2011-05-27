@@ -149,7 +149,7 @@ A.mix(NODE_PROTOTYPE, {
      * Example:
      *
 	 * <pre><code>
-	 * A.one('#nodeId').ancestorsByClassName('yui3-aui-helper-hidden');
+	 * A.one('#nodeId').ancestorsByClassName('aui-helper-hidden');
 	 * </code></pre>
 	 *
 	 * @method ancestors
@@ -776,7 +776,7 @@ A.mix(NODE_PROTOTYPE, {
      * <p>Displays or hide the node instance.</p>
 	 *
 	 * <p><string>NOTE:</string> This method assume that your node were hidden
-     * because of the 'yui3-aui-helper-hidden' css class were being used. This won't
+     * because of the 'aui-helper-hidden' css class were being used. This won't
      * manipulate the inline <code>style.display</code> property.</p>
 	 *
      * @method toggle
@@ -1017,11 +1017,11 @@ NODE_PROTOTYPE._isHidden = function() {
 };
 /**
  * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
- * passed as argument, the className 'yui3-aui-helper-hidden' will be used by
+ * passed as argument, the className 'aui-helper-hidden' will be used by
  * default.</p>
  *
  * <p><string>NOTE:</string> This method assume that your node were visible
- * because the absence of 'yui3-aui-helper-hidden' css class. This won't
+ * because the absence of 'aui-helper-hidden' css class. This won't
  * manipulate the inline <code>style.display</code> property.</p>
  *
  * @method hide
@@ -1040,10 +1040,10 @@ NODE_PROTOTYPE._hide = function() {
  * <p>Show the node removing a css class used to hide it. Use the same
  * className added using the <a href="A.Node.html#method_hide">hide</a>
  * method. If <code>cssClass</code> is not passed as argument, the
- * className 'yui3-aui-helper-hidden' will be used by default.</p>
+ * className 'aui-helper-hidden' will be used by default.</p>
  *
  * <p><string>NOTE:</string> This method assume that your node were hidden
- * because of the 'yui3-aui-helper-hidden' css class were being used. This won't
+ * because of the 'aui-helper-hidden' css class were being used. This won't
  * manipulate the inline <code>style.display</code> property.</p>
  *
  * @method show

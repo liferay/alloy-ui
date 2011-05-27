@@ -226,7 +226,7 @@ var Rating = A.Component.create(
 			/**
 			 * DOM Node to display the text of the StarRating. If not
              * specified try to query using HTML_PARSER an element inside
-             * boundingBox which matches <code>yui3-aui-rating-label-element</code>.
+             * boundingBox which matches <code>aui-rating-label-element</code>.
 			 *
 			 * @attribute labelNode
 			 * @default Generated div element.

@@ -1,63 +1,63 @@
-.yui3-aui-scheduler-base-content {
+.aui-scheduler-base-content {
 	border-color: #BBCCFF;
 	border-style: solid;
 	border-width: 0 3px 3px;
 	overflow: hidden;
 }
 
-.yui3-aui-scheduler-base-nav {
+.aui-scheduler-base-nav {
 	width: 61px;
 	padding: 5px;
 }
 
-.yui3-aui-scheduler-base-nav .yui3-aui-scheduler-base-icon-next,
-.yui3-aui-scheduler-base-nav .yui3-aui-scheduler-base-icon-prev {
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next,
+.aui-scheduler-base-nav .aui-scheduler-base-icon-prev {
 	float: left;
 }
 
-.yui3-aui-scheduler-base-nav .yui3-aui-scheduler-base-icon-next {
+.aui-scheduler-base-nav .aui-scheduler-base-icon-next {
 	margin-left: 3px;
 }
 
-.yui3-aui-scheduler-base-hd {
+.aui-scheduler-base-hd {
 	background: #BBCCFF;
 }
 
-.yui3-aui-scheduler-base-controls {
+.aui-scheduler-base-controls {
 	float: left;
 }
 
-.yui3-aui-scheduler-base-views {
+.aui-scheduler-base-views {
 	float: right;
 }
 
-.yui3-aui-scheduler-base-controls {
+.aui-scheduler-base-controls {
 	line-height: 27px;
 	width: 350px;
 }
 
-.yui3-aui-scheduler-base-views {
+.aui-scheduler-base-views {
 	line-height: 27px;
 	width: 160px;
 }
 
-.yui3-aui-scheduler-base-controls .yui3-aui-scheduler-base-current-date,
-.yui3-aui-scheduler-base-controls .yui3-aui-scheduler-base-nav,
-.yui3-aui-scheduler-base-controls .yui3-aui-scheduler-base-today {
+.aui-scheduler-base-controls .aui-scheduler-base-current-date,
+.aui-scheduler-base-controls .aui-scheduler-base-nav,
+.aui-scheduler-base-controls .aui-scheduler-base-today {
 	float: left;
 }
 
-.yui3-aui-scheduler-base-views .yui3-aui-scheduler-base-view {
+.aui-scheduler-base-views .aui-scheduler-base-view {
 	color: #fff;
 	float: left;
 	margin-right: 10px;
 }
 
-.yui3-aui-scheduler-base-controls .yui3-aui-scheduler-base-today {
+.aui-scheduler-base-controls .aui-scheduler-base-today {
 	color: #fff;
 	margin: 0 5px 0 10px;
 }
 
-.yui3-aui-scheduler-base-controls .yui3-aui-scheduler-base-current-date {
+.aui-scheduler-base-controls .aui-scheduler-base-current-date {
 	font-weight: bold;
 }

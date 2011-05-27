@@ -1661,7 +1661,7 @@ var RadioCellEditor = A.Component.create({
 	EXTENDS: A.CheckboxCellEditor,
 
 	prototype: {
-		OPTION_TEMPLATE: '<input class="yui3-aui-field-input-choice" id="{id}" name="{name}" type="radio" value="{value}"/>',
+		OPTION_TEMPLATE: '<input class="aui-field-input-choice" id="{id}" name="{name}" type="radio" value="{value}"/>',
 
 		getElementsValue: function() {
 			var instance = this;

@@ -408,7 +408,7 @@ var DatePickerSelect = A.Component.create(
 			/**
 			 * DOM Node to display the button of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>yui3-aui-buttonitem</code>.
+             * contentBox which matches <code>aui-buttonitem</code>.
 			 *
 			 * @attribute buttonNode
 			 * @default Generated div element.
@@ -419,7 +419,7 @@ var DatePickerSelect = A.Component.create(
 			/**
 			 * DOM Node to display the day of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>yui3-aui-datepicker-year</code>.
+             * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute dayNode
 			 * @default Generated div element.
@@ -433,7 +433,7 @@ var DatePickerSelect = A.Component.create(
 			/**
 			 * DOM Node to display the month of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>yui3-aui-datepicker-year</code>.
+             * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute monthNode
 			 * @default Generated div element.
@@ -447,7 +447,7 @@ var DatePickerSelect = A.Component.create(
 			/**
 			 * DOM Node to display the year of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>yui3-aui-datepicker-year</code>.
+             * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute yearNode
 			 * @default Generated div element.
@@ -489,7 +489,7 @@ var DatePickerSelect = A.Component.create(
 			/**
 			 * DOM Node to display the selects of the DatePickerSelect. If not
              * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>yui3-aui-datepicker-select-wrapper</code>.
+             * contentBox which matches <code>aui-datepicker-select-wrapper</code>.
 			 *
 			 * @attribute selectWrapperNode
 			 * @default Generated div element.
