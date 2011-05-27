@@ -1010,7 +1010,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 			instance.editSortable = new A.Sortable({
 				container: editContainer,
-				handles: [ _DOT+'aui-celleditor-edit-dd-handle' ],
+				handles: [ _DOT+CSS_CELLEDITOR_EDIT_DD_HANDLE ],
 				nodes: _DOT+CSS_CELLEDITOR_EDIT_OPTION_ROW,
 				opacity: '.3'
 			})
