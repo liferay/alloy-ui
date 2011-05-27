@@ -11,7 +11,7 @@
 		margin: 30px;
 	}
 
-	.yui3-aui-hover-cell {
+	.aui-hover-cell {
 		background: #ddd;
 	}
 	</style>
@@ -100,10 +100,10 @@ AUI().use('aui-datatable', 'console', function(A) {
 		}
 
 		if (event.type == 'dataTable:cellMouseenter') {
-			event.liner.addClass('yui3-aui-hover-cell');
+			event.liner.addClass('aui-hover-cell');
 		}
 		else if (event.type == 'dataTable:cellMouseleave') {
-			event.liner.removeClass('yui3-aui-hover-cell');
+			event.liner.removeClass('aui-hover-cell');
 		}
 
 		// event.halt();

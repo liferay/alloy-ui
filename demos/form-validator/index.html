@@ -25,7 +25,7 @@
 		padding: 3px;
 	}
 
-	.yui3-aui-form-validator-stack-error {
+	.aui-form-validator-stack-error {
 		color: red;
 		display: block;
 		font-weight: normal;
@@ -33,15 +33,15 @@
 		margin: 3px 0;
 	}
 
-	.yui3-aui-form-validator-error-container {}
-	.yui3-aui-form-validator-valid-container {}
+	.aui-form-validator-error-container {}
+	.aui-form-validator-valid-container {}
 
-	.yui3-aui-form-validator-error {
+	.aui-form-validator-error {
 /*		border: 1px dotted red;*/
 		background: lightPink;
 	}
 
-	.yui3-aui-form-validator-valid {
+	.aui-form-validator-valid {
 /*		border: 1px solid green;*/
 		background: lightGreen;
 	}
@@ -55,22 +55,22 @@
 <form action="" id="fm1" name="fm1">
 	<fieldset>
 		<legend>Example 1 - Rules extracted from CSS classes</legend>
-			<p class="yui3-aui-field">
-				<label class="yui3-aui-field-label" for="name2">Name:</label>
-				<input class="yui3-aui-field-required" type="text" name="name" id="name2" />
+			<p class="aui-field">
+				<label class="aui-field-label" for="name2">Name:</label>
+				<input class="aui-field-required" type="text" name="name" id="name2" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="email2">Email:</label>
-				<input class="yui3-aui-field-required yui3-aui-field-email" type="text" name="email" id="email2" />
+				<label class="aui-field-label" for="email2">Email:</label>
+				<input class="aui-field-required aui-field-email" type="text" name="email" id="email2" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="age2">Age:</label>
-				<input class="yui3-aui-field-digits" type="text" name="age" id="age2" />
+				<label class="aui-field-label" for="age2">Age:</label>
+				<input class="aui-field-digits" type="text" name="age" id="age2" />
 			</p>
 
 			<p>
-				<input class="yui3-aui-button-input" type="submit" value="Submit" />
-				<input class="yui3-aui-button-input" type="reset" value="Reset" />
+				<input class="aui-button-input" type="submit" value="Submit" />
+				<input class="aui-button-input" type="reset" value="Reset" />
 			</p>
 	</fieldset>
 </form>
@@ -79,27 +79,27 @@
 	<fieldset id="simpleForm">
 		<legend>Example 2 - Rules passed on the constructor</legend>
 			<p>
-				<label class="yui3-aui-field-label" for="types1">
+				<label class="aui-field-label" for="types1">
 					<input type="radio" name="type[]" id="types1" value="type1" /> Type 1
 				</label>
-				<label class="yui3-aui-field-label" for="types2">
+				<label class="aui-field-label" for="types2">
 					<input type="radio" name="type[]" id="types2" value="type2" /> Type 2
 				</label>
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="name1">Name:</label>
+				<label class="aui-field-label" for="name1">Name:</label>
 				<input type="text" name="name" id="name1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="lastName1">Last Name:</label>
+				<label class="aui-field-label" for="lastName1">Last Name:</label>
 				<input type="text" name="lastName" id="lastName1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="age1">Age:</label>
+				<label class="aui-field-label" for="age1">Age:</label>
 				<input type="text" name="age" id="age1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="gender1">Gender:</label>
+				<label class="aui-field-label" for="gender1">Gender:</label>
 				<select name="gender" id="gender1">
 					<option value="">- Select -</option>
 					<option value="male">Male</option>
@@ -107,33 +107,33 @@
 				</select>
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="email1">Email:</label>
+				<label class="aui-field-label" for="email1">Email:</label>
 				<input type="text" name="email" id="email1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="emailConfirmation1">Email (confirmation):</label>
+				<label class="aui-field-label" for="emailConfirmation1">Email (confirmation):</label>
 				<input type="text" name="emailConfirmation" id="emailConfirmation1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="picture1">Picture (upload):</label>
+				<label class="aui-field-label" for="picture1">Picture (upload):</label>
 				<input type="file" name="picture" id="picture1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="url1">Site URL:</label>
-				<input class="yui3-aui-field-url" type="text" name="url" id="url1" />
+				<label class="aui-field-label" for="url1">Site URL:</label>
+				<input class="aui-field-url" type="text" name="url" id="url1" />
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="comment1">Comment:</label>
-					<textarea class="yui3-aui-field-required yui3-aui-field-email" name="comment" id="comment1" cols="30" rows="5"></textarea>
+				<label class="aui-field-label" for="comment1">Comment:</label>
+					<textarea class="aui-field-required aui-field-email" name="comment" id="comment1" cols="30" rows="5"></textarea>
 			</p>
 			<p>
-				<label class="yui3-aui-field-label" for="receiveMessages1">
+				<label class="aui-field-label" for="receiveMessages1">
 					<input type="checkbox" name="receiveMessages" id="receiveMessages1" /> Add your email to our database
 				</label>
 			</p>
 			<p>
-				<input class="yui3-aui-button-input" type="submit" value="Submit" />
-				<input class="yui3-aui-button-input" type="reset" value="Reset" />
+				<input class="aui-button-input" type="submit" value="Submit" />
+				<input class="aui-button-input" type="reset" value="Reset" />
 			</p>
 	</fieldset>
 </form>
@@ -181,12 +181,12 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 		// 	}
 		// },
 
-		// errorClass: 'yui3-aui-form-validator-error',
-		// validClass: 'yui3-aui-form-validator-valid',
+		// errorClass: 'aui-form-validator-error',
+		// validClass: 'aui-form-validator-valid',
 
 		// fieldContainer: 'p',
-		// containerErrorClass: 'yui3-aui-form-validator-error-container',
-		// containerValidClass: 'yui3-aui-form-validator-valid-container',
+		// containerErrorClass: 'aui-form-validator-error-container',
+		// containerValidClass: 'aui-form-validator-valid-container',
 
 		// validateOnBlur: false,
 		// validateOnInput: true,
@@ -195,7 +195,7 @@ AUI().ready('aui-form-validator', 'aui-overlay-context-panel', function(A) {
 		// selectText: false,
 		// validateOnInput: true,
 		// extractRules: false,
-		// extractCssPrefix: 'yui3-aui-field-'
+		// extractCssPrefix: 'aui-field-'
 	});
 
 	var validator2 = new A.FormValidator({

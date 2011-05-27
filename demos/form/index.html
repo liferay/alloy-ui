@@ -17,37 +17,37 @@
 		}
 
 		/* ---------- Custom form css ---------- */
-		.yui3-aui-field-content {
+		.aui-field-content {
 			display: block;
 			clear: both;
 			border-bottom: 1px solid #dfdfdf;
 			padding: 7px 0;
 		}
 
-		.yui3-aui-field-last .yui3-aui-field-content {
+		.aui-field-last .aui-field-content {
 			display: block;
 			clear: both;
 			border-bottom-width: 0;
 			padding: 7px 0;
 		}
 
-		.yui3-aui-field-choice .yui3-aui-field-content {
+		.aui-field-choice .aui-field-content {
 			padding: 0 0 10px;
 			border-bottom-width: 0;
 		}
 
 
-		.yui3-aui-fieldset-legend {
+		.aui-fieldset-legend {
 			padding-bottom: 1em;
 		}
 
-		.yui3-aui-button-row {
+		.aui-button-row {
 			padding: 5px;
 			background: #eee;
 			border-top: 1px solid #ccc;
 		}
 
-		.yui3-aui-button-input {
+		.aui-button-input {
 			background-color: #f5f5f5;
 			border: 1px solid #dedede;
 			border-top-color: #eee;
@@ -55,44 +55,44 @@
 			color: #565656;
 		}
 
-		.yui3-aui-button-input:hover {
+		.aui-button-input:hover {
 			border: 1px solid #c2e1ef;
 			background-color: #dff4ff;
 			color: #369;
 		}
 
-		.yui3-aui-button-input:active {
+		.aui-button-input:active {
 			border: 1px solid #6299c5;
 			background-color: #6299c5;
 			color: #fff;
 		}
 
-		.yui3-aui-state-positive .yui3-aui-button-input {
+		.aui-state-positive .aui-button-input {
 			color: #529214;
 		}
 
-		.yui3-aui-state-positive .yui3-aui-button-input:hover {
+		.aui-state-positive .aui-button-input:hover {
 			background-color: #e6efc2;
 			border-color: #c6d880;
 		}
 
-		.yui3-aui-state-positive .yui3-aui-button-input:active {
+		.aui-state-positive .aui-button-input:active {
 			background-color: #529214;
 			border-color: #529214;
 			color: #fff;
 		}
 
-		.yui3-aui-state-negative .yui3-aui-button-input {
+		.aui-state-negative .aui-button-input {
 			color: #d12f19;
 		}
 
-		.yui3-aui-state-negative .yui3-aui-button-input:hover {
+		.aui-state-negative .aui-button-input:hover {
 			background-color: #fbe3e4;
 			border-color: #fbc2c4;
 			color: #d12f19;
 		}
 
-		.yui3-aui-state-negative .yui3-aui-button-input:active {
+		.aui-state-negative .aui-button-input:active {
 			background-color: #d12f19;
 			border-color: #d12f19;
 			color: #fff;
@@ -100,31 +100,31 @@
 
 /*
 	Container:
-		yui3-aui-field,
-		yui3-aui-field-(type)
-		yui3-aui-field-(element-type)
-			yui3-aui-field-content
+		aui-field,
+		aui-field-(type)
+		aui-field-(element-type)
+			aui-field-content
 
 	Elements:
 		Label:
-			yui3-aui-field-label
+			aui-field-label
 		Input:
-			yui3-aui-field-input,
-			yui3-aui-field-input-(type)
-			yui3-aui-field-input-(element-type)
+			aui-field-input,
+			aui-field-input-(type)
+			aui-field-input-(element-type)
 
 		Field hints:
-			yui3-aui-field-hint
+			aui-field-hint
 
 	States:
-		yui3-aui-field-focused
-		yui3-aui-field-checked
-		yui3-aui-field-primary
-		yui3-aui-field-secondary
-		yui3-aui-field-positive
-		yui3-aui-field-negative
+		aui-field-focused
+		aui-field-checked
+		aui-field-primary
+		aui-field-secondary
+		aui-field-positive
+		aui-field-negative
 
-		yui3-aui-state-error
+		aui-state-error
 
 	Types:
 		text
@@ -146,35 +146,35 @@
 			file
 		hidden //Never styled
 
-		<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-password">
-			<span class="yui3-aui-field-content">
-				<label class="yui3-aui-field-label"></label>
+		<span class="aui-field aui-field-text aui-field-password">
+			<span class="aui-field-content">
+				<label class="aui-field-label"></label>
 
 				Text
-					<input class="yui3-aui-field-input yui3-aui-field-input-text" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-password" />
-					<textarea class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-textarea"></textarea>
+					<input class="aui-field-input aui-field-input-text" />
+					<input class="aui-field-input aui-field-input-text aui-field-input-password" />
+					<textarea class="aui-field-input aui-field-input-text aui-field-input-textarea"></textarea>
 
 				Menu
-					<select class="yui3-aui-field-input yui3-aui-field-input-menu yui3-aui-field-input-select"></select>
-					<select class="yui3-aui-field-input yui3-aui-field-input-menu yui3-aui-field-input-select yui3-aui-field-input-select-multiple"></select>
+					<select class="aui-field-input aui-field-input-menu aui-field-input-select"></select>
+					<select class="aui-field-input aui-field-input-menu aui-field-input-select aui-field-input-select-multiple"></select>
 
 				Choice
-					<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" />
+					<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" />
+					<input class="aui-field-input aui-field-input-choice aui-field-input-radio" />
 
 				Button
-					<input class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-submit" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-reset" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-cancel" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-push" />
-					<input class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-image" />
-					<button class="yui3-aui-field-input yui3-aui-field-input-button yui3-aui-field-input-push"></button>
+					<input class="aui-field-input aui-field-input-button aui-field-input-submit" />
+					<input class="aui-field-input aui-field-input-button aui-field-input-reset" />
+					<input class="aui-field-input aui-field-input-button aui-field-input-cancel" />
+					<input class="aui-field-input aui-field-input-button aui-field-input-push" />
+					<input class="aui-field-input aui-field-input-button aui-field-input-image" />
+					<button class="aui-field-input aui-field-input-button aui-field-input-push"></button>
 
 				Upload
-				<input class="yui3-aui-field-input yui3-aui-field-input-upload yui3-aui-field-input-image" />
+				<input class="aui-field-input aui-field-input-upload aui-field-input-image" />
 
-				<span class="yui3-aui-field-hint"></span>
+				<span class="aui-field-hint"></span>
 			</span>
 		</span>
 */
@@ -188,159 +188,159 @@
 
 
 	<div id="demo">
-		<form class="yui3-aui-layout-content yui3-aui-form" id="myForm">
+		<form class="aui-layout-content aui-form" id="myForm">
 
-			<div class="yui3-aui-fieldset yui3-aui-w33 yui3-aui-column yui3-aui-column-first">
-				<div class="yui3-aui-fieldset-content yui3-aui-column-content yui3-aui-column-content-first">
-					<div class="yui3-aui-fieldset-legend yui3-aui-widget-hd">
+			<div class="aui-fieldset aui-w33 aui-column aui-column-first">
+				<div class="aui-fieldset-content aui-column-content aui-column-content-first">
+					<div class="aui-fieldset-legend aui-widget-hd">
 						Top aligned labels
 					</div>
 
-					<div class="yui3-aui-fieldset-bd yui3-aui-widget-bd">
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-first">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textField">Text</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text" id="textField" name="textField" type="text" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text</span>
+					<div class="aui-fieldset-bd aui-widget-bd">
+						<span class="aui-field aui-field-text aui-field-first">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textField">Text</label>
+								<input class="aui-field-input aui-field-input-text" id="textField" name="textField" type="text" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-password">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="passwordField">Password</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-password" id="passwordField" name="passwordField" type="password" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-password</span>
+						<span class="aui-field aui-field-text aui-field-password">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="passwordField">Password</label>
+								<input class="aui-field-input aui-field-input-text aui-field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-password</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="menuField">Select (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select" id="menuField" name="menuField">
+						<span class="aui-field aui-field-menu aui-field-select">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="menuField">Select (Menu)</label>
+								<select class="aui-field-input aui-field-input-select" id="menuField" name="menuField">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select yui3-aui-field-select-multiple">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select yui3-aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+						<span class="aui-field aui-field-menu aui-field-select aui-field-select-multiple">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="aui-field-input aui-field-input-select aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select, .yui3-aui-field-select-multiple</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select, .aui-field-select-multiple</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-textarea">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textareaField">Textarea</label>
-								<textarea class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-textarea</span>
+						<span class="aui-field aui-field-text aui-field-textarea">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textareaField">Textarea</label>
+								<textarea class="aui-field-input aui-field-input-text aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-textarea</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Checkboxes
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox yui3-aui-field-checked">
-											<span class="yui3-aui-field-content">
-												<input checked="true" class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox1" name="checkbox1" type="checkbox" value="1" />
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-checkbox aui-field-checked">
+											<span class="aui-field-content">
+												<input checked="true" class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox1" name="checkbox1" type="checkbox" value="1" />
 
-												<label class="yui3-aui-choice-label" for="checkbox1">
-													Checkbox 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+												<label class="aui-choice-label" for="checkbox1">
+													Checkbox 1 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox2" name="checkbox2" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox2">
-													Checkbox 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox2" name="checkbox2" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox2">
+													Checkbox 2 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox3" name="checkbox3" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox3">
-													Checkbox 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox3" name="checkbox3" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox3">
+													Checkbox 3 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Radio buttons
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio1" name="radio1" type="radio" value="1" />
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio1" name="radio1" type="radio" value="1" />
 
-												<label class="yui3-aui-choice-label"  for="radio1">
-													Radio 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+												<label class="aui-choice-label"  for="radio1">
+													Radio 1 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio2" name="radio1" type="radio" value="2" />
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio2" name="radio1" type="radio" value="2" />
 
-												<label class="yui3-aui-choice-label" for="radio2">
-													Radio 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+												<label class="aui-choice-label" for="radio2">
+													Radio 2 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio3" name="radio1" type="radio" value="3" />
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio3" name="radio1" type="radio" value="3" />
 
-												<label class="yui3-aui-choice-label" for="radio3">
-													Radio 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+												<label class="aui-choice-label" for="radio3">
+													Radio 3 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
@@ -349,154 +349,154 @@
 				</div>
 			</div>
 			
-			<div class="yui3-aui-fieldset yui3-aui-w33 yui3-aui-column yui3-aui-field-labels-inline">
-				<div class="yui3-aui-fieldset-content yui3-aui-column-content">
-					<div class="yui3-aui-fieldset-legend yui3-aui-widget-hd">
+			<div class="aui-fieldset aui-w33 aui-column aui-field-labels-inline">
+				<div class="aui-fieldset-content aui-column-content">
+					<div class="aui-fieldset-legend aui-widget-hd">
 						Inline labels, left aligned
 					</div>
 
-					<div class="yui3-aui-fieldset-bd yui3-aui-widget-bd">
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-first">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textField">Text</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text" id="textField" name="textField" type="text" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text</span>
+					<div class="aui-fieldset-bd aui-widget-bd">
+						<span class="aui-field aui-field-text aui-field-first">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textField">Text</label>
+								<input class="aui-field-input aui-field-input-text" id="textField" name="textField" type="text" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-password">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="passwordField">Password</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-password" id="passwordField" name="passwordField" type="password" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-password</span>
+						<span class="aui-field aui-field-text aui-field-password">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="passwordField">Password</label>
+								<input class="aui-field-input aui-field-input-text aui-field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-password</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="menuField">Select (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select" id="menuField" name="menuField">
+						<span class="aui-field aui-field-menu aui-field-select">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="menuField">Select (Menu)</label>
+								<select class="aui-field-input aui-field-input-select" id="menuField" name="menuField">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select yui3-aui-field-select-multiple">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select yui3-aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+						<span class="aui-field aui-field-menu aui-field-select aui-field-select-multiple">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="aui-field-input aui-field-input-select aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select, .yui3-aui-field-select-multiple</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select, .aui-field-select-multiple</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-textarea">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textareaField">Textarea</label>
-								<textarea class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-textarea</span>
+						<span class="aui-field aui-field-text aui-field-textarea">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textareaField">Textarea</label>
+								<textarea class="aui-field-input aui-field-input-text aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-textarea</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Checkboxes
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox yui3-aui-field-checked">
-											<span class="yui3-aui-field-content">
-												<input checked="true" class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox1a" name="checkbox1a" type="checkbox" value="1" />
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-checkbox aui-field-checked">
+											<span class="aui-field-content">
+												<input checked="true" class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox1a" name="checkbox1a" type="checkbox" value="1" />
 
-												<label class="yui3-aui-choice-label" for="checkbox1a">
-													Checkbox 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+												<label class="aui-choice-label" for="checkbox1a">
+													Checkbox 1 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox2a" name="checkbox2a" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox2a">
-													Checkbox 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox2a" name="checkbox2a" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox2a">
+													Checkbox 2 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox3a" name="checkbox3a" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox3a">
-													Checkbox 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox3a" name="checkbox3a" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox3a">
+													Checkbox 3 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Radio buttons
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio1a" name="radio1a" type="radio" value="1" />
-												<label class="yui3-aui-choice-label" for="radio1a">
-													Radio 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio1a" name="radio1a" type="radio" value="1" />
+												<label class="aui-choice-label" for="radio1a">
+													Radio 1 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio2a" name="radio1a" type="radio" value="2" />
-												<label class="yui3-aui-choice-label" for="radio2a">
-													Radio 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio2a" name="radio1a" type="radio" value="2" />
+												<label class="aui-choice-label" for="radio2a">
+													Radio 2 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio3a" name="radio1a" type="radio" value="3" />
-												<label class="yui3-aui-choice-label" for="radio3a">
-													Radio 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio3a" name="radio1a" type="radio" value="3" />
+												<label class="aui-choice-label" for="radio3a">
+													Radio 3 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
@@ -505,155 +505,155 @@
 				</div>
 			</div>
 
-			<div class="yui3-aui-fieldset yui3-aui-w33 yui3-aui-column yui3-aui-column-last yui3-aui-field-labels-inline yui3-aui-field-labels-right">
-				<div class="yui3-aui-fieldset-content yui3-aui-column-content yui3-aui-column-content-last">
-					<div class="yui3-aui-fieldset-legend yui3-aui-widget-hd">
+			<div class="aui-fieldset aui-w33 aui-column aui-column-last aui-field-labels-inline aui-field-labels-right">
+				<div class="aui-fieldset-content aui-column-content aui-column-content-last">
+					<div class="aui-fieldset-legend aui-widget-hd">
 						Inline labels, right aligned
 					</div>
 
-					<div class="yui3-aui-fieldset-bd yui3-aui-widget-bd">
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-first">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textField">Text</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text" id="textField" name="textField" type="text" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text</span>
+					<div class="aui-fieldset-bd aui-widget-bd">
+						<span class="aui-field aui-field-text aui-field-first">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textField">Text</label>
+								<input class="aui-field-input aui-field-input-text" id="textField" name="textField" type="text" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-password">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="passwordField">Password</label>
-								<input class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-password" id="passwordField" name="passwordField" type="password" />
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-password</span>
+						<span class="aui-field aui-field-text aui-field-password">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="passwordField">Password</label>
+								<input class="aui-field-input aui-field-input-text aui-field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-password</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="menuField">Select (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select" id="menuField" name="menuField">
+						<span class="aui-field aui-field-menu aui-field-select">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="menuField">Select (Menu)</label>
+								<select class="aui-field-input aui-field-input-select" id="menuField" name="menuField">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-menu yui3-aui-field-select yui3-aui-field-select-multiple">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
-								<select class="yui3-aui-field-input yui3-aui-field-input-select yui3-aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+						<span class="aui-field aui-field-menu aui-field-select aui-field-select-multiple">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="aui-field-input aui-field-input-select aui-field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
 									<option selected="selected" value="1">Menu Selection 1</option>
 									<option value="2">Menu Selection 2</option>
 									<option value="3">Menu Selection 3</option>
 								</select>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-menu, .yui3-aui-field-select, .yui3-aui-field-select-multiple</span>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-menu, .aui-field-select, .aui-field-select-multiple</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-textarea">
-							<span class="yui3-aui-field-content">
-								<label class="yui3-aui-field-label" for="textareaField">Textarea</label>
-								<textarea class="yui3-aui-field-input yui3-aui-field-input-text yui3-aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
-								<span class="yui3-aui-field-hint">
-									<span>.yui3-aui-field, .yui3-aui-field-text, .yui3-aui-field-textarea</span>
+						<span class="aui-field aui-field-text aui-field-textarea">
+							<span class="aui-field-content">
+								<label class="aui-field-label" for="textareaField">Textarea</label>
+								<textarea class="aui-field-input aui-field-input-text aui-field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="aui-field-hint">
+									<span>.aui-field, .aui-field-text, .aui-field-textarea</span>
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Checkboxes
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox yui3-aui-field-checked">
-											<span class="yui3-aui-field-content">
-												<input checked="true" class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox1b" name="checkbox1b" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox1b">
-													Checkbox 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-checkbox aui-field-checked">
+											<span class="aui-field-content">
+												<input checked="true" class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox1b" name="checkbox1b" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox1b">
+													Checkbox 1 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox2b" name="checkbox2b" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox2b">
-													Checkbox 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox2b" name="checkbox2b" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox2b">
+													Checkbox 2 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-checkbox">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-checkbox" id="checkbox3b" name="checkbox3b" type="checkbox" value="1" />
-												<label class="yui3-aui-choice-label" for="checkbox3b">
-													Checkbox 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-checkbox)
+										<span class="aui-field aui-field-choice aui-field-checkbox">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="checkbox3b" name="checkbox3b" type="checkbox" value="1" />
+												<label class="aui-choice-label" for="checkbox3b">
+													Checkbox 3 (.aui-field, .aui-field-choice, .aui-field-checkbox)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
 
-						<span class="yui3-aui-field yui3-aui-field-nested yui3-aui-field-last">
-							<span class="yui3-aui-field-content">
-								<span class="yui3-aui-field-label">
+						<span class="aui-field aui-field-nested aui-field-last">
+							<span class="aui-field-content">
+								<span class="aui-field-label">
 									Radio buttons
 								</span>
 
-								<span class="yui3-aui-field-group">
-									<span class="yui3-aui-field-group-content">
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio1b" name="radio1b" type="radio" value="1" />
-												<label class="yui3-aui-choice-label" for="radio1b">
-													Radio 1 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+								<span class="aui-field-group">
+									<span class="aui-field-group-content">
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio1b" name="radio1b" type="radio" value="1" />
+												<label class="aui-choice-label" for="radio1b">
+													Radio 1 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio2b" name="radio1b" type="radio" value="2" />
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio2b" name="radio1b" type="radio" value="2" />
 
-												<label class="yui3-aui-choice-label" for="radio2b">
-													Radio 2 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+												<label class="aui-choice-label" for="radio2b">
+													Radio 2 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 
-										<span class="yui3-aui-field yui3-aui-field-choice yui3-aui-field-radio">
-											<span class="yui3-aui-field-content">
-												<input class="yui3-aui-field-input yui3-aui-field-input-choice yui3-aui-field-input-radio" id="radio3b" name="radio1b" type="radio" value="3" />
+										<span class="aui-field aui-field-choice aui-field-radio">
+											<span class="aui-field-content">
+												<input class="aui-field-input aui-field-input-choice aui-field-input-radio" id="radio3b" name="radio1b" type="radio" value="3" />
 
-												<label class="yui3-aui-choice-label" for="radio3b">
-													Radio 3 (.yui3-aui-field, .yui3-aui-field-choice, .yui3-aui-field-radio)
+												<label class="aui-choice-label" for="radio3b">
+													Radio 3 (.aui-field, .aui-field-choice, .aui-field-radio)
 												</label>
 											</span>
 										</span>
 									</span>
 								</span>
 
-								<span class="yui3-aui-field-hint">
-									.yui3-aui-field-nested, .yui3-aui-field-group
+								<span class="aui-field-hint">
+									.aui-field-nested, .aui-field-group
 								</span>
 							</span>
 						</span>
@@ -662,22 +662,22 @@
 				</div>
 			</div>
 
-			<span class="yui3-aui-button-row yui3-aui-helper-clearfix">
-				<span class="yui3-aui-button yui3-aui-button-submit yui3-aui-state-positive yui3-aui-priority-primary">
-					<span class="yui3-aui-button-content">
-						<input class="yui3-aui-button-input yui3-aui-button-input-submit" type="submit" value="Submit" />
+			<span class="aui-button-row aui-helper-clearfix">
+				<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-submit" type="submit" value="Submit" />
 					</span>
 				</span>
 
-				<span class="yui3-aui-button yui3-aui-button-reset yui3-aui-priority-secondary">
-					<span class="yui3-aui-button-content">
-						<input class="yui3-aui-button-input yui3-aui-button-input-reset" type="reset" value="Reset" />
+				<span class="aui-button aui-button-reset aui-priority-secondary">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-reset" type="reset" value="Reset" />
 					</span>
 				</span>
 
-				<span class="yui3-aui-button yui3-aui-button-cancel yui3-aui-state-negative">
-					<span class="yui3-aui-button-content">
-						<input class="yui3-aui-button-input yui3-aui-button-input-cancel" type="button" value="Cancel" />
+				<span class="aui-button aui-button-cancel aui-state-negative">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-cancel" type="button" value="Cancel" />
 					</span>
 				</span>
 			</span>
@@ -725,17 +725,17 @@ AUI().ready(
 				labelAlign: 'left'
 			}
 		)
-		.render('.yui3-aui-fieldset-bd');
+		.render('.aui-fieldset-bd');
 
-		myField.get('boundingBox').prependTo('.yui3-aui-fieldset-bd');
+		myField.get('boundingBox').prependTo('.aui-fieldset-bd');
 
 		form.add(myField);
 
 		window.myForm = form;
 
 		if(1){
-		taBox = A.one('.yui3-aui-field-textarea')
-		taCBox = taBox.one('.yui3-aui-field-content')
+		taBox = A.one('.aui-field-textarea')
+		taCBox = taBox.one('.aui-field-content')
 
 		ta = new A.Textarea({
 		// boundingBox: taBox,
