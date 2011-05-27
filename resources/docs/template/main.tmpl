@@ -15,9 +15,9 @@
 <body>
 
 <div id="wrapper">
-	<div class="yui3-aui-header">
+	<div class="aui-header">
 		<h1>
-			<a class="yui3-aui-header-text" href="$projecturl" title="$projectname">$projectname</a>
+			<a class="aui-header-text" href="$projecturl" title="$projectname">$projectname</a>
 		</h1>
 
 		<h3>
@@ -40,10 +40,10 @@
 
 		<form onsubmit="return false;">
             <div id="propertysearch">
-				<span class="yui3-aui-field yui3-aui-field-text yui3-aui-field-labels-inline yui3-aui-field-labels-right">
-					<span class="yui3-aui-field-content">
-						<label class="yui3-aui-field-label" for="searchinput">Search:</label>
-						<input class="yui3-aui-field-input yui3-aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
 					</span>
 				</span>
                 <div id="searchresults">
@@ -53,53 +53,53 @@
         </form>
 	</div>
 
-	<div class="yui3-aui-body">
+	<div class="aui-body">
 		<form action="#" name="classOptions" id="classOptions">
 			<fieldset>
 				<legend>Filters</legend>
 
-				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
-					<span class="yui3-aui-field-content">
-						<label class="yui3-aui-field-label" for="show_private">
-							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
 						Show Private</label>
 					</span>
 				</span>
 
-				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
-					<span class="yui3-aui-field-content">
-						<label class="yui3-aui-field-label" for="show_protected">
-							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
 						Show Protected</label>
 					</span>
 				</span>
 
-				<span class="yui3-aui-field yui3-aui-field-checkbox yui3-aui-field-choice yui3-aui-field-inline">
-					<span class="yui3-aui-field-content">
-						<label class="yui3-aui-field-label" for="show_deprecated">
-							<input class="yui3-aui-field-input yui3-aui-field-input-checkbox yui3-aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
 						Show Deprecated</label>
 					</span>
 				</span>
 			</fieldset>
 		</form>
 
-		<div class="yui3-aui-layout">
-			<div class="yui3-aui-layout-content">
-				<div class="yui3-aui-column yui3-aui-w25 yui3-aui-column-first">
-					<div class="yui3-aui-column-content yui3-aui-column-content-first">
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
 
-						<div class="yui3-widget yui3-aui-list yui3-aui-list-modules">
+						<div class="yui3-widget aui-list aui-list-modules">
 							<div class="yui3-widget-content">
-								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-modules-hd">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
 									<span class="yui3-widget-hd-text">Modules</span>
 								</div>
 
-								<div class="yui3-widget-bd yui3-aui-list-bd">
-									<h4 class="yui3-aui-module-section-heading">Alloy Modules</h4>
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
 									<ul class="content">
 			                            #for $moduledef in $modulenames
-											#if $moduledef.startswith("yui3-aui-")
+											#if $moduledef.startswith("aui-")
 				                                #set $css = ""
 
 				                                #if $moduledef == $modulename
@@ -113,10 +113,10 @@
 			                            #end for
 			                        </ul>
 
-									<h4 class="yui3-aui-module-section-heading">YUI Modules</h4>
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
 									<ul class="content">
 			                            #for $moduledef in $modulenames
-											#unless $moduledef.startswith("yui3-aui-")
+											#unless $moduledef.startswith("aui-")
 				                                #set $css = ""
 
 				                                #if $moduledef == $modulename
@@ -135,13 +135,13 @@
 						</div>
 
 						#if $classnames
-							<div class="yui3-widget yui3-aui-list yui3-aui-list-classes">
+							<div class="yui3-widget aui-list aui-list-classes">
 								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-classes-hd">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
 										<span class="yui3-widget-hd-text">Classes</span>
 									</div>
 
-									<div class="yui3-widget-bd yui3-aui-list-bd">
+									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 											#for $classdef in $classnames
 				                                #set $css = ""
@@ -159,13 +159,13 @@
 						#end if
 
 						#if $configs
-							<div class="yui3-widget yui3-aui-list yui3-aui-list-configuration">
+							<div class="yui3-widget aui-list aui-list-configuration">
 								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-configuration-hd">
+									<div class="yui3-widget-hd aui-list-hd aui-list-configuration-hd">
 										<span class="yui3-widget-hd-text">Configuration Attributes</span>
 									</div>
 
-									<div class="yui3-widget-bd yui3-aui-list-bd">
+									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 				                            #for $config in $configs
 												<li class="${config.access}#if $config.deprecated# deprecated#end if#"><a href="#config_${config.name}" title="$config.name">$config.name</a></li>
@@ -177,13 +177,13 @@
 						#end if
 
 						#if $properties
-							<div class="yui3-widget yui3-aui-list yui3-aui-list-properties">
+							<div class="yui3-widget aui-list aui-list-properties">
 								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-properties-hd">
+									<div class="yui3-widget-hd aui-list-hd aui-list-properties-hd">
 										<span class="yui3-widget-hd-text">Properties</span>
 									</div>
 
-									<div class="yui3-widget-bd yui3-aui-list-bd">
+									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 				                            #for $prop in $properties
 
@@ -196,13 +196,13 @@
 						#end if
 
 						#if $methods
-							<div class="yui3-widget yui3-aui-list yui3-aui-list-methods">
+							<div class="yui3-widget aui-list aui-list-methods">
 								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-methods-hd">
+									<div class="yui3-widget-hd aui-list-hd aui-list-methods-hd">
 										<span class="yui3-widget-hd-text">Methods</span>
 									</div>
 
-									<div class="yui3-widget-bd yui3-aui-list-bd">
+									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 				                            #for $method in $methods
 				                               <li class="${method.access}#if $method.deprecated# deprecated#end if#"><a href="#method_${method.name}" title="$method.name">$method.name</a></li>
@@ -214,13 +214,13 @@
 						#end if
 
 						#if $events
-							<div class="yui3-widget yui3-aui-list yui3-aui-list-events">
+							<div class="yui3-widget aui-list aui-list-events">
 								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-events-hd">
+									<div class="yui3-widget-hd aui-list-hd aui-list-events-hd">
 										<span class="yui3-widget-hd-text">Events</span>
 									</div>
 
-									<div class="yui3-widget-bd yui3-aui-list-bd">
+									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 											#for $event in $events
 												<li class="${event.access}#if $event.deprecated# deprecated#end if#"><a href="#event_${event.name}" title="$event.name">$event.name</a></li>
@@ -233,13 +233,13 @@
 					</div>
 
 					#if $filenames
-						<div class="yui3-widget yui3-aui-list yui3-aui-list-files">
+						<div class="yui3-widget aui-list aui-list-files">
 							<div class="yui3-widget-content">
-								<div class="yui3-widget-hd yui3-aui-list-hd yui3-aui-list-files-hd">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
 									<span class="yui3-widget-hd-text">Files</span>
 								</div>
 
-								<div class="yui3-widget-bd yui3-aui-list-bd">
+								<div class="yui3-widget-bd aui-list-bd">
 									<ul class="content">
 			                            #for $filedef in $filenames
 			                                #set $css = ""
@@ -256,8 +256,8 @@
 						</div>
 					#end if
 				</div>
-				<div class="yui3-aui-column yui3-aui-w75 yui3-aui-column-last">
-					<div class="yui3-aui-column-content yui3-aui-column-content-last">
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
 						#if $index
 
 							<div class="summary description">
@@ -876,7 +876,7 @@
 		</div>
 	</div>
 
-	<div class="yui3-aui-footer">
+	<div class="aui-footer">
 		Copyright &copy; $year $copyrighttag All rights reserved.
 	</div>
 </div>
