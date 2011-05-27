@@ -621,7 +621,21 @@ Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 		</subant>
 	</target>
 
-	<target name="release" depends="clean-release">
+	<target name="create-release">
+		<echo>Replacing @VERSION@ tokens</echo>
+
+		<replaceregexp match="@VERSION@" replace="${release.version}" flags="g" byline="true">
+			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
+        </replaceregexp>
+
+		<echo>Creating Zip file ${release.name}.zip</echo>
+
+		<zip basedir="${release.temp.dir}" destfile="${project.dir}/${release.name}-${release.version}.zip" />
+
+		<delete dir="${release.temp.dir}" />
+	</target>
+
+	<target name="release-full" depends="clean-release">
 		<copy todir="${release.temp.dir}">
 			<fileset dir="${project.dir}">
 				<include name="api/**" />
@@ -636,26 +650,22 @@ Transition.DEFAULT_TOGGLE = 'fade';]]></replacevalue>
 		<delete dir="${release.temp.dir}/sandbox/tags" />
 		<delete dir="${release.temp.dir}/sandbox/taglibs" />
 
-		<echo>Replacing @VERSION@ tokens</echo>
-
-		<replaceregexp match="@VERSION@" replace="${release.version}" flags="g" byline="true">
-			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
-        </replaceregexp>
-
-		<!-- <replaceregexp match="combine: ?false," replace="combine:true," flags="g" byline="true">
-			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
-        </replaceregexp>
-
-		<replaceregexp match="filter: ?'raw'," replace="filter:'min'," flags="g" byline="true">
-			<fileset dir="${release.temp.dir}/build/aui-base/" includes="*.js"/>
-        </replaceregexp> -->
-
-		<echo>Creating Zip file ${release.name}.zip</echo>
-
-		<zip basedir="${release.temp.dir}" destfile="${project.dir}/${release.name}-${release.version}.zip" />
-
-		<delete dir="${release.temp.dir}" />
+		<antcall target="create-release" />
 	</target>
+
+	<target name="release-minimal" depends="clean-release">
+		<copy todir="${release.temp.dir}">
+			<fileset dir="${project.dir}">
+				<include name="build/**" />
+				<include name="demos/**" />
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+
+		<antcall target="create-release" />
+	</target>
+
+	<target name="release" depends="release-minimal,clean-release" />
 
 	<target name="remove-whitespace">
 		<echo>Removing trailing spaces of the source files.</echo>
