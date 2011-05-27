@@ -26,3 +26,10 @@
 	clear: both;
 	padding: 2px 0;
 }
+
+.aui-celleditor-edit-dd-handle {
+	cursor: move;
+    display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
