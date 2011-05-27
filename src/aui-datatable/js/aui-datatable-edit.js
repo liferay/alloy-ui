@@ -34,8 +34,10 @@ var Lang = A.Lang,
 	DATA = 'data',
 	DATATABLE = 'datatable',
 	DATE_CELL_EDITOR = 'dateCellEditor',
+	DD = 'dd',
 	DELETE = 'delete',
 	DISK = 'disk',
+	DOTTED = 'dotted',
 	DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
 	EDIT = 'edit',
 	EDITABLE = 'editable',
@@ -45,8 +47,11 @@ var Lang = A.Lang,
 	ELEMENT = 'element',
 	ELEMENT_NAME = 'elementName',
 	FIELD = 'field',
+	GRIP = 'grip',
+	HANDLE = 'handle',
 	HIDE = 'hide',
 	HIDE_ON_SAVE = 'hideOnSave',
+	ICON = 'icon',
 	ID = 'id',
 	INIT_EDIT = 'initEdit',
 	INIT_TOOLBAR = 'initToolbar',
@@ -83,6 +88,7 @@ var Lang = A.Lang,
 	UNESCAPE_VALUE = 'unescapeValue',
 	VALIDATOR = 'validator',
 	VALUE = 'value',
+	VERTICAL = 'vertical',
 	VISIBLE = 'visible',
 	WRAPPER = 'wrapper',
 
@@ -96,21 +102,24 @@ var Lang = A.Lang,
 	REGEX_BR = /<br\s*\/?>/gi,
 	REGEX_NL = /[\r\n]/g,
 
-	CSS_CELLEDITOR_EDIT_LABEL = AgetClassName(CELLEDITOR, EDIT, LABEL),
-	CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName(CELLEDITOR, EDIT, OPTION, ROW),
 	CSS_CELLEDITOR_EDIT = AgetClassName(CELLEDITOR, EDIT),
 	CSS_CELLEDITOR_EDIT_ADD_OPTION = AgetClassName(CELLEDITOR, EDIT, ADD, OPTION),
-	CSS_CELLEDITOR_EDIT_SAVE_OPTION = AgetClassName(CELLEDITOR, EDIT, SAVE, OPTION),
+	CSS_CELLEDITOR_EDIT_DD_HANDLE = AgetClassName(CELLEDITOR, EDIT, DD, HANDLE),
 	CSS_CELLEDITOR_EDIT_DELETE_OPTION = AgetClassName(CELLEDITOR, EDIT, DELETE, OPTION),
 	CSS_CELLEDITOR_EDIT_HIDE_OPTION = AgetClassName(CELLEDITOR, EDIT, HIDE, OPTION),
 	CSS_CELLEDITOR_EDIT_INPUT_NAME = AgetClassName(CELLEDITOR, EDIT, INPUT, NAME),
 	CSS_CELLEDITOR_EDIT_INPUT_VALUE = AgetClassName(CELLEDITOR, EDIT, INPUT, VALUE),
+	CSS_CELLEDITOR_EDIT_LABEL = AgetClassName(CELLEDITOR, EDIT, LABEL),
 	CSS_CELLEDITOR_EDIT_LINK = AgetClassName(CELLEDITOR, EDIT, LINK),
+	CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName(CELLEDITOR, EDIT, OPTION, ROW),
+	CSS_CELLEDITOR_EDIT_SAVE_OPTION = AgetClassName(CELLEDITOR, EDIT, SAVE, OPTION),
 	CSS_CELLEDITOR_ELEMENT = AgetClassName(CELLEDITOR, ELEMENT),
 	CSS_CELLEDITOR_LABEL = AgetClassName(CELLEDITOR, LABEL),
 	CSS_CELLEDITOR_OPTION = AgetClassName(CELLEDITOR, OPTION),
 	CSS_CELLEDITOR_WRAPPER = AgetClassName(CELLEDITOR, WRAPPER),
 	CSS_DATATABLE_EDITABLE = AgetClassName(DATATABLE, EDITABLE),
+	CSS_ICON = AgetClassName(ICON),
+	CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName(ICON, GRIP, DOTTED, VERTICAL),
 
 	TPL_BR = '<br/>';
 
@@ -820,6 +829,7 @@ var BaseOptionsCellEditor = A.Component.create({
 		EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '"></div>',
 
 		EDIT_OPTION_ROW_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
+									'<span class="' + [ CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL ].join(_SPACE) + '"></span>' +
 									'<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
 									'<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' +
 									'<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{remove}</a> ' +
@@ -830,6 +840,7 @@ var BaseOptionsCellEditor = A.Component.create({
 		EDIT_SAVE_LINK_TEMPLATE: '<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_SAVE_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{saveOptions}</a> ',
 
 		editContainer: null,
+		editSortable: null,
 		options: null,
 
 		initializer: function() {
@@ -996,6 +1007,17 @@ var BaseOptionsCellEditor = A.Component.create({
 				editContainer.hide(),
 				WidgetStdMod.AFTER
 			);
+
+			instance.editSortable = new A.Sortable({
+				container: editContainer,
+				handles: [ _DOT+'aui-celleditor-edit-dd-handle' ],
+				nodes: _DOT+CSS_CELLEDITOR_EDIT_OPTION_ROW,
+				opacity: '.3'
+			})
+			.delegate.dd.plug(A.Plugin.DDConstrained, {
+				constrain: editContainer,
+				stickY: true
+			});
 
 			instance._syncEditOptionsUI();
 		},
