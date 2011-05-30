@@ -32,6 +32,7 @@ var L = A.Lang,
 	NEXT = 'next',
 	NEXT_PAGE_LINK = 'nextPageLink',
 	NEXT_PAGE_LINK_LABEL = 'nextPageLinkLabel',
+	OPTION = 'option',
 	PAGE = 'page',
 	PAGE_CONTAINER_TEMPLATE = 'pageContainerTemplate',
 	PAGE_LINK_CONTENT = 'pageLinkContent',
@@ -49,6 +50,7 @@ var L = A.Lang,
 	ROWS_PER_PAGE_EL = 'rowsPerPageEl',
 	ROWS_PER_PAGE_OPTIONS = 'rowsPerPageOptions',
 	SELECT = 'select',
+	SELECTED = 'selected',
 	SPACE = ' ',
 	STATE = 'state',
 	TEMPLATE = 'template',
@@ -479,6 +481,20 @@ var Paginator = A.Component.create(
 			 */
 			rowsPerPageEl: {
 				setter: A.one,
+				getter: function(val) {
+					var instance = this;
+					var options = val.all(OPTION);
+
+					options.removeAttribute(SELECTED);
+
+					var selected = options.filter('[value=' + instance.get(ROWS_PER_PAGE) + ']');
+
+					if (selected) {
+						selected.setAttribute(SELECTED, SELECTED);
+					}
+
+					return val;
+				},
 				valueFn: function() {
 					return A.Node.create(ROWS_PER_PAGE_TPL);
 				}
