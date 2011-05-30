@@ -326,9 +326,6 @@ var TreeNode = A.Component.create(
 
 				// Sync the Widget TreeNode id with the BOUNDING_BOX id
 				instance._syncTreeNodeBBId();
-
-				// invoking TreeData initializer
-				TreeNode.superclass.initializer.apply(this, arguments);
 			},
 
 			/**
@@ -1035,11 +1032,11 @@ var TreeNodeIO = A.Component.create(
 			/*
 			* Methods
 			*/
-			createNode: function(nodes) {
+			createNodes: function(nodes) {
 				var instance = this;
 
-				A.each(nodes, function(node) {
-					var newNode = TreeNodeIO.superclass.createNode.apply(instance, [node]);
+				A.Array.each(A.Array(nodes), function(node) {
+					var newNode = instance.createNode.apply(instance, [node]);
 
 					instance.appendChild(newNode);
 				});
@@ -1160,7 +1157,7 @@ var TreeNodeIO = A.Component.create(
 					nodes = formatter(nodes);
 				}
 
-				instance.createNode(nodes);
+				instance.createNodes(nodes);
 
 				instance.expand();
 			},
