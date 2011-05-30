@@ -539,7 +539,7 @@ var Paginator = A.Component.create(
 			 */
 			totalEl: {
 				setter: A.one,
-				valueFn: function() {
+				getter: function() {
 					var label = this.get(TOTAL_LABEL);
 
 					return A.Node.create(TOTAL_TPL).html(label);
