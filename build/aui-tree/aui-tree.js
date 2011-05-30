@@ -94,9 +94,7 @@ var TreeData = A.Component.create(
 			children: {
 				value: [],
 				validator: isArray,
-				setter: function(v) {
-					return this._setChildren(v);
-				}
+				setter: '_setChildren'
 			},
 
 			/**
@@ -136,8 +134,6 @@ var TreeData = A.Component.create(
 				instance.publish('expandAll', { defaultFn: instance._expandAll });
 				instance.publish('append', { defaultFn: instance._appendChild });
 				instance.publish('remove', { defaultFn: instance._removeChild });
-
-				TreeData.superclass.initializer.apply(this, arguments);
 			},
 
 			/**
@@ -474,17 +470,11 @@ var TreeData = A.Component.create(
 			 */
 			createNode: function(options) {
 				var instance = this;
-				var classType = options.type;
+				var classType = A.TreeNode.nodeTypes[ isObject(options) ? options.type : options ] || A.TreeNode;
 
-				if (isString(classType) && A.TreeNode.nodeTypes) {
-					classType = A.TreeNode.nodeTypes[classType];
-				}
-
-				if (!classType) {
-					classType = A.TreeNode;
-				}
-
-				return new classType(options);
+				return new classType(
+					isObject(options) ? options : {}
+				);
 			},
 
 			/**
@@ -840,7 +830,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -1170,9 +1160,6 @@ var TreeNode = A.Component.create(
 
 				// Sync the Widget TreeNode id with the BOUNDING_BOX id
 				instance._syncTreeNodeBBId();
-
-				// invoking TreeData initializer
-				TreeNode.superclass.initializer.apply(this, arguments);
 			},
 
 			/**
@@ -1879,11 +1866,11 @@ var TreeNodeIO = A.Component.create(
 			/*
 			* Methods
 			*/
-			createNode: function(nodes) {
+			createNodes: function(nodes) {
 				var instance = this;
 
-				A.each(nodes, function(node) {
-					var newNode = TreeNodeIO.superclass.createNode.apply(instance, [node]);
+				A.Array.each(A.Array(nodes), function(node) {
+					var newNode = instance.createNode.apply(instance, [node]);
 
 					instance.appendChild(newNode);
 				});
@@ -2004,7 +1991,7 @@ var TreeNodeIO = A.Component.create(
 					nodes = formatter(nodes);
 				}
 
-				instance.createNode(nodes);
+				instance.createNodes(nodes);
 
 				instance.expand();
 			},
@@ -2604,7 +2591,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','io-base','json','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3592,5 +3579,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
 

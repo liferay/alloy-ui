@@ -94,9 +94,7 @@ var TreeData = A.Component.create(
 			children: {
 				value: [],
 				validator: isArray,
-				setter: function(v) {
-					return this._setChildren(v);
-				}
+				setter: '_setChildren'
 			},
 
 			/**
@@ -136,8 +134,6 @@ var TreeData = A.Component.create(
 				instance.publish('expandAll', { defaultFn: instance._expandAll });
 				instance.publish('append', { defaultFn: instance._appendChild });
 				instance.publish('remove', { defaultFn: instance._removeChild });
-
-				TreeData.superclass.initializer.apply(this, arguments);
 			},
 
 			/**
@@ -474,17 +470,11 @@ var TreeData = A.Component.create(
 			 */
 			createNode: function(options) {
 				var instance = this;
-				var classType = options.type;
+				var classType = A.TreeNode.nodeTypes[ isObject(options) ? options.type : options ] || A.TreeNode;
 
-				if (isString(classType) && A.TreeNode.nodeTypes) {
-					classType = A.TreeNode.nodeTypes[classType];
-				}
-
-				if (!classType) {
-					classType = A.TreeNode;
-				}
-
-				return new classType(options);
+				return new classType(
+					isObject(options) ? options : {}
+				);
 			},
 
 			/**
@@ -840,4 +830,4 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
