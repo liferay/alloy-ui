@@ -187,7 +187,7 @@ var TreeView = A.Component.create(
 				// when the node is appended to the TreeView set the OWNER_TREE
 				node.set(OWNER_TREE, instance);
 
-				TreeView.superclass.registerNode.apply(this, arguments);
+				A.TreeView.superclass.registerNode.apply(this, arguments);
 			},
 
 			/**
@@ -204,9 +204,6 @@ var TreeView = A.Component.create(
 					// use firstChild as label
 					var labelEl = node.one('> *').remove();
 					var label = labelEl.outerHTML();
-
-					// avoid memory leak
-					docFrag = null;
 
 					var treeNode = new A.TreeNode({
 						boundingBox: node,
@@ -558,7 +555,7 @@ var TreeViewDD = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				TreeViewDD.superclass.bindUI.apply(this, arguments);
+				A.TreeViewDD.superclass.bindUI.apply(this, arguments);
 
 				instance._bindDragDrop();
 			},
@@ -572,7 +569,7 @@ var TreeViewDD = A.Component.create(
 			renderUI: function() {
 				var instance = this;
 
-				TreeViewDD.superclass.renderUI.apply(this, arguments);
+				A.TreeViewDD.superclass.renderUI.apply(this, arguments);
 
 				// creating drag helper and hiding it
 				var helper = A.Node.create(HELPER_TPL).hide();
@@ -776,7 +773,7 @@ var TreeViewDD = A.Component.create(
 					// these areas are responsible for defining the state when the mouse is over any of them
 					var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
 					var yTop = nodeContent.getY();
-					var yCenter = yTop + nArea*1;
+					var yCenter = yTop + nArea;
 					var yBottom = yTop + nArea*2;
 					var mouseY = drag.mouseXY[1];
 
@@ -796,7 +793,7 @@ var TreeViewDD = A.Component.create(
 						}
 						// if it's a leaf we need to set the ABOVE or BELOW state instead of append
 						else {
-							if (instance.direction == UP) {
+							if (instance.direction === UP) {
 								instance._goingUpState(nodeContent);
 							}
 							else {
@@ -846,17 +843,17 @@ var TreeViewDD = A.Component.create(
 				output.tree.dropNode = dropTreeNode;
 				output.tree.dragNode = dragTreeNode;
 
-				if (dropAction == ABOVE) {
+				if (dropAction === ABOVE) {
 					dropTreeNode.insertBefore(dragTreeNode);
 
 					instance.bubbleEvent('dropInsert', output);
 				}
-				else if (dropAction == BELOW) {
+				else if (dropAction === BELOW) {
 					dropTreeNode.insertAfter(dragTreeNode);
 
 					instance.bubbleEvent('dropInsert', output);
 				}
-				else if (dropAction == APPEND) {
+				else if (dropAction === APPEND) {
 					if (dropTreeNode && !dropTreeNode.isLeaf()) {
 						dropTreeNode.appendChild(dragTreeNode);
 
@@ -890,7 +887,7 @@ var TreeViewDD = A.Component.create(
 				var y = event.target.lastXY[1];
 
 				// if the y change
-				if (y != lastY) {
+				if (y !== lastY) {
 					// set the drag direction
 					instance.direction = (y < lastY) ? UP : DOWN;
 				}
