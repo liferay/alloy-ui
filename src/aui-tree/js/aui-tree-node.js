@@ -504,7 +504,7 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				if (!instance.isLeaf()) {
-					TreeNode.superclass.appendChild.apply(instance, arguments);
+					A.TreeNode.superclass.appendChild.apply(instance, arguments);
 				}
 			},
 
@@ -554,7 +554,7 @@ var TreeNode = A.Component.create(
 			collapseAll: function() {
 				var instance = this;
 
-				TreeNode.superclass.collapseAll.apply(instance, arguments);
+				A.TreeNode.superclass.collapseAll.apply(instance, arguments);
 
 				// instance is also a node, so collapse itself
 				instance.collapse();
@@ -616,7 +616,7 @@ var TreeNode = A.Component.create(
 			expandAll: function() {
 				var instance = this;
 
-				TreeNode.superclass.expandAll.apply(instance, arguments);
+				A.TreeNode.superclass.expandAll.apply(instance, arguments);
 
 				// instance is also a node, so expand itself
 				instance.expand();
@@ -645,7 +645,7 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				return (!instance.isLeaf() &&
-						TreeNode.superclass.hasChildNodes.apply(this, arguments));
+						A.TreeNode.superclass.hasChildNodes.apply(this, arguments));
 			},
 
 			/**
@@ -681,7 +681,7 @@ var TreeNode = A.Component.create(
 				var parentNode = instance.get(PARENT_NODE);
 
 				while (parentNode) {
-					if (parentNode == node) {
+					if (parentNode === node) {
 						return true;
 					}
 					parentNode = parentNode.get(PARENT_NODE);
@@ -693,20 +693,20 @@ var TreeNode = A.Component.create(
 			insertAfter: function(node, refNode) {
 				var instance = this;
 
-				TreeNode.superclass.insertAfter.apply(this, [node, instance]);
+				A.TreeNode.superclass.insertAfter.apply(this, [node, instance]);
 			},
 
 			insertBefore: function(node) {
 				var instance = this;
 
-				TreeNode.superclass.insertBefore.apply(this, [node, instance]);
+				A.TreeNode.superclass.insertBefore.apply(this, [node, instance]);
 			},
 
 			removeChild: function(node) {
 				var instance = this;
 
 				if (!instance.isLeaf()) {
-					TreeNode.superclass.removeChild.apply(instance, arguments);
+					A.TreeNode.superclass.removeChild.apply(instance, arguments);
 				}
 			},
 
@@ -993,7 +993,7 @@ var TreeNodeIO = A.Component.create(
 
 				instance._inheritOwnerTreeAttrs();
 
-				TreeNodeIO.superclass.renderUI.apply(this, arguments);
+				A.TreeNodeIO.superclass.renderUI.apply(this, arguments);
 			},
 
 			/**
@@ -1005,7 +1005,7 @@ var TreeNodeIO = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				TreeNodeIO.superclass.bindUI.apply(this, arguments);
+				A.TreeNodeIO.superclass.bindUI.apply(this, arguments);
 
 				instance._bindPaginatorUI();
 
@@ -1057,7 +1057,7 @@ var TreeNodeIO = A.Component.create(
 				}
 
 				if (!io || loaded) {
-					TreeNodeIO.superclass.expand.apply(this, arguments);
+					A.TreeNodeIO.superclass.expand.apply(this, arguments);
 				}
 				else {
 					if (!loading) {
@@ -1489,6 +1489,8 @@ var TreeNodeCheck = A.Component.create(
 
 		EXTENDS: A.TreeNodeIO,
 
+		UI_ATTRS: [CHECKED],
+
 		prototype: {
 			/*
 			* Lifecycle
@@ -1496,7 +1498,7 @@ var TreeNodeCheck = A.Component.create(
 			renderUI: function() {
 				var instance = this;
 
-				TreeNodeCheck.superclass.renderUI.apply(instance, arguments);
+				A.TreeNodeCheck.superclass.renderUI.apply(instance, arguments);
 
 				var labelEl = instance.get(LABEL_EL);
 				var checkEl = instance.get(CHECK_EL);
@@ -1518,10 +1520,8 @@ var TreeNodeCheck = A.Component.create(
 				var contentBox = instance.get(CONTENT_BOX);
 				var labelEl = instance.get(LABEL_EL);
 
-				TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
+				A.TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
 
-				instance.publish('check');
-				instance.publish('uncheck');
 				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
 				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
 
@@ -1536,16 +1536,8 @@ var TreeNodeCheck = A.Component.create(
 			 */
 			check: function() {
 				var instance = this;
-				var contentBox = instance.get(CONTENT_BOX);
-				var checkEl = instance.get(CHECK_EL);
-
-				contentBox.addClass(CSS_TREE_NODE_CHECKED);
 
 				instance.set(CHECKED, true);
-
-				checkEl.attr(CHECKED, CHECKED);
-
-				instance.fire('check');
 			},
 
 			/**
@@ -1555,16 +1547,8 @@ var TreeNodeCheck = A.Component.create(
 			 */
 			uncheck: function() {
 				var instance = this;
-				var contentBox = instance.get(CONTENT_BOX);
-				var checkEl = instance.get(CHECK_EL);
-
-				contentBox.removeClass(CSS_TREE_NODE_CHECKED);
 
 				instance.set(CHECKED, false);
-
-				checkEl.attr(CHECKED, BLANK);
-
-				instance.fire('uncheck');
 			},
 
 			/**
@@ -1595,6 +1579,19 @@ var TreeNodeCheck = A.Component.create(
 				var instance = this;
 
 				return instance.get(CHECKED);
+			},
+
+			_uiSetChecked: function(val) {
+				var instance = this;
+
+				if (val) {
+					instance.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHECKED);
+					instance.get(CHECK_EL).attr(CHECKED, CHECKED);
+				}
+				else {
+					instance.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHECKED);
+					instance.get(CHECK_EL).attr(CHECKED, BLANK);
+				}
 			}
 		}
 	}
@@ -1651,84 +1648,56 @@ var TreeNodeTask = A.Component.create(
 			/*
 			* Methods
 			*/
-			check: function(stopPropagation) {
+			check: function() {
 				var instance = this;
-				var parentNode = instance.get(PARENT_NODE);
 				var contentBox = instance.get(CONTENT_BOX);
 
-				// invoke default check logic
-				TreeNodeTask.superclass.check.apply(this, arguments);
-
-				if (!stopPropagation) {
-					// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the checked node
-					contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-					// loop all parentNodes
-					instance.eachParent(
-						function(parentNode) {
-							// if isTreeNodeTask and isChecked
-							if (isTreeNodeTask(parentNode)) {
-								var hasUnchecked = false;
-
-								// after check a child always check the parentNode temporary
-								// and add the CSS_TREE_NODE_CHILD_UNCHECKED state until the !hasUnchecked check
-								parentNode.check(true);
-								parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-								// check if has at least one child uncheked
-								parentNode.eachChildren(function(child) {
-									if (isTreeNodeTask(child) && !child.isChecked()) {
-										hasUnchecked = true;
-									}
-								}, true);
-
-								// if doesn't have unchecked children remove the CSS_TREE_NODE_CHILD_UNCHECKED class
-								if (!hasUnchecked) {
-									parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-								}
-							}
+				if (!instance.isLeaf()) {
+					instance.eachChildren(function(child) {
+						if (isTreeNodeTask(child)) {
+							child.check();
 						}
-					);
-
-					if (!instance.isLeaf()) {
-						// check all TreeNodeTask children
-						instance.eachChildren(function(child) {
-							if (isTreeNodeTask(child)) {
-								child.check();
-							}
-						});
-					}
+					});
 				}
+
+				instance.eachParent(
+					function(parentNode) {
+						if (isTreeNodeTask(parentNode) && !parentNode.isChecked()) {
+							parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+						}
+					}
+				);
+
+				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+				// invoke default check logic
+				A.TreeNodeTask.superclass.check.apply(this, arguments);
 			},
 
 			uncheck: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
 
-				// invoke default uncheck logic
-				TreeNodeTask.superclass.uncheck.apply(this, arguments);
-
-				// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the clicked node
-				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-				instance.eachParent(
-					function(parentNode) {
-						// if isTreeNodeTask and isChecked
-						if (isTreeNodeTask(parentNode) && parentNode.isChecked()) {
-							// add CSS_TREE_NODE_CHILD_UNCHECKED class
-							parentNode.get(CONTENT_BOX).addClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-						}
-					}
-				);
-
 				if (!instance.isLeaf()) {
-					// uncheck all TreeNodeTask children
 					instance.eachChildren(function(child) {
 						if (child instanceof A.TreeNodeCheck) {
 							child.uncheck();
 						}
 					});
 				}
+
+				instance.eachParent(
+					function(parentNode) {
+						if (isTreeNodeTask(parentNode) && !parentNode.isChecked()) {
+							parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+						}
+					}
+				);
+
+				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+				// invoke default uncheck logic
+				A.TreeNodeTask.superclass.uncheck.apply(this, arguments);
 			}
 		}
 	}

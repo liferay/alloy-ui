@@ -8,7 +8,6 @@
 var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
-	isString = L.isString,
 	isUndefined = L.isUndefined,
 
 	BOUNDING_BOX = 'boundingBox',
@@ -110,15 +109,6 @@ var TreeData = A.Component.create(
 
 		prototype: {
 			/**
-			 * Empty UI_EVENTS.
-			 *
-			 * @property UI_EVENTS
-			 * @type Object
-			 * @protected
-			 */
-			UI_EVENTS: {},
-
-			/**
 			 * Construction logic executed during TreeData instantiation. Lifecycle.
 			 *
 			 * @method initializer
@@ -188,7 +178,7 @@ var TreeData = A.Component.create(
 				var instance = this;
 				var oldParent = node.get(PARENT_NODE);
 				var oldOwnerTree = node.get(OWNER_TREE);
-				var moved = oldParent && (oldParent != parentNode);
+				var moved = oldParent && (oldParent !== parentNode);
 
 				if (oldParent) {
 					if (moved) {
@@ -223,7 +213,7 @@ var TreeData = A.Component.create(
 					ownerTree.registerNode(node);
 				}
 
-				if (oldOwnerTree != ownerTree) {
+				if (oldOwnerTree !== ownerTree) {
 					// when change the OWNER_TREE update the children references also
 					node.eachChildren(function(child) {
 						instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
@@ -436,7 +426,7 @@ var TreeData = A.Component.create(
 			bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
 				var instance = this;
 
-				// event.stopActionPropagation == undefined, invoke the event native action
+				// event.stopActionPropagation === undefined, invoke the event native action
 				instance.fire(eventType, args);
 
 				if (!cancelBubbling) {
@@ -692,7 +682,7 @@ var TreeData = A.Component.create(
 				var instance = this;
 				refTreeNode = refTreeNode || this;
 
-				if (refTreeNode == treeNode) {
+				if (refTreeNode === treeNode) {
 					return false; // NOTE: return
 				}
 				var refParentTreeNode = refTreeNode.get(PARENT_NODE);
@@ -702,10 +692,10 @@ var TreeData = A.Component.create(
 					var refBoundinBox = refTreeNode.get(BOUNDING_BOX);
 					var ownerTree = refTreeNode.get(OWNER_TREE);
 
-					if (where == 'before') {
+					if (where === 'before') {
 						refBoundinBox.placeBefore(nodeBoundinBox);
 					}
-					else if (where == 'after') {
+					else if (where === 'after') {
 						refBoundinBox.placeAfter(nodeBoundinBox);
 					}
 
@@ -815,7 +805,7 @@ var TreeData = A.Component.create(
 						node.render();
 
 						// avoid duplicated children on the childNodes list
-						if (A.Array.indexOf(childNodes, node) == -1) {
+						if (A.Array.indexOf(childNodes, node) === -1) {
 							childNodes.push(node);
 						}
 					}
