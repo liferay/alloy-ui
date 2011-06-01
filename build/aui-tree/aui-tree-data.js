@@ -30,6 +30,10 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
+	isTreeView = function(v) {
+		return ( v instanceof A.TreeView );
+	},
+
 	getCN = A.getClassName,
 
 	CSS_TREE_NODE = getCN(TREE, NODE);
@@ -120,8 +124,6 @@ var TreeData = A.Component.create(
 
 				// binding on initializer, needed before .render() phase
 				instance.publish('move');
-				instance.publish('collapseAll', { defaultFn: instance._collapseAll });
-				instance.publish('expandAll', { defaultFn: instance._expandAll });
 				instance.publish('append', { defaultFn: instance._appendChild });
 				instance.publish('remove', { defaultFn: instance._removeChild });
 			},
@@ -269,6 +271,10 @@ var TreeData = A.Component.create(
 					index[uid] = node;
 				}
 
+				if (isTreeView(instance)) {
+					node.addTarget(instance);
+				}
+
 				instance.updateIndex(index);
 			},
 
@@ -298,6 +304,10 @@ var TreeData = A.Component.create(
 
 				delete index[ node.get(ID) ];
 
+				if (isTreeView(instance)) {
+					node.removeTarget(instance);
+				}
+
 				instance.updateIndex(index);
 			},
 
@@ -307,19 +317,6 @@ var TreeData = A.Component.create(
 			 * @method collapseAll
 			 */
 			collapseAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('collapseAll', output);
-			},
-
-			/**
-			 * Collapse all children of the TreeData.
-			 *
-			 * @method _collapseAll
-			 * @protected
-			 */
-			_collapseAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {
@@ -333,19 +330,6 @@ var TreeData = A.Component.create(
 			 * @method expandAll
 			 */
 			expandAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('expandAll', output);
-			},
-
-			/**
-			 * Expand all children of the TreeData.
-			 *
-			 * @method _expandAll
-			 * @protected
-			 */
-			_expandAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {

@@ -30,6 +30,10 @@ var L = A.Lang,
 		return ( v instanceof A.TreeNode );
 	},
 
+	isTreeView = function(v) {
+		return ( v instanceof A.TreeView );
+	},
+
 	getCN = A.getClassName,
 
 	CSS_TREE_NODE = getCN(TREE, NODE);
@@ -120,8 +124,6 @@ var TreeData = A.Component.create(
 
 				// binding on initializer, needed before .render() phase
 				instance.publish('move');
-				instance.publish('collapseAll', { defaultFn: instance._collapseAll });
-				instance.publish('expandAll', { defaultFn: instance._expandAll });
 				instance.publish('append', { defaultFn: instance._appendChild });
 				instance.publish('remove', { defaultFn: instance._removeChild });
 			},
@@ -269,6 +271,10 @@ var TreeData = A.Component.create(
 					index[uid] = node;
 				}
 
+				if (isTreeView(instance)) {
+					node.addTarget(instance);
+				}
+
 				instance.updateIndex(index);
 			},
 
@@ -298,6 +304,10 @@ var TreeData = A.Component.create(
 
 				delete index[ node.get(ID) ];
 
+				if (isTreeView(instance)) {
+					node.removeTarget(instance);
+				}
+
 				instance.updateIndex(index);
 			},
 
@@ -307,19 +317,6 @@ var TreeData = A.Component.create(
 			 * @method collapseAll
 			 */
 			collapseAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('collapseAll', output);
-			},
-
-			/**
-			 * Collapse all children of the TreeData.
-			 *
-			 * @method _collapseAll
-			 * @protected
-			 */
-			_collapseAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {
@@ -333,19 +330,6 @@ var TreeData = A.Component.create(
 			 * @method expandAll
 			 */
 			expandAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('expandAll', output);
-			},
-
-			/**
-			 * Expand all children of the TreeData.
-			 *
-			 * @method _expandAll
-			 * @protected
-			 */
-			_expandAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {
@@ -1121,6 +1105,8 @@ var TreeNode = A.Component.create(
 
 		EXTENDS: A.TreeData,
 
+		UI_ATTRS: [EXPANDED],
+
 		prototype: {
 			/**
 			 * Replaced BOUNDING_TEMPLATE with NODE_BOUNDING_TEMPLATE.
@@ -1160,10 +1146,6 @@ var TreeNode = A.Component.create(
 			 */
 			bindUI: function() {
 				var instance = this;
-
-				// binding collapse/expand
-				instance.publish('collapse', { defaultFn: instance._collapse });
-				instance.publish('expand', { defaultFn: instance._expand });
 
 				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
 				instance.after('idChange', instance._afterSetId, instance);
@@ -1340,39 +1322,7 @@ var TreeNode = A.Component.create(
 			collapse: function() {
 				var instance = this;
 
-				if (instance.get(EXPANDED)) {
-					var output = instance.getEventOutputMap(instance);
-
-					instance.bubbleEvent('collapse', output);
-				}
-			},
-
-			/**
-			 * Collapse the current TreeNode.
-			 *
-			 * @method _collapse
-			 * @protected
-			 */
-			_collapse: function(event) {
-				// stopActionPropagation while bubbling
-				if (event.stopActionPropagation) {
-					return false;
-				}
-
-				var instance = this;
-
-				if (!instance.isLeaf()) {
-					var container = instance.get(CONTAINER);
-					var contentBox = instance.get(CONTENT_BOX);
-
-					contentBox.replaceClass(CSS_TREE_EXPANDED, CSS_TREE_COLLAPSED);
-
-					if (container) {
-						container.addClass(CSS_TREE_HIDDEN);
-					}
-
-					instance.set(EXPANDED, false);
-				}
+				instance.set(EXPANDED, false);
 			},
 
 			collapseAll: function() {
@@ -1403,38 +1353,7 @@ var TreeNode = A.Component.create(
 			expand: function() {
 				var instance = this;
 
-				if (!instance.get(EXPANDED)) {
-					var output = instance.getEventOutputMap(instance);
-
-					instance.bubbleEvent('expand', output);
-				}
-			},
-
-			/**
-			 * Expand the current TreeNode.
-			 *
-			 * @method _expand
-			 */
-			_expand: function(event) {
-				// stopActionPropagation while bubbling
-				if (event.stopActionPropagation) {
-					return false;
-				}
-
-				var instance = this;
-
-				if (!instance.isLeaf()) {
-					var container = instance.get(CONTAINER);
-					var contentBox = instance.get(CONTENT_BOX);
-
-					contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
-
-					if (container) {
-						container.removeClass(CSS_TREE_HIDDEN);
-					}
-
-					instance.set(EXPANDED, true);
-				}
+				instance.set(EXPANDED, true);
 			},
 
 			expandAll: function() {
@@ -1650,6 +1569,30 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance._syncHitArea(event.newVal);
+			},
+
+			_uiSetExpanded: function(val) {
+				var instance = this;
+
+				if (!instance.isLeaf()) {
+					var container = instance.get(CONTAINER);
+					var contentBox = instance.get(CONTENT_BOX);
+
+					if (val) {
+						contentBox.replaceClass(CSS_TREE_COLLAPSED, CSS_TREE_EXPANDED);
+
+						if (container) {
+							container.removeClass(CSS_TREE_HIDDEN);
+						}
+					}
+					else {
+						contentBox.replaceClass(CSS_TREE_EXPANDED, CSS_TREE_COLLAPSED);
+
+						if (container) {
+							container.addClass(CSS_TREE_HIDDEN);
+						}
+					}
+				}
 			}
 		}
 	}
