@@ -943,20 +943,6 @@ var TreeNodeIO = A.Component.create(
 
 		prototype: {
 			/**
-			 * Create the DOM structure for the TreeNodeIO. Lifecycle.
-			 *
-			 * @method renderUI
-			 * @protected
-			 */
-			renderUI: function() {
-				var instance = this;
-
-				instance._inheritOwnerTreeAttrs();
-
-				A.TreeNodeIO.superclass.renderUI.apply(this, arguments);
-			},
-
-			/**
 			 * Bind the events on the TreeNodeIO UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -1016,18 +1002,16 @@ var TreeNodeIO = A.Component.create(
 					instance.set(LOADED, false);
 				}
 
-				if (!io || loaded) {
-					A.TreeNodeIO.superclass.expand.apply(this, arguments);
+				if (io && !loaded && !loading && !this.hasChildNodes()) {
+					if (!cache) {
+						// remove all children to reload
+						instance.empty();
+					}
+
+					instance.initIO();
 				}
 				else {
-					if (!loading) {
-						if (!cache) {
-							// remove all children to reload
-							instance.empty();
-						}
-
-						instance.initIO();
-					}
+					A.TreeNodeIO.superclass.expand.apply(this, arguments);
 				}
 			},
 

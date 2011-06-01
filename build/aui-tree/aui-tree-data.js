@@ -761,6 +761,9 @@ var TreeData = A.Component.create(
 				return null;
 			},
 
+			_inheritOwnerTreeAttrs: function() {
+			},
+
 			/**
 			 * Setter for <a href="TreeData.html#config_children">children</a>.
 			 *
@@ -788,6 +791,7 @@ var TreeData = A.Component.create(
 						}
 
 						node.render();
+						node._inheritOwnerTreeAttrs();
 
 						// avoid duplicated children on the childNodes list
 						if (A.Array.indexOf(childNodes, node) === -1) {
