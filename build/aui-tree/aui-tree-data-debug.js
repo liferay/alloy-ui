@@ -275,6 +275,8 @@ var TreeData = A.Component.create(
 					node.addTarget(instance);
 				}
 
+				node._inheritOwnerTreeAttrs();
+
 				instance.updateIndex(index);
 			},
 

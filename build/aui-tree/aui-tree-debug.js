@@ -275,6 +275,8 @@ var TreeData = A.Component.create(
 					node.addTarget(instance);
 				}
 
+				node._inheritOwnerTreeAttrs();
+
 				instance.updateIndex(index);
 			},
 
@@ -1769,6 +1771,14 @@ var TreeNodeIO = A.Component.create(
 				instance._createEvents();
 			},
 
+			syncUI: function() {
+				var instance = this;
+
+				A.TreeNodeIO.superclass.syncUI.apply(this, arguments);
+
+				instance._syncPaginatorUI();
+			},
+
 			/**
 			 * Bind events to the paginator "show more" link.
 			 *
@@ -1793,7 +1803,9 @@ var TreeNodeIO = A.Component.create(
 				var instance = this;
 
 				A.Array.each(A.Array(nodes), function(node) {
-					instance.appendChild(instance.createNode(node));
+					var newNode = instance.createNode.apply(instance, [node]);
+
+					instance.appendChild(newNode);
 				});
 
 				instance._syncPaginatorUI(nodes);
@@ -2102,7 +2114,12 @@ var TreeNodeIO = A.Component.create(
 				var paginator = instance.get(PAGINATOR);
 
 				if (paginator) {
-					var hasMoreData = (newNodes && newNodes.length);
+					var hasMoreData = true;
+
+					if (newNodes) {
+						hasMoreData = (newNodes.length > 0);
+					}
+
 					var showPaginator = hasMoreData && (children.length >= paginator.limit);
 
 					if (paginator.alwaysVisible || showPaginator) {
