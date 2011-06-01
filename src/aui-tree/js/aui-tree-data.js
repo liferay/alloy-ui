@@ -789,8 +789,8 @@ var TreeData = A.Component.create(
 							node.set(OWNER_TREE, instance);
 						}
 
-						node.render();
 						node._inheritOwnerTreeAttrs();
+						node.render();
 
 						// avoid duplicated children on the childNodes list
 						if (A.Array.indexOf(childNodes, node) === -1) {
