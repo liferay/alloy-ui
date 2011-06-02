@@ -112,5 +112,4 @@ var LANG = Y.Lang,
 Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['dataschema-base']});

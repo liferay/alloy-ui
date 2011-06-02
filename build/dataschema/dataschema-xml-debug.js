@@ -122,7 +122,7 @@ var LANG = Y.Lang,
                             subloc = location.slice(location.indexOf("[")+1, location.indexOf("]"));
                             //XPath is 1-based while DOM is 0-based
                             subloc--;
-                            context = context.childNodes[subloc];
+                            context = context.children[subloc];
                             isNth = true;
                         }
                         // grab attribute value @
@@ -290,7 +290,6 @@ var LANG = Y.Lang,
     };
 
 Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
-
 
 
 }, '3.2.0' ,{requires:['dataschema-base']});

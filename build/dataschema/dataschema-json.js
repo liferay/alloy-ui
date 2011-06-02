@@ -301,5 +301,4 @@ var LANG = Y.Lang,
 Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['json', 'dataschema-base']});

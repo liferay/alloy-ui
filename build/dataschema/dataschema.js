@@ -69,9 +69,7 @@ Y.namespace("DataSchema").Base = SchemaBase;
 Y.namespace("Parsers");
 
 
-
 }, '3.2.0' ,{requires:['base']});
-
 YUI.add('dataschema-json', function(Y) {
 
 /**
@@ -368,9 +366,7 @@ var LANG = Y.Lang,
 Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['json', 'dataschema-base']});
-
 YUI.add('dataschema-xml', function(Y) {
 
 /**
@@ -486,7 +482,7 @@ var LANG = Y.Lang,
                             subloc = location.slice(location.indexOf("[")+1, location.indexOf("]"));
                             //XPath is 1-based while DOM is 0-based
                             subloc--;
-                            context = context.childNodes[subloc];
+                            context = context.children[subloc];
                             isNth = true;
                         }
                         // grab attribute value @
@@ -656,9 +652,7 @@ var LANG = Y.Lang,
 Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['dataschema-base']});
-
 YUI.add('dataschema-array', function(Y) {
 
 /**
@@ -757,9 +751,7 @@ var LANG = Y.Lang,
 Y.DataSchema.Array = Y.mix(SchemaArray, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['dataschema-base']});
-
 YUI.add('dataschema-text', function(Y) {
 
 /**
@@ -867,9 +859,7 @@ var LANG = Y.Lang,
 Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
-
 }, '3.2.0' ,{requires:['dataschema-base']});
-
 
 
 YUI.add('dataschema', function(Y){}, '3.2.0' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
