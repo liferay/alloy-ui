@@ -596,6 +596,67 @@
 		</subant>
 		<!-- /End Patch for AUI-363 -->
 
+		<!-- Patch for IE9 XML -->
+		<replace file="${project.dir}/lib/yui3/src/dataschema/js/dataschema-xml.js">
+			<replacetoken><![CDATA[context = context.childNodes[subloc];]]></replacetoken>
+			<replacevalue><![CDATA[context = context.children[subloc];]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/dataschema"
+				includes="build.xml"
+			/>
+		</subant>
+
+		<replace file="${project.dir}/lib/yui3/src/datatype/js/datatype-xml-parse.js">
+			<replacetoken><![CDATA[try {
+                if(!LANG.isUndefined(DOMParser)) {
+                    xmlDoc = new DOMParser().parseFromString(data, "text/xml");
+                }
+            }
+            catch(e) {
+                try {
+                    if(!LANG.isUndefined(ActiveXObject)) {
+                            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                            xmlDoc.async = false;
+                            xmlDoc.loadXML(data);
+                    }
+                }
+                catch(ee) {
+                    Y.log(ee.message + " (Could not parse data " + Y.dump(data) + " to type XML Document)", "warn", "datatype-xml");
+                }
+            }]]></replacetoken>
+			<replacevalue><![CDATA[try {
+                if(!LANG.isUndefined(ActiveXObject)) {
+                    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                    xmlDoc.async = false;
+                    xmlDoc.loadXML(data);
+                }
+            }
+            catch(ee) {
+                try {
+                    if(!LANG.isUndefined(DOMParser)) {
+                            xmlDoc = new DOMParser().parseFromString(data, "text/xml");
+                    }
+                }
+                catch(e) {
+                }
+                    Y.log(ee.message + " (Could not parse data " + Y.dump(data) + " to type XML Document)", "warn", "datatype-xml");
+            }]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/datatype"
+				includes="build.xml"
+			/>
+		</subant>
+		
+		<!-- /End Patch for IE9 XML -->
+
 	</target>
 
 	<target name="create-release">
