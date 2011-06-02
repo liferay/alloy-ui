@@ -80,23 +80,15 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 					checkName: 'customSelectName',
 					label: 'TaskNodeRoot',
 					leaf: false,
-					checked: true,
-					io: 'assets/tasks.html',
-					on: {
-						check: defCallback,
-						uncheck: defCallback
-					}
+					// checked: true,
+					io: 'assets/tasks.html'
 				},
 				{
 					type: 'check',
 					checkName: 'customSelectName',
 					label: 'CheckboxNode',
 					alwaysShowHitArea: false,
-					leaf: false,
-					on: {
-						check: defCallback,
-						uncheck: defCallback
-					}
+					leaf: false
 				},
 				{
 					type: 'io',
