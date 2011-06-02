@@ -186,7 +186,7 @@ var TreeView = A.Component.create(
 				// when the node is appended to the TreeView set the OWNER_TREE
 				node.set(OWNER_TREE, instance);
 
-				TreeView.superclass.registerNode.apply(this, arguments);
+				A.TreeView.superclass.registerNode.apply(this, arguments);
 			},
 
 			/**
@@ -203,9 +203,6 @@ var TreeView = A.Component.create(
 					// use firstChild as label
 					var labelEl = node.one('> *').remove();
 					var label = labelEl.outerHTML();
-
-					// avoid memory leak
-					docFrag = null;
 
 					var treeNode = new A.TreeNode({
 						boundingBox: node,
@@ -533,6 +530,19 @@ var TreeViewDD = A.Component.create(
 				if (helper) {
 					helper.remove(true);
 				}
+
+				instance.eachChildren(
+					function(child) {
+						if (child.get(DRAGGABLE)) {
+							var dd = DDM.getDrag(child.get(CONTENT_BOX));
+
+							if (dd) {
+								dd.destroy();
+							}
+						}
+					},
+					true
+				);
 			},
 
 			/**
@@ -544,7 +554,7 @@ var TreeViewDD = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				TreeViewDD.superclass.bindUI.apply(this, arguments);
+				A.TreeViewDD.superclass.bindUI.apply(this, arguments);
 
 				instance._bindDragDrop();
 			},
@@ -558,7 +568,7 @@ var TreeViewDD = A.Component.create(
 			renderUI: function() {
 				var instance = this;
 
-				TreeViewDD.superclass.renderUI.apply(this, arguments);
+				A.TreeViewDD.superclass.renderUI.apply(this, arguments);
 
 				// creating drag helper and hiding it
 				var helper = A.Node.create(HELPER_TPL).hide();
@@ -610,6 +620,8 @@ var TreeViewDD = A.Component.create(
 									scrollDelay: instance.get(SCROLL_DELAY),
 									node: instance.get(BOUNDING_BOX)
 								});
+
+								drag.removeInvalid('a');
 							}
 
 							A.Array.removeItem(dragTimers, timer);
@@ -656,6 +668,7 @@ var TreeViewDD = A.Component.create(
 				instance.on('drag:align', instance._onDragAlign);
 				instance.on('drag:start', instance._onDragStart);
 				instance.on('drop:exit', instance._onDropExit);
+				instance.after('drop:hit', instance._afterDropHit);
 				instance.on('drop:hit', instance._onDropHit);
 				instance.on('drop:over', instance._onDropOver);
 			},
@@ -759,7 +772,7 @@ var TreeViewDD = A.Component.create(
 					// these areas are responsible for defining the state when the mouse is over any of them
 					var nArea = nodeContent.get(OFFSET_HEIGHT) / 3;
 					var yTop = nodeContent.getY();
-					var yCenter = yTop + nArea*1;
+					var yCenter = yTop + nArea;
 					var yBottom = yTop + nArea*2;
 					var mouseY = drag.mouseXY[1];
 
@@ -779,7 +792,7 @@ var TreeViewDD = A.Component.create(
 						}
 						// if it's a leaf we need to set the ABOVE or BELOW state instead of append
 						else {
-							if (instance.direction == UP) {
+							if (instance.direction === UP) {
 								instance._goingUpState(nodeContent);
 							}
 							else {
@@ -809,6 +822,58 @@ var TreeViewDD = A.Component.create(
 			},
 
 			/**
+			 * Fires after the drop hit event.
+			 *
+			 * @method _afterDropHit
+			 * @param {EventFacade} event drop hit event facade
+			 * @protected
+			 */
+			_afterDropHit: function(event) {
+				var instance = this;
+				var dropAction = instance.dropAction;
+				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
+				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
+
+				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dragTreeNode = A.Widget.getByNode(dragNode);
+
+				var output = instance.getEventOutputMap(instance);
+
+				output.tree.dropNode = dropTreeNode;
+				output.tree.dragNode = dragTreeNode;
+
+				if (dropAction === ABOVE) {
+					dropTreeNode.insertBefore(dragTreeNode);
+
+					instance.bubbleEvent('dropInsert', output);
+				}
+				else if (dropAction === BELOW) {
+					dropTreeNode.insertAfter(dragTreeNode);
+
+					instance.bubbleEvent('dropInsert', output);
+				}
+				else if (dropAction === APPEND) {
+					if (dropTreeNode && !dropTreeNode.isLeaf()) {
+						dropTreeNode.appendChild(dragTreeNode);
+
+						if (!dropTreeNode.get(EXPANDED)) {
+							// expand node when drop a child on it
+							dropTreeNode.expand();
+						}
+
+						instance.bubbleEvent('dropAppend', output);
+					}
+				}
+
+				instance._resetState(instance.nodeContent);
+
+				// bubbling drop event
+				instance.bubbleEvent('drop', output);
+
+				instance.dropAction = null;
+			},
+
+			/**
 			 * Fires on drag align event.
 			 *
 			 * @method _onDragAlign
@@ -821,7 +886,7 @@ var TreeViewDD = A.Component.create(
 				var y = event.target.lastXY[1];
 
 				// if the y change
-				if (y != lastY) {
+				if (y !== lastY) {
 					// set the drag direction
 					instance.direction = (y < lastY) ? UP : DOWN;
 				}
@@ -885,48 +950,12 @@ var TreeViewDD = A.Component.create(
 			 * @protected
 			 */
 			_onDropHit: function(event) {
-				var instance = this;
-				var dropAction = instance.dropAction;
-				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-
 				var dropTreeNode = A.Widget.getByNode(dropNode);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
 
-				var output = instance.getEventOutputMap(instance);
-
-				output.tree.dropNode = dropTreeNode;
-				output.tree.dragNode = dragTreeNode;
-
-				if (dropAction == ABOVE) {
-					dropTreeNode.insertBefore(dragTreeNode);
-
-					instance.bubbleEvent('dropInsert', output);
+				if (!isTreeNode(dropTreeNode)) {
+					event.preventDefault();
 				}
-				else if (dropAction == BELOW) {
-					dropTreeNode.insertAfter(dragTreeNode);
-
-					instance.bubbleEvent('dropInsert', output);
-				}
-				else if (dropAction == APPEND) {
-					if (dropTreeNode && !dropTreeNode.isLeaf()) {
-						dropTreeNode.appendChild(dragTreeNode);
-
-						if (!dropTreeNode.get(EXPANDED)) {
-							// expand node when drop a child on it
-							dropTreeNode.expand();
-						}
-
-						instance.bubbleEvent('dropAppend', output);
-					}
-				}
-
-				instance._resetState(instance.nodeContent);
-
-				// bubbling drop event
-				instance.bubbleEvent('drop', output);
-
-				instance.dropAction = null;
 			},
 
 			/**

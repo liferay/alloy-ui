@@ -8,7 +8,6 @@
 var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
-	isString = L.isString,
 	isUndefined = L.isUndefined,
 
 	BOUNDING_BOX = 'boundingBox',
@@ -28,6 +27,10 @@ var L = A.Lang,
 
 	isTreeNode = function(v) {
 		return ( v instanceof A.TreeNode );
+	},
+
+	isTreeView = function(v) {
+		return ( v instanceof A.TreeView );
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -93,9 +96,7 @@ var TreeData = A.Component.create(
 			children: {
 				value: [],
 				validator: isArray,
-				setter: function(v) {
-					return this._setChildren(v);
-				}
+				setter: '_setChildren'
 			},
 
 			/**
@@ -112,15 +113,6 @@ var TreeData = A.Component.create(
 
 		prototype: {
 			/**
-			 * Empty UI_EVENTS.
-			 *
-			 * @property UI_EVENTS
-			 * @type Object
-			 * @protected
-			 */
-			UI_EVENTS: {},
-
-			/**
 			 * Construction logic executed during TreeData instantiation. Lifecycle.
 			 *
 			 * @method initializer
@@ -131,12 +123,8 @@ var TreeData = A.Component.create(
 
 				// binding on initializer, needed before .render() phase
 				instance.publish('move');
-				instance.publish('collapseAll', { defaultFn: instance._collapseAll });
-				instance.publish('expandAll', { defaultFn: instance._expandAll });
 				instance.publish('append', { defaultFn: instance._appendChild });
 				instance.publish('remove', { defaultFn: instance._removeChild });
-
-				TreeData.superclass.initializer.apply(this, arguments);
 			},
 
 			/**
@@ -192,7 +180,7 @@ var TreeData = A.Component.create(
 				var instance = this;
 				var oldParent = node.get(PARENT_NODE);
 				var oldOwnerTree = node.get(OWNER_TREE);
-				var moved = oldParent && (oldParent != parentNode);
+				var moved = oldParent && (oldParent !== parentNode);
 
 				if (oldParent) {
 					if (moved) {
@@ -227,7 +215,7 @@ var TreeData = A.Component.create(
 					ownerTree.registerNode(node);
 				}
 
-				if (oldOwnerTree != ownerTree) {
+				if (oldOwnerTree !== ownerTree) {
 					// when change the OWNER_TREE update the children references also
 					node.eachChildren(function(child) {
 						instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
@@ -237,6 +225,11 @@ var TreeData = A.Component.create(
 				// trigger move event
 				if (moved) {
 					var output = instance.getEventOutputMap(node);
+
+					if (!oldParent.get('children').length) {
+						oldParent.collapse();
+						oldParent.hideHitArea();
+					}
 
 					output.tree.oldParent = oldParent;
 					output.tree.oldOwnerTree = oldOwnerTree;
@@ -277,6 +270,12 @@ var TreeData = A.Component.create(
 					index[uid] = node;
 				}
 
+				if (isTreeView(instance)) {
+					node.addTarget(instance);
+				}
+
+				node._inheritOwnerTreeAttrs();
+
 				instance.updateIndex(index);
 			},
 
@@ -306,6 +305,10 @@ var TreeData = A.Component.create(
 
 				delete index[ node.get(ID) ];
 
+				if (isTreeView(instance)) {
+					node.removeTarget(instance);
+				}
+
 				instance.updateIndex(index);
 			},
 
@@ -315,19 +318,6 @@ var TreeData = A.Component.create(
 			 * @method collapseAll
 			 */
 			collapseAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('collapseAll', output);
-			},
-
-			/**
-			 * Collapse all children of the TreeData.
-			 *
-			 * @method _collapseAll
-			 * @protected
-			 */
-			_collapseAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {
@@ -341,19 +331,6 @@ var TreeData = A.Component.create(
 			 * @method expandAll
 			 */
 			expandAll: function() {
-				var instance = this;
-				var output = instance.getEventOutputMap(instance);
-
-				instance.fire('expandAll', output);
-			},
-
-			/**
-			 * Expand all children of the TreeData.
-			 *
-			 * @method _expandAll
-			 * @protected
-			 */
-			_expandAll: function(event) {
 				var instance = this;
 
 				instance.eachChildren(function(node) {
@@ -435,7 +412,7 @@ var TreeData = A.Component.create(
 			bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
 				var instance = this;
 
-				// event.stopActionPropagation == undefined, invoke the event native action
+				// event.stopActionPropagation === undefined, invoke the event native action
 				instance.fire(eventType, args);
 
 				if (!cancelBubbling) {
@@ -468,17 +445,11 @@ var TreeData = A.Component.create(
 			 */
 			createNode: function(options) {
 				var instance = this;
-				var classType = options.type;
+				var classType = A.TreeNode.nodeTypes[ isObject(options) ? options.type : options ] || A.TreeNode;
 
-				if (isString(classType) && A.TreeNode.nodeTypes) {
-					classType = A.TreeNode.nodeTypes[classType];
-				}
-
-				if (!classType) {
-					classType = A.TreeNode;
-				}
-
-				return new classType(options);
+				return new classType(
+					isObject(options) ? options : {}
+				);
 			},
 
 			/**
@@ -697,7 +668,7 @@ var TreeData = A.Component.create(
 				var instance = this;
 				refTreeNode = refTreeNode || this;
 
-				if (refTreeNode == treeNode) {
+				if (refTreeNode === treeNode) {
 					return false; // NOTE: return
 				}
 				var refParentTreeNode = refTreeNode.get(PARENT_NODE);
@@ -707,10 +678,10 @@ var TreeData = A.Component.create(
 					var refBoundinBox = refTreeNode.get(BOUNDING_BOX);
 					var ownerTree = refTreeNode.get(OWNER_TREE);
 
-					if (where == 'before') {
+					if (where === 'before') {
 						refBoundinBox.placeBefore(nodeBoundinBox);
 					}
-					else if (where == 'after') {
+					else if (where === 'after') {
 						refBoundinBox.placeAfter(nodeBoundinBox);
 					}
 
@@ -791,6 +762,9 @@ var TreeData = A.Component.create(
 				return null;
 			},
 
+			_inheritOwnerTreeAttrs: function() {
+			},
+
 			/**
 			 * Setter for <a href="TreeData.html#config_children">children</a>.
 			 *
@@ -817,10 +791,11 @@ var TreeData = A.Component.create(
 							node.set(OWNER_TREE, instance);
 						}
 
+						node._inheritOwnerTreeAttrs();
 						node.render();
 
 						// avoid duplicated children on the childNodes list
-						if (A.Array.indexOf(childNodes, node) == -1) {
+						if (A.Array.indexOf(childNodes, node) === -1) {
 							childNodes.push(node);
 						}
 					}
