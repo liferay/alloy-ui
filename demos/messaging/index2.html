@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+			width: 70%;
+		}
+
+		.message {
+			background: #eee;
+			border: 1px solid #ccc;
+			margin: 1em 0;
+			padding: 3px 5px;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Messaging Demo</h1>
+
+	<p>Host this file on Domain B (currently hardcoded to Nate's other machine name http://miles.dev)</p>
+
+	<h2>Child frame</h2>
+
+	<textarea id="customMessage">Hi there, my gender neutral parent frame on another domain. I would call more, if we had a snazzy way to communicate.</textarea><br />
+	<input id="sendMessage" type="button" value="Send Message to Parent" />
+
+	<div id="demo"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-messaging', function(A) {
+	var demo = A.one('#demo');
+	var customMessage = A.one('#customMessage');
+	var sendMessage = A.one('#sendMessage');
+
+	sendMessage.on('click', function(event) {
+		// plain value
+		// A.postMessage(customMessage.val(),'http://miles.dev/alloy/demos/messaging/index2.html');
+
+		// string as encoded value
+		// A.postMessage('myMessage=' + customMessage.val(),'http://miles.dev/alloy/demos/messaging/index2.html');
+
+		// or raw object value
+		A.postMessage(
+			{
+				myMessage: customMessage.val()
+			},
+			'http://miles.local/alloy/demos/messaging/index.html');
+	});
+
+	var updateHeight = function() {
+		A.postMessage({
+			height: A.getBody().height()
+		},'http://miles.local/alloy/demos/messaging/index.html');
+	};
+
+	A.receiveMessage(
+		function(event) {
+			if (event.responseData.myMessage) {
+				demo.append('<p class="message">This message came from the other domain: <strong>' + event.responseData.myMessage + '</strong></p>');
+			}
+
+			updateHeight();
+		},
+		// sourceURI can be a function that returns true or false,
+		// useful for dynamic filtering of the domains that you'll accept
+		function(origin) {
+			return /miles\./.test(origin);
+		}
+	);
+
+	updateHeight();
+});
+
+</script>
+
+</body>
+</html>
