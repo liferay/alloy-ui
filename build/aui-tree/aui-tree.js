@@ -324,6 +324,9 @@ var TreeData = A.Component.create(
 				instance.eachChildren(function(node) {
 					node.collapse();
 				}, true);
+
+				// NOTE: Deprecated collapseAll event
+				instance.fire('collapseAll', instance.getEventOutputMap(instance));
 			},
 
 			/**
@@ -337,6 +340,9 @@ var TreeData = A.Component.create(
 				instance.eachChildren(function(node) {
 					node.expand();
 				}, true);
+
+				// NOTE: Deprecated expandAll event
+				instance.fire('expandAll', instance.getEventOutputMap(instance));
 			},
 
 			/**
@@ -1138,6 +1144,13 @@ var TreeNode = A.Component.create(
 			 */
 			initializer: function() {
 				var instance = this;
+
+				// NOTE: Deprecated expand/collapse placeholders, use '*:expandedChange' event instead
+				instance.on({
+					expandedChange: function(event) {
+						instance.bubbleEvent(event.newVal ? 'expand' : 'collapse', instance.getEventOutputMap(instance));
+					}
+				});
 
 				// Sync the Widget TreeNode id with the BOUNDING_BOX id
 				instance._syncTreeNodeBBId();
@@ -2266,6 +2279,17 @@ var TreeNodeCheck = A.Component.create(
 			/*
 			* Lifecycle
 			*/
+			initializer: function() {
+				var instance = this;
+
+				// NOTE: Deprecated check/uncheck placeholders, use '*:checkedChange' event instead
+				instance.on({
+					checkedChange: function(event) {
+						instance.bubbleEvent(event.newVal ? 'check' : 'uncheck', instance.getEventOutputMap(instance));
+					}
+				});
+			},
+
 			renderUI: function() {
 				var instance = this;
 

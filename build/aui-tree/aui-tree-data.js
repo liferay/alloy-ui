@@ -324,6 +324,9 @@ var TreeData = A.Component.create(
 				instance.eachChildren(function(node) {
 					node.collapse();
 				}, true);
+
+				// NOTE: Deprecated collapseAll event
+				instance.fire('collapseAll', instance.getEventOutputMap(instance));
 			},
 
 			/**
@@ -337,6 +340,9 @@ var TreeData = A.Component.create(
 				instance.eachChildren(function(node) {
 					node.expand();
 				}, true);
+
+				// NOTE: Deprecated expandAll event
+				instance.fire('expandAll', instance.getEventOutputMap(instance));
 			},
 
 			/**
