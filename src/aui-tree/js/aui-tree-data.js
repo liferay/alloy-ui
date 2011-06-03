@@ -762,8 +762,7 @@ var TreeData = A.Component.create(
 				return null;
 			},
 
-			_inheritOwnerTreeAttrs: function() {
-			},
+			_inheritOwnerTreeAttrs: L.emptyFn,
 
 			/**
 			 * Setter for <a href="TreeData.html#config_children">children</a>.

@@ -1603,6 +1603,8 @@ var TreeNodeTask = A.Component.create(
 
 		EXTENDS: A.TreeNodeCheck,
 
+		UI_ATTRS: [CHECKED, EXPANDED],
+
 		prototype: {
 			/*
 			* Methods
