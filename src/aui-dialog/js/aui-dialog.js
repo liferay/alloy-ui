@@ -636,8 +636,6 @@ Dialog.prototype = {
 		var instance = this;
 
 		if (instance.get(DRAGGABLE)) {
-			A.DD.DDM.CSS_PREFIX = CSS_PREFIX;
-
 			val = new A.DD.Drag(
 				instance.get(DRAG_CONFIG)
 			);
