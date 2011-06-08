@@ -58,7 +58,6 @@
 	display: none !important;
 }
 
-/* Currently removed support for VoiceOver on Snow Leopard */
 .aui-helper-hidden-accessible,
 .aui-overlay-hidden,
 .aui-overlaycontext-hidden,
@@ -71,28 +70,14 @@
 .aui-image-viewer-hidden,
 .aui-image-gallery-hidden {
 	clip: rect(0 0 0 0) !important;
-	overflow: hidden !important;
 	position: absolute !important;
-	/*Note to future self, if you remove the visibility: hidden, remove the top.
-	otherwise the screen will jump when focusing child elements*/
-	top: -9999em !important;
-	visibility: hidden !important;
-	left: 0 !important;
-}
 
-.rtl .aui-helper-hidden-accessible,
-.rtl .aui-overlay-hidden,
-.rtl .aui-overlaycontext-hidden,
-.rtl .aui-overlaymask-hidden,
-.rtl .aui-calendar-hidden,
-.rtl .aui-date-picker-hidden,
-.rtl .aui-datepicker-hidden,
-.rtl .aui-colorpicker-hidden,
-.rtl .aui-tooltip-hidden,
-.rtl .aui-image-viewer-hidden,
-.rtl .aui-image-gallery-hidden {
-	left: auto !important;
-	right: 0 !important;
+	/*Webkit and IE7 let clipped content change the scroll height of the page*/
+	/*Scale webkit to 0*/
+	-webkit-transform: scale(0);
+	-webkit-transform-origin: 0 0;
+	/*Change IE7 to using fixed*/
+	*position: fixed !important;
 }
 
 .aui-helper-force-offset {
