@@ -596,7 +596,7 @@
 		</subant>
 		<!-- /End Patch for AUI-363 -->
 
-		<!-- Patch for IE9 XML -->
+		<!-- Patch for AUI-445 -->
 		<replace file="${project.dir}/lib/yui3/src/dataschema/js/dataschema-xml.js">
 			<replacetoken><![CDATA[context = context.childNodes[subloc];]]></replacetoken>
 			<replacevalue><![CDATA[context = context.children[subloc];]]></replacevalue>
@@ -655,7 +655,7 @@
 			/>
 		</subant>
 		
-		<!-- /End Patch for IE9 XML -->
+		<!-- /End Patch for AUI-445 -->
 
 	</target>
 
