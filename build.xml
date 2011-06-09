@@ -654,9 +654,26 @@
 				includes="build.xml"
 			/>
 		</subant>
-		
 		<!-- /End Patch for AUI-445 -->
 
+		<!-- Patch for AUI-447 -->
+		<replace file="${project.dir}/lib/yui3/src/event/js/event-facade-dom-ie.js">
+			<replacetoken><![CDATA[Y.DOMEventFacade = IEEventFacade;]]></replacetoken>
+			<replacevalue><![CDATA[var imp = Y.config.doc && Y.config.doc.implementation;
+
+            if (imp && (!imp.hasFeature('Events', '2.0'))) {
+                Y.DOMEventFacade = IEEventFacade;
+            }]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/event"
+				includes="build-base-ie.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-447 -->
 	</target>
 
 	<target name="create-release">
