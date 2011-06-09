@@ -131,7 +131,11 @@ Y.extend(IEEventFacade, Y.DOM2EventFacade, {
 
 });
 
-Y.DOMEventFacade = IEEventFacade;
+var imp = Y.config.doc && Y.config.doc.implementation;
+
+            if (imp && (!imp.hasFeature('Events', '2.0'))) {
+                Y.DOMEventFacade = IEEventFacade;
+            }
 
 
 }, '3.2.0' );
