@@ -113,6 +113,15 @@ var TreeData = A.Component.create(
 
 		prototype: {
 			/**
+			 * Empty UI_EVENTS.
+			 *
+			 * @property UI_EVENTS
+			 * @type Object
+			 * @protected
+			 */
+			UI_EVENTS: {},
+
+			/**
 			 * Construction logic executed during TreeData instantiation. Lifecycle.
 			 *
 			 * @method initializer
