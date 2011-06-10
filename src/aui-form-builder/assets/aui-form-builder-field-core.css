@@ -25,8 +25,7 @@
 	border: 1px solid #CCCCCC;
 }
 
-.aui-form-builder-field-node,
-.aui-field-choice {
+.aui-form-builder-field-node {
 	clear: both;
 	display: block;
 }
