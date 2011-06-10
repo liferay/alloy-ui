@@ -4,7 +4,7 @@ var Lang = A.Lang,
 
 	RESIZE_IFRAME = 'resizeiframe',
 
-	getClassName = A.ClassNameManager.getClassName,
+	getClassName = A.getClassName,
 
 	HEIGHT = 'height',
 	HIDDEN = 'hidden',
@@ -34,13 +34,15 @@ ResizeIframe = A.Component.create(
 		},
 
 		prototype: {
-			initializer: function() {
+			initializer: function(config) {
 				var instance = this;
 
 				var frame = instance.get('host');
 
 				instance.node = frame;
 				instance._iframeEl = frame.getDOM();
+
+				instance._defaultHeight = config.height;
 
 				instance.bindUI();
 				instance.syncUI();
@@ -145,6 +147,8 @@ ResizeIframe = A.Component.create(
 				}
 				else {
 					instance._clearInterval();
+
+					instance._uiSetHeight(instance._defaultHeight);
 				}
 			},
 
