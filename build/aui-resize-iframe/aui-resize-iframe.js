@@ -4,7 +4,7 @@ var Lang = A.Lang,
 
 	RESIZE_IFRAME = 'resizeiframe',
 
-	getClassName = A.getClassName,
+	getClassName = A.ClassNameManager.getClassName,
 
 	HEIGHT = 'height',
 	HIDDEN = 'hidden',
