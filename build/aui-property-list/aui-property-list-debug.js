@@ -4,6 +4,7 @@ var Lang = A.Lang,
 
 	AUTO = 'auto',
 	COLUMNSET = 'columnset',
+	DBLCLICK = 'dblclick',
 	EDITOR = 'editor',
 	HEIGHT = 'height',
 	KEY = 'key',
@@ -43,6 +44,10 @@ var PropertyList = A.Component.create({
 					}
 				];
 			}
+		},
+
+		editEvent: {
+			value: DBLCLICK
 		},
 
 		recordset: {
@@ -96,11 +101,22 @@ var PropertyList = A.Component.create({
 				event.column = columnset.keyHash[VALUE];
 			}
 
-			return PropertyList.superclass._editCell.apply(this, [event]);
+			return PropertyList.superclass._editCell.call(this, event);
 		},
 
 		getDefaultEditor: function() {
 			return new A.TextCellEditor();
+		},
+
+		_onEditorSave: function(event) {
+			var instance = this;
+			var selection = instance.selection;
+
+			if (selection) {
+				selection.activeColumnIndex = 1;
+			}
+
+			return PropertyList.superclass._onEditorSave.call(this, event);
 		},
 
 		_plugDependencies: function() {
