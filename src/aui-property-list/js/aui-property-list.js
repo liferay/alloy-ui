@@ -8,7 +8,7 @@ var Lang = A.Lang,
 	HEIGHT = 'height',
 	KEY = 'key',
 	NAME = 'name',
-	PROPERTY_LIST = 'propertyList',
+	PROPERTY_NAME = 'propertyName',
 	SCROLL = 'scroll',
 	SELECTION = 'selection',
 	SORT = 'sort',
@@ -31,7 +31,7 @@ var PropertyList = A.Component.create({
 					{
 						editor: false,
 						key: NAME,
-						label: instance.getString(PROPERTY_LIST),
+						label: instance.getString(PROPERTY_NAME),
 						sortable: true
 					},
 					{
@@ -73,7 +73,7 @@ var PropertyList = A.Component.create({
 
 		strings: {
 			value: {
-				propertyList: 'Property List',
+				propertyName: 'Property Name',
 				value: 'Value'
 			}
 		}
