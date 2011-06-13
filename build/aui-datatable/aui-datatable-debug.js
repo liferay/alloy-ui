@@ -651,7 +651,9 @@ A.mix(CellEditorSupport.prototype, {
 			var cell = instance.getCellNode(activeRecord, activeColumn);
 			var row = instance.getRowNode(activeRecord);
 
-			selection.select(cell, row);
+			if (!event.newVal) {
+				selection.select(cell, row);
+			}
 		}
 	},
 
@@ -1103,6 +1105,12 @@ var BaseCellEditor = A.Component.create({
 		_defInitEditFn: function(event) {
 		},
 
+		_syncElementsFocus: function() {
+			var instance = this;
+
+			instance.elements.selectText();
+		},
+
 		_syncElementsName: function() {
 			var instance = this;
 
@@ -1110,6 +1118,12 @@ var BaseCellEditor = A.Component.create({
 				NAME,
 				instance.get(ELEMENT_NAME)
 			);
+		},
+
+		_syncFocus: function() {
+			var instance = this;
+
+			A.later(10, instance, instance._syncElementsFocus);
 		},
 
 		_uiSetEditable: function(val) {
@@ -1141,9 +1155,9 @@ var BaseCellEditor = A.Component.create({
 				elements.val(
 					instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
 				);
-
-				A.later(30, elements, elements.selectText);
 			}
+
+			instance._syncFocus();
 		}
 
 		/*
@@ -1514,7 +1528,10 @@ var BaseOptionsCellEditor = A.Component.create({
 				AArray.each(AArray(val), function(value) {
 					options.filter('[value="' + value + '"]').set(instance.get(SELECTED_ATTR_NAME), true);
 				});
+
 			}
+
+			instance._syncFocus();
 
 			return val;
 		}
@@ -1611,6 +1628,12 @@ var DropDownCellEditor = A.Component.create({
 			return instance.elements.get(VALUE);
 		},
 
+		_syncElementsFocus: function() {
+			var instance = this;
+
+			instance.elements.focus();
+		},
+
 		_uiSetMultiple: function(val) {
 			var instance = this;
 			var elements = instance.elements;
@@ -1659,6 +1682,15 @@ var CheckboxCellEditor = A.Component.create({
 			var instance = this;
 
 			return instance._getSelectedOptions().get(VALUE);
+		},
+
+		_syncElementsFocus: function() {
+			var instance = this;
+			var options = instance.options;
+
+			if (options && options.size()) {
+				options.item(0).focus();
+			}
 		}
 	}
 });
