@@ -15,6 +15,7 @@ var Lang = A.Lang,
 	VALUE = 'value',
 	WIDTH = 'width',
 
+	_EMPTY_STR = '',
 	_NAME = 'property-list';
 
 var PropertyList = A.Component.create({
@@ -41,6 +42,10 @@ var PropertyList = A.Component.create({
 					}
 				];
 			}
+		},
+
+		recordset: {
+			value: [{ name: _EMPTY_STR, value: _EMPTY_STR }]
 		},
 
 		scroll: {
