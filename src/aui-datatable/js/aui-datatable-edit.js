@@ -260,6 +260,7 @@ A.mix(CellEditorSupport.prototype, {
 
 	_onEditorVisibleChange: function(event) {
 		var instance = this;
+		var editor = event.currentTarget;
 		var selection = instance.selection;
 
 		if (selection) {
@@ -268,7 +269,10 @@ A.mix(CellEditorSupport.prototype, {
 			var cell = instance.getCellNode(activeRecord, activeColumn);
 			var row = instance.getRowNode(activeRecord);
 
-			if (!event.newVal) {
+			if (event.newVal) {
+				editor._syncFocus();
+			}
+			else {
 				selection.select(cell, row);
 			}
 		}
@@ -740,7 +744,7 @@ var BaseCellEditor = A.Component.create({
 		_syncFocus: function() {
 			var instance = this;
 
-			A.later(10, instance, instance._syncElementsFocus);
+			A.later(0, instance, instance._syncElementsFocus);
 		},
 
 		_uiSetEditable: function(val) {
@@ -773,8 +777,6 @@ var BaseCellEditor = A.Component.create({
 					instance.formatValue(instance.get(OUTPUT_FORMATTER), val)
 				);
 			}
-
-			instance._syncFocus();
 		}
 
 		/*
@@ -1147,8 +1149,6 @@ var BaseOptionsCellEditor = A.Component.create({
 				});
 
 			}
-
-			instance._syncFocus();
 
 			return val;
 		}
