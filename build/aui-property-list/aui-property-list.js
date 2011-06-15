@@ -5,11 +5,12 @@ var Lang = A.Lang,
 	AUTO = 'auto',
 	COLUMNSET = 'columnset',
 	DBLCLICK = 'dblclick',
-	EDITOR = 'editor',
 	HEIGHT = 'height',
 	KEY = 'key',
 	NAME = 'name',
 	PROPERTY_NAME = 'propertyName',
+	RECORDSET = 'recordset',
+	RECORDSET_CHANGE = 'recordsetChange',
 	SCROLL = 'scroll',
 	SELECTION = 'selection',
 	SORT = 'sort',
@@ -86,6 +87,7 @@ var PropertyList = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
+			instance.after(RECORDSET_CHANGE, instance._plugDependencies);
 			instance.after(instance._syncScrollWidth, instance, '_uiSetWidth');
 			instance.after(instance._syncScrollHeight, instance, '_uiSetHeight');
 
@@ -101,7 +103,7 @@ var PropertyList = A.Component.create({
 				event.column = columnset.keyHash[VALUE];
 			}
 
-			return PropertyList.superclass._editCell.call(this, event);
+			return A.PropertyList.superclass._editCell.call(this, event);
 		},
 
 		getDefaultEditor: function() {
@@ -116,23 +118,29 @@ var PropertyList = A.Component.create({
 				selection.activeColumnIndex = 1;
 			}
 
-			return PropertyList.superclass._onEditorSave.call(this, event);
+			return A.PropertyList.superclass._onEditorSave.call(this, event);
 		},
 
 		_plugDependencies: function() {
 			var instance = this;
+			var recordset = instance.get(RECORDSET);
+
+			if (!recordset.hasPlugin(A.Plugin.RecordsetSort)) {
+				recordset.plug(A.Plugin.RecordsetSort, { dt: instance });
+		        recordset.sort.addTarget(instance);
+			}
 
 			instance.plug(
 				A.Plugin.DataTableSelection,
 				instance.get(SELECTION)
 			)
 			.plug(
-				A.Plugin.DataTableScroll,
-				instance.get(SCROLL)
-			)
-			.plug(
 				A.Plugin.DataTableSort,
 				instance.get(SORT)
+			)
+			.plug(
+				A.Plugin.DataTableScroll,
+				instance.get(SCROLL)
 			);
 		},
 
