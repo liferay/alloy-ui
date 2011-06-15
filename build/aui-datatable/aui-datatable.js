@@ -550,7 +550,7 @@ A.mix(CellEditorSupport.prototype, {
 		var columnEditor = column.get(EDITOR);
 		var recordEditor = record.get(DATA).editor;
 
-		if (columnEditor === false) {
+		if (columnEditor === false || recordEditor === false) {
 			return null;
 		}
 
