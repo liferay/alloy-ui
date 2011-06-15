@@ -192,16 +192,18 @@ A.mix(CellEditorSupport.prototype, {
 
 		A.each(recordset.get(RECORDS), function(record) {
 			var editor = record.get(DATA).editor;
+			var isBaseEditorInstance = isBaseEditor(editor);
 
-			if (isBaseEditor(editor)) {
-				A.all(_HASH + record.get("id") + '>td').each(function(td, index) {
-					var column = columnset.getColumn(index);
+			A.all(_HASH + record.get("id") + '>td').each(function(td, index) {
+				var column = columnset.getColumn(index);
 
-					if (column.get(EDITOR) !== false) {
-						td.addClass(CSS_DATATABLE_EDITABLE);
-					}
-				});
-			}
+				if (editor === false) {
+					td.removeClass(CSS_DATATABLE_EDITABLE);
+				}
+				else if (isBaseEditorInstance || (column.get(EDITOR) !== false)) {
+					td.addClass(CSS_DATATABLE_EDITABLE);
+				}
+			});
 		});
 	},
 
