@@ -15,7 +15,11 @@ var	L = A.Lang,
 	ACTIVE_ELEMENT = 'activeElement',
 	OWNER_DOCUMENT = 'ownerDocument',
 
-	UA = A.UA;
+	UA = A.UA,
+
+	DOC = A.config.doc,
+	IMP = DOC && DOC.implementation,
+	SUPPORTS_EVENTS = IMP && (!IMP.hasFeature('Events', '2.0'));
 
 var evt = {
 	/**
@@ -42,7 +46,7 @@ var evt = {
 		if (!/chrome/i.test(UA.agent) && UA.webkit && UA.version.major <= 2) {
 			etype = 'keypress';
 		}
-		else if (UA.ie) {
+		else if (UA.ie && SUPPORTS_EVENTS) {
 			// IE doesn't support input event, simulate it with propertychange
 			etype = 'propertychange';
 		}
