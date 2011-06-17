@@ -37,6 +37,7 @@ var L = A.Lang,
 	PARENT_NODE = 'parentNode',
 	SELECTED = 'selected',
 	SPACE = ' ',
+	RADIO = 'radio',
 	TREE = 'tree',
 	TREE_NODE = 'tree-node',
 
@@ -1662,10 +1663,129 @@ var TreeNodeTask = A.Component.create(
 
 A.TreeNodeTask = TreeNodeTask;
 
+
+/*
+* TreeNodeRadio
+*/
+
+var	TREE_NODE_RADIO = 'tree-node-radio',
+
+	isTreeNodeRadio = function(node) {
+		return node instanceof A.TreeNodeRadio;
+	},
+
+	CSS_RADIO_NODE = getCN(TREE, RADIO, NODE),
+	CSS_RADIO_NODE_CHECKED = getCN(TREE, RADIO, NODE, CHECKED);
+
+/**
+ * <p><img src="assets/images/aui-treeNodeRadio/main.png"/></p>
+ *
+ * A base class for TreeNodeRadio, providing:
+ * <ul>
+ *    <li>Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)</li>
+ *    <li>3 states checkbox support</li>
+ *    <li>Automatic check/uncheck the parent status based on the children checked status</li>
+ * </ul>
+ *
+ * Check the list of <a href="TreeNodeRadio.html#configattributes">Configuration Attributes</a> available for
+ * TreeNodeRadio.
+ *
+ * @param config {Object} Object literal specifying widget configuration properties.
+ *
+ * @class TreeNodeRadio
+ * @constructor
+ * @extends TreeNodeTask
+ */
+var TreeNodeRadio = A.Component.create(
+	{
+		/**
+		 * Static property provides a string to identify the class.
+		 *
+		 * @property TreeNode.NAME
+		 * @type String
+		 * @static
+		 */
+		NAME: TREE_NODE_RADIO,
+
+		EXTENDS: A.TreeNodeTask,
+
+		prototype: {
+			/*
+			* Methods
+			*/
+			renderUI: function() {
+				var instance = this;
+
+				A.TreeNodeRadio.superclass.renderUI.apply(instance, arguments);
+
+				instance.get(CONTENT_BOX).addClass(CSS_RADIO_NODE);
+			},
+
+			check: function() {
+				var instance = this;
+
+				instance._uncheckRadioNodes();
+
+				A.TreeNodeRadio.superclass.check.apply(this, arguments);
+			},
+
+			_uiSetChecked: function(val) {
+				var instance = this;
+
+				if (val) {
+					instance.get(CONTENT_BOX).addClass(CSS_RADIO_NODE_CHECKED);
+					instance.get(CHECK_EL).attr(CHECKED, CHECKED);
+				}
+				else {
+					instance.get(CONTENT_BOX).removeClass(CSS_RADIO_NODE_CHECKED);
+					instance.get(CHECK_EL).attr(CHECKED, BLANK);
+				}
+			},
+
+			_uncheckRadioNodes: function(node) {
+				var instance = this;
+
+				var children;
+
+				if (node) {
+					children = node.get(CHILDREN);
+				}
+				else {
+					var ownerTree = instance.get(OWNER_TREE);
+
+					if (ownerTree) {
+						children = ownerTree.get(CHILDREN);
+					}
+					else {
+						return;
+					}
+				}
+
+				A.Array.each(
+					children,
+					function(value, index, collection) {
+						if (!value.isLeaf()) {
+							instance._uncheckRadioNodes(value);
+						}
+
+						if (isTreeNodeRadio(value)) {
+							value.uncheck();
+						}
+					}
+				);
+			}
+		}
+	}
+);
+
+A.TreeNodeRadio = TreeNodeRadio;
+
+
 /**
  * TreeNode types hash map.
  *
  * <pre><code>A.TreeNode.nodeTypes = {
+ *  radio: A.TreeNodeRadio,
  *  task: A.TreeNodeTask,
  *  check: A.TreeNodeCheck,
  *  node: A.TreeNode,
@@ -1677,10 +1797,11 @@ A.TreeNodeTask = TreeNodeTask;
  * @type Object
  */
 A.TreeNode.nodeTypes = {
+	radio: A.TreeNodeRadio,
 	task: A.TreeNodeTask,
 	check: A.TreeNodeCheck,
 	node: A.TreeNode,
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']});
