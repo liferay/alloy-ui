@@ -84,6 +84,11 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 					io: 'assets/tasks.html'
 				},
 				{
+					type: 'radio',
+					label: 'RadioNode1',
+					leaf: true
+				},
+				{
 					type: 'check',
 					checkName: 'customSelectName',
 					label: 'CheckboxNode',
@@ -152,13 +157,24 @@ AUI().ready('aui-tree-view', 'aui-tooltip', 'datatype-xml', 'dataschema-xml', fu
 							children: [
 								fileRoot1,
 								{ label: 'File1' },
-								{ label: 'File2' }
+								{ label: 'File2' },
+								{
+									type: 'radio',
+									label: 'RadioNode2',
+									leaf: true
+								}
 							]
 						},
 						{ label: 'File1' },
 						{ label: 'File2' },
 						{ label: 'File3' },
 						{ label: 'File4' },
+						{
+							type: 'radio',
+							checked: true,
+							label: 'RadioNode3',
+							leaf: true
+						},
 						{ label: 'File5' }
 					]
 				}
