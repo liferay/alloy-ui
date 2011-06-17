@@ -1674,8 +1674,8 @@ var	TREE_NODE_RADIO = 'tree-node-radio',
 		return node instanceof A.TreeNodeRadio;
 	},
 
-	CSS_RADIO_NODE = getCN(TREE, RADIO, NODE),
-	CSS_RADIO_NODE_CHECKED = getCN(TREE, RADIO, NODE, CHECKED);
+	CSS_NODE_RADIO = getCN(TREE, NODE, RADIO),
+	CSS_NODE_RADIO_CHECKED = getCN(TREE, NODE, RADIO, CHECKED);
 
 /**
  * <p><img src="assets/images/aui-treeNodeRadio/main.png"/></p>
@@ -1718,13 +1718,13 @@ var TreeNodeRadio = A.Component.create(
 
 				A.TreeNodeRadio.superclass.renderUI.apply(instance, arguments);
 
-				instance.get(CONTENT_BOX).addClass(CSS_RADIO_NODE);
+				instance.get(CONTENT_BOX).addClass(CSS_NODE_RADIO);
 			},
 
 			check: function() {
 				var instance = this;
 
-				instance._uncheckRadioNodes();
+				instance._uncheckNodesRadio();
 
 				A.TreeNodeRadio.superclass.check.apply(this, arguments);
 			},
@@ -1733,16 +1733,16 @@ var TreeNodeRadio = A.Component.create(
 				var instance = this;
 
 				if (val) {
-					instance.get(CONTENT_BOX).addClass(CSS_RADIO_NODE_CHECKED);
+					instance.get(CONTENT_BOX).addClass(CSS_NODE_RADIO_CHECKED);
 					instance.get(CHECK_EL).attr(CHECKED, CHECKED);
 				}
 				else {
-					instance.get(CONTENT_BOX).removeClass(CSS_RADIO_NODE_CHECKED);
+					instance.get(CONTENT_BOX).removeClass(CSS_NODE_RADIO_CHECKED);
 					instance.get(CHECK_EL).attr(CHECKED, BLANK);
 				}
 			},
 
-			_uncheckRadioNodes: function(node) {
+			_uncheckNodesRadio: function(node) {
 				var instance = this;
 
 				var children;
@@ -1765,7 +1765,7 @@ var TreeNodeRadio = A.Component.create(
 					children,
 					function(value, index, collection) {
 						if (!value.isLeaf()) {
-							instance._uncheckRadioNodes(value);
+							instance._uncheckNodesRadio(value);
 						}
 
 						if (isTreeNodeRadio(value)) {
