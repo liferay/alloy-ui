@@ -112,6 +112,16 @@
 	background-position: -36px 50%;
 }
 
+/* TreeRadioNode */
+
+.aui-tree-radio-node .aui-tree-node-checkbox-container {
+	background: transparent url(radios.png) no-repeat 0 50%;
+}
+
+.aui-tree-radio-node-checked .aui-tree-node-checkbox-container {
+	background-position: -16px 50%;
+}
+
 /* TreeViewDragDrop */
 
 .aui-tree-drag-insert-above {
