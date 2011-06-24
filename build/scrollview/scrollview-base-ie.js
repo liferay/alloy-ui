@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('scrollview-base-ie', function(Y) {
@@ -59,4 +59,4 @@ Y.mix(Y.ScrollView.prototype, {
 }, true);
 
 
-}, '3.3.0' ,{requires:['scrollview-base']});
+}, '3.4.0' ,{requires:['scrollview-base']});

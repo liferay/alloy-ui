@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('querystring-parse-simple', function(Y) {
@@ -42,7 +42,6 @@ var QueryString = Y.namespace("QueryString");
  * @param sep {String} (optional) Character that should join param k=v pairs together. Default: "&"
  * @param eq  {String} (optional) Character that should join keys to their values. Default: "="
  * @public
- * @static
  * @static
  */
 QueryString.parse = function (qs, sep, eq) {
@@ -84,5 +83,4 @@ QueryString.unescape = function (s) {
 };
 
 
-
-}, '3.3.0' );
+}, '3.4.0' ,{requires:['yui-base']});

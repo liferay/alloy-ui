@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('history-hash', function(Y) {
@@ -226,7 +226,7 @@ Y.extend(HistoryHash, HistoryBase, {
         return prefix && hash.indexOf(prefix) === 0 ?
                     hash.replace(prefix, '') : hash;
     } : function () {
-        var hash   = location.hash.substr(1),
+        var hash   = location.hash.substring(1),
             prefix = HistoryHash.hashPrefix;
 
         // Slight code duplication here, but execution speed is of the essence
@@ -299,11 +299,13 @@ Y.extend(HistoryHash, HistoryBase, {
      * @static
      */
     replaceHash: function (hash) {
+        var base = location.href.replace(/#.*$/, '');
+
         if (hash.charAt(0) === '#') {
-            hash = hash.substr(1);
+            hash = hash.substring(1);
         }
 
-        location.replace('#' + (HistoryHash.hashPrefix || '') + hash);
+        location.replace(base + '#' + (HistoryHash.hashPrefix || '') + hash);
     },
 
     /**
@@ -316,7 +318,7 @@ Y.extend(HistoryHash, HistoryBase, {
      */
     setHash: function (hash) {
         if (hash.charAt(0) === '#') {
-            hash = hash.substr(1);
+            hash = hash.substring(1);
         }
 
         location.hash = (HistoryHash.hashPrefix || '') + hash;
@@ -453,22 +455,24 @@ if (HistoryBase.nativeHashChange) {
 
         GlobalEnv._hashPoll = Y.later(50, null, function () {
             var newHash = HistoryHash.getHash(),
-                newUrl;
+                facade, newUrl;
 
             if (oldHash !== newHash) {
                 newUrl = HistoryHash.getUrl();
 
-                YArray.each(hashNotifiers.concat(), function (notifier) {
-                    notifier.fire({
-                        oldHash: oldHash,
-                        oldUrl : oldUrl,
-                        newHash: newHash,
-                        newUrl : newUrl
-                    });
-                });
+                facade = {
+                    oldHash: oldHash,
+                    oldUrl : oldUrl,
+                    newHash: newHash,
+                    newUrl : newUrl
+                };
 
                 oldHash = newHash;
                 oldUrl  = newUrl;
+
+                YArray.each(hashNotifiers.concat(), function (notifier) {
+                    notifier.fire(facade);
+                });
             }
         }, null, true);
     }
@@ -483,4 +487,4 @@ if (useHistoryHTML5 === false || (!Y.History && useHistoryHTML5 !== true &&
 }
 
 
-}, '3.3.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
+}, '3.4.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});

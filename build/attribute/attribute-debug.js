@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('attribute-base', function(Y) {
@@ -206,14 +206,14 @@ YUI.add('attribute-base', function(Y) {
      * of attributes for derived classes, accounting for values passed into the constructor.</p>
      *
      * @class Attribute
+     * @param attrs {Object} The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>). These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.
+     * @param values {Object} The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>). These are not merged/cloned. The caller is responsible for isolating user provided values if required.
+     * @param lazy {boolean} Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).
      * @uses EventTarget
      */
-    function Attribute() {
-        Y.log('Attribute constructor called', 'info', 'attribute');
+    function Attribute(attrs, values, lazy) {
 
-        var host = this, // help compression
-            attrs = this.constructor.ATTRS,
-            Base = Y.Base;
+        var host = this; // help compression
 
         // Perf tweak - avoid creating event literals if not required.
         host._ATTR_E_FACADE = {};
@@ -226,10 +226,7 @@ YUI.add('attribute-base', function(Y) {
         host._stateProxy = host._stateProxy || null;
         host._requireAddAttr = host._requireAddAttr || false;
 
-        // ATTRS support for Node, which is not Base based
-        if ( attrs && !(Base && Y.instanceOf(host, Base))) {
-            host.addAttrs(this._protectAttrs(attrs));
-        }
+        this._initAttrs(attrs, values, lazy);
     }
 
     /**
@@ -1170,6 +1167,25 @@ YUI.add('attribute-base', function(Y) {
             }
 
             return o;
+        },
+
+        /**
+         * Utility method to set up initial attributes defined during construction, either through the constructor.ATTRS property, or explicitly passed in.
+         * 
+         * @method _initAttrs
+         * @protected
+         * @param attrs {Object} The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>). These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.
+         * @param values {Object} The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>). These are not merged/cloned. The caller is responsible for isolating user provided values if required.
+         * @param lazy {boolean} Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).
+         */
+        _initAttrs : function(attrs, values, lazy) {
+            // ATTRS support for Node, which is not Base based
+            attrs = attrs || this.constructor.ATTRS;
+    
+            var Base = Y.Base;
+            if ( attrs && !(Base && Y.instanceOf(this, Base))) {
+                this.addAttrs(this._protectAttrs(attrs), values, lazy);
+            }
         }
     };
 
@@ -1179,7 +1195,7 @@ YUI.add('attribute-base', function(Y) {
     Y.Attribute = Attribute;
 
 
-}, '3.3.0' ,{requires:['event-custom']});
+}, '3.4.0' ,{requires:['event-custom']});
 YUI.add('attribute-complex', function(Y) {
 
     /**
@@ -1302,8 +1318,8 @@ YUI.add('attribute-complex', function(Y) {
     Y.mix(Y.Attribute, Y.Attribute.Complex, true, null, 1);
 
 
-}, '3.3.0' ,{requires:['attribute-base']});
+}, '3.4.0' ,{requires:['attribute-base']});
 
 
-YUI.add('attribute', function(Y){}, '3.3.0' ,{use:['attribute-base', 'attribute-complex']});
+YUI.add('attribute', function(Y){}, '3.4.0' ,{use:['attribute-base', 'attribute-complex']});
 

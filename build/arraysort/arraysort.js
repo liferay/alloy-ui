@@ -2,14 +2,26 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('arraysort', function(Y) {
 
+/**
+ * Provides a case-insenstive comparator which can be used for array sorting.
+ * 
+ * @module arraysort
+ */
+
 var LANG = Y.Lang,
     ISVALUE = LANG.isValue,
     ISSTRING = LANG.isString;
+
+/**
+ * Provides a case-insenstive comparator which can be used for array sorrting.
+ *
+ * @class ArraySort
+ */
 
 Y.ArraySort = {
     /**
@@ -55,5 +67,4 @@ Y.ArraySort = {
 };
 
 
-
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});

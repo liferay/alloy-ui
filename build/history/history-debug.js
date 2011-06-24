@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('history-base', function(Y) {
@@ -32,6 +32,12 @@ YUI.add('history-base', function(Y) {
  *   zero or more of the following properties:
  *
  * <dl>
+ *   <dt>force (Boolean)</dt>
+ *   <dd>
+ *     If `true`, a `history:change` event will be fired whenever the URL
+ *     changes, even if there is no associated state change. Default is `false`.
+ *   </dd>
+ *
  *   <dt>initialState (Object)</dt>
  *   <dd>
  *     Initial state to set, as an object hash of key/value pairs. This will be
@@ -179,6 +185,16 @@ Y.mix(HistoryBase.prototype, {
         config = this._config = config || {};
 
         /**
+         * If `true`, a `history:change` event will be fired whenever the URL
+         * changes, even if there is no associated state change.
+         *
+         * @property force
+         * @type Boolean
+         * @default false
+         */
+         this.force = !!config.force;
+
+        /**
          * Resolved initial state: a merge of the user-supplied initial state
          * (if any) and any initial state provided by a subclass. This may
          * differ from <code>_config.initialState</code>. If neither the config
@@ -247,7 +263,7 @@ Y.mix(HistoryBase.prototype, {
 
         // If initialState was provided, merge it into the current state.
         if (initialState) {
-            this.add(initialState);
+            this.replace(initialState);
         }
     },
 
@@ -551,13 +567,8 @@ Y.mix(HistoryBase.prototype, {
             prevState = GlobalEnv._state,
             removed   = {};
 
-        if (!newState) {
-            newState = {};
-        }
-
-        if (!options) {
-            options = {};
-        }
+        newState || (newState = {});
+        options  || (options  = {});
 
         if (_isSimpleObject(newState) && _isSimpleObject(prevState)) {
             // Figure out what was added or changed.
@@ -586,7 +597,7 @@ Y.mix(HistoryBase.prototype, {
             isChanged = newState !== prevState;
         }
 
-        if (isChanged) {
+        if (isChanged || this.force) {
             this._fireEvents(src, {
                 changed  : changed,
                 newState : newState,
@@ -631,7 +642,7 @@ Y.mix(HistoryBase.prototype, {
 Y.HistoryBase = HistoryBase;
 
 
-}, '3.3.0' ,{requires:['event-custom-complex']});
+}, '3.4.0' ,{requires:['event-custom-complex']});
 YUI.add('history-hash', function(Y) {
 
 /**
@@ -853,7 +864,7 @@ Y.extend(HistoryHash, HistoryBase, {
         return prefix && hash.indexOf(prefix) === 0 ?
                     hash.replace(prefix, '') : hash;
     } : function () {
-        var hash   = location.hash.substr(1),
+        var hash   = location.hash.substring(1),
             prefix = HistoryHash.hashPrefix;
 
         // Slight code duplication here, but execution speed is of the essence
@@ -926,11 +937,13 @@ Y.extend(HistoryHash, HistoryBase, {
      * @static
      */
     replaceHash: function (hash) {
+        var base = location.href.replace(/#.*$/, '');
+
         if (hash.charAt(0) === '#') {
-            hash = hash.substr(1);
+            hash = hash.substring(1);
         }
 
-        location.replace('#' + (HistoryHash.hashPrefix || '') + hash);
+        location.replace(base + '#' + (HistoryHash.hashPrefix || '') + hash);
     },
 
     /**
@@ -943,7 +956,7 @@ Y.extend(HistoryHash, HistoryBase, {
      */
     setHash: function (hash) {
         if (hash.charAt(0) === '#') {
-            hash = hash.substr(1);
+            hash = hash.substring(1);
         }
 
         location.hash = (HistoryHash.hashPrefix || '') + hash;
@@ -1080,22 +1093,24 @@ if (HistoryBase.nativeHashChange) {
 
         GlobalEnv._hashPoll = Y.later(50, null, function () {
             var newHash = HistoryHash.getHash(),
-                newUrl;
+                facade, newUrl;
 
             if (oldHash !== newHash) {
                 newUrl = HistoryHash.getUrl();
 
-                YArray.each(hashNotifiers.concat(), function (notifier) {
-                    notifier.fire({
-                        oldHash: oldHash,
-                        oldUrl : oldUrl,
-                        newHash: newHash,
-                        newUrl : newUrl
-                    });
-                });
+                facade = {
+                    oldHash: oldHash,
+                    oldUrl : oldUrl,
+                    newHash: newHash,
+                    newUrl : newUrl
+                };
 
                 oldHash = newHash;
                 oldUrl  = newUrl;
+
+                YArray.each(hashNotifiers.concat(), function (notifier) {
+                    notifier.fire(facade);
+                });
             }
         }, null, true);
     }
@@ -1110,7 +1125,7 @@ if (useHistoryHTML5 === false || (!Y.History && useHistoryHTML5 !== true &&
 }
 
 
-}, '3.3.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
+}, '3.4.0' ,{requires:['event-synthetic', 'history-base', 'yui-later']});
 YUI.add('history-hash-ie', function(Y) {
 
 /**
@@ -1133,8 +1148,7 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 
         iframe      = GlobalEnv._iframe,
         win         = Y.config.win,
-        location    = win.location,
-        lastUrlHash = '';
+        location    = win.location;
 
     /**
      * Gets the raw (not decoded) current location hash from the IE iframe,
@@ -1175,21 +1189,22 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
             return;
         }
 
-        Y.log('updating history iframe: ' + hash, 'info', 'history');
-
-        iframeDoc.open().close();
+        Y.log('updating history iframe: ' + hash + ', replace: ' + !!replace, 'info', 'history');
 
         if (replace) {
             iframeLocation.replace(hash.charAt(0) === '#' ? hash : '#' + hash);
         } else {
+            iframeDoc.open().close();
             iframeLocation.hash = hash;
         }
     };
 
-    Do.after(HistoryHash._updateIframe, HistoryHash, 'replaceHash', HistoryHash, true);
+    Do.before(HistoryHash._updateIframe, HistoryHash, 'replaceHash', HistoryHash, true);
 
     if (!iframe) {
         Y.on('domready', function () {
+            var lastUrlHash = HistoryHash.getHash();
+
             // Create a hidden iframe to store history state, following the
             // iframe-hiding recommendations from
             // http://www.paciellogroup.com/blog/?p=604.
@@ -1222,7 +1237,7 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
             // Update the iframe with the initial location hash, if any. This
             // will create an initial history entry that the user can return to
             // after the state has changed.
-            HistoryHash._updateIframe(HistoryHash.getHash() || '#');
+            HistoryHash._updateIframe(lastUrlHash || '#');
 
             // Listen for hashchange events and keep the iframe's hash in sync
             // with the parent frame's hash.
@@ -1249,7 +1264,7 @@ if (Y.UA.ie && !Y.HistoryBase.nativeHashChange) {
 }
 
 
-}, '3.3.0' ,{requires:['history-hash', 'node-base']});
+}, '3.4.0' ,{requires:['history-hash', 'node-base']});
 YUI.add('history-html5', function(Y) {
 
 /**
@@ -1295,37 +1310,14 @@ YUI.add('history-html5', function(Y) {
  * @class HistoryHTML5
  * @extends HistoryBase
  * @constructor
- * @param {Object} config (optional) Configuration object. The following
- *   <code>HistoryHTML5</code>-specific properties are supported in addition to
- *   those supported by <code>HistoryBase</code>:
- *
- * <dl>
- *   <dt><strong>enableSessionFallback (Boolean)</strong></dt>
- *   <dd>
- *     <p>
- *     Set this to <code>true</code> to store the most recent history state in
- *     sessionStorage in order to seamlessly restore the previous state (if any)
- *     when <code>HistoryHTML5</code> is instantiated after a
- *     <code>window.onpopstate</code> event has already fired.
- *     </p>
- *
- *     <p>
- *     By default, this setting is <code>false</code>.
- *     </p>
- *   </dd>
- * </dl>
+ * @param {Object} config (optional) Configuration object.
  */
 
 var HistoryBase     = Y.HistoryBase,
-    doc             = Y.config.doc,
+    Lang            = Y.Lang,
     win             = Y.config.win,
-    sessionStorage,
     useHistoryHTML5 = Y.config.useHistoryHTML5,
 
-    JSON = Y.JSON || win.JSON, // prefer YUI JSON, but fall back to native
-
-    ENABLE_FALLBACK = 'enableSessionFallback',
-    SESSION_KEY     = 'YUI_HistoryHTML5_state',
     SRC_POPSTATE    = 'popstate',
     SRC_REPLACE     = HistoryBase.SRC_REPLACE;
 
@@ -1336,77 +1328,30 @@ function HistoryHTML5() {
 Y.extend(HistoryHTML5, HistoryBase, {
     // -- Initialization -------------------------------------------------------
     _init: function (config) {
+        var bookmarkedState = win.history.state;
+
+        config || (config = {});
+
+        // If both the initial state and the bookmarked state are objects, merge
+        // them (bookmarked state wins).
+        if (config.initialState
+                && Lang.type(config.initialState) === 'object'
+                && Lang.type(bookmarkedState) === 'object') {
+
+            this._initialState = Y.merge(config.initialState, bookmarkedState);
+        } else {
+            // Otherwise, the bookmarked state always wins if there is one. If
+            // there isn't a bookmarked state, history-base will take care of
+            // falling back to config.initialState or null.
+            this._initialState = bookmarkedState;
+        }
+
         Y.on('popstate', this._onPopState, win, this);
 
         HistoryHTML5.superclass._init.apply(this, arguments);
-
-        // If window.onload has already fired and the sessionStorage fallback is
-        // enabled, try to restore the last state from sessionStorage. This
-        // works around a shortcoming of the HTML5 history API: it's impossible
-        // to get the current state if the popstate event fires before you've
-        // subscribed to it. Since popstate fires immediately after onload,
-        // the last state may be lost if you return to a page from another page.
-        if (config && config[ENABLE_FALLBACK] && YUI.Env.windowLoaded) {
-            // Gecko will throw an error if you attempt to reference
-            // sessionStorage on a page served from a file:// URL, so we have to
-            // be careful here.
-            //
-            // See http://yuilibrary.com/projects/yui3/ticket/2529165
-            try {
-                sessionStorage = win.sessionStorage;
-            } catch (ex) {}
-
-            this._loadSessionState();
-        }
     },
 
     // -- Protected Methods ----------------------------------------------------
-
-    /**
-     * Returns a string unique to the current URL pathname that's suitable for
-     * use as a session storage key.
-     *
-     * @method _getSessionKey
-     * @return {String}
-     * @protected
-     */
-    _getSessionKey: function () {
-        return SESSION_KEY + '_' + win.location.pathname;
-    },
-
-    /**
-     * Attempts to load a state entry stored in session storage.
-     *
-     * @method _loadSessionState
-     * @protected
-     */
-    _loadSessionState: function () {
-        var lastState = JSON && sessionStorage &&
-                sessionStorage[this._getSessionKey()];
-
-        if (lastState) {
-            try {
-                this._resolveChanges(SRC_POPSTATE, JSON.parse(lastState) || null);
-            } catch (ex) {}
-        }
-    },
-
-    /**
-     * Stores the specified state entry in session storage if the
-     * <code>enableSessionFallback</code> config property is <code>true</code>
-     * and either <code>Y.JSON</code> or native JSON support is available and
-     * session storage is supported.
-     *
-     * @method _storeSessionState
-     * @param {mixed} state State to store. May be any type serializable to
-     *   JSON.
-     * @protected
-     */
-    _storeSessionState: function (state) {
-        if (this._config[ENABLE_FALLBACK] && JSON && sessionStorage) {
-            sessionStorage[this._getSessionKey()] = JSON.stringify(state || null);
-        }
-    },
 
     /**
      * Overrides HistoryBase's <code>_storeState()</code> and pushes or replaces
@@ -1421,11 +1366,12 @@ Y.extend(HistoryHTML5, HistoryBase, {
     _storeState: function (src, newState, options) {
         if (src !== SRC_POPSTATE) {
             win.history[src === SRC_REPLACE ? 'replaceState' : 'pushState'](
-                newState, options.title || doc.title || '', options.url || null
+                newState,
+                options.title || Y.config.doc.title || '',
+                options.url || null
             );
         }
 
-        this._storeSessionState(newState);
         HistoryHTML5.superclass._storeState.apply(this, arguments);
     },
 
@@ -1439,10 +1385,7 @@ Y.extend(HistoryHTML5, HistoryBase, {
      * @protected
      */
     _onPopState: function (e) {
-        var state = e._event.state;
-
-        this._storeSessionState(state);
-        this._resolveChanges(SRC_POPSTATE, state || null);
+        this._resolveChanges(SRC_POPSTATE, e._event.state || null);
     }
 }, {
     // -- Public Static Properties ---------------------------------------------
@@ -1499,8 +1442,8 @@ if (useHistoryHTML5 === true || (useHistoryHTML5 !== false &&
 }
 
 
-}, '3.3.0' ,{optional:['json'], requires:['event-base', 'history-base', 'node-base']});
+}, '3.4.0' ,{requires:['event-base', 'history-base', 'node-base'], optional:['json']});
 
 
-YUI.add('history', function(Y){}, '3.3.0' ,{use:['history-base', 'history-hash', 'history-hash-ie', 'history-html5']});
+YUI.add('history', function(Y){}, '3.4.0' ,{use:['history-base', 'history-hash', 'history-hash-ie', 'history-html5']});
 

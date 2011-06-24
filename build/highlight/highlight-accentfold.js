@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('highlight-accentfold', function(Y) {
@@ -51,10 +51,16 @@ Highlight = Y.mix(Y.Highlight, {
      */
     allFold: function (haystack, needles, options) {
         var template = Highlight._TEMPLATE,
-            result   = [],
-            startPos = 0;
+            results  = [],
+            startPos = 0,
+            chunk, i, len, match, result;
 
         options = Y.merge({
+            // This tells Highlight.all() not to escape HTML, in order to ensure
+            // usable match offsets. The output of all() is discarded, and we
+            // perform our own escaping before returning the highlighted string.
+            escapeHTML: false,
+
             // While the highlight regex operates on the accent-folded strings,
             // this replacer will highlight the matched positions in the
             // original string.
@@ -75,8 +81,10 @@ Highlight = Y.mix(Y.Highlight, {
 
                 len = foldedNeedle.length;
 
-                result.push(haystack.substring(startPos, pos) +
-                        template.replace(/\{s\}/g, haystack.substr(pos, len)));
+                results.push([
+                    haystack.substring(startPos, pos), // substring between previous match and this match
+                    haystack.substr(pos, len)          // match to be highlighted
+                ]);
 
                 startPos = pos + len;
             }
@@ -85,16 +93,26 @@ Highlight = Y.mix(Y.Highlight, {
         // Run the highlighter on the folded strings. We don't care about the
         // output; our replacer function will build the canonical highlighted
         // string, with original accented characters.
-        Highlight.all(AccentFold.fold(haystack), AccentFold.fold(needles),
-                options);
+        Highlight.all(AccentFold.fold(haystack), AccentFold.fold(needles), options);
 
         // Tack on the remainder of the haystack that wasn't highlighted, if
         // any.
         if (startPos < haystack.length - 1) {
-            result.push(haystack.substr(startPos));
+            results.push([haystack.substr(startPos)]);
         }
 
-        return result.join('');
+        // Highlight and escape the string.
+        for (i = 0, len = results.length; i < len; ++i) {
+            chunk = Escape.html(results[i][0]);
+
+            if ((match = results[i][1])) {
+                chunk += template.replace(/\{s\}/g, Escape.html(match));
+            }
+
+            results[i] = chunk;
+        }
+
+        return results.join('');
     },
 
     /**
@@ -139,4 +157,4 @@ Highlight = Y.mix(Y.Highlight, {
 });
 
 
-}, '3.3.0' ,{requires:['highlight-base', 'text-accentfold']});
+}, '3.4.0' ,{requires:['highlight-base', 'text-accentfold']});

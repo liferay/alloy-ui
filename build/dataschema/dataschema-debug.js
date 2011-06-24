@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('dataschema-base', function(Y) {
@@ -70,9 +70,7 @@ Y.namespace("DataSchema").Base = SchemaBase;
 Y.namespace("Parsers");
 
 
-
-}, '3.3.0' ,{requires:['base']});
-
+}, '3.4.0' ,{requires:['base']});
 YUI.add('dataschema-json', function(Y) {
 
 /**
@@ -374,9 +372,7 @@ var LANG = Y.Lang,
 Y.DataSchema.JSON = Y.mix(SchemaJSON, Y.DataSchema.Base);
 
 
-
-}, '3.3.0' ,{requires:['dataschema-base','json']});
-
+}, '3.4.0' ,{requires:['dataschema-base','json']});
 YUI.add('dataschema-xml', function(Y) {
 
 /**
@@ -664,9 +660,7 @@ var LANG = Y.Lang,
 Y.DataSchema.XML = Y.mix(SchemaXML, Y.DataSchema.Base);
 
 
-
-}, '3.3.0' ,{requires:['dataschema-base']});
-
+}, '3.4.0' ,{requires:['dataschema-base']});
 YUI.add('dataschema-array', function(Y) {
 
 /**
@@ -705,7 +699,7 @@ var LANG = Y.Lang,
                 data_out = {results:[],meta:{}};
 
             if(LANG.isArray(data_in)) {
-                if(LANG.isArray(schema.resultFields)) {
+                if(schema && LANG.isArray(schema.resultFields)) {
                     // Parse results data
                     data_out = SchemaArray._parseResults.call(this, schema.resultFields, data_in, data_out);
                 }
@@ -768,9 +762,7 @@ var LANG = Y.Lang,
 Y.DataSchema.Array = Y.mix(SchemaArray, Y.DataSchema.Base);
 
 
-
-}, '3.3.0' ,{requires:['dataschema-base']});
-
+}, '3.4.0' ,{requires:['dataschema-base']});
 YUI.add('dataschema-text', function(Y) {
 
 /**
@@ -879,10 +871,8 @@ var LANG = Y.Lang,
 Y.DataSchema.Text = Y.mix(SchemaText, Y.DataSchema.Base);
 
 
-
-}, '3.3.0' ,{requires:['dataschema-base']});
-
+}, '3.4.0' ,{requires:['dataschema-base']});
 
 
-YUI.add('dataschema', function(Y){}, '3.3.0' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
+YUI.add('dataschema', function(Y){}, '3.4.0' ,{use:['dataschema-base','dataschema-json','dataschema-xml','dataschema-array','dataschema-text']});
 

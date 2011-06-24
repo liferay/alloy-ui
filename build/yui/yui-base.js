@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 /**
@@ -101,7 +101,7 @@ if (typeof YUI != 'undefined') {
 (function() {
 
     var proto, prop,
-        VERSION = '3.3.0',
+        VERSION = '3.4.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         DOC_LABEL = 'yui3-js-enabled',
@@ -144,6 +144,7 @@ if (typeof YUI != 'undefined') {
         getLoader = function(Y, o) {
             var loader = Y.Env._loader;
             if (loader) {
+                //loader._config(Y.config);
                 loader.ignoreRegistered = false;
                 loader.onEnd = null;
                 loader.data = null;
@@ -178,7 +179,7 @@ if (docEl && docClass.indexOf(DOC_LABEL) == -1) {
 }
 
 if (VERSION.indexOf('@') > -1) {
-    VERSION = '3.2.0'; // dev time hack for cdn test
+    VERSION = '3.3.0'; // dev time hack for cdn test
 }
 
 proto = {
@@ -261,11 +262,12 @@ proto = {
                 _idx: 0,
                 _used: {},
                 _attached: {},
+                _missed: [],
                 _yidx: 0,
                 _uidx: 0,
                 _guidp: 'y',
                 _loaded: {},
-                serviced: {},
+                // serviced: {},
                 getBase: G_ENV && G_ENV.getBase ||
 
     function(srcPattern, comboPattern) {
@@ -347,8 +349,12 @@ proto = {
             throwFail: true,
             bootstrap: true,
             cacheUse: true,
-            fetchCSS: true
+            fetchCSS: true,
+            use_rls: false
         };
+
+        Y.config.lang = Y.config.lang || 'en-US';
+
 
         Y.config.base = YUI.config.base ||
             Y.Env.getBase(/^(.*)yui\/yui([\.\-].*)js(\?.*)?$/,
@@ -373,13 +379,7 @@ proto = {
         var i, Y = this,
             core = [],
             mods = YUI.Env.mods,
-            extras = Y.config.core || ['get',
-                                        'rls',
-                                        'intl-base',
-                                        'loader',
-                                        'yui-log',
-                                        'yui-later',
-                                        'yui-throttle'];
+            extras = Y.config.core || ['get','intl-base','yui-log','yui-later','alias'];
 
         for (i = 0; i < extras.length; i++) {
             if (mods[extras[i]]) {
@@ -488,27 +488,52 @@ proto = {
      * @method _attach
      * @private
      */
-    _attach: function(r, fromLoader) {
+    _attach: function(r, moot) {
         var i, name, mod, details, req, use, after,
             mods = YUI.Env.mods,
+            aliases = YUI.Env.aliases,
             Y = this, j,
             done = Y.Env._attached,
             len = r.length, loader;
 
+        //console.info('attaching: ' + r, 'info', 'yui');
 
         for (i = 0; i < len; i++) {
             if (!done[r[i]]) {
                 name = r[i];
                 mod = mods[name];
+                if (aliases && aliases[name]) {
+                    Y._attach(aliases[name]);
+                    break;
+                }
                 if (!mod) {
                     loader = Y.Env._loader;
+                    if (loader && loader.moduleInfo[name]) {
+                        mod = loader.moduleInfo[name];
+                        if (mod.use) {
+                            moot = true;
+                        }
+                    }
 
 
-                    if (!loader || !loader.moduleInfo[name]) {
-                        Y.message('NOT loaded: ' + name, 'warn', 'yui');
+                    //if (!loader || !loader.moduleInfo[name]) {
+                    //if ((!loader || !loader.moduleInfo[name]) && !moot) {
+                    if (!moot) {
+                        if (name.indexOf('skin-') === -1) {
+                            Y.Env._missed.push(name);
+                            Y.message('NOT loaded: ' + name, 'warn', 'yui');
+                        }
                     }
                 } else {
                     done[name] = true;
+                    //Don't like this, but in case a mod was asked for once, then we fetch it
+                    //We need to remove it from the missed list
+                    for (j = 0; j < Y.Env._missed.length; j++) {
+                        if (Y.Env._missed[j] === name) {
+                            Y.message('Found: ' + name + ' (was reported as missing earlier)', 'warn', 'yui');
+                            Y.Env._missed.splice(j, 1);
+                        }
+                    }
                     details = mod.details;
                     req = details.requires;
                     use = details.use;
@@ -528,18 +553,7 @@ proto = {
                     if (after) {
                         for (j = 0; j < after.length; j++) {
                             if (!done[after[j]]) {
-                                if (!Y._attach(after)) {
-                                    return false;
-                                }
-                                break;
-                            }
-                        }
-                    }
-
-                    if (use) {
-                        for (j = 0; j < use.length; j++) {
-                            if (!done[use[j]]) {
-                                if (!Y._attach(use)) {
+                                if (!Y._attach(after, true)) {
                                     return false;
                                 }
                                 break;
@@ -555,6 +569,19 @@ proto = {
                             return false;
                         }
                     }
+
+                    if (use) {
+                        for (j = 0; j < use.length; j++) {
+                            if (!done[use[j]]) {
+                                if (!Y._attach(use)) {
+                                    return false;
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+
 
                 }
             }
@@ -590,8 +617,10 @@ proto = {
      * the instance has the required functionality.  If included, it
      * must be the last parameter.
      * <code>
-     * // loads and attaches drag and drop and its dependencies
+     * // loads and attaches dd and its dependencies
      * YUI().use('dd', function(Y) &#123;&#125);
+     * // loads and attaches dd and node as well as all of their dependencies
+     * YUI().use(['dd', 'node'], function(Y) &#123;&#125);
      * // attaches all modules that are available on the page
      * YUI().use('*', function(Y) &#123;&#125);
      * // intrinsic YUI gallery support (since 3.1.0)
@@ -606,7 +635,10 @@ proto = {
         var args = SLICE.call(arguments, 0),
             callback = args[args.length - 1],
             Y = this,
-            key;
+            i = 0,
+            name,
+            Env = Y.Env,
+            provisioned = true;
 
         // The last argument supplied to use can be a load complete callback
         if (Y.Lang.isFunction(callback)) {
@@ -614,23 +646,49 @@ proto = {
         } else {
             callback = null;
         }
+        if (Y.Lang.isArray(args[0])) {
+            args = args[0];
+        }
+
+        if (Y.config.cacheUse) {
+            while ((name = args[i++])) {
+                if (!Env._attached[name]) {
+                    provisioned = false;
+                    break;
+                }
+            }
+
+            if (provisioned) {
+                if (args.length) {
+                }
+                Y._notify(callback, ALREADY_DONE, args);
+                return Y;
+            }
+        }
+
+        if (Y.config.cacheUse) {
+            while ((name = args[i++])) {
+                if (!Env._attached[name]) {
+                    provisioned = false;
+                    break;
+                }
+            }
+
+            if (provisioned) {
+                if (args.length) {
+                }
+                Y._notify(callback, ALREADY_DONE, args);
+                return Y;
+            }
+        }
 
         if (Y._loading) {
             Y._useQueue = Y._useQueue || new Y.Queue();
             Y._useQueue.add([args, callback]);
         } else {
-            key = args.join();
-
-            if (Y.config.cacheUse && Y.Env.serviced[key]) {
-                Y._notify(callback, ALREADY_DONE, args);
-            } else {
-                Y._use(args, function(Y, response) {
-                    if (Y.config.cacheUse) {
-                        Y.Env.serviced[key] = true;
-                    }
-                    Y._notify(callback, response, args);
-                });
-            }
+            Y._use(args, function(Y, response) {
+                Y._notify(callback, response, args);
+            });
         }
 
         return Y;
@@ -654,7 +712,7 @@ proto = {
             this._attach(['yui-base']);
         }
 
-        var len, loader, handleBoot,
+        var len, loader, handleBoot, handleRLS,
             Y = this,
             G_ENV = YUI.Env,
             mods = G_ENV.mods,
@@ -809,13 +867,42 @@ proto = {
 
         } else if (len && Y.config.use_rls) {
 
+            G_ENV._rls_queue = G_ENV._rls_queue || new Y.Queue();
+
             // server side loader service
-            Y.Get.script(Y._rls(args), {
-                onEnd: function(o) {
+            handleRLS = function(instance, argz) {
+
+                var rls_end = function(o) {
                     handleLoader(o);
+                    G_ENV._rls_in_progress = false;
+                    if (G_ENV._rls_queue.size()) {
+                        G_ENV._rls_queue.next()();
+                    }
                 },
-                data: args
+                rls_url = instance._rls(argz);
+
+                if (rls_url) {
+                    instance.rls_oncomplete(function(o) {
+                        rls_end(o);
+                    });
+                    instance.Get.script(rls_url, {
+                        data: argz
+                    });
+                } else {
+                    rls_end({
+                        data: argz
+                    });
+                }
+            };
+
+            G_ENV._rls_queue.add(function() {
+                G_ENV._rls_in_progress = true;                
+                Y.rls_locals(Y, args, handleRLS);
             });
+
+            if (!G_ENV._rls_in_progress && G_ENV._rls_queue.size()) {
+                G_ENV._rls_queue.next()();
+            }
 
         } else if (boot && len && Y.Get && !Env.bootstrapped) {
 
@@ -929,7 +1016,7 @@ proto = {
      * @return {string} the guid.
      */
     guid: function(pre) {
-        var id = this.Env._guidp + (++this.Env._uidx);
+        var id = this.Env._guidp + '_' + (++this.Env._uidx);
         return (pre) ? (pre + id) : id;
     },
 
@@ -1499,6 +1586,7 @@ proto = {
  * @property cacheUse
  * @type boolean
  * @default true
+ * @deprecated no longer used
  */
 
 /**
@@ -1572,61 +1660,53 @@ YUI.add('yui-base', function(Y) {
  */
 
 /**
- * Provides the language utilites and extensions used by the library
+ * Provides core language utilites and extensions used throughout YUI.
+ *
  * @class Lang
  * @static
  */
-Y.Lang = Y.Lang || {};
 
-var L = Y.Lang,
+var L = Y.Lang || (Y.Lang = {}),
 
-ARRAY = 'array',
-BOOLEAN = 'boolean',
-DATE = 'date',
-ERROR = 'error',
-FUNCTION = 'function',
-NUMBER = 'number',
-NULL = 'null',
-OBJECT = 'object',
-REGEX = 'regexp',
-STRING = 'string',
 STRING_PROTO = String.prototype,
-TOSTRING = Object.prototype.toString,
-UNDEFINED = 'undefined',
+TOSTRING     = Object.prototype.toString,
 
 TYPES = {
-    'undefined' : UNDEFINED,
-    'number' : NUMBER,
-    'boolean' : BOOLEAN,
-    'string' : STRING,
-    '[object Function]' : FUNCTION,
-    '[object RegExp]' : REGEX,
-    '[object Array]' : ARRAY,
-    '[object Date]' : DATE,
-    '[object Error]' : ERROR
+    'undefined'        : 'undefined',
+    'number'           : 'number',
+    'boolean'          : 'boolean',
+    'string'           : 'string',
+    '[object Function]': 'function',
+    '[object RegExp]'  : 'regexp',
+    '[object Array]'   : 'array',
+    '[object Date]'    : 'date',
+    '[object Error]'   : 'error'
 },
 
+SUBREGEX  = /\{\s*([^|}]+?)\s*(?:\|([^}]*))?\s*\}/g,
 TRIMREGEX = /^\s+|\s+$/g,
-EMPTYSTRING = '',
-SUBREGEX = /\{\s*([^\|\}]+?)\s*(?:\|([^\}]*))?\s*\}/g;
+
+// If either MooTools or Prototype is on the page, then there's a chance that we
+// can't trust "native" language features to actually be native. When this is
+// the case, we take the safe route and fall back to our own non-native
+// implementation.
+win           = Y.config.win,
+unsafeNatives = win && !!(win.MooTools || win.Prototype);
 
 /**
  * Determines whether or not the provided item is an array.
- * Returns false for array-like collections such as the
- * function arguments collection or HTMLElement collection
- * will return false.  Use <code>Y.Array.test</code> if you
- * want to test for an array-like collection.
+ *
+ * Returns `false` for array-like collections such as the function `arguments`
+ * collection or `HTMLElement` collections. Use `Y.Array.test()` if you want to
+ * test for an array-like collection.
+ *
  * @method isArray
- * @static
  * @param o The object to test.
  * @return {boolean} true if o is an array.
+ * @static
  */
-// L.isArray = Array.isArray || function(o) {
-//     return L.type(o) === ARRAY;
-// };
-
-L.isArray = function(o) {
-    return L.type(o) === ARRAY;
+L.isArray = (!unsafeNatives && Array.isArray) || function (o) {
+    return L.type(o) === 'array';
 };
 
 /**
@@ -1637,7 +1717,7 @@ L.isArray = function(o) {
  * @return {boolean} true if o is a boolean.
  */
 L.isBoolean = function(o) {
-    return typeof o === BOOLEAN;
+    return typeof o === 'boolean';
 };
 
 /**
@@ -1665,7 +1745,7 @@ L.isBoolean = function(o) {
  * @return {boolean} true if o is a function.
  */
 L.isFunction = function(o) {
-    return L.type(o) === FUNCTION;
+    return L.type(o) === 'function';
 };
 
 /**
@@ -1676,8 +1756,7 @@ L.isFunction = function(o) {
  * @return {boolean} true if o is a date.
  */
 L.isDate = function(o) {
-    // return o instanceof Date;
-    return L.type(o) === DATE && o.toString() !== 'Invalid Date' && !isNaN(o);
+    return L.type(o) === 'date' && o.toString() !== 'Invalid Date' && !isNaN(o);
 };
 
 /**
@@ -1699,7 +1778,7 @@ L.isNull = function(o) {
  * @return {boolean} true if o is a number.
  */
 L.isNumber = function(o) {
-    return typeof o === NUMBER && isFinite(o);
+    return typeof o === 'number' && isFinite(o);
 };
 
 /**
@@ -1711,11 +1790,12 @@ L.isNumber = function(o) {
  * @param o The object to test.
  * @param failfn {boolean} fail if the input is a function.
  * @return {boolean} true if o is an object.
+ * @see isPlainObject
  */
 L.isObject = function(o, failfn) {
     var t = typeof o;
-    return (o && (t === OBJECT ||
-        (!failfn && (t === FUNCTION || L.isFunction(o))))) || false;
+    return (o && (t === 'object' ||
+        (!failfn && (t === 'function' || L.isFunction(o))))) || false;
 };
 
 /**
@@ -1726,7 +1806,7 @@ L.isObject = function(o, failfn) {
  * @return {boolean} true if o is a string.
  */
 L.isString = function(o) {
-    return typeof o === STRING;
+    return typeof o === 'string';
 };
 
 /**
@@ -1737,7 +1817,7 @@ L.isString = function(o) {
  * @return {boolean} true if o is undefined.
  */
 L.isUndefined = function(o) {
-    return typeof o === UNDEFINED;
+    return typeof o === 'undefined';
 };
 
 /**
@@ -1749,10 +1829,10 @@ L.isUndefined = function(o) {
  * @return {string} the trimmed string.
  */
 L.trim = STRING_PROTO.trim ? function(s) {
-    return (s && s.trim) ? s.trim() : s;
+    return s && s.trim ? s.trim() : s;
 } : function (s) {
     try {
-        return s.replace(TRIMREGEX, EMPTYSTRING);
+        return s.replace(TRIMREGEX, '');
     } catch (e) {
         return s;
     }
@@ -1795,14 +1875,17 @@ L.trimRight = STRING_PROTO.trimRight ? function (s) {
  */
 L.isValue = function(o) {
     var t = L.type(o);
+
     switch (t) {
-        case NUMBER:
+        case 'number':
             return isFinite(o);
-        case NULL:
-        case UNDEFINED:
+
+        case 'null': // fallthru
+        case 'undefined':
             return false;
+
         default:
-            return !!(t);
+            return !!t;
     }
 };
 
@@ -1829,7 +1912,7 @@ L.isValue = function(o) {
  * @static
  */
 L.type = function(o) {
-    return TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? OBJECT : NULL);
+    return TYPES[typeof o] || TYPES[TOSTRING.call(o)] || (o ? 'object' : 'null');
 };
 
 /**
@@ -1844,21 +1927,21 @@ L.type = function(o) {
  * @since 3.2.0
  */
 L.sub = function(s, o) {
-    return ((s.replace) ? s.replace(SUBREGEX, function(match, key) {
-        return (!L.isUndefined(o[key])) ? o[key] : match;
-    }) : s);
+    return s.replace ? s.replace(SUBREGEX, function (match, key) {
+        return L.isUndefined(o[key]) ? match : o[key];
+    }) : s;
 };
 
 /**
  * Returns the current time in milliseconds.
+ *
  * @method now
- * @return {int} the current date
+ * @return {int} Current time in milliseconds.
  * @since 3.3.0
  */
 L.now = Date.now || function () {
-  return new Date().getTime();
+    return new Date().getTime();
 };
-
 /**
  * The YUI module contains the components required for building the YUI seed
  * file.  This includes the script loading mechanism, a simple queue, and the
@@ -1867,202 +1950,274 @@ L.now = Date.now || function () {
  * @submodule yui-base
  */
 
+var Lang   = Y.Lang,
+    Native = Array.prototype,
 
-var Native = Array.prototype, LENGTH = 'length',
+    hasOwn = Object.prototype.hasOwnProperty;
 
 /**
- * Adds the following array utilities to the YUI instance.  Additional
- * array helpers can be found in the collection component.
+ * Adds utilities to the YUI instance for working with arrays. Additional array
+ * helpers can be found in the `collection` module.
+ *
  * @class Array
  */
 
 /**
- * Y.Array(o) returns an array:
- * - Arrays are return unmodified unless the start position is specified.
- * - "Array-like" collections (@see Array.test) are converted to arrays
- * - For everything else, a new array is created with the input as the sole
- *   item.
- * - The start position is used if the input is or is like an array to return
- *   a subset of the collection.
+ * `Y.Array(thing)` returns an array created from _thing_. Depending on
+ * _thing_'s type, one of the following will happen:
  *
- *   @todo this will not automatically convert elements that are also
- *   collections such as forms and selects.  Passing true as the third
- *   param will force a conversion.
+ *   * Arrays are returned unmodified unless a non-zero _startIndex_ is
+ *     specified.
+ *   * Array-like collections (see `Array.test()`) are converted to arrays.
+ *   * For everything else, a new array is created with _thing_ as the sole
+ *     item.
+ *
+ * Note: elements that are also collections, such as `<form>` and `<select>`
+ * elements, are not automatically converted to arrays. To force a conversion,
+ * pass `true` as the value of the _force_ parameter.
  *
  * @method ()
+ * @param {mixed} thing The thing to arrayify.
+ * @param {int} [startIndex=0] If non-zero and _thing_ is an array or array-like
+ *   collection, a subset of items starting at the specified index will be
+ *   returned.
+ * @param {boolean} [force=false] If `true`, _thing_ will be treated as an
+ *   array-like collection no matter what.
+ * @return {Array}
  * @static
- *   @param {object} o the item to arrayify.
- *   @param {int} startIdx if an array or array-like, this is the start index.
- *   @param {boolean} arraylike if true, it forces the array-like fork.  This
- *   can be used to avoid multiple Array.test calls.
- *   @return {Array} the resulting array.
  */
-YArray = function(o, startIdx, arraylike) {
-    var t = (arraylike) ? 2 : YArray.test(o),
-        l, a, start = startIdx || 0;
+function YArray(thing, startIndex, force) {
+    var len, result;
 
-    if (t) {
-        // IE errors when trying to slice HTMLElement collections
+    startIndex || (startIndex = 0);
+
+    if (force || YArray.test(thing)) {
+        // IE throws when trying to slice HTMLElement collections.
         try {
-            return Native.slice.call(o, start);
-        } catch (e) {
-            a = [];
-            l = o.length;
-            for (; start < l; start++) {
-                a.push(o[start]);
+            return Native.slice.call(thing, startIndex);
+        } catch (ex) {
+            result = [];
+
+            for (len = thing.length; startIndex < len; ++startIndex) {
+                result.push(thing[startIndex]);
             }
-            return a;
+
+            return result;
         }
-    } else {
-        return [o];
     }
-};
+
+    return [thing];
+}
 
 Y.Array = YArray;
 
 /**
- * Evaluates the input to determine if it is an array, array-like, or
- * something else.  This is used to handle the arguments collection
- * available within functions, and HTMLElement collections
+ * Evaluates _obj_ to determine if it's an array, an array-like collection, or
+ * something else. This is useful when working with the function `arguments`
+ * collection and `HTMLElement` collections.
+ *
+ * Note: This implementation doesn't consider elements that are also
+ * collections, such as `<form>` and `<select>`, to be array-like.
  *
  * @method test
+ * @param {object} obj Object to test.
+ * @return {int} A number indicating the results of the test:
+ *   * 0: Neither an array nor an array-like collection.
+ *   * 1: Real array.
+ *   * 2: Array-like collection.
  * @static
- *
- * @todo current implementation (intenionally) will not implicitly
- * handle html elements that are array-like (forms, selects, etc).
- *
- * @param {object} o the object to test.
- *
- * @return {int} a number indicating the results:
- * 0: Not an array or an array-like collection
- * 1: A real array.
- * 2: array-like collection.
  */
-YArray.test = function(o) {
-    var r = 0;
-    if (Y.Lang.isObject(o)) {
-        if (Y.Lang.isArray(o)) {
-            r = 1;
-        } else {
-            try {
-                // indexed, but no tagName (element) or alert (window),
-                // or functions without apply/call (Safari
-                // HTMLElementCollection bug).
-                if ((LENGTH in o) && !o.tagName && !o.alert && !o.apply) {
-                    r = 2;
-                }
+YArray.test = function (obj) {
+    var result = 0;
 
-            } catch (e) {}
-        }
-    }
-    return r;
-};
-
-/**
- * Executes the supplied function on each item in the array.
- * @method each
- * @param {Array} a the array to iterate.
- * @param {Function} f the function to execute on each item.  The
- * function receives three arguments: the value, the index, the full array.
- * @param {object} o Optional context object.
- * @static
- * @return {YUI} the YUI instance.
- */
-YArray.each = (Native.forEach) ?
-    function(a, f, o) {
-        Native.forEach.call(a || [], f, o || Y);
-        return Y;
-    } :
-    function(a, f, o) {
-        var l = (a && a.length) || 0, i;
-        for (i = 0; i < l; i = i + 1) {
-            f.call(o || Y, a[i], i, a);
-        }
-        return Y;
-    };
-
-/**
- * Returns an object using the first array as keys, and
- * the second as values.  If the second array is not
- * provided the value is set to true for each.
- * @method hash
- * @static
- * @param {Array} k keyset.
- * @param {Array} v optional valueset.
- * @return {object} the hash.
- */
-YArray.hash = function(k, v) {
-    var o = {}, l = k.length, vl = v && v.length, i;
-    for (i = 0; i < l; i = i + 1) {
-        o[k[i]] = (vl && vl > i) ? v[i] : true;
-    }
-
-    return o;
-};
-
-/**
- * Returns the index of the first item in the array
- * that contains the specified value, -1 if the
- * value isn't found.
- * @method indexOf
- * @static
- * @param {Array} a the array to search.
- * @param {any} val the value to search for.
- * @return {int} the index of the item that contains the value or -1.
- */
-YArray.indexOf = (Native.indexOf) ?
-    function(a, val) {
-        return Native.indexOf.call(a, val);
-    } :
-    function(a, val) {
-        for (var i = 0; i < a.length; i = i + 1) {
-            if (a[i] === val) {
-                return i;
+    if (Lang.isArray(obj)) {
+        result = 1;
+    } else if (Lang.isObject(obj)) {
+        try {
+            // indexed, but no tagName (element) or alert (window),
+            // or functions without apply/call (Safari
+            // HTMLElementCollection bug).
+            if ('length' in obj && !obj.tagName && !obj.alert && !obj.apply) {
+                result = 2;
             }
-        }
+        } catch (ex) {}
+    }
 
-        return -1;
-    };
+    return result;
+};
+
+/**
+ * Dedupes an array of strings, returning an array that's guaranteed to contain
+ * only one copy of a given string.
+ *
+ * This method differs from `Y.Array.unique` in that it's optimized for use only
+ * with strings, whereas `unique` may be used with other types (but is slower).
+ * Using `dedupe` with non-string values may result in unexpected behavior.
+ *
+ * @method dedupe
+ * @param {String[]} array Array of strings to dedupe.
+ * @return {Array} Deduped copy of _array_.
+ * @static
+ * @since 3.4.0
+ */
+YArray.dedupe = function (array) {
+    var hash    = {},
+        results = [],
+        i, item, len;
+
+    for (i = 0, len = array.length; i < len; ++i) {
+        item = array[i];
+
+        if (!hasOwn.call(hash, item)) {
+            hash[item] = 1;
+            results.push(item);
+        }
+    }
+
+    return results;
+};
+
+/**
+ * Executes the supplied function on each item in the array. This method wraps
+ * the native ES5 `Array.forEach()` method if available.
+ *
+ * @method each
+ * @param {Array} array Array to iterate.
+ * @param {Function} fn Function to execute on each item in the array.
+ *   @param {mixed} fn.item Current array item.
+ *   @param {Number} fn.index Current array index.
+ *   @param {Array} fn.array Array being iterated.
+ * @param {Object} [thisObj] `this` object to use when calling _fn_.
+ * @return {YUI} The YUI instance.
+ * @chainable
+ * @static
+ */
+YArray.each = YArray.forEach = Native.forEach ? function (array, fn, thisObj) {
+    Native.forEach.call(array || [], fn, thisObj || Y);
+    return Y;
+} : function (array, fn, thisObj) {
+    for (var i = 0, len = (array && array.length) || 0; i < len; ++i) {
+        if (i in array) {
+            fn.call(thisObj || Y, array[i], i, array);
+        }
+    }
+
+    return Y;
+};
+
+/**
+ * Alias for `each`.
+ *
+ * @method forEach
+ * @static
+ */
+
+/**
+ * Returns an object using the first array as keys and the second as values. If
+ * the second array is not provided, or if it doesn't contain the same number of
+ * values as the first array, then `true` will be used in place of the missing
+ * values.
+ *
+ * @example
+ *
+ *     Y.Array.hash(['a', 'b', 'c'], ['foo', 'bar']);
+ *     // => {a: 'foo', b: 'bar', c: true}
+ *
+ * @method hash
+ * @param {Array} keys Array to use as keys.
+ * @param {Array} [values] Array to use as values.
+ * @return {Object}
+ * @static
+ */
+YArray.hash = function (keys, values) {
+    var hash = {},
+        vlen = (values && values.length) || 0,
+        i, len;
+
+    for (i = 0, len = keys.length; i < len; ++i) {
+        if (i in keys) {
+            hash[keys[i]] = vlen > i && i in values ? values[i] : true;
+        }
+    }
+
+    return hash;
+};
+
+/**
+ * Returns the index of the first item in the array that's equal (using a strict
+ * equality check) to the specified _value_, or `-1` if the value isn't found.
+ *
+ * This method wraps the native ES5 `Array.indexOf()` method if available.
+ *
+ * @method indexOf
+ * @param {Array} array Array to search.
+ * @param {any} value Value to search for.
+ * @return {Number} Index of the item strictly equal to _value_, or `-1` if not
+ *   found.
+ * @static
+ */
+YArray.indexOf = Native.indexOf ? function (array, value) {
+    // TODO: support fromIndex
+    return Native.indexOf.call(array, value);
+} : function (array, value) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+        if (array[i] === value) {
+            return i;
+        }
+    }
+
+    return -1;
+};
 
 /**
  * Numeric sort convenience function.
- * Y.ArrayAssert.itemsAreEqual([1,2,3], [3,1,2].sort(Y.Array.numericSort));
+ *
+ * The native `Array.prototype.sort()` function converts values to strings and
+ * sorts them in lexicographic order, which is unsuitable for sorting numeric
+ * values. Provide `Y.Array.numericSort` as a custom sort function when you want
+ * to sort values in numeric order.
+ *
+ * @example
+ *
+ *     [42, 23, 8, 16, 4, 15].sort(Y.Array.numericSort);
+ *     // => [4, 8, 15, 16, 23, 42]
+ *
  * @method numericSort
+ * @param {Number} a First value to compare.
+ * @param {Number} b Second value to compare.
+ * @return {Number} Difference between _a_ and _b_.
  * @static
- * @param {number} a a number.
- * @param {number} b a number.
  */
-YArray.numericSort = function(a, b) {
-    return (a - b);
+YArray.numericSort = function (a, b) {
+    return a - b;
 };
 
 /**
- * Executes the supplied function on each item in the array.
- * Returning true from the processing function will stop the
- * processing of the remaining items.
+ * Executes the supplied function on each item in the array. Returning a truthy
+ * value from the function will stop the processing of remaining items.
+ *
  * @method some
- * @param {Array} a the array to iterate.
- * @param {Function} f the function to execute on each item. The function
- * receives three arguments: the value, the index, the full array.
- * @param {object} o Optional context object.
+ * @param {Array} array Array to iterate.
+ * @param {Function} fn Function to execute on each item.
+ *   @param {mixed} fn.value Current array item.
+ *   @param {Number} fn.index Current array index.
+ *   @param {Array} fn.array Array being iterated.
+ * @param {Object} [thisObj] `this` object to use when calling _fn_.
+ * @return {Boolean} `true` if the function returns a truthy value on any of the
+ *   items in the array; `false` otherwise.
  * @static
- * @return {boolean} true if the function returns true on
- * any of the items in the array.
  */
-YArray.some = (Native.some) ?
-    function(a, f, o) {
-        return Native.some.call(a, f, o);
-    } :
-    function(a, f, o) {
-        var l = a.length, i;
-        for (i = 0; i < l; i = i + 1) {
-            if (f.call(o, a[i], i, a)) {
-                return true;
-            }
+YArray.some = Native.some ? function (array, fn, thisObj) {
+    return Native.some.call(array, fn, thisObj);
+} : function (array, fn, thisObj) {
+    for (var i = 0, len = array.length; i < len; ++i) {
+        if (i in array && fn.call(thisObj, array[i], i, array)) {
+            return true;
         }
-        return false;
-    };
+    }
 
+    return false;
+};
 /**
  * The YUI module contains the components required for building the YUI
  * seed file.  This includes the script loading mechanism, a simple queue,
@@ -2151,174 +2306,219 @@ Y.Queue = Queue;
 YUI.Env._loaderQueue = YUI.Env._loaderQueue || new Queue();
 
 /**
- * The YUI module contains the components required for building the YUI
- * seed file.  This includes the script loading mechanism, a simple queue,
- * and the core utilities for the library.
- * @module yui
- * @submodule yui-base
- */
+The YUI module contains the components required for building the YUI seed file.
+This includes the script loading mechanism, a simple queue, and the core
+utilities for the library.
+
+@module yui
+@submodule yui-base
+**/
 
 var CACHED_DELIMITER = '__',
 
-/*
- * IE will not enumerate native functions in a derived object even if the
- * function was overridden.  This is a workaround for specific functions
- * we care about on the Object prototype.
- * @property _iefix
- * @for YUI
- * @param {Function} r  the object to receive the augmentation
- * @param {Function} s  the object that supplies the properties to augment
- * @private
- */
-_iefix = function(r, s) {
-    var fn = s.toString;
-    if (Y.Lang.isFunction(fn) && fn != Object.prototype.toString) {
-        r.toString = fn;
-    }
-};
-
+    hasOwn   = Object.prototype.hasOwnProperty,
+    isObject = Y.Lang.isObject;
 
 /**
- * Returns a new object containing all of the properties of
- * all the supplied objects.  The properties from later objects
- * will overwrite those in earlier objects.  Passing in a
- * single object will create a shallow copy of it.  For a deep
- * copy, use clone.
- * @method merge
- * @for YUI
- * @param arguments {Object*} the objects to merge.
- * @return {object} the new merged object.
- */
-Y.merge = function() {
-    var a = arguments, o = {}, i, l = a.length;
-    for (i = 0; i < l; i = i + 1) {
-        Y.mix(o, a[i], true);
-    }
-    return o;
+Returns a wrapper for a function which caches the return value of that function,
+keyed off of the combined string representation of the argument values provided
+when the wrapper is called.
+
+Calling this function again with the same arguments will return the cached value
+rather than executing the wrapped function.
+
+Note that since the cache is keyed off of the string representation of arguments
+passed to the wrapper function, arguments that aren't strings and don't provide
+a meaningful `toString()` method may result in unexpected caching behavior. For
+example, the objects `{}` and `{foo: 'bar'}` would both be converted to the
+string `[object Object]` when used as a cache key.
+
+@method cached
+@param {Function} source The function to memoize.
+@param {Object} [cache={}] Object in which to store cached values. You may seed
+  this object with pre-existing cached values if desired.
+@param {any} [refetch] If supplied, this value is compared with the cached value
+  using a `==` comparison. If the values are equal, the wrapped function is
+  executed again even though a cached value exists.
+@return {Function} Wrapped function.
+@for YUI
+**/
+Y.cached = function (source, cache, refetch) {
+    cache || (cache = {});
+
+    return function (arg) {
+        var key = arguments.length > 1 ?
+                Array.prototype.join.call(arguments, CACHED_DELIMITER) :
+                arg.toString();
+
+        if (!(key in cache) || (refetch && cache[key] == refetch)) {
+            cache[key] = source.apply(source, arguments);
+        }
+
+        return cache[key];
+    };
 };
 
 /**
- * Applies the supplier's properties to the receiver.  By default
- * all prototype and static propertes on the supplier are applied
- * to the corresponding spot on the receiver.  By default all
- * properties are applied, and a property that is already on the
- * reciever will not be overwritten.  The default behavior can
- * be modified by supplying the appropriate parameters.
- *
- * @todo add constants for the modes
- *
- * @method mix
- * @param {Function} r  the object to receive the augmentation.
- * @param {Function} s  the object that supplies the properties to augment.
- * @param ov {boolean} if true, properties already on the receiver
- * will be overwritten if found on the supplier.
- * @param wl {string[]} a whitelist.  If supplied, only properties in
- * this list will be applied to the receiver.
- * @param {int} mode what should be copies, and to where
- *        default(0): object to object
- *        1: prototype to prototype (old augment)
- *        2: prototype to prototype and object props (new augment)
- *        3: prototype to object
- *        4: object to prototype.
- * @param merge {boolean/int} merge objects instead of overwriting/ignoring.
- * A value of 2 will skip array merge
- * Used by Y.aggregate.
- * @return {object} the augmented object.
- */
-Y.mix = function(r, s, ov, wl, mode, merge) {
+Returns a new object containing all of the properties of all the supplied
+objects. The properties from later objects will overwrite those in earlier
+objects.
 
-    if (!s || !r) {
-        return r || Y;
+Passing in a single object will create a shallow copy of it. For a deep copy,
+use `clone()`.
+
+@method merge
+@param {Object} objects* One or more objects to merge.
+@return {Object} A new merged object.
+**/
+Y.merge = function () {
+    var args   = arguments,
+        i      = 0,
+        len    = args.length,
+        result = {};
+
+    for (; i < len; ++i) {
+        Y.mix(result, args[i], true);
+    }
+
+    return result;
+};
+
+/**
+Mixes _supplier_'s properties into _receiver_. Properties will not be
+overwritten or merged unless the _overwrite_ or _merge_ parameters are `true`,
+respectively.
+
+In the default mode (0), only properties the supplier owns are copied (prototype
+properties are not copied). The following copying modes are available:
+
+  * `0`: _Default_. Object to object.
+  * `1`: Prototype to prototype.
+  * `2`: Prototype to prototype and object to object.
+  * `3`: Prototype to object.
+  * `4`: Object to prototype.
+
+@method mix
+@param {Function|Object} receiver The object or function to receive the mixed
+  properties.
+@param {Function|Object} supplier The object or function supplying the
+  properties to be mixed.
+@param {Boolean} [overwrite=false] If `true`, properties that already exist
+  on the receiver will be overwritten with properties from the supplier.
+@param {String[]} [whitelist] An array of property names to copy. If
+  specified, only the whitelisted properties will be copied, and all others
+  will be ignored.
+@param {Int} [mode=0] Mix mode to use. See above for available modes.
+@param {Boolean} [merge=false] If `true`, objects and arrays that already
+  exist on the receiver will have the corresponding object/array from the
+  supplier merged into them, rather than being skipped or overwritten. When
+  both _overwrite_ and _merge_ are `true`, _merge_ takes precedence.
+@return {Function|Object|YUI} The receiver, or the YUI instance if the
+  specified receiver is falsy.
+**/
+Y.mix = function(receiver, supplier, overwrite, whitelist, mode, merge) {
+    var alwaysOverwrite, exists, from, i, key, len, to;
+
+    // If no supplier is given, we return the receiver. If no receiver is given,
+    // we return Y. Returning Y doesn't make much sense to me, but it's
+    // grandfathered in for backcompat reasons.
+    if (!receiver || !supplier) {
+        return receiver || Y;
     }
 
     if (mode) {
-        switch (mode) {
-            case 1: // proto to proto
-                return Y.mix(r.prototype, s.prototype, ov, wl, 0, merge);
-            case 2: // object to object and proto to proto
-                Y.mix(r.prototype, s.prototype, ov, wl, 0, merge);
-                break; // pass through
-            case 3: // proto to static
-                return Y.mix(r, s.prototype, ov, wl, 0, merge);
-            case 4: // static to proto
-                return Y.mix(r.prototype, s, ov, wl, 0, merge);
-            default:  // object to object is what happens below
+        // In mode 2 (prototype to prototype and object to object), we recurse
+        // once to do the proto to proto mix. The object to object mix will be
+        // handled later on.
+        if (mode === 2) {
+            Y.mix(receiver.prototype, supplier.prototype, overwrite,
+                    whitelist, 0, merge);
         }
+
+        // Depending on which mode is specified, we may be copying from or to
+        // the prototypes of the supplier and receiver.
+        from = mode === 1 || mode === 3 ? supplier.prototype : supplier;
+        to   = mode === 1 || mode === 4 ? receiver.prototype : receiver;
+
+        // If either the supplier or receiver doesn't actually have a
+        // prototype property, then we could end up with an undefined `from`
+        // or `to`. If that happens, we abort and return the receiver.
+        if (!from || !to) {
+            return receiver;
+        }
+    } else {
+        from = supplier;
+        to   = receiver;
     }
 
-    // Maybe don't even need this wl && wl.length check anymore??
-    var i, l, p, type;
+    // If `overwrite` is truthy and `merge` is falsy, then we can skip a call
+    // to `hasOwnProperty` on each iteration and save some time.
+    alwaysOverwrite = overwrite && !merge;
 
-    if (wl && wl.length) {
-        for (i = 0, l = wl.length; i < l; ++i) {
-            p = wl[i];
-            type = Y.Lang.type(r[p]);
-            if (s.hasOwnProperty(p)) {
-                if (merge && type == 'object') {
-                    Y.mix(r[p], s[p]);
-                } else if (ov || !(p in r)) {
-                    r[p] = s[p];
-                }
+    if (whitelist) {
+        for (i = 0, len = whitelist.length; i < len; ++i) {
+            key = whitelist[i];
+
+            // We call `Object.prototype.hasOwnProperty` instead of calling
+            // `hasOwnProperty` on the object itself, since the object's
+            // `hasOwnProperty` method may have been overridden or removed.
+            // Also, some native objects don't implement a `hasOwnProperty`
+            // method.
+            if (!hasOwn.call(from, key)) {
+                continue;
+            }
+
+            exists = alwaysOverwrite ? false : hasOwn.call(to, key);
+
+            if (merge && exists && isObject(to[key], true)
+                    && isObject(from[key], true)) {
+                // If we're in merge mode, and the key is present on both
+                // objects, and the value on both objects is either an object or
+                // an array (but not a function), then we recurse to merge the
+                // `from` value into the `to` value instead of overwriting it.
+                //
+                // Note: It's intentional that the whitelist isn't passed to the
+                // recursive call here. This is legacy behavior that lots of
+                // code still depends on.
+                Y.mix(to[key], from[key], overwrite, null, 0, merge);
+            } else if (overwrite || !exists) {
+                // We're not in merge mode, so we'll only copy the `from` value
+                // to the `to` value if we're in overwrite mode or if the
+                // current key doesn't exist on the `to` object.
+                to[key] = from[key];
             }
         }
     } else {
-        for (i in s) {
-            // if (s.hasOwnProperty(i) && !(i in FROZEN)) {
-            if (s.hasOwnProperty(i)) {
-                // check white list if it was supplied
-                // if the receiver has this property, it is an object,
-                // and merge is specified, merge the two objects.
-                if (merge && Y.Lang.isObject(r[i], true)) {
-                    Y.mix(r[i], s[i], ov, wl, 0, true); // recursive
-                // otherwise apply the property only if overwrite
-                // is specified or the receiver doesn't have one.
-                } else if (ov || !(i in r)) {
-                    r[i] = s[i];
-                }
-                // if merge is specified and the receiver is an array,
-                // append the array item
-                // } else if (arr) {
-                    // r.push(s[i]);
-                // }
+        for (key in from) {
+            // The code duplication here is for runtime performance reasons.
+            // Combining whitelist and non-whitelist operations into a single
+            // loop or breaking the shared logic out into a function both result
+            // in worse performance, and Y.mix is critical enough that the byte
+            // tradeoff is worth it.
+            if (!hasOwn.call(from, key)) {
+                continue;
+            }
+
+            exists = alwaysOverwrite ? false : hasOwn.call(to, key);
+
+            if (merge && exists && isObject(to[key], true)
+                    && isObject(from[key], true)) {
+                Y.mix(to[key], from[key], overwrite, null, 0, merge);
+            } else if (overwrite || !exists) {
+                to[key] = from[key];
             }
         }
 
-        if (Y.UA.ie) {
-            _iefix(r, s);
+        // If this is an IE browser with the JScript enumeration bug, force
+        // enumeration of the buggy properties by making a recursive call with
+        // the buggy properties as the whitelist.
+        if (Y.Object._hasEnumBug) {
+            Y.mix(to, from, overwrite, Y.Object._forceEnum, mode, merge);
         }
     }
 
-    return r;
+    return receiver;
 };
-
-/**
- * Returns a wrapper for a function which caches the
- * return value of that function, keyed off of the combined
- * argument values.
- * @method cached
- * @param source {function} the function to memoize.
- * @param cache an optional cache seed.
- * @param refetch if supplied, this value is tested against the cached
- * value.  If the values are equal, the wrapped function is executed again.
- * @return {Function} the wrapped function.
- */
-Y.cached = function(source, cache, refetch) {
-    cache = cache || {};
-
-    return function(arg1) {
-
-        var k = (arguments.length > 1) ?
-            Array.prototype.join.call(arguments, CACHED_DELIMITER) : arg1;
-
-        if (!(k in cache) || (refetch && cache[k] == refetch)) {
-            cache[k] = source.apply(source, arguments);
-        }
-
-        return cache[k];
-    };
-
-};
-
 /**
  * The YUI module contains the components required for building the YUI
  * seed file.  This includes the script loading mechanism, a simple queue,
@@ -2328,188 +2528,279 @@ Y.cached = function(source, cache, refetch) {
  */
 
 /**
- * Adds the following Object utilities to the YUI instance
+ * Adds utilities to the YUI instance for working with objects.
+ *
  * @class Object
  */
 
-/**
- * Y.Object(o) returns a new object based upon the supplied object.
- * @method ()
- * @static
- * @param o the supplier object.
- * @return {Object} the new object.
- */
-var F = function() {},
+var hasOwn = Object.prototype.hasOwnProperty,
 
-// O = Object.create || function(o) {
-//     F.prototype = o;
-//     return new F();
-// },
+// If either MooTools or Prototype is on the page, then there's a chance that we
+// can't trust "native" language features to actually be native. When this is
+// the case, we take the safe route and fall back to our own non-native
+// implementations.
+win           = Y.config.win,
+unsafeNatives = win && !!(win.MooTools || win.Prototype),
 
-O = function(o) {
-    F.prototype = o;
-    return new F();
-},
-
-owns = function(o, k) {
-    return o && o.hasOwnProperty && o.hasOwnProperty(k);
-    // return Object.prototype.hasOwnProperty.call(o, k);
-},
-
-UNDEF,
+UNDEFINED, // <-- Note the comma. We're still declaring vars.
 
 /**
- * Extracts the keys, values, or size from an object
+ * Returns a new object that uses _obj_ as its prototype. This method wraps the
+ * native ES5 `Object.create()` method if available, but doesn't currently
+ * pass through `Object.create()`'s second argument (properties) in order to
+ * ensure compatibility with older browsers.
  *
- * @method _extract
- * @param o the object.
- * @param what what to extract (0: keys, 1: values, 2: size).
- * @return {boolean|Array} the extracted info.
+ * @method ()
+ * @param {Object} obj Prototype object.
+ * @return {Object} New object using _obj_ as its prototype.
  * @static
- * @private
  */
-_extract = function(o, what) {
-    var count = (what === 2), out = (count) ? 0 : [], i;
+O = Y.Object = (!unsafeNatives && Object.create) ? function (obj) {
+    // We currently wrap the native Object.create instead of simply aliasing it
+    // to ensure consistency with our fallback shim, which currently doesn't
+    // support Object.create()'s second argument (properties). Once we have a
+    // safe fallback for the properties arg, we can stop wrapping
+    // Object.create().
+    return Object.create(obj);
+} : (function () {
+    // Reusable constructor function for the Object.create() shim.
+    function F() {}
 
-    for (i in o) {
-        if (owns(o, i)) {
-            if (count) {
-                out++;
-            } else {
-                out.push((what) ? o[i] : i);
+    // The actual shim.
+    return function (obj) {
+        F.prototype = obj;
+        return new F();
+    };
+}()),
+
+/**
+ * Property names that IE doesn't enumerate in for..in loops, even when they
+ * should be enumerable. When `_hasEnumBug` is `true`, it's necessary to
+ * manually enumerate these properties.
+ *
+ * @property _forceEnum
+ * @type String[]
+ * @protected
+ * @static
+ */
+forceEnum = O._forceEnum = [
+    'hasOwnProperty',
+    'isPrototypeOf',
+    'propertyIsEnumerable',
+    'toString',
+    'toLocaleString',
+    'valueOf'
+],
+
+/**
+ * `true` if this browser has the JScript enumeration bug that prevents
+ * enumeration of the properties named in the `_forceEnum` array, `false`
+ * otherwise.
+ *
+ * See:
+ *   - <https://developer.mozilla.org/en/ECMAScript_DontEnum_attribute#JScript_DontEnum_Bug>
+ *   - <http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation>
+ *
+ * @property _hasEnumBug
+ * @type {Boolean}
+ * @protected
+ * @static
+ */
+hasEnumBug = O._hasEnumBug = !{valueOf: 0}.propertyIsEnumerable('valueOf'),
+
+/**
+ * Returns `true` if _key_ exists on _obj_, `false` if _key_ doesn't exist or
+ * exists only on _obj_'s prototype. This is essentially a safer version of
+ * `obj.hasOwnProperty()`.
+ *
+ * @method owns
+ * @param {Object} obj Object to test.
+ * @param {String} key Property name to look for.
+ * @return {Boolean} `true` if _key_ exists on _obj_, `false` otherwise.
+ * @static
+ */
+owns = O.owns = function (obj, key) {
+    return !!obj && hasOwn.call(obj, key);
+}; // <-- End of var declarations.
+
+/**
+ * Alias for `owns()`.
+ *
+ * @method hasKey
+ * @param {Object} obj Object to test.
+ * @param {String} key Property name to look for.
+ * @return {Boolean} `true` if _key_ exists on _obj_, `false` otherwise.
+ * @static
+ */
+O.hasKey = owns;
+
+/**
+ * Returns an array containing the object's enumerable keys. Does not include
+ * prototype keys or non-enumerable keys.
+ *
+ * Note that keys are returned in enumeration order (that is, in the same order
+ * that they would be enumerated by a `for-in` loop), which may not be the same
+ * as the order in which they were defined.
+ *
+ * This method is an alias for the native ES5 `Object.keys()` method if
+ * available.
+ *
+ * @example
+ *
+ *     Y.Object.keys({a: 'foo', b: 'bar', c: 'baz'});
+ *     // => ['a', 'b', 'c']
+ *
+ * @method keys
+ * @param {Object} obj An object.
+ * @return {String[]} Array of keys.
+ * @static
+ */
+O.keys = (!unsafeNatives && Object.keys) || function (obj) {
+    if (!Y.Lang.isObject(obj)) {
+        throw new TypeError('Object.keys called on a non-object');
+    }
+
+    var keys = [],
+        i, key, len;
+
+    for (key in obj) {
+        if (owns(obj, key)) {
+            keys.push(key);
+        }
+    }
+
+    if (hasEnumBug) {
+        for (i = 0, len = forceEnum.length; i < len; ++i) {
+            key = forceEnum[i];
+
+            if (owns(obj, key)) {
+                keys.push(key);
             }
         }
     }
 
-    return out;
-};
-
-Y.Object = O;
-
-/**
- * Returns an array containing the object's keys
- * @method keys
- * @static
- * @param o an object.
- * @return {string[]} the keys.
- */
-// O.keys = Object.keys || function(o) {
-//     return _extract(o);
-// };
-
-O.keys = function(o) {
-    return _extract(o);
+    return keys;
 };
 
 /**
- * Returns an array containing the object's values
- * @method values
- * @static
- * @param o an object.
- * @return {Array} the values.
- */
-// O.values = Object.values || function(o) {
-//     return _extract(o, 1);
-// };
-
-O.values = function(o) {
-    return _extract(o, 1);
-};
-
-/**
- * Returns the size of an object
- * @method size
- * @static
- * @param o an object.
- * @return {int} the size.
- */
-O.size = Object.size || function(o) {
-    return _extract(o, 2);
-};
-
-/**
- * Returns true if the object contains a given key
- * @method hasKey
- * @static
- * @param o an object.
- * @param k the key to query.
- * @return {boolean} true if the object contains the key.
- */
-O.hasKey = owns;
-/**
- * Returns true if the object contains a given value
- * @method hasValue
- * @static
- * @param o an object.
- * @param v the value to query.
- * @return {boolean} true if the object contains the value.
- */
-O.hasValue = function(o, v) {
-    return (Y.Array.indexOf(O.values(o), v) > -1);
-};
-
-/**
- * Determines whether or not the property was added
- * to the object instance.  Returns false if the property is not present
- * in the object, or was inherited from the prototype.
+ * Returns an array containing the values of the object's enumerable keys.
  *
- * @method owns
+ * Note that values are returned in enumeration order (that is, in the same
+ * order that they would be enumerated by a `for-in` loop), which may not be the
+ * same as the order in which they were defined.
+ *
+ * @example
+ *
+ *     Y.Object.values({a: 'foo', b: 'bar', c: 'baz'});
+ *     // => ['foo', 'bar', 'baz']
+ *
+ * @method values
+ * @param {Object} obj An object.
+ * @return {Array} Array of values.
  * @static
- * @param o {any} The object being testing.
- * @param p {string} the property to look for.
- * @return {boolean} true if the object has the property on the instance.
  */
-O.owns = owns;
+O.values = function (obj) {
+    var keys   = O.keys(obj),
+        i      = 0,
+        len    = keys.length,
+        values = [];
+
+    for (; i < len; ++i) {
+        values.push(obj[keys[i]]);
+    }
+
+    return values;
+};
 
 /**
- * Executes a function on each item. The function
- * receives the value, the key, and the object
- * as parameters (in that order).
- * @method each
+ * Returns the number of enumerable keys owned by an object.
+ *
+ * @method size
+ * @param {Object} obj An object.
+ * @return {Number} The object's size.
  * @static
- * @param o the object to iterate.
- * @param f {Function} the function to execute on each item. The function
- * receives three arguments: the value, the the key, the full object.
- * @param c the execution context.
- * @param proto {boolean} include proto.
- * @return {YUI} the YUI instance.
  */
-O.each = function(o, f, c, proto) {
-    var s = c || Y, i;
+O.size = function (obj) {
+    return O.keys(obj).length;
+};
 
-    for (i in o) {
-        if (proto || owns(o, i)) {
-            f.call(s, o[i], i, o);
+/**
+ * Returns `true` if the object owns an enumerable property with the specified
+ * value.
+ *
+ * @method hasValue
+ * @param {Object} obj An object.
+ * @param {any} value The value to search for.
+ * @return {Boolean} `true` if _obj_ contains _value_, `false` otherwise.
+ * @static
+ */
+O.hasValue = function (obj, value) {
+    return Y.Array.indexOf(O.values(obj), value) > -1;
+};
+
+/**
+ * Executes a function on each enumerable property in _obj_. The function
+ * receives the value, the key, and the object itself as parameters (in that
+ * order).
+ *
+ * By default, only properties owned by _obj_ are enumerated. To include
+ * prototype properties, set the _proto_ parameter to `true`.
+ *
+ * @method each
+ * @param {Object} obj Object to enumerate.
+ * @param {Function} fn Function to execute on each enumerable property.
+ *   @param {mixed} fn.value Value of the current property.
+ *   @param {String} fn.key Key of the current property.
+ *   @param {Object} fn.obj Object being enumerated.
+ * @param {Object} [thisObj] `this` object to use when calling _fn_.
+ * @param {Boolean} [proto=false] Include prototype properties.
+ * @return {YUI} the YUI instance.
+ * @chainable
+ * @static
+ */
+O.each = function (obj, fn, thisObj, proto) {
+    var key;
+
+    for (key in obj) {
+        if (proto || owns(obj, key)) {
+            fn.call(thisObj || Y, obj[key], key, obj);
         }
     }
+
     return Y;
 };
 
 /**
- * Executes a function on each item, but halts if the
- * function returns true.  The function
- * receives the value, the key, and the object
- * as paramters (in that order).
+ * Executes a function on each enumerable property in _obj_, but halts if the
+ * function returns a truthy value. The function receives the value, the key,
+ * and the object itself as paramters (in that order).
+ *
+ * By default, only properties owned by _obj_ are enumerated. To include
+ * prototype properties, set the _proto_ parameter to `true`.
+ *
  * @method some
+ * @param {Object} obj Object to enumerate.
+ * @param {Function} fn Function to execute on each enumerable property.
+ *   @param {mixed} fn.value Value of the current property.
+ *   @param {String} fn.key Key of the current property.
+ *   @param {Object} fn.obj Object being enumerated.
+ * @param {Object} [thisObj] `this` object to use when calling _fn_.
+ * @param {Boolean} [proto=false] Include prototype properties.
+ * @return {Boolean} `true` if any execution of _fn_ returns a truthy value,
+ *   `false` otherwise.
  * @static
- * @param o the object to iterate.
- * @param f {Function} the function to execute on each item. The function
- * receives three arguments: the value, the the key, the full object.
- * @param c the execution context.
- * @param proto {boolean} include proto.
- * @return {boolean} true if any execution of the function returns true,
- * false otherwise.
  */
-O.some = function(o, f, c, proto) {
-    var s = c || Y, i;
+O.some = function (obj, fn, thisObj, proto) {
+    var key;
 
-    for (i in o) {
-        if (proto || owns(o, i)) {
-            if (f.call(s, o[i], i, o)) {
+    for (key in obj) {
+        if (proto || owns(obj, key)) {
+            if (fn.call(thisObj || Y, obj[key], key, obj)) {
                 return true;
             }
         }
     }
+
     return false;
 };
 
@@ -2528,14 +2819,14 @@ O.some = function(o, f, c, proto) {
  */
 O.getValue = function(o, path) {
     if (!Y.Lang.isObject(o)) {
-        return UNDEF;
+        return UNDEFINED;
     }
 
     var i,
         p = Y.Array(path),
         l = p.length;
 
-    for (i = 0; o !== UNDEF && i < l; i++) {
+    for (i = 0; o !== UNDEFINED && i < l; i++) {
         o = o[p[i]];
     }
 
@@ -2563,14 +2854,14 @@ O.setValue = function(o, path, val) {
         ref = o;
 
     if (leafIdx >= 0) {
-        for (i = 0; ref !== UNDEF && i < leafIdx; i++) {
+        for (i = 0; ref !== UNDEFINED && i < leafIdx; i++) {
             ref = ref[p[i]];
         }
 
-        if (ref !== UNDEF) {
+        if (ref !== UNDEFINED) {
             ref[p[i]] = val;
         } else {
-            return UNDEF;
+            return UNDEFINED;
         }
     }
 
@@ -2578,19 +2869,16 @@ O.setValue = function(o, path, val) {
 };
 
 /**
- * Returns true if the object has no properties of its own
+ * Returns `true` if the object has no enumerable properties of its own.
+ *
  * @method isEmpty
+ * @param {Object} obj An object.
+ * @return {Boolean} `true` if the object is empty.
  * @static
- * @return {boolean} true if the object is empty.
  * @since 3.2.0
  */
-O.isEmpty = function(o) {
-    for (var i in o) {
-        if (owns(o, i)) {
-            return false;
-        }
-    }
-    return true;
+O.isEmpty = function (obj) {
+    return !O.keys(obj).length;
 };
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -2603,13 +2891,15 @@ O.isEmpty = function(o) {
 /**
  * YUI user agent detection.
  * Do not fork for a browser if it can be avoided.  Use feature detection when
- * you can.  Use the user agent as a last resort.  UA stores a version
- * number for the browser engine, 0 otherwise.  This value may or may not map
- * to the version number of the browser using the engine.  The value is
- * presented as a float so that it can easily be used for boolean evaluation
- * as well as for looking for a particular range of versions.  Because of this,
- * some of the granularity of the version info may be lost (e.g., Gecko 1.8.0.9
- * reports 1.8).
+ * you can.  Use the user agent as a last resort.  For all fields listed
+ * as @type float, UA stores a version number for the browser engine,
+ * 0 otherwise.  This value may or may not map to the version number of
+ * the browser using the engine.  The value is presented as a float so
+ * that it can easily be used for boolean evaluation as well as for
+ * looking for a particular range of versions.  Because of this,
+ * some of the granularity of the version info may be lost.  The fields that
+ * are @type string default to null.  The API docs list the values that
+ * these fields can have.
  * @class UA
  * @static
  */
@@ -2621,7 +2911,7 @@ O.isEmpty = function(o) {
 * @returns {Object} The Y.UA object
 */
 YUI.Env.parseUA = function(subUA) {
-    
+
     var numberify = function(s) {
             var c = 0;
             return parseFloat(s.replace(/\./g, function() {
@@ -2696,6 +2986,15 @@ YUI.Env.parseUA = function(subUA) {
         webkit: 0,
 
         /**
+         * Safari will be detected as webkit, but this property will also
+         * be populated with the Safari version number
+         * @property safari
+         * @type float
+         * @static
+         */
+        safari: 0,
+
+        /**
          * Chrome will be detected as webkit, but this property will also
          * be populated with the Chrome version number
          * @property chrome
@@ -2711,6 +3010,7 @@ YUI.Env.parseUA = function(subUA) {
          * devices with the WebKit-based browser, and Opera Mini.
          * @property mobile
          * @type string
+         * @default null
          * @static
          */
         mobile: null,
@@ -2747,6 +3047,7 @@ YUI.Env.parseUA = function(subUA) {
          * General truthy check for iPad, iPhone or iPod
          * @property ios
          * @type float
+         * @default null
          * @static
          */
         ios: null,
@@ -2784,6 +3085,7 @@ YUI.Env.parseUA = function(subUA) {
          * The operating system.  Currently only detecting windows or macintosh
          * @property os
          * @type string
+         * @default null
          * @static
          */
         os: null
@@ -2818,6 +3120,7 @@ YUI.Env.parseUA = function(subUA) {
         m = ua.match(/AppleWebKit\/([^\s]*)/);
         if (m && m[1]) {
             o.webkit = numberify(m[1]);
+            o.safari = o.webkit;
 
             // Mobile browser check
             if (/ Mobile\//.test(ua)) {
@@ -2835,9 +3138,9 @@ YUI.Env.parseUA = function(subUA) {
                     o[m[0].toLowerCase()] = o.ios;
                 }
             } else {
-                m = ua.match(/NokiaN[^\/]*|Android \d\.\d|webOS\/\d\.\d/);
+                m = ua.match(/NokiaN[^\/]*|webOS\/\d\.\d/);
                 if (m) {
-                    // Nokia N-series, Android, webOS, ex: NokiaN95
+                    // Nokia N-series, webOS, ex: NokiaN95
                     o.mobile = m[0];
                 }
                 if (/webOS/.test(ua)) {
@@ -2848,7 +3151,9 @@ YUI.Env.parseUA = function(subUA) {
                     }
                 }
                 if (/ Android/.test(ua)) {
-                    o.mobile = 'Android';
+                    if (/Mobile/.test(ua)) {
+                        o.mobile = 'Android';
+                    }
                     m = ua.match(/Android ([^\s]*);/);
                     if (m && m[1]) {
                         o.android = numberify(m[1]);
@@ -2860,6 +3165,7 @@ YUI.Env.parseUA = function(subUA) {
             m = ua.match(/Chrome\/([^\s]*)/);
             if (m && m[1]) {
                 o.chrome = numberify(m[1]); // Chrome
+                o.safari = 0; //Reset safari back to 0
             } else {
                 m = ua.match(/AdobeAIR\/([^\s]*)/);
                 if (m) {
@@ -2873,7 +3179,13 @@ YUI.Env.parseUA = function(subUA) {
             m = ua.match(/Opera[\s\/]([^\s]*)/);
             if (m && m[1]) {
                 o.opera = numberify(m[1]);
+                m = ua.match(/Version\/([^\s]*)/);
+                if (m && m[1]) {
+                    o.opera = numberify(m[1]); // opera 10+
+                }
+
                 m = ua.match(/Opera Mini[^;]*/);
+
                 if (m) {
                     o.mobile = m[0]; // ex: Opera Mini/2.0.4509/1316
                 }
@@ -2902,6 +3214,99 @@ YUI.Env.parseUA = function(subUA) {
 
 
 Y.UA = YUI.Env.UA || YUI.Env.parseUA();
+var feature_tests = {};
+
+Y.mix(Y.namespace('Features'), {
+
+    tests: feature_tests,
+
+    add: function(cat, name, o) {
+        feature_tests[cat] = feature_tests[cat] || {};
+        feature_tests[cat][name] = o;
+    },
+
+    all: function(cat, args) {
+        var cat_o = feature_tests[cat],
+            // results = {};
+            result = [];
+        if (cat_o) {
+            Y.Object.each(cat_o, function(v, k) {
+                result.push(k + ':' + (Y.Features.test(cat, k, args) ? 1 : 0));
+            });
+        }
+
+        return (result.length) ? result.join(';') : '';
+    },
+
+    test: function(cat, name, args) {
+        args = args || [];
+        var result, ua, test,
+            cat_o = feature_tests[cat],
+            feature = cat_o && cat_o[name];
+
+        if (!feature) {
+        } else {
+
+            result = feature.result;
+
+            if (Y.Lang.isUndefined(result)) {
+
+                ua = feature.ua;
+                if (ua) {
+                    result = (Y.UA[ua]);
+                }
+
+                test = feature.test;
+                if (test && ((!ua) || result)) {
+                    result = test.apply(Y, args);
+                }
+
+                feature.result = result;
+            }
+        }
+
+        return result;
+    }
+});
+
+// Y.Features.add("load", "1", {});
+// Y.Features.test("load", "1");
+// caps=1:1;2:0;3:1;
+
+YUI.Env.aliases = YUI.Env.aliases || {};
+YUI.Env.aliases["anim"] = ["anim-base","anim-color","anim-curve","anim-easing","anim-node-plugin","anim-scroll","anim-xy"];
+YUI.Env.aliases["app"] = ["controller","model","model-list","view"];
+YUI.Env.aliases["attribute"] = ["attribute-base","attribute-complex"];
+YUI.Env.aliases["autocomplete"] = ["autocomplete-base","autocomplete-sources","autocomplete-list","autocomplete-plugin"];
+YUI.Env.aliases["base"] = ["base-base","base-pluginhost","base-build"];
+YUI.Env.aliases["cache"] = ["cache-base","cache-offline","cache-plugin"];
+YUI.Env.aliases["collection"] = ["array-extras","arraylist","arraylist-add","arraylist-filter","array-invoke"];
+YUI.Env.aliases["dataschema"] = ["dataschema-base","dataschema-json","dataschema-xml","dataschema-array","dataschema-text"];
+YUI.Env.aliases["datasource"] = ["datasource-local","datasource-io","datasource-get","datasource-function","datasource-cache","datasource-jsonschema","datasource-xmlschema","datasource-arrayschema","datasource-textschema","datasource-polling"];
+YUI.Env.aliases["datatable"] = ["datatable-base","datatable-datasource","datatable-sort","datatable-scroll"];
+YUI.Env.aliases["datatype"] = ["datatype-number","datatype-date","datatype-xml"];
+YUI.Env.aliases["datatype-number"] = ["datatype-number-parse","datatype-number-format"];
+YUI.Env.aliases["datatype-xml"] = ["datatype-xml-parse","datatype-xml-format"];
+YUI.Env.aliases["dd"] = ["dd-ddm-base","dd-ddm","dd-ddm-drop","dd-drag","dd-proxy","dd-constrain","dd-drop","dd-scroll","dd-delegate"];
+YUI.Env.aliases["dom"] = ["dom-core","dom-base","dom-attrs","dom-create","dom-class","dom-size","dom-screen","dom-style","selector-native","selector"];
+YUI.Env.aliases["editor"] = ["frame","selection","exec-command","editor-base","editor-para","editor-br","editor-bidi","editor-tab","createlink-base"];
+YUI.Env.aliases["event"] = ["event-base","event-delegate","event-synthetic","event-mousewheel","event-mouseenter","event-key","event-focus","event-resize","event-hover"];
+YUI.Env.aliases["event-custom"] = ["event-custom-base","event-custom-complex"];
+YUI.Env.aliases["event-gestures"] = ["event-flick","event-move"];
+YUI.Env.aliases["highlight"] = ["highlight-base","highlight-accentfold"];
+YUI.Env.aliases["history"] = ["history-base","history-hash","history-hash-ie","history-html5"];
+YUI.Env.aliases["io"] = ["io-base","io-xdr","io-form","io-upload-iframe","io-queue"];
+YUI.Env.aliases["json"] = ["json-parse","json-stringify"];
+YUI.Env.aliases["loader"] = ["loader-base","loader-rollup","loader-yui3"];
+YUI.Env.aliases["node"] = ["node-base","node-event-delegate","node-pluginhost","node-screen","node-style"];
+YUI.Env.aliases["pluginhost"] = ["pluginhost-base","pluginhost-config"];
+YUI.Env.aliases["querystring"] = ["querystring-parse","querystring-stringify"];
+YUI.Env.aliases["recordset"] = ["recordset-base","recordset-sort","recordset-filter","recordset-indexer"];
+YUI.Env.aliases["resize"] = ["resize-base","resize-proxy","resize-constrain"];
+YUI.Env.aliases["slider"] = ["slider-base","slider-value-range","clickable-rail","range-slider"];
+YUI.Env.aliases["text"] = ["text-accentfold","text-wordbreak"];
+YUI.Env.aliases["transition"] = ["transition-native","transition-timer"];
+YUI.Env.aliases["widget"] = ["widget-base","widget-htmlparser","widget-uievents","widget-skin"];
 
 
-}, '3.3.0' );
+}, '3.4.0' );

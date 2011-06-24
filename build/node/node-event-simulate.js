@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('node-event-simulate', function(Y) {
@@ -27,4 +27,4 @@ YUI.add('node-event-simulate', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['node-base', 'event-simulate']});
+}, '3.4.0' ,{requires:['node-base', 'event-simulate']});

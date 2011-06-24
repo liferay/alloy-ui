@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('selector-native', function(Y) {
@@ -202,8 +202,8 @@ var Selector = {
 
     test: function(node, selector, root) {
         var ret = false,
-            groups = selector.split(','),
             useFrag = false,
+            groups,
             parent,
             item,
             items,
@@ -212,41 +212,46 @@ var Selector = {
 
         if (node && node.tagName) { // only test HTMLElements
 
-            // we need a root if off-doc
-            if (!root && !Y.DOM.inDoc(node)) {
-                parent = node.parentNode;
-                if (parent) { 
-                    root = parent;
-                } else { // only use frag when no parent to query
-                    frag = node[OWNER_DOCUMENT].createDocumentFragment();
-                    frag.appendChild(node);
-                    root = frag;
-                    useFrag = true;
+            if (typeof selector == 'function') { // test with function
+                ret = selector.call(node, node);
+            } else { // test with query
+                // we need a root if off-doc
+                groups = selector.split(',');
+                if (!root && !Y.DOM.inDoc(node)) {
+                    parent = node.parentNode;
+                    if (parent) { 
+                        root = parent;
+                    } else { // only use frag when no parent to query
+                        frag = node[OWNER_DOCUMENT].createDocumentFragment();
+                        frag.appendChild(node);
+                        root = frag;
+                        useFrag = true;
+                    }
                 }
-            }
-            root = root || node[OWNER_DOCUMENT];
+                root = root || node[OWNER_DOCUMENT];
 
-            if (!node.id) {
-                node.id = Y.guid();
-            }
-            for (i = 0; (group = groups[i++]);) { // TODO: off-dom test
-                group += '[id="' + node.id + '"]';
-                items = Y.Selector.query(group, root);
+                if (!node.id) {
+                    node.id = Y.guid();
+                }
+                for (i = 0; (group = groups[i++]);) { // TODO: off-dom test
+                    group += '[id="' + node.id + '"]';
+                    items = Y.Selector.query(group, root);
 
-                for (j = 0; item = items[j++];) {
-                    if (item === node) {
-                        ret = true;
+                    for (j = 0; item = items[j++];) {
+                        if (item === node) {
+                            ret = true;
+                            break;
+                        }
+                    }
+                    if (ret) {
                         break;
                     }
                 }
-                if (ret) {
-                    break;
-                }
-            }
 
-            if (useFrag) { // cleanup
-                frag.removeChild(node);
-            }
+                if (useFrag) { // cleanup
+                    frag.removeChild(node);
+                }
+            };
         }
 
         return ret;
@@ -273,4 +278,4 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.3.0' ,{requires:['dom-base']});
+}, '3.4.0' ,{requires:['dom-core']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('io-base', function(Y) {
@@ -118,7 +118,6 @@ YUI.add('io-base', function(Y) {
         return w.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     }
 
-
    /**
     * @description Method that increments _transactionId for each transaction.
     *
@@ -130,7 +129,7 @@ YUI.add('io-base', function(Y) {
     function _id() {
         var id = transactionId;
 
-        transactionId++;
+		transactionId++;
 
         return id;
     }
@@ -209,8 +208,8 @@ YUI.add('io-base', function(Y) {
     */
     function _tE(e, c) {
         var eT = new Y.EventTarget().publish('transaction:' + e),
-            a = c.arguments,
-            cT = c.context || Y;
+            cT = c.context || Y,
+            a = c.arguments;
 
         if (a) {
             eT.on(c.on[e], cT, a);
@@ -389,7 +388,7 @@ YUI.add('io-base', function(Y) {
         _destroy(o);
         c.xdr.use = 'flash';
         // If the original request included serialized form data and
-        // additional data are defined in configuration.data, it must
+        // additional data are defined in the configuration, it must
         // be reset to prevent data duplication.
         c.data = c.form && d ? d : null;
 
@@ -407,7 +406,7 @@ YUI.add('io-base', function(Y) {
     * @return int
     */
     function _concat(s, d) {
-        s += ((s.indexOf('?') == -1) ? '?' : '&') + d;
+        s += (s.indexOf('?') === -1 ? '?' : '&') + d;
         return s;
     }
 
@@ -448,16 +447,6 @@ YUI.add('io-base', function(Y) {
 
         for (p in _headers) {
             if (_headers.hasOwnProperty(p)) {
-				/*
-                if (h[p]) {
-                    // Configuration headers will supersede preset io headers,
-                    // if headers match.
-                    continue;
-                }
-                else {
-                    h[p] = _headers[p];
-                }
-				*/
 				if (!h[p]) {
 					h[p] = _headers[p];
 				}
@@ -467,7 +456,7 @@ YUI.add('io-base', function(Y) {
         for (p in h) {
             if (h.hasOwnProperty(p)) {
 				if (h[p] !== 'disable') {
-                	o.setRequestHeader(p, h[p]);
+					o.setRequestHeader(p, h[p]);
 				}
 			}
         }
@@ -534,19 +523,16 @@ YUI.add('io-base', function(Y) {
     * @return void
     */
     function _handleResponse(o, c) {
-        var status;
-
-        try {
-			status = (o.c.status && o.c.status !== 0) ? o.c.status : 0;
-        }
-        catch(e) {
-            status = 0;
-        }
+        var status = o.c.status;
 
         // IE reports HTTP 204 as HTTP 1223.
-        if (status >= 200 && status < 300 || status === 1223) {
+		if (status === 0 && o.c.responseText || status === 1223) {
+			status = 200;
+		}
+
+		if (status >= 200 && status < 300) {
             _ioSuccess(o, c);
-        }
+		}
         else {
             _ioFailure(o, c);
         }
@@ -666,20 +652,19 @@ YUI.add('io-base', function(Y) {
     * @return object
     */
     function _io(uri, c, i) {
-        var f, o, d, m, r, s, oD, a, j,
+        var f, o, d, m, r, s, oD, a, j, usr, pwd,
             u = uri;
-            c = Y.Object(c);
+            c = Y.Object(c) || {};
             o = _create(c.xdr || c.form, i);
+			usr = c.username || null;
+			pwd = c.password || null;
             m = c.method ? c.method = c.method.toUpperCase() : c.method = 'GET';
             s = c.sync;
             oD = c.data;
 
-        //To serialize an object into a key-value string, add the
-        //QueryString module to the YUI instance's 'use' method.
-        if (Y.Lang.isObject(c.data) && Y.QueryString) {
-            c.data = Y.QueryString.stringify(c.data);
-            Y.log('Configuration property "data" is an object. The serialized value is: ' + c.data, 'info', 'io');
-        }
+        // Serialize an object into a key-value string using
+        // querystring-stringify-simple.
+		c.data = (Y.Lang.isObject(c.data) && Y.QueryString) ? Y.QueryString.stringify(c.data) : c.data;
 
         if (c.form) {
             if (c.form.upload) {
@@ -688,7 +673,7 @@ YUI.add('io-base', function(Y) {
                 return Y.io.upload(o, uri, c);
             }
             else {
-                // Serialize HTML form data.
+                // Serialize HTML form data into a key-value string.
                 f = Y.io._serialize(c.form, c.data);
                 if (m === 'POST' || m === 'PUT') {
                     c.data = f;
@@ -699,16 +684,27 @@ YUI.add('io-base', function(Y) {
             }
         }
 
-        if (c.data && m === 'GET') {
-            uri = _concat(uri, c.data);
-            Y.log('HTTP GET with configuration data.  The querystring is: ' + uri, 'info', 'io');
-        }
-
-        if (c.data && m === 'POST') {
-            c.headers = Y.merge({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }, c.headers);
-        }
+		if (c.data) {
+			switch (m) {
+				case 'GET':
+				case 'HEAD':
+				case 'DELETE':
+					uri = _concat(uri, c.data);
+					c.data = null;
+					Y.log('HTTP' + m + ' with data.  The querystring is: ' + uri, 'info', 'io');
+					break;
+				case 'POST':
+				case 'PUT':
+					// If Content-Type is defined in the configuration object, or
+					// or as a default header, it will be used instead of
+					// 'application/x-www-form-urlencoded; charset=UTF-8'
+					c.headers = Y.merge({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' }, c.headers);
+					break;
+			}
+		}
 
         if (o.t) {
+			// Cross-domain request or custom transport detected.
             return Y.io.xdr(uri, o, c);
         }
 
@@ -717,50 +713,57 @@ YUI.add('io-base', function(Y) {
         }
 
         try {
-            o.c.open(m, uri, s ? false : true);
+			// Determine if request is to be set as
+			// synchronous or asynchronous.
+            o.c.open(m, uri, s ? false : true, usr, pwd);
+			_setHeaders(o.c, c.headers);
+			_ioStart(o.id, c);
+
             // Will work only in browsers that implement the
             // Cross-Origin Resource Sharing draft.
             if (c.xdr && c.xdr.credentials) {
-                o.c.withCredentials = true;
+				if (!Y.UA.ie) {
+					o.c.withCredentials = true;
+				}
             }
-        }
-        catch(e1) {
-            if (c.xdr) {
-                // This exception is usually thrown by browsers
-                // that do not support native XDR transactions.
-                return _resend(o, u, c, oD);
-            }
-        }
 
-        _setHeaders(o.c, c.headers);
-        _ioStart(o.id, c);
-        try {
             // Using "null" with HTTP POST will  result in a request
             // with no Content-Length header defined.
             o.c.send(c.data || '');
+
             if (s) {
+				// Create a response object for synchronous transactions,
+				// merging ID and arguments fields into a single object.
                 d = o.c;
                 a  = ['status', 'statusText', 'responseText', 'responseXML'];
                 r = c.arguments ? { id: o.id, arguments: c.arguments } : { id: o.id };
+                r.getAllResponseHeaders = function() { return d.getAllResponseHeaders(); };
+                r.getResponseHeader = function(h) { return d.getResponseHeader(h); };
 
                 for (j = 0; j < 4; j++) {
                     r[a[j]] = o.c[a[j]];
                 }
 
-                r.getAllResponseHeaders = function() { return d.getAllResponseHeaders(); };
-                r.getResponseHeader = function(h) { return d.getResponseHeader(h); };
                 _ioComplete(o, c);
                 _handleResponse(o, c);
 
                 return r;
             }
         }
-        catch(e2) {
-            if (c.xdr) {
+        catch(e) {
+            if (c.xdr && c.xdr.use === 'native') {
                 // This exception is usually thrown by browsers
-                // that do not support native XDR transactions.
+                // that do not support XMLHttpRequest Level 2.
+				// Retry the request with the XDR transport set
+				// to 'flash'.  If the Flash transport is not
+				// initialized or available, the transaction
+				// will resolve to a transport error.
                 return _resend(o, u, c, oD);
             }
+			else {
+                _ioComplete(o, c);
+				_handleResponse(o, c);
+			}
         }
 
         // If config.timeout is defined, and the request is standard XHR,
@@ -821,4 +824,5 @@ YUI.add('io-base', function(Y) {
     Y.io.http = _io;
 
 
-}, '3.3.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+
+}, '3.4.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
