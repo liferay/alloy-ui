@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -738,7 +753,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -761,7 +776,7 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * Retrieve a particular (or all) values from the object</span>
-<span class="cm">	 *</span>
+<span class="cm">     *</span>
 <span class="cm">     * @param field {string} (optional) The key to retrieve the value from. If not supplied, the entire object is returned.</span>
 <span class="cm">     * @method getValue</span>
 <span class="cm">     * @public</span>
@@ -780,19 +795,19 @@
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description Unique ID of the record instance</span>
-<span class="cm">	    * @attribute id</span>
-<span class="cm">	    * @type string</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description Unique ID of the record instance</span>
+<span class="cm">        * @attribute id</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        */</span>
         <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">valueFn</span><span class="o">:</span> <span class="s2">&quot;_setId&quot;</span>
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description The object stored within the record instance</span>
-<span class="cm">	    * @attribute data</span>
-<span class="cm">	    * @type object</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description The object stored within the record instance</span>
+<span class="cm">        * @attribute data</span>
+<span class="cm">        * @type object</span>
+<span class="cm">        */</span>
         <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
         <span class="p">}</span>
@@ -812,18 +827,18 @@
 <span class="nx">Lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 
 <span class="cm">/**</span>
-<span class="cm">	 * The Recordset utility provides a standard way for dealing with</span>
-<span class="cm"> 	 * a collection of similar objects.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * Provides the base Recordset implementation, which can be extended to add</span>
-<span class="cm">	 * additional functionality, such as custom indexing. sorting, and filtering.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @class Recordset</span>
-<span class="cm">	 * @extends Base</span>
-<span class="cm">	 * @augments ArrayList</span>
-<span class="cm">	 * @param config {Object} Configuration object literal with initial attribute values</span>
-<span class="cm">	 * @constructor</span>
-<span class="cm">	 */</span>
+<span class="cm">     * The Recordset utility provides a standard way for dealing with</span>
+<span class="cm">     * a collection of similar objects.</span>
+<span class="cm">     *</span>
+<span class="cm">     * Provides the base Recordset implementation, which can be extended to add</span>
+<span class="cm">     * additional functionality, such as custom indexing. sorting, and filtering.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @class Recordset</span>
+<span class="cm">     * @extends Base</span>
+<span class="cm">     * @augments ArrayList</span>
+<span class="cm">     * @param config {Object} Configuration object literal with initial attribute values</span>
+<span class="cm">     * @constructor</span>
+<span class="cm">     */</span>
 
 <span class="nx">Recordset</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;recordset&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">[],</span> <span class="p">{</span>
 
@@ -832,36 +847,94 @@
 <span class="cm">     * @description Publish default functions for events. Create the initial hash table.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method initializer</span>
-<span class="cm">	 * @protected</span>
+<span class="cm">     * @protected</span>
 <span class="cm">     */</span>
     <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
         <span class="cm">/*</span>
-<span class="cm">		If this._items does not exist, then create it and set it to an empty array.</span>
-<span class="cm">		The reason the conditional is needed is because of two scenarios:</span>
-<span class="cm">		Instantiating new Y.Recordset() will not go into the setter of &quot;records&quot;, and so</span>
-<span class="cm">		it is necessary to create this._items in the initializer.</span>
-<span class="cm">		</span>
-<span class="cm">		Instantiating new Y.Recordset({records: [{...}]}) will call the setter of &quot;records&quot; and create</span>
-<span class="cm">		this._items. In this case, we don&#39;t want that to be overwritten by [].</span>
-<span class="cm">		*/</span>
+<span class="cm">        If this._items does not exist, then create it and set it to an empty array.</span>
+<span class="cm">        The reason the conditional is needed is because of two scenarios:</span>
+<span class="cm">        Instantiating new Y.Recordset() will not go into the setter of &quot;records&quot;, and so</span>
+<span class="cm">        it is necessary to create this._items in the initializer.</span>
+
+<span class="cm">        Instantiating new Y.Recordset({records: [{...}]}) will call the setter of &quot;records&quot; and create</span>
+<span class="cm">        this._items. In this case, we don&#39;t want that to be overwritten by [].</span>
+<span class="cm">        */</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_items</span> <span class="o">=</span> <span class="p">[];</span>
         <span class="p">}</span>
 
         <span class="c1">//set up event listener to fire events when recordset is modified in anyway</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defAddFn</span>
-        <span class="p">});</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defRemoveFn</span>
-        <span class="p">});</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;empty&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defEmptyFn</span>
-        <span class="p">});</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="p">{</span>
-            <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defUpdateFn</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">({</span>
+            <span class="cm">/**</span>
+<span class="cm">             * &lt;p&gt;At least one record is being added. Additional properties of</span>
+<span class="cm">             * the event are:&lt;/p&gt;</span>
+<span class="cm">             * &lt;dl&gt;</span>
+<span class="cm">             *     &lt;dt&gt;added&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;Array of new records to be added&lt;/dd&gt;</span>
+<span class="cm">             *     &lt;dt&gt;index&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;The insertion index in the Recordset&#39;s internal</span>
+<span class="cm">             *         array&lt;/dd&gt;</span>
+<span class="cm">             * &lt;/dl&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * &lt;p&gt;Preventing this event will cause the new records NOT to be</span>
+<span class="cm">             * added to the Recordset&#39;s internal collection.&lt;/p&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * @event add</span>
+<span class="cm">             * @preventable _defAddFn</span>
+<span class="cm">             */</span>
+            <span class="nx">add</span><span class="o">:</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defAddFn</span> <span class="p">},</span>
+
+            <span class="cm">/**</span>
+<span class="cm">             * &lt;p&gt;At least one record is being removed. Additional properties of</span>
+<span class="cm">             * the event are:&lt;/p&gt;</span>
+<span class="cm">             * &lt;dl&gt;</span>
+<span class="cm">             *     &lt;dt&gt;removed&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;Array of records to be removed&lt;/dd&gt;</span>
+<span class="cm">             *     &lt;dt&gt;range&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;Number of records to be removed&lt;/dd&gt;</span>
+<span class="cm">             *     &lt;dt&gt;index&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;The starting index in the Recordset&#39;s internal</span>
+<span class="cm">             *         array from which to remove records&lt;/dd&gt;</span>
+<span class="cm">             * &lt;/dl&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * &lt;p&gt;Preventing this event will cause the records NOT to be</span>
+<span class="cm">             * removed from the Recordset&#39;s internal collection.&lt;/p&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * @event remove</span>
+<span class="cm">             * @preventable _defRemoveFn</span>
+<span class="cm">             */</span>
+            <span class="nx">remove</span><span class="o">:</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defRemoveFn</span> <span class="p">},</span>
+
+            <span class="cm">/**</span>
+<span class="cm">             * The Recordset is being flushed of all records.</span>
+<span class="cm">             *</span>
+<span class="cm">             * @event empty</span>
+<span class="cm">             * @preventable _defEmptyFn</span>
+<span class="cm">             */</span>
+            <span class="nx">empty</span><span class="o">:</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defEmptyFn</span> <span class="p">},</span>
+
+            <span class="cm">/**</span>
+<span class="cm">             * &lt;p&gt;At least one record is being updated. Additional properties of</span>
+<span class="cm">             * the event are:&lt;/p&gt;</span>
+<span class="cm">             * &lt;dl&gt;</span>
+<span class="cm">             *     &lt;dt&gt;updated&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;Array of records with updated values&lt;/dd&gt;</span>
+<span class="cm">             *     &lt;dt&gt;overwritten&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;Array of current records that will be replaced&lt;/dd&gt;</span>
+<span class="cm">             *     &lt;dt&gt;index&lt;/dt&gt;</span>
+<span class="cm">             *         &lt;dd&gt;The starting index in the Recordset&#39;s internal</span>
+<span class="cm">             *         array from which to update will apply&lt;/dd&gt;</span>
+<span class="cm">             * &lt;/dl&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * &lt;p&gt;Preventing this event will cause the records NOT to be</span>
+<span class="cm">             * updated in the Recordset&#39;s internal collection.&lt;/p&gt;</span>
+<span class="cm">             *</span>
+<span class="cm">             * @event update</span>
+<span class="cm">             * @preventable _defUpdateFn</span>
+<span class="cm">             */</span>
+            <span class="nx">update</span><span class="o">:</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defUpdateFn</span> <span class="p">}</span>
         <span class="p">});</span>
 
         <span class="k">this</span><span class="p">.</span><span class="nx">_recordsetChanged</span><span class="p">();</span>
@@ -1026,12 +1099,11 @@
     <span class="nx">_setHashTable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="nx">key</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">),</span>
-        <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">;</span>
 
         <span class="c1">//If it is not an empty recordset - go through and set up the hash table.</span>
         <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_items</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-            <span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">obj</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">get</span><span class="p">(</span><span class="nx">key</span><span class="p">)]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_items</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
             <span class="p">}</span>
         <span class="p">}</span>
@@ -1146,7 +1218,7 @@
 <span class="cm">     *</span>
 <span class="cm">     * @method getRecordsByIndex</span>
 <span class="cm">     * @param index {Number} Index at which the required record resides</span>
-<span class="cm">	 * @param range {Number} (Optional) Number of records to retrieve. The default is 1</span>
+<span class="cm">     * @param range {Number} (Optional) Number of records to retrieve. The default is 1</span>
 <span class="cm">     * @return {Array} An array of Y.Record instances</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
@@ -1260,7 +1332,7 @@
 <span class="cm">     * @description Empties the recordset</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method empty</span>
-<span class="cm">	 * @return {Y.Recordset} The updated recordset instance</span>
+<span class="cm">     * @return {Y.Recordset} The updated recordset instance</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
     <span class="nx">empty</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -1305,12 +1377,12 @@
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description An array of records that the recordset is storing</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute records</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type array</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description An array of records that the recordset is storing</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute records</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type array</span>
+<span class="cm">        */</span>
         <span class="nx">records</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">validator</span><span class="o">:</span> <span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
             <span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -1357,7 +1429,7 @@
 <span class="cm">    * @attribute table</span>
 <span class="cm">    * @public</span>
 <span class="cm">    * @type object</span>
-<span class="cm">	*/</span>
+<span class="cm">    */</span>
         <span class="nx">table</span><span class="o">:</span> <span class="p">{</span>
             <span class="c1">//Initially, create the hash table with all records currently in the recordset</span>
             <span class="nx">valueFn</span><span class="o">:</span> <span class="s1">&#39;_setHashTable&#39;</span>
@@ -1369,7 +1441,7 @@
 <span class="cm">    * @attribute key</span>
 <span class="cm">    * @public</span>
 <span class="cm">    * @type string</span>
-<span class="cm">	*/</span>
+<span class="cm">    */</span>
         <span class="nx">key</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span>
             <span class="c1">//set to readonly true. If you want custom hash tables, you should use the recordset-indexer plugin.</span>
@@ -1383,7 +1455,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">,</span><span class="s1">&#39;arraylist&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">,</span><span class="s1">&#39;arraylist&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1401,7 +1473,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}];
+    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "Recordset.html#event_add", "access": "", "host": "Recordset", "type": "event", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "Recordset.html#event_empty", "access": "", "host": "Recordset", "type": "event", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "Recordset.html#event_remove", "access": "", "host": "Recordset", "type": "event", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}, {"url": "Recordset.html#event_update", "access": "", "host": "Recordset", "type": "event", "name": "update"}];
 </script>
 </body>
 </html>

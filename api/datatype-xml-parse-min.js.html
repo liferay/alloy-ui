@@ -1,0 +1,1551 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: datatype   datatype-xml-parse-min.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			datatype&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_datatype.html" title="datatype">datatype</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">datatype-xml-parse-min.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="DataType.Date.html" title="DataType.Date">DataType.Date</a></li>
+
+
+				                                <li class=""><a href="DataType.Date.Locale.html" title="DataType.Date.Locale">DataType.Date.Locale</a></li>
+
+
+				                                <li class=""><a href="DataType.Number.html" title="DataType.Number">DataType.Number</a></li>
+
+
+				                                <li class=""><a href="DataType.XML.html" title="DataType.XML">DataType.XML</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="datatype-date-debug.js.html" title="datatype-date-debug.js">datatype-date-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format-debug.js.html" title="datatype-date-format-debug.js">datatype-date-format-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format-min.js.html" title="datatype-date-format-min.js">datatype-date-format-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format.js.html" title="datatype-date-format.js">datatype-date-format.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ar-JO.js.html" title="datatype-date-format_ar-JO.js">datatype-date-format_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ar.js.html" title="datatype-date-format_ar.js">datatype-date-format_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ca-ES.js.html" title="datatype-date-format_ca-ES.js">datatype-date-format_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ca.js.html" title="datatype-date-format_ca.js">datatype-date-format_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_da-DK.js.html" title="datatype-date-format_da-DK.js">datatype-date-format_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_da.js.html" title="datatype-date-format_da.js">datatype-date-format_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de-AT.js.html" title="datatype-date-format_de-AT.js">datatype-date-format_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de-DE.js.html" title="datatype-date-format_de-DE.js">datatype-date-format_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_de.js.html" title="datatype-date-format_de.js">datatype-date-format_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_el-GR.js.html" title="datatype-date-format_el-GR.js">datatype-date-format_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_el.js.html" title="datatype-date-format_el.js">datatype-date-format_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-AU.js.html" title="datatype-date-format_en-AU.js">datatype-date-format_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-CA.js.html" title="datatype-date-format_en-CA.js">datatype-date-format_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-GB.js.html" title="datatype-date-format_en-GB.js">datatype-date-format_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-IE.js.html" title="datatype-date-format_en-IE.js">datatype-date-format_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-IN.js.html" title="datatype-date-format_en-IN.js">datatype-date-format_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-JO.js.html" title="datatype-date-format_en-JO.js">datatype-date-format_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-MY.js.html" title="datatype-date-format_en-MY.js">datatype-date-format_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-NZ.js.html" title="datatype-date-format_en-NZ.js">datatype-date-format_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-PH.js.html" title="datatype-date-format_en-PH.js">datatype-date-format_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-SG.js.html" title="datatype-date-format_en-SG.js">datatype-date-format_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en-US.js.html" title="datatype-date-format_en-US.js">datatype-date-format_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_en.js.html" title="datatype-date-format_en.js">datatype-date-format_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-AR.js.html" title="datatype-date-format_es-AR.js">datatype-date-format_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-BO.js.html" title="datatype-date-format_es-BO.js">datatype-date-format_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-CL.js.html" title="datatype-date-format_es-CL.js">datatype-date-format_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-CO.js.html" title="datatype-date-format_es-CO.js">datatype-date-format_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-EC.js.html" title="datatype-date-format_es-EC.js">datatype-date-format_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-ES.js.html" title="datatype-date-format_es-ES.js">datatype-date-format_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-MX.js.html" title="datatype-date-format_es-MX.js">datatype-date-format_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-PE.js.html" title="datatype-date-format_es-PE.js">datatype-date-format_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-PY.js.html" title="datatype-date-format_es-PY.js">datatype-date-format_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-US.js.html" title="datatype-date-format_es-US.js">datatype-date-format_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-UY.js.html" title="datatype-date-format_es-UY.js">datatype-date-format_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es-VE.js.html" title="datatype-date-format_es-VE.js">datatype-date-format_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_es.js.html" title="datatype-date-format_es.js">datatype-date-format_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fi-FI.js.html" title="datatype-date-format_fi-FI.js">datatype-date-format_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fi.js.html" title="datatype-date-format_fi.js">datatype-date-format_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-BE.js.html" title="datatype-date-format_fr-BE.js">datatype-date-format_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-CA.js.html" title="datatype-date-format_fr-CA.js">datatype-date-format_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr-FR.js.html" title="datatype-date-format_fr-FR.js">datatype-date-format_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_fr.js.html" title="datatype-date-format_fr.js">datatype-date-format_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_hi-IN.js.html" title="datatype-date-format_hi-IN.js">datatype-date-format_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_hi.js.html" title="datatype-date-format_hi.js">datatype-date-format_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_id-ID.js.html" title="datatype-date-format_id-ID.js">datatype-date-format_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_id.js.html" title="datatype-date-format_id.js">datatype-date-format_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_it-IT.js.html" title="datatype-date-format_it-IT.js">datatype-date-format_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_it.js.html" title="datatype-date-format_it.js">datatype-date-format_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ja-JP.js.html" title="datatype-date-format_ja-JP.js">datatype-date-format_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ja.js.html" title="datatype-date-format_ja.js">datatype-date-format_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ko-KR.js.html" title="datatype-date-format_ko-KR.js">datatype-date-format_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ko.js.html" title="datatype-date-format_ko.js">datatype-date-format_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ms-MY.js.html" title="datatype-date-format_ms-MY.js">datatype-date-format_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ms.js.html" title="datatype-date-format_ms.js">datatype-date-format_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nb-NO.js.html" title="datatype-date-format_nb-NO.js">datatype-date-format_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nb.js.html" title="datatype-date-format_nb.js">datatype-date-format_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl-BE.js.html" title="datatype-date-format_nl-BE.js">datatype-date-format_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl-NL.js.html" title="datatype-date-format_nl-NL.js">datatype-date-format_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_nl.js.html" title="datatype-date-format_nl.js">datatype-date-format_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pl-PL.js.html" title="datatype-date-format_pl-PL.js">datatype-date-format_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pl.js.html" title="datatype-date-format_pl.js">datatype-date-format_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pt-BR.js.html" title="datatype-date-format_pt-BR.js">datatype-date-format_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_pt.js.html" title="datatype-date-format_pt.js">datatype-date-format_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ro-RO.js.html" title="datatype-date-format_ro-RO.js">datatype-date-format_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ro.js.html" title="datatype-date-format_ro.js">datatype-date-format_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ru-RU.js.html" title="datatype-date-format_ru-RU.js">datatype-date-format_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_ru.js.html" title="datatype-date-format_ru.js">datatype-date-format_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_sv-SE.js.html" title="datatype-date-format_sv-SE.js">datatype-date-format_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_sv.js.html" title="datatype-date-format_sv.js">datatype-date-format_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_th-TH.js.html" title="datatype-date-format_th-TH.js">datatype-date-format_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_th.js.html" title="datatype-date-format_th.js">datatype-date-format_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_tr-TR.js.html" title="datatype-date-format_tr-TR.js">datatype-date-format_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_tr.js.html" title="datatype-date-format_tr.js">datatype-date-format_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_vi-VN.js.html" title="datatype-date-format_vi-VN.js">datatype-date-format_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_vi.js.html" title="datatype-date-format_vi.js">datatype-date-format_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hans-CN.js.html" title="datatype-date-format_zh-Hans-CN.js">datatype-date-format_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hans.js.html" title="datatype-date-format_zh-Hans.js">datatype-date-format_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant-HK.js.html" title="datatype-date-format_zh-Hant-HK.js">datatype-date-format_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant-TW.js.html" title="datatype-date-format_zh-Hant-TW.js">datatype-date-format_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-format_zh-Hant.js.html" title="datatype-date-format_zh-Hant.js">datatype-date-format_zh-Hant.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-math-debug.js.html" title="datatype-date-math-debug.js">datatype-date-math-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-math-min.js.html" title="datatype-date-math-min.js">datatype-date-math-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-math.js.html" title="datatype-date-math.js">datatype-date-math.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-min.js.html" title="datatype-date-min.js">datatype-date-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse-debug.js.html" title="datatype-date-parse-debug.js">datatype-date-parse-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse-min.js.html" title="datatype-date-parse-min.js">datatype-date-parse-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date-parse.js.html" title="datatype-date-parse.js">datatype-date-parse.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date.js.html" title="datatype-date.js">datatype-date.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ar-JO.js.html" title="datatype-date_ar-JO.js">datatype-date_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ar.js.html" title="datatype-date_ar.js">datatype-date_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ca-ES.js.html" title="datatype-date_ca-ES.js">datatype-date_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ca.js.html" title="datatype-date_ca.js">datatype-date_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_da-DK.js.html" title="datatype-date_da-DK.js">datatype-date_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_da.js.html" title="datatype-date_da.js">datatype-date_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de-AT.js.html" title="datatype-date_de-AT.js">datatype-date_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de-DE.js.html" title="datatype-date_de-DE.js">datatype-date_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_de.js.html" title="datatype-date_de.js">datatype-date_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_el-GR.js.html" title="datatype-date_el-GR.js">datatype-date_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_el.js.html" title="datatype-date_el.js">datatype-date_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-AU.js.html" title="datatype-date_en-AU.js">datatype-date_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-CA.js.html" title="datatype-date_en-CA.js">datatype-date_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-GB.js.html" title="datatype-date_en-GB.js">datatype-date_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-IE.js.html" title="datatype-date_en-IE.js">datatype-date_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-IN.js.html" title="datatype-date_en-IN.js">datatype-date_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-JO.js.html" title="datatype-date_en-JO.js">datatype-date_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-MY.js.html" title="datatype-date_en-MY.js">datatype-date_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-NZ.js.html" title="datatype-date_en-NZ.js">datatype-date_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-PH.js.html" title="datatype-date_en-PH.js">datatype-date_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-SG.js.html" title="datatype-date_en-SG.js">datatype-date_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en-US.js.html" title="datatype-date_en-US.js">datatype-date_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_en.js.html" title="datatype-date_en.js">datatype-date_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-AR.js.html" title="datatype-date_es-AR.js">datatype-date_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-BO.js.html" title="datatype-date_es-BO.js">datatype-date_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-CL.js.html" title="datatype-date_es-CL.js">datatype-date_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-CO.js.html" title="datatype-date_es-CO.js">datatype-date_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-EC.js.html" title="datatype-date_es-EC.js">datatype-date_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-ES.js.html" title="datatype-date_es-ES.js">datatype-date_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-MX.js.html" title="datatype-date_es-MX.js">datatype-date_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-PE.js.html" title="datatype-date_es-PE.js">datatype-date_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-PY.js.html" title="datatype-date_es-PY.js">datatype-date_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-US.js.html" title="datatype-date_es-US.js">datatype-date_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-UY.js.html" title="datatype-date_es-UY.js">datatype-date_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es-VE.js.html" title="datatype-date_es-VE.js">datatype-date_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_es.js.html" title="datatype-date_es.js">datatype-date_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fi-FI.js.html" title="datatype-date_fi-FI.js">datatype-date_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fi.js.html" title="datatype-date_fi.js">datatype-date_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-BE.js.html" title="datatype-date_fr-BE.js">datatype-date_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-CA.js.html" title="datatype-date_fr-CA.js">datatype-date_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr-FR.js.html" title="datatype-date_fr-FR.js">datatype-date_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_fr.js.html" title="datatype-date_fr.js">datatype-date_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_hi-IN.js.html" title="datatype-date_hi-IN.js">datatype-date_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_hi.js.html" title="datatype-date_hi.js">datatype-date_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_id-ID.js.html" title="datatype-date_id-ID.js">datatype-date_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_id.js.html" title="datatype-date_id.js">datatype-date_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_it-IT.js.html" title="datatype-date_it-IT.js">datatype-date_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_it.js.html" title="datatype-date_it.js">datatype-date_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ja-JP.js.html" title="datatype-date_ja-JP.js">datatype-date_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ja.js.html" title="datatype-date_ja.js">datatype-date_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ko-KR.js.html" title="datatype-date_ko-KR.js">datatype-date_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ko.js.html" title="datatype-date_ko.js">datatype-date_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ms-MY.js.html" title="datatype-date_ms-MY.js">datatype-date_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ms.js.html" title="datatype-date_ms.js">datatype-date_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nb-NO.js.html" title="datatype-date_nb-NO.js">datatype-date_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nb.js.html" title="datatype-date_nb.js">datatype-date_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl-BE.js.html" title="datatype-date_nl-BE.js">datatype-date_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl-NL.js.html" title="datatype-date_nl-NL.js">datatype-date_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_nl.js.html" title="datatype-date_nl.js">datatype-date_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pl-PL.js.html" title="datatype-date_pl-PL.js">datatype-date_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pl.js.html" title="datatype-date_pl.js">datatype-date_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pt-BR.js.html" title="datatype-date_pt-BR.js">datatype-date_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_pt.js.html" title="datatype-date_pt.js">datatype-date_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ro-RO.js.html" title="datatype-date_ro-RO.js">datatype-date_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ro.js.html" title="datatype-date_ro.js">datatype-date_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ru-RU.js.html" title="datatype-date_ru-RU.js">datatype-date_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_ru.js.html" title="datatype-date_ru.js">datatype-date_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_sv-SE.js.html" title="datatype-date_sv-SE.js">datatype-date_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_sv.js.html" title="datatype-date_sv.js">datatype-date_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_th-TH.js.html" title="datatype-date_th-TH.js">datatype-date_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_th.js.html" title="datatype-date_th.js">datatype-date_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_tr-TR.js.html" title="datatype-date_tr-TR.js">datatype-date_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_tr.js.html" title="datatype-date_tr.js">datatype-date_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_vi-VN.js.html" title="datatype-date_vi-VN.js">datatype-date_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_vi.js.html" title="datatype-date_vi.js">datatype-date_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hans-CN.js.html" title="datatype-date_zh-Hans-CN.js">datatype-date_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hans.js.html" title="datatype-date_zh-Hans.js">datatype-date_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant-HK.js.html" title="datatype-date_zh-Hant-HK.js">datatype-date_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant-TW.js.html" title="datatype-date_zh-Hant-TW.js">datatype-date_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype-date_zh-Hant.js.html" title="datatype-date_zh-Hant.js">datatype-date_zh-Hant.js</a></li>
+
+
+			                                <li class=""><a href="datatype-debug.js.html" title="datatype-debug.js">datatype-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-min.js.html" title="datatype-min.js">datatype-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-debug.js.html" title="datatype-number-debug.js">datatype-number-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-format-debug.js.html" title="datatype-number-format-debug.js">datatype-number-format-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-format-min.js.html" title="datatype-number-format-min.js">datatype-number-format-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-format.js.html" title="datatype-number-format.js">datatype-number-format.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-min.js.html" title="datatype-number-min.js">datatype-number-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-parse-debug.js.html" title="datatype-number-parse-debug.js">datatype-number-parse-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-parse-min.js.html" title="datatype-number-parse-min.js">datatype-number-parse-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number-parse.js.html" title="datatype-number-parse.js">datatype-number-parse.js</a></li>
+
+
+			                                <li class=""><a href="datatype-number.js.html" title="datatype-number.js">datatype-number.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-debug.js.html" title="datatype-xml-debug.js">datatype-xml-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-format-debug.js.html" title="datatype-xml-format-debug.js">datatype-xml-format-debug.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-format-min.js.html" title="datatype-xml-format-min.js">datatype-xml-format-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-format.js.html" title="datatype-xml-format.js">datatype-xml-format.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-min.js.html" title="datatype-xml-min.js">datatype-xml-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-parse-debug.js.html" title="datatype-xml-parse-debug.js">datatype-xml-parse-debug.js</a></li>
+
+
+			                                <li class="selected"><a href="datatype-xml-parse-min.js.html" title="datatype-xml-parse-min.js">datatype-xml-parse-min.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml-parse.js.html" title="datatype-xml-parse.js">datatype-xml-parse.js</a></li>
+
+
+			                                <li class=""><a href="datatype-xml.js.html" title="datatype-xml.js">datatype-xml.js</a></li>
+
+
+			                                <li class=""><a href="datatype.js.html" title="datatype.js">datatype.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ar-JO.js.html" title="datatype_ar-JO.js">datatype_ar-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ar.js.html" title="datatype_ar.js">datatype_ar.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ca-ES.js.html" title="datatype_ca-ES.js">datatype_ca-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ca.js.html" title="datatype_ca.js">datatype_ca.js</a></li>
+
+
+			                                <li class=""><a href="datatype_da-DK.js.html" title="datatype_da-DK.js">datatype_da-DK.js</a></li>
+
+
+			                                <li class=""><a href="datatype_da.js.html" title="datatype_da.js">datatype_da.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de-AT.js.html" title="datatype_de-AT.js">datatype_de-AT.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de-DE.js.html" title="datatype_de-DE.js">datatype_de-DE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_de.js.html" title="datatype_de.js">datatype_de.js</a></li>
+
+
+			                                <li class=""><a href="datatype_el-GR.js.html" title="datatype_el-GR.js">datatype_el-GR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_el.js.html" title="datatype_el.js">datatype_el.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-AU.js.html" title="datatype_en-AU.js">datatype_en-AU.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-CA.js.html" title="datatype_en-CA.js">datatype_en-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-GB.js.html" title="datatype_en-GB.js">datatype_en-GB.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-IE.js.html" title="datatype_en-IE.js">datatype_en-IE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-IN.js.html" title="datatype_en-IN.js">datatype_en-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-JO.js.html" title="datatype_en-JO.js">datatype_en-JO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-MY.js.html" title="datatype_en-MY.js">datatype_en-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-NZ.js.html" title="datatype_en-NZ.js">datatype_en-NZ.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-PH.js.html" title="datatype_en-PH.js">datatype_en-PH.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-SG.js.html" title="datatype_en-SG.js">datatype_en-SG.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en-US.js.html" title="datatype_en-US.js">datatype_en-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype_en.js.html" title="datatype_en.js">datatype_en.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-AR.js.html" title="datatype_es-AR.js">datatype_es-AR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-BO.js.html" title="datatype_es-BO.js">datatype_es-BO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-CL.js.html" title="datatype_es-CL.js">datatype_es-CL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-CO.js.html" title="datatype_es-CO.js">datatype_es-CO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-EC.js.html" title="datatype_es-EC.js">datatype_es-EC.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-ES.js.html" title="datatype_es-ES.js">datatype_es-ES.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-MX.js.html" title="datatype_es-MX.js">datatype_es-MX.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-PE.js.html" title="datatype_es-PE.js">datatype_es-PE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-PY.js.html" title="datatype_es-PY.js">datatype_es-PY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-US.js.html" title="datatype_es-US.js">datatype_es-US.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-UY.js.html" title="datatype_es-UY.js">datatype_es-UY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es-VE.js.html" title="datatype_es-VE.js">datatype_es-VE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_es.js.html" title="datatype_es.js">datatype_es.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fi-FI.js.html" title="datatype_fi-FI.js">datatype_fi-FI.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fi.js.html" title="datatype_fi.js">datatype_fi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-BE.js.html" title="datatype_fr-BE.js">datatype_fr-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-CA.js.html" title="datatype_fr-CA.js">datatype_fr-CA.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr-FR.js.html" title="datatype_fr-FR.js">datatype_fr-FR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_fr.js.html" title="datatype_fr.js">datatype_fr.js</a></li>
+
+
+			                                <li class=""><a href="datatype_hi-IN.js.html" title="datatype_hi-IN.js">datatype_hi-IN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_hi.js.html" title="datatype_hi.js">datatype_hi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_id-ID.js.html" title="datatype_id-ID.js">datatype_id-ID.js</a></li>
+
+
+			                                <li class=""><a href="datatype_id.js.html" title="datatype_id.js">datatype_id.js</a></li>
+
+
+			                                <li class=""><a href="datatype_it-IT.js.html" title="datatype_it-IT.js">datatype_it-IT.js</a></li>
+
+
+			                                <li class=""><a href="datatype_it.js.html" title="datatype_it.js">datatype_it.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ja-JP.js.html" title="datatype_ja-JP.js">datatype_ja-JP.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ja.js.html" title="datatype_ja.js">datatype_ja.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ko-KR.js.html" title="datatype_ko-KR.js">datatype_ko-KR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ko.js.html" title="datatype_ko.js">datatype_ko.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ms-MY.js.html" title="datatype_ms-MY.js">datatype_ms-MY.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ms.js.html" title="datatype_ms.js">datatype_ms.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nb-NO.js.html" title="datatype_nb-NO.js">datatype_nb-NO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nb.js.html" title="datatype_nb.js">datatype_nb.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl-BE.js.html" title="datatype_nl-BE.js">datatype_nl-BE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl-NL.js.html" title="datatype_nl-NL.js">datatype_nl-NL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_nl.js.html" title="datatype_nl.js">datatype_nl.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pl-PL.js.html" title="datatype_pl-PL.js">datatype_pl-PL.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pl.js.html" title="datatype_pl.js">datatype_pl.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pt-BR.js.html" title="datatype_pt-BR.js">datatype_pt-BR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_pt.js.html" title="datatype_pt.js">datatype_pt.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ro-RO.js.html" title="datatype_ro-RO.js">datatype_ro-RO.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ro.js.html" title="datatype_ro.js">datatype_ro.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ru-RU.js.html" title="datatype_ru-RU.js">datatype_ru-RU.js</a></li>
+
+
+			                                <li class=""><a href="datatype_ru.js.html" title="datatype_ru.js">datatype_ru.js</a></li>
+
+
+			                                <li class=""><a href="datatype_sv-SE.js.html" title="datatype_sv-SE.js">datatype_sv-SE.js</a></li>
+
+
+			                                <li class=""><a href="datatype_sv.js.html" title="datatype_sv.js">datatype_sv.js</a></li>
+
+
+			                                <li class=""><a href="datatype_th-TH.js.html" title="datatype_th-TH.js">datatype_th-TH.js</a></li>
+
+
+			                                <li class=""><a href="datatype_th.js.html" title="datatype_th.js">datatype_th.js</a></li>
+
+
+			                                <li class=""><a href="datatype_tr-TR.js.html" title="datatype_tr-TR.js">datatype_tr-TR.js</a></li>
+
+
+			                                <li class=""><a href="datatype_tr.js.html" title="datatype_tr.js">datatype_tr.js</a></li>
+
+
+			                                <li class=""><a href="datatype_vi-VN.js.html" title="datatype_vi-VN.js">datatype_vi-VN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_vi.js.html" title="datatype_vi.js">datatype_vi.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hans-CN.js.html" title="datatype_zh-Hans-CN.js">datatype_zh-Hans-CN.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hans.js.html" title="datatype_zh-Hans.js">datatype_zh-Hans.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant-HK.js.html" title="datatype_zh-Hant-HK.js">datatype_zh-Hant-HK.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant-TW.js.html" title="datatype_zh-Hant-TW.js">datatype_zh-Hant-TW.js</a></li>
+
+
+			                                <li class=""><a href="datatype_zh-Hant.js.html" title="datatype_zh-Hant.js">datatype_zh-Hant.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.4.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;datatype-xml-parse&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">b</span><span class="p">){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span><span class="nx">b</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataType.XML&quot;</span><span class="p">),{</span><span class="nx">parse</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="kd">var</span> <span class="nx">d</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">f</span><span class="p">)){</span><span class="k">try</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">ActiveXObject</span><span class="p">)){</span><span class="nx">d</span><span class="o">=</span><span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s2">&quot;Microsoft.XMLDOM&quot;</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span><span class="nx">d</span><span class="p">.</span><span class="nx">loadXML</span><span class="p">(</span><span class="nx">f</span><span class="p">);}}</span><span class="k">catch</span><span class="p">(</span><span class="nx">c</span><span class="p">){</span><span class="k">try</span><span class="p">{</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">DOMParser</span><span class="p">)){</span><span class="nx">d</span><span class="o">=</span><span class="k">new</span> <span class="nx">DOMParser</span><span class="p">().</span><span class="nx">parseFromString</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span><span class="s2">&quot;text/xml&quot;</span><span class="p">);}}</span><span class="k">catch</span><span class="p">(</span><span class="nx">g</span><span class="p">){}}}</span><span class="k">if</span><span class="p">((</span><span class="nx">a</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span><span class="o">||</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">))</span><span class="o">||</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">nodeName</span><span class="o">===</span><span class="s2">&quot;parsererror&quot;</span><span class="p">)){}</span><span class="k">return</span> <span class="nx">d</span><span class="p">;}});</span><span class="nx">b</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Parsers&quot;</span><span class="p">).</span><span class="nx">xml</span><span class="o">=</span><span class="nx">b</span><span class="p">.</span><span class="nx">DataType</span><span class="p">.</span><span class="nx">XML</span><span class="p">.</span><span class="nx">parse</span><span class="p">;},</span><span class="s2">&quot;3.4.0&quot;</span><span class="p">);</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "DataType.Date.html#method_daysInMonth", "access": "", "host": "DataType.Date", "type": "method", "name": "daysInMonth"}, {"url": "DataType.XML.html#method_format", "access": "", "host": "DataType.XML", "type": "method", "name": "format"}, {"url": "DataType.Number.html#method_format", "access": "", "host": "DataType.Number", "type": "method", "name": "format"}, {"url": "DataType.Date.html#method_format", "access": "", "host": "DataType.Date", "type": "method", "name": "format"}, {"url": "DataType.Date.html#method_isValidDate", "access": "", "host": "DataType.Date", "type": "method", "name": "isValidDate"}, {"url": "DataType.XML.html#method_parse", "access": "", "host": "DataType.XML", "type": "method", "name": "parse"}, {"url": "DataType.Number.html#method_parse", "access": "", "host": "DataType.Number", "type": "method", "name": "parse"}, {"url": "DataType.Date.html#method_parse", "access": "", "host": "DataType.Date", "type": "method", "name": "parse"}];
+</script>
+</body>
+</html>

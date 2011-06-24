@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -663,6 +678,7 @@
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
 												<li class=""><a href="#config_className" title="className">className</a></li>
+												<li class=""><a href="#config_classNameAction" title="classNameAction">classNameAction</a></li>
 												<li class=""><a href="#config_foldDistance" title="foldDistance">foldDistance</a></li>
 												<li class=""><a href="#config_name" title="name">name</a></li>
 												<li class=""><a href="#config_timeLimit" title="timeLimit">timeLimit</a></li>
@@ -697,6 +713,7 @@
 
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
+												<li class=""><a href="#event_classNameActionChange" title="classNameActionChange">classNameActionChange</a></li>
 												<li class=""><a href="#event_classNameChange" title="classNameChange">classNameChange</a></li>
 												<li class=""><a href="#event_foldDistanceChange" title="foldDistanceChange">foldDistanceChange</a></li>
 												<li class=""><a href="#event_nameChange" title="nameChange">nameChange</a></li>
@@ -850,6 +867,24 @@
 														<div class="description" property="yui:description">
 															Class name that will identify images belonging to the group. This class name will be removed from each element in order to fetch images.
 This class should have, in its CSS style definition, "<code>background:none !important;</code>".
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_classNameAction">
+
+													<h4>
+														<a name="config_classNameAction">classNameAction</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															Determines how to act when className is used as the way to delay load images. The "default" action is to just
+remove the class name. The "enhanced" action is to remove the class name and also set the src attribute if
+the element is an img.
 														</div>
 													</div>
 
@@ -1235,6 +1270,12 @@ Arguments are passed through to a <code>Y.ImgLoadImgObj</code> constructor; see 
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -1300,6 +1341,12 @@ Arguments are passed through to a <code>Y.ImgLoadImgObj</code> constructor; see 
 
 														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
 														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
 														</div>
 
 														
@@ -1480,6 +1527,48 @@ Arguments are passed through to a <code>Y.ImgLoadImgObj</code> constructor; see 
 										<h3 id="events">Events</h3>
 
 										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_classNameActionChange">
+
+													<h4>
+														<a name="event_classNameActionChange">classNameActionChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">classNameActionChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'classNameAction' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_classNameChange">
 
 													<h4>
@@ -1705,7 +1794,7 @@ Arguments are passed through to a <code>Y.ImgLoadImgObj</code> constructor; see 
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ImgLoadGroup.html#method_addCustomTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addCustomTrigger"}, {"url": "ImgLoadGroup.html#method_addTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addTrigger"}, {"url": "ImgLoadGroup.html#config_className", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "className"}, {"url": "ImgLoadGroup.html#event_classNameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameChange"}, {"url": "ImgLoadGroup.html#method_fetch", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "fetch"}, {"url": "ImgLoadGroup.html#config_foldDistance", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "foldDistance"}, {"url": "ImgLoadGroup.html#event_foldDistanceChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "foldDistanceChange"}, {"url": "ImgLoadGroup.html#config_name", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "name"}, {"url": "ImgLoadGroup.html#event_nameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "nameChange"}, {"url": "ImgLoadGroup.html#method_registerImage", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "registerImage"}, {"url": "ImgLoadGroup.html#config_timeLimit", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "timeLimit"}, {"url": "ImgLoadGroup.html#event_timeLimitChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "timeLimitChange"}];
+    var ALL_YUI_PROPS = [{"url": "ImgLoadGroup.html#method_addCustomTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addCustomTrigger"}, {"url": "ImgLoadGroup.html#method_addTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addTrigger"}, {"url": "ImgLoadGroup.html#config_className", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "className"}, {"url": "ImgLoadGroup.html#config_classNameAction", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "classNameAction"}, {"url": "ImgLoadGroup.html#event_classNameActionChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameActionChange"}, {"url": "ImgLoadGroup.html#event_classNameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameChange"}, {"url": "ImgLoadGroup.html#method_fetch", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "fetch"}, {"url": "ImgLoadGroup.html#config_foldDistance", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "foldDistance"}, {"url": "ImgLoadGroup.html#event_foldDistanceChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "foldDistanceChange"}, {"url": "ImgLoadGroup.html#config_name", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "name"}, {"url": "ImgLoadGroup.html#event_nameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "nameChange"}, {"url": "ImgLoadGroup.html#method_registerImage", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "registerImage"}, {"url": "ImgLoadGroup.html#config_timeLimit", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "timeLimit"}, {"url": "ImgLoadGroup.html#event_timeLimitChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "timeLimitChange"}];
 </script>
 </body>
 </html>

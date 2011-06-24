@@ -1,0 +1,2572 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: app  Controller   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			app&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_app.html" title="app">app</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Controller</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class="selected"><a href="Controller.html" title="Controller">Controller</a></li>
+
+
+				                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+
+
+				                                <li class=""><a href="ModelList.html" title="ModelList">ModelList</a></li>
+
+
+				                                <li class=""><a href="View.html" title="View">View</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="yui3-widget aui-list aui-list-properties">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="yui3-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class="protected"><a href="#property__dispatched" title="_dispatched">_dispatched</a></li>
+
+				                                <li class="protected"><a href="#property__ready" title="_ready">_ready</a></li>
+
+				                                <li class="protected"><a href="#property__regexPathParam" title="_regexPathParam">_regexPathParam</a></li>
+
+				                                <li class="protected"><a href="#property__regexUrlQuery" title="_regexUrlQuery">_regexUrlQuery</a></li>
+
+				                                <li class=""><a href="#property_html5" title="html5">html5</a></li>
+
+				                                <li class=""><a href="#property_root" title="root">root</a></li>
+
+				                                <li class=""><a href="#property_routes" title="routes">routes</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__afterHistoryChange" title="_afterHistoryChange">_afterHistoryChange</a></li>
+				                               <li class="protected"><a href="#method__decode" title="_decode">_decode</a></li>
+				                               <li class="protected"><a href="#method__defReadyFn" title="_defReadyFn">_defReadyFn</a></li>
+				                               <li class="protected"><a href="#method__dispatch" title="_dispatch">_dispatch</a></li>
+				                               <li class="protected"><a href="#method__getHashPath" title="_getHashPath">_getHashPath</a></li>
+				                               <li class="protected"><a href="#method__getPath" title="_getPath">_getPath</a></li>
+				                               <li class="protected"><a href="#method__getQuery" title="_getQuery">_getQuery</a></li>
+				                               <li class="protected"><a href="#method__getRegex" title="_getRegex">_getRegex</a></li>
+				                               <li class="protected"><a href="#method__getRequest" title="_getRequest">_getRequest</a></li>
+				                               <li class="protected"><a href="#method__joinURL" title="_joinURL">_joinURL</a></li>
+				                               <li class="protected"><a href="#method__parseQuery" title="_parseQuery">_parseQuery</a></li>
+				                               <li class="protected"><a href="#method__removeRoot" title="_removeRoot">_removeRoot</a></li>
+				                               <li class="protected"><a href="#method__save" title="_save">_save</a></li>
+				                               <li class=""><a href="#method_dispatch" title="dispatch">dispatch</a></li>
+				                               <li class=""><a href="#method_match" title="match">match</a></li>
+				                               <li class=""><a href="#method_replace" title="replace">replace</a></li>
+				                               <li class=""><a href="#method_route" title="route">route</a></li>
+				                               <li class=""><a href="#method_save" title="save">save</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-events">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="yui3-widget-hd-text">Events</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_ready" title="ready">ready</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="app-debug.js.html" title="app-debug.js">app-debug.js</a></li>
+
+
+			                                <li class=""><a href="app-min.js.html" title="app-min.js">app-min.js</a></li>
+
+
+			                                <li class=""><a href="app.js.html" title="app.js">app.js</a></li>
+
+
+			                                <li class=""><a href="controller-debug.js.html" title="controller-debug.js">controller-debug.js</a></li>
+
+
+			                                <li class=""><a href="controller-min.js.html" title="controller-min.js">controller-min.js</a></li>
+
+
+			                                <li class=""><a href="controller.js.html" title="controller.js">controller.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Controller</b>
+
+
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="Base.html">
+												<a href="Base.html" property="yui:name" title="Base">Base</a>
+												
+											</span>
+										
+									</span>
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								Provides URL-based routing using HTML5 `pushState()` or the location hash.
+This makes it easy to wire up route handlers for different application states
+while providing full back/forward navigation support and bookmarkable, shareable
+URLs.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Controller</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__dispatched">
+
+											<h4>
+												<a name="property__dispatched" property="yui:name">_dispatched</a>
+												- <code>protected <span property="yui:type">Boolean</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Whether or not `_dispatch()` has been called since this controller was
+instantiated.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>undefined</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__ready">
+
+											<h4>
+												<a name="property__ready" property="yui:name">_ready</a>
+												- <code>protected <span property="yui:type">Boolean</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Whether or not the `ready` event has fired yet.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>undefined</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__regexPathParam">
+
+											<h4>
+												<a name="property__regexPathParam" property="yui:name">_regexPathParam</a>
+												- <code>protected <span property="yui:type">RegExp</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Regex used to match parameter placeholders in route paths.
+Subpattern captures:
+1. Parameter prefix character. Either a `:` for subpath parameters that
+should only match a single level of a path, or `*` for splat parameters
+that should match any number of path levels.
+2. Parameter name.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row protected" rel="yui:property" resource="#property__regexUrlQuery">
+
+											<h4>
+												<a name="property__regexUrlQuery" property="yui:name">_regexUrlQuery</a>
+												- <code>protected <span property="yui:type">RegExp</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Regex that matches and captures the query portion of a URL, minus the
+preceding `?` character, and discarding the hash portion of the URL if any.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_html5">
+
+											<h4>
+												<a name="property_html5" property="yui:name">html5</a>
+												- <code><span property="yui:type">Boolean</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Whether or not this browser is capable of using HTML5 history.
+This property is for informational purposes only. It's not configurable, and
+changing it will have no effect.
+												</div>
+											</div>
+
+
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_root">
+
+											<h4>
+												<a name="property_root" property="yui:name">root</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Root path from which all routes should be evaluated.
+For example, if your controller is running on a page at
+`http://example.com/myapp/` and you add a route with the path `/`, your
+route will never execute, because the path will always be preceded by
+`/myapp`. Setting `root` to `/myapp` would cause all routes to be evaluated
+relative to that root URL, so the `/` route would then execute when the
+user browses to `http://example.com/myapp/`.
+This property may be overridden in a subclass, set after instantiation, or
+passed as a config attribute when instantiating a `Y.Controller`-based
+class.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>`''`</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_routes">
+
+											<h4>
+												<a name="property_routes" property="yui:name">routes</a>
+												- <code><span property="yui:type">Object[]</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Array of route objects specifying routes to be created at instantiation
+time.
+Each item in the array must be an object with the following properties:
+`path`: String or regex representing the path to match. See the docs for
+the `route()` method for more details.
+`callback`: Function or a string representing the name of a function on
+this controller instance that should be called when the route is
+triggered. See the docs for the `route()` method for more details.
+This property may be overridden in a subclass or passed as a config
+attribute when instantiating a `Y.Controller`-based class, but setting it
+after instantiation will have no effect (use the `route()` method instead).
+If routes are passed at instantiation time, they will override any routes
+set on the prototype.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>`[]`</strong>
+												</div>
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Plugin.Host.html">
+
+										<h4>
+											Properties inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Plugin.Host.html#property_PluginHost">
+													<a href="Plugin.Host.html#property_PluginHost" property="yui:name" title="PluginHost">PluginHost</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterHistoryChange">
+
+													<h4>
+														<a name="method__afterHistoryChange">_afterHistoryChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_afterHistoryChange</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Handles `history:change` and `hashchange` events.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__decode">
+
+													<h4>
+														<a name="method__decode">_decode</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_decode</strong>
+														   (
+																
+																		
+																		 string
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Wrapper around `decodeURIComponent` that also converts `+` chars into
+spaces.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">string</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> String to decode.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Decoded string.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defReadyFn">
+
+													<h4>
+														<a name="method__defReadyFn">_defReadyFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defReadyFn</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Default handler for the `ready` event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__dispatch">
+
+													<h4>
+														<a name="method__dispatch">_dispatch</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_dispatch</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Dispatches to the first route handler that matches the specified _path_.
+If called before the `ready` event has fired, the dispatch will be aborted.
+This ensures normalized behavior between Chrome (which fires a `popstate`
+event on every pageview) and other browsers (which do not).
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL path.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getHashPath">
+
+													<h4>
+														<a name="method__getHashPath">_getHashPath</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_getHashPath</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current path from the location hash, or an empty string if the
+hash is empty.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Current hash path, or an empty string if the hash is empty.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getPath">
+
+													<h4>
+														<a name="method__getPath">_getPath</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_getPath</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current route path.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Current route path.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getQuery">
+
+													<h4>
+														<a name="method__getQuery">_getQuery</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_getQuery</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets the current route query string.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Current route query string.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getRegex">
+
+													<h4>
+														<a name="method__getRegex">_getRegex</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														RegExp
+															<strong property="yui:name">_getRegex</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+																		, 
+																		 keys
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Creates a regular expression from the given route specification. If _path_
+is already a regex, it will be returned unmodified.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String|RegExp</span>&gt;
+																		</code>
+																		<span property="yui:description"> Route path specification.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">keys</span>
+																		&lt;<span property="yui:type">Array</span>&gt;
+																		</code>
+																		<span property="yui:description"> Array reference to which route parameter names will be
+added.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			RegExp
+																	</code></dt>
+																	<dd property="yui:returnInfo">Route regex.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__getRequest">
+
+													<h4>
+														<a name="method__getRequest">_getRequest</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_getRequest</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Gets a request object that can be passed to a route handler.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Current path being dispatched.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Request object.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__joinURL">
+
+													<h4>
+														<a name="method__joinURL">_joinURL</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_joinURL</strong>
+														   (
+																
+																		
+																		 url
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Joins the `root` URL to the specified _url_, normalizing leading/trailing
+`/` characters.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">url</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL to append to the `root` URL.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Joined URL.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__parseQuery">
+
+													<h4>
+														<a name="method__parseQuery">_parseQuery</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">_parseQuery</strong>
+														   (
+																
+																		
+																		 query
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Parses a URL query string into a key/value hash. If `Y.QueryString.parse` is
+available, this method will be an alias to that.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">query</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Query string to parse.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Hash of key/value pairs for query parameters.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__removeRoot">
+
+													<h4>
+														<a name="method__removeRoot">_removeRoot</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														String
+															<strong property="yui:name">_removeRoot</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Removes the `root` URL from the from of _path_ (if it's there) and returns
+the result. The returned path will always have a leading `/`.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL path.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Rootless path.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__save">
+
+													<h4>
+														<a name="method__save">_save</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_save</strong>
+														   (
+																
+																		
+																		 [url]
+																	
+																
+																		, 
+																		 [replace=false]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Saves a history entry using either `pushState()` or the location hash.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[url]</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL for the history entry.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[replace=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> If `true`, the current history entry will
+be replaced instead of a new one being added.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_dispatch">
+
+													<h4>
+														<a name="method_dispatch">dispatch</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">dispatch</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Dispatches to the first route handler that matches the current URL, if any.
+If `dispatch()` is called before the `ready` event has fired, it will
+automatically wait for the `ready` event before dispatching. Otherwise it
+will dispatch immediately.
+														</div>
+
+														<div class="description">
+
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_match">
+
+													<h4>
+														<a name="method_match">match</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object[]
+															<strong property="yui:name">match</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns an array of route objects that match the specified URL path.
+This method is called internally to determine which routes match the current
+path whenever the URL changes. You may override it if you want to customize
+the route matching logic, although this usually shouldn't be necessary.
+Each returned route object has the following properties:
+`callback`: A function or a string representing the name of a function
+this controller that should be executed when the route is triggered.
+`keys`: An array of strings representing the named parameters defined in
+the route's path specification, if any.
+`path`: The route's path specification, which may be either a string or
+a regex.
+`regex`: A regular expression version of the route's path specification.
+This regex is used to determine whether the route matches a given path.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL path to match.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object[]
+																	</code></dt>
+																	<dd property="yui:returnInfo">Array of route objects that match the specified path.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_replace">
+
+													<h4>
+														<a name="method_replace">replace</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">replace</strong>
+														   (
+																
+																		
+																		 [url]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Replaces the current browser history entry with a new one, and dispatches to
+the first matching route handler, if any.
+Behind the scenes, this method uses HTML5 `pushState()` in browsers that
+support it (or the location hash in older browsers and IE) to change the
+URL.
+The specified URL must share the same origin (i.e., protocol, host, and
+port) as the current page, or an error will occur.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[url]</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL to set. Should be a relative URL. If this
+controller's `root` property is set, this URL must be relative to the
+root URL. If no URL is specified, the page's current URL will be used.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_route">
+
+													<h4>
+														<a name="method_route">route</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">route</strong>
+														   (
+																
+																		
+																		 path
+																	
+																
+																		, 
+																		 callback
+																	
+																
+																		, 
+																		 callback.req
+																	
+																
+																		, 
+																		 callback.req.params
+																	
+																
+																		, 
+																		 callback.req.path
+																	
+																
+																		, 
+																		 callback.req.query
+																	
+																
+																		, 
+																		 callback.next
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Adds a route handler for the specified URL _path_.
+The _path_ parameter may be either a string or a regular expression. If it's
+a string, it may contain named parameters: `:param` will match any single
+part of a URL path (not including `/` characters), and `*param` will match
+any number of parts of a URL path (including `/` characters). These named
+parameters will be made available as keys on the `req.params` object that's
+passed to route handlers.
+If the _path_ parameter is a regex, all pattern matches will be made
+available as numbered keys on `req.params`, starting with `0` for the full
+match, then `1` for the first subpattern match, and so on.
+Here's a set of sample routes along with URL paths that they match:
+Route: `/photos/:tag/:page`
+URL: `/photos/kittens/1`, params: `{tag: 'kittens', page: '1'}`
+URL: `/photos/puppies/2`, params: `{tag: 'puppies', page: '2'}`
+Route: `/file/*path`
+URL: `/file/foo/bar/baz.txt`, params: `{path: 'foo/bar/baz.txt'}`
+URL: `/file/foo`, params: `{path: 'foo'}`
+If multiple route handlers match a given URL, they will be executed in the
+order they were added. The first route that was added will be the first to
+be executed.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">path</span>
+																		&lt;<span property="yui:type">String|RegExp</span>&gt;
+																		</code>
+																		<span property="yui:description"> Path to match. May be a string or a regular
+expression.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback</span>
+																		&lt;<span property="yui:type">Function|String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Callback function to call whenever this
+route is triggered. If specified as a string, the named function will be
+called on this controller instance.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.req</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Request object containing information about
+the request. It contains the following properties.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.req.params</span>
+																		&lt;<span property="yui:type">Array|Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Captured parameters matched by
+the route path specification. If a string path was used and contained
+named parameters, then this will be a key/value hash mapping parameter
+names to their matched values. If a regex path was used, this will be
+an array of subpattern matches starting at index 0 for the full match,
+then 1 for the first subpattern match, and so on.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.req.path</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The current URL path.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.req.query</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Query hash representing the URL query
+string, if any. Parameter names are keys, and are mapped to parameter
+values.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.next</span>
+																		&lt;<span property="yui:type">Function</span>&gt;
+																		</code>
+																		<span property="yui:description"> Callback to pass control to the next
+matching route. If you don't call this function, then no further route
+handlers will be executed, even if there are more that match. If you do
+call this function, then the next matching route handler (if any) will
+be called, and will receive the same `req` object that was passed to
+this route (so you can use the request object to pass data along to
+subsequent routes).</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_save">
+
+													<h4>
+														<a name="method_save">save</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">save</strong>
+														   (
+																
+																		
+																		 [url]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Saves a new browser history entry and dispatches to the first matching route
+handler, if any.
+Behind the scenes, this method uses HTML5 `pushState()` in browsers that
+support it (or the location hash in older browsers and IE) to change the
+URL and create a history entry.
+The specified URL must share the same origin (i.e., protocol, host, and
+port) as the current page, or an error will occur.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[url]</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> URL to set. Should be a relative URL. If this
+controller's `root` property is set, this URL must be relative to the
+root URL. If no URL is specified, the page's current URL will be used.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
+														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrCfg">
+														<a href="Attribute.html#method__getAttrCfg" property="yui:name" title="_getAttrCfg">_getAttrCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_ready">
+
+													<h4>
+														<a name="event_ready">ready</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">ready</strong>
+
+															(
+																
+																		
+																		 dispatched
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fired when the controller is ready to begin dispatching to route handlers.
+You shouldn't need to wait for this event unless you plan to implement some
+kind of custom dispatching logic. It's used internally in order to avoid
+dispatching to an initial route if a browser history change occurs first.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">dispatched</span>&lt;<span property="yui:type">Boolean</span>&gt;</code>
+																			<span property="yui:description"> `true` if routes have already been dispatched
+(most likely due to a history change).</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Controller.html#method__afterHistoryChange", "access": "protected", "host": "Controller", "type": "method", "name": "_afterHistoryChange"}, {"url": "Controller.html#method__decode", "access": "protected", "host": "Controller", "type": "method", "name": "_decode"}, {"url": "Controller.html#method__defReadyFn", "access": "protected", "host": "Controller", "type": "method", "name": "_defReadyFn"}, {"url": "Controller.html#method__dispatch", "access": "protected", "host": "Controller", "type": "method", "name": "_dispatch"}, {"url": "Controller.html#method_dispatch", "access": "", "host": "Controller", "type": "method", "name": "dispatch"}, {"url": "Controller.html#property__dispatched", "access": "protected", "host": "Controller", "type": "property", "name": "_dispatched"}, {"url": "Controller.html#method__getHashPath", "access": "protected", "host": "Controller", "type": "method", "name": "_getHashPath"}, {"url": "Controller.html#method__getPath", "access": "protected", "host": "Controller", "type": "method", "name": "_getPath"}, {"url": "Controller.html#method__getQuery", "access": "protected", "host": "Controller", "type": "method", "name": "_getQuery"}, {"url": "Controller.html#method__getRegex", "access": "protected", "host": "Controller", "type": "method", "name": "_getRegex"}, {"url": "Controller.html#method__getRequest", "access": "protected", "host": "Controller", "type": "method", "name": "_getRequest"}, {"url": "Controller.html#property_html5", "access": "", "host": "Controller", "type": "property", "name": "html5"}, {"url": "Controller.html#method__joinURL", "access": "protected", "host": "Controller", "type": "method", "name": "_joinURL"}, {"url": "Controller.html#method_match", "access": "", "host": "Controller", "type": "method", "name": "match"}, {"url": "Controller.html#method__parseQuery", "access": "protected", "host": "Controller", "type": "method", "name": "_parseQuery"}, {"url": "Controller.html#property__ready", "access": "protected", "host": "Controller", "type": "property", "name": "_ready"}, {"url": "Controller.html#event_ready", "access": "", "host": "Controller", "type": "event", "name": "ready"}, {"url": "Controller.html#property__regexPathParam", "access": "protected", "host": "Controller", "type": "property", "name": "_regexPathParam"}, {"url": "Controller.html#property__regexUrlQuery", "access": "protected", "host": "Controller", "type": "property", "name": "_regexUrlQuery"}, {"url": "Controller.html#method__removeRoot", "access": "protected", "host": "Controller", "type": "method", "name": "_removeRoot"}, {"url": "Controller.html#method_replace", "access": "", "host": "Controller", "type": "method", "name": "replace"}, {"url": "Controller.html#property_root", "access": "", "host": "Controller", "type": "property", "name": "root"}, {"url": "Controller.html#method_route", "access": "", "host": "Controller", "type": "method", "name": "route"}, {"url": "Controller.html#property_routes", "access": "", "host": "Controller", "type": "property", "name": "routes"}, {"url": "Controller.html#method__save", "access": "protected", "host": "Controller", "type": "method", "name": "_save"}, {"url": "Controller.html#method_save", "access": "", "host": "Controller", "type": "method", "name": "save"}];
+</script>
+</body>
+</html>

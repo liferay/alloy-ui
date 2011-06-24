@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -684,26 +699,6 @@
 								</div>
 							</div>
 
-							<div class="yui3-widget aui-list aui-list-methods">
-								<div class="yui3-widget-content">
-									<div class="yui3-widget-hd aui-list-hd aui-list-methods-hd">
-										<span class="yui3-widget-hd-text">Methods</span>
-									</div>
-
-									<div class="yui3-widget-bd aui-list-bd">
-										<ul class="content">
-				                               <li class="protected"><a href="#method__afterChildSelectedChange" title="_afterChildSelectedChange">_afterChildSelectedChange</a></li>
-				                               <li class="protected"><a href="#method__bindUIChild" title="_bindUIChild">_bindUIChild</a></li>
-				                               <li class="protected"><a href="#method__syncUIChild" title="_syncUIChild">_syncUIChild</a></li>
-				                               <li class="protected"><a href="#method__uiSetChildSelected" title="_uiSetChildSelected">_uiSetChildSelected</a></li>
-				                               <li class=""><a href="#method_ancestor" title="ancestor">ancestor</a></li>
-				                               <li class=""><a href="#method_isRoot" title="isRoot">isRoot</a></li>
-				                               <li class=""><a href="#method_next" title="next">next</a></li>
-				                               <li class=""><a href="#method_previous" title="previous">previous</a></li>
-				                        </ul>
-									</div>
-								</div>
-							</div>
 
 							<div class="yui3-widget aui-list aui-list-events">
 								<div class="yui3-widget-content">
@@ -732,6 +727,9 @@
 
 								<div class="yui3-widget-bd aui-list-bd">
 									<ul class="content">
+
+
+			                                <li class=""><a href="widget-child-debug.js.html" title="widget-child-debug.js">widget-child-debug.js</a></li>
 
 
 			                                <li class=""><a href="widget-child-min.js.html" title="widget-child-min.js">widget-child-min.js</a></li>
@@ -920,383 +918,6 @@ values are:
 							</div>
 
 							<div rel="yui:methods" resource="#methods">
-									<div class="section method details">
-
-										<h3 id="methods">Methods</h3>
-
-										<div class="content">
-
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__afterChildSelectedChange">
-
-													<h4>
-														<a name="method__afterChildSelectedChange">_afterChildSelectedChange</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_afterChildSelectedChange</strong>
-														   (
-																
-																		
-																		 event
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Default attribute change listener for the <code>selected</code> 
-attribute, responsible for updating the UI, in response to 
-attribute changes.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">event</span>
-																		&lt;<span property="yui:type">EventFacade</span>&gt;
-																		</code>
-																		<span property="yui:description"> The event facade for the attribute change.</span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__bindUIChild">
-
-													<h4>
-														<a name="method__bindUIChild">_bindUIChild</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_bindUIChild</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Binds event listeners responsible for updating the UI state in response 
-to WidgetChild related state changes.
-<p>
-This method is invoked after bindUI is invoked for the Widget class
-using YUI's aop infrastructure.
-</p>
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncUIChild">
-
-													<h4>
-														<a name="method__syncUIChild">_syncUIChild</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_syncUIChild</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Synchronizes the UI to match the WidgetChild state.
-<p>
-This method is invoked after bindUI is invoked for the Widget class
-using YUI's aop infrastructure.
-</p>
-														</div>
-
-														<div class="description">
-
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__uiSetChildSelected">
-
-													<h4>
-														<a name="method__uiSetChildSelected">_uiSetChildSelected</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														 protected 
-														
-														
-														void
-															<strong property="yui:name">_uiSetChildSelected</strong>
-														   (
-																
-																		
-																		 selected
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Updates the UI to reflect the <code>selected</code> attribute value.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">selected</span>
-																		&lt;<span property="yui:type">number</span>&gt;
-																		</code>
-																		<span property="yui:description"> The selected value to be reflected in the UI.</span>
-																		</dd>
-																</dl>
-
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_ancestor">
-
-													<h4>
-														<a name="method_ancestor">ancestor</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														Widget
-															<strong property="yui:name">ancestor</strong>
-														   (
-																
-																		
-																		 depth
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Returns the Widget instance at the specified depth.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">depth</span>
-																		&lt;<span property="yui:type">number</span>&gt;
-																		</code>
-																		<span property="yui:description"> Number representing the depth of the ancestor.</span>
-																		</dd>
-																</dl>
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			Widget
-																	</code></dt>
-																	<dd property="yui:returnInfo">Widget instance.</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isRoot">
-
-													<h4>
-														<a name="method_isRoot">isRoot</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														Boolean
-															<strong property="yui:name">isRoot</strong>
-														   (
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Determines if the Widget is the root Widget in the 
-object hierarchy.
-														</div>
-
-														<div class="description">
-
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			Boolean
-																	</code></dt>
-																	<dd property="yui:returnInfo">Boolean indicating if Widget is the root Widget in the 
-object hierarchy.</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_next">
-
-													<h4>
-														<a name="method_next">next</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														Widget
-															<strong property="yui:name">next</strong>
-														   (
-																
-																		
-																		 circular
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Returns the Widget's next sibling.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">circular</span>
-																		&lt;<span property="yui:type">Boolean</span>&gt;
-																		</code>
-																		<span property="yui:description"> Boolean indicating if the parent's first child 
-should be returned if the child has no next sibling.</span>
-																		</dd>
-																</dl>
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			Widget
-																	</code></dt>
-																	<dd property="yui:returnInfo">Widget instance.</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_previous">
-
-													<h4>
-														<a name="method_previous">previous</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														Widget
-															<strong property="yui:name">previous</strong>
-														   (
-																
-																		
-																		 circular
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Returns the Widget's previous sibling.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">circular</span>
-																		&lt;<span property="yui:type">Boolean</span>&gt;
-																		</code>
-																		<span property="yui:description"> Boolean indicating if the parent's last child 
-should be returned if the child has no previous sibling.</span>
-																		</dd>
-																</dl>
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			Widget
-																	</code></dt>
-																	<dd property="yui:returnInfo">Widget instance.</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
-										</div>
-									</div>
 
 							</div>
 
@@ -1533,7 +1154,7 @@ should be returned if the child has no previous sibling.</span>
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "WidgetChild.html#method__afterChildSelectedChange", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_afterChildSelectedChange"}, {"url": "WidgetChild.html#method_ancestor", "access": "", "host": "WidgetChild", "type": "method", "name": "ancestor"}, {"url": "WidgetChild.html#method__bindUIChild", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_bindUIChild"}, {"url": "WidgetChild.html#config_depth", "access": "", "host": "WidgetChild", "type": "config", "name": "depth"}, {"url": "WidgetChild.html#event_depthChange", "access": "", "host": "WidgetChild", "type": "event", "name": "depthChange"}, {"url": "WidgetChild.html#config_index", "access": "", "host": "WidgetChild", "type": "config", "name": "index"}, {"url": "WidgetChild.html#event_indexChange", "access": "", "host": "WidgetChild", "type": "event", "name": "indexChange"}, {"url": "WidgetChild.html#method_isRoot", "access": "", "host": "WidgetChild", "type": "method", "name": "isRoot"}, {"url": "WidgetChild.html#method_next", "access": "", "host": "WidgetChild", "type": "method", "name": "next"}, {"url": "WidgetChild.html#config_parent", "access": "", "host": "WidgetChild", "type": "config", "name": "parent"}, {"url": "WidgetChild.html#event_parentChange", "access": "", "host": "WidgetChild", "type": "event", "name": "parentChange"}, {"url": "WidgetChild.html#method_previous", "access": "", "host": "WidgetChild", "type": "method", "name": "previous"}, {"url": "WidgetChild.html#config_root", "access": "", "host": "WidgetChild", "type": "config", "name": "root"}, {"url": "WidgetChild.html#event_rootChange", "access": "", "host": "WidgetChild", "type": "event", "name": "rootChange"}, {"url": "WidgetChild.html#property_ROOT_TYPE", "access": "", "host": "WidgetChild", "type": "property", "name": "ROOT_TYPE"}, {"url": "WidgetChild.html#config_selected", "access": "", "host": "WidgetChild", "type": "config", "name": "selected"}, {"url": "WidgetChild.html#event_selectedChange", "access": "", "host": "WidgetChild", "type": "event", "name": "selectedChange"}, {"url": "WidgetChild.html#method__syncUIChild", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_syncUIChild"}, {"url": "WidgetChild.html#method__uiSetChildSelected", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_uiSetChildSelected"}];
+    var ALL_YUI_PROPS = [{"url": "WidgetChild.html#config_depth", "access": "", "host": "WidgetChild", "type": "config", "name": "depth"}, {"url": "WidgetChild.html#event_depthChange", "access": "", "host": "WidgetChild", "type": "event", "name": "depthChange"}, {"url": "WidgetChild.html#config_index", "access": "", "host": "WidgetChild", "type": "config", "name": "index"}, {"url": "WidgetChild.html#event_indexChange", "access": "", "host": "WidgetChild", "type": "event", "name": "indexChange"}, {"url": "WidgetChild.html#config_parent", "access": "", "host": "WidgetChild", "type": "config", "name": "parent"}, {"url": "WidgetChild.html#event_parentChange", "access": "", "host": "WidgetChild", "type": "event", "name": "parentChange"}, {"url": "WidgetChild.html#config_root", "access": "", "host": "WidgetChild", "type": "config", "name": "root"}, {"url": "WidgetChild.html#event_rootChange", "access": "", "host": "WidgetChild", "type": "event", "name": "rootChange"}, {"url": "WidgetChild.html#property_ROOT_TYPE", "access": "", "host": "WidgetChild", "type": "property", "name": "ROOT_TYPE"}, {"url": "WidgetChild.html#config_selected", "access": "", "host": "WidgetChild", "type": "config", "name": "selected"}, {"url": "WidgetChild.html#event_selectedChange", "access": "", "host": "WidgetChild", "type": "event", "name": "selectedChange"}];
 </script>
 </body>
 </html>

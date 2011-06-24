@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -675,13 +690,17 @@
 
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
+				                               <li class=""><a href="#method_complete" title="complete">complete</a></li>
+				                               <li class=""><a href="#method_end" title="end">end</a></li>
+				                               <li class=""><a href="#method_failure" title="failure">failure</a></li>
 				                               <li class=""><a href="#method_header" title="header">header</a></li>
 				                               <li class=""><a href="#method_io" title="io">io</a></li>
 				                               <li class=""><a href="#method_promote" title="promote">promote</a></li>
-				                               <li class=""><a href="#method_remove" title="remove">remove</a></li>
+				                               <li class=""><a href="#method_queue" title="queue">queue</a></li>
 				                               <li class=""><a href="#method_size" title="size">size</a></li>
 				                               <li class=""><a href="#method_start" title="start">start</a></li>
 				                               <li class=""><a href="#method_stop" title="stop">stop</a></li>
+				                               <li class=""><a href="#method_success" title="success">success</a></li>
 				                               <li class=""><a href="#method_transport" title="transport">transport</a></li>
 				                        </ul>
 									</div>
@@ -740,6 +759,21 @@
 
 
 			                                <li class=""><a href="io-min.js.html" title="io-min.js">io-min.js</a></li>
+
+
+			                                <li class=""><a href="io-queue-debug.js.html" title="io-queue-debug.js">io-queue-debug.js</a></li>
+
+
+			                                <li class=""><a href="io-queue-min.js.html" title="io-queue-min.js">io-queue-min.js</a></li>
+
+
+			                                <li class=""><a href="io-queue.js.html" title="io-queue.js">io-queue.js</a></li>
+
+
+			                                <li class=""><a href="io-upload-iframe-debug.js.html" title="io-upload-iframe-debug.js">io-upload-iframe-debug.js</a></li>
+
+
+			                                <li class=""><a href="io-upload-iframe-min.js.html" title="io-upload-iframe-min.js">io-upload-iframe-min.js</a></li>
 
 
 			                                <li class=""><a href="io-upload-iframe.js.html" title="io-upload-iframe.js">io-upload-iframe.js</a></li>
@@ -835,6 +869,198 @@ event is fired, this value will be set to 0.
 										<div class="content">
 
 
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_complete">
+
+													<h4>
+														<a name="method_complete">complete</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														
+															<strong property="yui:name">complete</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 c
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires event "io:complete" and creates, fires a
+transaction-specific "complete" event, if config.on.complete is
+defined.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - transaction object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">c</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - configuration object for the transaction.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">void</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_end">
+
+													<h4>
+														<a name="method_end">end</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														
+															<strong property="yui:name">end</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 c
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires event "io:end" and creates, fires a
+transaction-specific "end" event, if config.on.end is
+defined.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - transaction object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">c</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - configuration object for the transaction.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">void</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_failure">
+
+													<h4>
+														<a name="method_failure">failure</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														
+															<strong property="yui:name">failure</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 c
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires event "io:failure" and creates, fires a
+transaction-specific "failure" event, if config.on.failure is
+defined.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - transaction object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">c</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - configuration object for the transaction.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">void</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row " rel="yui:method" resource="#method_header">
 
 													<h4>
@@ -915,7 +1141,7 @@ This is the interface for _setHeader().
 														   (
 																
 																		
-																		 uri
+																		 u
 																	
 																
 																		, 
@@ -926,8 +1152,7 @@ This is the interface for _setHeader().
 														</code>
 
 														<div class="description" property="yui:description">
-															Method for requesting a transaction. This
-is the interface for _io().
+															Method for requesting a transaction.
 														</div>
 
 														<div class="description">
@@ -935,7 +1160,7 @@ is the interface for _io().
 																<dl rel="yui:parameters">
 																	<dt>Parameters:</dt>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">uri</span>
+																		<code><span property="yui:name">u</span>
 																		&lt;<span property="yui:type">string</span>&gt;
 																		</code>
 																		<span property="yui:description"> - qualified path to transaction resource.</span>
@@ -976,30 +1201,15 @@ is the interface for _io().
 														
 															<strong property="yui:name">promote</strong>
 														   (
-																
-																		
-																		 o
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
 															Method for promoting a transaction to the top of the queue.
-This is the interface for _unshift().
 														</div>
 
 														<div class="description">
 
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">o</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description"> - Reference to queued transaction.</span>
-																		</dd>
-																</dl>
 
 																<dl>
 																	<dt>Returns:
@@ -1015,10 +1225,10 @@ This is the interface for _unshift().
 													</div>
 												</div>
 
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method_remove">
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_queue">
 
 													<h4>
-														<a name="method_remove">remove</a>
+														<a name="method_queue">queue</a>
 													</h4>
 
 													<div class="detail">
@@ -1027,38 +1237,25 @@ This is the interface for _unshift().
 														 static 
 														
 														
-															<strong property="yui:name">remove</strong>
+															<strong property="yui:name">queue</strong>
 														   (
-																
-																		
-																		 o
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Method for removing a specific, pending transaction from
-the queue. This is the interface for _remove().
+															Method for queueing a transaction
+before the request is sent to the resource, to ensure
+sequential processing.
 														</div>
 
 														<div class="description">
 
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">o</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description"> - Reference to queued transaction.</span>
-																		</dd>
-																</dl>
 
 																<dl>
 																	<dt>Returns:
 																	<code property="yui:return">
 																	</code></dt>
-																	<dd property="yui:returnInfo">void</dd>
+																	<dd property="yui:returnInfo">Object</dd>
 																</dl>
 
 
@@ -1135,17 +1332,41 @@ set a maximum queue size.  This is the interface for _size().
 														
 															<strong property="yui:name">start</strong>
 														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 c
+																	
+																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Method for setting the queue to active. If there are
-transactions pending in the queue, they will be processed from the
-queue in FIFO order. This is the interface for _start().
+															Fires event "io:start" and creates, fires a
+transaction-specific start event, if config.on.start is
+defined.
 														</div>
 
 														<div class="description">
 
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - transaction object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">c</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - configuration object for the transaction.</span>
+																		</dd>
+																</dl>
 
 																<dl>
 																	<dt>Returns:
@@ -1187,6 +1408,70 @@ interface for _stop().
 
 														<div class="description">
 
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																	</code></dt>
+																	<dd property="yui:returnInfo">void</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_success">
+
+													<h4>
+														<a name="method_success">success</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														
+															<strong property="yui:name">success</strong>
+														   (
+																
+																		
+																		 o
+																	
+																
+																		, 
+																		 c
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires event "io:success" and creates, fires a
+transaction-specific "success" event, if config.on.success is
+defined.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">o</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - transaction object.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">c</span>
+																		&lt;<span property="yui:type">object</span>&gt;
+																		</code>
+																		<span property="yui:description"> - configuration object for the transaction.</span>
+																		</dd>
+																</dl>
 
 																<dl>
 																	<dt>Returns:
@@ -1460,7 +1745,7 @@ ready for use.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "io.html#property_delay", "access": "", "host": "io", "type": "property", "name": "delay"}, {"url": "io.html#method_header", "access": "", "host": "io", "type": "method", "name": "header"}, {"url": "io.html#method_io", "access": "", "host": "io", "type": "method", "name": "io"}, {"url": "io.html#event_io:complete", "access": "", "host": "io", "type": "event", "name": "io:complete"}, {"url": "io.html#event_io:end", "access": "", "host": "io", "type": "event", "name": "io:end"}, {"url": "io.html#event_io:failure", "access": "", "host": "io", "type": "event", "name": "io:failure"}, {"url": "io.html#event_io:start", "access": "", "host": "io", "type": "event", "name": "io:start"}, {"url": "io.html#event_io:success", "access": "", "host": "io", "type": "event", "name": "io:success"}, {"url": "io.html#event_io:xdrReady", "access": "", "host": "io", "type": "event", "name": "io:xdrReady"}, {"url": "io.html#method_promote", "access": "", "host": "io", "type": "method", "name": "promote"}, {"url": "io.html#method_remove", "access": "", "host": "io", "type": "method", "name": "remove"}, {"url": "io.html#method_size", "access": "", "host": "io", "type": "method", "name": "size"}, {"url": "io.html#method_start", "access": "", "host": "io", "type": "method", "name": "start"}, {"url": "io.html#method_stop", "access": "", "host": "io", "type": "method", "name": "stop"}, {"url": "io.html#method_transport", "access": "", "host": "io", "type": "method", "name": "transport"}];
+    var ALL_YUI_PROPS = [{"url": "io.html#method_complete", "access": "", "host": "io", "type": "method", "name": "complete"}, {"url": "io.html#property_delay", "access": "", "host": "io", "type": "property", "name": "delay"}, {"url": "io.html#method_end", "access": "", "host": "io", "type": "method", "name": "end"}, {"url": "io.html#method_failure", "access": "", "host": "io", "type": "method", "name": "failure"}, {"url": "io.html#method_header", "access": "", "host": "io", "type": "method", "name": "header"}, {"url": "io.html#method_io", "access": "", "host": "io", "type": "method", "name": "io"}, {"url": "io.html#event_io:complete", "access": "", "host": "io", "type": "event", "name": "io:complete"}, {"url": "io.html#event_io:end", "access": "", "host": "io", "type": "event", "name": "io:end"}, {"url": "io.html#event_io:failure", "access": "", "host": "io", "type": "event", "name": "io:failure"}, {"url": "io.html#event_io:start", "access": "", "host": "io", "type": "event", "name": "io:start"}, {"url": "io.html#event_io:success", "access": "", "host": "io", "type": "event", "name": "io:success"}, {"url": "io.html#event_io:xdrReady", "access": "", "host": "io", "type": "event", "name": "io:xdrReady"}, {"url": "io.html#method_promote", "access": "", "host": "io", "type": "method", "name": "promote"}, {"url": "io.html#method_queue", "access": "", "host": "io", "type": "method", "name": "queue"}, {"url": "io.html#method_size", "access": "", "host": "io", "type": "method", "name": "size"}, {"url": "io.html#method_start", "access": "", "host": "io", "type": "method", "name": "start"}, {"url": "io.html#method_stop", "access": "", "host": "io", "type": "method", "name": "stop"}, {"url": "io.html#method_success", "access": "", "host": "io", "type": "method", "name": "success"}, {"url": "io.html#method_transport", "access": "", "host": "io", "type": "method", "name": "transport"}];
 </script>
 </body>
 </html>

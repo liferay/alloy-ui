@@ -2,7 +2,7 @@
 <html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: widget-position-constrain   widget-position-debug.js  (YUI Library)</title>
+	<title>API: widget-position   widget-position-debug.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			widget-position-constrain&nbsp; <span class="subtitle">1.0.1</span>
+			widget-position&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a>
+				<a class="modulename" href="./module_widget-position.html" title="widget-position">widget-position</a>
 
 	                
 
@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -599,7 +614,7 @@
 
 
 			                                
-													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+													<li class="selected"><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
 
 
 
@@ -609,7 +624,7 @@
 
 
 			                                
-													<li class="selected"><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
 
 
 
@@ -645,7 +660,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="WidgetPositionConstrain.html" title="WidgetPositionConstrain">WidgetPositionConstrain</a></li>
+				                                <li class=""><a href="WidgetPosition.html" title="WidgetPosition">WidgetPosition</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -666,13 +681,16 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="widget-position-constrain-min.js.html" title="widget-position-constrain-min.js">widget-position-constrain-min.js</a></li>
-
-
-			                                <li class=""><a href="widget-position-constrain.js.html" title="widget-position-constrain.js">widget-position-constrain.js</a></li>
-
-
 			                                <li class="selected"><a href="widget-position-debug.js.html" title="widget-position-debug.js">widget-position-debug.js</a></li>
+
+
+			                                <li class=""><a href="widget-position-min.js.html" title="widget-position-min.js">widget-position-min.js</a></li>
+
+
+			                                <li class=""><a href="widget-position.js.html" title="widget-position.js">widget-position.js</a></li>
+
+
+			                                <li class=""><a href="widget-skin-debug.js.html" title="widget-skin-debug.js">widget-skin-debug.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -690,7 +708,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-position&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -962,7 +980,7 @@
     <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPosition</span> <span class="o">=</span> <span class="nx">Position</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -980,7 +998,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "WidgetPositionConstrain.html#method__afterConstrainChange", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_afterConstrainChange"}, {"url": "WidgetPositionConstrain.html#method__bindUIPosConstrained", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_bindUIPosConstrained"}, {"url": "WidgetPositionConstrain.html#method__constrain", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_constrain"}, {"url": "WidgetPositionConstrain.html#method_constrain", "access": "", "host": "WidgetPositionConstrain", "type": "method", "name": "constrain"}, {"url": "WidgetPositionConstrain.html#config_constrain", "access": "", "host": "WidgetPositionConstrain", "type": "config", "name": "constrain"}, {"url": "WidgetPositionConstrain.html#event_constrainChange", "access": "", "host": "WidgetPositionConstrain", "type": "event", "name": "constrainChange"}, {"url": "WidgetPositionConstrain.html#method__constrainOnXYChange", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_constrainOnXYChange"}, {"url": "WidgetPositionConstrain.html#method_getConstrainedXY", "access": "", "host": "WidgetPositionConstrain", "type": "method", "name": "getConstrainedXY"}, {"url": "WidgetPositionConstrain.html#method__preventOverlap", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_preventOverlap"}, {"url": "WidgetPositionConstrain.html#config_preventOverlap", "access": "", "host": "WidgetPositionConstrain", "type": "config", "name": "preventOverlap"}, {"url": "WidgetPositionConstrain.html#event_preventOverlapChange", "access": "", "host": "WidgetPositionConstrain", "type": "event", "name": "preventOverlapChange"}, {"url": "WidgetPositionConstrain.html#method__setConstrain", "access": "protected", "host": "WidgetPositionConstrain", "type": "method", "name": "_setConstrain"}, {"url": "WidgetPositionConstrain.html#property_WidgetPositionConstrain.ATTRS", "access": "", "host": "WidgetPositionConstrain", "type": "property", "name": "WidgetPositionConstrain.ATTRS"}, {"url": "WidgetPositionConstrain.html#property_WidgetPositionConstrain._PREVENT_OVERLAP", "access": "protected", "host": "WidgetPositionConstrain", "type": "property", "name": "WidgetPositionConstrain._PREVENT_OVERLAP"}];
+    var ALL_YUI_PROPS = [{"url": "WidgetPosition.html#method__afterXYChange", "access": "protected", "host": "WidgetPosition", "type": "method", "name": "_afterXYChange"}, {"url": "WidgetPosition.html#method__bindUIPosition", "access": "protected", "host": "WidgetPosition", "type": "method", "name": "_bindUIPosition"}, {"url": "WidgetPosition.html#method__getX", "access": "", "host": "WidgetPosition", "type": "method", "name": "_getX"}, {"url": "WidgetPosition.html#method__getY", "access": "", "host": "WidgetPosition", "type": "method", "name": "_getY"}, {"url": "WidgetPosition.html#method_move", "access": "", "host": "WidgetPosition", "type": "method", "name": "move"}, {"url": "WidgetPosition.html#method__renderUIPosition", "access": "protected", "host": "WidgetPosition", "type": "method", "name": "_renderUIPosition"}, {"url": "WidgetPosition.html#method__setX", "access": "", "host": "WidgetPosition", "type": "method", "name": "_setX"}, {"url": "WidgetPosition.html#method__setY", "access": "", "host": "WidgetPosition", "type": "method", "name": "_setY"}, {"url": "WidgetPosition.html#method__syncUIPosition", "access": "protected", "host": "WidgetPosition", "type": "method", "name": "_syncUIPosition"}, {"url": "WidgetPosition.html#method_syncXY", "access": "", "host": "WidgetPosition", "type": "method", "name": "syncXY"}, {"url": "WidgetPosition.html#method__uiSetXY", "access": "protected", "host": "WidgetPosition", "type": "method", "name": "_uiSetXY"}, {"url": "WidgetPosition.html#method__validateXY", "access": "", "host": "WidgetPosition", "type": "method", "name": "_validateXY"}, {"url": "WidgetPosition.html#property_WidgetPosition.ATTRS", "access": "", "host": "WidgetPosition", "type": "property", "name": "WidgetPosition.ATTRS"}, {"url": "WidgetPosition.html#property_WidgetPosition.POSITIONED_CLASS_NAME", "access": "", "host": "WidgetPosition", "type": "property", "name": "WidgetPosition.POSITIONED_CLASS_NAME"}, {"url": "WidgetPosition.html#config_x", "access": "", "host": "WidgetPosition", "type": "config", "name": "x"}, {"url": "WidgetPosition.html#event_xChange", "access": "", "host": "WidgetPosition", "type": "event", "name": "xChange"}, {"url": "WidgetPosition.html#config_xy", "access": "", "host": "WidgetPosition", "type": "config", "name": "xy"}, {"url": "WidgetPosition.html#event_xyChange", "access": "", "host": "WidgetPosition", "type": "event", "name": "xyChange"}, {"url": "WidgetPosition.html#config_y", "access": "", "host": "WidgetPosition", "type": "config", "name": "y"}, {"url": "WidgetPosition.html#event_yChange", "access": "", "host": "WidgetPosition", "type": "event", "name": "yChange"}];
 </script>
 </body>
 </html>

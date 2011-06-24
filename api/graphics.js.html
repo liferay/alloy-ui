@@ -1,0 +1,1054 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: graphics   graphics.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			graphics&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_graphics.html" title="graphics">graphics</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">graphics.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="AttributeLite.html" title="AttributeLite">AttributeLite</a></li>
+
+
+				                                <li class=""><a href="CanvasDrawing.html" title="CanvasDrawing">CanvasDrawing</a></li>
+
+
+				                                <li class=""><a href="CanvasGraphic.html" title="CanvasGraphic">CanvasGraphic</a></li>
+
+
+				                                <li class=""><a href="CanvasPath.html" title="CanvasPath">CanvasPath</a></li>
+
+
+				                                <li class=""><a href="CanvasShape.html" title="CanvasShape">CanvasShape</a></li>
+
+
+				                                <li class=""><a href="Graphic.html" title="Graphic">Graphic</a></li>
+
+
+				                                <li class=""><a href="SVGPath.html" title="SVGPath">SVGPath</a></li>
+
+
+				                                <li class=""><a href="SVGShape.html" title="SVGShape">SVGShape</a></li>
+
+
+				                                <li class=""><a href="VMLGraphic.html" title="VMLGraphic">VMLGraphic</a></li>
+
+
+				                                <li class=""><a href="VMLPath.html" title="VMLPath">VMLPath</a></li>
+
+
+				                                <li class=""><a href="VMLShape.html" title="VMLShape">VMLShape</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="graphics-canvas-debug.js.html" title="graphics-canvas-debug.js">graphics-canvas-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-canvas-default-debug.js.html" title="graphics-canvas-default-debug.js">graphics-canvas-default-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-canvas-default-min.js.html" title="graphics-canvas-default-min.js">graphics-canvas-default-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-canvas-default.js.html" title="graphics-canvas-default.js">graphics-canvas-default.js</a></li>
+
+
+			                                <li class=""><a href="graphics-canvas-min.js.html" title="graphics-canvas-min.js">graphics-canvas-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-canvas.js.html" title="graphics-canvas.js">graphics-canvas.js</a></li>
+
+
+			                                <li class=""><a href="graphics-debug.js.html" title="graphics-debug.js">graphics-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-min.js.html" title="graphics-min.js">graphics-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg-debug.js.html" title="graphics-svg-debug.js">graphics-svg-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg-default-debug.js.html" title="graphics-svg-default-debug.js">graphics-svg-default-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg-default-min.js.html" title="graphics-svg-default-min.js">graphics-svg-default-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg-default.js.html" title="graphics-svg-default.js">graphics-svg-default.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg-min.js.html" title="graphics-svg-min.js">graphics-svg-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-svg.js.html" title="graphics-svg.js">graphics-svg.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml-debug.js.html" title="graphics-vml-debug.js">graphics-vml-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml-default-debug.js.html" title="graphics-vml-default-debug.js">graphics-vml-default-debug.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml-default-min.js.html" title="graphics-vml-default-min.js">graphics-vml-default-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml-default.js.html" title="graphics-vml-default.js">graphics-vml-default.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml-min.js.html" title="graphics-vml-min.js">graphics-vml-min.js</a></li>
+
+
+			                                <li class=""><a href="graphics-vml.js.html" title="graphics-vml.js">graphics-vml.js</a></li>
+
+
+			                                <li class="selected"><a href="graphics.js.html" title="graphics.js">graphics.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.4.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;graphics&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * The Graphics widget provides an api for basic drawing operations.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @module graphics</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">SETTER</span> <span class="o">=</span> <span class="s2">&quot;setter&quot;</span><span class="p">,</span>
+	<span class="nx">PluginHost</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Host</span><span class="p">,</span>
+    <span class="nx">VALUE</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
+    <span class="nx">VALUEFN</span> <span class="o">=</span> <span class="s2">&quot;valueFn&quot;</span><span class="p">,</span>
+    <span class="nx">READONLY</span> <span class="o">=</span> <span class="s2">&quot;readOnly&quot;</span><span class="p">,</span>
+    <span class="nx">Y_LANG</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">STR</span> <span class="o">=</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+    <span class="nx">WRITE_ONCE</span> <span class="o">=</span> <span class="s2">&quot;writeOnce&quot;</span><span class="p">,</span>
+    <span class="nx">BaseGraphic</span><span class="p">,</span>
+    <span class="nx">AttributeLite</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span> <span class="c1">// help compression</span>
+        
+        <span class="c1">// Perf tweak - avoid creating event literals if not required.</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">_ATTR_E_FACADE</span> <span class="o">=</span> <span class="p">{};</span>
+        
+        <span class="nx">Y</span><span class="p">.</span><span class="nx">EventTarget</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">{</span><span class="nx">emitFacade</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">_state</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">AttributeLite</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">host</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+    <span class="p">};</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * AttributeLite provides Attribute-like getters and setters for shape classes in the Graphics module. It provides a get/set API without the event infastructure.</span>
+<span class="cm">	 *</span>
+<span class="cm">	 * @class AttributeLite</span>
+<span class="cm">	 * @constructor</span>
+<span class="cm">	 */</span>
+    <span class="nx">AttributeLite</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Initializes the attributes for a shape. If an attribute config is passed into the constructor of the host, </span>
+<span class="cm">		 * the initial values will be overwritten.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method addAttrs</span>
+<span class="cm">		 * @param {Object} cfg Optional object containing attributes key value pairs to be set.</span>
+<span class="cm">		 */</span>
+		<span class="nx">addAttrs</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cfg</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+				<span class="nx">attrConfig</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">ATTRS</span><span class="p">,</span> 
+				<span class="nx">attr</span><span class="p">,</span>
+				<span class="nx">i</span><span class="p">,</span>
+				<span class="nx">fn</span><span class="p">,</span>
+				<span class="nx">state</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">_state</span><span class="p">;</span>
+			<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">attrConfig</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">attrConfig</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+				<span class="p">{</span>
+					<span class="nx">attr</span> <span class="o">=</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+					<span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">VALUE</span><span class="p">))</span>
+					<span class="p">{</span>
+						<span class="nx">state</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">VALUEFN</span><span class="p">))</span>
+					<span class="p">{</span>
+						<span class="nx">fn</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">valueFn</span><span class="p">;</span>
+						<span class="k">if</span><span class="p">(</span><span class="nx">Y_LANG</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span>
+						<span class="p">{</span>
+							<span class="nx">state</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">host</span><span class="p">[</span><span class="nx">fn</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+						<span class="p">}</span>
+						<span class="k">else</span>
+						<span class="p">{</span>
+							<span class="nx">state</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+			    <span class="p">}</span>
+            <span class="p">}</span>
+			<span class="nx">host</span><span class="p">.</span><span class="nx">_state</span> <span class="o">=</span> <span class="nx">state</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">attrConfig</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">attrConfig</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+				<span class="p">{</span>
+					<span class="nx">attr</span> <span class="o">=</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">READONLY</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">readOnly</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="k">continue</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">WRITE_ONCE</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">writeOnce</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="nx">attr</span><span class="p">.</span><span class="nx">readOnly</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					<span class="p">}</span>
+
+					<span class="k">if</span><span class="p">(</span><span class="nx">cfg</span> <span class="o">&amp;&amp;</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+					<span class="p">{</span>
+						<span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">SETTER</span><span class="p">))</span>
+						<span class="p">{</span>
+							<span class="nx">host</span><span class="p">.</span><span class="nx">_state</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">attr</span><span class="p">.</span><span class="nx">setter</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="p">[</span><span class="nx">cfg</span><span class="p">[</span><span class="nx">i</span><span class="p">]]);</span>
+						<span class="p">}</span>
+						<span class="k">else</span>
+						<span class="p">{</span>
+							<span class="nx">host</span><span class="p">.</span><span class="nx">_state</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">         * For a given item, returns the value of the property requested, or undefined if not found.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method get</span>
+<span class="cm">         * @param name {String} The name of the item</span>
+<span class="cm">         * @return {Any} The value of the supplied property.</span>
+<span class="cm">         */</span>
+        <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="p">,</span>
+                <span class="nx">attrConfig</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">ATTRS</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">attrConfig</span> <span class="o">&amp;&amp;</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">attr</span><span class="p">])</span>
+            <span class="p">{</span>
+                <span class="nx">getter</span> <span class="o">=</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">getter</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">getter</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">getter</span> <span class="o">==</span> <span class="nx">STR</span><span class="p">)</span>
+                    <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">host</span><span class="p">[</span><span class="nx">getter</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    <span class="k">return</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">getter</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="k">return</span> <span class="nx">host</span><span class="p">.</span><span class="nx">_state</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">},</span>
+    
+        <span class="cm">/**</span>
+<span class="cm">         * Sets the value of an attribute.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @method set</span>
+<span class="cm">         * @param {String}|{Object} name The name of the attribute. Alternatively, an object of key value pairs can </span>
+<span class="cm">         * be passed in to set multiple attributes at once.</span>
+<span class="cm">         * @param {Any} value The value to set the attribute to. This value is ignored if an object is received as </span>
+<span class="cm">         * the name param.</span>
+<span class="cm">         */</span>
+        <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">Y_LANG</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">attr</span><span class="p">))</span>
+            <span class="p">{</span>
+                <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">attr</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">attr</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+                    <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">attr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * @private</span>
+<span class="cm">		 */</span>
+		<span class="nx">_set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attr</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span>
+		<span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+				<span class="nx">setter</span><span class="p">,</span>
+				<span class="nx">args</span><span class="p">,</span>
+				<span class="nx">attrConfig</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">ATTRS</span><span class="p">;</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">attrConfig</span> <span class="o">&amp;&amp;</span> <span class="nx">attrConfig</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">attr</span><span class="p">))</span>
+			<span class="p">{</span>
+				<span class="nx">setter</span> <span class="o">=</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">setter</span><span class="p">;</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">setter</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="nx">val</span><span class="p">];</span>
+					<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">setter</span> <span class="o">==</span> <span class="nx">STR</span><span class="p">)</span>
+					<span class="p">{</span>
+						<span class="nx">val</span> <span class="o">=</span> <span class="nx">host</span><span class="p">[</span><span class="nx">setter</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span>
+                    <span class="p">{</span>
+					    <span class="nx">val</span> <span class="o">=</span> <span class="nx">attrConfig</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">setter</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">host</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+                    <span class="p">}</span>
+				<span class="p">}</span>
+				<span class="nx">host</span><span class="p">.</span><span class="nx">_state</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">AttributeLite</span> <span class="o">=</span> <span class="nx">AttributeLite</span><span class="p">;</span>
+
+    <span class="c1">//BaseGraphic serves as the base class for the graphic layer. It serves the same purpose as</span>
+    <span class="c1">//Base but uses a lightweight getter/setter class instead of Attribute.</span>
+    <span class="c1">//This classs is temporary and a work in progress.</span>
+    <span class="nx">BaseGraphic</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cfg</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+            <span class="nx">PluginHost</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Host</span><span class="p">;</span>  
+        <span class="k">if</span> <span class="p">(</span><span class="nx">host</span><span class="p">.</span><span class="nx">_initPlugins</span> <span class="o">&amp;&amp;</span> <span class="nx">PluginHost</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">PluginHost</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="nx">host</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">NAME</span><span class="p">;</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">_eventPrefix</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">EVENT_PREFIX</span> <span class="o">||</span> <span class="nx">host</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">NAME</span><span class="p">;</span>
+        <span class="nx">AttributeLite</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">host</span><span class="p">);</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">addAttrs</span><span class="p">(</span><span class="nx">cfg</span><span class="p">);</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">host</span><span class="p">.</span><span class="nx">_initPlugins</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Need to initPlugins manually, to handle constructor parsing, static Plug parsing</span>
+            <span class="nx">host</span><span class="p">.</span><span class="nx">_initPlugins</span><span class="p">(</span><span class="nx">cfg</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">host</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="nx">BaseGraphic</span><span class="p">.</span><span class="nx">NAME</span> <span class="o">=</span> <span class="s2">&quot;baseGraphic&quot;</span><span class="p">;</span>
+
+    <span class="nx">BaseGraphic</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">         * @private</span>
+<span class="cm">         */</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">fireOnce</span><span class="o">:</span><span class="kc">true</span>
+            <span class="p">});</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">cfg</span><span class="o">:</span> <span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]});</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+<span class="c1">//Straightup augment, no wrapper functions</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">BaseGraphic</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">AttributeLite</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">BaseGraphic</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">EventTarget</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">BaseGraphic</span><span class="p">,</span> <span class="nx">PluginHost</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nx">BaseGraphic</span><span class="p">.</span><span class="nx">plug</span> <span class="o">=</span> <span class="nx">PluginHost</span><span class="p">.</span><span class="nx">plug</span><span class="p">;</span>
+<span class="nx">BaseGraphic</span><span class="p">.</span><span class="nx">unplug</span> <span class="o">=</span> <span class="nx">PluginHost</span><span class="p">.</span><span class="nx">unplug</span><span class="p">;</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">BaseGraphic</span> <span class="o">=</span> <span class="nx">BaseGraphic</span><span class="p">;</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-target&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "AttributeLite.html#method_addAttrs", "access": "", "host": "AttributeLite", "type": "method", "name": "addAttrs"}, {"url": "VMLShape.html#method_addClass", "access": "", "host": "VMLShape", "type": "method", "name": "addClass"}, {"url": "SVGShape.html#method_addClass", "access": "", "host": "SVGShape", "type": "method", "name": "addClass"}, {"url": "CanvasShape.html#method_addClass", "access": "", "host": "CanvasShape", "type": "method", "name": "addClass"}, {"url": "VMLGraphic.html#method_addShape", "access": "", "host": "VMLGraphic", "type": "method", "name": "addShape"}, {"url": "Graphic.html#method_addShape", "access": "", "host": "Graphic", "type": "method", "name": "addShape"}, {"url": "CanvasGraphic.html#method_addShape", "access": "", "host": "CanvasGraphic", "type": "method", "name": "addShape"}, {"url": "VMLGraphic.html#method_addToRedrawQueue", "access": "", "host": "VMLGraphic", "type": "method", "name": "addToRedrawQueue"}, {"url": "Graphic.html#method_addToRedrawQueue", "access": "", "host": "Graphic", "type": "method", "name": "addToRedrawQueue"}, {"url": "CanvasGraphic.html#method_addToRedrawQueue", "access": "", "host": "CanvasGraphic", "type": "method", "name": "addToRedrawQueue"}, {"url": "VMLPath.html#config_arc", "access": "", "host": "VMLPath", "type": "config", "name": "arc"}, {"url": "SVGPath.html#config_arc", "access": "", "host": "SVGPath", "type": "config", "name": "arc"}, {"url": "CanvasPath.html#config_arc", "access": "", "host": "CanvasPath", "type": "config", "name": "arc"}, {"url": "VMLPath.html#event_arcChange", "access": "", "host": "VMLPath", "type": "event", "name": "arcChange"}, {"url": "SVGPath.html#event_arcChange", "access": "", "host": "SVGPath", "type": "event", "name": "arcChange"}, {"url": "CanvasPath.html#event_arcChange", "access": "", "host": "CanvasPath", "type": "event", "name": "arcChange"}, {"url": "SVGShape.html#config_autoDraw", "access": "", "host": "SVGShape", "type": "config", "name": "autoDraw"}, {"url": "VMLGraphic.html#event_autoDrawChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "autoDrawChange"}, {"url": "SVGShape.html#event_autoDrawChange", "access": "", "host": "SVGShape", "type": "event", "name": "autoDrawChange"}, {"url": "Graphic.html#event_autoDrawChange", "access": "", "host": "Graphic", "type": "event", "name": "autoDrawChange"}, {"url": "CanvasGraphic.html#event_autoDrawChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "autoDrawChange"}, {"url": "VMLShape.html#config_autoSize", "access": "", "host": "VMLShape", "type": "config", "name": "autoSize"}, {"url": "VMLGraphic.html#config_autoSize", "access": "", "host": "VMLGraphic", "type": "config", "name": "autoSize"}, {"url": "SVGShape.html#config_autoSize", "access": "", "host": "SVGShape", "type": "config", "name": "autoSize"}, {"url": "Graphic.html#config_autoSize", "access": "", "host": "Graphic", "type": "config", "name": "autoSize"}, {"url": "CanvasShape.html#config_autoSize", "access": "", "host": "CanvasShape", "type": "config", "name": "autoSize"}, {"url": "CanvasGraphic.html#config_autoSize", "access": "", "host": "CanvasGraphic", "type": "config", "name": "autoSize"}, {"url": "VMLShape.html#event_autoSizeChange", "access": "", "host": "VMLShape", "type": "event", "name": "autoSizeChange"}, {"url": "VMLGraphic.html#event_autoSizeChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "autoSizeChange"}, {"url": "SVGShape.html#event_autoSizeChange", "access": "", "host": "SVGShape", "type": "event", "name": "autoSizeChange"}, {"url": "Graphic.html#event_autoSizeChange", "access": "", "host": "Graphic", "type": "event", "name": "autoSizeChange"}, {"url": "CanvasShape.html#event_autoSizeChange", "access": "", "host": "CanvasShape", "type": "event", "name": "autoSizeChange"}, {"url": "CanvasGraphic.html#event_autoSizeChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "autoSizeChange"}, {"url": "VMLGraphic.html#method_batch", "access": "", "host": "VMLGraphic", "type": "method", "name": "batch"}, {"url": "Graphic.html#method_batch", "access": "", "host": "Graphic", "type": "method", "name": "batch"}, {"url": "CanvasGraphic.html#method_batch", "access": "", "host": "CanvasGraphic", "type": "method", "name": "batch"}, {"url": "CanvasPath.html#method_CanvasCircle", "access": "", "host": "CanvasPath", "type": "method", "name": "CanvasCircle"}, {"url": "CanvasPath.html#method_CanvasEllipse", "access": "", "host": "CanvasPath", "type": "method", "name": "CanvasEllipse"}, {"url": "CanvasPath.html#method_CanvasPieSlice", "access": "", "host": "CanvasPath", "type": "method", "name": "CanvasPieSlice"}, {"url": "CanvasPath.html#method_CanvasRect", "access": "", "host": "CanvasPath", "type": "method", "name": "CanvasRect"}, {"url": "VMLPath.html#method_clear", "access": "", "host": "VMLPath", "type": "method", "name": "clear"}, {"url": "VMLGraphic.html#method_clear", "access": "", "host": "VMLGraphic", "type": "method", "name": "clear"}, {"url": "SVGPath.html#method_clear", "access": "", "host": "SVGPath", "type": "method", "name": "clear"}, {"url": "Graphic.html#method_clear", "access": "", "host": "Graphic", "type": "method", "name": "clear"}, {"url": "CanvasShape.html#method_clear", "access": "", "host": "CanvasShape", "type": "method", "name": "clear"}, {"url": "VMLShape.html#method_compareTo", "access": "", "host": "VMLShape", "type": "method", "name": "compareTo"}, {"url": "SVGShape.html#method_compareTo", "access": "", "host": "SVGShape", "type": "method", "name": "compareTo"}, {"url": "CanvasShape.html#method_compareTo", "access": "", "host": "CanvasShape", "type": "method", "name": "compareTo"}, {"url": "VMLShape.html#method_contains", "access": "", "host": "VMLShape", "type": "method", "name": "contains"}, {"url": "SVGShape.html#method_contains", "access": "", "host": "SVGShape", "type": "method", "name": "contains"}, {"url": "CanvasShape.html#method_contains", "access": "", "host": "CanvasShape", "type": "method", "name": "contains"}, {"url": "VMLGraphic.html#config_contentBounds", "access": "", "host": "VMLGraphic", "type": "config", "name": "contentBounds"}, {"url": "Graphic.html#config_contentBounds", "access": "", "host": "Graphic", "type": "config", "name": "contentBounds"}, {"url": "CanvasGraphic.html#config_contentBounds", "access": "", "host": "CanvasGraphic", "type": "config", "name": "contentBounds"}, {"url": "VMLGraphic.html#event_contentBoundsChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "contentBoundsChange"}, {"url": "Graphic.html#event_contentBoundsChange", "access": "", "host": "Graphic", "type": "event", "name": "contentBoundsChange"}, {"url": "CanvasGraphic.html#event_contentBoundsChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "contentBoundsChange"}, {"url": "VMLGraphic.html#method_curveTo", "access": "", "host": "VMLGraphic", "type": "method", "name": "curveTo"}, {"url": "Graphic.html#method_curveTo", "access": "", "host": "Graphic", "type": "method", "name": "curveTo"}, {"url": "CanvasDrawing.html#method_curveTo", "access": "", "host": "CanvasDrawing", "type": "method", "name": "curveTo"}, {"url": "VMLShape.html#method_destroy", "access": "", "host": "VMLShape", "type": "method", "name": "destroy"}, {"url": "VMLGraphic.html#method_destroy", "access": "", "host": "VMLGraphic", "type": "method", "name": "destroy"}, {"url": "Graphic.html#method_destroy", "access": "", "host": "Graphic", "type": "method", "name": "destroy"}, {"url": "CanvasGraphic.html#method_destroy", "access": "", "host": "CanvasGraphic", "type": "method", "name": "destroy"}, {"url": "CanvasDrawing.html#method_drawCircle", "access": "", "host": "CanvasDrawing", "type": "method", "name": "drawCircle"}, {"url": "CanvasDrawing.html#method_drawEllipse", "access": "", "host": "CanvasDrawing", "type": "method", "name": "drawEllipse"}, {"url": "VMLGraphic.html#method_drawRect", "access": "", "host": "VMLGraphic", "type": "method", "name": "drawRect"}, {"url": "Graphic.html#method_drawRect", "access": "", "host": "Graphic", "type": "method", "name": "drawRect"}, {"url": "CanvasDrawing.html#method_drawRect", "access": "", "host": "CanvasDrawing", "type": "method", "name": "drawRect"}, {"url": "VMLGraphic.html#method_drawWedge", "access": "", "host": "VMLGraphic", "type": "method", "name": "drawWedge"}, {"url": "Graphic.html#method_drawWedge", "access": "", "host": "Graphic", "type": "method", "name": "drawWedge"}, {"url": "VMLPath.html#method_end", "access": "", "host": "VMLPath", "type": "method", "name": "end"}, {"url": "VMLGraphic.html#method_end", "access": "", "host": "VMLGraphic", "type": "method", "name": "end"}, {"url": "SVGPath.html#method_end", "access": "", "host": "SVGPath", "type": "method", "name": "end"}, {"url": "Graphic.html#method_end", "access": "", "host": "Graphic", "type": "method", "name": "end"}, {"url": "CanvasDrawing.html#method_end", "access": "", "host": "CanvasDrawing", "type": "method", "name": "end"}, {"url": "CanvasPath.html#method_end", "access": "", "host": "CanvasPath", "type": "method", "name": "end"}, {"url": "VMLShape.html#config_fill", "access": "", "host": "VMLShape", "type": "config", "name": "fill"}, {"url": "SVGShape.html#config_fill", "access": "", "host": "SVGShape", "type": "config", "name": "fill"}, {"url": "CanvasShape.html#config_fill", "access": "", "host": "CanvasShape", "type": "config", "name": "fill"}, {"url": "VMLShape.html#event_fillChange", "access": "", "host": "VMLShape", "type": "event", "name": "fillChange"}, {"url": "SVGShape.html#event_fillChange", "access": "", "host": "SVGShape", "type": "event", "name": "fillChange"}, {"url": "CanvasShape.html#event_fillChange", "access": "", "host": "CanvasShape", "type": "event", "name": "fillChange"}, {"url": "AttributeLite.html#method_get", "access": "", "host": "AttributeLite", "type": "method", "name": "get"}, {"url": "VMLShape.html#method_getBounds", "access": "", "host": "VMLShape", "type": "method", "name": "getBounds"}, {"url": "SVGShape.html#method_getBounds", "access": "", "host": "SVGShape", "type": "method", "name": "getBounds"}, {"url": "SVGPath.html#method_getBounds", "access": "", "host": "SVGPath", "type": "method", "name": "getBounds"}, {"url": "CanvasShape.html#method_getBounds", "access": "", "host": "CanvasShape", "type": "method", "name": "getBounds"}, {"url": "Graphic.html#method_getGradientNode", "access": "", "host": "Graphic", "type": "method", "name": "getGradientNode"}, {"url": "VMLGraphic.html#method_getShape", "access": "", "host": "VMLGraphic", "type": "method", "name": "getShape"}, {"url": "Graphic.html#method_getShape", "access": "", "host": "Graphic", "type": "method", "name": "getShape"}, {"url": "CanvasGraphic.html#method_getShape", "access": "", "host": "CanvasGraphic", "type": "method", "name": "getShape"}, {"url": "VMLGraphic.html#method_getShapeById", "access": "", "host": "VMLGraphic", "type": "method", "name": "getShapeById"}, {"url": "Graphic.html#method_getShapeById", "access": "", "host": "Graphic", "type": "method", "name": "getShapeById"}, {"url": "CanvasGraphic.html#method_getShapeById", "access": "", "host": "CanvasGraphic", "type": "method", "name": "getShapeById"}, {"url": "VMLShape.html#method_getXY", "access": "", "host": "VMLShape", "type": "method", "name": "getXY"}, {"url": "VMLGraphic.html#method_getXY", "access": "", "host": "VMLGraphic", "type": "method", "name": "getXY"}, {"url": "SVGShape.html#method_getXY", "access": "", "host": "SVGShape", "type": "method", "name": "getXY"}, {"url": "Graphic.html#method_getXY", "access": "", "host": "Graphic", "type": "method", "name": "getXY"}, {"url": "CanvasShape.html#method_getXY", "access": "", "host": "CanvasShape", "type": "method", "name": "getXY"}, {"url": "CanvasGraphic.html#method_getXY", "access": "", "host": "CanvasGraphic", "type": "method", "name": "getXY"}, {"url": "SVGShape.html#config_gradientNode", "access": "", "host": "SVGShape", "type": "config", "name": "gradientNode"}, {"url": "SVGShape.html#event_gradientNodeChange", "access": "", "host": "SVGShape", "type": "event", "name": "gradientNodeChange"}, {"url": "VMLShape.html#config_graphic", "access": "", "host": "VMLShape", "type": "config", "name": "graphic"}, {"url": "SVGShape.html#property_graphic", "access": "", "host": "SVGShape", "type": "property", "name": "graphic"}, {"url": "CanvasShape.html#config_graphic", "access": "", "host": "CanvasShape", "type": "config", "name": "graphic"}, {"url": "VMLShape.html#event_graphicChange", "access": "", "host": "VMLShape", "type": "event", "name": "graphicChange"}, {"url": "CanvasShape.html#event_graphicChange", "access": "", "host": "CanvasShape", "type": "event", "name": "graphicChange"}, {"url": "VMLShape.html#config_height", "access": "", "host": "VMLShape", "type": "config", "name": "height"}, {"url": "VMLPath.html#config_height", "access": "", "host": "VMLPath", "type": "config", "name": "height"}, {"url": "SVGShape.html#config_height", "access": "", "host": "SVGShape", "type": "config", "name": "height"}, {"url": "SVGPath.html#config_height", "access": "", "host": "SVGPath", "type": "config", "name": "height"}, {"url": "CanvasShape.html#config_height", "access": "", "host": "CanvasShape", "type": "config", "name": "height"}, {"url": "CanvasPath.html#config_height", "access": "", "host": "CanvasPath", "type": "config", "name": "height"}, {"url": "VMLShape.html#event_heightChange", "access": "", "host": "VMLShape", "type": "event", "name": "heightChange"}, {"url": "VMLPath.html#event_heightChange", "access": "", "host": "VMLPath", "type": "event", "name": "heightChange"}, {"url": "SVGShape.html#event_heightChange", "access": "", "host": "SVGShape", "type": "event", "name": "heightChange"}, {"url": "SVGPath.html#event_heightChange", "access": "", "host": "SVGPath", "type": "event", "name": "heightChange"}, {"url": "CanvasShape.html#event_heightChange", "access": "", "host": "CanvasShape", "type": "event", "name": "heightChange"}, {"url": "CanvasPath.html#event_heightChange", "access": "", "host": "CanvasPath", "type": "event", "name": "heightChange"}, {"url": "VMLShape.html#config_id", "access": "", "host": "VMLShape", "type": "config", "name": "id"}, {"url": "VMLGraphic.html#config_id", "access": "", "host": "VMLGraphic", "type": "config", "name": "id"}, {"url": "SVGShape.html#config_id", "access": "", "host": "SVGShape", "type": "config", "name": "id"}, {"url": "Graphic.html#config_id", "access": "", "host": "Graphic", "type": "config", "name": "id"}, {"url": "CanvasShape.html#config_id", "access": "", "host": "CanvasShape", "type": "config", "name": "id"}, {"url": "CanvasGraphic.html#config_id", "access": "", "host": "CanvasGraphic", "type": "config", "name": "id"}, {"url": "VMLShape.html#event_idChange", "access": "", "host": "VMLShape", "type": "event", "name": "idChange"}, {"url": "VMLGraphic.html#event_idChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "idChange"}, {"url": "SVGShape.html#event_idChange", "access": "", "host": "SVGShape", "type": "event", "name": "idChange"}, {"url": "Graphic.html#event_idChange", "access": "", "host": "Graphic", "type": "event", "name": "idChange"}, {"url": "CanvasShape.html#event_idChange", "access": "", "host": "CanvasShape", "type": "event", "name": "idChange"}, {"url": "CanvasGraphic.html#event_idChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "idChange"}, {"url": "VMLGraphic.html#method_lineTo", "access": "", "host": "VMLGraphic", "type": "method", "name": "lineTo"}, {"url": "Graphic.html#method_lineTo", "access": "", "host": "Graphic", "type": "method", "name": "lineTo"}, {"url": "CanvasDrawing.html#method_lineTo", "access": "", "host": "CanvasDrawing", "type": "method", "name": "lineTo"}, {"url": "VMLShape.html#method_matrix", "access": "", "host": "VMLShape", "type": "method", "name": "matrix"}, {"url": "SVGShape.html#method_matrix", "access": "", "host": "SVGShape", "type": "method", "name": "matrix"}, {"url": "CanvasShape.html#method_matrix", "access": "", "host": "CanvasShape", "type": "method", "name": "matrix"}, {"url": "VMLGraphic.html#method_moveTo", "access": "", "host": "VMLGraphic", "type": "method", "name": "moveTo"}, {"url": "Graphic.html#method_moveTo", "access": "", "host": "Graphic", "type": "method", "name": "moveTo"}, {"url": "CanvasDrawing.html#method_moveTo", "access": "", "host": "CanvasDrawing", "type": "method", "name": "moveTo"}, {"url": "VMLGraphic.html#config_node", "access": "", "host": "VMLGraphic", "type": "config", "name": "node"}, {"url": "SVGShape.html#config_node", "access": "", "host": "SVGShape", "type": "config", "name": "node"}, {"url": "Graphic.html#config_node", "access": "", "host": "Graphic", "type": "config", "name": "node"}, {"url": "CanvasShape.html#config_node", "access": "", "host": "CanvasShape", "type": "config", "name": "node"}, {"url": "CanvasGraphic.html#config_node", "access": "", "host": "CanvasGraphic", "type": "config", "name": "node"}, {"url": "VMLGraphic.html#event_nodeChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "nodeChange"}, {"url": "SVGShape.html#event_nodeChange", "access": "", "host": "SVGShape", "type": "event", "name": "nodeChange"}, {"url": "Graphic.html#event_nodeChange", "access": "", "host": "Graphic", "type": "event", "name": "nodeChange"}, {"url": "CanvasShape.html#event_nodeChange", "access": "", "host": "CanvasShape", "type": "event", "name": "nodeChange"}, {"url": "CanvasGraphic.html#event_nodeChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "nodeChange"}, {"url": "VMLPath.html#config_path", "access": "", "host": "VMLPath", "type": "config", "name": "path"}, {"url": "SVGPath.html#config_path", "access": "", "host": "SVGPath", "type": "config", "name": "path"}, {"url": "CanvasPath.html#config_path", "access": "", "host": "CanvasPath", "type": "config", "name": "path"}, {"url": "VMLPath.html#event_pathChange", "access": "", "host": "VMLPath", "type": "event", "name": "pathChange"}, {"url": "SVGPath.html#event_pathChange", "access": "", "host": "SVGPath", "type": "event", "name": "pathChange"}, {"url": "CanvasPath.html#event_pathChange", "access": "", "host": "CanvasPath", "type": "event", "name": "pathChange"}, {"url": "VMLShape.html#config_pointerEvents", "access": "", "host": "VMLShape", "type": "config", "name": "pointerEvents"}, {"url": "SVGShape.html#config_pointerEvents", "access": "", "host": "SVGShape", "type": "config", "name": "pointerEvents"}, {"url": "Graphic.html#config_pointerEvents", "access": "", "host": "Graphic", "type": "config", "name": "pointerEvents"}, {"url": "CanvasShape.html#config_pointerEvents", "access": "", "host": "CanvasShape", "type": "config", "name": "pointerEvents"}, {"url": "VMLShape.html#event_pointerEventsChange", "access": "", "host": "VMLShape", "type": "event", "name": "pointerEventsChange"}, {"url": "SVGShape.html#event_pointerEventsChange", "access": "", "host": "SVGShape", "type": "event", "name": "pointerEventsChange"}, {"url": "Graphic.html#event_pointerEventsChange", "access": "", "host": "Graphic", "type": "event", "name": "pointerEventsChange"}, {"url": "CanvasShape.html#event_pointerEventsChange", "access": "", "host": "CanvasShape", "type": "event", "name": "pointerEventsChange"}, {"url": "VMLGraphic.html#method_quadraticCurveTo", "access": "", "host": "VMLGraphic", "type": "method", "name": "quadraticCurveTo"}, {"url": "Graphic.html#method_quadraticCurveTo", "access": "", "host": "Graphic", "type": "method", "name": "quadraticCurveTo"}, {"url": "CanvasDrawing.html#method_quadraticCurveTo", "access": "", "host": "CanvasDrawing", "type": "method", "name": "quadraticCurveTo"}, {"url": "VMLPath.html#config_radius", "access": "", "host": "VMLPath", "type": "config", "name": "radius"}, {"url": "SVGPath.html#config_radius", "access": "", "host": "SVGPath", "type": "config", "name": "radius"}, {"url": "CanvasPath.html#config_radius", "access": "", "host": "CanvasPath", "type": "config", "name": "radius"}, {"url": "VMLPath.html#event_radiusChange", "access": "", "host": "VMLPath", "type": "event", "name": "radiusChange"}, {"url": "SVGPath.html#event_radiusChange", "access": "", "host": "SVGPath", "type": "event", "name": "radiusChange"}, {"url": "CanvasPath.html#event_radiusChange", "access": "", "host": "CanvasPath", "type": "event", "name": "radiusChange"}, {"url": "VMLGraphic.html#method_removeAllShapes", "access": "", "host": "VMLGraphic", "type": "method", "name": "removeAllShapes"}, {"url": "Graphic.html#method_removeAllShapes", "access": "", "host": "Graphic", "type": "method", "name": "removeAllShapes"}, {"url": "CanvasGraphic.html#method_removeAllShapes", "access": "", "host": "CanvasGraphic", "type": "method", "name": "removeAllShapes"}, {"url": "VMLShape.html#method_removeClass", "access": "", "host": "VMLShape", "type": "method", "name": "removeClass"}, {"url": "SVGShape.html#method_removeClass", "access": "", "host": "SVGShape", "type": "method", "name": "removeClass"}, {"url": "CanvasShape.html#method_removeClass", "access": "", "host": "CanvasShape", "type": "method", "name": "removeClass"}, {"url": "VMLGraphic.html#method_removeShape", "access": "", "host": "VMLGraphic", "type": "method", "name": "removeShape"}, {"url": "Graphic.html#method_removeShape", "access": "", "host": "Graphic", "type": "method", "name": "removeShape"}, {"url": "CanvasGraphic.html#method_removeShape", "access": "", "host": "CanvasGraphic", "type": "method", "name": "removeShape"}, {"url": "VMLGraphic.html#method_render", "access": "", "host": "VMLGraphic", "type": "method", "name": "render"}, {"url": "Graphic.html#method_render", "access": "", "host": "Graphic", "type": "method", "name": "render"}, {"url": "CanvasGraphic.html#method_render", "access": "", "host": "CanvasGraphic", "type": "method", "name": "render"}, {"url": "VMLGraphic.html#config_resizeDown", "access": "", "host": "VMLGraphic", "type": "config", "name": "resizeDown"}, {"url": "Graphic.html#config_resizeDown", "access": "", "host": "Graphic", "type": "config", "name": "resizeDown"}, {"url": "CanvasGraphic.html#config_resizeDown", "access": "", "host": "CanvasGraphic", "type": "config", "name": "resizeDown"}, {"url": "VMLGraphic.html#event_resizeDownChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "resizeDownChange"}, {"url": "Graphic.html#event_resizeDownChange", "access": "", "host": "Graphic", "type": "event", "name": "resizeDownChange"}, {"url": "CanvasGraphic.html#event_resizeDownChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "resizeDownChange"}, {"url": "VMLShape.html#method_rotate", "access": "", "host": "VMLShape", "type": "method", "name": "rotate"}, {"url": "SVGShape.html#method_rotate", "access": "", "host": "SVGShape", "type": "method", "name": "rotate"}, {"url": "CanvasShape.html#method_rotate", "access": "", "host": "CanvasShape", "type": "method", "name": "rotate"}, {"url": "VMLShape.html#config_rotation", "access": "", "host": "VMLShape", "type": "config", "name": "rotation"}, {"url": "SVGShape.html#config_rotation", "access": "", "host": "SVGShape", "type": "config", "name": "rotation"}, {"url": "CanvasShape.html#config_rotation", "access": "", "host": "CanvasShape", "type": "config", "name": "rotation"}, {"url": "VMLShape.html#event_rotationChange", "access": "", "host": "VMLShape", "type": "event", "name": "rotationChange"}, {"url": "SVGShape.html#event_rotationChange", "access": "", "host": "SVGShape", "type": "event", "name": "rotationChange"}, {"url": "CanvasShape.html#event_rotationChange", "access": "", "host": "CanvasShape", "type": "event", "name": "rotationChange"}, {"url": "VMLShape.html#method_scale", "access": "", "host": "VMLShape", "type": "method", "name": "scale"}, {"url": "SVGShape.html#method_scale", "access": "", "host": "SVGShape", "type": "method", "name": "scale"}, {"url": "CanvasShape.html#method_scale", "access": "", "host": "CanvasShape", "type": "method", "name": "scale"}, {"url": "AttributeLite.html#method_set", "access": "", "host": "AttributeLite", "type": "method", "name": "set"}, {"url": "VMLGraphic.html#method_setPosition", "access": "", "host": "VMLGraphic", "type": "method", "name": "setPosition"}, {"url": "VMLGraphic.html#method_setSize", "access": "", "host": "VMLGraphic", "type": "method", "name": "setSize"}, {"url": "CanvasDrawing.html#method_setSize", "access": "", "host": "CanvasDrawing", "type": "method", "name": "setSize"}, {"url": "VMLShape.html#method_setXY", "access": "", "host": "VMLShape", "type": "method", "name": "setXY"}, {"url": "SVGShape.html#method_setXY", "access": "", "host": "SVGShape", "type": "method", "name": "setXY"}, {"url": "CanvasShape.html#method_setXY", "access": "", "host": "CanvasShape", "type": "method", "name": "setXY"}, {"url": "VMLGraphic.html#config_shapes", "access": "", "host": "VMLGraphic", "type": "config", "name": "shapes"}, {"url": "Graphic.html#config_shapes", "access": "", "host": "Graphic", "type": "config", "name": "shapes"}, {"url": "CanvasGraphic.html#config_shapes", "access": "", "host": "CanvasGraphic", "type": "config", "name": "shapes"}, {"url": "VMLGraphic.html#event_shapesChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "shapesChange"}, {"url": "Graphic.html#event_shapesChange", "access": "", "host": "Graphic", "type": "event", "name": "shapesChange"}, {"url": "CanvasGraphic.html#event_shapesChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "shapesChange"}, {"url": "SVGShape.html#method_skewX", "access": "", "host": "SVGShape", "type": "method", "name": "skewX"}, {"url": "VMLShape.html#method_skewX:q", "access": "", "host": "VMLShape", "type": "method", "name": "skewX:q"}, {"url": "CanvasShape.html#method_skewX:q", "access": "", "host": "CanvasShape", "type": "method", "name": "skewX:q"}, {"url": "VMLPath.html#config_startAngle", "access": "", "host": "VMLPath", "type": "config", "name": "startAngle"}, {"url": "SVGPath.html#config_startAngle", "access": "", "host": "SVGPath", "type": "config", "name": "startAngle"}, {"url": "CanvasPath.html#config_startAngle", "access": "", "host": "CanvasPath", "type": "config", "name": "startAngle"}, {"url": "VMLPath.html#event_startAngleChange", "access": "", "host": "VMLPath", "type": "event", "name": "startAngleChange"}, {"url": "SVGPath.html#event_startAngleChange", "access": "", "host": "SVGPath", "type": "event", "name": "startAngleChange"}, {"url": "CanvasPath.html#event_startAngleChange", "access": "", "host": "CanvasPath", "type": "event", "name": "startAngleChange"}, {"url": "VMLShape.html#config_stroke", "access": "", "host": "VMLShape", "type": "config", "name": "stroke"}, {"url": "SVGShape.html#config_stroke", "access": "", "host": "SVGShape", "type": "config", "name": "stroke"}, {"url": "CanvasShape.html#config_stroke", "access": "", "host": "CanvasShape", "type": "config", "name": "stroke"}, {"url": "VMLShape.html#event_strokeChange", "access": "", "host": "VMLShape", "type": "event", "name": "strokeChange"}, {"url": "SVGShape.html#event_strokeChange", "access": "", "host": "SVGShape", "type": "event", "name": "strokeChange"}, {"url": "CanvasShape.html#event_strokeChange", "access": "", "host": "CanvasShape", "type": "event", "name": "strokeChange"}, {"url": "SVGPath.html#method_SVGCircle", "access": "", "host": "SVGPath", "type": "method", "name": "SVGCircle"}, {"url": "SVGPath.html#method_SVGEllipse", "access": "", "host": "SVGPath", "type": "method", "name": "SVGEllipse"}, {"url": "SVGPath.html#method_SVGPieSlice", "access": "", "host": "SVGPath", "type": "method", "name": "SVGPieSlice"}, {"url": "SVGPath.html#method_SVGRect", "access": "", "host": "SVGPath", "type": "method", "name": "SVGRect"}, {"url": "VMLShape.html#method_test", "access": "", "host": "VMLShape", "type": "method", "name": "test"}, {"url": "SVGShape.html#method_test", "access": "", "host": "SVGShape", "type": "method", "name": "test"}, {"url": "CanvasShape.html#method_test", "access": "", "host": "CanvasShape", "type": "method", "name": "test"}, {"url": "VMLShape.html#config_transformOrigin", "access": "", "host": "VMLShape", "type": "config", "name": "transformOrigin"}, {"url": "SVGShape.html#config_transformOrigin", "access": "", "host": "SVGShape", "type": "config", "name": "transformOrigin"}, {"url": "CanvasShape.html#config_transformOrigin", "access": "", "host": "CanvasShape", "type": "config", "name": "transformOrigin"}, {"url": "VMLShape.html#event_transformOriginChange", "access": "", "host": "VMLShape", "type": "event", "name": "transformOriginChange"}, {"url": "SVGShape.html#event_transformOriginChange", "access": "", "host": "SVGShape", "type": "event", "name": "transformOriginChange"}, {"url": "CanvasShape.html#event_transformOriginChange", "access": "", "host": "CanvasShape", "type": "event", "name": "transformOriginChange"}, {"url": "VMLShape.html#method_translate", "access": "", "host": "VMLShape", "type": "method", "name": "translate"}, {"url": "SVGShape.html#method_translate", "access": "protected", "host": "SVGShape", "type": "method", "name": "translate"}, {"url": "SVGPath.html#method_translate", "access": "", "host": "SVGPath", "type": "method", "name": "translate"}, {"url": "CanvasShape.html#method_translate", "access": "protected", "host": "CanvasShape", "type": "method", "name": "translate"}, {"url": "VMLShape.html#config_translateX", "access": "", "host": "VMLShape", "type": "config", "name": "translateX"}, {"url": "SVGShape.html#config_translateX", "access": "", "host": "SVGShape", "type": "config", "name": "translateX"}, {"url": "VMLShape.html#event_translateXChange", "access": "", "host": "VMLShape", "type": "event", "name": "translateXChange"}, {"url": "SVGShape.html#event_translateXChange", "access": "", "host": "SVGShape", "type": "event", "name": "translateXChange"}, {"url": "VMLPath.html#property__type", "access": "", "host": "VMLPath", "type": "property", "name": "_type"}, {"url": "CanvasPath.html#property__type", "access": "", "host": "CanvasPath", "type": "property", "name": "_type"}, {"url": "CanvasDrawing.html#method__updateDrawingQueue", "access": "", "host": "CanvasDrawing", "type": "method", "name": "_updateDrawingQueue"}, {"url": "VMLShape.html#config_visible", "access": "", "host": "VMLShape", "type": "config", "name": "visible"}, {"url": "SVGShape.html#config_visible", "access": "", "host": "SVGShape", "type": "config", "name": "visible"}, {"url": "CanvasShape.html#config_visible", "access": "", "host": "CanvasShape", "type": "config", "name": "visible"}, {"url": "VMLShape.html#event_visibleChange", "access": "", "host": "VMLShape", "type": "event", "name": "visibleChange"}, {"url": "SVGShape.html#event_visibleChange", "access": "", "host": "SVGShape", "type": "event", "name": "visibleChange"}, {"url": "CanvasShape.html#event_visibleChange", "access": "", "host": "CanvasShape", "type": "event", "name": "visibleChange"}, {"url": "VMLPath.html#method_VMLCircle", "access": "", "host": "VMLPath", "type": "method", "name": "VMLCircle"}, {"url": "VMLPath.html#method_VMLEllipse", "access": "", "host": "VMLPath", "type": "method", "name": "VMLEllipse"}, {"url": "VMLPath.html#method_VMLPieSlice", "access": "", "host": "VMLPath", "type": "method", "name": "VMLPieSlice"}, {"url": "VMLPath.html#method_VMLRect", "access": "", "host": "VMLPath", "type": "method", "name": "VMLRect"}, {"url": "VMLShape.html#config_width", "access": "", "host": "VMLShape", "type": "config", "name": "width"}, {"url": "VMLPath.html#config_width", "access": "", "host": "VMLPath", "type": "config", "name": "width"}, {"url": "SVGShape.html#config_width", "access": "", "host": "SVGShape", "type": "config", "name": "width"}, {"url": "SVGPath.html#config_width", "access": "", "host": "SVGPath", "type": "config", "name": "width"}, {"url": "CanvasShape.html#config_width", "access": "", "host": "CanvasShape", "type": "config", "name": "width"}, {"url": "CanvasPath.html#config_width", "access": "", "host": "CanvasPath", "type": "config", "name": "width"}, {"url": "VMLShape.html#event_widthChange", "access": "", "host": "VMLShape", "type": "event", "name": "widthChange"}, {"url": "VMLPath.html#event_widthChange", "access": "", "host": "VMLPath", "type": "event", "name": "widthChange"}, {"url": "SVGShape.html#event_widthChange", "access": "", "host": "SVGShape", "type": "event", "name": "widthChange"}, {"url": "SVGPath.html#event_widthChange", "access": "", "host": "SVGPath", "type": "event", "name": "widthChange"}, {"url": "CanvasShape.html#event_widthChange", "access": "", "host": "CanvasShape", "type": "event", "name": "widthChange"}, {"url": "CanvasPath.html#event_widthChange", "access": "", "host": "CanvasPath", "type": "event", "name": "widthChange"}, {"url": "VMLShape.html#config_x", "access": "", "host": "VMLShape", "type": "config", "name": "x"}, {"url": "VMLGraphic.html#config_x", "access": "", "host": "VMLGraphic", "type": "config", "name": "x"}, {"url": "SVGShape.html#config_x", "access": "", "host": "SVGShape", "type": "config", "name": "x"}, {"url": "Graphic.html#config_x", "access": "", "host": "Graphic", "type": "config", "name": "x"}, {"url": "CanvasShape.html#config_x", "access": "", "host": "CanvasShape", "type": "config", "name": "x"}, {"url": "CanvasGraphic.html#config_x", "access": "", "host": "CanvasGraphic", "type": "config", "name": "x"}, {"url": "VMLShape.html#event_xChange", "access": "", "host": "VMLShape", "type": "event", "name": "xChange"}, {"url": "VMLGraphic.html#event_xChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "xChange"}, {"url": "SVGShape.html#event_xChange", "access": "", "host": "SVGShape", "type": "event", "name": "xChange"}, {"url": "Graphic.html#event_xChange", "access": "", "host": "Graphic", "type": "event", "name": "xChange"}, {"url": "CanvasShape.html#event_xChange", "access": "", "host": "CanvasShape", "type": "event", "name": "xChange"}, {"url": "CanvasGraphic.html#event_xChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "xChange"}, {"url": "VMLPath.html#config_xRadius", "access": "", "host": "VMLPath", "type": "config", "name": "xRadius"}, {"url": "SVGPath.html#config_xRadius", "access": "", "host": "SVGPath", "type": "config", "name": "xRadius"}, {"url": "VMLPath.html#event_xRadiusChange", "access": "", "host": "VMLPath", "type": "event", "name": "xRadiusChange"}, {"url": "SVGPath.html#event_xRadiusChange", "access": "", "host": "SVGPath", "type": "event", "name": "xRadiusChange"}, {"url": "VMLShape.html#config_y", "access": "", "host": "VMLShape", "type": "config", "name": "y"}, {"url": "VMLGraphic.html#config_y", "access": "", "host": "VMLGraphic", "type": "config", "name": "y"}, {"url": "SVGShape.html#config_y", "access": "", "host": "SVGShape", "type": "config", "name": "y"}, {"url": "Graphic.html#config_y", "access": "", "host": "Graphic", "type": "config", "name": "y"}, {"url": "CanvasShape.html#config_y", "access": "", "host": "CanvasShape", "type": "config", "name": "y"}, {"url": "CanvasGraphic.html#config_y", "access": "", "host": "CanvasGraphic", "type": "config", "name": "y"}, {"url": "VMLShape.html#event_yChange", "access": "", "host": "VMLShape", "type": "event", "name": "yChange"}, {"url": "VMLGraphic.html#event_yChange", "access": "", "host": "VMLGraphic", "type": "event", "name": "yChange"}, {"url": "SVGShape.html#event_yChange", "access": "", "host": "SVGShape", "type": "event", "name": "yChange"}, {"url": "Graphic.html#event_yChange", "access": "", "host": "Graphic", "type": "event", "name": "yChange"}, {"url": "CanvasShape.html#event_yChange", "access": "", "host": "CanvasShape", "type": "event", "name": "yChange"}, {"url": "CanvasGraphic.html#event_yChange", "access": "", "host": "CanvasGraphic", "type": "event", "name": "yChange"}, {"url": "VMLPath.html#config_yRadius", "access": "", "host": "VMLPath", "type": "config", "name": "yRadius"}, {"url": "SVGPath.html#config_yRadius", "access": "", "host": "SVGPath", "type": "config", "name": "yRadius"}, {"url": "VMLPath.html#event_yRadiusChange", "access": "", "host": "VMLPath", "type": "event", "name": "yRadiusChange"}, {"url": "SVGPath.html#event_yRadiusChange", "access": "", "host": "SVGPath", "type": "event", "name": "yRadiusChange"}];
+</script>
+</body>
+</html>

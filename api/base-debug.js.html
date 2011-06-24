@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -717,7 +732,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -752,7 +767,17 @@
         <span class="nx">SHALLOW</span> <span class="o">=</span> <span class="s2">&quot;shallow&quot;</span><span class="p">,</span>
         <span class="nx">DESTRUCTOR</span> <span class="o">=</span> <span class="s2">&quot;destructor&quot;</span><span class="p">,</span>
 
-        <span class="nx">Attribute</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">;</span>
+        <span class="nx">Attribute</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Attribute</span><span class="p">,</span>
+
+        <span class="nx">_wlmix</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">wlhash</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">p</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="nx">wlhash</span><span class="p">[</span><span class="nx">p</span><span class="p">])</span> <span class="p">{</span> 
+                    <span class="nx">r</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">p</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">};</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * &lt;p&gt;</span>
@@ -833,6 +858,7 @@
 <span class="cm">     * @private</span>
 <span class="cm">     */</span>
     <span class="nx">Base</span><span class="p">.</span><span class="nx">_ATTR_CFG</span> <span class="o">=</span> <span class="nx">Attribute</span><span class="p">.</span><span class="nx">_ATTR_CFG</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s2">&quot;cloneDefaultValue&quot;</span><span class="p">);</span>
+    <span class="nx">Base</span><span class="p">.</span><span class="nx">_ATTR_CFG_HASH</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">Base</span><span class="p">.</span><span class="nx">_ATTR_CFG</span><span class="p">);</span>
 
     <span class="cm">/**</span>
 <span class="cm">     * &lt;p&gt;</span>
@@ -1049,10 +1075,10 @@
 <span class="cm">         * @protected</span>
 <span class="cm">         */</span>
         <span class="nx">_defDestroyFn</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">_destroyHierarchy</span><span class="p">();</span>
             <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_destroyPlugins</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">this</span><span class="p">.</span><span class="nx">_destroyPlugins</span><span class="p">();</span>
             <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_destroyHierarchy</span><span class="p">();</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_set</span><span class="p">(</span><span class="nx">DESTROYED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
         <span class="p">},</span>
 
@@ -1109,10 +1135,10 @@
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">for</span> <span class="p">(</span><span class="nx">attr</span> <span class="k">in</span> <span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">attr</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">allCfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">allCfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">])</span> <span class="p">{</span>
                         <span class="nx">cfgs</span> <span class="o">=</span> <span class="nx">cfgs</span> <span class="o">||</span> <span class="p">{};</span>
                         <span class="nx">cfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">allCfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
-                        <span class="k">delete</span> <span class="nx">allCfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">];</span>
+                        <span class="nx">allCfgs</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
             <span class="p">}</span>
@@ -1124,12 +1150,12 @@
 <span class="cm">         * A helper method used by _getClasses and _getAttrCfgs, which determines both</span>
 <span class="cm">         * the array of classes and aggregate set of attribute configurations</span>
 <span class="cm">         * across the class hierarchy for the instance.</span>
-<span class="cm">         * </span>
+<span class="cm">         *</span>
 <span class="cm">         * @method _initHierarchyData</span>
 <span class="cm">         * @private</span>
 <span class="cm">         */</span>
         <span class="nx">_initHierarchyData</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">,</span> 
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">,</span>
                 <span class="nx">classes</span> <span class="o">=</span> <span class="p">[],</span>
                 <span class="nx">attrs</span> <span class="o">=</span> <span class="p">[];</span>
 
@@ -1152,7 +1178,7 @@
 <span class="cm">         * A helper method, used by _initHierarchyData to aggregate </span>
 <span class="cm">         * attribute configuration across the instances class hierarchy.</span>
 <span class="cm">         *</span>
-<span class="cm">         * The method will potect the attribute configuration value to protect the statically defined </span>
+<span class="cm">         * The method will protect the attribute configuration value to protect the statically defined </span>
 <span class="cm">         * default value in ATTRS if required (if the value is an object literal, array or the </span>
 <span class="cm">         * attribute configuration has cloneDefaultValue set to shallow or deep).</span>
 <span class="cm">         *</span>
@@ -1168,9 +1194,9 @@
                 <span class="nx">cfg</span><span class="p">,</span>
                 <span class="nx">val</span><span class="p">,</span>
                 <span class="nx">path</span><span class="p">,</span>
-                <span class="nx">i</span><span class="p">,</span> 
+                <span class="nx">i</span><span class="p">,</span>
                 <span class="nx">clone</span><span class="p">,</span> 
-                <span class="nx">cfgProps</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">.</span><span class="nx">_ATTR_CFG</span><span class="p">,</span>
+                <span class="nx">cfgPropsHash</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">.</span><span class="nx">_ATTR_CFG_HASH</span><span class="p">,</span>
                 <span class="nx">aggAttrs</span> <span class="o">=</span> <span class="p">{};</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">allAttrs</span><span class="p">)</span> <span class="p">{</span>
@@ -1181,7 +1207,9 @@
                         <span class="k">if</span> <span class="p">(</span><span class="nx">attrs</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">attr</span><span class="p">))</span> <span class="p">{</span>
 
                             <span class="c1">// Protect config passed in</span>
-                            <span class="nx">cfg</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">({},</span> <span class="nx">attrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">cfgProps</span><span class="p">);</span>
+                            <span class="c1">//cfg = Y.mix({}, attrs[attr], true, cfgProps);</span>
+                            <span class="c1">//cfg = Y.Object(attrs[attr]);</span>
+                            <span class="nx">cfg</span> <span class="o">=</span> <span class="nx">_wlmix</span><span class="p">({},</span> <span class="nx">attrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="nx">cfgPropsHash</span><span class="p">);</span>
 
                             <span class="nx">val</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
                             <span class="nx">clone</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">cloneDefaultValue</span><span class="p">;</span>
@@ -1206,11 +1234,11 @@
 
                             <span class="k">if</span> <span class="p">(</span><span class="nx">path</span> <span class="o">&amp;&amp;</span> <span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
                                 <span class="nx">O</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">].</span><span class="nx">value</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
-                            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">path</span><span class="p">){</span>
+                            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
                                 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">])</span> <span class="p">{</span>
                                     <span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">;</span>
                                 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                                    <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="nx">cfg</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">cfgProps</span><span class="p">);</span>
+                                    <span class="nx">_wlmix</span><span class="p">(</span><span class="nx">aggAttrs</span><span class="p">[</span><span class="nx">attr</span><span class="p">],</span> <span class="nx">cfg</span><span class="p">,</span> <span class="nx">cfgPropsHash</span><span class="p">);</span>
                                 <span class="p">}</span>
                             <span class="p">}</span>
                         <span class="p">}</span>
@@ -1238,6 +1266,8 @@
                 <span class="nx">ci</span><span class="p">,</span>
                 <span class="nx">ei</span><span class="p">,</span>
                 <span class="nx">el</span><span class="p">,</span>
+                <span class="nx">extProto</span><span class="p">,</span>
+                <span class="nx">exts</span><span class="p">,</span>
                 <span class="nx">classes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getClasses</span><span class="p">(),</span>
                 <span class="nx">attrCfgs</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAttrCfgs</span><span class="p">();</span>
 
@@ -1245,10 +1275,11 @@
 
                 <span class="nx">constr</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">[</span><span class="nx">ci</span><span class="p">];</span>
                 <span class="nx">constrProto</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+                <span class="nx">exts</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span> <span class="o">&amp;&amp;</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">;</span> 
 
-                <span class="k">if</span> <span class="p">(</span><span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span> <span class="o">&amp;&amp;</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">for</span> <span class="p">(</span><span class="nx">ei</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span> <span class="o">&lt;</span> <span class="nx">el</span><span class="p">;</span> <span class="nx">ei</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">[</span><span class="nx">ei</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">exts</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">ei</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">exts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span> <span class="o">&lt;</span> <span class="nx">el</span><span class="p">;</span> <span class="nx">ei</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">exts</span><span class="p">[</span><span class="nx">ei</span><span class="p">].</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
                     <span class="p">}</span>
                 <span class="p">}</span>
 
@@ -1259,12 +1290,21 @@
                 <span class="k">if</span> <span class="p">(</span><span class="nx">constrProto</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">INITIALIZER</span><span class="p">))</span> <span class="p">{</span>
                     <span class="nx">constrProto</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
                 <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">exts</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">ei</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">ei</span> <span class="o">&lt;</span> <span class="nx">el</span><span class="p">;</span> <span class="nx">ei</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">extProto</span> <span class="o">=</span> <span class="nx">exts</span><span class="p">[</span><span class="nx">ei</span><span class="p">].</span><span class="nx">prototype</span><span class="p">;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">extProto</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">INITIALIZER</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="nx">extProto</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
             <span class="p">}</span>
         <span class="p">},</span>
 
         <span class="cm">/**</span>
 <span class="cm">         * Destroys the class hierarchy for this instance by invoking</span>
-<span class="cm">         * the descructor method on the prototype of each class in the hierarchy.</span>
+<span class="cm">         * the destructor method on the prototype of each class in the hierarchy.</span>
 <span class="cm">         *</span>
 <span class="cm">         * @method _destroyHierarchy</span>
 <span class="cm">         * @private</span>
@@ -1272,12 +1312,23 @@
         <span class="nx">_destroyHierarchy</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">constr</span><span class="p">,</span>
                 <span class="nx">constrProto</span><span class="p">,</span>
-                <span class="nx">ci</span><span class="p">,</span> <span class="nx">cl</span><span class="p">,</span>
+                <span class="nx">ci</span><span class="p">,</span> <span class="nx">cl</span><span class="p">,</span> <span class="nx">ei</span><span class="p">,</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">exts</span><span class="p">,</span> <span class="nx">extProto</span><span class="p">,</span>
                 <span class="nx">classes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getClasses</span><span class="p">();</span>
 
             <span class="k">for</span> <span class="p">(</span><span class="nx">ci</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">cl</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ci</span> <span class="o">&lt;</span> <span class="nx">cl</span><span class="p">;</span> <span class="nx">ci</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">constr</span> <span class="o">=</span> <span class="nx">classes</span><span class="p">[</span><span class="nx">ci</span><span class="p">];</span>
                 <span class="nx">constrProto</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+                <span class="nx">exts</span> <span class="o">=</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span> <span class="o">&amp;&amp;</span> <span class="nx">constr</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">;</span> 
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">exts</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="nx">ei</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">exts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">ei</span> <span class="o">&lt;</span> <span class="nx">el</span><span class="p">;</span> <span class="nx">ei</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">extProto</span> <span class="o">=</span> <span class="nx">exts</span><span class="p">[</span><span class="nx">ei</span><span class="p">].</span><span class="nx">prototype</span><span class="p">;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">extProto</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">DESTRUCTOR</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="nx">extProto</span><span class="p">.</span><span class="nx">destructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
                 <span class="k">if</span> <span class="p">(</span><span class="nx">constrProto</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">DESTRUCTOR</span><span class="p">))</span> <span class="p">{</span>
                     <span class="nx">constrProto</span><span class="p">.</span><span class="nx">destructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
                 <span class="p">}</span>
@@ -1306,7 +1357,7 @@
     <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span> <span class="o">=</span> <span class="nx">Base</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;base-pluginhost&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
@@ -1342,7 +1393,7 @@
     <span class="nx">Base</span><span class="p">.</span><span class="nx">unplug</span> <span class="o">=</span> <span class="nx">PluginHost</span><span class="p">.</span><span class="nx">unplug</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;pluginhost&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="cm">/**</span>
@@ -1356,6 +1407,8 @@
 <span class="cm">     */</span>
     <span class="kd">var</span> <span class="nx">Base</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span>
         <span class="nx">L</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+        <span class="nx">INITIALIZER</span> <span class="o">=</span> <span class="s2">&quot;initializer&quot;</span><span class="p">,</span>
+        <span class="nx">DESTRUCTOR</span> <span class="o">=</span> <span class="s2">&quot;destructor&quot;</span><span class="p">,</span>
         <span class="nx">build</span><span class="p">;</span>
 
     <span class="nx">Base</span><span class="p">.</span><span class="nx">_build</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">main</span><span class="p">,</span> <span class="nx">extensions</span><span class="p">,</span> <span class="nx">px</span><span class="p">,</span> <span class="nx">sx</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">)</span> <span class="p">{</span>
@@ -1372,7 +1425,9 @@
 
             <span class="nx">dynamic</span> <span class="o">=</span> <span class="nx">builtClass</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">dynamic</span><span class="p">,</span>
 
-            <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">extClass</span><span class="p">;</span>
+            <span class="nx">i</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">extClass</span><span class="p">,</span> <span class="nx">extProto</span><span class="p">,</span>
+            <span class="nx">initializer</span><span class="p">,</span>
+            <span class="nx">destructor</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">dynamic</span> <span class="o">&amp;&amp;</span> <span class="nx">aggregates</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">aggregates</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
@@ -1387,10 +1442,26 @@
         <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">extensions</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">extClass</span> <span class="o">=</span> <span class="nx">extensions</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
+            <span class="nx">extProto</span> <span class="o">=</span> <span class="nx">extClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+            
+            <span class="nx">initializer</span> <span class="o">=</span> <span class="nx">extProto</span><span class="p">[</span><span class="nx">INITIALIZER</span><span class="p">];</span>
+            <span class="nx">destructor</span> <span class="o">=</span> <span class="nx">extProto</span><span class="p">[</span><span class="nx">DESTRUCTOR</span><span class="p">];</span>
+            <span class="k">delete</span> <span class="nx">extProto</span><span class="p">[</span><span class="nx">INITIALIZER</span><span class="p">];</span>
+            <span class="k">delete</span> <span class="nx">extProto</span><span class="p">[</span><span class="nx">DESTRUCTOR</span><span class="p">];</span>
+
             <span class="c1">// Prototype, old non-displacing augment</span>
             <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">builtClass</span><span class="p">,</span> <span class="nx">extClass</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
              <span class="c1">// Custom Statics</span>
             <span class="nx">_mixCust</span><span class="p">(</span><span class="nx">builtClass</span><span class="p">,</span> <span class="nx">extClass</span><span class="p">,</span> <span class="nx">aggregates</span><span class="p">,</span> <span class="nx">custom</span><span class="p">);</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nx">initializer</span><span class="p">)</span> <span class="p">{</span> 
+                <span class="nx">extProto</span><span class="p">[</span><span class="nx">INITIALIZER</span><span class="p">]</span> <span class="o">=</span> <span class="nx">initializer</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">destructor</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">extProto</span><span class="p">[</span><span class="nx">DESTRUCTOR</span><span class="p">]</span> <span class="o">=</span> <span class="nx">destructor</span><span class="p">;</span>
+            <span class="p">}</span>
 
             <span class="nx">builtClass</span><span class="p">.</span><span class="nx">_yuibuild</span><span class="p">.</span><span class="nx">exts</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">extClass</span><span class="p">);</span>
         <span class="p">}</span>
@@ -1598,7 +1669,7 @@
 <span class="cm">     * &lt;p&gt;Mixes in a list of extensions to an existing class.&lt;/p&gt;</span>
 <span class="cm">     * @method Base.mix</span>
 <span class="cm">     * @static</span>
-<span class="cm">     * @param {Function} main The existing class into which the extensions should be mixed.  The class needs to be Base or class derived from base (e.g. Widget)</span>
+<span class="cm">     * @param {Function} main The existing class into which the extensions should be mixed.  The class needs to be Base or a class derived from Base (e.g. Widget)</span>
 <span class="cm">     * @param {Function[]} extensions The set of extension classes which will mixed into the existing main class.</span>
 <span class="cm">     * @return {Function} The modified main class, with extensions mixed in.</span>
 <span class="cm">     */</span>
@@ -1620,7 +1691,7 @@
 <span class="cm">     * @private</span>
 <span class="cm">     */</span>
     <span class="nx">Base</span><span class="p">.</span><span class="nx">_buildCfg</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="nx">custom</span> <span class="o">:</span> <span class="p">{</span> 
+        <span class="nx">custom</span> <span class="o">:</span> <span class="p">{</span>
             <span class="nx">ATTRS</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prop</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
 
                 <span class="nx">r</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">ATTRS</span> <span class="o">||</span> <span class="p">{};</span>
@@ -1644,10 +1715,10 @@
     <span class="p">};</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">after</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute-complex&#39;</span><span class="p">],</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;base-pluginhost&#39;</span><span class="p">,</span> <span class="s1">&#39;base-build&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">after</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;attribute-complex&#39;</span><span class="p">],</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;base-pluginhost&#39;</span><span class="p">,</span> <span class="s1">&#39;base-build&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -719,7 +734,7 @@
 
 
 							<div class="summary description" property="yui:description">
-								The following methods are added to the YUI instance
+								These methods are added to the YUI instance by the `oop` module.
 							</div>
 
 
@@ -841,36 +856,51 @@ this list will be applied to the receiver.</span>
 														
 														
 														
-														object
+														Function
 															<strong property="yui:name">augment</strong>
 														   (
 																
 																		
-																		 r
+																		 receiver
 																	
 																
 																		, 
-																		 s
+																		 supplier
 																	
 																
 																		, 
-																		 ov
+																		 [overwrite=false]
 																	
 																
 																		, 
-																		 wl
+																		 [whitelist]
 																	
 																
 																		, 
-																		 args
+																		 [args]
 																	
 																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Applies prototype properties from the supplier to the receiver.
-The receiver can be a constructor or an instance.
+															Augments the _receiver_ with prototype properties from the _supplier_. The
+receiver may be a constructor function or an object. The supplier must be a
+constructor function.
+If the _receiver_ is an object, then the _supplier_ constructor will be called
+immediately after _receiver_ is augmented, with _receiver_ as the `this` object.
+If the _receiver_ is a constructor function, then all prototype methods of
+_supplier_ that are copied to _receiver_ will be sequestered, and the
+_supplier_ constructor will not be called immediately. The first time any
+sequestered method is called on the _receiver_'s prototype, all sequestered
+methods will be immediately copied to the _receiver_'s prototype, the
+_supplier_'s constructor will be executed, and finally the newly unsequestered
+method that was called will be executed.
+This sequestering logic sounds like a bunch of complicated voodoo, but it makes
+it cheap to perform frequent augmentation by ensuring that suppliers'
+constructors are only called if a supplied method is actually used. If none of
+the supplied methods is ever used, then there's no need to take the performance
+hit of calling the _supplier_'s constructor.
 														</div>
 
 														<div class="description">
@@ -878,46 +908,48 @@ The receiver can be a constructor or an instance.
 																<dl rel="yui:parameters">
 																	<dt>Parameters:</dt>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">r</span>
-																		&lt;<span property="yui:type">function</span>&gt;
+																		<code><span property="yui:name">receiver</span>
+																		&lt;<span property="yui:type">Function|Object</span>&gt;
 																		</code>
-																		<span property="yui:description">  the object to receive the augmentation.</span>
+																		<span property="yui:description"> Object or function to be augmented.</span>
 																		</dd>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">s</span>
-																		&lt;<span property="yui:type">function</span>&gt;
+																		<code><span property="yui:name">supplier</span>
+																		&lt;<span property="yui:type">Function</span>&gt;
 																		</code>
-																		<span property="yui:description">  the object that supplies the properties to augment.</span>
+																		<span property="yui:description"> Function that supplies the prototype properties with
+which to augment the _receiver_.</span>
 																		</dd>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">ov</span>
-																		&lt;<span property="yui:type">boolean</span>&gt;
+																		<code><span property="yui:name">[overwrite=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
 																		</code>
-																		<span property="yui:description"> if true, properties already on the receiver
-will be overwritten if found on the supplier.</span>
+																		<span property="yui:description"> If `true`, properties already on the receiver
+will be overwritten if found on the supplier's prototype.</span>
 																		</dd>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">wl</span>
-																		&lt;<span property="yui:type">string[]</span>&gt;
+																		<code><span property="yui:name">[whitelist]</span>
+																		&lt;<span property="yui:type">String[]</span>&gt;
 																		</code>
-																		<span property="yui:description">  a whitelist.  If supplied, only properties in
-this list will be applied to the receiver.</span>
+																		<span property="yui:description"> An array of property names. If specified,
+only the whitelisted prototype properties will be applied to the receiver, and
+all others will be ignored.</span>
 																		</dd>
 																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">args</span>
-																		&lt;<span property="yui:type">Array | Any</span>&gt;
+																		<code><span property="yui:name">[args]</span>
+																		&lt;<span property="yui:type">Array|any</span>&gt;
 																		</code>
-																		<span property="yui:description"> arg or arguments to apply to the supplier
-constructor when initializing.</span>
+																		<span property="yui:description"> Argument or array of arguments to pass to the
+supplier's constructor when initializing.</span>
 																		</dd>
 																</dl>
 
 																<dl>
 																	<dt>Returns:
 																	<code property="yui:return">
-																			object
+																			Function
 																	</code></dt>
-																	<dd property="yui:returnInfo">the augmented object.</dd>
+																	<dd property="yui:returnInfo">Augmented object.</dd>
 																</dl>
 
 

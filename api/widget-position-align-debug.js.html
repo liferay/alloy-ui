@@ -2,7 +2,7 @@
 <html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: widget-parent   widget-position-align-debug.js  (YUI Library)</title>
+	<title>API: widget-position-align   widget-position-align-debug.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			widget-parent&nbsp; <span class="subtitle">1.0.1</span>
+			widget-position-align&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_widget-parent.html" title="widget-parent">widget-parent</a>
+				<a class="modulename" href="./module_widget-position-align.html" title="widget-position-align">widget-position-align</a>
 
 	                
 
@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -594,7 +609,7 @@
 
 
 			                                
-													<li class="selected"><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
 
 
 
@@ -604,7 +619,7 @@
 
 
 			                                
-													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+													<li class="selected"><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
 
 
 
@@ -645,7 +660,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="WidgetParent.html" title="WidgetParent">WidgetParent</a></li>
+				                                <li class=""><a href="WidgetPositionAlign.html" title="WidgetPositionAlign">WidgetPositionAlign</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -666,13 +681,16 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="widget-parent-min.js.html" title="widget-parent-min.js">widget-parent-min.js</a></li>
-
-
-			                                <li class=""><a href="widget-parent.js.html" title="widget-parent.js">widget-parent.js</a></li>
-
-
 			                                <li class="selected"><a href="widget-position-align-debug.js.html" title="widget-position-align-debug.js">widget-position-align-debug.js</a></li>
+
+
+			                                <li class=""><a href="widget-position-align-min.js.html" title="widget-position-align-min.js">widget-position-align-min.js</a></li>
+
+
+			                                <li class=""><a href="widget-position-align.js.html" title="widget-position-align.js">widget-position-align.js</a></li>
+
+
+			                                <li class=""><a href="widget-position-constrain-debug.js.html" title="widget-position-constrain-debug.js">widget-position-constrain-debug.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -690,7 +708,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-position-align&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -1096,7 +1114,7 @@
         <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetPositionAlign</span> <span class="o">=</span> <span class="nx">PositionAlign</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-position&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget-position&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1114,7 +1132,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "WidgetParent.html#config_activeDescendant", "access": "", "host": "WidgetParent", "type": "config", "name": "activeDescendant"}, {"url": "WidgetParent.html#event_activeDescendantChange", "access": "", "host": "WidgetParent", "type": "event", "name": "activeDescendantChange"}, {"url": "WidgetParent.html#method__add", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_add"}, {"url": "WidgetParent.html#method_add", "access": "", "host": "WidgetParent", "type": "method", "name": "add"}, {"url": "WidgetParent.html#event_addChild", "access": "", "host": "WidgetParent", "type": "event", "name": "addChild"}, {"url": "WidgetParent.html#method__afterActiveDescendantChange", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_afterActiveDescendantChange"}, {"url": "WidgetParent.html#method__afterDestroyChild", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_afterDestroyChild"}, {"url": "WidgetParent.html#method__afterParentSelectedChange", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_afterParentSelectedChange"}, {"url": "WidgetParent.html#method__afterSelectionChange", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_afterSelectionChange"}, {"url": "WidgetParent.html#method__bindUIParent", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_bindUIParent"}, {"url": "WidgetParent.html#property__childrenContainer", "access": "protected", "host": "WidgetParent", "type": "property", "name": "_childrenContainer"}, {"url": "WidgetParent.html#method__createChild", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_createChild"}, {"url": "WidgetParent.html#method__defAddChildFn", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_defAddChildFn"}, {"url": "WidgetParent.html#config_defaultChildType", "access": "", "host": "WidgetParent", "type": "config", "name": "defaultChildType"}, {"url": "WidgetParent.html#event_defaultChildTypeChange", "access": "", "host": "WidgetParent", "type": "event", "name": "defaultChildTypeChange"}, {"url": "WidgetParent.html#method__defRemoveChildFn", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_defRemoveChildFn"}, {"url": "WidgetParent.html#method_deselectAll", "access": "", "host": "WidgetParent", "type": "method", "name": "deselectAll"}, {"url": "WidgetParent.html#method__destroyChildren", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_destroyChildren"}, {"url": "WidgetParent.html#config_multiple", "access": "", "host": "WidgetParent", "type": "config", "name": "multiple"}, {"url": "WidgetParent.html#event_multipleChange", "access": "", "host": "WidgetParent", "type": "event", "name": "multipleChange"}, {"url": "WidgetParent.html#method_remove", "access": "", "host": "WidgetParent", "type": "method", "name": "remove"}, {"url": "WidgetParent.html#method_removeAll", "access": "", "host": "WidgetParent", "type": "method", "name": "removeAll"}, {"url": "WidgetParent.html#event_removeChild", "access": "", "host": "WidgetParent", "type": "event", "name": "removeChild"}, {"url": "WidgetParent.html#method__renderChildren", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_renderChildren"}, {"url": "WidgetParent.html#method_selectAll", "access": "", "host": "WidgetParent", "type": "method", "name": "selectAll"}, {"url": "WidgetParent.html#method_selectChild", "access": "", "host": "WidgetParent", "type": "method", "name": "selectChild"}, {"url": "WidgetParent.html#config_selection", "access": "", "host": "WidgetParent", "type": "config", "name": "selection"}, {"url": "WidgetParent.html#event_selectionChange", "access": "", "host": "WidgetParent", "type": "event", "name": "selectionChange"}, {"url": "WidgetParent.html#method__setSelection", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_setSelection"}, {"url": "WidgetParent.html#method__uiAddChild", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_uiAddChild"}, {"url": "WidgetParent.html#method__uiRemoveChild", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_uiRemoveChild"}, {"url": "WidgetParent.html#method__updateActiveDescendant", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_updateActiveDescendant"}, {"url": "WidgetParent.html#method__updateSelection", "access": "protected", "host": "WidgetParent", "type": "method", "name": "_updateSelection"}];
+    var ALL_YUI_PROPS = [{"url": "WidgetPositionAlign.html#method__afterAlignChange", "access": "protected", "host": "WidgetPositionAlign", "type": "method", "name": "_afterAlignChange"}, {"url": "WidgetPositionAlign.html#method_align", "access": "", "host": "WidgetPositionAlign", "type": "method", "name": "align"}, {"url": "WidgetPositionAlign.html#config_align", "access": "", "host": "WidgetPositionAlign", "type": "config", "name": "align"}, {"url": "WidgetPositionAlign.html#event_alignChange", "access": "", "host": "WidgetPositionAlign", "type": "event", "name": "alignChange"}, {"url": "WidgetPositionAlign.html#method__bindUIStack", "access": "protected", "host": "WidgetPositionAlign", "type": "method", "name": "_bindUIStack"}, {"url": "WidgetPositionAlign.html#method_centered", "access": "", "host": "WidgetPositionAlign", "type": "method", "name": "centered"}, {"url": "WidgetPositionAlign.html#config_centered", "access": "", "host": "WidgetPositionAlign", "type": "config", "name": "centered"}, {"url": "WidgetPositionAlign.html#event_centeredChange", "access": "", "host": "WidgetPositionAlign", "type": "event", "name": "centeredChange"}, {"url": "WidgetPositionAlign.html#method__setAlignCenter", "access": "protected", "host": "WidgetPositionAlign", "type": "method", "name": "_setAlignCenter"}, {"url": "WidgetPositionAlign.html#method__syncUIPosAlign", "access": "protected", "host": "WidgetPositionAlign", "type": "method", "name": "_syncUIPosAlign"}, {"url": "WidgetPositionAlign.html#method__uiSetAlign", "access": "protected", "host": "WidgetPositionAlign", "type": "method", "name": "_uiSetAlign"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.ATTRS", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.ATTRS"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.BC", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.BC"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.BL", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.BL"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.BR", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.BR"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.CC", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.CC"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.LC", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.LC"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.RC", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.RC"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.TC", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.TC"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.TL", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.TL"}, {"url": "WidgetPositionAlign.html#property_WidgetPositionAlign.TR", "access": "", "host": "WidgetPositionAlign", "type": "property", "name": "WidgetPositionAlign.TR"}];
 </script>
 </body>
 </html>

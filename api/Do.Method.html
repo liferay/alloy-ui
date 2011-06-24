@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -908,19 +923,46 @@
 														
 														
 														
-														void
+														any
 															<strong property="yui:name">exec</strong>
 														   (
+																
+																		
+																		 arg*
+																	
+																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Execute the wrapped method
+															<p>Execute the wrapped method.  All arguments are passed into the wrapping
+functions.  If any of the before wrappers return an instance of
+<code>Y.Do.Halt</code> or <code>Y.Do.Prevent</code>, neither the wrapped
+function nor any after phase subscribers will be executed.</p>
+<p>The return value will be the return value of the wrapped function or one
+provided by a wrapper function via an instance of <code>Y.Do.Halt</code> or
+<code>Y.Do.AlterReturn</code>.
 														</div>
 
 														<div class="description">
 
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">arg*</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description">  Arguments are passed to the wrapping and wrapped functions</span>
+																		</dd>
+																</dl>
 
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			any
+																	</code></dt>
+																	<dd property="yui:returnInfo">Return value of wrapped function unless overwritten (see above)</dd>
+																</dl>
 
 
 

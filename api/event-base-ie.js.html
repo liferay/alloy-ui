@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -750,6 +765,15 @@
 			                                <li class=""><a href="event-mousewheel.js.html" title="event-mousewheel.js">event-mousewheel.js</a></li>
 
 
+			                                <li class=""><a href="event-outside-debug.js.html" title="event-outside-debug.js">event-outside-debug.js</a></li>
+
+
+			                                <li class=""><a href="event-outside-min.js.html" title="event-outside-min.js">event-outside-min.js</a></li>
+
+
+			                                <li class=""><a href="event-outside.js.html" title="event-outside.js">event-outside.js</a></li>
+
+
 			                                <li class=""><a href="event-resize-debug.js.html" title="event-resize-debug.js">event-resize-debug.js</a></li>
 
 
@@ -786,7 +810,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -838,100 +862,277 @@
 <span class="cm"> * @submodule event-base</span>
 <span class="cm"> */</span>
 
-<span class="kd">var</span> <span class="nx">IEEventFacade</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// IEEventFacade.superclass.constructor.apply(this, arguments);</span>
-        <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-    <span class="p">};</span>
+<span class="kd">function</span> <span class="nx">IEEventFacade</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// IEEventFacade.superclass.constructor.apply(this, arguments);</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
 
-<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">IEEventFacade</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">,</span> <span class="p">{</span>
+<span class="cm">/*</span>
+<span class="cm"> * (intentially left out of API docs)</span>
+<span class="cm"> * Alternate Facade implementation that is based on Object.defineProperty, which</span>
+<span class="cm"> * is partially supported in IE8.  Properties that involve setup work are</span>
+<span class="cm"> * deferred to temporary getters using the static _define method.</span>
+<span class="cm"> */</span>
+<span class="kd">function</span> <span class="nx">IELazyFacade</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">proxy</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">createEventObject</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span>
+        <span class="nx">proto</span> <span class="o">=</span> <span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
 
-    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// TODO: necessary?</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">hasOwnProperty</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">};</span>
 
-        <span class="nx">IEEventFacade</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">init</span><span class="p">;</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">halt</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">halt</span><span class="p">;</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">preventDefault</span>           <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">;</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">stopPropagation</span>          <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">;</span>
+    <span class="nx">proxy</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span> <span class="o">=</span> <span class="nx">proto</span><span class="p">.</span><span class="nx">stopImmediatePropagation</span><span class="p">;</span>
 
-        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
-            <span class="nx">resolve</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span>
-            <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">t</span><span class="p">;</span>
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">proxy</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
-        <span class="k">this</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">((</span><span class="s1">&#39;clientX&#39;</span> <span class="k">in</span> <span class="nx">e</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!==</span> <span class="nx">x</span><span class="p">))</span> <span class="p">{</span>
-            <span class="nx">x</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span>
-            <span class="nx">y</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span>
-
-            <span class="nx">d</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
-            <span class="nx">b</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
-            <span class="nx">de</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">;</span>
-
-            <span class="nx">x</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">de</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
-            <span class="nx">y</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">de</span><span class="p">.</span><span class="nx">scrollTop</span>  <span class="o">||</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">)</span>  <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
-
-            <span class="k">this</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mouseout&quot;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">toElement</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mouseover&quot;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">fromElement</span><span class="p">;</span>
-        <span class="p">}</span>
-
-        <span class="k">this</span><span class="p">.</span><span class="nx">relatedTarget</span> <span class="o">=</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
-
-        <span class="c1">// which should contain the unicode key code if this is a key event</span>
-        <span class="c1">// if (e.charCode) {</span>
-        <span class="c1">//     this.which = e.charCode;</span>
-        <span class="c1">// }</span>
-
-        <span class="c1">// for click events, which is normalized for which mouse button was</span>
-        <span class="c1">// clicked.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">case</span> <span class="mi">2</span><span class="o">:</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">which</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="mi">4</span><span class="o">:</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">which</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">default</span><span class="o">:</span>
-                    <span class="k">this</span><span class="p">.</span><span class="nx">which</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="k">this</span><span class="p">.</span><span class="nx">button</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">which</span><span class="p">;</span>
-        <span class="p">}</span>
-
-    <span class="p">},</span>
-
-    <span class="nx">stopPropagation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">;</span>
-        <span class="nx">e</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">},</span>
-
-    <span class="nx">stopImmediatePropagation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="p">},</span>
-
-    <span class="nx">preventDefault</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">returnValue</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">prevented</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">prevented</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-
-<span class="p">});</span>
-
-<span class="kd">var</span> <span class="nx">imp</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">implementation</span><span class="p">;</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">imp</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">imp</span><span class="p">.</span><span class="nx">hasFeature</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0&#39;</span><span class="p">)))</span> <span class="p">{</span>
-    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOMEventFacade</span> <span class="o">=</span> <span class="nx">IEEventFacade</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">proxy</span><span class="p">;</span>
 <span class="p">}</span>
 
 
+<span class="kd">var</span> <span class="nx">imp</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">implementation</span><span class="p">,</span>
+    <span class="nx">useLazyFacade</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">lazyEventFacade</span><span class="p">,</span>
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">);</span>
+    <span class="nx">buttonMap</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">2</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="mi">4</span><span class="o">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="nx">relatedTargetMap</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">mouseout</span><span class="o">:</span> <span class="s1">&#39;toElement&#39;</span><span class="p">,</span>
+        <span class="nx">mouseover</span><span class="o">:</span> <span class="s1">&#39;fromElement&#39;</span>
+    <span class="p">},</span>
+
+    <span class="nx">resolve</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span>
+
+    <span class="nx">proto</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+            <span class="nx">IEEventFacade</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">init</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+            <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
+                <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">t</span><span class="p">;</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">target</span> <span class="o">=</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">((</span><span class="s1">&#39;clientX&#39;</span> <span class="k">in</span> <span class="nx">e</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">x</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">!==</span> <span class="nx">x</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">x</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span>
+                <span class="nx">y</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span>
+
+                <span class="nx">d</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
+                <span class="nx">b</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+                <span class="nx">de</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">;</span>
+
+                <span class="nx">x</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">de</span><span class="p">.</span><span class="nx">scrollLeft</span> <span class="o">||</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">)</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+                <span class="nx">y</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">de</span><span class="p">.</span><span class="nx">scrollTop</span>  <span class="o">||</span> <span class="p">(</span><span class="nx">b</span> <span class="o">&amp;&amp;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">)</span>  <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mouseout&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">toElement</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;mouseover&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">t</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">fromElement</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="c1">// fallback to t.relatedTarget to support simulated events.</span>
+            <span class="c1">// IE doesn&#39;t support setting toElement or fromElement on generic</span>
+            <span class="c1">// events, so Y.Event.simulate sets relatedTarget instead.</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">relatedTarget</span> <span class="o">=</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">t</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">relatedTarget</span><span class="p">);</span>
+
+            <span class="c1">// which should contain the unicode key code if this is a key event</span>
+            <span class="c1">// if (e.charCode) {</span>
+            <span class="c1">//     this.which = e.charCode;</span>
+            <span class="c1">// }</span>
+
+            <span class="c1">// for click events, which is normalized for which mouse button was</span>
+            <span class="c1">// clicked.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">which</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">button</span> <span class="o">=</span> <span class="nx">buttonMap</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">]</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="p">},</span>
+
+        <span class="nx">stopPropagation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">cancelBubble</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">stopImmediatePropagation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">stopped</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">preventDefault</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">returnValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">returnValue</span> <span class="o">||</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">prevented</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">prevented</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">IEEventFacade</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">,</span> <span class="nx">proto</span><span class="p">);</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">IELazyFacade</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM2EventFacade</span><span class="p">,</span> <span class="nx">proto</span><span class="p">);</span>
+<span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">init</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">e</span>         <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
+        <span class="nx">overrides</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">.</span><span class="nx">overrides</span><span class="p">,</span>
+        <span class="nx">define</span>    <span class="o">=</span> <span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">_define</span><span class="p">,</span>
+        <span class="nx">lazyProperties</span> <span class="o">=</span> <span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">_lazyProperties</span><span class="p">,</span>
+        <span class="nx">prop</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">altKey</span>   <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">altKey</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ctrlKey</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">ctrlKey</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">metaKey</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">metaKey</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">shiftKey</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">shiftKey</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span>     <span class="o">=</span> <span class="p">(</span><span class="nx">overrides</span> <span class="o">&amp;&amp;</span> <span class="nx">overrides</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clientX</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">clientY</span>  <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">lazyProperties</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">lazyProperties</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">prop</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">define</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">lazyProperties</span><span class="p">[</span><span class="nx">prop</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_touch</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_touch</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_currentTarget</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_wrapper</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">_lazyProperties</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">charCode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">keyCode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">charCode</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">button</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">)</span> <span class="o">?</span>
+            <span class="p">(</span><span class="nx">buttonMap</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">]</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">button</span><span class="p">)</span> <span class="o">:</span>
+            <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">which</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">charCode</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">which</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">;</span> <span class="p">},</span>
+
+    <span class="nx">target</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">resolve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">relatedTarget</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
+            <span class="nx">targetProp</span> <span class="o">=</span> <span class="nx">relatedTargetMap</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;relatedTarget&#39;</span><span class="p">;</span>
+
+        <span class="c1">// fallback to t.relatedTarget to support simulated events.</span>
+        <span class="c1">// IE doesn&#39;t support setting toElement or fromElement on generic</span>
+        <span class="c1">// events, so Y.Event.simulate sets relatedTarget instead.</span>
+        <span class="k">return</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">targetProp</span><span class="p">]</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">relatedTarget</span><span class="p">);</span>
+    <span class="p">},</span>
+    <span class="nx">currentTarget</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">resolve</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_currentTarget</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">wheelDelta</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s2">&quot;mousewheel&quot;</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s2">&quot;DOMMouseScroll&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">detail</span><span class="p">)</span> <span class="o">?</span>
+                <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">detail</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">:</span>
+                <span class="c1">// wheelDelta between -80 and 80 result in -1 or 1</span>
+                <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">wheelDelta</span> <span class="o">/</span> <span class="mi">80</span><span class="p">)</span> <span class="o">||</span> <span class="p">((</span><span class="nx">e</span><span class="p">.</span><span class="nx">wheelDelta</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="o">:</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="nx">pageX</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span><span class="p">,</span>
+            <span class="nx">doc</span><span class="p">,</span> <span class="nx">bodyScroll</span><span class="p">,</span> <span class="nx">docScroll</span><span class="p">;</span>
+                
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
+            <span class="nx">bodyScroll</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span>
+            <span class="nx">docScroll</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollLeft</span><span class="p">;</span>
+
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">+</span> <span class="p">(</span><span class="nx">docScroll</span> <span class="o">||</span> <span class="nx">bodyScroll</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">pageY</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">e</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_event</span><span class="p">,</span>
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span><span class="p">,</span>
+            <span class="nx">doc</span><span class="p">,</span> <span class="nx">bodyScroll</span><span class="p">,</span> <span class="nx">docScroll</span><span class="p">;</span>
+                
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
+            <span class="nx">bodyScroll</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span> <span class="o">&amp;&amp;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+            <span class="nx">docScroll</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">scrollTop</span><span class="p">;</span>
+
+            <span class="nx">val</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">clientY</span> <span class="o">+</span> <span class="p">(</span><span class="nx">docScroll</span> <span class="o">||</span> <span class="nx">bodyScroll</span> <span class="o">||</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * Wrapper function for Object.defineProperty that creates a property whose</span>
+<span class="cm"> * value will be calulated only when asked for.  After calculating the value,</span>
+<span class="cm"> * the getter wll be removed, so it will behave as a normal property beyond that</span>
+<span class="cm"> * point.  A setter is also assigned so assigning to the property will clear</span>
+<span class="cm"> * the getter, so foo.prop = &#39;a&#39;; foo.prop; won&#39;t trigger the getter,</span>
+<span class="cm"> * overwriting value &#39;a&#39;.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Used only by the DOMEventFacades used by IE8 when the YUI configuration</span>
+<span class="cm"> * &lt;code&gt;lazyEventFacade&lt;/code&gt; is set to true.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @method _define</span>
+<span class="cm"> * @param o {DOMObject} A DOM object to add the property to</span>
+<span class="cm"> * @param prop {String} The name of the new property</span>
+<span class="cm"> * @param valueFn {Function} The function that will return the initial, default</span>
+<span class="cm"> *                  value for the property.</span>
+<span class="cm"> * @static</span>
+<span class="cm"> * @private</span>
+<span class="cm"> */</span>
+<span class="nx">IELazyFacade</span><span class="p">.</span><span class="nx">_define</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">valueFn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">val</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">(</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">?</span> <span class="nx">v</span> <span class="o">:</span> <span class="nx">valueFn</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+        <span class="k">delete</span> <span class="nx">o</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span>
+        <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="nx">ret</span><span class="p">,</span>
+            <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">writable</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">get</span><span class="o">:</span> <span class="nx">val</span><span class="p">,</span>
+        <span class="nx">set</span><span class="o">:</span> <span class="nx">val</span><span class="p">,</span>
+        <span class="nx">configurable</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">imp</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">imp</span><span class="p">.</span><span class="nx">hasFeature</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0&#39;</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">useLazyFacade</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Make sure we can use the lazy facade logic</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">createEventObject</span><span class="p">(),</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="p">{});</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">useLazyFacade</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+        
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">DOMEventFacade</span> <span class="o">=</span> <span class="p">(</span><span class="nx">useLazyFacade</span><span class="p">)</span> <span class="o">?</span> <span class="nx">IELazyFacade</span> <span class="o">:</span> <span class="nx">IEEventFacade</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">after</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-base&#39;</span><span class="p">],</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

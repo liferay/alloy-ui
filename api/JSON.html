@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -660,6 +675,8 @@
 
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
+
+				                                <li class=""><a href="#property_JSON.charCacheThreshold" title="JSON.charCacheThreshold">JSON.charCacheThreshold</a></li>
 
 				                                <li class=""><a href="#property_JSON.useNativeStringify" title="JSON.useNativeStringify">JSON.useNativeStringify</a></li>
 
@@ -773,6 +790,40 @@ complementary functionality, or include the rollup for both.</p>
 
 									<div class="content">
 
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_JSON.charCacheThreshold">
+
+											<h4>
+												<a name="property_JSON.charCacheThreshold" property="yui:name">JSON.charCacheThreshold</a>
+												- <code>static <span property="yui:type">{Number}</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													<p>Number of occurrences of a special character within a single call to
+stringify that should trigger promotion of that character to a dedicated
+preprocess step for future calls.  This is only used in environments
+that don't support native JSON, or when useNativeStringify is set to
+false.</p>
+<p>So, if set to 50 and an object is passed to stringify that includes
+strings containing the special character \x07 more than 50 times,
+subsequent calls to stringify will process object strings through a
+faster serialization path for \x07 before using the generic, slower,
+replacement process for all special characters.</p>
+<p>To prime the preprocessor cache, set this value to 1, then call
+<code>Y.JSON.stringify("<em>(all special characters to
+cache)</em>");</code>, then return this setting to a more conservative
+value.</p>
+<p>Special characters \ " \b \t \n \f \r are already cached.</p>
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>100</strong>
+												</div>
+
+
+											</div>
 											<div class="api-entry-row property-row " rel="yui:property" resource="#property_JSON.useNativeStringify">
 
 											<h4>
@@ -1068,7 +1119,7 @@ spaces to format the output.</span>
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "JSON.html#method_dateToString", "access": "", "host": "JSON", "type": "method", "name": "dateToString"}, {"url": "JSON.html#property_JSON.useNativeStringify", "access": "", "host": "JSON", "type": "property", "name": "JSON.useNativeStringify"}, {"url": "JSON.html#method_parse", "access": "", "host": "JSON", "type": "method", "name": "parse"}, {"url": "JSON.html#method_stringify", "access": "", "host": "JSON", "type": "method", "name": "stringify"}, {"url": "JSON.html#property_useNativeParse", "access": "", "host": "JSON", "type": "property", "name": "useNativeParse"}];
+    var ALL_YUI_PROPS = [{"url": "JSON.html#method_dateToString", "access": "", "host": "JSON", "type": "method", "name": "dateToString"}, {"url": "JSON.html#property_JSON.charCacheThreshold", "access": "", "host": "JSON", "type": "property", "name": "JSON.charCacheThreshold"}, {"url": "JSON.html#property_JSON.useNativeStringify", "access": "", "host": "JSON", "type": "property", "name": "JSON.useNativeStringify"}, {"url": "JSON.html#method_parse", "access": "", "host": "JSON", "type": "method", "name": "parse"}, {"url": "JSON.html#method_stringify", "access": "", "host": "JSON", "type": "method", "name": "stringify"}, {"url": "JSON.html#property_useNativeParse", "access": "", "host": "JSON", "type": "property", "name": "useNativeParse"}];
 </script>
 </body>
 </html>

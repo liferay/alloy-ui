@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -1076,7 +1091,11 @@
 	<span class="nx">ACTIVE_ELEMENT</span> <span class="o">=</span> <span class="s1">&#39;activeElement&#39;</span><span class="p">,</span>
 	<span class="nx">OWNER_DOCUMENT</span> <span class="o">=</span> <span class="s1">&#39;ownerDocument&#39;</span><span class="p">,</span>
 
-	<span class="nx">UA</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">UA</span><span class="p">;</span>
+	<span class="nx">UA</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">UA</span><span class="p">,</span>
+
+	<span class="nx">DOC</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">,</span>
+	<span class="nx">IMP</span> <span class="o">=</span> <span class="nx">DOC</span> <span class="o">&amp;&amp;</span> <span class="nx">DOC</span><span class="p">.</span><span class="nx">implementation</span><span class="p">,</span>
+	<span class="nx">SUPPORTS_EVENTS</span> <span class="o">=</span> <span class="nx">IMP</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">IMP</span><span class="p">.</span><span class="nx">hasFeature</span><span class="p">(</span><span class="s1">&#39;Events&#39;</span><span class="p">,</span> <span class="s1">&#39;2.0&#39;</span><span class="p">));</span>
 
 <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="p">{</span>
 	<span class="cm">/**</span>
@@ -1103,7 +1122,7 @@
 		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="sr">/chrome/i</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">agent</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">UA</span><span class="p">.</span><span class="nx">webkit</span> <span class="o">&amp;&amp;</span> <span class="nx">UA</span><span class="p">.</span><span class="nx">version</span><span class="p">.</span><span class="nx">major</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
 			<span class="nx">etype</span> <span class="o">=</span> <span class="s1">&#39;keypress&#39;</span><span class="p">;</span>
 		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">SUPPORTS_EVENTS</span><span class="p">)</span> <span class="p">{</span>
 			<span class="c1">// IE doesn&#39;t support input event, simulate it with propertychange</span>
 			<span class="nx">etype</span> <span class="o">=</span> <span class="s1">&#39;propertychange&#39;</span><span class="p">;</span>
 		<span class="p">}</span>
@@ -1151,7 +1170,7 @@
 <span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-event-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-event-input&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-event-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-event-input&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class="selected"><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -708,7 +723,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;highlight-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -869,33 +884,43 @@
 <span class="cm">     * @static</span>
 <span class="cm">     */</span>
     <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="nx">needles</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">regex</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">validNeedles</span> <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">esc</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">needle</span><span class="p">,</span> <span class="nx">regex</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">options</span> <span class="o">=</span> <span class="nx">EMPTY_OBJECT</span><span class="p">;</span>
         <span class="p">}</span>
 
         <span class="c1">// TODO: document options.replacer</span>
+        <span class="nx">esc</span>      <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">escapeHTML</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">;</span>
         <span class="nx">regex</span>    <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">startsWith</span> <span class="o">?</span> <span class="nx">Highlight</span><span class="p">.</span><span class="nx">_START_REGEX</span> <span class="o">:</span> <span class="nx">Highlight</span><span class="p">.</span><span class="nx">_REGEX</span><span class="p">;</span>
         <span class="nx">replacer</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">replacer</span> <span class="o">||</span> <span class="nx">Highlight</span><span class="p">.</span><span class="nx">_REPLACER</span><span class="p">;</span>
-
-        <span class="c1">// Create a local copy of needles so we can safely modify it in the next</span>
-        <span class="c1">// step.</span>
-        <span class="nx">needles</span> <span class="o">=</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">needles</span><span class="p">)</span> <span class="o">?</span> <span class="nx">needles</span><span class="p">.</span><span class="nx">concat</span><span class="p">()</span> <span class="o">:</span> <span class="p">[</span><span class="nx">needles</span><span class="p">];</span>
+        <span class="nx">needles</span>  <span class="o">=</span> <span class="nx">isArray</span><span class="p">(</span><span class="nx">needles</span><span class="p">)</span> <span class="o">?</span> <span class="nx">needles</span> <span class="o">:</span> <span class="p">[</span><span class="nx">needles</span><span class="p">];</span>
 
         <span class="c1">// Escape HTML characters and special regular expression characters in</span>
         <span class="c1">// the needles so they can be used in a regex and matched against the</span>
         <span class="c1">// escaped haystack.</span>
         <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">needles</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">needles</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">regex</span><span class="p">(</span><span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">needles</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+            <span class="nx">needle</span> <span class="o">=</span> <span class="nx">needles</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">needle</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">validNeedles</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">Escape</span><span class="p">.</span><span class="nx">regex</span><span class="p">(</span><span class="nx">esc</span> <span class="o">?</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">needle</span><span class="p">)</span> <span class="o">:</span> <span class="nx">needle</span><span class="p">));</span>
+            <span class="p">}</span>
         <span class="p">}</span>
 
         <span class="c1">// Escape HTML characters in the haystack to prevent HTML injection.</span>
-        <span class="nx">haystack</span> <span class="o">=</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">haystack</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">esc</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">haystack</span> <span class="o">=</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">haystack</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// No point continuing if there are no needles.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validNeedles</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">haystack</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="k">return</span> <span class="nx">haystack</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span>
             <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span>
-                <span class="nx">regex</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;%needles&#39;</span><span class="p">,</span> <span class="nx">needles</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)),</span>
+                <span class="nx">regex</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;%needles&#39;</span><span class="p">,</span> <span class="nx">validNeedles</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)),</span>
                 <span class="nx">options</span><span class="p">.</span><span class="nx">caseSensitive</span> <span class="o">?</span> <span class="s1">&#39;g&#39;</span> <span class="o">:</span> <span class="s1">&#39;gi&#39;</span>
             <span class="p">),</span>
             <span class="nx">replacer</span>
@@ -1054,7 +1079,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">Highlight</span> <span class="o">=</span> <span class="nx">Highlight</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;escape&#39;</span><span class="p">,</span> <span class="s1">&#39;text-wordbreak&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;escape&#39;</span><span class="p">,</span> <span class="s1">&#39;text-wordbreak&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

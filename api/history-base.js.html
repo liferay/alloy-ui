@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class="selected"><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -732,7 +747,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;history-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -762,6 +777,12 @@
 <span class="cm"> *   zero or more of the following properties:</span>
 <span class="cm"> *</span>
 <span class="cm"> * &lt;dl&gt;</span>
+<span class="cm"> *   &lt;dt&gt;force (Boolean)&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;</span>
+<span class="cm"> *     If `true`, a `history:change` event will be fired whenever the URL</span>
+<span class="cm"> *     changes, even if there is no associated state change. Default is `false`.</span>
+<span class="cm"> *   &lt;/dd&gt;</span>
+<span class="cm"> *</span>
 <span class="cm"> *   &lt;dt&gt;initialState (Object)&lt;/dt&gt;</span>
 <span class="cm"> *   &lt;dd&gt;</span>
 <span class="cm"> *     Initial state to set, as an object hash of key/value pairs. This will be</span>
@@ -909,6 +930,16 @@
         <span class="nx">config</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_config</span> <span class="o">=</span> <span class="nx">config</span> <span class="o">||</span> <span class="p">{};</span>
 
         <span class="cm">/**</span>
+<span class="cm">         * If `true`, a `history:change` event will be fired whenever the URL</span>
+<span class="cm">         * changes, even if there is no associated state change.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @property force</span>
+<span class="cm">         * @type Boolean</span>
+<span class="cm">         * @default false</span>
+<span class="cm">         */</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">force</span> <span class="o">=</span> <span class="o">!!</span><span class="nx">config</span><span class="p">.</span><span class="nx">force</span><span class="p">;</span>
+
+        <span class="cm">/**</span>
 <span class="cm">         * Resolved initial state: a merge of the user-supplied initial state</span>
 <span class="cm">         * (if any) and any initial state provided by a subclass. This may</span>
 <span class="cm">         * differ from &lt;code&gt;_config.initialState&lt;/code&gt;. If neither the config</span>
@@ -977,7 +1008,7 @@
 
         <span class="c1">// If initialState was provided, merge it into the current state.</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">initialState</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">initialState</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">initialState</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">},</span>
 
@@ -1281,13 +1312,8 @@
             <span class="nx">prevState</span> <span class="o">=</span> <span class="nx">GlobalEnv</span><span class="p">.</span><span class="nx">_state</span><span class="p">,</span>
             <span class="nx">removed</span>   <span class="o">=</span> <span class="p">{};</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newState</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">newState</span> <span class="o">=</span> <span class="p">{};</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">options</span> <span class="o">=</span> <span class="p">{};</span>
-        <span class="p">}</span>
+        <span class="nx">newState</span> <span class="o">||</span> <span class="p">(</span><span class="nx">newState</span> <span class="o">=</span> <span class="p">{});</span>
+        <span class="nx">options</span>  <span class="o">||</span> <span class="p">(</span><span class="nx">options</span>  <span class="o">=</span> <span class="p">{});</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">_isSimpleObject</span><span class="p">(</span><span class="nx">newState</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">_isSimpleObject</span><span class="p">(</span><span class="nx">prevState</span><span class="p">))</span> <span class="p">{</span>
             <span class="c1">// Figure out what was added or changed.</span>
@@ -1316,7 +1342,7 @@
             <span class="nx">isChanged</span> <span class="o">=</span> <span class="nx">newState</span> <span class="o">!==</span> <span class="nx">prevState</span><span class="p">;</span>
         <span class="p">}</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">isChanged</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isChanged</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">force</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_fireEvents</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="p">{</span>
                 <span class="nx">changed</span>  <span class="o">:</span> <span class="nx">changed</span><span class="p">,</span>
                 <span class="nx">newState</span> <span class="o">:</span> <span class="nx">newState</span><span class="p">,</span>
@@ -1361,7 +1387,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">HistoryBase</span> <span class="o">=</span> <span class="nx">HistoryBase</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-custom-complex&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-custom-complex&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1379,7 +1405,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "HistoryBase.html#event_[key]Change", "access": "", "host": "HistoryBase", "type": "event", "name": "[key]Change"}, {"url": "HistoryBase.html#event_[key]Remove", "access": "", "host": "HistoryBase", "type": "event", "name": "[key]Remove"}, {"url": "HistoryBase.html#method_add", "access": "", "host": "HistoryBase", "type": "method", "name": "add"}, {"url": "HistoryBase.html#method_addValue", "access": "", "host": "HistoryBase", "type": "method", "name": "addValue"}, {"url": "HistoryHash.html#method__afterHashChange", "access": "protected", "host": "HistoryHash", "type": "method", "name": "_afterHashChange"}, {"url": "HistoryBase.html#method__change", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_change"}, {"url": "HistoryBase.html#property__config", "access": "protected", "host": "HistoryBase", "type": "property", "name": "_config"}, {"url": "HistoryHash.html#method_createHash", "access": "", "host": "HistoryHash", "type": "method", "name": "createHash"}, {"url": "HistoryHash.html#method_decode", "access": "", "host": "HistoryHash", "type": "method", "name": "decode"}, {"url": "HistoryBase.html#method__defChangeFn", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_defChangeFn"}, {"url": "HistoryHash.html#method_encode", "access": "", "host": "HistoryHash", "type": "method", "name": "encode"}, {"url": "HistoryBase.html#method__fireChangeEvent", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireChangeEvent"}, {"url": "HistoryBase.html#method__fireEvents", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireEvents"}, {"url": "HistoryBase.html#method__fireRemoveEvent", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireRemoveEvent"}, {"url": "HistoryBase.html#method_get", "access": "", "host": "HistoryBase", "type": "method", "name": "get"}, {"url": "HistoryHash.html#method_getHash", "access": "", "host": "HistoryHash", "type": "method", "name": "getHash"}, {"url": "HistoryHash.html#method_getIframeHash", "access": "", "host": "HistoryHash", "type": "method", "name": "getIframeHash"}, {"url": "HistoryHTML5.html#method__getSessionKey", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_getSessionKey"}, {"url": "HistoryHash.html#method_getUrl", "access": "", "host": "HistoryHash", "type": "method", "name": "getUrl"}, {"url": "HistoryHash.html#property_hashPrefix", "access": "", "host": "HistoryHash", "type": "property", "name": "hashPrefix"}, {"url": "HistoryBase.html#event_history:change", "access": "", "host": "HistoryBase", "type": "event", "name": "history:change"}, {"url": "HistoryBase.html#property_html5", "access": "", "host": "HistoryBase", "type": "property", "name": "html5"}, {"url": "HistoryBase.html#method__init", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_init"}, {"url": "HistoryBase.html#property__initialState", "access": "protected", "host": "HistoryBase", "type": "property", "name": "_initialState"}, {"url": "HistoryHTML5.html#method__loadSessionState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_loadSessionState"}, {"url": "HistoryBase.html#property_NAME", "access": "", "host": "HistoryBase", "type": "property", "name": "NAME"}, {"url": "HistoryBase.html#property_nativeHashChange", "access": "", "host": "HistoryBase", "type": "property", "name": "nativeHashChange"}, {"url": "HistoryHTML5.html#method__onPopState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_onPopState"}, {"url": "HistoryHash.html#method_parseHash", "access": "", "host": "HistoryHash", "type": "method", "name": "parseHash"}, {"url": "HistoryHash.html#property__REGEX_HASH", "access": "protected", "host": "HistoryHash", "type": "property", "name": "_REGEX_HASH"}, {"url": "HistoryBase.html#method_replace", "access": "", "host": "HistoryBase", "type": "method", "name": "replace"}, {"url": "HistoryHash.html#method_replaceHash", "access": "", "host": "HistoryHash", "type": "method", "name": "replaceHash"}, {"url": "HistoryBase.html#method_replaceValue", "access": "", "host": "HistoryBase", "type": "method", "name": "replaceValue"}, {"url": "HistoryBase.html#method__resolveChanges", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_resolveChanges"}, {"url": "HistoryHash.html#method_setHash", "access": "", "host": "HistoryHash", "type": "method", "name": "setHash"}, {"url": "HistoryBase.html#property_SRC_ADD", "access": "", "host": "HistoryBase", "type": "property", "name": "SRC_ADD"}, {"url": "HistoryHash.html#property_SRC_HASH", "access": "", "host": "HistoryHash", "type": "property", "name": "SRC_HASH"}, {"url": "HistoryHTML5.html#property_SRC_POPSTATE", "access": "", "host": "HistoryHTML5", "type": "property", "name": "SRC_POPSTATE"}, {"url": "HistoryBase.html#property_SRC_REPLACE", "access": "", "host": "HistoryBase", "type": "property", "name": "SRC_REPLACE"}, {"url": "HistoryHTML5.html#method__storeSessionState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_storeSessionState"}, {"url": "HistoryBase.html#method__storeState", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_storeState"}, {"url": "HistoryHTML5.html#method__storeState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_storeState"}, {"url": "HistoryHash.html#method__updateIframe", "access": "protected", "host": "HistoryHash", "type": "method", "name": "_updateIframe"}];
+    var ALL_YUI_PROPS = [{"url": "HistoryBase.html#event_[key]Change", "access": "", "host": "HistoryBase", "type": "event", "name": "[key]Change"}, {"url": "HistoryBase.html#event_[key]Remove", "access": "", "host": "HistoryBase", "type": "event", "name": "[key]Remove"}, {"url": "HistoryBase.html#method_add", "access": "", "host": "HistoryBase", "type": "method", "name": "add"}, {"url": "HistoryBase.html#method_addValue", "access": "", "host": "HistoryBase", "type": "method", "name": "addValue"}, {"url": "HistoryHash.html#method__afterHashChange", "access": "protected", "host": "HistoryHash", "type": "method", "name": "_afterHashChange"}, {"url": "HistoryBase.html#method__change", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_change"}, {"url": "HistoryBase.html#property__config", "access": "protected", "host": "HistoryBase", "type": "property", "name": "_config"}, {"url": "HistoryHash.html#method_createHash", "access": "", "host": "HistoryHash", "type": "method", "name": "createHash"}, {"url": "HistoryHash.html#method_decode", "access": "", "host": "HistoryHash", "type": "method", "name": "decode"}, {"url": "HistoryBase.html#method__defChangeFn", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_defChangeFn"}, {"url": "HistoryHash.html#method_encode", "access": "", "host": "HistoryHash", "type": "method", "name": "encode"}, {"url": "HistoryBase.html#method__fireChangeEvent", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireChangeEvent"}, {"url": "HistoryBase.html#method__fireEvents", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireEvents"}, {"url": "HistoryBase.html#method__fireRemoveEvent", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_fireRemoveEvent"}, {"url": "HistoryBase.html#property_force", "access": "", "host": "HistoryBase", "type": "property", "name": "force"}, {"url": "HistoryBase.html#method_get", "access": "", "host": "HistoryBase", "type": "method", "name": "get"}, {"url": "HistoryHash.html#method_getHash", "access": "", "host": "HistoryHash", "type": "method", "name": "getHash"}, {"url": "HistoryHash.html#method_getIframeHash", "access": "", "host": "HistoryHash", "type": "method", "name": "getIframeHash"}, {"url": "HistoryHash.html#method_getUrl", "access": "", "host": "HistoryHash", "type": "method", "name": "getUrl"}, {"url": "HistoryHash.html#property_hashPrefix", "access": "", "host": "HistoryHash", "type": "property", "name": "hashPrefix"}, {"url": "HistoryBase.html#event_history:change", "access": "", "host": "HistoryBase", "type": "event", "name": "history:change"}, {"url": "HistoryBase.html#property_html5", "access": "", "host": "HistoryBase", "type": "property", "name": "html5"}, {"url": "HistoryBase.html#method__init", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_init"}, {"url": "HistoryBase.html#property__initialState", "access": "protected", "host": "HistoryBase", "type": "property", "name": "_initialState"}, {"url": "HistoryBase.html#property_NAME", "access": "", "host": "HistoryBase", "type": "property", "name": "NAME"}, {"url": "HistoryBase.html#property_nativeHashChange", "access": "", "host": "HistoryBase", "type": "property", "name": "nativeHashChange"}, {"url": "HistoryHTML5.html#method__onPopState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_onPopState"}, {"url": "HistoryHash.html#method_parseHash", "access": "", "host": "HistoryHash", "type": "method", "name": "parseHash"}, {"url": "HistoryHash.html#property__REGEX_HASH", "access": "protected", "host": "HistoryHash", "type": "property", "name": "_REGEX_HASH"}, {"url": "HistoryBase.html#method_replace", "access": "", "host": "HistoryBase", "type": "method", "name": "replace"}, {"url": "HistoryHash.html#method_replaceHash", "access": "", "host": "HistoryHash", "type": "method", "name": "replaceHash"}, {"url": "HistoryBase.html#method_replaceValue", "access": "", "host": "HistoryBase", "type": "method", "name": "replaceValue"}, {"url": "HistoryBase.html#method__resolveChanges", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_resolveChanges"}, {"url": "HistoryHash.html#method_setHash", "access": "", "host": "HistoryHash", "type": "method", "name": "setHash"}, {"url": "HistoryBase.html#property_SRC_ADD", "access": "", "host": "HistoryBase", "type": "property", "name": "SRC_ADD"}, {"url": "HistoryHash.html#property_SRC_HASH", "access": "", "host": "HistoryHash", "type": "property", "name": "SRC_HASH"}, {"url": "HistoryHTML5.html#property_SRC_POPSTATE", "access": "", "host": "HistoryHTML5", "type": "property", "name": "SRC_POPSTATE"}, {"url": "HistoryBase.html#property_SRC_REPLACE", "access": "", "host": "HistoryBase", "type": "property", "name": "SRC_REPLACE"}, {"url": "HistoryHTML5.html#method__storeState", "access": "protected", "host": "HistoryHTML5", "type": "method", "name": "_storeState"}, {"url": "HistoryBase.html#method__storeState", "access": "protected", "host": "HistoryBase", "type": "method", "name": "_storeState"}, {"url": "HistoryHash.html#method__updateIframe", "access": "protected", "host": "HistoryHash", "type": "method", "name": "_updateIframe"}];
 </script>
 </body>
 </html>

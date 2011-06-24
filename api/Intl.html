@@ -2,7 +2,7 @@
 <html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: yui  Intl   (YUI Library)</title>
+	<title>API: intl  Intl   (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			yui&nbsp; <span class="subtitle">1.0.1</span>
+			intl&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_yui.html" title="yui">yui</a>
+				<a class="modulename" href="./module_intl.html" title="intl">intl</a>
 
 	                 <span class="separator">&gt;</span> <span class="classname">Intl</span> 
 
@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,6 +374,11 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
@@ -374,17 +389,12 @@
 
 
 			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
 
 
 
 			                                
-													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+													<li class="selected"><a href="module_intl.html" title="intl">intl</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -629,7 +644,7 @@
 
 
 			                                
-													<li class="selected"><a href="module_yui.html" title="yui">yui</a></li>
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -645,31 +660,7 @@
 										<ul class="content">
 
 
-				                                <li class=""><a href="Array.html" title="Array">Array</a></li>
-
-
-				                                <li class=""><a href="config.html" title="config">config</a></li>
-
-
-				                                <li class=""><a href="Get.html" title="Get">Get</a></li>
-
-
 				                                <li class="selected"><a href="Intl.html" title="Intl">Intl</a></li>
-
-
-				                                <li class=""><a href="Lang.html" title="Lang">Lang</a></li>
-
-
-				                                <li class=""><a href="Object.html" title="Object">Object</a></li>
-
-
-				                                <li class=""><a href="Queue.html" title="Queue">Queue</a></li>
-
-
-				                                <li class=""><a href="UA.html" title="UA">UA</a></li>
-
-
-				                                <li class=""><a href="YUI.html" title="YUI">YUI</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -685,12 +676,13 @@
 
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
-				                               <li class=""><a href="#method__rls" title="_rls">_rls</a></li>
 				                               <li class=""><a href="#method_add" title="add">add</a></li>
 				                               <li class=""><a href="#method_get" title="get">get</a></li>
 				                               <li class=""><a href="#method_getAvailableLangs" title="getAvailableLangs">getAvailableLangs</a></li>
 				                               <li class=""><a href="#method_getLang" title="getLang">getLang</a></li>
 				                               <li class=""><a href="#method_lookupBestLang" title="lookupBestLang">lookupBestLang</a></li>
+				                               <li class=""><a href="#method_rls_done" title="rls_done">rls_done</a></li>
+				                               <li class=""><a href="#method_rls_oncomplete" title="rls_oncomplete">rls_oncomplete</a></li>
 				                               <li class=""><a href="#method_setLang" title="setLang">setLang</a></li>
 				                        </ul>
 									</div>
@@ -722,36 +714,6 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="aui-aria-debug.js.html" title="aui-aria-debug.js">aui-aria-debug.js</a></li>
-
-
-			                                <li class=""><a href="aui-aria-min.js.html" title="aui-aria-min.js">aui-aria-min.js</a></li>
-
-
-			                                <li class=""><a href="aui-aria.js.html" title="aui-aria.js">aui-aria.js</a></li>
-
-
-			                                <li class=""><a href="aui-min.js.html" title="aui-min.js">aui-min.js</a></li>
-
-
-			                                <li class=""><a href="features-debug.js.html" title="features-debug.js">features-debug.js</a></li>
-
-
-			                                <li class=""><a href="features-min.js.html" title="features-min.js">features-min.js</a></li>
-
-
-			                                <li class=""><a href="features.js.html" title="features.js">features.js</a></li>
-
-
-			                                <li class=""><a href="get-debug.js.html" title="get-debug.js">get-debug.js</a></li>
-
-
-			                                <li class=""><a href="get-min.js.html" title="get-min.js">get-min.js</a></li>
-
-
-			                                <li class=""><a href="get.js.html" title="get.js">get.js</a></li>
-
-
 			                                <li class=""><a href="intl-base-debug.js.html" title="intl-base-debug.js">intl-base-debug.js</a></li>
 
 
@@ -761,49 +723,13 @@
 			                                <li class=""><a href="intl-base.js.html" title="intl-base.js">intl-base.js</a></li>
 
 
-			                                <li class=""><a href="rls-debug.js.html" title="rls-debug.js">rls-debug.js</a></li>
+			                                <li class=""><a href="intl-debug.js.html" title="intl-debug.js">intl-debug.js</a></li>
 
 
-			                                <li class=""><a href="rls-min.js.html" title="rls-min.js">rls-min.js</a></li>
+			                                <li class=""><a href="intl-min.js.html" title="intl-min.js">intl-min.js</a></li>
 
 
-			                                <li class=""><a href="rls.js.html" title="rls.js">rls.js</a></li>
-
-
-			                                <li class=""><a href="simpleyui-debug.js.html" title="simpleyui-debug.js">simpleyui-debug.js</a></li>
-
-
-			                                <li class=""><a href="yui-base-debug.js.html" title="yui-base-debug.js">yui-base-debug.js</a></li>
-
-
-			                                <li class=""><a href="yui-base-min.js.html" title="yui-base-min.js">yui-base-min.js</a></li>
-
-
-			                                <li class=""><a href="yui-base.js.html" title="yui-base.js">yui-base.js</a></li>
-
-
-			                                <li class=""><a href="yui-debug.js.html" title="yui-debug.js">yui-debug.js</a></li>
-
-
-			                                <li class=""><a href="yui-later-debug.js.html" title="yui-later-debug.js">yui-later-debug.js</a></li>
-
-
-			                                <li class=""><a href="yui-later-min.js.html" title="yui-later-min.js">yui-later-min.js</a></li>
-
-
-			                                <li class=""><a href="yui-later.js.html" title="yui-later.js">yui-later.js</a></li>
-
-
-			                                <li class=""><a href="yui-log-debug.js.html" title="yui-log-debug.js">yui-log-debug.js</a></li>
-
-
-			                                <li class=""><a href="yui-log-min.js.html" title="yui-log-min.js">yui-log-min.js</a></li>
-
-
-			                                <li class=""><a href="yui-log.js.html" title="yui-log.js">yui-log.js</a></li>
-
-
-			                                <li class=""><a href="yui-min.js.html" title="yui-min.js">yui-min.js</a></li>
+			                                <li class=""><a href="intl.js.html" title="intl.js">intl.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -863,59 +789,6 @@ localized resources (strings and formatting patterns).
 
 										<div class="content">
 
-
-												<div class="api-entry-row method-row " rel="yui:method" resource="#method__rls">
-
-													<h4>
-														<a name="method__rls">_rls</a>
-													</h4>
-
-													<div class="detail">
-														<code class="method-detail">
-														
-														
-														
-														string
-															<strong property="yui:name">_rls</strong>
-														   (
-																
-																		
-																		 what
-																	
-																
-															)
-														</code>
-
-														<div class="description" property="yui:description">
-															Implentation for building the remote loader service url.
-														</div>
-
-														<div class="description">
-
-																<dl rel="yui:parameters">
-																	<dt>Parameters:</dt>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">what</span>
-																		&lt;<span property="yui:type">Array</span>&gt;
-																		</code>
-																		<span property="yui:description"> the requested modules.</span>
-																		</dd>
-																</dl>
-
-																<dl>
-																	<dt>Returns:
-																	<code property="yui:return">
-																			string
-																	</code></dt>
-																	<dd property="yui:returnInfo">the url for the remote loader service call.</dd>
-																</dl>
-
-
-
-
-														</div>
-													</div>
-												</div>
 
 												<div class="api-entry-row method-row " rel="yui:method" resource="#method_add">
 
@@ -1239,6 +1112,98 @@ preferred language list, or "".</dd>
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_rls_done">
+
+													<h4>
+														<a name="method_rls_done">rls_done</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">rls_done</strong>
+														   (
+																
+																		
+																		 data
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calls the callback registered with Y.rls_oncomplete when the RLS request (and it's dependency requests) is done.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">data</span>
+																		&lt;<span property="yui:type">Array</span>&gt;
+																		</code>
+																		<span property="yui:description"> The modules loaded</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_rls_oncomplete">
+
+													<h4>
+														<a name="method_rls_oncomplete">rls_oncomplete</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">rls_oncomplete</strong>
+														   (
+																
+																		
+																		 cb
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">cb</span>
+																		&lt;<span property="yui:type">Callback</span>&gt;
+																		</code>
+																		<span property="yui:description"> The callback to execute when the RLS request is complete</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setLang">
 
 													<h4>
@@ -1385,6 +1350,12 @@ Returns false on failure, which would happen if the language had not been regist
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -1499,7 +1470,7 @@ so the on and after moments are equivalent.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Get.html#method_abort", "access": "", "host": "Get", "type": "method", "name": "abort"}, {"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "Get.html#method_css", "access": "", "host": "Get", "type": "method", "name": "css"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "Get.html#method__rls", "access": "", "host": "Get", "type": "method", "name": "_rls"}, {"url": "Intl.html#method__rls", "access": "", "host": "Intl", "type": "method", "name": "_rls"}, {"url": "Get.html#method_script", "access": "", "host": "Get", "type": "method", "name": "script"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}];
+    var ALL_YUI_PROPS = [{"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "Intl.html#method_rls_done", "access": "", "host": "Intl", "type": "method", "name": "rls_done"}, {"url": "Intl.html#method_rls_oncomplete", "access": "", "host": "Intl", "type": "method", "name": "rls_oncomplete"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}];
 </script>
 </body>
 </html>

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -708,7 +723,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json-parse&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -940,7 +955,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">useNativeParse</span> <span class="o">=</span> <span class="nx">useNative</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">);</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json-stringify&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -991,19 +1006,27 @@
 
     <span class="c1">// Regex used to capture characters that need escaping before enclosing</span>
     <span class="c1">// their containing string in quotes.</span>
-    <span class="nx">_SPECIAL_CHARS</span> <span class="o">=</span> <span class="sr">/[\\\&quot;\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span><span class="p">,</span>
+    <span class="nx">_SPECIAL</span> <span class="o">=</span> <span class="sr">/[\x00-\x07\x0b\x0e-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span><span class="p">,</span>
 
     <span class="c1">// Character substitution map for common escapes and special characters.</span>
-    <span class="nx">_CHARS</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;\b&#39;</span><span class="o">:</span> <span class="s1">&#39;\\b&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;\t&#39;</span><span class="o">:</span> <span class="s1">&#39;\\t&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;\n&#39;</span><span class="o">:</span> <span class="s1">&#39;\\n&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;\f&#39;</span><span class="o">:</span> <span class="s1">&#39;\\f&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;\r&#39;</span><span class="o">:</span> <span class="s1">&#39;\\r&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;&quot;&#39;</span> <span class="o">:</span> <span class="s1">&#39;\\&quot;&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;\\&#39;</span><span class="o">:</span> <span class="s1">&#39;\\\\&#39;</span>
-    <span class="p">};</span>
+    <span class="nx">_COMMON</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="sr">/\\/g</span><span class="p">,</span> <span class="s1">&#39;\\\\&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\&quot;/g</span><span class="p">,</span> <span class="s1">&#39;\\&quot;&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\x08/g</span><span class="p">,</span> <span class="s1">&#39;\\b&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\x09/g</span><span class="p">,</span> <span class="s1">&#39;\\t&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\x0a/g</span><span class="p">,</span> <span class="s1">&#39;\\n&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\x0c/g</span><span class="p">,</span> <span class="s1">&#39;\\f&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="sr">/\x0d/g</span><span class="p">,</span> <span class="s1">&#39;\\r&#39;</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="nx">_COMMON_LENGTH</span> <span class="o">=</span> <span class="nx">_COMMON</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
 
+    <span class="c1">// In-process optimization for special character escapes that haven&#39;t yet</span>
+    <span class="c1">// been promoted to _COMMON</span>
+    <span class="nx">_CHAR</span> <span class="o">=</span> <span class="p">{},</span>
+
+    <span class="c1">// Per-char counter to determine if it&#39;s worth fast tracking a special</span>
+    <span class="c1">// character escape sequence.</span>
+    <span class="nx">_CHAR_COUNT</span><span class="p">,</span> <span class="nx">_CACHE_THRESHOLD</span><span class="p">;</span>
 
 <span class="c1">// Utility function used to determine how to serialize a variable.</span>
 <span class="kd">function</span> <span class="nx">_type</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
@@ -1017,15 +1040,33 @@
 
 <span class="c1">// Escapes a special character to a safe Unicode representation</span>
 <span class="kd">function</span> <span class="nx">_char</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">])</span> <span class="p">{</span>
-        <span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span>  <span class="s1">&#39;\\u&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;0000&#39;</span><span class="o">+</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">_CHAR</span><span class="p">[</span><span class="nx">c</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">_CHAR</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;\\u&#39;</span><span class="o">+</span><span class="p">(</span><span class="s1">&#39;0000&#39;</span><span class="o">+</span><span class="p">(</span><span class="o">+</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">))).</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">)).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
+        <span class="nx">_CHAR_COUNT</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">_CHARS</span><span class="p">[</span><span class="nx">c</span><span class="p">];</span>
+
+    <span class="c1">// === to avoid this conditional for the remainder of the current operation</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">++</span><span class="nx">_CHAR_COUNT</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">===</span> <span class="nx">_CACHE_THRESHOLD</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_COMMON</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">),</span> <span class="nx">_CHAR</span><span class="p">[</span><span class="nx">c</span><span class="p">]]);</span>
+        <span class="nx">_COMMON_LENGTH</span> <span class="o">=</span> <span class="nx">_COMMON</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">_CHAR</span><span class="p">[</span><span class="nx">c</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="c1">// Enclose escaped strings in quotes</span>
 <span class="kd">function</span> <span class="nx">_string</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">QUOTE</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">_SPECIAL_CHARS</span><span class="p">,</span> <span class="nx">_char</span><span class="p">)</span> <span class="o">+</span> <span class="nx">QUOTE</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">chr</span><span class="p">;</span>
+
+    <span class="c1">// Preprocess the string against common characters to avoid function</span>
+    <span class="c1">// overhead associated with replacement via function.</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">_COMMON_LENGTH</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">chr</span> <span class="o">=</span> <span class="nx">_COMMON</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="nx">s</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">chr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">chr</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// original function replace for the not-as-common set of chars</span>
+    <span class="k">return</span> <span class="nx">QUOTE</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">_SPECIAL</span><span class="p">,</span> <span class="nx">_char</span><span class="p">)</span> <span class="o">+</span> <span class="nx">QUOTE</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="c1">// Adds the provided space to the beginning of every line in the input string</span>
@@ -1044,6 +1085,9 @@
         <span class="nx">_date</span>    <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">dateToString</span><span class="p">,</span>
         <span class="nx">stack</span>    <span class="o">=</span> <span class="p">[],</span>
         <span class="nx">tmp</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">len</span><span class="p">;</span>
+
+    <span class="nx">_CHAR_COUNT</span>      <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">_CACHE_THRESHOLD</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">charCacheThreshold</span><span class="p">;</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">replacer</span> <span class="o">||</span> <span class="o">!</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">w</span><span class="p">))</span> <span class="p">{</span>
         <span class="nx">w</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
@@ -1228,14 +1272,41 @@
     <span class="nx">stringify</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">Native</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">useNativeStringify</span> <span class="o">?</span>
             <span class="nx">Native</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">)</span> <span class="o">:</span> <span class="nx">_stringify</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">w</span><span class="p">,</span><span class="nx">ind</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">     * &lt;p&gt;Number of occurrences of a special character within a single call to</span>
+<span class="cm">     * stringify that should trigger promotion of that character to a dedicated</span>
+<span class="cm">     * preprocess step for future calls.  This is only used in environments</span>
+<span class="cm">     * that don&#39;t support native JSON, or when useNativeStringify is set to</span>
+<span class="cm">     * false.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;So, if set to 50 and an object is passed to stringify that includes</span>
+<span class="cm">     * strings containing the special character \x07 more than 50 times,</span>
+<span class="cm">     * subsequent calls to stringify will process object strings through a</span>
+<span class="cm">     * faster serialization path for \x07 before using the generic, slower,</span>
+<span class="cm">     * replacement process for all special characters.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;To prime the preprocessor cache, set this value to 1, then call</span>
+<span class="cm">     * &lt;code&gt;Y.JSON.stringify(&quot;&lt;em&gt;(all special characters to</span>
+<span class="cm">     * cache)&lt;/em&gt;&quot;);&lt;/code&gt;, then return this setting to a more conservative</span>
+<span class="cm">     * value.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;Special characters \ &quot; \b \t \n \f \r are already cached.&lt;/p&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * @property JSON.charCacheThreshold</span>
+<span class="cm">     * @static</span>
+<span class="cm">     * @default 100</span>
+<span class="cm">     * @type {Number}</span>
+<span class="cm">     */</span>
+    <span class="nx">charCacheThreshold</span><span class="o">:</span> <span class="mi">100</span>
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">);</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">);</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;json-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;json-stringify&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;json-parse&#39;</span><span class="p">,</span> <span class="s1">&#39;json-stringify&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1253,7 +1324,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "JSON.html#method_dateToString", "access": "", "host": "JSON", "type": "method", "name": "dateToString"}, {"url": "JSON.html#property_JSON.useNativeStringify", "access": "", "host": "JSON", "type": "property", "name": "JSON.useNativeStringify"}, {"url": "JSON.html#method_parse", "access": "", "host": "JSON", "type": "method", "name": "parse"}, {"url": "JSON.html#method_stringify", "access": "", "host": "JSON", "type": "method", "name": "stringify"}, {"url": "JSON.html#property_useNativeParse", "access": "", "host": "JSON", "type": "property", "name": "useNativeParse"}];
+    var ALL_YUI_PROPS = [{"url": "JSON.html#method_dateToString", "access": "", "host": "JSON", "type": "method", "name": "dateToString"}, {"url": "JSON.html#property_JSON.charCacheThreshold", "access": "", "host": "JSON", "type": "property", "name": "JSON.charCacheThreshold"}, {"url": "JSON.html#property_JSON.useNativeStringify", "access": "", "host": "JSON", "type": "property", "name": "JSON.useNativeStringify"}, {"url": "JSON.html#method_parse", "access": "", "host": "JSON", "type": "method", "name": "parse"}, {"url": "JSON.html#method_stringify", "access": "", "host": "JSON", "type": "method", "name": "stringify"}, {"url": "JSON.html#property_useNativeParse", "access": "", "host": "JSON", "type": "property", "name": "useNativeParse"}];
 </script>
 </body>
 </html>
