@@ -168,16 +168,6 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-		 * The id of the available field that originated the field
-		 *
-		 * @attribute key
-		 * @private
-		 */
-		key: {
-			value: EMPTY_STR
-		},
-
-		/**
 		 * A fixed field cannot be removed once instanciated
 		 *
 		 * @attribute fixed
@@ -214,12 +204,31 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * The id of the available field that originated the field
+		 *
+		 * @attribute key
+		 * @private
+		 */
+		key: {
+			value: EMPTY_STR
+		},
+
+		/**
 		 * The label of the field
 		 *
 		 * @attribute label
 		 */
 		label: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * The localizationMap of the field
+		 *
+		 * @attribute label
+		 */
+		localizationMap: {
+			value: {}
 		},
 
 		/**
