@@ -1643,16 +1643,6 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-		 * The id of the available field that originated the field
-		 *
-		 * @attribute key
-		 * @private
-		 */
-		key: {
-			value: EMPTY_STR
-		},
-
-		/**
 		 * A fixed field cannot be removed once instanciated
 		 *
 		 * @attribute fixed
@@ -1689,12 +1679,31 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * The id of the available field that originated the field
+		 *
+		 * @attribute key
+		 * @private
+		 */
+		key: {
+			value: EMPTY_STR
+		},
+
+		/**
 		 * The label of the field
 		 *
 		 * @attribute label
 		 */
 		label: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * The localizationMap of the field
+		 *
+		 * @attribute label
+		 */
+		localizationMap: {
+			value: {}
 		},
 
 		/**
@@ -4533,5 +4542,5 @@ A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 }, '@VERSION@' ,{requires:['aui-datatype','aui-form','aui-panel','aui-tooltip','io','substitute'], skinnable:true});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
 
