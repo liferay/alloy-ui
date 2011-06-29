@@ -1451,7 +1451,7 @@ var FormBuilder = A.Component.create({
 						TPL_DRAG_NODE,
 						{
 							icon: item.iconClass || DEFAULT_ICON_CLASS,
-							label: item.label,
+							label: item.entryLabel || item.label,
 							key: item.key || index,
 							type: item.type,
 							unique: item.unique
@@ -4533,5 +4533,5 @@ A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 }, '@VERSION@' ,{requires:['aui-datatype','aui-form','aui-panel','aui-tooltip','io','substitute'], skinnable:true});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
 
