@@ -78,6 +78,8 @@
 	-webkit-transform-origin: 0 0;
 	/*Change IE7 to using fixed*/
 	*position: fixed !important;
+	/*...And reset back to absolute for IE6*/
+	_position: absolute !important;
 }
 
 .aui-helper-force-offset {
