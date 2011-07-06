@@ -260,7 +260,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentDay: {
-				setter: toNumber,
+				setter: '_setDay',
 				value: (new Date()).getDate()
 			},
 
@@ -272,7 +272,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentMonth: {
-				setter: toNumber,
+				setter: '_setMonth',
 				value: (new Date()).getMonth()
 			},
 
@@ -284,7 +284,7 @@ var Calendar = A.Component.create(
 			 * @type Number
 			 */
 			currentYear: {
-				setter: toNumber,
+				setter: '_setYear',
 				value: (new Date()).getFullYear()
 			},
 
@@ -1454,6 +1454,63 @@ var Calendar = A.Component.create(
 				}
 
 				return A.NodeList.create(buffer.join(EMPTY_STR));
+			},
+
+			/**
+			 * Setter for the <a href="Calendar.html#config_dates">currentDay</a> attribute.
+			 *
+			 * @method _setDay
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setDay: function(value) {
+				if (value == -1) {
+					value = (new Date()).getDate();
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
+			},
+
+			/**
+			 * Setter for the <a href="Calendar.html#config_dates">currentMonth</a> attribute.
+			 *
+			 * @method _setMonth
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setMonth: function(value) {
+				if (value == -1) {
+					value = (new Date()).getMonth();
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
+			},
+
+			/**
+			 * Setter for the <a href="Calendar.html#config_dates">currentYear</a> attribute.
+			 *
+			 * @method _setYear
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setYear: function(value) {
+				if (value == -1) {
+					value = (new Date()).getFullYear();
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
 			},
 
 			/**

@@ -309,6 +309,9 @@ var Lang = A.Lang,
 	MONTH_NODE = 'monthNode',
 	MONTH_NODE_NAME = 'monthNodeName',
 	NAME = 'name',
+	NULLABLE_DAY = 'nullableDay',
+	NULLABLE_MONTH = 'nullableMonth',
+	NULLABLE_YEAR = 'nullableYear',
 	OPTION = 'option',
 	POPULATE_DAY = 'populateDay',
 	POPULATE_MONTH = 'populateMonth',
@@ -601,6 +604,39 @@ var DatePickerSelect = A.Component.create(
 			 */
 			populateYear: {
 				value: true
+			},
+
+			/**
+			 * If true the select element for the day will be nullable
+			 *
+			 * @attribute nullableDay
+			 * @default false
+			 * @type boolean
+			 */
+			nullableDay: {
+				value: false
+			},
+
+			/**
+			 * If true the select element for the month will be nullable
+			 *
+			 * @attribute nullableMonth
+			 * @default false
+			 * @type boolean
+			 */
+			nullableMonth: {
+				value: false
+			},
+
+			/**
+			 * If true the select element for the year will be nullable
+			 *
+			 * @attribute nullableYear
+			 * @default false
+			 * @type boolean
+			 */
+			nullableYear: {
+				value: false
 			}
 		},
 
@@ -958,7 +994,7 @@ var DatePickerSelect = A.Component.create(
 				var yearNode = instance.get(YEAR_NODE);
 
 				if (instance.get(POPULATE_YEAR)) {
-					instance._populateSelect(yearNode, yearRange[0], yearRange[1]);
+					instance._populateSelect(yearNode, yearRange[0], yearRange[1], null, null, instance.get(NULLABLE_YEAR));
 				}
 			},
 
@@ -975,7 +1011,7 @@ var DatePickerSelect = A.Component.create(
 				var monthLabels = localeMap.B;
 
 				if (instance.get(POPULATE_MONTH)) {
-					instance._populateSelect(monthNode, 0, (monthLabels.length - 1), monthLabels);
+					instance._populateSelect(monthNode, 0, (monthLabels.length - 1), monthLabels, null, instance.get(NULLABLE_MONTH));
 				}
 			},
 
@@ -991,7 +1027,7 @@ var DatePickerSelect = A.Component.create(
 				var daysInMonth = instance.calendar.getDaysInMonth();
 
 				if (instance.get(POPULATE_DAY)) {
-					instance._populateSelect(dayNode, 1, daysInMonth);
+					instance._populateSelect(dayNode, 1, daysInMonth, null, null, instance.get(NULLABLE_DAY));
 				}
 			},
 
@@ -1007,19 +1043,27 @@ var DatePickerSelect = A.Component.create(
 			 * @protected
 			 * @return {String}
 			 */
-			_populateSelect: function(select, fromIndex, toIndex, labels, values) {
+			_populateSelect: function(select, fromIndex, toIndex, labels, values, nullable) {
 				var i = 0;
 				var index = fromIndex;
+
+				var selectEl = A.Node.getDOMNode(select);
 
 				select.empty();
 				labels = labels || [];
 				values = values || [];
 
+				if (nullable) {
+					selectEl.options[0] = new Option(BLANK, -1);
+
+					i++;
+				}
+
 				while (index <= toIndex) {
 					var value = values[index] || index;
 					var label = labels[index] || index;
 
-					A.Node.getDOMNode(select).options[i] = new Option(label, index);
+					selectEl.options[i] = new Option(label, index);
 
 					i++;
 					index++;
@@ -1076,5 +1120,5 @@ A.DatePickerSelect = DatePickerSelect;
 }, '@VERSION@' ,{requires:['aui-datepicker-base','aui-button-item'], skinnable:true});
 
 
-AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']});
+AUI.add('aui-datepicker', function(A){}, '@VERSION@' ,{use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true});
 
