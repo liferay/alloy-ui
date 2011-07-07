@@ -117,6 +117,8 @@ var L = A.Lang,
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
+	EMPTY_DATES = [],
+
 	INT_MATRIX_DAYS_LENGTH = 42,
 	INT_MAX_PADDING_END = 14,
 
@@ -261,8 +263,8 @@ var Calendar = A.Component.create(
 
 			/**
 			 * The default date format string which can be overriden for
-	         * localization support. The format must be valid according to
-	         * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+			 * localization support. The format must be valid according to
+			 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
 			 *
 			 * @attribute dateFormat
 			 * @default %m/%d/%Y
@@ -457,21 +459,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * DOM node reference to be the "today" link of the Calendar. If not
-			 * specified try to query using HTML_PARSER an element inside
-			 * contentBox which matches <code>aui-calendar-title</code>.
-			 *
-			 * @attribute todayLinkNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			todayLinkNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
-				}
-			},
-
-			/**
 			 * Wether accepts to select multiple dates.
 			 *
 			 * @attribute selectMultipleDates
@@ -518,6 +505,21 @@ var Calendar = A.Component.create(
 			showToday: {
 				value: true,
 				validator: isBoolean
+			},
+
+			/**
+			 * DOM node reference to be the "today" link of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute todayLinkNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			todayLinkNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
+				}
 			},
 
 			/**
@@ -611,6 +613,18 @@ var Calendar = A.Component.create(
 
 		prototype: {
 			/**
+			 * Construction logic executed during Calendar instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
+
+				instance._createEvents();
+			},
+
+			/**
 			 * Bind the events on the Calendar UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -631,7 +645,7 @@ var Calendar = A.Component.create(
 			clear: function() {
 				var instance = this;
 
-				instance.set(DATES, []);
+				instance.set(DATES, Calendar.EMPTY_DATES);
 			},
 
 			/**
@@ -777,18 +791,6 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				return instance.get(DATES);
-			},
-
-			/**
-			 * Construction logic executed during Calendar instantiation. Lifecycle.
-			 *
-			 * @method initializer
-			 * @protected
-			 */
-			initializer: function() {
-				var instance = this;
-
-				instance._createEvents();
 			},
 
 			/**
@@ -1015,6 +1017,8 @@ var Calendar = A.Component.create(
 				boundingBox.delegate('click', A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
+
+				instance.after('datesChange', instance._handleSelectEvent);
 			},
 
 			_bindDataAttrs: function(node, date) {
@@ -1075,23 +1079,20 @@ var Calendar = A.Component.create(
 			        });
 				};
 
-				publish(
-					EV_CALENDAR_SELECT,
-					instance._defSelectFn
-				);
+				publish(EV_CALENDAR_SELECT);
 			},
 
-		    /**
-		     * Default calendar:select handler
-		     *
-		     * @method _defSelectFn
-		     * @param {EventFacade} event The Event object
-		     * @protected
-		     */
-			_defSelectFn: function(event) {
+			_getDateValue: function(value, methodName) {
 				var instance = this;
 
-				instance._syncView();
+				if (value == -1) {
+					value = A.Attribute.INVALID_VALUE;
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
 			},
 
 			/**
@@ -1237,7 +1238,7 @@ var Calendar = A.Component.create(
 		     * @param {EventFacade} event calendar:select event facade
 		     * @protected
 		     */
-			_handleSelectEvent: function() {
+			_handleSelectEvent: function(event) {
 				var instance = this;
 
 				instance.fire(EV_CALENDAR_SELECT, instance._getSelectEventData());
@@ -1375,6 +1376,20 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Render Calendar DOM month days elements.
+			 *
+			 * @method _renderMonthDays
+			 * @protected
+			 */
+			_renderMonthDays: function() {
+				var instance = this;
+
+				instance.monthDays.appendTo(
+					instance.monthDaysNode
+				);
+			},
+
+			/**
 			 * Render Calendar DOM padding days elements. Padding days are used to show other month day values.
 			 *
 			 * @method _renderPaddingDaysEnd
@@ -1413,20 +1428,6 @@ var Calendar = A.Component.create(
 
 				instance.headerContentNode.append(
 					instance.headerTitleNode
-				);
-			},
-
-			/**
-			 * Render Calendar DOM month days elements.
-			 *
-			 * @method _renderMonthDays
-			 * @protected
-			 */
-			_renderMonthDays: function() {
-				var instance = this;
-
-				instance.monthDays.appendTo(
-					instance.monthDaysNode
 				);
 			},
 
@@ -1489,14 +1490,9 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setDay: function(value) {
-				if (value == -1) {
-					value = (new Date()).getDate();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getDate');
 			},
 
 			/**
@@ -1527,14 +1523,9 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setMonth: function(value) {
-				if (value == -1) {
-					value = (new Date()).getMonth();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getMonth');
 			},
 
 			/**
@@ -1546,14 +1537,25 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setYear: function(value) {
-				if (value == -1) {
-					value = (new Date()).getFullYear();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getFullYear');
+			},
+
+			/**
+			 * Sync Calendar header UI.
+			 *
+			 * @method _syncHeader
+			 * @protected
+			 */
+			_syncHeader: function() {
+				var instance = this;
+				var currentMonth = instance.get(CURRENT_MONTH);
+				var currentYear = instance.get(CURRENT_YEAR);
+
+				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
+
+				instance.headerTitleNode.html(title);
 			},
 
 			/**
@@ -1638,22 +1640,6 @@ var Calendar = A.Component.create(
 						}
 					}
 				);
-			},
-
-			/**
-			 * Sync Calendar header UI.
-			 *
-			 * @method _syncHeader
-			 * @protected
-			 */
-			_syncHeader: function() {
-				var instance = this;
-				var currentMonth = instance.get(CURRENT_MONTH);
-				var currentYear = instance.get(CURRENT_YEAR);
-
-				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
-
-				instance.headerTitleNode.html(title);
 			},
 
 			/**
@@ -1752,7 +1738,7 @@ var Calendar = A.Component.create(
 			_uiSetDates: function(val) {
 				var instance = this;
 
-				instance._handleSelectEvent();
+				instance._syncView();
 			},
 
 			/**
@@ -1874,5 +1860,7 @@ var Calendar = A.Component.create(
 		}
 	}
 );
+
+Calendar.EMPTY_DATES = EMPTY_DATES;
 
 A.Calendar = A.Base.create(CALENDAR, Calendar, [A.WidgetStdMod]);

@@ -314,8 +314,18 @@ var DatePickerSelect = A.Component.create(
 			 * @type {Node | String}
 			 */
 			trigger: {
+				setter: function(v) {
+					if (v instanceof A.NodeList) {
+						return v;
+					}
+					else if (Lang.isString(v)) {
+						return A.all(v);
+					}
+
+					return new A.NodeList(v);
+				},
 				valueFn: function() {
-					return A.Node.create(WRAPPER_BUTTON_TPL);
+					return A.NodeList.create(WRAPPER_BUTTON_TPL);
 				}
 			},
 
@@ -390,20 +400,6 @@ var DatePickerSelect = A.Component.create(
 		EXTENDS: A.Component,
 
 		prototype: {
-
-			/**
-			 * Descructor lifecycle implementation for the Datepicker class.
-			 * Purges events attached to the node (and all child nodes).
-			 *
-			 * @method destructor
-			 * @protected
-			 */
-			destructor: function() {
-				var instance = this;
-
-				instance.datePicker.destroy();
-			},
-
 			/**
 			 * Bind the events on the DatePickerSelect UI. Lifecycle.
 			 *
@@ -416,6 +412,19 @@ var DatePickerSelect = A.Component.create(
 				instance._bindSelectEvents();
 
 				instance.after('calendar:select', instance._afterSelectDate);
+			},
+
+			/**
+			 * Descructor lifecycle implementation for the Datepicker class.
+			 * Purges events attached to the node (and all child nodes).
+			 *
+			 * @method destructor
+			 * @protected
+			 */
+			destructor: function() {
+				var instance = this;
+
+				instance.datePicker.destroy();
 			},
 
 			/**
@@ -455,9 +464,11 @@ var DatePickerSelect = A.Component.create(
 			_afterSelectDate: function(event) {
 				var instance = this;
 
-				instance._syncSelectsUI();
+				if (event.date.normal.length) {
+					instance._syncSelectsUI();
+				}
 			},
-			
+
 			/**
 			 * Bind events on each select element (change, keypress, etc).
 			 *
@@ -513,21 +524,44 @@ var DatePickerSelect = A.Component.create(
 			_onSelectChange: function(event) {
 				var instance = this;
 				var target = event.currentTarget || event.target;
+
 				var monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH);
 
 				var currentDay = instance.get(DAY_NODE).val();
 				var currentMonth = instance.get(MONTH_NODE).val();
 				var currentYear = instance.get(YEAR_NODE).val();
 
-				instance.calendar.set(CURRENT_DAY, currentDay);
-				instance.calendar.set(CURRENT_MONTH, currentMonth);
-				instance.calendar.set(CURRENT_YEAR, currentYear);
+				var validDay = (currentDay > -1);
+				var validMonth = (currentMonth > -1);
+				var validYear = (currentYear > -1);
+
+				if (validDay) {
+					instance.calendar.set(CURRENT_DAY, currentDay);
+				}
+
+				if (validMonth) {
+					instance.calendar.set(CURRENT_MONTH, currentMonth);
+				}
+
+				if (validYear) {
+					instance.calendar.set(CURRENT_YEAR, currentYear);
+				}
 
 				if (monthChanged) {
 					instance._uiSetCurrentMonth();
+
+					if (validDay) {
+						instance._selectCurrentDay();
+					}
 				}
 
-				instance.calendar.selectCurrentDate();
+				if (validDay) {
+					instance.calendar.selectCurrentDate();
+				}
+
+				if (!validDay || !validMonth || !validYear) {
+					instance.calendar.clear();
+				}
 			},
 
 			/**
@@ -564,6 +598,22 @@ var DatePickerSelect = A.Component.create(
 			},
 
 			/**
+			 * Populate the year select element with the correct data.
+			 *
+			 * @method _populateYears
+			 * @protected
+			 */
+			_populateYears: function() {
+				var instance = this;
+				var yearRange = instance.get(YEAR_RANGE);
+				var yearNode = instance.get(YEAR_NODE);
+
+				if (instance.get(POPULATE_YEAR)) {
+					instance._populateSelect(yearNode, yearRange[0], yearRange[1], null, null, instance.get(NULLABLE_YEAR));
+				}
+			},
+
+			/**
 			 * Populate a select element with the data passed on the params.
 			 *
 			 * @method _populateSelect
@@ -585,8 +635,8 @@ var DatePickerSelect = A.Component.create(
 				labels = labels || [];
 				values = values || [];
 
-				if (nullable && i == 0) {
-					selectEl.options[i] = new Option(BLANK, -1);
+				if (nullable) {
+					selectEl.options[0] = new Option(BLANK, -1);
 
 					i++;
 				}
@@ -635,22 +685,6 @@ var DatePickerSelect = A.Component.create(
 
 				instance.calendar.set(MAX_DATE, maxDate);
 				instance.calendar.set(MIN_DATE, minDate);
-			},
-
-			/**
-			 * Populate the year select element with the correct data.
-			 *
-			 * @method _populateYears
-			 * @protected
-			 */
-			_populateYears: function() {
-				var instance = this;
-				var yearRange = instance.get(YEAR_RANGE);
-				var yearNode = instance.get(YEAR_NODE);
-
-				if (instance.get(POPULATE_YEAR)) {
-					instance._populateSelect(yearNode, yearRange[0], yearRange[1], null, null, instance.get(NULLABLE_YEAR));
-				}
 			},
 
 			_renderCalendar: function() {
@@ -817,7 +851,6 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				instance._populateDays();
-				instance._selectCurrentDay();
 			},
 
 			/**
