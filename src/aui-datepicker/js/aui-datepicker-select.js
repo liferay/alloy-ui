@@ -464,7 +464,9 @@ var DatePickerSelect = A.Component.create(
 			_afterSelectDate: function(event) {
 				var instance = this;
 
-				instance._syncSelectsUI();
+				if (event.date.normal.length) {
+					instance._syncSelectsUI();
+				}
 			},
 
 			/**
@@ -522,21 +524,44 @@ var DatePickerSelect = A.Component.create(
 			_onSelectChange: function(event) {
 				var instance = this;
 				var target = event.currentTarget || event.target;
+
 				var monthChanged = target.test(DOT+CSS_DATEPICKER_MONTH);
 
 				var currentDay = instance.get(DAY_NODE).val();
 				var currentMonth = instance.get(MONTH_NODE).val();
 				var currentYear = instance.get(YEAR_NODE).val();
 
-				instance.calendar.set(CURRENT_DAY, currentDay);
-				instance.calendar.set(CURRENT_MONTH, currentMonth);
-				instance.calendar.set(CURRENT_YEAR, currentYear);
+				var validDay = (currentDay > -1);
+				var validMonth = (currentMonth > -1);
+				var validYear = (currentYear > -1);
+
+				if (validDay) {
+					instance.calendar.set(CURRENT_DAY, currentDay);
+				}
+
+				if (validMonth) {
+					instance.calendar.set(CURRENT_MONTH, currentMonth);
+				}
+
+				if (validYear) {
+					instance.calendar.set(CURRENT_YEAR, currentYear);
+				}
 
 				if (monthChanged) {
 					instance._uiSetCurrentMonth();
+
+					if (validDay) {
+						instance._selectCurrentDay();
+					}
 				}
 
-				instance.calendar.selectCurrentDate();
+				if (validDay) {
+					instance.calendar.selectCurrentDate();
+				}
+
+				if (!validDay || !validMonth || !validYear) {
+					instance.calendar.clear();
+				}
 			},
 
 			/**
@@ -826,7 +851,6 @@ var DatePickerSelect = A.Component.create(
 				var instance = this;
 
 				instance._populateDays();
-				instance._selectCurrentDay();
 			},
 
 			/**

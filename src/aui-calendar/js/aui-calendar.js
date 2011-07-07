@@ -117,6 +117,8 @@ var L = A.Lang,
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
+	EMPTY_DATES = [],
+
 	INT_MATRIX_DAYS_LENGTH = 42,
 	INT_MAX_PADDING_END = 14,
 
@@ -619,8 +621,6 @@ var Calendar = A.Component.create(
 			initializer: function() {
 				var instance = this;
 
-				instance._cachedDateObj = new Date();
-
 				instance._createEvents();
 			},
 
@@ -645,7 +645,7 @@ var Calendar = A.Component.create(
 			clear: function() {
 				var instance = this;
 
-				instance.set(DATES, []);
+				instance.set(DATES, Calendar.EMPTY_DATES);
 			},
 
 			/**
@@ -1018,6 +1018,8 @@ var Calendar = A.Component.create(
 				boundingBox.delegate('click', A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
+
+				instance.after('datesChange', instance._handleSelectEvent);
 			},
 
 			_bindDataAttrs: function(node, date) {
@@ -1078,30 +1080,14 @@ var Calendar = A.Component.create(
 			        });
 				};
 
-				publish(
-					EV_CALENDAR_SELECT,
-					instance._defSelectFn
-				);
-			},
-
-		    /**
-		     * Default calendar:select handler
-		     *
-		     * @method _defSelectFn
-		     * @param {EventFacade} event The Event object
-		     * @protected
-		     */
-			_defSelectFn: function(event) {
-				var instance = this;
-
-				instance._syncView();
+				publish(EV_CALENDAR_SELECT);
 			},
 
 			_getDateValue: function(value, methodName) {
 				var instance = this;
 
 				if (value == -1) {
-					value = instance._cachedDateObj[methodName]();
+					value = A.Attribute.INVALID_VALUE;
 				}
 				else {
 					value = toNumber(value);
@@ -1253,7 +1239,7 @@ var Calendar = A.Component.create(
 		     * @param {EventFacade} event calendar:select event facade
 		     * @protected
 		     */
-			_handleSelectEvent: function() {
+			_handleSelectEvent: function(event) {
 				var instance = this;
 
 				instance.fire(EV_CALENDAR_SELECT, instance._getSelectEventData());
@@ -1753,7 +1739,7 @@ var Calendar = A.Component.create(
 			_uiSetDates: function(val) {
 				var instance = this;
 
-				instance._handleSelectEvent();
+				instance._syncView();
 			},
 
 			/**
@@ -1875,5 +1861,7 @@ var Calendar = A.Component.create(
 		}
 	}
 );
+
+Calendar.EMPTY_DATES = EMPTY_DATES;
 
 A.Calendar = A.Base.create(CALENDAR, Calendar, [A.WidgetStdMod]);
