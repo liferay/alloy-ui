@@ -612,6 +612,20 @@ var Calendar = A.Component.create(
 
 		prototype: {
 			/**
+			 * Construction logic executed during Calendar instantiation. Lifecycle.
+			 *
+			 * @method initializer
+			 * @protected
+			 */
+			initializer: function() {
+				var instance = this;
+
+				instance._cachedDateObj = new Date();
+
+				instance._createEvents();
+			},
+
+			/**
 			 * Bind the events on the Calendar UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -778,18 +792,6 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				return instance.get(DATES);
-			},
-
-			/**
-			 * Construction logic executed during Calendar instantiation. Lifecycle.
-			 *
-			 * @method initializer
-			 * @protected
-			 */
-			initializer: function() {
-				var instance = this;
-
-				instance._createEvents();
 			},
 
 			/**
@@ -1094,6 +1096,19 @@ var Calendar = A.Component.create(
 				var instance = this;
 
 				instance._syncView();
+			},
+
+			_getDateValue: function(value, methodName) {
+				var instance = this;
+
+				if (value == -1) {
+					value = instance._cachedDateObj[methodName]();
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
 			},
 
 			/**
@@ -1491,16 +1506,10 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setDay: function(value) {
-				if (value == -1) {
-					value = (new Date()).getDate();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getDate');
 			},
-
 
 			/**
 			 * Setter for the <a href="Calendar.html#config_maxDates">maxDates</a> or
@@ -1530,14 +1539,9 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setMonth: function(value) {
-				if (value == -1) {
-					value = (new Date()).getMonth();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getMonth');
 			},
 
 			/**
@@ -1549,14 +1553,9 @@ var Calendar = A.Component.create(
 			 * @return number
 			 */
 			_setYear: function(value) {
-				if (value == -1) {
-					value = (new Date()).getFullYear();
-				}
-				else {
-					value = toNumber(value);
-				}
+				var instance = this;
 
-				return value;
+				return instance._getDateValue(value, 'getFullYear');
 			},
 
 			/**

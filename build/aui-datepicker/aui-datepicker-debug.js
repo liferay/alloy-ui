@@ -521,7 +521,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * If true the select element for the days will be automatic
-	         * populated.
+			 * populated.
 			 *
 			 * @attribute populateDay
 			 * @default true
@@ -533,7 +533,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * If true the select element for the month will be automatic
-	         * populated.
+			 * populated.
 			 *
 			 * @attribute populateMonth
 			 * @default true
@@ -545,7 +545,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * If true the select element for the year will be automatic
-	         * populated.
+			 * populated.
 			 *
 			 * @attribute populateYear
 			 * @default true
@@ -557,8 +557,8 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * DOM Node to display the selects of the DatePickerSelect. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-datepicker-select-wrapper</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-datepicker-select-wrapper</code>.
 			 *
 			 * @attribute selectWrapperNode
 			 * @default Generated div element.
@@ -572,7 +572,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Trigger element to open the calendar. Inherited from
-	         * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
+			 * <a href="OverlayContext.html#config_trigger">OverlayContext</a>.
 			 *
 			 * @attribute trigger
 			 * @default Generated HTLM div element
@@ -596,8 +596,8 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * DOM Node to display the year of the DatePickerSelect. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-datepicker-year</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-datepicker-year</code>.
 			 *
 			 * @attribute yearNode
 			 * @default Generated div element.
@@ -610,7 +610,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Name attribute used on the
-	         * <a href="DatePickerSelect.html#config_yearNode">yearNode</a>.
+			 * <a href="DatePickerSelect.html#config_yearNode">yearNode</a>.
 			 *
 			 * @attribute yearNodeName
 			 * @default year
@@ -624,7 +624,7 @@ var DatePickerSelect = A.Component.create(
 
 			/**
 			 * Year range to be displayed on the year select element. By default
-	         * it displays from -10 to +10 years from the current year.
+			 * it displays from -10 to +10 years from the current year.
 			 *
 			 * @attribute yearRange
 			 * @default [ year - 10, year + 10 ]

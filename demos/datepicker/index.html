@@ -133,7 +133,7 @@ AUI().use('aui-datepicker', function(A) {
 		// populateMonth: false,
 		// populateDay: false,
 		// populateYear: false,
-		yearRange: [ 1980, 2010 ]
+		yearRange: [ 1980, (new Date).getFullYear() ]
 	}).render();
 
 });
