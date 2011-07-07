@@ -1,8 +1,8 @@
 AUI.add('aui-datatable-base', function(A) {
 // DataTable component is beta, over-writing buggy logic on it before they get fixed on YUI
 
-var Compare = A.ArraySort.compare,
-	Lang = A.Lang,
+var Lang = A.Lang,
+	compare = A.ArraySort.compare,
 	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
@@ -82,14 +82,13 @@ A.Column = A.Base.create('column', A.Column, [], {}, {
 	ATTRS: {
 		sortFn: {
 			value: function(recA, recB, field, desc) {
-				var sorted = Compare(recA.getValue(field), recB.getValue(field), desc);
+				var sorted = compare(recA.getValue(field), recB.getValue(field), desc);
 
 				if (sorted === 0) {
-					return Compare(recA.get("id"), recB.get("id"), desc);
+					sorted = compare(recA.get('id'), recB.get('id'), desc);
 				}
-				else {
-					return sorted;
-				}
+
+				return sorted;
 			}
 		}
 	}
