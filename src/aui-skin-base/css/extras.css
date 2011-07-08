@@ -16,7 +16,7 @@ shadow or rounded corners.
 	box-shadow: 4px 4px 14px #777;
 }
 
-.aui-tab-active a {
+.aui-tab-active .aui-tab-label {
 	box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
 }
 
