@@ -1,5 +1,5 @@
-.aui-tabview-list, .aui-tab a {
-	background: #dbdcdc url(aui_sam_tabs_bg.png) repeat-x 0 0;
+.aui-tabview-list, .aui-tab-label {
+	background: #dbdcdc url(aui_sam_tabs_bg.png) repeat 0 0;
 	padding: 0 4px;
 	border: 1px solid #c9c9c9;
 }
@@ -18,12 +18,12 @@
 	border-width: 0;
 }
 
-.aui-tabview-list .first {
+.aui-tabview-list .first, .aui-tabview-list .aui-tab:first-child {
 	border-left-color: #b1b1b1;
 	border-left-width: 1px;
 }
 
-.aui-tabview-list .last {
+.aui-tabview-list .last, .aui-tabview-list .aui-tab:last-child {
 	border-right-color: #f0f1f2;
 	border-right-width: 1px;
 }
@@ -32,18 +32,18 @@
 	padding: 0;
 }
 
-.aui-tab a {
+.aui-tab-label {
 	border: 1px solid #f3f4f5;
 	border-color: #f3f4f5 #b2b2b2 #dbdcdc #f5f5f7;
 	color: #1f1e1e;
 	display: inline-block;
 	font-weight: normal;
-	padding: 6px 10px 5px;
+	padding: 5px 10px 4px;
 	text-decoration: none;
 	text-shadow: #fff 1px 1px 0px;
 }
 
-.aui-tab a:hover {
+.aui-tab-label:hover, .aui-state-hover .aui-tab-label {
 	color: #0066cc;
 }
 
@@ -53,13 +53,13 @@
 	padding: 0;
 }
 
-.aui-tab-active a, .aui-tab-active a:hover {
+.aui-tab-active .aui-tab-label, .aui-tab-active .aui-tab-label:hover {
 	background: #878787 url(aui_sam_tabs_active_bg.png);
 	border-color: #4b4b4b #4d4d4d;
 	color: #fff;
 	text-shadow: #3a3a3a -1px -1px 0px;
 }
 
-.aui-tab-active a:hover {
+.aui-tab-active .aui-tab-label:hover {
 	text-shadow: #222 -1px -1px 0px;
 }
