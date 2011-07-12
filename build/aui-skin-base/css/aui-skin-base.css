@@ -15,7 +15,7 @@ fieldset, img {
 	border-width: 0;
 }
 
-address, caption, cite, code, dfn, em, strong, th, var {
+address, caption, cite, code, dfn, th, var {
 	font-style: normal;
 	font-weight: normal;
 }
