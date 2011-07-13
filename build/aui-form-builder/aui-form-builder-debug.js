@@ -3250,6 +3250,7 @@ A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
 A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
 var L = A.Lang,
+	AArray = A.Array,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
 	isString = L.isString,
@@ -3360,14 +3361,14 @@ var FieldOptions = A.Component.create({
 		},
 
 		disabled: {
-			value: false,
-			validator: isBoolean
+			validator: isBoolean,
+			value: false
 		},
 
 		options: {
-			value: [],
 			getter: '_getOptions',
-			validator: isArray
+			validator: isArray,
+			value: []
 		},
 
 		addNode: {
@@ -3390,6 +3391,7 @@ var FieldOptions = A.Component.create({
 
 		renderUI: function() {
 			var instance = this;
+
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
@@ -3400,6 +3402,7 @@ var FieldOptions = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
+
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
@@ -3411,6 +3414,7 @@ var FieldOptions = A.Component.create({
 
 		add: function(option) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 
 			options.push(option);
@@ -3428,53 +3432,49 @@ var FieldOptions = A.Component.create({
 
 		remove: function(index) {
 			var instance = this;
+
 			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
-			if (instance.get(DISABLED)) {
-				return false;
-			}
+			if (!instance.get(DISABLED)) {
+				if (optionNode) {
+					optionNode.remove();
+				}
 
-			if (optionNode) {
-				optionNode.remove();
+				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 			}
-
-			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		},
 
 		_addNewOption: function() {
 			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
 
-			if (instance.get(DISABLED)) {
-				return false;
+			if (!instance.get(DISABLED)) {
+				var contentBox = instance.get(CONTENT_BOX);
+
+				var newOptionNode = instance._createOption(
+					{
+						label: instance.get(DEFAULT_LABEL),
+						value: instance.get(DEFAULT_VALUE)
+					}
+				);
+
+				contentBox.append(newOptionNode);
+
+				var newOptionNodeInput = newOptionNode.one(INPUT);
+
+				newOptionNodeInput.focus();
+				newOptionNodeInput.select();
+
+				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+
+				return newOptionNode;
 			}
-
-			var newOptionNode = instance._createOption(
-				{
-					label: instance.get(DEFAULT_LABEL),
-					value: instance.get(DEFAULT_VALUE)
-				}
-			);
-
-			newOptionNode = A.Node.create(newOptionNode);
-
-			contentBox.append(newOptionNode);
-
-			var newOptionNodeInput = newOptionNode.one(INPUT);
-
-			newOptionNodeInput.focus();
-			newOptionNodeInput.select();
-
-			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
-
-			return newOptionNode;
 		},
 
 		_createOption: function(option) {
 			var  instance = this;
 
-			return A.substitute(TPL_OPTION, option);
+			return A.Node.create(A.substitute(TPL_OPTION, option));
 		},
 
 		_getOptionNode: function(index) {
@@ -3485,20 +3485,24 @@ var FieldOptions = A.Component.create({
 
 		_getOptions: function(val) {
 			var instance = this;
+
 			var options = [];
 
 			if (instance.items) {
-				A.each(instance.items, function(option) {
-					var labelInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
-					var valueInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
+				A.each(
+					instance.items,
+					function(item, index, collection) {
+						var labelInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
+						var valueInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
 
-					options.push(
-						{
-							label: labelInput.val(),
-							value: valueInput.val()
-						}
-					);
-				});
+						var option = val[index] || {};
+
+						option.label = labelInput.val();
+						option.value = valueInput.val();
+
+						options.push(option);
+					}
+				);
 			}
 			else {
 				options = val;
@@ -3509,6 +3513,7 @@ var FieldOptions = A.Component.create({
 
 		_indexOfTarget: function(target) {
 			var instance = this;
+
 			var currentItem = target.ancestor(DOT + CSS_FIELD_OPTIONS_ITEM);
 
 			return instance.items.indexOf(currentItem);
@@ -3522,6 +3527,7 @@ var FieldOptions = A.Component.create({
 
 		_onClickOptionRemove: function(event) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 			var index = instance._indexOfTarget(event.target);
 
@@ -3530,6 +3536,7 @@ var FieldOptions = A.Component.create({
 
 		_onKeyPressOption: function(event) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 			var target = event.currentTarget;
 			var items = instance.items;
@@ -3546,6 +3553,7 @@ var FieldOptions = A.Component.create({
 
 		_uiSetDisabled: function(val) {
 			var instance = this;
+
 			var addNode = instance.get(ADD_NODE);
 			var boundingBox = instance.get(BOUNDING_BOX);
 
@@ -3562,14 +3570,18 @@ var FieldOptions = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
+
 			var buffer = [];
 			var contentBox = instance.get(CONTENT_BOX);
 
 			contentBox.empty();
 
-			A.each(val, function(item) {
-				contentBox.append(instance._createOption(item));
-			});
+			AArray.each(
+				val,
+				function(item, index, collection) {
+					contentBox.append(instance._createOption(item));
+				}
+			);
 
 			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		}
@@ -3656,6 +3668,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		renderSettings: function() {
 			var instance = this;
+
 			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.FormBuilderMultipleChoiceField.superclass.renderSettings.apply(instance, arguments);
@@ -3702,15 +3715,19 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
+
 			var templateNode = instance.get(TEMPLATE_NODE);
 
 			templateNode.empty();
 
-			A.each(val, function(item) {
-				templateNode.append(
-					A.substitute(instance.get(OPTION_TEMPLATE), item)
-				);
-			});
+			AArray.each(
+				val,
+				function(item, index, collection) {
+					templateNode.append(
+						A.substitute(instance.get(OPTION_TEMPLATE), item)
+					);
+				}
+			);
 		}
 
 	}
