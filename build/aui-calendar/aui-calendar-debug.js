@@ -118,6 +118,8 @@ var L = A.Lang,
 	CSS_WEEK = getCN(CALENDAR, WEEK),
 	CSS_WEEKDAYS = getCN(CALENDAR, WEEKDAYS),
 
+	EMPTY_DATES = [],
+
 	INT_MATRIX_DAYS_LENGTH = 42,
 	INT_MAX_PADDING_END = 14,
 
@@ -216,6 +218,225 @@ var Calendar = A.Component.create(
 			 * an element inside contentBox which matches
 			 * <code>aui-calendar-day-blank</code>.
 			 *
+			 * @attribute blankDays
+			 * @default Generated div element.
+			 * @type NodeList
+			 */
+			blankDays: {
+				valueFn: '_valueBlankDays'
+			},
+
+			/**
+			 * Current day number.
+			 *
+			 * @attribute currentDay
+			 * @default Current day
+			 * @type Number
+			 */
+			currentDay: {
+				setter: '_setDay',
+				value: (new Date()).getDate()
+			},
+
+			/**
+			 * Current month number.
+			 *
+			 * @attribute currentMonth
+			 * @default Current month
+			 * @type Number
+			 */
+			currentMonth: {
+				setter: '_setMonth',
+				value: (new Date()).getMonth()
+			},
+
+			/**
+			 * Current year number.
+			 *
+			 * @attribute currentYear
+			 * @default Current year
+			 * @type Number
+			 */
+			currentYear: {
+				setter: '_setYear',
+				value: (new Date()).getFullYear()
+			},
+
+			/**
+			 * The default date format string which can be overriden for
+			 * localization support. The format must be valid according to
+			 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+			 *
+			 * @attribute dateFormat
+			 * @default %m/%d/%Y
+			 * @type String
+			 */
+			dateFormat: {
+				value: '%m/%d/%Y',
+				validator: isString
+			},
+
+			/**
+			 * Dates which the calendar will show as selected by default.
+			 *
+			 * @attribute dates
+			 * @default Current date
+			 * @type Array
+			 */
+			dates: {
+				lazyAdd: false,
+				value: [ new Date() ],
+				validator: isArray,
+				setter: '_setDates'
+			},
+
+			/**
+			 * First day of the week: Sunday is 0, Monday is 1.
+			 *
+			 * @attribute firstDayOfWeek
+			 * @default 0
+			 * @type Number
+			 */
+			firstDayOfWeek: {
+				value: 0,
+				validator: isNumber
+			},
+
+			/**
+			 * DOM node reference to be the header of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-hd</code>.
+			 *
+			 * @attribute headerContentNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			headerContentNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_HEADER);
+				}
+			},
+
+			/**
+			 * DOM node reference to be the title of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute headerTitleNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			headerTitleNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_HEADER_TITLE);
+				}
+			},
+
+			/**
+			 * DOM node reference to be the icon next of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-prev</code>.
+			 *
+			 * @attribute iconNextNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			iconNextNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_NEXT);
+				}
+			},
+
+			/**
+			 * DOM node reference to be the icon prev of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-prev</code>.
+			 *
+			 * @attribute iconPrevNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			iconPrevNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_PREV);
+				}
+			},
+
+			/**
+			 * Maximum allowable date. Values supported by the Date
+			 * constructor are supported.
+			 *
+			 * @attribute maxDate
+			 * @default null
+			 * @type String | Date
+			 */
+			maxDate: {
+				value: null,
+				setter: '_setMinMaxDate'
+			},
+
+			/**
+			 * Minimum allowable date. Values supported by the Date
+			 * constructor are supported.
+			 *
+			 * @attribute minDate
+			 * @default null
+			 * @type Date | String
+			 */
+			minDate: {
+				value: null,
+				setter: '_setMinMaxDate'
+			},
+
+			/**
+			 * NodeList reference containing the days of the month of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-day</code>.
+			 *
+			 * @attribute monthDays
+			 * @default Generated div element.
+			 * @type NodeList
+			 */
+			monthDays: {
+				valueFn: '_valueMonthDays'
+			},
+
+			/**
+			 * DOM node reference which contains all month days nodes of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-monthdays</code>.
+			 *
+			 * @attribute monthDaysNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			monthDaysNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_MONTHDAYS);
+				}
+			},
+
+			/**
+			 * DOM node reference to be the "none" link of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute noneLinkNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			noneLinkNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_NONE_LINK);
+				}
+			},
+
+			/**
+			 * NodeList containing all the DOM elements for
+			 * each blank day. If not specified try to query using HTML_PARSER
+			 * an element inside contentBox which matches
+			 * <code>aui-calendar-day-blank</code>.
+			 *
 			 * @attribute paddingDaysEnd
 			 * @default Generated div element.
 			 * @type NodeList
@@ -236,240 +457,6 @@ var Calendar = A.Component.create(
 			 */
 			paddingDaysStart: {
 				valueFn: '_valuePaddingDaysStart'
-			},
-
-			/**
-			 * NodeList containing all the DOM elements for
-			 * each blank day. If not specified try to query using HTML_PARSER
-			 * an element inside contentBox which matches
-			 * <code>aui-calendar-day-blank</code>.
-			 *
-			 * @attribute blankDays
-			 * @default Generated div element.
-			 * @type NodeList
-			 */
-			blankDays: {
-				valueFn: '_valueBlankDays'
-			},
-
-			/**
-			 * Current day number.
-			 *
-			 * @attribute currentDay
-			 * @default Current day
-			 * @type Number
-			 */
-			currentDay: {
-				setter: toNumber,
-				value: (new Date()).getDate()
-			},
-
-			/**
-			 * Current month number.
-			 *
-			 * @attribute currentMonth
-			 * @default Current month
-			 * @type Number
-			 */
-			currentMonth: {
-				setter: toNumber,
-				value: (new Date()).getMonth()
-			},
-
-			/**
-			 * Current year number.
-			 *
-			 * @attribute currentYear
-			 * @default Current year
-			 * @type Number
-			 */
-			currentYear: {
-				setter: toNumber,
-				value: (new Date()).getFullYear()
-			},
-
-			/**
-			 * Dates which the calendar will show as selected by default.
-			 *
-			 * @attribute dates
-			 * @default Current date
-			 * @type Array
-			 */
-			dates: {
-				lazyAdd: false,
-				value: [ new Date() ],
-				validator: isArray,
-				setter: '_setDates'
-			},
-
-			/**
-			 * The default date format string which can be overriden for
-	         * localization support. The format must be valid according to
-	         * <a href="DataType.Date.html">A.DataType.Date.format</a>.
-			 *
-			 * @attribute dateFormat
-			 * @default %m/%d/%Y
-			 * @type String
-			 */
-			dateFormat: {
-				value: '%m/%d/%Y',
-				validator: isString
-			},
-
-			/**
-			 * First day of the week: Sunday is 0, Monday is 1.
-			 *
-			 * @attribute firstDayOfWeek
-			 * @default 0
-			 * @type Number
-			 */
-			firstDayOfWeek: {
-				value: 0,
-				validator: isNumber
-			},
-
-			/**
-			 * DOM node reference to be the header of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-hd</code>.
-			 *
-			 * @attribute headerContentNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			headerContentNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_HEADER);
-				}
-			},
-
-			/**
-			 * DOM node reference to be the title of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
-			 *
-			 * @attribute headerTitleNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			headerTitleNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_HEADER_TITLE);
-				}
-			},
-
-			/**
-			 * DOM node reference to be the icon next of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-prev</code>.
-			 *
-			 * @attribute iconNextNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			iconNextNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NEXT);
-				}
-			},
-
-			/**
-			 * DOM node reference to be the icon prev of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-prev</code>.
-			 *
-			 * @attribute iconPrevNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			iconPrevNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_PREV);
-				}
-			},
-
-			/**
-			 * Maximum allowable date. Values supported by the Date
-             * constructor are supported.
-			 *
-			 * @attribute maxDate
-			 * @default null
-			 * @type String | Date
-			 */
-			maxDate: {
-				value: null,
-				setter: '_setMinMaxDate'
-			},
-
-			/**
-			 * Minimum allowable date. Values supported by the Date
-             * constructor are supported.
-			 *
-			 * @attribute minDate
-			 * @default null
-			 * @type Date | String
-			 */
-			minDate: {
-				value: null,
-				setter: '_setMinMaxDate'
-			},
-
-			/**
-			 * NodeList reference containing the days of the month of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-day</code>.
-			 *
-			 * @attribute monthDays
-			 * @default Generated div element.
-			 * @type NodeList
-			 */
-			monthDays: {
-				valueFn: '_valueMonthDays'
-			},
-
-			/**
-			 * DOM node reference which contains all month days nodes of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-monthdays</code>.
-			 *
-			 * @attribute monthDaysNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			monthDaysNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_MONTHDAYS);
-				}
-			},
-
-			/**
-			 * DOM node reference to be the "none" link of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
-			 *
-			 * @attribute noneLinkNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			noneLinkNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NONE_LINK);
-				}
-			},
-
-			/**
-			 * DOM node reference to be the "today" link of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-title</code>.
-			 *
-			 * @attribute todayLinkNode
-			 * @default Generated div element.
-			 * @type Node
-			 */
-			todayLinkNode: {
-				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
-				}
 			},
 
 			/**
@@ -522,9 +509,24 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * DOM node reference to be the "today" link of the Calendar. If not
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-title</code>.
+			 *
+			 * @attribute todayLinkNode
+			 * @default Generated div element.
+			 * @type Node
+			 */
+			todayLinkNode: {
+				valueFn: function() {
+					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
+				}
+			},
+
+			/**
 			 * NodeList reference containing the days of the week of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-week</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-week</code>.
 			 *
 			 * @attribute weekDays
 			 * @default Generated div element.
@@ -536,8 +538,8 @@ var Calendar = A.Component.create(
 
 			/**
 			 * DOM node reference which contains all week days nodes of the Calendar. If not
-             * specified try to query using HTML_PARSER an element inside
-             * contentBox which matches <code>aui-calendar-weekdays</code>.
+			 * specified try to query using HTML_PARSER an element inside
+			 * contentBox which matches <code>aui-calendar-weekdays</code>.
 			 *
 			 * @attribute weekDaysNode
 			 * @default Generated div element.
@@ -591,19 +593,19 @@ var Calendar = A.Component.create(
 
 			headerTitleNode: DOT+CSS_TITLE,
 
-			monthDaysNode: DOT+CSS_MONTHDAYS,
-
-			weekDaysNode: DOT+CSS_WEEKDAYS,
-
 			headerContentNode: DOT+CSS_HEADER,
 
 			iconNextNode: DOT+CSS_NEXT,
 
 			iconPrevNode: DOT+CSS_PREV,
 
+			monthDaysNode: DOT+CSS_MONTHDAYS,
+
+			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE,
+
 			todayLinkNode: DOT+CSS_CALENDAR_LINK_TODAY,
 
-			noneLinkNode: DOT+CSS_CALENDAR_LINK_NONE
+			weekDaysNode: DOT+CSS_WEEKDAYS
 		},
 
 		UI_ATTRS: [DATES, SHOW_TODAY, ALLOW_NONE],
@@ -624,39 +626,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Create the DOM structure for the Calendar. Lifecycle.
-			 *
-			 * @method renderUI
-			 * @protected
-			 */
-			renderUI: function() {
-				var instance = this;
-
-				// creating properties references for performance
-				instance.blankDays = instance.get(BLANK_DAYS);
-				instance.headerContentNode = instance.get(HEADER_CONTENT_NODE);
-				instance.headerTitleNode = instance.get(HEADER_TITLE_NODE);
-				instance.iconNextNode = instance.get(ICON_NEXT_NODE);
-				instance.iconPrevNode = instance.get(ICON_PREV_NODE);
-				instance.monthDays = instance.get(MONTH_DAYS);
-				instance.monthDaysNode = instance.get(MONTH_DAYS_NODE);
-				instance.noneLinkNode = instance.get(NONE_LINK_NODE);
-				instance.paddingDaysEnd = instance.get(PADDING_DAYS_END);
-				instance.paddingDaysStart = instance.get(PADDING_DAYS_START);
-				instance.todayLinkNode = instance.get(TODAY_LINK_NODE);
-				instance.weekDays = instance.get(WEEK_DAYS);
-				instance.weekDaysNode = instance.get(WEEK_DAYS_NODE);
-
-				instance._renderWeekDays();
-				instance._renderBlankDays();
-				instance._renderPaddingDaysStart();
-				instance._renderMonthDays();
-				instance._renderPaddingDaysEnd();
-				instance._renderIconControls();
-				instance._renderTitleNode();
-			},
-
-			/**
 			 * Bind the events on the Calendar UI. Lifecycle.
 			 *
 			 * @method bindUI
@@ -670,18 +639,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Sync the Calendar UI. Lifecycle.
-			 *
-			 * @method syncUI
-			 * @protected
-			 */
-			syncUI: function() {
-				var instance = this;
-
-				instance._syncStdContent();
-			},
-
-			/**
 			 * Clear all selected dates on the Calendar.
 			 *
 			 * @method clear
@@ -689,7 +646,7 @@ var Calendar = A.Component.create(
 			clear: function() {
 				var instance = this;
 
-				instance.set(DATES, []);
+				instance.set(DATES, Calendar.EMPTY_DATES);
 			},
 
 			/**
@@ -767,21 +724,6 @@ var Calendar = A.Component.create(
 		    },
 
 			/**
-			 * Get the first day of week of the passed year and month.
-			 *
-			 * @method getFirstDayOfWeek
-			 * @param {Number} year Year in the format YYYY.
-			 * @param {Number} month 0 for January 11 for December.
-			 * @return {Number}
-			 */
-			getFirstDayOfWeek: function() {
-				var instance = this;
-				var firstDayOfWeek = instance.get(FIRST_DAY_OF_WEEK);
-
-				return DateMath.getFirstDayOfWeek(instance.findMonthStart(), firstDayOfWeek);
-			},
-
-			/**
 			 * Get an Array with selected dates with detailed information (day, month, year).
 			 *<pre><code>[{
 			 *    year: date.getFullYear(),
@@ -805,6 +747,21 @@ var Calendar = A.Component.create(
 				});
 
 				return dates;
+			},
+
+			/**
+			 * Get the first day of week of the passed year and month.
+			 *
+			 * @method getFirstDayOfWeek
+			 * @param {Number} year Year in the format YYYY.
+			 * @param {Number} month 0 for January 11 for December.
+			 * @return {Number}
+			 */
+			getFirstDayOfWeek: function() {
+				var instance = this;
+				var firstDayOfWeek = instance.get(FIRST_DAY_OF_WEEK);
+
+				return DateMath.getFirstDayOfWeek(instance.findMonthStart(), firstDayOfWeek);
 			},
 
 			/**
@@ -920,6 +877,40 @@ var Calendar = A.Component.create(
 				instance.set(DATES, dates);
 			},
 
+
+			/**
+			 * Create the DOM structure for the Calendar. Lifecycle.
+			 *
+			 * @method renderUI
+			 * @protected
+			 */
+			renderUI: function() {
+				var instance = this;
+
+				// creating properties references for performance
+				instance.blankDays = instance.get(BLANK_DAYS);
+				instance.headerContentNode = instance.get(HEADER_CONTENT_NODE);
+				instance.headerTitleNode = instance.get(HEADER_TITLE_NODE);
+				instance.iconNextNode = instance.get(ICON_NEXT_NODE);
+				instance.iconPrevNode = instance.get(ICON_PREV_NODE);
+				instance.monthDays = instance.get(MONTH_DAYS);
+				instance.monthDaysNode = instance.get(MONTH_DAYS_NODE);
+				instance.noneLinkNode = instance.get(NONE_LINK_NODE);
+				instance.paddingDaysEnd = instance.get(PADDING_DAYS_END);
+				instance.paddingDaysStart = instance.get(PADDING_DAYS_START);
+				instance.todayLinkNode = instance.get(TODAY_LINK_NODE);
+				instance.weekDays = instance.get(WEEK_DAYS);
+				instance.weekDaysNode = instance.get(WEEK_DAYS_NODE);
+
+				instance._renderWeekDays();
+				instance._renderBlankDays();
+				instance._renderPaddingDaysStart();
+				instance._renderMonthDays();
+				instance._renderPaddingDaysEnd();
+				instance._renderIconControls();
+				instance._renderTitleNode();
+			},
+
 			/**
 			 * Select the current date returned by
 		     * <a href="Calendar.html#method_getCurrentDate">getCurrentDate</a>.
@@ -997,6 +988,18 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Sync the Calendar UI. Lifecycle.
+			 *
+			 * @method syncUI
+			 * @protected
+			 */
+			syncUI: function() {
+				var instance = this;
+
+				instance._syncStdContent();
+			},
+
+			/**
 			 * Bind DOM events to the UI.
 			 *
 			 * @method _bindDelegate
@@ -1016,6 +1019,8 @@ var Calendar = A.Component.create(
 				boundingBox.delegate('click', A.bind(instance._onClickDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseenter', A.bind(instance._onMouseEnterDays, instance), DOT+CSS_DAY);
 				boundingBox.delegate('mouseleave', A.bind(instance._onMouseLeaveDays, instance), DOT+CSS_DAY);
+
+				instance.after('datesChange', instance._handleSelectEvent);
 			},
 
 			_bindDataAttrs: function(node, date) {
@@ -1029,32 +1034,6 @@ var Calendar = A.Component.create(
 				node.toggleClass(
 					CSS_CALENDAR_DISABLED,
 					instance.isOutOfRangeDate(date)
-				);
-			},
-
-		    /**
-		     * Create the custom events used on the Calendar.
-		     *
-		     * @method _createEvents
-		     * @private
-		     */
-			_createEvents: function() {
-				var instance = this;
-
-				// create publish function for kweight optimization
-				var publish = function(name, fn) {
-					instance.publish(name, {
-			            defaultFn: fn,
-			            queuable: false,
-			            emitFacade: true,
-			            bubbles: true,
-			            prefix: CALENDAR
-			        });
-				};
-
-				publish(
-					EV_CALENDAR_SELECT,
-					instance._defSelectFn
 				);
 			},
 
@@ -1083,45 +1062,39 @@ var Calendar = A.Component.create(
 			},
 
 		    /**
-		     * Default calendar:select handler
+		     * Create the custom events used on the Calendar.
 		     *
-		     * @method _defSelectFn
-		     * @param {EventFacade} event The Event object
-		     * @protected
+		     * @method _createEvents
+		     * @private
 		     */
-			_defSelectFn: function(event) {
+			_createEvents: function() {
 				var instance = this;
 
-				instance._syncView();
+				// create publish function for kweight optimization
+				var publish = function(name, fn) {
+					instance.publish(name, {
+			            defaultFn: fn,
+			            queuable: false,
+			            emitFacade: true,
+			            bubbles: true,
+			            prefix: CALENDAR
+			        });
+				};
+
+				publish(EV_CALENDAR_SELECT);
 			},
 
-			 /**
-			  * Get the locale map containing the respective values for the
-		      * <a href="Widget.html#config_locale">locale</a> used.
-			  *
-			  * <pre><code>A.DataType.Date.Locale['pt-br'] = A.merge(
-			  *	A.DataType.Date.Locale['en'], {
-			  *		a: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Fri', 'Sat'],
-			  *		A: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
-			  *		b: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
-			  *		B: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho', 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-			  *		c: '%a %d %b %Y %T %Z',
-			  *		p: ['AM', 'PM'],
-			  *		P: ['am', 'pm'],
-			  *		r: '%I:%M:%S %p',
-			  *		x: '%d/%m/%y',
-			  *		X: '%T'
-			  *	}
-			  *);</code></pre>
-			  *
-			  * @method _getLocaleMap
-			  * @protected
-			  * @return {Object}
-			  */
-			_getLocaleMap: function() {
+			_getDateValue: function(value, methodName) {
 				var instance = this;
 
-				return A.DataType.Date.Locale[ instance.get(LOCALE) ];
+				if (value == -1) {
+					value = A.Attribute.INVALID_VALUE;
+				}
+				else {
+					value = toNumber(value);
+				}
+
+				return value;
 			},
 
 			/**
@@ -1167,6 +1140,35 @@ var Calendar = A.Component.create(
 				var name = instance._getDayNameShort(weekDay);
 
 				return name.slice(0, name.length-1);
+			},
+
+			 /**
+			  * Get the locale map containing the respective values for the
+		      * <a href="Widget.html#config_locale">locale</a> used.
+			  *
+			  * <pre><code>A.DataType.Date.Locale['pt-br'] = A.merge(
+			  *	A.DataType.Date.Locale['en'], {
+			  *		a: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Fri', 'Sat'],
+			  *		A: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sabado'],
+			  *		b: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+			  *		B: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho', 'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			  *		c: '%a %d %b %Y %T %Z',
+			  *		p: ['AM', 'PM'],
+			  *		P: ['am', 'pm'],
+			  *		r: '%I:%M:%S %p',
+			  *		x: '%d/%m/%y',
+			  *		X: '%T'
+			  *	}
+			  *);</code></pre>
+			  *
+			  * @method _getLocaleMap
+			  * @protected
+			  * @return {Object}
+			  */
+			_getLocaleMap: function() {
+				var instance = this;
+
+				return A.DataType.Date.Locale[ instance.get(LOCALE) ];
 			},
 
 			/**
@@ -1238,7 +1240,7 @@ var Calendar = A.Component.create(
 		     * @param {EventFacade} event calendar:select event facade
 		     * @protected
 		     */
-			_handleSelectEvent: function() {
+			_handleSelectEvent: function(event) {
 				var instance = this;
 
 				instance.fire(EV_CALENDAR_SELECT, instance._getSelectEventData());
@@ -1358,6 +1360,38 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Render Calendar icon controls elements.
+			 *
+			 * @method _renderIconControls
+			 * @protected
+			 */
+			_renderIconControls: function() {
+				var instance = this;
+
+				instance.headerContentNode.append(
+					instance.iconNextNode
+				);
+
+				instance.headerContentNode.append(
+					instance.iconPrevNode
+				);
+			},
+
+			/**
+			 * Render Calendar DOM month days elements.
+			 *
+			 * @method _renderMonthDays
+			 * @protected
+			 */
+			_renderMonthDays: function() {
+				var instance = this;
+
+				instance.monthDays.appendTo(
+					instance.monthDaysNode
+				);
+			},
+
+			/**
 			 * Render Calendar DOM padding days elements. Padding days are used to show other month day values.
 			 *
 			 * @method _renderPaddingDaysEnd
@@ -1396,38 +1430,6 @@ var Calendar = A.Component.create(
 
 				instance.headerContentNode.append(
 					instance.headerTitleNode
-				);
-			},
-
-			/**
-			 * Render Calendar icon controls elements.
-			 *
-			 * @method _renderIconControls
-			 * @protected
-			 */
-			_renderIconControls: function() {
-				var instance = this;
-
-				instance.headerContentNode.append(
-					instance.iconNextNode
-				);
-
-				instance.headerContentNode.append(
-					instance.iconPrevNode
-				);
-			},
-
-			/**
-			 * Render Calendar DOM month days elements.
-			 *
-			 * @method _renderMonthDays
-			 * @protected
-			 */
-			_renderMonthDays: function() {
-				var instance = this;
-
-				instance.monthDays.appendTo(
-					instance.monthDaysNode
 				);
 			},
 
@@ -1482,6 +1484,20 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Setter for the <a href="Calendar.html#config_dates">currentDay</a> attribute.
+			 *
+			 * @method _setDay
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setDay: function(value) {
+				var instance = this;
+
+				return instance._getDateValue(value, 'getDate');
+			},
+
+			/**
 			 * Setter for the <a href="Calendar.html#config_maxDates">maxDates</a> or
 		     * <a href="Calendar.html#config_mainDates">minDates</a> attributes.
 			 *
@@ -1501,25 +1517,47 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Sync Calendar StdContent.
+			 * Setter for the <a href="Calendar.html#config_dates">currentMonth</a> attribute.
 			 *
-			 * @method _syncStdContent
+			 * @method _setMonth
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setMonth: function(value) {
+				var instance = this;
+
+				return instance._getDateValue(value, 'getMonth');
+			},
+
+			/**
+			 * Setter for the <a href="Calendar.html#config_dates">currentYear</a> attribute.
+			 *
+			 * @method _setYear
+			 * @param int value
+			 * @protected
+			 * @return number
+			 */
+			_setYear: function(value) {
+				var instance = this;
+
+				return instance._getDateValue(value, 'getFullYear');
+			},
+
+			/**
+			 * Sync Calendar header UI.
+			 *
+			 * @method _syncHeader
 			 * @protected
 			 */
-			_syncStdContent: function() {
+			_syncHeader: function() {
 				var instance = this;
-				var bodyContent = A.Node.create('<div></div>');
-				var footContent = A.Node.create('<div class="' + CSS_HELPER_CLEARFIX + '"></div>');
+				var currentMonth = instance.get(CURRENT_MONTH);
+				var currentYear = instance.get(CURRENT_YEAR);
 
-				bodyContent.append(instance.weekDaysNode);
-				bodyContent.append(instance.monthDaysNode);
+				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
 
-				footContent.append(instance.todayLinkNode);
-				footContent.append(instance.noneLinkNode);
-
-				instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode.getDOM());
-				instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
-				instance.setStdModContent(WidgetStdMod.FOOTER, footContent);
+				instance.headerTitleNode.html(title);
 			},
 
 			/**
@@ -1607,22 +1645,6 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Sync Calendar header UI.
-			 *
-			 * @method _syncHeader
-			 * @protected
-			 */
-			_syncHeader: function() {
-				var instance = this;
-				var currentMonth = instance.get(CURRENT_MONTH);
-				var currentYear = instance.get(CURRENT_YEAR);
-
-				var title = [ instance._getMonthName(currentMonth), currentYear ].join(SPACE);
-
-				instance.headerTitleNode.html(title);
-			},
-
-			/**
 			 * Sync Calendar selected days UI.
 			 *
 			 * @method _syncSelectedDays
@@ -1655,6 +1677,28 @@ var Calendar = A.Component.create(
 					},
 					dates
 				);
+			},
+
+			/**
+			 * Sync Calendar StdContent.
+			 *
+			 * @method _syncStdContent
+			 * @protected
+			 */
+			_syncStdContent: function() {
+				var instance = this;
+				var bodyContent = A.Node.create('<div></div>');
+				var footContent = A.Node.create('<div class="' + CSS_HELPER_CLEARFIX + '"></div>');
+
+				bodyContent.append(instance.weekDaysNode);
+				bodyContent.append(instance.monthDaysNode);
+
+				footContent.append(instance.todayLinkNode);
+				footContent.append(instance.noneLinkNode);
+
+				instance.setStdModContent(WidgetStdMod.HEADER, instance.headerContentNode.getDOM());
+				instance.setStdModContent(WidgetStdMod.BODY, bodyContent);
+				instance.setStdModContent(WidgetStdMod.FOOTER, footContent);
 			},
 
 			/**
@@ -1696,19 +1740,7 @@ var Calendar = A.Component.create(
 			_uiSetDates: function(val) {
 				var instance = this;
 
-				instance._handleSelectEvent();
-			},
-
-			/**
-			 * Sync the UI of the Calendar when showToday attribute change.
-			 *
-			 * @method _uiSetShowToday
-			 * @protected
-			 */
-			_uiSetShowToday: function(val) {
-				var instance = this;
-
-				instance._conditionalToggle(instance.todayLinkNode, val);
+				instance._syncView();
 			},
 
 			/**
@@ -1733,35 +1765,16 @@ var Calendar = A.Component.create(
 			},
 
 			/**
-			 * Default value for paddingDaysEnd attribute, passed as valueFn.
+			 * Sync the UI of the Calendar when showToday attribute change.
 			 *
-			 * @method _valuePaddingDaysEnd
+			 * @method _uiSetShowToday
 			 * @protected
 			 */
-			_valuePaddingDaysEnd: function() {
+			_uiSetShowToday: function(val) {
 				var instance = this;
-				var buffer = [];
-				var day = 0;
 
-				while (day++ <= INT_MAX_PADDING_END) {
-					TPL_CALENDAR_DAY_PADDING_END[1] = day;
-
-					buffer.push(TPL_CALENDAR_DAY_PADDING_END.join(EMPTY_STR));
-				}
-
-				return A.NodeList.create(buffer.join(EMPTY_STR));
+				instance._conditionalToggle(instance.todayLinkNode, val);
 			},
-
-			/**
-			 * Default value for paddingDaysStart attribute, passed as valueFn.
-			 *
-			 * @method _valuePaddingDaysStart
-			 * @protected
-			 */
-			_valuePaddingDaysStart: function() {
-				return this._repeateTemplate(TPL_CALENDAR_DAY_PADDING_START, DateMath.WEEK_LENGTH);
-			},
-
 
 			/**
 			 * Default value for blankDays attribute, passed as valueFn.
@@ -1795,6 +1808,36 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Default value for paddingDaysEnd attribute, passed as valueFn.
+			 *
+			 * @method _valuePaddingDaysEnd
+			 * @protected
+			 */
+			_valuePaddingDaysEnd: function() {
+				var instance = this;
+				var buffer = [];
+				var day = 0;
+
+				while (day++ <= INT_MAX_PADDING_END) {
+					TPL_CALENDAR_DAY_PADDING_END[1] = day;
+
+					buffer.push(TPL_CALENDAR_DAY_PADDING_END.join(EMPTY_STR));
+				}
+
+				return A.NodeList.create(buffer.join(EMPTY_STR));
+			},
+
+			/**
+			 * Default value for paddingDaysStart attribute, passed as valueFn.
+			 *
+			 * @method _valuePaddingDaysStart
+			 * @protected
+			 */
+			_valuePaddingDaysStart: function() {
+				return this._repeateTemplate(TPL_CALENDAR_DAY_PADDING_START, DateMath.WEEK_LENGTH);
+			},
+
+			/**
 			 * Default value for weekDays attribute, passed as valueFn.
 			 *
 			 * @method _valueWeekDays
@@ -1819,6 +1862,8 @@ var Calendar = A.Component.create(
 		}
 	}
 );
+
+Calendar.EMPTY_DATES = EMPTY_DATES;
 
 A.Calendar = A.Base.create(CALENDAR, Calendar, [A.WidgetStdMod]);
 

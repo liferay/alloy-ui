@@ -1451,7 +1451,7 @@ var FormBuilder = A.Component.create({
 						TPL_DRAG_NODE,
 						{
 							icon: item.iconClass || DEFAULT_ICON_CLASS,
-							label: item.label,
+							label: item.entryLabel || item.label,
 							key: item.key || index,
 							type: item.type,
 							unique: item.unique
@@ -1645,16 +1645,6 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
-		 * The id of the available field that originated the field
-		 *
-		 * @attribute key
-		 * @private
-		 */
-		key: {
-			value: EMPTY_STR
-		},
-
-		/**
 		 * A fixed field cannot be removed once instanciated
 		 *
 		 * @attribute fixed
@@ -1691,12 +1681,31 @@ var FormBuilderField = A.Component.create({
 		},
 
 		/**
+		 * The id of the available field that originated the field
+		 *
+		 * @attribute key
+		 * @private
+		 */
+		key: {
+			value: EMPTY_STR
+		},
+
+		/**
 		 * The label of the field
 		 *
 		 * @attribute label
 		 */
 		label: {
 			value: EMPTY_STR
+		},
+
+		/**
+		 * The localizationMap of the field
+		 *
+		 * @attribute label
+		 */
+		localizationMap: {
+			value: {}
 		},
 
 		/**
