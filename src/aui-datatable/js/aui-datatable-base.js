@@ -1,6 +1,7 @@
 // DataTable component is beta, over-writing buggy logic on it before they get fixed on YUI
 
 var Lang = A.Lang,
+	compare = A.ArraySort.compare,
 	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
@@ -75,6 +76,22 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		}
 	}
 }, {});
+
+A.Column = A.Base.create('column', A.Column, [], {}, {
+	ATTRS: {
+		sortFn: {
+			value: function(recA, recB, field, desc) {
+				var sorted = compare(recA.getValue(field), recB.getValue(field), desc);
+
+				if (sorted === 0) {
+					sorted = compare(recA.get('id'), recB.get('id'), desc);
+				}
+
+				return sorted;
+			}
+		}
+	}
+});
 
 A.Columnset = A.Base.create('columnset', A.Columnset, [], {
 	getColumn: function(i) {
