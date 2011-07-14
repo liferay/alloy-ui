@@ -2557,7 +2557,7 @@ Y.extend(CanvasGraphic, Y.BaseGraphic, {
     {
         if(!this._frag)
         {
-            this._frag = document.createDocumentFragment();
+            this._frag = DOCUMENT.createDocumentFragment();
         }
         return this._frag;
     },
