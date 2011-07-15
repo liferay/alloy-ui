@@ -156,6 +156,21 @@ A.Recordset = A.Base.create('recordset', A.Recordset, [], {
 	}
 }, {});
 
+// A.Plugin.DataTableScroll _syncWidths YUI implementation breaks when recordset is empty.
+A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableScroll, [], {
+	_syncWidths: function() {
+		try {
+			A.Plugin.DataTableScroll.superclass._syncWidths.apply(this, arguments);
+		}
+		catch(e) {
+		}
+	}
+},
+{
+    NS: "scroll",
+    NAME: "dataTableScroll"
+});
+
 }, '@VERSION@' ,{requires:['aui-base','datatable','plugin']});
 AUI.add('aui-datatable-events', function(A) {
 // TODO - optimize code
