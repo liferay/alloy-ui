@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 /**
@@ -101,7 +101,7 @@ if (typeof YUI != 'undefined') {
 (function() {
 
     var proto, prop,
-        VERSION = '3.3.0',
+        VERSION = '3.4.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         DOC_LABEL = 'yui3-js-enabled',
@@ -3299,7 +3299,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.3.0' );
+}, '3.4.0' );
 YUI.add('get', function(Y) {
 
 /**
@@ -4159,7 +4159,7 @@ Y.Get = {
 };
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -4349,7 +4349,7 @@ add('load', '9', {
 });
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -4437,7 +4437,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -4546,7 +4546,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -4622,10 +4622,10 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.3.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
+YUI.add('yui', function(Y){}, '3.4.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
 
 ;(function() {
 	YUI.AUI_config = {
@@ -4661,6 +4661,7 @@ YUI.add('yui', function(Y){}, '3.3.0' ,{use:['yui-base','get','features','intl-b
 						'aui-datepicker': {submodules: {'aui-datepicker-select': {skinnable:true, requires:['aui-datepicker-base','aui-button-item']}, 'aui-datepicker-base': {skinnable:true, requires:['aui-calendar','aui-overlay-context']} }, use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true},
 						'aui-debounce': {skinnable:false},
 						'aui-delayed-task': {skinnable:false},
+						'aui-diagram-builder': {submodules: {'aui-diagram-builder-impl': {skinnable:true, requires:['aui-diagram-builder-base','overlay']}, 'aui-diagram-builder-base': {skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']} }, use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true},
 						'aui-dialog-iframe': {skinnable:true, requires:['aui-base','aui-loading-mask','aui-resize-iframe','plugin']},
 						'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
 						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
