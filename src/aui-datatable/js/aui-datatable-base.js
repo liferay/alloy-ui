@@ -154,3 +154,18 @@ A.Recordset = A.Base.create('recordset', A.Recordset, [], {
 		instance.update(record, instance.getRecordIndex(record));
 	}
 }, {});
+
+// A.Plugin.DataTableScroll _syncWidths YUI implementation breaks when recordset is empty.
+A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableScroll, [], {
+	_syncWidths: function() {
+		try {
+			A.Plugin.DataTableScroll.superclass._syncWidths.apply(this, arguments);
+		}
+		catch(e) {
+		}
+	}
+},
+{
+    NS: "scroll",
+    NAME: "dataTableScroll"
+});
