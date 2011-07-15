@@ -611,4 +611,4 @@ var TabView = A.Component.create(
 
 A.TabView = TabView;
 
-}, '@VERSION@' ,{requires:['aui-component','aui-state-interaction']});
+}, '@VERSION@' ,{requires:['aui-component','aui-state-interaction'], skinnable:true});
