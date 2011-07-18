@@ -39,11 +39,15 @@ public class Attribute extends BaseModel {
 	}
 
 	public String getInputType() {
-		return TypeUtil.getInputJavaType(_inputType);
+		return getInputType(false);
+	}
+
+	public String getInputType(boolean removeGenericsType) {
+		return TypeUtil.getInputJavaType(_inputType, removeGenericsType);
 	}
 
 	public String getInputTypeSimpleClassName() {
-		return getTypeSimpleClassName(getInputType());
+		return getTypeSimpleClassName(getInputType(true));
 	}
 
 	public String getOutputType() {
