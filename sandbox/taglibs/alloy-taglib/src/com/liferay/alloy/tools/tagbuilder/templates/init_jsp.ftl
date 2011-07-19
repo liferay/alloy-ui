@@ -56,7 +56,7 @@ _options.putAll(dynamicAttributes);
 		<#if (isPrimitiveType(outputSimpleClassName) || isNumericAttribute(outputSimpleClassName))>
 			<#assign value = "String.valueOf(request.getAttribute(" + namespacedName + "))">
 		<#else>
-			<#assign value = "(" + attribute.getInputType() + ")request.getAttribute(" + namespacedName + ")">
+			<#assign value = "(" + attribute.getRawInputType() + ")request.getAttribute(" + namespacedName + ")">
 		</#if>
 
 		<#if outputSimpleClassName == "ArrayList">
