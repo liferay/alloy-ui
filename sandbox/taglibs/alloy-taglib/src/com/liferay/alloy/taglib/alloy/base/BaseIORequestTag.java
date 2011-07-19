@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -821,6 +822,7 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onXdrChange", onXdrChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_active = false;
 		_arguments = null;
@@ -903,10 +905,12 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_onXdrChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "active", _active);
 		setNamespacedAttribute(request, "arguments", _arguments);

@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -1311,6 +1312,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_align = null;
 		_overlaycontextBodyContent = null;
@@ -1442,10 +1444,12 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_onZIndexChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "overlaycontextBodyContent", _overlaycontextBodyContent);

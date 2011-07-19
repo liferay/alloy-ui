@@ -14,6 +14,9 @@
 
 package com.liferay.alloy.util;
 
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -65,12 +68,16 @@ public class TypeUtil {
 		_registerTypes(_OUTPUT_TYPES, STRINGS, String.class.getName());
 	}
 
-	public static String getInputJavaType(String type) {
-		return _instance._getInputJavaType(type);
+	public static String getInputJavaType(
+			String type, boolean removeGenericsType) {
+
+		return _instance._getInputJavaType(type, removeGenericsType);
 	}
 
-	public static String getOutputJavaType(String type) {
-		return _instance._getOutputJavaType(type);
+	public static String getOutputJavaType(
+		String type, boolean removeGenericsType) {
+
+		return _instance._getOutputJavaType(type, removeGenericsType);
 	}
 
 	public static boolean isPrimitiveType(String type) {
@@ -79,7 +86,23 @@ public class TypeUtil {
 				TypeUtil.LONG.equals(type) || TypeUtil.SHORT.equals(type));
 	}
 
-	private String _getInputJavaType(String type) {
+	private String _getGenericsType(String type) {
+		int begin = type.indexOf(CharPool.LESS_THAN);
+		int end = type.indexOf(CharPool.GREATER_THAN);
+		String genericsType = null;
+
+		if ((begin > -1) && (end > -1)) {
+			genericsType = type.substring(begin + 1, end);
+		}
+
+		return genericsType;
+	}
+
+	private String _getInputJavaType(String type, boolean removeGenericsType) {
+		if (removeGenericsType) {
+			type = _removeGenericsType(type);
+		}
+
 		if (_isJavaClass(type)) {
 			return type;
 		}
@@ -93,7 +116,11 @@ public class TypeUtil {
 		return javaType;
 	}
 
-	private String _getOutputJavaType(String type) {
+	private String _getOutputJavaType(String type, boolean removeGenericsType) {
+		if (removeGenericsType) {
+			type = _removeGenericsType(type);
+		}
+
 		if (_isJavaClass(type)) {
 			return type;
 		}
@@ -109,11 +136,20 @@ public class TypeUtil {
 
 	private boolean _isJavaClass(String type) {
 		if (isPrimitiveType(type)) {
-
 			return true;
 		}
 		else {
 			try {
+				String genericsType = _getGenericsType(type);
+
+				if (Validator.isNotNull(genericsType)) {
+					if (!genericsType.equals(StringPool.QUESTION)) {
+						Class.forName(genericsType);
+					}
+
+					type = _removeGenericsType(type);
+				}
+
 				Class.forName(type);
 
 				return true;
@@ -130,6 +166,18 @@ public class TypeUtil {
 		for (String type : types) {
 			map.put(type.toLowerCase(), javaType);
 		}
+	}
+
+	private String _removeGenericsType(String type) {
+		String genericsType = _getGenericsType(type);
+
+		if (Validator.isNotNull(genericsType)) {
+			type = type.replace(
+				StringPool.LESS_THAN.concat(genericsType).concat(
+					StringPool.GREATER_THAN), StringPool.BLANK);
+		}
+
+		return type;
 	}
 
 	public static final String[] ARRAYS = {

@@ -26,6 +26,7 @@ import javax.servlet.jsp.JspException;
  */
 public class Base${component.getSafeName()}Tag extends ${component.getParentClass()} {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -46,6 +47,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	</#list>
+	@Override
 	protected void cleanUp() {
 	<#list component.getAttributesAndEvents() as attribute>
 		<#compress>
@@ -65,19 +67,23 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	<#if component.isBodyContent() == true>
+	@Override
 	protected String getEndPage() {
 		return _END_PAGE;
 	}
 
+	@Override
 	protected String getStartPage() {
 		return _START_PAGE;
 	}
 	<#else>
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 	</#if>
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
