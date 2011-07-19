@@ -291,7 +291,7 @@ public class XMLBuilder {
 							_DEFAULT_TYPE);
 
 					String outputJavaType =
-						TypeUtil.getOutputJavaType(outputType);
+						TypeUtil.getOutputJavaType(outputType, true);
 
 					String defaultValue =
 						DefaultValueUtil.getDefaultValue(outputJavaType,

@@ -39,23 +39,27 @@ public class Attribute extends BaseModel {
 	}
 
 	public String getInputType() {
-		return getInputType(false);
-	}
-
-	public String getInputType(boolean removeGenericsType) {
-		return TypeUtil.getInputJavaType(_inputType, removeGenericsType);
+		return TypeUtil.getInputJavaType(_inputType, true);
 	}
 
 	public String getInputTypeSimpleClassName() {
-		return getTypeSimpleClassName(getInputType(true));
+		return getTypeSimpleClassName(getRawInputType());
 	}
 
 	public String getOutputType() {
-		return TypeUtil.getOutputJavaType(_outputType);
+		return TypeUtil.getOutputJavaType(_outputType, true);
 	}
 
 	public String getOutputTypeSimpleClassName() {
-		return getTypeSimpleClassName(getOutputType());
+		return getTypeSimpleClassName(getRawOutputType());
+	}
+
+	public String getRawInputType() {
+		return TypeUtil.getInputJavaType(_inputType, false);
+	}
+
+	public String getRawOutputType() {
+		return TypeUtil.getOutputJavaType(_outputType, false);
 	}
 
 	public String getSafeName() {

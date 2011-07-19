@@ -68,12 +68,16 @@ public class TypeUtil {
 		_registerTypes(_OUTPUT_TYPES, STRINGS, String.class.getName());
 	}
 
-	public static String getInputJavaType(String type, boolean removeGenericsType) {
+	public static String getInputJavaType(
+			String type, boolean removeGenericsType) {
+
 		return _instance._getInputJavaType(type, removeGenericsType);
 	}
 
-	public static String getOutputJavaType(String type) {
-		return _instance._getOutputJavaType(type);
+	public static String getOutputJavaType(
+		String type, boolean removeGenericsType) {
+
+		return _instance._getOutputJavaType(type, removeGenericsType);
 	}
 
 	public static boolean isPrimitiveType(String type) {
@@ -87,7 +91,7 @@ public class TypeUtil {
 		int end = type.indexOf(CharPool.GREATER_THAN);
 		String genericsType = null;
 
-		if (begin > -1 && end > -1) {
+		if ((begin > -1) && (end > -1)) {
 			genericsType = type.substring(begin + 1, end);
 		}
 
@@ -112,7 +116,11 @@ public class TypeUtil {
 		return javaType;
 	}
 
-	private String _getOutputJavaType(String type) {
+	private String _getOutputJavaType(String type, boolean removeGenericsType) {
+		if (removeGenericsType) {
+			type = _removeGenericsType(type);
+		}
+
 		if (_isJavaClass(type)) {
 			return type;
 		}
@@ -135,7 +143,9 @@ public class TypeUtil {
 				String genericsType = _getGenericsType(type);
 
 				if (Validator.isNotNull(genericsType)) {
-					Class.forName(genericsType);
+					if (!genericsType.equals(StringPool.QUESTION)) {
+						Class.forName(genericsType);
+					}
 
 					type = _removeGenericsType(type);
 				}
