@@ -22,7 +22,7 @@
 			<name>${attribute.getSafeName()}</name>
 			<required>${attribute.isRequired()?string("true", "false")}</required>
 			<rtexprvalue>true</rtexprvalue>
-			<type>${attribute.getRawInputType()}</type>
+			<type>${attribute.getInputType()}</type>
 		</attribute>
 		</#list>
 		<dynamic-attributes>true</dynamic-attributes>
