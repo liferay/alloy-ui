@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseNestedListTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -131,6 +132,7 @@ public class BaseNestedListTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_destroyed = false;
 		_initialized = false;
@@ -144,10 +146,12 @@ public class BaseNestedListTag extends com.liferay.taglib.util.IncludeTag {
 		_onInitializedChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "initialized", _initialized);

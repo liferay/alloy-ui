@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -311,6 +312,7 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTypeChange", onTypeChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_children = null;
 		_container = null;
@@ -342,10 +344,12 @@ public class BaseTreeViewTag extends com.liferay.taglib.util.IncludeTag {
 		_onTypeChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "children", _children);
 		setNamespacedAttribute(request, "container", _container);
