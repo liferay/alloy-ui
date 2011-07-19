@@ -34,13 +34,13 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	<#list component.getAttributesAndEvents() as attribute>
-	public ${attribute.getInputType()} get${attribute.getCapitalizedName()}() {
+	public ${attribute.getRawInputType()} get${attribute.getCapitalizedName()}() {
 		return _${attribute.getSafeName()};
 	}
 
 	</#list>
 	<#list component.getAttributesAndEvents() as attribute>
-	public void set${attribute.getCapitalizedName()}(${attribute.getInputType()} ${attribute.getSafeName()}) {
+	public void set${attribute.getCapitalizedName()}(${attribute.getRawInputType()} ${attribute.getSafeName()}) {
 		_${attribute.getSafeName()} = ${attribute.getSafeName()};
 
 		setScopedAttribute("${attribute.getSafeName()}", ${attribute.getSafeName()});
@@ -116,7 +116,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	<#assign defaultValue = getCleanUpValue(outputSimpleClassName, defaultValue)>
 	
 	</#compress>
-	private ${attribute.getInputType()} _${attribute.getSafeName()} = ${defaultValue};
+	private ${attribute.getRawInputType()} _${attribute.getSafeName()} = ${defaultValue};
 	</#list>
 
 }
