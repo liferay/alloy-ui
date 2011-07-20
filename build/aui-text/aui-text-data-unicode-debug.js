@@ -307,4 +307,4 @@ A.namespace('Text.Data').Unicode = {
     'InSpecials': '^[\uFFF0-\uFFFF]+$'
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['text']});
+}, '@VERSION@' ,{requires:['text'], skinnable:false});
