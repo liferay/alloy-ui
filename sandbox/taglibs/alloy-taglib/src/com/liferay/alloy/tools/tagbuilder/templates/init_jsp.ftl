@@ -66,7 +66,7 @@ _options.putAll(dynamicAttributes);
 		<#elseif hasGetter(outputSimpleClassName)>
 			${attribute.getOutputType()} ${attribute.getSafeName()} = GetterUtil.get${getGetterSuffix(outputSimpleClassName)}(${value}${defaultValueSuffix});
 		<#else>
-			${attribute.getOutputType()} ${attribute.getSafeName()} = (${attribute.getOutputType()})request.getAttribute(${namespacedName});
+			${attribute.getRawOutputType()} ${attribute.getSafeName()} = (${attribute.getRawOutputType()})request.getAttribute(${namespacedName});
 		</#if>
 	</#if>
 </#list>
