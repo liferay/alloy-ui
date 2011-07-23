@@ -34,7 +34,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CONTENT_CONTAINER = 'contentContainer',
+	VIEWPORT = 'viewport',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -72,9 +72,10 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_DOT = '.',
 	_DOLLAR = '$',
+	_HASH = '#',
 
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, CONTENT, CONTAINER),
+	CSS_DIAGRAM_BUILDER_BASE_VIEWPORT = AgetClassName(DIAGRAM, BUILDER, BASE, VIEWPORT),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
 	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
@@ -143,6 +144,18 @@ var AvailableField = A.Component.create({
 	},
 
 	EXTENDS: A.Base,
+
+	buildNodeId: function(id) {
+		return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
+	},
+
+	getAvailableFieldByNode: function(node) {
+		return A.one(node).getData(AVAILABLE_FIELD);
+	},
+
+	getAvailableFieldById: function(id) {
+		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
+	},
 
 	prototype: {
 		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD + '">' +
@@ -223,10 +236,6 @@ var AvailableField = A.Component.create({
 	}
 });
 
-AvailableField.buildNodeId = function(id) {
-	return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
-};
-
 A.AvailableField = AvailableField;
 
 var FieldSupport = function() {
@@ -256,12 +265,13 @@ A.mix(FieldSupport.prototype, {
 
 	addField: function(field) {
 		var instance = this;
+		var newField = instance.createField(field);
 
 		instance._updateFields(
-			instance.get(FIELDS).add(
-				instance.createField(field)
-			)
+			instance.get(FIELDS).add(newField)
 		);
+
+		return newField;
 	},
 
 	removeField: function(field) {
@@ -317,9 +327,9 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
-			contentContainer: {
+			viewport: {
 				valueFn: function() {
-					return A.Node.create(this.CONTENT_CONTAINER_TEMPLATE);
+					return A.Node.create(this.VIEWPORT_TEMPLATE);
 				}
 			},
 
@@ -385,10 +395,10 @@ var DiagramBuilderBase = A.Component.create(
 		},
 
 		HTML_PARSER: {
-			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER,
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
 			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
-			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER
+			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
+			viewport: _DOT+CSS_DIAGRAM_BUILDER_BASE_VIEWPORT
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -396,10 +406,10 @@ var DiagramBuilderBase = A.Component.create(
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
-			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER + '"></div>',
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
 			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
+			VIEWPORT_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_VIEWPORT + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -422,7 +432,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-				instance.contentContainer = instance.get(CONTENT_CONTAINER);
+				instance.viewport = instance.get(VIEWPORT);
 				instance.dropContainer = instance.get(DROP_CONTAINER);
 				instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
@@ -435,14 +445,20 @@ var DiagramBuilderBase = A.Component.create(
 				return (drag === availableFieldsDrag.dd);
 			},
 
-			plotFields: function(fields) {
+			plotFields: function() {
+				var instance = this;
+				var fields = instance.get(FIELDS);
+
+				fields.each(function(field) {
+					instance.plotField(field);
+				});
 			},
 
 			renderUI: function() {
 				var instance = this;
 
 				instance._renderTabs();
-				instance._renderContentContainer();
+				instance._renderViewport();
 
 				instance._uiSetAvailableFields(
 					instance.get(AVAILABLE_FIELDS)
@@ -498,13 +514,13 @@ var DiagramBuilderBase = A.Component.create(
 				instance.fire(SAVE);
 			},
 
-			_renderContentContainer: function() {
+			_renderViewport: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
-				var contentContainer = instance.contentContainer;
+				var viewport = instance.viewport;
 
-				contentContainer.appendChild(instance.dropContainer);
-				contentBox.appendChild(contentContainer);
+				viewport.appendChild(instance.dropContainer);
+				contentBox.appendChild(viewport);
 			},
 
 			_renderPropertyList: function() {
@@ -588,6 +604,7 @@ var DiagramBuilderBase = A.Component.create(
 				return A.merge(
 					{
 						bubbleTargets: instance,
+						groups: [AVAILABLE_FIELDS],
 						node: instance.dropContainer
 					},
 					val || {}
@@ -602,6 +619,7 @@ var DiagramBuilderBase = A.Component.create(
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
 						dragConfig: {
+							groups: [AVAILABLE_FIELDS],
 							plugins: [
 								{
 									cfg: {
@@ -723,6 +741,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
+	isBoolean = Lang.isBoolean,
 
 	AArray = A.Array,
 
@@ -734,6 +753,10 @@ var Lang = A.Lang,
 		return (val instanceof A.DiagramNode);
 	},
 
+	isAnchor = function(val) {
+		return (val instanceof A.Anchor);
+	},
+
 	getLeftTop = function(container, node) {
 		var nodeXY = isArray(node) ? node : node.getXY();
 		var containerXY = isArray(container) ? container : container.getXY();
@@ -743,43 +766,122 @@ var Lang = A.Lang,
 		});
 	},
 
+	ANCHOR = 'anchor',
+	ANCHORS = 'anchors',
+	ANCHORS_DRAG_CONFIG = 'anchorsDragConfig',
 	AVAILABLE_FIELD = 'availableField',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
+	CANCEL = 'cancel',
+	CLICK = 'click',
+	CONTENT = 'content',
+	CONTROLS = 'controls',
+	CONTROLS_TOOLBAR = 'controlsToolbar',
 	DATA = 'data',
 	DBLCLICK = 'dblclick',
+	DELETE = 'delete',
+	DELETE_MESSAGE = 'deleteMessage',
 	DESCRIPTION = 'description',
 	DIAGRAM = 'diagram',
-	DIAGRAM_BUILDER = 'diagram-builder',
-	DIAGRAM_NODE = 'diagram-node',
+	DIAGRAM_BUILDER_NAME = 'diagram-builder',
+	DIAGRAM_NODE = 'diagramNode',
+	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
 	EDITING = 'editing',
+	ESC = 'esc',
+	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
+	HOVER = 'hover',
+	KEYDOWN = 'keydown',
+	LINK = 'link',
+	MOUSEENTER = 'mouseenter',
+	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
 	NODE = 'node',
+	P1 = 'p1',
+	P2 = 'p2',
 	PARENT_NODE = 'parentNode',
 	RECORDS = 'records',
 	RECORDSET = 'recordset',
+	REGION = 'region',
 	RENDERED = 'rendered',
+	SELECTED = 'selected',
+	SHUFFLE = 'shuffle',
+	TASK = 'task',
+	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
+	VIEWPORT = 'viewport',
+	WRAPPER = 'wrapper',
 	XY = 'xy',
 
 	_DOT = '.',
+	_DOLLAR = '$',
 	_EMPTY_STR = '',
+	_DASH = '-',
 
 	AgetClassName = A.getClassName,
 
+	CSS_DB_ANCHOR_HOVER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, HOVER),
+	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE),
+	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
+	CSS_DB_CONTROLS = AgetClassName(DIAGRAM, BUILDER, CONTROLS),
+	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
+	CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
-	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE);
+	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED);
+
+// REMOVE THIS!
+var __dump = function() {
+    var PAD = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', BR = '<br/>';
+
+    A.all('.aui-diagram-node').each(function(n) {
+        var b = _EMPTY_STR,
+            dn = A.Widget.getByNode(n),
+            dnName = dn.get('name'),
+            dnBB = dn.get('boundingBox'),
+            log = dnBB.one('.log') || A.Node.create('<div class=log />').appendTo(dnBB);
+
+        b += dnName + BR;
+
+        dn.get(FIELDS).each(function(a) {
+            b += PAD + 'a: ' + a.get('id') + BR;
+
+            a.get('targets').each(function(t) {
+				var tdn = t.get(DIAGRAM_NODE);
+
+				t.get('node').setContent(t.get('id'));
+
+				b += PAD + PAD + 't: ' + tdn.get('name') + ' (s: ' + t.get('id') + ')' + BR;
+            });
+
+            a.get('sources').each(function(s) {
+				var sdn = s.get(DIAGRAM_NODE);
+
+				s.get('node').setContent(s.get('id'));
+
+				b += PAD + PAD + 's: ' + sdn.get('name') + ' (t: ' + s.get('id') + ')' + BR;
+            });
+        });
+
+        log.setContent(b);
+    });
+};
+// END.
 
 var DiagramBuilder = A.Component.create({
-	NAME: DIAGRAM_BUILDER,
+	NAME: DIAGRAM_BUILDER_NAME,
 
 	ATTRS: {
 		fieldsDragConfig: {
 			value: null,
 			setter: '_setFieldsDragConfig',
+			validator: isObject
+		},
+
+		tmpConnector: {
+			setter: '_setTmpConnector',
+			value: {},
 			validator: isObject
 		}
 	},
@@ -797,12 +899,18 @@ var DiagramBuilder = A.Component.create({
 
 			instance.on({
 				cancel: instance._onCancel,
+				'drag:drag': instance._onDrag,
 				'drag:end': instance._onDragEnd,
 				'drop:hit': instance._onDropHit,
 				save: instance._onSave
 			});
 
+			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
+
+			instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT+CSS_DIAGRAM_NODE);
 			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onNodeEdit, instance), _DOT+CSS_DIAGRAM_NODE);
+			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onMouseenterAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
+			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onMouseleaveAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 		},
 
 		syncUI: function() {
@@ -811,12 +919,17 @@ var DiagramBuilder = A.Component.create({
 			A.DiagramBuilder.superclass.syncUI.apply(this, arguments);
 
 			instance._setupFieldsDrag();
+
+			instance.tmpConnector = new A.Connector(instance.get(TMP_CONNECTOR));
 		},
 
 		createField: function(val) {
 			var instance = this;
 
 			if (!isDiagramNode(val)) {
+				// val.bubbleTargets = instance;
+				val.builder = instance;
+				val.viewport = instance.get(VIEWPORT);
 				val = new (instance.getFieldClass(val.type || NODE))(val);
 			}
 
@@ -846,21 +959,31 @@ var DiagramBuilder = A.Component.create({
 			return (drag === fieldsDrag.dd);
 		},
 
-		plotFields: function() {
-			var instance = this;
-			var fields = instance.get(FIELDS);
-
-			fields.each(function(field) {
-				instance.plotField(field);
-			});
-		},
-
 		plotField: function(field) {
 			var instance = this;
 
 			if (!field.get(RENDERED)) {
 				field.render(instance.dropContainer);
 			}
+		},
+
+		unselectAll: function() {
+			var instance = this;
+			var selectedNode = instance.selectedNode;
+
+			if (selectedNode) {
+				selectedNode.set(SELECTED, false);
+			}
+
+			instance.selectedNode = null;
+		},
+
+		select: function(diagramNode) {
+			var instance = this;
+
+			instance.unselectAll();
+			instance.stopEditingNode();
+			instance.selectedNode = diagramNode.set(SELECTED, true).focus();
 		},
 
 		startEditingNode: function(diagramNode) {
@@ -870,8 +993,6 @@ var DiagramBuilder = A.Component.create({
 				instance.stopEditingNode();
 
 				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
-
-				// instance._renderPropertyList();
 
 				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
 
@@ -894,10 +1015,40 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
+		_afterKeyEvent: function(event) {
+			var instance = this;
+
+			if (!instance.selectedNode || event.hasModifier() || !event.isKeyInSet(ESC, DELETE)) {
+				return;
+			}
+
+			if (event.isKey(ESC)) {
+				instance._onEscKey(event);
+			}
+			else if (event.isKey(DELETE)) {
+				instance._onDeleteKey(event);
+			}
+
+			event.halt();
+		},
+
 		_onCancel: function(event) {
 			var instance = this;
 
 			instance.stopEditingNode();
+		},
+
+		_onDrag: function(event) {
+			var instance = this;
+			var drag = event.target;
+
+			if (instance.isFieldsDrag(drag)) {
+				var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
+
+				diagramNode.get(FIELDS).each(function(anchor) {
+					anchor.alignConnectors();
+				});
+			}
 		},
 
 		_onDragEnd: function(event) {
@@ -918,15 +1069,56 @@ var DiagramBuilder = A.Component.create({
 			if (instance.isAvailableFieldsDrag(drag)) {
 				var availableField = drag.get(NODE).getData(AVAILABLE_FIELD);
 
-				instance.addField({
+				var newField = instance.addField({
 					xy: getLeftTop(drag.lastXY, instance.dropContainer),
-					type: availableField.get(TYPE)
+					type: availableField.get(TYPE),
+					fields: [{}]
 				});
+
+				instance.select(newField);
 			}
+		},
+
+		_onDeleteKey: function(event) {
+			var instance = this;
+
+			instance.selectedNode.close();
+		},
+
+		_onEscKey: function(event) {
+			var instance = this;
+
+			instance.unselectAll();
+			instance.stopEditingNode();
+		},
+
+		_onMouseenterAnchors: function(event) {
+			var instance = this;
+
+			event.currentTarget.addClass(CSS_DB_ANCHOR_HOVER);
+		},
+
+		_onMouseleaveAnchors: function(event) {
+			var instance = this;
+
+			event.currentTarget.removeClass(CSS_DB_ANCHOR_HOVER);
+		},
+
+		_onNodeClick: function(event) {
+			var instance = this;
+			var diagramNode = A.Widget.getByNode(event.currentTarget);
+
+			instance.select(diagramNode);
 		},
 
 		_onNodeEdit: function(event) {
 			var instance = this;
+
+			// Only enable editing if the double clicked node is inside the node contentBox.
+			if (!event.target.ancestor(_DOT+CSS_DIAGRAM_NODE_CONTENT, true)) {
+				return;
+			}
+
 			var diagramNode = A.Widget.getByNode(event.currentTarget);
 
 			if (diagramNode) {
@@ -948,6 +1140,18 @@ var DiagramBuilder = A.Component.create({
 
 				instance.stopEditingNode(editNode);
 			}
+		},
+
+		_setTmpConnector: function(val) {
+			var instance = this;
+
+			return A.merge(
+				{
+					lazyDraw: true,
+					viewport: instance.viewport
+				},
+				val
+			);
 		},
 
 		_setFieldsDragConfig: function(val) {
@@ -994,11 +1198,32 @@ A.DiagramBuilder = DiagramBuilder;
 
 A.DiagramBuilder.types = {};
 
+var DiagramNodeOverlay = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	EXTENDS: A.Overlay,
+
+	// A.FieldSupport augment the class with "fields" attribute and util methods
+	// such as: addField, removeField. Although the attribute is called "fields" due to
+	// the augmentation, those fields are the anchors. TODO: Allow A.FieldSupport to
+	// customize the name of the attribute and method sufixes.
+	AUGMENTS: [A.FieldSupport]
+});
+
 var DiagramNode = A.Component.create({
-	NAME: DIAGRAM_NODE,
+	NAME: DIAGRAM_NODE_NAME,
+
+	UI_ATTRS: [FIELDS, NAME, SELECTED],
 
 	ATTRS: {
+		anchorsDragConfig: {
+			value: null,
+			setter: '_setAnchorsDragConfig',
+			validator: isObject
+		},
+
 		builder: {
+			setter: '_setBuilder',
 			validator: isDiagramBuilder
 		},
 
@@ -1008,7 +1233,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		height: {
-			value: 100
+			value: 90
 		},
 
 		name: {
@@ -1020,8 +1245,14 @@ var DiagramNode = A.Component.create({
 			validator: isString
 		},
 
+		selected: {
+			value: false,
+			validator: isBoolean
+		},
+
 		strings: {
 			value: {
+				deleteMessage: 'Are you sure you want to delete?',
 				description: 'Description',
 				name: 'Name',
 				type: 'Type'
@@ -1033,14 +1264,114 @@ var DiagramNode = A.Component.create({
 			validator: isString
 		},
 
+		controlsToolbar: {
+			setter: '_setControlsToolbar',
+			validator: isObject,
+			value: null
+		},
+
 		width: {
-			value: 200
+			value: 90
+		},
+
+		zIndex: {
+			value: 100
+		},
+
+		tabIndex: {
+			value: 1
 		}
 	},
 
-	EXTENDS: A.Overlay,
+	EXTENDS: DiagramNodeOverlay,
+
+	buildNodeId: function(id) {
+		return DIAGRAM_NODE_NAME + _DOLLAR + FIELD + _DOLLAR + id;
+	},
 
 	prototype: {
+		ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+		CONTROLS_TEMPLATE: '<div class="' + CSS_DB_CONTROLS + '"></div>',
+
+		initializer: function() {
+			var instance = this;
+
+			instance._renderNodes();
+			instance._setupAnchorsDrag();
+
+			instance.after({
+				render: instance._afterRender
+			});
+
+			instance.on({
+				'drag:drag': instance._onAnchorDrag,
+				'drag:end': instance._onAnchorDragEnd,
+				'drag:start': instance._onAnchorDragStart,
+				'drop:hit': instance._onAnchorDropHit
+			});
+
+			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
+
+			// REMOVE THIS!
+			instance.set('bodyContent', instance.get(NAME));
+		},
+
+		alignAnchors: function() {
+			var instance = this;
+			var anchors = instance.get(FIELDS);
+
+			var cRegion = instance.get(BOUNDING_BOX).get(REGION),
+				dAngle = Math.floor(360/anchors.size()),
+				a = cRegion.width/2,
+				b = cRegion.height/2,
+				centerX = cRegion.left + cRegion.width/2,
+				centerY = cRegion.top + cRegion.height/2;
+
+			anchors.each(function(anchor, index) {
+				var anchorNode = anchor.get(NODE);
+				var aRegion = anchorNode.get(REGION);
+				var exy = instance._getEllipseXY(a, b, centerX, centerY, index*dAngle);
+
+				anchorNode.setXY([ exy[0] - aRegion.width/2, exy[1] - aRegion.height/2 ]);
+
+				anchor.alignConnectors();
+			});
+
+			return instance;
+		},
+
+		close: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			if (confirm(strings[DELETE_MESSAGE])) {
+				instance.get(FIELDS).each(function(anchor) {
+					anchor.destroy();
+				});
+
+				instance.destroy();
+			}
+
+			__dump();
+
+			return instance;
+		},
+
+		createField: function(val) {
+			var instance = this;
+
+			if (!isAnchor(val)) {
+				var builder = instance.get(BUILDER);
+
+				val.diagramNode = instance;
+				val.viewport = (builder ? builder.get(VIEWPORT) : null);
+
+				val = new A.Anchor(val);
+			}
+
+			return val;
+		},
+
 		getLeftTop: function() {
 			var instance = this;
 
@@ -1089,10 +1420,223 @@ var DiagramNode = A.Component.create({
 			];
 		},
 
+		_afterRender: function(event) {
+			var instance = this;
+
+			instance.alignAnchors();
+
+			instance._renderControls();
+		},
+
 		_getContainer: function() {
 			var instance = this;
 
 			return (instance.get(BUILDER).dropContainer || instance.get(BOUNDING_BOX).get(PARENT_NODE));
+		},
+
+		_getEllipseXY: function(a, b, centerX, centerY, angle) {
+			var t = angle*Math.PI/180;
+
+			return [ centerX + a*Math.cos(t), centerY - b*Math.sin(t) ];
+		},
+
+		_handleAddAnchorEvent: function(event) {
+			var instance = this;
+
+			instance.addField({});
+
+			// event.halt();
+		},
+
+		_handleAddTaskEvent: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			var diagramNode = new A.DiagramNode({
+				type: NODE,
+				xy: [100, 100] // TODO - find best position?
+			});
+
+			builder.addField(diagramNode);
+
+			var source = instance.addField({});
+			var target = diagramNode.addField({});
+			source.connect(target);
+		},
+
+		_handleCloseEvent: function(event) {
+			var instance = this;
+
+			instance.close();
+		},
+
+		_onAnchorDrag: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			builder.tmpConnector.set(P2, event.target.get(DRAG_NODE).getCenterXY());
+		},
+
+		_onAnchorDragEnd: function(event) {
+			var instance = this;
+			var shape = instance.get(BUILDER).tmpConnector.shape;
+
+			shape.clear();
+			shape.end();
+		},
+
+		_onAnchorDragStart: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			builder.tmpConnector.set(P1, event.target.get(NODE).getCenterXY());
+		},
+
+		_onAnchorDropHit: function(event) {
+			var instance = this;
+			var source = A.Anchor.getAnchorByNode(event.drag.get(NODE));
+			var target = A.Anchor.getAnchorByNode(event.drop.get(NODE));
+
+			source.connect(target);
+
+			__dump();
+		},
+
+		_renderControls: function() {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			instance.controlsNode = A.Node.create(instance.CONTROLS_TEMPLATE).appendTo(boundingBox);
+		},
+
+		_renderNodes: function() {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			instance.anchorWrapper = A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE).appendTo(boundingBox);
+		},
+
+		_renderControlsToolbar: function(event) {
+			var instance = this;
+
+			instance.controlsToolbar = new A.Toolbar(
+				instance.get(CONTROLS_TOOLBAR)
+			)
+			.render(instance.controlsNode);
+		},
+
+		_setBuilder: function(val) {
+			var instance = this;
+
+			instance.get(FIELDS).each(function(anchor) {
+				anchor.set(VIEWPORT, val.get(VIEWPORT));
+			});
+
+			return val;
+		},
+
+		_setAnchorsDragConfig: function(val) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			return A.merge(
+				{
+					bubbleTargets: instance,
+					container: instance.anchorWrapper,
+					dragConfig: {
+						groups: [ANCHORS],
+						plugins: [
+							{
+								cfg: {
+									constrain: (builder ? builder.get(VIEWPORT) : null)
+								},
+								fn: A.Plugin.DDConstrained
+							},
+							{
+								cfg: {
+									scrollDelay: 150
+								},
+								fn: A.Plugin.DDWinScroll
+							},
+							{
+								cfg: {
+									moveOnEnd: false
+								},
+								fn: A.Plugin.DDProxy
+							}
+						]
+					},
+					nodes: _DOT+CSS_DB_ANCHOR_NODE,
+					target: true
+				},
+				val || {}
+			);
+		},
+
+		_setupAnchorsDrag: function() {
+			var instance = this;
+
+			instance.anchorsDrag = new A.DD.Delegate(
+				instance.get(ANCHORS_DRAG_CONFIG)
+			);
+		},
+
+		_setControlsToolbar: function(val) {
+			var instance = this;
+
+			return A.merge(
+				{
+					activeState: false,
+					children: [
+						{
+							handler: A.bind(instance._handleAddAnchorEvent, instance),
+							icon: LINK
+						},
+						{
+							handler: A.bind(instance._handleAddTaskEvent, instance),
+							icon: SHUFFLE
+						},
+						{
+							handler: A.bind(instance._handleCloseEvent, instance),
+							icon: CANCEL
+						}
+					]
+				},
+				val
+			);
+		},
+
+		_uiSetFields: function(val) {
+			var instance = this;
+
+			if (instance.get(RENDERED)) {
+				instance.alignAnchors();
+
+				setTimeout(function() {
+					instance.anchorsDrag.syncTargets();
+				}, 50);
+			}
+		},
+
+		_uiSetName: function(val) {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			boundingBox.setAttribute(NAME, A.DiagramNode.buildNodeId(val));
+		},
+
+		_uiSetSelected: function(val) {
+			var instance = this;
+
+			instance.get(BOUNDING_BOX).toggleClass(CSS_DIAGRAM_NODE_SELECTED, val);
+
+			if (val && !instance.controlsToolbar) {
+				instance._renderControlsToolbar();
+			}
+
+			// if (instance.get(RENDERED)) {
+				// instance.alignAnchors();
+			// }
 		},
 
 		_uiSetXY : function(val) {
@@ -1104,16 +1648,601 @@ var DiagramNode = A.Component.create({
 	}
 });
 
-DiagramNode.buildNodeId = function(id) {
-	return DIAGRAM_NODE + _DOLLAR + FIELD + _DOLLAR + id;
-};
-
 A.DiagramNode = DiagramNode;
 
-A.DiagramBuilder.types['node'] = A.DiagramNode;
+A.DiagramBuilder.types[NODE] = A.DiagramNode;
+
+A.DiagramNodeTask = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: TASK
+		}
+	},
+
+	EXTENDS: A.DiagramNode
+});
+
+A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
+
+// TODO deletar anchors OK
+// TODO deletar connections (delete) OK
+// TODO Adicionar overlay de controles OK
+// TODO syncTargets dd delegate
+
+
+// TODO gerar XML
+// TODO reposicionar setas?
+// TODO Adicionar groups/validation for connection
 
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
+AUI.add('aui-diagram-builder-connector', function(A) {
+var Lang = A.Lang,
+	isArray = Lang.isArray,
+	isBoolean = Lang.isBoolean,
+	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+
+	YArray = A.Array,
+
+	isAnchor = function(val) {
+		return (val instanceof A.Anchor);
+	},
+
+	isArrayList = function(val) {
+		return (val instanceof A.ArrayList);
+	},
+
+	ANCHOR = 'anchor',
+	ARROW_POINTS = 'arrowPoints',
+	BODY = 'body',
+	BOUNDING_BOX = 'boundingBox',
+	BUILDER = 'builder',
+	COLOR = 'color',
+	CONNECTOR = 'connector',
+	DATA_ANCHOR = 'dataAnchor',
+	DIAGRAM = 'diagram',
+	DIAGRAM_NODE = 'diagramNode',
+	HEIGHT = 'height',
+	ID = 'id',
+	LAZY_DRAW = 'lazyDraw',
+	MAX_SOURCES = 'maxSources',
+	MAX_TARGETS = 'maxTargets',
+	NODE = 'node',
+	P1 = 'p1',
+	P2 = 'p2',
+	PATH = 'path',
+	SHAPE = 'shape',
+	SOURCES = 'sources',
+	TARGETS = 'targets',
+	VIEWPORT = 'viewport',
+	WIDTH = 'width',
+	WRAPPER = 'wrapper',
+
+	_DOT = '.',
+
+	AgetClassName = A.getClassName,
+
+	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
+	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE);
+
+A.PolygonUtil = {
+	ARROW_POINTS: [
+		[ -12, -6 ],
+		[ -8, 0 ],
+		[ -12, 6 ],
+		[ 6, 0 ]
+	],
+
+	drawLineArrow: function(shape, x1, y1, x2, y2, arrowPoints) {
+		var instance = this;
+
+		shape.moveTo(x1, y1);
+		shape.lineTo(x2, y2);
+
+		var angle = Math.atan2(y2-y1, x2-x1), centerX = (x2+x1)/2, centerY = (y2+y1)/2;
+
+		instance.drawPolygon(
+			shape,
+			instance.translatePoints(instance.rotatePoints(arrowPoints || instance.ARROW_POINTS, angle), centerX, centerY)
+		);
+	},
+
+	drawPolygon: function(shape, points) {
+		var instance = this;
+
+		shape.moveTo(points[0][0], points[0][1]);
+
+		YArray.each(points, function(p, i) {
+			if (i > 0) {
+				shape.lineTo(points[i][0], points[i][1]);
+			}
+		});
+
+		shape.lineTo(points[0][0], points[0][1]);
+		shape.end();
+	},
+
+	translatePoints: function(points, x, y) {
+		var instance = this;
+		var xy = [];
+
+		YArray.each(points, function(p, i) {
+			xy.push([ points[i][0] + x, points[i][1] + y ]);
+		});
+
+		return xy;
+	},
+
+	rotatePoints: function(points, angle) {
+		var instance = this;
+		var xy = [];
+
+		YArray.each(points, function(p, i) {
+			xy.push(instance.rotatePoint(angle, points[i][0], points[i][1]));
+		});
+
+		return xy;
+	},
+
+	rotatePoint: function(angle, x, y) {
+		return [
+			(x * Math.cos(angle)) - (y * Math.sin(angle)),
+			(x * Math.sin(angle)) + (y * Math.cos(angle))
+		];
+	}
+};
+
+A.Connector = A.Base.create('line', A.Base, [], {
+	graphics: null,
+	shape: null,
+
+	initializer: function(config) {
+		var instance = this;
+
+		instance.after({
+			p1Change: instance.draw,
+			p2Change: instance.draw
+		});
+
+		instance._initGraphics();
+		instance._initShapes();
+
+		if (!instance.get(LAZY_DRAW)) {
+			instance.draw();
+		}
+	},
+
+	destroy: function() {
+		var instance = this;
+
+		instance.graphics.destroy();
+	},
+
+	draw: function() {
+		var instance = this;
+		var shape = instance.shape;
+
+		var c1 = instance.getCoordinate(instance.get(P1));
+		var c2 = instance.getCoordinate(instance.get(P2));
+
+		shape.clear();
+
+		A.PolygonUtil.drawLineArrow(shape, c1[0], c1[1], c2[0], c2[1], instance.get(ARROW_POINTS));
+	},
+
+	getCoordinate: function(p) {
+		var instance = this;
+		var xy = instance.get(VIEWPORT).getXY();
+
+		return [ p[0] - xy[0], p[1] - xy[1] ];
+	},
+
+	_initGraphics: function() {
+		var instance = this;
+
+		var graphics = new A.Graphic({
+			width: instance.get(WIDTH),
+			height: instance.get(HEIGHT),
+			render: instance.get(VIEWPORT)
+		});
+
+		instance.graphics = graphics;
+	},
+
+	_initShapes: function() {
+		var instance = this;
+
+		instance.shape = instance.graphics.getShape(
+			instance.get(SHAPE)
+		);
+	},
+
+	_setShape: function(val) {
+		var instance = this;
+
+		return A.merge(
+			{
+				type: PATH,
+				stroke: {
+					color: instance.get(COLOR),
+					weight: 2
+				},
+				fill: {
+					color: instance.get(COLOR)
+				}
+			},
+			val
+		);
+	}
+},{
+	ATTRS: {
+		color: {
+			value: '#666',
+			validator: isString
+		},
+
+		lazyDraw: {
+			value: false,
+			validator: isBoolean
+		},
+
+		viewport: {
+			setter: A.one,
+			value: BODY
+		},
+
+		shape: {
+			value: null,
+			setter: '_setShape'
+		},
+
+		arrowPoints: {
+			value: A.PolygonUtil.ARROW_POINTS
+		},
+
+		p1: {
+			value: [0, 0],
+			validator: isArray
+		},
+
+		p2: {
+			value: [0, 0],
+			validator: isArray
+		}
+	}
+});
+
+A.Anchor = A.Base.create('anchor', A.Base, [], {
+	ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+	NODE_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE + '"></div>',
+
+	connectors: null,
+
+	initializer: function() {
+		var instance = this;
+
+		instance.connectors = {};
+
+		instance._renderNode();
+
+		instance.connectTargets();
+
+		instance.after({
+			targetsChange: instance._afterTargetsChange
+		});
+	},
+
+	addSource: function(source) {
+		var instance = this;
+
+		return instance.updateSources(
+			instance.get(SOURCES).remove(source).add(source)
+		);
+	},
+
+	addTarget: function(target) {
+		var instance = this;
+
+		return instance.updateTargets(
+			instance.get(TARGETS).remove(target).add(target)
+		);
+	},
+
+	alignConnectors: function() {
+		var instance = this;
+
+		instance.get(TARGETS).each(function(target) {
+			var tConnector = instance.getConnector(target);
+
+			if (tConnector) {
+				tConnector.set(P1, instance.getCenterXY());
+				tConnector.set(P2, target.getCenterXY());
+			}
+		});
+
+		instance.get(SOURCES).each(function(source) {
+			var sConnector = source.getConnector(instance);
+
+			if (sConnector) {
+				sConnector.set(P1, source.getCenterXY());
+				sConnector.set(P2, instance.getCenterXY());
+			}
+		});
+
+		return instance;
+	},
+
+	destroy: function() {
+		var instance = this;
+
+		instance.disconnectTargets();
+		instance.disconnectSources();
+
+		instance.get(NODE).remove();
+	},
+
+	connect: function(target) {
+		var instance = this;
+
+		instance.addTarget(target);
+
+		if (!instance.isConnected(target)) {
+			var tConnector = target.get(CONNECTOR);
+
+			tConnector.p1 = instance.getCenterXY();
+			tConnector.p2 = target.getCenterXY();
+
+			instance.connectors[target.get(ID)] = new A.Connector(tConnector);
+		}
+
+		return instance;
+	},
+
+	connectTargets: function() {
+		var instance = this;
+
+		instance.get(TARGETS).each(A.bind(instance.connect, instance));
+
+		return instance;
+	},
+
+	disconnect: function(target) {
+		var instance = this;
+
+		instance.getConnector(target).destroy();
+
+		instance.removeTarget(target);
+		target.removeSource(instance);
+	},
+
+	disconnectTargets: function() {
+		var instance = this;
+
+		instance.get(TARGETS).each(function(target) {
+			instance.disconnect(target);
+		});
+
+		return instance;
+	},
+
+	disconnectSources: function() {
+		var instance = this;
+
+		instance.get(SOURCES).each(function(source) {
+			source.disconnect(instance);
+		});
+
+		return instance;
+	},
+
+	getCenterXY: function() {
+		var instance = this;
+
+		return instance.get(NODE).getCenterXY();
+	},
+
+	getConnector: function(target) {
+		var instance = this;
+
+		return instance.connectors[target.get(ID)];
+	},
+
+	isConnected: function(target) {
+		var instance = this;
+
+		return instance.connectors.hasOwnProperty(target.get(ID));
+	},
+
+	updateSources: function(sources) {
+		var instance = this;
+
+		instance.set(SOURCES, sources);
+
+		return instance;
+	},
+
+	updateTargets: function(targets) {
+		var instance = this;
+
+		instance.set(TARGETS, targets);
+
+		return instance;
+	},
+
+	removeSource: function(source) {
+		var instance = this;
+
+		return instance.updateSources(
+			instance.get(SOURCES).remove(source)
+		);
+	},
+
+	removeTarget: function(target) {
+		var instance = this;
+
+		return instance.updateTargets(
+			instance.get(TARGETS).remove(target)
+		);
+	},
+
+	_afterActiveChange: function(event) {
+		var instance = this;
+
+		instance._uiSetActive(event.newVal);
+	},
+
+	_afterTargetsChange: function(event) {
+		var instance = this;
+
+		// TODO - event.prevVal is always equal to event.newVal, review this
+        // logic below, references between anchors needs to be cleaned up otherwise
+        // will store the wrong relationship between nodes.
+
+		event.prevVal.each(function(anchor) {
+			anchor.removeSource(instance);
+		});
+
+		event.newVal.each(function(anchor) {
+			anchor.addSource(instance);
+		});
+	},
+
+	_renderNode: function() {
+		var instance = this;
+		var diagramNode = instance.get(DIAGRAM_NODE);
+		var container = diagramNode.get(BOUNDING_BOX);
+
+		instance.wrapper = container.one(_DOT+CSS_DB_ANCHOR_NODE_WRAPPER) ||
+							A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE);
+
+		instance.wrapper.appendTo(container).appendChild(instance.get(NODE));
+	},
+
+	_setConnector: function(val) {
+		var instance = this;
+
+		return A.merge(
+			{
+				viewport: instance.get(VIEWPORT)
+			},
+			val
+		);
+	},
+
+	_setSources: function(val) {
+		var instance = this;
+
+		return instance._setAnchors(val);
+	},
+
+	_setTargets: function(val) {
+		var instance = this;
+
+		val = instance._setAnchors(val);
+
+		val.each(function(anchor) {
+			anchor.addSource(instance);
+		});
+
+		return val;
+	},
+
+	_setAnchors: function(val) {
+		var instance = this;
+
+		if (!isArrayList(val)) {
+			var targets = [];
+
+			A.Array.each(val, function(target) {
+				if (isString(target)) {
+					// TODO - need this?
+					target = A.Anchor.getAnchorByNode(target);
+				}
+
+				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
+			});
+
+			val = new A.ArrayList(targets);
+		}
+
+		return val;
+	},
+
+	_setNode: function(val) {
+		var instance = this;
+		var id = instance.get(ID);
+
+		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
+	}
+},{
+	ATTRS: {
+		diagramNode: {
+		},
+
+		connector: {
+			setter: '_setConnector',
+			value: {},
+			validator: isObject
+		},
+
+		id: {
+			readOnly: true,
+			valueFn: function() {
+				return A.guid();
+			}
+		},
+
+		maxSources: {
+			value: Infinity,
+			validator: isNumber
+		},
+
+		maxTargets: {
+			value: Infinity,
+			validator: isNumber
+		},
+
+		node: {
+			setter: '_setNode',
+			valueFn: function() {
+				var instance = this;
+
+				return A.Node.create(instance.NODE_TEMPLATE);
+			}
+		},
+
+		sources: {
+			value: [],
+			setter: '_setSources',
+			validator: function(val) {
+				return isArray(val) || isArrayList(val);
+			}
+		},
+
+		targets: {
+			value: [],
+			setter: '_setTargets',
+			validator: function(val) {
+				return isArray(val) || isArrayList(val);
+			}
+		},
+
+		viewport: {
+			setter: A.one,
+			value: BODY
+		}
+	},
+
+	getAnchorByNode: function(node) {
+		return A.one(node).getData(DATA_ANCHOR);
+	}
+});
+
+}, '@VERSION@' ,{requires:['aui-base','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
 
 
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true});
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector'], skinnable:true});
 
