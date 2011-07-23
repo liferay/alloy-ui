@@ -1,17 +1,14 @@
 /* Fields inside drag container */
 
 .aui-form-builder-drag-container .aui-form-builder-field {
-	border: 1px solid #CCCCCC;
+	border: 1px solid #CCC;
 	cursor: pointer;
 	margin: 5px 0;
 	padding: 10px 0;
-
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
 }
 
 .aui-form-builder-drag-container .aui-form-builder-field:hover {
-	border: 1px solid #000000;
+	border: 1px solid #000;
 }
 
 .aui-form-builder-drag-container .aui-form-builder-inactive {
@@ -22,7 +19,7 @@
 }
 
 .aui-form-builder-drag-container .aui-form-builder-inactive:hover {
-	border: 1px solid #CCCCCC;
+	border: 1px solid #CCC;
 }
 
 .aui-form-builder-field-node {
@@ -39,21 +36,26 @@
 	list-style: none;
 	margin: 5px;
 	padding: 3px;
+}
 
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+.aui-form-builder-drop-container .aui-form-builder-default-message {
+	background-color: #8FBE31;
+	border-color: #729A22;
+	color: #230;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px #FFF;
 }
 
 .aui-form-builder-drop-container .aui-form-builder-field fieldset {
-	border: 2px solid #CCCCCC;
+	border: 2px solid #CCC;
 	margin: 20px 10px 10px 10px;
 	padding: 5px;
 }
 
-.aui-form-builder-drop-container .aui-form-builder-field-selected,
-.aui-form-builder-drop-container .aui-form-builder-default-message {
-	background: none repeat scroll 0 0 #FFFFCC;
-	border: 1px solid #FFCC00;
+.aui-form-builder-drop-container .aui-form-builder-field-selected {
+	background-color: #FFC;
+	border: 1px solid #FC0;
 }
 
 .aui-form-builder-drop-container .aui-form-builder-default-message {
@@ -84,7 +86,7 @@
 }
 
 .aui-form-builder-field .aui-form-builder-required {
-	color: #FF0000;
+	color: #F00;
 	float: left;
 	margin: 0 5px 0 0;
 }
@@ -118,6 +120,7 @@
 /* Field icons */
 
 .aui-form-builder-drag-container .aui-form-builder-field-icon {
+	background: none no-repeat center center;
 	display: block;
 	float: left;
 	margin: 2px 5px 0px 5px;
@@ -126,35 +129,35 @@
 }
 
 .aui-form-builder-field-icon-button {
-	background: url(button.png) no-repeat center center;
+	background-image: url(button.png);
 }
 
 .aui-form-builder-field-icon-checkbox {
-	background: url(checkbox.png) no-repeat center center;
+	background-image: url(checkbox.png);
 }
 
 .aui-form-builder-field-icon-fieldset {
-	background: url(form_group.png) no-repeat center center;
+	background-image: url(form_group.png);
 }
 
 .aui-form-builder-field-icon-fileupload {
-	background: url(image_uploader.png) no-repeat center center;
+	background-image: url(image_uploader.png);
 }
 
 .aui-form-builder-field-icon-radio {
-	background: url(options.png) no-repeat center center;
+	background-image: url(options.png);
 }
 
 .aui-form-builder-field-icon-select {
-	background: url(selectbox.png) no-repeat center center;
+	background-image: url(selectbox.png);
 }
 
 .aui-form-builder-field-icon-textarea {
-	background: url(textbox.png) no-repeat center center;
+	background-image: url(textbox.png);
 }
 
 .aui-form-builder-field-icon-text {
-	background: url(text_field.png) no-repeat center center;
+	background-image: url(text_field.png);
 }
 
 .aui-form-builder-settings .aui-field-input-checkbox {
