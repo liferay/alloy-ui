@@ -33,7 +33,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CONTENT_CONTAINER = 'contentContainer',
+	VIEWPORT = 'viewport',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -71,9 +71,10 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_DOT = '.',
 	_DOLLAR = '$',
+	_HASH = '#',
 
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, CONTENT, CONTAINER),
+	CSS_DIAGRAM_BUILDER_BASE_VIEWPORT = AgetClassName(DIAGRAM, BUILDER, BASE, VIEWPORT),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
 	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
@@ -142,6 +143,18 @@ var AvailableField = A.Component.create({
 	},
 
 	EXTENDS: A.Base,
+
+	buildNodeId: function(id) {
+		return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
+	},
+
+	getAvailableFieldByNode: function(node) {
+		return A.one(node).getData(AVAILABLE_FIELD);
+	},
+
+	getAvailableFieldById: function(id) {
+		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
+	},
 
 	prototype: {
 		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD + '">' +
@@ -222,10 +235,6 @@ var AvailableField = A.Component.create({
 	}
 });
 
-AvailableField.buildNodeId = function(id) {
-	return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
-};
-
 A.AvailableField = AvailableField;
 
 var FieldSupport = function() {
@@ -255,12 +264,13 @@ A.mix(FieldSupport.prototype, {
 
 	addField: function(field) {
 		var instance = this;
+		var newField = instance.createField(field);
 
 		instance._updateFields(
-			instance.get(FIELDS).add(
-				instance.createField(field)
-			)
+			instance.get(FIELDS).add(newField)
 		);
+
+		return newField;
 	},
 
 	removeField: function(field) {
@@ -316,9 +326,9 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
-			contentContainer: {
+			viewport: {
 				valueFn: function() {
-					return A.Node.create(this.CONTENT_CONTAINER_TEMPLATE);
+					return A.Node.create(this.VIEWPORT_TEMPLATE);
 				}
 			},
 
@@ -384,10 +394,10 @@ var DiagramBuilderBase = A.Component.create(
 		},
 
 		HTML_PARSER: {
-			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER,
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
 			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
-			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER
+			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
+			viewport: _DOT+CSS_DIAGRAM_BUILDER_BASE_VIEWPORT
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -395,10 +405,10 @@ var DiagramBuilderBase = A.Component.create(
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
-			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER + '"></div>',
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
 			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
+			VIEWPORT_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_VIEWPORT + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -421,7 +431,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-				instance.contentContainer = instance.get(CONTENT_CONTAINER);
+				instance.viewport = instance.get(VIEWPORT);
 				instance.dropContainer = instance.get(DROP_CONTAINER);
 				instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
@@ -434,14 +444,20 @@ var DiagramBuilderBase = A.Component.create(
 				return (drag === availableFieldsDrag.dd);
 			},
 
-			plotFields: function(fields) {
+			plotFields: function() {
+				var instance = this;
+				var fields = instance.get(FIELDS);
+
+				fields.each(function(field) {
+					instance.plotField(field);
+				});
 			},
 
 			renderUI: function() {
 				var instance = this;
 
 				instance._renderTabs();
-				instance._renderContentContainer();
+				instance._renderViewport();
 
 				instance._uiSetAvailableFields(
 					instance.get(AVAILABLE_FIELDS)
@@ -497,13 +513,13 @@ var DiagramBuilderBase = A.Component.create(
 				instance.fire(SAVE);
 			},
 
-			_renderContentContainer: function() {
+			_renderViewport: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
-				var contentContainer = instance.contentContainer;
+				var viewport = instance.viewport;
 
-				contentContainer.appendChild(instance.dropContainer);
-				contentBox.appendChild(contentContainer);
+				viewport.appendChild(instance.dropContainer);
+				contentBox.appendChild(viewport);
 			},
 
 			_renderPropertyList: function() {
@@ -587,6 +603,7 @@ var DiagramBuilderBase = A.Component.create(
 				return A.merge(
 					{
 						bubbleTargets: instance,
+						groups: [AVAILABLE_FIELDS],
 						node: instance.dropContainer
 					},
 					val || {}
@@ -601,6 +618,7 @@ var DiagramBuilderBase = A.Component.create(
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
 						dragConfig: {
+							groups: [AVAILABLE_FIELDS],
 							plugins: [
 								{
 									cfg: {

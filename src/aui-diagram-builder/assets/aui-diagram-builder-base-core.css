@@ -41,7 +41,7 @@
 	width: 260px;
 }
 
-.aui-diagram-builder-base-content-container {
+.aui-diagram-builder-base-viewport {
 	background-color: #f5f5f5;
 }
 
@@ -55,7 +55,7 @@
 
 .aui-diagram-node {
 	position: absolute;
-	background-color: #D96666;
+/*	background-color: #D96666;*/
 }
 
 .aui-diagram-builder-base-drop-container {
