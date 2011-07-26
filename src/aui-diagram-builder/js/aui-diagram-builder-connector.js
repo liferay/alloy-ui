@@ -19,9 +19,12 @@ var Lang = A.Lang,
 		return (val instanceof A.DiagramNode);
 	},
 
+	isGraphic = function(val) {
+		return (val instanceof A.Graphic);
+	},
+
 	ANCHOR = 'anchor',
 	ARROW_POINTS = 'arrowPoints',
-	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	COLOR = 'color',
@@ -29,7 +32,7 @@ var Lang = A.Lang,
 	DATA_ANCHOR = 'dataAnchor',
 	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
-	HEIGHT = 'height',
+	GRAPHIC = 'graphic',
 	ID = 'id',
 	LAZY_DRAW = 'lazyDraw',
 	MAX = 'max',
@@ -42,8 +45,6 @@ var Lang = A.Lang,
 	SHAPE = 'shape',
 	SOURCES = 'sources',
 	TARGETS = 'targets',
-	VIEWPORT = 'viewport',
-	WIDTH = 'width',
 	WRAPPER = 'wrapper',
 
 	_DOT = '.',
@@ -123,7 +124,6 @@ A.PolygonUtil = {
 };
 
 A.Connector = A.Base.create('line', A.Base, [], {
-	graphics: null,
 	shape: null,
 
 	initializer: function(config) {
@@ -134,7 +134,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			p2Change: instance.draw
 		});
 
-		instance._initGraphics();
 		instance._initShapes();
 
 		if (!instance.get(LAZY_DRAW)) {
@@ -145,7 +144,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	destroy: function() {
 		var instance = this;
 
-		instance.graphics.destroy();
+		instance.get(GRAPHIC).removeShape(instance.shape);
 	},
 
 	draw: function() {
@@ -162,29 +161,35 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	getCoordinate: function(p) {
 		var instance = this;
-		var xy = instance.get(VIEWPORT).getXY();
+		var xy = instance.get(GRAPHIC).getXY();
 
 		return [ p[0] - xy[0], p[1] - xy[1] ];
-	},
-
-	_initGraphics: function() {
-		var instance = this;
-
-		var graphics = new A.Graphic({
-			width: instance.get(WIDTH),
-			height: instance.get(HEIGHT),
-			render: instance.get(VIEWPORT)
-		});
-
-		instance.graphics = graphics;
 	},
 
 	_initShapes: function() {
 		var instance = this;
 
-		instance.shape = instance.graphics.getShape(
+		instance.shape = instance.get(GRAPHIC).getShape(
 			instance.get(SHAPE)
 		);
+
+		// instance.shape.on('mouseenter', function(event) {
+		// 	instance.shape.set('stroke', {
+		// 		color: 'red',
+		// 		weight: 4
+		// 	});
+		//
+		// 	instance.draw();
+		// });
+		//
+		// instance.shape.on('mouseleave', function(event) {
+		// 	instance.shape.set('stroke', {
+		// 		color: instance.get(COLOR),
+		// 		weight: 2
+		// 	});
+		//
+		// 	instance.draw();
+		// });
 	},
 
 	_setShape: function(val) {
@@ -216,9 +221,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isBoolean
 		},
 
-		viewport: {
-			setter: A.one,
-			value: BODY
+		graphic: {
+			validator: isGraphic
 		},
 
 		shape: {
@@ -478,7 +482,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 
 		return A.merge(
 			{
-				viewport: instance.get(VIEWPORT)
+				graphic: instance.get(GRAPHIC)
 			},
 			val
 		);
@@ -589,6 +593,10 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			validator: isObject
 		},
 
+		graphic: {
+			validator: isGraphic
+		},
+
 		id: {
 			readOnly: true,
 			valueFn: function() {
@@ -631,11 +639,6 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			validator: function(val) {
 				return isArray(val) || isArrayList(val);
 			}
-		},
-
-		viewport: {
-			setter: A.one,
-			value: BODY
 		}
 	},
 
