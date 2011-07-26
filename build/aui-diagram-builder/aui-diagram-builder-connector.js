@@ -16,6 +16,10 @@ var Lang = A.Lang,
 		return (val instanceof A.ArrayList);
 	},
 
+	isDiagramNode = function(val) {
+		return (val instanceof A.DiagramNode);
+	},
+
 	ANCHOR = 'anchor',
 	ARROW_POINTS = 'arrowPoints',
 	BODY = 'body',
@@ -29,6 +33,7 @@ var Lang = A.Lang,
 	HEIGHT = 'height',
 	ID = 'id',
 	LAZY_DRAW = 'lazyDraw',
+	MAX = 'max',
 	MAX_SOURCES = 'maxSources',
 	MAX_TARGETS = 'maxTargets',
 	NODE = 'node',
@@ -46,6 +51,8 @@ var Lang = A.Lang,
 
 	AgetClassName = A.getClassName,
 
+	CSS_DB_ANCHOR_NODE_MAX_TARGETS = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, TARGETS),
+	CSS_DB_ANCHOR_NODE_MAX_SOURCES = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, SOURCES),
 	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
 	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE);
 
@@ -252,24 +259,39 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		instance.connectTargets();
 
 		instance.after({
+			sourcesChange: instance._afterSourcesChange,
 			targetsChange: instance._afterTargetsChange
 		});
+
+		instance._uiSetMaxTargets(
+			instance.get(MAX_TARGETS)
+		);
 	},
 
 	addSource: function(source) {
 		var instance = this;
 
-		return instance.updateSources(
-			instance.get(SOURCES).remove(source).add(source)
-		);
+		if (instance.get(SOURCES).size() < instance.get(MAX_SOURCES)) {
+			instance.set(
+				SOURCES,
+				instance.get(SOURCES).remove(source).add(source)
+			);
+		}
+
+		return instance;
 	},
 
 	addTarget: function(target) {
 		var instance = this;
 
-		return instance.updateTargets(
-			instance.get(TARGETS).remove(target).add(target)
-		);
+		if (instance.get(TARGETS).size() < instance.get(MAX_TARGETS)) {
+			instance.set(
+				TARGETS,
+				instance.get(TARGETS).remove(target).add(target)
+			);
+		}
+
+		return instance;
 	},
 
 	alignConnectors: function() {
@@ -308,7 +330,12 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 	connect: function(target) {
 		var instance = this;
 
+		if (isDiagramNode(target)) {
+			target = target.findAvailableAnchor();
+		}
+
 		instance.addTarget(target);
+		target.addSource(instance);
 
 		if (!instance.isConnected(target)) {
 			var tConnector = target.get(CONNECTOR);
@@ -318,6 +345,10 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 
 			instance.connectors[target.get(ID)] = new A.Connector(tConnector);
 		}
+
+		setTimeout(function() {
+			target.get(DIAGRAM_NODE).syncDropTargets();
+		}, 50);
 
 		return instance;
 	},
@@ -334,9 +365,12 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		var instance = this;
 
 		instance.getConnector(target).destroy();
-
 		instance.removeTarget(target);
 		target.removeSource(instance);
+
+		setTimeout(function() {
+			target.get(DIAGRAM_NODE).syncDropTargets();
+		}, 50);
 	},
 
 	disconnectTargets: function() {
@@ -371,48 +405,44 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		return instance.connectors[target.get(ID)];
 	},
 
+	hasConnection: function() {
+		var instance = this;
+
+		return ((instance.get(TARGETS).size() > 0) || (instance.get(SOURCES).size() > 0));
+	},
+
 	isConnected: function(target) {
 		var instance = this;
 
 		return instance.connectors.hasOwnProperty(target.get(ID));
 	},
 
-	updateSources: function(sources) {
-		var instance = this;
-
-		instance.set(SOURCES, sources);
-
-		return instance;
-	},
-
-	updateTargets: function(targets) {
-		var instance = this;
-
-		instance.set(TARGETS, targets);
-
-		return instance;
-	},
-
 	removeSource: function(source) {
 		var instance = this;
 
-		return instance.updateSources(
+		instance.set(
+			SOURCES,
 			instance.get(SOURCES).remove(source)
 		);
+
+		return instance;
 	},
 
 	removeTarget: function(target) {
 		var instance = this;
 
-		return instance.updateTargets(
+		instance.set(
+			TARGETS,
 			instance.get(TARGETS).remove(target)
 		);
+
+		return instance;
 	},
 
-	_afterActiveChange: function(event) {
+	_afterSourcesChange: function(event) {
 		var instance = this;
 
-		instance._uiSetActive(event.newVal);
+		instance._uiSetSources(event.newVal);
 	},
 
 	_afterTargetsChange: function(event) {
@@ -429,6 +459,8 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		event.newVal.each(function(anchor) {
 			anchor.addSource(instance);
 		});
+
+		instance._uiSetTargets(event.newVal);
 	},
 
 	_renderNode: function() {
@@ -462,7 +494,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 	_setTargets: function(val) {
 		var instance = this;
 
-		val = instance._setAnchors(val);
+		val = instance._setAnchors(val, true);
 
 		val.each(function(anchor) {
 			anchor.addSource(instance);
@@ -471,16 +503,15 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		return val;
 	},
 
-	_setAnchors: function(val) {
+	_setAnchors: function(val, target) {
 		var instance = this;
 
 		if (!isArrayList(val)) {
 			var targets = [];
 
-			A.Array.each(val, function(target) {
-				if (isString(target)) {
-					// TODO - need this?
-					target = A.Anchor.getAnchorByNode(target);
+			A.Array.some(val, function(target, index) {
+				if (index >= instance.get(target ? MAX_TARGETS : MAX_SOURCES)) {
+					return true;
 				}
 
 				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
@@ -492,11 +523,61 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		return val;
 	},
 
+	_setMaxSources: function(val) {
+		var instance = this;
+
+		instance._uiSetMaxSources(
+			instance.get(MAX_SOURCES)
+		);
+
+		return val;
+	},
+
+	_setMaxTargets: function(val) {
+		var instance = this;
+
+		instance._uiSetMaxTargets(
+			instance.get(MAX_TARGETS)
+		);
+
+		return val;
+	},
+
 	_setNode: function(val) {
 		var instance = this;
 		var id = instance.get(ID);
 
 		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
+	},
+
+	_uiSetSources: function(val) {
+		var instance = this;
+
+		instance._uiSetMaxSources(
+			instance.get(MAX_SOURCES)
+		);
+	},
+
+	_uiSetMaxSources: function(val) {
+		var instance = this;
+		var node = instance.get(NODE);
+
+		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_SOURCES, (instance.get(SOURCES).size() === val));
+	},
+
+	_uiSetMaxTargets: function(val) {
+		var instance = this;
+		var node = instance.get(NODE);
+
+		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_TARGETS, (instance.get(TARGETS).size() === val));
+	},
+
+	_uiSetTargets: function(val) {
+		var instance = this;
+
+		instance._uiSetMaxTargets(
+			instance.get(MAX_TARGETS)
+		);
 	}
 },{
 	ATTRS: {
@@ -517,12 +598,14 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		},
 
 		maxSources: {
-			value: Infinity,
+			setter: '_setMaxSources',
+			value: 1,
 			validator: isNumber
 		},
 
 		maxTargets: {
-			value: Infinity,
+			setter: '_setMaxTargets',
+			value: 1,
 			validator: isNumber
 		},
 
@@ -558,7 +641,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 	},
 
 	getAnchorByNode: function(node) {
-		return A.one(node).getData(DATA_ANCHOR);
+		return isAnchor(node) ? node : A.one(node).getData(DATA_ANCHOR);
 	}
 });
 

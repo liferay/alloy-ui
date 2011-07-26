@@ -20,6 +20,7 @@ var Lang = A.Lang,
 
 	AArray = A.Array,
 
+	MAX_FIELDS = 'maxFields',
 	ADD = 'add',
 	ADD_NODE = 'addNode',
 	AUTO = 'auto',
@@ -248,6 +249,11 @@ FieldSupport.ATTRS = {
 		validator: function(val) {
 			return isArray(val) || isArrayList(val);
 		}
+	},
+
+	maxFields: {
+		value: Infinity,
+		validator: isNumber
 	}
 };
 
@@ -256,8 +262,10 @@ A.mix(FieldSupport.prototype, {
 		var instance = this;
 		var fields = [];
 
-		AArray.each(val, function(field) {
-			fields.push(instance.createField(field));
+		AArray.each(val, function(field, index) {
+			if (index < instance.get(MAX_FIELDS)) {
+				fields.push(instance.createField(field));
+			}
 		});
 
 		return new A.ArrayList(fields);
@@ -265,13 +273,20 @@ A.mix(FieldSupport.prototype, {
 
 	addField: function(field) {
 		var instance = this;
-		var newField = instance.createField(field);
 
-		instance._updateFields(
-			instance.get(FIELDS).add(newField)
-		);
+		if (instance.get(FIELDS).size() < instance.get(MAX_FIELDS)) {
+			var newField = instance.createField(field);
 
-		return newField;
+			if (newField) {
+				instance._updateFields(
+					instance.get(FIELDS).add(newField)
+				);
+			}
+
+			return newField;
+		}
+
+		return null;
 	},
 
 	removeField: function(field) {

@@ -28,14 +28,20 @@ var Lang = A.Lang,
 		});
 	},
 
+	ADD_ANCHOR = 'addAnchor',
+	ADD_ANCHOR_MESSAGE = 'addAnchorMessage',
+	ADD_NODE = 'addNode',
 	ANCHOR = 'anchor',
 	ANCHORS = 'anchors',
 	ANCHORS_DRAG_CONFIG = 'anchorsDragConfig',
 	AVAILABLE_FIELD = 'availableField',
+	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
 	CLICK = 'click',
+	CLOSE_EVENT = 'closeEvent',
+	CLOSE_MESSAGE = 'closeMessage',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
@@ -50,13 +56,18 @@ var Lang = A.Lang,
 	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
 	EDITING = 'editing',
+	EDIT_EVENT = 'editEvent',
+	EDIT_MESSAGE = 'editMessage',
 	ESC = 'esc',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
 	HOVER = 'hover',
+	ID = 'id',
 	KEYDOWN = 'keydown',
 	LINK = 'link',
+	MAX = 'max',
+	MAX_SOURCES = 'maxSources',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
@@ -64,26 +75,35 @@ var Lang = A.Lang,
 	P1 = 'p1',
 	P2 = 'p2',
 	PARENT_NODE = 'parentNode',
+	PENCIL = 'pencil',
 	RECORDS = 'records',
 	RECORDSET = 'recordset',
 	REGION = 'region',
 	RENDERED = 'rendered',
+	REQUIRED = 'required',
 	SELECTED = 'selected',
 	SHUFFLE = 'shuffle',
-	TASK = 'task',
+	SOURCE = 'source',
+	SOURCES = 'sources',
+	STRING = 'string',
+	TARGET = 'target',
+	TARGETS = 'targets',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
 	VIEWPORT = 'viewport',
 	WRAPPER = 'wrapper',
 	XY = 'xy',
 
-	_DOT = '.',
-	_DOLLAR = '$',
-	_EMPTY_STR = '',
 	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_HASH = '#',
+	_UNDERLINE = '_',
 
 	AgetClassName = A.getClassName,
 
+	CSS_DB_ANCHOR_NODE_MAX_TARGETS = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, TARGETS),
+	// CSS_DB_ANCHOR_NODE_MAX_SOURCES = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, SOURCES),
 	CSS_DB_ANCHOR_HOVER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, HOVER),
 	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE),
 	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
@@ -185,6 +205,41 @@ var DiagramBuilder = A.Component.create({
 			instance.tmpConnector = new A.Connector(instance.get(TMP_CONNECTOR));
 		},
 
+		connect: function(diagramNode1, diagramNode2) {
+			var instance = this;
+
+			if (isString(diagramNode1)) {
+				diagramNode1 = A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(diagramNode1));
+			}
+
+			if (isString(diagramNode2)) {
+				diagramNode2 = A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(diagramNode2));
+			}
+
+			if (diagramNode1 && diagramNode2) {
+				var a1 = diagramNode1.findAvailableAnchor();
+				var a2 = diagramNode2.findAvailableAnchor();
+
+				if (a1 && a2) {
+					a1.connect(a2);
+				}
+			}
+
+			return instance;
+		},
+
+		connectAll: function(nodes) {
+			var instance = this;
+
+			AArray.each(nodes, function(node) {
+				if (node.hasOwnProperty(SOURCE) && node.hasOwnProperty(TARGET)) {
+					instance.connect(node.source, node.target);
+				}
+			});
+
+			return instance;
+		},
+
 		createField: function(val) {
 			var instance = this;
 
@@ -244,7 +299,7 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			instance.unselectAll();
-			instance.stopEditingNode();
+			// instance.stopEditingNode();
 			instance.selectedNode = diagramNode.set(SELECTED, true).focus();
 		},
 
@@ -343,8 +398,11 @@ var DiagramBuilder = A.Component.create({
 
 		_onDeleteKey: function(event) {
 			var instance = this;
+			var selectedNode = instance.selectedNode;
 
-			instance.selectedNode.close();
+			if (!selectedNode.get(REQUIRED)) {
+				selectedNode.close();
+			}
 		},
 
 		_onEscKey: function(event) {
@@ -475,7 +533,7 @@ var DiagramNodeOverlay = A.Component.create({
 var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
-	UI_ATTRS: [FIELDS, NAME, SELECTED],
+	UI_ATTRS: [FIELDS, NAME, REQUIRED, SELECTED],
 
 	ATTRS: {
 		anchorsDragConfig: {
@@ -487,6 +545,11 @@ var DiagramNode = A.Component.create({
 		builder: {
 			setter: '_setBuilder',
 			validator: isDiagramBuilder
+		},
+
+		required: {
+			value: false,
+			validator: isBoolean
 		},
 
 		description: {
@@ -514,8 +577,11 @@ var DiagramNode = A.Component.create({
 
 		strings: {
 			value: {
+				addAnchorMessage: 'Add Anchor',
+				closeMessage: 'Close',
 				deleteMessage: 'Are you sure you want to delete?',
 				description: 'Description',
+				editMessage: 'Edit',
 				name: 'Name',
 				type: 'Type'
 			}
@@ -527,9 +593,8 @@ var DiagramNode = A.Component.create({
 		},
 
 		controlsToolbar: {
-			setter: '_setControlsToolbar',
 			validator: isObject,
-			value: null
+			valueFn: '_valueControlsToolbar'
 		},
 
 		width: {
@@ -548,7 +613,7 @@ var DiagramNode = A.Component.create({
 	EXTENDS: DiagramNodeOverlay,
 
 	buildNodeId: function(id) {
-		return DIAGRAM_NODE_NAME + _DOLLAR + FIELD + _DOLLAR + id;
+		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id;
 	},
 
 	prototype: {
@@ -634,6 +699,33 @@ var DiagramNode = A.Component.create({
 			return val;
 		},
 
+		findAvailableAnchor: function() {
+			var instance = this;
+			var available = null;
+
+			instance.get(FIELDS).some(function(anchor) {
+				if (!anchor.hasConnection()) {
+					available = anchor;
+
+					return true;
+				}
+			});
+
+			if (!available) {
+				available = instance.addField({});
+			}
+
+			return available;
+		},
+
+		getConnectionNode: function() {
+			var instance = this;
+
+			return new A.DiagramNode({
+				xy: [100, 100] // TODO - find best position?
+			});
+		},
+
 		getLeftTop: function() {
 			var instance = this;
 
@@ -645,7 +737,13 @@ var DiagramNode = A.Component.create({
 			var propertyModel = instance.getPropertyModel();
 
 			AArray.each(propertyModel, function(property) {
-				property.value = instance.get(property.attributeName);
+				var value = instance.get(property.attributeName), type = Lang.type(value);
+
+				if (type === BOOLEAN || type === STRING) {
+					value = String(value);
+				}
+
+				property.value = value;
 			});
 
 			return propertyModel;
@@ -682,6 +780,29 @@ var DiagramNode = A.Component.create({
 			];
 		},
 
+		syncDragTargets: function() {
+			var instance = this;
+
+			instance.anchorsDrag.syncTargets();
+		},
+
+		syncDropTargets: function(anchor) {
+			var instance = this;
+
+			instance.get(FIELDS).each(function(anchor) {
+				var drop = A.DD.DDM.getDrop(anchor.get(NODE));
+
+				if (drop) {
+					if (anchor.get(SOURCES).size() === anchor.get(MAX_SOURCES)) {
+						drop.removeFromGroup(ANCHORS);
+					}
+					else {
+						drop.addToGroup(ANCHORS);
+					}
+				}
+			});
+		},
+
 		_afterRender: function(event) {
 			var instance = this;
 
@@ -706,30 +827,33 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.addField({});
-
-			// event.halt();
 		},
 
-		_handleAddTaskEvent: function(event) {
+		_handleAddNodeEvent: function(event) {
 			var instance = this;
 			var builder = instance.get(BUILDER);
+			var source = instance.findAvailableAnchor();
 
-			var diagramNode = new A.DiagramNode({
-				type: NODE,
-				xy: [100, 100] // TODO - find best position?
-			});
+			if (source) {
+				var diagramNode = instance.getConnectionNode();
 
-			builder.addField(diagramNode);
+				builder.addField(diagramNode);
+				source.connect(diagramNode.addField({}));
+			}
+		},
 
-			var source = instance.addField({});
-			var target = diagramNode.addField({});
-			source.connect(target);
+		_handleEditEvent: function(event) {
+			var instance = this;
+
+			instance.get(BUILDER).startEditingNode(instance);
 		},
 
 		_handleCloseEvent: function(event) {
 			var instance = this;
 
-			instance.close();
+			if (!instance.get(REQUIRED)) {
+				instance.close();
+			}
 		},
 
 		_onAnchorDrag: function(event) {
@@ -785,6 +909,10 @@ var DiagramNode = A.Component.create({
 				instance.get(CONTROLS_TOOLBAR)
 			)
 			.render(instance.controlsNode);
+
+			instance._uiSetRequired(
+				instance.get(REQUIRED)
+			);
 		},
 
 		_setBuilder: function(val) {
@@ -841,31 +969,10 @@ var DiagramNode = A.Component.create({
 			instance.anchorsDrag = new A.DD.Delegate(
 				instance.get(ANCHORS_DRAG_CONFIG)
 			);
-		},
 
-		_setControlsToolbar: function(val) {
-			var instance = this;
-
-			return A.merge(
-				{
-					activeState: false,
-					children: [
-						{
-							handler: A.bind(instance._handleAddAnchorEvent, instance),
-							icon: LINK
-						},
-						{
-							handler: A.bind(instance._handleAddTaskEvent, instance),
-							icon: SHUFFLE
-						},
-						{
-							handler: A.bind(instance._handleCloseEvent, instance),
-							icon: CANCEL
-						}
-					]
-				},
-				val
-			);
+			instance.anchorsDrag.dd
+				.addInvalid(_DOT+CSS_DB_ANCHOR_NODE_MAX_TARGETS);
+				// .addInvalid(_DOT+CSS_DB_ANCHOR_NODE_MAX_SOURCES);
 		},
 
 		_uiSetFields: function(val) {
@@ -874,9 +981,10 @@ var DiagramNode = A.Component.create({
 			if (instance.get(RENDERED)) {
 				instance.alignAnchors();
 
-				setTimeout(function() {
-					instance.anchorsDrag.syncTargets();
-				}, 50);
+				// setTimeout(function() {
+					instance.syncDragTargets();
+					instance.syncDropTargets();
+				// }, 50);
 			}
 		},
 
@@ -884,7 +992,27 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
 
-			boundingBox.setAttribute(NAME, A.DiagramNode.buildNodeId(val));
+			boundingBox.set(ID, A.DiagramNode.buildNodeId(val));
+		},
+
+		_uiSetRequired: function(val) {
+			var instance = this;
+			var strings = instance.getStrings();
+			var controlsToolbar = instance.controlsToolbar;
+
+			if (controlsToolbar) {
+				if (val) {
+					controlsToolbar.remove(CLOSE_EVENT);
+				}
+				else {
+					controlsToolbar.add({
+						handler: A.bind(instance._handleCloseEvent, instance),
+						icon: CANCEL,
+						id: CLOSE_EVENT,
+						title: strings[CLOSE_MESSAGE]
+					});
+				}
+			}
 		},
 
 		_uiSetSelected: function(val) {
@@ -906,27 +1034,47 @@ var DiagramNode = A.Component.create({
 			var containerXY = instance._getContainer().getXY();
 
             this._posNode.setXY([ val[0] + containerXY[0], val[1] + containerXY[1] ]);
-        }
+        },
+
+		_valueControlsToolbar: function(val) {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			return {
+				activeState: false,
+				children: [
+					{
+						handler: A.bind(instance._handleEditEvent, instance),
+						icon: PENCIL,
+						id: EDIT_EVENT,
+						title: strings[EDIT_MESSAGE]
+					},
+					{
+						handler: A.bind(instance._handleAddAnchorEvent, instance),
+						icon: LINK,
+						id: ADD_ANCHOR,
+						title: strings[ADD_ANCHOR_MESSAGE]
+					},
+					{
+						handler: A.bind(instance._handleAddNodeEvent, instance),
+						icon: SHUFFLE,
+						id: ADD_NODE
+					},
+					{
+						handler: A.bind(instance._handleCloseEvent, instance),
+						icon: CANCEL,
+						id: CLOSE_EVENT,
+						title: strings[CLOSE_MESSAGE]
+					}
+				]
+			};
+		}
 	}
 });
 
 A.DiagramNode = DiagramNode;
 
 A.DiagramBuilder.types[NODE] = A.DiagramNode;
-
-A.DiagramNodeTask = A.Component.create({
-	NAME: DIAGRAM_NODE_NAME,
-
-	ATTRS: {
-		type: {
-			value: TASK
-		}
-	},
-
-	EXTENDS: A.DiagramNode
-});
-
-A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
 // TODO deletar anchors OK
 // TODO deletar connections (delete) OK
