@@ -100,7 +100,6 @@ A.PolygonUtil = {
 		});
 
 		shape.lineTo(points[0][0], points[0][1]);
-		shape.end();
 	},
 
 	translatePoints: function(points, x, y) {
@@ -138,20 +137,21 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	initializer: function(config) {
 		var instance = this;
+		var lazyDraw = instance.get(LAZY_DRAW);
 
 		instance.after({
-			selectedChange: instance._afterSelectedChange,
 			p1Change: instance.draw,
-			p2Change: instance.draw
+			p2Change: instance.draw,
+			selectedChange: instance._afterSelectedChange
 		});
 
 		instance._initShapes();
 
-		if (!instance.get(LAZY_DRAW)) {
+		if (!lazyDraw) {
 			instance.draw();
 		}
 
-		instance._uiSetSelected(instance.get(SELECTED));
+		instance._uiSetSelected(instance.get(SELECTED), !lazyDraw);
 	},
 
 	destroy: function() {
@@ -170,6 +170,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		shape.clear();
 
 		A.PolygonUtil.drawLineArrow(shape, c1[0], c1[1], c2[0], c2[1], instance.get(ARROW_POINTS));
+
+		shape.end();
 	},
 
 	getCoordinate: function(p) {
@@ -237,7 +239,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		);
 	},
 
-	_updateShape: function(cShape) {
+	_updateShape: function(cShape, draw) {
 		var instance = this;
 		var shape = instance.shape;
 
@@ -249,13 +251,15 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			shape.set(STROKE, cShape[STROKE]);
 		}
 
-		instance.draw();
+		if (draw !== false) {
+			instance.draw();
+		}
 	},
 
-	_uiSetSelected: function(val) {
+	_uiSetSelected: function(val, draw) {
 		var instance = this;
 
-		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE));
+		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
 	}
 },{
 	ATTRS: {
