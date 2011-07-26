@@ -32,22 +32,31 @@ var Lang = A.Lang,
 	DATA_ANCHOR = 'dataAnchor',
 	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
+	FILL = 'fill',
 	GRAPHIC = 'graphic',
 	ID = 'id',
 	LAZY_DRAW = 'lazyDraw',
 	MAX = 'max',
 	MAX_SOURCES = 'maxSources',
 	MAX_TARGETS = 'maxTargets',
+	MOUSEDOWN = 'mousedown',
+	MOUSEENTER = 'mouseenter',
+	MOUSELEAVE = 'mouseleave',
 	NODE = 'node',
 	P1 = 'p1',
 	P2 = 'p2',
 	PATH = 'path',
+	SELECTED = 'selected',
 	SHAPE = 'shape',
+	SHAPE_HOVER = 'shapeHover',
+	SHAPE_SELECTED = 'shapeSelected',
 	SOURCES = 'sources',
+	STROKE = 'stroke',
 	TARGETS = 'targets',
 	WRAPPER = 'wrapper',
 
 	_DOT = '.',
+	_HASH = '#',
 
 	AgetClassName = A.getClassName,
 
@@ -130,6 +139,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		instance.after({
+			selectedChange: instance._afterSelectedChange,
 			p1Change: instance.draw,
 			p2Change: instance.draw
 		});
@@ -139,6 +149,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		if (!instance.get(LAZY_DRAW)) {
 			instance.draw();
 		}
+
+		instance._uiSetSelected(instance.get(SELECTED));
 	},
 
 	destroy: function() {
@@ -166,30 +178,44 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return [ p[0] - xy[0], p[1] - xy[1] ];
 	},
 
+	_afterSelectedChange: function(event) {
+		var instance = this;
+
+		instance._uiSetSelected(event.newVal);
+	},
+
 	_initShapes: function() {
 		var instance = this;
 
-		instance.shape = instance.get(GRAPHIC).getShape(
+		var shape = instance.shape = instance.get(GRAPHIC).getShape(
 			instance.get(SHAPE)
 		);
 
-		// instance.shape.on('mouseenter', function(event) {
-		// 	instance.shape.set('stroke', {
-		// 		color: 'red',
-		// 		weight: 4
-		// 	});
-		//
-		// 	instance.draw();
-		// });
-		//
-		// instance.shape.on('mouseleave', function(event) {
-		// 	instance.shape.set('stroke', {
-		// 		color: instance.get(COLOR),
-		// 		weight: 2
-		// 	});
-		//
-		// 	instance.draw();
-		// });
+		shape.on(MOUSEDOWN, A.bind(instance._onShapeMouseDown, instance));
+		shape.on(MOUSEENTER, A.bind(instance._onShapeMouseEnter, instance));
+		shape.on(MOUSELEAVE, A.bind(instance._onShapeMouseLeave, instance));
+	},
+
+	_onShapeMouseDown: function(event) {
+		var instance = this;
+
+		instance.set(SELECTED, !instance.get(SELECTED));
+	},
+
+	_onShapeMouseEnter: function(event) {
+		var instance = this;
+
+		if (!instance.get(SELECTED)) {
+			instance._updateShape(instance.get(SHAPE_HOVER));
+		}
+	},
+
+	_onShapeMouseLeave: function(event) {
+		var instance = this;
+
+		if (!instance.get(SELECTED)) {
+			instance._updateShape(instance.get(SHAPE));
+		}
 	},
 
 	_setShape: function(val) {
@@ -208,9 +234,33 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			},
 			val
 		);
+	},
+
+	_updateShape: function(cShape) {
+		var instance = this;
+		var shape = instance.shape;
+
+		if (cShape.hasOwnProperty(FILL)) {
+			shape.set(FILL, cShape[FILL]);
+		}
+
+		if (cShape.hasOwnProperty(STROKE)) {
+			shape.set(STROKE, cShape[STROKE]);
+		}
+
+		instance.draw();
+	},
+
+	_uiSetSelected: function(val) {
+		var instance = this;
+
+		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE));
 	}
 },{
 	ATTRS: {
+		anchor: {
+		},
+
 		color: {
 			value: '#666',
 			validator: isString
@@ -225,9 +275,38 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isGraphic
 		},
 
+		shapeHover: {
+			value: {
+				fill: {
+					color: 'red'
+				},
+				stroke: {
+					color: 'red',
+					weight: 2
+				}
+			}
+		},
+
+		selected: {
+			value: false,
+			validator: isBoolean
+		},
+
 		shape: {
 			value: null,
 			setter: '_setShape'
+		},
+
+		shapeSelected: {
+			value: {
+				fill: {
+					color: '#000'
+				},
+				stroke: {
+					color: '#000',
+					weight: 6
+				}
+			}
 		},
 
 		arrowPoints: {
@@ -343,6 +422,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		if (!instance.isConnected(target)) {
 			var tConnector = target.get(CONNECTOR);
 
+			tConnector.anchor = instance;
 			tConnector.p1 = instance.getCenterXY();
 			tConnector.p2 = target.getCenterXY();
 
@@ -396,6 +476,20 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		return instance;
 	},
 
+	findConnectorTarget: function(connector) {
+		var instance = this;
+		var target = null;
+
+		A.some(instance.connectors, function(c, targetId) {
+			if (c === connector) {
+				target = A.Anchor.getAnchorByNode(_HASH+targetId);
+				return true;
+			}
+		});
+
+		return target;
+	},
+
 	getCenterXY: function() {
 		var instance = this;
 
@@ -439,6 +533,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			instance.get(TARGETS).remove(target)
 		);
 
+		delete instance.connectors[target.get(ID)];
 		return instance;
 	},
 
@@ -482,7 +577,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 
 		return A.merge(
 			{
-				graphic: instance.get(GRAPHIC)
+				graphic: instance.get(DIAGRAM_NODE).get(BUILDER).get(GRAPHIC)
 			},
 			val
 		);
@@ -591,10 +686,6 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			setter: '_setConnector',
 			value: {},
 			validator: isObject
-		},
-
-		graphic: {
-			validator: isGraphic
 		},
 
 		id: {
