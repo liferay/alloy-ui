@@ -24,7 +24,7 @@
 			background-color: lightyellow !important;
 		}
 
-		.aui-diagram-builder-base-viewport {
+		.aui-diagram-builder-base-canvas {
 			position: relative;
 			background-image: url("checker-bg.png");
 			outline: 0;
@@ -165,7 +165,7 @@
 					</div>
 				</div>
 
-				<div class="aui-diagram-builder-base-viewport">
+				<div class="aui-diagram-builder-base-canvas">
 					<div class="aui-diagram-builder-base-drop-container"></div>
 				</div>
 
@@ -182,6 +182,20 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+
+// TODO deletar anchors OK
+// TODO deletar connections (delete) OK
+// TODO Adicionar overlay de controles OK
+// TODO syncTargets dd delegate
+// TODO Adicionar groups/validation for connection - Partially OK
+
+// TODO Add events to graphics
+// TODO Select connection
+// TODO Delete selected connection
+// TODO Create InlineEditor for Assignments, Actions, Notifications
+// TODO Generate XML
+// TODO Realign anchors to best fit?
+// TODO Better Connection path?
 
 AUI().use('aui-diagram-builder', function(A) {
 
