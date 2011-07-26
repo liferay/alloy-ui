@@ -35,7 +35,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	VIEWPORT = 'viewport',
+	CANVAS = 'canvas',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -76,7 +76,7 @@ var Lang = A.Lang,
 	_HASH = '#',
 
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_VIEWPORT = AgetClassName(DIAGRAM, BUILDER, BASE, VIEWPORT),
+	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
 	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
@@ -342,9 +342,9 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
-			viewport: {
+			canvas: {
 				valueFn: function() {
-					return A.Node.create(this.VIEWPORT_TEMPLATE);
+					return A.Node.create(this.CANVAS_TEMPLATE);
 				}
 			},
 
@@ -413,7 +413,7 @@ var DiagramBuilderBase = A.Component.create(
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
 			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
 			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
-			viewport: _DOT+CSS_DIAGRAM_BUILDER_BASE_VIEWPORT
+			canvas: _DOT+CSS_DIAGRAM_BUILDER_BASE_CANVAS
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -424,7 +424,7 @@ var DiagramBuilderBase = A.Component.create(
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
 			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
-			VIEWPORT_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_VIEWPORT + '"></div>',
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -447,7 +447,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-				instance.viewport = instance.get(VIEWPORT);
+				instance.canvas = instance.get(CANVAS);
 				instance.dropContainer = instance.get(DROP_CONTAINER);
 				instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
@@ -473,7 +473,7 @@ var DiagramBuilderBase = A.Component.create(
 				var instance = this;
 
 				instance._renderTabs();
-				instance._renderViewport();
+				instance._renderCanvas();
 
 				instance._uiSetAvailableFields(
 					instance.get(AVAILABLE_FIELDS)
@@ -529,13 +529,13 @@ var DiagramBuilderBase = A.Component.create(
 				instance.fire(SAVE);
 			},
 
-			_renderViewport: function() {
+			_renderCanvas: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
-				var viewport = instance.viewport;
+				var canvas = instance.canvas;
 
-				viewport.appendChild(instance.dropContainer);
-				contentBox.appendChild(viewport);
+				canvas.appendChild(instance.dropContainer);
+				contentBox.appendChild(canvas);
 			},
 
 			_renderPropertyList: function() {

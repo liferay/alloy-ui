@@ -35,7 +35,7 @@ var Lang = A.Lang,
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	VIEWPORT = 'viewport',
+	CANVAS = 'canvas',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -76,7 +76,7 @@ var Lang = A.Lang,
 	_HASH = '#',
 
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_VIEWPORT = AgetClassName(DIAGRAM, BUILDER, BASE, VIEWPORT),
+	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
 	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
@@ -342,9 +342,9 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
-			viewport: {
+			canvas: {
 				valueFn: function() {
-					return A.Node.create(this.VIEWPORT_TEMPLATE);
+					return A.Node.create(this.CANVAS_TEMPLATE);
 				}
 			},
 
@@ -413,7 +413,7 @@ var DiagramBuilderBase = A.Component.create(
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
 			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
 			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
-			viewport: _DOT+CSS_DIAGRAM_BUILDER_BASE_VIEWPORT
+			canvas: _DOT+CSS_DIAGRAM_BUILDER_BASE_CANVAS
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -424,7 +424,7 @@ var DiagramBuilderBase = A.Component.create(
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
 			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
-			VIEWPORT_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_VIEWPORT + '"></div>',
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -447,7 +447,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-				instance.viewport = instance.get(VIEWPORT);
+				instance.canvas = instance.get(CANVAS);
 				instance.dropContainer = instance.get(DROP_CONTAINER);
 				instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
@@ -473,7 +473,7 @@ var DiagramBuilderBase = A.Component.create(
 				var instance = this;
 
 				instance._renderTabs();
-				instance._renderViewport();
+				instance._renderCanvas();
 
 				instance._uiSetAvailableFields(
 					instance.get(AVAILABLE_FIELDS)
@@ -529,13 +529,13 @@ var DiagramBuilderBase = A.Component.create(
 				instance.fire(SAVE);
 			},
 
-			_renderViewport: function() {
+			_renderCanvas: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
-				var viewport = instance.viewport;
+				var canvas = instance.canvas;
 
-				viewport.appendChild(instance.dropContainer);
-				contentBox.appendChild(viewport);
+				canvas.appendChild(instance.dropContainer);
+				contentBox.appendChild(canvas);
 			},
 
 			_renderPropertyList: function() {
@@ -792,6 +792,7 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
+	CANVAS = 'canvas',
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
@@ -815,6 +816,7 @@ var Lang = A.Lang,
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
+	GRAPHIC = 'graphic',
 	HOVER = 'hover',
 	ID = 'id',
 	KEYDOWN = 'keydown',
@@ -843,7 +845,6 @@ var Lang = A.Lang,
 	TARGETS = 'targets',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
-	VIEWPORT = 'viewport',
 	WRAPPER = 'wrapper',
 	XY = 'xy',
 
@@ -914,6 +915,13 @@ var DiagramBuilder = A.Component.create({
 			validator: isObject
 		},
 
+		graphic: {
+			valueFn: function() {
+				return new A.Graphic();
+			},
+			validator: isObject
+		},
+
 		tmpConnector: {
 			setter: '_setTmpConnector',
 			value: {},
@@ -946,6 +954,14 @@ var DiagramBuilder = A.Component.create({
 			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onNodeEdit, instance), _DOT+CSS_DIAGRAM_NODE);
 			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onMouseenterAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onMouseleaveAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
+		},
+
+		renderUI: function() {
+			var instance = this;
+
+			A.DiagramBuilder.superclass.renderUI.apply(this, arguments);
+
+			instance._renderGraphic();
 		},
 
 		syncUI: function() {
@@ -999,7 +1015,8 @@ var DiagramBuilder = A.Component.create({
 			if (!isDiagramNode(val)) {
 				// val.bubbleTargets = instance;
 				val.builder = instance;
-				val.viewport = instance.get(VIEWPORT);
+				// val.viewport = instance.get(VIEWPORT);
+				// val.graphic = instance.get(GRAPHIC);
 				val = new (instance.getFieldClass(val.type || NODE))(val);
 			}
 
@@ -1215,13 +1232,19 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
+		_renderGraphic: function() {
+			var instance = this;
+
+			instance.get(GRAPHIC).render(instance.get(CANVAS));
+		},
+
 		_setTmpConnector: function(val) {
 			var instance = this;
 
 			return A.merge(
 				{
 					lazyDraw: true,
-					viewport: instance.viewport
+					graphic: instance.get(GRAPHIC)
 				},
 				val
 			);
@@ -1444,7 +1467,7 @@ var DiagramNode = A.Component.create({
 				var builder = instance.get(BUILDER);
 
 				val.diagramNode = instance;
-				val.viewport = (builder ? builder.get(VIEWPORT) : null);
+				val.graphic = (builder ? builder.get(GRAPHIC) : null);
 
 				val = new A.Anchor(val);
 			}
@@ -1672,7 +1695,7 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.get(FIELDS).each(function(anchor) {
-				anchor.set(VIEWPORT, val.get(VIEWPORT));
+				anchor.set(GRAPHIC, val.get(GRAPHIC));
 			});
 
 			return val;
@@ -1691,7 +1714,7 @@ var DiagramNode = A.Component.create({
 						plugins: [
 							{
 								cfg: {
-									constrain: (builder ? builder.get(VIEWPORT) : null)
+									constrain: (builder ? builder.get(CANVAS) : null)
 								},
 								fn: A.Plugin.DDConstrained
 							},
@@ -1829,16 +1852,6 @@ A.DiagramNode = DiagramNode;
 
 A.DiagramBuilder.types[NODE] = A.DiagramNode;
 
-// TODO deletar anchors OK
-// TODO deletar connections (delete) OK
-// TODO Adicionar overlay de controles OK
-// TODO syncTargets dd delegate
-
-
-// TODO gerar XML
-// TODO reposicionar setas?
-// TODO Adicionar groups/validation for connection
-
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
@@ -1862,9 +1875,12 @@ var Lang = A.Lang,
 		return (val instanceof A.DiagramNode);
 	},
 
+	isGraphic = function(val) {
+		return (val instanceof A.Graphic);
+	},
+
 	ANCHOR = 'anchor',
 	ARROW_POINTS = 'arrowPoints',
-	BODY = 'body',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	COLOR = 'color',
@@ -1872,7 +1888,7 @@ var Lang = A.Lang,
 	DATA_ANCHOR = 'dataAnchor',
 	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
-	HEIGHT = 'height',
+	GRAPHIC = 'graphic',
 	ID = 'id',
 	LAZY_DRAW = 'lazyDraw',
 	MAX = 'max',
@@ -1885,8 +1901,6 @@ var Lang = A.Lang,
 	SHAPE = 'shape',
 	SOURCES = 'sources',
 	TARGETS = 'targets',
-	VIEWPORT = 'viewport',
-	WIDTH = 'width',
 	WRAPPER = 'wrapper',
 
 	_DOT = '.',
@@ -1966,7 +1980,6 @@ A.PolygonUtil = {
 };
 
 A.Connector = A.Base.create('line', A.Base, [], {
-	graphics: null,
 	shape: null,
 
 	initializer: function(config) {
@@ -1977,7 +1990,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			p2Change: instance.draw
 		});
 
-		instance._initGraphics();
 		instance._initShapes();
 
 		if (!instance.get(LAZY_DRAW)) {
@@ -1988,7 +2000,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	destroy: function() {
 		var instance = this;
 
-		instance.graphics.destroy();
+		instance.get(GRAPHIC).removeShape(instance.shape);
 	},
 
 	draw: function() {
@@ -2005,29 +2017,35 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	getCoordinate: function(p) {
 		var instance = this;
-		var xy = instance.get(VIEWPORT).getXY();
+		var xy = instance.get(GRAPHIC).getXY();
 
 		return [ p[0] - xy[0], p[1] - xy[1] ];
-	},
-
-	_initGraphics: function() {
-		var instance = this;
-
-		var graphics = new A.Graphic({
-			width: instance.get(WIDTH),
-			height: instance.get(HEIGHT),
-			render: instance.get(VIEWPORT)
-		});
-
-		instance.graphics = graphics;
 	},
 
 	_initShapes: function() {
 		var instance = this;
 
-		instance.shape = instance.graphics.getShape(
+		instance.shape = instance.get(GRAPHIC).getShape(
 			instance.get(SHAPE)
 		);
+
+		// instance.shape.on('mouseenter', function(event) {
+		// 	instance.shape.set('stroke', {
+		// 		color: 'red',
+		// 		weight: 4
+		// 	});
+		//
+		// 	instance.draw();
+		// });
+		//
+		// instance.shape.on('mouseleave', function(event) {
+		// 	instance.shape.set('stroke', {
+		// 		color: instance.get(COLOR),
+		// 		weight: 2
+		// 	});
+		//
+		// 	instance.draw();
+		// });
 	},
 
 	_setShape: function(val) {
@@ -2059,9 +2077,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isBoolean
 		},
 
-		viewport: {
-			setter: A.one,
-			value: BODY
+		graphic: {
+			validator: isGraphic
 		},
 
 		shape: {
@@ -2321,7 +2338,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 
 		return A.merge(
 			{
-				viewport: instance.get(VIEWPORT)
+				graphic: instance.get(GRAPHIC)
 			},
 			val
 		);
@@ -2432,6 +2449,10 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			validator: isObject
 		},
 
+		graphic: {
+			validator: isGraphic
+		},
+
 		id: {
 			readOnly: true,
 			valueFn: function() {
@@ -2474,11 +2495,6 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 			validator: function(val) {
 				return isArray(val) || isArrayList(val);
 			}
-		},
-
-		viewport: {
-			setter: A.one,
-			value: BODY
 		}
 	},
 

@@ -39,6 +39,7 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
+	CANVAS = 'canvas',
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
@@ -62,6 +63,7 @@ var Lang = A.Lang,
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
+	GRAPHIC = 'graphic',
 	HOVER = 'hover',
 	ID = 'id',
 	KEYDOWN = 'keydown',
@@ -90,7 +92,6 @@ var Lang = A.Lang,
 	TARGETS = 'targets',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
-	VIEWPORT = 'viewport',
 	WRAPPER = 'wrapper',
 	XY = 'xy',
 
@@ -161,6 +162,13 @@ var DiagramBuilder = A.Component.create({
 			validator: isObject
 		},
 
+		graphic: {
+			valueFn: function() {
+				return new A.Graphic();
+			},
+			validator: isObject
+		},
+
 		tmpConnector: {
 			setter: '_setTmpConnector',
 			value: {},
@@ -193,6 +201,14 @@ var DiagramBuilder = A.Component.create({
 			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onNodeEdit, instance), _DOT+CSS_DIAGRAM_NODE);
 			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onMouseenterAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onMouseleaveAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
+		},
+
+		renderUI: function() {
+			var instance = this;
+
+			A.DiagramBuilder.superclass.renderUI.apply(this, arguments);
+
+			instance._renderGraphic();
 		},
 
 		syncUI: function() {
@@ -246,7 +262,8 @@ var DiagramBuilder = A.Component.create({
 			if (!isDiagramNode(val)) {
 				// val.bubbleTargets = instance;
 				val.builder = instance;
-				val.viewport = instance.get(VIEWPORT);
+				// val.viewport = instance.get(VIEWPORT);
+				// val.graphic = instance.get(GRAPHIC);
 				val = new (instance.getFieldClass(val.type || NODE))(val);
 			}
 
@@ -462,13 +479,19 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
+		_renderGraphic: function() {
+			var instance = this;
+
+			instance.get(GRAPHIC).render(instance.get(CANVAS));
+		},
+
 		_setTmpConnector: function(val) {
 			var instance = this;
 
 			return A.merge(
 				{
 					lazyDraw: true,
-					viewport: instance.viewport
+					graphic: instance.get(GRAPHIC)
 				},
 				val
 			);
@@ -691,7 +714,7 @@ var DiagramNode = A.Component.create({
 				var builder = instance.get(BUILDER);
 
 				val.diagramNode = instance;
-				val.viewport = (builder ? builder.get(VIEWPORT) : null);
+				val.graphic = (builder ? builder.get(GRAPHIC) : null);
 
 				val = new A.Anchor(val);
 			}
@@ -919,7 +942,7 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.get(FIELDS).each(function(anchor) {
-				anchor.set(VIEWPORT, val.get(VIEWPORT));
+				anchor.set(GRAPHIC, val.get(GRAPHIC));
 			});
 
 			return val;
@@ -938,7 +961,7 @@ var DiagramNode = A.Component.create({
 						plugins: [
 							{
 								cfg: {
-									constrain: (builder ? builder.get(VIEWPORT) : null)
+									constrain: (builder ? builder.get(CANVAS) : null)
 								},
 								fn: A.Plugin.DDConstrained
 							},
@@ -1075,15 +1098,5 @@ var DiagramNode = A.Component.create({
 A.DiagramNode = DiagramNode;
 
 A.DiagramBuilder.types[NODE] = A.DiagramNode;
-
-// TODO deletar anchors OK
-// TODO deletar connections (delete) OK
-// TODO Adicionar overlay de controles OK
-// TODO syncTargets dd delegate
-
-
-// TODO gerar XML
-// TODO reposicionar setas?
-// TODO Adicionar groups/validation for connection
 
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
