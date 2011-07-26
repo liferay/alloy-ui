@@ -27,6 +27,7 @@ var Lang = A.Lang,
 		});
 	},
 
+	ACTIVE_ELEMENT = 'activeElement',
 	ADD_ANCHOR = 'addAnchor',
 	ADD_ANCHOR_MESSAGE = 'addAnchorMessage',
 	ADD_NODE = 'addNode',
@@ -171,7 +172,13 @@ var DiagramBuilder = A.Component.create({
 
 		strings: {
 			value: {
-				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?'
+				addNode: 'Add node',
+				cancel: 'Cancel',
+				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?',
+				nodeSettings: 'Node settings',
+				propertyName: 'Property Name',
+				save: 'Save',
+				value: 'Value'
 			}
 		},
 
@@ -408,13 +415,9 @@ var DiagramBuilder = A.Component.create({
 		_afterKeyEvent: function(event) {
 			var instance = this;
 
-			if (event.hasModifier()) {
+			if (event.hasModifier() || A.getDoc().get(ACTIVE_ELEMENT).test(':input,td')) {
 				return;
 			}
-
-			// !selectedConnectors.length && !instance.selectedNode
-
-			// event.selectedConnectors = instance.getSelectedConnectors();
 
 			if (event.isKey(ESC)) {
 				instance._onEscKey(event);
@@ -560,9 +563,12 @@ var DiagramBuilder = A.Component.create({
 
 		_setTmpConnector: function(val) {
 			var instance = this;
+			var xy = instance.get(CANVAS).getXY();
 
 			return A.merge(
 				{
+					p1: xy,
+					p2: xy,
 					lazyDraw: true,
 					graphic: instance.get(GRAPHIC)
 				},
