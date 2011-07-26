@@ -49,7 +49,8 @@ var Lang = A.Lang,
 	DATA = 'data',
 	DBLCLICK = 'dblclick',
 	DELETE = 'delete',
-	DELETE_MESSAGE = 'deleteMessage',
+	DELETE_CONNECTORS_MESSAGE = 'deleteConnectorsMessage',
+	DELETE_NODES_MESSAGE = 'deleteNodesMessage',
 	DESCRIPTION = 'description',
 	DIAGRAM = 'diagram',
 	DIAGRAM_BUILDER_NAME = 'diagram-builder',
@@ -169,6 +170,12 @@ var DiagramBuilder = A.Component.create({
 			validator: isObject
 		},
 
+		strings: {
+			value: {
+				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?'
+			}
+		},
+
 		tmpConnector: {
 			setter: '_setTmpConnector',
 			value: {},
@@ -260,16 +267,58 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			if (!isDiagramNode(val)) {
-				// val.bubbleTargets = instance;
 				val.builder = instance;
-				// val.viewport = instance.get(VIEWPORT);
-				// val.graphic = instance.get(GRAPHIC);
 				val = new (instance.getFieldClass(val.type || NODE))(val);
 			}
 
 			val.set(BUILDER, instance);
 
 			return val;
+		},
+
+		deleteConnectors: function(connectors) {
+			var instance = this;
+
+			AArray.each(connectors, function(connector) {
+				var anchor = connector.get(ANCHOR);
+
+				if (anchor) {
+					var target = anchor.findConnectorTarget(connector);
+
+					if (target) {
+						anchor.disconnect(target);
+					}
+				}
+			});
+		},
+
+		eachConnetor: function(fn) {
+			var instance = this;
+			var stop = false;
+
+			instance.get(FIELDS).some(function(diagramNode) {
+				diagramNode.get(FIELDS).some(function(anchor) {
+					A.some(anchor.connectors, function(connector) {
+						stop = fn.call(instance, connector, anchor, diagramNode);
+						return stop;
+					});
+					return stop;
+				});
+				return stop;
+			});
+		},
+
+		getSelectedConnectors: function() {
+			var instance = this;
+			var selected = [];
+
+			instance.eachConnetor(function(connector) {
+				if (connector.get(SELECTED)) {
+					selected.push(connector);
+				}
+			});
+
+			return selected;
 		},
 
 		getFieldClass: function(type) {
@@ -301,7 +350,15 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
-		unselectAll: function() {
+		unselectConnectors: function() {
+			var instance = this;
+
+			AArray.each(instance.getSelectedConnectors(), function(connector) {
+				connector.set(SELECTED, false);
+			});
+		},
+
+		unselectFields: function() {
 			var instance = this;
 			var selectedNode = instance.selectedNode;
 
@@ -315,7 +372,7 @@ var DiagramBuilder = A.Component.create({
 		select: function(diagramNode) {
 			var instance = this;
 
-			instance.unselectAll();
+			instance.unselectFields();
 			// instance.stopEditingNode();
 			instance.selectedNode = diagramNode.set(SELECTED, true).focus();
 		},
@@ -352,9 +409,13 @@ var DiagramBuilder = A.Component.create({
 		_afterKeyEvent: function(event) {
 			var instance = this;
 
-			if (!instance.selectedNode || event.hasModifier() || !event.isKeyInSet(ESC, DELETE)) {
+			if (event.hasModifier()) {
 				return;
 			}
+
+			// !selectedConnectors.length && !instance.selectedNode
+
+			// event.selectedConnectors = instance.getSelectedConnectors();
 
 			if (event.isKey(ESC)) {
 				instance._onEscKey(event);
@@ -362,8 +423,6 @@ var DiagramBuilder = A.Component.create({
 			else if (event.isKey(DELETE)) {
 				instance._onDeleteKey(event);
 			}
-
-			event.halt();
 		},
 
 		_onCancel: function(event) {
@@ -415,18 +474,33 @@ var DiagramBuilder = A.Component.create({
 
 		_onDeleteKey: function(event) {
 			var instance = this;
+			var strings = instance.getStrings();
+
+			var selectedConnectors = instance.getSelectedConnectors();
+
+			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
+				instance.deleteConnectors(selectedConnectors);
+			}
+
 			var selectedNode = instance.selectedNode;
 
-			if (!selectedNode.get(REQUIRED)) {
-				selectedNode.close();
+			if (selectedNode) {
+				if (!selectedNode.get(REQUIRED)) {
+					selectedNode.close();
+				}
 			}
+
+			event.halt();
 		},
 
 		_onEscKey: function(event) {
 			var instance = this;
 
-			instance.unselectAll();
+			instance.unselectConnectors();
+			instance.unselectFields();
 			instance.stopEditingNode();
+
+			event.halt();
 		},
 
 		_onMouseenterAnchors: function(event) {
@@ -566,7 +640,6 @@ var DiagramNode = A.Component.create({
 		},
 
 		builder: {
-			setter: '_setBuilder',
 			validator: isDiagramBuilder
 		},
 
@@ -602,7 +675,7 @@ var DiagramNode = A.Component.create({
 			value: {
 				addAnchorMessage: 'Add Anchor',
 				closeMessage: 'Close',
-				deleteMessage: 'Are you sure you want to delete?',
+				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
 				description: 'Description',
 				editMessage: 'Edit',
 				name: 'Name',
@@ -694,7 +767,7 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 			var strings = instance.getStrings();
 
-			if (confirm(strings[DELETE_MESSAGE])) {
+			if (confirm(strings[DELETE_NODES_MESSAGE])) {
 				instance.get(FIELDS).each(function(anchor) {
 					anchor.destroy();
 				});
@@ -702,7 +775,7 @@ var DiagramNode = A.Component.create({
 				instance.destroy();
 			}
 
-			__dump();
+			// __dump();
 
 			return instance;
 		},
@@ -714,7 +787,6 @@ var DiagramNode = A.Component.create({
 				var builder = instance.get(BUILDER);
 
 				val.diagramNode = instance;
-				val.graphic = (builder ? builder.get(GRAPHIC) : null);
 
 				val = new A.Anchor(val);
 			}
@@ -936,16 +1008,6 @@ var DiagramNode = A.Component.create({
 			instance._uiSetRequired(
 				instance.get(REQUIRED)
 			);
-		},
-
-		_setBuilder: function(val) {
-			var instance = this;
-
-			instance.get(FIELDS).each(function(anchor) {
-				anchor.set(GRAPHIC, val.get(GRAPHIC));
-			});
-
-			return val;
 		},
 
 		_setAnchorsDragConfig: function(val) {
