@@ -1647,6 +1647,10 @@ shadow or rounded corners.
 	box-shadow: 4px 4px 14px #777;
 }
 
+.aui-tab-active .aui-tab-label {
+	box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
+}
+
 /* No shadow */
 
 .aui-null-selector {
@@ -1672,7 +1676,8 @@ shadow or rounded corners.
 .aui-progress-bar-content,
 .aui-progress-bar-status,
 .aui-form-builder-field,
-.aui-form-builder-default-message {
+.aui-form-builder-default-message,
+.aui-tabview-list {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
@@ -1738,7 +1743,6 @@ shadow or rounded corners.
 /* Top left */
 
 .aui-image-viewer-bd,
-.aui-tab,
 .aui-toolbar-vertical .aui-toolbar-first {
 	-moz-border-radius-topleft: 4px;
 	-webkit-border-top-left-radius: 4px;
@@ -1748,7 +1752,6 @@ shadow or rounded corners.
 /* Top right */
 
 .aui-image-viewer-bd,
-.aui-tab,
 .aui-toolbar-vertical .aui-toolbar-first {
 	-moz-border-radius-topright: 4px;
 	-webkit-border-top-right-radius: 4px;
@@ -1830,7 +1833,7 @@ input[type="submit"]:focus, input[type="button"]:focus, input[type="reset"]:focu
 
 /* ---------- Rounded corners ---------- */
 
-.aui-tabview-list, .aui-tabview-wrapper, .aui-tabviewmenu-list, .aui-tab-active, .aui-dialog-content, .aui-dialog .yui3-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .aui-panel-content, .aui-panel-collapsed .aui-panel-hd {
+.aui-tabview-wrapper, .aui-tabviewmenu-list, .aui-tab-active, .aui-dialog-content, .aui-dialog .yui3-widget-hd, input[type="submit"], input[type="button"], input[type="reset"], button, .aui-panel-content, .aui-panel-collapsed .aui-panel-hd {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
