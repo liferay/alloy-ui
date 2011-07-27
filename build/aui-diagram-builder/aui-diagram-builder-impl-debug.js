@@ -89,7 +89,6 @@ var Lang = A.Lang,
 	SHUFFLE = 'shuffle',
 	SOURCE = 'source',
 	SOURCES = 'sources',
-	STRING = 'string',
 	TARGET = 'target',
 	TARGETS = 'targets',
 	TMP_CONNECTOR = 'tmpConnector',
@@ -176,9 +175,9 @@ var DiagramBuilder = A.Component.create({
 				addNode: 'Add node',
 				cancel: 'Cancel',
 				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?',
-				nodeSettings: 'Node settings',
 				propertyName: 'Property Name',
 				save: 'Save',
+				settings: 'Settings',
 				value: 'Value'
 			}
 		},
@@ -196,7 +195,8 @@ var DiagramBuilder = A.Component.create({
 	SETTINGS_TAB: 1,
 
 	prototype: {
-		editNode: null,
+		selectedConnector: null,
+		selectedNode: null,
 
 		initializer: function() {
 			var instance = this;
@@ -233,6 +233,20 @@ var DiagramBuilder = A.Component.create({
 			instance._setupFieldsDrag();
 
 			instance.tmpConnector = new A.Connector(instance.get(TMP_CONNECTOR));
+		},
+
+		closeEditProperties: function() {
+			var instance = this;
+			var editingNode = instance.editingNode;
+
+			instance.tabView.selectTab(A.DiagramBuilder.FIELDS_TAB);
+
+			if (editingNode) {
+				editingNode.get(BOUNDING_BOX).removeClass(CSS_DIAGRAM_NODE_EDITING);
+			}
+
+			instance.editingConnector = null;
+			instance.editingNode = null;
 		},
 
 		connect: function(diagramNode1, diagramNode2) {
@@ -315,6 +329,36 @@ var DiagramBuilder = A.Component.create({
 			});
 		},
 
+		editConnector: function(connector) {
+			var instance = this;
+
+			if (connector) {
+				instance.closeEditProperties();
+
+				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
+
+				instance.propertyList.set(RECORDSET, connector.getProperties());
+
+				instance.editingConnector = instance.selectedConnector = connector;
+			}
+		},
+
+		editNode: function(diagramNode) {
+			var instance = this;
+
+			if (diagramNode) {
+				instance.closeEditProperties();
+
+				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
+
+				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
+
+				diagramNode.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE_EDITING);
+
+				instance.editingNode = instance.selectedNode = diagramNode;
+			}
+		},
+
 		getSelectedConnectors: function() {
 			var instance = this;
 			var selected = [];
@@ -365,7 +409,7 @@ var DiagramBuilder = A.Component.create({
 			});
 		},
 
-		unselectFields: function() {
+		unselectNodes: function() {
 			var instance = this;
 			var selectedNode = instance.selectedNode;
 
@@ -379,38 +423,17 @@ var DiagramBuilder = A.Component.create({
 		select: function(diagramNode) {
 			var instance = this;
 
-			instance.unselectFields();
-			// instance.stopEditingNode();
+			instance.unselectNodes();
+
 			instance.selectedNode = diagramNode.set(SELECTED, true).focus();
 		},
 
-		startEditingNode: function(diagramNode) {
+		stopEditing: function() {
 			var instance = this;
 
-			if (diagramNode) {
-				instance.stopEditingNode();
-
-				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
-
-				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
-
-				diagramNode.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE_EDITING);
-
-				instance.editNode = diagramNode;
-			}
-		},
-
-		stopEditingNode: function(diagramNode) {
-			var instance = this;
-			var editNode = diagramNode || instance.editNode;
-
-			if (editNode) {
-				instance.tabView.selectTab(A.DiagramBuilder.FIELDS_TAB);
-
-				editNode.get(BOUNDING_BOX).removeClass(CSS_DIAGRAM_NODE_EDITING);
-
-				instance.editNode = null;
-			}
+			instance.unselectConnectors();
+			instance.unselectNodes();
+			instance.closeEditProperties();
 		},
 
 		_afterKeyEvent: function(event) {
@@ -431,7 +454,7 @@ var DiagramBuilder = A.Component.create({
 		_onCancel: function(event) {
 			var instance = this;
 
-			instance.stopEditingNode();
+			instance.closeEditProperties();
 		},
 
 		_onDrag: function(event) {
@@ -499,9 +522,7 @@ var DiagramBuilder = A.Component.create({
 		_onEscKey: function(event) {
 			var instance = this;
 
-			instance.unselectConnectors();
-			instance.unselectFields();
-			instance.stopEditingNode();
+			instance.stopEditing();
 
 			event.halt();
 		},
@@ -536,24 +557,32 @@ var DiagramBuilder = A.Component.create({
 			var diagramNode = A.Widget.getByNode(event.currentTarget);
 
 			if (diagramNode) {
-				instance.startEditingNode(diagramNode);
+				instance.editNode(diagramNode);
 			}
 		},
 
 		_onSave: function(event) {
 			var instance = this;
-			var editNode = instance.editNode;
+			var editingNode = instance.editingNode;
+			var editingConnector = instance.editingConnector;
 			var recordset = instance.propertyList.get(RECORDSET);
 
-			if (editNode) {
+			if (editingNode) {
 				AArray.each(recordset.get(RECORDS), function(record) {
 					var data = record.get(DATA);
 
-					editNode.set(data.attributeName, data.value);
+					editingNode.set(data.attributeName, data.value);
 				});
-
-				instance.stopEditingNode(editNode);
 			}
+			else if (editingConnector) {
+				AArray.each(recordset.get(RECORDS), function(record) {
+					var data = record.get(DATA);
+
+					editingConnector.set(data.attributeName, data.value);
+				});
+			}
+
+			instance.closeEditProperties();
 		},
 
 		_renderGraphic: function() {
@@ -840,7 +869,7 @@ var DiagramNode = A.Component.create({
 			AArray.each(propertyModel, function(property) {
 				var value = instance.get(property.attributeName), type = Lang.type(value);
 
-				if (type === BOOLEAN || type === STRING) {
+				if (type === BOOLEAN) {
 					value = String(value);
 				}
 
@@ -946,7 +975,7 @@ var DiagramNode = A.Component.create({
 		_handleEditEvent: function(event) {
 			var instance = this;
 
-			instance.get(BUILDER).startEditingNode(instance);
+			instance.get(BUILDER).editNode(instance);
 		},
 
 		_handleCloseEvent: function(event) {

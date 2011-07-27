@@ -56,7 +56,7 @@ var Lang = A.Lang,
 	LABEL = 'label',
 	LIST = 'list',
 	NODE = 'node',
-	NODE_SETTINGS = 'nodeSettings',
+	SETTINGS = 'settings',
 	PROPERTY_LIST = 'propertyList',
 	RENDERED = 'rendered',
 	SAVE = 'save',
@@ -382,9 +382,9 @@ var DiagramBuilderBase = A.Component.create(
 				value: {
 					addNode: 'Add node',
 					cancel: 'Cancel',
-					nodeSettings: 'Node settings',
 					propertyName: 'Property Name',
 					save: 'Save',
+					settings: 'Settings',
 					value: 'Value'
 				}
 			},
@@ -689,7 +689,7 @@ var DiagramBuilderBase = A.Component.create(
 
 					defaultValue.items = [
 						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_ADD, label: strings[ADD_NODE] },
-						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS, label: strings[NODE_SETTINGS] }
+						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS, label: strings[SETTINGS] }
 					];
 				}
 

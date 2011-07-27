@@ -6,7 +6,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 
-	YArray = A.Array,
+	AArray = A.Array,
 
 	isAnchor = function(val) {
 		return (val instanceof A.Anchor);
@@ -28,9 +28,11 @@ var Lang = A.Lang,
 	ARROW_POINTS = 'arrowPoints',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
+	CLICK = 'click',
 	COLOR = 'color',
 	CONNECTOR = 'connector',
 	DATA_ANCHOR = 'dataAnchor',
+	DESCRIPTION = 'description',
 	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
 	FILL = 'fill',
@@ -40,9 +42,9 @@ var Lang = A.Lang,
 	MAX = 'max',
 	MAX_SOURCES = 'maxSources',
 	MAX_TARGETS = 'maxTargets',
-	MOUSEDOWN = 'mousedown',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
+	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
 	P2 = 'p2',
@@ -57,6 +59,7 @@ var Lang = A.Lang,
 	WRAPPER = 'wrapper',
 
 	_DOT = '.',
+	_EMPTY_STR = '',
 	_HASH = '#',
 
 	AgetClassName = A.getClassName,
@@ -93,7 +96,7 @@ A.PolygonUtil = {
 
 		shape.moveTo(points[0][0], points[0][1]);
 
-		YArray.each(points, function(p, i) {
+		AArray.each(points, function(p, i) {
 			if (i > 0) {
 				shape.lineTo(points[i][0], points[i][1]);
 			}
@@ -106,7 +109,7 @@ A.PolygonUtil = {
 		var instance = this;
 		var xy = [];
 
-		YArray.each(points, function(p, i) {
+		AArray.each(points, function(p, i) {
 			xy.push([ points[i][0] + x, points[i][1] + y ]);
 		});
 
@@ -117,7 +120,7 @@ A.PolygonUtil = {
 		var instance = this;
 		var xy = [];
 
-		YArray.each(points, function(p, i) {
+		AArray.each(points, function(p, i) {
 			xy.push(instance.rotatePoint(angle, points[i][0], points[i][1]));
 		});
 
@@ -181,6 +184,44 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		return [ p[0] - xy[0], p[1] - xy[1] ];
 	},
 
+	getProperties: function() {
+		var instance = this;
+		var propertyModel = instance.getPropertyModel();
+
+		AArray.each(propertyModel, function(property) {
+			property.value = instance.get(property.attributeName);
+		});
+
+		return propertyModel;
+	},
+
+	getPropertyModel: function() {
+		var instance = this;
+		var anchor = instance.get(ANCHOR);
+		var strings = anchor ? anchor.get(DIAGRAM_NODE).getStrings() : {};
+
+		return [
+			{
+				attributeName: DESCRIPTION,
+				editor: new A.TextAreaCellEditor(),
+				name: strings[DESCRIPTION]
+			},
+			{
+				attributeName: NAME,
+				editor: new A.TextCellEditor({
+					validator: {
+						rules: {
+							value: {
+								required: true
+							}
+						}
+					}
+				}),
+				name: strings[NAME]
+			}
+		];
+	},
+
 	_afterSelectedChange: function(event) {
 		var instance = this;
 
@@ -194,13 +235,26 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			instance.get(SHAPE)
 		);
 
-		shape.on(MOUSEDOWN, A.bind(instance._onShapeMouseDown, instance));
+		shape.on(CLICK, A.bind(instance._onShapeClick, instance));
 		shape.on(MOUSEENTER, A.bind(instance._onShapeMouseEnter, instance));
 		shape.on(MOUSELEAVE, A.bind(instance._onShapeMouseLeave, instance));
 	},
 
-	_onShapeMouseDown: function(event) {
+	_onShapeClick: function(event) {
 		var instance = this;
+		var anchor = instance.get(ANCHOR);
+
+		if (anchor) {
+			var builder = anchor.getBuilder();
+
+			if (event.hasModifier()) {
+				builder.closeEditProperties();
+			}
+			else {
+				builder.unselectConnectors();
+				builder.editConnector(instance);
+			}
+		}
 
 		instance.set(SELECTED, !instance.get(SELECTED));
 	},
@@ -271,9 +325,23 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isString
 		},
 
+		description: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
 		lazyDraw: {
 			value: false,
 			validator: isBoolean
+		},
+
+		name: {
+			valueFn: function() {
+				var instance = this;
+
+				return CONNECTOR + (++A.Env._uidx);
+			},
+			validator: isString
 		},
 
 		graphic: {
@@ -283,11 +351,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		shapeHover: {
 			value: {
 				fill: {
-					color: 'red'
+					color: '#000'
 				},
 				stroke: {
-					color: 'red',
-					weight: 2
+					color: '#000',
+					weight: 5
 				}
 			}
 		},
@@ -309,7 +377,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				},
 				stroke: {
 					color: '#000',
-					weight: 6
+					weight: 5
 				}
 			}
 		},
@@ -495,6 +563,12 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		return target;
 	},
 
+	getBuilder: function() {
+		var instance = this;
+
+		return instance.get(DIAGRAM_NODE).get(BUILDER);
+	},
+
 	getCenterXY: function() {
 		var instance = this;
 
@@ -582,7 +656,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 
 		return A.merge(
 			{
-				graphic: instance.get(DIAGRAM_NODE).get(BUILDER).get(GRAPHIC)
+				graphic: instance.getBuilder().get(GRAPHIC)
 			},
 			val
 		);
