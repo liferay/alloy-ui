@@ -1002,7 +1002,7 @@ var DiagramBuilder = A.Component.create({
 			instance.editingNode = null;
 		},
 
-		connect: function(diagramNode1, diagramNode2) {
+		connect: function(diagramNode1, diagramNode2, optConnector) {
 			var instance = this;
 
 			if (isString(diagramNode1)) {
@@ -1018,7 +1018,7 @@ var DiagramBuilder = A.Component.create({
 				var a2 = diagramNode2.findAvailableAnchor();
 
 				if (a1 && a2) {
-					a1.connect(a2);
+					a1.connect(a2, optConnector);
 				}
 			}
 
@@ -1030,7 +1030,7 @@ var DiagramBuilder = A.Component.create({
 
 			AArray.each(nodes, function(node) {
 				if (node.hasOwnProperty(SOURCE) && node.hasOwnProperty(TARGET)) {
-					instance.connect(node.source, node.target);
+					instance.connect(node.source, node.target, node.connector);
 				}
 			});
 
@@ -2434,7 +2434,7 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		instance.get(NODE).remove();
 	},
 
-	connect: function(target) {
+	connect: function(target, connector) {
 		var instance = this;
 
 		if (isDiagramNode(target)) {
@@ -2445,13 +2445,13 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 		target.addSource(instance);
 
 		if (!instance.isConnected(target)) {
-			var tConnector = target.get(CONNECTOR);
+			var c = A.merge(target.get(CONNECTOR), connector);
 
-			tConnector.anchor = instance;
-			tConnector.p1 = instance.getCenterXY();
-			tConnector.p2 = target.getCenterXY();
+			c.anchor = instance;
+			c.p1 = instance.getCenterXY();
+			c.p2 = target.getCenterXY();
 
-			instance.connectors[target.get(ID)] = new A.Connector(tConnector);
+			instance.connectors[target.get(ID)] = new A.Connector(c);
 		}
 
 		setTimeout(function() {
