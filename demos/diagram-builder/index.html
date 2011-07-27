@@ -191,8 +191,9 @@
 // TODO Add events to graphics OK
 // TODO Select connection OK
 // TODO Delete selected connection OK
-
 // TODO Add name to the connectors
+
+// TODO Show connectors name
 // TODO Generate XML
 // TODO Create InlineEditor for Assignments, Actions, Notifications
 // TODO Realign anchors to best fit?
@@ -652,21 +653,25 @@ AUI().use('aui-diagram-builder', function(A) {
 
 	diagramBuilder1.connectAll([
 		{
+			connector: { name: 'Task0Connector', description: 'Description...' },
 			source: 'StartNode',
 			target: 'Task0'
 		},
 
 		{
+			connector: { name: 'Task1Connector', description: 'Description...' },
 			source: task0,
 			target: 'Task1'
 		},
 
 		{
+			connector: { name: 'Task2Connector', description: 'Description...' },
 			source: 'Task1',
 			target: 'Task2'
 		},
 
 		{
+			// connector: { name: 'EndNodeConnector', description: 'Description...' },
 			source: 'Task2',
 			target: 'EndNode'
 		}

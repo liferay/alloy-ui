@@ -248,7 +248,7 @@ var DiagramBuilder = A.Component.create({
 			instance.editingNode = null;
 		},
 
-		connect: function(diagramNode1, diagramNode2) {
+		connect: function(diagramNode1, diagramNode2, optConnector) {
 			var instance = this;
 
 			if (isString(diagramNode1)) {
@@ -264,7 +264,7 @@ var DiagramBuilder = A.Component.create({
 				var a2 = diagramNode2.findAvailableAnchor();
 
 				if (a1 && a2) {
-					a1.connect(a2);
+					a1.connect(a2, optConnector);
 				}
 			}
 
@@ -276,7 +276,7 @@ var DiagramBuilder = A.Component.create({
 
 			AArray.each(nodes, function(node) {
 				if (node.hasOwnProperty(SOURCE) && node.hasOwnProperty(TARGET)) {
-					instance.connect(node.source, node.target);
+					instance.connect(node.source, node.target, node.connector);
 				}
 			});
 
