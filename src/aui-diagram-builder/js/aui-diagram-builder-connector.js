@@ -242,6 +242,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	_onShapeClick: function(event) {
 		var instance = this;
 		var anchor = instance.get(ANCHOR);
+		var selected = instance.get(SELECTED);
 
 		if (anchor) {
 			var builder = anchor.getBuilder();
@@ -251,11 +252,17 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 			else {
 				builder.unselectConnectors();
-				builder.editConnector(instance);
+
+				if (selected) {
+					builder.closeEditProperties();
+				}
+				else {
+					builder.editConnector(instance);
+				}
 			}
 		}
 
-		instance.set(SELECTED, !instance.get(SELECTED));
+		instance.set(SELECTED, !selected);
 	},
 
 	_onShapeMouseEnter: function(event) {
