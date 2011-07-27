@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -738,7 +753,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;recordset-filter&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -786,11 +801,11 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Filter through the recordset with a custom filter function, or a key-value pair.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method filter</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method filter</span>
 <span class="cm">     * @param f {Function, String} A custom filter function or a string representing the key to filter by.</span>
 <span class="cm">     * @param v {any} (optional) If a string is passed into f, this represents the value that key should take in order to be accepted by the filter. Do not pass in anything if &#39;f&#39; is a custom function</span>
-<span class="cm">	 * @return recordset {Y.Recordset} A new filtered recordset instance</span>
+<span class="cm">     * @return recordset {Y.Recordset} A new filtered recordset instance</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
     <span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
@@ -822,11 +837,11 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">	* @description The inverse of filter. Executes the supplied function on each item. Returns a new Recordset containing the items that the supplied function returned *false* for.</span>
-<span class="cm">	* @method reject</span>
-<span class="cm">	* @param {Function} f is the function to execute on each item.</span>
-<span class="cm">	* @return {Y.Recordset} A new Recordset instance containing the items on which the supplied function returned false.</span>
-<span class="cm">	*/</span>
+<span class="cm">    * @description The inverse of filter. Executes the supplied function on each item. Returns a new Recordset containing the items that the supplied function returned *false* for.</span>
+<span class="cm">    * @method reject</span>
+<span class="cm">    * @param {Function} f is the function to execute on each item.</span>
+<span class="cm">    * @return {Y.Recordset} A new Recordset instance containing the items on which the supplied function returned false.</span>
+<span class="cm">    */</span>
     <span class="nx">reject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Recordset</span><span class="p">({</span>
             <span class="nx">records</span><span class="o">:</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> <span class="nx">f</span><span class="p">)</span>
@@ -834,12 +849,12 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">	* @description Iterates over the Recordset, returning a new Recordset of all the elements that match the supplied regular expression</span>
-<span class="cm">	* @method grep</span>
-<span class="cm">	* @param {pattern} pattern The regular expression to test against</span>
-<span class="cm">	* each record.</span>
-<span class="cm">	* @return {Y.Recordset} A Recordset instance containing all the items in the collection that produce a match against the supplied regular expression. If no items match, an empty Recordset instance is returned.</span>
-<span class="cm">	*/</span>
+<span class="cm">    * @description Iterates over the Recordset, returning a new Recordset of all the elements that match the supplied regular expression</span>
+<span class="cm">    * @method grep</span>
+<span class="cm">    * @param {pattern} pattern The regular expression to test against</span>
+<span class="cm">    * each record.</span>
+<span class="cm">    * @return {Y.Recordset} A Recordset instance containing all the items in the collection that produce a match against the supplied regular expression. If no items match, an empty Recordset instance is returned.</span>
+<span class="cm">    */</span>
     <span class="nx">grep</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pattern</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Recordset</span><span class="p">({</span>
             <span class="nx">records</span><span class="o">:</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">grep</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> <span class="nx">pattern</span><span class="p">)</span>
@@ -853,7 +868,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -871,7 +886,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}];
+    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "Recordset.html#event_add", "access": "", "host": "Recordset", "type": "event", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "Recordset.html#event_empty", "access": "", "host": "Recordset", "type": "event", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "Recordset.html#event_remove", "access": "", "host": "Recordset", "type": "event", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}, {"url": "Recordset.html#event_update", "access": "", "host": "Recordset", "type": "event", "name": "update"}];
 </script>
 </body>
 </html>

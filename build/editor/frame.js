@@ -2,17 +2,12 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('frame', function(Y) {
 
-    /**
-     * Creates a wrapper around an iframe. It loads the content either from a local
-     * file or from script and creates a local YUI instance bound to that new window and document.
-     * @module editor
-     * @submodule frame
-     */     
+
     /**
      * Creates a wrapper around an iframe. It loads the content either from a local
      * file or from script and creates a local YUI instance bound to that new window and document.
@@ -20,11 +15,14 @@ YUI.add('frame', function(Y) {
      * @for Frame
      * @extends Base
      * @constructor
+     * @module editor
+     * @submodule frame
      */
 
     var Frame = function() {
         Frame.superclass.constructor.apply(this, arguments);
-    };
+    }, LAST_CHILD = ':last-child', BODY = 'body';
+    
 
     Y.extend(Frame, Y.Base, {
         /**
@@ -100,10 +98,6 @@ YUI.add('frame', function(Y) {
             res.doc.write(html);
             res.doc.close();
 
-            if (this.get('designMode')) {
-                res.doc.designMode = 'on';
-            }
-            
             if (!res.doc.documentElement) {
                 var timer = Y.later(1, this, function() {
                     if (res.doc && res.doc.documentElement) {
@@ -228,26 +222,20 @@ YUI.add('frame', function(Y) {
         * @description Binds DOM events, sets the iframe to visible and fires the ready event
         */
         _defReadyFn: function() {
-            var inst = this.getInstance(),
-                fn = Y.bind(this._onDomEvent, this),
-                kfn = ((Y.UA.ie) ? Y.throttle(fn, 200) : fn);
+            var inst = this.getInstance();
 
-            inst.Node.DOM_EVENTS.activate = 1;
-            inst.Node.DOM_EVENTS.beforedeactivate = 1;
-            inst.Node.DOM_EVENTS.focusin = 1;
-            inst.Node.DOM_EVENTS.deactivate = 1;
-            inst.Node.DOM_EVENTS.focusout = 1;
-
-            //Y.each(inst.Node.DOM_EVENTS, function(v, k) {
             Y.each(Frame.DOM_EVENTS, function(v, k) {
+                var fn = Y.bind(this._onDomEvent, this),
+                    kfn = ((Y.UA.ie && Frame.THROTTLE_TIME > 0) ? Y.throttle(fn, Frame.THROTTLE_TIME) : fn);
+
+                if (!inst.Node.DOM_EVENTS[k]) {
+                    inst.Node.DOM_EVENTS[k] = 1;
+                }
                 if (v === 1) {
                     if (k !== 'focus' && k !== 'blur' && k !== 'paste') {
                         if (k.substring(0, 3) === 'key') {
-                            if (k === 'keydown') {
-                                inst.on(k, fn, inst.config.doc);
-                            } else {
-                                inst.on(k, kfn, inst.config.doc);
-                            }
+                            //Throttle key events in IE
+                            inst.on(k, kfn, inst.config.doc);
                         } else {
                             inst.on(k, fn, inst.config.doc);
                         }
@@ -260,8 +248,8 @@ YUI.add('frame', function(Y) {
             inst.on('paste', Y.bind(this._DOMPaste, this), inst.one('body'));
 
             //Adding focus/blur to the window object
-            inst.on('focus', fn, inst.config.win);
-            inst.on('blur', fn, inst.config.win);
+            inst.on('focus', Y.bind(this._onDomEvent, this), inst.config.win);
+            inst.on('blur', Y.bind(this._onDomEvent, this), inst.config.win);
 
             inst._use = inst.use;
             inst.use = Y.bind(this.use, this);
@@ -335,12 +323,68 @@ YUI.add('frame', function(Y) {
                     if (inst.Selection) {
                         inst.Selection.DEFAULT_BLOCK_TAG = this.get('defaultblock');
                     }
-
+                    //Moved to here so that the iframe is ready before allowing editing..
+                    if (this.get('designMode')) {
+                        if(Y.UA.ie) {
+                            inst.config.doc.body.contentEditable = 'true';
+                            this._ieSetBodyHeight();
+                            inst.on('keyup', Y.bind(this._ieSetBodyHeight, this), inst.config.doc);
+                        } else {
+                            inst.config.doc.designMode = 'on';
+                        }
+                    }
                     this.fire('ready');
                 }, this));
                 inst.use.apply(inst, args);
 
                 inst.one('doc').get('documentElement').addClass('yui-js-enabled');
+            }
+        },
+        _ieHeightCounter: null,
+        /**
+        * Internal method to set the height of the body to the height of the document in IE.
+        * With contenteditable being set, the document becomes unresponsive to clicks, this 
+        * method expands the body to be the height of the document so that doesn't happen.
+        * @private
+        * @method _ieSetBodyHeight
+        */
+        _ieSetBodyHeight: function(e) {
+            if (!this._ieHeightCounter) {
+                this._ieHeightCounter = 0;
+            }
+            this._ieHeightCounter++;
+            var run = false;
+            if (!e) {
+                run = true;
+            }
+            if (e) {
+                switch (e.keyCode) {
+                    case 8:
+                    case 13:
+                        run = true;
+                        break;
+                }
+                if (e.ctrlKey || e.shiftKey) {
+                    run = true;
+                }
+            }
+            if (run) {
+                try {
+                    var inst = this.getInstance();
+                    var h = this._iframe.get('offsetHeight');
+                    var bh = inst.config.doc.body.scrollHeight;
+                    if (h > bh) {
+                        h = (h - 15) + 'px';
+                        inst.config.doc.body.style.height = h;
+                    } else {
+                        inst.config.doc.body.style.height = 'auto';
+                    }
+                } catch (e) {
+                    if (this._ieHeightCounter < 100) {
+                        Y.later(200, this, this._ieSetBodyHeight);
+                    } else {
+                    }
+                }
             }
         },
         /**
@@ -435,7 +479,7 @@ YUI.add('frame', function(Y) {
         _setExtraCSS: function(css) {
             if (this._ready) {
                 var inst = this.getInstance(),
-                    node = inst.get('#extra_css');
+                    node = inst.one('#extra_css');
                 
                 node.remove();
                 inst.one('head').append('<style id="extra_css">' + css + '</style>');
@@ -577,16 +621,38 @@ YUI.add('frame', function(Y) {
                 sel = new inst.Selection();
 
             if (sel.anchorNode) {
-                var n = sel.anchorNode,
-                    c = n.get('childNodes');
-
-                if (c.size() == 1) {
+                var n = sel.anchorNode, c;
+                
+                if (n.test('p') && n.get('innerHTML') === '') {
+                    n = n.get('parentNode');
+                }
+                c = n.get('childNodes');
+                
+                if (c.size()) {
                     if (c.item(0).test('br')) {
                         sel.selectNode(n, true, false);
-                    }
-                    if (c.item(0).test('p')) {
-                        n = c.item(0).one('br.yui-cursor').get('parentNode');
-                        sel.selectNode(n, true, false);
+                    } else if (c.item(0).test('p')) {
+                        n = c.item(0).one('br.yui-cursor');
+                        if (n) {
+                            n = n.get('parentNode');
+                        }
+                        if (!n) {
+                            n = c.item(0).get('firstChild');
+                        }
+                        if (!n) {
+                            n = c.item(0);
+                        }
+                        if (n) {
+                            sel.selectNode(n, true, false);
+                        }
+                    } else {
+                        var b = inst.one('br.yui-cursor');
+                        if (b) {
+                            var par = b.get('parentNode');
+                            if (par) {
+                                sel.selectNode(par, true, false);
+                            }
+                        }
                     }
                 }
             }
@@ -599,7 +665,7 @@ YUI.add('frame', function(Y) {
         * @chainable        
         */
         focus: function(fn) {
-            if (Y.UA.ie) {
+            if (Y.UA.ie < 9) {
                 try {
                     Y.one('win').focus();
                     this.getInstance().one('win').focus();
@@ -661,7 +727,14 @@ YUI.add('frame', function(Y) {
             return this;
         }
     }, {
-        
+        /**
+        * @static
+        * @property THROTTLE_TIME
+        * @description The throttle time for key events in IE
+        * @type Number
+        * @default 100
+        */
+        THROTTLE_TIME: 100,
         /**
         * @static
         * @property DOM_EVENTS
@@ -750,8 +823,8 @@ YUI.add('frame', function(Y) {
         * @description The meta-tag for Content-Type to add to the dynamic document
         * @type String
         */
-        //META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">',
-        META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>',
+        META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=7">',
+        //META: '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>',
         /**
         * @static
         * @property NAME
@@ -913,4 +986,4 @@ YUI.add('frame', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['base', 'node', 'selector-css3', 'substitute'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});

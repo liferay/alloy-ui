@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -646,6 +661,12 @@
 
 
 				                                <li class="selected"><a href="Loader.html" title="Loader">Loader</a></li>
+
+
+				                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+
+
+				                                <li class=""><a href="ModelList.html" title="ModelList">ModelList</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -797,6 +818,27 @@
 
 
 			                                <li class=""><a href="loader.js.html" title="loader.js">loader.js</a></li>
+
+
+			                                <li class=""><a href="model-debug.js.html" title="model-debug.js">model-debug.js</a></li>
+
+
+			                                <li class=""><a href="model-list-debug.js.html" title="model-list-debug.js">model-list-debug.js</a></li>
+
+
+			                                <li class=""><a href="model-list-min.js.html" title="model-list-min.js">model-list-min.js</a></li>
+
+
+			                                <li class=""><a href="model-list.js.html" title="model-list.js">model-list.js</a></li>
+
+
+			                                <li class=""><a href="model-min.js.html" title="model-min.js">model-min.js</a></li>
+
+
+			                                <li class=""><a href="model.js.html" title="model.js">model.js</a></li>
+
+
+			                                <li class=""><a href="yui-later-debug.js.html" title="yui-later-debug.js">yui-later-debug.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -895,7 +937,7 @@ myFilter: &#123;
 </pre>
 </li>
 <li>filters: per-component filter specification.  If specified
-for a given component, this overrides the filter config</li>
+for a given component, this overrides the filter config. _Note:_ This does not work on combo urls, use the filter property instead.</li>
 <li>combine:
 Use the YUI combo service to reduce the number of http connections
 required to load your dependencies</li>
@@ -979,7 +1021,7 @@ going forward.</li>
 
 
 												<div class="default" property="yui:defaultValue">
-													Default Value: <strong>true</strong>
+													Default Value: <strong>false</strong>
 												</div>
 
 
@@ -1713,6 +1755,7 @@ with regard to the position of the trigger module.
 This should be one of three values: 'before', 'after', or
 'instead'.  The default is 'after'.
 </dd>
+<dt>testresults:</dt><dd>a hash of test results from Y.Features.all()</dd>
 </dl>
 														</div>
 

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -810,7 +825,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -1162,9 +1177,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;DataSource&quot;</span><span class="p">).</span><span class="nx">Local</span> <span class="o">=</span> <span class="nx">DSLocal</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-io&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1359,9 +1372,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">DataSource</span><span class="p">.</span><span class="nx">IO</span> <span class="o">=</span> <span class="nx">DSIO</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;io-base&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;io-base&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-get&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1567,9 +1578,7 @@
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Env.DataSource.callbacks&quot;</span><span class="p">);</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;get&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-function&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1678,9 +1687,7 @@
     
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-cache&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1839,9 +1846,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Plugin&quot;</span><span class="p">).</span><span class="nx">DataSourceCache</span> <span class="o">=</span> <span class="nx">DataSourceCache</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;cache-base&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;cache-base&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-jsonschema&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -1915,17 +1920,14 @@
 <span class="cm">     * with data.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _beforeDefDataFn</span>
-<span class="cm">     * &lt;dl&gt;</span>
-<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object with the following properties:</span>
+<span class="cm">     * @param tId {Number} Unique transaction ID.</span>
+<span class="cm">     * @param request {Object} The request.</span>
+<span class="cm">     * @param callback {Object} The callback object with the following properties:</span>
 <span class="cm">     *     &lt;dl&gt;</span>
 <span class="cm">     *         &lt;dt&gt;success (Function)&lt;/dt&gt; &lt;dd&gt;Success handler.&lt;/dd&gt;</span>
 <span class="cm">     *         &lt;dt&gt;failure (Function)&lt;/dt&gt; &lt;dd&gt;Failure handler.&lt;/dd&gt;</span>
 <span class="cm">     *     &lt;/dl&gt;</span>
-<span class="cm">     * &lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;data (Object)&lt;/dt&gt; &lt;dd&gt;Raw data.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @param data {Object} Raw data.</span>
 <span class="cm">     * @protected</span>
 <span class="cm">     */</span>
     <span class="nx">_beforeDefDataFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -1948,9 +1950,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">DataSourceJSONSchema</span> <span class="o">=</span> <span class="nx">DataSourceJSONSchema</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-json&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-json&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-xmlschema&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2022,17 +2022,14 @@
 <span class="cm">     * Parses raw data into a normalized response.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _beforeDefDataFn</span>
-<span class="cm">     * &lt;dl&gt;</span>
-<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object with the following properties:</span>
+<span class="cm">     * @param tId {Number} Unique transaction ID.</span>
+<span class="cm">     * @param request {Object} The request.</span>
+<span class="cm">     * @param callback {Object} The callback object with the following properties:</span>
 <span class="cm">     *     &lt;dl&gt;</span>
 <span class="cm">     *         &lt;dt&gt;success (Function)&lt;/dt&gt; &lt;dd&gt;Success handler.&lt;/dd&gt;</span>
 <span class="cm">     *         &lt;dt&gt;failure (Function)&lt;/dt&gt; &lt;dd&gt;Failure handler.&lt;/dd&gt;</span>
 <span class="cm">     *     &lt;/dl&gt;</span>
-<span class="cm">     * &lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;data (Object)&lt;/dt&gt; &lt;dd&gt;Raw data.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @param data {Object} Raw data.</span>
 <span class="cm">     * @protected</span>
 <span class="cm">     */</span>
     <span class="nx">_beforeDefDataFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -2055,9 +2052,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">DataSourceXMLSchema</span> <span class="o">=</span> <span class="nx">DataSourceXMLSchema</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-xml&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-xml&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-arrayschema&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2129,17 +2124,14 @@
 <span class="cm">     * Parses raw data into a normalized response.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _beforeDefDataFn</span>
-<span class="cm">     * &lt;dl&gt;</span>
-<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object with the following properties:</span>
+<span class="cm">     * @param tId {Number} Unique transaction ID.</span>
+<span class="cm">     * @param request {Object} The request.</span>
+<span class="cm">     * @param callback {Object} The callback object with the following properties:</span>
 <span class="cm">     *     &lt;dl&gt;</span>
 <span class="cm">     *         &lt;dt&gt;success (Function)&lt;/dt&gt; &lt;dd&gt;Success handler.&lt;/dd&gt;</span>
 <span class="cm">     *         &lt;dt&gt;failure (Function)&lt;/dt&gt; &lt;dd&gt;Failure handler.&lt;/dd&gt;</span>
 <span class="cm">     *     &lt;/dl&gt;</span>
-<span class="cm">     * &lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;data (Object)&lt;/dt&gt; &lt;dd&gt;Raw data.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @param data {Object} Raw data.</span>
 <span class="cm">     * @protected</span>
 <span class="cm">     */</span>
     <span class="nx">_beforeDefDataFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -2162,9 +2154,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">DataSourceArraySchema</span> <span class="o">=</span> <span class="nx">DataSourceArraySchema</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-array&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-array&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-textschema&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2236,17 +2226,14 @@
 <span class="cm">     * Parses raw data into a normalized response.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _beforeDefDataFn</span>
-<span class="cm">     * &lt;dl&gt;</span>
-<span class="cm">     * &lt;dt&gt;tId (Number)&lt;/dt&gt; &lt;dd&gt;Unique transaction ID.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;request (Object)&lt;/dt&gt; &lt;dd&gt;The request.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;callback (Object)&lt;/dt&gt; &lt;dd&gt;The callback object with the following properties:</span>
+<span class="cm">     * @param tId {Number} Unique transaction ID.</span>
+<span class="cm">     * @param request {Object} The request.</span>
+<span class="cm">     * @param callback {Object} The callback object with the following properties:</span>
 <span class="cm">     *     &lt;dl&gt;</span>
 <span class="cm">     *         &lt;dt&gt;success (Function)&lt;/dt&gt; &lt;dd&gt;Success handler.&lt;/dd&gt;</span>
 <span class="cm">     *         &lt;dt&gt;failure (Function)&lt;/dt&gt; &lt;dd&gt;Failure handler.&lt;/dd&gt;</span>
 <span class="cm">     *     &lt;/dl&gt;</span>
-<span class="cm">     * &lt;/dd&gt;</span>
-<span class="cm">     * &lt;dt&gt;data (Object)&lt;/dt&gt; &lt;dd&gt;Raw data.&lt;/dd&gt;</span>
-<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     * @param data {Object} Raw data.</span>
 <span class="cm">     * @protected</span>
 <span class="cm">     */</span>
     <span class="nx">_beforeDefDataFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
@@ -2269,9 +2256,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">DataSourceTextSchema</span> <span class="o">=</span> <span class="nx">DataSourceTextSchema</span><span class="p">;</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-text&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span> <span class="s1">&#39;plugin&#39;</span><span class="p">,</span> <span class="s1">&#39;dataschema-text&#39;</span><span class="p">]});</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource-polling&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
 
 <span class="cm">/**</span>
@@ -2362,12 +2347,10 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">augment</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DataSource</span><span class="p">.</span><span class="nx">Local</span><span class="p">,</span> <span class="nx">Pollable</span><span class="p">);</span>
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">]});</span>
-
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">]});</span>
 
 
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-io&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-get&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-function&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-cache&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-jsonschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-xmlschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-arrayschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-textschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-polling&#39;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datasource&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datasource-local&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-io&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-get&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-function&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-cache&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-jsonschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-xmlschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-arrayschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-textschema&#39;</span><span class="p">,</span><span class="s1">&#39;datasource-polling&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -2385,7 +2368,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "DataSource.Get.html#config_asyncMode", "access": "", "host": "DataSource.Get", "type": "config", "name": "asyncMode"}, {"url": "DataSource.Get.html#event_asyncModeChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "asyncModeChange"}, {"url": "DataSourceArraySchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceArraySchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceJSONSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceJSONSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceXMLSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceXMLSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceTextSchema.html#method__beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>", "access": "protected", "host": "DataSourceTextSchema", "type": "method", "name": "_beforeDefDataFn\n<dl>\n<dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>\n<dt>request (Object)</dt> <dd>The request.</dd>\n<dt>callback (Object)</dt> <dd>The callback object with the following properties:\n<dl>\n<dt>success (Function)</dt> <dd>Success handler.</dd>\n<dt>failure (Function)</dt> <dd>Failure handler.</dd>\n</dl>\n</dd>\n<dt>data (Object)</dt> <dd>Raw data.</dd>\n</dl>"}, {"url": "DataSourceCacheExtension.html#method__beforeDefRequestFn", "access": "protected", "host": "DataSourceCacheExtension", "type": "method", "name": "_beforeDefRequestFn"}, {"url": "DataSourceCacheExtension.html#method__beforeDefResponseFn", "access": "protected", "host": "DataSourceCacheExtension", "type": "method", "name": "_beforeDefResponseFn"}, {"url": "Pollable.html#method_clearAllIntervals", "access": "", "host": "Pollable", "type": "method", "name": "clearAllIntervals"}, {"url": "Pollable.html#method_clearInterval", "access": "", "host": "Pollable", "type": "method", "name": "clearInterval"}, {"url": "DataSource.Local.html#event_data", "access": "", "host": "DataSource.Local", "type": "event", "name": "data"}, {"url": "DataSource.Local.html#method_DataSource.issueCallback", "access": "", "host": "DataSource.Local", "type": "method", "name": "DataSource.issueCallback"}, {"url": "DataSource.Local.html#property_DataSource.transactions", "access": "", "host": "DataSource.Local", "type": "property", "name": "DataSource.transactions"}, {"url": "DataSource.Local.html#method__defDataFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defDataFn"}, {"url": "DataSource.Local.html#method__defRequestFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.IO.html#method__defRequestFn", "access": "protected", "host": "DataSource.IO", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Get.html#method__defRequestFn", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Function.html#method__defRequestFn", "access": "protected", "host": "DataSource.Function", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Local.html#method__defResponseFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defResponseFn"}, {"url": "DataSource.Local.html#event_error", "access": "", "host": "DataSource.Local", "type": "event", "name": "error"}, {"url": "DataSource.Get.html#method__generateRequest", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_generateRequest"}, {"url": "DataSource.Get.html#config_generateRequestCallback", "access": "", "host": "DataSource.Get", "type": "config", "name": "generateRequestCallback"}, {"url": "DataSource.Get.html#event_generateRequestCallbackChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "generateRequestCallbackChange"}, {"url": "DataSource.Get.html#config_get", "access": "", "host": "DataSource.Get", "type": "config", "name": "get"}, {"url": "DataSource.Get.html#event_getChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "getChange"}, {"url": "DataSource.IO.html#config_io", "access": "", "host": "DataSource.IO", "type": "config", "name": "io"}, {"url": "DataSource.IO.html#event_ioChange", "access": "", "host": "DataSource.IO", "type": "event", "name": "ioChange"}, {"url": "DataSource.IO.html#config_ioConfig", "access": "", "host": "DataSource.IO", "type": "config", "name": "ioConfig"}, {"url": "DataSource.IO.html#event_ioConfigChange", "access": "", "host": "DataSource.IO", "type": "event", "name": "ioConfigChange"}, {"url": "DataSource.Get.html#property__last", "access": "protected", "host": "DataSource.Get", "type": "property", "name": "_last"}, {"url": "DataSourceArraySchema.html#property_NAME", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NAME"}, {"url": "DataSourceCacheExtension.html#property_NAME", "access": "", "host": "DataSourceCacheExtension", "type": "property", "name": "NAME"}, {"url": "DataSourceCache.html#property_NAME", "access": "", "host": "DataSourceCache", "type": "property", "name": "NAME"}, {"url": "DataSource.Local.html#property_NAME", "access": "", "host": "DataSource.Local", "type": "property", "name": "NAME"}, {"url": "DataSource.IO.html#property_NAME", "access": "", "host": "DataSource.IO", "type": "property", "name": "NAME"}, {"url": "DataSource.Get.html#property_NAME", "access": "", "host": "DataSource.Get", "type": "property", "name": "NAME"}, {"url": "DataSource.Function.html#property_NAME", "access": "", "host": "DataSource.Function", "type": "property", "name": "NAME"}, {"url": "DataSourceJSONSchema.html#property_NAME", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceXMLSchema.html#property_NAME", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceTextSchema.html#property_NAME", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceArraySchema.html#property_NS", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NS"}, {"url": "DataSourceCacheExtension.html#property_NS", "access": "", "host": "DataSourceCacheExtension", "type": "property", "name": "NS"}, {"url": "DataSourceCache.html#property_NS", "access": "", "host": "DataSourceCache", "type": "property", "name": "NS"}, {"url": "DataSourceJSONSchema.html#property_NS", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NS"}, {"url": "DataSourceXMLSchema.html#property_NS", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NS"}, {"url": "DataSourceTextSchema.html#property_NS", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NS"}, {"url": "DataSource.Local.html#event_request", "access": "", "host": "DataSource.Local", "type": "event", "name": "request"}, {"url": "DataSource.Local.html#event_response", "access": "", "host": "DataSource.Local", "type": "event", "name": "response"}, {"url": "DataSource.Get.html#config_scriptCallbackParam", "access": "", "host": "DataSource.Get", "type": "config", "name": "scriptCallbackParam"}, {"url": "DataSource.Get.html#event_scriptCallbackParamChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "scriptCallbackParamChange"}, {"url": "DataSource.Local.html#method_sendRequest", "access": "", "host": "DataSource.Local", "type": "method", "name": "sendRequest"}, {"url": "Pollable.html#method_setInterval", "access": "", "host": "Pollable", "type": "method", "name": "setInterval"}, {"url": "DataSource.Local.html#config_source", "access": "", "host": "DataSource.Local", "type": "config", "name": "source"}, {"url": "DataSource.Function.html#config_source", "access": "", "host": "DataSource.Function", "type": "config", "name": "source"}, {"url": "DataSource.Local.html#event_sourceChange", "access": "", "host": "DataSource.Local", "type": "event", "name": "sourceChange"}, {"url": "DataSource.Function.html#event_sourceChange", "access": "", "host": "DataSource.Function", "type": "event", "name": "sourceChange"}];
+    var ALL_YUI_PROPS = [{"url": "DataSource.Get.html#config_asyncMode", "access": "", "host": "DataSource.Get", "type": "config", "name": "asyncMode"}, {"url": "DataSource.Get.html#event_asyncModeChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "asyncModeChange"}, {"url": "DataSourceXMLSchema.html#method__beforeDefDataFn", "access": "protected", "host": "DataSourceXMLSchema", "type": "method", "name": "_beforeDefDataFn"}, {"url": "DataSourceTextSchema.html#method__beforeDefDataFn", "access": "protected", "host": "DataSourceTextSchema", "type": "method", "name": "_beforeDefDataFn"}, {"url": "DataSourceJSONSchema.html#method__beforeDefDataFn", "access": "protected", "host": "DataSourceJSONSchema", "type": "method", "name": "_beforeDefDataFn"}, {"url": "DataSourceArraySchema.html#method__beforeDefDataFn", "access": "protected", "host": "DataSourceArraySchema", "type": "method", "name": "_beforeDefDataFn"}, {"url": "DataSourceCacheExtension.html#method__beforeDefRequestFn", "access": "protected", "host": "DataSourceCacheExtension", "type": "method", "name": "_beforeDefRequestFn"}, {"url": "DataSourceCacheExtension.html#method__beforeDefResponseFn", "access": "protected", "host": "DataSourceCacheExtension", "type": "method", "name": "_beforeDefResponseFn"}, {"url": "Pollable.html#method_clearAllIntervals", "access": "", "host": "Pollable", "type": "method", "name": "clearAllIntervals"}, {"url": "Pollable.html#method_clearInterval", "access": "", "host": "Pollable", "type": "method", "name": "clearInterval"}, {"url": "DataSource.Local.html#event_data", "access": "", "host": "DataSource.Local", "type": "event", "name": "data"}, {"url": "DataSource.Local.html#method_DataSource.issueCallback", "access": "", "host": "DataSource.Local", "type": "method", "name": "DataSource.issueCallback"}, {"url": "DataSource.Local.html#property_DataSource.transactions", "access": "", "host": "DataSource.Local", "type": "property", "name": "DataSource.transactions"}, {"url": "DataSource.Local.html#method__defDataFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defDataFn"}, {"url": "DataSource.Local.html#method__defRequestFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.IO.html#method__defRequestFn", "access": "protected", "host": "DataSource.IO", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Get.html#method__defRequestFn", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Function.html#method__defRequestFn", "access": "protected", "host": "DataSource.Function", "type": "method", "name": "_defRequestFn"}, {"url": "DataSource.Local.html#method__defResponseFn", "access": "protected", "host": "DataSource.Local", "type": "method", "name": "_defResponseFn"}, {"url": "DataSource.Local.html#event_error", "access": "", "host": "DataSource.Local", "type": "event", "name": "error"}, {"url": "DataSource.Get.html#method__generateRequest", "access": "protected", "host": "DataSource.Get", "type": "method", "name": "_generateRequest"}, {"url": "DataSource.Get.html#config_generateRequestCallback", "access": "", "host": "DataSource.Get", "type": "config", "name": "generateRequestCallback"}, {"url": "DataSource.Get.html#event_generateRequestCallbackChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "generateRequestCallbackChange"}, {"url": "DataSource.Get.html#config_get", "access": "", "host": "DataSource.Get", "type": "config", "name": "get"}, {"url": "DataSource.Get.html#event_getChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "getChange"}, {"url": "DataSource.IO.html#config_io", "access": "", "host": "DataSource.IO", "type": "config", "name": "io"}, {"url": "DataSource.IO.html#event_ioChange", "access": "", "host": "DataSource.IO", "type": "event", "name": "ioChange"}, {"url": "DataSource.IO.html#config_ioConfig", "access": "", "host": "DataSource.IO", "type": "config", "name": "ioConfig"}, {"url": "DataSource.IO.html#event_ioConfigChange", "access": "", "host": "DataSource.IO", "type": "event", "name": "ioConfigChange"}, {"url": "DataSource.Get.html#property__last", "access": "protected", "host": "DataSource.Get", "type": "property", "name": "_last"}, {"url": "DataSourceXMLSchema.html#property_NAME", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NAME"}, {"url": "DataSourceTextSchema.html#property_NAME", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NAME"}, {"url": "DataSource.Local.html#property_NAME", "access": "", "host": "DataSource.Local", "type": "property", "name": "NAME"}, {"url": "DataSourceJSONSchema.html#property_NAME", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NAME"}, {"url": "DataSource.IO.html#property_NAME", "access": "", "host": "DataSource.IO", "type": "property", "name": "NAME"}, {"url": "DataSource.Get.html#property_NAME", "access": "", "host": "DataSource.Get", "type": "property", "name": "NAME"}, {"url": "DataSource.Function.html#property_NAME", "access": "", "host": "DataSource.Function", "type": "property", "name": "NAME"}, {"url": "DataSourceCacheExtension.html#property_NAME", "access": "", "host": "DataSourceCacheExtension", "type": "property", "name": "NAME"}, {"url": "DataSourceCache.html#property_NAME", "access": "", "host": "DataSourceCache", "type": "property", "name": "NAME"}, {"url": "DataSourceArraySchema.html#property_NAME", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NAME"}, {"url": "DataSourceXMLSchema.html#property_NS", "access": "", "host": "DataSourceXMLSchema", "type": "property", "name": "NS"}, {"url": "DataSourceTextSchema.html#property_NS", "access": "", "host": "DataSourceTextSchema", "type": "property", "name": "NS"}, {"url": "DataSourceJSONSchema.html#property_NS", "access": "", "host": "DataSourceJSONSchema", "type": "property", "name": "NS"}, {"url": "DataSourceCacheExtension.html#property_NS", "access": "", "host": "DataSourceCacheExtension", "type": "property", "name": "NS"}, {"url": "DataSourceCache.html#property_NS", "access": "", "host": "DataSourceCache", "type": "property", "name": "NS"}, {"url": "DataSourceArraySchema.html#property_NS", "access": "", "host": "DataSourceArraySchema", "type": "property", "name": "NS"}, {"url": "DataSource.Local.html#event_request", "access": "", "host": "DataSource.Local", "type": "event", "name": "request"}, {"url": "DataSource.Local.html#event_response", "access": "", "host": "DataSource.Local", "type": "event", "name": "response"}, {"url": "DataSource.Get.html#config_scriptCallbackParam", "access": "", "host": "DataSource.Get", "type": "config", "name": "scriptCallbackParam"}, {"url": "DataSource.Get.html#event_scriptCallbackParamChange", "access": "", "host": "DataSource.Get", "type": "event", "name": "scriptCallbackParamChange"}, {"url": "DataSource.Local.html#method_sendRequest", "access": "", "host": "DataSource.Local", "type": "method", "name": "sendRequest"}, {"url": "Pollable.html#method_setInterval", "access": "", "host": "Pollable", "type": "method", "name": "setInterval"}, {"url": "DataSource.Local.html#config_source", "access": "", "host": "DataSource.Local", "type": "config", "name": "source"}, {"url": "DataSource.Function.html#config_source", "access": "", "host": "DataSource.Function", "type": "config", "name": "source"}, {"url": "DataSource.Local.html#event_sourceChange", "access": "", "host": "DataSource.Local", "type": "event", "name": "sourceChange"}, {"url": "DataSource.Function.html#event_sourceChange", "access": "", "host": "DataSource.Function", "type": "event", "name": "sourceChange"}];
 </script>
 </body>
 </html>

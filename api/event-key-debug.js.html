@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -750,6 +765,15 @@
 			                                <li class=""><a href="event-mousewheel.js.html" title="event-mousewheel.js">event-mousewheel.js</a></li>
 
 
+			                                <li class=""><a href="event-outside-debug.js.html" title="event-outside-debug.js">event-outside-debug.js</a></li>
+
+
+			                                <li class=""><a href="event-outside-min.js.html" title="event-outside-min.js">event-outside-min.js</a></li>
+
+
+			                                <li class=""><a href="event-outside.js.html" title="event-outside.js">event-outside.js</a></li>
+
+
 			                                <li class=""><a href="event-resize-debug.js.html" title="event-resize-debug.js">event-resize-debug.js</a></li>
 
 
@@ -786,7 +810,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;event-key&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -797,13 +821,146 @@
 <span class="cm"> * @submodule event-key</span>
 <span class="cm"> */</span>
 
+<span class="kd">var</span> <span class="nx">ALT</span>      <span class="o">=</span> <span class="s2">&quot;+alt&quot;</span><span class="p">,</span>
+    <span class="nx">CTRL</span>     <span class="o">=</span> <span class="s2">&quot;+ctrl&quot;</span><span class="p">,</span>
+    <span class="nx">META</span>     <span class="o">=</span> <span class="s2">&quot;+meta&quot;</span><span class="p">,</span>
+    <span class="nx">SHIFT</span>    <span class="o">=</span> <span class="s2">&quot;+shift&quot;</span><span class="p">,</span>
+
+    <span class="nx">isString</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+    <span class="nx">trim</span>     <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">trim</span><span class="p">,</span>
+
+    <span class="nx">eventDef</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">KEY_MAP</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">enter</span>    <span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+            <span class="nx">esc</span>      <span class="o">:</span> <span class="mi">27</span><span class="p">,</span>
+            <span class="nx">backspace</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="nx">tab</span>      <span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+            <span class="nx">pageup</span>   <span class="o">:</span> <span class="mi">33</span><span class="p">,</span>
+            <span class="nx">pagedown</span> <span class="o">:</span> <span class="mi">34</span>
+        <span class="p">},</span>
+
+        <span class="nx">_typeRE</span><span class="o">:</span> <span class="sr">/^(up|down|press):/</span><span class="p">,</span>
+
+        <span class="nx">processArgs</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">spec</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="nx">mods</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">spec</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/\+(?:alt|ctrl|meta|shift)\b/g</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]),</span>
+                <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nx">type</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_typeRE</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">spec</span><span class="p">)</span> <span class="o">?</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+                    <span class="nx">keys</span><span class="o">:</span> <span class="kc">null</span>
+                <span class="p">},</span>
+                <span class="nx">bits</span> <span class="o">=</span> <span class="nx">spec</span>
+                        <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^(?:up|down|press):|\+(alt|ctrl|meta|shift)/g</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+                        <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,/</span><span class="p">),</span>
+                <span class="nx">chr</span><span class="p">,</span> <span class="nx">uc</span><span class="p">,</span> <span class="nx">lc</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+
+            <span class="nx">spec</span> <span class="o">=</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_typeRE</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">bits</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">keys</span> <span class="o">=</span> <span class="p">{};</span>
+
+                <span class="c1">// FIXME: need to support &#39;65,esc&#39; =&gt; keypress, keydown</span>
+                <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">bits</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">chr</span> <span class="o">=</span> <span class="nx">trim</span><span class="p">(</span><span class="nx">bits</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+
+                    <span class="c1">// non-numerics are single characters or key names</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">+</span><span class="nx">chr</span> <span class="o">==</span> <span class="nx">chr</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">config</span><span class="p">.</span><span class="nx">keys</span><span class="p">[</span><span class="nx">chr</span><span class="p">]</span> <span class="o">=</span> <span class="nx">mods</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">lc</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+
+                        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">KEY_MAP</span><span class="p">[</span><span class="nx">lc</span><span class="p">])</span> <span class="p">{</span>
+                            <span class="nx">config</span><span class="p">.</span><span class="nx">keys</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">KEY_MAP</span><span class="p">[</span><span class="nx">lc</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">mods</span><span class="p">;</span>
+                            <span class="c1">// FIXME: &#39;65,enter&#39; defaults to keydown for both</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="nx">config</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span><span class="p">;</span> <span class="c1">// safest</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nx">uc</span> <span class="o">=</span> <span class="nx">chr</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">();</span>
+                            <span class="nx">lc</span> <span class="o">=</span> <span class="nx">lc</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+                            <span class="c1">// FIXME: possibly stupid assumption that</span>
+                            <span class="c1">// the keycode of the lower case == the</span>
+                            <span class="c1">// charcode of the upper case</span>
+                            <span class="c1">// a (key:65,char:97), A (key:65,char:65)</span>
+                            <span class="nx">config</span><span class="p">.</span><span class="nx">keys</span><span class="p">[</span><span class="nx">uc</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span> <span class="o">=</span>
+                                <span class="p">(</span><span class="nx">lc</span> <span class="o">!==</span> <span class="nx">uc</span> <span class="o">&amp;&amp;</span> <span class="nx">chr</span> <span class="o">===</span> <span class="nx">uc</span><span class="p">)</span> <span class="o">?</span>
+                                    <span class="c1">// upper case chars get +shift free</span>
+                                    <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">mods</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&quot;+shift&quot;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span> <span class="o">:</span>
+                                    <span class="nx">mods</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;press&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">spec</span>   <span class="o">=</span> <span class="nx">sub</span><span class="p">.</span><span class="nx">_extra</span><span class="p">,</span>
+                <span class="nx">type</span>   <span class="o">=</span> <span class="s2">&quot;key&quot;</span> <span class="o">+</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+                <span class="nx">keys</span>   <span class="o">=</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">keys</span><span class="p">,</span>
+                <span class="nx">method</span> <span class="o">=</span> <span class="p">(</span><span class="nx">filter</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;delegate&quot;</span> <span class="o">:</span> <span class="s2">&quot;on&quot;</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">keys</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">sub</span><span class="p">.</span><span class="nx">_detach</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">type</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">keys</span><span class="p">[</span><span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">];</span>
+
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">key</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">[</span><span class="nx">ALT</span><span class="p">]</span>   <span class="o">||</span> <span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">ALT</span><span class="p">]</span>   <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">altKey</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">[</span><span class="nx">CTRL</span><span class="p">]</span>  <span class="o">||</span> <span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">CTRL</span><span class="p">]</span>  <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">ctrlKey</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">[</span><span class="nx">META</span><span class="p">]</span>  <span class="o">||</span> <span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">META</span><span class="p">]</span>  <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">metaKey</span><span class="p">))</span> <span class="o">&amp;&amp;</span>
+                        <span class="p">(</span><span class="o">!</span><span class="nx">key</span><span class="p">[</span><span class="nx">SHIFT</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">key</span><span class="p">[</span><span class="nx">SHIFT</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">shiftKey</span><span class="p">)))</span>
+                    <span class="p">{</span>
+                        <span class="nx">notifier</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">},</span> <span class="nx">filter</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// Pass through to a plain old key(up|down|press)</span>
+                <span class="c1">// Note: this is horribly inefficient, but I can&#39;t abort this</span>
+                <span class="c1">// subscription for a simple Y.on(&#39;keypress&#39;, ...);</span>
+                <span class="nx">sub</span><span class="p">.</span><span class="nx">_detach</span> <span class="o">=</span> <span class="nx">node</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">type</span><span class="p">,</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">notifier</span><span class="p">.</span><span class="nx">fire</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">),</span>
+                    <span class="nx">filter</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+
+        <span class="nx">detach</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">_detach</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+<span class="nx">eventDef</span><span class="p">.</span><span class="nx">delegate</span> <span class="o">=</span> <span class="nx">eventDef</span><span class="p">.</span><span class="nx">on</span><span class="p">;</span>
+<span class="nx">eventDef</span><span class="p">.</span><span class="nx">detachDelegate</span> <span class="o">=</span> <span class="nx">eventDef</span><span class="p">.</span><span class="nx">detach</span><span class="p">;</span>
+
 <span class="cm">/**</span>
-<span class="cm"> * Add a key listener.  The listener will only be notified if the</span>
+<span class="cm"> * &lt;p&gt;Add a key listener.  The listener will only be notified if the</span>
 <span class="cm"> * keystroke detected meets the supplied specification.  The</span>
-<span class="cm"> * spec consists of the key event type, followed by a colon,</span>
-<span class="cm"> * followed by zero or more comma separated key codes, followed</span>
-<span class="cm"> * by zero or more modifiers delimited by a plus sign.  Ex:</span>
-<span class="cm"> * press:12,65+shift+ctrl</span>
+<span class="cm"> * specification is a string that is defined as:&lt;/p&gt;</span>
+<span class="cm"> * </span>
+<span class="cm"> * &lt;dl&gt;</span>
+<span class="cm"> *   &lt;dt&gt;spec&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;&lt;code&gt;[{type}:]{code}[,{code}]*&lt;/dd&gt;</span>
+<span class="cm"> *   &lt;dt&gt;type&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;&lt;code&gt;&quot;down&quot;, &quot;up&quot;, or &quot;press&quot;&lt;/code&gt;&lt;/dd&gt;</span>
+<span class="cm"> *   &lt;dt&gt;code&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;&lt;code&gt;{keyCode|character|keyName}[+{modifier}]*&lt;/code&gt;&lt;/dd&gt;</span>
+<span class="cm"> *   &lt;dt&gt;modifier&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;&lt;code&gt;&quot;shift&quot;, &quot;ctrl&quot;, &quot;alt&quot;, or &quot;meta&quot;&lt;/code&gt;&lt;/dd&gt;</span>
+<span class="cm"> *   &lt;dt&gt;keyName&lt;/dt&gt;</span>
+<span class="cm"> *   &lt;dd&gt;&lt;code&gt;&quot;enter&quot;, &quot;backspace&quot;, &quot;esc&quot;, &quot;tab&quot;, &quot;pageup&quot;, or &quot;pagedown&quot;&lt;/code&gt;&lt;/dd&gt;</span>
+<span class="cm"> * &lt;/dl&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;Examples:&lt;/p&gt;</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *   &lt;li&gt;&lt;code&gt;Y.on(&quot;key&quot;, callback, &quot;press:12,65+shift+ctrl&quot;, &quot;#my-input&quot;);&lt;/code&gt;&lt;/li&gt;</span>
+<span class="cm"> *   &lt;li&gt;&lt;code&gt;Y.delegate(&quot;key&quot;, preventSubmit, &quot;enter&quot;, &quot;#forms&quot;, &quot;input[type=text]&quot;);&lt;/code&gt;&lt;/li&gt;</span>
+<span class="cm"> *   &lt;li&gt;&lt;code&gt;Y.one(&quot;doc&quot;).on(&quot;key&quot;, viNav, &quot;j,k,l,;&quot;);&lt;/code&gt;&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *   </span>
 <span class="cm"> * @event key</span>
 <span class="cm"> * @for YUI</span>
 <span class="cm"> * @param type {string} &#39;key&#39;</span>
@@ -814,85 +971,10 @@
 <span class="cm"> * @param args 0..n additional arguments to provide to the listener.</span>
 <span class="cm"> * @return {Event.Handle} the detach handle</span>
 <span class="cm"> */</span>
-<span class="nx">Y</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">evt</span><span class="p">.</span><span class="nx">plugins</span><span class="p">.</span><span class="nx">key</span> <span class="o">=</span> <span class="p">{</span>
-
-    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">spec</span><span class="p">,</span> <span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">),</span> <span class="nx">parsed</span><span class="p">,</span> <span class="nx">etype</span><span class="p">,</span> <span class="nx">criteria</span><span class="p">,</span> <span class="nx">ename</span><span class="p">;</span>
-
-        <span class="nx">parsed</span> <span class="o">=</span> <span class="nx">spec</span> <span class="o">&amp;&amp;</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">spec</span> <span class="o">||</span> <span class="nx">spec</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="o">!</span><span class="nx">parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">{</span>
-<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Illegal key spec, creating a regular keypress listener instead.&#39;</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;event&#39;</span><span class="p">);</span>
-            <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;key&#39;</span> <span class="o">+</span> <span class="p">((</span><span class="nx">parsed</span> <span class="o">&amp;&amp;</span> <span class="nx">parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">||</span> <span class="s1">&#39;press&#39;</span><span class="p">);</span>
-            <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="nx">a</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="c1">// key event type: &#39;down&#39;, &#39;up&#39;, or &#39;press&#39;</span>
-        <span class="nx">etype</span> <span class="o">=</span> <span class="nx">parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-
-        <span class="c1">// list of key codes optionally followed by modifiers</span>
-        <span class="nx">criteria</span> <span class="o">=</span> <span class="p">(</span><span class="nx">parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">?</span> <span class="nx">parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="sr">/,|\+/</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
-
-        <span class="c1">// the name of the custom event that will be created for the spec</span>
-        <span class="nx">ename</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">?</span> <span class="nx">id</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span> <span class="o">+</span> <span class="nx">spec</span><span class="p">;</span>
-
-        <span class="nx">ename</span> <span class="o">=</span> <span class="nx">ename</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/,/g</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">);</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">getEvent</span><span class="p">(</span><span class="nx">ename</span><span class="p">))</span> <span class="p">{</span>
-
-            <span class="c1">// subscribe spec validator to the DOM event</span>
-            <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">type</span> <span class="o">+</span> <span class="nx">etype</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-
-                <span class="c1">// Y.log(&#39;keylistener: &#39; + e.keyCode);</span>
-                
-                <span class="kd">var</span> <span class="nx">passed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">failed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">crit</span><span class="p">,</span> <span class="nx">critInt</span><span class="p">;</span>
-
-                <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">criteria</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">crit</span> <span class="o">=</span> <span class="nx">criteria</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> 
-                    <span class="nx">critInt</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">crit</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-
-                    <span class="c1">// pass this section if any supplied keyCode </span>
-                    <span class="c1">// is found</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">critInt</span><span class="p">))</span> <span class="p">{</span>
-
-                        <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">charCode</span> <span class="o">===</span> <span class="nx">critInt</span><span class="p">)</span> <span class="p">{</span>
-                            <span class="c1">// Y.log(&#39;passed: &#39; + crit);</span>
-                            <span class="nx">passed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                            <span class="nx">failed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-                            <span class="c1">// Y.log(&#39;failed: &#39; + crit);</span>
-                        <span class="p">}</span>
-
-                    <span class="c1">// only check modifier if no keyCode was specified</span>
-                    <span class="c1">// or the keyCode check was successful.  pass only </span>
-                    <span class="c1">// if every modifier passes</span>
-                    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">passed</span> <span class="o">||</span> <span class="o">!</span><span class="nx">failed</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="nx">passed</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">crit</span> <span class="o">+</span> <span class="s1">&#39;Key&#39;</span><span class="p">]);</span>
-                        <span class="nx">failed</span> <span class="o">=</span> <span class="o">!</span><span class="nx">passed</span><span class="p">;</span>
-                        <span class="c1">// Y.log(crit + &quot;: &quot; + passed);</span>
-                    <span class="p">}</span>                    
-                <span class="p">}</span>
-
-                <span class="c1">// fire spec custom event if spec if met</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nx">passed</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="nx">Y</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">ename</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
-                <span class="p">}</span>
-
-            <span class="p">},</span> <span class="nx">id</span><span class="p">);</span>
-
-        <span class="p">}</span>
-
-        <span class="c1">// subscribe supplied listener to custom event for spec validator</span>
-        <span class="c1">// remove element and spec.</span>
-        <span class="nx">a</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-        <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ename</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="nx">a</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="nx">eventDef</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;node-base&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-synthetic&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -701,11 +716,13 @@
 
 	<span class="nx">AUTO</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
 	<span class="nx">COLUMNSET</span> <span class="o">=</span> <span class="s1">&#39;columnset&#39;</span><span class="p">,</span>
-	<span class="nx">EDITOR</span> <span class="o">=</span> <span class="s1">&#39;editor&#39;</span><span class="p">,</span>
+	<span class="nx">DBLCLICK</span> <span class="o">=</span> <span class="s1">&#39;dblclick&#39;</span><span class="p">,</span>
 	<span class="nx">HEIGHT</span> <span class="o">=</span> <span class="s1">&#39;height&#39;</span><span class="p">,</span>
 	<span class="nx">KEY</span> <span class="o">=</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span>
 	<span class="nx">NAME</span> <span class="o">=</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span>
-	<span class="nx">PROPERTY_LIST</span> <span class="o">=</span> <span class="s1">&#39;propertyList&#39;</span><span class="p">,</span>
+	<span class="nx">PROPERTY_NAME</span> <span class="o">=</span> <span class="s1">&#39;propertyName&#39;</span><span class="p">,</span>
+	<span class="nx">RECORDSET</span> <span class="o">=</span> <span class="s1">&#39;recordset&#39;</span><span class="p">,</span>
+	<span class="nx">RECORDSET_CHANGE</span> <span class="o">=</span> <span class="s1">&#39;recordsetChange&#39;</span><span class="p">,</span>
 	<span class="nx">SCROLL</span> <span class="o">=</span> <span class="s1">&#39;scroll&#39;</span><span class="p">,</span>
 	<span class="nx">SELECTION</span> <span class="o">=</span> <span class="s1">&#39;selection&#39;</span><span class="p">,</span>
 	<span class="nx">SORT</span> <span class="o">=</span> <span class="s1">&#39;sort&#39;</span><span class="p">,</span>
@@ -713,6 +730,7 @@
 	<span class="nx">VALUE</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
 	<span class="nx">WIDTH</span> <span class="o">=</span> <span class="s1">&#39;width&#39;</span><span class="p">,</span>
 
+	<span class="nx">_EMPTY_STR</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
 	<span class="nx">_NAME</span> <span class="o">=</span> <span class="s1">&#39;property-list&#39;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">PropertyList</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
@@ -727,7 +745,7 @@
 					<span class="p">{</span>
 						<span class="nx">editor</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
 						<span class="nx">key</span><span class="o">:</span> <span class="nx">NAME</span><span class="p">,</span>
-						<span class="nx">label</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getString</span><span class="p">(</span><span class="nx">PROPERTY_LIST</span><span class="p">),</span>
+						<span class="nx">label</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getString</span><span class="p">(</span><span class="nx">PROPERTY_NAME</span><span class="p">),</span>
 						<span class="nx">sortable</span><span class="o">:</span> <span class="kc">true</span>
 					<span class="p">},</span>
 					<span class="p">{</span>
@@ -739,6 +757,14 @@
 					<span class="p">}</span>
 				<span class="p">];</span>
 			<span class="p">}</span>
+		<span class="p">},</span>
+
+		<span class="nx">editEvent</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="nx">DBLCLICK</span>
+		<span class="p">},</span>
+
+		<span class="nx">recordset</span><span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">[{</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">_EMPTY_STR</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">_EMPTY_STR</span> <span class="p">}]</span>
 		<span class="p">},</span>
 
 		<span class="nx">scroll</span><span class="o">:</span> <span class="p">{</span>
@@ -761,7 +787,7 @@
 
 		<span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
 			<span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
-				<span class="nx">propertyList</span><span class="o">:</span> <span class="s1">&#39;Property List&#39;</span><span class="p">,</span>
+				<span class="nx">propertyName</span><span class="o">:</span> <span class="s1">&#39;Property Name&#39;</span><span class="p">,</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Value&#39;</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
@@ -773,6 +799,7 @@
 		<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
+			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">RECORDSET_CHANGE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_plugDependencies</span><span class="p">);</span>
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_syncScrollWidth</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;_uiSetWidth&#39;</span><span class="p">);</span>
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_syncScrollHeight</span><span class="p">,</span> <span class="nx">instance</span><span class="p">,</span> <span class="s1">&#39;_uiSetHeight&#39;</span><span class="p">);</span>
 
@@ -788,27 +815,44 @@
 				<span class="nx">event</span><span class="p">.</span><span class="nx">column</span> <span class="o">=</span> <span class="nx">columnset</span><span class="p">.</span><span class="nx">keyHash</span><span class="p">[</span><span class="nx">VALUE</span><span class="p">];</span>
 			<span class="p">}</span>
 
-			<span class="k">return</span> <span class="nx">PropertyList</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_editCell</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">event</span><span class="p">]);</span>
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">PropertyList</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_editCell</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="nx">getDefaultEditor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="k">return</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TextCellEditor</span><span class="p">();</span>
 		<span class="p">},</span>
 
+		<span class="nx">_onEditorSave</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">selection</span><span class="p">;</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="nx">selection</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">selection</span><span class="p">.</span><span class="nx">activeColumnIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+			<span class="p">}</span>
+
+			<span class="k">return</span> <span class="nx">A</span><span class="p">.</span><span class="nx">PropertyList</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">_onEditorSave</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">event</span><span class="p">);</span>
+		<span class="p">},</span>
+
 		<span class="nx">_plugDependencies</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="kd">var</span> <span class="nx">recordset</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">RECORDSET</span><span class="p">);</span>
+
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">recordset</span><span class="p">.</span><span class="nx">hasPlugin</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">RecordsetSort</span><span class="p">))</span> <span class="p">{</span>
+				<span class="nx">recordset</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">RecordsetSort</span><span class="p">,</span> <span class="p">{</span> <span class="nx">dt</span><span class="o">:</span> <span class="nx">instance</span> <span class="p">});</span>
+		        <span class="nx">recordset</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+			<span class="p">}</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
 				<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DataTableSelection</span><span class="p">,</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SELECTION</span><span class="p">)</span>
 			<span class="p">)</span>
 			<span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DataTableScroll</span><span class="p">,</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL</span><span class="p">)</span>
-			<span class="p">)</span>
-			<span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
 				<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DataTableSort</span><span class="p">,</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SORT</span><span class="p">)</span>
+			<span class="p">)</span>
+			<span class="p">.</span><span class="nx">plug</span><span class="p">(</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">DataTableScroll</span><span class="p">,</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SCROLL</span><span class="p">)</span>
 			<span class="p">);</span>
 		<span class="p">},</span>
 

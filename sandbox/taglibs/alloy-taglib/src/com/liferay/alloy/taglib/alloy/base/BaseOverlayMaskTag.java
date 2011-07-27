@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -1191,6 +1192,7 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onZIndexChange", onZIndexChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_align = null;
 		_alignPoints = null;
@@ -1310,10 +1312,12 @@ public class BaseOverlayMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onZIndexChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
 		setNamespacedAttribute(request, "alignPoints", _alignPoints);

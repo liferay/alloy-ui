@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('history-base', function(Y) {
@@ -32,6 +32,12 @@ YUI.add('history-base', function(Y) {
  *   zero or more of the following properties:
  *
  * <dl>
+ *   <dt>force (Boolean)</dt>
+ *   <dd>
+ *     If `true`, a `history:change` event will be fired whenever the URL
+ *     changes, even if there is no associated state change. Default is `false`.
+ *   </dd>
+ *
  *   <dt>initialState (Object)</dt>
  *   <dd>
  *     Initial state to set, as an object hash of key/value pairs. This will be
@@ -179,6 +185,16 @@ Y.mix(HistoryBase.prototype, {
         config = this._config = config || {};
 
         /**
+         * If `true`, a `history:change` event will be fired whenever the URL
+         * changes, even if there is no associated state change.
+         *
+         * @property force
+         * @type Boolean
+         * @default false
+         */
+         this.force = !!config.force;
+
+        /**
          * Resolved initial state: a merge of the user-supplied initial state
          * (if any) and any initial state provided by a subclass. This may
          * differ from <code>_config.initialState</code>. If neither the config
@@ -247,7 +263,7 @@ Y.mix(HistoryBase.prototype, {
 
         // If initialState was provided, merge it into the current state.
         if (initialState) {
-            this.add(initialState);
+            this.replace(initialState);
         }
     },
 
@@ -551,13 +567,8 @@ Y.mix(HistoryBase.prototype, {
             prevState = GlobalEnv._state,
             removed   = {};
 
-        if (!newState) {
-            newState = {};
-        }
-
-        if (!options) {
-            options = {};
-        }
+        newState || (newState = {});
+        options  || (options  = {});
 
         if (_isSimpleObject(newState) && _isSimpleObject(prevState)) {
             // Figure out what was added or changed.
@@ -586,7 +597,7 @@ Y.mix(HistoryBase.prototype, {
             isChanged = newState !== prevState;
         }
 
-        if (isChanged) {
+        if (isChanged || this.force) {
             this._fireEvents(src, {
                 changed  : changed,
                 newState : newState,
@@ -631,4 +642,4 @@ Y.mix(HistoryBase.prototype, {
 Y.HistoryBase = HistoryBase;
 
 
-}, '3.3.0' ,{requires:['event-custom-complex']});
+}, '3.4.0' ,{requires:['event-custom-complex']});

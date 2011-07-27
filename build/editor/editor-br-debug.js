@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('editor-br', function(Y) {
@@ -11,14 +11,11 @@ YUI.add('editor-br', function(Y) {
 
     /**
      * Plugin for Editor to normalize BR's.
-     * @module editor
-     * @submodule editor-br
-     */     
-    /**
-     * Plugin for Editor to normalize BR's.
      * @class Plugin.EditorBR
      * @extends Base
      * @constructor
+     * @module editor
+     * @submodule editor-br
      */
 
 
@@ -70,7 +67,7 @@ YUI.add('editor-br', function(Y) {
             var inst = this.get(HOST).getInstance();
             try {
                 inst.config.doc.execCommand('insertbronreturn', null, true);
-            } catch (bre) {};
+            } catch (bre) {}
 
             if (Y.UA.ie || Y.UA.webkit) {
                 inst.on('keydown', Y.bind(this._onKeyDown, this), inst.config.doc);
@@ -139,4 +136,4 @@ YUI.add('editor-br', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['node'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});

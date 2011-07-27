@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -696,7 +711,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;dial&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -707,8 +722,8 @@
 <span class="cm"> * </span>
 <span class="cm"> * @module dial</span>
 <span class="cm"> */</span>
-	<span class="kd">var</span> <span class="nx">supportsVML</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-        <span class="nx">testVMLNode</span><span class="p">;</span>
+	<span class="kd">var</span> <span class="nx">supportsVML</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="c1">//testVMLNode;</span>
 
 	<span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">){</span>
         <span class="nx">supportsVML</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -795,6 +810,49 @@
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
+<span class="cm">         * diameter of the handle object which users drag to change the value.</span>
+<span class="cm">		 * Dial sets the pixel dimension of the marker equal to markerDiameter * diameter</span>
+<span class="cm">		 * Set this only before rendering.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute handleDiameter</span>
+<span class="cm">         * @type {Number}</span>
+<span class="cm">         * @default 0.2</span>
+<span class="cm">		 * @writeOnce</span>
+<span class="cm">         */</span>
+		<span class="nx">handleDiameter</span> <span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span><span class="mf">0.2</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">         * diameter of the marker object which follows the angle of the handle during value changes.</span>
+<span class="cm">		 * Scaled relative to the diameter attribute</span>
+<span class="cm">		 * Dial sets the pixel dimension of the marker equal to markerDiameter * diameter</span>
+<span class="cm">		 * Set this only before rendering.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute markerDiameter</span>
+<span class="cm">         * @type {Number}</span>
+<span class="cm">         * @default 0.1</span>
+<span class="cm">		 * @writeOnce</span>
+<span class="cm">         */</span>
+		<span class="nx">markerDiameter</span> <span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span><span class="mf">0.1</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">         * diameter of the center button object.</span>
+<span class="cm">		 * Dial sets the pixel dimension of the centerButton equal to centerButtonDiameter * diameter</span>
+<span class="cm">		 * Set this only before rendering.</span>
+<span class="cm">         *</span>
+<span class="cm">         * @attribute centerButtonDiameter</span>
+<span class="cm">         * @type {Number}</span>
+<span class="cm">         * @default 0.1</span>
+<span class="cm">		 * @writeOnce</span>
+<span class="cm">         */</span>
+		<span class="nx">centerButtonDiameter</span> <span class="o">:</span> <span class="p">{</span>
+			<span class="nx">value</span><span class="o">:</span><span class="mf">0.5</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
 <span class="cm">		 * initial value of the Dial</span>
 <span class="cm">         *</span>
 <span class="cm">         * @attribute value</span>
@@ -836,11 +894,11 @@
 <span class="cm">		 * number of value increments in one 360 degree revolution </span>
 <span class="cm">		 * of the handle around the dial</span>
 <span class="cm">         *</span>
-<span class="cm">         * @attribute stepsPerRev</span>
+<span class="cm">         * @attribute stepsPerRevolution</span>
 <span class="cm">         * @type {Number}</span>
 <span class="cm">         * @default 100</span>
 <span class="cm">         */</span>
-		<span class="nx">stepsPerRev</span> <span class="o">:</span> <span class="p">{</span>
+		<span class="nx">stepsPerRevolution</span> <span class="o">:</span> <span class="p">{</span>
 			<span class="nx">value</span><span class="o">:</span><span class="mi">100</span>
 		<span class="p">},</span>
 
@@ -862,7 +920,7 @@
 <span class="cm">		 * Gets localized strings in the current language</span>
 <span class="cm">         *</span>
 <span class="cm">         * @attribute strings</span>
-<span class="cm">         * @type {Object}</span>
+<span class="cm">         * @type {Object} the values are HTML strings</span>
 <span class="cm">         * @default {label: &#39;My label&#39;, resetStr: &#39;Reset&#39;, tooltipHandle: &#39;Drag to set value&#39;}</span>
 <span class="cm">         */</span>
         <span class="nx">strings</span><span class="o">:</span> <span class="p">{</span>
@@ -876,11 +934,11 @@
 <span class="cm">		 * resting place of the center of the handle and marker. </span>
 <span class="cm">		 * The value is a percent of the radius of the dial.</span>
 <span class="cm">         *</span>
-<span class="cm">         * @attribute handleDist</span>
+<span class="cm">         * @attribute handleDistance</span>
 <span class="cm">         * @type {number}</span>
 <span class="cm">         * @default 0.75</span>
 <span class="cm">         */</span>
-		<span class="nx">handleDist</span><span class="o">:</span><span class="p">{</span>
+		<span class="nx">handleDistance</span><span class="o">:</span><span class="p">{</span>
 			<span class="nx">value</span><span class="o">:</span><span class="mf">0.75</span>
 		<span class="p">}</span>
 		
@@ -914,15 +972,14 @@
 		<span class="nx">ring</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s1">&#39;ring&#39;</span><span class="p">),</span>
 		<span class="nx">ringVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s1">&#39;ring-vml&#39;</span><span class="p">),</span>
 		<span class="nx">marker</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker&quot;</span><span class="p">),</span>
-		<span class="nx">markerUser</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker-user&quot;</span><span class="p">),</span>
-		<span class="nx">markerUserVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker-user-vml&quot;</span><span class="p">),</span>
+		<span class="nx">markerVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker-vml&quot;</span><span class="p">),</span>
+		<span class="nx">markerMaxMin</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker-max-min&quot;</span><span class="p">),</span>
 		<span class="nx">centerButton</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;center-button&quot;</span><span class="p">),</span>
 		<span class="nx">centerButtonVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s1">&#39;center-button-vml&#39;</span><span class="p">),</span>
-		<span class="nx">resetString</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;reset-str&quot;</span><span class="p">),</span>
+		<span class="nx">resetString</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;reset-string&quot;</span><span class="p">),</span>
 		<span class="nx">handle</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;handle&quot;</span><span class="p">),</span>
-		<span class="nx">handleUser</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;handle-user&quot;</span><span class="p">),</span>
-		<span class="nx">handleUserVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;handle-user-vml&quot;</span><span class="p">),</span>
-		<span class="nx">markerHidden</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;marker-hidden&quot;</span><span class="p">),</span>
+		<span class="nx">handleVml</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;handle-vml&quot;</span><span class="p">),</span>
+		<span class="nx">hidden</span> <span class="o">:</span> <span class="nx">makeClassName</span><span class="p">(</span><span class="s2">&quot;hidden&quot;</span><span class="p">),</span>
 		<span class="nx">dragging</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">(</span><span class="s2">&quot;dd-dragging&quot;</span><span class="p">)</span>
 	<span class="p">};</span>
     
@@ -934,8 +991,8 @@
 <span class="cm">     * template that will contain the Dial&#39;s label.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @property Dial.LABEL_TEMPLATE</span>
-<span class="cm">     * @type {String}</span>
-<span class="cm">     * @default &amp;lt;div&gt;...&amp;lt;/div&gt;</span>
+<span class="cm">     * @type {HTML}</span>
+<span class="cm">     * @default &amp;lt;div id=&quot;&#39; + labelId + &#39;&quot; class=&quot;[...-label]&quot;&gt;&amp;lt;span class=&quot;[...-label-string]&quot;&gt;{label}&amp;lt;/span&gt;&amp;lt;span class=&quot;[...-value-string]&quot;&gt;&amp;lt;/span&gt;&amp;lt;/div&gt;</span>
 <span class="cm">	 * @protected</span>
 <span class="cm">     */</span>
 	<span class="nx">Dial</span><span class="p">.</span><span class="nx">LABEL_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div id=&quot;&#39;</span> <span class="o">+</span> <span class="nx">labelId</span> <span class="o">+</span> <span class="s1">&#39;&quot; class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">label</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">labelString</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{label}&lt;/span&gt;&lt;span class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">valueString</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
@@ -945,7 +1002,7 @@
 <span class="cm">		 * template that will contain the Dial&#39;s background ring.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @property Dial.RING_TEMPLATE</span>
-<span class="cm">		 * @type {String}</span>
+<span class="cm">		 * @type {HTML}</span>
 <span class="cm">		 * @default &amp;lt;div class=&quot;[...-ring]&quot;&gt;&amp;lt;div class=&quot;[...-northMark]&quot;&gt;&amp;lt;/div&gt;&amp;lt;/div&gt;</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
@@ -955,46 +1012,42 @@
 <span class="cm">		 * template that will contain the Dial&#39;s current angle marker.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @property Dial.MARKER_TEMPLATE</span>
-<span class="cm">		 * @type {String}</span>
+<span class="cm">		 * @type {HTML}</span>
 <span class="cm">		 * @default &amp;lt;div class=&quot;[...-marker] [...-marker-hidden]&quot;&gt;&amp;lt;div class=&quot;[...-markerUser]&quot;&gt;&amp;lt;/div&gt;&amp;lt;/div&gt;</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-		<span class="nx">Dial</span><span class="p">.</span><span class="nx">MARKER_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">marker</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerHidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerUser</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+		<span class="nx">Dial</span><span class="p">.</span><span class="nx">MARKER_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">marker</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
 
 		<span class="cm">/**</span>
 <span class="cm">		 * template that will contain the Dial&#39;s center button.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @property Dial.CENTER_BUTTON_TEMPLATE</span>
-<span class="cm">		 * @type {String}</span>
+<span class="cm">		 * @type {HTML}</span>
 <span class="cm">		 * @default &amp;lt;div class=&quot;[...-centerButton]&quot;&gt;&amp;lt;div class=&quot;[...-resetString]&quot;&gt;&#39; + Y.substitute(&#39;{resetStr}&#39;, Dial.ATTRS.strings.value) + &#39;&amp;lt;/div&gt;&amp;lt;/div&gt;</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-		<span class="nx">Dial</span><span class="p">.</span><span class="nx">CENTER_BUTTON_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">centerButton</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{resetStr}&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
+		<span class="nx">Dial</span><span class="p">.</span><span class="nx">CENTER_BUTTON_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">centerButton</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{resetStr}&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span>
 
 		<span class="cm">/**</span>
 <span class="cm">		 * template that will contain the Dial&#39;s handle.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @property Dial.HANDLE_TEMPLATE</span>
-<span class="cm">		 * @type {String}</span>
+<span class="cm">		 * @type {HTML}</span>
 <span class="cm">		 * @default &amp;lt;div class=&quot;[...-handle]&quot;&gt;&amp;lt;div class=&quot;[...-handleUser]&quot; aria-labelledby=&quot;&#39; + labelId + &#39;&quot; aria-valuetext=&quot;&quot; aria-valuemax=&quot;&quot; aria-valuemin=&quot;&quot; aria-valuenow=&quot;&quot; role=&quot;slider&quot;  tabindex=&quot;0&quot;&gt;&amp;lt;/div&gt;&amp;lt;/div&gt;&#39;;// title=&quot;{tooltipHandle}&quot;</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-		<span class="nx">Dial</span><span class="p">.</span><span class="nx">HANDLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handle</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handleUser</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-labelledby=&quot;&#39;</span> <span class="o">+</span> <span class="nx">labelId</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-valuetext=&quot;&quot; aria-valuemax=&quot;&quot; aria-valuemin=&quot;&quot; aria-valuenow=&quot;&quot; role=&quot;slider&quot;  tabindex=&quot;0&quot; title=&quot;{tooltipHandle}&quot;&gt;&lt;/div&gt;&lt;/div&gt;&#39;</span><span class="p">;</span><span class="c1">// title=&quot;{tooltipHandle}&quot;</span>
+		<span class="nx">Dial</span><span class="p">.</span><span class="nx">HANDLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handle</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-labelledby=&quot;&#39;</span> <span class="o">+</span> <span class="nx">labelId</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-valuetext=&quot;&quot; aria-valuemax=&quot;&quot; aria-valuemin=&quot;&quot; aria-valuenow=&quot;&quot; role=&quot;slider&quot;  tabindex=&quot;0&quot; title=&quot;{tooltipHandle}&quot;&gt;&#39;</span><span class="p">;</span>
 	
 	<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">// VML case</span>
 		<span class="nx">Dial</span><span class="p">.</span><span class="nx">RING_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">ring</span> <span class="o">+</span>  <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">ringVml</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
 								<span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">northMark</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="o">+</span>
 									<span class="s1">&#39;&lt;v:oval strokecolor=&quot;#ceccc0&quot; strokeweight=&quot;1px&quot;&gt;&lt;v:fill type=gradient color=&quot;#8B8A7F&quot; color2=&quot;#EDEDEB&quot; angle=&quot;45&quot;/&gt;&lt;/v:oval&gt;&#39;</span><span class="o">+</span>
-									<span class="c1">//&#39;&lt;v:oval&gt;&lt;/v:oval&gt;&#39;+</span>
 								<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
 								<span class="s1">&#39;&#39;</span><span class="p">;</span>
-		<span class="nx">Dial</span><span class="p">.</span><span class="nx">MARKER_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">marker</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerHidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
-									<span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerUserVml</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
+		<span class="nx">Dial</span><span class="p">.</span><span class="nx">MARKER_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerVml</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
 										<span class="s1">&#39;&lt;v:oval stroked=&quot;false&quot;&gt;&#39;</span><span class="o">+</span>
 											<span class="s1">&#39;&lt;v:fill opacity=&quot;20%&quot; color=&quot;#000&quot;/&gt;&#39;</span><span class="o">+</span>
 										<span class="s1">&#39;&lt;/v:oval&gt;&#39;</span><span class="o">+</span>
-									<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
-									<span class="c1">//&#39;&lt;v:oval&gt;&lt;/v:oval&gt;&#39;+</span>
 								<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
 								<span class="s1">&#39;&#39;</span><span class="p">;</span>
 		<span class="nx">Dial</span><span class="p">.</span><span class="nx">CENTER_BUTTON_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">centerButton</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">centerButtonVml</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
@@ -1002,17 +1055,13 @@
 												<span class="s1">&#39;&lt;v:fill type=gradient color=&quot;#C7C5B9&quot; color2=&quot;#fefcf6&quot; colors=&quot;35% #d9d7cb, 65% #fefcf6&quot; angle=&quot;45&quot;/&gt;&#39;</span><span class="o">+</span>
 												<span class="s1">&#39;&lt;v:shadow on=&quot;True&quot; color=&quot;#000&quot; opacity=&quot;10%&quot; offset=&quot;2px, 2px&quot;/&gt;&#39;</span><span class="o">+</span>
 											<span class="s1">&#39;&lt;/v:oval&gt;&#39;</span><span class="o">+</span>
-											<span class="c1">//&#39;&lt;v:oval&gt;&lt;/v:oval&gt;&#39;+</span>
-											<span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{resetStr}&lt;/div&gt;&#39;</span><span class="o">+</span>
+											<span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;{resetStr}&lt;/div&gt;&#39;</span><span class="o">+</span>
 									<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
 									<span class="s1">&#39;&#39;</span><span class="p">;</span>
-		<span class="nx">Dial</span><span class="p">.</span><span class="nx">HANDLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handle</span> <span class="o">+</span> <span class="s1">&#39;&quot;&gt;&#39;</span><span class="o">+</span>
-									<span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handleUserVml</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-labelledby=&quot;&#39;</span> <span class="o">+</span> <span class="nx">labelId</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-valuetext=&quot;&quot; aria-valuemax=&quot;&quot; aria-valuemin=&quot;&quot; aria-valuenow=&quot;&quot; role=&quot;slider&quot;  tabindex=&quot;0&quot; title=&quot;{tooltipHandle}&quot;&gt;&#39;</span><span class="o">+</span>
+		<span class="nx">Dial</span><span class="p">.</span><span class="nx">HANDLE_TEMPLATE</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handleVml</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-labelledby=&quot;&#39;</span> <span class="o">+</span> <span class="nx">labelId</span> <span class="o">+</span> <span class="s1">&#39;&quot; aria-valuetext=&quot;&quot; aria-valuemax=&quot;&quot; aria-valuemin=&quot;&quot; aria-valuenow=&quot;&quot; role=&quot;slider&quot;  tabindex=&quot;0&quot; title=&quot;{tooltipHandle}&quot;&gt;&#39;</span><span class="o">+</span>
 										<span class="s1">&#39;&lt;v:oval stroked=&quot;false&quot;&gt;&#39;</span><span class="o">+</span>
 											<span class="s1">&#39;&lt;v:fill opacity=&quot;20%&quot; color=&quot;#6C3A3A&quot;/&gt;&#39;</span><span class="o">+</span>
 										<span class="s1">&#39;&lt;/v:oval&gt;&#39;</span><span class="o">+</span>
-									<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
-									<span class="c1">//&#39;&lt;v:oval&gt;&lt;/v:oval&gt;&#39;+</span>
 								<span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="o">+</span>
 								<span class="s1">&#39;&#39;</span><span class="p">;</span>
 	<span class="p">}</span>
@@ -1032,29 +1081,25 @@
 			<span class="k">this</span><span class="p">.</span><span class="nx">_renderMarker</span><span class="p">();</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_renderCenterButton</span><span class="p">();</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_renderHandle</span><span class="p">();</span>
-			
-			<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_setVMLSizes</span><span class="p">();</span>
-			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_setBorderRadius</span><span class="p">();</span>
-			
+						
 			<span class="c1">// object handles</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">contentBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">);</span>
-			
+
 			<span class="c1">// constants</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerY</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleDist</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;handleDist&#39;</span><span class="p">);</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_originalValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">);</span>
+<span class="c1">//			this._dd1 = null; // expose a global for the dd of the handle so we can delegate to DD&#39;s natural behavior the mousedown on the ring</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">);</span> <span class="c1">// saves doing a .get many times, but we need to remember to update this if/when we allow changing min or max after instantiation</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
 
 			<span class="c1">// variables</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_angle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrapedFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_angle</span><span class="p">;</span>
 			
 			<span class="c1">// init</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuemin&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">));</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuemax&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrappedFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_originalValue</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuemin&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuemax&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">);</span>
         <span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1065,14 +1110,22 @@
 <span class="cm">		 * @private</span>
 <span class="cm">		 */</span>
 		<span class="nx">_setBorderRadius</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-			<span class="c1">// Fixme: Would this be a good thing to do for all browsers instead of relying on % dimensions in CSS?</span>
-			<span class="kd">var</span> <span class="nx">dia</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">);</span>
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s2">&quot;WebkitBorderRadius&quot;</span><span class="p">));</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="p">,</span>  <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="p">,</span>  <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s2">&quot;WebkitBorderRadius&quot;</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;MozBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;borderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+									 <span class="p">});</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;MozBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;borderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+									 <span class="p">});</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;MozBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;borderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+									 <span class="p">});</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;WebkitBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;MozBorderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
+										<span class="s1">&#39;borderRadius&#39;</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
+									 <span class="p">});</span>
 		<span class="p">},</span>
 		
 		<span class="cm">/**</span>
@@ -1091,62 +1144,46 @@
             <span class="nx">keyEventSpec</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;down:&quot;</span> <span class="o">:</span> <span class="s2">&quot;press:&quot;</span><span class="p">,</span>
 			<span class="nx">keyLeftRightSpec</span> <span class="o">=</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;down:&quot;</span> <span class="o">:</span> <span class="s2">&quot;press:&quot;</span><span class="p">;</span>
 			<span class="c1">// 38, 40 = arrow up/down, 33, 34 = page up/down,  35 , 36 = end/home</span>
-            <span class="nx">keyEventSpec</span> <span class="o">+=</span> <span class="s2">&quot;38, 40, 33, 34, 35, 36&quot;</span><span class="p">;</span>
+            <span class="nx">keyEventSpec</span> <span class="o">+=</span> <span class="s2">&quot;38,40,33,34,35,36&quot;</span><span class="p">;</span>
 			<span class="c1">// 37 , 39 = arrow left/right</span>
-            <span class="nx">keyLeftRightSpec</span> <span class="o">+=</span> <span class="s2">&quot;37, 39&quot;</span><span class="p">;</span>
+            <span class="nx">keyLeftRightSpec</span> <span class="o">+=</span> <span class="s2">&quot;37,39&quot;</span><span class="p">;</span>
 
             <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onDirectionKey</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">boundingBox</span><span class="p">,</span> <span class="nx">keyEventSpec</span><span class="p">);</span>
             <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onLeftRightKey</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">boundingBox</span><span class="p">,</span> <span class="nx">keyLeftRightSpec</span><span class="p">);</span>
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_dialCenterOver</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_dialCenterOut</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetDial</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>			
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mousedown&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();},</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">);</span>			
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);},</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;mouseleave&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);},</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetDial</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span>
+			<span class="c1">// Needed to replace mousedown/up with gesturemovestart/end to make behavior on touch devices work the same.</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;gesturemovestart&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span><span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();},</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">);</span> <span class="c1">//[#2530206] need to add so mousedown doesn&#39;t propagate to ring and move the handle</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;gesturemovestart&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();},</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;gesturemovestart&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleDrag</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">);</span> <span class="c1">// [#2530206] // need to send this to the _handleDrag</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;gesturemoveend&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();},</span> <span class="k">this</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">);</span> <span class="c1">// [#2530206] // need to re-focus on the handle so keyboard is accessible</span>
 
-			<span class="kd">var</span> <span class="nx">dd1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">({</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_dd1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DD</span><span class="p">.</span><span class="nx">Drag</span><span class="p">({</span> <span class="c1">//// [#2530206] changed global this._dd1 from just var dd1 = new Y.DD.drag so </span>
 				<span class="nx">node</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span>
 				<span class="nx">on</span> <span class="o">:</span> <span class="p">{</span>
 					<span class="s1">&#39;drag:drag&#39;</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleDrag</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span>
 					<span class="s1">&#39;drag:start&#39;</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleDragStart</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span>
-					<span class="s1">&#39;drag:end&#39;</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleDragEnd</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span>
+					<span class="s1">&#39;drag:end&#39;</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleDragEnd</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span> <span class="c1">//,</span>
 				<span class="p">}</span>
 			<span class="p">});</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_dd1</span><span class="p">.</span><span class="nx">addHandle</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">),</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// [#2530206] added the ring as a handle to the dd1 (the dd of the handleNode)</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
 <span class="cm">		 * Sets _timesWrapped based on Dial value</span>
 <span class="cm">		 * to net integer revolutions the user dragged the handle around the Dial</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @method _setTimesWrapedFromValue</span>
+<span class="cm">		 * @method _setTimesWrappedFromValue</span>
 <span class="cm">		 * @param val {Number} current value of the Dial</span>
 <span class="cm">		 * @private</span>
 <span class="cm">		 */</span>
-		<span class="nx">_setTimesWrapedFromValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
-			<span class="k">if</span><span class="p">(</span><span class="nx">val</span> <span class="o">%</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="p">(</span><span class="nx">val</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">))</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+		<span class="nx">_setTimesWrappedFromValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">val</span> <span class="o">%</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="p">(</span><span class="nx">val</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">));</span>
 			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">val</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">));</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">val</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">));</span>
 			<span class="p">}</span>
-		<span class="p">},</span>
-		
-		<span class="cm">/**</span>
-<span class="cm">		 * Sets the string in the object the user clicks to reset the Dial value</span>
-<span class="cm">		 * </span>
-<span class="cm">		 * @method _dialCenterOver</span>
-<span class="cm">         * @param e {DOMEvent} the mouseover event object</span>
-<span class="cm">		 */</span>
-		<span class="nx">_dialCenterOver</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="s1">&#39;{resetStr}&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;strings&#39;</span><span class="p">)));</span>
-		<span class="p">},</span>
-		
-		<span class="cm">/**</span>
-<span class="cm">		 * Sets the string in the object the user clicks to reset the Dial value</span>
-<span class="cm">		 * to &quot;&quot;</span>
-<span class="cm">		 * </span>
-<span class="cm">		 * @method _dialCenterOut</span>
-<span class="cm">         * @param e {DOMEvent} the mouseover event object</span>
-<span class="cm">		 */</span>
-		<span class="nx">_dialCenterOut</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span> 
 		<span class="p">},</span>
 		
 		<span class="cm">/**</span>
@@ -1158,36 +1195,136 @@
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
 		<span class="nx">_handleDrag</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-			<span class="kd">var</span> <span class="nx">handleCenterX</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNodeRadius</span><span class="p">,</span>
-			<span class="nx">handleCenterY</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNodeRadius</span><span class="p">;</span>
-			
-			
-			<span class="kd">var</span> <span class="nx">ang</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan</span><span class="p">(</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerYOnPage</span> <span class="o">-</span> <span class="nx">handleCenterY</span><span class="p">)</span>  <span class="o">/</span>  <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">-</span> <span class="nx">handleCenterX</span><span class="p">)</span>  <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">),</span> 
-			<span class="nx">deltaX</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">-</span> <span class="nx">handleCenterX</span><span class="p">);</span>
-			<span class="k">if</span><span class="p">(</span><span class="nx">deltaX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
-				<span class="nx">ang</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">+</span> <span class="mi">90</span><span class="p">);</span>
-			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-				<span class="nx">ang</span> <span class="o">=</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">-</span> <span class="mi">90</span><span class="p">);</span>
+			<span class="kd">var</span> <span class="nx">handleCenterX</span><span class="p">,</span>   <span class="c1">// changes for [#2530206]</span>
+			<span class="nx">handleCenterY</span><span class="p">,</span>   <span class="c1">// changes for [#2530206]</span>
+			<span class="nx">ang</span><span class="p">,</span>
+			<span class="nx">newValue</span><span class="p">;</span>
+
+			<span class="c1">// [#2530206] The center of the handle is different relative to the XY of the mousedown event, compared to the drag:drag event. </span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">){</span> <span class="c1">// the event was emitted from mousedown on ring, so center should be the XY of mousedown.</span>
+				<span class="nx">handleCenterX</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span><span class="p">;</span>
+				<span class="nx">handleCenterY</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span><span class="p">;</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">// the event was emitted from drag:drag of handle. The center of the handle is X + radius, Y + radius</span>
+				<span class="nx">handleCenterX</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span><span class="p">;</span>
+				<span class="nx">handleCenterY</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="c1">// check for need to set timesWrapped</span>
-			<span class="k">if</span><span class="p">(</span><span class="nx">handleCenterY</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerYOnPage</span><span class="p">){</span> <span class="c1">//if handle is above the middle of the dial...</span>
-				<span class="k">if</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">handleCenterX</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span><span class="p">)){</span> <span class="c1">// If wrapping, clockwise</span>
+			<span class="nx">ang</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan</span><span class="p">(</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerYOnPage</span> <span class="o">-</span> <span class="nx">handleCenterY</span><span class="p">)</span>  <span class="o">/</span>  <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">-</span> <span class="nx">handleCenterX</span><span class="p">)</span>  <span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">);</span> 
+			<span class="c1">// [#2530206] moved down after handleCenterX and Y are defined</span>
+
+			<span class="nx">ang</span> <span class="o">=</span> <span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">-</span> <span class="nx">handleCenterX</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nx">ang</span> <span class="o">+</span> <span class="mi">90</span> <span class="o">:</span> <span class="nx">ang</span> <span class="o">+</span> <span class="mi">90</span> <span class="o">+</span> <span class="mi">180</span><span class="p">;</span> <span class="c1">// Compensate for neg angles from Math.atan</span>
+
+			<span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="s1">&#39;drag:drag&#39;</span><span class="p">){</span>	<span class="c1">// [#2530206] Make conditional. only check/change timesWrapped if dragging, NOT on mousedown.</span>
+				<span class="c1">// check for need to set timesWrapped</span>
+				<span class="k">if</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">&gt;</span> <span class="mi">270</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">)){</span> <span class="c1">// If wrapping, clockwise</span>
 					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">handleCenterX</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span><span class="p">)){</span> <span class="c1">// if un-wrapping, counter-clockwise</span>
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">&gt;</span> <span class="mi">270</span><span class="p">)){</span> <span class="c1">// if un-wrapping, counter-clockwise</span>
 					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 				<span class="p">}</span>
+				<span class="nx">newValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getValueFromAngle</span><span class="p">(</span><span class="nx">ang</span><span class="p">);</span> <span class="c1">// This function needs the current _timesWrapped value.</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">// event was a gesturemovestart (mousedown) </span>
+				<span class="nx">newValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getNewValueFromMousedown</span><span class="p">(</span><span class="nx">ang</span><span class="p">);</span><span class="c1">// this was added for #2530306.  Handles lots of cases of min and max wrapped and not, neg and pos</span>
 			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">=</span> <span class="nx">handleCenterX</span><span class="p">;</span>
-			<span class="kd">var</span> <span class="nx">newValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getValueFromAngle</span><span class="p">(</span><span class="nx">ang</span><span class="p">);</span> <span class="c1">// This function needs the current _timesWrapped value</span>
-			<span class="c1">// handle hitting max and min and going beyond, stops at max or min </span>
-			<span class="c1">//if((newValue &gt; this.get(&#39;min&#39;)) &amp;&amp; (newValue &lt; this.get(&#39;max&#39;))) {</span>
-			<span class="k">if</span><span class="p">((</span><span class="nx">newValue</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">newValue</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)))</span> <span class="p">{</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">);</span>
-			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">newValue</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">));</span>
-			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">newValue</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="nx">ang</span><span class="p">;</span>
+
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleValuesBeyondMinMax</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">);</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * gets the new value when mousedown or gesturemovestart on the ringNode</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _getNewValueFromMousedown</span>
+<span class="cm">		 * @param ang {number} angle where user clicked on the dial</span>
+<span class="cm">		 * @return newValue {number} the new value for the dial</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_getNewValueFromMousedown</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ang</span><span class="p">){</span> <span class="c1">// #2530306</span>
+			<span class="kd">var</span> <span class="nx">minAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">),</span>
+			<span class="nx">maxAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">),</span>
+			<span class="nx">newValue</span><span class="p">,</span> <span class="nx">oppositeMidRangeAngle</span><span class="p">;</span>
+			
+			
+			<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">)){</span> 
+			<span class="c1">// range min-to-max is greater than stepsPerRevolution (one revolution)</span>
+				<span class="k">if</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">ang</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">){</span> <span class="c1">// This crosses a wrapping boundary</span>
+					<span class="c1">// This makes the behavior of &quot;the mousedown is equal to drag and release the shortest way around the dial.&quot;</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">=</span> <span class="p">((</span><span class="nx">ang</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+				<span class="p">}</span><span class="c1">// else it didn&#39;t cross a wrapping boundary	</span>
+
+
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="nx">maxAng</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">)){</span>
+			<span class="c1">// this happens when max is set at (North), an increment of stepsPerRevolution</span>
+			<span class="c1">// because of &quot;else if&quot;, range is &lt;= stepsPerRevolution</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">ang</span> <span class="o">&gt;</span> <span class="nx">minAng</span> <span class="o">/</span> <span class="mi">2</span><span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">--</span><span class="p">;</span>
+				<span class="p">}</span>
+				
+			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">minAng</span> <span class="o">&gt;=</span> <span class="nx">maxAng</span><span class="p">){</span> 
+			<span class="c1">// this range includes the wrap point (north)</span>
+			<span class="c1">// because of &quot;else if&quot;, range is &lt;= stepsPerRevolution</span>
+				<span class="k">if</span><span class="p">(</span> 
+				   <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">&gt;=</span> <span class="nx">minAng</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="c1">// if prev angle was greater than angle of min and...</span>
+				   <span class="p">(</span><span class="nx">ang</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="nx">minAng</span> <span class="o">+</span> <span class="nx">maxAng</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// the angle of this click is less than the max angle, incr timesWrapped</span>
+				<span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">++</span><span class="p">;</span>
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span> 
+					<span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">&lt;=</span> <span class="nx">maxAng</span><span class="p">)</span> <span class="o">&amp;&amp;</span> 
+					<span class="c1">// if prev angle is &lt; max angle and...</span>
+					
+					<span class="p">(</span><span class="nx">ang</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nx">minAng</span> <span class="o">+</span> <span class="nx">maxAng</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> 
+					<span class="c1">// the angle of this click is &gt; min angle, decr timesWrapped</span>
+					
+					<span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span>
+					<span class="c1">// not zero. We don&#39;t want a previously min value of zero to have its _timesWrapped decremented</span>
+				<span class="p">){</span>  
+					<span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">--</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span> 
+			<span class="c1">// min - max range doesn&#39;t include the wrap point</span>
+			<span class="c1">// range is still &lt;= stepsPerRevolution</span>
+				<span class="k">if</span> <span class="p">((</span><span class="nx">ang</span> <span class="o">&lt;</span> <span class="nx">minAng</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">&gt;</span> <span class="nx">maxAng</span><span class="p">)){</span> <span class="c1">// angle is out of range</span>
+					<span class="nx">oppositeMidRangeAngle</span> <span class="o">=</span> <span class="p">(((</span><span class="nx">minAng</span> <span class="o">+</span> <span class="nx">maxAng</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">180</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span><span class="p">;</span> 
+					<span class="c1">// This is the bisection of the min-to-max range + 180.  (opposite the bisection)</span>
+
+					<span class="k">if</span><span class="p">(</span><span class="nx">oppositeMidRangeAngle</span> <span class="o">&gt;</span> <span class="mi">180</span><span class="p">){</span>
+						<span class="nx">newValue</span> <span class="o">=</span> <span class="p">((</span><span class="nx">maxAng</span> <span class="o">&lt;</span> <span class="nx">ang</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">&lt;</span> <span class="nx">oppositeMidRangeAngle</span><span class="p">))</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">);</span>
+					<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">//oppositeMidRangeAngle &lt;= 180</span>
+						<span class="nx">newValue</span> <span class="o">=</span> <span class="p">((</span><span class="nx">minAng</span> <span class="o">&gt;</span> <span class="nx">ang</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">ang</span> <span class="o">&gt;</span> <span class="nx">oppositeMidRangeAngle</span><span class="p">))</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="nx">newValue</span><span class="p">);</span>
+					<span class="k">return</span> <span class="nx">newValue</span><span class="p">;</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
+			<span class="nx">newValue</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getValueFromAngle</span><span class="p">(</span><span class="nx">ang</span><span class="p">);</span> <span class="c1">// This function needs the correct, current _timesWrapped value.</span>
+			<span class="k">return</span> <span class="nx">newValue</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * handles the case where the value is less than min or greater than max</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _handleValuesBeyondMinMax</span>
+<span class="cm">         * @param e {DOMEvent} the event object</span>
+<span class="cm">		 * @param newValue {number} current value of the dial</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+		<span class="nx">_handleValuesBeyondMinMax</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">){</span> <span class="c1">// #2530306</span>
+				<span class="c1">// If _getValueFromAngle() is passed 0, it increments the _timesWrapped value.</span>
+				<span class="c1">// handle hitting max and min and going beyond, stops at max or min </span>
+				<span class="k">if</span><span class="p">((</span><span class="nx">newValue</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">newValue</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">))</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">newValue</span><span class="p">);</span>
+					<span class="c1">// [#2530206] transfer the mousedown event from the _ringNode to the _handleNode drag, so we can mousedown, then continue dragging</span>
+					<span class="k">if</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">){</span>
+						<span class="c1">// Delegate to DD&#39;s natural behavior</span>
+						<span class="k">this</span><span class="p">.</span><span class="nx">_dd1</span><span class="p">.</span><span class="nx">_handleMouseDownEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+					<span class="p">}</span>			
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">newValue</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrappedFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">);</span>
+				<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">newValue</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrappedFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">);</span>
+				<span class="p">}</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1198,12 +1335,7 @@
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
 		<span class="nx">_handleDragStart</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerHidden</span><span class="p">);</span>
-			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">getX</span><span class="p">();</span>
-			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerYOnPage</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getY</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerY</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getX</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="cm">/*</span>
@@ -1225,15 +1357,18 @@
 					<span class="nx">left</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodeToFixedRadius</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span> <span class="kc">true</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span>
 					<span class="nx">top</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setNodeToFixedRadius</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span> <span class="kc">true</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span>
 				<span class="p">},</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerHidden</span><span class="p">);</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">getX</span><span class="p">();</span> <span class="c1">//makes us ready for next drag.</span>
+						<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">);</span>
+						<span class="c1">//[#2530206] only hide marker if not at max or min</span>
+						<span class="c1">// more persistant user visibility of when the dial is at max or min</span>
+						<span class="k">if</span><span class="p">((</span><span class="nx">value</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">)){</span>
+							<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
+						<span class="p">}</span>
 					<span class="p">},</span> <span class="k">this</span><span class="p">)</span>
 				<span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrapedFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
-<span class="cm">		 * returns the XY of the fixed position, handleDist, from the center of the Dial (resting position)</span>
+<span class="cm">		 * returns the XY of the fixed position, handleDistance, from the center of the Dial (resting position)</span>
 <span class="cm">		 * The XY also represents the angle related to the current value</span>
 <span class="cm">		 * If typeArray is true, [X,Y] is returned.</span>
 <span class="cm">		 * If typeArray is false, the XY of the node passed is set.</span>
@@ -1247,17 +1382,17 @@
 		 <span class="nx">_setNodeToFixedRadius</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">typeArray</span><span class="p">){</span>
 			<span class="kd">var</span> <span class="nx">thisAngle</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_angle</span> <span class="o">-</span> <span class="mi">90</span><span class="p">),</span>
 			<span class="nx">rad</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">),</span>
-			<span class="nx">newY</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">thisAngle</span> <span class="o">*</span> <span class="nx">rad</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleDist</span><span class="p">),</span>
-			<span class="nx">newX</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">thisAngle</span> <span class="o">*</span> <span class="nx">rad</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleDist</span><span class="p">),</span>
-			<span class="nx">dia</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">);</span>
+			<span class="nx">newY</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">thisAngle</span> <span class="o">*</span> <span class="nx">rad</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleDistance</span><span class="p">),</span>
+			<span class="nx">newX</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">thisAngle</span> <span class="o">*</span> <span class="nx">rad</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleDistance</span><span class="p">),</span>
+			<span class="nx">dia</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span> <span class="c1">//Ticket #2529852</span>
 			
 			<span class="nx">newY</span> <span class="o">=</span> <span class="nx">newY</span> <span class="o">-</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">);</span>
 			<span class="nx">newX</span> <span class="o">=</span> <span class="nx">newX</span> <span class="o">-</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">);</span>
 			<span class="k">if</span><span class="p">(</span><span class="nx">typeArray</span><span class="p">){</span> <span class="c1">// just need the style for css transform left and top to animate the handle drag:end</span>
-				<span class="k">return</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">+</span> <span class="nx">newX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">+</span> <span class="nx">newY</span><span class="p">];</span>
+				<span class="k">return</span> <span class="p">[(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="nx">newX</span><span class="p">),</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="nx">newY</span><span class="p">)];</span>
 			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-				<span class="nx">obj</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">+</span> <span class="nx">newX</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-				<span class="nx">obj</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerX</span> <span class="o">+</span> <span class="nx">newY</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+				<span class="nx">obj</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="nx">newX</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+				<span class="nx">obj</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">+</span> <span class="nx">newY</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
 			<span class="p">}</span>
 		 <span class="p">},</span>
 
@@ -1267,7 +1402,18 @@
 <span class="cm">		 * @method syncUI</span>
 <span class="cm">		 */</span>
         <span class="nx">syncUI</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="c1">// Make the marker and the resetString display so their placement and borderRadius can be calculated, then hide them again.</span>
+			<span class="c1">// We would have used visibility:hidden in the css of this class, </span>
+			<span class="c1">// but IE8 VML never returns to visible after applying visibility:hidden then removing it.</span>
+<span class="c1">//			this._markerNode.removeClass(Dial.CSS_CLASSES.hidden); // found durring [#2530206] unnecessary. see 5 lines below it is added</span>
+<span class="c1">//			this._resetString.removeClass(Dial.CSS_CLASSES.hidden); // found durring [#2530206] unnecessary. see 5 lines below it is added</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_setSizes</span><span class="p">();</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_setBorderRadius</span><span class="p">();</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_uiSetValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerYOnPage</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getY</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span><span class="p">);</span> <span class="c1">// moved from _handleDragStart for [#2530206]</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerXOnPage</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">getX</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span><span class="p">);</span> <span class="c1">// moved from _handleDragStart for [#2530206]</span>
         <span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1277,26 +1423,44 @@
 <span class="cm">		 * so these must be set in pixels.</span>
 <span class="cm">		 * Normally these are set in % of the ring.</span>
 <span class="cm">		 *</span>
-<span class="cm">		 * @method _setVMLSizes</span>
+<span class="cm">		 * @method _setSizes       //FIXME: this name should have VML removed, doing for all.</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-		<span class="nx">_setVMLSizes</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-			<span class="kd">var</span> <span class="nx">dia</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">setSize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="nx">percent</span><span class="p">){</span>
-			<span class="kd">var</span> <span class="nx">suffix</span> <span class="o">=</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+		<span class="nx">_setSizes</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+			<span class="kd">var</span> <span class="nx">dia</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">),</span>
+			<span class="nx">offset</span><span class="p">,</span> <span class="nx">offsetResetX</span><span class="p">,</span> <span class="nx">offsetResetY</span><span class="p">,</span>
+			<span class="nx">setSize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="nx">percent</span><span class="p">){</span>
+				<span class="kd">var</span> <span class="nx">suffix</span> <span class="o">=</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
 				<span class="nx">node</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;oval&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="nx">percent</span><span class="p">)</span> <span class="o">+</span> <span class="nx">suffix</span><span class="p">);</span>
 				<span class="nx">node</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;oval&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="nx">percent</span><span class="p">)</span> <span class="o">+</span> <span class="nx">suffix</span><span class="p">);</span>
 				<span class="nx">node</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="nx">percent</span><span class="p">)</span> <span class="o">+</span> <span class="nx">suffix</span><span class="p">);</span>
 				<span class="nx">node</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="nx">percent</span><span class="p">)</span> <span class="o">+</span> <span class="nx">suffix</span><span class="p">);</span>
 			<span class="p">};</span>
 			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>
-			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">);</span>
-			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">);</span>
-			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">);</span>
-			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNodeRadius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNodeRadius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dia</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">);</span>
+			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;handleDiameter&#39;</span><span class="p">));</span>
+			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;markerDiameter&#39;</span><span class="p">));</span>
+			<span class="nx">setSize</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">,</span> <span class="nx">dia</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;centerButtonDiameter&#39;</span><span class="p">));</span>
+			
+			<span class="c1">// Set these (used for trig) this way instead of relative to dia, </span>
+			<span class="c1">// in case they have borders, have images etc.</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNodeRadius</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_markerNodeRadius</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleDistance</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;handleDistance&#39;</span><span class="p">);</span>
+			<span class="c1">// place the centerButton</span>
+			<span class="nx">offset</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ringNodeRadius</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="nx">offset</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="nx">offset</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
+			<span class="cm">/* </span>
+<span class="cm">			Place the resetString</span>
+<span class="cm">			This seems like it should be able to be done with CSS,</span>
+<span class="cm">			But since there is also a VML oval in IE that is absolute positioned,</span>
+<span class="cm">			The resetString ends up behind the VML oval.</span>
+<span class="cm">			*/</span>
+			<span class="nx">offsetResetX</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">-</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">));</span>
+			<span class="nx">offsetResetY</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNodeRadius</span> <span class="o">-</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">));</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;left&#39;</span><span class="o">:</span><span class="nx">offsetResetX</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="o">:</span><span class="nx">offsetResetY</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">});</span>
 		<span class="p">},</span>
 
 
@@ -1347,26 +1511,8 @@
                 <span class="nx">marker</span> <span class="o">=</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">ring</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">MARKER_TEMPLATE</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span> <span class="o">=</span> <span class="nx">marker</span><span class="p">;</span>
-			<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerUserVml</span><span class="p">);</span>
-			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerUser</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNodeRadius</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
         <span class="p">},</span>
 		
-		<span class="cm">/**</span>
-<span class="cm">		 * places the centerbutton&#39;s reset string in the center of the button</span>
-<span class="cm">		 * based on the size of the string object </span>
-<span class="cm">		 *</span>
-<span class="cm">		 * @method _setXYResetString</span>
-<span class="cm">		 * @protected</span>
-<span class="cm">		 */</span>
-		<span class="nx">_setXYResetString</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">).</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">).</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">).</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">).</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-		<span class="p">},</span>
-
 		<span class="cm">/**</span>
 <span class="cm">		 * renders the DOM object for the Dial&#39;s center</span>
 <span class="cm">		 *</span>
@@ -1382,11 +1528,6 @@
             <span class="p">}</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span> <span class="o">=</span> <span class="nx">centerButton</span><span class="p">;</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_setXYResetString</span><span class="p">();</span> <span class="c1">// centering the reset string in the button</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">offset</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;diameter&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.25</span><span class="p">;</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">offset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_centerButtonNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">offset</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">);</span>
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1397,54 +1538,51 @@
 <span class="cm">		 */</span>
         <span class="nx">_renderHandle</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
             <span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">),</span>
-                <span class="nx">handle</span> <span class="o">=</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handle</span><span class="p">);</span>
+			<span class="nx">handle</span> <span class="o">=</span> <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handle</span><span class="p">);</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nx">handle</span> <span class="o">=</span> <span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">HANDLE_TEMPLATE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;strings&#39;</span><span class="p">)));</span>
                 <span class="nx">contentBox</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">ring</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">handle</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span> <span class="o">=</span> <span class="nx">handle</span><span class="p">;</span>
-			<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handleUserVml</span><span class="p">);</span>
-			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">handleUser</span><span class="p">);</span>
-			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNodeRadius</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">),</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">;</span>
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">         * sets the visible UI label string</span>
+<span class="cm">         * sets the visible UI label HTML string</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @method _setLabelString</span>
-<span class="cm">		 * @param str {String}</span>
+<span class="cm">		 * @param str {HTML}</span>
 <span class="cm">		 * @protected</span>
+<span class="cm">		 * @deprecated Use DialObjName.set(&#39;strings&#39;,{&#39;label&#39;:&#39;My new label&#39;});   before DialObjName.render();</span>
+
 <span class="cm">		 */</span>
         <span class="nx">_setLabelString</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">labelString</span><span class="p">).</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">         * sets the visible UI label string</span>
+<span class="cm">         * sets the visible UI label HTML string</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @method _setResetString</span>
-<span class="cm">		 * @param str {String}</span>
+<span class="cm">		 * @param str {HTML}</span>
 <span class="cm">		 * @protected</span>
+<span class="cm">		 * @deprecated Use DialObjName.set(&#39;strings&#39;,{&#39;resetStr&#39;:&#39;My new reset string&#39;});   before DialObjName.render();</span>
 <span class="cm">		 */</span>
         <span class="nx">_setResetString</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;strings.resetStr&#39;</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span><span class="p">).</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_setXYResetString</span><span class="p">();</span> <span class="c1">// recenters the string in the button</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_resetString</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+             <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">resetString</span><span class="p">).</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+			<span class="c1">// this._setXYResetString(); // This used to recenter the string in the button. Done with CSS now. Method has been removed.</span>
+			<span class="c1">// this._resetString.setContent(&#39;&#39;); //We no longer show/hide the reset string with setContent but by addClass and removeClass .yui3-dial-reset-string-hidden</span>
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">         * sets the tooltip string in the Dial&#39;s handle</span>
+<span class="cm">         * sets the tooltip HTML string in the Dial&#39;s handle</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @method _setTooltipString</span>
-<span class="cm">		 * @param str {String}</span>
+<span class="cm">		 * @param str {HTML}</span>
 <span class="cm">		 * @protected</span>
+<span class="cm">		 * @deprecated Use DialObjName.set(&#39;strings&#39;,{&#39;tooltipHandle&#39;:&#39;My new tooltip&#39;});   before DialObjName.render();</span>
 <span class="cm">		 */</span>
         <span class="nx">_setTooltipString</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="nx">str</span><span class="p">);</span>
         <span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1509,6 +1647,10 @@
 		<span class="nx">_incrMinor</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
 				<span class="kd">var</span> <span class="nx">newVal</span> <span class="o">=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;minorStep&quot;</span><span class="p">));</span>
 				<span class="nx">newVal</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">newVal</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">));</span>
+				<span class="c1">// [#2530045] .toFixed returns a string.</span>
+				<span class="c1">// Dial&#39;s value needs a number. -0 makes it a number, but removes trailing zeros.</span>
+				<span class="c1">// Added toFixed(...) again in _uiSetValue where content of yui3-dial-value-string is set.</span>
+				<span class="c1">// Removing the toFixed here, loses the feature of &quot;snap-to&quot; when for example, stepsPerRevolution is 10 and decimalPlaces is 0.</span>
 				<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">newVal</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;decimalPlaces&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">0</span><span class="p">);</span>
 		<span class="p">},</span>
 		
@@ -1574,13 +1716,13 @@
 <span class="cm">		 * @method _resetDial</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-		<span class="nx">_resetDial</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+		<span class="nx">_resetDial</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_originalValue</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
 		<span class="p">},</span>
 		
 		<span class="cm">/**</span>
-<span class="cm">		 * returns the handle angle associated with the current value of the Dial</span>
+<span class="cm">		 * returns the handle angle associated with the current value of the Dial. Returns a number between 0 and 360.</span>
 <span class="cm">		 *</span>
 <span class="cm">		 * @method _getAngleFromValue</span>
 <span class="cm">		 * @param newVal {Number} the current value of the Dial</span>
@@ -1588,9 +1730,9 @@
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
 		<span class="nx">_getAngleFromValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newVal</span><span class="p">){</span>
-			<span class="kd">var</span> <span class="nx">nonWrapedPartOfValue</span> <span class="o">=</span> <span class="nx">newVal</span> <span class="o">%</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">);</span>
-			<span class="kd">var</span> <span class="nx">angleFromValue</span> <span class="o">=</span> <span class="nx">nonWrapedPartOfValue</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span><span class="p">;</span>
-			<span class="k">return</span> <span class="nx">angleFromValue</span><span class="p">;</span> 
+			<span class="kd">var</span> <span class="nx">nonWrappedPartOfValue</span> <span class="o">=</span> <span class="nx">newVal</span> <span class="o">%</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">),</span>
+			<span class="nx">angleFromValue</span> <span class="o">=</span> <span class="nx">nonWrappedPartOfValue</span> <span class="o">/</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="mi">360</span><span class="p">;</span>
+			<span class="k">return</span> <span class="p">(</span><span class="nx">angleFromValue</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="nx">angleFromValue</span> <span class="o">+</span> <span class="mi">360</span><span class="p">)</span> <span class="o">:</span> <span class="nx">angleFromValue</span><span class="p">;</span> 
 		<span class="p">},</span>
 
 		<span class="cm">/**</span>
@@ -1607,8 +1749,8 @@
 			<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">angle</span> <span class="o">===</span> <span class="mi">0</span><span class="p">){</span>
 				<span class="nx">angle</span> <span class="o">=</span> <span class="mi">360</span><span class="p">;</span>
 			<span class="p">}</span>
-			<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">/</span> <span class="mi">360</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">);</span>
-			<span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRev&#39;</span><span class="p">)));</span>
+			<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">/</span> <span class="mi">360</span><span class="p">)</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">);</span>
+			<span class="nx">value</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_timesWrapped</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;stepsPerRevolution&#39;</span><span class="p">)));</span>
 			<span class="c1">//return Math.round(value * 100) / 100;</span>
 			<span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;decimalPlaces&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="mi">0</span><span class="p">;</span>
 		<span class="p">},</span>
@@ -1625,6 +1767,18 @@
         <span class="p">},</span>
 
 		<span class="cm">/**</span>
+<span class="cm">         * Changes a value to have the correct decimal places per the attribute decimalPlaces</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @method _valueToDecimalPlaces</span>
+<span class="cm">		 * @param val {Number} a raw value to set to the Dial</span>
+<span class="cm">		 * @return {Number} the input val changed to have the correct decimal places</span>
+<span class="cm">		 * @protected</span>
+<span class="cm">		 */</span>
+        <span class="nx">_valueToDecimalPlaces</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// [#2530206] cleaned up and better user feedback of when it&#39;s max or min.</span>
+			
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
 <span class="cm">         * Updates the UI display value of the Dial to reflect </span>
 <span class="cm">         * the value passed in.</span>
 <span class="cm">		 * Makes all other needed UI display changes</span>
@@ -1633,30 +1787,30 @@
 <span class="cm">		 * @param val {Number} value of the Dial</span>
 <span class="cm">		 * @protected</span>
 <span class="cm">		 */</span>
-        <span class="nx">_uiSetValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">_uiSetValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// [#2530206] cleaned up and better user feedback of when it&#39;s max or min.</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_angle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
 			<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">dragging</span><span class="p">)</span> <span class="o">===</span> <span class="kc">false</span><span class="p">){</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrapedFromValue</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_setTimesWrappedFromValue</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
 				<span class="k">this</span><span class="p">.</span><span class="nx">_setNodeToFixedRadius</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_prevX</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">getX</span><span class="p">();</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_prevAng</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getAngleFromValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">));</span>
 			<span class="p">}</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_valueStringNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span> 
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuenow&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_handleUserNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuetext&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_valueStringNode</span><span class="p">.</span><span class="nx">setContent</span><span class="p">(</span><span class="nx">val</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;decimalPlaces&#39;</span><span class="p">)));</span> <span class="c1">// [#2530045]</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuenow&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;aria-valuetext&#39;</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
 			<span class="k">this</span><span class="p">.</span><span class="nx">_setNodeToFixedRadius</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-			<span class="k">if</span><span class="p">((</span><span class="nx">val</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">))){</span>
-				<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;marker-max-min&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">false</span><span class="p">){</span>
-					<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;marker-max-min&#39;</span><span class="p">);</span>
-					<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
-						<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#AB3232&#39;</span><span class="p">);</span>
-					<span class="p">}</span>
+			<span class="k">if</span><span class="p">((</span><span class="nx">val</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_maxValue</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">val</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">_minValue</span><span class="p">)){</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerMaxMin</span><span class="p">);</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#AB3232&#39;</span><span class="p">);</span>
 				<span class="p">}</span>
-			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
+			<span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">// not max or min</span>
 				<span class="k">if</span><span class="p">(</span><span class="nx">supportsVML</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
 					<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;#000&#39;</span><span class="p">);</span>
 				<span class="p">}</span>
-				<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;marker-max-min&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="kc">true</span><span class="p">){</span>
-					<span class="k">this</span><span class="p">.</span><span class="nx">_markerUserNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;marker-max-min&#39;</span><span class="p">);</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">markerMaxMin</span><span class="p">);</span>
+				<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_handleNode</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">dragging</span><span class="p">)</span> <span class="o">===</span> <span class="kc">false</span><span class="p">){</span> <span class="c1">// if not max || min, and not dragging handle, hide the marker</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">_markerNode</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">Dial</span><span class="p">.</span><span class="nx">CSS_CLASSES</span><span class="p">.</span><span class="nx">hidden</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">}</span>
         <span class="p">},</span>
@@ -1679,7 +1833,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span> <span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;event-mouseenter&#39;</span><span class="p">,</span> <span class="s1">&#39;transition&#39;</span><span class="p">,</span> <span class="s1">&#39;intl&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span> <span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span> <span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;event-mouseenter&#39;</span><span class="p">,</span> <span class="s1">&#39;event-move&#39;</span><span class="p">,</span> <span class="s1">&#39;event-key&#39;</span><span class="p">,</span> <span class="s1">&#39;transition&#39;</span><span class="p">,</span> <span class="s1">&#39;intl&#39;</span><span class="p">],</span> <span class="nx">lang</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span> <span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -1697,7 +1851,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Dial.html#method__afterValueChange", "access": "protected", "host": "Dial", "type": "method", "name": "_afterValueChange"}, {"url": "Dial.html#method_bindUI", "access": "protected", "host": "Dial", "type": "method", "name": "bindUI"}, {"url": "Dial.html#config_decimalPlaces", "access": "", "host": "Dial", "type": "config", "name": "decimalPlaces"}, {"url": "Dial.html#event_decimalPlacesChange", "access": "", "host": "Dial", "type": "event", "name": "decimalPlacesChange"}, {"url": "Dial.html#method__decrMajor", "access": "protected", "host": "Dial", "type": "method", "name": "_decrMajor"}, {"url": "Dial.html#method__decrMinor", "access": "protected", "host": "Dial", "type": "method", "name": "_decrMinor"}, {"url": "Dial.html#property_Dial.ATTRS", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.ATTRS"}, {"url": "Dial.html#property_Dial.CENTER_BUTTON_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.CENTER_BUTTON_TEMPLATE"}, {"url": "Dial.html#method__dialCenterOut", "access": "", "host": "Dial", "type": "method", "name": "_dialCenterOut"}, {"url": "Dial.html#method__dialCenterOver", "access": "", "host": "Dial", "type": "method", "name": "_dialCenterOver"}, {"url": "Dial.html#property_Dial.HANDLE_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.HANDLE_TEMPLATE"}, {"url": "Dial.html#property_Dial.LABEL_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.LABEL_TEMPLATE"}, {"url": "Dial.html#property_Dial.MARKER_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.MARKER_TEMPLATE"}, {"url": "Dial.html#property_Dial.NAME", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.NAME"}, {"url": "Dial.html#property_Dial.RING_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.RING_TEMPLATE"}, {"url": "Dial.html#config_diameter", "access": "", "host": "Dial", "type": "config", "name": "diameter"}, {"url": "Dial.html#event_diameterChange", "access": "", "host": "Dial", "type": "event", "name": "diameterChange"}, {"url": "Dial.html#method__getAngleFromValue", "access": "protected", "host": "Dial", "type": "method", "name": "_getAngleFromValue"}, {"url": "Dial.html#method__getValueFromAngle", "access": "protected", "host": "Dial", "type": "method", "name": "_getValueFromAngle"}, {"url": "Dial.html#config_handleDist", "access": "", "host": "Dial", "type": "config", "name": "handleDist"}, {"url": "Dial.html#event_handleDistChange", "access": "", "host": "Dial", "type": "event", "name": "handleDistChange"}, {"url": "Dial.html#method__handleDrag", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDrag"}, {"url": "Dial.html#method__handleDragEnd", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDragEnd"}, {"url": "Dial.html#method__handleDragStart", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDragStart"}, {"url": "Dial.html#method__incrMajor", "access": "protected", "host": "Dial", "type": "method", "name": "_incrMajor"}, {"url": "Dial.html#method__incrMinor", "access": "protected", "host": "Dial", "type": "method", "name": "_incrMinor"}, {"url": "Dial.html#config_majorStep", "access": "", "host": "Dial", "type": "config", "name": "majorStep"}, {"url": "Dial.html#event_majorStepChange", "access": "", "host": "Dial", "type": "event", "name": "majorStepChange"}, {"url": "Dial.html#config_max", "access": "", "host": "Dial", "type": "config", "name": "max"}, {"url": "Dial.html#event_maxChange", "access": "", "host": "Dial", "type": "event", "name": "maxChange"}, {"url": "Dial.html#config_min", "access": "", "host": "Dial", "type": "config", "name": "min"}, {"url": "Dial.html#event_minChange", "access": "", "host": "Dial", "type": "event", "name": "minChange"}, {"url": "Dial.html#config_minorStep", "access": "", "host": "Dial", "type": "config", "name": "minorStep"}, {"url": "Dial.html#event_minorStepChange", "access": "", "host": "Dial", "type": "event", "name": "minorStepChange"}, {"url": "Dial.html#method__onDirectionKey", "access": "protected", "host": "Dial", "type": "method", "name": "_onDirectionKey"}, {"url": "Dial.html#method__onLeftRightKey", "access": "protected", "host": "Dial", "type": "method", "name": "_onLeftRightKey"}, {"url": "Dial.html#method__renderCenterButton", "access": "protected", "host": "Dial", "type": "method", "name": "_renderCenterButton"}, {"url": "Dial.html#method__renderHandle", "access": "protected", "host": "Dial", "type": "method", "name": "_renderHandle"}, {"url": "Dial.html#method__renderLabel", "access": "protected", "host": "Dial", "type": "method", "name": "_renderLabel"}, {"url": "Dial.html#method__renderMarker", "access": "protected", "host": "Dial", "type": "method", "name": "_renderMarker"}, {"url": "Dial.html#method__renderRing", "access": "protected", "host": "Dial", "type": "method", "name": "_renderRing"}, {"url": "Dial.html#method_renderUI", "access": "protected", "host": "Dial", "type": "method", "name": "renderUI"}, {"url": "Dial.html#method__resetDial", "access": "protected", "host": "Dial", "type": "method", "name": "_resetDial"}, {"url": "Dial.html#method__setLabelString", "access": "protected", "host": "Dial", "type": "method", "name": "_setLabelString"}, {"url": "Dial.html#method__setNodeToFixedRadius", "access": "protected", "host": "Dial", "type": "method", "name": "_setNodeToFixedRadius"}, {"url": "Dial.html#method__setResetString", "access": "protected", "host": "Dial", "type": "method", "name": "_setResetString"}, {"url": "Dial.html#method__setTooltipString", "access": "protected", "host": "Dial", "type": "method", "name": "_setTooltipString"}, {"url": "Dial.html#method__setVMLSizes", "access": "protected", "host": "Dial", "type": "method", "name": "_setVMLSizes"}, {"url": "Dial.html#method__setXYResetString", "access": "protected", "host": "Dial", "type": "method", "name": "_setXYResetString"}, {"url": "Dial.html#config_stepsPerRev", "access": "", "host": "Dial", "type": "config", "name": "stepsPerRev"}, {"url": "Dial.html#event_stepsPerRevChange", "access": "", "host": "Dial", "type": "event", "name": "stepsPerRevChange"}, {"url": "Dial.html#config_strings", "access": "", "host": "Dial", "type": "config", "name": "strings"}, {"url": "Dial.html#event_stringsChange", "access": "", "host": "Dial", "type": "event", "name": "stringsChange"}, {"url": "Dial.html#method_syncUI", "access": "", "host": "Dial", "type": "method", "name": "syncUI"}, {"url": "Dial.html#method__uiSetValue", "access": "protected", "host": "Dial", "type": "method", "name": "_uiSetValue"}, {"url": "Dial.html#method__validateValue", "access": "protected", "host": "Dial", "type": "method", "name": "_validateValue"}, {"url": "Dial.html#config_value", "access": "", "host": "Dial", "type": "config", "name": "value"}, {"url": "Dial.html#event_valueChange", "access": "", "host": "Dial", "type": "event", "name": "valueChange"}];
+    var ALL_YUI_PROPS = [{"url": "Dial.html#method__afterValueChange", "access": "protected", "host": "Dial", "type": "method", "name": "_afterValueChange"}, {"url": "Dial.html#method_bindUI", "access": "protected", "host": "Dial", "type": "method", "name": "bindUI"}, {"url": "Dial.html#config_centerButtonDiameter", "access": "", "host": "Dial", "type": "config", "name": "centerButtonDiameter"}, {"url": "Dial.html#event_centerButtonDiameterChange", "access": "", "host": "Dial", "type": "event", "name": "centerButtonDiameterChange"}, {"url": "Dial.html#config_decimalPlaces", "access": "", "host": "Dial", "type": "config", "name": "decimalPlaces"}, {"url": "Dial.html#event_decimalPlacesChange", "access": "", "host": "Dial", "type": "event", "name": "decimalPlacesChange"}, {"url": "Dial.html#method__decrMajor", "access": "protected", "host": "Dial", "type": "method", "name": "_decrMajor"}, {"url": "Dial.html#method__decrMinor", "access": "protected", "host": "Dial", "type": "method", "name": "_decrMinor"}, {"url": "Dial.html#property_Dial.ATTRS", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.ATTRS"}, {"url": "Dial.html#property_Dial.CENTER_BUTTON_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.CENTER_BUTTON_TEMPLATE"}, {"url": "Dial.html#property_Dial.HANDLE_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.HANDLE_TEMPLATE"}, {"url": "Dial.html#property_Dial.LABEL_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.LABEL_TEMPLATE"}, {"url": "Dial.html#property_Dial.MARKER_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.MARKER_TEMPLATE"}, {"url": "Dial.html#property_Dial.NAME", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.NAME"}, {"url": "Dial.html#property_Dial.RING_TEMPLATE", "access": "protected", "host": "Dial", "type": "property", "name": "Dial.RING_TEMPLATE"}, {"url": "Dial.html#config_diameter", "access": "", "host": "Dial", "type": "config", "name": "diameter"}, {"url": "Dial.html#event_diameterChange", "access": "", "host": "Dial", "type": "event", "name": "diameterChange"}, {"url": "Dial.html#method__getAngleFromValue", "access": "protected", "host": "Dial", "type": "method", "name": "_getAngleFromValue"}, {"url": "Dial.html#method__getNewValueFromMousedown", "access": "protected", "host": "Dial", "type": "method", "name": "_getNewValueFromMousedown"}, {"url": "Dial.html#method__getValueFromAngle", "access": "protected", "host": "Dial", "type": "method", "name": "_getValueFromAngle"}, {"url": "Dial.html#config_handleDiameter", "access": "", "host": "Dial", "type": "config", "name": "handleDiameter"}, {"url": "Dial.html#event_handleDiameterChange", "access": "", "host": "Dial", "type": "event", "name": "handleDiameterChange"}, {"url": "Dial.html#config_handleDistance", "access": "", "host": "Dial", "type": "config", "name": "handleDistance"}, {"url": "Dial.html#event_handleDistanceChange", "access": "", "host": "Dial", "type": "event", "name": "handleDistanceChange"}, {"url": "Dial.html#method__handleDrag", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDrag"}, {"url": "Dial.html#method__handleDragEnd", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDragEnd"}, {"url": "Dial.html#method__handleDragStart", "access": "protected", "host": "Dial", "type": "method", "name": "_handleDragStart"}, {"url": "Dial.html#method__handleValuesBeyondMinMax", "access": "protected", "host": "Dial", "type": "method", "name": "_handleValuesBeyondMinMax"}, {"url": "Dial.html#method__incrMajor", "access": "protected", "host": "Dial", "type": "method", "name": "_incrMajor"}, {"url": "Dial.html#method__incrMinor", "access": "protected", "host": "Dial", "type": "method", "name": "_incrMinor"}, {"url": "Dial.html#config_majorStep", "access": "", "host": "Dial", "type": "config", "name": "majorStep"}, {"url": "Dial.html#event_majorStepChange", "access": "", "host": "Dial", "type": "event", "name": "majorStepChange"}, {"url": "Dial.html#config_markerDiameter", "access": "", "host": "Dial", "type": "config", "name": "markerDiameter"}, {"url": "Dial.html#event_markerDiameterChange", "access": "", "host": "Dial", "type": "event", "name": "markerDiameterChange"}, {"url": "Dial.html#config_max", "access": "", "host": "Dial", "type": "config", "name": "max"}, {"url": "Dial.html#event_maxChange", "access": "", "host": "Dial", "type": "event", "name": "maxChange"}, {"url": "Dial.html#config_min", "access": "", "host": "Dial", "type": "config", "name": "min"}, {"url": "Dial.html#event_minChange", "access": "", "host": "Dial", "type": "event", "name": "minChange"}, {"url": "Dial.html#config_minorStep", "access": "", "host": "Dial", "type": "config", "name": "minorStep"}, {"url": "Dial.html#event_minorStepChange", "access": "", "host": "Dial", "type": "event", "name": "minorStepChange"}, {"url": "Dial.html#method__onDirectionKey", "access": "protected", "host": "Dial", "type": "method", "name": "_onDirectionKey"}, {"url": "Dial.html#method__onLeftRightKey", "access": "protected", "host": "Dial", "type": "method", "name": "_onLeftRightKey"}, {"url": "Dial.html#method__renderCenterButton", "access": "protected", "host": "Dial", "type": "method", "name": "_renderCenterButton"}, {"url": "Dial.html#method__renderHandle", "access": "protected", "host": "Dial", "type": "method", "name": "_renderHandle"}, {"url": "Dial.html#method__renderLabel", "access": "protected", "host": "Dial", "type": "method", "name": "_renderLabel"}, {"url": "Dial.html#method__renderMarker", "access": "protected", "host": "Dial", "type": "method", "name": "_renderMarker"}, {"url": "Dial.html#method__renderRing", "access": "protected", "host": "Dial", "type": "method", "name": "_renderRing"}, {"url": "Dial.html#method_renderUI", "access": "protected", "host": "Dial", "type": "method", "name": "renderUI"}, {"url": "Dial.html#method__resetDial", "access": "protected", "host": "Dial", "type": "method", "name": "_resetDial"}, {"url": "Dial.html#method__setLabelString", "access": "protected", "host": "Dial", "type": "method", "name": "_setLabelString"}, {"url": "Dial.html#method__setNodeToFixedRadius", "access": "protected", "host": "Dial", "type": "method", "name": "_setNodeToFixedRadius"}, {"url": "Dial.html#method__setResetString", "access": "protected", "host": "Dial", "type": "method", "name": "_setResetString"}, {"url": "Dial.html#method__setSizes       //FIXME: this name should have VML removed, doing for all.", "access": "protected", "host": "Dial", "type": "method", "name": "_setSizes       //FIXME: this name should have VML removed, doing for all."}, {"url": "Dial.html#method__setTooltipString", "access": "protected", "host": "Dial", "type": "method", "name": "_setTooltipString"}, {"url": "Dial.html#config_stepsPerRevolution", "access": "", "host": "Dial", "type": "config", "name": "stepsPerRevolution"}, {"url": "Dial.html#event_stepsPerRevolutionChange", "access": "", "host": "Dial", "type": "event", "name": "stepsPerRevolutionChange"}, {"url": "Dial.html#config_strings", "access": "", "host": "Dial", "type": "config", "name": "strings"}, {"url": "Dial.html#event_stringsChange", "access": "", "host": "Dial", "type": "event", "name": "stringsChange"}, {"url": "Dial.html#method_syncUI", "access": "", "host": "Dial", "type": "method", "name": "syncUI"}, {"url": "Dial.html#method__uiSetValue", "access": "protected", "host": "Dial", "type": "method", "name": "_uiSetValue"}, {"url": "Dial.html#method__validateValue", "access": "protected", "host": "Dial", "type": "method", "name": "_validateValue"}, {"url": "Dial.html#config_value", "access": "", "host": "Dial", "type": "config", "name": "value"}, {"url": "Dial.html#event_valueChange", "access": "", "host": "Dial", "type": "event", "name": "valueChange"}, {"url": "Dial.html#method__valueToDecimalPlaces", "access": "protected", "host": "Dial", "type": "method", "name": "_valueToDecimalPlaces"}];
 </script>
 </body>
 </html>

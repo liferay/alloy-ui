@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('queue-promote', function(Y) {
@@ -36,7 +36,7 @@ Y.mix(Y.Queue.prototype, {
         var index = this.indexOf(callback);
 
         if (index > -1) {
-            this._q.unshift(this._q.splice(index,1));
+            this._q.unshift(this._q.splice(index,1)[0]);
         }
     },
 
@@ -57,4 +57,4 @@ Y.mix(Y.Queue.prototype, {
 });
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});

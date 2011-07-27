@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('dom-screen', function(Y) {
@@ -39,7 +39,7 @@ var DOCUMENT_ELEMENT = 'documentElement',
     SCROLL_NODE;
 
 if (Y.UA.ie) {
-    if (Y.config.doc[COMPAT_MODE] !== 'quirks') {
+    if (Y.config.doc[COMPAT_MODE] !== 'BackCompat') {
         SCROLL_NODE = DOCUMENT_ELEMENT; 
     } else {
         SCROLL_NODE = 'body';
@@ -589,4 +589,4 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.3.0' ,{requires:['dom-base', 'dom-style', 'event-base']});
+}, '3.4.0' ,{requires:['dom-core', 'dom-style']});

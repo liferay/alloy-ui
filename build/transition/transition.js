@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('transition-native', function(Y) {
@@ -652,7 +652,7 @@ Y.mix(Transition.fx, {
         },
         duration: 0.5,
         easing: 'ease-in',
-
+        
         on: {
             start: function() {
                 var overflow = this.getStyle('overflow');
@@ -665,6 +665,7 @@ Y.mix(Transition.fx, {
             end: function() {
                 if (this._transitionOverflow) { // revert overridden value
                     this.setStyle('overflow', this._transitionOverflow);
+                    delete this._transitionOverflow;
                 }
             }
         } 
@@ -679,7 +680,8 @@ Y.mix(Transition.toggles, {
 Transition.DEFAULT_TOGGLE = 'fade';
 
 
-}, '3.3.0' ,{requires:['node-base']});
+
+}, '3.4.0' ,{requires:['node-base']});
 YUI.add('transition-timer', function(Y) {
 
 /*
@@ -1020,8 +1022,8 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.3.0' ,{requires:['transition-native', 'node-style']});
+}, '3.4.0' ,{requires:['transition-native', 'node-style']});
 
 
-YUI.add('transition', function(Y){}, '3.3.0' ,{use:['transition-native', 'transition-timer']});
+YUI.add('transition', function(Y){}, '3.4.0' ,{use:['transition-native', 'transition-timer']});
 

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('pluginhost-config', function(Y) {
@@ -125,4 +125,4 @@ YUI.add('pluginhost-config', function(Y) {
     };
 
 
-}, '3.3.0' ,{requires:['pluginhost-base']});
+}, '3.4.0' ,{requires:['pluginhost-base']});

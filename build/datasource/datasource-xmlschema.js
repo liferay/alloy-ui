@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('datasource-xmlschema', function(Y) {
@@ -76,17 +76,14 @@ Y.extend(DataSourceXMLSchema, Y.Plugin.Base, {
      * Parses raw data into a normalized response.
      *
      * @method _beforeDefDataFn
-     * <dl>
-     * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
-     * <dt>request (Object)</dt> <dd>The request.</dd>
-     * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+     * @param tId {Number} Unique transaction ID.
+     * @param request {Object} The request.
+     * @param callback {Object} The callback object with the following properties:
      *     <dl>
      *         <dt>success (Function)</dt> <dd>Success handler.</dd>
      *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
      *     </dl>
-     * </dd>
-     * <dt>data (Object)</dt> <dd>Raw data.</dd>
-     * </dl>
+     * @param data {Object} Raw data.
      * @protected
      */
     _beforeDefDataFn: function(e) {
@@ -109,5 +106,4 @@ Y.extend(DataSourceXMLSchema, Y.Plugin.Base, {
 Y.namespace('Plugin').DataSourceXMLSchema = DataSourceXMLSchema;
 
 
-
-}, '3.3.0' ,{requires:['datasource-local', 'plugin', 'dataschema-xml']});
+}, '3.4.0' ,{requires:['datasource-local', 'plugin', 'dataschema-xml']});

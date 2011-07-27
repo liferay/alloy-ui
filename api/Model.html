@@ -1,0 +1,3007 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: loader  Model   (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			loader&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_loader.html" title="loader">loader</a>
+
+	                 <span class="separator">&gt;</span> <span class="classname">Model</span> 
+
+	                
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Loader.html" title="Loader">Loader</a></li>
+
+
+				                                <li class="selected"><a href="Model.html" title="Model">Model</a></li>
+
+
+				                                <li class=""><a href="ModelList.html" title="ModelList">ModelList</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-configuration">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-configuration-hd">
+										<span class="yui3-widget-hd-text">Configuration Attributes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#config_clientId" title="clientId">clientId</a></li>
+												<li class=""><a href="#config_id" title="id">id</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-properties">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-properties-hd">
+										<span class="yui3-widget-hd-text">Properties</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+				                                <li class=""><a href="#property_changed" title="changed">changed</a></li>
+
+				                                <li class=""><a href="#property_idAttribute" title="idAttribute">idAttribute</a></li>
+
+				                                <li class=""><a href="#property_lastChange" title="lastChange">lastChange</a></li>
+
+				                                <li class=""><a href="#property_lists" title="lists">lists</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-methods">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-methods-hd">
+										<span class="yui3-widget-hd-text">Methods</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+				                               <li class="protected"><a href="#method__defAttrChangeFn" title="_defAttrChangeFn">_defAttrChangeFn</a></li>
+				                               <li class="protected"><a href="#method__validate" title="_validate">_validate</a></li>
+				                               <li class="protected"><a href="#method_addAttr" title="addAttr">addAttr</a></li>
+				                               <li class=""><a href="#method_destroy" title="destroy">destroy</a></li>
+				                               <li class=""><a href="#method_generateClientId" title="generateClientId">generateClientId</a></li>
+				                               <li class=""><a href="#method_get" title="get">get</a></li>
+				                               <li class=""><a href="#method_getAsHTML" title="getAsHTML">getAsHTML</a></li>
+				                               <li class=""><a href="#method_getAsURL" title="getAsURL">getAsURL</a></li>
+				                               <li class=""><a href="#method_isModified" title="isModified">isModified</a></li>
+				                               <li class=""><a href="#method_isNew" title="isNew">isNew</a></li>
+				                               <li class=""><a href="#method_load" title="load">load</a></li>
+				                               <li class=""><a href="#method_parse" title="parse">parse</a></li>
+				                               <li class=""><a href="#method_save" title="save">save</a></li>
+				                               <li class=""><a href="#method_set" title="set">set</a></li>
+				                               <li class=""><a href="#method_setAttrs" title="setAttrs">setAttrs</a></li>
+				                               <li class=""><a href="#method_sync" title="sync">sync</a></li>
+				                               <li class=""><a href="#method_toJSON" title="toJSON">toJSON</a></li>
+				                               <li class=""><a href="#method_undo" title="undo">undo</a></li>
+				                               <li class=""><a href="#method_validate" title="validate">validate</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="yui3-widget aui-list aui-list-events">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-events-hd">
+										<span class="yui3-widget-hd-text">Events</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+												<li class=""><a href="#event_change" title="change">change</a></li>
+												<li class=""><a href="#event_clientIdChange" title="clientIdChange">clientIdChange</a></li>
+												<li class=""><a href="#event_error" title="error">error</a></li>
+												<li class=""><a href="#event_idChange" title="idChange">idChange</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="loader-base-debug.js.html" title="loader-base-debug.js">loader-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="loader-base-min.js.html" title="loader-base-min.js">loader-base-min.js</a></li>
+
+
+			                                <li class=""><a href="loader-base.js.html" title="loader-base.js">loader-base.js</a></li>
+
+
+			                                <li class=""><a href="loader-debug.js.html" title="loader-debug.js">loader-debug.js</a></li>
+
+
+			                                <li class=""><a href="loader-min.js.html" title="loader-min.js">loader-min.js</a></li>
+
+
+			                                <li class=""><a href="loader-rollup-debug.js.html" title="loader-rollup-debug.js">loader-rollup-debug.js</a></li>
+
+
+			                                <li class=""><a href="loader-rollup-min.js.html" title="loader-rollup-min.js">loader-rollup-min.js</a></li>
+
+
+			                                <li class=""><a href="loader-rollup.js.html" title="loader-rollup.js">loader-rollup.js</a></li>
+
+
+			                                <li class=""><a href="loader-yui3-debug.js.html" title="loader-yui3-debug.js">loader-yui3-debug.js</a></li>
+
+
+			                                <li class=""><a href="loader-yui3-min.js.html" title="loader-yui3-min.js">loader-yui3-min.js</a></li>
+
+
+			                                <li class=""><a href="loader-yui3.js.html" title="loader-yui3.js">loader-yui3.js</a></li>
+
+
+			                                <li class=""><a href="loader.js.html" title="loader.js">loader.js</a></li>
+
+
+			                                <li class=""><a href="model-debug.js.html" title="model-debug.js">model-debug.js</a></li>
+
+
+			                                <li class=""><a href="model-list-debug.js.html" title="model-list-debug.js">model-list-debug.js</a></li>
+
+
+			                                <li class=""><a href="model-list-min.js.html" title="model-list-min.js">model-list-min.js</a></li>
+
+
+			                                <li class=""><a href="model-list.js.html" title="model-list.js">model-list.js</a></li>
+
+
+			                                <li class=""><a href="model-min.js.html" title="model-min.js">model-min.js</a></li>
+
+
+			                                <li class=""><a href="model.js.html" title="model.js">model.js</a></li>
+
+
+			                                <li class=""><a href="yui-later-debug.js.html" title="yui-later-debug.js">yui-later-debug.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<h2>
+								
+
+								
+
+								
+
+								Class <b property="yui:name">Model</b>
+
+
+									<span class="extends" rel="yui:extends">
+										- uses
+
+										
+											<span rel="extend" resource="Base.html">
+												<a href="Base.html" property="yui:name" title="Base">Base</a>
+												
+											</span>
+										
+									</span>
+							</h2>
+
+							<!-- class tree goes here -->
+
+
+
+							<div class="summary description" property="yui:description">
+								Attribute-based data model with APIs for getting, setting, validating, and
+syncing attribute values, as well as events for being notified of model changes.
+In most cases, you'll want to create your own subclass of `Y.Model` and
+customize it to meet your needs. In particular, the `sync()` and `validate()`
+methods are meant to be overridden by custom implementations. You may also want
+to override the `parse()` method to parse non-generic server responses.
+							</div>
+
+								<div class="section constructor details" rel="yui:constructor" resource="#constructor">
+									<h3 id="constructor">Constructor</h3>
+
+									<div class="content">
+										<div class="detail">
+											<strong property="yui:name">Model</strong>
+
+											<code>
+												(
+												)
+											</code>
+
+											<div class="description">
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+
+							<div rel="yui:properties" resource="#properties">
+
+								<div class="section field details">
+
+									<h3 id="properties">Properties</h3>
+
+									<div class="content">
+
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_changed">
+
+											<h4>
+												<a name="property_changed" property="yui:name">changed</a>
+												- <code><span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Hash of attributes that have changed since the last time this model was
+saved.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>{}</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_idAttribute">
+
+											<h4>
+												<a name="property_idAttribute" property="yui:name">idAttribute</a>
+												- <code><span property="yui:type">String</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Name of the attribute to use as the unique id (or primary key) for this
+model.
+The default is `id`, but if your persistence layer uses a different name for
+the primary key (such as `_id` or `uid`), you can specify that here.
+The built-in `id` attribute will always be an alias for whatever attribute
+name you specify here, so getting and setting `id` will always behave the
+same as getting and setting your custom id attribute.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>`'id'`</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_lastChange">
+
+											<h4>
+												<a name="property_lastChange" property="yui:name">lastChange</a>
+												- <code><span property="yui:type">Object</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Hash of attributes that were changed in the last `change` event. Each item
+in this hash is an object with the following properties:
+`newVal`: The new value of the attribute after it changed.
+`prevVal`: The old value of the attribute before it changed.
+`src`: The source of the change, or `null` if no source was specified.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>{}</strong>
+												</div>
+
+
+											</div>
+											<div class="api-entry-row property-row " rel="yui:property" resource="#property_lists">
+
+											<h4>
+												<a name="property_lists" property="yui:name">lists</a>
+												- <code><span property="yui:type">ModelList[]</span></code>
+											</h4>
+
+											<div class="detail">
+												<div class="description" property="yui:description">
+													Array of `ModelList` instances that contain this model.
+When a model is in one or more lists, the model's events will bubble up to
+those lists. You can subscribe to a model event on a list to be notified
+when any model in the list fires that event.
+This property is updated automatically when this model is added to or
+removed from a `ModelList` instance. You shouldn't alter it manually. When
+working with models in a list, you should always add and remove models using
+the list's `add()` and `remove()` methods.
+												</div>
+											</div>
+
+
+												<div class="default" property="yui:defaultValue">
+													Default Value: <strong>`[]`</strong>
+												</div>
+
+
+											</div>
+									</div>
+								</div>
+
+								<div rel="yui:inheritance">
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Plugin.Host.html">
+
+										<h4>
+											Properties inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+
+													<div class="" rel="yui:property" resource="Plugin.Host.html#property_PluginHost">
+													<a href="Plugin.Host.html#property_PluginHost" property="yui:name" title="PluginHost">PluginHost</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Attribute.html">
+
+										<h4>
+											Properties inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+											</code>
+										</div>
+									</div>
+									<div class="section field inheritance properties" rel="yui:superclass"  resource="Base.html">
+
+										<h4>
+											Properties inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+										</h4>
+
+										<div class="content" rel="yui:properties">
+											<code>
+												
+
+													
+													
+
+													<div class="deprecated" rel="yui:property" resource="Base.html#property_name">
+													<a href="Base.html#property_name" property="yui:name" title="name">name</a>
+													</div>
+												
+											</code>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div rel="yui:attributes" resource="#configattributes">
+
+									<div class="section field details">
+
+										<h3 id="configattributes">Configuration Attributes</h3>
+
+										<div class="content">
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_clientId">
+
+													<h4>
+														<a name="config_clientId">clientId</a>
+														<code>- <span property="yui:type">String</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A client-only identifier for this model.
+Like the `id` attribute, `clientId` may be used to retrieve model
+instances from lists. Unlike the `id` attribute, `clientId` is
+automatically generated, and is only intended to be used on the client
+during the current pageview.
+														</div>
+													</div>
+
+
+
+												</div>
+												<div class="api-entry-row configuration-row " rel="yui:attribute" resource="#config_id">
+
+													<h4>
+														<a name="config_id">id</a>
+														<code>- <span property="yui:type">String|Number|null</span></code>
+													</h4>
+
+													<div class="detail">
+														<div class="description" property="yui:description">
+															A unique identifier for this model. Among other things, this id may be
+used to retrieve model instances from lists, so it should be unique.
+If the id is empty, this model instance is assumed to represent a new
+item that hasn't yet been saved.
+If you would prefer to use a custom attribute as this model's id instead
+of using the `id` attribute (for example, maybe you'd rather use `_id`
+or `uid` as the primary id), you may set the `idAttribute` property to
+the name of your custom id attribute. The `id` attribute will then
+act as an alias for your custom attribute.
+														</div>
+													</div>
+
+
+													<div class="default">
+														Default Value: <strong>`null`</strong>
+													</div>
+
+												</div>
+
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+									</div>
+
+
+							</div>
+
+							<div rel="yui:methods" resource="#methods">
+									<div class="section method details">
+
+										<h3 id="methods">Methods</h3>
+
+										<div class="content">
+
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__defAttrChangeFn">
+
+													<h4>
+														<a name="method__defAttrChangeFn">_defAttrChangeFn</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_defAttrChangeFn</strong>
+														   (
+																
+																		
+																		 e
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Duckpunches the `_defAttrChangeFn()` provided by `Y.Attribute` so we can
+have a single global notification when a change event occurs.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">e</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"></span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__validate">
+
+													<h4>
+														<a name="method__validate">_validate</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Boolean
+															<strong property="yui:name">_validate</strong>
+														   (
+																
+																		
+																		 attributes
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Calls the public, overridable `validate()` method and fires an `error` event
+if validation fails.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attributes</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute hash.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">`true` if validation succeeded, `false` otherwise.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method_addAttr">
+
+													<h4>
+														<a name="method_addAttr">addAttr</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														Object
+															<strong property="yui:name">addAttr</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 config
+																	
+																
+																		, 
+																		 lazy
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Duckpunches the `addAttr` method provided by `Y.Attribute` to keep the
+`id` attribute’s value and a custom id attribute’s (if provided) value
+in sync when adding the attributes to the model instance object.
+Marked as protected to hide it from Model's public API docs, even though
+this is a public method in Attribute.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> The name of the attribute.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">config</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> An object with attribute configuration property/value
+pairs, specifying the configuration for the attribute.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">lazy</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> (optional) Whether or not to add this attribute lazily
+(on the first call to get/set).</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">A reference to the host object.</dd>
+																</dl>
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_destroy">
+
+													<h4>
+														<a name="method_destroy">destroy</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">destroy</strong>
+														   (
+																
+																		
+																		 [options]
+																	
+																
+																		, 
+																		 [options.delete=false]
+																	
+																
+																		, 
+																		 [callback]
+																	
+																
+																		, 
+																		 callback.err
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Destroys this model instance and removes it from its containing lists, if
+any.
+If `options['delete']` is `true`, then this method also delegates to the
+`sync()` method to delete the model from the persistence layer, which is an
+asynchronous action. Provide a _callback_ function to be notified of success
+or failure.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Sync options. It's up to the custom sync
+implementation to determine what options it supports or requires, if
+any.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options.delete=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> If `true`, the model will be
+deleted via the sync layer in addition to the instance being destroyed.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[callback]</span>
+																		&lt;<span property="yui:type">callback</span>&gt;
+																		</code>
+																		<span property="yui:description"> Called when the sync operation finishes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.err</span>
+																		&lt;<span property="yui:type">Error|null</span>&gt;
+																		</code>
+																		<span property="yui:description"> If an error occurred, this parameter will
+contain the error. If the sync operation succeeded, _err_ will be
+`null`.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_generateClientId">
+
+													<h4>
+														<a name="method_generateClientId">generateClientId</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">generateClientId</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns a clientId string that's unique among all models on the current page
+(even models in other YUI instances). Uniqueness across pageviews is
+unlikely.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">Unique clientId.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_get">
+
+													<h4>
+														<a name="method_get">get</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														mixed
+															<strong property="yui:name">get</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns the value of the specified attribute.
+If the attribute's value is an object, _name_ may use dot notation to
+specify the path to a specific property within the object, and the value of
+that property will be returned.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute name or object property path.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			mixed
+																	</code></dt>
+																	<dd property="yui:returnInfo">Attribute value, or `undefined` if the attribute doesn't
+exist.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getAsHTML">
+
+													<h4>
+														<a name="method_getAsHTML">getAsHTML</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getAsHTML</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns an HTML-escaped version of the value of the specified string
+attribute. The value is escaped using `Y.Escape.html()`.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute name or object property path.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">HTML-escaped attribute value.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_getAsURL">
+
+													<h4>
+														<a name="method_getAsURL">getAsURL</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														String
+															<strong property="yui:name">getAsURL</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns a URL-encoded version of the value of the specified string
+attribute. The value is encoded using the native `encodeURIComponent()`
+function.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute name or object property path.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			String
+																	</code></dt>
+																	<dd property="yui:returnInfo">URL-encoded attribute value.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isModified">
+
+													<h4>
+														<a name="method_isModified">isModified</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">isModified</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns `true` if any attribute of this model has been changed since the
+model was last saved.
+New models (models for which `isNew()` returns `true`) are implicitly
+considered to be "modified" until the first time they're saved.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">`true` if this model has changed since it was last saved,
+`false` otherwise.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_isNew">
+
+													<h4>
+														<a name="method_isNew">isNew</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Boolean
+															<strong property="yui:name">isNew</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns `true` if this model is "new", meaning it hasn't been saved since it
+was created.
+Newness is determined by checking whether the model's `id` attribute has
+been set. An empty id is assumed to indicate a new model, whereas a
+non-empty id indicates a model that was either loaded or has been saved
+since it was created.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Boolean
+																	</code></dt>
+																	<dd property="yui:returnInfo">`true` if this model is new, `false` otherwise.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_load">
+
+													<h4>
+														<a name="method_load">load</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">load</strong>
+														   (
+																
+																		
+																		 [options]
+																	
+																
+																		, 
+																		 [callback]
+																	
+																
+																		, 
+																		 callback.err
+																	
+																
+																		, 
+																		 callback.response
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Loads this model from the server.
+This method delegates to the `sync()` method to perform the actual load
+operation, which is an asynchronous action. Specify a _callback_ function to
+be notified of success or failure.
+If the load operation succeeds and one or more of the loaded attributes
+differ from this model's current attributes, a `change` event will be fired.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Options to be passed to `sync()` and to `set()`
+when setting the loaded attributes. It's up to the custom sync
+implementation to determine what options it supports or requires, if any.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[callback]</span>
+																		&lt;<span property="yui:type">callback</span>&gt;
+																		</code>
+																		<span property="yui:description"> Called when the sync operation finishes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.err</span>
+																		&lt;<span property="yui:type">Error|null</span>&gt;
+																		</code>
+																		<span property="yui:description"> If an error occurred, this parameter will
+contain the error. If the sync operation succeeded, _err_ will be
+`null`.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.response</span>
+																		&lt;<span property="yui:type">mixed</span>&gt;
+																		</code>
+																		<span property="yui:description"> The server's response. This value will
+be passed to the `parse()` method, which is expected to parse it and
+return an attribute hash.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_parse">
+
+													<h4>
+														<a name="method_parse">parse</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">parse</strong>
+														   (
+																
+																		
+																		 response
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Called to parse the _response_ when the model is loaded from the server.
+This method receives a server _response_ and is expected to return an
+attribute hash.
+The default implementation assumes that _response_ is either an attribute
+hash or a JSON string that can be parsed into an attribute hash. If
+_response_ is a JSON string and either `Y.JSON` or the native `JSON` object
+are available, it will be parsed automatically. If a parse error occurs, an
+`error` event will be fired and the model will not be updated.
+You may override this method to implement custom parsing logic if necessary.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">response</span>
+																		&lt;<span property="yui:type">mixed</span>&gt;
+																		</code>
+																		<span property="yui:description"> Server response.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Attribute hash.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_save">
+
+													<h4>
+														<a name="method_save">save</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">save</strong>
+														   (
+																
+																		
+																		 [options]
+																	
+																
+																		, 
+																		 [callback]
+																	
+																
+																		, 
+																		 callback.err
+																	
+																
+																		, 
+																		 callback.response
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Saves this model to the server.
+This method delegates to the `sync()` method to perform the actual save
+operation, which is an asynchronous action. Specify a _callback_ function to
+be notified of success or failure.
+If the save operation succeeds and one or more of the attributes returned in
+the server's response differ from this model's current attributes, a
+`change` event will be fired.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Options to be passed to `sync()` and to `set()`
+when setting synced attributes. It's up to the custom sync implementation
+to determine what options it supports or requires, if any.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[callback]</span>
+																		&lt;<span property="yui:type">callback</span>&gt;
+																		</code>
+																		<span property="yui:description"> Called when the sync operation finishes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.err</span>
+																		&lt;<span property="yui:type">Error|null</span>&gt;
+																		</code>
+																		<span property="yui:description"> If an error occurred, this parameter will
+contain the error. If the sync operation succeeded, _err_ will be
+`null`.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.response</span>
+																		&lt;<span property="yui:type">mixed</span>&gt;
+																		</code>
+																		<span property="yui:description"> The server's response. This value will
+be passed to the `parse()` method, which is expected to parse it and
+return an attribute hash.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_set">
+
+													<h4>
+														<a name="method_set">set</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">set</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 value
+																	
+																
+																		, 
+																		 [options]
+																	
+																
+																		, 
+																		 [options.silent=false]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the value of a single attribute. If model validation fails, the
+attribute will not be set and an `error` event will be fired.
+Use `setAttrs()` to set multiple attributes at once.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute name or object property path.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">value</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description"> Value to set.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Data to be mixed into the event facade of the
+`change` event(s) for these attributes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options.silent=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> If `true`, no `change` event will
+be fired.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_setAttrs">
+
+													<h4>
+														<a name="method_setAttrs">setAttrs</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">setAttrs</strong>
+														   (
+																
+																		
+																		 attributes
+																	
+																
+																		, 
+																		 [options]
+																	
+																
+																		, 
+																		 [options.silent=false]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Sets the values of multiple attributes at once. If model validation fails,
+the attributes will not be set and an `error` event will be fired.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attributes</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Hash of attribute names and values to set.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Data to be mixed into the event facade of the
+`change` event(s) for these attributes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options.silent=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> If `true`, no `change` event will
+be fired.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_sync">
+
+													<h4>
+														<a name="method_sync">sync</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">sync</strong>
+														   (
+																
+																		
+																		 action
+																	
+																
+																		, 
+																		 [options]
+																	
+																
+																		, 
+																		 [callback]
+																	
+																
+																		, 
+																		 callback.err
+																	
+																
+																		, 
+																		 [callback.response]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Override this method to provide a custom persistence implementation for this
+model. The default just calls the callback without actually doing anything.
+This method is called internally by `load()`, `save()`, and `destroy()`.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">action</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description"> Sync action to perform. May be one of the following:
+`create`: Store a newly-created model for the first time.
+`delete`: Delete an existing model.
+'read'  : Load an existing model.
+`update`: Update an existing model.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Sync options. It's up to the custom sync
+implementation to determine what options it supports or requires, if any.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[callback]</span>
+																		&lt;<span property="yui:type">callback</span>&gt;
+																		</code>
+																		<span property="yui:description"> Called when the sync operation finishes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">callback.err</span>
+																		&lt;<span property="yui:type">Error|null</span>&gt;
+																		</code>
+																		<span property="yui:description"> If an error occurred, this parameter will
+contain the error. If the sync operation succeeded, _err_ will be
+falsy.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[callback.response]</span>
+																		&lt;<span property="yui:type">mixed</span>&gt;
+																		</code>
+																		<span property="yui:description"> The server's response. This value will
+be passed to the `parse()` method, which is expected to parse it and
+return an attribute hash.</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_toJSON">
+
+													<h4>
+														<a name="method_toJSON">toJSON</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														Object
+															<strong property="yui:name">toJSON</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Returns a copy of this model's attributes that can be passed to
+`Y.JSON.stringify()` or used for other nefarious purposes.
+The `clientId` attribute is not included in the returned object.
+If you've specified a custom attribute name in the `idAttribute` property,
+the default `id` attribute will not be included in the returned object.
+														</div>
+
+														<div class="description">
+
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Object
+																	</code></dt>
+																	<dd property="yui:returnInfo">Copy of this model's attributes.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_undo">
+
+													<h4>
+														<a name="method_undo">undo</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														void
+															<strong property="yui:name">undo</strong>
+														   (
+																
+																		
+																		 [attrNames]
+																	
+																
+																		, 
+																		 [options]
+																	
+																
+																		, 
+																		 [options.silent=false]
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Reverts the last change to the model.
+If an _attrNames_ array is provided, then only the named attributes will be
+reverted (and only if they were modified in the previous change). If no
+_attrNames_ array is provided, then all changed attributes will be reverted
+to their previous values.
+Note that only one level of undo is available: from the current state to the
+previous state. If `undo()` is called when no previous state is available,
+it will simply do nothing.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[attrNames]</span>
+																		&lt;<span property="yui:type">Array</span>&gt;
+																		</code>
+																		<span property="yui:description"> Array of specific attribute names to rever. If
+not specified, all attributes modified in the last change will be
+reverted.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options]</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Data to be mixed into the event facade of the
+change event(s) for these attributes.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">[options.silent=false]</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description"> If `true`, no `change` event will
+be fired.</span>
+																		</dd>
+																</dl>
+
+
+																<div class="chainable">
+																	<strong>Chainable:</strong> This method is chainable.
+																</div>
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_validate">
+
+													<h4>
+														<a name="method_validate">validate</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														
+														
+														mixed
+															<strong property="yui:name">validate</strong>
+														   (
+																
+																		
+																		 attributes
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Override this method to provide custom validation logic for this model.
+While attribute-specific validators can be used to validate individual
+attributes, this method gives you a hook to validate a hash of attributes
+when multiple attributes are changed at once. This method is called
+automatically before `set`, `setAttrs`, and `save` take action.
+A call to `validate` that doesn't return anything will be treated as a
+success. If the `validate` method returns a value, it will be treated as a
+failure, and the returned value (which may be a string or an object
+containing information about the failure) will be passed along to the
+`error` event.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attributes</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description"> Attribute hash containing changed attributes.</span>
+																		</dd>
+																</dl>
+
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			mixed
+																	</code></dt>
+																	<dd property="yui:returnInfo">Any return value other than `undefined` or `null` will be
+treated as a validation failure.</dd>
+																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+
+									<div rel="yui:inheritance">
+
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="EventTarget.html">
+
+											<h4>
+												Methods inherited from <a href="EventTarget.html" property="yui:name" title="EventTarget">EventTarget</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_addTarget">
+														<a href="EventTarget.html#method_addTarget" property="yui:name" title="addTarget">addTarget</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_after">
+														<a href="EventTarget.html#method_after" property="yui:name" title="after">after</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_before">
+														<a href="EventTarget.html#method_before" property="yui:name" title="before">before</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_bubble">
+														<a href="EventTarget.html#method_bubble" property="yui:name" title="bubble">bubble</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detach">
+														<a href="EventTarget.html#method_detach" property="yui:name" title="detach">detach</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_detachAll">
+														<a href="EventTarget.html#method_detachAll" property="yui:name" title="detachAll">detachAll</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_fire">
+														<a href="EventTarget.html#method_fire" property="yui:name" title="fire">fire</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getEvent">
+														<a href="EventTarget.html#method_getEvent" property="yui:name" title="getEvent">getEvent</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_getTargets">
+														<a href="EventTarget.html#method_getTargets" property="yui:name" title="getTargets">getTargets</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_on">
+														<a href="EventTarget.html#method_on" property="yui:name" title="on">on</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_once">
+														<a href="EventTarget.html#method_once" property="yui:name" title="once">once</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
+														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_publish">
+														<a href="EventTarget.html#method_publish" property="yui:name" title="publish">publish</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="EventTarget.html#method_removeTarget">
+														<a href="EventTarget.html#method_removeTarget" property="yui:name" title="removeTarget">removeTarget</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_subscribe">
+														<a href="EventTarget.html#method_subscribe" property="yui:name" title="subscribe">subscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribe">
+														<a href="EventTarget.html#method_unsubscribe" property="yui:name" title="unsubscribe">unsubscribe</a><span>,</span>
+														</div>
+
+														
+														
+
+														<div class="deprecated" rel="yui:method" resource="EventTarget.html#method_unsubscribeAll">
+														<a href="EventTarget.html#method_unsubscribeAll" property="yui:name" title="unsubscribeAll">unsubscribeAll</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
+
+											<h4>
+												Methods inherited from <a href="Attribute.html" property="yui:name" title="Attribute">Attribute</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttr">
+														<a href="Attribute.html#method__getAttr" property="yui:name" title="_getAttr">_getAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrCfg">
+														<a href="Attribute.html#method__getAttrCfg" property="yui:name" title="_getAttrCfg">_getAttrCfg</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
+														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__protectAttrs">
+														<a href="Attribute.html#method__protectAttrs" property="yui:name" title="_protectAttrs">_protectAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__set">
+														<a href="Attribute.html#method__set" property="yui:name" title="_set">_set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttr">
+														<a href="Attribute.html#method__setAttr" property="yui:name" title="_setAttr">_setAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__setAttrs">
+														<a href="Attribute.html#method__setAttrs" property="yui:name" title="_setAttrs">_setAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttr">
+														<a href="Attribute.html#method_addAttr" property="yui:name" title="addAttr">addAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_addAttrs">
+														<a href="Attribute.html#method_addAttrs" property="yui:name" title="addAttrs">addAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_attrAdded">
+														<a href="Attribute.html#method_attrAdded" property="yui:name" title="attrAdded">attrAdded</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_get">
+														<a href="Attribute.html#method_get" property="yui:name" title="get">get</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_getAttrs">
+														<a href="Attribute.html#method_getAttrs" property="yui:name" title="getAttrs">getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_modifyAttr">
+														<a href="Attribute.html#method_modifyAttr" property="yui:name" title="modifyAttr">modifyAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_removeAttr">
+														<a href="Attribute.html#method_removeAttr" property="yui:name" title="removeAttr">removeAttr</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_reset">
+														<a href="Attribute.html#method_reset" property="yui:name" title="reset">reset</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_set">
+														<a href="Attribute.html#method_set" property="yui:name" title="set">set</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Attribute.html#method_setAttrs">
+														<a href="Attribute.html#method_setAttrs" property="yui:name" title="setAttrs">setAttrs</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Plugin.Host.html">
+
+											<h4>
+												Methods inherited from <a href="Plugin.Host.html" property="yui:name" title="Plugin.Host">Plugin.Host</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_hasPlugin">
+														<a href="Plugin.Host.html#method_hasPlugin" property="yui:name" title="hasPlugin">hasPlugin</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_plug">
+														<a href="Plugin.Host.html#method_plug" property="yui:name" title="plug">plug</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Plugin.Host.html#method_unplug">
+														<a href="Plugin.Host.html#method_unplug" property="yui:name" title="unplug">unplug</a>
+														</div>
+												</code>
+											</div>
+										</div>
+
+										<div class="section field inheritance methods" rel="yui:superclass"  resource="Base.html">
+
+											<h4>
+												Methods inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:methods">
+												<code>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defDestroyFn">
+														<a href="Base.html#method__defDestroyFn" property="yui:name" title="_defDestroyFn">_defDestroyFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__defInitFn">
+														<a href="Base.html#method__defInitFn" property="yui:name" title="_defInitFn">_defInitFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getAttrCfgs">
+														<a href="Base.html#method__getAttrCfgs" property="yui:name" title="_getAttrCfgs">_getAttrCfgs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Base.html#method__getClasses">
+														<a href="Base.html#method__getClasses" property="yui:name" title="_getClasses">_getClasses</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_destroy">
+														<a href="Base.html#method_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_init">
+														<a href="Base.html#method_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Base.html#method_toString">
+														<a href="Base.html#method_toString" property="yui:name" title="toString">toString</a>
+														</div>
+												</code>
+											</div>
+										</div>
+									</div>
+							</div>
+
+							<div rel="yui:events" resource="#events">
+									<div class="section method details">
+										<h3 id="events">Events</h3>
+
+										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_change">
+
+													<h4>
+														<a name="event_change">change</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">change</strong>
+
+															(
+																
+																		
+																		 changed
+																	
+																
+																		, 
+																		 changed.newVal
+																	
+																
+																		, 
+																		 changed.prevVal
+																	
+																
+																		, 
+																		 changed.src
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fired when one or more attributes on this model are changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">changed</span>&lt;<span property="yui:type">Object</span>&gt;</code>
+																			<span property="yui:description"> Hash of change information for each attribute that
+changed. Each item in the hash has the following properties:</span>
+																		</dd>
+
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">changed.newVal</span>&lt;<span property="yui:type">mixed</span>&gt;</code>
+																			<span property="yui:description"> New value of the attribute.</span>
+																		</dd>
+
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">changed.prevVal</span>&lt;<span property="yui:type">mixed</span>&gt;</code>
+																			<span property="yui:description"> Previous value of the attribute.</span>
+																		</dd>
+
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">changed.src</span>&lt;<span property="yui:type">String|null</span>&gt;</code>
+																			<span property="yui:description"> Source of the change event, if any.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_clientIdChange">
+
+													<h4>
+														<a name="event_clientIdChange">clientIdChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">clientIdChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'clientId' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_error">
+
+													<h4>
+														<a name="event_error">error</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">error</strong>
+
+															(
+																
+																		
+																		 error
+																	
+																
+																		, 
+																		 src
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fired when an error occurs, such as when the model doesn't validate or when
+a server response can't be parsed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">error</span>&lt;<span property="yui:type">mixed</span>&gt;</code>
+																			<span property="yui:description"> Error message, object, or exception generated by the
+error. Calling `toString()` on this should result in a meaningful error
+message.</span>
+																		</dd>
+
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">src</span>&lt;<span property="yui:type">String</span>&gt;</code>
+																			<span property="yui:description"> Source of the error. May be one of the following (or any
+custom error source defined by a Model subclass):
+`parse`: An error parsing a JSON response.
+`validate`: The model failed to validate.</span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_idChange">
+
+													<h4>
+														<a name="event_idChange">idChange</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">idChange</strong>
+
+															(
+																
+																		
+																		 event
+																	
+																
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															Fires when the value for the configuration attribute 'id' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.
+														</div>
+
+														<div class="description">
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																			<code><span property="yui:name">event</span>&lt;<span property="yui:type">Event.Facade</span>&gt;</code>
+																			<span property="yui:description">An Event Facade object with      the following attribute specific properties added:	<dl>		<dt>prevVal</dt>		<dd>The value of the attribute, prior to it being set</dd>		<dt>newVal</dt>		<dd>The value the attribute is to be set to</dd>		<dt>attrName</dt>		<dd>The name of the attribute being set</dd>		<dt>subAttrName</dt>		<dd>If setting a property within the attribute's value,           the name of the sub-attribute property being set</dd>	</dl></span>
+																		</dd>
+
+																</dl>
+
+
+
+														</div>
+													</div>
+												</div>
+										</div>
+									</div>
+
+									<div rel="yui:inheritance">
+
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+
+									</div>
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "ModelList.html#method__add", "access": "protected", "host": "ModelList", "type": "method", "name": "_add"}, {"url": "ModelList.html#method_add", "access": "", "host": "ModelList", "type": "method", "name": "add"}, {"url": "ModelList.html#event_add", "access": "", "host": "ModelList", "type": "event", "name": "add"}, {"url": "Model.html#method_addAttr", "access": "protected", "host": "Model", "type": "method", "name": "addAttr"}, {"url": "Loader.html#method_addGroup", "access": "", "host": "Loader", "type": "method", "name": "addGroup"}, {"url": "Loader.html#method_addModule", "access": "", "host": "Loader", "type": "method", "name": "addModule"}, {"url": "ModelList.html#method__afterIdChange", "access": "protected", "host": "ModelList", "type": "method", "name": "_afterIdChange"}, {"url": "Loader.html#property_allowRollup", "access": "", "host": "Loader", "type": "property", "name": "allowRollup"}, {"url": "ModelList.html#method__attachList", "access": "protected", "host": "ModelList", "type": "method", "name": "_attachList"}, {"url": "Loader.html#property_base", "access": "", "host": "Loader", "type": "property", "name": "base"}, {"url": "Loader.html#method_calculate", "access": "", "host": "Loader", "type": "method", "name": "calculate"}, {"url": "Model.html#event_change", "access": "", "host": "Model", "type": "event", "name": "change"}, {"url": "Model.html#property_changed", "access": "", "host": "Model", "type": "property", "name": "changed"}, {"url": "Loader.html#property_charset", "access": "", "host": "Loader", "type": "property", "name": "charset"}, {"url": "ModelList.html#method__clear", "access": "protected", "host": "ModelList", "type": "method", "name": "_clear"}, {"url": "Model.html#config_clientId", "access": "", "host": "Model", "type": "config", "name": "clientId"}, {"url": "Model.html#event_clientIdChange", "access": "", "host": "Model", "type": "event", "name": "clientIdChange"}, {"url": "Loader.html#property_combine", "access": "", "host": "Loader", "type": "property", "name": "combine"}, {"url": "Loader.html#property_comboBase", "access": "", "host": "Loader", "type": "property", "name": "comboBase"}, {"url": "ModelList.html#method_comparator", "access": "", "host": "ModelList", "type": "method", "name": "comparator"}, {"url": "Loader.html#property_context", "access": "", "host": "Loader", "type": "property", "name": "context"}, {"url": "ModelList.html#method_create", "access": "", "host": "ModelList", "type": "method", "name": "create"}, {"url": "Loader.html#property_cssAttributes", "access": "", "host": "Loader", "type": "property", "name": "cssAttributes"}, {"url": "Loader.html#property_data", "access": "", "host": "Loader", "type": "property", "name": "data"}, {"url": "ModelList.html#method__defAddFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defAddFn"}, {"url": "Model.html#method__defAttrChangeFn", "access": "protected", "host": "Model", "type": "method", "name": "_defAttrChangeFn"}, {"url": "ModelList.html#method__defRefreshFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defRefreshFn"}, {"url": "ModelList.html#method__defRemoveFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defRemoveFn"}, {"url": "Model.html#method_destroy", "access": "", "host": "Model", "type": "method", "name": "destroy"}, {"url": "ModelList.html#method__detachList", "access": "protected", "host": "ModelList", "type": "method", "name": "_detachList"}, {"url": "Loader.html#property_dirty", "access": "", "host": "Loader", "type": "property", "name": "dirty"}, {"url": "Model.html#event_error", "access": "", "host": "Model", "type": "event", "name": "error"}, {"url": "Loader.html#property_filter", "access": "", "host": "Loader", "type": "property", "name": "filter"}, {"url": "Loader.html#property_filters", "access": "", "host": "Loader", "type": "property", "name": "filters"}, {"url": "ModelList.html#method__findIndex", "access": "protected", "host": "ModelList", "type": "method", "name": "_findIndex"}, {"url": "Loader.html#property_force", "access": "", "host": "Loader", "type": "property", "name": "force"}, {"url": "Loader.html#method_formatSkin", "access": "", "host": "Loader", "type": "method", "name": "formatSkin"}, {"url": "Model.html#method_generateClientId", "access": "", "host": "Model", "type": "method", "name": "generateClientId"}, {"url": "ModelList.html#method_get", "access": "", "host": "ModelList", "type": "method", "name": "get"}, {"url": "Model.html#method_get", "access": "", "host": "Model", "type": "method", "name": "get"}, {"url": "ModelList.html#method_getAsHTML", "access": "", "host": "ModelList", "type": "method", "name": "getAsHTML"}, {"url": "Model.html#method_getAsHTML", "access": "", "host": "Model", "type": "method", "name": "getAsHTML"}, {"url": "ModelList.html#method_getAsURL", "access": "", "host": "ModelList", "type": "method", "name": "getAsURL"}, {"url": "Model.html#method_getAsURL", "access": "", "host": "Model", "type": "method", "name": "getAsURL"}, {"url": "ModelList.html#method_getByClientId", "access": "", "host": "ModelList", "type": "method", "name": "getByClientId"}, {"url": "ModelList.html#method_getById", "access": "", "host": "ModelList", "type": "method", "name": "getById"}, {"url": "Loader.html#method_getLangPackName", "access": "", "host": "Loader", "type": "method", "name": "getLangPackName"}, {"url": "Loader.html#method_getProvides", "access": "", "host": "Loader", "type": "method", "name": "getProvides"}, {"url": "Loader.html#method_getRequires", "access": "", "host": "Loader", "type": "method", "name": "getRequires"}, {"url": "Model.html#config_id", "access": "", "host": "Model", "type": "config", "name": "id"}, {"url": "Model.html#property_idAttribute", "access": "", "host": "Model", "type": "property", "name": "idAttribute"}, {"url": "Model.html#event_idChange", "access": "", "host": "Model", "type": "event", "name": "idChange"}, {"url": "Loader.html#property_ignore", "access": "", "host": "Loader", "type": "property", "name": "ignore"}, {"url": "Loader.html#property_ignoreRegistered", "access": "", "host": "Loader", "type": "property", "name": "ignoreRegistered"}, {"url": "Loader.html#method_insert", "access": "", "host": "Loader", "type": "method", "name": "insert"}, {"url": "Loader.html#property_insertBefore", "access": "", "host": "Loader", "type": "property", "name": "insertBefore"}, {"url": "Loader.html#property_inserted", "access": "", "host": "Loader", "type": "property", "name": "inserted"}, {"url": "ModelList.html#method_invoke", "access": "", "host": "ModelList", "type": "method", "name": "invoke"}, {"url": "Model.html#method_isModified", "access": "", "host": "Model", "type": "method", "name": "isModified"}, {"url": "Model.html#method_isNew", "access": "", "host": "Model", "type": "method", "name": "isNew"}, {"url": "ModelList.html#method_item", "access": "", "host": "ModelList", "type": "method", "name": "item"}, {"url": "Loader.html#property_jsAttributes", "access": "", "host": "Loader", "type": "property", "name": "jsAttributes"}, {"url": "Model.html#property_lastChange", "access": "", "host": "Model", "type": "property", "name": "lastChange"}, {"url": "Model.html#property_lists", "access": "", "host": "Model", "type": "property", "name": "lists"}, {"url": "ModelList.html#method_load", "access": "", "host": "ModelList", "type": "method", "name": "load"}, {"url": "Model.html#method_load", "access": "", "host": "Model", "type": "method", "name": "load"}, {"url": "Loader.html#property_loaded", "access": "", "host": "Loader", "type": "property", "name": "loaded"}, {"url": "Loader.html#method_loadNext", "access": "", "host": "Loader", "type": "method", "name": "loadNext"}, {"url": "Loader.html#property_loadOptional", "access": "", "host": "Loader", "type": "property", "name": "loadOptional"}, {"url": "ModelList.html#method_map", "access": "", "host": "ModelList", "type": "method", "name": "map"}, {"url": "Loader.html#property_maxURLLength", "access": "", "host": "Loader", "type": "property", "name": "maxURLLength"}, {"url": "ModelList.html#property_model", "access": "", "host": "ModelList", "type": "property", "name": "model"}, {"url": "Loader.html#property_moduleInfo", "access": "", "host": "Loader", "type": "property", "name": "moduleInfo"}, {"url": "Loader.html#method_onCSS", "access": "", "host": "Loader", "type": "method", "name": "onCSS"}, {"url": "Loader.html#method_onFailure", "access": "", "host": "Loader", "type": "method", "name": "onFailure"}, {"url": "Loader.html#method_onProgress", "access": "", "host": "Loader", "type": "method", "name": "onProgress"}, {"url": "Loader.html#method_onSuccess", "access": "", "host": "Loader", "type": "method", "name": "onSuccess"}, {"url": "Loader.html#method_onTimeout", "access": "", "host": "Loader", "type": "method", "name": "onTimeout"}, {"url": "ModelList.html#method_parse", "access": "", "host": "ModelList", "type": "method", "name": "parse"}, {"url": "Model.html#method_parse", "access": "", "host": "Model", "type": "method", "name": "parse"}, {"url": "Loader.html#property_patterns", "access": "", "host": "Loader", "type": "property", "name": "patterns"}, {"url": "ModelList.html#method_refresh", "access": "", "host": "ModelList", "type": "method", "name": "refresh"}, {"url": "ModelList.html#event_refresh", "access": "", "host": "ModelList", "type": "event", "name": "refresh"}, {"url": "ModelList.html#method__remove", "access": "protected", "host": "ModelList", "type": "method", "name": "_remove"}, {"url": "ModelList.html#method_remove", "access": "", "host": "ModelList", "type": "method", "name": "remove"}, {"url": "ModelList.html#event_remove", "access": "", "host": "ModelList", "type": "event", "name": "remove"}, {"url": "Loader.html#method_require", "access": "", "host": "Loader", "type": "method", "name": "require"}, {"url": "Loader.html#property_required", "access": "", "host": "Loader", "type": "property", "name": "required"}, {"url": "Loader.html#property_rollups", "access": "", "host": "Loader", "type": "property", "name": "rollups"}, {"url": "Loader.html#property_root", "access": "", "host": "Loader", "type": "property", "name": "root"}, {"url": "Model.html#method_save", "access": "", "host": "Model", "type": "method", "name": "save"}, {"url": "Model.html#method_set", "access": "", "host": "Model", "type": "method", "name": "set"}, {"url": "Model.html#method_setAttrs", "access": "", "host": "Model", "type": "method", "name": "setAttrs"}, {"url": "Loader.html#property_skin", "access": "", "host": "Loader", "type": "property", "name": "skin"}, {"url": "Loader.html#property_skipped", "access": "", "host": "Loader", "type": "property", "name": "skipped"}, {"url": "ModelList.html#method_sort", "access": "", "host": "ModelList", "type": "method", "name": "sort"}, {"url": "Loader.html#property_sorted", "access": "", "host": "Loader", "type": "property", "name": "sorted"}, {"url": "ModelList.html#method_sync", "access": "", "host": "ModelList", "type": "method", "name": "sync"}, {"url": "Model.html#method_sync", "access": "", "host": "Model", "type": "method", "name": "sync"}, {"url": "Loader.html#property_timeout", "access": "", "host": "Loader", "type": "property", "name": "timeout"}, {"url": "ModelList.html#method_toArray", "access": "", "host": "ModelList", "type": "method", "name": "toArray"}, {"url": "ModelList.html#method_toJSON", "access": "", "host": "ModelList", "type": "method", "name": "toJSON"}, {"url": "Model.html#method_toJSON", "access": "", "host": "Model", "type": "method", "name": "toJSON"}, {"url": "Model.html#method_undo", "access": "", "host": "Model", "type": "method", "name": "undo"}, {"url": "Model.html#method__validate", "access": "protected", "host": "Model", "type": "method", "name": "_validate"}, {"url": "Model.html#method_validate", "access": "", "host": "Model", "type": "method", "name": "validate"}];
+</script>
+</body>
+</html>

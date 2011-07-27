@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class="selected"><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -708,7 +723,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;highlight-accentfold&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -757,10 +772,16 @@
 <span class="cm">     */</span>
     <span class="nx">allFold</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">haystack</span><span class="p">,</span> <span class="nx">needles</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">template</span> <span class="o">=</span> <span class="nx">Highlight</span><span class="p">.</span><span class="nx">_TEMPLATE</span><span class="p">,</span>
-            <span class="nx">result</span>   <span class="o">=</span> <span class="p">[],</span>
-            <span class="nx">startPos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">results</span>  <span class="o">=</span> <span class="p">[],</span>
+            <span class="nx">startPos</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">chunk</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">match</span><span class="p">,</span> <span class="nx">result</span><span class="p">;</span>
 
         <span class="nx">options</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">({</span>
+            <span class="c1">// This tells Highlight.all() not to escape HTML, in order to ensure</span>
+            <span class="c1">// usable match offsets. The output of all() is discarded, and we</span>
+            <span class="c1">// perform our own escaping before returning the highlighted string.</span>
+            <span class="nx">escapeHTML</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+
             <span class="c1">// While the highlight regex operates on the accent-folded strings,</span>
             <span class="c1">// this replacer will highlight the matched positions in the</span>
             <span class="c1">// original string.</span>
@@ -781,8 +802,10 @@
 
                 <span class="nx">len</span> <span class="o">=</span> <span class="nx">foldedNeedle</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
 
-                <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">haystack</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">startPos</span><span class="p">,</span> <span class="nx">pos</span><span class="p">)</span> <span class="o">+</span>
-                        <span class="nx">template</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\{s\}/g</span><span class="p">,</span> <span class="nx">haystack</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">pos</span><span class="p">,</span> <span class="nx">len</span><span class="p">)));</span>
+                <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span>
+                    <span class="nx">haystack</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">startPos</span><span class="p">,</span> <span class="nx">pos</span><span class="p">),</span> <span class="c1">// substring between previous match and this match</span>
+                    <span class="nx">haystack</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">pos</span><span class="p">,</span> <span class="nx">len</span><span class="p">)</span>          <span class="c1">// match to be highlighted</span>
+                <span class="p">]);</span>
 
                 <span class="nx">startPos</span> <span class="o">=</span> <span class="nx">pos</span> <span class="o">+</span> <span class="nx">len</span><span class="p">;</span>
             <span class="p">}</span>
@@ -791,16 +814,26 @@
         <span class="c1">// Run the highlighter on the folded strings. We don&#39;t care about the</span>
         <span class="c1">// output; our replacer function will build the canonical highlighted</span>
         <span class="c1">// string, with original accented characters.</span>
-        <span class="nx">Highlight</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">haystack</span><span class="p">),</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">needles</span><span class="p">),</span>
-                <span class="nx">options</span><span class="p">);</span>
+        <span class="nx">Highlight</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">haystack</span><span class="p">),</span> <span class="nx">AccentFold</span><span class="p">.</span><span class="nx">fold</span><span class="p">(</span><span class="nx">needles</span><span class="p">),</span> <span class="nx">options</span><span class="p">);</span>
 
         <span class="c1">// Tack on the remainder of the haystack that wasn&#39;t highlighted, if</span>
         <span class="c1">// any.</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">startPos</span> <span class="o">&lt;</span> <span class="nx">haystack</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">haystack</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">startPos</span><span class="p">));</span>
+            <span class="nx">results</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">haystack</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">startPos</span><span class="p">)]);</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="c1">// Highlight and escape the string.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">chunk</span> <span class="o">=</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+
+            <span class="k">if</span> <span class="p">((</span><span class="nx">match</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="nx">chunk</span> <span class="o">+=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\{s\}/g</span><span class="p">,</span> <span class="nx">Escape</span><span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">match</span><span class="p">));</span>
+            <span class="p">}</span>
+
+            <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">chunk</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">results</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
     <span class="p">},</span>
 
     <span class="cm">/**</span>
@@ -845,7 +878,7 @@
 <span class="p">});</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;highlight-base&#39;</span><span class="p">,</span> <span class="s1">&#39;text-accentfold&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;highlight-base&#39;</span><span class="p">,</span> <span class="s1">&#39;text-accentfold&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

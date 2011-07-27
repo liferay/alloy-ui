@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -851,6 +852,7 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onPrevSiblingChange", onPrevSiblingChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_alwaysShowHitArea = true;
 		_cache = true;
@@ -936,10 +938,12 @@ public class BaseTreeNodeTaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onPrevSiblingChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "alwaysShowHitArea", _alwaysShowHitArea);
 		setNamespacedAttribute(request, "cache", _cache);

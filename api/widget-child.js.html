@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -666,6 +681,9 @@
 									<ul class="content">
 
 
+			                                <li class=""><a href="widget-child-debug.js.html" title="widget-child-debug.js">widget-child-debug.js</a></li>
+
+
 			                                <li class=""><a href="widget-child-min.js.html" title="widget-child-min.js">widget-child-min.js</a></li>
 
 
@@ -690,7 +708,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;widget-child&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -861,14 +879,20 @@
 <span class="cm">     */</span>
     <span class="nx">ROOT_TYPE</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 
-
-    <span class="c1">//  Override of Widget&#39;s implementation of _getUIEventNode() to ensure that </span>
-    <span class="c1">//  all event listeners are bound to the Widget&#39;s topmost DOM element.</span>
-    <span class="c1">//  This ensures that the firing of each type of Widget UI event (click,</span>
-    <span class="c1">//  mousedown, etc.) is facilitated by a single, top-level, delegated DOM</span>
-    <span class="c1">//  event listener.</span>
+    <span class="cm">/**</span>
+<span class="cm">     * Returns the node on which to bind delegate listeners.</span>
+<span class="cm">     * </span>
+<span class="cm">     * Override of Widget&#39;s implementation of _getUIEventNode() to ensure that </span>
+<span class="cm">     * all event listeners are bound to the Widget&#39;s topmost DOM element.</span>
+<span class="cm">     * This ensures that the firing of each type of Widget UI event (click,</span>
+<span class="cm">     * mousedown, etc.) is facilitated by a single, top-level, delegated DOM</span>
+<span class="cm">     * event listener.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _getUIEventNode</span>
+<span class="cm">     * @for Widget</span>
+<span class="cm">     * @protected</span>
+<span class="cm">     */</span>
     <span class="nx">_getUIEventNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    
         <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">),</span>
             <span class="nx">returnVal</span><span class="p">;</span>
         
@@ -877,9 +901,7 @@
         <span class="p">}</span>
     
         <span class="k">return</span> <span class="nx">returnVal</span><span class="p">;</span>
-        
     <span class="p">},</span>
-
 
     <span class="cm">/**</span>
 <span class="cm">    * @method next</span>
@@ -1065,7 +1087,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetChild</span> <span class="o">=</span> <span class="nx">Child</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1083,7 +1105,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "WidgetChild.html#method__afterChildSelectedChange", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_afterChildSelectedChange"}, {"url": "WidgetChild.html#method_ancestor", "access": "", "host": "WidgetChild", "type": "method", "name": "ancestor"}, {"url": "WidgetChild.html#method__bindUIChild", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_bindUIChild"}, {"url": "WidgetChild.html#config_depth", "access": "", "host": "WidgetChild", "type": "config", "name": "depth"}, {"url": "WidgetChild.html#event_depthChange", "access": "", "host": "WidgetChild", "type": "event", "name": "depthChange"}, {"url": "WidgetChild.html#config_index", "access": "", "host": "WidgetChild", "type": "config", "name": "index"}, {"url": "WidgetChild.html#event_indexChange", "access": "", "host": "WidgetChild", "type": "event", "name": "indexChange"}, {"url": "WidgetChild.html#method_isRoot", "access": "", "host": "WidgetChild", "type": "method", "name": "isRoot"}, {"url": "WidgetChild.html#method_next", "access": "", "host": "WidgetChild", "type": "method", "name": "next"}, {"url": "WidgetChild.html#config_parent", "access": "", "host": "WidgetChild", "type": "config", "name": "parent"}, {"url": "WidgetChild.html#event_parentChange", "access": "", "host": "WidgetChild", "type": "event", "name": "parentChange"}, {"url": "WidgetChild.html#method_previous", "access": "", "host": "WidgetChild", "type": "method", "name": "previous"}, {"url": "WidgetChild.html#config_root", "access": "", "host": "WidgetChild", "type": "config", "name": "root"}, {"url": "WidgetChild.html#event_rootChange", "access": "", "host": "WidgetChild", "type": "event", "name": "rootChange"}, {"url": "WidgetChild.html#property_ROOT_TYPE", "access": "", "host": "WidgetChild", "type": "property", "name": "ROOT_TYPE"}, {"url": "WidgetChild.html#config_selected", "access": "", "host": "WidgetChild", "type": "config", "name": "selected"}, {"url": "WidgetChild.html#event_selectedChange", "access": "", "host": "WidgetChild", "type": "event", "name": "selectedChange"}, {"url": "WidgetChild.html#method__syncUIChild", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_syncUIChild"}, {"url": "WidgetChild.html#method__uiSetChildSelected", "access": "protected", "host": "WidgetChild", "type": "method", "name": "_uiSetChildSelected"}];
+    var ALL_YUI_PROPS = [{"url": "WidgetChild.html#config_depth", "access": "", "host": "WidgetChild", "type": "config", "name": "depth"}, {"url": "WidgetChild.html#event_depthChange", "access": "", "host": "WidgetChild", "type": "event", "name": "depthChange"}, {"url": "WidgetChild.html#config_index", "access": "", "host": "WidgetChild", "type": "config", "name": "index"}, {"url": "WidgetChild.html#event_indexChange", "access": "", "host": "WidgetChild", "type": "event", "name": "indexChange"}, {"url": "WidgetChild.html#config_parent", "access": "", "host": "WidgetChild", "type": "config", "name": "parent"}, {"url": "WidgetChild.html#event_parentChange", "access": "", "host": "WidgetChild", "type": "event", "name": "parentChange"}, {"url": "WidgetChild.html#config_root", "access": "", "host": "WidgetChild", "type": "config", "name": "root"}, {"url": "WidgetChild.html#event_rootChange", "access": "", "host": "WidgetChild", "type": "event", "name": "rootChange"}, {"url": "WidgetChild.html#property_ROOT_TYPE", "access": "", "host": "WidgetChild", "type": "property", "name": "ROOT_TYPE"}, {"url": "WidgetChild.html#config_selected", "access": "", "host": "WidgetChild", "type": "config", "name": "selected"}, {"url": "WidgetChild.html#event_selectedChange", "access": "", "host": "WidgetChild", "type": "event", "name": "selectedChange"}];
 </script>
 </body>
 </html>

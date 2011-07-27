@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel='stylesheet' href='../../build/aui-skin-classic/css/aui-skin-classic-all-min.css' type='text/css' media='screen' />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		#markupTabs {
+			width: 250px;
+		}
+
+		.aui-diagram-node {
+			background-color: #D96666;
+			border: 2px solid black;
+		}
+
+		.aui-diagram-builder-base-drop-container .aui-diagram-node.aui-diagram-node-editing {
+			background-color: lightyellow;
+		}
+	</style>
+</head>
+
+<body class='yui3-skin-sam'>
+
+<div id="wrapper">
+	<h1>Alloy - diagram-builder-base Demo</h1>
+
+	<div id="demo">
+
+		<div id="diagrambuilderBB" class="aui-diagram-builder-base">
+			<div id="diagrambuilderCB" class="aui-helper-clearfix aui-diagram-builder-base-content">
+
+				<div class="aui-diagram-builder-base-tabs-container">
+					<div class="aui-diagram-builder-base-tabs-container-content">
+						<ul class="aui-tabview-list aui-widget-hd">
+							<li class="aui-tab aui-state-default aui-state-active aui-tab-active aui-diagram-builder-base-tab-add">
+								<span class="aui-tab-content"><a class="aui-tab-label" href="javascript:;">Add node</a></span>
+							</li>
+							<li class="aui-tab aui-state-default aui-diagram-builder-base-tab-settings">
+								<span class="aui-tab-content"><a class="aui-tab-label" href="javascript:;">Node settings</a></span>
+							</li>
+						</ul>
+
+						<div class="aui-tabview-content aui-widget-bd">
+							<div class="aui-tabview-content-item"></div>
+							<div class="aui-tabview-content-item aui-helper-hidden"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="aui-diagram-builder-base-content-container">
+					<div class="aui-diagram-builder-base-drop-container"></div>
+				</div>
+
+			</div>
+		</div>
+
+		<br/>
+		<br/>
+		<br/>
+
+		<div id="diagramBuilder2"></div>
+
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().use('aui-diagram-builder', function(A) {
+
+	diagramBuilder1 = new A.DiagramBuilder(
+		{
+			boundingBox: '#diagrambuilderBB',
+			srcNode: '#diagrambuilderCB',
+			// height: 600,
+			availableFields: [
+				{
+					type: 'node',
+					label: 'My special label',
+					iconClass: 'my-icon'
+				},
+				{
+					type: 'node',
+					label: 'My special second label',
+					iconClass: 'my-second-icon',
+					draggable: false
+				}
+			],
+			fields: [
+				{ bodyContent: 'Node1', xy: [200, 200] },
+				{ bodyContent: 'Node2' }
+			]
+		}
+	).render();
+
+	diagramBuilder2 = new A.DiagramBuilder(
+		{
+			after: {
+				cancel: function(event) {
+					console.log('cancel', event);
+				},
+
+				save: function(event) {
+					console.log('save', event);
+				},
+
+				addField: function(event) {
+					// console.log('addField', event);
+				}
+			},
+			availableFields: [
+				{
+					type: 'node',
+					id: 'myLabel',
+					label: 'My label',
+					iconClass: 'my-icon'
+				},
+				{
+					id: 'mySecondLabel',
+					label: 'My second label',
+					iconClass: 'my-second-icon'
+				}
+			],
+
+			fields: [
+				{ bodyContent: 'Node1', xy: [200, 200] },
+				{ bodyContent: 'Node2' }
+			],
+			// fields: new A.ArrayList([{a:1}, {a:2}]),
+
+			// propertyList: {
+			// 	recordset: [
+			// 		{
+			// 			name: 'Text1',
+			// 			value: 'Text value'
+			// 		},
+			// 		{
+			// 			name: 'Text2',
+			// 			value: 'Text value'
+			// 		},
+			// 		{
+			// 			name: 'Text3',
+			// 			value: 'Text value'
+			// 		}
+			// 	]
+			// }
+		}
+	).render('#diagramBuilder2');
+
+	diagramBuilder2.set('height', 1000);
+	// diagramBuilder2.set('fields', [1,2]);
+	// diagramBuilder2.addField({bodyContent:'ABC'});
+
+	// console.log(diagramBuilder2.get('fields'));
+
+});
+
+</script>
+
+</body>
+</html>

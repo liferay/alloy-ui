@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -690,6 +705,21 @@
 			                                <li class=""><a href="io-min.js.html" title="io-min.js">io-min.js</a></li>
 
 
+			                                <li class=""><a href="io-queue-debug.js.html" title="io-queue-debug.js">io-queue-debug.js</a></li>
+
+
+			                                <li class=""><a href="io-queue-min.js.html" title="io-queue-min.js">io-queue-min.js</a></li>
+
+
+			                                <li class=""><a href="io-queue.js.html" title="io-queue.js">io-queue.js</a></li>
+
+
+			                                <li class=""><a href="io-upload-iframe-debug.js.html" title="io-upload-iframe-debug.js">io-upload-iframe-debug.js</a></li>
+
+
+			                                <li class=""><a href="io-upload-iframe-min.js.html" title="io-upload-iframe-min.js">io-upload-iframe-min.js</a></li>
+
+
 			                                <li class=""><a href="io-upload-iframe.js.html" title="io-upload-iframe.js">io-upload-iframe.js</a></li>
 
 
@@ -720,7 +750,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;io-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -836,7 +866,6 @@
         <span class="k">return</span> <span class="nx">w</span><span class="p">.</span><span class="nx">XMLHttpRequest</span> <span class="o">?</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">()</span> <span class="o">:</span> <span class="k">new</span> <span class="nx">ActiveXObject</span><span class="p">(</span><span class="s1">&#39;Microsoft.XMLHTTP&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 
-
    <span class="cm">/**</span>
 <span class="cm">    * @description Method that increments _transactionId for each transaction.</span>
 <span class="cm">    *</span>
@@ -848,7 +877,7 @@
     <span class="kd">function</span> <span class="nx">_id</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">transactionId</span><span class="p">;</span>
 
-        <span class="nx">transactionId</span><span class="o">++</span><span class="p">;</span>
+		<span class="nx">transactionId</span><span class="o">++</span><span class="p">;</span>
 
         <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
     <span class="p">}</span>
@@ -927,8 +956,8 @@
 <span class="cm">    */</span>
     <span class="kd">function</span> <span class="nx">_tE</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">eT</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">EventTarget</span><span class="p">().</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;transaction:&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">),</span>
-            <span class="nx">a</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">arguments</span><span class="p">,</span>
-            <span class="nx">cT</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">context</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">;</span>
+            <span class="nx">cT</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">context</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">,</span>
+            <span class="nx">a</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">arguments</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">eT</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">on</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span> <span class="nx">cT</span><span class="p">,</span> <span class="nx">a</span><span class="p">);</span>
@@ -1107,7 +1136,7 @@
         <span class="nx">_destroy</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
         <span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span><span class="p">.</span><span class="nx">use</span> <span class="o">=</span> <span class="s1">&#39;flash&#39;</span><span class="p">;</span>
         <span class="c1">// If the original request included serialized form data and</span>
-        <span class="c1">// additional data are defined in configuration.data, it must</span>
+        <span class="c1">// additional data are defined in the configuration, it must</span>
         <span class="c1">// be reset to prevent data duplication.</span>
         <span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">form</span> <span class="o">&amp;&amp;</span> <span class="nx">d</span> <span class="o">?</span> <span class="nx">d</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
 
@@ -1125,7 +1154,7 @@
 <span class="cm">    * @return int</span>
 <span class="cm">    */</span>
     <span class="kd">function</span> <span class="nx">_concat</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">s</span> <span class="o">+=</span> <span class="p">((</span><span class="nx">s</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;?&#39;</span> <span class="o">:</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;</span>
+        <span class="nx">s</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39;?&#39;</span> <span class="o">:</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;</span>
         <span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -1166,16 +1195,6 @@
 
         <span class="k">for</span> <span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">_headers</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">_headers</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
-				<span class="cm">/*</span>
-<span class="cm">                if (h[p]) {</span>
-<span class="cm">                    // Configuration headers will supersede preset io headers,</span>
-<span class="cm">                    // if headers match.</span>
-<span class="cm">                    continue;</span>
-<span class="cm">                }</span>
-<span class="cm">                else {</span>
-<span class="cm">                    h[p] = _headers[p];</span>
-<span class="cm">                }</span>
-<span class="cm">				*/</span>
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">h</span><span class="p">[</span><span class="nx">p</span><span class="p">])</span> <span class="p">{</span>
 					<span class="nx">h</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">=</span> <span class="nx">_headers</span><span class="p">[</span><span class="nx">p</span><span class="p">];</span>
 				<span class="p">}</span>
@@ -1185,7 +1204,7 @@
         <span class="k">for</span> <span class="p">(</span><span class="nx">p</span> <span class="k">in</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">p</span><span class="p">))</span> <span class="p">{</span>
 				<span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">[</span><span class="nx">p</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;disable&#39;</span><span class="p">)</span> <span class="p">{</span>
-                	<span class="nx">o</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">h</span><span class="p">[</span><span class="nx">p</span><span class="p">]);</span>
+					<span class="nx">o</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">h</span><span class="p">[</span><span class="nx">p</span><span class="p">]);</span>
 				<span class="p">}</span>
 			<span class="p">}</span>
         <span class="p">}</span>
@@ -1252,19 +1271,16 @@
 <span class="cm">    * @return void</span>
 <span class="cm">    */</span>
     <span class="kd">function</span> <span class="nx">_handleResponse</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">status</span><span class="p">;</span>
-
-        <span class="k">try</span> <span class="p">{</span>
-			<span class="nx">status</span> <span class="o">=</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">status</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">status</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">status</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">status</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="p">}</span>
+        <span class="kd">var</span> <span class="nx">status</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">status</span><span class="p">;</span>
 
         <span class="c1">// IE reports HTTP 204 as HTTP 1223.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">300</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="mi">1223</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">responseText</span> <span class="o">||</span> <span class="nx">status</span> <span class="o">===</span> <span class="mi">1223</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">status</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+		<span class="p">}</span>
+
+		<span class="k">if</span> <span class="p">(</span><span class="nx">status</span> <span class="o">&gt;=</span> <span class="mi">200</span> <span class="o">&amp;&amp;</span> <span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">300</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">_ioSuccess</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
-        <span class="p">}</span>
+		<span class="p">}</span>
         <span class="k">else</span> <span class="p">{</span>
             <span class="nx">_ioFailure</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
         <span class="p">}</span>
@@ -1384,20 +1400,19 @@
 <span class="cm">    * @return object</span>
 <span class="cm">    */</span>
     <span class="kd">function</span> <span class="nx">_io</span><span class="p">(</span><span class="nx">uri</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">oD</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span>
+        <span class="kd">var</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">m</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">oD</span><span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">usr</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">,</span>
             <span class="nx">u</span> <span class="o">=</span> <span class="nx">uri</span><span class="p">;</span>
-            <span class="nx">c</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+            <span class="nx">c</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="o">||</span> <span class="p">{};</span>
             <span class="nx">o</span> <span class="o">=</span> <span class="nx">_create</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">form</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+			<span class="nx">usr</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">username</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+			<span class="nx">pwd</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">password</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
             <span class="nx">m</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">method</span> <span class="o">?</span> <span class="nx">c</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">method</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">:</span> <span class="nx">c</span><span class="p">.</span><span class="nx">method</span> <span class="o">=</span> <span class="s1">&#39;GET&#39;</span><span class="p">;</span>
             <span class="nx">s</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">sync</span><span class="p">;</span>
             <span class="nx">oD</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
 
-        <span class="c1">//To serialize an object into a key-value string, add the</span>
-        <span class="c1">//QueryString module to the YUI instance&#39;s &#39;use&#39; method.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Configuration property &quot;data&quot; is an object. The serialized value is: &#39;</span> <span class="o">+</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;io&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="c1">// Serialize an object into a key-value string using</span>
+        <span class="c1">// querystring-stringify-simple.</span>
+		<span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">:</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">form</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">upload</span><span class="p">)</span> <span class="p">{</span>
@@ -1406,7 +1421,7 @@
                 <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">upload</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">uri</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
             <span class="p">}</span>
             <span class="k">else</span> <span class="p">{</span>
-                <span class="c1">// Serialize HTML form data.</span>
+                <span class="c1">// Serialize HTML form data into a key-value string.</span>
                 <span class="nx">f</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">_serialize</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">form</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
                 <span class="k">if</span> <span class="p">(</span><span class="nx">m</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span> <span class="o">||</span> <span class="nx">m</span> <span class="o">===</span> <span class="s1">&#39;PUT&#39;</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">f</span><span class="p">;</span>
@@ -1417,16 +1432,27 @@
             <span class="p">}</span>
         <span class="p">}</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">m</span> <span class="o">===</span> <span class="s1">&#39;GET&#39;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">uri</span> <span class="o">=</span> <span class="nx">_concat</span><span class="p">(</span><span class="nx">uri</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-            <span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;HTTP GET with configuration data.  The querystring is: &#39;</span> <span class="o">+</span> <span class="nx">uri</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;io&#39;</span><span class="p">);</span>
-        <span class="p">}</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">&amp;&amp;</span> <span class="nx">m</span> <span class="o">===</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">c</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">({</span> <span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/x-www-form-urlencoded; charset=UTF-8&#39;</span> <span class="p">},</span> <span class="nx">c</span><span class="p">.</span><span class="nx">headers</span><span class="p">);</span>
-        <span class="p">}</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">switch</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">case</span> <span class="s1">&#39;GET&#39;</span><span class="o">:</span>
+				<span class="k">case</span> <span class="s1">&#39;HEAD&#39;</span><span class="o">:</span>
+				<span class="k">case</span> <span class="s1">&#39;DELETE&#39;</span><span class="o">:</span>
+					<span class="nx">uri</span> <span class="o">=</span> <span class="nx">_concat</span><span class="p">(</span><span class="nx">uri</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+					<span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;HTTP&#39;</span> <span class="o">+</span> <span class="nx">m</span> <span class="o">+</span> <span class="s1">&#39; with data.  The querystring is: &#39;</span> <span class="o">+</span> <span class="nx">uri</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="s1">&#39;io&#39;</span><span class="p">);</span>
+					<span class="k">break</span><span class="p">;</span>
+				<span class="k">case</span> <span class="s1">&#39;POST&#39;</span><span class="o">:</span>
+				<span class="k">case</span> <span class="s1">&#39;PUT&#39;</span><span class="o">:</span>
+					<span class="c1">// If Content-Type is defined in the configuration object, or</span>
+					<span class="c1">// or as a default header, it will be used instead of</span>
+					<span class="c1">// &#39;application/x-www-form-urlencoded; charset=UTF-8&#39;</span>
+					<span class="nx">c</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">({</span> <span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;application/x-www-form-urlencoded; charset=UTF-8&#39;</span> <span class="p">},</span> <span class="nx">c</span><span class="p">.</span><span class="nx">headers</span><span class="p">);</span>
+					<span class="k">break</span><span class="p">;</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// Cross-domain request or custom transport detected.</span>
             <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">xdr</span><span class="p">(</span><span class="nx">uri</span><span class="p">,</span> <span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
         <span class="p">}</span>
 
@@ -1435,50 +1461,57 @@
         <span class="p">}</span>
 
         <span class="k">try</span> <span class="p">{</span>
-            <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">uri</span><span class="p">,</span> <span class="nx">s</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="p">);</span>
+			<span class="c1">// Determine if request is to be set as</span>
+			<span class="c1">// synchronous or asynchronous.</span>
+            <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">uri</span><span class="p">,</span> <span class="nx">s</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">usr</span><span class="p">,</span> <span class="nx">pwd</span><span class="p">);</span>
+			<span class="nx">_setHeaders</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">headers</span><span class="p">);</span>
+			<span class="nx">_ioStart</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+
             <span class="c1">// Will work only in browsers that implement the</span>
             <span class="c1">// Cross-Origin Resource Sharing draft.</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span><span class="p">.</span><span class="nx">credentials</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+				<span class="p">}</span>
             <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">catch</span><span class="p">(</span><span class="nx">e1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// This exception is usually thrown by browsers</span>
-                <span class="c1">// that do not support native XDR transactions.</span>
-                <span class="k">return</span> <span class="nx">_resend</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">oD</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
 
-        <span class="nx">_setHeaders</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nx">headers</span><span class="p">);</span>
-        <span class="nx">_ioStart</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
-        <span class="k">try</span> <span class="p">{</span>
             <span class="c1">// Using &quot;null&quot; with HTTP POST will  result in a request</span>
             <span class="c1">// with no Content-Length header defined.</span>
             <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">data</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
             <span class="k">if</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+				<span class="c1">// Create a response object for synchronous transactions,</span>
+				<span class="c1">// merging ID and arguments fields into a single object.</span>
                 <span class="nx">d</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
                 <span class="nx">a</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;statusText&#39;</span><span class="p">,</span> <span class="s1">&#39;responseText&#39;</span><span class="p">,</span> <span class="s1">&#39;responseXML&#39;</span><span class="p">];</span>
                 <span class="nx">r</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">arguments</span> <span class="o">?</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nx">arguments</span><span class="o">:</span> <span class="nx">c</span><span class="p">.</span><span class="nx">arguments</span> <span class="p">}</span> <span class="o">:</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">id</span> <span class="p">};</span>
+                <span class="nx">r</span><span class="p">.</span><span class="nx">getAllResponseHeaders</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getAllResponseHeaders</span><span class="p">();</span> <span class="p">};</span>
+                <span class="nx">r</span><span class="p">.</span><span class="nx">getResponseHeader</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getResponseHeader</span><span class="p">(</span><span class="nx">h</span><span class="p">);</span> <span class="p">};</span>
 
                 <span class="k">for</span> <span class="p">(</span><span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
                     <span class="nx">r</span><span class="p">[</span><span class="nx">a</span><span class="p">[</span><span class="nx">j</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">c</span><span class="p">[</span><span class="nx">a</span><span class="p">[</span><span class="nx">j</span><span class="p">]];</span>
                 <span class="p">}</span>
 
-                <span class="nx">r</span><span class="p">.</span><span class="nx">getAllResponseHeaders</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getAllResponseHeaders</span><span class="p">();</span> <span class="p">};</span>
-                <span class="nx">r</span><span class="p">.</span><span class="nx">getResponseHeader</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getResponseHeader</span><span class="p">(</span><span class="nx">h</span><span class="p">);</span> <span class="p">};</span>
                 <span class="nx">_ioComplete</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
                 <span class="nx">_handleResponse</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
 
                 <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
             <span class="p">}</span>
         <span class="p">}</span>
-        <span class="k">catch</span><span class="p">(</span><span class="nx">e2</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span> <span class="o">&amp;&amp;</span> <span class="nx">c</span><span class="p">.</span><span class="nx">xdr</span><span class="p">.</span><span class="nx">use</span> <span class="o">===</span> <span class="s1">&#39;native&#39;</span><span class="p">)</span> <span class="p">{</span>
                 <span class="c1">// This exception is usually thrown by browsers</span>
-                <span class="c1">// that do not support native XDR transactions.</span>
+                <span class="c1">// that do not support XMLHttpRequest Level 2.</span>
+				<span class="c1">// Retry the request with the XDR transport set</span>
+				<span class="c1">// to &#39;flash&#39;.  If the Flash transport is not</span>
+				<span class="c1">// initialized or available, the transaction</span>
+				<span class="c1">// will resolve to a transport error.</span>
                 <span class="k">return</span> <span class="nx">_resend</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">u</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">oD</span><span class="p">);</span>
             <span class="p">}</span>
+			<span class="k">else</span> <span class="p">{</span>
+                <span class="nx">_ioComplete</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+				<span class="nx">_handleResponse</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">c</span><span class="p">);</span>
+			<span class="p">}</span>
         <span class="p">}</span>
 
         <span class="c1">// If config.timeout is defined, and the request is standard XHR,</span>
@@ -1539,7 +1572,8 @@
     <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">http</span> <span class="o">=</span> <span class="nx">_io</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-custom-base&#39;</span><span class="p">,</span> <span class="s1">&#39;querystring-stringify-simple&#39;</span><span class="p">]});</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-custom-base&#39;</span><span class="p">,</span> <span class="s1">&#39;querystring-stringify-simple&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1557,7 +1591,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "io.html#property_delay", "access": "", "host": "io", "type": "property", "name": "delay"}, {"url": "io.html#method_header", "access": "", "host": "io", "type": "method", "name": "header"}, {"url": "io.html#method_io", "access": "", "host": "io", "type": "method", "name": "io"}, {"url": "io.html#event_io:complete", "access": "", "host": "io", "type": "event", "name": "io:complete"}, {"url": "io.html#event_io:end", "access": "", "host": "io", "type": "event", "name": "io:end"}, {"url": "io.html#event_io:failure", "access": "", "host": "io", "type": "event", "name": "io:failure"}, {"url": "io.html#event_io:start", "access": "", "host": "io", "type": "event", "name": "io:start"}, {"url": "io.html#event_io:success", "access": "", "host": "io", "type": "event", "name": "io:success"}, {"url": "io.html#event_io:xdrReady", "access": "", "host": "io", "type": "event", "name": "io:xdrReady"}, {"url": "io.html#method_promote", "access": "", "host": "io", "type": "method", "name": "promote"}, {"url": "io.html#method_remove", "access": "", "host": "io", "type": "method", "name": "remove"}, {"url": "io.html#method_size", "access": "", "host": "io", "type": "method", "name": "size"}, {"url": "io.html#method_start", "access": "", "host": "io", "type": "method", "name": "start"}, {"url": "io.html#method_stop", "access": "", "host": "io", "type": "method", "name": "stop"}, {"url": "io.html#method_transport", "access": "", "host": "io", "type": "method", "name": "transport"}];
+    var ALL_YUI_PROPS = [{"url": "io.html#method_complete", "access": "", "host": "io", "type": "method", "name": "complete"}, {"url": "io.html#property_delay", "access": "", "host": "io", "type": "property", "name": "delay"}, {"url": "io.html#method_end", "access": "", "host": "io", "type": "method", "name": "end"}, {"url": "io.html#method_failure", "access": "", "host": "io", "type": "method", "name": "failure"}, {"url": "io.html#method_header", "access": "", "host": "io", "type": "method", "name": "header"}, {"url": "io.html#method_io", "access": "", "host": "io", "type": "method", "name": "io"}, {"url": "io.html#event_io:complete", "access": "", "host": "io", "type": "event", "name": "io:complete"}, {"url": "io.html#event_io:end", "access": "", "host": "io", "type": "event", "name": "io:end"}, {"url": "io.html#event_io:failure", "access": "", "host": "io", "type": "event", "name": "io:failure"}, {"url": "io.html#event_io:start", "access": "", "host": "io", "type": "event", "name": "io:start"}, {"url": "io.html#event_io:success", "access": "", "host": "io", "type": "event", "name": "io:success"}, {"url": "io.html#event_io:xdrReady", "access": "", "host": "io", "type": "event", "name": "io:xdrReady"}, {"url": "io.html#method_promote", "access": "", "host": "io", "type": "method", "name": "promote"}, {"url": "io.html#method_queue", "access": "", "host": "io", "type": "method", "name": "queue"}, {"url": "io.html#method_size", "access": "", "host": "io", "type": "method", "name": "size"}, {"url": "io.html#method_start", "access": "", "host": "io", "type": "method", "name": "start"}, {"url": "io.html#method_stop", "access": "", "host": "io", "type": "method", "name": "stop"}, {"url": "io.html#method_success", "access": "", "host": "io", "type": "method", "name": "success"}, {"url": "io.html#method_transport", "access": "", "host": "io", "type": "method", "name": "transport"}];
 </script>
 </body>
 </html>

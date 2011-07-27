@@ -192,7 +192,7 @@
 					<include name="**"/>
 				</fileset>
 			</copy>
-			
+
 			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui" fixlast="true" eol="${buildfiles.eol}" />
 			<fixcrlf srcdir="${global.build.base}/${build.aui.prefix}aui-base" fixlast="true" eol="${buildfiles.eol}" />
 
@@ -230,19 +230,16 @@
 			</delete>
 
 			<concat destfile="${aui.combined.file}" fixlastline="yes" eol="${buildfiles.eol}">
-				<header file="${global.build.base}/yui/yui.js"/>
+				<header file="${global.build.base}/yui-base/yui-base.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base.js"/>
 			</concat>
 			<concat destfile="${aui.combined.min.file}" fixlastline="yes" eol="${buildfiles.eol}">
-				<header file="${global.build.base}/yui/yui-min.js"/>
+				<header file="${global.build.base}/yui-base/yui-base-min.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base-min.js"/>
 			</concat>
 
-			<var name="aui.detect.path.regex.from" value="/^(.*)yui\/yui([\.\-].*)js(\?.*)?$/"/>
-			<var name="aui.detect.path.regex.to" value="/^(.*)[ay]ui\/[ay]ui([\.\-].*)js(\?.*)?$/"/>
-
-			<var name="aui.detect.path.combo.regex.from" value="/^(.*\?)(.*\&amp;)(.*)yui\/yui[\.\-].*js(\?.*)?$/"/>
-			<var name="aui.detect.path.combo.regex.to" value="/^(.*\?)(.*\&amp;)(.*)[ay]ui\/[ay]ui[\.\-].*js(\?.*)?$/"/>
+			<var name="aui.detect.path.regex.from" value="/(?:\?(?:[^&amp;]*&amp;)*([^&amp;]*))?\b(simpleyui|yui(?:-\w+)?)\/\2(?:-(min|debug))?\.js/"/>
+			<var name="aui.detect.path.regex.to" value="/(?:\?(?:[^&amp;]*&amp;)*([^&amp;]*))?\b(simpleyui|[ay]ui(?:-\w+)?)\/\2(?:-(min|debug))?\.js/"/>
 
 			<replace file="${aui.combined.file}">
 				<replacefilter token="${aui.detect.path.regex.from}" value="${aui.detect.path.regex.to}" />

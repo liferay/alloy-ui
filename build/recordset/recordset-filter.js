@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('recordset-filter', function(Y) {
@@ -50,11 +50,11 @@ Y.extend(RecordsetFilter, Y.Plugin.Base, {
 
     /**
      * @description Filter through the recordset with a custom filter function, or a key-value pair.
-	 *
-	 * @method filter
+     *
+     * @method filter
      * @param f {Function, String} A custom filter function or a string representing the key to filter by.
      * @param v {any} (optional) If a string is passed into f, this represents the value that key should take in order to be accepted by the filter. Do not pass in anything if 'f' is a custom function
-	 * @return recordset {Y.Recordset} A new filtered recordset instance
+     * @return recordset {Y.Recordset} A new filtered recordset instance
      * @public
      */
     filter: function(f, v) {
@@ -86,11 +86,11 @@ Y.extend(RecordsetFilter, Y.Plugin.Base, {
     },
 
     /**
-	* @description The inverse of filter. Executes the supplied function on each item. Returns a new Recordset containing the items that the supplied function returned *false* for.
-	* @method reject
-	* @param {Function} f is the function to execute on each item.
-	* @return {Y.Recordset} A new Recordset instance containing the items on which the supplied function returned false.
-	*/
+    * @description The inverse of filter. Executes the supplied function on each item. Returns a new Recordset containing the items that the supplied function returned *false* for.
+    * @method reject
+    * @param {Function} f is the function to execute on each item.
+    * @return {Y.Recordset} A new Recordset instance containing the items on which the supplied function returned false.
+    */
     reject: function(f) {
         return new Y.Recordset({
             records: YArray.reject(this.get('host').get('records'), f)
@@ -98,12 +98,12 @@ Y.extend(RecordsetFilter, Y.Plugin.Base, {
     },
 
     /**
-	* @description Iterates over the Recordset, returning a new Recordset of all the elements that match the supplied regular expression
-	* @method grep
-	* @param {pattern} pattern The regular expression to test against
-	* each record.
-	* @return {Y.Recordset} A Recordset instance containing all the items in the collection that produce a match against the supplied regular expression. If no items match, an empty Recordset instance is returned.
-	*/
+    * @description Iterates over the Recordset, returning a new Recordset of all the elements that match the supplied regular expression
+    * @method grep
+    * @param {pattern} pattern The regular expression to test against
+    * each record.
+    * @return {Y.Recordset} A Recordset instance containing all the items in the collection that produce a match against the supplied regular expression. If no items match, an empty Recordset instance is returned.
+    */
     grep: function(pattern) {
         return new Y.Recordset({
             records: YArray.grep(this.get('host').get('records'), pattern)
@@ -117,4 +117,4 @@ Y.namespace("Plugin").RecordsetFilter = RecordsetFilter;
 
 
 
-}, '3.3.0' ,{requires:['recordset-base','array-extras','plugin']});
+}, '3.4.0' ,{requires:['recordset-base','array-extras','plugin']});

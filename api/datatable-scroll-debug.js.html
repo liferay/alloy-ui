@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -750,7 +765,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;datatable-scroll&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -763,17 +778,18 @@
 
 
 <span class="kd">var</span> <span class="nx">YNode</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">,</span>
-	<span class="nx">YLang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
-	<span class="nx">YUA</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">,</span>
-	<span class="nx">YgetClassName</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
-	<span class="nx">DATATABLE</span> <span class="o">=</span> <span class="s2">&quot;datatable&quot;</span><span class="p">,</span>
-	<span class="nx">CLASS_HEADER</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;hd&quot;</span><span class="p">),</span>
-	<span class="nx">CLASS_BODY</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;bd&quot;</span><span class="p">),</span>
-	<span class="nx">CLASS_SCROLLABLE</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;scrollable&quot;</span><span class="p">),</span>
-	<span class="nx">CONTAINER_HEADER</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CLASS_HEADER</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
-	<span class="nx">CONTAINER_BODY</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CLASS_BODY</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
-	<span class="nx">TEMPLATE_TABLE</span> <span class="o">=</span> <span class="s1">&#39;&lt;table&gt;&lt;/table&gt;&#39;</span><span class="p">;</span>
-	
+    <span class="nx">YLang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">YUA</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">,</span>
+    <span class="nx">YgetClassName</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ClassNameManager</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
+    <span class="nx">DATATABLE</span> <span class="o">=</span> <span class="s2">&quot;datatable&quot;</span><span class="p">,</span>
+    <span class="nx">CLASS_HEADER</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;hd&quot;</span><span class="p">),</span>
+    <span class="nx">CLASS_BODY</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;bd&quot;</span><span class="p">),</span>
+    <span class="nx">CLASS_DATA</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">),</span>
+    <span class="nx">CLASS_SCROLLABLE</span> <span class="o">=</span> <span class="nx">YgetClassName</span><span class="p">(</span><span class="nx">DATATABLE</span><span class="p">,</span> <span class="s2">&quot;scrollable&quot;</span><span class="p">),</span>
+    <span class="nx">CONTAINER_HEADER</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CLASS_HEADER</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">CONTAINER_BODY</span> <span class="o">=</span> <span class="s1">&#39;&lt;div class=&quot;&#39;</span><span class="o">+</span><span class="nx">CLASS_BODY</span><span class="o">+</span><span class="s1">&#39;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">,</span>
+    <span class="nx">TEMPLATE_TABLE</span> <span class="o">=</span> <span class="s1">&#39;&lt;table&gt;&lt;/table&gt;&#39;</span><span class="p">;</span>
+    
 <span class="cm">/**</span>
 <span class="cm"> * Adds scrolling to DataTable.</span>
 <span class="cm"> * @class DataTableScroll</span>
@@ -789,650 +805,650 @@
     <span class="nx">NAME</span><span class="o">:</span> <span class="s2">&quot;dataTableScroll&quot;</span><span class="p">,</span>
 
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
-	
-		<span class="cm">/**</span>
-<span class="cm">	    * @description The width for the table. Set to a string (ex: &quot;200px&quot;, &quot;20em&quot;) if you want the table to scroll in the x direction.</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute width</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type string</span>
-<span class="cm">	    */</span>
+    
+        <span class="cm">/**</span>
+<span class="cm">        * @description The width for the table. Set to a string (ex: &quot;200px&quot;, &quot;20em&quot;) if you want the table to scroll in the x direction.</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute width</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        */</span>
         <span class="nx">width</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
-			<span class="nx">writeOnce</span><span class="o">:</span> <span class="s2">&quot;initOnly&quot;</span>
-		<span class="p">},</span>
-		
-		<span class="cm">/**</span>
-<span class="cm">	    * @description The height for the table. Set to a string (ex: &quot;200px&quot;, &quot;20em&quot;) if you want the table to scroll in the y-direction.</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute height</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type string</span>
-<span class="cm">	    */</span>
-		<span class="nx">height</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
-			<span class="nx">writeOnce</span><span class="o">:</span> <span class="s2">&quot;initOnly&quot;</span>
-		<span class="p">},</span>
-		
-		
-		<span class="cm">/**</span>
-<span class="cm">	    * @description The scrolling direction for the table.</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute scroll</span>
-<span class="cm">	    * @private</span>
-<span class="cm">	    * @type string</span>
-<span class="cm">	    */</span>
-		<span class="nx">_scroll</span><span class="o">:</span> <span class="p">{</span>
-			<span class="c1">//value: &#39;y&#39;,</span>
-			<span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-			    <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">),</span>
-			    <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span>
-			    
-			    <span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">&amp;&amp;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-			        <span class="k">return</span> <span class="s1">&#39;xy&#39;</span><span class="p">;</span>
-			    <span class="p">}</span>
-			    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="p">{</span>
-			        <span class="k">return</span> <span class="s1">&#39;x&#39;</span><span class="p">;</span>
-			    <span class="p">}</span>
-			    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-			        <span class="k">return</span> <span class="s1">&#39;y&#39;</span><span class="p">;</span>
-			    <span class="p">}</span>
-			    <span class="k">else</span> <span class="p">{</span>
-			        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-			    <span class="p">}</span>
-			<span class="p">}</span>
-		<span class="p">},</span>
-		
-		
-		<span class="cm">/**</span>
-<span class="cm">	    * @description The hexadecimal colour value to set on the top-right of the table if a scrollbar exists. </span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute COLOR_COLUMNFILLER</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type string</span>
-<span class="cm">	    */</span>
-		<span class="nx">COLOR_COLUMNFILLER</span><span class="o">:</span> <span class="p">{</span>
-			<span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;#f2f2f2&#39;</span><span class="p">,</span>
-			<span class="nx">validator</span><span class="o">:</span> <span class="nx">YLang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
-			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="nx">param</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
+            <span class="nx">writeOnce</span><span class="o">:</span> <span class="s2">&quot;initOnly&quot;</span>
+        <span class="p">},</span>
+        
+        <span class="cm">/**</span>
+<span class="cm">        * @description The height for the table. Set to a string (ex: &quot;200px&quot;, &quot;20em&quot;) if you want the table to scroll in the y-direction.</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute height</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        */</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
+            <span class="nx">writeOnce</span><span class="o">:</span> <span class="s2">&quot;initOnly&quot;</span>
+        <span class="p">},</span>
+        
+        
+        <span class="cm">/**</span>
+<span class="cm">        * @description The scrolling direction for the table.</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute scroll</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        */</span>
+        <span class="nx">_scroll</span><span class="o">:</span> <span class="p">{</span>
+            <span class="c1">//value: &#39;y&#39;,</span>
+            <span class="nx">valueFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">),</span>
+                <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">);</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">&amp;&amp;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="s1">&#39;xy&#39;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="s1">&#39;x&#39;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="s1">&#39;y&#39;</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        
+        
+        <span class="cm">/**</span>
+<span class="cm">        * @description The hexadecimal colour value to set on the top-right of the table if a scrollbar exists. </span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute COLOR_COLUMNFILLER</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type string</span>
+<span class="cm">        */</span>
+        <span class="nx">COLOR_COLUMNFILLER</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;#f2f2f2&#39;</span><span class="p">,</span>
+            <span class="nx">validator</span><span class="o">:</span> <span class="nx">YLang</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+            <span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">param</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">,</span> <span class="nx">param</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">});</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">DataTableScroll</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
-	
-	<span class="cm">/**</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The table node created in datatable-base</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _parentTableNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_parentTableNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_parentTableNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The THEAD node which resides within the table node created in datatable-base</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _parentTheadNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_parentTheadNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_parentTheadNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The TBODY node which resides within the table node created in datatable-base</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _parentTbodyNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_parentTbodyNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_parentTbodyNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The TBODY Message node which resides within the table node created in datatable-base</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _parentMsgNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_parentMsgNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_parentMsgNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The contentBox specified for the datatable in datatable-base</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _parentContainer</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_parentContainer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_parentContainer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The DIV node that contains all the scrollable elements (a table with a tbody on it)</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _bodyContainerNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_bodyContainerNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_bodyContainerNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description The DIV node that contains a table with a THEAD in it (which syncs its horizontal scroll with the _bodyContainerNode above)</span>
 <span class="cm">    *</span>
 <span class="cm">    * @property _headerContainerNode</span>
-<span class="cm">	* @private</span>
+<span class="cm">    * @private</span>
 <span class="cm">    * @type Y.Node</span>
 <span class="cm">    */</span>
-	<span class="nx">_headerContainerNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-	
-	
-	<span class="c1">//--------------------------------------</span>
+    <span class="nx">_headerContainerNode</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    
+    
+    <span class="c1">//--------------------------------------</span>
     <span class="c1">//  Methods</span>
     <span class="c1">//--------------------------------------</span>
 
 
-	
-	<span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CLASS_SCROLLABLE</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_setUpNodes</span><span class="p">();</span>
-	<span class="p">},</span>
-	
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	<span class="c1">//</span>
-	<span class="c1">// Set up Table Nodes</span>
-	<span class="c1">//</span>
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	
-	<span class="cm">/**</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentBox&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CLASS_SCROLLABLE</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setUpNodes</span><span class="p">();</span>
+    <span class="p">},</span>
+    
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">//</span>
+    <span class="c1">// Set up Table Nodes</span>
+    <span class="c1">//</span>
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Set up methods to fire after host methods execute</span>
 <span class="cm">    *</span>
 <span class="cm">    * @method _setUpNodes</span>
 <span class="cm">    * @private</span>
-<span class="cm">    */</span>			
-	<span class="nx">_setUpNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTableNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTableNode</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTheadNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTheadNode</span><span class="p">);</span> 
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTbodyNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTbodyNode</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addMessageNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentMessageNode</span><span class="p">);</span>
-		<span class="c1">//this.beforeHostMethod(&#39;renderUI&#39;, this._removeCaptionNode);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;renderUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;syncUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">);</span>
-		
-		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s1">&#39;_attachTheadThNode&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_attachTheadThNode</span><span class="p">);</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s1">&#39;_attachTbodyTdNode&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_attachTbodyTdNode</span><span class="p">);</span>
-		<span class="p">}</span>
-		
-	<span class="p">},</span>
-		
-	<span class="cm">/**</span>
+<span class="cm">    */</span>          
+    <span class="nx">_setUpNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTableNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTableNode</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTheadNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTheadNode</span><span class="p">);</span> 
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addTbodyNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentTbodyNode</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;_addMessageNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setUpParentMessageNode</span><span class="p">);</span>
+        <span class="c1">//this.beforeHostMethod(&#39;renderUI&#39;, this._removeCaptionNode);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;renderUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s2">&quot;syncUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">);</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s1">&#39;_attachTheadThNode&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_attachTheadThNode</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">afterHostMethod</span><span class="p">(</span><span class="s1">&#39;_attachTbodyTdNode&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_attachTbodyTdNode</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+    <span class="p">},</span>
+        
+    <span class="cm">/**</span>
 <span class="cm">    * @description Stores the main &amp;lt;table&amp;gt; node provided by the host as a private property</span>
 <span class="cm">    *</span>
 <span class="cm">    * @method _setUpParentTableNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setUpParentTableNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentTableNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_tableNode</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setUpParentTableNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentTableNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_tableNode</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Stores the main &amp;lt;thead&amp;gt; node provided by the host as a private property</span>
 <span class="cm">    *</span>
 <span class="cm">    * @method _setUpParentTheadNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setUpParentTheadNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_theadNode</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setUpParentTheadNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_theadNode</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Stores the main &amp;lt;tbody&amp;gt; node provided by the host as a private property</span>
 <span class="cm">    *</span>
 <span class="cm">    * @method _setUpParentTbodyNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setUpParentTbodyNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_tbodyNode</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setUpParentTbodyNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_tbodyNode</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Stores the main &amp;lt;tbody&amp;gt; message node provided by the host as a private property</span>
 <span class="cm">    *</span>
 <span class="cm">    * @method _setUpParentMessageNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setUpParentMessageNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_msgNode</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	<span class="c1">//</span>
-	<span class="c1">// Renderer</span>
-	<span class="c1">//</span>
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setUpParentMessageNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_msgNode</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">//</span>
+    <span class="c1">// Renderer</span>
+    <span class="c1">//</span>
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Primary rendering method that takes the datatable rendered in</span>
 <span class="cm">    * the host, and splits it up into two separate &amp;lt;divs&amp;gt; each containing two </span>
-<span class="cm">	* separate tables (one containing the head and one containing the body). </span>
-<span class="cm">	* This method fires after renderUI is called on datatable-base.</span>
-<span class="cm">	* </span>
+<span class="cm">    * separate tables (one containing the head and one containing the body). </span>
+<span class="cm">    * This method fires after renderUI is called on datatable-base.</span>
+<span class="cm">    * </span>
 <span class="cm">    * @method renderUI</span>
 <span class="cm">    * @public</span>
 <span class="cm">    */</span>
-	<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="c1">//Y.Profiler.start(&#39;render&#39;);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_createBodyContainer</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_createHeaderContainer</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_setContentBoxDimensions</span><span class="p">();</span>
-		<span class="c1">//Y.Profiler.stop(&#39;render&#39;);</span>
-		<span class="c1">//console.log(Y.Profiler.getReport(&quot;render&quot;));</span>
-	<span class="p">},</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//Y.Profiler.start(&#39;render&#39;);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_createBodyContainer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_createHeaderContainer</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setContentBoxDimensions</span><span class="p">();</span>
+        <span class="c1">//Y.Profiler.stop(&#39;render&#39;);</span>
+        <span class="c1">//console.log(Y.Profiler.getReport(&quot;render&quot;));</span>
+    <span class="p">},</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Post rendering method that is responsible for creating a column</span>
-<span class="cm">	* filler, and performing width and scroll synchronization between the &amp;lt;th&amp;gt; </span>
-<span class="cm">	* elements and the &amp;lt;td&amp;gt; elements.</span>
-<span class="cm">	* This method fires after syncUI is called on datatable-base</span>
-<span class="cm">	* </span>
+<span class="cm">    * filler, and performing width and scroll synchronization between the &amp;lt;th&amp;gt; </span>
+<span class="cm">    * elements and the &amp;lt;td&amp;gt; elements.</span>
+<span class="cm">    * This method fires after syncUI is called on datatable-base</span>
+<span class="cm">    * </span>
 <span class="cm">    * @method syncUI</span>
 <span class="cm">    * @public</span>
 <span class="cm">    */</span>
-	<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="c1">//Y.Profiler.start(&#39;sync&#39;);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_removeCaptionNode</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncWidths</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncScroll</span><span class="p">();</span>
-		<span class="c1">//Y.Profiler.stop(&#39;sync&#39;);</span>
-		<span class="c1">//console.log(Y.Profiler.getReport(&quot;sync&quot;));</span>
-		
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//Y.Profiler.start(&#39;sync&#39;);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_removeCaptionNode</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncWidths</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncScroll</span><span class="p">();</span>
+        <span class="c1">//Y.Profiler.stop(&#39;sync&#39;);</span>
+        <span class="c1">//console.log(Y.Profiler.getReport(&quot;sync&quot;));</span>
+        
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Remove the caption created in base. Scrolling datatables dont support captions.</span>
-<span class="cm">	* </span>
+<span class="cm">    * </span>
 <span class="cm">    * @method _removeCaptionNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
     <span class="nx">_removeCaptionNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">_captionNode</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
         <span class="c1">//Y.DataTable.Base.prototype.createCaption = function(v) {/*do nothing*/};</span>
-		<span class="c1">//Y.DataTable.Base.prototype._uiSetCaption = function(v) {/*do nothing*/};</span>
+        <span class="c1">//Y.DataTable.Base.prototype._uiSetCaption = function(v) {/*do nothing*/};</span>
     <span class="p">},</span>
 
-	<span class="cm">/**</span>
+    <span class="cm">/**</span>
 <span class="cm">    * @description Adjusts the width of the TH and the TDs to make sure that the two are in sync</span>
-<span class="cm">	* </span>
-<span class="cm">	* Implementation Details: </span>
-<span class="cm">	* 	Compares the width of the TH liner div to the the width of the TD node. The TD liner width</span>
-<span class="cm">	*	is not actually used because the TD often stretches past the liner if the parent DIV is very</span>
-<span class="cm">	*	large. Measuring the TD width is more accurate.</span>
-<span class="cm">	*	</span>
-<span class="cm">	*	Instead of measuring via .get(&#39;width&#39;), &#39;clientWidth&#39; is used, as it returns a number, whereas</span>
-<span class="cm">	*	&#39;width&#39; returns a string, In IE6, &#39;clientWidth&#39; is not supported, so &#39;offsetWidth&#39; is used.</span>
-<span class="cm">	*	&#39;offsetWidth&#39; is not as accurate on Chrome,FF as &#39;clientWidth&#39; - thus the need for the fork.</span>
-<span class="cm">	* </span>
+<span class="cm">    * </span>
+<span class="cm">    * Implementation Details: </span>
+<span class="cm">    *   Compares the width of the TH liner div to the the width of the TD node. The TD liner width</span>
+<span class="cm">    *   is not actually used because the TD often stretches past the liner if the parent DIV is very</span>
+<span class="cm">    *   large. Measuring the TD width is more accurate.</span>
+<span class="cm">    *   </span>
+<span class="cm">    *   Instead of measuring via .get(&#39;width&#39;), &#39;clientWidth&#39; is used, as it returns a number, whereas</span>
+<span class="cm">    *   &#39;width&#39; returns a string, In IE6, &#39;clientWidth&#39; is not supported, so &#39;offsetWidth&#39; is used.</span>
+<span class="cm">    *   &#39;offsetWidth&#39; is not as accurate on Chrome,FF as &#39;clientWidth&#39; - thus the need for the fork.</span>
+<span class="cm">    * </span>
 <span class="cm">    * @method _syncWidths</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_syncWidths</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">th</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; .yui3-datatable-hd table thead th&#39;</span><span class="p">),</span> <span class="c1">//nodelist of all THs</span>
-			<span class="nx">td</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; .yui3-datatable-bd table .yui3-datatable-data&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="c1">//nodelist of all TDs in 1st row</span>
-			<span class="nx">i</span><span class="p">,</span>
-			<span class="nx">len</span><span class="p">,</span>
-			<span class="nx">thWidth</span><span class="p">,</span> <span class="nx">tdWidth</span><span class="p">,</span> <span class="nx">thLiner</span><span class="p">,</span> <span class="nx">tdLiner</span><span class="p">,</span>
-			<span class="nx">ie</span> <span class="o">=</span> <span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span><span class="p">;</span>
-			<span class="c1">//stylesheet = new YStyleSheet(&#39;columnsSheet&#39;),</span>
-			<span class="c1">//className;</span>
-			
-			<span class="cm">/*</span>
-<span class="cm">			This for loop goes through the first row of TDs in the table.</span>
-<span class="cm">			In a table, the width of the row is equal to the width of the longest cell in that column.</span>
-<span class="cm">			Therefore, we can observe the widths of the cells in the first row only, as they will be the same in all the cells below (in each respective column)</span>
-<span class="cm">			*/</span>
-			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">th</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
-				
-				<span class="c1">//className = &#39;.&#39;+td.item(i).get(&#39;classList&#39;)._nodes[0];</span>
-				<span class="c1">//If a width has not been already set on the TD:</span>
-				<span class="c1">//if (td.item(i).get(&#39;firstChild&#39;).getStyle(&#39;width&#39;) === &quot;auto&quot;) {</span>
-					
-					<span class="c1">//Get the liners for the TH and the TD cell in question</span>
-					<span class="nx">thLiner</span> <span class="o">=</span> <span class="nx">th</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">);</span> <span class="c1">//TODO: use liner API - how? this is a node.</span>
-					<span class="nx">tdLiner</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">);</span>
-					
-					<span class="cm">/*</span>
-<span class="cm">					If browser is not IE - get the clientWidth of the Liner div and the TD.</span>
-<span class="cm">					Note: 	We are not getting the width of the TDLiner, we are getting the width of the actual cell.</span>
-<span class="cm">							Why? Because when the table is set to auto width, the cell will grow to try to fit the table in its container.</span>
-<span class="cm">							The liner could potentially be much smaller than the cell width.</span>
-<span class="cm">							</span>
-<span class="cm">							TODO: Explore if there is a better way using only LINERS widths</span>
-<span class="cm">					*/</span>
-					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">thWidth</span> <span class="o">=</span> <span class="nx">thLiner</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">);</span> <span class="c1">//TODO: this should actually be done with getComputedStyle(&#39;width&#39;) but this messes up columns. Explore this option.</span>
-						<span class="nx">tdWidth</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">);</span>
-					<span class="p">}</span>
-					
-					<span class="c1">//IE wasn&#39;t recognizing clientWidths, so we are using offsetWidths.</span>
-					<span class="c1">//TODO: should use getComputedStyle(&#39;width&#39;) because offsetWidth will screw up when padding is changed.</span>
-					<span class="k">else</span> <span class="p">{</span>
-						<span class="nx">thWidth</span> <span class="o">=</span> <span class="nx">thLiner</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
-						<span class="nx">tdWidth</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
-						<span class="c1">//thWidth = parseFloat(thLiner.getComputedStyle(&#39;width&#39;).split(&#39;px&#39;)[0]);</span>
-						<span class="c1">//tdWidth = parseFloat(td.item(i).getComputedStyle(&#39;width&#39;).split(&#39;px&#39;)[0]); /* TODO: for some reason, using tdLiner.get(&#39;clientWidth&#39;) doesn&#39;t work - why not? */</span>
-					<span class="p">}</span>
-										
-					<span class="c1">//if TH is bigger than TD, enlarge TD Liner</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">thWidth</span> <span class="o">&gt;</span> <span class="nx">tdWidth</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">tdLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">thWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span>
-						<span class="c1">//thLiner.setStyle(&#39;width&#39;, (tdWidth - 20 + &#39;px&#39;));</span>
-						<span class="c1">//stylesheet.set(className,{&#39;width&#39;: (thWidth - 20 + &#39;px&#39;)});</span>
-					<span class="p">}</span>
-					
-					<span class="c1">//if TD is bigger than TH, enlarge TH Liner</span>
-					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">&gt;</span> <span class="nx">thWidth</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">thLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span>
-						<span class="nx">tdLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span> <span class="c1">//if you don&#39;t set an explicit width here, when the width is set in line 368, it will auto-shrink the widths of the other cells (because they dont have an explicit width)</span>
-						<span class="c1">//stylesheet.set(className,{&#39;width&#39;: (tdWidth - 20 + &#39;px&#39;)});</span>
-					<span class="p">}</span>
-					
-				<span class="c1">//}</span>
+    <span class="nx">_syncWidths</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">th</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39; .&#39;</span> <span class="o">+</span> <span class="nx">CLASS_HEADER</span> <span class="o">+</span> <span class="s1">&#39; table thead th&#39;</span><span class="p">),</span> <span class="c1">//nodelist of all THs</span>
+            <span class="nx">td</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39; .&#39;</span> <span class="o">+</span> <span class="nx">CLASS_BODY</span> <span class="o">+</span> <span class="s1">&#39; table .&#39;</span> <span class="o">+</span> <span class="nx">CLASS_DATA</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="c1">//nodelist of all TDs in 1st row</span>
+            <span class="nx">i</span><span class="p">,</span>
+            <span class="nx">len</span><span class="p">,</span>
+            <span class="nx">thWidth</span><span class="p">,</span> <span class="nx">tdWidth</span><span class="p">,</span> <span class="nx">thLiner</span><span class="p">,</span> <span class="nx">tdLiner</span><span class="p">,</span>
+            <span class="nx">ie</span> <span class="o">=</span> <span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span><span class="p">;</span>
+            <span class="c1">//stylesheet = new YStyleSheet(&#39;columnsSheet&#39;),</span>
+            <span class="c1">//className;</span>
+            
+            <span class="cm">/*</span>
+<span class="cm">            This for loop goes through the first row of TDs in the table.</span>
+<span class="cm">            In a table, the width of the row is equal to the width of the longest cell in that column.</span>
+<span class="cm">            Therefore, we can observe the widths of the cells in the first row only, as they will be the same in all the cells below (in each respective column)</span>
+<span class="cm">            */</span>
+            <span class="k">for</span> <span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">th</span><span class="p">.</span><span class="nx">size</span><span class="p">();</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> 
+                
+                <span class="c1">//className = &#39;.&#39;+td.item(i).get(&#39;classList&#39;)._nodes[0];</span>
+                <span class="c1">//If a width has not been already set on the TD:</span>
+                <span class="c1">//if (td.item(i).get(&#39;firstChild&#39;).getStyle(&#39;width&#39;) === &quot;auto&quot;) {</span>
+                    
+                    <span class="c1">//Get the liners for the TH and the TD cell in question</span>
+                    <span class="nx">thLiner</span> <span class="o">=</span> <span class="nx">th</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">);</span> <span class="c1">//TODO: use liner API - how? this is a node.</span>
+                    <span class="nx">tdLiner</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">);</span>
+                    
+                    <span class="cm">/*</span>
+<span class="cm">                    If browser is not IE - get the clientWidth of the Liner div and the TD.</span>
+<span class="cm">                    Note:   We are not getting the width of the TDLiner, we are getting the width of the actual cell.</span>
+<span class="cm">                            Why? Because when the table is set to auto width, the cell will grow to try to fit the table in its container.</span>
+<span class="cm">                            The liner could potentially be much smaller than the cell width.</span>
+<span class="cm">                            </span>
+<span class="cm">                            TODO: Explore if there is a better way using only LINERS widths</span>
+<span class="cm">                    */</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">thWidth</span> <span class="o">=</span> <span class="nx">thLiner</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">);</span> <span class="c1">//TODO: this should actually be done with getComputedStyle(&#39;width&#39;) but this messes up columns. Explore this option.</span>
+                        <span class="nx">tdWidth</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    
+                    <span class="c1">//IE wasn&#39;t recognizing clientWidths, so we are using offsetWidths.</span>
+                    <span class="c1">//TODO: should use getComputedStyle(&#39;width&#39;) because offsetWidth will screw up when padding is changed.</span>
+                    <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">thWidth</span> <span class="o">=</span> <span class="nx">thLiner</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
+                        <span class="nx">tdWidth</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">i</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">);</span>
+                        <span class="c1">//thWidth = parseFloat(thLiner.getComputedStyle(&#39;width&#39;).split(&#39;px&#39;)[0]);</span>
+                        <span class="c1">//tdWidth = parseFloat(td.item(i).getComputedStyle(&#39;width&#39;).split(&#39;px&#39;)[0]); /* TODO: for some reason, using tdLiner.get(&#39;clientWidth&#39;) doesn&#39;t work - why not? */</span>
+                    <span class="p">}</span>
+                                        
+                    <span class="c1">//if TH is bigger than TD, enlarge TD Liner</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">thWidth</span> <span class="o">&gt;</span> <span class="nx">tdWidth</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">tdLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">thWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span>
+                        <span class="c1">//thLiner.setStyle(&#39;width&#39;, (tdWidth - 20 + &#39;px&#39;));</span>
+                        <span class="c1">//stylesheet.set(className,{&#39;width&#39;: (thWidth - 20 + &#39;px&#39;)});</span>
+                    <span class="p">}</span>
+                    
+                    <span class="c1">//if TD is bigger than TH, enlarge TH Liner</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">&gt;</span> <span class="nx">thWidth</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">thLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span>
+                        <span class="nx">tdLiner</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">tdWidth</span> <span class="o">-</span> <span class="mi">20</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">));</span> <span class="c1">//if you don&#39;t set an explicit width here, when the width is set in line 368, it will auto-shrink the widths of the other cells (because they dont have an explicit width)</span>
+                        <span class="c1">//stylesheet.set(className,{&#39;width&#39;: (tdWidth - 20 + &#39;px&#39;)});</span>
+                    <span class="p">}</span>
+                    
+                <span class="c1">//}</span>
 
-			<span class="p">}</span>
-			
-			<span class="c1">//stylesheet.enable();</span>
+            <span class="p">}</span>
+            
+            <span class="c1">//stylesheet.enable();</span>
 
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Adds the approriate width to the liner divs of the TH nodes before they are appended to DOM</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _attachTheadThNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_attachTheadThNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
-		
-		<span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">!==</span> <span class="s1">&#39;auto&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">o</span><span class="p">.</span><span class="nx">th</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">setStyles</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">overflow</span><span class="o">:</span><span class="s1">&#39;hidden&#39;</span><span class="p">});</span> <span class="c1">//TODO: use liner API but liner is undefined here (not created?)</span>
-		<span class="p">}</span>
-		<span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_attachTheadThNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">!==</span> <span class="s1">&#39;auto&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">o</span><span class="p">.</span><span class="nx">th</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">setStyles</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">overflow</span><span class="o">:</span><span class="s1">&#39;hidden&#39;</span><span class="p">});</span> <span class="c1">//TODO: use liner API but liner is undefined here (not created?)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Adds the appropriate width to the liner divs of the TD nodes before they are appended to DOM</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _attachTbodyTdNode</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_attachTbodyTdNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
-		
-		<span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">!==</span> <span class="s1">&#39;auto&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">setStyles</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">overflow</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">});</span> <span class="c1">//TODO: use liner API but liner is undefined here (not created?)</span>
-			<span class="c1">//o.td.setStyles({&#39;width&#39;: w, &#39;overflow&#39;: &#39;hidden&#39;});</span>
-		<span class="p">}</span>
-		<span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_attachTbodyTdNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="nx">w</span> <span class="o">!==</span> <span class="s1">&#39;auto&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">).</span><span class="nx">setStyles</span><span class="p">({</span><span class="nx">width</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">overflow</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">});</span> <span class="c1">//TODO: use liner API but liner is undefined here (not created?)</span>
+            <span class="c1">//o.td.setStyles({&#39;width&#39;: w, &#39;overflow&#39;: &#39;hidden&#39;});</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Creates the body DIV that contains all the data. </span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _createBodyContainer</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_createBodyContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span>	<span class="nx">bd</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">CONTAINER_BODY</span><span class="p">),</span>
-			<span class="nx">onScrollFn</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">&quot;_onScroll&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-			
-		<span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span> <span class="o">=</span> <span class="nx">bd</span><span class="p">;</span>		
-		<span class="k">this</span><span class="p">.</span><span class="nx">_setStylesForTbody</span><span class="p">();</span>
-		
-		<span class="nx">bd</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentTableNode</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">bd</span><span class="p">);</span>
-		<span class="nx">bd</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="nx">onScrollFn</span><span class="p">);</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_createBodyContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">bd</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">CONTAINER_BODY</span><span class="p">),</span>
+            <span class="nx">onScrollFn</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">&quot;_onScroll&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            
+        <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span> <span class="o">=</span> <span class="nx">bd</span><span class="p">;</span>       
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setStylesForTbody</span><span class="p">();</span>
+        
+        <span class="nx">bd</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentTableNode</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">bd</span><span class="p">);</span>
+        <span class="nx">bd</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;scroll&#39;</span><span class="p">,</span> <span class="nx">onScrollFn</span><span class="p">);</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Creates the DIV that contains a &amp;lt;table&amp;gt; with all the headers. </span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _createHeaderContainer</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_createHeaderContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">hd</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">CONTAINER_HEADER</span><span class="p">),</span>
-			<span class="nx">tbl</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TEMPLATE_TABLE</span><span class="p">);</span>
-			
-		<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span> <span class="o">=</span> <span class="nx">hd</span><span class="p">;</span>
-		
-		<span class="c1">//hd.setStyle(&#39;backgroundColor&#39;,this.get(&quot;COLOR_COLUMNFILLER&quot;));</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_setStylesForThead</span><span class="p">();</span>
-		<span class="nx">tbl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span><span class="p">);</span>
-		<span class="nx">hd</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tbl</span><span class="p">);</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">hd</span><span class="p">);</span>
-		
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_createHeaderContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">hd</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">CONTAINER_HEADER</span><span class="p">),</span>
+            <span class="nx">tbl</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">TEMPLATE_TABLE</span><span class="p">);</span>
+            
+        <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span> <span class="o">=</span> <span class="nx">hd</span><span class="p">;</span>
+        
+        <span class="c1">//hd.setStyle(&#39;backgroundColor&#39;,this.get(&quot;COLOR_COLUMNFILLER&quot;));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setStylesForThead</span><span class="p">();</span>
+        <span class="nx">tbl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span><span class="p">);</span>
+        <span class="nx">hd</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tbl</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">hd</span><span class="p">);</span>
+        
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Creates styles for the TBODY based on what type of table it is.</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _setStylesForTbody</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setStylesForTbody</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">dir</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">),</span>
-			<span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-			<span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-			<span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
-			<span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span><span class="nx">width</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span><span class="nx">h</span><span class="p">};</span>
-				
-		<span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">//X-Scrolling tables should not have a Y-Scrollbar so overflow-y is hidden. THe width on x-scrolling tables must be set by user.</span>
-			<span class="nx">styles</span><span class="p">.</span><span class="nx">overflowY</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
-			<span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">//Y-Scrolling tables should not have a X-Scrollbar so overflow-x is hidden. The width isn&#39;t neccessary because it can be auto.</span>
-			<span class="nx">styles</span><span class="p">.</span><span class="nx">overflowX</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
-		<span class="p">}</span>
-		
-		<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;xy&#39;</span><span class="p">)</span> <span class="p">{</span>
-			<span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
-		<span class="p">}</span>
-		
-		<span class="k">else</span> <span class="p">{</span>
-		    <span class="c1">//scrolling is set to &#39;null&#39; - ie: width and height are not set. Don&#39;t have any type of scrolling.</span>
-		    <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowX</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
-		    <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowY</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
-		    <span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
-		<span class="p">}</span>
-		
-		<span class="nx">el</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">styles</span><span class="p">);</span>
-		<span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
-	<span class="p">},</span>
-	
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setStylesForTbody</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">dir</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">),</span>
+            <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
+            <span class="nx">styles</span> <span class="o">=</span> <span class="p">{</span><span class="nx">width</span><span class="o">:</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span><span class="nx">h</span><span class="p">};</span>
+                
+        <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//X-Scrolling tables should not have a Y-Scrollbar so overflow-y is hidden. THe width on x-scrolling tables must be set by user.</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowY</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">//Y-Scrolling tables should not have a X-Scrollbar so overflow-x is hidden. The width isn&#39;t neccessary because it can be auto.</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowX</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dir</span> <span class="o">===</span> <span class="s1">&#39;xy&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">//scrolling is set to &#39;null&#39; - ie: width and height are not set. Don&#39;t have any type of scrolling.</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowX</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">overflowY</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+            <span class="nx">styles</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="nx">el</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">(</span><span class="nx">styles</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+    <span class="p">},</span>
+    
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Creates styles for the THEAD based on what type of datatable it is.</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _setStylesForThead</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setStylesForThead</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-			<span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">;</span>
-		
-		<span class="c1">//if (dir !== &#39;y&#39;) {</span>
-			<span class="nx">el</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="s1">&#39;overflow&#39;</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">});</span>
-		<span class="c1">// }</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setStylesForThead</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">;</span>
+        
+        <span class="c1">//if (dir !== &#39;y&#39;) {</span>
+            <span class="nx">el</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span><span class="s1">&#39;width&#39;</span><span class="o">:</span> <span class="nx">w</span><span class="p">,</span> <span class="s1">&#39;overflow&#39;</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">});</span>
+        <span class="c1">// }</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Sets an auto width on the content box if it doesn&#39;t exist or if its a y-datatable.</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _setContentBoxDimensions</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_setContentBoxDimensions</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		
-		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)))</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-		
-	<span class="p">},</span>
-	
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	<span class="c1">//</span>
-	<span class="c1">// Scroll Syncing</span>
-	<span class="c1">//</span>
-	<span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
-	
-	<span class="cm">/**</span>
+    <span class="nx">_setContentBoxDimensions</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+    <span class="p">},</span>
+    
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">//</span>
+    <span class="c1">// Scroll Syncing</span>
+    <span class="c1">//</span>
+    <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+    
+    <span class="cm">/**</span>
 <span class="cm">    * @description Ensures that scrolling is synced across the two tables</span>
-<span class="cm">	*</span>
+<span class="cm">    *</span>
 <span class="cm">    * @method _onScroll</span>
 <span class="cm">    * @private</span>
 <span class="cm">    */</span>
-	<span class="nx">_onScroll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
-<span class="cm">	 * @description Syncs padding around scrollable tables, including Column header right-padding</span>
-<span class="cm">	 * and container width and height.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncScroll</span>
-<span class="cm">	 * @private </span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncScroll</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollX</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollY</span><span class="p">();</span>
-		<span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollOverhang</span><span class="p">();</span>
-		<span class="k">if</span><span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// Bug 1925874</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
-			
-			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">))</span> <span class="p">{</span>
-		 		<span class="c1">// Bug 1926125</span>
-		 		<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span> <span class="o">+=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-		 	<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
-<span class="cm">	* @description Snaps container width for y-scrolling tables.</span>
-<span class="cm">	*</span>
-<span class="cm">	* @method _syncScrollY</span>
-<span class="cm">	* @private</span>
-<span class="cm">	*/</span>
-	<span class="nx">_syncScrollY</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">tBody</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span><span class="p">,</span>
-		    <span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
-			<span class="nx">w</span><span class="p">;</span>
-		    <span class="c1">// X-scrolling not enabled</span>
-			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">))</span> <span class="p">{</span>
-		        <span class="c1">// Snap outer container width to content</span>
-		        <span class="nx">w</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientHeight&#39;</span><span class="p">))</span> <span class="o">?</span>
-		    	<span class="c1">// but account for y-scrollbar since it is visible</span>
-					<span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">19</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span> <span class="o">:</span>
-		     		<span class="c1">// no y-scrollbar, just borders</span>
-            		<span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">;</span>
-				<span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-		
-	<span class="cm">/**</span>
-<span class="cm">	 * @description Snaps container height for x-scrolling tables in IE. Syncs message TBODY width. </span>
-<span class="cm">	 * Taken from YUI2 ScrollingDataTable.js</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncScrollX</span>
-<span class="cm">	 * @private</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncScrollX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">tBody</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span><span class="p">,</span>
-			<span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
-			<span class="nx">w</span><span class="p">;</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
-			
-			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span><span class="p">))</span> <span class="p">{</span>
-						<span class="nx">w</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollWidth&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">))</span> <span class="o">?</span>
-			            <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">18</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span> <span class="o">:</span> 
-			            <span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">;</span>
-						
-						<span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span>
-					<span class="p">}</span>
-			
-		<span class="k">if</span> <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rows&#39;</span><span class="p">).</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">);</span>
-		<span class="p">}</span>
-		<span class="k">else</span> <span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
-		<span class="p">}</span>
-			
-	<span class="p">},</span>
-	
-	<span class="cm">/**</span>
-<span class="cm">	 * @description Adds/removes Column header overhang as necesary.</span>
-<span class="cm">	 * Taken from YUI2 ScrollingDataTable.js</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _syncScrollOverhang</span>
-<span class="cm">	 * @private</span>
-<span class="cm">	 */</span>
-	<span class="nx">_syncScrollOverhang</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
-			<span class="nx">padding</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-		
-		<span class="c1">//when its both x and y scrolling</span>
-		<span class="k">if</span> <span class="p">((</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientHeight&#39;</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollWidth&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)))</span> <span class="p">{</span>
-			<span class="nx">padding</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
-		<span class="p">}</span>
-		
-		<span class="k">this</span><span class="p">.</span><span class="nx">_setOverhangValue</span><span class="p">(</span><span class="nx">padding</span><span class="p">);</span>
-		
-		<span class="c1">//After the widths have synced, there is a wrapping issue in the headerContainer in IE6. The header does not span the full</span>
-		<span class="c1">//length of the table (does not cover all of the y-scrollbar). By adding this line in when there is a y-scroll, the header will span correctly.</span>
-		<span class="c1">//TODO: this should not really occur on this.get(&#39;_scroll&#39;) === y - it should occur when scrollHeight &gt; clientHeight, but clientHeight is not getting recognized in IE6?</span>
-		<span class="k">if</span> <span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span>
-		<span class="p">{</span>
-			<span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">));</span>
-		<span class="p">}</span>
-	<span class="p">},</span>
-	
-	
-	<span class="cm">/**</span>
-<span class="cm">	 * @description Sets Column header overhang to given width.</span>
-<span class="cm">	 * Taken from YUI2 ScrollingDataTable.js with minor modifications</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method _setOverhangValue</span>
-<span class="cm">	 * @param nBorderWidth {Number} Value of new border for overhang. </span>
-<span class="cm">	 * @private</span>
-<span class="cm">	 */</span> 
-	<span class="nx">_setOverhangValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">borderWidth</span><span class="p">)</span> <span class="p">{</span>
-		<span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
-			<span class="nx">cols</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;columnset&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;definitions&#39;</span><span class="p">),</span>
-		 	<span class="c1">//lastHeaders = cols[cols.length-1] || [],</span>
-	        <span class="nx">len</span> <span class="o">=</span> <span class="nx">cols</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
-	        <span class="nx">value</span> <span class="o">=</span> <span class="nx">borderWidth</span> <span class="o">+</span> <span class="s2">&quot;px solid &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;COLOR_COLUMNFILLER&quot;</span><span class="p">),</span>
-			<span class="nx">children</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39; .&#39;</span> <span class="o">+</span> <span class="nx">CLASS_HEADER</span> <span class="o">+</span> <span class="s1">&#39; table thead th&#39;</span><span class="p">);</span>
+    <span class="nx">_onScroll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * @description Syncs padding around scrollable tables, including Column header right-padding</span>
+<span class="cm">     * and container width and height.</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncScroll</span>
+<span class="cm">     * @private </span>
+<span class="cm">     */</span>
+    <span class="nx">_syncScroll</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollX</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollY</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_syncScrollOverhang</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">opera</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Bug 1925874</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
+            
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// Bug 1926125</span>
+                <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span> <span class="o">+=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">    * @description Snaps container width for y-scrolling tables.</span>
+<span class="cm">    *</span>
+<span class="cm">    * @method _syncScrollY</span>
+<span class="cm">    * @private</span>
+<span class="cm">    */</span>
+    <span class="nx">_syncScrollY</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">tBody</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span><span class="p">,</span>
+            <span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
+            <span class="nx">w</span><span class="p">;</span>
+            <span class="c1">// X-scrolling not enabled</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="c1">// Snap outer container width to content</span>
+                <span class="nx">w</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientHeight&#39;</span><span class="p">))</span> <span class="o">?</span>
+                <span class="c1">// but account for y-scrollbar since it is visible</span>
+                    <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">19</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span> <span class="o">:</span>
+                    <span class="c1">// no y-scrollbar, just borders</span>
+                    <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+        
+    <span class="cm">/**</span>
+<span class="cm">     * @description Snaps container height for x-scrolling tables in IE. Syncs message TBODY width. </span>
+<span class="cm">     * Taken from YUI2 ScrollingDataTable.js</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncScrollX</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncScrollX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">tBody</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTbodyNode</span><span class="p">,</span>
+            <span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
+            <span class="nx">w</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">));</span>
+            
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">w</span> <span class="o">=</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollWidth&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">))</span> <span class="o">?</span>
+                        <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">18</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span> <span class="o">:</span> 
+                        <span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">;</span>
+                        
+                        <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="nx">w</span><span class="p">);</span>
+                    <span class="p">}</span>
+            
+        <span class="k">if</span> <span class="p">(</span><span class="nx">tBody</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;rows&#39;</span><span class="p">).</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentTheadNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetWidth&#39;</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;px&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_parentMsgNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+            
+    <span class="p">},</span>
+    
+    <span class="cm">/**</span>
+<span class="cm">     * @description Adds/removes Column header overhang as necesary.</span>
+<span class="cm">     * Taken from YUI2 ScrollingDataTable.js</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _syncScrollOverhang</span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span>
+    <span class="nx">_syncScrollOverhang</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">tBodyContainer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">,</span>
+            <span class="nx">padding</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        
+        <span class="c1">//when its both x and y scrolling</span>
+        <span class="k">if</span> <span class="p">((</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientHeight&#39;</span><span class="p">))</span> <span class="o">||</span> <span class="p">(</span><span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollWidth&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">tBodyContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;clientWidth&#39;</span><span class="p">)))</span> <span class="p">{</span>
+            <span class="nx">padding</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+        <span class="p">}</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">_setOverhangValue</span><span class="p">(</span><span class="nx">padding</span><span class="p">);</span>
+        
+        <span class="c1">//After the widths have synced, there is a wrapping issue in the headerContainer in IE6. The header does not span the full</span>
+        <span class="c1">//length of the table (does not cover all of the y-scrollbar). By adding this line in when there is a y-scroll, the header will span correctly.</span>
+        <span class="c1">//TODO: this should not really occur on this.get(&#39;_scroll&#39;) === y - it should occur when scrollHeight &gt; clientHeight, but clientHeight is not getting recognized in IE6?</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">YUA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">!==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;_scroll&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;y&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollHeight&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_bodyContainerNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_headerContainerNode</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    
+    
+    <span class="cm">/**</span>
+<span class="cm">     * @description Sets Column header overhang to given width.</span>
+<span class="cm">     * Taken from YUI2 ScrollingDataTable.js with minor modifications</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method _setOverhangValue</span>
+<span class="cm">     * @param nBorderWidth {Number} Value of new border for overhang. </span>
+<span class="cm">     * @private</span>
+<span class="cm">     */</span> 
+    <span class="nx">_setOverhangValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">borderWidth</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">host</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+            <span class="nx">cols</span> <span class="o">=</span> <span class="nx">host</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;columnset&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;definitions&#39;</span><span class="p">),</span>
+            <span class="c1">//lastHeaders = cols[cols.length-1] || [],</span>
+            <span class="nx">len</span> <span class="o">=</span> <span class="nx">cols</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="nx">value</span> <span class="o">=</span> <span class="nx">borderWidth</span> <span class="o">+</span> <span class="s2">&quot;px solid &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;COLOR_COLUMNFILLER&quot;</span><span class="p">),</span>
+            <span class="nx">children</span> <span class="o">=</span> <span class="nx">YNode</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_parentContainer</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">+</span> <span class="s1">&#39; .&#39;</span> <span class="o">+</span> <span class="nx">CLASS_HEADER</span> <span class="o">+</span> <span class="s1">&#39; table thead th&#39;</span><span class="p">);</span>
 
-		<span class="nx">children</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">len</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;borderRight&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-	<span class="p">}</span>
-	
+        <span class="nx">children</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="nx">len</span><span class="o">-</span><span class="mi">1</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;borderRight&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
+    <span class="p">}</span>
+    
 <span class="p">});</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Plugin&quot;</span><span class="p">).</span><span class="nx">DataTableScroll</span> <span class="o">=</span> <span class="nx">DataTableScroll</span><span class="p">;</span>
@@ -1441,8 +1457,7 @@
 
 
 
-
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatable-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">,</span><span class="s1">&#39;stylesheet&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;datatable-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">,</span><span class="s1">&#39;stylesheet&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1460,7 +1475,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Column.html#config_abbr", "access": "", "host": "Column", "type": "config", "name": "abbr"}, {"url": "Column.html#event_abbrChange", "access": "", "host": "Column", "type": "event", "name": "abbrChange"}, {"url": "DataTable.Base.html#method__addCaptionNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addCaptionNode"}, {"url": "DataTable.Base.html#method__addColgroupNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addColgroupNode"}, {"url": "DataTable.Base.html#method__addMessageNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addMessageNode"}, {"url": "DataTable.Base.html#method__addTableNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTableNode"}, {"url": "DataTable.Base.html#method__addTbodyNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyNode"}, {"url": "DataTable.Base.html#method__addTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTdNode"}, {"url": "DataTable.Base.html#method__addTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTrNode"}, {"url": "DataTable.Base.html#method__addTheadNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadNode"}, {"url": "DataTable.Base.html#method__addTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadThNode"}, {"url": "DataTable.Base.html#method__addTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadTrNode"}, {"url": "DataTable.Base.html#method__afterCaptionChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterCaptionChange"}, {"url": "DataTable.Base.html#method__afterColumnsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterColumnsetChange"}, {"url": "DataTable.Base.html#method__afterRecordsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterRecordsetChange"}, {"url": "DataTable.Base.html#method__afterSummaryChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterSummaryChange"}, {"url": "DataTable.Base.html#method__attachTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTdNode"}, {"url": "DataTable.Base.html#method__attachTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTrNode"}, {"url": "DataTable.Base.html#method__attachTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadThNode"}, {"url": "DataTable.Base.html#method__attachTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadTrNode"}, {"url": "DataTableSort.html#method__beforeAttachTheadThNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_beforeAttachTheadThNode"}, {"url": "DataTableSort.html#method__before_beforeAttachTbodyTdNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_before_beforeAttachTbodyTdNode"}, {"url": "DataTableSort.html#method__beforeCreateTheadThNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_beforeCreateTheadThNode"}, {"url": "DataTable.Base.html#config_caption", "access": "", "host": "DataTable.Base", "type": "config", "name": "caption"}, {"url": "DataTable.Base.html#event_captionChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "captionChange"}, {"url": "Column.html#config_children", "access": "", "host": "Column", "type": "config", "name": "children"}, {"url": "Column.html#event_childrenChange", "access": "", "host": "Column", "type": "event", "name": "childrenChange"}, {"url": "DataTableScroll.html#config_COLOR_COLUMNFILLER", "access": "", "host": "DataTableScroll", "type": "config", "name": "COLOR_COLUMNFILLER"}, {"url": "DataTableScroll.html#event_COLOR_COLUMNFILLERChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "COLOR_COLUMNFILLERChange"}, {"url": "Column.html#property_colSpan", "access": "", "host": "Column", "type": "property", "name": "colSpan"}, {"url": "DataTable.Base.html#config_columnset", "access": "", "host": "DataTable.Base", "type": "config", "name": "columnset"}, {"url": "DataTable.Base.html#event_columnsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "columnsetChange"}, {"url": "DataTable.Base.html#method__createTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTdNode"}, {"url": "DataTable.Base.html#method__createTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTrNode"}, {"url": "DataTable.Base.html#method__createTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadThNode"}, {"url": "DataTable.Base.html#method__createTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadTrNode"}, {"url": "DataTableDataSource.html#config_datasource", "access": "", "host": "DataTableDataSource", "type": "config", "name": "datasource"}, {"url": "DataTableDataSource.html#event_datasourceChange", "access": "", "host": "DataTableDataSource", "type": "event", "name": "datasourceChange"}, {"url": "Columnset.html#config_definitions", "access": "", "host": "Columnset", "type": "config", "name": "definitions"}, {"url": "Columnset.html#event_definitionsChange", "access": "", "host": "Columnset", "type": "event", "name": "definitionsChange"}, {"url": "Column.html#config_field", "access": "", "host": "Column", "type": "config", "name": "field"}, {"url": "Column.html#event_fieldChange", "access": "", "host": "Column", "type": "event", "name": "fieldChange"}, {"url": "DataTable.Base.html#method_formatDataCell", "access": "", "host": "DataTable.Base", "type": "method", "name": "formatDataCell"}, {"url": "Column.html#property_headers", "access": "", "host": "Column", "type": "property", "name": "headers"}, {"url": "DataTableScroll.html#config_height", "access": "", "host": "DataTableScroll", "type": "config", "name": "height"}, {"url": "DataTableScroll.html#event_heightChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "heightChange"}, {"url": "Column.html#config_id", "access": "", "host": "Column", "type": "config", "name": "id"}, {"url": "Column.html#event_idChange", "access": "", "host": "Column", "type": "event", "name": "idChange"}, {"url": "Columnset.html#property_idHash", "access": "", "host": "Columnset", "type": "property", "name": "idHash"}, {"url": "DataTableDataSource.html#config_initialRequest", "access": "", "host": "DataTableDataSource", "type": "config", "name": "initialRequest"}, {"url": "DataTableDataSource.html#event_initialRequestChange", "access": "", "host": "DataTableDataSource", "type": "event", "name": "initialRequestChange"}, {"url": "Column.html#config_key", "access": "", "host": "Column", "type": "config", "name": "key"}, {"url": "Column.html#event_keyChange", "access": "", "host": "Column", "type": "event", "name": "keyChange"}, {"url": "Columnset.html#property_keyHash", "access": "", "host": "Columnset", "type": "property", "name": "keyHash"}, {"url": "Column.html#property_keyIndex", "access": "", "host": "Column", "type": "property", "name": "keyIndex"}, {"url": "Columnset.html#property_keys", "access": "", "host": "Columnset", "type": "property", "name": "keys"}, {"url": "Column.html#config_label", "access": "", "host": "Column", "type": "config", "name": "label"}, {"url": "Column.html#event_labelChange", "access": "", "host": "Column", "type": "event", "name": "labelChange"}, {"url": "DataTableSort.html#config_lastSortedBy", "access": "", "host": "DataTableSort", "type": "config", "name": "lastSortedBy"}, {"url": "DataTableSort.html#event_lastSortedByChange", "access": "", "host": "DataTableSort", "type": "event", "name": "lastSortedByChange"}, {"url": "DataTableDataSource.html#method_load", "access": "", "host": "DataTableDataSource", "type": "method", "name": "load"}, {"url": "Column.html#property_NAME", "access": "", "host": "Column", "type": "property", "name": "NAME"}, {"url": "Columnset.html#property_NAME", "access": "", "host": "Columnset", "type": "property", "name": "NAME"}, {"url": "DataTable.Base.html#property_NAME", "access": "", "host": "DataTable.Base", "type": "property", "name": "NAME"}, {"url": "DataTableDataSource.html#property_NAME", "access": "", "host": "DataTableDataSource", "type": "property", "name": "NAME"}, {"url": "DataTableSort.html#property_NAME", "access": "", "host": "DataTableSort", "type": "property", "name": "NAME"}, {"url": "DataTableDataSource.html#property_NS", "access": "", "host": "DataTableDataSource", "type": "property", "name": "NS"}, {"url": "DataTableSort.html#property_NS", "access": "", "host": "DataTableSort", "type": "property", "name": "NS"}, {"url": "DataTableDataSource.html#method_onDataReturnInitializeTable", "access": "", "host": "DataTableDataSource", "type": "method", "name": "onDataReturnInitializeTable"}, {"url": "DataTableSort.html#method__onEventSortColumn", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_onEventSortColumn"}, {"url": "Column.html#property_parent", "access": "", "host": "Column", "type": "property", "name": "parent"}, {"url": "DataTable.Base.html#config_recordset", "access": "", "host": "DataTable.Base", "type": "config", "name": "recordset"}, {"url": "DataTable.Base.html#event_recordsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "recordsetChange"}, {"url": "DataTableScroll.html#method_renderUI", "access": "", "host": "DataTableScroll", "type": "method", "name": "renderUI"}, {"url": "Column.html#property_rowSpan", "access": "", "host": "Column", "type": "property", "name": "rowSpan"}, {"url": "DataTableScroll.html#event_scrollChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "scrollChange"}, {"url": "DataTable.Base.html#config_summary", "access": "", "host": "DataTable.Base", "type": "config", "name": "summary"}, {"url": "DataTable.Base.html#event_summaryChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "summaryChange"}, {"url": "DataTableScroll.html#method_syncUI", "access": "", "host": "DataTableScroll", "type": "method", "name": "syncUI"}, {"url": "DataTable.Base.html#property_tdTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "tdTemplate"}, {"url": "DataTable.Base.html#config_tdValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "tdValueTemplate"}, {"url": "DataTable.Base.html#event_tdValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "tdValueTemplateChange"}, {"url": "DataTableSort.html#config_template", "access": "", "host": "DataTableSort", "type": "config", "name": "template"}, {"url": "DataTableSort.html#event_templateChange", "access": "", "host": "DataTableSort", "type": "event", "name": "templateChange"}, {"url": "Column.html#property_thNode", "access": "", "host": "Column", "type": "property", "name": "thNode"}, {"url": "DataTable.Base.html#property_thTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "thTemplate"}, {"url": "DataTable.Base.html#config_thValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "thValueTemplate"}, {"url": "DataTable.Base.html#event_thValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "thValueTemplateChange"}, {"url": "Columnset.html#property_tree", "access": "", "host": "Columnset", "type": "property", "name": "tree"}, {"url": "DataTableSort.html#config_trigger", "access": "", "host": "DataTableSort", "type": "config", "name": "trigger"}, {"url": "DataTableSort.html#event_triggerChange", "access": "", "host": "DataTableSort", "type": "event", "name": "triggerChange"}, {"url": "DataTable.Base.html#config_trTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "trTemplate"}, {"url": "DataTable.Base.html#event_trTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "trTemplateChange"}, {"url": "Column.html#method__uiSetAbbr", "access": "protected", "host": "Column", "type": "method", "name": "_uiSetAbbr"}, {"url": "DataTable.Base.html#method__uiSetCaption", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetCaption"}, {"url": "DataTable.Base.html#method__uiSetColumnset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetColumnset"}, {"url": "DataTableSort.html#method__uiSetLastSortedBy", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_uiSetLastSortedBy"}, {"url": "DataTable.Base.html#method__uiSetRecordset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetRecordset"}, {"url": "DataTable.Base.html#method__uiSetSummary", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetSummary"}, {"url": "DataTableScroll.html#config_width", "access": "", "host": "DataTableScroll", "type": "config", "name": "width"}, {"url": "DataTableScroll.html#event_widthChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "widthChange"}];
+    var ALL_YUI_PROPS = [{"url": "Column.html#config_abbr", "access": "", "host": "Column", "type": "config", "name": "abbr"}, {"url": "Column.html#event_abbrChange", "access": "", "host": "Column", "type": "event", "name": "abbrChange"}, {"url": "DataTable.Base.html#method__addCaptionNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addCaptionNode"}, {"url": "DataTable.Base.html#method__addColgroupNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addColgroupNode"}, {"url": "DataTable.Base.html#method__addMessageNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addMessageNode"}, {"url": "DataTable.Base.html#method__addTableNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTableNode"}, {"url": "DataTable.Base.html#method__addTbodyNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyNode"}, {"url": "DataTable.Base.html#method__addTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTdNode"}, {"url": "DataTable.Base.html#method__addTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTbodyTrNode"}, {"url": "DataTable.Base.html#method__addTheadNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadNode"}, {"url": "DataTable.Base.html#method__addTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadThNode"}, {"url": "DataTable.Base.html#method__addTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_addTheadTrNode"}, {"url": "DataTable.Base.html#method__afterCaptionChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterCaptionChange"}, {"url": "DataTable.Base.html#method__afterColumnsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterColumnsetChange"}, {"url": "DataTable.Base.html#method__afterRecordsetChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterRecordsetChange"}, {"url": "DataTable.Base.html#method__afterSummaryChange", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_afterSummaryChange"}, {"url": "DataTable.Base.html#method__attachTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTdNode"}, {"url": "DataTable.Base.html#method__attachTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTbodyTrNode"}, {"url": "DataTable.Base.html#method__attachTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadThNode"}, {"url": "DataTable.Base.html#method__attachTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_attachTheadTrNode"}, {"url": "DataTableSort.html#method__beforeAttachTheadThNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_beforeAttachTheadThNode"}, {"url": "DataTableSort.html#method__before_beforeAttachTbodyTdNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_before_beforeAttachTbodyTdNode"}, {"url": "DataTableSort.html#method__beforeCreateTheadThNode", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_beforeCreateTheadThNode"}, {"url": "DataTable.Base.html#config_caption", "access": "", "host": "DataTable.Base", "type": "config", "name": "caption"}, {"url": "DataTable.Base.html#event_captionChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "captionChange"}, {"url": "Column.html#config_children", "access": "", "host": "Column", "type": "config", "name": "children"}, {"url": "Column.html#event_childrenChange", "access": "", "host": "Column", "type": "event", "name": "childrenChange"}, {"url": "DataTableScroll.html#config_COLOR_COLUMNFILLER", "access": "", "host": "DataTableScroll", "type": "config", "name": "COLOR_COLUMNFILLER"}, {"url": "DataTableScroll.html#event_COLOR_COLUMNFILLERChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "COLOR_COLUMNFILLERChange"}, {"url": "Column.html#property_colSpan", "access": "", "host": "Column", "type": "property", "name": "colSpan"}, {"url": "DataTable.Base.html#config_columnset", "access": "", "host": "DataTable.Base", "type": "config", "name": "columnset"}, {"url": "DataTable.Base.html#event_columnsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "columnsetChange"}, {"url": "DataTable.Base.html#method__createTbodyTdNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTdNode"}, {"url": "DataTable.Base.html#method__createTbodyTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTbodyTrNode"}, {"url": "DataTable.Base.html#method__createTheadThNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadThNode"}, {"url": "DataTable.Base.html#method__createTheadTrNode", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_createTheadTrNode"}, {"url": "DataTableDataSource.html#config_datasource", "access": "", "host": "DataTableDataSource", "type": "config", "name": "datasource"}, {"url": "DataTableDataSource.html#event_datasourceChange", "access": "", "host": "DataTableDataSource", "type": "event", "name": "datasourceChange"}, {"url": "Columnset.html#config_definitions", "access": "", "host": "Columnset", "type": "config", "name": "definitions"}, {"url": "Columnset.html#event_definitionsChange", "access": "", "host": "Columnset", "type": "event", "name": "definitionsChange"}, {"url": "Column.html#config_field", "access": "", "host": "Column", "type": "config", "name": "field"}, {"url": "Column.html#event_fieldChange", "access": "", "host": "Column", "type": "event", "name": "fieldChange"}, {"url": "DataTable.Base.html#method_formatDataCell", "access": "", "host": "DataTable.Base", "type": "method", "name": "formatDataCell"}, {"url": "Column.html#property_headers", "access": "", "host": "Column", "type": "property", "name": "headers"}, {"url": "DataTableScroll.html#config_height", "access": "", "host": "DataTableScroll", "type": "config", "name": "height"}, {"url": "DataTableScroll.html#event_heightChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "heightChange"}, {"url": "Column.html#config_id", "access": "", "host": "Column", "type": "config", "name": "id"}, {"url": "Column.html#event_idChange", "access": "", "host": "Column", "type": "event", "name": "idChange"}, {"url": "Columnset.html#property_idHash", "access": "", "host": "Columnset", "type": "property", "name": "idHash"}, {"url": "DataTableDataSource.html#config_initialRequest", "access": "", "host": "DataTableDataSource", "type": "config", "name": "initialRequest"}, {"url": "DataTableDataSource.html#event_initialRequestChange", "access": "", "host": "DataTableDataSource", "type": "event", "name": "initialRequestChange"}, {"url": "Column.html#config_key", "access": "", "host": "Column", "type": "config", "name": "key"}, {"url": "Column.html#event_keyChange", "access": "", "host": "Column", "type": "event", "name": "keyChange"}, {"url": "Columnset.html#property_keyHash", "access": "", "host": "Columnset", "type": "property", "name": "keyHash"}, {"url": "Column.html#property_keyIndex", "access": "", "host": "Column", "type": "property", "name": "keyIndex"}, {"url": "Columnset.html#property_keys", "access": "", "host": "Columnset", "type": "property", "name": "keys"}, {"url": "Column.html#config_label", "access": "", "host": "Column", "type": "config", "name": "label"}, {"url": "Column.html#event_labelChange", "access": "", "host": "Column", "type": "event", "name": "labelChange"}, {"url": "DataTableSort.html#config_lastSortedBy", "access": "", "host": "DataTableSort", "type": "config", "name": "lastSortedBy"}, {"url": "DataTableSort.html#event_lastSortedByChange", "access": "", "host": "DataTableSort", "type": "event", "name": "lastSortedByChange"}, {"url": "DataTableDataSource.html#method_load", "access": "", "host": "DataTableDataSource", "type": "method", "name": "load"}, {"url": "DataTableSort.html#property_NAME", "access": "", "host": "DataTableSort", "type": "property", "name": "NAME"}, {"url": "DataTableDataSource.html#property_NAME", "access": "", "host": "DataTableDataSource", "type": "property", "name": "NAME"}, {"url": "Column.html#property_NAME", "access": "", "host": "Column", "type": "property", "name": "NAME"}, {"url": "Columnset.html#property_NAME", "access": "", "host": "Columnset", "type": "property", "name": "NAME"}, {"url": "DataTable.Base.html#property_NAME", "access": "", "host": "DataTable.Base", "type": "property", "name": "NAME"}, {"url": "DataTableSort.html#property_NS", "access": "", "host": "DataTableSort", "type": "property", "name": "NS"}, {"url": "DataTableDataSource.html#property_NS", "access": "", "host": "DataTableDataSource", "type": "property", "name": "NS"}, {"url": "DataTableDataSource.html#method_onDataReturnInitializeTable", "access": "", "host": "DataTableDataSource", "type": "method", "name": "onDataReturnInitializeTable"}, {"url": "DataTableSort.html#method__onEventSortColumn", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_onEventSortColumn"}, {"url": "Column.html#property_parent", "access": "", "host": "Column", "type": "property", "name": "parent"}, {"url": "DataTable.Base.html#config_recordset", "access": "", "host": "DataTable.Base", "type": "config", "name": "recordset"}, {"url": "DataTable.Base.html#event_recordsetChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "recordsetChange"}, {"url": "DataTableScroll.html#method_renderUI", "access": "", "host": "DataTableScroll", "type": "method", "name": "renderUI"}, {"url": "Column.html#property_rowSpan", "access": "", "host": "Column", "type": "property", "name": "rowSpan"}, {"url": "DataTableScroll.html#event_scrollChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "scrollChange"}, {"url": "DataTable.Base.html#config_summary", "access": "", "host": "DataTable.Base", "type": "config", "name": "summary"}, {"url": "DataTable.Base.html#event_summaryChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "summaryChange"}, {"url": "DataTableScroll.html#method_syncUI", "access": "", "host": "DataTableScroll", "type": "method", "name": "syncUI"}, {"url": "DataTable.Base.html#property_tdTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "tdTemplate"}, {"url": "DataTable.Base.html#config_tdValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "tdValueTemplate"}, {"url": "DataTable.Base.html#event_tdValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "tdValueTemplateChange"}, {"url": "DataTableSort.html#config_template", "access": "", "host": "DataTableSort", "type": "config", "name": "template"}, {"url": "DataTableSort.html#event_templateChange", "access": "", "host": "DataTableSort", "type": "event", "name": "templateChange"}, {"url": "Column.html#property_thNode", "access": "", "host": "Column", "type": "property", "name": "thNode"}, {"url": "DataTable.Base.html#property_thTemplate", "access": "", "host": "DataTable.Base", "type": "property", "name": "thTemplate"}, {"url": "DataTable.Base.html#config_thValueTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "thValueTemplate"}, {"url": "DataTable.Base.html#event_thValueTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "thValueTemplateChange"}, {"url": "Columnset.html#property_tree", "access": "", "host": "Columnset", "type": "property", "name": "tree"}, {"url": "DataTableSort.html#config_trigger", "access": "", "host": "DataTableSort", "type": "config", "name": "trigger"}, {"url": "DataTableSort.html#event_triggerChange", "access": "", "host": "DataTableSort", "type": "event", "name": "triggerChange"}, {"url": "DataTable.Base.html#config_trTemplate", "access": "", "host": "DataTable.Base", "type": "config", "name": "trTemplate"}, {"url": "DataTable.Base.html#event_trTemplateChange", "access": "", "host": "DataTable.Base", "type": "event", "name": "trTemplateChange"}, {"url": "Column.html#method__uiSetAbbr", "access": "protected", "host": "Column", "type": "method", "name": "_uiSetAbbr"}, {"url": "DataTable.Base.html#method__uiSetCaption", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetCaption"}, {"url": "DataTable.Base.html#method__uiSetColumnset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetColumnset"}, {"url": "DataTableSort.html#method__uiSetLastSortedBy", "access": "protected", "host": "DataTableSort", "type": "method", "name": "_uiSetLastSortedBy"}, {"url": "DataTable.Base.html#method__uiSetRecordset", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetRecordset"}, {"url": "DataTable.Base.html#method__uiSetSummary", "access": "protected", "host": "DataTable.Base", "type": "method", "name": "_uiSetSummary"}, {"url": "DataTableScroll.html#config_width", "access": "", "host": "DataTableScroll", "type": "config", "name": "width"}, {"url": "DataTableScroll.html#event_widthChange", "access": "", "host": "DataTableScroll", "type": "event", "name": "widthChange"}];
 </script>
 </body>
 </html>

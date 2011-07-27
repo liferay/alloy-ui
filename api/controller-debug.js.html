@@ -1,0 +1,1458 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: app   controller-debug.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			app&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_app.html" title="app">app</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">controller-debug.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Controller.html" title="Controller">Controller</a></li>
+
+
+				                                <li class=""><a href="Model.html" title="Model">Model</a></li>
+
+
+				                                <li class=""><a href="ModelList.html" title="ModelList">ModelList</a></li>
+
+
+				                                <li class=""><a href="View.html" title="View">View</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="app-debug.js.html" title="app-debug.js">app-debug.js</a></li>
+
+
+			                                <li class=""><a href="app-min.js.html" title="app-min.js">app-min.js</a></li>
+
+
+			                                <li class=""><a href="app.js.html" title="app.js">app.js</a></li>
+
+
+			                                <li class="selected"><a href="controller-debug.js.html" title="controller-debug.js">controller-debug.js</a></li>
+
+
+			                                <li class=""><a href="controller-min.js.html" title="controller-min.js">controller-min.js</a></li>
+
+
+			                                <li class=""><a href="controller.js.html" title="controller.js">controller.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.4.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;controller&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+<span class="cm">/**</span>
+<span class="cm">The app framework provides simple MVC-like building blocks (models, model lists,</span>
+<span class="cm">views, and controllers) for writing single-page JavaScript applications.</span>
+
+<span class="cm">@main app</span>
+<span class="cm">@module app</span>
+<span class="cm">**/</span>
+
+<span class="cm">/**</span>
+<span class="cm">Provides URL-based routing using HTML5 `pushState()` or the location hash.</span>
+
+<span class="cm">This makes it easy to wire up route handlers for different application states</span>
+<span class="cm">while providing full back/forward navigation support and bookmarkable, shareable</span>
+<span class="cm">URLs.</span>
+
+<span class="cm">@submodule controller</span>
+<span class="cm">@class Controller</span>
+<span class="cm">@constructor</span>
+<span class="cm">@uses Base</span>
+<span class="cm">**/</span>
+
+<span class="kd">var</span> <span class="nx">HistoryHash</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">HistoryHash</span><span class="p">,</span>
+    <span class="nx">Lang</span>        <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+    <span class="nx">QS</span>          <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">QueryString</span><span class="p">,</span>
+    <span class="nx">YArray</span>      <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span>
+
+    <span class="c1">// Android versions lower than 3.0 are buggy and don&#39;t update</span>
+    <span class="c1">// window.location after a pushState() call, so we fall back to hash-based</span>
+    <span class="c1">// history for them.</span>
+    <span class="c1">//</span>
+    <span class="c1">// See http://code.google.com/p/android/issues/detail?id=17471</span>
+    <span class="nx">html5</span>    <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">HistoryBase</span><span class="p">.</span><span class="nx">html5</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">android</span> <span class="o">||</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">android</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">),</span>
+    <span class="nx">win</span>      <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span>
+    <span class="nx">location</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">location</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Fired when the controller is ready to begin dispatching to route handlers.</span>
+
+<span class="cm">    You shouldn&#39;t need to wait for this event unless you plan to implement some</span>
+<span class="cm">    kind of custom dispatching logic. It&#39;s used internally in order to avoid</span>
+<span class="cm">    dispatching to an initial route if a browser history change occurs first.</span>
+
+<span class="cm">    @event ready</span>
+<span class="cm">    @param {Boolean} dispatched `true` if routes have already been dispatched</span>
+<span class="cm">      (most likely due to a history change).</span>
+<span class="cm">    @fireOnce</span>
+<span class="cm">    **/</span>
+    <span class="nx">EVT_READY</span> <span class="o">=</span> <span class="s1">&#39;ready&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">Controller</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Controller</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Controller</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Controller</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+    <span class="c1">// -- Public Properties ----------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Whether or not this browser is capable of using HTML5 history.</span>
+
+<span class="cm">    This property is for informational purposes only. It&#39;s not configurable, and</span>
+<span class="cm">    changing it will have no effect.</span>
+
+<span class="cm">    @property html5</span>
+<span class="cm">    @type Boolean</span>
+<span class="cm">    **/</span>
+    <span class="nx">html5</span><span class="o">:</span> <span class="nx">html5</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Root path from which all routes should be evaluated.</span>
+
+<span class="cm">    For example, if your controller is running on a page at</span>
+<span class="cm">    `http://example.com/myapp/` and you add a route with the path `/`, your</span>
+<span class="cm">    route will never execute, because the path will always be preceded by</span>
+<span class="cm">    `/myapp`. Setting `root` to `/myapp` would cause all routes to be evaluated</span>
+<span class="cm">    relative to that root URL, so the `/` route would then execute when the</span>
+<span class="cm">    user browses to `http://example.com/myapp/`.</span>
+
+<span class="cm">    This property may be overridden in a subclass, set after instantiation, or</span>
+<span class="cm">    passed as a config attribute when instantiating a `Y.Controller`-based</span>
+<span class="cm">    class.</span>
+
+<span class="cm">    @property root</span>
+<span class="cm">    @type String</span>
+<span class="cm">    @default `&#39;&#39;`</span>
+<span class="cm">    **/</span>
+    <span class="nx">root</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Array of route objects specifying routes to be created at instantiation</span>
+<span class="cm">    time.</span>
+
+<span class="cm">    Each item in the array must be an object with the following properties:</span>
+
+<span class="cm">      * `path`: String or regex representing the path to match. See the docs for</span>
+<span class="cm">        the `route()` method for more details.</span>
+<span class="cm">      * `callback`: Function or a string representing the name of a function on</span>
+<span class="cm">        this controller instance that should be called when the route is</span>
+<span class="cm">        triggered. See the docs for the `route()` method for more details.</span>
+
+<span class="cm">    This property may be overridden in a subclass or passed as a config</span>
+<span class="cm">    attribute when instantiating a `Y.Controller`-based class, but setting it</span>
+<span class="cm">    after instantiation will have no effect (use the `route()` method instead).</span>
+
+<span class="cm">    If routes are passed at instantiation time, they will override any routes</span>
+<span class="cm">    set on the prototype.</span>
+
+<span class="cm">    @property routes</span>
+<span class="cm">    @type Object[]</span>
+<span class="cm">    @default `[]`</span>
+<span class="cm">    **/</span>
+    <span class="nx">routes</span><span class="o">:</span> <span class="p">[],</span>
+
+    <span class="c1">// -- Protected Properties -------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Whether or not `_dispatch()` has been called since this controller was</span>
+<span class="cm">    instantiated.</span>
+
+<span class="cm">    @property _dispatched</span>
+<span class="cm">    @type Boolean</span>
+<span class="cm">    @default undefined</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Whether or not the `ready` event has fired yet.</span>
+
+<span class="cm">    @property _ready</span>
+<span class="cm">    @type Boolean</span>
+<span class="cm">    @default undefined</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Regex used to match parameter placeholders in route paths.</span>
+
+<span class="cm">    Subpattern captures:</span>
+
+<span class="cm">      1. Parameter prefix character. Either a `:` for subpath parameters that</span>
+<span class="cm">         should only match a single level of a path, or `*` for splat parameters</span>
+<span class="cm">         that should match any number of path levels.</span>
+<span class="cm">      2. Parameter name.</span>
+
+<span class="cm">    @property _regexPathParam</span>
+<span class="cm">    @type RegExp</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_regexPathParam</span><span class="o">:</span> <span class="sr">/([:*])([\w-]+)/g</span><span class="p">,</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Regex that matches and captures the query portion of a URL, minus the</span>
+<span class="cm">    preceding `?` character, and discarding the hash portion of the URL if any.</span>
+
+<span class="cm">    @property _regexUrlQuery</span>
+<span class="cm">    @type RegExp</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_regexUrlQuery</span><span class="o">:</span> <span class="sr">/\?([^#]*).*$/</span><span class="p">,</span>
+
+    <span class="c1">// -- Lifecycle Methods ----------------------------------------------------</span>
+    <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="c1">// Set config properties.</span>
+        <span class="nx">config</span> <span class="o">||</span> <span class="p">(</span><span class="nx">config</span> <span class="o">=</span> <span class="p">{});</span>
+
+        <span class="nx">config</span><span class="p">.</span><span class="nx">routes</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">routes</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">routes</span><span class="p">);</span>
+        <span class="nx">Lang</span><span class="p">.</span><span class="nx">isValue</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">root</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">root</span> <span class="o">=</span> <span class="nx">config</span><span class="p">.</span><span class="nx">root</span><span class="p">);</span>
+
+        <span class="c1">// Create routes.</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_routes</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="nx">YArray</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">routes</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">route</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">route</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">path</span><span class="p">,</span> <span class="nx">route</span><span class="p">.</span><span class="nx">callback</span><span class="p">);</span>
+        <span class="p">});</span>
+
+        <span class="c1">// Set up a history instance or hashchange listener.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">html5</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">_history</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">HistoryHTML5</span><span class="p">({</span><span class="nx">force</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">_history</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_afterHistoryChange</span><span class="p">,</span> <span class="nx">self</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;hashchange&#39;</span><span class="p">,</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_afterHistoryChange</span><span class="p">,</span> <span class="nx">win</span><span class="p">,</span> <span class="nx">self</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Fire a &#39;ready&#39; event once we&#39;re ready to route. We wait first for all</span>
+        <span class="c1">// subclass initializers to finish, and then an additional 20ms to allow</span>
+        <span class="c1">// the browser to fire an initial `popstate` event if it wants to.</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">EVT_READY</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">defaultFn</span>  <span class="o">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_defReadyFn</span><span class="p">,</span>
+            <span class="nx">fireOnce</span>   <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">preventable</span><span class="o">:</span> <span class="kc">false</span>
+        <span class="p">});</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="s1">&#39;initializedChange&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">self</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">EVT_READY</span><span class="p">,</span> <span class="p">{</span><span class="nx">dispatched</span><span class="o">:</span> <span class="o">!!</span><span class="nx">self</span><span class="p">.</span><span class="nx">_dispatched</span><span class="p">});</span>
+            <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">html5</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_history</span><span class="p">.</span><span class="nx">detachAll</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">detach</span><span class="p">(</span><span class="s1">&#39;hashchange&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterHistoryChange</span><span class="p">,</span> <span class="nx">win</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Public Methods -------------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Dispatches to the first route handler that matches the current URL, if any.</span>
+
+<span class="cm">    If `dispatch()` is called before the `ready` event has fired, it will</span>
+<span class="cm">    automatically wait for the `ready` event before dispatching. Otherwise it</span>
+<span class="cm">    will dispatch immediately.</span>
+
+<span class="cm">    @method dispatch</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    **/</span>
+    <span class="nx">dispatch</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="nx">EVT_READY</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">hash</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getHashPath</span><span class="p">();</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">html5</span> <span class="o">&amp;&amp;</span> <span class="nx">hash</span> <span class="o">&amp;&amp;</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">// This is an HTML5 browser and we have a hash-based path in the</span>
+                <span class="c1">// URL, so we need to upgrade the URL to a non-hash URL. This</span>
+                <span class="c1">// will trigger a `history:change` event, which will in turn</span>
+                <span class="c1">// trigger a dispatch.</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_history</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">url</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_joinURL</span><span class="p">(</span><span class="nx">hash</span><span class="p">)});</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_dispatch</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_getPath</span><span class="p">());</span>
+            <span class="p">}</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Returns an array of route objects that match the specified URL path.</span>
+
+<span class="cm">    This method is called internally to determine which routes match the current</span>
+<span class="cm">    path whenever the URL changes. You may override it if you want to customize</span>
+<span class="cm">    the route matching logic, although this usually shouldn&#39;t be necessary.</span>
+
+<span class="cm">    Each returned route object has the following properties:</span>
+
+<span class="cm">      * `callback`: A function or a string representing the name of a function</span>
+<span class="cm">        this controller that should be executed when the route is triggered.</span>
+<span class="cm">      * `keys`: An array of strings representing the named parameters defined in</span>
+<span class="cm">        the route&#39;s path specification, if any.</span>
+<span class="cm">      * `path`: The route&#39;s path specification, which may be either a string or</span>
+<span class="cm">        a regex.</span>
+<span class="cm">      * `regex`: A regular expression version of the route&#39;s path specification.</span>
+<span class="cm">        This regex is used to determine whether the route matches a given path.</span>
+
+<span class="cm">    @example</span>
+<span class="cm">        controller.route(&#39;/foo&#39;, function () {});</span>
+<span class="cm">        controller.match(&#39;/foo&#39;);</span>
+<span class="cm">        // =&gt; [{callback: ..., keys: [], path: &#39;/foo&#39;, regex: ...}]</span>
+
+<span class="cm">    @method match</span>
+<span class="cm">    @param {String} path URL path to match.</span>
+<span class="cm">    @return {Object[]} Array of route objects that match the specified path.</span>
+<span class="cm">    **/</span>
+    <span class="nx">match</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_routes</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">route</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">path</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">regex</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Replaces the current browser history entry with a new one, and dispatches to</span>
+<span class="cm">    the first matching route handler, if any.</span>
+
+<span class="cm">    Behind the scenes, this method uses HTML5 `pushState()` in browsers that</span>
+<span class="cm">    support it (or the location hash in older browsers and IE) to change the</span>
+<span class="cm">    URL.</span>
+
+<span class="cm">    The specified URL must share the same origin (i.e., protocol, host, and</span>
+<span class="cm">    port) as the current page, or an error will occur.</span>
+
+<span class="cm">    @example</span>
+<span class="cm">        // Starting URL: http://example.com/</span>
+
+<span class="cm">        controller.replace(&#39;/path/&#39;);</span>
+<span class="cm">        // New URL: http://example.com/path/</span>
+
+<span class="cm">        controller.replace(&#39;/path?foo=bar&#39;);</span>
+<span class="cm">        // New URL: http://example.com/path?foo=bar</span>
+
+<span class="cm">        controller.replace(&#39;/&#39;);</span>
+<span class="cm">        // New URL: http://example.com/</span>
+
+<span class="cm">    @method replace</span>
+<span class="cm">    @param {String} [url] URL to set. Should be a relative URL. If this</span>
+<span class="cm">      controller&#39;s `root` property is set, this URL must be relative to the</span>
+<span class="cm">      root URL. If no URL is specified, the page&#39;s current URL will be used.</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    @see save()</span>
+<span class="cm">    **/</span>
+    <span class="nx">replace</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_save</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Adds a route handler for the specified URL _path_.</span>
+
+<span class="cm">    The _path_ parameter may be either a string or a regular expression. If it&#39;s</span>
+<span class="cm">    a string, it may contain named parameters: `:param` will match any single</span>
+<span class="cm">    part of a URL path (not including `/` characters), and `*param` will match</span>
+<span class="cm">    any number of parts of a URL path (including `/` characters). These named</span>
+<span class="cm">    parameters will be made available as keys on the `req.params` object that&#39;s</span>
+<span class="cm">    passed to route handlers.</span>
+
+<span class="cm">    If the _path_ parameter is a regex, all pattern matches will be made</span>
+<span class="cm">    available as numbered keys on `req.params`, starting with `0` for the full</span>
+<span class="cm">    match, then `1` for the first subpattern match, and so on.</span>
+
+<span class="cm">    Here&#39;s a set of sample routes along with URL paths that they match:</span>
+
+<span class="cm">      * Route: `/photos/:tag/:page`</span>
+<span class="cm">        * URL: `/photos/kittens/1`, params: `{tag: &#39;kittens&#39;, page: &#39;1&#39;}`</span>
+<span class="cm">        * URL: `/photos/puppies/2`, params: `{tag: &#39;puppies&#39;, page: &#39;2&#39;}`</span>
+
+<span class="cm">      * Route: `/file/*path`</span>
+<span class="cm">        * URL: `/file/foo/bar/baz.txt`, params: `{path: &#39;foo/bar/baz.txt&#39;}`</span>
+<span class="cm">        * URL: `/file/foo`, params: `{path: &#39;foo&#39;}`</span>
+
+<span class="cm">    If multiple route handlers match a given URL, they will be executed in the</span>
+<span class="cm">    order they were added. The first route that was added will be the first to</span>
+<span class="cm">    be executed.</span>
+
+<span class="cm">    @example</span>
+<span class="cm">        controller.route(&#39;/photos/:tag/:page&#39;, function (req, next) {</span>
+<span class="cm">          Y.log(&#39;Current tag: &#39; + req.params.tag);</span>
+<span class="cm">          Y.log(&#39;Current page number: &#39; + req.params.page);</span>
+<span class="cm">        });</span>
+
+<span class="cm">    @method route</span>
+<span class="cm">    @param {String|RegExp} path Path to match. May be a string or a regular</span>
+<span class="cm">      expression.</span>
+<span class="cm">    @param {Function|String} callback Callback function to call whenever this</span>
+<span class="cm">        route is triggered. If specified as a string, the named function will be</span>
+<span class="cm">        called on this controller instance.</span>
+<span class="cm">      @param {Object} callback.req Request object containing information about</span>
+<span class="cm">          the request. It contains the following properties.</span>
+<span class="cm">        @param {Array|Object} callback.req.params Captured parameters matched by</span>
+<span class="cm">          the route path specification. If a string path was used and contained</span>
+<span class="cm">          named parameters, then this will be a key/value hash mapping parameter</span>
+<span class="cm">          names to their matched values. If a regex path was used, this will be</span>
+<span class="cm">          an array of subpattern matches starting at index 0 for the full match,</span>
+<span class="cm">          then 1 for the first subpattern match, and so on.</span>
+<span class="cm">        @param {String} callback.req.path The current URL path.</span>
+<span class="cm">        @param {Object} callback.req.query Query hash representing the URL query</span>
+<span class="cm">          string, if any. Parameter names are keys, and are mapped to parameter</span>
+<span class="cm">          values.</span>
+<span class="cm">      @param {Function} callback.next Callback to pass control to the next</span>
+<span class="cm">        matching route. If you don&#39;t call this function, then no further route</span>
+<span class="cm">        handlers will be executed, even if there are more that match. If you do</span>
+<span class="cm">        call this function, then the next matching route handler (if any) will</span>
+<span class="cm">        be called, and will receive the same `req` object that was passed to</span>
+<span class="cm">        this route (so you can use the request object to pass data along to</span>
+<span class="cm">        subsequent routes).</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    **/</span>
+    <span class="nx">route</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_routes</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+            <span class="nx">callback</span><span class="o">:</span> <span class="nx">callback</span><span class="p">,</span>
+            <span class="nx">keys</span>    <span class="o">:</span> <span class="nx">keys</span><span class="p">,</span>
+            <span class="nx">path</span>    <span class="o">:</span> <span class="nx">path</span><span class="p">,</span>
+            <span class="nx">regex</span>   <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getRegex</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">keys</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Saves a new browser history entry and dispatches to the first matching route</span>
+<span class="cm">    handler, if any.</span>
+
+<span class="cm">    Behind the scenes, this method uses HTML5 `pushState()` in browsers that</span>
+<span class="cm">    support it (or the location hash in older browsers and IE) to change the</span>
+<span class="cm">    URL and create a history entry.</span>
+
+<span class="cm">    The specified URL must share the same origin (i.e., protocol, host, and</span>
+<span class="cm">    port) as the current page, or an error will occur.</span>
+
+<span class="cm">    @example</span>
+<span class="cm">        // Starting URL: http://example.com/</span>
+
+<span class="cm">        controller.save(&#39;/path/&#39;);</span>
+<span class="cm">        // New URL: http://example.com/path/</span>
+
+<span class="cm">        controller.save(&#39;/path?foo=bar&#39;);</span>
+<span class="cm">        // New URL: http://example.com/path?foo=bar</span>
+
+<span class="cm">        controller.save(&#39;/&#39;);</span>
+<span class="cm">        // New URL: http://example.com/</span>
+
+<span class="cm">    @method save</span>
+<span class="cm">    @param {String} [url] URL to set. Should be a relative URL. If this</span>
+<span class="cm">      controller&#39;s `root` property is set, this URL must be relative to the</span>
+<span class="cm">      root URL. If no URL is specified, the page&#39;s current URL will be used.</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    @see replace()</span>
+<span class="cm">    **/</span>
+    <span class="nx">save</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_save</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Methods ----------------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Wrapper around `decodeURIComponent` that also converts `+` chars into</span>
+<span class="cm">    spaces.</span>
+
+<span class="cm">    @method _decode</span>
+<span class="cm">    @param {String} string String to decode.</span>
+<span class="cm">    @return {String} Decoded string.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_decode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">decodeURIComponent</span><span class="p">(</span><span class="nx">string</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\+/g</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">));</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Dispatches to the first route handler that matches the specified _path_.</span>
+
+<span class="cm">    If called before the `ready` event has fired, the dispatch will be aborted.</span>
+<span class="cm">    This ensures normalized behavior between Chrome (which fires a `popstate`</span>
+<span class="cm">    event on every pageview) and other browsers (which do not).</span>
+
+<span class="cm">    @method _dispatch</span>
+<span class="cm">    @param {String} path URL path.</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_dispatch</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span>   <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+            <span class="nx">routes</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">path</span><span class="p">),</span>
+            <span class="nx">req</span><span class="p">;</span>
+
+        <span class="nx">self</span><span class="p">.</span><span class="nx">_dispatched</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">routes</span> <span class="o">||</span> <span class="o">!</span><span class="nx">routes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">req</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_getRequest</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+
+        <span class="kd">function</span> <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">matches</span><span class="p">,</span> <span class="nx">route</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">((</span><span class="nx">route</span> <span class="o">=</span> <span class="nx">routes</span><span class="p">.</span><span class="nx">shift</span><span class="p">()))</span> <span class="p">{</span>
+                <span class="nx">matches</span>  <span class="o">=</span> <span class="nx">route</span><span class="p">.</span><span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+                <span class="nx">callback</span> <span class="o">=</span> <span class="k">typeof</span> <span class="nx">route</span><span class="p">.</span><span class="nx">callback</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span> <span class="o">?</span>
+                        <span class="nx">self</span><span class="p">[</span><span class="nx">route</span><span class="p">.</span><span class="nx">callback</span><span class="p">]</span> <span class="o">:</span> <span class="nx">route</span><span class="p">.</span><span class="nx">callback</span><span class="p">;</span>
+
+                <span class="c1">// Use named keys for parameter names if the route path contains</span>
+                <span class="c1">// named keys. Otherwise, use numerical match indices.</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="nx">route</span><span class="p">.</span><span class="nx">keys</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">req</span><span class="p">.</span><span class="nx">params</span> <span class="o">=</span> <span class="nx">YArray</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">route</span><span class="p">.</span><span class="nx">keys</span><span class="p">,</span> <span class="nx">matches</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="nx">req</span><span class="p">.</span><span class="nx">params</span> <span class="o">=</span> <span class="nx">matches</span><span class="p">.</span><span class="nx">concat</span><span class="p">();</span>
+                <span class="p">}</span>
+
+                <span class="nx">callback</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">req</span><span class="p">,</span> <span class="nx">next</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="nx">next</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Gets the current path from the location hash, or an empty string if the</span>
+<span class="cm">    hash is empty.</span>
+
+<span class="cm">    @method _getHashPath</span>
+<span class="cm">    @return {String} Current hash path, or an empty string if the hash is empty.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_getHashPath</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">HistoryHash</span><span class="p">.</span><span class="nx">getHash</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_regexUrlQuery</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Gets the current route path.</span>
+
+<span class="cm">    @method _getPath</span>
+<span class="cm">    @return {String} Current route path.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_getPath</span><span class="o">:</span> <span class="nx">html5</span> <span class="o">?</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_removeRoot</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+    <span class="p">}</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_getHashPath</span><span class="p">()</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">_removeRoot</span><span class="p">(</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Gets the current route query string.</span>
+
+<span class="cm">    @method _getQuery</span>
+<span class="cm">    @return {String} Current route query string.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_getQuery</span><span class="o">:</span> <span class="nx">html5</span> <span class="o">?</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">hash</span>    <span class="o">=</span> <span class="nx">HistoryHash</span><span class="p">.</span><span class="nx">getHash</span><span class="p">(),</span>
+            <span class="nx">matches</span> <span class="o">=</span> <span class="nx">hash</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_regexUrlQuery</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">hash</span> <span class="o">&amp;&amp;</span> <span class="nx">matches</span> <span class="o">?</span> <span class="nx">matches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="nx">location</span><span class="p">.</span><span class="nx">search</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Creates a regular expression from the given route specification. If _path_</span>
+<span class="cm">    is already a regex, it will be returned unmodified.</span>
+
+<span class="cm">    @method _getRegex</span>
+<span class="cm">    @param {String|RegExp} path Route path specification.</span>
+<span class="cm">    @param {Array} keys Array reference to which route parameter names will be</span>
+<span class="cm">      added.</span>
+<span class="cm">    @return {RegExp} Route regex.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_getRegex</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">keys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">path</span> <span class="k">instanceof</span> <span class="nb">RegExp</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">path</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">path</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_regexPathParam</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">match</span><span class="p">,</span> <span class="nx">operator</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">operator</span> <span class="o">===</span> <span class="s1">&#39;*&#39;</span> <span class="o">?</span> <span class="s1">&#39;(.*?)&#39;</span> <span class="o">:</span> <span class="s1">&#39;([^/]*)&#39;</span><span class="p">;</span>
+        <span class="p">});</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s1">&#39;^&#39;</span> <span class="o">+</span> <span class="nx">path</span> <span class="o">+</span> <span class="s1">&#39;$&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Gets a request object that can be passed to a route handler.</span>
+
+<span class="cm">    @method _getRequest</span>
+<span class="cm">    @param {String} path Current path being dispatched.</span>
+<span class="cm">    @return {Object} Request object.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_getRequest</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">path</span> <span class="o">:</span> <span class="nx">path</span><span class="p">,</span>
+            <span class="nx">query</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_parseQuery</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_getQuery</span><span class="p">())</span>
+        <span class="p">};</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Joins the `root` URL to the specified _url_, normalizing leading/trailing</span>
+<span class="cm">    `/` characters.</span>
+
+<span class="cm">    @example</span>
+<span class="cm">        controller.root = &#39;/foo&#39;</span>
+<span class="cm">        controller._joinURL(&#39;bar&#39;);  // =&gt; &#39;/foo/bar&#39;</span>
+<span class="cm">        controller._joinURL(&#39;/bar&#39;); // =&gt; &#39;/foo/bar&#39;</span>
+
+<span class="cm">        controller.root = &#39;/foo/&#39;</span>
+<span class="cm">        controller._joinURL(&#39;bar&#39;);  // =&gt; &#39;/foo/bar&#39;</span>
+<span class="cm">        controller._joinURL(&#39;/bar&#39;); // =&gt; &#39;/foo/bar&#39;</span>
+
+<span class="cm">    @method _joinURL</span>
+<span class="cm">    @param {String} url URL to append to the `root` URL.</span>
+<span class="cm">    @return {String} Joined URL.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_joinURL</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">url</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">root</span> <span class="o">&amp;&amp;</span> <span class="nx">root</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;/&#39;</span> <span class="o">?</span>
+                <span class="nx">root</span> <span class="o">+</span> <span class="nx">url</span> <span class="o">:</span>
+                <span class="nx">root</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Parses a URL query string into a key/value hash. If `Y.QueryString.parse` is</span>
+<span class="cm">    available, this method will be an alias to that.</span>
+
+<span class="cm">    @method _parseQuery</span>
+<span class="cm">    @param {String} query Query string to parse.</span>
+<span class="cm">    @return {Object} Hash of key/value pairs for query parameters.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_parseQuery</span><span class="o">:</span> <span class="nx">QS</span> <span class="o">&amp;&amp;</span> <span class="nx">QS</span><span class="p">.</span><span class="nx">parse</span> <span class="o">?</span> <span class="nx">QS</span><span class="p">.</span><span class="nx">parse</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">decode</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_decode</span><span class="p">,</span>
+            <span class="nx">params</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">),</span>
+            <span class="nx">i</span>      <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nx">len</span>    <span class="o">=</span> <span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span>
+            <span class="nx">result</span> <span class="o">=</span> <span class="p">{},</span>
+            <span class="nx">param</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">param</span> <span class="o">=</span> <span class="nx">params</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">param</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">{</span>
+                <span class="nx">result</span><span class="p">[</span><span class="nx">decode</span><span class="p">(</span><span class="nx">param</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span> <span class="o">=</span> <span class="nx">decode</span><span class="p">(</span><span class="nx">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Removes the `root` URL from the from of _path_ (if it&#39;s there) and returns</span>
+<span class="cm">    the result. The returned path will always have a leading `/`.</span>
+
+<span class="cm">    @method _removeRoot</span>
+<span class="cm">    @param {String} path URL path.</span>
+<span class="cm">    @return {String} Rootless path.</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_removeRoot</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">root</span> <span class="o">&amp;&amp;</span> <span class="nx">path</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">root</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">path</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nx">root</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nx">path</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;/&#39;</span> <span class="o">?</span> <span class="nx">path</span> <span class="o">:</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">path</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Saves a history entry using either `pushState()` or the location hash.</span>
+
+<span class="cm">    @method _save</span>
+<span class="cm">    @param {String} [url] URL for the history entry.</span>
+<span class="cm">    @param {Boolean} [replace=false] If `true`, the current history entry will</span>
+<span class="cm">      be replaced instead of a new one being added.</span>
+<span class="cm">    @chainable</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_save</span><span class="o">:</span> <span class="nx">html5</span> <span class="o">?</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">replace</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Force _ready to true to ensure that the history change is handled</span>
+        <span class="c1">// even if _save is called before the `ready` event fires.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">_history</span><span class="p">[</span><span class="nx">replace</span> <span class="o">?</span> <span class="s1">&#39;replace&#39;</span> <span class="o">:</span> <span class="s1">&#39;add&#39;</span><span class="p">](</span><span class="kc">null</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">url</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">url</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">_joinURL</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span> <span class="o">:</span> <span class="nx">url</span>
+        <span class="p">});</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">replace</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">url</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">url</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">url</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">url</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">HistoryHash</span><span class="p">[</span><span class="nx">replace</span> <span class="o">?</span> <span class="s1">&#39;replaceHash&#39;</span> <span class="o">:</span> <span class="s1">&#39;setHash&#39;</span><span class="p">](</span><span class="nx">url</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Protected Event Handlers ---------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Handles `history:change` and `hashchange` events.</span>
+
+<span class="cm">    @method _afterHistoryChange</span>
+<span class="cm">    @param {EventFacade} e</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_afterHistoryChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// We need to yield control to the UI thread to allow the browser to</span>
+            <span class="c1">// update window.location before we dispatch.</span>
+            <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="nx">self</span><span class="p">.</span><span class="nx">_dispatch</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_getPath</span><span class="p">());</span>
+            <span class="p">},</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+
+    <span class="c1">// -- Default Event Handlers -----------------------------------------------</span>
+
+    <span class="cm">/**</span>
+<span class="cm">    Default handler for the `ready` event.</span>
+
+<span class="cm">    @method _defReadyFn</span>
+<span class="cm">    @param {EventFacade} e</span>
+<span class="cm">    @protected</span>
+<span class="cm">    **/</span>
+    <span class="nx">_defReadyFn</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">},</span> <span class="p">{</span>
+    <span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;controller&#39;</span>
+<span class="p">});</span>
+
+
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;array-extras&#39;</span><span class="p">,</span> <span class="s1">&#39;base-build&#39;</span><span class="p">,</span> <span class="s1">&#39;history&#39;</span><span class="p">],</span> <span class="nx">optional</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;querystring-parse&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "ModelList.html#method__add", "access": "protected", "host": "ModelList", "type": "method", "name": "_add"}, {"url": "ModelList.html#method_add", "access": "", "host": "ModelList", "type": "method", "name": "add"}, {"url": "ModelList.html#event_add", "access": "", "host": "ModelList", "type": "event", "name": "add"}, {"url": "Model.html#method_addAttr", "access": "protected", "host": "Model", "type": "method", "name": "addAttr"}, {"url": "Controller.html#method__afterHistoryChange", "access": "protected", "host": "Controller", "type": "method", "name": "_afterHistoryChange"}, {"url": "ModelList.html#method__afterIdChange", "access": "protected", "host": "ModelList", "type": "method", "name": "_afterIdChange"}, {"url": "View.html#method_attachEvents", "access": "", "host": "View", "type": "method", "name": "attachEvents"}, {"url": "ModelList.html#method__attachList", "access": "protected", "host": "ModelList", "type": "method", "name": "_attachList"}, {"url": "Model.html#event_change", "access": "", "host": "Model", "type": "event", "name": "change"}, {"url": "Model.html#property_changed", "access": "", "host": "Model", "type": "property", "name": "changed"}, {"url": "ModelList.html#method__clear", "access": "protected", "host": "ModelList", "type": "method", "name": "_clear"}, {"url": "Model.html#config_clientId", "access": "", "host": "Model", "type": "config", "name": "clientId"}, {"url": "Model.html#event_clientIdChange", "access": "", "host": "Model", "type": "event", "name": "clientIdChange"}, {"url": "ModelList.html#method_comparator", "access": "", "host": "ModelList", "type": "method", "name": "comparator"}, {"url": "View.html#property_container", "access": "", "host": "View", "type": "property", "name": "container"}, {"url": "ModelList.html#method_create", "access": "", "host": "ModelList", "type": "method", "name": "create"}, {"url": "View.html#method_create", "access": "", "host": "View", "type": "method", "name": "create"}, {"url": "Controller.html#method__decode", "access": "protected", "host": "Controller", "type": "method", "name": "_decode"}, {"url": "ModelList.html#method__defAddFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defAddFn"}, {"url": "Model.html#method__defAttrChangeFn", "access": "protected", "host": "Model", "type": "method", "name": "_defAttrChangeFn"}, {"url": "Controller.html#method__defReadyFn", "access": "protected", "host": "Controller", "type": "method", "name": "_defReadyFn"}, {"url": "ModelList.html#method__defRefreshFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defRefreshFn"}, {"url": "ModelList.html#method__defRemoveFn", "access": "protected", "host": "ModelList", "type": "method", "name": "_defRemoveFn"}, {"url": "Model.html#method_destroy", "access": "", "host": "Model", "type": "method", "name": "destroy"}, {"url": "ModelList.html#method__detachList", "access": "protected", "host": "ModelList", "type": "method", "name": "_detachList"}, {"url": "Controller.html#method__dispatch", "access": "protected", "host": "Controller", "type": "method", "name": "_dispatch"}, {"url": "Controller.html#method_dispatch", "access": "", "host": "Controller", "type": "method", "name": "dispatch"}, {"url": "Controller.html#property__dispatched", "access": "protected", "host": "Controller", "type": "property", "name": "_dispatched"}, {"url": "Model.html#event_error", "access": "", "host": "Model", "type": "event", "name": "error"}, {"url": "View.html#property_events", "access": "", "host": "View", "type": "property", "name": "events"}, {"url": "ModelList.html#method__findIndex", "access": "protected", "host": "ModelList", "type": "method", "name": "_findIndex"}, {"url": "Model.html#method_generateClientId", "access": "", "host": "Model", "type": "method", "name": "generateClientId"}, {"url": "Model.html#method_get", "access": "", "host": "Model", "type": "method", "name": "get"}, {"url": "ModelList.html#method_get", "access": "", "host": "ModelList", "type": "method", "name": "get"}, {"url": "Model.html#method_getAsHTML", "access": "", "host": "Model", "type": "method", "name": "getAsHTML"}, {"url": "ModelList.html#method_getAsHTML", "access": "", "host": "ModelList", "type": "method", "name": "getAsHTML"}, {"url": "Model.html#method_getAsURL", "access": "", "host": "Model", "type": "method", "name": "getAsURL"}, {"url": "ModelList.html#method_getAsURL", "access": "", "host": "ModelList", "type": "method", "name": "getAsURL"}, {"url": "ModelList.html#method_getByClientId", "access": "", "host": "ModelList", "type": "method", "name": "getByClientId"}, {"url": "ModelList.html#method_getById", "access": "", "host": "ModelList", "type": "method", "name": "getById"}, {"url": "Controller.html#method__getHashPath", "access": "protected", "host": "Controller", "type": "method", "name": "_getHashPath"}, {"url": "Controller.html#method__getPath", "access": "protected", "host": "Controller", "type": "method", "name": "_getPath"}, {"url": "Controller.html#method__getQuery", "access": "protected", "host": "Controller", "type": "method", "name": "_getQuery"}, {"url": "Controller.html#method__getRegex", "access": "protected", "host": "Controller", "type": "method", "name": "_getRegex"}, {"url": "Controller.html#method__getRequest", "access": "protected", "host": "Controller", "type": "method", "name": "_getRequest"}, {"url": "Controller.html#property_html5", "access": "", "host": "Controller", "type": "property", "name": "html5"}, {"url": "Model.html#config_id", "access": "", "host": "Model", "type": "config", "name": "id"}, {"url": "Model.html#property_idAttribute", "access": "", "host": "Model", "type": "property", "name": "idAttribute"}, {"url": "Model.html#event_idChange", "access": "", "host": "Model", "type": "event", "name": "idChange"}, {"url": "ModelList.html#method_invoke", "access": "", "host": "ModelList", "type": "method", "name": "invoke"}, {"url": "Model.html#method_isModified", "access": "", "host": "Model", "type": "method", "name": "isModified"}, {"url": "Model.html#method_isNew", "access": "", "host": "Model", "type": "method", "name": "isNew"}, {"url": "ModelList.html#method_item", "access": "", "host": "ModelList", "type": "method", "name": "item"}, {"url": "Controller.html#method__joinURL", "access": "protected", "host": "Controller", "type": "method", "name": "_joinURL"}, {"url": "Model.html#property_lastChange", "access": "", "host": "Model", "type": "property", "name": "lastChange"}, {"url": "Model.html#property_lists", "access": "", "host": "Model", "type": "property", "name": "lists"}, {"url": "Model.html#method_load", "access": "", "host": "Model", "type": "method", "name": "load"}, {"url": "ModelList.html#method_load", "access": "", "host": "ModelList", "type": "method", "name": "load"}, {"url": "ModelList.html#method_map", "access": "", "host": "ModelList", "type": "method", "name": "map"}, {"url": "Controller.html#method_match", "access": "", "host": "Controller", "type": "method", "name": "match"}, {"url": "ModelList.html#property_model", "access": "", "host": "ModelList", "type": "property", "name": "model"}, {"url": "View.html#property_model", "access": "", "host": "View", "type": "property", "name": "model"}, {"url": "Model.html#method_parse", "access": "", "host": "Model", "type": "method", "name": "parse"}, {"url": "ModelList.html#method_parse", "access": "", "host": "ModelList", "type": "method", "name": "parse"}, {"url": "Controller.html#method__parseQuery", "access": "protected", "host": "Controller", "type": "method", "name": "_parseQuery"}, {"url": "Controller.html#property__ready", "access": "protected", "host": "Controller", "type": "property", "name": "_ready"}, {"url": "Controller.html#event_ready", "access": "", "host": "Controller", "type": "event", "name": "ready"}, {"url": "ModelList.html#method_refresh", "access": "", "host": "ModelList", "type": "method", "name": "refresh"}, {"url": "ModelList.html#event_refresh", "access": "", "host": "ModelList", "type": "event", "name": "refresh"}, {"url": "Controller.html#property__regexPathParam", "access": "protected", "host": "Controller", "type": "property", "name": "_regexPathParam"}, {"url": "Controller.html#property__regexUrlQuery", "access": "protected", "host": "Controller", "type": "property", "name": "_regexUrlQuery"}, {"url": "ModelList.html#method__remove", "access": "protected", "host": "ModelList", "type": "method", "name": "_remove"}, {"url": "ModelList.html#method_remove", "access": "", "host": "ModelList", "type": "method", "name": "remove"}, {"url": "ModelList.html#event_remove", "access": "", "host": "ModelList", "type": "event", "name": "remove"}, {"url": "View.html#method_remove", "access": "", "host": "View", "type": "method", "name": "remove"}, {"url": "Controller.html#method__removeRoot", "access": "protected", "host": "Controller", "type": "method", "name": "_removeRoot"}, {"url": "View.html#method_render", "access": "", "host": "View", "type": "method", "name": "render"}, {"url": "Controller.html#method_replace", "access": "", "host": "Controller", "type": "method", "name": "replace"}, {"url": "Controller.html#property_root", "access": "", "host": "Controller", "type": "property", "name": "root"}, {"url": "Controller.html#method_route", "access": "", "host": "Controller", "type": "method", "name": "route"}, {"url": "Controller.html#property_routes", "access": "", "host": "Controller", "type": "property", "name": "routes"}, {"url": "Controller.html#method__save", "access": "protected", "host": "Controller", "type": "method", "name": "_save"}, {"url": "Controller.html#method_save", "access": "", "host": "Controller", "type": "method", "name": "save"}, {"url": "Model.html#method_save", "access": "", "host": "Model", "type": "method", "name": "save"}, {"url": "Model.html#method_set", "access": "", "host": "Model", "type": "method", "name": "set"}, {"url": "Model.html#method_setAttrs", "access": "", "host": "Model", "type": "method", "name": "setAttrs"}, {"url": "ModelList.html#method_sort", "access": "", "host": "ModelList", "type": "method", "name": "sort"}, {"url": "Model.html#method_sync", "access": "", "host": "Model", "type": "method", "name": "sync"}, {"url": "ModelList.html#method_sync", "access": "", "host": "ModelList", "type": "method", "name": "sync"}, {"url": "View.html#property_template", "access": "", "host": "View", "type": "property", "name": "template"}, {"url": "ModelList.html#method_toArray", "access": "", "host": "ModelList", "type": "method", "name": "toArray"}, {"url": "Model.html#method_toJSON", "access": "", "host": "Model", "type": "method", "name": "toJSON"}, {"url": "ModelList.html#method_toJSON", "access": "", "host": "ModelList", "type": "method", "name": "toJSON"}, {"url": "Model.html#method_undo", "access": "", "host": "Model", "type": "method", "name": "undo"}, {"url": "Model.html#method__validate", "access": "protected", "host": "Model", "type": "method", "name": "_validate"}, {"url": "Model.html#method_validate", "access": "", "host": "Model", "type": "method", "name": "validate"}];
+</script>
+</body>
+</html>

@@ -25,19 +25,23 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseAioTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
 		return super.doStartTag();
 	}
 
+	@Override
 	protected void cleanUp() {
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 	}
 

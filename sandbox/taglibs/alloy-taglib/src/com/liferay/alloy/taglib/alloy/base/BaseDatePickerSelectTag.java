@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -1221,6 +1222,7 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onYearRangeChange", onYearRangeChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_appendOrder = null;
 		_boundingBox = null;
@@ -1343,10 +1345,12 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onYearRangeChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "appendOrder", _appendOrder);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

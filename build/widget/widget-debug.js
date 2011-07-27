@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('widget-base', function(Y) {
@@ -55,7 +55,7 @@ var L = Y.Lang,
     DIV = "<div></div>",
     CHANGE = "Change",
     LOADING = "loading",
- 
+
     _UISET = "_uiSet",
 
     EMPTY_STR = "",
@@ -424,12 +424,27 @@ Y.extend(Widget, Y.Base, {
         Y.log('destructor called', 'life', 'widget');
 
         var boundingBox = this.get(BOUNDING_BOX),
-            contentBox = this.get(CONTENT_BOX),
             bbGuid = Y.stamp(boundingBox, TRUE);
 
         if (bbGuid in _instances) {
             delete _instances[bbGuid];
         }
+
+        this._destroyBox();
+    },
+
+    /**
+     * Removes and destroys the widgets rendered boundingBox, contentBox,
+     * and detaches bound UI events.
+     *
+     * @method _destroyBox
+     * @protected 
+     */
+    _destroyBox : function() {
+
+        var boundingBox = this.get(BOUNDING_BOX),
+            contentBox = this.get(CONTENT_BOX),
+            same = boundingBox && boundingBox.compareTo(contentBox);
 
         if (this.UI_EVENTS) {
             this._destroyUIEvents();
@@ -437,10 +452,13 @@ Y.extend(Widget, Y.Base, {
 
         this._unbindUI(boundingBox);
 
-        if (contentBox) { // Just to be safe because it's a last minute change. Really shouldn't be required.
+        if (contentBox) {
             contentBox.remove(TRUE);
         }
-        boundingBox.remove(TRUE);
+
+        if (!same) {
+            boundingBox.remove(TRUE);
+        }
     },
 
     /**
@@ -1137,7 +1155,7 @@ Y.extend(Widget, Y.Base, {
 Y.Widget = Widget;
 
 
-}, '3.3.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'node-event-delegate', 'classnamemanager']});
+}, '3.4.0' ,{requires:['attribute', 'event-focus', 'base-base', 'base-pluginhost', 'node-base', 'node-style', 'classnamemanager']});
 YUI.add('widget-uievents', function(Y) {
 
 /**
@@ -1217,10 +1235,10 @@ Y.mix(Widget.prototype, {
      * Widget's outtermost DOM element to facilitate the firing of a Custom
      * Event of the same type for the Widget instance.  
      *
-     * @private
-     * @for Widget 
      * @method _createUIEvent
+     * @for Widget 
      * @param type {String} String representing the name of the event
+     * @private
      */
     _createUIEvent: function (type) {
 
@@ -1237,9 +1255,15 @@ Y.mix(Widget.prototype, {
             handle = uiEvtNode.delegate(type, function (evt) {
 
                 var widget = Widget.getByNode(this);
-                //  Make the DOM event a property of the custom event
-                //  so that developers still have access to it.
-                widget.fire(evt.type, { domEvent: evt });
+
+                // Widget could be null if node instance belongs to
+                // another Y instance.
+
+                if (widget) {
+                    if (widget._filterUIEvent(evt)) {
+                        widget.fire(evt.type, { domEvent: evt });
+                    }
+                }
 
             }, "." + Y.Widget.getClassName());
 
@@ -1248,6 +1272,32 @@ Y.mix(Widget.prototype, {
 
         //  Register this Widget as using this Node as a delegation container.
         info.instances[Y.stamp(this)] = 1;
+    },
+
+    /**
+     * This method is used to determine if we should fire
+     * the UI Event or not. The default implementation makes sure
+     * that for nested delegates (nested unrelated widgets), we don't 
+     * fire the UI event listener more than once at each level.
+     *
+     * <p>For example, without the additional filter, if you have nested 
+     * widgets, each widget will have a delegate listener. If you 
+     * click on the inner widget, the inner delegate listener's 
+     * filter will match once, but the outer will match twice 
+     * (based on delegate's design) - once for the inner widget, 
+     * and once for the outer.</p>
+     *
+     * @method _filterUIEvent
+     * @for Widget 
+     * @param {DOMEventFacade} evt
+     * @return {boolean} true if it's OK to fire the custom UI event, false if not.
+     * @private
+     * 
+     */
+    _filterUIEvent: function(evt) {
+        // Either it's hitting this widget's delegate container (and not some other widget's), 
+        // or the container it's hitting is handling this widget's ui events.
+        return (evt.currentTarget.compareTo(evt.container) || evt.container.compareTo(this._getUIEventNode()));        
     },
 
     /**
@@ -1332,7 +1382,7 @@ Y.mix(Widget.prototype, {
 }, true); // overwrite existing EventTarget methods
 
 
-}, '3.3.0' ,{requires:['widget-base', 'node-event-delegate']});
+}, '3.4.0' ,{requires:['widget-base', 'node-event-delegate']});
 YUI.add('widget-htmlparser', function(Y) {
 
 /**
@@ -1495,7 +1545,7 @@ Y.mix(Widget.prototype, {
 });
 
 
-}, '3.3.0' ,{requires:['widget-base']});
+}, '3.4.0' ,{requires:['widget-base']});
 YUI.add('widget-skin', function(Y) {
 
 /**
@@ -1538,8 +1588,8 @@ Y.Widget.prototype.getSkinName = function () {
 };
 
 
-}, '3.3.0' ,{requires:['widget-base']});
+}, '3.4.0' ,{requires:['widget-base']});
 
 
-YUI.add('widget', function(Y){}, '3.3.0' ,{use:['widget-base', 'widget-uievents', 'widget-htmlparser', 'widget-skin']});
+YUI.add('widget', function(Y){}, '3.4.0' ,{use:['widget-base', 'widget-uievents', 'widget-htmlparser', 'widget-skin']});
 

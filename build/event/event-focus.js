@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('event-focus', function(Y) {
@@ -101,8 +101,6 @@ function define(type, proxy, directEvent) {
 
                     if (notifier.container) {
                         e.container = notifier.container;
-                    } else {
-                        delete e.container;
                     }
 
                     notifier.fire(e);
@@ -152,4 +150,4 @@ if (useActivate) {
 }
 
 
-}, '3.3.0' ,{requires:['event-synthetic']});
+}, '3.4.0' ,{requires:['event-synthetic']});

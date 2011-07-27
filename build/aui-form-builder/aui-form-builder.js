@@ -1471,11 +1471,13 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-nested-list','aui-tabs','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-nested-list','aui-tabs','substitute'], skinnable:true});
 AUI.add('aui-form-builder-field', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
 	isString = L.isString,
+
+	_serialize = A.IO.prototype._serialize,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
 	BODY_CONTENT = 'bodyContent',
@@ -1940,7 +1942,7 @@ var FormBuilderField = A.Component.create({
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 
 			A.Array.each(
-				A.io._serialize(formNode._node).split('&'),
+				_serialize(formNode._node).split('&'),
 				function(item) {
 					var keyVal = item.split('=');
 
@@ -2217,7 +2219,7 @@ var FormBuilderField = A.Component.create({
 		_uiSetTip: function(val) {
 			var instance = this;
 			var tipIconNode = instance.get(TIP_ICON_NODE);
-			
+
 			tipIconNode.toggleClass(CSS_HELPER_HIDDEN, !val);
 
 			instance.toolTip.set(BODY_CONTENT, val);

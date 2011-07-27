@@ -2,20 +2,18 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('createlink-base', function(Y) {
 
-    /**
-     * Base class for Editor. Handles the business logic of Editor, no GUI involved only utility methods and events.
-     * @module editor
-     * @submodule createlink-base
-     */     
+
     /**
      * Adds prompt style link creation. Adds an override for the <a href="Plugin.ExecCommand.html#method_COMMANDS.createlink">createlink execCommand</a>.
      * @class Plugin.CreateLinkBase
      * @static
+     * @submodule createlink-base
+     * @module editor
      */
     
     var CreateLinkBase = {};
@@ -57,6 +55,7 @@ YUI.add('createlink-base', function(Y) {
 
             if (url) {
                 holder = inst.config.doc.createElement('div');
+                url = url.replace(/"/g, '').replace(/'/g, ''); //Remove single & double quotes
                 url = inst.config.doc.createTextNode(url);
                 holder.appendChild(url);
                 url = holder.innerHTML;
@@ -89,4 +88,4 @@ YUI.add('createlink-base', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});

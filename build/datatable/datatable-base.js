@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('datatable-base', function(Y) {
@@ -45,7 +45,6 @@ var YLang = Y.Lang,
     TEMPLATE_VALUE = '{value}',
     TEMPLATE_MSG = '<tbody class="'+CLASS_MSG+'"></tbody>';
     
-
 
 
 /**
@@ -420,7 +419,6 @@ Y.extend(Column, Y.Widget, {
 });
 
 Y.Column = Column;
-
 /**
  * The Columnset class defines and manages a collection of Columns.
  *
@@ -822,7 +820,6 @@ Y.extend(Columnset, Y.Base, {
 });
 
 Y.Columnset = Columnset;
-
 /**
  * The DataTable widget provides a progressively enhanced DHTML control for
  * displaying tabular data across A-grade browsers.
@@ -887,7 +884,7 @@ Y.mix(DTBase, {
         * @type Array | Y.Recordset
         */
         recordset: {
-            value: new Y.Recordset({records:[]}),
+            valueFn: '_initRecordset',
             setter: "_setRecordset"
         },
 
@@ -1633,11 +1630,14 @@ Y.extend(DTBase, Y.Widget, {
             YLang.isFunction(formatter) ?
                 formatter.call(this, o) :  // Custom function
                 Ysubstitute(this.get("tdValueTemplate"), o);  // Default template
+    },
+
+    _initRecordset: function () {
+        return new Y.Recordset({ records: [] });
     }
 });
 
 Y.namespace("DataTable").Base = DTBase;
 
 
-
-}, '3.3.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});
+}, '3.4.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});

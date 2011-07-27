@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -81,6 +82,7 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("attrInteger", attrInteger);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_test = null;
 		_attrBooleanPrimitive = false;
@@ -89,10 +91,12 @@ public class BaseTestTag extends com.liferay.taglib.util.IncludeTag {
 		_attrInteger = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "test", _test);
 		setNamespacedAttribute(request, "attrBooleanPrimitive", _attrBooleanPrimitive);

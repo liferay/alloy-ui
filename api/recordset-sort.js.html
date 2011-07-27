@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -738,7 +753,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;recordset-sort&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -769,12 +784,12 @@
     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description The last properties used to sort. Consists of an object literal with the keys &quot;field&quot;, &quot;desc&quot;, and &quot;sorter&quot;</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute lastSortProperties</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type object</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description The last properties used to sort. Consists of an object literal with the keys &quot;field&quot;, &quot;desc&quot;, and &quot;sorter&quot;</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute lastSortProperties</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type object</span>
+<span class="cm">        */</span>
         <span class="nx">lastSortProperties</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
                 <span class="nx">field</span><span class="o">:</span> <span class="kc">undefined</span><span class="p">,</span>
@@ -787,14 +802,14 @@
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description Default sort function to use if none is specified by the user.</span>
-<span class="cm">		* Takes two records, the key to sort by, and whether sorting direction is descending or not (boolean).</span>
-<span class="cm">		* If two records have the same value for a given key, the ID is used as the tie-breaker.</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute defaultSorter</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type function</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description Default sort function to use if none is specified by the user.</span>
+<span class="cm">        * Takes two records, the key to sort by, and whether sorting direction is descending or not (boolean).</span>
+<span class="cm">        * If two records have the same value for a given key, the ID is used as the tie-breaker.</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute defaultSorter</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type function</span>
+<span class="cm">        */</span>
         <span class="nx">defaultSorter</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">value</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">recA</span><span class="p">,</span> <span class="nx">recB</span><span class="p">,</span> <span class="nx">field</span><span class="p">,</span> <span class="nx">desc</span><span class="p">)</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">sorted</span> <span class="o">=</span> <span class="nx">Compare</span><span class="p">(</span><span class="nx">recA</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">field</span><span class="p">),</span> <span class="nx">recB</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(</span><span class="nx">field</span><span class="p">),</span> <span class="nx">desc</span><span class="p">);</span>
@@ -808,12 +823,12 @@
         <span class="p">},</span>
 
         <span class="cm">/**</span>
-<span class="cm">	    * @description A boolean telling if the recordset is in a sorted state.</span>
-<span class="cm">	    *</span>
-<span class="cm">	    * @attribute defaultSorter</span>
-<span class="cm">	    * @public</span>
-<span class="cm">	    * @type function</span>
-<span class="cm">	    */</span>
+<span class="cm">        * @description A boolean telling if the recordset is in a sorted state.</span>
+<span class="cm">        *</span>
+<span class="cm">        * @attribute defaultSorter</span>
+<span class="cm">        * @public</span>
+<span class="cm">        * @type function</span>
+<span class="cm">        */</span>
         <span class="nx">isSorted</span><span class="o">:</span> <span class="p">{</span>
             <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
         <span class="p">}</span>
@@ -863,8 +878,8 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Method that all sort calls go through. </span>
-<span class="cm">	 * Sets up the lastSortProperties object with the details of the sort, and passes in parameters </span>
-<span class="cm">	 * to the &quot;defaultSorter&quot; or a custom specified sort function.</span>
+<span class="cm">     * Sets up the lastSortProperties object with the details of the sort, and passes in parameters </span>
+<span class="cm">     * to the &quot;defaultSorter&quot; or a custom specified sort function.</span>
 <span class="cm">     *</span>
 <span class="cm">     * @method _defSortFn</span>
 <span class="cm">     * @private</span>
@@ -880,8 +895,8 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Sorts the recordset.</span>
-<span class="cm">	 *</span>
-<span class="cm">	 * @method sort</span>
+<span class="cm">     *</span>
+<span class="cm">     * @method sort</span>
 <span class="cm">     * @param field {string} A key to sort by.</span>
 <span class="cm">     * @param desc {boolean} True if you want sort order to be descending, false if you want sort order to be ascending</span>
 <span class="cm">     * @public</span>
@@ -896,7 +911,7 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Resorts the recordset based on the last-used sort parameters (stored in &#39;lastSortProperties&#39; ATTR)</span>
-<span class="cm">	 *</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method resort</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
@@ -911,7 +926,7 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Reverses the recordset calling the standard array.reverse() method.</span>
-<span class="cm">	 *</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method reverse</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
@@ -921,7 +936,7 @@
 
     <span class="cm">/**</span>
 <span class="cm">     * @description Sorts the recordset based on the last-used sort parameters, but flips the order. (ie: Descending becomes ascending, and vice versa).</span>
-<span class="cm">	 *</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method flip</span>
 <span class="cm">     * @public</span>
 <span class="cm">     */</span>
@@ -945,7 +960,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;arraysort&#39;</span><span class="p">,</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;arraysort&#39;</span><span class="p">,</span><span class="s1">&#39;recordset-base&#39;</span><span class="p">,</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -963,7 +978,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}];
+    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "Recordset.html#event_add", "access": "", "host": "Recordset", "type": "event", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "Recordset.html#event_empty", "access": "", "host": "Recordset", "type": "event", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "Recordset.html#event_remove", "access": "", "host": "Recordset", "type": "event", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}, {"url": "Recordset.html#event_update", "access": "", "host": "Recordset", "type": "event", "name": "update"}];
 </script>
 </body>
 </html>

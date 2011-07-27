@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -251,6 +252,7 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onTargetChange", onTargetChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_destroyed = false;
 		_host = null;
@@ -276,10 +278,12 @@ public class BaseLoadingMaskTag extends com.liferay.taglib.util.IncludeTag {
 		_onTargetChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "host", _host);

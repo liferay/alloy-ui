@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
-YUI.add("yui-later",function(a){a.later=function(c,i,d,h,g){c=c||0;var b=d,e,j;if(i&&a.Lang.isString(d)){b=i[d];}e=!a.Lang.isUndefined(h)?function(){b.apply(i,a.Array(h));}:function(){b.call(i);};j=(g)?setInterval(e,c):setTimeout(e,c);return{id:j,interval:g,cancel:function(){if(this.interval){clearInterval(j);}else{clearTimeout(j);}}};};a.Lang.later=a.later;},"3.3.0",{requires:["yui-base"]});
+YUI.add("yui-later",function(b){var a=[];b.later=function(j,f,k,g,h){j=j||0;g=(!b.Lang.isUndefined(g))?b.Array(g):g;var i=false,c=(f&&b.Lang.isString(k))?f[k]:k,d=function(){if(!i){if(!c.apply){c(g[0],g[1],g[2],g[3]);}else{c.apply(f,g||a);}}},e=(h)?setInterval(d,j):setTimeout(d,j);return{id:e,interval:h,cancel:function(){i=true;if(this.interval){clearInterval(e);}else{clearTimeout(e);}}};};b.Lang.later=b.later;},"3.4.0",{requires:["yui-base"]});

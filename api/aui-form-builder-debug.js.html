@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -2276,11 +2291,13 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">FormBuilder</span><span class="p">.</span><span class="nx">types</span> <span class="o">=</span> <span class="p">{};</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-nested-list&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tabs&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-button-item&#39;</span><span class="p">,</span><span class="s1">&#39;aui-data-set&#39;</span><span class="p">,</span><span class="s1">&#39;aui-nested-list&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tabs&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-builder-field&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
 	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
+
+	<span class="nx">_serialize</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">IO</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">_serialize</span><span class="p">,</span>
 
 	<span class="nx">ACCEPT_CHILDREN</span> <span class="o">=</span> <span class="s1">&#39;acceptChildren&#39;</span><span class="p">,</span>
 	<span class="nx">BODY_CONTENT</span> <span class="o">=</span> <span class="s1">&#39;bodyContent&#39;</span><span class="p">,</span>
@@ -2736,7 +2753,7 @@
 			<span class="kd">var</span> <span class="nx">formNode</span> <span class="o">=</span> <span class="nx">formBuilder</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">SETTINGS_FORM_NODE</span><span class="p">);</span>
 
 			<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
-				<span class="nx">A</span><span class="p">.</span><span class="nx">io</span><span class="p">.</span><span class="nx">_serialize</span><span class="p">(</span><span class="nx">formNode</span><span class="p">.</span><span class="nx">_node</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">),</span>
+				<span class="nx">_serialize</span><span class="p">(</span><span class="nx">formNode</span><span class="p">.</span><span class="nx">_node</span><span class="p">).</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&amp;&#39;</span><span class="p">),</span>
 				<span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>
 					<span class="kd">var</span> <span class="nx">keyVal</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">);</span>
 
@@ -3013,7 +3030,7 @@
 		<span class="nx">_uiSetTip</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
 			<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 			<span class="kd">var</span> <span class="nx">tipIconNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">TIP_ICON_NODE</span><span class="p">);</span>
-			
+
 			<span class="nx">tipIconNode</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span><span class="nx">CSS_HELPER_HIDDEN</span><span class="p">,</span> <span class="o">!</span><span class="nx">val</span><span class="p">);</span>
 
 			<span class="nx">instance</span><span class="p">.</span><span class="nx">toolTip</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">BODY_CONTENT</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
@@ -5338,7 +5355,7 @@
 <span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-datatype&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form&#39;</span><span class="p">,</span><span class="s1">&#39;aui-panel&#39;</span><span class="p">,</span><span class="s1">&#39;aui-tooltip&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;substitute&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 
 
-<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-builder&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-builder-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-builder-field&#39;</span><span class="p">]});</span>
+<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-form-builder&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-form-builder-base&#39;</span><span class="p">,</span><span class="s1">&#39;aui-form-builder-field&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
