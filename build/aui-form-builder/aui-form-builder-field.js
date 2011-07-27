@@ -1775,11 +1775,12 @@ var FormBuilderFileUploadField = A.Component.create({
 A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
 A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
-var L = A.Lang,
+var Lang = A.Lang,
 	AArray = A.Array,
-	isArray = L.isArray,
-	isNumber = L.isNumber,
-	isString = L.isString,
+	isArray = Lang.isArray,
+	isNumber = Lang.isNumber,
+	isString = Lang.isString,
+	sub = Lang.sub,
 
 	isNode = function(v) {
 		return (v instanceof A.Node);
@@ -1814,7 +1815,6 @@ var L = A.Lang,
 	DROP = 'drop',
 	DROP_CONTAINER = 'dropContainer',
 	DROP_CONTAINER_NODE = 'dropContainerNode',
-	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
@@ -1858,6 +1858,8 @@ var L = A.Lang,
 
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
+	STR_BLANK = '',
+
 	TPL_OPTION = '<div class="' + [CSS_FIELD_OPTIONS_ITEM, CSS_FIELD_LABELS_INLINE, CSS_HELPER_CLEARFIX].join(SPACE) + '">' +
 					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{label}" />' +
 					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{value}" />' +
@@ -1879,11 +1881,11 @@ var FieldOptions = A.Component.create({
 		},
 
 		defaultLabel: {
-			value: EMPTY_STR
+			value: STR_BLANK
 		},
 
 		defaultValue: {
-			value: EMPTY_STR
+			value: STR_BLANK
 		},
 
 		disabled: {
@@ -1974,15 +1976,20 @@ var FieldOptions = A.Component.create({
 		_addNewOption: function() {
 			var instance = this;
 
+			var newOptionNode = null;
+
 			if (!instance.get(DISABLED)) {
 				var contentBox = instance.get(CONTENT_BOX);
 
-				var newOptionNode = instance._createOption(
+				var optionHTML = sub(
+					TPL_OPTION,
 					{
 						label: instance.get(DEFAULT_LABEL),
 						value: instance.get(DEFAULT_VALUE)
 					}
 				);
+
+				newOptionNode = A.Node.create(optionHTML);
 
 				contentBox.append(newOptionNode);
 
@@ -1992,15 +1999,9 @@ var FieldOptions = A.Component.create({
 				newOptionNodeInput.select();
 
 				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
-
-				return newOptionNode;
 			}
-		},
 
-		_createOption: function(option) {
-			var  instance = this;
-
-			return A.Node.create(A.substitute(TPL_OPTION, option));
+			return newOptionNode;
 		},
 
 		_getOptionNode: function(index) {
@@ -2097,17 +2098,18 @@ var FieldOptions = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
-			var buffer = [];
 			var contentBox = instance.get(CONTENT_BOX);
 
-			contentBox.empty();
+			var buffer = [];
 
 			AArray.each(
 				val,
 				function(item, index, collection) {
-					contentBox.append(instance._createOption(item));
+					buffer.push(sub(TPL_OPTION, item));
 				}
 			);
+
+			contentBox.setContent(buffer.join(STR_BLANK));
 
 			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		}
@@ -2243,19 +2245,19 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			var instance = this;
 
 			var templateNode = instance.get(TEMPLATE_NODE);
+			var optionTpl = instance.get(OPTION_TEMPLATE);
 
-			templateNode.empty();
+			var buffer = [];
 
 			AArray.each(
 				val,
 				function(item, index, collection) {
-					templateNode.append(
-						A.substitute(instance.get(OPTION_TEMPLATE), item)
-					);
+					buffer.push(sub(optionTpl, item));
 				}
 			);
-		}
 
+			templateNode.setContent(buffer.join(STR_BLANK));
+		}
 	}
 
 });
