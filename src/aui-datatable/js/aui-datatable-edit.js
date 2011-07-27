@@ -622,10 +622,9 @@ var BaseCellEditor = A.Component.create({
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
 
-			instance.set(
-				VISIBLE,
-				boundingBox.contains(event.target)
-			);
+			if (!boundingBox.contains(event.target)) {
+				instance.set(VISIBLE, false);
+			}
 		},
 
 		_onEscKey: function(event) {
@@ -1175,7 +1174,7 @@ var TextCellEditor = A.Component.create({
 	EXTENDS: A.BaseCellEditor,
 
 	prototype: {
-		ELEMENT_TEMPLATE: '<input class="' + CSS_CELLEDITOR_ELEMENT + '" type="text" />'
+		ELEMENT_TEMPLATE: '<input autocomplete="off" class="' + CSS_CELLEDITOR_ELEMENT + '" type="text" />'
 	}
 });
 

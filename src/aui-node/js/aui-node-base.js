@@ -377,6 +377,19 @@ A.mix(NODE_PROTOTYPE, {
 	},
 
 	/**
+	 * Gets the current center position of the node in page coordinates. 
+	 * @method getCenterXY
+	 * @for Node
+	 * @return {Array} The XY position of the node
+	*/
+	getCenterXY: function() {
+		var instance = this;
+		var region = instance.get(REGION);
+
+		return [(region.left + region.width/2), (region.top + region.height/2)];
+	},
+
+	/**
      * Return the combined size of the margin for the specified sides.
      *
      * @method getMargin
@@ -1066,7 +1079,7 @@ NODE_PROTOTYPE._show = function() {
  *
  * <pre><code>var node = A.one('#nodeId');
  * node.width(); //returns content width
- * node.width(100); // sets box width 
+ * node.width(100); // sets box width
  * </code></pre>
  *
  * @method width
@@ -1082,7 +1095,7 @@ NODE_PROTOTYPE._show = function() {
  *
  * <pre><code>var node = A.one('#nodeId');
  * node.height(); //returns content height
- * node.height(100); // sets box height 
+ * node.height(100); // sets box height
  * </code></pre>
  *
  * @method height
