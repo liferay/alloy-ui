@@ -1,5 +1,5 @@
 .aui-tabview-list, .aui-tab-label {
-	background: #dbdcdc url(aui_sam_tabs_bg.png) repeat 0 0;
+	background: #dbdcdc url(tabs_bg.png) repeat 0 0;
 	padding: 0 4px;
 	border: 1px solid #c9c9c9;
 }
@@ -44,7 +44,7 @@
 }
 
 .aui-tab-label:hover, .aui-state-hover .aui-tab-label {
-	color: #0066cc;
+	color: #06c;
 }
 
 .aui-tab-active {
@@ -54,7 +54,7 @@
 }
 
 .aui-tab-active .aui-tab-label, .aui-tab-active .aui-tab-label:hover {
-	background: #878787 url(aui_sam_tabs_active_bg.png);
+	background: #878787 url(tabs_active_bg.png);
 	border-color: #4b4b4b #4d4d4d;
 	color: #fff;
 	text-shadow: #3a3a3a -1px -1px 0px;
