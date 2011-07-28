@@ -160,8 +160,7 @@ var ParseContent = A.Component.create(
 			_bindAOP: function() {
 				var instance = this;
 
-				// overloading node.insert() arguments, affects append/prepend methods
-				this.doBefore('insert', function(content) {
+				var cleanFirstArg = function(content) {
 					var args = Array.prototype.slice.call(arguments);
 					var output = instance.parseContent(content);
 
@@ -169,14 +168,19 @@ var ParseContent = A.Component.create(
 					args.splice(0, 1, output.fragment);
 
 					return new A.Do.AlterArgs(null, args);
-				});
+				};
 
-				// overloading node.setContent() arguments
-				this.doBefore('setContent', function(content) {
+				this.doBefore('insert', cleanFirstArg);
+				this.doBefore('replaceChild', cleanFirstArg);
+
+				var cleanArgs = function(content) {
 					var output = instance.parseContent(content);
 
 					return new A.Do.AlterArgs(null, [output.fragment]);
-				});
+				};
+
+				this.doBefore('replace', cleanArgs);
+				this.doBefore('setContent', cleanArgs);
 			},
 
 			/**
