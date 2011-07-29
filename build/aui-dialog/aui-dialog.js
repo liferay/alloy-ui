@@ -849,7 +849,9 @@ Dialog.prototype = {
 				A.DialogMask.hide();
 			}
 		}
-	}
+	},
+
+	_uiHandles: []
 };
 
 A.Dialog = A.Component.create(
