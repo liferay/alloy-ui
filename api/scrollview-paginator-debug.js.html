@@ -2,7 +2,7 @@
 <html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<title>API: scrollview   scrollview-paginator-debug.js  (YUI Library)</title>
+	<title>API: scrollview-paginator   scrollview-paginator-debug.js  (YUI Library)</title>
 
 	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
@@ -20,7 +20,7 @@
 		</h1>
 
 		<h3>
-			scrollview&nbsp; <span class="subtitle">1.0.1</span>
+			scrollview-paginator&nbsp; <span class="subtitle">1.0.1</span>
 		</h3>
 
 		<p class="breadcrumbs">
@@ -28,7 +28,7 @@
 
 	            <span class="separator">&gt;</span>
 
-				<a class="modulename" href="./module_scrollview.html" title="scrollview">scrollview</a>
+				<a class="modulename" href="./module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a>
 
 	                
 
@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,7 +489,12 @@
 
 
 			                                
-													<li class="selected"><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
 
@@ -494,7 +509,7 @@
 
 
 			                                
-													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+													<li class="selected"><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
 
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -635,6 +650,21 @@
 							</div>
 						</div>
 
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="Plugin.ScrollViewPaginator.html" title="Plugin.ScrollViewPaginator">Plugin.ScrollViewPaginator</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
 
 
 
@@ -651,10 +681,16 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="scrollview-min.js.html" title="scrollview-min.js">scrollview-min.js</a></li>
-
-
 			                                <li class="selected"><a href="scrollview-paginator-debug.js.html" title="scrollview-paginator-debug.js">scrollview-paginator-debug.js</a></li>
+
+
+			                                <li class=""><a href="scrollview-paginator-min.js.html" title="scrollview-paginator-min.js">scrollview-paginator-min.js</a></li>
+
+
+			                                <li class=""><a href="scrollview-paginator.js.html" title="scrollview-paginator.js">scrollview-paginator.js</a></li>
+
+
+			                                <li class=""><a href="scrollview-scrollbars-debug.js.html" title="scrollview-scrollbars-debug.js">scrollview-scrollbars-debug.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -672,7 +708,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;scrollview-paginator&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -683,7 +719,7 @@
 <span class="cm"> * @module scrollview-paginator</span>
 <span class="cm"> */</span>
 
-<span class="kd">var</span> <span class="nx">UI</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ScrollView</span><span class="p">.</span><span class="nx">UI_SRC</span><span class="p">,</span>
+<span class="kd">var</span> <span class="nx">UI</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">ScrollView</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">ScrollView</span><span class="p">.</span><span class="nx">UI_SRC</span> <span class="o">:</span> <span class="s2">&quot;ui&quot;</span><span class="p">,</span>
     <span class="nx">INDEX</span> <span class="o">=</span> <span class="s2">&quot;index&quot;</span><span class="p">,</span>
     <span class="nx">SCROLL_X</span> <span class="o">=</span> <span class="s2">&quot;scrollX&quot;</span><span class="p">,</span>
     <span class="nx">TOTAL</span> <span class="o">=</span> <span class="s2">&quot;total&quot;</span><span class="p">,</span>
@@ -973,7 +1009,7 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s1">&#39;Plugin&#39;</span><span class="p">).</span><span class="nx">ScrollViewPaginator</span> <span class="o">=</span> <span class="nx">PaginatorPlugin</span><span class="p">;</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;plugin&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -991,7 +1027,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [];
+    var ALL_YUI_PROPS = [{"url": "Plugin.ScrollViewPaginator.html#method__afterIndexChange", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_afterIndexChange"}, {"url": "Plugin.ScrollViewPaginator.html#method__afterRender", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_afterRender"}, {"url": "Plugin.ScrollViewPaginator.html#method__calcOffsets", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_calcOffsets"}, {"url": "Plugin.ScrollViewPaginator.html#method__flickFrame", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_flickFrame"}, {"url": "Plugin.ScrollViewPaginator.html#config_index", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "config", "name": "index"}, {"url": "Plugin.ScrollViewPaginator.html#event_indexChange", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "event", "name": "indexChange"}, {"url": "Plugin.ScrollViewPaginator.html#method_initializer", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "initializer"}, {"url": "Plugin.ScrollViewPaginator.html#method_next", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "next"}, {"url": "Plugin.ScrollViewPaginator.html#method_prev", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "prev"}, {"url": "Plugin.ScrollViewPaginator.html#method__scrollEnded", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_scrollEnded"}, {"url": "Plugin.ScrollViewPaginator.html#method_scrollTo", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "scrollTo"}, {"url": "Plugin.ScrollViewPaginator.html#property_ScrollViewPaginator.ATTRS", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "property", "name": "ScrollViewPaginator.ATTRS"}, {"url": "Plugin.ScrollViewPaginator.html#property_ScrollViewPaginator.NAME", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "property", "name": "ScrollViewPaginator.NAME"}, {"url": "Plugin.ScrollViewPaginator.html#property_ScrollViewPaginator.NS", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "property", "name": "ScrollViewPaginator.NS"}, {"url": "Plugin.ScrollViewPaginator.html#config_selector", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "config", "name": "selector"}, {"url": "Plugin.ScrollViewPaginator.html#event_selectorChange", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "event", "name": "selectorChange"}, {"url": "Plugin.ScrollViewPaginator.html#method_snapToCurrent", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "snapToCurrent"}, {"url": "Plugin.ScrollViewPaginator.html#config_total", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "config", "name": "total"}, {"url": "Plugin.ScrollViewPaginator.html#event_totalChange", "access": "", "host": "Plugin.ScrollViewPaginator", "type": "event", "name": "totalChange"}, {"url": "Plugin.ScrollViewPaginator.html#method__uiIndex", "access": "protected", "host": "Plugin.ScrollViewPaginator", "type": "method", "name": "_uiIndex"}];
 </script>
 </body>
 </html>

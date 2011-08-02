@@ -1,0 +1,8 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.4.0
+build: nightly
+*/
+.yui3-calendar{display:-moz-inline-stack;display:inline-block;*display:inline;zoom:1;vertical-align:middle}.yui3-calendar-content{position:relative;display:block}.yui3-calendar-column-hidden,.yui3-calendar-hidden{display:none}

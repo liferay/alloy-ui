@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -711,9 +726,13 @@
 
 									<div class="yui3-widget-bd aui-list-bd">
 										<ul class="content">
+												<li class=""><a href="#event_add" title="add">add</a></li>
+												<li class=""><a href="#event_empty" title="empty">empty</a></li>
 												<li class=""><a href="#event_keyChange" title="keyChange">keyChange</a></li>
 												<li class=""><a href="#event_recordsChange" title="recordsChange">recordsChange</a></li>
+												<li class=""><a href="#event_remove" title="remove">remove</a></li>
 												<li class=""><a href="#event_tableChange" title="tableChange">tableChange</a></li>
+												<li class=""><a href="#event_update" title="update">update</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -1599,6 +1618,12 @@ additional functionality, such as custom indexing. sorting, and filtering.
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -1664,6 +1689,12 @@ additional functionality, such as custom indexing. sorting, and filtering.
 
 														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
 														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
 														</div>
 
 														
@@ -1844,6 +1875,82 @@ additional functionality, such as custom indexing. sorting, and filtering.
 										<h3 id="events">Events</h3>
 
 										<div class="content">
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_add">
+
+													<h4>
+														<a name="event_add">add</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">add</strong>
+
+															(
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>At least one record is being added. Additional properties of
+the event are:</p>
+<dl>
+<dt>added</dt>
+<dd>Array of new records to be added</dd>
+<dt>index</dt>
+<dd>The insertion index in the Recordset's internal
+array</dd>
+</dl>
+<p>Preventing this event will cause the new records NOT to be
+added to the Recordset's internal collection.</p>
+														</div>
+
+														<div class="description">
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defAddFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_empty">
+
+													<h4>
+														<a name="event_empty">empty</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">empty</strong>
+
+															(
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															The Recordset is being flushed of all records.
+														</div>
+
+														<div class="description">
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defEmptyFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_keyChange">
 
 													<h4>
@@ -1928,6 +2035,51 @@ additional functionality, such as custom indexing. sorting, and filtering.
 														</div>
 													</div>
 												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_remove">
+
+													<h4>
+														<a name="event_remove">remove</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">remove</strong>
+
+															(
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>At least one record is being removed. Additional properties of
+the event are:</p>
+<dl>
+<dt>removed</dt>
+<dd>Array of records to be removed</dd>
+<dt>range</dt>
+<dd>Number of records to be removed</dd>
+<dt>index</dt>
+<dd>The starting index in the Recordset's internal
+array from which to remove records</dd>
+</dl>
+<p>Preventing this event will cause the records NOT to be
+removed from the Recordset's internal collection.</p>
+														</div>
+
+														<div class="description">
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defRemoveFn.
+																</div>
+
+														</div>
+													</div>
+												</div>
 												<div class="api-entry-row event-row " rel="yui:event" resource="#event_tableChange">
 
 													<h4>
@@ -1966,6 +2118,51 @@ additional functionality, such as custom indexing. sorting, and filtering.
 																</dl>
 
 
+
+														</div>
+													</div>
+												</div>
+												<div class="api-entry-row event-row " rel="yui:event" resource="#event_update">
+
+													<h4>
+														<a name="event_update">update</a>
+													</h4>
+
+													<div class="detail">
+														<code class="event-detail">
+														
+														
+														
+															<strong property="yui:name">update</strong>
+
+															(
+															)
+
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>At least one record is being updated. Additional properties of
+the event are:</p>
+<dl>
+<dt>updated</dt>
+<dd>Array of records with updated values</dd>
+<dt>overwritten</dt>
+<dd>Array of current records that will be replaced</dd>
+<dt>index</dt>
+<dd>The starting index in the Recordset's internal
+array from which to update will apply</dd>
+</dl>
+<p>Preventing this event will cause the records NOT to be
+updated in the Recordset's internal collection.</p>
+														</div>
+
+														<div class="description">
+
+
+																<div class="preventable">
+																	<strong>Preventable:</strong>
+																	This event is preventable by method e.preventDefault().  The default function executed by this event is _defUpdateFn.
+																</div>
 
 														</div>
 													</div>
@@ -2027,7 +2224,7 @@ additional functionality, such as custom indexing. sorting, and filtering.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}];
+    var ALL_YUI_PROPS = [{"url": "Recordset.html#method_add", "access": "", "host": "Recordset", "type": "method", "name": "add"}, {"url": "Recordset.html#event_add", "access": "", "host": "Recordset", "type": "event", "name": "add"}, {"url": "RecordsetIndexer.html#method_createTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "createTable"}, {"url": "Record.html#config_data", "access": "", "host": "Record", "type": "config", "name": "data"}, {"url": "Record.html#event_dataChange", "access": "", "host": "Record", "type": "event", "name": "dataChange"}, {"url": "RecordsetSort.html#config_defaultSorter", "access": "", "host": "RecordsetSort", "type": "config", "name": "defaultSorter"}, {"url": "RecordsetSort.html#event_defaultSorterChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "defaultSorterChange"}, {"url": "Recordset.html#method_empty", "access": "", "host": "Recordset", "type": "method", "name": "empty"}, {"url": "Recordset.html#event_empty", "access": "", "host": "Recordset", "type": "event", "name": "empty"}, {"url": "RecordsetFilter.html#method_filter", "access": "", "host": "RecordsetFilter", "type": "method", "name": "filter"}, {"url": "RecordsetSort.html#method_flip", "access": "", "host": "RecordsetSort", "type": "method", "name": "flip"}, {"url": "Recordset.html#method_getLength", "access": "", "host": "Recordset", "type": "method", "name": "getLength"}, {"url": "Recordset.html#method_getRecord", "access": "", "host": "Recordset", "type": "method", "name": "getRecord"}, {"url": "Recordset.html#method_getRecordByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordByIndex"}, {"url": "Recordset.html#method_getRecordsByIndex", "access": "", "host": "Recordset", "type": "method", "name": "getRecordsByIndex"}, {"url": "RecordsetIndexer.html#method_getTable", "access": "", "host": "RecordsetIndexer", "type": "method", "name": "getTable"}, {"url": "Record.html#method_getValue", "access": "", "host": "Record", "type": "method", "name": "getValue"}, {"url": "Recordset.html#method_getValuesByKey", "access": "", "host": "Recordset", "type": "method", "name": "getValuesByKey"}, {"url": "RecordsetFilter.html#method_grep", "access": "", "host": "RecordsetFilter", "type": "method", "name": "grep"}, {"url": "RecordsetIndexer.html#config_hashTables", "access": "", "host": "RecordsetIndexer", "type": "config", "name": "hashTables"}, {"url": "RecordsetIndexer.html#event_hashTablesChange", "access": "", "host": "RecordsetIndexer", "type": "event", "name": "hashTablesChange"}, {"url": "Record.html#config_id", "access": "", "host": "Record", "type": "config", "name": "id"}, {"url": "Record.html#event_idChange", "access": "", "host": "Record", "type": "event", "name": "idChange"}, {"url": "RecordsetSort.html#method_initializer", "access": "protected", "host": "RecordsetSort", "type": "method", "name": "initializer"}, {"url": "Recordset.html#method_initializer", "access": "protected", "host": "Recordset", "type": "method", "name": "initializer"}, {"url": "Recordset.html#config_key", "access": "", "host": "Recordset", "type": "config", "name": "key"}, {"url": "Recordset.html#event_keyChange", "access": "", "host": "Recordset", "type": "event", "name": "keyChange"}, {"url": "RecordsetSort.html#config_lastSortProperties", "access": "", "host": "RecordsetSort", "type": "config", "name": "lastSortProperties"}, {"url": "RecordsetSort.html#event_lastSortPropertiesChange", "access": "", "host": "RecordsetSort", "type": "event", "name": "lastSortPropertiesChange"}, {"url": "Recordset.html#config_records", "access": "", "host": "Recordset", "type": "config", "name": "records"}, {"url": "Recordset.html#event_recordsChange", "access": "", "host": "Recordset", "type": "event", "name": "recordsChange"}, {"url": "RecordsetFilter.html#method_reject", "access": "", "host": "RecordsetFilter", "type": "method", "name": "reject"}, {"url": "Recordset.html#method_remove", "access": "", "host": "Recordset", "type": "method", "name": "remove"}, {"url": "Recordset.html#event_remove", "access": "", "host": "Recordset", "type": "event", "name": "remove"}, {"url": "RecordsetSort.html#method_resort", "access": "", "host": "RecordsetSort", "type": "method", "name": "resort"}, {"url": "RecordsetSort.html#method_reverse", "access": "", "host": "RecordsetSort", "type": "method", "name": "reverse"}, {"url": "RecordsetSort.html#method_sort", "access": "", "host": "RecordsetSort", "type": "method", "name": "sort"}, {"url": "Recordset.html#config_table", "access": "", "host": "Recordset", "type": "config", "name": "table"}, {"url": "Recordset.html#event_tableChange", "access": "", "host": "Recordset", "type": "event", "name": "tableChange"}, {"url": "Recordset.html#method_update", "access": "", "host": "Recordset", "type": "method", "name": "update"}, {"url": "Recordset.html#event_update", "access": "", "host": "Recordset", "type": "event", "name": "update"}];
 </script>
 </body>
 </html>

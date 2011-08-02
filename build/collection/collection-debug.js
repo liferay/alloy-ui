@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('array-extras', function(Y) {
@@ -102,6 +102,8 @@ A.unique = function(a, sort) {
     // implementation was not working, so I replaced it with the following.
     // Leaving it in so that the API doesn't get broken.
     if (sort) {
+        Y.log('The sort parameter is deprecated and will be removed in a future version of YUI.', 'warn', 'deprecated');
+
         if (L.isNumber(results[0])) {
             results.sort(A.numericSort);
         } else {
@@ -134,10 +136,12 @@ A.filter = Native.filter ?
             item;
 
         for (; i < len; ++i) {
-            item = a[i];
+            if (i in a) {
+                item = a[i];
 
-            if (f.call(o, item, i, a)) {
-                results.push(item);
+                if (f.call(o, item, i, a)) {
+                    results.push(item);
+                }
             }
         }
 
@@ -180,7 +184,7 @@ A.every = Native.every ?
     } :
     function(a, f, o) {
         for (var i = 0, l = a.length; i < l; ++i) {
-            if (!f.call(o, a[i], i, a)) {
+            if (i in a && !f.call(o, a[i], i, a)) {
                 return false;
             }
         }
@@ -209,7 +213,9 @@ A.map = Native.map ?
             results = a.concat();
 
         for (; i < len; ++i) {
-            results[i] = f.call(o, a[i], i, a);
+            if (i in a) {
+                results[i] = f.call(o, a[i], i, a);
+            }
         }
 
         return results;
@@ -248,7 +254,9 @@ A.reduce = Native.reduce ?
             result = init;
 
         for (; i < len; ++i) {
-            result = f.call(o, result, a[i], i, a);
+            if (i in a) {
+                result = f.call(o, result, a[i], i, a);
+            }
         }
 
         return result;
@@ -271,7 +279,7 @@ A.reduce = Native.reduce ?
 */
 A.find = function(a, f, o) {
     for (var i = 0, l = a.length; i < l; i++) {
-        if (f.call(o, a[i], i, a)) {
+        if (i in a && f.call(o, a[i], i, a)) {
             return a[i];
         }
     }
@@ -345,15 +353,8 @@ A.zip = function(a, a2) {
     return results;
 };
 
-/**
- * forEach is an alias of Array.each.  This is part of the
- * collection module.
- * @method Array.forEach
- */
-A.forEach = A.each;
 
-
-}, '3.3.0' );
+}, '3.4.0' );
 YUI.add('arraylist', function(Y) {
 
 /**
@@ -527,10 +528,15 @@ Y.mix( ArrayList, {
      * <code>_item</code> method in case there is any special behavior that is
      * appropriate for API mirroring.</p>
      *
+     * <p>If the iterated method returns a value, the return value from the
+     * added method will be an array of values with each value being at the
+     * corresponding index for that item.  If the iterated method does not
+     * return a value, the added method will be chainable.
+     *
      * @method addMethod
      * @static
-     * @param dest { Object } Object or prototype to receive the iterator method
-     * @param name { String | Array } Name of method of methods to create
+     * @param dest {Object} Object or prototype to receive the iterator method
+     * @param name {String|String[]} Name of method of methods to create
      */
     addMethod: function ( dest, names ) {
 
@@ -547,7 +553,7 @@ Y.mix( ArrayList, {
                     var result = item[ name ].apply( item, args );
 
                     if ( result !== undefined && result !== item ) {
-                        ret.push( result );
+                        ret[i] = result;
                     }
                 }, this);
 
@@ -560,7 +566,7 @@ Y.mix( ArrayList, {
 Y.ArrayList = ArrayList;
 
 
-}, '3.3.0' );
+}, '3.4.0' );
 YUI.add('arraylist-add', function(Y) {
 
 /**
@@ -641,7 +647,7 @@ Y.mix(Y.ArrayList.prototype, {
 });
 
 
-}, '3.3.0' ,{requires:['arraylist']});
+}, '3.4.0' ,{requires:['arraylist']});
 YUI.add('arraylist-filter', function(Y) {
 
 /**
@@ -684,7 +690,7 @@ Y.mix(Y.ArrayList.prototype, {
 });
 
 
-}, '3.3.0' ,{requires:['arraylist']});
+}, '3.4.0' ,{requires:['arraylist']});
 YUI.add('array-invoke', function(Y) {
 
 /**
@@ -728,8 +734,8 @@ Y.Array.invoke = function(items, name) {
 };
 
 
-}, '3.3.0' );
+}, '3.4.0' );
 
 
-YUI.add('collection', function(Y){}, '3.3.0' ,{use:['array-extras', 'arraylist', 'arraylist-add', 'arraylist-filter', 'array-invoke']});
+YUI.add('collection', function(Y){}, '3.4.0' ,{use:['array-extras', 'arraylist', 'arraylist-add', 'arraylist-filter', 'array-invoke']});
 

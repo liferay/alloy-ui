@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -693,7 +708,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;imageloader&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -763,7 +778,18 @@
 			<span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
 			<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">_className</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span> <span class="k">return</span> <span class="nx">name</span><span class="p">;</span> <span class="p">},</span>
 			<span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">false</span>
-		<span class="p">}</span>
+		<span class="p">},</span> 
+        
+        <span class="cm">/**</span>
+<span class="cm">         * Determines how to act when className is used as the way to delay load images. The &quot;default&quot; action is to just</span>
+<span class="cm">         * remove the class name. The &quot;enhanced&quot; action is to remove the class name and also set the src attribute if</span>
+<span class="cm">         * the element is an img.</span>
+<span class="cm">         * @attribute classNameAction</span>
+<span class="cm">         * @type String</span>
+<span class="cm">         */</span>
+        <span class="nx">classNameAction</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;default&quot;</span>
+        <span class="p">}</span>
 
 	<span class="p">};</span>
 
@@ -1030,8 +1056,9 @@
 						<span class="k">continue</span><span class="p">;</span>
 					<span class="p">}</span>
 					<span class="k">if</span> <span class="p">(</span><span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span> <span class="o">&amp;&amp;</span> <span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span> <span class="o">&lt;=</span> <span class="nx">hLimit</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">el</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_className</span><span class="p">);</span>
-						<span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">fetched</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+						<span class="c1">//els[i].el.removeClass(this._className);</span>
+						<span class="k">this</span><span class="p">.</span><span class="nx">_updateNodeClassName</span><span class="p">(</span><span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">el</span><span class="p">);</span>
+                        <span class="nx">els</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">fetched</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 					<span class="p">}</span>
 					<span class="k">else</span> <span class="p">{</span>
 						<span class="nx">allFetched</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -1044,6 +1071,31 @@
 				<span class="k">this</span><span class="p">.</span><span class="nx">_clearTriggers</span><span class="p">();</span>
 			<span class="p">}</span>
 		<span class="p">},</span>
+        
+        <span class="cm">/**</span>
+<span class="cm">         * Updates a given node, removing the ImageLoader class name. If the</span>
+<span class="cm">         * node is an img and the classNameAction is &quot;enhanced&quot;, then node</span>
+<span class="cm">         * class name is removed and also the src attribute is set to the </span>
+<span class="cm">         * image URL as well as clearing the style background image.</span>
+<span class="cm">         * @param node {Y.Node} The node to act on.</span>
+<span class="cm">         * @private</span>
+<span class="cm">         */</span>
+        <span class="nx">_updateNodeClassName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">url</span><span class="p">;</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;classNameAction&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;enhanced&quot;</span><span class="p">){</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;tagName&quot;</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;img&quot;</span><span class="p">){</span>
+                    <span class="nx">url</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">getStyle</span><span class="p">(</span><span class="s2">&quot;backgroundImage&quot;</span><span class="p">);</span>
+                    <span class="sr">/url\([&quot;&#39;]?(.*?)[&quot;&#39;]?\)/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+                    <span class="nx">url</span> <span class="o">=</span> <span class="nb">RegExp</span><span class="p">.</span><span class="nx">$1</span><span class="p">;</span>
+                    <span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="nx">url</span><span class="p">);</span>
+                    <span class="nx">node</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s2">&quot;backgroundImage&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            
+            <span class="nx">node</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_className</span><span class="p">);</span>        
+        <span class="p">},</span>
 
 		<span class="cm">/**</span>
 <span class="cm">		 * Finds all elements in the DOM with the class name specified in the group. Removes the class from the element in order to let the style definitions trigger the image fetching.</span>
@@ -1056,7 +1108,7 @@
 			<span class="p">}</span>
 
 
-			<span class="nx">Y</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_className</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_className</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_className</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_updateNodeClassName</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
 		<span class="p">}</span>
 
 	<span class="p">};</span>
@@ -1311,7 +1363,7 @@
 
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base-base&#39;</span><span class="p">,</span> <span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="s1">&#39;node-screen&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -1329,7 +1381,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "ImgLoadGroup.html#method_addCustomTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addCustomTrigger"}, {"url": "ImgLoadGroup.html#method_addTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addTrigger"}, {"url": "ImgLoadImgObj.html#config_bgUrl", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "bgUrl"}, {"url": "ImgLoadImgObj.html#event_bgUrlChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "bgUrlChange"}, {"url": "ImgLoadGroup.html#config_className", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "className"}, {"url": "ImgLoadGroup.html#event_classNameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameChange"}, {"url": "ImgLoadImgObj.html#config_domId", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "domId"}, {"url": "ImgLoadImgObj.html#event_domIdChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "domIdChange"}, {"url": "ImgLoadImgObj.html#config_enabled", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "enabled"}, {"url": "ImgLoadImgObj.html#event_enabledChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "enabledChange"}, {"url": "ImgLoadGroup.html#method_fetch", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "fetch"}, {"url": "ImgLoadImgObj.html#method_fetch", "access": "", "host": "ImgLoadImgObj", "type": "method", "name": "fetch"}, {"url": "ImgLoadGroup.html#config_foldDistance", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "foldDistance"}, {"url": "ImgLoadGroup.html#event_foldDistanceChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "foldDistanceChange"}, {"url": "ImgLoadImgObj.html#config_height", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "height"}, {"url": "ImgLoadImgObj.html#event_heightChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "heightChange"}, {"url": "ImgLoadImgObj.html#config_isPng", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "isPng"}, {"url": "ImgLoadImgObj.html#event_isPngChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "isPngChange"}, {"url": "ImgLoadGroup.html#config_name", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "name"}, {"url": "ImgLoadGroup.html#event_nameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "nameChange"}, {"url": "ImgLoadGroup.html#method_registerImage", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "registerImage"}, {"url": "ImgLoadImgObj.html#config_setVisible", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "setVisible"}, {"url": "ImgLoadImgObj.html#event_setVisibleChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "setVisibleChange"}, {"url": "ImgLoadImgObj.html#config_sizingMethod", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "sizingMethod"}, {"url": "ImgLoadImgObj.html#event_sizingMethodChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "sizingMethodChange"}, {"url": "ImgLoadImgObj.html#config_srcUrl", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "srcUrl"}, {"url": "ImgLoadImgObj.html#event_srcUrlChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "srcUrlChange"}, {"url": "ImgLoadGroup.html#config_timeLimit", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "timeLimit"}, {"url": "ImgLoadGroup.html#event_timeLimitChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "timeLimitChange"}, {"url": "ImgLoadImgObj.html#config_width", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "width"}, {"url": "ImgLoadImgObj.html#event_widthChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "widthChange"}];
+    var ALL_YUI_PROPS = [{"url": "ImgLoadGroup.html#method_addCustomTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addCustomTrigger"}, {"url": "ImgLoadGroup.html#method_addTrigger", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "addTrigger"}, {"url": "ImgLoadImgObj.html#config_bgUrl", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "bgUrl"}, {"url": "ImgLoadImgObj.html#event_bgUrlChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "bgUrlChange"}, {"url": "ImgLoadGroup.html#config_className", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "className"}, {"url": "ImgLoadGroup.html#config_classNameAction", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "classNameAction"}, {"url": "ImgLoadGroup.html#event_classNameActionChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameActionChange"}, {"url": "ImgLoadGroup.html#event_classNameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "classNameChange"}, {"url": "ImgLoadImgObj.html#config_domId", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "domId"}, {"url": "ImgLoadImgObj.html#event_domIdChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "domIdChange"}, {"url": "ImgLoadImgObj.html#config_enabled", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "enabled"}, {"url": "ImgLoadImgObj.html#event_enabledChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "enabledChange"}, {"url": "ImgLoadGroup.html#method_fetch", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "fetch"}, {"url": "ImgLoadImgObj.html#method_fetch", "access": "", "host": "ImgLoadImgObj", "type": "method", "name": "fetch"}, {"url": "ImgLoadGroup.html#config_foldDistance", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "foldDistance"}, {"url": "ImgLoadGroup.html#event_foldDistanceChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "foldDistanceChange"}, {"url": "ImgLoadImgObj.html#config_height", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "height"}, {"url": "ImgLoadImgObj.html#event_heightChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "heightChange"}, {"url": "ImgLoadImgObj.html#config_isPng", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "isPng"}, {"url": "ImgLoadImgObj.html#event_isPngChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "isPngChange"}, {"url": "ImgLoadGroup.html#config_name", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "name"}, {"url": "ImgLoadGroup.html#event_nameChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "nameChange"}, {"url": "ImgLoadGroup.html#method_registerImage", "access": "", "host": "ImgLoadGroup", "type": "method", "name": "registerImage"}, {"url": "ImgLoadImgObj.html#config_setVisible", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "setVisible"}, {"url": "ImgLoadImgObj.html#event_setVisibleChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "setVisibleChange"}, {"url": "ImgLoadImgObj.html#config_sizingMethod", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "sizingMethod"}, {"url": "ImgLoadImgObj.html#event_sizingMethodChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "sizingMethodChange"}, {"url": "ImgLoadImgObj.html#config_srcUrl", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "srcUrl"}, {"url": "ImgLoadImgObj.html#event_srcUrlChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "srcUrlChange"}, {"url": "ImgLoadGroup.html#config_timeLimit", "access": "", "host": "ImgLoadGroup", "type": "config", "name": "timeLimit"}, {"url": "ImgLoadGroup.html#event_timeLimitChange", "access": "", "host": "ImgLoadGroup", "type": "event", "name": "timeLimitChange"}, {"url": "ImgLoadImgObj.html#config_width", "access": "", "host": "ImgLoadImgObj", "type": "config", "name": "width"}, {"url": "ImgLoadImgObj.html#event_widthChange", "access": "", "host": "ImgLoadImgObj", "type": "event", "name": "widthChange"}];
 </script>
 </body>
 </html>

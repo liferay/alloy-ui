@@ -37,7 +37,7 @@
 AUI().use(
 	'aui-base',
 	'aui-form',
-	'aui-color',
+	'aui-color-util',
 	function(A) {
 		var colors = 'EEF0F2 5B677D 06C A6AFBE B9CED9 627782 EBEBEB D1D6DC DDE1E6 BCC3CC D3DADD 828F95 727C81 D2D6DE 2C2F34 4B5567 369 F0F5F7 A7CEDF 9EBAC8 DFF4FF AEB8BC 878F93 88C5D9 D7F1FF 1D4280 3068BA 5C94DA 3C56B5 34404F 97A1AE 98C0F4 DFE8F6 A3BAE9 DEE7F8 CAD8F3 598BEC 224FA8'.split(' ');
 
@@ -61,13 +61,13 @@ AUI().use(
 						item = chars.join('');
 					}
 
-					var rgb = A.Color.hex2rgb(item);
-					var hsv = A.Color.rgb2hsv(rgb);
+					var rgb = A.ColorUtil.hex2rgb(item);
+					var hsv = A.ColorUtil.rgb2hsv(rgb);
 
 					hsv.h += hueShift;
 
-					rgb = A.Color.hsv2rgb(hsv);
-					item = A.Color.rgb2hex(rgb);
+					rgb = A.ColorUtil.hsv2rgb(hsv);
+					item = A.ColorUtil.rgb2hex(rgb);
 				}
 
 				colorCodes.push('\'' + item + '\'');

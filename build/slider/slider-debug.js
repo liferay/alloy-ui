@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('slider-base', function(Y) {
@@ -86,7 +86,9 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
          *      <dt>offset</dt>
          *          <dd>Pixel offset from top/left of the slider to the new
          *          thumb position</dd>
-         *      <dt>ddEvent</dt>
+         *      <dt>ddEvent (deprecated)</dt>
+         *          <dd><code>drag:drag</code> event from the thumb</dd>
+         *      <dt>originEvent</dt>
          *          <dd><code>drag:drag</code> event from the thumb</dd>
          *  </dl>
          */
@@ -281,11 +283,16 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
          * @param event {Event} The event object for the slideStart with the
          *                      following extra properties:
          *  <dl>
-         *      <dt>ddEvent</dt>
+         *      <dt>ddEvent (deprecated)</dt>
+         *          <dd><code>drag:start</code> event from the thumb</dd>
+         *      <dt>originEvent</dt>
          *          <dd><code>drag:start</code> event from the thumb</dd>
          *  </dl>
          */
-        this.fire( 'slideStart', { ddEvent: e } );
+        this.fire('slideStart', {
+           ddEvent: e, // for backward compatibility
+           originEvent: e
+        });
     },
 
     /**
@@ -302,7 +309,8 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
         Y.log("Thumb position: " + thumbXY + ", Rail position: " + railXY, "info", "slider");
         this.fire( 'thumbMove', {
             offset : (thumbXY - railXY),
-            ddEvent: e
+            ddEvent: e, // for backward compatibility
+            originEvent: e
         } );
     },
 
@@ -322,11 +330,16 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
          * @param event {Event} The event object for the slideEnd with the
          *                      following extra properties:
          *  <dl>
-         *      <dt>ddEvent</dt>
+         *      <dt>ddEvent (deprecated)</dt>
+         *          <dd><code>drag:end</code> event from the thumb</dd>
+         *      <dt>originEvent</dt>
          *          <dd><code>drag:end</code> event from the thumb</dd>
          *  </dl>
          */
-        this.fire( 'slideEnd', { ddEvent: e } );
+        this.fire('slideEnd', {
+            ddEvent: e,
+            originEvent: e
+        });
     },
 
     /**
@@ -571,7 +584,7 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
 });
 
 
-}, '3.3.0' ,{requires:['widget', 'substitute', 'dd-constrain']});
+}, '3.4.0' ,{requires:['widget', 'substitute', 'dd-constrain']});
 YUI.add('slider-value-range', function(Y) {
 
 /**
@@ -674,8 +687,8 @@ Y.SliderValueRange = Y.mix( SliderValueRange, {
             // This attempts to allow for rendering off-DOM, then attaching
             // without the need to call syncUI().  It is still recommended
             // to call syncUI() in these cases though, just to be sure.
-            length = parseFloat( length, 10 ) || 150;
-            thumbSize = parseFloat( thumbSize, 10 ) || 15;
+            length = parseFloat( length ) || 150;
+            thumbSize = parseFloat( thumbSize ) || 15;
 
             this._factor = ( max - min ) / ( length - thumbSize );
 
@@ -966,7 +979,7 @@ Y.SliderValueRange = Y.mix( SliderValueRange, {
 }, true );
 
 
-}, '3.3.0' ,{requires:['slider-base']});
+}, '3.4.0' ,{requires:['slider-base']});
 YUI.add('clickable-rail', function(Y) {
 
 /**
@@ -1177,7 +1190,7 @@ Y.ClickableRail = Y.mix(ClickableRail, {
 }, true);
 
 
-}, '3.3.0' ,{requires:['slider-base']});
+}, '3.4.0' ,{requires:['slider-base']});
 YUI.add('range-slider', function(Y) {
 
 /**
@@ -1204,8 +1217,8 @@ Y.Slider = Y.Base.build( 'slider', Y.SliderBase,
     [ Y.SliderValueRange, Y.ClickableRail ] );
 
 
-}, '3.3.0' ,{requires:['slider-base', 'clickable-rail', 'slider-value-range']});
+}, '3.4.0' ,{requires:['slider-base', 'clickable-rail', 'slider-value-range']});
 
 
-YUI.add('slider', function(Y){}, '3.3.0' ,{use:['slider-base', 'slider-value-range', 'clickable-rail', 'range-slider']});
+YUI.add('slider', function(Y){}, '3.4.0' ,{use:['slider-base', 'slider-value-range', 'clickable-rail', 'range-slider']});
 

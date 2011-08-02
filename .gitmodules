@@ -1,0 +1,3 @@
+[submodule "lib/yui3"]
+	path = lib/yui3
+	url = git://github.com/liferay/yui3.git

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('widget-base-ie', function(Y) {
@@ -53,4 +53,4 @@ Y.Widget.prototype._uiSizeCB = function(expand) {
 };
 
 
-}, '3.3.0' ,{requires:['widget-base']});
+}, '3.4.0' ,{requires:['widget-base']});

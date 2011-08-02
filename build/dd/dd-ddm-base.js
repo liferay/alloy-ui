@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('dd-ddm-base', function(Y) {
@@ -344,15 +344,15 @@ YUI.add('dd-ddm-base', function(Y) {
     /**
     * @event ddm:start
     * @description Fires from the DDM before all drag events fire.
-    * @type {Event.Custom}
+    * @type {CustomEvent}
     */
     /**
     * @event ddm:end
     * @description Fires from the DDM after the DDM finishes, before the drag end events.
-    * @type {Event.Custom}
+    * @type {CustomEvent}
     */
 
 
 
 
-}, '3.3.0' ,{requires:['node', 'base', 'yui-throttle', 'classnamemanager'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['node', 'base', 'yui-throttle', 'classnamemanager']});

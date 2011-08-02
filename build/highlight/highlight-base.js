@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('highlight-base', function(Y) {
@@ -163,33 +163,43 @@ Highlight = {
      * @static
      */
     all: function (haystack, needles, options) {
-        var i, len, regex, replacer;
+        var validNeedles = [],
+            esc, i, len, needle, regex, replacer;
 
         if (!options) {
             options = EMPTY_OBJECT;
         }
 
         // TODO: document options.replacer
+        esc      = options.escapeHTML !== false;
         regex    = options.startsWith ? Highlight._START_REGEX : Highlight._REGEX;
         replacer = options.replacer || Highlight._REPLACER;
-
-        // Create a local copy of needles so we can safely modify it in the next
-        // step.
-        needles = isArray(needles) ? needles.concat() : [needles];
+        needles  = isArray(needles) ? needles : [needles];
 
         // Escape HTML characters and special regular expression characters in
         // the needles so they can be used in a regex and matched against the
         // escaped haystack.
         for (i = 0, len = needles.length; i < len; ++i) {
-            needles[i] = Escape.regex(Escape.html(needles[i]));
+            needle = needles[i];
+
+            if (needle) {
+                validNeedles.push(Escape.regex(esc ? Escape.html(needle) : needle));
+            }
         }
 
         // Escape HTML characters in the haystack to prevent HTML injection.
-        haystack = Escape.html(haystack);
+        if (esc) {
+            haystack = Escape.html(haystack);
+        }
+
+        // No point continuing if there are no needles.
+        if (!validNeedles.length) {
+            return haystack;
+        }
 
         return haystack.replace(
             new RegExp(
-                regex.replace('%needles', needles.join('|')),
+                regex.replace('%needles', validNeedles.join('|')),
                 options.caseSensitive ? 'g' : 'gi'
             ),
             replacer
@@ -348,4 +358,4 @@ Highlight = {
 Y.Highlight = Highlight;
 
 
-}, '3.3.0' ,{requires:['array-extras', 'escape', 'text-wordbreak']});
+}, '3.4.0' ,{requires:['array-extras', 'escape', 'text-wordbreak']});

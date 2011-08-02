@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -666,6 +681,15 @@
 									<ul class="content">
 
 
+			                                <li class=""><a href="intl-base-debug.js.html" title="intl-base-debug.js">intl-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="intl-base-min.js.html" title="intl-base-min.js">intl-base-min.js</a></li>
+
+
+			                                <li class=""><a href="intl-base.js.html" title="intl-base.js">intl-base.js</a></li>
+
+
 			                                <li class=""><a href="intl-debug.js.html" title="intl-debug.js">intl-debug.js</a></li>
 
 
@@ -690,10 +714,10 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;intl&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">b</span><span class="o">=</span><span class="p">{},</span><span class="nx">a</span><span class="o">=</span><span class="s2">&quot;yuiRootLang&quot;</span><span class="p">,</span><span class="nx">e</span><span class="o">=</span><span class="s2">&quot;yuiActiveLang&quot;</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="p">[];</span><span class="nx">d</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Intl&quot;</span><span class="p">),{</span><span class="nx">_mod</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">]){</span><span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">]</span><span class="o">=</span><span class="p">{};}</span><span class="k">return</span> <span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">];},</span><span class="nx">setLang</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">j</span><span class="p">){</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">g</span><span class="p">),</span><span class="nx">f</span><span class="o">=</span><span class="nx">i</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span><span class="nx">h</span><span class="o">=!!</span><span class="nx">i</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span><span class="k">if</span><span class="p">(</span><span class="nx">h</span><span class="o">&amp;&amp;</span><span class="nx">j</span><span class="o">!==</span><span class="nx">f</span><span class="p">){</span><span class="nx">i</span><span class="p">[</span><span class="nx">e</span><span class="p">]</span><span class="o">=</span><span class="nx">j</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;intl:langChange&quot;</span><span class="p">,{</span><span class="nx">module</span><span class="o">:</span><span class="nx">g</span><span class="p">,</span><span class="nx">prevVal</span><span class="o">:</span><span class="nx">f</span><span class="p">,</span><span class="nx">newVal</span><span class="o">:</span><span class="p">(</span><span class="nx">j</span><span class="o">===</span><span class="nx">a</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&quot;</span><span class="o">:</span><span class="nx">j</span><span class="p">});}</span><span class="k">return</span> <span class="nx">h</span><span class="p">;},</span><span class="nx">getLang</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="kd">var</span> <span class="nx">g</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">f</span><span class="p">)[</span><span class="nx">e</span><span class="p">];</span><span class="k">return</span><span class="p">(</span><span class="nx">g</span><span class="o">===</span><span class="nx">a</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&quot;</span><span class="o">:</span><span class="nx">g</span><span class="p">;},</span><span class="nx">add</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">h</span><span class="p">,</span><span class="nx">f</span><span class="p">){</span><span class="nx">h</span><span class="o">=</span><span class="nx">h</span><span class="o">||</span><span class="nx">a</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">g</span><span class="p">)[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">f</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">setLang</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">h</span><span class="p">);},</span><span class="nx">get</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">j</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">h</span><span class="p">),</span><span class="nx">i</span><span class="p">;</span><span class="nx">j</span><span class="o">=</span><span class="nx">j</span><span class="o">||</span><span class="nx">f</span><span class="p">[</span><span class="nx">e</span><span class="p">];</span><span class="nx">i</span><span class="o">=</span><span class="nx">f</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span><span class="o">||</span><span class="p">{};</span><span class="k">return</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="o">?</span><span class="nx">i</span><span class="p">[</span><span class="nx">g</span><span class="p">]</span><span class="o">:</span><span class="nx">d</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">i</span><span class="p">);},</span><span class="nx">getAvailableLangs</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">_loader</span><span class="p">,</span><span class="nx">g</span><span class="o">=</span><span class="nx">f</span><span class="o">&amp;&amp;</span><span class="nx">f</span><span class="p">.</span><span class="nx">moduleInfo</span><span class="p">[</span><span class="nx">h</span><span class="p">],</span><span class="nx">i</span><span class="o">=</span><span class="nx">g</span><span class="o">&amp;&amp;</span><span class="nx">g</span><span class="p">.</span><span class="nx">lang</span><span class="p">;</span><span class="k">return</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">?</span><span class="nx">i</span><span class="p">.</span><span class="nx">concat</span><span class="p">()</span><span class="o">:</span><span class="nx">c</span><span class="p">;}});</span><span class="nx">d</span><span class="p">.</span><span class="nx">augment</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Intl</span><span class="p">,</span><span class="nx">d</span><span class="p">.</span><span class="nx">EventTarget</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">Intl</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;intl:langChange&quot;</span><span class="p">,{</span><span class="nx">emitFacade</span><span class="o">:</span><span class="kc">true</span><span class="p">});},</span><span class="s2">&quot;3.3.0&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;event-custom&quot;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;intl&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">b</span><span class="o">=</span><span class="p">{},</span><span class="nx">a</span><span class="o">=</span><span class="s2">&quot;yuiRootLang&quot;</span><span class="p">,</span><span class="nx">e</span><span class="o">=</span><span class="s2">&quot;yuiActiveLang&quot;</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="p">[];</span><span class="nx">d</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Intl&quot;</span><span class="p">),{</span><span class="nx">_mod</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">]){</span><span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">]</span><span class="o">=</span><span class="p">{};}</span><span class="k">return</span> <span class="nx">b</span><span class="p">[</span><span class="nx">f</span><span class="p">];},</span><span class="nx">setLang</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">j</span><span class="p">){</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">g</span><span class="p">),</span><span class="nx">f</span><span class="o">=</span><span class="nx">i</span><span class="p">[</span><span class="nx">e</span><span class="p">],</span><span class="nx">h</span><span class="o">=!!</span><span class="nx">i</span><span class="p">[</span><span class="nx">j</span><span class="p">];</span><span class="k">if</span><span class="p">(</span><span class="nx">h</span><span class="o">&amp;&amp;</span><span class="nx">j</span><span class="o">!==</span><span class="nx">f</span><span class="p">){</span><span class="nx">i</span><span class="p">[</span><span class="nx">e</span><span class="p">]</span><span class="o">=</span><span class="nx">j</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;intl:langChange&quot;</span><span class="p">,{</span><span class="nx">module</span><span class="o">:</span><span class="nx">g</span><span class="p">,</span><span class="nx">prevVal</span><span class="o">:</span><span class="nx">f</span><span class="p">,</span><span class="nx">newVal</span><span class="o">:</span><span class="p">(</span><span class="nx">j</span><span class="o">===</span><span class="nx">a</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&quot;</span><span class="o">:</span><span class="nx">j</span><span class="p">});}</span><span class="k">return</span> <span class="nx">h</span><span class="p">;},</span><span class="nx">getLang</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="kd">var</span> <span class="nx">g</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">f</span><span class="p">)[</span><span class="nx">e</span><span class="p">];</span><span class="k">return</span><span class="p">(</span><span class="nx">g</span><span class="o">===</span><span class="nx">a</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&quot;</span><span class="o">:</span><span class="nx">g</span><span class="p">;},</span><span class="nx">add</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">h</span><span class="p">,</span><span class="nx">f</span><span class="p">){</span><span class="nx">h</span><span class="o">=</span><span class="nx">h</span><span class="o">||</span><span class="nx">a</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">g</span><span class="p">)[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">f</span><span class="p">;</span><span class="k">this</span><span class="p">.</span><span class="nx">setLang</span><span class="p">(</span><span class="nx">g</span><span class="p">,</span><span class="nx">h</span><span class="p">);},</span><span class="nx">get</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">,</span><span class="nx">g</span><span class="p">,</span><span class="nx">j</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_mod</span><span class="p">(</span><span class="nx">h</span><span class="p">),</span><span class="nx">i</span><span class="p">;</span><span class="nx">j</span><span class="o">=</span><span class="nx">j</span><span class="o">||</span><span class="nx">f</span><span class="p">[</span><span class="nx">e</span><span class="p">];</span><span class="nx">i</span><span class="o">=</span><span class="nx">f</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span><span class="o">||</span><span class="p">{};</span><span class="k">return</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span><span class="o">?</span><span class="nx">i</span><span class="p">[</span><span class="nx">g</span><span class="p">]</span><span class="o">:</span><span class="nx">d</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">i</span><span class="p">);},</span><span class="nx">getAvailableLangs</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">h</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">_loader</span><span class="p">,</span><span class="nx">g</span><span class="o">=</span><span class="nx">f</span><span class="o">&amp;&amp;</span><span class="nx">f</span><span class="p">.</span><span class="nx">moduleInfo</span><span class="p">[</span><span class="nx">h</span><span class="p">],</span><span class="nx">i</span><span class="o">=</span><span class="nx">g</span><span class="o">&amp;&amp;</span><span class="nx">g</span><span class="p">.</span><span class="nx">lang</span><span class="p">;</span><span class="k">return</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">?</span><span class="nx">i</span><span class="p">.</span><span class="nx">concat</span><span class="p">()</span><span class="o">:</span><span class="nx">c</span><span class="p">;}});</span><span class="nx">d</span><span class="p">.</span><span class="nx">augment</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">Intl</span><span class="p">,</span><span class="nx">d</span><span class="p">.</span><span class="nx">EventTarget</span><span class="p">);</span><span class="nx">d</span><span class="p">.</span><span class="nx">Intl</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;intl:langChange&quot;</span><span class="p">,{</span><span class="nx">emitFacade</span><span class="o">:</span><span class="kc">true</span><span class="p">});},</span><span class="s2">&quot;3.4.0&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;event-custom&quot;</span><span class="p">,</span><span class="s2">&quot;intl-base&quot;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -711,7 +735,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "Intl.html#method__rls", "access": "", "host": "Intl", "type": "method", "name": "_rls"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}];
+    var ALL_YUI_PROPS = [{"url": "Intl.html#method_add", "access": "", "host": "Intl", "type": "method", "name": "add"}, {"url": "Intl.html#method_get", "access": "", "host": "Intl", "type": "method", "name": "get"}, {"url": "Intl.html#method_getAvailableLangs", "access": "", "host": "Intl", "type": "method", "name": "getAvailableLangs"}, {"url": "Intl.html#method_getLang", "access": "", "host": "Intl", "type": "method", "name": "getLang"}, {"url": "Intl.html#event_intl:langChange", "access": "", "host": "Intl", "type": "event", "name": "intl:langChange"}, {"url": "Intl.html#method_lookupBestLang", "access": "", "host": "Intl", "type": "method", "name": "lookupBestLang"}, {"url": "Intl.html#method_rls_done", "access": "", "host": "Intl", "type": "method", "name": "rls_done"}, {"url": "Intl.html#method_rls_oncomplete", "access": "", "host": "Intl", "type": "method", "name": "rls_oncomplete"}, {"url": "Intl.html#method_setLang", "access": "", "host": "Intl", "type": "method", "name": "setLang"}];
 </script>
 </body>
 </html>

@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -371,6 +372,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onShowChange", onShowChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_data = null;
 		_delay = 250;
@@ -408,10 +410,12 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		_onShowChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "data", _data);
 		setNamespacedAttribute(request, "delay", _delay);

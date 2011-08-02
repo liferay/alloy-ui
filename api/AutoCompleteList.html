@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -727,7 +742,9 @@
 				                               <li class="protected"><a href="#method__onInputKey" title="_onInputKey">_onInputKey</a></li>
 				                               <li class="protected"><a href="#method__onItemClick" title="_onItemClick">_onItemClick</a></li>
 				                               <li class="protected"><a href="#method__onListInputBlur" title="_onListInputBlur">_onListInputBlur</a></li>
+				                               <li class="protected"><a href="#method__syncPosition" title="_syncPosition">_syncPosition</a></li>
 				                               <li class="protected"><a href="#method__syncResults" title="_syncResults">_syncResults</a></li>
+				                               <li class="protected"><a href="#method__syncShim" title="_syncShim">_syncShim</a></li>
 				                               <li class="protected"><a href="#method__syncVisibility" title="_syncVisibility">_syncVisibility</a></li>
 				                               <li class="protected"><a href="#method__unbindKeys" title="_unbindKeys">_unbindKeys</a></li>
 				                               <li class=""><a href="#method_hide" title="hide">hide</a></li>
@@ -903,11 +920,6 @@
 												<a href="WidgetPositionAlign.html" property="yui:name" title="WidgetPositionAlign">WidgetPositionAlign</a>
 												
 											</span>
-										, 
-											<span rel="extend" resource="WidgetStack.html">
-												<a href="WidgetStack.html" property="yui:name" title="WidgetStack">WidgetStack</a>
-												
-											</span>
 										
 									</span>
 							</h2>
@@ -1047,18 +1059,6 @@
 													<div class="protected" rel="yui:property" resource="AutoCompleteBase.html#property__YQL_SOURCE_REGEX">
 													<a href="AutoCompleteBase.html#property__YQL_SOURCE_REGEX" property="yui:name" title="_YQL_SOURCE_REGEX">_YQL_SOURCE_REGEX</a>
 													</div>
-												
-											</code>
-										</div>
-									</div>
-									<div class="section field inheritance properties" rel="yui:superclass"  resource="WidgetStack.html">
-
-										<h4>
-											Properties inherited from <a href="WidgetStack.html" property="yui:name" title="WidgetStack">WidgetStack</a>:
-										</h4>
-
-										<div class="content" rel="yui:properties">
-											<code>
 												
 											</code>
 										</div>
@@ -1396,6 +1396,56 @@ will select the active item, if any.
 											</div>
 
 
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
+												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
+															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
+															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
+											<div class="section field inheritance configuration" rel="yui:superclass"  resource="WidgetPosition.html">
+												<h4>Configuration attributes inherited from <a href="WidgetPosition.html" property="yui:name" title="WidgetPosition">WidgetPosition</a>:</h4>
+												<div class="content" rel="yui:attributes">
+													<code>
+
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_x">
+															<a href="WidgetPosition.html#config_x" property="yui:name" title="x">x</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_xy">
+															<a href="WidgetPosition.html#config_xy" property="yui:name" title="xy">xy</a><span>,</span>
+															</div>
+														
+															
+
+															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_y">
+															<a href="WidgetPosition.html#config_y" property="yui:name" title="y">y</a>
+															</div>
+														
+													</code>
+												</div>
+											</div>
+
+
 											<div class="section field inheritance configuration" rel="yui:superclass"  resource="AutoCompleteBase.html">
 												<h4>Configuration attributes inherited from <a href="AutoCompleteBase.html" property="yui:name" title="AutoCompleteBase">AutoCompleteBase</a>:</h4>
 												<div class="content" rel="yui:attributes">
@@ -1499,6 +1549,12 @@ will select the active item, if any.
 														
 															
 
+															<div class="" rel="yui:attribute" resource="AutoCompleteBase.html#config_sourceType">
+															<a href="AutoCompleteBase.html#config_sourceType" property="yui:name" title="sourceType">sourceType</a><span>,</span>
+															</div>
+														
+															
+
 															<div class="" rel="yui:attribute" resource="AutoCompleteBase.html#config_tokenInput">
 															<a href="AutoCompleteBase.html#config_tokenInput" property="yui:name" title="tokenInput">tokenInput</a><span>,</span>
 															</div>
@@ -1526,28 +1582,6 @@ will select the active item, if any.
 											</div>
 
 
-											<div class="section field inheritance configuration" rel="yui:superclass"  resource="WidgetStack.html">
-												<h4>Configuration attributes inherited from <a href="WidgetStack.html" property="yui:name" title="WidgetStack">WidgetStack</a>:</h4>
-												<div class="content" rel="yui:attributes">
-													<code>
-
-															
-
-															<div class="" rel="yui:attribute" resource="WidgetStack.html#config_shim">
-															<a href="WidgetStack.html#config_shim" property="yui:name" title="shim">shim</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="WidgetStack.html#config_zIndex">
-															<a href="WidgetStack.html#config_zIndex" property="yui:name" title="zIndex">zIndex</a>
-															</div>
-														
-													</code>
-												</div>
-											</div>
-
-
 											<div class="section field inheritance configuration" rel="yui:superclass"  resource="WidgetPositionAlign.html">
 												<h4>Configuration attributes inherited from <a href="WidgetPositionAlign.html" property="yui:name" title="WidgetPositionAlign">WidgetPositionAlign</a>:</h4>
 												<div class="content" rel="yui:attributes">
@@ -1563,56 +1597,6 @@ will select the active item, if any.
 
 															<div class="" rel="yui:attribute" resource="WidgetPositionAlign.html#config_centered">
 															<a href="WidgetPositionAlign.html#config_centered" property="yui:name" title="centered">centered</a>
-															</div>
-														
-													</code>
-												</div>
-											</div>
-
-
-											<div class="section field inheritance configuration" rel="yui:superclass"  resource="Base.html">
-												<h4>Configuration attributes inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:</h4>
-												<div class="content" rel="yui:attributes">
-													<code>
-
-															
-
-															<div class="" rel="yui:attribute" resource="Base.html#config_destroyed">
-															<a href="Base.html#config_destroyed" property="yui:name" title="destroyed">destroyed</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="Base.html#config_initialized">
-															<a href="Base.html#config_initialized" property="yui:name" title="initialized">initialized</a>
-															</div>
-														
-													</code>
-												</div>
-											</div>
-
-
-											<div class="section field inheritance configuration" rel="yui:superclass"  resource="WidgetPosition.html">
-												<h4>Configuration attributes inherited from <a href="WidgetPosition.html" property="yui:name" title="WidgetPosition">WidgetPosition</a>:</h4>
-												<div class="content" rel="yui:attributes">
-													<code>
-
-															
-
-															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_x">
-															<a href="WidgetPosition.html#config_x" property="yui:name" title="x">x</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_xy">
-															<a href="WidgetPosition.html#config_xy" property="yui:name" title="xy">xy</a><span>,</span>
-															</div>
-														
-															
-
-															<div class="" rel="yui:attribute" resource="WidgetPosition.html#config_y">
-															<a href="WidgetPosition.html#config_y" property="yui:name" title="y">y</a>
 															</div>
 														
 													</code>
@@ -2843,6 +2827,38 @@ empty.
 													</div>
 												</div>
 
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncPosition">
+
+													<h4>
+														<a name="method__syncPosition">_syncPosition</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncPosition</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Synchronizes the result list's position and alignment.
+														</div>
+
+														<div class="description">
+
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
 												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncResults">
 
 													<h4>
@@ -2882,6 +2898,39 @@ argument is not provided.
 																		<span property="yui:description"> (optional) Results.</span>
 																		</dd>
 																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__syncShim">
+
+													<h4>
+														<a name="method__syncShim">_syncShim</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_syncShim</strong>
+														   (
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Synchronizes the size of the iframe shim used for IE6 and lower. In other
+browsers, this method is a noop.
+														</div>
+
+														<div class="description">
+
 
 
 
@@ -3026,6 +3075,10 @@ provided.
 																		 itemNode
 																	
 																
+																		, 
+																		 originEvent
+																	
+																
 															)
 														</code>
 
@@ -3043,6 +3096,13 @@ provided.
 																		&lt;<span property="yui:type">Node</span>&gt;
 																		</code>
 																		<span property="yui:description"> (optional) Item node to select.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">originEvent</span>
+																		&lt;<span property="yui:type">EventFacade</span>&gt;
+																		</code>
+																		<span property="yui:description"> (optional) Event that triggered the
+selection, if any.</span>
 																		</dd>
 																</dl>
 
@@ -3104,6 +3164,12 @@ provided.
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__afterChildSelectedChange">
+														<a href="Widget.html#method__afterChildSelectedChange" property="yui:name" title="_afterChildSelectedChange">_afterChildSelectedChange</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__applyParsedConfig">
 														<a href="Widget.html#method__applyParsedConfig" property="yui:name" title="_applyParsedConfig">_applyParsedConfig</a><span>,</span>
 														</div>
@@ -3128,6 +3194,12 @@ provided.
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__bindUIChild">
+														<a href="Widget.html#method__bindUIChild" property="yui:name" title="_bindUIChild">_bindUIChild</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__defaultCB">
 														<a href="Widget.html#method__defaultCB" property="yui:name" title="_defaultCB">_defaultCB</a><span>,</span>
 														</div>
@@ -3136,6 +3208,12 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__defRenderFn">
 														<a href="Widget.html#method__defRenderFn" property="yui:name" title="_defRenderFn">_defRenderFn</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__destroyBox">
+														<a href="Widget.html#method__destroyBox" property="yui:name" title="_destroyBox">_destroyBox</a><span>,</span>
 														</div>
 
 														
@@ -3212,6 +3290,18 @@ provided.
 
 														
 
+														<div class="protected" rel="yui:method" resource="Widget.html#method__syncUIChild">
+														<a href="Widget.html#method__syncUIChild" property="yui:name" title="_syncUIChild">_syncUIChild</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetChildSelected">
+														<a href="Widget.html#method__uiSetChildSelected" property="yui:name" title="_uiSetChildSelected">_uiSetChildSelected</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="Widget.html#method__uiSetDisabled">
 														<a href="Widget.html#method__uiSetDisabled" property="yui:name" title="_uiSetDisabled">_uiSetDisabled</a><span>,</span>
 														</div>
@@ -3268,6 +3358,12 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method__validTabIndex">
 														<a href="Widget.html#method__validTabIndex" property="yui:name" title="_validTabIndex">_validTabIndex</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_ancestor">
+														<a href="Widget.html#method_ancestor" property="yui:name" title="ancestor">ancestor</a><span>,</span>
 														</div>
 
 														
@@ -3347,6 +3443,24 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="Widget.html#method_initializer">
 														<a href="Widget.html#method_initializer" property="yui:name" title="initializer">initializer</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_isRoot">
+														<a href="Widget.html#method_isRoot" property="yui:name" title="isRoot">isRoot</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_next">
+														<a href="Widget.html#method_next" property="yui:name" title="next">next</a><span>,</span>
+														</div>
+
+														
+
+														<div class="" rel="yui:method" resource="Widget.html#method_previous">
+														<a href="Widget.html#method_previous" property="yui:name" title="previous">previous</a><span>,</span>
 														</div>
 
 														
@@ -3472,72 +3586,6 @@ provided.
 											</div>
 										</div>
 
-										<div class="section field inheritance methods" rel="yui:superclass"  resource="WidgetStack.html">
-
-											<h4>
-												Methods inherited from <a href="WidgetStack.html" property="yui:name" title="WidgetStack">WidgetStack</a>:
-											</h4>
-
-											<div class="content" rel="yui:methods">
-												<code>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__afterShimChange">
-														<a href="WidgetStack.html#method__afterShimChange" property="yui:name" title="_afterShimChange">_afterShimChange</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__afterZIndexChange">
-														<a href="WidgetStack.html#method__afterZIndexChange" property="yui:name" title="_afterZIndexChange">_afterZIndexChange</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__bindUIStack">
-														<a href="WidgetStack.html#method__bindUIStack" property="yui:name" title="_bindUIStack">_bindUIStack</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__renderUIStack">
-														<a href="WidgetStack.html#method__renderUIStack" property="yui:name" title="_renderUIStack">_renderUIStack</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__setZIndex">
-														<a href="WidgetStack.html#method__setZIndex" property="yui:name" title="_setZIndex">_setZIndex</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__syncUIStack">
-														<a href="WidgetStack.html#method__syncUIStack" property="yui:name" title="_syncUIStack">_syncUIStack</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__uiSetShim">
-														<a href="WidgetStack.html#method__uiSetShim" property="yui:name" title="_uiSetShim">_uiSetShim</a><span>,</span>
-														</div>
-
-														
-
-														<div class="protected" rel="yui:method" resource="WidgetStack.html#method__uiSetZIndex">
-														<a href="WidgetStack.html#method__uiSetZIndex" property="yui:name" title="_uiSetZIndex">_uiSetZIndex</a><span>,</span>
-														</div>
-
-														
-
-														<div class="" rel="yui:method" resource="WidgetStack.html#method_sizeShim">
-														<a href="WidgetStack.html#method_sizeShim" property="yui:name" title="sizeShim">sizeShim</a>
-														</div>
-												</code>
-											</div>
-										</div>
-
 										<div class="section field inheritance methods" rel="yui:superclass"  resource="Attribute.html">
 
 											<h4>
@@ -3563,6 +3611,12 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
 														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
 														</div>
 
 														
@@ -3783,6 +3837,12 @@ provided.
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -3888,8 +3948,20 @@ provided.
 
 														
 
+														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__afterSourceTypeChange">
+														<a href="AutoCompleteBase.html#method__afterSourceTypeChange" property="yui:name" title="_afterSourceTypeChange">_afterSourceTypeChange</a><span>,</span>
+														</div>
+
+														
+
 														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__afterValueChange">
 														<a href="AutoCompleteBase.html#method__afterValueChange" property="yui:name" title="_afterValueChange">_afterValueChange</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__beforeCreateObjectSource">
+														<a href="AutoCompleteBase.html#method__beforeCreateObjectSource" property="yui:name" title="_beforeCreateObjectSource">_beforeCreateObjectSource</a><span>,</span>
 														</div>
 
 														
@@ -3926,6 +3998,12 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__createObjectSource">
 														<a href="AutoCompleteBase.html#method__createObjectSource" property="yui:name" title="_createObjectSource">_createObjectSource</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__createSelectSource">
+														<a href="AutoCompleteBase.html#method__createSelectSource" property="yui:name" title="_createSelectSource">_createSelectSource</a><span>,</span>
 														</div>
 
 														
@@ -3980,6 +4058,12 @@ provided.
 
 														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__getObjectValue">
 														<a href="AutoCompleteBase.html#method__getObjectValue" property="yui:name" title="_getObjectValue">_getObjectValue</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="AutoCompleteBase.html#method__getXHRUrl">
+														<a href="AutoCompleteBase.html#method__getXHRUrl" property="yui:name" title="_getXHRUrl">_getXHRUrl</a><span>,</span>
 														</div>
 
 														
@@ -4636,6 +4720,70 @@ AutoComplete result object.
 												</code>
 											</div>
 										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
+											<h4>
+												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroy">
+														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
+														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_init">
+														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
+														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
+										<div class="section field inheritance events" rel="yui:superclass"  resource="WidgetPosition.html">
+											<h4>
+												Events inherited from <a href="WidgetPosition.html" property="yui:name" title="WidgetPosition">WidgetPosition</a>:
+											</h4>
+
+											<div class="content" rel="yui:events">
+												<code>
+
+														
+
+														<div class="" rel="yui:event" resource="WidgetPosition.html#event_xChange">
+														<a href="WidgetPosition.html#event_xChange" property="yui:name" title="xChange">xChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetPosition.html#event_xyChange">
+														<a href="WidgetPosition.html#event_xyChange" property="yui:name" title="xyChange">xyChange</a><span>,</span>
+														</div>
+													
+														
+
+														<div class="" rel="yui:event" resource="WidgetPosition.html#event_yChange">
+														<a href="WidgetPosition.html#event_yChange" property="yui:name" title="yChange">yChange</a>
+														</div>
+													
+												</code>
+											</div>
+										</div>
 										<div class="section field inheritance events" rel="yui:superclass"  resource="AutoCompleteBase.html">
 											<h4>
 												Events inherited from <a href="AutoCompleteBase.html" property="yui:name" title="AutoCompleteBase">AutoCompleteBase</a>:
@@ -4760,6 +4908,12 @@ AutoComplete result object.
 													
 														
 
+														<div class="" rel="yui:event" resource="AutoCompleteBase.html#event_sourceTypeChange">
+														<a href="AutoCompleteBase.html#event_sourceTypeChange" property="yui:name" title="sourceTypeChange">sourceTypeChange</a><span>,</span>
+														</div>
+													
+														
+
 														<div class="" rel="yui:event" resource="AutoCompleteBase.html#event_tokenInputChange">
 														<a href="AutoCompleteBase.html#event_tokenInputChange" property="yui:name" title="tokenInputChange">tokenInputChange</a><span>,</span>
 														</div>
@@ -4780,29 +4934,6 @@ AutoComplete result object.
 
 														<div class="" rel="yui:event" resource="AutoCompleteBase.html#event_yqlProtocolChange">
 														<a href="AutoCompleteBase.html#event_yqlProtocolChange" property="yui:name" title="yqlProtocolChange">yqlProtocolChange</a>
-														</div>
-													
-												</code>
-											</div>
-										</div>
-										<div class="section field inheritance events" rel="yui:superclass"  resource="WidgetStack.html">
-											<h4>
-												Events inherited from <a href="WidgetStack.html" property="yui:name" title="WidgetStack">WidgetStack</a>:
-											</h4>
-
-											<div class="content" rel="yui:events">
-												<code>
-
-														
-
-														<div class="" rel="yui:event" resource="WidgetStack.html#event_shimChange">
-														<a href="WidgetStack.html#event_shimChange" property="yui:name" title="shimChange">shimChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="WidgetStack.html#event_zIndexChange">
-														<a href="WidgetStack.html#event_zIndexChange" property="yui:name" title="zIndexChange">zIndexChange</a>
 														</div>
 													
 												</code>
@@ -4831,70 +4962,6 @@ AutoComplete result object.
 												</code>
 											</div>
 										</div>
-										<div class="section field inheritance events" rel="yui:superclass"  resource="Base.html">
-											<h4>
-												Events inherited from <a href="Base.html" property="yui:name" title="Base">Base</a>:
-											</h4>
-
-											<div class="content" rel="yui:events">
-												<code>
-
-														
-
-														<div class="" rel="yui:event" resource="Base.html#event_destroy">
-														<a href="Base.html#event_destroy" property="yui:name" title="destroy">destroy</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Base.html#event_destroyedChange">
-														<a href="Base.html#event_destroyedChange" property="yui:name" title="destroyedChange">destroyedChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Base.html#event_init">
-														<a href="Base.html#event_init" property="yui:name" title="init">init</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="Base.html#event_initializedChange">
-														<a href="Base.html#event_initializedChange" property="yui:name" title="initializedChange">initializedChange</a>
-														</div>
-													
-												</code>
-											</div>
-										</div>
-										<div class="section field inheritance events" rel="yui:superclass"  resource="WidgetPosition.html">
-											<h4>
-												Events inherited from <a href="WidgetPosition.html" property="yui:name" title="WidgetPosition">WidgetPosition</a>:
-											</h4>
-
-											<div class="content" rel="yui:events">
-												<code>
-
-														
-
-														<div class="" rel="yui:event" resource="WidgetPosition.html#event_xChange">
-														<a href="WidgetPosition.html#event_xChange" property="yui:name" title="xChange">xChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="WidgetPosition.html#event_xyChange">
-														<a href="WidgetPosition.html#event_xyChange" property="yui:name" title="xyChange">xyChange</a><span>,</span>
-														</div>
-													
-														
-
-														<div class="" rel="yui:event" resource="WidgetPosition.html#event_yChange">
-														<a href="WidgetPosition.html#event_yChange" property="yui:name" title="yChange">yChange</a>
-														</div>
-													
-												</code>
-											</div>
-										</div>
 
 									</div>
 							</div>
@@ -4912,7 +4979,7 @@ AutoComplete result object.
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "AutoCompleteList.html#config_activateFirstItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activateFirstItem"}, {"url": "AutoCompleteList.html#event_activateFirstItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activateFirstItemChange"}, {"url": "AutoCompleteList.html#method__activateNextItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activateNextItem"}, {"url": "AutoCompleteList.html#method__activatePrevItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activatePrevItem"}, {"url": "AutoCompleteList.html#config_activeItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activeItem"}, {"url": "AutoCompleteList.html#event_activeItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activeItemChange"}, {"url": "AutoCompleteList.html#method__add", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_add"}, {"url": "AutoCompleteList.html#method__afterActiveItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterActiveItemChange"}, {"url": "AutoCompleteList.html#method__afterAlwaysShowListChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterAlwaysShowListChange"}, {"url": "AutoCompleteList.html#method__afterHoveredItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterHoveredItemChange"}, {"url": "AutoCompleteList.html#method__afterMouseOut", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOut"}, {"url": "AutoCompleteList.html#method__afterMouseOver", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOver"}, {"url": "AutoCompleteList.html#method__afterResultsChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterResultsChange"}, {"url": "AutoCompleteBase.html#method__afterValueChange", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_afterValueChange"}, {"url": "AutoCompleteList.html#method__afterVisibleChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterVisibleChange"}, {"url": "AutoCompleteBase.html#config_allowBrowserAutocomplete", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "allowBrowserAutocomplete"}, {"url": "AutoCompleteBase.html#event_allowBrowserAutocompleteChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "allowBrowserAutocompleteChange"}, {"url": "AutoCompleteBase.html#config_allowTrailingDelimiter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "allowTrailingDelimiter"}, {"url": "AutoCompleteBase.html#event_allowTrailingDelimiterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "allowTrailingDelimiterChange"}, {"url": "AutoCompleteList.html#config_alwaysShowList", "access": "", "host": "AutoCompleteList", "type": "config", "name": "alwaysShowList"}, {"url": "AutoCompleteList.html#event_alwaysShowListChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "alwaysShowListChange"}, {"url": "AutoCompleteList.html#method__ariaSay", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_ariaSay"}, {"url": "AutoCompleteList.html#method__bindInput", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindInput"}, {"url": "AutoCompleteList.html#method__bindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindKeys"}, {"url": "AutoCompleteList.html#method__bindList", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindList"}, {"url": "AutoCompleteBase.html#method__bindUIACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_bindUIACBase"}, {"url": "AutoCompleteList.html#config_circular", "access": "", "host": "AutoCompleteList", "type": "config", "name": "circular"}, {"url": "AutoCompleteList.html#event_circularChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "circularChange"}, {"url": "AutoCompleteBase.html#event_clear", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "clear"}, {"url": "AutoCompleteList.html#method__clear", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_clear"}, {"url": "AutoCompleteList.html#method__createAriaNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createAriaNode"}, {"url": "AutoCompleteBase.html#method__createArraySource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createArraySource"}, {"url": "AutoCompleteBase.html#method__createFunctionSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createFunctionSource"}, {"url": "AutoCompleteBase.html#method__createIOSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createIOSource"}, {"url": "AutoCompleteList.html#method__createItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createItemNode"}, {"url": "AutoCompleteBase.html#method__createJSONPSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createJSONPSource"}, {"url": "AutoCompleteList.html#method__createListNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createListNode"}, {"url": "AutoCompleteBase.html#method__createObjectSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createObjectSource"}, {"url": "AutoCompleteBase.html#method__createStringSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createStringSource"}, {"url": "AutoCompleteBase.html#method__createYQLSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_createYQLSource"}, {"url": "AutoCompleteBase.html#method__defaultYQLLocator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defaultYQLLocator"}, {"url": "AutoCompleteBase.html#method__defClearFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defClearFn"}, {"url": "AutoCompleteBase.html#method__defQueryFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defQueryFn"}, {"url": "AutoCompleteBase.html#method__defResultsFn", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_defResultsFn"}, {"url": "AutoCompleteList.html#method__defSelectFn", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_defSelectFn"}, {"url": "AutoCompleteBase.html#method__destructorACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_destructorACBase"}, {"url": "AutoCompleteBase.html#method__functionValidator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_functionValidator"}, {"url": "AutoCompleteList.html#method__getFirstItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getFirstItemNode"}, {"url": "AutoCompleteList.html#method__getLastItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getLastItemNode"}, {"url": "AutoCompleteBase.html#method__getObjectValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_getObjectValue"}, {"url": "AutoCompleteList.html#method_hide", "access": "", "host": "AutoCompleteList", "type": "method", "name": "hide"}, {"url": "AutoCompleteList.html#config_hoveredItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "hoveredItem"}, {"url": "AutoCompleteList.html#event_hoveredItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "hoveredItemChange"}, {"url": "AutoCompleteList.html#method__initKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_initKeys"}, {"url": "AutoCompleteBase.html#config_inputNode", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "inputNode"}, {"url": "AutoCompleteBase.html#event_inputNodeChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "inputNodeChange"}, {"url": "AutoCompleteBase.html#method__jsonpFormatter", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_jsonpFormatter"}, {"url": "AutoCompleteList.html#method__keyDown", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyDown"}, {"url": "AutoCompleteList.html#method__keyEnter", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEnter"}, {"url": "AutoCompleteList.html#method__keyEsc", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEsc"}, {"url": "AutoCompleteList.html#method__keyTab", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyTab"}, {"url": "AutoCompleteList.html#method__keyUp", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyUp"}, {"url": "AutoCompleteList.html#config_listNode", "access": "", "host": "AutoCompleteList", "type": "config", "name": "listNode"}, {"url": "AutoCompleteList.html#event_listNodeChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "listNodeChange"}, {"url": "AutoCompleteBase.html#config_maxResults", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "maxResults"}, {"url": "AutoCompleteBase.html#event_maxResultsChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "maxResultsChange"}, {"url": "AutoCompleteBase.html#config_minQueryLength", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "minQueryLength"}, {"url": "AutoCompleteBase.html#event_minQueryLengthChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "minQueryLengthChange"}, {"url": "AutoCompleteBase.html#method__onInputBlur", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onInputBlur"}, {"url": "AutoCompleteList.html#method__onInputKey", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onInputKey"}, {"url": "AutoCompleteBase.html#method__onInputValueChange", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onInputValueChange"}, {"url": "AutoCompleteList.html#method__onItemClick", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onItemClick"}, {"url": "AutoCompleteList.html#method__onListInputBlur", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onListInputBlur"}, {"url": "AutoCompleteBase.html#method__onResponse", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_onResponse"}, {"url": "AutoCompleteBase.html#method__parseResponse", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_parseResponse"}, {"url": "AutoCompleteBase.html#method__parseValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_parseValue"}, {"url": "AutoCompleteBase.html#event_query", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "query"}, {"url": "AutoCompleteBase.html#config_query", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "query"}, {"url": "AutoCompleteBase.html#event_queryChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryChange"}, {"url": "AutoCompleteBase.html#config_queryDelay", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "queryDelay"}, {"url": "AutoCompleteBase.html#event_queryDelayChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryDelayChange"}, {"url": "AutoCompleteBase.html#config_queryDelimiter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "queryDelimiter"}, {"url": "AutoCompleteBase.html#event_queryDelimiterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "queryDelimiterChange"}, {"url": "AutoCompleteBase.html#config_requestTemplate", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "requestTemplate"}, {"url": "AutoCompleteBase.html#event_requestTemplateChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "requestTemplateChange"}, {"url": "AutoCompleteBase.html#config_resultFilters", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultFilters"}, {"url": "AutoCompleteBase.html#event_resultFiltersChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultFiltersChange"}, {"url": "AutoCompleteBase.html#config_resultFormatter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultFormatter"}, {"url": "AutoCompleteBase.html#event_resultFormatterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultFormatterChange"}, {"url": "AutoCompleteBase.html#config_resultHighlighter", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultHighlighter"}, {"url": "AutoCompleteBase.html#event_resultHighlighterChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultHighlighterChange"}, {"url": "AutoCompleteBase.html#config_resultListLocator", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultListLocator"}, {"url": "AutoCompleteBase.html#event_resultListLocatorChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultListLocatorChange"}, {"url": "AutoCompleteBase.html#event_results", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "results"}, {"url": "AutoCompleteBase.html#config_results", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "results"}, {"url": "AutoCompleteBase.html#event_resultsChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultsChange"}, {"url": "AutoCompleteBase.html#config_resultTextLocator", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "resultTextLocator"}, {"url": "AutoCompleteBase.html#event_resultTextLocatorChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "resultTextLocatorChange"}, {"url": "AutoCompleteList.html#config_scrollIntoView", "access": "", "host": "AutoCompleteList", "type": "config", "name": "scrollIntoView"}, {"url": "AutoCompleteList.html#event_scrollIntoViewChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "scrollIntoViewChange"}, {"url": "AutoCompleteList.html#event_select", "access": "", "host": "AutoCompleteList", "type": "event", "name": "select"}, {"url": "AutoCompleteList.html#method_selectItem", "access": "", "host": "AutoCompleteList", "type": "method", "name": "selectItem"}, {"url": "AutoCompleteBase.html#method_sendRequest", "access": "", "host": "AutoCompleteBase", "type": "method", "name": "sendRequest"}, {"url": "AutoCompleteBase.html#method__setLocator", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setLocator"}, {"url": "AutoCompleteBase.html#method__setRequestTemplate", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setRequestTemplate"}, {"url": "AutoCompleteBase.html#method__setResultFilters", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setResultFilters"}, {"url": "AutoCompleteBase.html#method__setResultHighlighter", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setResultHighlighter"}, {"url": "AutoCompleteBase.html#method__setSource", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_setSource"}, {"url": "AutoCompleteBase.html#config_source", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "source"}, {"url": "AutoCompleteBase.html#event_sourceChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "sourceChange"}, {"url": "AutoCompleteBase.html#method__sourceSuccess", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_sourceSuccess"}, {"url": "AutoCompleteList.html#config_strings", "access": "", "host": "AutoCompleteList", "type": "config", "name": "strings"}, {"url": "AutoCompleteList.html#event_stringsChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "stringsChange"}, {"url": "AutoCompleteBase.html#method__syncBrowserAutocomplete", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_syncBrowserAutocomplete"}, {"url": "AutoCompleteList.html#method__syncResults", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncResults"}, {"url": "AutoCompleteBase.html#method__syncUIACBase", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_syncUIACBase"}, {"url": "AutoCompleteList.html#method__syncVisibility", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncVisibility"}, {"url": "AutoCompleteList.html#config_tabSelect", "access": "", "host": "AutoCompleteList", "type": "config", "name": "tabSelect"}, {"url": "AutoCompleteList.html#event_tabSelectChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "tabSelectChange"}, {"url": "AutoCompleteBase.html#config_tokenInput", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "tokenInput"}, {"url": "AutoCompleteBase.html#event_tokenInputChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "tokenInputChange"}, {"url": "AutoCompleteList.html#method__unbindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_unbindKeys"}, {"url": "AutoCompleteBase.html#method__updateValue", "access": "protected", "host": "AutoCompleteBase", "type": "method", "name": "_updateValue"}, {"url": "AutoCompleteBase.html#config_value", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "value"}, {"url": "AutoCompleteBase.html#event_valueChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "valueChange"}, {"url": "AutoCompleteBase.html#config_yqlEnv", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "yqlEnv"}, {"url": "AutoCompleteBase.html#event_yqlEnvChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "yqlEnvChange"}, {"url": "AutoCompleteBase.html#config_yqlProtocol", "access": "", "host": "AutoCompleteBase", "type": "config", "name": "yqlProtocol"}, {"url": "AutoCompleteBase.html#event_yqlProtocolChange", "access": "", "host": "AutoCompleteBase", "type": "event", "name": "yqlProtocolChange"}, {"url": "AutoCompleteBase.html#property__YQL_SOURCE_REGEX", "access": "protected", "host": "AutoCompleteBase", "type": "property", "name": "_YQL_SOURCE_REGEX"}];
+    var ALL_YUI_PROPS = [{"url": "AutoCompleteList.html#config_activateFirstItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activateFirstItem"}, {"url": "AutoCompleteList.html#event_activateFirstItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activateFirstItemChange"}, {"url": "AutoCompleteList.html#method__activateNextItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activateNextItem"}, {"url": "AutoCompleteList.html#method__activatePrevItem", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_activatePrevItem"}, {"url": "AutoCompleteList.html#config_activeItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "activeItem"}, {"url": "AutoCompleteList.html#event_activeItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "activeItemChange"}, {"url": "AutoCompleteList.html#method__add", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_add"}, {"url": "AutoCompleteList.html#method__afterActiveItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterActiveItemChange"}, {"url": "AutoCompleteList.html#method__afterAlwaysShowListChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterAlwaysShowListChange"}, {"url": "AutoCompleteList.html#method__afterHoveredItemChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterHoveredItemChange"}, {"url": "AutoCompleteList.html#method__afterMouseOut", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOut"}, {"url": "AutoCompleteList.html#method__afterMouseOver", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterMouseOver"}, {"url": "AutoCompleteList.html#method__afterResultsChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterResultsChange"}, {"url": "AutoCompleteList.html#method__afterVisibleChange", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_afterVisibleChange"}, {"url": "AutoCompleteList.html#config_alwaysShowList", "access": "", "host": "AutoCompleteList", "type": "config", "name": "alwaysShowList"}, {"url": "AutoCompleteList.html#event_alwaysShowListChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "alwaysShowListChange"}, {"url": "AutoCompleteList.html#method__ariaSay", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_ariaSay"}, {"url": "AutoCompleteList.html#method__bindInput", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindInput"}, {"url": "AutoCompleteList.html#method__bindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindKeys"}, {"url": "AutoCompleteList.html#method__bindList", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_bindList"}, {"url": "AutoCompleteList.html#config_circular", "access": "", "host": "AutoCompleteList", "type": "config", "name": "circular"}, {"url": "AutoCompleteList.html#event_circularChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "circularChange"}, {"url": "AutoCompleteList.html#method__clear", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_clear"}, {"url": "AutoCompleteList.html#method__createAriaNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createAriaNode"}, {"url": "AutoCompleteList.html#method__createItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createItemNode"}, {"url": "AutoCompleteList.html#method__createListNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_createListNode"}, {"url": "AutoCompleteList.html#method__defSelectFn", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_defSelectFn"}, {"url": "AutoCompleteList.html#method__getFirstItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getFirstItemNode"}, {"url": "AutoCompleteList.html#method__getLastItemNode", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_getLastItemNode"}, {"url": "AutoCompleteList.html#method_hide", "access": "", "host": "AutoCompleteList", "type": "method", "name": "hide"}, {"url": "AutoCompleteList.html#config_hoveredItem", "access": "", "host": "AutoCompleteList", "type": "config", "name": "hoveredItem"}, {"url": "AutoCompleteList.html#event_hoveredItemChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "hoveredItemChange"}, {"url": "AutoCompleteList.html#method__initKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_initKeys"}, {"url": "AutoCompleteList.html#method__keyDown", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyDown"}, {"url": "AutoCompleteList.html#method__keyEnter", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEnter"}, {"url": "AutoCompleteList.html#method__keyEsc", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyEsc"}, {"url": "AutoCompleteList.html#method__keyTab", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyTab"}, {"url": "AutoCompleteList.html#method__keyUp", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_keyUp"}, {"url": "AutoCompleteList.html#config_listNode", "access": "", "host": "AutoCompleteList", "type": "config", "name": "listNode"}, {"url": "AutoCompleteList.html#event_listNodeChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "listNodeChange"}, {"url": "AutoCompleteList.html#method__onInputKey", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onInputKey"}, {"url": "AutoCompleteList.html#method__onItemClick", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onItemClick"}, {"url": "AutoCompleteList.html#method__onListInputBlur", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_onListInputBlur"}, {"url": "AutoCompleteList.html#config_scrollIntoView", "access": "", "host": "AutoCompleteList", "type": "config", "name": "scrollIntoView"}, {"url": "AutoCompleteList.html#event_scrollIntoViewChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "scrollIntoViewChange"}, {"url": "AutoCompleteList.html#event_select", "access": "", "host": "AutoCompleteList", "type": "event", "name": "select"}, {"url": "AutoCompleteList.html#method_selectItem", "access": "", "host": "AutoCompleteList", "type": "method", "name": "selectItem"}, {"url": "AutoCompleteList.html#config_strings", "access": "", "host": "AutoCompleteList", "type": "config", "name": "strings"}, {"url": "AutoCompleteList.html#event_stringsChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "stringsChange"}, {"url": "AutoCompleteList.html#method__syncPosition", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncPosition"}, {"url": "AutoCompleteList.html#method__syncResults", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncResults"}, {"url": "AutoCompleteList.html#method__syncShim", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncShim"}, {"url": "AutoCompleteList.html#method__syncVisibility", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_syncVisibility"}, {"url": "AutoCompleteList.html#config_tabSelect", "access": "", "host": "AutoCompleteList", "type": "config", "name": "tabSelect"}, {"url": "AutoCompleteList.html#event_tabSelectChange", "access": "", "host": "AutoCompleteList", "type": "event", "name": "tabSelectChange"}, {"url": "AutoCompleteList.html#method__unbindKeys", "access": "protected", "host": "AutoCompleteList", "type": "method", "name": "_unbindKeys"}];
 </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('cache-base', function(Y) {
@@ -383,9 +383,7 @@ Y.extend(Cache, Y.Base, {
 Y.Cache = Cache;
 
 
-
-}, '3.3.0' ,{requires:['base']});
-
+}, '3.4.0' ,{requires:['base']});
 YUI.add('cache-offline', function(Y) {
 
 /**
@@ -711,9 +709,7 @@ Y.extend(CacheOffline, Y.Cache, localStorage ? {
 Y.CacheOffline = CacheOffline;
 
 
-
-}, '3.3.0' ,{requires:['cache-base', 'json']});
-
+}, '3.4.0' ,{requires:['cache-base', 'json']});
 YUI.add('cache-plugin', function(Y) {
 
 /**
@@ -759,10 +755,8 @@ Y.mix(CachePlugin, {
 Y.namespace("Plugin").Cache = CachePlugin;
 
 
-
-}, '3.3.0' ,{requires:['plugin','cache-base']});
-
+}, '3.4.0' ,{requires:['plugin','cache-base']});
 
 
-YUI.add('cache', function(Y){}, '3.3.0' ,{use:['cache-base','cache-offline','cache-plugin']});
+YUI.add('cache', function(Y){}, '3.4.0' ,{use:['cache-base','cache-offline','cache-plugin']});
 

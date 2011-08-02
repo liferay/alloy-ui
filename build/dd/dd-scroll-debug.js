@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('dd-scroll', function(Y) {
@@ -334,7 +334,7 @@ YUI.add('dd-scroll', function(Y) {
     /**
      * Extends the Scroll class to make the window scroll while dragging.
      * @class DDWindowScroll
-     * @extends DD.Scroll
+     * @extends Scroll
      * @namespace Plugin
      * @constructor
      */
@@ -379,7 +379,7 @@ YUI.add('dd-scroll', function(Y) {
     /**
      * Extends the Scroll class to make a parent node scroll while dragging.
      * @class DDNodeScroll
-     * @extends DD.Scroll
+     * @extends Scroll
      * @namespace Plugin
      * @constructor
      */
@@ -430,4 +430,4 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['dd-drag'], skinnable:false, optional:['dd-proxy']});
+}, '3.4.0' ,{skinnable:false, optional:['dd-proxy'], requires:['dd-drag']});

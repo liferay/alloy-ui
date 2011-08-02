@@ -2,6 +2,8 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isString = L.isString,
 
+	_serialize = A.IO.prototype._serialize,
+
 	ACCEPT_CHILDREN = 'acceptChildren',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
@@ -465,7 +467,7 @@ var FormBuilderField = A.Component.create({
 			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 
 			A.Array.each(
-				A.io._serialize(formNode._node).split('&'),
+				_serialize(formNode._node).split('&'),
 				function(item) {
 					var keyVal = item.split('=');
 
@@ -742,7 +744,7 @@ var FormBuilderField = A.Component.create({
 		_uiSetTip: function(val) {
 			var instance = this;
 			var tipIconNode = instance.get(TIP_ICON_NODE);
-			
+
 			tipIconNode.toggleClass(CSS_HELPER_HIDDEN, !val);
 
 			instance.toolTip.set(BODY_CONTENT, val);

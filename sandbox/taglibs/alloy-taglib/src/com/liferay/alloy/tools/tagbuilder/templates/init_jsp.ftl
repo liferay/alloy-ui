@@ -31,8 +31,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("${na
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 <#if component.isAlloyComponent()>
 %>
@@ -56,7 +61,7 @@ _options.putAll(dynamicAttributes);
 		<#if (isPrimitiveType(outputSimpleClassName) || isNumericAttribute(outputSimpleClassName))>
 			<#assign value = "String.valueOf(request.getAttribute(" + namespacedName + "))">
 		<#else>
-			<#assign value = "(" + attribute.getInputType() + ")request.getAttribute(" + namespacedName + ")">
+			<#assign value = "(" + attribute.getRawInputType() + ")request.getAttribute(" + namespacedName + ")">
 		</#if>
 
 		<#if outputSimpleClassName == "ArrayList">
@@ -66,7 +71,7 @@ _options.putAll(dynamicAttributes);
 		<#elseif hasGetter(outputSimpleClassName)>
 			${attribute.getOutputType()} ${attribute.getSafeName()} = GetterUtil.get${getGetterSuffix(outputSimpleClassName)}(${value}${defaultValueSuffix});
 		<#else>
-			${attribute.getOutputType()} ${attribute.getSafeName()} = (${attribute.getOutputType()})request.getAttribute(${namespacedName});
+			${attribute.getRawOutputType()} ${attribute.getSafeName()} = (${attribute.getRawOutputType()})request.getAttribute(${namespacedName});
 		</#if>
 	</#if>
 </#list>

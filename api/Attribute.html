@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -683,6 +698,7 @@
 				                               <li class="protected"><a href="#method__getAttr" title="_getAttr">_getAttr</a></li>
 				                               <li class="protected"><a href="#method__getAttrCfg" title="_getAttrCfg">_getAttrCfg</a></li>
 				                               <li class="protected"><a href="#method__getAttrs" title="_getAttrs">_getAttrs</a></li>
+				                               <li class="protected"><a href="#method__initAttrs" title="_initAttrs">_initAttrs</a></li>
 				                               <li class="protected"><a href="#method__protectAttrs" title="_protectAttrs">_protectAttrs</a></li>
 				                               <li class="protected"><a href="#method__set" title="_set">_set</a></li>
 				                               <li class="protected"><a href="#method__setAttr" title="_setAttr">_setAttr</a></li>
@@ -1024,6 +1040,72 @@ returned. If set to true, all attributes modified from their initial values are 
 																	</code></dt>
 																	<dd property="yui:returnInfo">An object with attribute name/value pairs.</dd>
 																</dl>
+
+
+
+
+														</div>
+													</div>
+												</div>
+
+												<div class="api-entry-row method-row protected" rel="yui:method" resource="#method__initAttrs">
+
+													<h4>
+														<a name="method__initAttrs">_initAttrs</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														 protected 
+														
+														
+														void
+															<strong property="yui:name">_initAttrs</strong>
+														   (
+																
+																		
+																		 attrs
+																	
+																
+																		, 
+																		 values
+																	
+																
+																		, 
+																		 lazy
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															Utility method to set up initial attributes defined during construction, either through the constructor.ATTRS property, or explicitly passed in.
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">attrs</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The attributes to add during construction (passed through to <a href="#method_addAttrs">addAttrs</a>). These can also be defined on the constructor being augmented with Attribute by defining the ATTRS property on the constructor.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">values</span>
+																		&lt;<span property="yui:type">Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The initial attribute values to apply (passed through to <a href="#method_addAttrs">addAttrs</a>). These are not merged/cloned. The caller is responsible for isolating user provided values if required.</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">lazy</span>
+																		&lt;<span property="yui:type">boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Whether or not to add attributes lazily (passed through to <a href="#method_addAttrs">addAttrs</a>).</span>
+																		</dd>
+																</dl>
+
 
 
 
@@ -2086,6 +2168,12 @@ set called externally by the application developer.</span>
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -2145,7 +2233,7 @@ set called externally by the application developer.</span>
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "State.html#method_add", "access": "", "host": "State", "type": "method", "name": "add"}, {"url": "State.html#method_addAll", "access": "", "host": "State", "type": "method", "name": "addAll"}, {"url": "Attribute.html#method_addAttr", "access": "", "host": "Attribute", "type": "method", "name": "addAttr"}, {"url": "Attribute.html#method_addAttrs", "access": "", "host": "Attribute", "type": "method", "name": "addAttrs"}, {"url": "Attribute.html#method_attrAdded", "access": "", "host": "Attribute", "type": "method", "name": "attrAdded"}, {"url": "Attribute.html#property_Attribute._ATTR_CFG", "access": "protected", "host": "Attribute", "type": "property", "name": "Attribute._ATTR_CFG"}, {"url": "Attribute.html#property_Attribute.INVALID_VALUE", "access": "", "host": "Attribute", "type": "property", "name": "Attribute.INVALID_VALUE"}, {"url": "State.html#property_data", "access": "", "host": "State", "type": "property", "name": "data"}, {"url": "State.html#method_get", "access": "", "host": "State", "type": "method", "name": "get"}, {"url": "Attribute.html#method_get", "access": "", "host": "Attribute", "type": "method", "name": "get"}, {"url": "State.html#method_getAll", "access": "", "host": "State", "type": "method", "name": "getAll"}, {"url": "Attribute.html#method__getAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttr"}, {"url": "Attribute.html#method__getAttrCfg", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttrCfg"}, {"url": "Attribute.html#method__getAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttrs"}, {"url": "Attribute.html#method_getAttrs", "access": "", "host": "Attribute", "type": "method", "name": "getAttrs"}, {"url": "Attribute.html#method_modifyAttr", "access": "", "host": "Attribute", "type": "method", "name": "modifyAttr"}, {"url": "Attribute.html#method__protectAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_protectAttrs"}, {"url": "State.html#method_remove", "access": "", "host": "State", "type": "method", "name": "remove"}, {"url": "State.html#method_removeAll", "access": "", "host": "State", "type": "method", "name": "removeAll"}, {"url": "Attribute.html#method_removeAttr", "access": "", "host": "Attribute", "type": "method", "name": "removeAttr"}, {"url": "Attribute.html#method_reset", "access": "", "host": "Attribute", "type": "method", "name": "reset"}, {"url": "Attribute.html#method__set", "access": "protected", "host": "Attribute", "type": "method", "name": "_set"}, {"url": "Attribute.html#method_set", "access": "", "host": "Attribute", "type": "method", "name": "set"}, {"url": "Attribute.html#method__setAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttr"}, {"url": "Attribute.html#method__setAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttrs"}, {"url": "Attribute.html#method_setAttrs", "access": "", "host": "Attribute", "type": "method", "name": "setAttrs"}];
+    var ALL_YUI_PROPS = [{"url": "State.html#method_add", "access": "", "host": "State", "type": "method", "name": "add"}, {"url": "State.html#method_addAll", "access": "", "host": "State", "type": "method", "name": "addAll"}, {"url": "Attribute.html#method_addAttr", "access": "", "host": "Attribute", "type": "method", "name": "addAttr"}, {"url": "Attribute.html#method_addAttrs", "access": "", "host": "Attribute", "type": "method", "name": "addAttrs"}, {"url": "Attribute.html#method_attrAdded", "access": "", "host": "Attribute", "type": "method", "name": "attrAdded"}, {"url": "Attribute.html#property_Attribute._ATTR_CFG", "access": "protected", "host": "Attribute", "type": "property", "name": "Attribute._ATTR_CFG"}, {"url": "Attribute.html#property_Attribute.INVALID_VALUE", "access": "", "host": "Attribute", "type": "property", "name": "Attribute.INVALID_VALUE"}, {"url": "State.html#property_data", "access": "", "host": "State", "type": "property", "name": "data"}, {"url": "State.html#method_get", "access": "", "host": "State", "type": "method", "name": "get"}, {"url": "Attribute.html#method_get", "access": "", "host": "Attribute", "type": "method", "name": "get"}, {"url": "State.html#method_getAll", "access": "", "host": "State", "type": "method", "name": "getAll"}, {"url": "Attribute.html#method__getAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttr"}, {"url": "Attribute.html#method__getAttrCfg", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttrCfg"}, {"url": "Attribute.html#method__getAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_getAttrs"}, {"url": "Attribute.html#method_getAttrs", "access": "", "host": "Attribute", "type": "method", "name": "getAttrs"}, {"url": "Attribute.html#method__initAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_initAttrs"}, {"url": "Attribute.html#method_modifyAttr", "access": "", "host": "Attribute", "type": "method", "name": "modifyAttr"}, {"url": "Attribute.html#method__protectAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_protectAttrs"}, {"url": "State.html#method_remove", "access": "", "host": "State", "type": "method", "name": "remove"}, {"url": "State.html#method_removeAll", "access": "", "host": "State", "type": "method", "name": "removeAll"}, {"url": "Attribute.html#method_removeAttr", "access": "", "host": "Attribute", "type": "method", "name": "removeAttr"}, {"url": "Attribute.html#method_reset", "access": "", "host": "Attribute", "type": "method", "name": "reset"}, {"url": "Attribute.html#method__set", "access": "protected", "host": "Attribute", "type": "method", "name": "_set"}, {"url": "Attribute.html#method_set", "access": "", "host": "Attribute", "type": "method", "name": "set"}, {"url": "Attribute.html#method__setAttr", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttr"}, {"url": "Attribute.html#method__setAttrs", "access": "protected", "host": "Attribute", "type": "method", "name": "_setAttrs"}, {"url": "Attribute.html#method_setAttrs", "access": "", "host": "Attribute", "type": "method", "name": "setAttrs"}];
 </script>
 </body>
 </html>

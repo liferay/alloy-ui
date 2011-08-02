@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -699,15 +714,6 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="jsonp-base-debug.js.html" title="jsonp-base-debug.js">jsonp-base-debug.js</a></li>
-
-
-			                                <li class=""><a href="jsonp-base-min.js.html" title="jsonp-base-min.js">jsonp-base-min.js</a></li>
-
-
-			                                <li class=""><a href="jsonp-base.js.html" title="jsonp-base.js">jsonp-base.js</a></li>
-
-
 			                                <li class=""><a href="jsonp-debug.js.html" title="jsonp-debug.js">jsonp-debug.js</a></li>
 
 
@@ -773,6 +779,7 @@ payload as its argument, or a configuration object supporting the keys:</p>
 <li>timeout - the number of milliseconds to wait before giving up</li>
 <li>context - becomes <code>this</code> in the callbacks</li>
 <li>args    - array of subsequent parameters to pass to the callbacks</li>
+<li>allowCache - use the same proxy name for all requests? (boolean)</li>
 </ul>
 							</div>
 
@@ -910,17 +917,15 @@ name to the url.
 																		 url
 																	
 																
-																		, 
-																		 config
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															Override this method to provide logic to default the success callback if
-it is not provided at construction.  This is overridden by jsonp-url to
-parse the callback from the url string.
+															<p>Parses the url for a callback named explicitly in the string.
+Override this if the target JSONP service uses a different query
+parameter or url format.</p>
+<p>If the callback is declared inline, the corresponding function will
+be returned.  Otherwise null.</p>
 														</div>
 
 														<div class="description">
@@ -931,17 +936,17 @@ parse the callback from the url string.
 																		<code><span property="yui:name">url</span>
 																		&lt;<span property="yui:type">String</span>&gt;
 																		</code>
-																		<span property="yui:description">  the url passed at construction</span>
-																		</dd>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">config</span>
-																		&lt;<span property="yui:type">Object</span>&gt;
-																		</code>
-																		<span property="yui:description">  (optional) the config object passed at
-construction</span>
+																		<span property="yui:description">  the url to search in</span>
 																		</dd>
 																</dl>
 
+																<dl>
+																	<dt>Returns:
+																	<code property="yui:return">
+																			Function
+																	</code></dt>
+																	<dd property="yui:returnInfo">the callback function if found, or null</dd>
+																</dl>
 
 
 
@@ -977,7 +982,7 @@ construction</span>
 														</code>
 
 														<div class="description" property="yui:description">
-															Default url formatter.  Looks for callback= in the url and appends it
+															URL formatter that looks for callback= in the url and appends it
 if not present.  The supplied proxy name will be assigned to the query
 param.  Override this method by passing a function as the
 &quot;format&quot; property in the config object to the constructor.
@@ -1090,6 +1095,11 @@ the url regex.</span>
 														void
 															<strong property="yui:name">send</strong>
 														   (
+																
+																		
+																		 args*
+																	
+																
 															)
 														</code>
 
@@ -1099,6 +1109,16 @@ the url regex.</span>
 
 														<div class="description">
 
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">args*</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description">  any additional arguments to pass to the url formatter
+beyond the base url and the proxy function name</span>
+																		</dd>
+																</dl>
 
 
 																<div class="chainable">
@@ -1134,6 +1154,10 @@ the url regex.</span>
 																		 c
 																	
 																
+																		, 
+																		 args*
+																	
+																
 															)
 														</code>
 
@@ -1158,6 +1182,12 @@ placeholder where the callback function name typically goes.</span>
 																		</code>
 																		<span property="yui:description">  Callback function accepting the JSON payload
 as its argument, or a configuration object (see above).</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">args*</span>
+																		&lt;<span property="yui:type">any</span>&gt;
+																		</code>
+																		<span property="yui:description">  additional arguments to pass to send()</span>
 																		</dd>
 																</dl>
 

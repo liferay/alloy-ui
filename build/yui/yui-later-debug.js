@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('yui-later', function(Y) {
@@ -12,6 +12,8 @@ YUI.add('yui-later', function(Y) {
  * @module yui
  * @submodule yui-later
  */
+
+var NO_ARGS = [];
 
 /**
  * Executes the supplied function in the context of the supplied
@@ -29,6 +31,10 @@ YUI.add('yui-later', function(Y) {
  * the function is executed with one parameter for each array item.
  * If you need to pass a single array parameter, it needs to be wrapped
  * in an array [myarray].
+ *
+ * Note: native methods in IE may not have the call and apply methods.
+ * In this case, it will work, but you are limited to four arguments.
+ *
  * @param periodic {boolean} if true, executes continuously at supplied
  * interval until canceled.
  * @return {object} a timer object. Call the cancel() method on this
@@ -36,25 +42,30 @@ YUI.add('yui-later', function(Y) {
  */
 Y.later = function(when, o, fn, data, periodic) {
     when = when || 0;
+    data = (!Y.Lang.isUndefined(data)) ? Y.Array(data) : data;
 
-    var m = fn, f, id;
-
-    if (o && Y.Lang.isString(fn)) {
-        m = o[fn];
-    }
-
-    f = !Y.Lang.isUndefined(data) ? function() {
-        m.apply(o, Y.Array(data));
-    } : function() {
-        m.call(o);
-    };
-
-    id = (periodic) ? setInterval(f, when) : setTimeout(f, when);
+    var cancelled = false,
+        method = (o && Y.Lang.isString(fn)) ? o[fn] : fn,
+        wrapper = function() {
+            // IE 8- may execute a setInterval callback one last time
+            // after clearInterval was called, so in order to preserve
+            // the cancel() === no more runny-run, we have to jump through
+            // an extra hoop.
+            if (!cancelled) {
+                if (!method.apply) {
+                    method(data[0], data[1], data[2], data[3]);
+                } else {
+                    method.apply(o, data || NO_ARGS);
+                }
+            }
+        },
+        id = (periodic) ? setInterval(wrapper, when) : setTimeout(wrapper, when);
 
     return {
         id: id,
         interval: periodic,
         cancel: function() {
+            cancelled = true;
             if (this.interval) {
                 clearInterval(id);
             } else {
@@ -68,4 +79,4 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.3.0' ,{requires:['yui-base']});
+}, '3.4.0' ,{requires:['yui-base']});

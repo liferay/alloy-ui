@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -750,6 +765,15 @@
 			                                <li class=""><a href="event-mousewheel.js.html" title="event-mousewheel.js">event-mousewheel.js</a></li>
 
 
+			                                <li class=""><a href="event-outside-debug.js.html" title="event-outside-debug.js">event-outside-debug.js</a></li>
+
+
+			                                <li class=""><a href="event-outside-min.js.html" title="event-outside-min.js">event-outside-min.js</a></li>
+
+
+			                                <li class=""><a href="event-outside.js.html" title="event-outside.js">event-outside.js</a></li>
+
+
 			                                <li class=""><a href="event-resize-debug.js.html" title="event-resize-debug.js">event-resize-debug.js</a></li>
 
 
@@ -786,7 +810,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;event-mouseenter&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -816,41 +840,108 @@
 <span class="cm"> * @module event</span>
 <span class="cm"> * @submodule event-mouseenter</span>
 <span class="cm"> */</span>
-<span class="kd">function</span> <span class="nx">notify</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">,</span>
-        <span class="nx">related</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">relatedTarget</span><span class="p">;</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">current</span> <span class="o">!==</span> <span class="nx">related</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">current</span><span class="p">.</span><span class="nx">contains</span><span class="p">(</span><span class="nx">related</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nx">notifier</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">domEventProxies</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">evt</span><span class="p">.</span><span class="nx">dom_wrappers</span><span class="p">,</span>
+    <span class="nx">contains</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">contains</span><span class="p">,</span>
+    <span class="nx">toArray</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">,</span>
+    <span class="nx">noop</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{},</span>
 
-<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">proxyType</span><span class="o">:</span> <span class="s2">&quot;mouseover&quot;</span><span class="p">,</span>
+    <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">proxyType</span><span class="o">:</span> <span class="s2">&quot;mouseover&quot;</span><span class="p">,</span>
+        <span class="nx">relProperty</span><span class="o">:</span> <span class="s2">&quot;fromElement&quot;</span><span class="p">,</span>
 
-    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">sub</span><span class="p">.</span><span class="nx">onHandle</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">proxyType</span><span class="p">,</span> <span class="nx">notify</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">);</span>
-    <span class="p">},</span>
+        <span class="nx">_notify</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">property</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_node</span><span class="p">,</span>
+                <span class="nx">related</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">relatedTarget</span> <span class="o">||</span> <span class="nx">e</span><span class="p">[</span><span class="nx">property</span><span class="p">];</span>
 
-    <span class="nx">detach</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">sub</span><span class="p">.</span><span class="nx">onHandle</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
-    <span class="p">},</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">el</span> <span class="o">!==</span> <span class="nx">related</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">contains</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">related</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">notifier</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOMEventFacade</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">el</span><span class="p">,</span>
+                    <span class="nx">domEventProxies</span><span class="p">[</span><span class="s1">&#39;event:&#39;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">stamp</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">]));</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
 
-    <span class="nx">delegate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">sub</span><span class="p">.</span><span class="nx">delegateHandle</span> <span class="o">=</span>
-            <span class="nx">Y</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">proxyType</span><span class="p">,</span> <span class="nx">notify</span><span class="p">,</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">filter</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">);</span>
-    <span class="p">},</span>
+        <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+                <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">proxyType</span><span class="p">,</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_notify</span><span class="p">,</span>
+                    <span class="nx">el</span><span class="p">,</span>
+                    <span class="kc">null</span><span class="p">,</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">relProperty</span><span class="p">,</span>
+                    <span class="nx">notifier</span><span class="p">];</span>
 
-    <span class="nx">detachDelegate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">sub</span><span class="p">.</span><span class="nx">delegateHandle</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">_attach</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="p">{</span> <span class="nx">facade</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+            <span class="c1">// node.on(this.proxyType, notify, null, notifier);</span>
+        <span class="p">},</span>
+
+        <span class="nx">detach</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">},</span>
+
+        <span class="nx">delegate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">,</span> <span class="nx">notifier</span><span class="p">,</span> <span class="nx">filter</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">node</span><span class="p">),</span>
+                <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">proxyType</span><span class="p">,</span>
+                    <span class="nx">noop</span><span class="p">,</span>
+                    <span class="nx">el</span><span class="p">,</span>
+                    <span class="kc">null</span><span class="p">,</span>
+                    <span class="nx">notifier</span>
+                <span class="p">];</span>
+
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">_attach</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="p">{</span> <span class="nx">facade</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">sub</span><span class="p">.</span><span class="nx">filter</span> <span class="o">=</span> <span class="nx">filter</span><span class="p">;</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">sub</span><span class="p">.</span><span class="nx">relProperty</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">relProperty</span><span class="p">;</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">sub</span><span class="p">.</span><span class="nx">_notify</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_filterNotify</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">_filterNotify</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">thisObj</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">ce</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="kd">var</span> <span class="nx">currentTarget</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">delegate</span><span class="p">.</span><span class="nx">_applyFilter</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">filter</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">ce</span><span class="p">),</span>
+                <span class="nx">related</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">relatedTarget</span> <span class="o">||</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="k">this</span><span class="p">.</span><span class="nx">relProperty</span><span class="p">],</span>
+                <span class="nx">e</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">ret</span><span class="p">,</span> <span class="nx">ct</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">currentTarget</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">currentTarget</span> <span class="o">=</span> <span class="nx">toArray</span><span class="p">(</span><span class="nx">currentTarget</span><span class="p">);</span>
+                
+                <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">currentTarget</span><span class="p">.</span><span class="nx">length</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span> <span class="o">||</span> <span class="o">!</span><span class="nx">e</span><span class="p">.</span><span class="nx">stopped</span><span class="p">);</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="o">++</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">ct</span> <span class="o">=</span> <span class="nx">currentTarget</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">contains</span><span class="p">(</span><span class="nx">ct</span><span class="p">,</span> <span class="nx">related</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">e</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">DOMEventFacade</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">ct</span><span class="p">,</span> <span class="nx">ce</span><span class="p">);</span>
+                            <span class="nx">e</span><span class="p">.</span><span class="nx">container</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">ce</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">ct</span><span class="p">);</span>
+
+                        <span class="c1">// TODO: where is notifier? args? this.notifier?</span>
+                        <span class="nx">ret</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">fire</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">ret</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">break</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">detachDelegate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">sub</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">sub</span><span class="p">.</span><span class="nx">handle</span><span class="p">.</span><span class="nx">detach</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
 
 <span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;mouseenter&quot;</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-<span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;mouseleave&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="p">{</span> <span class="nx">proxyType</span><span class="o">:</span> <span class="s2">&quot;mouseout&quot;</span> <span class="p">}),</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">Event</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s2">&quot;mouseleave&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">proxyType</span><span class="o">:</span> <span class="s2">&quot;mouseout&quot;</span><span class="p">,</span>
+    <span class="nx">relProperty</span><span class="o">:</span> <span class="s2">&quot;toElement&quot;</span>
+<span class="p">}),</span> <span class="kc">true</span><span class="p">);</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-synthetic&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;event-synthetic&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

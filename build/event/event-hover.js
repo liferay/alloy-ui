@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('event-hover', function(Y) {
@@ -43,13 +43,22 @@ var isFunction = Y.Lang.isFunction,
 
         on: function (node, sub, notifier, filter) {
             sub._detach = node[(filter) ? "delegate" : "on"]({
-                mouseenter: Y.bind(notifier.fire, notifier),
-                mouseleave: sub._extra
+                mouseenter: function (e) {
+                    e.phase = 'over';
+                    notifier.fire(e);
+                },
+                mouseleave: function (e) {
+                    var thisObj = sub.context || this;
+
+                    e.type = 'hover';
+                    e.phase = 'out';
+                    sub._extra.apply(thisObj, [e].concat(sub.args));
+                }
             }, filter);
         },
 
         detach: function (node, sub, notifier) {
-            sub._detacher.detach();
+            sub._detach.detach();
         }
     };
 
@@ -59,4 +68,4 @@ conf.detachDelegate = conf.detach;
 Y.Event.define("hover", conf);
 
 
-}, '3.3.0' ,{requires:['event-mouseenter']});
+}, '3.4.0' ,{requires:['event-mouseenter']});

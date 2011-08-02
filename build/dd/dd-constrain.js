@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('dd-constrain', function(Y) {
@@ -38,16 +38,16 @@ YUI.add('dd-constrain', function(Y) {
 		/**
 	    * @event drag:tickAlignX
 	    * @description Fires when this node is aligned with the tickX value.
-	    * @param {Event.Facade} event An Event Facade object
-	    * @type {Event.Custom}
+	    * @param {EventFacade} event An Event Facade object
+	    * @type {CustomEvent}
 	    */
 	    EV_TICK_ALIGN_X = 'drag:tickAlignX',
 
 		/**
 	    * @event drag:tickAlignY
 	    * @description Fires when this node is aligned with the tickY value.
-	    * @param {Event.Facade} event An Event Facade object
-	    * @type {Event.Custom}
+	    * @param {EventFacade} event An Event Facade object
+	    * @type {CustomEvent}
 	    */
 	    EV_TICK_ALIGN_Y = 'drag:tickAlignY',
 
@@ -547,4 +547,4 @@ YUI.add('dd-constrain', function(Y) {
 
 
 
-}, '3.3.0' ,{requires:['dd-drag'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['dd-drag']});

@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -700,6 +715,7 @@
 				                               <li class=""><a href="#method_doBefore" title="doBefore">doBefore</a></li>
 				                               <li class=""><a href="#method_initializer" title="initializer">initializer</a></li>
 				                               <li class=""><a href="#method_onHostEvent" title="onHostEvent">onHostEvent</a></li>
+				                               <li class=""><a href="#method_Plugin.addHostAttr" title="Plugin.addHostAttr">Plugin.addHostAttr</a></li>
 				                        </ul>
 									</div>
 								</div>
@@ -737,6 +753,15 @@
 
 
 			                                <li class=""><a href="plugin.js.html" title="plugin.js">plugin.js</a></li>
+
+
+			                                <li class=""><a href="pluginattr-debug.js.html" title="pluginattr-debug.js">pluginattr-debug.js</a></li>
+
+
+			                                <li class=""><a href="pluginattr-min.js.html" title="pluginattr-min.js">pluginattr-min.js</a></li>
+
+
+			                                <li class=""><a href="pluginattr.js.html" title="pluginattr.js">pluginattr.js</a></li>
 			                        </ul>
 								</div>
 							</div>
@@ -1519,6 +1544,118 @@ Listeners attached through this method will be detached when the plugin is unplu
 														</div>
 													</div>
 												</div>
+
+												<div class="api-entry-row method-row " rel="yui:method" resource="#method_Plugin.addHostAttr">
+
+													<h4>
+														<a name="method_Plugin.addHostAttr">Plugin.addHostAttr</a>
+													</h4>
+
+													<div class="detail">
+														<code class="method-detail">
+														
+														 static 
+														
+														void
+															<strong property="yui:name">Plugin.addHostAttr</strong>
+														   (
+																
+																		
+																		 name
+																	
+																
+																		, 
+																		 host
+																	
+																
+																		, 
+																		 plugin
+																	
+																
+																		, 
+																		 force
+																	
+																
+															)
+														</code>
+
+														<div class="description" property="yui:description">
+															<p>Register a Plugin with an activation attribute on a host class.
+Setting this attribute at construction or at run time will cause the
+Plugin to be plugged into the instance.  For example:</p>
+<pre><code>
+Y.Plugin.addHostAttr('sortable', Y.DataTable, Y.Plugin.DTSort);
+var dt = new Y.DataTable({ sortable: true }); // plugs DTSort
+dt.set('sortable', false); // unplugs DTSort
+</code></pre>
+<p>To support enhancing host instance behavior when the plugin is
+use()d after the host instance is instantiated, you can also pass the
+instance as the second parameter.</p>
+<p>To allow custom (de)activation behavior, pass an attribute
+configuration object instead of the plugin class as the third parameter.
+For example, to translate special activation values to meaningful plugin
+configuration, override the setter.  To have attribute access respond
+with more useful (truthy) data, override the getter.</p>
+<p>Note: the setter should return what was passed to it or
+<code>Y.Attribute.INVALID_VALUE</code>.</p>
+<pre><code>
+Y.Plugin.addHostAttr('filters', Y.Console, {
+setter: function (val, attr) {
+var method = (val === false) ? 'unplug' : 'plug',
+config = Y.Lang.isObject(val) ? val : {};
+if (Y.Lang.isString(val) || Y.Lang.isArray(val)) {
+config = {
+defaultVisibility: false,
+category: Y.Array.hash(Y.Array(val));
+};
+}
+config.host = this;
+this[method](Y.Plugin.ConsoleFilters, config);
+return val;
+}
+});
+var con = new Y.Console({ filters: ['warn', 'error'] });</code></pre>
+<p>The host class must have a static ATTRS collection.</p>
+														</div>
+
+														<div class="description">
+
+																<dl rel="yui:parameters">
+																	<dt>Parameters:</dt>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">name</span>
+																		&lt;<span property="yui:type">String</span>&gt;
+																		</code>
+																		<span property="yui:description">  The attribute name to trigger plug and unplug</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">host</span>
+																		&lt;<span property="yui:type">Function|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The class or instance to receive the
+triggering attribute</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">plugin</span>
+																		&lt;<span property="yui:type">Function|Object</span>&gt;
+																		</code>
+																		<span property="yui:description">  The plugin class or getter/setter config</span>
+																		</dd>
+																		<dd rel="yui:parameter">
+																		<code><span property="yui:name">force</span>
+																		&lt;<span property="yui:type">Boolean</span>&gt;
+																		</code>
+																		<span property="yui:description">  Redefine the existing host attribue if found</span>
+																		</dd>
+																</dl>
+
+
+
+
+
+														</div>
+													</div>
+												</div>
 										</div>
 									</div>
 
@@ -1603,6 +1740,12 @@ Listeners attached through this method will be detached when the plugin is unplu
 
 														
 
+														<div class="" rel="yui:method" resource="EventTarget.html#method_onceAfter">
+														<a href="EventTarget.html#method_onceAfter" property="yui:name" title="onceAfter">onceAfter</a><span>,</span>
+														</div>
+
+														
+
 														<div class="" rel="yui:method" resource="EventTarget.html#method_parseType">
 														<a href="EventTarget.html#method_parseType" property="yui:name" title="parseType">parseType</a><span>,</span>
 														</div>
@@ -1668,6 +1811,12 @@ Listeners attached through this method will be detached when the plugin is unplu
 
 														<div class="protected" rel="yui:method" resource="Attribute.html#method__getAttrs">
 														<a href="Attribute.html#method__getAttrs" property="yui:name" title="_getAttrs">_getAttrs</a><span>,</span>
+														</div>
+
+														
+
+														<div class="protected" rel="yui:method" resource="Attribute.html#method__initAttrs">
+														<a href="Attribute.html#method__initAttrs" property="yui:name" title="_initAttrs">_initAttrs</a><span>,</span>
 														</div>
 
 														
@@ -1947,7 +2096,7 @@ Listeners attached through this method will be detached when the plugin is unplu
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "Plugin.Base.html#method_afterHostEvent", "access": "", "host": "Plugin.Base", "type": "method", "name": "afterHostEvent"}, {"url": "Plugin.Base.html#method_afterHostMethod", "access": "", "host": "Plugin.Base", "type": "method", "name": "afterHostMethod"}, {"url": "Plugin.Base.html#method_beforeHostMethod", "access": "", "host": "Plugin.Base", "type": "method", "name": "beforeHostMethod"}, {"url": "Plugin.Base.html#method_destructor", "access": "", "host": "Plugin.Base", "type": "method", "name": "destructor"}, {"url": "Plugin.Base.html#method_doAfter", "access": "", "host": "Plugin.Base", "type": "method", "name": "doAfter"}, {"url": "Plugin.Base.html#method_doBefore", "access": "", "host": "Plugin.Base", "type": "method", "name": "doBefore"}, {"url": "Plugin.Base.html#config_host", "access": "", "host": "Plugin.Base", "type": "config", "name": "host"}, {"url": "Plugin.Base.html#event_hostChange", "access": "", "host": "Plugin.Base", "type": "event", "name": "hostChange"}, {"url": "Plugin.Base.html#method_initializer", "access": "", "host": "Plugin.Base", "type": "method", "name": "initializer"}, {"url": "Plugin.Base.html#method_onHostEvent", "access": "", "host": "Plugin.Base", "type": "method", "name": "onHostEvent"}, {"url": "Plugin.Base.html#property_Plugin.Base.ATTRS", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.Base.ATTRS"}, {"url": "Plugin.Base.html#property_Plugin.Base.NAME", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.Base.NAME"}, {"url": "Plugin.Base.html#property_Plugin.NS", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.NS"}];
+    var ALL_YUI_PROPS = [{"url": "Plugin.Base.html#method_afterHostEvent", "access": "", "host": "Plugin.Base", "type": "method", "name": "afterHostEvent"}, {"url": "Plugin.Base.html#method_afterHostMethod", "access": "", "host": "Plugin.Base", "type": "method", "name": "afterHostMethod"}, {"url": "Plugin.Base.html#method_beforeHostMethod", "access": "", "host": "Plugin.Base", "type": "method", "name": "beforeHostMethod"}, {"url": "Plugin.Base.html#method_destructor", "access": "", "host": "Plugin.Base", "type": "method", "name": "destructor"}, {"url": "Plugin.Base.html#method_doAfter", "access": "", "host": "Plugin.Base", "type": "method", "name": "doAfter"}, {"url": "Plugin.Base.html#method_doBefore", "access": "", "host": "Plugin.Base", "type": "method", "name": "doBefore"}, {"url": "Plugin.Base.html#config_host", "access": "", "host": "Plugin.Base", "type": "config", "name": "host"}, {"url": "Plugin.Base.html#event_hostChange", "access": "", "host": "Plugin.Base", "type": "event", "name": "hostChange"}, {"url": "Plugin.Base.html#method_initializer", "access": "", "host": "Plugin.Base", "type": "method", "name": "initializer"}, {"url": "Plugin.Base.html#method_onHostEvent", "access": "", "host": "Plugin.Base", "type": "method", "name": "onHostEvent"}, {"url": "Plugin.Base.html#method_Plugin.addHostAttr", "access": "", "host": "Plugin.Base", "type": "method", "name": "Plugin.addHostAttr"}, {"url": "Plugin.Base.html#property_Plugin.Base.ATTRS", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.Base.ATTRS"}, {"url": "Plugin.Base.html#property_Plugin.Base.NAME", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.Base.NAME"}, {"url": "Plugin.Base.html#property_Plugin.NS", "access": "", "host": "Plugin.Base", "type": "property", "name": "Plugin.NS"}];
 </script>
 </body>
 </html>

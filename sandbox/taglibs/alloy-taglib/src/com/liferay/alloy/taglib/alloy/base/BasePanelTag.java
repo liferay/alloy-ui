@@ -25,6 +25,7 @@ import javax.servlet.jsp.JspException;
  */
 public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
+	@Override
 	public int doStartTag() throws JspException {
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
@@ -921,6 +922,7 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onWidthChange", onWidthChange);
 	}
 
+	@Override
 	protected void cleanUp() {
 		_panelBodyContent = null;
 		_boundingBox = null;
@@ -1013,10 +1015,12 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onWidthChange = null;
 	}
 
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
 
+	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "panelBodyContent", _panelBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);

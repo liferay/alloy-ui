@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -741,7 +756,7 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;event-custom-base&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
@@ -785,7 +800,22 @@
     <span class="nx">objs</span><span class="o">:</span> <span class="p">{},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Execute the supplied method before the specified function</span>
+<span class="cm">     * &lt;p&gt;Execute the supplied method before the specified function.  Wrapping</span>
+<span class="cm">     * function may optionally return an instance of the following classes to</span>
+<span class="cm">     * further alter runtime behavior:&lt;/p&gt;</span>
+<span class="cm">     * &lt;dl&gt;</span>
+<span class="cm">     *     &lt;dt&gt;&lt;/code&gt;Y.Do.Halt(message, returnValue)&lt;/code&gt;&lt;/dt&gt;</span>
+<span class="cm">     *         &lt;dd&gt;Immediatly stop execution and return</span>
+<span class="cm">     *         &lt;code&gt;returnValue&lt;/code&gt;.  No other wrapping functions will be</span>
+<span class="cm">     *         executed.&lt;/dd&gt;</span>
+<span class="cm">     *     &lt;dt&gt;&lt;/code&gt;Y.Do.AlterArgs(message, newArgArray)&lt;/code&gt;&lt;/dt&gt;</span>
+<span class="cm">     *         &lt;dd&gt;Replace the arguments that the original function will be</span>
+<span class="cm">     *         called with.&lt;/dd&gt;</span>
+<span class="cm">     *     &lt;dt&gt;&lt;/code&gt;Y.Do.Prevent(message)&lt;/code&gt;&lt;/dt&gt;</span>
+<span class="cm">     *         &lt;dd&gt;Don&#39;t execute the wrapped function.  Other before phase</span>
+<span class="cm">     *         wrappers will be executed.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method before</span>
 <span class="cm">     * @param fn {Function} the function to execute</span>
 <span class="cm">     * @param obj the object hosting the method to displace</span>
@@ -808,7 +838,23 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Execute the supplied method after the specified function</span>
+<span class="cm">     * &lt;p&gt;Execute the supplied method after the specified function.  Wrapping</span>
+<span class="cm">     * function may optionally return an instance of the following classes to</span>
+<span class="cm">     * further alter runtime behavior:&lt;/p&gt;</span>
+<span class="cm">     * &lt;dl&gt;</span>
+<span class="cm">     *     &lt;dt&gt;&lt;/code&gt;Y.Do.Halt(message, returnValue)&lt;/code&gt;&lt;/dt&gt;</span>
+<span class="cm">     *         &lt;dd&gt;Immediatly stop execution and return</span>
+<span class="cm">     *         &lt;code&gt;returnValue&lt;/code&gt;.  No other wrapping functions will be</span>
+<span class="cm">     *         executed.&lt;/dd&gt;</span>
+<span class="cm">     *     &lt;dt&gt;&lt;/code&gt;Y.Do.AlterReturn(message, returnValue)&lt;/code&gt;&lt;/dt&gt;</span>
+<span class="cm">     *         &lt;dd&gt;Return &lt;code&gt;returnValue&lt;/code&gt; instead of the wrapped</span>
+<span class="cm">     *         method&#39;s original return value.  This can be further altered by</span>
+<span class="cm">     *         other after phase wrappers.&lt;/dd&gt;</span>
+<span class="cm">     * &lt;/dl&gt;</span>
+<span class="cm">     *</span>
+<span class="cm">     * &lt;p&gt;The static properties &lt;code&gt;Y.Do.originalRetVal&lt;/code&gt; and</span>
+<span class="cm">     * &lt;code&gt;Y.Do.currentRetVal&lt;/code&gt; will be populated for reference.&lt;/p&gt;</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method after</span>
 <span class="cm">     * @param fn {Function} the function to execute</span>
 <span class="cm">     * @param obj the object hosting the method to displace</span>
@@ -829,7 +875,9 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Execute the supplied method after the specified function</span>
+<span class="cm">     * Execute the supplied method before or after the specified function.</span>
+<span class="cm">     * Used by &lt;code&gt;before&lt;/code&gt; and &lt;code&gt;after&lt;/code&gt;.</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method _inject</span>
 <span class="cm">     * @param when {string} before or after</span>
 <span class="cm">     * @param fn {Function} the function to execute</span>
@@ -874,9 +922,11 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
-<span class="cm">     * Detach a before or after subscription</span>
+<span class="cm">     * Detach a before or after subscription.</span>
+<span class="cm">     *</span>
 <span class="cm">     * @method detach</span>
 <span class="cm">     * @param handle {string} the subscription handle</span>
+<span class="cm">     * @static</span>
 <span class="cm">     */</span>
     <span class="nx">detach</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">handle</span><span class="p">)</span> <span class="p">{</span>
 
@@ -901,7 +951,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @property Do.originalRetVal</span>
 <span class="cm"> * @static</span>
-<span class="cm"> * @since 2.3.0</span>
+<span class="cm"> * @since 3.2.0</span>
 <span class="cm"> */</span>
 
 <span class="cm">/**</span>
@@ -911,7 +961,7 @@
 <span class="cm"> *</span>
 <span class="cm"> * @property Do.currentRetVal</span>
 <span class="cm"> * @static</span>
-<span class="cm"> * @since 2.3.0</span>
+<span class="cm"> * @since 3.2.0</span>
 <span class="cm"> */</span>
 
 <span class="c1">//////////////////////////////////////////////////////////////////////////</span>
@@ -960,8 +1010,18 @@
 <span class="p">};</span>
 
 <span class="cm">/**</span>
-<span class="cm"> * Execute the wrapped method</span>
+<span class="cm"> * &lt;p&gt;Execute the wrapped method.  All arguments are passed into the wrapping</span>
+<span class="cm"> * functions.  If any of the before wrappers return an instance of</span>
+<span class="cm"> * &lt;code&gt;Y.Do.Halt&lt;/code&gt; or &lt;code&gt;Y.Do.Prevent&lt;/code&gt;, neither the wrapped</span>
+<span class="cm"> * function nor any after phase subscribers will be executed.&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * &lt;p&gt;The return value will be the return value of the wrapped function or one</span>
+<span class="cm"> * provided by a wrapper function via an instance of &lt;code&gt;Y.Do.Halt&lt;/code&gt; or</span>
+<span class="cm"> * &lt;code&gt;Y.Do.AlterReturn&lt;/code&gt;.</span>
+<span class="cm"> *</span>
 <span class="cm"> * @method exec</span>
+<span class="cm"> * @param arg* {any} Arguments are passed to the wrapping and wrapped functions</span>
+<span class="cm"> * @return {any} Return value of wrapped function unless overwritten (see above)</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nx">Method</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">exec</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
 
@@ -1022,9 +1082,14 @@
 
 <span class="cm">/**</span>
 <span class="cm"> * Return an AlterArgs object when you want to change the arguments that</span>
-<span class="cm"> * were passed into the function.  An example would be a service that scrubs</span>
-<span class="cm"> * out illegal characters prior to executing the core business logic.</span>
+<span class="cm"> * were passed into the function.  Useful for Do.before subscribers.  An</span>
+<span class="cm"> * example would be a service that scrubs out illegal characters prior to</span>
+<span class="cm"> * executing the core business logic.</span>
 <span class="cm"> * @class Do.AlterArgs</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param msg {String} (optional) Explanation of the altered return value</span>
+<span class="cm"> * @param newArgs {Array} Call parameters to be used for the original method</span>
+<span class="cm"> *                        instead of the arguments originally passed in.</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nx">AlterArgs</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">newArgs</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
@@ -1033,8 +1098,12 @@
 
 <span class="cm">/**</span>
 <span class="cm"> * Return an AlterReturn object when you want to change the result returned</span>
-<span class="cm"> * from the core method to the caller</span>
+<span class="cm"> * from the core method to the caller.  Useful for Do.after subscribers.</span>
 <span class="cm"> * @class Do.AlterReturn</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param msg {String} (optional) Explanation of the altered return value</span>
+<span class="cm"> * @param newRetVal {any} Return value passed to code that invoked the wrapped</span>
+<span class="cm"> *                      function.</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nx">AlterReturn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">newRetVal</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
@@ -1044,8 +1113,12 @@
 <span class="cm">/**</span>
 <span class="cm"> * Return a Halt object when you want to terminate the execution</span>
 <span class="cm"> * of all subsequent subscribers as well as the wrapped method</span>
-<span class="cm"> * if it has not exectued yet.</span>
+<span class="cm"> * if it has not exectued yet.  Useful for Do.before subscribers.</span>
 <span class="cm"> * @class Do.Halt</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param msg {String} (optional) Explanation of why the termination was done</span>
+<span class="cm"> * @param retVal {any} Return value passed to code that invoked the wrapped</span>
+<span class="cm"> *                      function.</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nx">Halt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">retVal</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
@@ -1054,8 +1127,11 @@
 
 <span class="cm">/**</span>
 <span class="cm"> * Return a Prevent object when you want to prevent the wrapped function</span>
-<span class="cm"> * from executing, but want the remaining listeners to execute</span>
+<span class="cm"> * from executing, but want the remaining listeners to execute.  Useful</span>
+<span class="cm"> * for Do.before subscribers.</span>
 <span class="cm"> * @class Do.Prevent</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param msg {String} (optional) Explanation of why the termination was done</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nx">Prevent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">msg</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">;</span>
@@ -1065,6 +1141,10 @@
 <span class="cm"> * Return an Error object when you want to terminate the execution</span>
 <span class="cm"> * of all subsequent method calls.</span>
 <span class="cm"> * @class Do.Error</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param msg {String} (optional) Explanation of the altered return value</span>
+<span class="cm"> * @param retVal {any} Return value passed to code that invoked the wrapped</span>
+<span class="cm"> *                      function.</span>
 <span class="cm"> * @deprecated use Y.Do.Halt or Y.Do.Prevent</span>
 <span class="cm"> */</span>
 <span class="nx">DO</span><span class="p">.</span><span class="nb">Error</span> <span class="o">=</span> <span class="nx">DO</span><span class="p">.</span><span class="nx">Halt</span><span class="p">;</span>
@@ -2059,6 +2139,24 @@
     <span class="p">},</span>
 
     <span class="cm">/**</span>
+<span class="cm">     * Listen to a custom event hosted by this object one time.</span>
+<span class="cm">     * This is the equivalent to &lt;code&gt;after&lt;/code&gt; except the</span>
+<span class="cm">     * listener is immediatelly detached when it is executed.</span>
+<span class="cm">     * @method onceAfter</span>
+<span class="cm">     * @param type    {string}   The type of the event</span>
+<span class="cm">     * @param fn {Function} The callback</span>
+<span class="cm">     * @param context {object} optional execution context.</span>
+<span class="cm">     * @param arg* {mixed} 0..n additional arguments to supply to the subscriber</span>
+<span class="cm">     * @return the event target or a detach handle per &#39;chain&#39; config</span>
+<span class="cm">     */</span>
+    <span class="nx">onceAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nx">YArray</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+        <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">AFTER_PREFIX</span> <span class="o">+</span> <span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">once</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="cm">/**</span>
 <span class="cm">     * Takes the type parameter passed to &#39;on&#39; and parses out the</span>
 <span class="cm">     * various pieces that could be included in the type.  If the</span>
 <span class="cm">     * event type is passed without a prefix, it will be expanded</span>
@@ -2650,11 +2748,8 @@
 <span class="nx">Y</span><span class="p">.</span><span class="nx">EventTarget</span> <span class="o">=</span> <span class="nx">ET</span><span class="p">;</span>
 
 <span class="c1">// make Y an event target</span>
-<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="nx">ET</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">false</span>
-<span class="p">});</span>
-
-<span class="nx">ET</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">Y</span><span class="p">);</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="nx">ET</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">ET</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="p">{</span> <span class="nx">bubbles</span><span class="o">:</span> <span class="kc">false</span> <span class="p">});</span>
 
 <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">globalEvents</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">.</span><span class="nx">Env</span><span class="p">.</span><span class="nx">globalEvents</span> <span class="o">||</span> <span class="k">new</span> <span class="nx">ET</span><span class="p">();</span>
 
@@ -2768,7 +2863,7 @@
 <span class="cm"> */</span>
 
 
-<span class="p">},</span> <span class="s1">&#39;3.3.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;oop&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;oop&#39;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>
@@ -2786,7 +2881,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "EventTarget.html#method_addTarget", "access": "", "host": "EventTarget", "type": "method", "name": "addTarget"}, {"url": "Do.html#method_after", "access": "", "host": "Do", "type": "method", "name": "after"}, {"url": "CustomEvent.html#method_after", "access": "", "host": "CustomEvent", "type": "method", "name": "after"}, {"url": "EventTarget.html#method_after", "access": "", "host": "EventTarget", "type": "method", "name": "after"}, {"url": "CustomEvent.html#property_afters", "access": "", "host": "CustomEvent", "type": "property", "name": "afters"}, {"url": "CustomEvent.html#method_applyConfig", "access": "", "host": "CustomEvent", "type": "method", "name": "applyConfig"}, {"url": "Subscriber.html#property_args", "access": "", "host": "Subscriber", "type": "property", "name": "args"}, {"url": "CustomEvent.html#property_async", "access": "", "host": "CustomEvent", "type": "property", "name": "async"}, {"url": "Do.html#method_before", "access": "", "host": "Do", "type": "method", "name": "before"}, {"url": "EventTarget.html#method_before", "access": "", "host": "EventTarget", "type": "method", "name": "before"}, {"url": "CustomEvent.html#property_broadcast", "access": "", "host": "CustomEvent", "type": "property", "name": "broadcast"}, {"url": "EventTarget.html#method_bubble", "access": "", "host": "EventTarget", "type": "method", "name": "bubble"}, {"url": "CustomEvent.html#property_bubbles", "access": "", "host": "CustomEvent", "type": "property", "name": "bubbles"}, {"url": "Subscriber.html#method_contains", "access": "", "host": "Subscriber", "type": "method", "name": "contains"}, {"url": "CustomEvent.html#property_context", "access": "", "host": "CustomEvent", "type": "property", "name": "context"}, {"url": "Subscriber.html#property_context", "access": "", "host": "Subscriber", "type": "property", "name": "context"}, {"url": "EventFacade.html#property_currentTarget", "access": "", "host": "EventFacade", "type": "property", "name": "currentTarget"}, {"url": "CustomEvent.html#property_defaultFn", "access": "", "host": "CustomEvent", "type": "property", "name": "defaultFn"}, {"url": "Do.Method.html#method_delete", "access": "", "host": "Do.Method", "type": "method", "name": "delete"}, {"url": "Do.html#method_detach", "access": "", "host": "Do", "type": "method", "name": "detach"}, {"url": "EventHandle.html#method_detach", "access": "", "host": "EventHandle", "type": "method", "name": "detach"}, {"url": "CustomEvent.html#method_detach", "access": "", "host": "CustomEvent", "type": "method", "name": "detach"}, {"url": "EventTarget.html#method_detach", "access": "", "host": "EventTarget", "type": "method", "name": "detach"}, {"url": "CustomEvent.html#method_detachAll", "access": "", "host": "CustomEvent", "type": "method", "name": "detachAll"}, {"url": "EventTarget.html#method_detachAll", "access": "", "host": "EventTarget", "type": "method", "name": "detachAll"}, {"url": "EventFacade.html#property_details", "access": "", "host": "EventFacade", "type": "property", "name": "details"}, {"url": "Do.html#property_Do.currentRetVal", "access": "", "host": "Do", "type": "property", "name": "Do.currentRetVal"}, {"url": "Do.html#property_Do.originalRetVal", "access": "", "host": "Do", "type": "property", "name": "Do.originalRetVal"}, {"url": "CustomEvent.html#property_emitFacade", "access": "", "host": "CustomEvent", "type": "property", "name": "emitFacade"}, {"url": "Subscriber.html#property_events", "access": "", "host": "Subscriber", "type": "property", "name": "events"}, {"url": "EventHandle.html#property_evt", "access": "", "host": "EventHandle", "type": "property", "name": "evt"}, {"url": "Do.Method.html#method_exec", "access": "", "host": "Do.Method", "type": "method", "name": "exec"}, {"url": "CustomEvent.html#method_fire", "access": "", "host": "CustomEvent", "type": "method", "name": "fire"}, {"url": "EventTarget.html#method_fire", "access": "", "host": "EventTarget", "type": "method", "name": "fire"}, {"url": "CustomEvent.html#property_fired", "access": "", "host": "CustomEvent", "type": "property", "name": "fired"}, {"url": "CustomEvent.html#property_firedWith", "access": "", "host": "CustomEvent", "type": "property", "name": "firedWith"}, {"url": "CustomEvent.html#property_fireOnce", "access": "", "host": "CustomEvent", "type": "property", "name": "fireOnce"}, {"url": "Subscriber.html#property_fn", "access": "", "host": "Subscriber", "type": "property", "name": "fn"}, {"url": "EventTarget.html#method_getEvent", "access": "", "host": "EventTarget", "type": "method", "name": "getEvent"}, {"url": "CustomEvent.html#method_getSubs", "access": "", "host": "CustomEvent", "type": "method", "name": "getSubs"}, {"url": "EventTarget.html#method_getTargets", "access": "", "host": "EventTarget", "type": "method", "name": "getTargets"}, {"url": "CustomEvent.html#method_halt", "access": "", "host": "CustomEvent", "type": "method", "name": "halt"}, {"url": "EventFacade.html#method_halt", "access": "", "host": "EventFacade", "type": "method", "name": "halt"}, {"url": "CustomEvent.html#property_host", "access": "", "host": "CustomEvent", "type": "property", "name": "host"}, {"url": "Subscriber.html#property_id", "access": "", "host": "Subscriber", "type": "property", "name": "id"}, {"url": "CustomEvent.html#method_log", "access": "", "host": "CustomEvent", "type": "method", "name": "log"}, {"url": "EventHandle.html#method_monitor", "access": "", "host": "EventHandle", "type": "method", "name": "monitor"}, {"url": "CustomEvent.html#method_monitor", "access": "", "host": "CustomEvent", "type": "method", "name": "monitor"}, {"url": "CustomEvent.html#property_monitored", "access": "", "host": "CustomEvent", "type": "property", "name": "monitored"}, {"url": "Subscriber.html#method_notify", "access": "", "host": "Subscriber", "type": "method", "name": "notify"}, {"url": "Do.html#property_objs", "access": "", "host": "Do", "type": "property", "name": "objs"}, {"url": "CustomEvent.html#method_on", "access": "", "host": "CustomEvent", "type": "method", "name": "on"}, {"url": "EventTarget.html#method_on", "access": "", "host": "EventTarget", "type": "method", "name": "on"}, {"url": "Subscriber.html#property_once", "access": "", "host": "Subscriber", "type": "property", "name": "once"}, {"url": "EventTarget.html#method_once", "access": "", "host": "EventTarget", "type": "method", "name": "once"}, {"url": "EventTarget.html#method_parseType", "access": "", "host": "EventTarget", "type": "method", "name": "parseType"}, {"url": "CustomEvent.html#property_preventable", "access": "", "host": "CustomEvent", "type": "property", "name": "preventable"}, {"url": "CustomEvent.html#method_preventDefault", "access": "", "host": "CustomEvent", "type": "method", "name": "preventDefault"}, {"url": "EventFacade.html#method_preventDefault", "access": "", "host": "EventFacade", "type": "method", "name": "preventDefault"}, {"url": "CustomEvent.html#property_prevented", "access": "", "host": "CustomEvent", "type": "property", "name": "prevented"}, {"url": "CustomEvent.html#property_preventedFn", "access": "", "host": "CustomEvent", "type": "property", "name": "preventedFn"}, {"url": "EventTarget.html#method_publish", "access": "", "host": "EventTarget", "type": "method", "name": "publish"}, {"url": "CustomEvent.html#property_queuable", "access": "", "host": "CustomEvent", "type": "property", "name": "queuable"}, {"url": "Do.Method.html#method_register", "access": "", "host": "Do.Method", "type": "method", "name": "register"}, {"url": "EventFacade.html#property_relatedTarget", "access": "", "host": "EventFacade", "type": "property", "name": "relatedTarget"}, {"url": "EventTarget.html#method_removeTarget", "access": "", "host": "EventTarget", "type": "method", "name": "removeTarget"}, {"url": "CustomEvent.html#property_signature", "access": "", "host": "CustomEvent", "type": "property", "name": "signature"}, {"url": "CustomEvent.html#property_silent", "access": "", "host": "CustomEvent", "type": "property", "name": "silent"}, {"url": "CustomEvent.html#method_stopImmediatePropagation", "access": "", "host": "CustomEvent", "type": "method", "name": "stopImmediatePropagation"}, {"url": "EventFacade.html#method_stopImmediatePropagation", "access": "", "host": "EventFacade", "type": "method", "name": "stopImmediatePropagation"}, {"url": "CustomEvent.html#property_stopped", "access": "", "host": "CustomEvent", "type": "property", "name": "stopped"}, {"url": "CustomEvent.html#property_stoppedFn", "access": "", "host": "CustomEvent", "type": "property", "name": "stoppedFn"}, {"url": "CustomEvent.html#method_stopPropagation", "access": "", "host": "CustomEvent", "type": "method", "name": "stopPropagation"}, {"url": "EventFacade.html#method_stopPropagation", "access": "", "host": "EventFacade", "type": "method", "name": "stopPropagation"}, {"url": "EventHandle.html#property_sub", "access": "", "host": "EventHandle", "type": "property", "name": "sub"}, {"url": "CustomEvent.html#method_subscribe", "access": "", "host": "CustomEvent", "type": "method", "name": "subscribe"}, {"url": "EventTarget.html#method_subscribe", "access": "", "host": "EventTarget", "type": "method", "name": "subscribe"}, {"url": "CustomEvent.html#property_subscribers", "access": "", "host": "CustomEvent", "type": "property", "name": "subscribers"}, {"url": "EventFacade.html#property_target", "access": "", "host": "EventFacade", "type": "property", "name": "target"}, {"url": "CustomEvent.html#property_type", "access": "", "host": "CustomEvent", "type": "property", "name": "type"}, {"url": "EventFacade.html#property_type", "access": "", "host": "EventFacade", "type": "property", "name": "type"}, {"url": "CustomEvent.html#method_unsubscribe", "access": "", "host": "CustomEvent", "type": "method", "name": "unsubscribe"}, {"url": "EventTarget.html#method_unsubscribe", "access": "", "host": "EventTarget", "type": "method", "name": "unsubscribe"}, {"url": "CustomEvent.html#method_unsubscribeAll", "access": "", "host": "CustomEvent", "type": "method", "name": "unsubscribeAll"}, {"url": "EventTarget.html#method_unsubscribeAll", "access": "", "host": "EventTarget", "type": "method", "name": "unsubscribeAll"}];
+    var ALL_YUI_PROPS = [{"url": "EventTarget.html#method_addTarget", "access": "", "host": "EventTarget", "type": "method", "name": "addTarget"}, {"url": "Do.html#method_after", "access": "", "host": "Do", "type": "method", "name": "after"}, {"url": "CustomEvent.html#method_after", "access": "", "host": "CustomEvent", "type": "method", "name": "after"}, {"url": "EventTarget.html#method_after", "access": "", "host": "EventTarget", "type": "method", "name": "after"}, {"url": "CustomEvent.html#property_afters", "access": "", "host": "CustomEvent", "type": "property", "name": "afters"}, {"url": "CustomEvent.html#method_applyConfig", "access": "", "host": "CustomEvent", "type": "method", "name": "applyConfig"}, {"url": "Subscriber.html#property_args", "access": "", "host": "Subscriber", "type": "property", "name": "args"}, {"url": "CustomEvent.html#property_async", "access": "", "host": "CustomEvent", "type": "property", "name": "async"}, {"url": "Do.html#method_before", "access": "", "host": "Do", "type": "method", "name": "before"}, {"url": "EventTarget.html#method_before", "access": "", "host": "EventTarget", "type": "method", "name": "before"}, {"url": "CustomEvent.html#property_broadcast", "access": "", "host": "CustomEvent", "type": "property", "name": "broadcast"}, {"url": "EventTarget.html#method_bubble", "access": "", "host": "EventTarget", "type": "method", "name": "bubble"}, {"url": "CustomEvent.html#property_bubbles", "access": "", "host": "CustomEvent", "type": "property", "name": "bubbles"}, {"url": "Subscriber.html#method_contains", "access": "", "host": "Subscriber", "type": "method", "name": "contains"}, {"url": "CustomEvent.html#property_context", "access": "", "host": "CustomEvent", "type": "property", "name": "context"}, {"url": "Subscriber.html#property_context", "access": "", "host": "Subscriber", "type": "property", "name": "context"}, {"url": "EventFacade.html#property_currentTarget", "access": "", "host": "EventFacade", "type": "property", "name": "currentTarget"}, {"url": "CustomEvent.html#property_defaultFn", "access": "", "host": "CustomEvent", "type": "property", "name": "defaultFn"}, {"url": "Do.Method.html#method_delete", "access": "", "host": "Do.Method", "type": "method", "name": "delete"}, {"url": "Do.html#method_detach", "access": "", "host": "Do", "type": "method", "name": "detach"}, {"url": "EventHandle.html#method_detach", "access": "", "host": "EventHandle", "type": "method", "name": "detach"}, {"url": "CustomEvent.html#method_detach", "access": "", "host": "CustomEvent", "type": "method", "name": "detach"}, {"url": "EventTarget.html#method_detach", "access": "", "host": "EventTarget", "type": "method", "name": "detach"}, {"url": "CustomEvent.html#method_detachAll", "access": "", "host": "CustomEvent", "type": "method", "name": "detachAll"}, {"url": "EventTarget.html#method_detachAll", "access": "", "host": "EventTarget", "type": "method", "name": "detachAll"}, {"url": "EventFacade.html#property_details", "access": "", "host": "EventFacade", "type": "property", "name": "details"}, {"url": "Do.html#property_Do.currentRetVal", "access": "", "host": "Do", "type": "property", "name": "Do.currentRetVal"}, {"url": "Do.html#property_Do.originalRetVal", "access": "", "host": "Do", "type": "property", "name": "Do.originalRetVal"}, {"url": "CustomEvent.html#property_emitFacade", "access": "", "host": "CustomEvent", "type": "property", "name": "emitFacade"}, {"url": "Subscriber.html#property_events", "access": "", "host": "Subscriber", "type": "property", "name": "events"}, {"url": "EventHandle.html#property_evt", "access": "", "host": "EventHandle", "type": "property", "name": "evt"}, {"url": "Do.Method.html#method_exec", "access": "", "host": "Do.Method", "type": "method", "name": "exec"}, {"url": "CustomEvent.html#method_fire", "access": "", "host": "CustomEvent", "type": "method", "name": "fire"}, {"url": "EventTarget.html#method_fire", "access": "", "host": "EventTarget", "type": "method", "name": "fire"}, {"url": "CustomEvent.html#property_fired", "access": "", "host": "CustomEvent", "type": "property", "name": "fired"}, {"url": "CustomEvent.html#property_firedWith", "access": "", "host": "CustomEvent", "type": "property", "name": "firedWith"}, {"url": "CustomEvent.html#property_fireOnce", "access": "", "host": "CustomEvent", "type": "property", "name": "fireOnce"}, {"url": "Subscriber.html#property_fn", "access": "", "host": "Subscriber", "type": "property", "name": "fn"}, {"url": "EventTarget.html#method_getEvent", "access": "", "host": "EventTarget", "type": "method", "name": "getEvent"}, {"url": "CustomEvent.html#method_getSubs", "access": "", "host": "CustomEvent", "type": "method", "name": "getSubs"}, {"url": "EventTarget.html#method_getTargets", "access": "", "host": "EventTarget", "type": "method", "name": "getTargets"}, {"url": "CustomEvent.html#method_halt", "access": "", "host": "CustomEvent", "type": "method", "name": "halt"}, {"url": "EventFacade.html#method_halt", "access": "", "host": "EventFacade", "type": "method", "name": "halt"}, {"url": "CustomEvent.html#property_host", "access": "", "host": "CustomEvent", "type": "property", "name": "host"}, {"url": "Subscriber.html#property_id", "access": "", "host": "Subscriber", "type": "property", "name": "id"}, {"url": "CustomEvent.html#method_log", "access": "", "host": "CustomEvent", "type": "method", "name": "log"}, {"url": "EventHandle.html#method_monitor", "access": "", "host": "EventHandle", "type": "method", "name": "monitor"}, {"url": "CustomEvent.html#method_monitor", "access": "", "host": "CustomEvent", "type": "method", "name": "monitor"}, {"url": "CustomEvent.html#property_monitored", "access": "", "host": "CustomEvent", "type": "property", "name": "monitored"}, {"url": "Subscriber.html#method_notify", "access": "", "host": "Subscriber", "type": "method", "name": "notify"}, {"url": "Do.html#property_objs", "access": "", "host": "Do", "type": "property", "name": "objs"}, {"url": "CustomEvent.html#method_on", "access": "", "host": "CustomEvent", "type": "method", "name": "on"}, {"url": "EventTarget.html#method_on", "access": "", "host": "EventTarget", "type": "method", "name": "on"}, {"url": "Subscriber.html#property_once", "access": "", "host": "Subscriber", "type": "property", "name": "once"}, {"url": "EventTarget.html#method_once", "access": "", "host": "EventTarget", "type": "method", "name": "once"}, {"url": "EventTarget.html#method_onceAfter", "access": "", "host": "EventTarget", "type": "method", "name": "onceAfter"}, {"url": "EventTarget.html#method_parseType", "access": "", "host": "EventTarget", "type": "method", "name": "parseType"}, {"url": "CustomEvent.html#property_preventable", "access": "", "host": "CustomEvent", "type": "property", "name": "preventable"}, {"url": "CustomEvent.html#method_preventDefault", "access": "", "host": "CustomEvent", "type": "method", "name": "preventDefault"}, {"url": "EventFacade.html#method_preventDefault", "access": "", "host": "EventFacade", "type": "method", "name": "preventDefault"}, {"url": "CustomEvent.html#property_prevented", "access": "", "host": "CustomEvent", "type": "property", "name": "prevented"}, {"url": "CustomEvent.html#property_preventedFn", "access": "", "host": "CustomEvent", "type": "property", "name": "preventedFn"}, {"url": "EventTarget.html#method_publish", "access": "", "host": "EventTarget", "type": "method", "name": "publish"}, {"url": "CustomEvent.html#property_queuable", "access": "", "host": "CustomEvent", "type": "property", "name": "queuable"}, {"url": "Do.Method.html#method_register", "access": "", "host": "Do.Method", "type": "method", "name": "register"}, {"url": "EventFacade.html#property_relatedTarget", "access": "", "host": "EventFacade", "type": "property", "name": "relatedTarget"}, {"url": "EventTarget.html#method_removeTarget", "access": "", "host": "EventTarget", "type": "method", "name": "removeTarget"}, {"url": "CustomEvent.html#property_signature", "access": "", "host": "CustomEvent", "type": "property", "name": "signature"}, {"url": "CustomEvent.html#property_silent", "access": "", "host": "CustomEvent", "type": "property", "name": "silent"}, {"url": "CustomEvent.html#method_stopImmediatePropagation", "access": "", "host": "CustomEvent", "type": "method", "name": "stopImmediatePropagation"}, {"url": "EventFacade.html#method_stopImmediatePropagation", "access": "", "host": "EventFacade", "type": "method", "name": "stopImmediatePropagation"}, {"url": "CustomEvent.html#property_stopped", "access": "", "host": "CustomEvent", "type": "property", "name": "stopped"}, {"url": "CustomEvent.html#property_stoppedFn", "access": "", "host": "CustomEvent", "type": "property", "name": "stoppedFn"}, {"url": "CustomEvent.html#method_stopPropagation", "access": "", "host": "CustomEvent", "type": "method", "name": "stopPropagation"}, {"url": "EventFacade.html#method_stopPropagation", "access": "", "host": "EventFacade", "type": "method", "name": "stopPropagation"}, {"url": "EventHandle.html#property_sub", "access": "", "host": "EventHandle", "type": "property", "name": "sub"}, {"url": "CustomEvent.html#method_subscribe", "access": "", "host": "CustomEvent", "type": "method", "name": "subscribe"}, {"url": "EventTarget.html#method_subscribe", "access": "", "host": "EventTarget", "type": "method", "name": "subscribe"}, {"url": "CustomEvent.html#property_subscribers", "access": "", "host": "CustomEvent", "type": "property", "name": "subscribers"}, {"url": "EventFacade.html#property_target", "access": "", "host": "EventFacade", "type": "property", "name": "target"}, {"url": "CustomEvent.html#property_type", "access": "", "host": "CustomEvent", "type": "property", "name": "type"}, {"url": "EventFacade.html#property_type", "access": "", "host": "EventFacade", "type": "property", "name": "type"}, {"url": "CustomEvent.html#method_unsubscribe", "access": "", "host": "CustomEvent", "type": "method", "name": "unsubscribe"}, {"url": "EventTarget.html#method_unsubscribe", "access": "", "host": "EventTarget", "type": "method", "name": "unsubscribe"}, {"url": "CustomEvent.html#method_unsubscribeAll", "access": "", "host": "CustomEvent", "type": "method", "name": "unsubscribeAll"}, {"url": "EventTarget.html#method_unsubscribeAll", "access": "", "host": "EventTarget", "type": "method", "name": "unsubscribeAll"}];
 </script>
 </body>
 </html>

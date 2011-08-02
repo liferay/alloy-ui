@@ -1,0 +1,1842 @@
+<!DOCTYPE>
+<html class="ltr" xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: editor   frame.js  (YUI Library)</title>
+
+	<link rel="stylesheet" href="../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="assets/custom.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div class="aui-header">
+		<h1>
+			<a class="aui-header-text" href="http://alloy.liferay.com/deploy/api" title="Alloy UI">Alloy UI</a>
+		</h1>
+
+		<h3>
+			editor&nbsp; <span class="subtitle">1.0.1</span>
+		</h3>
+
+		<p class="breadcrumbs">
+			<a href="./index.html" title="Alloy UI">Alloy UI</a>
+
+	            <span class="separator">&gt;</span>
+
+				<a class="modulename" href="./module_editor.html" title="editor">editor</a>
+
+	                
+
+	                 <span class="separator">&gt;</span> <span class="filename">frame.js (source view)</span> 
+		</p>
+
+		<form onsubmit="return false;">
+            <div id="propertysearch">
+				<span class="aui-field aui-field-text aui-field-labels-inline aui-field-labels-right">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="searchinput">Search:</label>
+						<input class="aui-field-input aui-field-input-text" id="searchinput" name="searchinput" type="text" value="" />
+					</span>
+				</span>
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div class="aui-body">
+		<form action="#" name="classOptions" id="classOptions">
+			<fieldset>
+				<legend>Filters</legend>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_private">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_private" name="show_private" type="checkbox" value="" />
+						Show Private</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_protected">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_protected" name="show_protected" type="checkbox" value="" />
+						Show Protected</label>
+					</span>
+				</span>
+
+				<span class="aui-field aui-field-checkbox aui-field-choice aui-field-inline">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="show_deprecated">
+							<input class="aui-field-input aui-field-input-checkbox aui-field-input-choice" id="show_deprecated" name="show_deprecated" type="checkbox" value="" />
+						Show Deprecated</label>
+					</span>
+				</span>
+			</fieldset>
+		</form>
+
+		<div class="aui-layout">
+			<div class="aui-layout-content">
+				<div class="aui-column aui-w25 aui-column-first">
+					<div class="aui-column-content aui-column-content-first">
+
+						<div class="yui3-widget aui-list aui-list-modules">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-modules-hd">
+									<span class="yui3-widget-hd-text">Modules</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<h4 class="aui-module-section-heading">Alloy Modules</h4>
+									<ul class="content">
+
+
+
+				                                <li class=""><a href="module_aui-autocomplete.html" title="aui-autocomplete">aui-autocomplete</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-button-item.html" title="aui-button-item">aui-button-item</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-calendar.html" title="aui-calendar">aui-calendar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-char-counter.html" title="aui-char-counter">aui-char-counter</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-color-picker.html" title="aui-color-picker">aui-color-picker</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-component.html" title="aui-component">aui-component</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-datatype.html" title="aui-datatype">aui-datatype</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-delayed-task.html" title="aui-delayed-task">aui-delayed-task</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-dialog.html" title="aui-dialog">aui-dialog</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-editable.html" title="aui-editable">aui-editable</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-event.html" title="aui-event">aui-event</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-image-viewer.html" title="aui-image-viewer">aui-image-viewer</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-io.html" title="aui-io">aui-io</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-live-search.html" title="aui-live-search">aui-live-search</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-loading-mask.html" title="aui-loading-mask">aui-loading-mask</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-nested-list.html" title="aui-nested-list">aui-nested-list</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-node.html" title="aui-node">aui-node</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-overlay.html" title="aui-overlay">aui-overlay</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-paginator.html" title="aui-paginator">aui-paginator</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-panel.html" title="aui-panel">aui-panel</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-parse-content.html" title="aui-parse-content">aui-parse-content</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-portal-layout.html" title="aui-portal-layout">aui-portal-layout</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-progressbar.html" title="aui-progressbar">aui-progressbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-rating.html" title="aui-rating">aui-rating</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-resize.html" title="aui-resize">aui-resize</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-textboxlist.html" title="aui-textboxlist">aui-textboxlist</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-toolbar.html" title="aui-toolbar">aui-toolbar</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tooltip.html" title="aui-tooltip">aui-tooltip</a></li>
+
+
+
+				                                <li class=""><a href="module_aui-tree.html" title="aui-tree">aui-tree</a></li>
+			                        </ul>
+
+									<h4 class="aui-module-section-heading">YUI Modules</h4>
+									<ul class="content">
+
+
+
+			                                
+													<li class=""><a href="module_align-plugin.html" title="align-plugin">align-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_anim.html" title="anim">anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_attribute.html" title="attribute">attribute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_autocomplete.html" title="autocomplete">autocomplete</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_base.html" title="base">base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cache.html" title="cache">cache</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_classnamemanager.html" title="classnamemanager">classnamemanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_collection.html" title="collection">collection</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console.html" title="console">console</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_console-filters.html" title="console-filters">console-filters</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_cookie.html" title="cookie">cookie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dataschema.html" title="dataschema">dataschema</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datasource.html" title="datasource">datasource</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatable.html" title="datatable">datatable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_datatype.html" title="datatype">datatype</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dd.html" title="dd">dd</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dial.html" title="dial">dial</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dom.html" title="dom">dom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_dump.html" title="dump">dump</a></li>
+
+
+
+			                                
+													<li class="selected"><a href="module_editor.html" title="editor">editor</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_escape.html" title="escape">escape</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event.html" title="event">event</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-custom.html" title="event-custom">event-custom</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-gestures.html" title="event-gestures">event-gestures</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-simulate.html" title="event-simulate">event-simulate</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-touch.html" title="event-touch">event-touch</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_event-valuechange.html" title="event-valuechange">event-valuechange</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_history.html" title="history">history</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_imageloader.html" title="imageloader">imageloader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_intl.html" title="intl">intl</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_io.html" title="io">io</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_json.html" title="json">json</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_jsonp.html" title="jsonp">jsonp</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_loader.html" title="loader">loader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node.html" title="node">node</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-flick.html" title="node-flick">node-flick</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-focusmanager.html" title="node-focusmanager">node-focusmanager</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_node-menunav.html" title="node-menunav">node-menunav</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_oop.html" title="oop">oop</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_overlay.html" title="overlay">overlay</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_plugin.html" title="plugin">plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost.html" title="pluginhost">pluginhost</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_pluginhost-base.html" title="pluginhost-base">pluginhost-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_profiler.html" title="profiler">profiler</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_querystring.html" title="querystring">querystring</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_queue-promote.html" title="queue-promote">queue-promote</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_recordset.html" title="recordset">recordset</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize.html" title="resize">resize</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base.html" title="scrollview-base">scrollview-base</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-base-ie.html" title="scrollview-base-ie">scrollview-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-paginator.html" title="scrollview-paginator">scrollview-paginator</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_scrollview-scrollbars.html" title="scrollview-scrollbars">scrollview-scrollbars</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_shim-plugin.html" title="shim-plugin">shim-plugin</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_slider.html" title="slider">slider</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_sortable.html" title="sortable">sortable</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_stylesheet.html" title="stylesheet">stylesheet</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_substitute.html" title="substitute">substitute</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swf.html" title="swf">swf</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_swfdetect.html" title="swfdetect">swfdetect</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_tabview.html" title="tabview">tabview</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_test.html" title="test">test</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_text.html" title="text">text</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_transition.html" title="transition">transition</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_uploader.html" title="uploader">uploader</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-base-ie.html" title="widget-base-ie">widget-base-ie</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-child.html" title="widget-child">widget-child</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-locale.html" title="widget-locale">widget-locale</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-parent.html" title="widget-parent">widget-parent</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position.html" title="widget-position">widget-position</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-align.html" title="widget-position-align">widget-position-align</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-position-constrain.html" title="widget-position-constrain">widget-position-constrain</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stack.html" title="widget-stack">widget-stack</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-stdmod.html" title="widget-stdmod">widget-stdmod</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yql.html" title="yql">yql</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_yui.html" title="yui">yui</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+
+							<div class="yui3-widget aui-list aui-list-classes">
+								<div class="yui3-widget-content">
+									<div class="yui3-widget-hd aui-list-hd aui-list-classes-hd">
+										<span class="yui3-widget-hd-text">Classes</span>
+									</div>
+
+									<div class="yui3-widget-bd aui-list-bd">
+										<ul class="content">
+
+
+				                                <li class=""><a href="EditorBase.html" title="EditorBase">EditorBase</a></li>
+
+
+				                                <li class=""><a href="Frame.html" title="Frame">Frame</a></li>
+
+
+				                                <li class=""><a href="Plugin.CreateLinkBase.html" title="Plugin.CreateLinkBase">Plugin.CreateLinkBase</a></li>
+
+
+				                                <li class=""><a href="Plugin.EditorBidi.html" title="Plugin.EditorBidi">Plugin.EditorBidi</a></li>
+
+
+				                                <li class=""><a href="Plugin.EditorBR.html" title="Plugin.EditorBR">Plugin.EditorBR</a></li>
+
+
+				                                <li class=""><a href="Plugin.EditorLists.html" title="Plugin.EditorLists">Plugin.EditorLists</a></li>
+
+
+				                                <li class=""><a href="Plugin.EditorPara.html" title="Plugin.EditorPara">Plugin.EditorPara</a></li>
+
+
+				                                <li class=""><a href="Plugin.EditorTab.html" title="Plugin.EditorTab">Plugin.EditorTab</a></li>
+
+
+				                                <li class=""><a href="Plugin.ExecCommand.html" title="Plugin.ExecCommand">Plugin.ExecCommand</a></li>
+
+
+				                                <li class=""><a href="Selection.html" title="Selection">Selection</a></li>
+				                        </ul>
+									</div>
+								</div>
+							</div>
+
+
+
+
+					</div>
+
+						<div class="yui3-widget aui-list aui-list-files">
+							<div class="yui3-widget-content">
+								<div class="yui3-widget-hd aui-list-hd aui-list-files-hd">
+									<span class="yui3-widget-hd-text">Files</span>
+								</div>
+
+								<div class="yui3-widget-bd aui-list-bd">
+									<ul class="content">
+
+
+			                                <li class=""><a href="createlink-base-debug.js.html" title="createlink-base-debug.js">createlink-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="createlink-base-min.js.html" title="createlink-base-min.js">createlink-base-min.js</a></li>
+
+
+			                                <li class=""><a href="createlink-base.js.html" title="createlink-base.js">createlink-base.js</a></li>
+
+
+			                                <li class=""><a href="editor-base-debug.js.html" title="editor-base-debug.js">editor-base-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-base-min.js.html" title="editor-base-min.js">editor-base-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-base.js.html" title="editor-base.js">editor-base.js</a></li>
+
+
+			                                <li class=""><a href="editor-bidi-debug.js.html" title="editor-bidi-debug.js">editor-bidi-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-bidi-min.js.html" title="editor-bidi-min.js">editor-bidi-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-bidi.js.html" title="editor-bidi.js">editor-bidi.js</a></li>
+
+
+			                                <li class=""><a href="editor-br-debug.js.html" title="editor-br-debug.js">editor-br-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-br-min.js.html" title="editor-br-min.js">editor-br-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-br.js.html" title="editor-br.js">editor-br.js</a></li>
+
+
+			                                <li class=""><a href="editor-lists-debug.js.html" title="editor-lists-debug.js">editor-lists-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-lists-min.js.html" title="editor-lists-min.js">editor-lists-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-lists.js.html" title="editor-lists.js">editor-lists.js</a></li>
+
+
+			                                <li class=""><a href="editor-min.js.html" title="editor-min.js">editor-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-para-debug.js.html" title="editor-para-debug.js">editor-para-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-para-min.js.html" title="editor-para-min.js">editor-para-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-para.js.html" title="editor-para.js">editor-para.js</a></li>
+
+
+			                                <li class=""><a href="editor-tab-debug.js.html" title="editor-tab-debug.js">editor-tab-debug.js</a></li>
+
+
+			                                <li class=""><a href="editor-tab-min.js.html" title="editor-tab-min.js">editor-tab-min.js</a></li>
+
+
+			                                <li class=""><a href="editor-tab.js.html" title="editor-tab.js">editor-tab.js</a></li>
+
+
+			                                <li class=""><a href="exec-command-debug.js.html" title="exec-command-debug.js">exec-command-debug.js</a></li>
+
+
+			                                <li class=""><a href="exec-command-min.js.html" title="exec-command-min.js">exec-command-min.js</a></li>
+
+
+			                                <li class=""><a href="exec-command.js.html" title="exec-command.js">exec-command.js</a></li>
+
+
+			                                <li class=""><a href="features-debug.js.html" title="features-debug.js">features-debug.js</a></li>
+
+
+			                                <li class=""><a href="features-min.js.html" title="features-min.js">features-min.js</a></li>
+
+
+			                                <li class=""><a href="features.js.html" title="features.js">features.js</a></li>
+
+
+			                                <li class=""><a href="frame-debug.js.html" title="frame-debug.js">frame-debug.js</a></li>
+
+
+			                                <li class=""><a href="frame-min.js.html" title="frame-min.js">frame-min.js</a></li>
+
+
+			                                <li class="selected"><a href="frame.js.html" title="frame.js">frame.js</a></li>
+
+
+			                                <li class=""><a href="selection-debug.js.html" title="selection-debug.js">selection-debug.js</a></li>
+
+
+			                                <li class=""><a href="selection-min.js.html" title="selection-min.js">selection-min.js</a></li>
+
+
+			                                <li class=""><a href="selection.js.html" title="selection.js">selection.js</a></li>
+
+
+			                                <li class=""><a href="selector-debug.js.html" title="selector-debug.js">selector-debug.js</a></li>
+
+
+			                                <li class=""><a href="selector-min.js.html" title="selector-min.js">selector-min.js</a></li>
+
+
+			                                <li class=""><a href="selector.js.html" title="selector.js">selector.js</a></li>
+			                        </ul>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="aui-column aui-w75 aui-column-last">
+					<div class="aui-column-content aui-column-content-last">
+
+
+							<div id="srcout">
+								<style>
+									#doc3 .classopts { display:none; }
+								</style>
+								<div class="highlight"><pre><span class="cm">/*</span>
+<span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
+<span class="cm">Code licensed under the BSD License:</span>
+<span class="cm">http://developer.yahoo.com/yui/license.html</span>
+<span class="cm">version: 3.4.0</span>
+<span class="cm">build: nightly</span>
+<span class="cm">*/</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;frame&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+
+    <span class="cm">/**</span>
+<span class="cm">     * Creates a wrapper around an iframe. It loads the content either from a local</span>
+<span class="cm">     * file or from script and creates a local YUI instance bound to that new window and document.</span>
+<span class="cm">     * @class Frame</span>
+<span class="cm">     * @for Frame</span>
+<span class="cm">     * @extends Base</span>
+<span class="cm">     * @constructor</span>
+<span class="cm">     * @module editor</span>
+<span class="cm">     * @submodule frame</span>
+<span class="cm">     */</span>
+
+    <span class="kd">var</span> <span class="nx">Frame</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">Frame</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+    <span class="p">},</span> <span class="nx">LAST_CHILD</span> <span class="o">=</span> <span class="s1">&#39;:last-child&#39;</span><span class="p">,</span> <span class="nx">BODY</span> <span class="o">=</span> <span class="s1">&#39;body&#39;</span><span class="p">;</span>
+    
+
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">Frame</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @property _ready</span>
+<span class="cm">        * @description Internal reference set when the content is ready.</span>
+<span class="cm">        * @type Boolean</span>
+<span class="cm">        */</span>
+        <span class="nx">_ready</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @property _rendered</span>
+<span class="cm">        * @description Internal reference set when render is called.</span>
+<span class="cm">        * @type Boolean</span>
+<span class="cm">        */</span>
+        <span class="nx">_rendered</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @property _iframe</span>
+<span class="cm">        * @description Internal Node reference to the iFrame or the window</span>
+<span class="cm">        * @type Node</span>
+<span class="cm">        */</span>
+        <span class="nx">_iframe</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @property _instance</span>
+<span class="cm">        * @description Internal reference to the YUI instance bound to the iFrame or window</span>
+<span class="cm">        * @type YUI</span>
+<span class="cm">        */</span>
+        <span class="nx">_instance</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _create</span>
+<span class="cm">        * @description Create the iframe or Window and get references to the Document &amp; Window</span>
+<span class="cm">        * @return {Object} Hash table containing references to the new Document &amp; Window</span>
+<span class="cm">        */</span>
+        <span class="nx">_create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">win</span><span class="p">,</span> <span class="nx">doc</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">node</span><span class="p">;</span>
+            
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Frame</span><span class="p">.</span><span class="nx">HTML</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;visibility&#39;</span><span class="p">,</span> <span class="s1">&#39;hidden&#39;</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">));</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">);</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="s1">&#39;99%&#39;</span><span class="p">);</span>
+
+            
+            <span class="kd">var</span> <span class="nx">html</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="nx">extra_css</span> <span class="o">=</span> <span class="p">((</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;extracss&#39;</span><span class="p">))</span> <span class="o">?</span> <span class="s1">&#39;&lt;style id=&quot;extra_css&quot;&gt;&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;extracss&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&lt;/style&gt;&#39;</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+
+            <span class="nx">html</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">substitute</span><span class="p">(</span><span class="nx">Frame</span><span class="p">.</span><span class="nx">PAGE_HTML</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">DIR</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dir&#39;</span><span class="p">),</span>
+                <span class="nx">LANG</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;lang&#39;</span><span class="p">),</span>
+                <span class="nx">TITLE</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">),</span>
+                <span class="nx">META</span><span class="o">:</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">META</span><span class="p">,</span>
+                <span class="nx">LINKED_CSS</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;linkedcss&#39;</span><span class="p">),</span>
+                <span class="nx">CONTENT</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;content&#39;</span><span class="p">),</span>
+                <span class="nx">BASE_HREF</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;basehref&#39;</span><span class="p">),</span>
+                <span class="nx">DEFAULT_CSS</span><span class="o">:</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">DEFAULT_CSS</span><span class="p">,</span>
+                <span class="nx">EXTRA_CSS</span><span class="o">:</span> <span class="nx">extra_css</span>
+            <span class="p">});</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">!=</span> <span class="s1">&#39;BackCompat&#39;</span><span class="p">)</span> <span class="p">{</span>
+                
+                <span class="c1">//html = Frame.DOC_TYPE + &quot;\n&quot; + html;</span>
+                <span class="nx">html</span> <span class="o">=</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">getDocType</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;\n&quot;</span> <span class="o">+</span> <span class="nx">html</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="p">}</span>
+
+
+
+            <span class="nx">res</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_resolveWinDoc</span><span class="p">();</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">open</span><span class="p">();</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">html</span><span class="p">);</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">res</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">doc</span> <span class="o">&amp;&amp;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">cb</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+                        <span class="nx">timer</span><span class="p">.</span><span class="nx">cancel</span><span class="p">();</span>
+                    <span class="p">}</span>
+                <span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">cb</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+            <span class="p">}</span>
+
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _resolveWinDoc</span>
+<span class="cm">        * @description Resolves the document and window from an iframe or window instance</span>
+<span class="cm">        * @param {Object} c The YUI Config to add the window and document to</span>
+<span class="cm">        * @return {Object} Object hash of window and document references, if a YUI config was passed, it is returned.</span>
+<span class="cm">        */</span>
+        <span class="nx">_resolveWinDoc</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="o">?</span> <span class="nx">c</span> <span class="o">:</span> <span class="p">{};</span>
+            <span class="nx">config</span><span class="p">.</span><span class="nx">win</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentWindow&#39;</span><span class="p">));</span>
+            <span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;contentWindow.document&#39;</span><span class="p">));</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">config</span><span class="p">.</span><span class="nx">win</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">config</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _onDomEvent</span>
+<span class="cm">        * @description Generic handler for all DOM events fired by the iframe or window. This handler</span>
+<span class="cm">        * takes the current EventFacade and augments it to fire on the Frame host. It adds two new properties</span>
+<span class="cm">        * to the EventFacade called frameX and frameY which adds the scroll and xy position of the iframe</span>
+<span class="cm">        * to the original pageX and pageY of the event so external nodes can be positioned over the frame.</span>
+<span class="cm">        * @param {Event.Facade} e</span>
+<span class="cm">        */</span>
+        <span class="nx">_onDomEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">xy</span><span class="p">,</span> <span class="nx">node</span><span class="p">;</span>
+
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameX</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">frameY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;key&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">node</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_instance</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">);</span>
+                    <span class="nx">xy</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">getXY</span><span class="p">();</span>
+                    <span class="nx">e</span><span class="p">.</span><span class="nx">frameX</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">-</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollLeft&#39;</span><span class="p">);</span>
+                    <span class="nx">e</span><span class="p">.</span><span class="nx">frameY</span> <span class="o">=</span> <span class="nx">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">-</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;scrollTop&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameCurrentTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameEvent</span> <span class="o">=</span> <span class="nx">e</span><span class="p">;</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;dom:&#39;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;ready&#39;</span><span class="p">,</span> <span class="p">{</span>
+                <span class="nx">emitFacade</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">defaultFn</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">_defReadyFn</span>
+            <span class="p">});</span>
+        <span class="p">},</span>
+        <span class="nx">destructor</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">).</span><span class="nx">detachAll</span><span class="p">();</span>
+            <span class="nx">inst</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _DOMPaste</span>
+<span class="cm">        * @description Simple pass thru handler for the paste event so we can do content cleanup</span>
+<span class="cm">        * @param {Event.Facade} e</span>
+<span class="cm">        */</span>
+        <span class="nx">_DOMPaste</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                <span class="nx">data</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">win</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">originalTarget</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">data</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">originalTarget</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">data</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">_event</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="s1">&#39;Text&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nx">win</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">data</span> <span class="o">=</span> <span class="nx">win</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="s1">&#39;Text&#39;</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">data</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Could be empty, or failed</span>
+                    <span class="c1">// Verify failure</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">win</span><span class="p">.</span><span class="nx">clipboardData</span><span class="p">.</span><span class="nx">setData</span><span class="p">(</span><span class="s1">&#39;Text&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">data</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            
+
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameCurrentTarget</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">;</span>
+            <span class="nx">e</span><span class="p">.</span><span class="nx">frameEvent</span> <span class="o">=</span> <span class="nx">e</span><span class="p">;</span>
+            
+            <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">e</span><span class="p">.</span><span class="nx">clipboardData</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span>
+                    <span class="nx">getData</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">data</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">};</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">e</span><span class="p">.</span><span class="nx">clipboardData</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;dom:paste&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _defReadyFn</span>
+<span class="cm">        * @description Binds DOM events, sets the iframe to visible and fires the ready event</span>
+<span class="cm">        */</span>
+        <span class="nx">_defReadyFn</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+
+            <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">Frame</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onDomEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span>
+                    <span class="nx">kfn</span> <span class="o">=</span> <span class="p">((</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">THROTTLE_TIME</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">THROTTLE_TIME</span><span class="p">)</span> <span class="o">:</span> <span class="nx">fn</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span> <span class="p">{</span>
+                    <span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">k</span> <span class="o">!==</span> <span class="s1">&#39;focus&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">k</span> <span class="o">!==</span> <span class="s1">&#39;blur&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">k</span> <span class="o">!==</span> <span class="s1">&#39;paste&#39;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">k</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;key&#39;</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="c1">//Throttle key events in IE</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">kfn</span><span class="p">,</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">);</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">k</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">DOM_EVENTS</span><span class="p">.</span><span class="nx">paste</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;paste&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_DOMPaste</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">));</span>
+
+            <span class="c1">//Adding focus/blur to the window object</span>
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;focus&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onDomEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">);</span>
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onDomEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">);</span>
+
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">_use</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">use</span><span class="p">;</span>
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">use</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">use</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
+                <span class="nx">visibility</span><span class="o">:</span> <span class="s1">&#39;inherit&#39;</span>
+            <span class="p">});</span>
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;display&#39;</span><span class="p">,</span> <span class="s1">&#39;block&#39;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_fixIECursors</span><span class="p">();</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * It appears that having a BR tag anywhere in the source &quot;below&quot; a table with a percentage width (in IE 7 &amp; 8)</span>
+<span class="cm">        * if there is any TEXTINPUT&#39;s outside the iframe, the cursor will rapidly flickr and the CPU would occasionally </span>
+<span class="cm">        * spike. This method finds all &lt;BR&gt;&#39;s below the sourceIndex of the first table. Does some checks to see if they</span>
+<span class="cm">        * can be modified and replaces then with a &lt;WBR&gt; so the layout will remain in tact, but the flickering will</span>
+<span class="cm">        * no longer happen.</span>
+<span class="cm">        * @method _fixIECursors</span>
+<span class="cm">        * @private</span>
+<span class="cm">        */</span>
+        <span class="nx">_fixIECursors</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                <span class="nx">tables</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">),</span>
+                <span class="nx">brs</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">),</span> <span class="nx">si</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">tables</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="nx">brs</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+                <span class="c1">//First Table</span>
+                <span class="nx">si</span> <span class="o">=</span> <span class="nx">tables</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;sourceIndex&#39;</span><span class="p">);</span>
+                <span class="nx">brs</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">),</span>
+                        <span class="nx">c</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;&gt;br&#39;</span><span class="p">);</span>
+                    
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">n</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;wbr&gt;&#39;</span><span class="p">));</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;sourceIndex&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nx">si</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+                                    <span class="nx">n</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;wbr&gt;&#39;</span><span class="p">));</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="nx">n</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">inst</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">&#39;&lt;wbr&gt;&#39;</span><span class="p">));</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                    
+                <span class="p">});</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _onContentReady</span>
+<span class="cm">        * @description Called once the content is available in the frame/window and calls the final use call</span>
+<span class="cm">        * on the internal instance so that the modules are loaded properly.</span>
+<span class="cm">        */</span>
+        <span class="nx">_onContentReady</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_ready</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                    <span class="nx">args</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">));</span>
+                
+                <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;contentready&#39;</span><span class="p">);</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">getDOMNode</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="c1">//TODO Circle around and deal with CSS loading...</span>
+                <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">inst</span><span class="p">.</span><span class="nx">Selection</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">inst</span><span class="p">.</span><span class="nx">Selection</span><span class="p">.</span><span class="nx">DEFAULT_BLOCK_TAG</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;defaultblock&#39;</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    <span class="c1">//Moved to here so that the iframe is ready before allowing editing..</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;designMode&#39;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">contentEditable</span> <span class="o">=</span> <span class="s1">&#39;true&#39;</span><span class="p">;</span>
+                            <span class="k">this</span><span class="p">.</span><span class="nx">_ieSetBodyHeight</span><span class="p">();</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ieSetBodyHeight</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">);</span>
+                        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">designMode</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span><span class="p">;</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;ready&#39;</span><span class="p">);</span>
+                <span class="p">},</span> <span class="k">this</span><span class="p">));</span>
+                <span class="nx">inst</span><span class="p">.</span><span class="nx">use</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">inst</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+
+                <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;documentElement&#39;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;yui-js-enabled&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nx">_ieHeightCounter</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * Internal method to set the height of the body to the height of the document in IE.</span>
+<span class="cm">        * With contenteditable being set, the document becomes unresponsive to clicks, this </span>
+<span class="cm">        * method expands the body to be the height of the document so that doesn&#39;t happen.</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _ieSetBodyHeight</span>
+<span class="cm">        */</span>
+        <span class="nx">_ieSetBodyHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_ieHeightCounter</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">_ieHeightCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_ieHeightCounter</span><span class="o">++</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">run</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">run</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">case</span> <span class="mi">8</span><span class="o">:</span>
+                    <span class="k">case</span> <span class="mi">13</span><span class="o">:</span>
+                        <span class="nx">run</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                        <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">ctrlKey</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">shiftKey</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">run</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">run</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+                    <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;offsetHeight&#39;</span><span class="p">);</span>
+                    <span class="kd">var</span> <span class="nx">bh</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="p">;</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">h</span> <span class="o">&gt;</span> <span class="nx">bh</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">h</span> <span class="o">=</span> <span class="p">(</span><span class="nx">h</span> <span class="o">-</span> <span class="mi">15</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+                        <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="nx">inst</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ieHeightCounter</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">Y</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_ieSetBodyHeight</span><span class="p">);</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _resolveBaseHref</span>
+<span class="cm">        * @description Resolves the basehref of the page the frame is created on. Only applies to dynamic content.</span>
+<span class="cm">        * @param {String} href The new value to use, if empty it will be resolved from the current url.</span>
+<span class="cm">        * @return {String}</span>
+<span class="cm">        */</span>
+        <span class="nx">_resolveBaseHref</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">href</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">href</span> <span class="o">||</span> <span class="nx">href</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">href</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//Remove the query string</span>
+                    <span class="nx">href</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">href</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">));</span>
+                <span class="p">}</span>
+                <span class="nx">href</span> <span class="o">=</span> <span class="nx">href</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">href</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">href</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _getHTML</span>
+<span class="cm">        * @description Get the content from the iframe</span>
+<span class="cm">        * @param {String} html The raw HTML from the body of the iframe.</span>
+<span class="cm">        * @return {String}</span>
+<span class="cm">        */</span>
+        <span class="nx">_getHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+                <span class="nx">html</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">html</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _setHTML</span>
+<span class="cm">        * @description Set the content of the iframe</span>
+<span class="cm">        * @param {String} html The raw HTML to set the body of the iframe to.</span>
+<span class="cm">        * @return {String}</span>
+<span class="cm">        */</span>
+        <span class="nx">_setHTML</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+                <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">html</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">//This needs to be wrapped in a contentready callback for the !_ready state</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;contentready&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">html</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+                    <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">,</span> <span class="nx">html</span><span class="p">);</span>
+                <span class="p">},</span> <span class="k">this</span><span class="p">,</span> <span class="nx">html</span><span class="p">));</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">html</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _setLinkedCSS</span>
+<span class="cm">        * @description Set&#39;s the linked CSS on the instance..</span>
+<span class="cm">        */</span>
+        <span class="nx">_getLinkedCSS</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">urls</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">urls</span><span class="p">))</span> <span class="p">{</span>
+                <span class="nx">urls</span> <span class="o">=</span> <span class="p">[</span><span class="nx">urls</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">urls</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">!==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">str</span> <span class="o">+=</span> <span class="s1">&#39;&lt;link rel=&quot;stylesheet&quot; href=&quot;&#39;</span> <span class="o">+</span> <span class="nx">v</span> <span class="o">+</span> <span class="s1">&#39;&quot; type=&quot;text/css&quot;&gt;&#39;</span><span class="p">;</span>
+                    <span class="p">}</span>
+                <span class="p">});</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">str</span> <span class="o">=</span> <span class="nx">urls</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _setLinkedCSS</span>
+<span class="cm">        * @description Set&#39;s the linked CSS on the instance..</span>
+<span class="cm">        */</span>
+        <span class="nx">_setLinkedCSS</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">css</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+                <span class="nx">inst</span><span class="p">.</span><span class="nx">Get</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="nx">css</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">css</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _setExtraCSS</span>
+<span class="cm">        * @description Set&#39;s the extra CSS on the instance..</span>
+<span class="cm">        */</span>
+        <span class="nx">_setExtraCSS</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">css</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_ready</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                    <span class="nx">node</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;#extra_css&#39;</span><span class="p">);</span>
+                
+                <span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+                <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;&lt;style id=&quot;extra_css&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">css</span> <span class="o">+</span> <span class="s1">&#39;&lt;/style&gt;&#39;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">css</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _instanceLoaded</span>
+<span class="cm">        * @description Called from the first YUI instance that sets up the internal instance.</span>
+<span class="cm">        * This loads the content into the window/frame and attaches the contentready event.</span>
+<span class="cm">        * @param {YUI} inst The internal YUI instance bound to the frame/window</span>
+<span class="cm">        */</span>
+        <span class="nx">_instanceLoaded</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inst</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_instance</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_onContentReady</span><span class="p">();</span>
+            
+            <span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_instance</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;designMode&#39;</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">try</span> <span class="p">{</span>
+                        <span class="c1">//Force other browsers into non CSS styling</span>
+                        <span class="nx">doc</span><span class="p">.</span><span class="nx">execCommand</span><span class="p">(</span><span class="s1">&#39;styleWithCSS&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                        <span class="nx">doc</span><span class="p">.</span><span class="nx">execCommand</span><span class="p">(</span><span class="s1">&#39;insertbronreturn&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="c1">//BEGIN PUBLIC METHODS</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method use</span>
+<span class="cm">        * @description This is a scoped version of the normal YUI.use method &amp; is bound to this frame/window.</span>
+<span class="cm">        * At setup, the inst.use method is mapped to this method.</span>
+<span class="cm">        */</span>
+        <span class="nx">use</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                <span class="nx">args</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">arguments</span><span class="p">),</span>
+                <span class="nx">cb</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="nx">cb</span> <span class="o">=</span> <span class="nx">args</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="nx">cb</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">inst</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+                <span class="p">});</span>
+            <span class="p">}</span>
+            <span class="nx">inst</span><span class="p">.</span><span class="nx">_use</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">inst</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method delegate</span>
+<span class="cm">        * @description A delegate method passed to the instance&#39;s delegate method</span>
+<span class="cm">        * @param {String} type The type of event to listen for</span>
+<span class="cm">        * @param {Function} fn The method to attach</span>
+<span class="cm">        * @param {String} cont The container to act as a delegate, if no &quot;sel&quot; passed, the body is assumed as the container.</span>
+<span class="cm">        * @param {String} sel The selector to match in the event (optional)</span>
+<span class="cm">        * @return {EventHandle} The Event handle returned from Y.delegate</span>
+<span class="cm">        */</span>
+        <span class="nx">delegate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">cont</span><span class="p">,</span> <span class="nx">sel</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">inst</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">sel</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">sel</span> <span class="o">=</span> <span class="nx">cont</span><span class="p">;</span>
+                <span class="nx">cont</span> <span class="o">=</span> <span class="s1">&#39;body&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fn</span><span class="p">,</span> <span class="nx">cont</span><span class="p">,</span> <span class="nx">sel</span><span class="p">);</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method getInstance</span>
+<span class="cm">        * @description Get a reference to the internal YUI instance.</span>
+<span class="cm">        * @return {YUI} The internal YUI instance</span>
+<span class="cm">        */</span>
+        <span class="nx">getInstance</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_instance</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method render</span>
+<span class="cm">        * @description Render the iframe into the container config option or open the window.</span>
+<span class="cm">        * @param {String/HTMLElement/Node} node The node to render to</span>
+<span class="cm">        * @return {Y.Frame}</span>
+<span class="cm">        * @chainable</span>
+<span class="cm">        */</span>
+        <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_rendered</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_rendered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;container&#39;</span><span class="p">,</span> <span class="nx">node</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">_create</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="kd">var</span> <span class="nx">inst</span><span class="p">,</span> <span class="nx">timer</span><span class="p">,</span>
+                    <span class="nx">cb</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">_instanceLoaded</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+                    <span class="p">},</span> <span class="k">this</span><span class="p">),</span>
+                    <span class="nx">args</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">clone</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;use&#39;</span><span class="p">)),</span>
+                    <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="nx">debug</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                        <span class="nx">win</span><span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span>
+                        <span class="nx">doc</span><span class="o">:</span> <span class="nx">res</span><span class="p">.</span><span class="nx">doc</span>
+                    <span class="p">},</span>
+                    <span class="nx">fn</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">config</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_resolveWinDoc</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+                        <span class="nx">inst</span> <span class="o">=</span> <span class="nx">YUI</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+
+                        <span class="k">try</span> <span class="p">{</span>
+                            <span class="nx">inst</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;node-base&#39;</span><span class="p">,</span> <span class="nx">cb</span><span class="p">);</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">timer</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                                <span class="nx">fn</span><span class="p">();</span>
+                            <span class="p">},</span> <span class="mi">350</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+
+                <span class="nx">args</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">fn</span><span class="p">);</span>
+
+                <span class="nx">Y</span><span class="p">.</span><span class="nx">use</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">Y</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+
+            <span class="p">},</span> <span class="k">this</span><span class="p">));</span>
+
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @private</span>
+<span class="cm">        * @method _handleFocus</span>
+<span class="cm">        * @description Does some tricks on focus to set the proper cursor position.</span>
+<span class="cm">        */</span>
+        <span class="nx">_handleFocus</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">inst</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">(),</span>
+                <span class="nx">sel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">Selection</span><span class="p">();</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">sel</span><span class="p">.</span><span class="nx">anchorNode</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">sel</span><span class="p">.</span><span class="nx">anchorNode</span><span class="p">,</span> <span class="nx">c</span><span class="p">;</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;innerHTML&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="nx">c</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;childNodes&#39;</span><span class="p">);</span>
+                
+                <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">size</span><span class="p">())</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;br&#39;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">sel</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">))</span> <span class="p">{</span>
+                        <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;br.yui-cursor&#39;</span><span class="p">);</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">n</span> <span class="o">=</span> <span class="nx">n</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;firstChild&#39;</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">n</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+                        <span class="p">}</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="nx">sel</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                        <span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;br.yui-cursor&#39;</span><span class="p">);</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="kd">var</span> <span class="nx">par</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;parentNode&#39;</span><span class="p">);</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">par</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="nx">sel</span><span class="p">.</span><span class="nx">selectNode</span><span class="p">(</span><span class="nx">par</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method focus</span>
+<span class="cm">        * @description Set the focus to the iframe</span>
+<span class="cm">        * @param {Function} fn Callback function to execute after focus happens        </span>
+<span class="cm">        * @return {Frame}</span>
+<span class="cm">        * @chainable        </span>
+<span class="cm">        */</span>
+        <span class="nx">focus</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">ierr</span><span class="p">)</span> <span class="p">{</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">fn</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_handleFocus</span><span class="p">();</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="nx">fn</span><span class="p">();</span>
+                <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+                    <span class="nx">Y</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="k">this</span><span class="p">.</span><span class="nx">getInstance</span><span class="p">().</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">).</span><span class="nx">focus</span><span class="p">();</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">fn</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">this</span><span class="p">.</span><span class="nx">_handleFocus</span><span class="p">();</span>
+                        <span class="p">}</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fn</span><span class="p">))</span> <span class="p">{</span>
+                            <span class="nx">fn</span><span class="p">();</span>
+                        <span class="p">}</span>
+                    <span class="p">});</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">ferr</span><span class="p">)</span> <span class="p">{</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method show</span>
+<span class="cm">        * @description Show the iframe instance</span>
+<span class="cm">        * @return {Frame}</span>
+<span class="cm">        * @chainable        </span>
+<span class="cm">        */</span>
+        <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
+                <span class="nx">position</span><span class="o">:</span> <span class="s1">&#39;static&#39;</span><span class="p">,</span>
+                <span class="nx">left</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+            <span class="p">});</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">gecko</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">_instance</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">designMode</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+            <span class="p">}</span>           
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @method hide</span>
+<span class="cm">        * @description Hide the iframe instance</span>
+<span class="cm">        * @return {Frame}</span>
+<span class="cm">        * @chainable        </span>
+<span class="cm">        */</span>
+        <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">.</span><span class="nx">setStyles</span><span class="p">({</span>
+                <span class="nx">position</span><span class="o">:</span> <span class="s1">&#39;absolute&#39;</span><span class="p">,</span>
+                <span class="nx">left</span><span class="o">:</span> <span class="s1">&#39;-999999px&#39;</span>
+            <span class="p">});</span>
+            <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property THROTTLE_TIME</span>
+<span class="cm">        * @description The throttle time for key events in IE</span>
+<span class="cm">        * @type Number</span>
+<span class="cm">        * @default 100</span>
+<span class="cm">        */</span>
+        <span class="nx">THROTTLE_TIME</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property DOM_EVENTS</span>
+<span class="cm">        * @description The DomEvents that the frame automatically attaches and bubbles</span>
+<span class="cm">        * @type Object</span>
+<span class="cm">        */</span>
+        <span class="nx">DOM_EVENTS</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">dblclick</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">click</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">paste</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">mouseup</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">mousedown</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">keyup</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">keydown</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">keypress</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">activate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">deactivate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">beforedeactivate</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">focusin</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="nx">focusout</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property DEFAULT_CSS</span>
+<span class="cm">        * @description The default css used when creating the document.</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="c1">//DEFAULT_CSS: &#39;html { height: 95%; } body { padding: 7px; background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }&#39;,</span>
+        <span class="nx">DEFAULT_CSS</span><span class="o">:</span> <span class="s1">&#39;body { background-color: #fff; font: 13px/1.22 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small; } a, a:visited, a:hover { color: blue !important; text-decoration: underline !important; cursor: text !important; } img { cursor: pointer !important; border: none; }&#39;</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property HTML</span>
+<span class="cm">        * @description The template string used to create the iframe</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="c1">//HTML: &#39;&lt;iframe border=&quot;0&quot; frameBorder=&quot;0&quot; marginWidth=&quot;0&quot; marginHeight=&quot;0&quot; leftMargin=&quot;0&quot; topMargin=&quot;0&quot; allowTransparency=&quot;true&quot; width=&quot;100%&quot; height=&quot;99%&quot;&gt;&lt;/iframe&gt;&#39;,</span>
+        <span class="nx">HTML</span><span class="o">:</span> <span class="s1">&#39;&lt;iframe border=&quot;0&quot; frameBorder=&quot;0&quot; marginWidth=&quot;0&quot; marginHeight=&quot;0&quot; leftMargin=&quot;0&quot; topMargin=&quot;0&quot; allowTransparency=&quot;true&quot; width=&quot;100%&quot; height=&quot;99%&quot;&gt;&lt;/iframe&gt;&#39;</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property PAGE_HTML</span>
+<span class="cm">        * @description The template used to create the page when created dynamically.</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="nx">PAGE_HTML</span><span class="o">:</span> <span class="s1">&#39;&lt;html dir=&quot;{DIR}&quot; lang=&quot;{LANG}&quot;&gt;&lt;head&gt;&lt;title&gt;{TITLE}&lt;/title&gt;{META}&lt;base href=&quot;{BASE_HREF}&quot;/&gt;{LINKED_CSS}&lt;style id=&quot;editor_css&quot;&gt;{DEFAULT_CSS}&lt;/style&gt;{EXTRA_CSS}&lt;/head&gt;&lt;body&gt;{CONTENT}&lt;/body&gt;&lt;/html&gt;&#39;</span><span class="p">,</span>
+
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @method getDocType</span>
+<span class="cm">        * @description Parses document.doctype and generates a DocType to match the parent page, if supported.</span>
+<span class="cm">        * For IE8, it grabs document.all[0].nodeValue and uses that. For IE &lt; 8, it falls back to Frame.DOC_TYPE.</span>
+<span class="cm">        * @returns {String} The normalized DocType to apply to the iframe</span>
+<span class="cm">        */</span>
+        <span class="nx">getDocType</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">doctype</span><span class="p">,</span>
+                <span class="nx">str</span> <span class="o">=</span> <span class="nx">Frame</span><span class="p">.</span><span class="nx">DOC_TYPE</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">dt</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&lt;!DOCTYPE &#39;</span> <span class="o">+</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="p">((</span><span class="nx">dt</span><span class="p">.</span><span class="nx">publicId</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">publicId</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="nx">dt</span><span class="p">.</span><span class="nx">systemId</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">systemId</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">all</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">dt</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">doc</span><span class="p">.</span><span class="nx">all</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">dt</span><span class="p">.</span><span class="nx">nodeType</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="nx">dt</span><span class="p">.</span><span class="nx">nodeType</span> <span class="o">===</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="k">if</span> <span class="p">(</span><span class="nx">dt</span><span class="p">.</span><span class="nx">nodeValue</span><span class="p">)</span> <span class="p">{</span>
+                                <span class="k">if</span> <span class="p">(</span><span class="nx">dt</span><span class="p">.</span><span class="nx">nodeValue</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;doctype&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                                    <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;&lt;!&#39;</span> <span class="o">+</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">nodeValue</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">;</span>
+                                <span class="p">}</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="nx">str</span><span class="p">;</span>
+        <span class="p">},</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property DOC_TYPE</span>
+<span class="cm">        * @description The DOCTYPE to prepend to the new document when created. Should match the one on the page being served.</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="nx">DOC_TYPE</span><span class="o">:</span> <span class="s1">&#39;&lt;!DOCTYPE HTML PUBLIC &quot;-/&#39;</span><span class="o">+</span><span class="s1">&#39;/W3C/&#39;</span><span class="o">+</span><span class="s1">&#39;/DTD HTML 4.01/&#39;</span><span class="o">+</span><span class="s1">&#39;/EN&quot; &quot;http:/&#39;</span><span class="o">+</span><span class="s1">&#39;/www.w3.org/TR/html4/strict.dtd&quot;&gt;&#39;</span><span class="p">,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property META</span>
+<span class="cm">        * @description The meta-tag for Content-Type to add to the dynamic document</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="nx">META</span><span class="o">:</span> <span class="s1">&#39;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=7&quot;&gt;&#39;</span><span class="p">,</span>
+        <span class="c1">//META: &#39;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/&gt;&#39;,</span>
+        <span class="cm">/**</span>
+<span class="cm">        * @static</span>
+<span class="cm">        * @property NAME</span>
+<span class="cm">        * @description The name of the class (frame)</span>
+<span class="cm">        * @type String</span>
+<span class="cm">        */</span>
+        <span class="nx">NAME</span><span class="o">:</span> <span class="s1">&#39;frame&#39;</span><span class="p">,</span>
+        <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute title</span>
+<span class="cm">            * @description The title to give the blank page.</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;Blank Page&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute dir</span>
+<span class="cm">            * @description The default text direction for this new frame. Default: ltr</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">dir</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;ltr&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute lang</span>
+<span class="cm">            * @description The default language. Default: en-US</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">lang</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;en-US&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute src</span>
+<span class="cm">            * @description The src of the iframe/window. Defaults to javascript:;</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">src</span><span class="o">:</span> <span class="p">{</span>
+                <span class="c1">//Hackish, IE needs the false in the Javascript URL</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;javascript&#39;</span> <span class="o">+</span> <span class="p">((</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;:false&#39;</span> <span class="o">:</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;;&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute designMode</span>
+<span class="cm">            * @description Should designMode be turned on after creation.</span>
+<span class="cm">            * @writeonce</span>
+<span class="cm">            * @type Boolean</span>
+<span class="cm">            */</span>
+            <span class="nx">designMode</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute content</span>
+<span class="cm">            * @description The string to inject into the body of the new frame/window.</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">content</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&lt;br&gt;&#39;</span><span class="p">,</span>
+                <span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setHTML&#39;</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getHTML&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute basehref</span>
+<span class="cm">            * @description The base href to use in the iframe.</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">basehref</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_resolveBaseHref&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute use</span>
+<span class="cm">            * @description Array of modules to include in the scoped YUI instance at render time. Default: [&#39;none&#39;, &#39;selector-css2&#39;]</span>
+<span class="cm">            * @writeonce</span>
+<span class="cm">            * @type Array</span>
+<span class="cm">            */</span>
+            <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;node-style&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css3&#39;</span><span class="p">]</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute container</span>
+<span class="cm">            * @description The container to append the iFrame to on render.</span>
+<span class="cm">            * @type String/HTMLElement/Node</span>
+<span class="cm">            */</span>
+            <span class="nx">container</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span>
+                <span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">n</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute node</span>
+<span class="cm">            * @description The Node instance of the iframe.</span>
+<span class="cm">            * @type Node</span>
+<span class="cm">            */</span>
+            <span class="nx">node</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">readOnly</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_iframe</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute id</span>
+<span class="cm">            * @description Set the id of the new Node. (optional)</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            * @writeonce</span>
+<span class="cm">            */</span>
+            <span class="nx">id</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">writeOnce</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">id</span> <span class="o">=</span> <span class="s1">&#39;iframe-&#39;</span> <span class="o">+</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">();</span>
+                    <span class="p">}</span>
+                    <span class="k">return</span> <span class="nx">id</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute linkedcss</span>
+<span class="cm">            * @description An array of url&#39;s to external linked style sheets</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">linkedcss</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="nx">getter</span><span class="o">:</span> <span class="s1">&#39;_getLinkedCSS&#39;</span><span class="p">,</span>
+                <span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setLinkedCSS&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute extracss</span>
+<span class="cm">            * @description A string of CSS to add to the Head of the Editor</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>
+            <span class="nx">extracss</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                <span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setExtraCSS&#39;</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute host</span>
+<span class="cm">            * @description A reference to the Editor instance </span>
+<span class="cm">            * @type Object</span>
+<span class="cm">            */</span>
+            <span class="nx">host</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>
+            <span class="p">},</span>
+            <span class="cm">/**</span>
+<span class="cm">            * @attribute defaultblock</span>
+<span class="cm">            * @description The default tag to use for block level items, defaults to: p</span>
+<span class="cm">            * @type String</span>
+<span class="cm">            */</span>            
+            <span class="nx">defaultblock</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;p&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+
+    <span class="nx">Y</span><span class="p">.</span><span class="nx">Frame</span> <span class="o">=</span> <span class="nx">Frame</span><span class="p">;</span>
+
+
+
+<span class="p">},</span> <span class="s1">&#39;3.4.0&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;base&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;selector-css3&#39;</span><span class="p">,</span> <span class="s1">&#39;substitute&#39;</span><span class="p">,</span> <span class="s1">&#39;yui-throttle&#39;</span><span class="p">]});</span>
+</pre></div>
+
+							</div>
+						<!-- /End/Start -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="aui-footer">
+		Copyright &copy; 2011 Yahoo! Inc. All rights reserved.
+	</div>
+</div>
+
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "Plugin.EditorBidi.html#method_addParents", "access": "", "host": "Plugin.EditorBidi", "type": "method", "name": "addParents"}, {"url": "Selection.html#property_ALL", "access": "", "host": "Selection", "type": "property", "name": "ALL"}, {"url": "Selection.html#property_anchorNode", "access": "", "host": "Selection", "type": "property", "name": "anchorNode"}, {"url": "Selection.html#property_anchorOffset", "access": "", "host": "Selection", "type": "property", "name": "anchorOffset"}, {"url": "Selection.html#property_anchorTextNode", "access": "", "host": "Selection", "type": "property", "name": "anchorTextNode"}, {"url": "Frame.html#config_basehref", "access": "", "host": "Frame", "type": "config", "name": "basehref"}, {"url": "Frame.html#event_basehrefChange", "access": "", "host": "Frame", "type": "event", "name": "basehrefChange"}, {"url": "Plugin.EditorBidi.html#method_blockParent", "access": "", "host": "Plugin.EditorBidi", "type": "method", "name": "blockParent"}, {"url": "Selection.html#property_BLOCKS", "access": "", "host": "Selection", "type": "property", "name": "BLOCKS"}, {"url": "Plugin.EditorBidi.html#property_BLOCKS", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "BLOCKS"}, {"url": "EditorBase.html#property_bq", "access": "", "host": "EditorBase", "type": "property", "name": "bq"}, {"url": "Selection.html#method_cleanCursor", "access": "", "host": "Selection", "type": "method", "name": "cleanCursor"}, {"url": "Plugin.ExecCommand.html#method_command", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "command"}, {"url": "Plugin.ExecCommand.html#property_COMMANDS", "access": "", "host": "Plugin.ExecCommand", "type": "property", "name": "COMMANDS"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.addclass", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.addclass"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.backcolor", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.backcolor"}, {"url": "Plugin.ExecCommand.html#property_COMMANDS.bidi", "access": "", "host": "Plugin.ExecCommand", "type": "property", "name": "COMMANDS.bidi"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.fontname2", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.fontname2"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.fontsize2", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.fontsize2"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.forecolor", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.forecolor"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.hilitecolor", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.hilitecolor"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.insertandfocus", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.insertandfocus"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.insertbr", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.insertbr"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.inserthtml", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.inserthtml"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.insertimage", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.insertimage"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.insertorderedlist", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.insertorderedlist"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.insertunorderedlist", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.insertunorderedlist"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.justify", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.justify"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.justifycenter", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.justifycenter"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.justifyfull", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.justifyfull"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.justifyleft", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.justifyleft"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.justifyright", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.justifyright"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.list", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.list"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.removeclass", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.removeclass"}, {"url": "Plugin.ExecCommand.html#method_COMMANDS.wrap", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "COMMANDS.wrap"}, {"url": "Frame.html#config_container", "access": "", "host": "Frame", "type": "config", "name": "container"}, {"url": "Frame.html#event_containerChange", "access": "", "host": "Frame", "type": "event", "name": "containerChange"}, {"url": "Frame.html#config_content", "access": "", "host": "Frame", "type": "config", "name": "content"}, {"url": "EditorBase.html#config_content", "access": "", "host": "EditorBase", "type": "config", "name": "content"}, {"url": "Frame.html#event_contentChange", "access": "", "host": "Frame", "type": "event", "name": "contentChange"}, {"url": "EditorBase.html#event_contentChange", "access": "", "host": "EditorBase", "type": "event", "name": "contentChange"}, {"url": "EditorBase.html#method_copyStyles", "access": "", "host": "EditorBase", "type": "method", "name": "copyStyles"}, {"url": "Selection.html#method_createRange", "access": "", "host": "Selection", "type": "method", "name": "createRange"}, {"url": "Selection.html#property_CURSOR", "access": "", "host": "Selection", "type": "property", "name": "CURSOR"}, {"url": "Selection.html#property_CUR_WRAPID", "access": "", "host": "Selection", "type": "property", "name": "CUR_WRAPID"}, {"url": "Plugin.EditorPara.html#property_d", "access": "", "host": "Plugin.EditorPara", "type": "property", "name": "d"}, {"url": "Plugin.CreateLinkBase.html#property_DEFAULT", "access": "", "host": "Plugin.CreateLinkBase", "type": "property", "name": "DEFAULT"}, {"url": "Frame.html#config_defaultblock", "access": "", "host": "Frame", "type": "config", "name": "defaultblock"}, {"url": "EditorBase.html#config_defaultblock", "access": "", "host": "EditorBase", "type": "config", "name": "defaultblock"}, {"url": "Frame.html#event_defaultblockChange", "access": "", "host": "Frame", "type": "event", "name": "defaultblockChange"}, {"url": "EditorBase.html#event_defaultblockChange", "access": "", "host": "EditorBase", "type": "event", "name": "defaultblockChange"}, {"url": "Frame.html#property_DEFAULT_CSS", "access": "", "host": "Frame", "type": "property", "name": "DEFAULT_CSS"}, {"url": "Selection.html#property_DEFAULT_TAG", "access": "", "host": "Selection", "type": "property", "name": "DEFAULT_TAG"}, {"url": "Frame.html#method_delegate", "access": "", "host": "Frame", "type": "method", "name": "delegate"}, {"url": "Frame.html#config_designMode", "access": "", "host": "Frame", "type": "config", "name": "designMode"}, {"url": "Frame.html#event_designModeChange", "access": "", "host": "Frame", "type": "event", "name": "designModeChange"}, {"url": "Frame.html#config_dir", "access": "", "host": "Frame", "type": "config", "name": "dir"}, {"url": "EditorBase.html#config_dir", "access": "", "host": "EditorBase", "type": "config", "name": "dir"}, {"url": "Frame.html#event_dirChange", "access": "", "host": "Frame", "type": "event", "name": "dirChange"}, {"url": "EditorBase.html#event_dirChange", "access": "", "host": "EditorBase", "type": "event", "name": "dirChange"}, {"url": "Plugin.EditorBidi.html#property_DIV_WRAPPER", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "DIV_WRAPPER"}, {"url": "Frame.html#property_DOC_TYPE", "access": "", "host": "Frame", "type": "property", "name": "DOC_TYPE"}, {"url": "Frame.html#property_DOM_EVENTS", "access": "", "host": "Frame", "type": "property", "name": "DOM_EVENTS"}, {"url": "Plugin.EditorBidi.html#property_EVENTS", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "EVENTS"}, {"url": "EditorBase.html#method_execCommand", "access": "", "host": "EditorBase", "type": "method", "name": "execCommand"}, {"url": "Frame.html#config_extracss", "access": "", "host": "Frame", "type": "config", "name": "extracss"}, {"url": "EditorBase.html#config_extracss", "access": "", "host": "EditorBase", "type": "config", "name": "extracss"}, {"url": "Frame.html#event_extracssChange", "access": "", "host": "Frame", "type": "event", "name": "extracssChange"}, {"url": "EditorBase.html#event_extracssChange", "access": "", "host": "EditorBase", "type": "event", "name": "extracssChange"}, {"url": "Selection.html#method_filter", "access": "", "host": "Selection", "type": "method", "name": "filter"}, {"url": "Selection.html#method_filterBlocks", "access": "", "host": "Selection", "type": "method", "name": "filterBlocks"}, {"url": "EditorBase.html#method_FILTER_RGB", "access": "", "host": "EditorBase", "type": "method", "name": "FILTER_RGB"}, {"url": "Plugin.ExecCommand.html#method_fixIETags", "access": "protected", "host": "Plugin.ExecCommand", "type": "method", "name": "fixIETags"}, {"url": "Frame.html#method_focus", "access": "", "host": "Frame", "type": "method", "name": "focus"}, {"url": "EditorBase.html#method_focus", "access": "", "host": "EditorBase", "type": "method", "name": "focus"}, {"url": "Selection.html#method_focusCursor", "access": "", "host": "Selection", "type": "method", "name": "focusCursor"}, {"url": "Selection.html#property_focusNode", "access": "", "host": "Selection", "type": "property", "name": "focusNode"}, {"url": "Selection.html#property_focusOffset", "access": "", "host": "Selection", "type": "property", "name": "focusOffset"}, {"url": "Selection.html#property_focusTextNode", "access": "", "host": "Selection", "type": "property", "name": "focusTextNode"}, {"url": "EditorBase.html#property_frame", "access": "", "host": "EditorBase", "type": "property", "name": "frame"}, {"url": "EditorBase.html#method_getContent", "access": "", "host": "EditorBase", "type": "method", "name": "getContent"}, {"url": "Selection.html#method_getCursor", "access": "", "host": "Selection", "type": "method", "name": "getCursor"}, {"url": "Frame.html#method_getDocType", "access": "", "host": "Frame", "type": "method", "name": "getDocType"}, {"url": "EditorBase.html#method_getDomPath", "access": "", "host": "EditorBase", "type": "method", "name": "getDomPath"}, {"url": "Frame.html#method_getInstance", "access": "", "host": "Frame", "type": "method", "name": "getInstance"}, {"url": "Plugin.ExecCommand.html#method_getInstance", "access": "", "host": "Plugin.ExecCommand", "type": "method", "name": "getInstance"}, {"url": "EditorBase.html#method_getInstance", "access": "", "host": "EditorBase", "type": "method", "name": "getInstance"}, {"url": "Selection.html#method_getSelected", "access": "", "host": "Selection", "type": "method", "name": "getSelected"}, {"url": "Selection.html#method_getText", "access": "", "host": "Selection", "type": "method", "name": "getText"}, {"url": "Frame.html#method_hide", "access": "", "host": "Frame", "type": "method", "name": "hide"}, {"url": "EditorBase.html#method_hide", "access": "", "host": "EditorBase", "type": "method", "name": "hide"}, {"url": "Frame.html#config_host", "access": "", "host": "Frame", "type": "config", "name": "host"}, {"url": "Frame.html#event_hostChange", "access": "", "host": "Frame", "type": "event", "name": "hostChange"}, {"url": "Frame.html#property_HTML", "access": "", "host": "Frame", "type": "property", "name": "HTML"}, {"url": "Frame.html#config_id", "access": "", "host": "Frame", "type": "config", "name": "id"}, {"url": "Frame.html#event_idChange", "access": "", "host": "Frame", "type": "event", "name": "idChange"}, {"url": "Selection.html#method_insertAtCursor", "access": "", "host": "Selection", "type": "method", "name": "insertAtCursor"}, {"url": "Selection.html#method_insertContent", "access": "", "host": "Selection", "type": "method", "name": "insertContent"}, {"url": "Plugin.EditorBR.html#property_inst", "access": "", "host": "Plugin.EditorBR", "type": "property", "name": "inst"}, {"url": "Selection.html#property_isCollapsed", "access": "", "host": "Selection", "type": "property", "name": "isCollapsed"}, {"url": "Frame.html#config_lang", "access": "", "host": "Frame", "type": "config", "name": "lang"}, {"url": "Frame.html#event_langChange", "access": "", "host": "Frame", "type": "event", "name": "langChange"}, {"url": "Frame.html#config_linkedcss", "access": "", "host": "Frame", "type": "config", "name": "linkedcss"}, {"url": "EditorBase.html#config_linkedcss", "access": "", "host": "EditorBase", "type": "config", "name": "linkedcss"}, {"url": "Frame.html#event_linkedcssChange", "access": "", "host": "Frame", "type": "event", "name": "linkedcssChange"}, {"url": "EditorBase.html#event_linkedcssChange", "access": "", "host": "EditorBase", "type": "event", "name": "linkedcssChange"}, {"url": "Frame.html#property_META", "access": "", "host": "Frame", "type": "property", "name": "META"}, {"url": "Frame.html#property_NAME", "access": "", "host": "Frame", "type": "property", "name": "NAME"}, {"url": "Plugin.ExecCommand.html#property_NAME", "access": "", "host": "Plugin.ExecCommand", "type": "property", "name": "NAME"}, {"url": "Plugin.EditorTab.html#property_NAME", "access": "", "host": "Plugin.EditorTab", "type": "property", "name": "NAME"}, {"url": "Plugin.EditorPara.html#property_NAME", "access": "", "host": "Plugin.EditorPara", "type": "property", "name": "NAME"}, {"url": "Plugin.EditorLists.html#property_NAME", "access": "", "host": "Plugin.EditorLists", "type": "property", "name": "NAME"}, {"url": "Plugin.EditorBR.html#property_NAME", "access": "", "host": "Plugin.EditorBR", "type": "property", "name": "NAME"}, {"url": "Plugin.EditorBidi.html#property_NAME", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "NAME"}, {"url": "EditorBase.html#property_NAME", "access": "", "host": "EditorBase", "type": "property", "name": "NAME"}, {"url": "EditorBase.html#property_NC_KEYS", "access": "", "host": "EditorBase", "type": "property", "name": "NC_KEYS"}, {"url": "Frame.html#config_node", "access": "", "host": "Frame", "type": "config", "name": "node"}, {"url": "Frame.html#event_nodeChange", "access": "", "host": "Frame", "type": "event", "name": "nodeChange"}, {"url": "EditorBase.html#event_nodeChange", "access": "", "host": "EditorBase", "type": "event", "name": "nodeChange"}, {"url": "Plugin.EditorBidi.html#property__NODE_SELECTED", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "_NODE_SELECTED"}, {"url": "Plugin.EditorLists.html#property_NONSEL", "access": "", "host": "Plugin.EditorLists", "type": "property", "name": "NONSEL"}, {"url": "EditorBase.html#method_NORMALIZE_FONTSIZE", "access": "", "host": "EditorBase", "type": "method", "name": "NORMALIZE_FONTSIZE"}, {"url": "Plugin.ExecCommand.html#property_NS", "access": "", "host": "Plugin.ExecCommand", "type": "property", "name": "NS"}, {"url": "Plugin.EditorTab.html#property_NS", "access": "", "host": "Plugin.EditorTab", "type": "property", "name": "NS"}, {"url": "Plugin.EditorPara.html#property_NS", "access": "", "host": "Plugin.EditorPara", "type": "property", "name": "NS"}, {"url": "Plugin.EditorLists.html#property_NS", "access": "", "host": "Plugin.EditorLists", "type": "property", "name": "NS"}, {"url": "Plugin.EditorBR.html#property_NS", "access": "", "host": "Plugin.EditorBR", "type": "property", "name": "NS"}, {"url": "Plugin.EditorBidi.html#property_NS", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "NS"}, {"url": "Frame.html#property_PAGE_HTML", "access": "", "host": "Frame", "type": "property", "name": "PAGE_HTML"}, {"url": "Plugin.CreateLinkBase.html#property_PROMPT", "access": "", "host": "Plugin.CreateLinkBase", "type": "property", "name": "PROMPT"}, {"url": "EditorBase.html#event_ready", "access": "", "host": "EditorBase", "type": "event", "name": "ready"}, {"url": "Selection.html#property_REG_CHAR", "access": "", "host": "Selection", "type": "property", "name": "REG_CHAR"}, {"url": "Selection.html#property_REG_FONTFAMILY", "access": "", "host": "Selection", "type": "property", "name": "REG_FONTFAMILY"}, {"url": "Selection.html#property_REG_NOHTML", "access": "", "host": "Selection", "type": "property", "name": "REG_NOHTML"}, {"url": "Selection.html#property_REG_NON", "access": "", "host": "Selection", "type": "property", "name": "REG_NON"}, {"url": "Selection.html#method_remove", "access": "", "host": "Selection", "type": "method", "name": "remove"}, {"url": "Plugin.EditorLists.html#property_REMOVE", "access": "", "host": "Plugin.EditorLists", "type": "property", "name": "REMOVE"}, {"url": "Selection.html#method_removeCursor", "access": "", "host": "Selection", "type": "method", "name": "removeCursor"}, {"url": "Selection.html#method_removeFontFamily", "access": "", "host": "Selection", "type": "method", "name": "removeFontFamily"}, {"url": "Plugin.EditorBidi.html#method_removeTextAlign", "access": "", "host": "Plugin.EditorBidi", "type": "method", "name": "removeTextAlign"}, {"url": "Frame.html#method_render", "access": "", "host": "Frame", "type": "method", "name": "render"}, {"url": "EditorBase.html#method_render", "access": "", "host": "EditorBase", "type": "method", "name": "render"}, {"url": "Selection.html#method_replace", "access": "", "host": "Selection", "type": "method", "name": "replace"}, {"url": "Selection.html#method_resolve", "access": "", "host": "Selection", "type": "method", "name": "resolve"}, {"url": "Plugin.EditorBidi.html#property_RE_TEXT_ALIGN", "access": "", "host": "Plugin.EditorBidi", "type": "property", "name": "RE_TEXT_ALIGN"}, {"url": "Selection.html#method_selectNode", "access": "", "host": "Selection", "type": "method", "name": "selectNode"}, {"url": "Selection.html#method_setCursor", "access": "", "host": "Selection", "type": "method", "name": "setCursor"}, {"url": "Frame.html#method_show", "access": "", "host": "Frame", "type": "method", "name": "show"}, {"url": "EditorBase.html#method_show", "access": "", "host": "EditorBase", "type": "method", "name": "show"}, {"url": "Frame.html#config_src", "access": "", "host": "Frame", "type": "config", "name": "src"}, {"url": "Frame.html#event_srcChange", "access": "", "host": "Frame", "type": "event", "name": "srcChange"}, {"url": "EditorBase.html#property_STRINGS", "access": "", "host": "EditorBase", "type": "property", "name": "STRINGS"}, {"url": "Plugin.CreateLinkBase.html#property_STRINGS", "access": "", "host": "Plugin.CreateLinkBase", "type": "property", "name": "STRINGS"}, {"url": "EditorBase.html#property_STRINGS.title", "access": "", "host": "EditorBase", "type": "property", "name": "STRINGS.title"}, {"url": "EditorBase.html#property_TABKEY", "access": "", "host": "EditorBase", "type": "property", "name": "TABKEY"}, {"url": "EditorBase.html#property_TAG2CMD", "access": "", "host": "EditorBase", "type": "property", "name": "TAG2CMD"}, {"url": "Selection.html#property_text", "access": "", "host": "Selection", "type": "property", "name": "text"}, {"url": "Frame.html#property_THROTTLE_TIME", "access": "", "host": "Frame", "type": "property", "name": "THROTTLE_TIME"}, {"url": "Frame.html#config_title", "access": "", "host": "Frame", "type": "config", "name": "title"}, {"url": "Frame.html#event_titleChange", "access": "", "host": "Frame", "type": "event", "name": "titleChange"}, {"url": "Selection.html#property_TMP", "access": "", "host": "Selection", "type": "property", "name": "TMP"}, {"url": "Selection.html#method_toString", "access": "", "host": "Selection", "type": "method", "name": "toString"}, {"url": "Selection.html#method_unfilter", "access": "", "host": "Selection", "type": "method", "name": "unfilter"}, {"url": "Frame.html#method_use", "access": "", "host": "Frame", "type": "method", "name": "use"}, {"url": "Frame.html#config_use", "access": "", "host": "Frame", "type": "config", "name": "use"}, {"url": "EditorBase.html#property_USE", "access": "", "host": "EditorBase", "type": "property", "name": "USE"}, {"url": "Frame.html#event_useChange", "access": "", "host": "Frame", "type": "event", "name": "useChange"}, {"url": "Selection.html#method_wrapContent", "access": "", "host": "Selection", "type": "method", "name": "wrapContent"}];
+</script>
+</body>
+</html>

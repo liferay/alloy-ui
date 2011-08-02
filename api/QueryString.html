@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -873,16 +888,12 @@ JavaScript objects.
 																		 cfg
 																	
 																
-																		, 
-																		 name
-																	
-																
 															)
 														</code>
 
 														<div class="description" property="yui:description">
-															<p>Converts an arbitrary value to a Query String representation.</p>
-<p>Objects with cyclical references will trigger an exception.</p>
+															<p>Converts a simple object to a Query String representation.</p>
+<p>Nested objects, Arrays, and so on, are not supported.</p>
 														</div>
 
 														<div class="description">
@@ -891,29 +902,19 @@ JavaScript objects.
 																	<dt>Parameters:</dt>
 																		<dd rel="yui:parameter">
 																		<code><span property="yui:name">obj</span>
-																		&lt;<span property="yui:type">Variant</span>&gt;
+																		&lt;<span property="yui:type">Object</span>&gt;
 																		</code>
-																		<span property="yui:description">  any arbitrary value to convert to query string</span>
+																		<span property="yui:description">  A single-level object to convert to a querystring.</span>
 																		</dd>
 																		<dd rel="yui:parameter">
 																		<code><span property="yui:name">cfg</span>
 																		&lt;<span property="yui:type">Object</span>&gt;
 																		</code>
-																		<span property="yui:description">  (optional) Configuration object.  The three
-supported configurations are:
-<ul><li>sep: When defined, the value will be used as the key-value
-separator.  The default value is "&".</li>
-<li>eq: When defined, the value will be used to join the key to
-the value.  The default value is "=".</li>
-<li>arrayKey: When set to true, the key of an array will have the
-'[]' notation appended to the key.  The default value is false.
-</li></ul></span>
-																		</dd>
-																		<dd rel="yui:parameter">
-																		<code><span property="yui:name">name</span>
-																		&lt;<span property="yui:type">String</span>&gt;
-																		</code>
-																		<span property="yui:description">  (optional) Name of the current key, for handling children recursively.</span>
+																		<span property="yui:description">  (optional) Configuration object.  In the simple
+module, only the arrayKey setting is
+supported.  When set to true, the key of an
+array will have the '[]' notation appended
+to the key;.</span>
 																		</dd>
 																</dl>
 

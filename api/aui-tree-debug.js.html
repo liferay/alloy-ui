@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -655,6 +670,9 @@
 
 
 				                                <li class=""><a href="TreeNodeIO.html" title="TreeNodeIO">TreeNodeIO</a></li>
+
+
+				                                <li class=""><a href="TreeNodeRadio.html" title="TreeNodeRadio">TreeNodeRadio</a></li>
 
 
 				                                <li class=""><a href="TreeNodeTask.html" title="TreeNodeTask">TreeNodeTask</a></li>
@@ -757,7 +775,6 @@
 <span class="kd">var</span> <span class="nx">L</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
 	<span class="nx">isArray</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isArray</span><span class="p">,</span>
 	<span class="nx">isObject</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isObject</span><span class="p">,</span>
-	<span class="nx">isString</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isString</span><span class="p">,</span>
 	<span class="nx">isUndefined</span> <span class="o">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">,</span>
 
 	<span class="nx">BOUNDING_BOX</span> <span class="o">=</span> <span class="s1">&#39;boundingBox&#39;</span><span class="p">,</span>
@@ -777,6 +794,10 @@
 
 	<span class="nx">isTreeNode</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
 		<span class="k">return</span> <span class="p">(</span> <span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span> <span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="nx">isTreeView</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(</span> <span class="nx">v</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeView</span> <span class="p">);</span>
 	<span class="p">},</span>
 
 	<span class="nx">getCN</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">getClassName</span><span class="p">,</span>
@@ -842,9 +863,7 @@
 			<span class="nx">children</span><span class="o">:</span> <span class="p">{</span>
 				<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
 				<span class="nx">validator</span><span class="o">:</span> <span class="nx">isArray</span><span class="p">,</span>
-				<span class="nx">setter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_setChildren</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
-				<span class="p">}</span>
+				<span class="nx">setter</span><span class="o">:</span> <span class="s1">&#39;_setChildren&#39;</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -861,15 +880,6 @@
 
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
 			<span class="cm">/**</span>
-<span class="cm">			 * Empty UI_EVENTS.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @property UI_EVENTS</span>
-<span class="cm">			 * @type Object</span>
-<span class="cm">			 * @protected</span>
-<span class="cm">			 */</span>
-			<span class="nx">UI_EVENTS</span><span class="o">:</span> <span class="p">{},</span>
-
-			<span class="cm">/**</span>
 <span class="cm">			 * Construction logic executed during TreeData instantiation. Lifecycle.</span>
 <span class="cm">			 *</span>
 <span class="cm">			 * @method initializer</span>
@@ -880,12 +890,8 @@
 
 				<span class="c1">// binding on initializer, needed before .render() phase</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;move&#39;</span><span class="p">);</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;collapseAll&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_collapseAll</span> <span class="p">});</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;expandAll&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_expandAll</span> <span class="p">});</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;append&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_appendChild</span> <span class="p">});</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_removeChild</span> <span class="p">});</span>
-
-				<span class="nx">TreeData</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -941,7 +947,7 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">oldParent</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">oldOwnerTree</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">moved</span> <span class="o">=</span> <span class="nx">oldParent</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">oldParent</span> <span class="o">!=</span> <span class="nx">parentNode</span><span class="p">);</span>
+				<span class="kd">var</span> <span class="nx">moved</span> <span class="o">=</span> <span class="nx">oldParent</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">oldParent</span> <span class="o">!==</span> <span class="nx">parentNode</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">oldParent</span><span class="p">)</span> <span class="p">{</span>
 					<span class="k">if</span> <span class="p">(</span><span class="nx">moved</span><span class="p">)</span> <span class="p">{</span>
@@ -976,7 +982,7 @@
 					<span class="nx">ownerTree</span><span class="p">.</span><span class="nx">registerNode</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">oldOwnerTree</span> <span class="o">!=</span> <span class="nx">ownerTree</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">oldOwnerTree</span> <span class="o">!==</span> <span class="nx">ownerTree</span><span class="p">)</span> <span class="p">{</span>
 					<span class="c1">// when change the OWNER_TREE update the children references also</span>
 					<span class="nx">node</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
 						<span class="nx">instance</span><span class="p">.</span><span class="nx">updateReferences</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">child</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">),</span> <span class="nx">ownerTree</span><span class="p">);</span>
@@ -1031,6 +1037,12 @@
 					<span class="nx">index</span><span class="p">[</span><span class="nx">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nx">node</span><span class="p">;</span>
 				<span class="p">}</span>
 
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeView</span><span class="p">(</span><span class="nx">instance</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">addTarget</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+				<span class="p">}</span>
+
+				<span class="nx">node</span><span class="p">.</span><span class="nx">_inheritOwnerTreeAttrs</span><span class="p">();</span>
+
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">updateIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
 			<span class="p">},</span>
 
@@ -1060,6 +1072,10 @@
 
 				<span class="k">delete</span> <span class="nx">index</span><span class="p">[</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">ID</span><span class="p">)</span> <span class="p">];</span>
 
+				<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeView</span><span class="p">(</span><span class="nx">instance</span><span class="p">))</span> <span class="p">{</span>
+					<span class="nx">node</span><span class="p">.</span><span class="nx">removeTarget</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
+				<span class="p">}</span>
+
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">updateIndex</span><span class="p">(</span><span class="nx">index</span><span class="p">);</span>
 			<span class="p">},</span>
 
@@ -1069,19 +1085,6 @@
 <span class="cm">			 * @method collapseAll</span>
 <span class="cm">			 */</span>
 			<span class="nx">collapseAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;collapseAll&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Collapse all children of the TreeData.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @method _collapseAll</span>
-<span class="cm">			 * @protected</span>
-<span class="cm">			 */</span>
-			<span class="nx">_collapseAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
@@ -1095,19 +1098,6 @@
 <span class="cm">			 * @method expandAll</span>
 <span class="cm">			 */</span>
 			<span class="nx">expandAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;expandAll&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Expand all children of the TreeData.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @method _expandAll</span>
-<span class="cm">			 * @protected</span>
-<span class="cm">			 */</span>
-			<span class="nx">_expandAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
@@ -1189,7 +1179,7 @@
 			<span class="nx">bubbleEvent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">args</span><span class="p">,</span> <span class="nx">cancelBubbling</span><span class="p">,</span> <span class="nx">stopActionPropagation</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="c1">// event.stopActionPropagation == undefined, invoke the event native action</span>
+				<span class="c1">// event.stopActionPropagation === undefined, invoke the event native action</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">eventType</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cancelBubbling</span><span class="p">)</span> <span class="p">{</span>
@@ -1222,17 +1212,11 @@
 <span class="cm">			 */</span>
 			<span class="nx">createNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">classType</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+				<span class="kd">var</span> <span class="nx">classType</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">nodeTypes</span><span class="p">[</span> <span class="nx">isObject</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">:</span> <span class="nx">options</span> <span class="p">]</span> <span class="o">||</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">isString</span><span class="p">(</span><span class="nx">classType</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">nodeTypes</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">classType</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">nodeTypes</span><span class="p">[</span><span class="nx">classType</span><span class="p">];</span>
-				<span class="p">}</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">classType</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">classType</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="k">return</span> <span class="k">new</span> <span class="nx">classType</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+				<span class="k">return</span> <span class="k">new</span> <span class="nx">classType</span><span class="p">(</span>
+					<span class="nx">isObject</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span> <span class="o">:</span> <span class="p">{}</span>
+				<span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1451,7 +1435,7 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="nx">refTreeNode</span> <span class="o">=</span> <span class="nx">refTreeNode</span> <span class="o">||</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">refTreeNode</span> <span class="o">==</span> <span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">refTreeNode</span> <span class="o">===</span> <span class="nx">treeNode</span><span class="p">)</span> <span class="p">{</span>
 					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// NOTE: return</span>
 				<span class="p">}</span>
 				<span class="kd">var</span> <span class="nx">refParentTreeNode</span> <span class="o">=</span> <span class="nx">refTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
@@ -1461,10 +1445,10 @@
 					<span class="kd">var</span> <span class="nx">refBoundinBox</span> <span class="o">=</span> <span class="nx">refTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">BOUNDING_BOX</span><span class="p">);</span>
 					<span class="kd">var</span> <span class="nx">ownerTree</span> <span class="o">=</span> <span class="nx">refTreeNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">);</span>
 
-					<span class="k">if</span> <span class="p">(</span><span class="nx">where</span> <span class="o">==</span> <span class="s1">&#39;before&#39;</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">where</span> <span class="o">===</span> <span class="s1">&#39;before&#39;</span><span class="p">)</span> <span class="p">{</span>
 						<span class="nx">refBoundinBox</span><span class="p">.</span><span class="nx">placeBefore</span><span class="p">(</span><span class="nx">nodeBoundinBox</span><span class="p">);</span>
 					<span class="p">}</span>
-					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">where</span> <span class="o">==</span> <span class="s1">&#39;after&#39;</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">where</span> <span class="o">===</span> <span class="s1">&#39;after&#39;</span><span class="p">)</span> <span class="p">{</span>
 						<span class="nx">refBoundinBox</span><span class="p">.</span><span class="nx">placeAfter</span><span class="p">(</span><span class="nx">nodeBoundinBox</span><span class="p">);</span>
 					<span class="p">}</span>
 
@@ -1545,6 +1529,8 @@
 				<span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
 			<span class="p">},</span>
 
+			<span class="nx">_inheritOwnerTreeAttrs</span><span class="o">:</span> <span class="nx">L</span><span class="p">.</span><span class="nx">emptyFn</span><span class="p">,</span>
+
 			<span class="cm">/**</span>
 <span class="cm">			 * Setter for &lt;a href=&quot;TreeData.html#config_children&quot;&gt;children&lt;/a&gt;.</span>
 <span class="cm">			 *</span>
@@ -1571,10 +1557,11 @@
 							<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
 						<span class="p">}</span>
 
+						<span class="nx">node</span><span class="p">.</span><span class="nx">_inheritOwnerTreeAttrs</span><span class="p">();</span>
 						<span class="nx">node</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
 
 						<span class="c1">// avoid duplicated children on the childNodes list</span>
-						<span class="k">if</span> <span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">node</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">childNodes</span><span class="p">,</span> <span class="nx">node</span><span class="p">)</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
 							<span class="nx">childNodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
 						<span class="p">}</span>
 					<span class="p">}</span>
@@ -1628,6 +1615,7 @@
 	<span class="nx">PARENT_NODE</span> <span class="o">=</span> <span class="s1">&#39;parentNode&#39;</span><span class="p">,</span>
 	<span class="nx">SELECTED</span> <span class="o">=</span> <span class="s1">&#39;selected&#39;</span><span class="p">,</span>
 	<span class="nx">SPACE</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
+	<span class="nx">RADIO</span> <span class="o">=</span> <span class="s1">&#39;radio&#39;</span><span class="p">,</span>
 	<span class="nx">TREE</span> <span class="o">=</span> <span class="s1">&#39;tree&#39;</span><span class="p">,</span>
 	<span class="nx">TREE_NODE</span> <span class="o">=</span> <span class="s1">&#39;tree-node&#39;</span><span class="p">,</span>
 
@@ -1889,6 +1877,8 @@
 
 		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeData</span><span class="p">,</span>
 
+		<span class="nx">UI_ATTRS</span><span class="o">:</span> <span class="p">[</span><span class="nx">EXPANDED</span><span class="p">],</span>
+
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
 			<span class="cm">/**</span>
 <span class="cm">			 * Replaced BOUNDING_TEMPLATE with NODE_BOUNDING_TEMPLATE.</span>
@@ -1918,9 +1908,6 @@
 
 				<span class="c1">// Sync the Widget TreeNode id with the BOUNDING_BOX id</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncTreeNodeBBId</span><span class="p">();</span>
-
-				<span class="c1">// invoking TreeData initializer</span>
-				<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initializer</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -1931,10 +1918,6 @@
 <span class="cm">			 */</span>
 			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="c1">// binding collapse/expand</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;collapse&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_collapse</span> <span class="p">});</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;expand&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">defaultFn</span><span class="o">:</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_expand</span> <span class="p">});</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;childrenChange&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">_afterSetChildren</span><span class="p">,</span> <span class="nx">instance</span><span class="p">));</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">after</span><span class="p">(</span><span class="s1">&#39;idChange&#39;</span><span class="p">,</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">_afterSetId</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
@@ -2099,7 +2082,7 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
@@ -2111,45 +2094,13 @@
 			<span class="nx">collapse</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">))</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
-
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;collapse&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Collapse the current TreeNode.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @method _collapse</span>
-<span class="cm">			 * @protected</span>
-<span class="cm">			 */</span>
-			<span class="nx">_collapse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// stopActionPropagation while bubbling</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">stopActionPropagation</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_TREE_EXPANDED</span><span class="p">,</span> <span class="nx">CSS_TREE_COLLAPSED</span><span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">container</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_HIDDEN</span><span class="p">);</span>
-					<span class="p">}</span>
-
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-				<span class="p">}</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="nx">collapseAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">collapseAll</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">collapseAll</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="c1">// instance is also a node, so collapse itself</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">collapse</span><span class="p">();</span>
@@ -2174,44 +2125,13 @@
 			<span class="nx">expand</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">))</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">getEventOutputMap</span><span class="p">(</span><span class="nx">instance</span><span class="p">);</span>
-
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;expand&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
-<span class="cm">			 * Expand the current TreeNode.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @method _expand</span>
-<span class="cm">			 */</span>
-			<span class="nx">_expand</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-				<span class="c1">// stopActionPropagation while bubbling</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">stopActionPropagation</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-				<span class="p">}</span>
-
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">);</span>
-					<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_TREE_COLLAPSED</span><span class="p">,</span> <span class="nx">CSS_TREE_EXPANDED</span><span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
-						<span class="nx">container</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_HIDDEN</span><span class="p">);</span>
-					<span class="p">}</span>
-
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-				<span class="p">}</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">EXPANDED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="nx">expandAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">expandAll</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">expandAll</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="c1">// instance is also a node, so expand itself</span>
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">expand</span><span class="p">();</span>
@@ -2240,7 +2160,7 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">()</span> <span class="o">&amp;&amp;</span>
-						<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">hasChildNodes</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">));</span>
+						<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">hasChildNodes</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">));</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -2276,7 +2196,7 @@
 				<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
 
 				<span class="k">while</span> <span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="nx">parentNode</span> <span class="o">==</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="nx">parentNode</span> <span class="o">===</span> <span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
 						<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
 					<span class="p">}</span>
 					<span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
@@ -2288,20 +2208,20 @@
 			<span class="nx">insertAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">refNode</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">insertAfter</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">,</span> <span class="nx">instance</span><span class="p">]);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">insertAfter</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">,</span> <span class="nx">instance</span><span class="p">]);</span>
 			<span class="p">},</span>
 
 			<span class="nx">insertBefore</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">,</span> <span class="nx">instance</span><span class="p">]);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">,</span> <span class="nx">instance</span><span class="p">]);</span>
 			<span class="p">},</span>
 
 			<span class="nx">removeChild</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
@@ -2421,6 +2341,30 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncHitArea</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">newVal</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetExpanded</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTAINER</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">contentBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_TREE_COLLAPSED</span><span class="p">,</span> <span class="nx">CSS_TREE_EXPANDED</span><span class="p">);</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+							<span class="nx">container</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_HIDDEN</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="nx">contentBox</span><span class="p">.</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">CSS_TREE_EXPANDED</span><span class="p">,</span> <span class="nx">CSS_TREE_COLLAPSED</span><span class="p">);</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+							<span class="nx">container</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_HIDDEN</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
@@ -2578,20 +2522,6 @@
 
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
 			<span class="cm">/**</span>
-<span class="cm">			 * Create the DOM structure for the TreeNodeIO. Lifecycle.</span>
-<span class="cm">			 *</span>
-<span class="cm">			 * @method renderUI</span>
-<span class="cm">			 * @protected</span>
-<span class="cm">			 */</span>
-			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">_inheritOwnerTreeAttrs</span><span class="p">();</span>
-
-				<span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-			<span class="p">},</span>
-
-			<span class="cm">/**</span>
 <span class="cm">			 * Bind the events on the TreeNodeIO UI. Lifecycle.</span>
 <span class="cm">			 *</span>
 <span class="cm">			 * @method bindUI</span>
@@ -2600,11 +2530,19 @@
 			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindPaginatorUI</span><span class="p">();</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_createEvents</span><span class="p">();</span>
+			<span class="p">},</span>
+
+			<span class="nx">syncUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">syncUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_syncPaginatorUI</span><span class="p">();</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -2627,11 +2565,11 @@
 			<span class="cm">/*</span>
 <span class="cm">			* Methods</span>
 <span class="cm">			*/</span>
-			<span class="nx">createNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">createNodes</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">A</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">nodes</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">createNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">(</span><span class="nx">nodes</span><span class="p">),</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">newNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">createNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="p">[</span><span class="nx">node</span><span class="p">]);</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newNode</span><span class="p">);</span>
 				<span class="p">});</span>
@@ -2651,18 +2589,16 @@
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">LOADED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">io</span> <span class="o">||</span> <span class="nx">loaded</span><span class="p">)</span> <span class="p">{</span>
-					<span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">expand</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">io</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">loaded</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">loading</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">hasChildNodes</span><span class="p">())</span> <span class="p">{</span>
+					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
+						<span class="c1">// remove all children to reload</span>
+						<span class="nx">instance</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
+					<span class="p">}</span>
+
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">initIO</span><span class="p">();</span>
 				<span class="p">}</span>
 				<span class="k">else</span> <span class="p">{</span>
-					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
-						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
-							<span class="c1">// remove all children to reload</span>
-							<span class="nx">instance</span><span class="p">.</span><span class="nx">empty</span><span class="p">();</span>
-						<span class="p">}</span>
-
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">initIO</span><span class="p">();</span>
-					<span class="p">}</span>
+					<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">expand</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 				<span class="p">}</span>
 			<span class="p">},</span>
 
@@ -2752,7 +2688,7 @@
 					<span class="nx">nodes</span> <span class="o">=</span> <span class="nx">formatter</span><span class="p">(</span><span class="nx">nodes</span><span class="p">);</span>
 				<span class="p">}</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">createNode</span><span class="p">(</span><span class="nx">nodes</span><span class="p">);</span>
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">createNodes</span><span class="p">(</span><span class="nx">nodes</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">expand</span><span class="p">();</span>
 			<span class="p">},</span>
@@ -2944,7 +2880,12 @@
 				<span class="kd">var</span> <span class="nx">paginator</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PAGINATOR</span><span class="p">);</span>
 
 				<span class="k">if</span> <span class="p">(</span><span class="nx">paginator</span><span class="p">)</span> <span class="p">{</span>
-					<span class="kd">var</span> <span class="nx">hasMoreData</span> <span class="o">=</span> <span class="p">(</span><span class="nx">newNodes</span> <span class="o">&amp;&amp;</span> <span class="nx">newNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+					<span class="kd">var</span> <span class="nx">hasMoreData</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">newNodes</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">hasMoreData</span> <span class="o">=</span> <span class="p">(</span><span class="nx">newNodes</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">);</span>
+					<span class="p">}</span>
+
 					<span class="kd">var</span> <span class="nx">showPaginator</span> <span class="o">=</span> <span class="nx">hasMoreData</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;=</span> <span class="nx">paginator</span><span class="p">.</span><span class="nx">limit</span><span class="p">);</span>
 
 					<span class="k">if</span> <span class="p">(</span><span class="nx">paginator</span><span class="p">.</span><span class="nx">alwaysVisible</span> <span class="o">||</span> <span class="nx">showPaginator</span><span class="p">)</span> <span class="p">{</span>
@@ -3084,6 +3025,8 @@
 
 		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span><span class="p">,</span>
 
+		<span class="nx">UI_ATTRS</span><span class="o">:</span> <span class="p">[</span><span class="nx">CHECKED</span><span class="p">],</span>
+
 		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
 			<span class="cm">/*</span>
 <span class="cm">			* Lifecycle</span>
@@ -3091,7 +3034,7 @@
 			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeNodeCheck</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeCheck</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_EL</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">checkEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">);</span>
@@ -3113,10 +3056,8 @@
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">LABEL_EL</span><span class="p">);</span>
 
-				<span class="nx">TreeNodeCheck</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeCheck</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;check&#39;</span><span class="p">);</span>
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s1">&#39;uncheck&#39;</span><span class="p">);</span>
 				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">toggleCheck</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_NODE_CHECKBOX_CONTAINER</span><span class="p">);</span>
 				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">A</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">toggleCheck</span><span class="p">,</span> <span class="nx">instance</span><span class="p">),</span> <span class="nx">DOT</span><span class="o">+</span><span class="nx">CSS_TREE_LABEL</span><span class="p">);</span>
 
@@ -3131,16 +3072,8 @@
 <span class="cm">			 */</span>
 			<span class="nx">check</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">checkEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">);</span>
-
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHECKED</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-
-				<span class="nx">checkEl</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">CHECKED</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;check&#39;</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -3150,16 +3083,8 @@
 <span class="cm">			 */</span>
 			<span class="nx">uncheck</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
-				<span class="kd">var</span> <span class="nx">checkEl</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">);</span>
-
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHECKED</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-
-				<span class="nx">checkEl</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s1">&#39;uncheck&#39;</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -3190,6 +3115,19 @@
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
 				<span class="k">return</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetChecked</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHECKED</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">CHECKED</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHECKED</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
+				<span class="p">}</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
@@ -3246,84 +3184,56 @@
 			<span class="cm">/*</span>
 <span class="cm">			* Methods</span>
 <span class="cm">			*/</span>
-			<span class="nx">check</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stopPropagation</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">check</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-				<span class="kd">var</span> <span class="nx">parentNode</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">PARENT_NODE</span><span class="p">);</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
 
-				<span class="c1">// invoke default check logic</span>
-				<span class="nx">TreeNodeTask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">check</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">stopPropagation</span><span class="p">)</span> <span class="p">{</span>
-					<span class="c1">// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the checked node</span>
-					<span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
-
-					<span class="c1">// loop all parentNodes</span>
-					<span class="nx">instance</span><span class="p">.</span><span class="nx">eachParent</span><span class="p">(</span>
-						<span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
-							<span class="c1">// if isTreeNodeTask and isChecked</span>
-							<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">))</span> <span class="p">{</span>
-								<span class="kd">var</span> <span class="nx">hasUnchecked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-
-								<span class="c1">// after check a child always check the parentNode temporary</span>
-								<span class="c1">// and add the CSS_TREE_NODE_CHILD_UNCHECKED state until the !hasUnchecked check</span>
-								<span class="nx">parentNode</span><span class="p">.</span><span class="nx">check</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-								<span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
-
-								<span class="c1">// check if has at least one child uncheked</span>
-								<span class="nx">parentNode</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
-									<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">child</span><span class="p">.</span><span class="nx">isChecked</span><span class="p">())</span> <span class="p">{</span>
-										<span class="nx">hasUnchecked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-									<span class="p">}</span>
-								<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
-
-								<span class="c1">// if doesn&#39;t have unchecked children remove the CSS_TREE_NODE_CHILD_UNCHECKED class</span>
-								<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hasUnchecked</span><span class="p">)</span> <span class="p">{</span>
-									<span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
-								<span class="p">}</span>
-							<span class="p">}</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">child</span><span class="p">))</span> <span class="p">{</span>
+							<span class="nx">child</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>
 						<span class="p">}</span>
-					<span class="p">);</span>
-
-					<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-						<span class="c1">// check all TreeNodeTask children</span>
-						<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
-							<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">child</span><span class="p">))</span> <span class="p">{</span>
-								<span class="nx">child</span><span class="p">.</span><span class="nx">check</span><span class="p">();</span>
-							<span class="p">}</span>
-						<span class="p">});</span>
-					<span class="p">}</span>
+					<span class="p">});</span>
 				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachParent</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">isChecked</span><span class="p">())</span> <span class="p">{</span>
+							<span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
+
+				<span class="c1">// invoke default check logic</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeTask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">check</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="nx">uncheck</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 				<span class="kd">var</span> <span class="nx">contentBox</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">);</span>
 
-				<span class="c1">// invoke default uncheck logic</span>
-				<span class="nx">TreeNodeTask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">uncheck</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
-
-				<span class="c1">// always remove the CSS_TREE_NODE_CHILD_UNCHECKED of the clicked node</span>
-				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
-
-				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachParent</span><span class="p">(</span>
-					<span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
-						<span class="c1">// if isTreeNodeTask and isChecked</span>
-						<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">parentNode</span><span class="p">.</span><span class="nx">isChecked</span><span class="p">())</span> <span class="p">{</span>
-							<span class="c1">// add CSS_TREE_NODE_CHILD_UNCHECKED class</span>
-							<span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
-						<span class="p">}</span>
-					<span class="p">}</span>
-				<span class="p">);</span>
-
 				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">instance</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
-					<span class="c1">// uncheck all TreeNodeTask children</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">eachChildren</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
 						<span class="k">if</span> <span class="p">(</span><span class="nx">child</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeCheck</span><span class="p">)</span> <span class="p">{</span>
 							<span class="nx">child</span><span class="p">.</span><span class="nx">uncheck</span><span class="p">();</span>
 						<span class="p">}</span>
 					<span class="p">});</span>
 				<span class="p">}</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">eachParent</span><span class="p">(</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeTask</span><span class="p">(</span><span class="nx">parentNode</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">isChecked</span><span class="p">())</span> <span class="p">{</span>
+							<span class="nx">parentNode</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+
+				<span class="nx">contentBox</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_TREE_NODE_CHILD_UNCHECKED</span><span class="p">);</span>
+
+				<span class="c1">// invoke default uncheck logic</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeTask</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">uncheck</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 			<span class="p">}</span>
 		<span class="p">}</span>
 	<span class="p">}</span>
@@ -3331,10 +3241,129 @@
 
 <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeTask</span> <span class="o">=</span> <span class="nx">TreeNodeTask</span><span class="p">;</span>
 
+
+<span class="cm">/*</span>
+<span class="cm">* TreeNodeRadio</span>
+<span class="cm">*/</span>
+
+<span class="kd">var</span>	<span class="nx">TREE_NODE_RADIO</span> <span class="o">=</span> <span class="s1">&#39;tree-node-radio&#39;</span><span class="p">,</span>
+
+	<span class="nx">isTreeNodeRadio</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">node</span> <span class="k">instanceof</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeRadio</span><span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="nx">CSS_NODE_RADIO</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TREE</span><span class="p">,</span> <span class="nx">NODE</span><span class="p">,</span> <span class="nx">RADIO</span><span class="p">),</span>
+	<span class="nx">CSS_NODE_RADIO_CHECKED</span> <span class="o">=</span> <span class="nx">getCN</span><span class="p">(</span><span class="nx">TREE</span><span class="p">,</span> <span class="nx">NODE</span><span class="p">,</span> <span class="nx">RADIO</span><span class="p">,</span> <span class="nx">CHECKED</span><span class="p">);</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * &lt;p&gt;&lt;img src=&quot;assets/images/aui-treeNodeRadio/main.png&quot;/&gt;&lt;/p&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * A base class for TreeNodeRadio, providing:</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *    &lt;li&gt;Widget Lifecycle (initializer, renderUI, bindUI, syncUI, destructor)&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;3 states checkbox support&lt;/li&gt;</span>
+<span class="cm"> *    &lt;li&gt;Automatic check/uncheck the parent status based on the children checked status&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> * Check the list of &lt;a href=&quot;TreeNodeRadio.html#configattributes&quot;&gt;Configuration Attributes&lt;/a&gt; available for</span>
+<span class="cm"> * TreeNodeRadio.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param config {Object} Object literal specifying widget configuration properties.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class TreeNodeRadio</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends TreeNodeTask</span>
+<span class="cm"> */</span>
+<span class="kd">var</span> <span class="nx">TreeNodeRadio</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span>
+	<span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">		 * Static property provides a string to identify the class.</span>
+<span class="cm">		 *</span>
+<span class="cm">		 * @property TreeNode.NAME</span>
+<span class="cm">		 * @type String</span>
+<span class="cm">		 * @static</span>
+<span class="cm">		 */</span>
+		<span class="nx">NAME</span><span class="o">:</span> <span class="nx">TREE_NODE_RADIO</span><span class="p">,</span>
+
+		<span class="nx">EXTENDS</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeTask</span><span class="p">,</span>
+
+		<span class="nx">prototype</span><span class="o">:</span> <span class="p">{</span>
+			<span class="cm">/*</span>
+<span class="cm">			* Methods</span>
+<span class="cm">			*/</span>
+			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeRadio</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">instance</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_NODE_RADIO</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">check</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="nx">instance</span><span class="p">.</span><span class="nx">_uncheckNodesRadio</span><span class="p">();</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeRadio</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">check</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uiSetChecked</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">CSS_NODE_RADIO_CHECKED</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">CHECKED</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CONTENT_BOX</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">CSS_NODE_RADIO_CHECKED</span><span class="p">);</span>
+					<span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHECK_EL</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="nx">CHECKED</span><span class="p">,</span> <span class="nx">BLANK</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">},</span>
+
+			<span class="nx">_uncheckNodesRadio</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+				<span class="kd">var</span> <span class="nx">children</span><span class="p">;</span>
+
+				<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">children</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHILDREN</span><span class="p">);</span>
+				<span class="p">}</span>
+				<span class="k">else</span> <span class="p">{</span>
+					<span class="kd">var</span> <span class="nx">ownerTree</span> <span class="o">=</span> <span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">);</span>
+
+					<span class="k">if</span> <span class="p">(</span><span class="nx">ownerTree</span><span class="p">)</span> <span class="p">{</span>
+						<span class="nx">children</span> <span class="o">=</span> <span class="nx">ownerTree</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">CHILDREN</span><span class="p">);</span>
+					<span class="p">}</span>
+					<span class="k">else</span> <span class="p">{</span>
+						<span class="k">return</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+
+				<span class="nx">A</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span>
+					<span class="nx">children</span><span class="p">,</span>
+					<span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">value</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+							<span class="nx">instance</span><span class="p">.</span><span class="nx">_uncheckNodesRadio</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+						<span class="p">}</span>
+
+						<span class="k">if</span> <span class="p">(</span><span class="nx">isTreeNodeRadio</span><span class="p">(</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+							<span class="nx">value</span><span class="p">.</span><span class="nx">uncheck</span><span class="p">();</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">);</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+<span class="p">);</span>
+
+<span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeRadio</span> <span class="o">=</span> <span class="nx">TreeNodeRadio</span><span class="p">;</span>
+
+
 <span class="cm">/**</span>
 <span class="cm"> * TreeNode types hash map.</span>
 <span class="cm"> *</span>
 <span class="cm"> * &lt;pre&gt;&lt;code&gt;A.TreeNode.nodeTypes = {</span>
+<span class="cm"> *  radio: A.TreeNodeRadio,</span>
 <span class="cm"> *  task: A.TreeNodeTask,</span>
 <span class="cm"> *  check: A.TreeNodeCheck,</span>
 <span class="cm"> *  node: A.TreeNode,</span>
@@ -3346,13 +3375,14 @@
 <span class="cm"> * @type Object</span>
 <span class="cm"> */</span>
 <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">.</span><span class="nx">nodeTypes</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">radio</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeRadio</span><span class="p">,</span>
 	<span class="nx">task</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeTask</span><span class="p">,</span>
 	<span class="nx">check</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeCheck</span><span class="p">,</span>
 	<span class="nx">node</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">,</span>
 	<span class="nx">io</span><span class="o">:</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNodeIO</span>
 <span class="p">};</span>
 
-<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span><span class="s1">&#39;io-base&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;querystring-stringify&#39;</span><span class="p">]});</span>
+<span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span> <span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span><span class="s1">&#39;aui-io&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;querystring-stringify&#39;</span><span class="p">]});</span>
 <span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-tree-view&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span> <span class="p">{</span>
 <span class="cm">/**</span>
 <span class="cm"> * The TreeView Utility</span>
@@ -3542,7 +3572,7 @@
 				<span class="c1">// when the node is appended to the TreeView set the OWNER_TREE</span>
 				<span class="nx">node</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">OWNER_TREE</span><span class="p">,</span> <span class="nx">instance</span><span class="p">);</span>
 
-				<span class="nx">TreeView</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">registerNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeView</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">registerNode</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 			<span class="p">},</span>
 
 			<span class="cm">/**</span>
@@ -3559,9 +3589,6 @@
 					<span class="c1">// use firstChild as label</span>
 					<span class="kd">var</span> <span class="nx">labelEl</span> <span class="o">=</span> <span class="nx">node</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s1">&#39;&gt; *&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
 					<span class="kd">var</span> <span class="nx">label</span> <span class="o">=</span> <span class="nx">labelEl</span><span class="p">.</span><span class="nx">outerHTML</span><span class="p">();</span>
-
-					<span class="c1">// avoid memory leak</span>
-					<span class="nx">docFrag</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
 					<span class="kd">var</span> <span class="nx">treeNode</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">.</span><span class="nx">TreeNode</span><span class="p">({</span>
 						<span class="nx">boundingBox</span><span class="o">:</span> <span class="nx">node</span><span class="p">,</span>
@@ -3913,7 +3940,7 @@
 			<span class="nx">bindUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">bindUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="nx">instance</span><span class="p">.</span><span class="nx">_bindDragDrop</span><span class="p">();</span>
 			<span class="p">},</span>
@@ -3927,7 +3954,7 @@
 			<span class="nx">renderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 				<span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-				<span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+				<span class="nx">A</span><span class="p">.</span><span class="nx">TreeViewDD</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderUI</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
 
 				<span class="c1">// creating drag helper and hiding it</span>
 				<span class="kd">var</span> <span class="nx">helper</span> <span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">HELPER_TPL</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
@@ -4131,7 +4158,7 @@
 					<span class="c1">// these areas are responsible for defining the state when the mouse is over any of them</span>
 					<span class="kd">var</span> <span class="nx">nArea</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">OFFSET_HEIGHT</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
 					<span class="kd">var</span> <span class="nx">yTop</span> <span class="o">=</span> <span class="nx">nodeContent</span><span class="p">.</span><span class="nx">getY</span><span class="p">();</span>
-					<span class="kd">var</span> <span class="nx">yCenter</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">1</span><span class="p">;</span>
+					<span class="kd">var</span> <span class="nx">yCenter</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="p">;</span>
 					<span class="kd">var</span> <span class="nx">yBottom</span> <span class="o">=</span> <span class="nx">yTop</span> <span class="o">+</span> <span class="nx">nArea</span><span class="o">*</span><span class="mi">2</span><span class="p">;</span>
 					<span class="kd">var</span> <span class="nx">mouseY</span> <span class="o">=</span> <span class="nx">drag</span><span class="p">.</span><span class="nx">mouseXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
@@ -4151,7 +4178,7 @@
 						<span class="p">}</span>
 						<span class="c1">// if it&#39;s a leaf we need to set the ABOVE or BELOW state instead of append</span>
 						<span class="k">else</span> <span class="p">{</span>
-							<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="nx">UP</span><span class="p">)</span> <span class="p">{</span>
+							<span class="k">if</span> <span class="p">(</span><span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">===</span> <span class="nx">UP</span><span class="p">)</span> <span class="p">{</span>
 								<span class="nx">instance</span><span class="p">.</span><span class="nx">_goingUpState</span><span class="p">(</span><span class="nx">nodeContent</span><span class="p">);</span>
 							<span class="p">}</span>
 							<span class="k">else</span> <span class="p">{</span>
@@ -4201,17 +4228,17 @@
 				<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dropNode</span> <span class="o">=</span> <span class="nx">dropTreeNode</span><span class="p">;</span>
 				<span class="nx">output</span><span class="p">.</span><span class="nx">tree</span><span class="p">.</span><span class="nx">dragNode</span> <span class="o">=</span> <span class="nx">dragTreeNode</span><span class="p">;</span>
 
-				<span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">ABOVE</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">===</span> <span class="nx">ABOVE</span><span class="p">)</span> <span class="p">{</span>
 					<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
 				<span class="p">}</span>
-				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">BELOW</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">===</span> <span class="nx">BELOW</span><span class="p">)</span> <span class="p">{</span>
 					<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">insertAfter</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
 
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">bubbleEvent</span><span class="p">(</span><span class="s1">&#39;dropInsert&#39;</span><span class="p">,</span> <span class="nx">output</span><span class="p">);</span>
 				<span class="p">}</span>
-				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">==</span> <span class="nx">APPEND</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">dropAction</span> <span class="o">===</span> <span class="nx">APPEND</span><span class="p">)</span> <span class="p">{</span>
 					<span class="k">if</span> <span class="p">(</span><span class="nx">dropTreeNode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">isLeaf</span><span class="p">())</span> <span class="p">{</span>
 						<span class="nx">dropTreeNode</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dragTreeNode</span><span class="p">);</span>
 
@@ -4245,7 +4272,7 @@
 				<span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">lastXY</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 
 				<span class="c1">// if the y change</span>
-				<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!=</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">!==</span> <span class="nx">lastY</span><span class="p">)</span> <span class="p">{</span>
 					<span class="c1">// set the drag direction</span>
 					<span class="nx">instance</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">lastY</span><span class="p">)</span> <span class="o">?</span> <span class="nx">UP</span> <span class="o">:</span> <span class="nx">DOWN</span><span class="p">;</span>
 				<span class="p">}</span>
@@ -4340,7 +4367,7 @@
 <span class="p">},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drag&#39;</span><span class="p">,</span><span class="s1">&#39;dd-drop&#39;</span><span class="p">,</span><span class="s1">&#39;dd-proxy&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 
 
-<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-tree&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span> <span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-view&#39;</span><span class="p">]});</span>
+<span class="nx">AUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;aui-tree&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">A</span><span class="p">){},</span> <span class="s1">&#39;@VERSION@&#39;</span> <span class="p">,{</span><span class="nx">use</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;aui-tree-data&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-node&#39;</span><span class="p">,</span> <span class="s1">&#39;aui-tree-view&#39;</span><span class="p">],</span> <span class="nx">skinnable</span><span class="o">:</span><span class="kc">true</span><span class="p">});</span>
 </pre></div>
 
 							</div>
@@ -4358,7 +4385,7 @@
 
 <script type="text/javascript">
 
-    var ALL_YUI_PROPS = [{"url": "TreeViewDD.html#method__afterDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_afterDropHit"}, {"url": "TreeNode.html#method__afterSetChildren", "access": "protected", "host": "TreeNode", "type": "method", "name": "_afterSetChildren"}, {"url": "TreeNode.html#config_alwaysShowHitArea", "access": "", "host": "TreeNode", "type": "config", "name": "alwaysShowHitArea"}, {"url": "TreeNode.html#event_alwaysShowHitAreaChange", "access": "", "host": "TreeNode", "type": "event", "name": "alwaysShowHitAreaChange"}, {"url": "TreeData.html#method__appendChild", "access": "protected", "host": "TreeData", "type": "method", "name": "_appendChild"}, {"url": "TreeData.html#method_appendChild", "access": "", "host": "TreeData", "type": "method", "name": "appendChild"}, {"url": "TreeViewDD.html#method__appendState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_appendState"}, {"url": "TreeNode.html#property_A.TreeNode.nodeTypes", "access": "", "host": "TreeNode", "type": "property", "name": "A.TreeNode.nodeTypes"}, {"url": "TreeViewDD.html#method__bindDragDrop", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_bindDragDrop"}, {"url": "TreeNodeIO.html#method__bindPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_bindPaginatorUI"}, {"url": "TreeNode.html#method_bindUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "bindUI"}, {"url": "TreeNodeIO.html#method_bindUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "bindUI"}, {"url": "TreeView.html#method_bindUI", "access": "protected", "host": "TreeView", "type": "method", "name": "bindUI"}, {"url": "TreeViewDD.html#method_bindUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "bindUI"}, {"url": "TreeNode.html#property_BOUNDING_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "TreeData.html#method_bubbleEvent", "access": "", "host": "TreeData", "type": "method", "name": "bubbleEvent"}, {"url": "TreeNodeIO.html#config_cache", "access": "", "host": "TreeNodeIO", "type": "config", "name": "cache"}, {"url": "TreeNodeIO.html#event_cacheChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "cacheChange"}, {"url": "TreeNodeCheck.html#method_check", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "check"}, {"url": "TreeViewDD.html#method_check", "access": "", "host": "TreeViewDD", "type": "method", "name": "check"}, {"url": "TreeNodeCheck.html#config_checkContainerEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkContainerEl"}, {"url": "TreeViewDD.html#config_checkContainerEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkContainerEl"}, {"url": "TreeNodeCheck.html#event_checkContainerElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeViewDD.html#event_checkContainerElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeNodeCheck.html#config_checked", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checked"}, {"url": "TreeViewDD.html#config_checked", "access": "", "host": "TreeViewDD", "type": "config", "name": "checked"}, {"url": "TreeNodeCheck.html#event_checkedChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkedChange"}, {"url": "TreeViewDD.html#event_checkedChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkedChange"}, {"url": "TreeNodeCheck.html#config_checkEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkEl"}, {"url": "TreeViewDD.html#config_checkEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkEl"}, {"url": "TreeNodeCheck.html#event_checkElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkElChange"}, {"url": "TreeViewDD.html#event_checkElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkElChange"}, {"url": "TreeNodeCheck.html#config_checkName", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkName"}, {"url": "TreeViewDD.html#config_checkName", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkName"}, {"url": "TreeNodeCheck.html#event_checkNameChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkNameChange"}, {"url": "TreeViewDD.html#event_checkNameChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkNameChange"}, {"url": "TreeData.html#config_children", "access": "", "host": "TreeData", "type": "config", "name": "children"}, {"url": "TreeData.html#event_childrenChange", "access": "", "host": "TreeData", "type": "event", "name": "childrenChange"}, {"url": "TreeNode.html#method__collapse", "access": "protected", "host": "TreeNode", "type": "method", "name": "_collapse"}, {"url": "TreeNode.html#method_collapse", "access": "", "host": "TreeNode", "type": "method", "name": "collapse"}, {"url": "TreeData.html#method__collapseAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_collapseAll"}, {"url": "TreeData.html#method_collapseAll", "access": "", "host": "TreeData", "type": "method", "name": "collapseAll"}, {"url": "TreeData.html#config_container", "access": "", "host": "TreeData", "type": "config", "name": "container"}, {"url": "TreeData.html#event_containerChange", "access": "", "host": "TreeData", "type": "event", "name": "containerChange"}, {"url": "TreeNode.html#method_contains", "access": "", "host": "TreeNode", "type": "method", "name": "contains"}, {"url": "TreeNode.html#property_CONTENT_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "TreeViewDD.html#method__createDrag", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_createDrag"}, {"url": "TreeView.html#method__createFromHTMLMarkup", "access": "protected", "host": "TreeView", "type": "method", "name": "_createFromHTMLMarkup"}, {"url": "TreeData.html#method_createNode", "access": "", "host": "TreeData", "type": "method", "name": "createNode"}, {"url": "TreeNode.html#method__createNodeContainer", "access": "protected", "host": "TreeNode", "type": "method", "name": "_createNodeContainer"}, {"url": "TreeNodeIO.html#method__defPaginatorClickFn", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_defPaginatorClickFn"}, {"url": "TreeView.html#method__delegateDOM", "access": "protected", "host": "TreeView", "type": "method", "name": "_delegateDOM"}, {"url": "TreeData.html#method_destructor", "access": "protected", "host": "TreeData", "type": "method", "name": "destructor"}, {"url": "TreeViewDD.html#method_destructor", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "destructor"}, {"url": "TreeViewDD.html#property_direction", "access": "protected", "host": "TreeViewDD", "type": "property", "name": "direction"}, {"url": "TreeNode.html#config_draggable", "access": "", "host": "TreeNode", "type": "config", "name": "draggable"}, {"url": "TreeNode.html#event_draggableChange", "access": "", "host": "TreeNode", "type": "event", "name": "draggableChange"}, {"url": "TreeViewDD.html#config_dropAction", "access": "", "host": "TreeViewDD", "type": "config", "name": "dropAction"}, {"url": "TreeViewDD.html#event_dropActionChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "dropActionChange"}, {"url": "TreeData.html#method_eachChildren", "access": "", "host": "TreeData", "type": "method", "name": "eachChildren"}, {"url": "TreeData.html#method_empty", "access": "", "host": "TreeData", "type": "method", "name": "empty"}, {"url": "TreeNode.html#method__expand", "access": "", "host": "TreeNode", "type": "method", "name": "_expand"}, {"url": "TreeNode.html#method_expand", "access": "", "host": "TreeNode", "type": "method", "name": "expand"}, {"url": "TreeData.html#method__expandAll", "access": "protected", "host": "TreeData", "type": "method", "name": "_expandAll"}, {"url": "TreeData.html#method_expandAll", "access": "", "host": "TreeData", "type": "method", "name": "expandAll"}, {"url": "TreeNode.html#config_expanded", "access": "", "host": "TreeNode", "type": "config", "name": "expanded"}, {"url": "TreeNode.html#event_expandedChange", "access": "", "host": "TreeNode", "type": "event", "name": "expandedChange"}, {"url": "TreeData.html#method_getChildren", "access": "", "host": "TreeData", "type": "method", "name": "getChildren"}, {"url": "TreeNode.html#method_getDepth", "access": "", "host": "TreeNode", "type": "method", "name": "getDepth"}, {"url": "TreeData.html#method_getEventOutputMap", "access": "", "host": "TreeData", "type": "method", "name": "getEventOutputMap"}, {"url": "TreeData.html#method_getNodeByChild", "access": "", "host": "TreeData", "type": "method", "name": "getNodeByChild"}, {"url": "TreeData.html#method_getNodeById", "access": "", "host": "TreeData", "type": "method", "name": "getNodeById"}, {"url": "TreeViewDD.html#method__goingDownState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingDownState"}, {"url": "TreeViewDD.html#method__goingUpState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingUpState"}, {"url": "TreeViewDD.html#method__handleEvent", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_handleEvent"}, {"url": "TreeNodeIO.html#method__handlePaginatorClickEvent", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_handlePaginatorClickEvent"}, {"url": "TreeData.html#method_hasChildNodes", "access": "", "host": "TreeData", "type": "method", "name": "hasChildNodes"}, {"url": "TreeViewDD.html#config_helper", "access": "", "host": "TreeViewDD", "type": "config", "name": "helper"}, {"url": "TreeViewDD.html#event_helperChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "helperChange"}, {"url": "TreeNode.html#config_hitAreaEl", "access": "", "host": "TreeNode", "type": "config", "name": "hitAreaEl"}, {"url": "TreeNode.html#event_hitAreaElChange", "access": "", "host": "TreeNode", "type": "event", "name": "hitAreaElChange"}, {"url": "TreeNode.html#config_iconEl", "access": "", "host": "TreeNode", "type": "config", "name": "iconEl"}, {"url": "TreeNode.html#event_iconElChange", "access": "", "host": "TreeNode", "type": "event", "name": "iconElChange"}, {"url": "TreeNode.html#config_id", "access": "", "host": "TreeNode", "type": "config", "name": "id"}, {"url": "TreeNode.html#event_idChange", "access": "", "host": "TreeNode", "type": "event", "name": "idChange"}, {"url": "TreeData.html#config_index", "access": "", "host": "TreeData", "type": "config", "name": "index"}, {"url": "TreeData.html#event_indexChange", "access": "", "host": "TreeData", "type": "event", "name": "indexChange"}, {"url": "TreeData.html#method_indexOf", "access": "", "host": "TreeData", "type": "method", "name": "indexOf"}, {"url": "TreeNodeIO.html#method__inheritOwnerTreeAttrs", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_inheritOwnerTreeAttrs"}, {"url": "TreeData.html#method_initializer", "access": "protected", "host": "TreeData", "type": "method", "name": "initializer"}, {"url": "TreeNode.html#method_initializer", "access": "protected", "host": "TreeNode", "type": "method", "name": "initializer"}, {"url": "TreeNodeIO.html#method_initIO", "access": "", "host": "TreeNodeIO", "type": "method", "name": "initIO"}, {"url": "TreeData.html#method_insert", "access": "", "host": "TreeData", "type": "method", "name": "insert"}, {"url": "TreeData.html#method_insertAfter", "access": "", "host": "TreeData", "type": "method", "name": "insertAfter"}, {"url": "TreeData.html#method_insertBefore", "access": "", "host": "TreeData", "type": "method", "name": "insertBefore"}, {"url": "TreeNodeIO.html#config_io", "access": "", "host": "TreeNodeIO", "type": "config", "name": "io"}, {"url": "TreeView.html#config_io", "access": "", "host": "TreeView", "type": "config", "name": "io"}, {"url": "TreeNodeIO.html#event_ioChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "ioChange"}, {"url": "TreeView.html#event_ioChange", "access": "", "host": "TreeView", "type": "event", "name": "ioChange"}, {"url": "TreeNodeIO.html#method_ioCompleteHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioCompleteHandler"}, {"url": "TreeNodeIO.html#method_ioFailureHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioFailureHandler"}, {"url": "TreeNodeIO.html#method_ioStartHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioStartHandler"}, {"url": "TreeNodeIO.html#method_ioSuccessHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioSuccessHandler"}, {"url": "TreeNode.html#method_isLeaf", "access": "", "host": "TreeNode", "type": "method", "name": "isLeaf"}, {"url": "TreeData.html#method_isRegistered", "access": "", "host": "TreeData", "type": "method", "name": "isRegistered"}, {"url": "TreeNode.html#method_isSelected", "access": "", "host": "TreeNode", "type": "method", "name": "isSelected"}, {"url": "TreeData.html#method_item", "access": "", "host": "TreeData", "type": "method", "name": "item"}, {"url": "TreeNode.html#config_label", "access": "", "host": "TreeNode", "type": "config", "name": "label"}, {"url": "TreeNode.html#event_labelChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelChange"}, {"url": "TreeNode.html#config_labelEl", "access": "", "host": "TreeNode", "type": "config", "name": "labelEl"}, {"url": "TreeNode.html#event_labelElChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelElChange"}, {"url": "TreeView.html#config_lastSelected", "access": "", "host": "TreeView", "type": "config", "name": "lastSelected"}, {"url": "TreeView.html#event_lastSelectedChange", "access": "", "host": "TreeView", "type": "event", "name": "lastSelectedChange"}, {"url": "TreeViewDD.html#config_lastY", "access": "", "host": "TreeViewDD", "type": "config", "name": "lastY"}, {"url": "TreeViewDD.html#event_lastYChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "lastYChange"}, {"url": "TreeNode.html#config_leaf", "access": "", "host": "TreeNode", "type": "config", "name": "leaf"}, {"url": "TreeNode.html#event_leafChange", "access": "", "host": "TreeNode", "type": "event", "name": "leafChange"}, {"url": "TreeNodeIO.html#config_loaded", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loaded"}, {"url": "TreeNodeIO.html#event_loadedChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadedChange"}, {"url": "TreeNodeIO.html#config_loading", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loading"}, {"url": "TreeNodeIO.html#event_loadingChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadingChange"}, {"url": "TreeNode.html#config_nextSibling", "access": "", "host": "TreeNode", "type": "config", "name": "nextSibling"}, {"url": "TreeNode.html#event_nextSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "nextSiblingChange"}, {"url": "TreeViewDD.html#config_nodeContent", "access": "", "host": "TreeViewDD", "type": "config", "name": "nodeContent"}, {"url": "TreeViewDD.html#event_nodeContentChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "nodeContentChange"}, {"url": "TreeView.html#method__onClickHitArea", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickHitArea"}, {"url": "TreeView.html#method__onClickNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickNodeEl"}, {"url": "TreeViewDD.html#method__onDragAlign", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragAlign"}, {"url": "TreeViewDD.html#method__onDragStart", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragStart"}, {"url": "TreeViewDD.html#method__onDropExit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropExit"}, {"url": "TreeViewDD.html#method__onDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropHit"}, {"url": "TreeViewDD.html#method__onDropOver", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropOver"}, {"url": "TreeView.html#method__onMouseEnterNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseEnterNodeEl"}, {"url": "TreeView.html#method__onMouseLeaveNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseLeaveNodeEl"}, {"url": "TreeNode.html#config_ownerTree", "access": "", "host": "TreeNode", "type": "config", "name": "ownerTree"}, {"url": "TreeNode.html#event_ownerTreeChange", "access": "", "host": "TreeNode", "type": "event", "name": "ownerTreeChange"}, {"url": "TreeNode.html#config_parentNode", "access": "", "host": "TreeNode", "type": "config", "name": "parentNode"}, {"url": "TreeNode.html#event_parentNodeChange", "access": "", "host": "TreeNode", "type": "event", "name": "parentNodeChange"}, {"url": "TreeNode.html#config_prevSibling", "access": "", "host": "TreeNode", "type": "config", "name": "prevSibling"}, {"url": "TreeNode.html#event_prevSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "prevSiblingChange"}, {"url": "TreeData.html#method_refreshIndex", "access": "", "host": "TreeData", "type": "method", "name": "refreshIndex"}, {"url": "TreeData.html#method_registerNode", "access": "", "host": "TreeData", "type": "method", "name": "registerNode"}, {"url": "TreeData.html#method__removeChild", "access": "", "host": "TreeData", "type": "method", "name": "_removeChild"}, {"url": "TreeData.html#method_removeChild", "access": "", "host": "TreeData", "type": "method", "name": "removeChild"}, {"url": "TreeNode.html#method__renderBoundingBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderBoundingBox"}, {"url": "TreeNode.html#method__renderContentBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderContentBox"}, {"url": "TreeView.html#method__renderElements", "access": "protected", "host": "TreeView", "type": "method", "name": "_renderElements"}, {"url": "TreeNode.html#method__renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderUI"}, {"url": "TreeNode.html#method_renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "renderUI"}, {"url": "TreeNodeIO.html#method_renderUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "renderUI"}, {"url": "TreeView.html#method_renderUI", "access": "protected", "host": "TreeView", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method_renderUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method__resetState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_resetState"}, {"url": "TreeViewDD.html#config_scrollDelay", "access": "", "host": "TreeViewDD", "type": "config", "name": "scrollDelay"}, {"url": "TreeViewDD.html#event_scrollDelayChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "scrollDelayChange"}, {"url": "TreeData.html#method_selectAll", "access": "", "host": "TreeData", "type": "method", "name": "selectAll"}, {"url": "TreeData.html#method__setChildren", "access": "protected", "host": "TreeData", "type": "method", "name": "_setChildren"}, {"url": "TreeNodeIO.html#method__setIO", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_setIO"}, {"url": "TreeNode.html#method__syncHitArea", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncHitArea"}, {"url": "TreeNodeIO.html#method__syncPaginatorIOData", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorIOData"}, {"url": "TreeNodeIO.html#method__syncPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorUI"}, {"url": "TreeNode.html#method__syncTreeNodeBBId", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncTreeNodeBBId"}, {"url": "TreeNode.html#method_syncUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "syncUI"}, {"url": "TreeView.html#method_syncUI", "access": "protected", "host": "TreeView", "type": "method", "name": "syncUI"}, {"url": "TreeNode.html#method_toggle", "access": "", "host": "TreeNode", "type": "method", "name": "toggle"}, {"url": "TreeNodeCheck.html#method_toggleCheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "toggleCheck"}, {"url": "TreeViewDD.html#method_toggleCheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "toggleCheck"}, {"url": "TreeData.html#property_TreeData.ATTRS", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.ATTRS"}, {"url": "TreeData.html#property_TreeData.NAME", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.NAME"}, {"url": "TreeNode.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeIO.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeCheck.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeViewDD.html#property_TreeNode.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNode.html#property_TreeNode.NAME", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeIO.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeCheck.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeTask.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeTask", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeViewDD.html#property_TreeNode.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeView.html#property_TreeView.ATTRS", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.NAME"}, {"url": "TreeView.html#property_TreeView.NAME", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.NAME"}, {"url": "TreeView.html#config_type", "access": "", "host": "TreeView", "type": "config", "name": "type"}, {"url": "TreeView.html#event_typeChange", "access": "", "host": "TreeView", "type": "event", "name": "typeChange"}, {"url": "TreeData.html#property_UI_EVENTS", "access": "protected", "host": "TreeData", "type": "property", "name": "UI_EVENTS"}, {"url": "TreeNodeCheck.html#method_uncheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "uncheck"}, {"url": "TreeViewDD.html#method_uncheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "uncheck"}, {"url": "TreeData.html#method_unregisterNode", "access": "", "host": "TreeData", "type": "method", "name": "unregisterNode"}, {"url": "TreeData.html#method_updateIndex", "access": "", "host": "TreeData", "type": "method", "name": "updateIndex"}, {"url": "TreeViewDD.html#method__updateNodeState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_updateNodeState"}, {"url": "TreeData.html#method_updateReferences", "access": "", "host": "TreeData", "type": "method", "name": "updateReferences"}];
+    var ALL_YUI_PROPS = [{"url": "TreeViewDD.html#method__afterDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_afterDropHit"}, {"url": "TreeNode.html#method__afterSetChildren", "access": "protected", "host": "TreeNode", "type": "method", "name": "_afterSetChildren"}, {"url": "TreeNode.html#config_alwaysShowHitArea", "access": "", "host": "TreeNode", "type": "config", "name": "alwaysShowHitArea"}, {"url": "TreeNode.html#event_alwaysShowHitAreaChange", "access": "", "host": "TreeNode", "type": "event", "name": "alwaysShowHitAreaChange"}, {"url": "TreeData.html#method__appendChild", "access": "protected", "host": "TreeData", "type": "method", "name": "_appendChild"}, {"url": "TreeData.html#method_appendChild", "access": "", "host": "TreeData", "type": "method", "name": "appendChild"}, {"url": "TreeViewDD.html#method__appendState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_appendState"}, {"url": "TreeNode.html#property_A.TreeNode.nodeTypes", "access": "", "host": "TreeNode", "type": "property", "name": "A.TreeNode.nodeTypes"}, {"url": "TreeViewDD.html#method__bindDragDrop", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_bindDragDrop"}, {"url": "TreeNodeIO.html#method__bindPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_bindPaginatorUI"}, {"url": "TreeNode.html#method_bindUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "bindUI"}, {"url": "TreeNodeIO.html#method_bindUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "bindUI"}, {"url": "TreeView.html#method_bindUI", "access": "protected", "host": "TreeView", "type": "method", "name": "bindUI"}, {"url": "TreeViewDD.html#method_bindUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "bindUI"}, {"url": "TreeNode.html#property_BOUNDING_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "BOUNDING_TEMPLATE"}, {"url": "TreeData.html#method_bubbleEvent", "access": "", "host": "TreeData", "type": "method", "name": "bubbleEvent"}, {"url": "TreeNodeIO.html#config_cache", "access": "", "host": "TreeNodeIO", "type": "config", "name": "cache"}, {"url": "TreeNodeIO.html#event_cacheChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "cacheChange"}, {"url": "TreeNodeCheck.html#method_check", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "check"}, {"url": "TreeViewDD.html#method_check", "access": "", "host": "TreeViewDD", "type": "method", "name": "check"}, {"url": "TreeNodeCheck.html#config_checkContainerEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkContainerEl"}, {"url": "TreeViewDD.html#config_checkContainerEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkContainerEl"}, {"url": "TreeNodeCheck.html#event_checkContainerElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeViewDD.html#event_checkContainerElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkContainerElChange"}, {"url": "TreeNodeCheck.html#config_checked", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checked"}, {"url": "TreeViewDD.html#config_checked", "access": "", "host": "TreeViewDD", "type": "config", "name": "checked"}, {"url": "TreeNodeCheck.html#event_checkedChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkedChange"}, {"url": "TreeViewDD.html#event_checkedChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkedChange"}, {"url": "TreeNodeCheck.html#config_checkEl", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkEl"}, {"url": "TreeViewDD.html#config_checkEl", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkEl"}, {"url": "TreeNodeCheck.html#event_checkElChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkElChange"}, {"url": "TreeViewDD.html#event_checkElChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkElChange"}, {"url": "TreeNodeCheck.html#config_checkName", "access": "", "host": "TreeNodeCheck", "type": "config", "name": "checkName"}, {"url": "TreeViewDD.html#config_checkName", "access": "", "host": "TreeViewDD", "type": "config", "name": "checkName"}, {"url": "TreeNodeCheck.html#event_checkNameChange", "access": "", "host": "TreeNodeCheck", "type": "event", "name": "checkNameChange"}, {"url": "TreeViewDD.html#event_checkNameChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "checkNameChange"}, {"url": "TreeData.html#config_children", "access": "", "host": "TreeData", "type": "config", "name": "children"}, {"url": "TreeData.html#event_childrenChange", "access": "", "host": "TreeData", "type": "event", "name": "childrenChange"}, {"url": "TreeNode.html#method_collapse", "access": "", "host": "TreeNode", "type": "method", "name": "collapse"}, {"url": "TreeData.html#method_collapseAll", "access": "", "host": "TreeData", "type": "method", "name": "collapseAll"}, {"url": "TreeData.html#config_container", "access": "", "host": "TreeData", "type": "config", "name": "container"}, {"url": "TreeData.html#event_containerChange", "access": "", "host": "TreeData", "type": "event", "name": "containerChange"}, {"url": "TreeNode.html#method_contains", "access": "", "host": "TreeNode", "type": "method", "name": "contains"}, {"url": "TreeNode.html#property_CONTENT_TEMPLATE", "access": "protected", "host": "TreeNode", "type": "property", "name": "CONTENT_TEMPLATE"}, {"url": "TreeViewDD.html#method__createDrag", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_createDrag"}, {"url": "TreeView.html#method__createFromHTMLMarkup", "access": "protected", "host": "TreeView", "type": "method", "name": "_createFromHTMLMarkup"}, {"url": "TreeData.html#method_createNode", "access": "", "host": "TreeData", "type": "method", "name": "createNode"}, {"url": "TreeNode.html#method__createNodeContainer", "access": "protected", "host": "TreeNode", "type": "method", "name": "_createNodeContainer"}, {"url": "TreeNodeIO.html#method__defPaginatorClickFn", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_defPaginatorClickFn"}, {"url": "TreeView.html#method__delegateDOM", "access": "protected", "host": "TreeView", "type": "method", "name": "_delegateDOM"}, {"url": "TreeData.html#method_destructor", "access": "protected", "host": "TreeData", "type": "method", "name": "destructor"}, {"url": "TreeViewDD.html#method_destructor", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "destructor"}, {"url": "TreeViewDD.html#property_direction", "access": "protected", "host": "TreeViewDD", "type": "property", "name": "direction"}, {"url": "TreeNode.html#config_draggable", "access": "", "host": "TreeNode", "type": "config", "name": "draggable"}, {"url": "TreeNode.html#event_draggableChange", "access": "", "host": "TreeNode", "type": "event", "name": "draggableChange"}, {"url": "TreeViewDD.html#config_dropAction", "access": "", "host": "TreeViewDD", "type": "config", "name": "dropAction"}, {"url": "TreeViewDD.html#event_dropActionChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "dropActionChange"}, {"url": "TreeData.html#method_eachChildren", "access": "", "host": "TreeData", "type": "method", "name": "eachChildren"}, {"url": "TreeData.html#method_empty", "access": "", "host": "TreeData", "type": "method", "name": "empty"}, {"url": "TreeNode.html#method_expand", "access": "", "host": "TreeNode", "type": "method", "name": "expand"}, {"url": "TreeData.html#method_expandAll", "access": "", "host": "TreeData", "type": "method", "name": "expandAll"}, {"url": "TreeNode.html#config_expanded", "access": "", "host": "TreeNode", "type": "config", "name": "expanded"}, {"url": "TreeNode.html#event_expandedChange", "access": "", "host": "TreeNode", "type": "event", "name": "expandedChange"}, {"url": "TreeData.html#method_getChildren", "access": "", "host": "TreeData", "type": "method", "name": "getChildren"}, {"url": "TreeNode.html#method_getDepth", "access": "", "host": "TreeNode", "type": "method", "name": "getDepth"}, {"url": "TreeData.html#method_getEventOutputMap", "access": "", "host": "TreeData", "type": "method", "name": "getEventOutputMap"}, {"url": "TreeData.html#method_getNodeByChild", "access": "", "host": "TreeData", "type": "method", "name": "getNodeByChild"}, {"url": "TreeData.html#method_getNodeById", "access": "", "host": "TreeData", "type": "method", "name": "getNodeById"}, {"url": "TreeViewDD.html#method__goingDownState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingDownState"}, {"url": "TreeViewDD.html#method__goingUpState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_goingUpState"}, {"url": "TreeViewDD.html#method__handleEvent", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_handleEvent"}, {"url": "TreeNodeIO.html#method__handlePaginatorClickEvent", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_handlePaginatorClickEvent"}, {"url": "TreeData.html#method_hasChildNodes", "access": "", "host": "TreeData", "type": "method", "name": "hasChildNodes"}, {"url": "TreeViewDD.html#config_helper", "access": "", "host": "TreeViewDD", "type": "config", "name": "helper"}, {"url": "TreeViewDD.html#event_helperChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "helperChange"}, {"url": "TreeNode.html#config_hitAreaEl", "access": "", "host": "TreeNode", "type": "config", "name": "hitAreaEl"}, {"url": "TreeNode.html#event_hitAreaElChange", "access": "", "host": "TreeNode", "type": "event", "name": "hitAreaElChange"}, {"url": "TreeNode.html#config_iconEl", "access": "", "host": "TreeNode", "type": "config", "name": "iconEl"}, {"url": "TreeNode.html#event_iconElChange", "access": "", "host": "TreeNode", "type": "event", "name": "iconElChange"}, {"url": "TreeNode.html#config_id", "access": "", "host": "TreeNode", "type": "config", "name": "id"}, {"url": "TreeNode.html#event_idChange", "access": "", "host": "TreeNode", "type": "event", "name": "idChange"}, {"url": "TreeData.html#config_index", "access": "", "host": "TreeData", "type": "config", "name": "index"}, {"url": "TreeData.html#event_indexChange", "access": "", "host": "TreeData", "type": "event", "name": "indexChange"}, {"url": "TreeData.html#method_indexOf", "access": "", "host": "TreeData", "type": "method", "name": "indexOf"}, {"url": "TreeNodeIO.html#method__inheritOwnerTreeAttrs", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_inheritOwnerTreeAttrs"}, {"url": "TreeData.html#method_initializer", "access": "protected", "host": "TreeData", "type": "method", "name": "initializer"}, {"url": "TreeNode.html#method_initializer", "access": "protected", "host": "TreeNode", "type": "method", "name": "initializer"}, {"url": "TreeNodeIO.html#method_initIO", "access": "", "host": "TreeNodeIO", "type": "method", "name": "initIO"}, {"url": "TreeData.html#method_insert", "access": "", "host": "TreeData", "type": "method", "name": "insert"}, {"url": "TreeData.html#method_insertAfter", "access": "", "host": "TreeData", "type": "method", "name": "insertAfter"}, {"url": "TreeData.html#method_insertBefore", "access": "", "host": "TreeData", "type": "method", "name": "insertBefore"}, {"url": "TreeNodeIO.html#config_io", "access": "", "host": "TreeNodeIO", "type": "config", "name": "io"}, {"url": "TreeView.html#config_io", "access": "", "host": "TreeView", "type": "config", "name": "io"}, {"url": "TreeNodeIO.html#event_ioChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "ioChange"}, {"url": "TreeView.html#event_ioChange", "access": "", "host": "TreeView", "type": "event", "name": "ioChange"}, {"url": "TreeNodeIO.html#method_ioCompleteHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioCompleteHandler"}, {"url": "TreeNodeIO.html#method_ioFailureHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioFailureHandler"}, {"url": "TreeNodeIO.html#method_ioStartHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioStartHandler"}, {"url": "TreeNodeIO.html#method_ioSuccessHandler", "access": "", "host": "TreeNodeIO", "type": "method", "name": "ioSuccessHandler"}, {"url": "TreeNode.html#method_isLeaf", "access": "", "host": "TreeNode", "type": "method", "name": "isLeaf"}, {"url": "TreeData.html#method_isRegistered", "access": "", "host": "TreeData", "type": "method", "name": "isRegistered"}, {"url": "TreeNode.html#method_isSelected", "access": "", "host": "TreeNode", "type": "method", "name": "isSelected"}, {"url": "TreeData.html#method_item", "access": "", "host": "TreeData", "type": "method", "name": "item"}, {"url": "TreeNode.html#config_label", "access": "", "host": "TreeNode", "type": "config", "name": "label"}, {"url": "TreeNode.html#event_labelChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelChange"}, {"url": "TreeNode.html#config_labelEl", "access": "", "host": "TreeNode", "type": "config", "name": "labelEl"}, {"url": "TreeNode.html#event_labelElChange", "access": "", "host": "TreeNode", "type": "event", "name": "labelElChange"}, {"url": "TreeView.html#config_lastSelected", "access": "", "host": "TreeView", "type": "config", "name": "lastSelected"}, {"url": "TreeView.html#event_lastSelectedChange", "access": "", "host": "TreeView", "type": "event", "name": "lastSelectedChange"}, {"url": "TreeViewDD.html#config_lastY", "access": "", "host": "TreeViewDD", "type": "config", "name": "lastY"}, {"url": "TreeViewDD.html#event_lastYChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "lastYChange"}, {"url": "TreeNode.html#config_leaf", "access": "", "host": "TreeNode", "type": "config", "name": "leaf"}, {"url": "TreeNode.html#event_leafChange", "access": "", "host": "TreeNode", "type": "event", "name": "leafChange"}, {"url": "TreeNodeIO.html#config_loaded", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loaded"}, {"url": "TreeNodeIO.html#event_loadedChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadedChange"}, {"url": "TreeNodeIO.html#config_loading", "access": "", "host": "TreeNodeIO", "type": "config", "name": "loading"}, {"url": "TreeNodeIO.html#event_loadingChange", "access": "", "host": "TreeNodeIO", "type": "event", "name": "loadingChange"}, {"url": "TreeNode.html#config_nextSibling", "access": "", "host": "TreeNode", "type": "config", "name": "nextSibling"}, {"url": "TreeNode.html#event_nextSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "nextSiblingChange"}, {"url": "TreeViewDD.html#config_nodeContent", "access": "", "host": "TreeViewDD", "type": "config", "name": "nodeContent"}, {"url": "TreeViewDD.html#event_nodeContentChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "nodeContentChange"}, {"url": "TreeView.html#method__onClickHitArea", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickHitArea"}, {"url": "TreeView.html#method__onClickNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onClickNodeEl"}, {"url": "TreeViewDD.html#method__onDragAlign", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragAlign"}, {"url": "TreeViewDD.html#method__onDragStart", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDragStart"}, {"url": "TreeViewDD.html#method__onDropExit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropExit"}, {"url": "TreeViewDD.html#method__onDropHit", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropHit"}, {"url": "TreeViewDD.html#method__onDropOver", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_onDropOver"}, {"url": "TreeView.html#method__onMouseEnterNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseEnterNodeEl"}, {"url": "TreeView.html#method__onMouseLeaveNodeEl", "access": "protected", "host": "TreeView", "type": "method", "name": "_onMouseLeaveNodeEl"}, {"url": "TreeNode.html#config_ownerTree", "access": "", "host": "TreeNode", "type": "config", "name": "ownerTree"}, {"url": "TreeNode.html#event_ownerTreeChange", "access": "", "host": "TreeNode", "type": "event", "name": "ownerTreeChange"}, {"url": "TreeNode.html#config_parentNode", "access": "", "host": "TreeNode", "type": "config", "name": "parentNode"}, {"url": "TreeNode.html#event_parentNodeChange", "access": "", "host": "TreeNode", "type": "event", "name": "parentNodeChange"}, {"url": "TreeNode.html#config_prevSibling", "access": "", "host": "TreeNode", "type": "config", "name": "prevSibling"}, {"url": "TreeNode.html#event_prevSiblingChange", "access": "", "host": "TreeNode", "type": "event", "name": "prevSiblingChange"}, {"url": "TreeData.html#method_refreshIndex", "access": "", "host": "TreeData", "type": "method", "name": "refreshIndex"}, {"url": "TreeData.html#method_registerNode", "access": "", "host": "TreeData", "type": "method", "name": "registerNode"}, {"url": "TreeData.html#method__removeChild", "access": "", "host": "TreeData", "type": "method", "name": "_removeChild"}, {"url": "TreeData.html#method_removeChild", "access": "", "host": "TreeData", "type": "method", "name": "removeChild"}, {"url": "TreeNode.html#method__renderBoundingBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderBoundingBox"}, {"url": "TreeNode.html#method__renderContentBox", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderContentBox"}, {"url": "TreeView.html#method__renderElements", "access": "protected", "host": "TreeView", "type": "method", "name": "_renderElements"}, {"url": "TreeNode.html#method__renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "_renderUI"}, {"url": "TreeNode.html#method_renderUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "renderUI"}, {"url": "TreeView.html#method_renderUI", "access": "protected", "host": "TreeView", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method_renderUI", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "renderUI"}, {"url": "TreeViewDD.html#method__resetState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_resetState"}, {"url": "TreeViewDD.html#config_scrollDelay", "access": "", "host": "TreeViewDD", "type": "config", "name": "scrollDelay"}, {"url": "TreeViewDD.html#event_scrollDelayChange", "access": "", "host": "TreeViewDD", "type": "event", "name": "scrollDelayChange"}, {"url": "TreeData.html#method_selectAll", "access": "", "host": "TreeData", "type": "method", "name": "selectAll"}, {"url": "TreeData.html#method__setChildren", "access": "protected", "host": "TreeData", "type": "method", "name": "_setChildren"}, {"url": "TreeNodeIO.html#method__setIO", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_setIO"}, {"url": "TreeNode.html#method__syncHitArea", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncHitArea"}, {"url": "TreeNodeIO.html#method__syncPaginatorIOData", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorIOData"}, {"url": "TreeNodeIO.html#method__syncPaginatorUI", "access": "protected", "host": "TreeNodeIO", "type": "method", "name": "_syncPaginatorUI"}, {"url": "TreeNode.html#method__syncTreeNodeBBId", "access": "protected", "host": "TreeNode", "type": "method", "name": "_syncTreeNodeBBId"}, {"url": "TreeNode.html#method_syncUI", "access": "protected", "host": "TreeNode", "type": "method", "name": "syncUI"}, {"url": "TreeView.html#method_syncUI", "access": "protected", "host": "TreeView", "type": "method", "name": "syncUI"}, {"url": "TreeNode.html#method_toggle", "access": "", "host": "TreeNode", "type": "method", "name": "toggle"}, {"url": "TreeNodeCheck.html#method_toggleCheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "toggleCheck"}, {"url": "TreeViewDD.html#method_toggleCheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "toggleCheck"}, {"url": "TreeData.html#property_TreeData.ATTRS", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.ATTRS"}, {"url": "TreeData.html#property_TreeData.NAME", "access": "", "host": "TreeData", "type": "property", "name": "TreeData.NAME"}, {"url": "TreeNode.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeIO.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNodeCheck.html#property_TreeNode.ATTRS", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeViewDD.html#property_TreeNode.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.ATTRS"}, {"url": "TreeNode.html#property_TreeNode.NAME", "access": "", "host": "TreeNode", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeIO.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeIO", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeCheck.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeCheck", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeTask.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeTask", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeNodeRadio.html#property_TreeNode.NAME", "access": "", "host": "TreeNodeRadio", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeViewDD.html#property_TreeNode.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeNode.NAME"}, {"url": "TreeView.html#property_TreeView.ATTRS", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.ATTRS", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.ATTRS"}, {"url": "TreeViewDD.html#property_TreeViewDD.NAME", "access": "", "host": "TreeViewDD", "type": "property", "name": "TreeViewDD.NAME"}, {"url": "TreeView.html#property_TreeView.NAME", "access": "", "host": "TreeView", "type": "property", "name": "TreeView.NAME"}, {"url": "TreeView.html#config_type", "access": "", "host": "TreeView", "type": "config", "name": "type"}, {"url": "TreeView.html#event_typeChange", "access": "", "host": "TreeView", "type": "event", "name": "typeChange"}, {"url": "TreeNodeCheck.html#method_uncheck", "access": "", "host": "TreeNodeCheck", "type": "method", "name": "uncheck"}, {"url": "TreeViewDD.html#method_uncheck", "access": "", "host": "TreeViewDD", "type": "method", "name": "uncheck"}, {"url": "TreeData.html#method_unregisterNode", "access": "", "host": "TreeData", "type": "method", "name": "unregisterNode"}, {"url": "TreeData.html#method_updateIndex", "access": "", "host": "TreeData", "type": "method", "name": "updateIndex"}, {"url": "TreeViewDD.html#method__updateNodeState", "access": "protected", "host": "TreeViewDD", "type": "method", "name": "_updateNodeState"}, {"url": "TreeData.html#method_updateReferences", "access": "", "host": "TreeData", "type": "method", "name": "updateReferences"}];
 </script>
 </body>
 </html>

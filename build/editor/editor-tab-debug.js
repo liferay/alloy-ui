@@ -2,21 +2,19 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('editor-tab', function(Y) {
 
-    /**
-     * Handles tab and shift-tab indent/outdent support.
-     * @module editor
-     * @submodule editor-tab
-     */     
+
     /**
      * Handles tab and shift-tab indent/outdent support.
      * @class Plugin.EditorTab
      * @constructor
      * @extends Base
+     * @module editor
+     * @submodule editor-tab
      */
     
     var EditorTab = function() {
@@ -75,4 +73,4 @@ YUI.add('editor-tab', function(Y) {
     Y.Plugin.EditorTab = EditorTab;
 
 
-}, '3.3.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});

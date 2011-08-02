@@ -229,6 +229,16 @@
 
 
 			                                
+													<li class=""><a href="module_app.html" title="app">app</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_arraysort.html" title="arraysort">arraysort</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_async-queue.html" title="async-queue">async-queue</a></li>
 
 
@@ -254,7 +264,7 @@
 
 
 			                                
-													<li class=""><a href="module_charts.html" title="charts">charts</a></li>
+													<li class=""><a href="module_calendar.html" title="calendar">calendar</a></li>
 
 
 
@@ -364,17 +374,17 @@
 
 
 			                                
+													<li class=""><a href="module_graphics.html" title="graphics">graphics</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_highlight.html" title="highlight">highlight</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_history.html" title="history">history</a></li>
-
-
-
-			                                
-													<li class=""><a href="module_history-deprecated.html" title="history-deprecated">history-deprecated</a></li>
 
 
 
@@ -479,6 +489,11 @@
 
 
 			                                
+													<li class=""><a href="module_resize-plugin.html" title="resize-plugin">resize-plugin</a></li>
+
+
+
+			                                
 													<li class=""><a href="module_scrollview.html" title="scrollview">scrollview</a></li>
 
 
@@ -564,17 +579,17 @@
 
 
 			                                
-													<li class=""><a href="module_value-change.html" title="value-change">value-change</a></li>
-
-
-
-			                                
 													<li class=""><a href="module_widget.html" title="widget">widget</a></li>
 
 
 
 			                                
 													<li class=""><a href="module_widget-anim.html" title="widget-anim">widget-anim</a></li>
+
+
+
+			                                
+													<li class=""><a href="module_widget-autohide.html" title="widget-autohide">widget-autohide</a></li>
 
 
 
@@ -666,15 +681,6 @@
 									<ul class="content">
 
 
-			                                <li class=""><a href="jsonp-base-debug.js.html" title="jsonp-base-debug.js">jsonp-base-debug.js</a></li>
-
-
-			                                <li class=""><a href="jsonp-base-min.js.html" title="jsonp-base-min.js">jsonp-base-min.js</a></li>
-
-
-			                                <li class=""><a href="jsonp-base.js.html" title="jsonp-base.js">jsonp-base.js</a></li>
-
-
 			                                <li class=""><a href="jsonp-debug.js.html" title="jsonp-debug.js">jsonp-debug.js</a></li>
 
 
@@ -708,10 +714,10 @@
 <span class="cm">Copyright (c) 2010, Yahoo! Inc. All rights reserved.</span>
 <span class="cm">Code licensed under the BSD License:</span>
 <span class="cm">http://developer.yahoo.com/yui/license.html</span>
-<span class="cm">version: 3.3.0</span>
+<span class="cm">version: 3.4.0</span>
 <span class="cm">build: nightly</span>
 <span class="cm">*/</span>
-<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;jsonp-url&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">JSONPRequest</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getValue</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kd">function</span><span class="p">(){};</span><span class="nx">d</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,{</span><span class="nx">_pattern</span><span class="o">:</span><span class="sr">/\bcallback=(.*?)(?=&amp;|$)/i</span><span class="p">,</span><span class="nx">_template</span><span class="o">:</span><span class="s2">&quot;callback={callback}&quot;</span><span class="p">,</span><span class="nx">_defaultCallback</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">g</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">),</span><span class="nx">j</span><span class="o">=</span><span class="p">[],</span><span class="nx">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">k</span><span class="p">,</span><span class="nx">l</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="nx">e</span><span class="o">=</span><span class="nx">f</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[([&#39;&quot;])(.*?)\1\]/g</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">n</span><span class="p">){</span><span class="nx">j</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">n</span><span class="p">;</span><span class="k">return</span><span class="s2">&quot;.@&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">h</span><span class="o">++</span><span class="p">);}).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[(\d+)\]/g</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span><span class="nx">j</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">|</span><span class="mi">0</span><span class="p">;</span><span class="k">return</span><span class="s2">&quot;.@&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">h</span><span class="o">++</span><span class="p">);}).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\./</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="sr">/[^\w\.\$@]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">)){</span><span class="nx">k</span><span class="o">=</span><span class="nx">e</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">);</span><span class="k">for</span><span class="p">(</span><span class="nx">h</span><span class="o">=</span><span class="nx">k</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="nx">h</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="o">--</span><span class="nx">h</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">].</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">===</span><span class="s2">&quot;@&quot;</span><span class="p">){</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">j</span><span class="p">[</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">].</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="mi">10</span><span class="p">)];}}</span><span class="nx">l</span><span class="o">=</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span><span class="o">||</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span><span class="o">||</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">k</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));}}</span><span class="k">return</span> <span class="nx">l</span><span class="o">||</span><span class="nx">b</span><span class="p">;},</span><span class="nx">_format</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">g</span><span class="p">){</span><span class="kd">var</span> <span class="nx">h</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_template</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\{callback\}/</span><span class="p">,</span><span class="nx">g</span><span class="p">),</span><span class="nx">f</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">)){</span><span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">,</span><span class="nx">h</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="nx">f</span><span class="o">=</span><span class="nx">e</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="o">!==</span><span class="s2">&quot;&amp;&quot;</span><span class="o">&amp;&amp;</span><span class="nx">f</span><span class="o">!==</span><span class="s2">&quot;?&quot;</span><span class="p">){</span><span class="nx">e</span><span class="o">+=</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)</span><span class="o">&gt;-</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&amp;&quot;</span><span class="o">:</span><span class="s2">&quot;?&quot;</span><span class="p">;}</span><span class="k">return</span> <span class="nx">e</span><span class="o">+</span><span class="nx">h</span><span class="p">;}}},</span><span class="kc">true</span><span class="p">);},</span><span class="s2">&quot;3.3.0&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;jsonp&quot;</span><span class="p">]});</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;jsonp-url&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nx">JSONPRequest</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="nx">d</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">getValue</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="kd">function</span><span class="p">(){};</span><span class="nx">d</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,{</span><span class="nx">_pattern</span><span class="o">:</span><span class="sr">/\bcallback=(.*?)(?=&amp;|$)/i</span><span class="p">,</span><span class="nx">_template</span><span class="o">:</span><span class="s2">&quot;callback={callback}&quot;</span><span class="p">,</span><span class="nx">_defaultCallback</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">){</span><span class="kd">var</span> <span class="nx">f</span><span class="o">=</span><span class="nx">g</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">),</span><span class="nx">j</span><span class="o">=</span><span class="p">[],</span><span class="nx">h</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">k</span><span class="p">,</span><span class="nx">l</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="p">){</span><span class="nx">e</span><span class="o">=</span><span class="nx">f</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[([&#39;&quot;])(.*?)\1\]/g</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">n</span><span class="p">){</span><span class="nx">j</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">n</span><span class="p">;</span><span class="k">return</span><span class="s2">&quot;.@&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">h</span><span class="o">++</span><span class="p">);}).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\[(\d+)\]/g</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span><span class="nx">j</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">|</span><span class="mi">0</span><span class="p">;</span><span class="k">return</span><span class="s2">&quot;.@&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">h</span><span class="o">++</span><span class="p">);}).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\./</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="sr">/[^\w\.\$@]/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">)){</span><span class="nx">k</span><span class="o">=</span><span class="nx">e</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">);</span><span class="k">for</span><span class="p">(</span><span class="nx">h</span><span class="o">=</span><span class="nx">k</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="nx">h</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="o">--</span><span class="nx">h</span><span class="p">){</span><span class="k">if</span><span class="p">(</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">].</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">===</span><span class="s2">&quot;@&quot;</span><span class="p">){</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">]</span><span class="o">=</span><span class="nx">j</span><span class="p">[</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">k</span><span class="p">[</span><span class="nx">h</span><span class="p">].</span><span class="nx">substr</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="mi">10</span><span class="p">)];}}</span><span class="nx">l</span><span class="o">=</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">win</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span><span class="o">||</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span><span class="o">||</span><span class="nx">c</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">k</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">));}}</span><span class="k">return</span> <span class="nx">l</span><span class="o">||</span><span class="nx">b</span><span class="p">;},</span><span class="nx">_format</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">g</span><span class="p">){</span><span class="kd">var</span> <span class="nx">h</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">_template</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\{callback\}/</span><span class="p">,</span><span class="nx">g</span><span class="p">),</span><span class="nx">f</span><span class="p">;</span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">e</span><span class="p">)){</span><span class="k">return</span> <span class="nx">e</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_pattern</span><span class="p">,</span><span class="nx">h</span><span class="p">);}</span><span class="k">else</span><span class="p">{</span><span class="nx">f</span><span class="o">=</span><span class="nx">e</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="o">!==</span><span class="s2">&quot;&amp;&quot;</span><span class="o">&amp;&amp;</span><span class="nx">f</span><span class="o">!==</span><span class="s2">&quot;?&quot;</span><span class="p">){</span><span class="nx">e</span><span class="o">+=</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)</span><span class="o">&gt;-</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s2">&quot;&amp;&quot;</span><span class="o">:</span><span class="s2">&quot;?&quot;</span><span class="p">;}</span><span class="k">return</span> <span class="nx">e</span><span class="o">+</span><span class="nx">h</span><span class="p">;}}},</span><span class="kc">true</span><span class="p">);},</span><span class="s2">&quot;3.4.0&quot;</span><span class="p">,{</span><span class="nx">requires</span><span class="o">:</span><span class="p">[</span><span class="s2">&quot;jsonp&quot;</span><span class="p">]});</span>
 </pre></div>
 
 							</div>

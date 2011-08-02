@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.3.0
+version: 3.4.0
 build: nightly
 */
 YUI.add('node-flick', function(Y) {
@@ -522,4 +522,4 @@ YUI.add('node-flick', function(Y) {
     Y.Plugin.Flick = Flick;
 
 
-}, '3.3.0' ,{requires:['classnamemanager', 'transition', 'event-flick', 'plugin']});
+}, '3.4.0' ,{requires:['classnamemanager', 'transition', 'event-flick', 'plugin']});
