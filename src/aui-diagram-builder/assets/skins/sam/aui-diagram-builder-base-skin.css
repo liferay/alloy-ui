@@ -1,16 +1,3 @@
-.aui-diagram-builder-base-tabs-container .aui-diagram-builder-base-tab-add .aui-tab-label {
-	background: url(add.png) no-repeat 0px -1px;
-}
-
-.aui-diagram-builder-base-tabs-container .aui-diagram-builder-base-tab-settings .aui-tab-label {
-	background: url(configuration.png) no-repeat 0px -1px;
-}
-
-.aui-diagram-builder-base-tabs-container .aui-tab-label {
-    padding-bottom: 5px;
-    padding-left: 22px;
-}
-
 .aui-diagram-builder-base .aui-diagram-builder-base-field {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
