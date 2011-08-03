@@ -25,8 +25,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("life
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("liferay:test:test"));
 boolean attrBooleanPrimitive = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:test:attrBooleanPrimitive")));
