@@ -29,14 +29,15 @@
 }
 
 .aui-tab-content {
-	border: 1px solid #f3f4f5;
+	border: 1px solid;
 	border-color: #f3f4f5 #b2b2b2 #dbdcdc #f5f5f7;
-	color: #1f1e1e;
 	padding: 0;
 }
 
 .aui-tab-label {
+	color: #1f1e1e;
 	display: inline-block;
+	font-style: normal;
 	font-weight: normal;
 	padding: 5px 10px 4px;
 	text-decoration: none;
