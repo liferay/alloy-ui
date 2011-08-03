@@ -135,6 +135,8 @@ A.PolygonUtil = {
 };
 
 A.Connector = A.Base.create('line', A.Base, [], {
+	SERIALIZABLE_ATTRS: [COLOR, DESCRIPTION, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
+
 	shape: null,
 
 	initializer: function(config) {
@@ -219,6 +221,17 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				name: strings[NAME]
 			}
 		];
+	},
+
+	toJSON: function() {
+		var instance = this;
+		var output = {};
+
+		AArray.each(instance.SERIALIZABLE_ATTRS, function(attributeName) {
+			output[attributeName] = instance.get(attributeName);
+		});
+
+		return output;
 	},
 
 	_afterSelectedChange: function(event) {
