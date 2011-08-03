@@ -109,44 +109,24 @@
 }
 
 .aui-form-builder-tabs-container .aui-form-builder-tab-add .aui-tab-label {
-	background: url(add.png) no-repeat 0px -1px;
+	background: url(add.png) 8px 7px no-repeat;
 }
 
 .aui-form-builder-tabs-container .aui-form-builder-tab-settings .aui-tab-label {
-	background: url(configuration.png) no-repeat 0px -1px;
+	background: url(configuration.png) 8px 7px no-repeat;
+}
+
+.aui-form-builder-tabs-container .aui-form-builder-tab-add .aui-tab-label,
+.aui-form-builder-tabs-container .aui-form-builder-tab-settings .aui-tab-label {
+	padding-left: 30px;
 }
 
 .aui-form-builder-tabs-container .aui-panel {
 	margin: 10px 0;
 }
 
-.aui-form-builder-tabs-container .aui-tab-content {
-	padding: 3px 0;
-}
-
-.aui-form-builder-tabs-container .aui-tab-label {
-	padding-bottom: 5px;
-	padding-left: 22px;
-}
-
 .aui-form-builder-tabs-container .aui-tabview-content-item {
 	padding: 0 5px;
-}
-
-.aui-form-builder-tabs-container .aui-tabview-list {
-	border: none;
-}
-
-.aui-form-builder-tabs-container .aui-tabview-list .aui-tab {
-	margin: 0;
-	text-align: center;
-	width: 50%;
-}
-
-.aui-form-builder-tabs-container .aui-tabview-list .aui-tab .aui-tab-content {
-	display: block;
-	float: none;
-	margin: 0 auto;
 }
 
 /* Field buttons */
