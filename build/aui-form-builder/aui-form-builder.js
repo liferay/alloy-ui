@@ -3251,10 +3251,12 @@ var FormBuilderFileUploadField = A.Component.create({
 A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 
 A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
-var L = A.Lang,
-	isArray = L.isArray,
-	isNumber = L.isNumber,
-	isString = L.isString,
+var Lang = A.Lang,
+	AArray = A.Array,
+	isArray = Lang.isArray,
+	isNumber = Lang.isNumber,
+	isString = Lang.isString,
+	sub = Lang.sub,
 
 	isNode = function(v) {
 		return (v instanceof A.Node);
@@ -3289,7 +3291,6 @@ var L = A.Lang,
 	DROP = 'drop',
 	DROP_CONTAINER = 'dropContainer',
 	DROP_CONTAINER_NODE = 'dropContainerNode',
-	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
@@ -3333,6 +3334,8 @@ var L = A.Lang,
 
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
+	STR_BLANK = '',
+
 	TPL_OPTION = '<div class="' + [CSS_FIELD_OPTIONS_ITEM, CSS_FIELD_LABELS_INLINE, CSS_HELPER_CLEARFIX].join(SPACE) + '">' +
 					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{label}" />' +
 					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{value}" />' +
@@ -3354,22 +3357,22 @@ var FieldOptions = A.Component.create({
 		},
 
 		defaultLabel: {
-			value: EMPTY_STR
+			value: STR_BLANK
 		},
 
 		defaultValue: {
-			value: EMPTY_STR
+			value: STR_BLANK
 		},
 
 		disabled: {
-			value: false,
-			validator: isBoolean
+			validator: isBoolean,
+			value: false
 		},
 
 		options: {
-			value: [],
 			getter: '_getOptions',
-			validator: isArray
+			validator: isArray,
+			value: []
 		},
 
 		addNode: {
@@ -3392,6 +3395,7 @@ var FieldOptions = A.Component.create({
 
 		renderUI: function() {
 			var instance = this;
+
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
@@ -3402,6 +3406,7 @@ var FieldOptions = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
+
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var addNode = instance.get(ADD_NODE);
 
@@ -3413,6 +3418,7 @@ var FieldOptions = A.Component.create({
 
 		add: function(option) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 
 			options.push(option);
@@ -3430,53 +3436,48 @@ var FieldOptions = A.Component.create({
 
 		remove: function(index) {
 			var instance = this;
+
 			var contentBox = instance.get(CONTENT_BOX);
 			var optionNode = instance._getOptionNode(index);
 
-			if (instance.get(DISABLED)) {
-				return false;
-			}
+			if (!instance.get(DISABLED)) {
+				if (optionNode) {
+					optionNode.remove();
+				}
 
-			if (optionNode) {
-				optionNode.remove();
+				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 			}
-
-			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		},
 
 		_addNewOption: function() {
 			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
 
-			if (instance.get(DISABLED)) {
-				return false;
+			var newOptionNode = null;
+
+			if (!instance.get(DISABLED)) {
+				var contentBox = instance.get(CONTENT_BOX);
+
+				var optionHTML = sub(
+					TPL_OPTION,
+					{
+						label: instance.get(DEFAULT_LABEL),
+						value: instance.get(DEFAULT_VALUE)
+					}
+				);
+
+				newOptionNode = A.Node.create(optionHTML);
+
+				contentBox.append(newOptionNode);
+
+				var newOptionNodeInput = newOptionNode.one(INPUT);
+
+				newOptionNodeInput.focus();
+				newOptionNodeInput.select();
+
+				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 			}
 
-			var newOptionNode = instance._createOption(
-				{
-					label: instance.get(DEFAULT_LABEL),
-					value: instance.get(DEFAULT_VALUE)
-				}
-			);
-
-			newOptionNode = A.Node.create(newOptionNode);
-
-			contentBox.append(newOptionNode);
-
-			var newOptionNodeInput = newOptionNode.one(INPUT);
-
-			newOptionNodeInput.focus();
-			newOptionNodeInput.select();
-
-			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
-
 			return newOptionNode;
-		},
-
-		_createOption: function(option) {
-			var  instance = this;
-
-			return A.substitute(TPL_OPTION, option);
 		},
 
 		_getOptionNode: function(index) {
@@ -3487,20 +3488,24 @@ var FieldOptions = A.Component.create({
 
 		_getOptions: function(val) {
 			var instance = this;
+
 			var options = [];
 
 			if (instance.items) {
-				A.each(instance.items, function(option) {
-					var labelInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
-					var valueInput = option.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
+				A.each(
+					instance.items,
+					function(item, index, collection) {
+						var labelInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
+						var valueInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
 
-					options.push(
-						{
-							label: labelInput.val(),
-							value: valueInput.val()
-						}
-					);
-				});
+						var option = val[index] || {};
+
+						option.label = labelInput.val();
+						option.value = valueInput.val();
+
+						options.push(option);
+					}
+				);
 			}
 			else {
 				options = val;
@@ -3511,6 +3516,7 @@ var FieldOptions = A.Component.create({
 
 		_indexOfTarget: function(target) {
 			var instance = this;
+
 			var currentItem = target.ancestor(DOT + CSS_FIELD_OPTIONS_ITEM);
 
 			return instance.items.indexOf(currentItem);
@@ -3524,6 +3530,7 @@ var FieldOptions = A.Component.create({
 
 		_onClickOptionRemove: function(event) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 			var index = instance._indexOfTarget(event.target);
 
@@ -3532,6 +3539,7 @@ var FieldOptions = A.Component.create({
 
 		_onKeyPressOption: function(event) {
 			var instance = this;
+
 			var options = instance.get(OPTIONS);
 			var target = event.currentTarget;
 			var items = instance.items;
@@ -3548,6 +3556,7 @@ var FieldOptions = A.Component.create({
 
 		_uiSetDisabled: function(val) {
 			var instance = this;
+
 			var addNode = instance.get(ADD_NODE);
 			var boundingBox = instance.get(BOUNDING_BOX);
 
@@ -3564,14 +3573,19 @@ var FieldOptions = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
-			var buffer = [];
+
 			var contentBox = instance.get(CONTENT_BOX);
 
-			contentBox.empty();
+			var buffer = [];
 
-			A.each(val, function(item) {
-				contentBox.append(instance._createOption(item));
-			});
+			AArray.each(
+				val,
+				function(item, index, collection) {
+					buffer.push(sub(TPL_OPTION, item));
+				}
+			);
+
+			contentBox.setContent(buffer.join(STR_BLANK));
 
 			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
 		}
@@ -3658,6 +3672,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		 */
 		renderSettings: function() {
 			var instance = this;
+
 			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
 
 			A.FormBuilderMultipleChoiceField.superclass.renderSettings.apply(instance, arguments);
@@ -3704,17 +3719,21 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
+
 			var templateNode = instance.get(TEMPLATE_NODE);
+			var optionTpl = instance.get(OPTION_TEMPLATE);
 
-			templateNode.empty();
+			var buffer = [];
 
-			A.each(val, function(item) {
-				templateNode.append(
-					A.substitute(instance.get(OPTION_TEMPLATE), item)
-				);
-			});
+			AArray.each(
+				val,
+				function(item, index, collection) {
+					buffer.push(sub(optionTpl, item));
+				}
+			);
+
+			templateNode.setContent(buffer.join(STR_BLANK));
 		}
-
 	}
 
 });
