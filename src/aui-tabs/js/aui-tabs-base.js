@@ -21,10 +21,9 @@ var Lang = A.Lang,
 	CSS_HIDDEN = getClassName('helper-hidden'),
 
 	TPL_DIV = '<div></div>',
-	TPL_SPAN = '<span></span>',
 	TPL_UL = '<ul></ul>',
 
-	TPL_LABEL = TPL_SPAN,
+	TPL_LABEL = '<em></em>',
 	TPL_TAB_CONTAINER = TPL_UL,
 	TPL_CONTENT_ITEM = TPL_DIV,
 	TPL_CONTENT_CONTAINER = TPL_DIV;
