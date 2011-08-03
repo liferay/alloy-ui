@@ -1,4 +1,4 @@
-.aui-tabview-list, .aui-tab-label {
+.aui-tabview-list, .aui-tab-content {
 	background: #dbdcdc url(tabs_bg.png) repeat 0 0;
 	padding: 0 4px;
 	border: 1px solid #c9c9c9;
@@ -29,14 +29,15 @@
 }
 
 .aui-tab-content {
+	border: 1px solid;
+	border-color: #f3f4f5 #b2b2b2 #dbdcdc #f5f5f7;
 	padding: 0;
 }
 
 .aui-tab-label {
-	border: 1px solid #f3f4f5;
-	border-color: #f3f4f5 #b2b2b2 #dbdcdc #f5f5f7;
 	color: #1f1e1e;
 	display: inline-block;
+	font-style: normal;
 	font-weight: normal;
 	padding: 5px 10px 4px;
 	text-decoration: none;
@@ -53,9 +54,12 @@
 	padding: 0;
 }
 
-.aui-tab-active .aui-tab-label, .aui-tab-active .aui-tab-label:hover {
+.aui-tab-active .aui-tab-content, .aui-tab-active .aui-tab-content:hover {
 	background: #878787 url(tabs_active_bg.png);
 	border-color: #4b4b4b #4d4d4d;
+}
+
+.aui-tab-active .aui-tab-label {
 	color: #fff;
 	text-shadow: #3a3a3a -1px -1px 0px;
 }
