@@ -20,7 +20,6 @@ var Lang = A.Lang,
 
 	AArray = A.Array,
 
-	MAX_FIELDS = 'maxFields',
 	ADD = 'add',
 	ADD_NODE = 'addNode',
 	AUTO = 'auto',
@@ -31,11 +30,11 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
+	CANVAS = 'canvas',
 	CLEARFIX = 'clearfix',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CANVAS = 'canvas',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -55,16 +54,16 @@ var Lang = A.Lang,
 	ID = 'id',
 	LABEL = 'label',
 	LIST = 'list',
+	MAX_FIELDS = 'maxFields',
 	NODE = 'node',
-	SETTINGS = 'settings',
 	PROPERTY_LIST = 'propertyList',
 	RENDERED = 'rendered',
 	SAVE = 'save',
 	SETTINGS = 'settings',
 	TAB = 'tab',
+	TAB_VIEW = 'tabView',
 	TABS = 'tabs',
 	TABVIEW = 'tabview',
-	TAB_VIEW = 'tabView',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
 
@@ -150,12 +149,12 @@ var AvailableField = A.Component.create({
 		return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
 	},
 
-	getAvailableFieldByNode: function(node) {
-		return A.one(node).getData(AVAILABLE_FIELD);
-	},
-
 	getAvailableFieldById: function(id) {
 		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
+	},
+
+	getAvailableFieldByNode: function(node) {
+		return A.one(node).getData(AVAILABLE_FIELD);
 	},
 
 	prototype: {
@@ -223,16 +222,16 @@ var AvailableField = A.Component.create({
 			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE, val);
 		},
 
-		_uiSetLabel: function(val) {
-			var instance = this;
-
-			instance.labelNode.setContent(val);
-		},
-
 		_uiSetId: function(val) {
 			var instance = this;
 
 			instance.get(NODE).set(ID, val);
+		},
+
+		_uiSetLabel: function(val) {
+			var instance = this;
+
+			instance.labelNode.setContent(val);
 		}
 	}
 });
@@ -258,17 +257,21 @@ FieldSupport.ATTRS = {
 };
 
 A.mix(FieldSupport.prototype, {
-	createFields: function(val) {
+	_setFields: function(val) {
 		var instance = this;
-		var fields = [];
 
-		AArray.each(val, function(field, index) {
-			if (index < instance.get(MAX_FIELDS)) {
-				fields.push(instance.createField(field));
-			}
-		});
+		if (isArrayList(val)) {
+			return val;
+		}
+		else {
+			return instance.createFields(val);
+		}
+	},
 
-		return new A.ArrayList(fields);
+	_updateFields: function(fields) {
+		var instance = this;
+
+		instance.set(FIELDS, fields);
 	},
 
 	addField: function(field) {
@@ -289,29 +292,25 @@ A.mix(FieldSupport.prototype, {
 		return null;
 	},
 
+	createFields: function(val) {
+		var instance = this;
+		var fields = [];
+
+		AArray.each(val, function(field, index) {
+			if (index < instance.get(MAX_FIELDS)) {
+				fields.push(instance.createField(field));
+			}
+		});
+
+		return new A.ArrayList(fields);
+	},
+
 	removeField: function(field) {
 		var instance = this;
 
 		instance._updateFields(
 			instance.get(FIELDS).remove(field)
 		);
-	},
-
-	_updateFields: function(fields) {
-		var instance = this;
-
-		instance.set(FIELDS, fields);
-	},
-
-	_setFields: function(val) {
-		var instance = this;
-
-		if (isArrayList(val)) {
-			return val;
-		}
-		else {
-			return instance.createFields(val);
-		}
 	},
 
 	/*
@@ -342,15 +341,15 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
+			availableFieldsDragConfig: {
+				value: null,
+				setter: '_setAvailableFieldsDragConfig',
+				validator: isObject
+			},
+
 			canvas: {
 				valueFn: function() {
 					return A.Node.create(this.CANVAS_TEMPLATE);
-				}
-			},
-
-			dropContainer: {
-				valueFn: function() {
-					return A.Node.create(this.DROP_CONTAINER_TEMPLATE);
 				}
 			},
 
@@ -360,10 +359,10 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isObject
 			},
 
-			availableFieldsDragConfig: {
-				value: null,
-				setter: '_setAvailableFieldsDragConfig',
-				validator: isObject
+			dropContainer: {
+				valueFn: function() {
+					return A.Node.create(this.DROP_CONTAINER_TEMPLATE);
+				}
 			},
 
 			fieldsContainer: {

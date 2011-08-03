@@ -58,19 +58,21 @@ var Lang = A.Lang,
 	DIAGRAM_NODE = 'diagramNode',
 	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
-	EDITING = 'editing',
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
+	EDITING = 'editing',
 	ESC = 'esc',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
 	GRAPHIC = 'graphic',
+	HEIGHT = 'height',
 	HOVER = 'hover',
 	ID = 'id',
 	KEYDOWN = 'keydown',
 	LINK = 'link',
 	MAX = 'max',
+	MAX_FIELDS = 'maxFields',
 	MAX_SOURCES = 'maxSources',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
@@ -93,8 +95,10 @@ var Lang = A.Lang,
 	TARGETS = 'targets',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
+	WIDTH = 'width',
 	WRAPPER = 'wrapper',
 	XY = 'xy',
+	Z_INDEX = 'zIndex',
 
 	_DASH = '-',
 	_DOT = '.',
@@ -436,6 +440,42 @@ var DiagramBuilder = A.Component.create({
 			instance.closeEditProperties();
 		},
 
+		toJSON: function() {
+			var instance = this;
+
+			var output = {
+				nodes: []
+			};
+
+			instance.get(FIELDS).each(function(field) {
+				var nodeName = field.get(NAME);
+
+				var node = {
+					transitions: []
+				};
+
+				// serialize node attributes
+				AArray.each(field.SERIALIZABLE_ATTRS, function(attributeName) {
+					node[attributeName] = field.get(attributeName);
+				});
+
+				// serialize node transitions
+				field.get(FIELDS).each(function(anchor) {
+					anchor.get(TARGETS).each(function(t) {
+						node.transitions.push({
+							connector: anchor.getConnector(t).toJSON(),
+							source: nodeName,
+							target: t.get(DIAGRAM_NODE).get(NAME)
+						});
+					});
+				});
+
+				output.nodes.push(node);
+			});
+
+			return output;
+		},
+
 		_afterKeyEvent: function(event) {
 			var instance = this;
 
@@ -749,7 +789,10 @@ var DiagramNode = A.Component.create({
 
 	prototype: {
 		ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+
 		CONTROLS_TEMPLATE: '<div class="' + CSS_DB_CONTROLS + '"></div>',
+
+		SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY, MAX_FIELDS],
 
 		initializer: function() {
 			var instance = this;
@@ -772,6 +815,12 @@ var DiagramNode = A.Component.create({
 
 			// REMOVE THIS!
 			instance.set('bodyContent', instance.get(NAME));
+		},
+
+		destructor: function() {
+			var instance = this;
+
+			instance.get(BUILDER).removeField(instance);
 		},
 
 		alignAnchors: function() {
