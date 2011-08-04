@@ -158,7 +158,7 @@
 // TODO Realign anchors to best fit?
 // TODO Better Connection path?
 
-AUI().use('aui-diagram-builder', 'io-form', function(A) {
+AUI().use('aui-diagram-builder', 'io-form', 'event-valuechange', function(A) {
 
 	var Lang = A.Lang,
 		isBoolean = Lang.isBoolean,
@@ -979,7 +979,7 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 					AArray.each(
 						json.nodes,
 						function(data) {
-							var xNode = xmlfyObj(data.xmlType);
+							var xNode = xmlfyObj(data.xmlType || data.type);
 
 							o.push(xNode.open);
 								o.push(xmlfy(NAME, data.name));
@@ -1134,8 +1134,6 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 		}
 	});
 
-	A.WorkflowDesigner.types = A.DiagramBuilder.types;
-
 	A.DiagramNodeStateCustom = A.Component.create({
 		NAME: DIAGRAM_NODE_NAME,
 
@@ -1146,6 +1144,10 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 			},
 
 			notifications: {
+				value: {
+					assignmentType: _EMPTY_STR
+				},
+				validator: isObject
 			},
 
 			actions: {
@@ -1175,7 +1177,7 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 		EXTENDS: A.DiagramNodeState,
 
 		prototype: {
-			SERIALIZABLE_ATTRS: A.DiagramNode.prototype.SERIALIZABLE_ATTRS.concat([INITIAL, XML_TYPE]),
+			SERIALIZABLE_ATTRS: A.DiagramNodeState.prototype.SERIALIZABLE_ATTRS.concat([ACTIONS, INITIAL, NOTIFICATIONS, XML_TYPE]),
 
 			getConnectionNode: function() {
 				return new A.DiagramNodeTask({
@@ -1321,13 +1323,6 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 				validator: isObject
 			},
 
-			notifications: {
-				value: {
-					assignmentType: _EMPTY_STR
-				},
-				validator: isObject
-			},
-
 			height: {
 				value: 70
 			},
@@ -1344,7 +1339,7 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 		EXTENDS: A.DiagramNodeStateCustom,
 
 		prototype: {
-			SERIALIZABLE_ATTRS: A.DiagramNodeState.prototype.SERIALIZABLE_ATTRS.concat([ASSIGNMENTS, ACTIONS, NOTIFICATIONS]),
+			SERIALIZABLE_ATTRS: A.DiagramNodeStateCustom.prototype.SERIALIZABLE_ATTRS.concat([ASSIGNMENTS]),
 
 			getPropertyModel: function() {
 				var instance = this;
@@ -1420,13 +1415,6 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 		}
 	];
 
-	task0 = new A.DiagramNodeTask({
-		name: 'Task0',
-		xy: [900, 200],
-		fields: [
-		]
-	});
-
 	diagramBuilder1 = new A.WorkflowDesigner(
 		{
 			boundingBox: '#diagrambuilderBB',
@@ -1434,7 +1422,13 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 			// height: 600,
 			availableFields: availableFields,
 			fields: [
-				task0,
+				{
+					name: 'Task0',
+					type: 'task',
+					xy: [900, 200],
+					fields: [
+					]
+				},
 				{
 					name: 'StartNode',
 					type: 'start',
@@ -1488,7 +1482,7 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 
 		{
 			connector: { name: 'Task1Connector', description: 'Description...' },
-			source: task0,
+			source: 'Task0',
 			target: 'Task1'
 		},
 
