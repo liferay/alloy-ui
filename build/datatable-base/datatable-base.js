@@ -16,7 +16,7 @@ var YLang = Y.Lang,
 
     DATATABLE = "datatable",
     COLUMN = "column",
-    
+
     FOCUS = "focus",
     KEYDOWN = "keydown",
     MOUSEENTER = "mouseenter",
@@ -44,7 +44,7 @@ var YLang = Y.Lang,
     TEMPLATE_TD = '<td headers="{headers}" class="{classnames}"><div class="'+CLASS_LINER+'">{value}</div></td>',
     TEMPLATE_VALUE = '{value}',
     TEMPLATE_MSG = '<tbody class="'+CLASS_MSG+'"></tbody>';
-    
+
 
 
 /**
@@ -91,7 +91,7 @@ Y.mix(Column, {
             valueFn: "_defaultId",
             readOnly: true
         },
-        
+
         /**
         * @attribute key
         * @description User-supplied identifier. Defaults to id.
@@ -121,7 +121,7 @@ Y.mix(Column, {
         label: {
             valueFn: "_defaultLabel"
         },
-        
+
         /**
         * @attribute children
         * @description Array of child column definitions (for nested headers).
@@ -130,7 +130,7 @@ Y.mix(Column, {
         children: {
             value: null
         },
-        
+
         /**
         * @attribute abbr
         * @description TH abbr attribute.
@@ -146,7 +146,7 @@ Y.mix(Column, {
             readOnly: true,
             getter: "_getClassnames"
         },
-        
+
         // Column formatter
         formatter: {},
 
@@ -250,7 +250,7 @@ Y.extend(Column, Y.Widget, {
      * @type Number
      */
     keyIndex: null,
-    
+
     /**
     * @property headers
     * @description Array of TH IDs associated with this column, for TD "headers"
@@ -267,7 +267,7 @@ Y.extend(Column, Y.Widget, {
      * @default 1
      */
     colSpan: 1,
-    
+
     /**
      * Number of rows the header spans. Value is set by Columnset code.
      *
@@ -292,7 +292,7 @@ Y.extend(Column, Y.Widget, {
      * @property thNode
      * @type Y.Node
      */
-     
+
     thNode: null,
 
     /*TODO
@@ -300,9 +300,9 @@ Y.extend(Column, Y.Widget, {
      *
      * @property thLinerNode
      * @type Y.Node
-     
+
     thLinerNode: null,*/
-    
+
     /////////////////////////////////////////////////////////////////////////////
     //
     // METHODS
@@ -486,7 +486,7 @@ Y.extend(Columnset, Y.Base, {
     _setDefinitions: function(definitions) {
             return Y.clone(definitions);
     },
-    
+
     /////////////////////////////////////////////////////////////////////////////
     //
     // PROPERTIES
@@ -954,7 +954,7 @@ Y.mix(DTBase, {
 /////////////////////////////////////////////////////////////////////////////
     HTML_PARSER: {
         /*caption: function (srcNode) {
-            
+
         }*/
     }
 });
@@ -980,7 +980,7 @@ Y.extend(DTBase, Y.Widget, {
     * @default '<td headers="{headers}"><div class="'+CLASS_LINER+'">{value}</div></td>'
     */
     tdTemplate: TEMPLATE_TD,
-    
+
     /**
     * @property _theadNode
     * @description Pointer to THEAD node.
@@ -988,7 +988,7 @@ Y.extend(DTBase, Y.Widget, {
     * @private
     */
     _theadNode: null,
-    
+
     /**
     * @property _tbodyNode
     * @description Pointer to TBODY node.
@@ -996,7 +996,7 @@ Y.extend(DTBase, Y.Widget, {
     * @private
     */
     _tbodyNode: null,
-    
+
     /**
     * @property _msgNode
     * @description Pointer to message display node.
@@ -1047,7 +1047,7 @@ Y.extend(DTBase, Y.Widget, {
         rs.addTarget(this);
         return rs;
     },
-    
+
     /**
     * Updates the UI if Recordset is changed.
     *
@@ -1056,6 +1056,7 @@ Y.extend(DTBase, Y.Widget, {
     * @protected
     */
     _afterRecordsetChange: function (e) {
+        console.log('_afterRecordsetChange core');
         this._uiSetRecordset(e.newVal);
     },
 
@@ -1107,7 +1108,7 @@ Y.extend(DTBase, Y.Widget, {
     destructor: function() {
          this.get("recordset").removeTarget(this);
     },
-    
+
     ////////////////////////////////////////////////////////////////////////////
     //
     // RENDER
@@ -1255,7 +1256,7 @@ Y.extend(DTBase, Y.Widget, {
             "recordset:recordsChange": this._afterRecordsChange
         });
     },
-    
+
     delegate: function(type) {
         //TODO: is this necessary?
         if(type==="dblclick") {
@@ -1265,7 +1266,7 @@ Y.extend(DTBase, Y.Widget, {
             this.get("contentBox").delegate.apply(this.get("contentBox"), arguments);
         }
     },
-    
+
 
     ////////////////////////////////////////////////////////////////////////////
     //
@@ -1342,10 +1343,10 @@ Y.extend(DTBase, Y.Widget, {
             len = tree.length,
             parent = thead.get("parentNode"),
             nextSibling = thead.next();
-            
+
         // Move THEAD off DOM
         thead.remove();
-        
+
         thead.get("children").remove(true);
 
         // Iterate tree of columns to add THEAD rows
@@ -1356,12 +1357,12 @@ Y.extend(DTBase, Y.Widget, {
         // Column helpers needs _theadNode to exist
         //this._createColumnHelpers();
 
-        
+
         // Re-attach THEAD to DOM
         parent.insert(thead, nextSibling);
 
      },
-     
+
     /**
     * Creates and attaches header row element.
     *
@@ -1375,7 +1376,7 @@ Y.extend(DTBase, Y.Widget, {
         o.tr = this._createTheadTrNode(o, isFirst, isLast);
         this._attachTheadTrNode(o);
      },
-     
+
 
     /**
     * Creates header row element.
@@ -1446,7 +1447,7 @@ Y.extend(DTBase, Y.Widget, {
     */
     _createTheadThNode: function(o) {
         var column = o.column;
-        
+
         // Populate template object
         o.id = column.get("id");//TODO: validate 1 column ID per document
         o.colspan = column.colSpan;
@@ -1461,7 +1462,7 @@ Y.extend(DTBase, Y.Widget, {
             //this._clearMinWidth(column);
         }
         */
-        
+
         return Ycreate(fromTemplate(this.thTemplate, o));
     },
 
@@ -1544,7 +1545,7 @@ Y.extend(DTBase, Y.Widget, {
             o.rowindex = i;
             this._addTbodyTrNode(o); //TODO: sometimes rowindex != recordindex
         }
-        
+
         // TBODY to DOM
         parent.insert(this._tbodyNode, nextSibling);
     },
@@ -1577,7 +1578,7 @@ Y.extend(DTBase, Y.Widget, {
             i, len, columnInfo;
 
         o.tr = Ycreate(fromTemplate(o.rowTemplate, { id: o.record.get('id') }));
-        
+
         for (i = 0, len = columns.length; i < len; ++i) {
             columnInfo = columns[i];
             o.column = columnInfo.column;
@@ -1587,7 +1588,7 @@ Y.extend(DTBase, Y.Widget, {
 
             this._addTbodyTdNode(o);
         }
-        
+
         return o.tr;
     },
 
@@ -1604,13 +1605,13 @@ Y.extend(DTBase, Y.Widget, {
             index = o.rowindex,
             nextSibling = tbody.get("children").item(index) || null,
             isOdd = (index % 2);
-            
+
         if(isOdd) {
             tr.replaceClass(CLASS_EVEN, CLASS_ODD);
         } else {
             tr.replaceClass(CLASS_ODD, CLASS_EVEN);
         }
-        
+
         tbody.insertBefore(tr, nextSibling);
     },
 
@@ -1625,7 +1626,7 @@ Y.extend(DTBase, Y.Widget, {
         o.td = this._createTbodyTdNode(o);
         this._attachTbodyTdNode(o);
     },
-    
+
     /**
     * Creates data cell element.
     *
@@ -1640,7 +1641,7 @@ Y.extend(DTBase, Y.Widget, {
 
         return Ycreate(fromTemplate(this.tdTemplate, o));
     },
-    
+
     /**
     * Attaches data cell element.
     *
