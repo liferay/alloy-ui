@@ -3,3 +3,76 @@
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 }
+
+.aui-diagram-builder-base-canvas {
+	position: relative;
+	background-image: url(checker-bg.png);
+	outline: 0;
+
+	border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #BBBBBB;
+
+    border-bottom: 1px solid #BBBBBB;
+    border-top: 1px solid #CCCCCC;
+}
+
+.aui-diagram-builder-base-field-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.aui-diagram-node-task-icon {
+	background: url(menu-task.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-task .aui-diagram-node-content {
+	background: url(task.png) no-repeat scroll 2px 2px transparent;
+}
+
+.aui-diagram-node-fork-icon {
+	background: url(menu-fork.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-fork .aui-diagram-node-content {
+	background: url(fork.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-join-icon {
+	background: url(menu-join.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-join .aui-diagram-node-content {
+	background: url(join.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-state-icon {
+	background: url(menu-state.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-state .aui-diagram-node-content {
+	background: url(state.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-end-icon {
+	background: url(menu-end.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-end .aui-diagram-node-content {
+	background: url(end.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-start-icon {
+	background: url(menu-start.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-start .aui-diagram-node-content {
+	background: url(start.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-condition-icon {
+	background: url(menu-condition.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-node-condition .aui-diagram-node-content {
+	background: url(condition.png) no-repeat scroll center center transparent;
+}

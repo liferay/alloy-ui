@@ -43,6 +43,7 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
+	CONDITION = 'condition',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
@@ -60,14 +61,17 @@ var Lang = A.Lang,
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
 	EDITING = 'editing',
+	END = 'end',
 	ESC = 'esc',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
+	FORK = 'fork',
 	GRAPHIC = 'graphic',
 	HEIGHT = 'height',
 	HOVER = 'hover',
 	ID = 'id',
+	JOIN = 'join',
 	KEYDOWN = 'keydown',
 	LINK = 'link',
 	MAX = 'max',
@@ -90,8 +94,11 @@ var Lang = A.Lang,
 	SHUFFLE = 'shuffle',
 	SOURCE = 'source',
 	SOURCES = 'sources',
+	START = 'start',
+	STATE = 'state',
 	TARGET = 'target',
 	TARGETS = 'targets',
+	TASK = 'task',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
 	WIDTH = 'width',
@@ -728,7 +735,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		height: {
-			value: 90
+			value: 60
 		},
 
 		name: {
@@ -768,7 +775,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		width: {
-			value: 90
+			value: 60
 		},
 
 		zIndex: {
@@ -813,7 +820,7 @@ var DiagramNode = A.Component.create({
 			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
 
 			// REMOVE THIS!
-			instance.set('bodyContent', instance.get(NAME));
+			// instance.set('bodyContent', instance.get(NAME));
 		},
 
 		destructor: function() {
@@ -1063,7 +1070,7 @@ var DiagramNode = A.Component.create({
 
 			source.connect(target);
 
-			__dump();
+			// __dump();
 		},
 
 		_renderControls: function() {
@@ -1243,3 +1250,116 @@ var DiagramNode = A.Component.create({
 A.DiagramNode = DiagramNode;
 
 A.DiagramBuilder.types[NODE] = A.DiagramNode;
+
+A.DiagramNodeState = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+	EXTENDS: A.DiagramNode
+});
+
+A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
+
+A.DiagramNodeState = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: STATE
+		}
+	},
+
+	EXTENDS: A.DiagramNode,
+});
+
+A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
+
+A.DiagramNodeCondition = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: CONDITION
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
+
+A.DiagramNodeStart = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: START
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[START] = A.DiagramNodeStart;
+
+A.DiagramNodeEnd = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: END
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
+
+A.DiagramNodeJoin = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: JOIN
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
+
+A.DiagramNodeFork = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: FORK
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
+
+A.DiagramNodeTask = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		height: {
+			value: 70	
+		},
+
+		type: {
+			value: TASK
+		},
+
+		width: {
+			value: 70
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
