@@ -5,6 +5,7 @@
 .aui-diagram-builder-base .aui-diagram-builder-base-field {
 	border-radius: 4px 4px 4px 4px;
 	float: left;
+	height: 63px;
 	list-style: none outside none;
 	margin: 2px;
 	text-align: center;
@@ -35,6 +36,10 @@
 .aui-diagram-builder-base-content {
 	background-color: #f1f1f1;
 	padding-left: 260px;
+}
+
+.aui-diagram-builder-base-tabs-container .aui-tabview-list {
+	margin-bottom: 5px;
 }
 
 .aui-diagram-builder-base-tabs-container {
@@ -68,8 +73,6 @@
 }
 
 .aui-diagram-builder-anchor-node {
-	background: #484A4C;
-	border-radius: 12px;
 	cursor: pointer;
 	height: 15px;
 	position: absolute;
