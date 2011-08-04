@@ -32,6 +32,7 @@ var Lang = A.Lang,
 	CANCEL = 'cancel',
 	CANVAS = 'canvas',
 	CLEARFIX = 'clearfix',
+	CLEARFIX = 'clearfix',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
@@ -48,6 +49,7 @@ var Lang = A.Lang,
 	FIELDS = 'fields',
 	FIELDS_CONTAINER = 'fieldsContainer',
 	HEIGHT = 'height',
+	HELPER = 'helper',
 	HELPER = 'helper',
 	ICON = 'icon',
 	ICON_CLASS = 'iconClass',
@@ -71,21 +73,23 @@ var Lang = A.Lang,
 
 	_SPACE = ' ',
 	_DOT = '.',
-	_DOLLAR = '$',
 	_HASH = '#',
+	_SPACE = ' ',
+	_UNDERLINE = '_',
 
-	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
+	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
-	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, ICON),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, LABEL),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER, CONTENT),
+	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, ADD),
 	CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, SETTINGS),
+	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER),
+	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER, CONTENT),
 	CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TOOLBAR, CONTAINER),
+	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
 	CSS_TABVIEW_CONTENT = AgetClassName(TABVIEW, CONTENT),
@@ -146,7 +150,7 @@ var AvailableField = A.Component.create({
 	EXTENDS: A.Base,
 
 	buildNodeId: function(id) {
-		return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
+		return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
 	},
 
 	getAvailableFieldById: function(id) {
@@ -158,9 +162,9 @@ var AvailableField = A.Component.create({
 	},
 
 	prototype: {
-		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD + '">' +
+		FIELD_ITEM_TEMPLATE: '<li class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELD, CSS_HELPER_CLEARFIX].join(_SPACE) + '">' +
 									'<span class="' + [ CSS_ICON, CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON ].join(_SPACE) + ' {iconClass}"></span>' +
-									'<span class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL + '"></span>' +
+									'<div class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL + '"></div>' +
 								'</li>',
 
 		initializer: function() {
@@ -422,7 +426,7 @@ var DiagramBuilderBase = A.Component.create(
 		prototype: {
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
-			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
+			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER, CSS_HELPER_CLEARFIX ].join(_SPACE) + '"></ul>',
 			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
 
 			fieldsNode: null,
@@ -796,6 +800,7 @@ var Lang = A.Lang,
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
+	CONDITION = 'condition',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
@@ -813,14 +818,17 @@ var Lang = A.Lang,
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
 	EDITING = 'editing',
+	END = 'end',
 	ESC = 'esc',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FIELDS_DRAG_CONFIG = 'fieldsDragConfig',
+	FORK = 'fork',
 	GRAPHIC = 'graphic',
 	HEIGHT = 'height',
 	HOVER = 'hover',
 	ID = 'id',
+	JOIN = 'join',
 	KEYDOWN = 'keydown',
 	LINK = 'link',
 	MAX = 'max',
@@ -843,8 +851,11 @@ var Lang = A.Lang,
 	SHUFFLE = 'shuffle',
 	SOURCE = 'source',
 	SOURCES = 'sources',
+	START = 'start',
+	STATE = 'state',
 	TARGET = 'target',
 	TARGETS = 'targets',
+	TASK = 'task',
 	TMP_CONNECTOR = 'tmpConnector',
 	TYPE = 'type',
 	WIDTH = 'width',
@@ -1481,7 +1492,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		height: {
-			value: 90
+			value: 60
 		},
 
 		name: {
@@ -1521,7 +1532,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		width: {
-			value: 90
+			value: 60
 		},
 
 		zIndex: {
@@ -1566,7 +1577,7 @@ var DiagramNode = A.Component.create({
 			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
 
 			// REMOVE THIS!
-			instance.set('bodyContent', instance.get(NAME));
+			// instance.set('bodyContent', instance.get(NAME));
 		},
 
 		destructor: function() {
@@ -1816,7 +1827,7 @@ var DiagramNode = A.Component.create({
 
 			source.connect(target);
 
-			__dump();
+			// __dump();
 		},
 
 		_renderControls: function() {
@@ -1997,6 +2008,119 @@ A.DiagramNode = DiagramNode;
 
 A.DiagramBuilder.types[NODE] = A.DiagramNode;
 
+A.DiagramNodeState = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+	EXTENDS: A.DiagramNode
+});
+
+A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
+
+A.DiagramNodeState = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: STATE
+		}
+	},
+
+	EXTENDS: A.DiagramNode,
+});
+
+A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
+
+A.DiagramNodeCondition = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: CONDITION
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
+
+A.DiagramNodeStart = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: START
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[START] = A.DiagramNodeStart;
+
+A.DiagramNodeEnd = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: END
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
+
+A.DiagramNodeJoin = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: JOIN
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
+
+A.DiagramNodeFork = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		type: {
+			value: FORK
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
+
+A.DiagramNodeTask = A.Component.create({
+	NAME: DIAGRAM_NODE_NAME,
+
+	ATTRS: {
+		height: {
+			value: 70	
+		},
+
+		type: {
+			value: TASK
+		},
+
+		width: {
+			value: 70
+		}
+	},
+
+	EXTENDS: A.DiagramNodeState,
+});
+
+A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
+
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
@@ -2085,9 +2209,13 @@ A.PolygonUtil = {
 
 		var angle = Math.atan2(y2-y1, x2-x1), centerX = (x2+x1)/2, centerY = (y2+y1)/2;
 
+		// Slide the arrow position along the line in 15px in polar coordinates
+		x2 = x2 - 15*Math.cos(angle);
+		y2 = y2 - 15*Math.sin(angle);
+
 		instance.drawPolygon(
 			shape,
-			instance.translatePoints(instance.rotatePoints(arrowPoints || instance.ARROW_POINTS, angle), centerX, centerY)
+			instance.translatePoints(instance.rotatePoints(arrowPoints || instance.ARROW_POINTS, angle), x2, y2)
 		);
 	},
 
@@ -2303,7 +2431,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				type: PATH,
 				stroke: {
 					color: instance.get(COLOR),
-					weight: 2
+					weight: 3
 				},
 				fill: {
 					color: instance.get(COLOR)
@@ -2341,7 +2469,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		},
 
 		color: {
-			value: '#666',
+			value: '#27aae1',
 			validator: isString
 		},
 
@@ -2371,10 +2499,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		shapeHover: {
 			value: {
 				fill: {
-					color: '#000'
+					color: '#666'
 				},
 				stroke: {
-					color: '#000',
+					color: '#666',
 					weight: 5
 				}
 			}
