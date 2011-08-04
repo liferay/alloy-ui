@@ -86,6 +86,7 @@ var PropertyList = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
+			instance.after(RECORDSET_CHANGE, instance._plugDependencies);
 			instance.after(instance._syncScrollWidth, instance, '_uiSetWidth');
 			instance.after(instance._syncScrollHeight, instance, '_uiSetHeight');
 
