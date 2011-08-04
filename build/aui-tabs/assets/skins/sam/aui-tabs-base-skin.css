@@ -35,16 +35,19 @@
 }
 
 .aui-tab-label {
-	color: #1f1e1e;
 	display: inline-block;
+	padding: 5px 10px 4px;
+}
+
+.aui-tab-label, .aui-tab-label a {
+	color: #1f1e1e;
 	font-style: normal;
 	font-weight: normal;
-	padding: 5px 10px 4px;
 	text-decoration: none;
 	text-shadow: #fff 1px 1px 0px;
 }
 
-.aui-tab-label:hover, .aui-state-hover .aui-tab-label {
+.aui-tab-label:hover, .aui-state-hover .aui-tab-label, .aui-tab-label a:hover {
 	color: #06c;
 }
 
