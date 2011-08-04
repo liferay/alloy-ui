@@ -1254,17 +1254,18 @@ A.DiagramBuilder.types[NODE] = A.DiagramNode;
 
 A.DiagramNodeState = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
-	EXTENDS: A.DiagramNode
-});
-
-A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
-
-A.DiagramNodeState = A.Component.create({
-	NAME: DIAGRAM_NODE_NAME,
 
 	ATTRS: {
+		height: {
+			value: 40
+		},
+
 		type: {
 			value: STATE
+		},
+
+		width: {
+			value: 40
 		}
 	},
 
@@ -1277,8 +1278,16 @@ A.DiagramNodeCondition = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
 	ATTRS: {
+		height: {
+			value: 60
+		},
+
 		type: {
 			value: CONDITION
+		},
+
+		width: {
+			value: 60
 		}
 	},
 
@@ -1319,8 +1328,16 @@ A.DiagramNodeJoin = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
 	ATTRS: {
+		height: {
+			value: 60
+		},
+
 		type: {
 			value: JOIN
+		},
+
+		width: {
+			value: 60
 		}
 	},
 
@@ -1333,8 +1350,16 @@ A.DiagramNodeFork = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
 	ATTRS: {
+		height: {
+			value: 60
+		},
+
 		type: {
 			value: FORK
+		},
+
+		width: {
+			value: 60
 		}
 	},
 
@@ -1348,7 +1373,7 @@ A.DiagramNodeTask = A.Component.create({
 
 	ATTRS: {
 		height: {
-			value: 70	
+			value: 70
 		},
 
 		type: {
