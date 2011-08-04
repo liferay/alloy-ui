@@ -10,8 +10,12 @@ YUI.add('autocomplete-list', function(Y) {
 /**
  * Traditional autocomplete dropdown list widget, just like Mom used to make.
  *
- * @module autocomplete
  * @submodule autocomplete-list
+ */
+
+/**
+ * Traditional autocomplete dropdown list widget, just like Mom used to make.
+ * 
  * @class AutoCompleteList
  * @extends Widget
  * @uses AutoCompleteBase
@@ -131,12 +135,8 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
             boundingBox = this.get('boundingBox'),
             contentBox  = this.get('contentBox'),
             inputNode   = this._inputNode,
-            listNode,
+            listNode    = this._createListNode(),
             parentNode  = inputNode.get('parentNode');
-
-        listNode = this._createListNode();
-        this._set('listNode', listNode);
-        contentBox.append(listNode);
 
         inputNode.addClass(this.getClassName('input')).setAttrs({
             'aria-autocomplete': LIST,
@@ -361,7 +361,8 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
               visibleChange       : this._afterVisibleChange
             }),
 
-            this._listNode.delegate('click', this._onItemClick, this[_SELECTOR_ITEM], this)
+            this._listNode.delegate('click', this._onItemClick,
+                    this[_SELECTOR_ITEM], this)
         ]);
     },
 
@@ -412,19 +413,25 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
     },
 
     /**
-     * Creates and returns a list node.
+     * Creates and returns a list node. If the `listNode` attribute is already
+     * set to an existing node, that node will be used.
      *
      * @method _createListNode
      * @return {Node} List node.
      * @protected
      */
     _createListNode: function () {
-        var listNode = Node.create(this.LIST_TEMPLATE);
+        var listNode = this.get('listNode') || Node.create(this.LIST_TEMPLATE);
 
-        return listNode.addClass(this.getClassName(LIST)).setAttrs({
+        listNode.addClass(this.getClassName(LIST)).setAttrs({
             id  : Y.stamp(listNode),
             role: 'listbox'
         });
+
+        this._set('listNode', listNode);
+        this.get('contentBox').append(listNode);
+
+        return listNode;
     },
 
     /**
@@ -551,7 +558,8 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
     _afterActiveItemChange: function (e) {
         var inputNode = this._inputNode,
             newVal    = e.newVal,
-            prevVal   = e.prevVal;
+            prevVal   = e.prevVal,
+            node;
 
         // The previous item may have disappeared by the time this handler runs,
         // so we need to be careful.
@@ -567,7 +575,13 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
         }
 
         if (this.get('scrollIntoView')) {
-            (newVal || inputNode).scrollIntoView();
+            node = newVal || inputNode;
+
+            if (!node.inRegion(Y.DOM.viewportRegion(), true)
+                    || !node.inRegion(this._contentBox, true)) {
+
+                node.scrollIntoView();
+            }
         }
     },
 
@@ -761,7 +775,7 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
          *
          * @attribute hoveredItem
          * @type Node|null
-         * @readonly
+         * @readOnly
          */
         hoveredItem: {
             readOnly: true,
@@ -773,10 +787,10 @@ List = Y.Base.create('autocompleteList', Y.Widget, [
          *
          * @attribute listNode
          * @type Node|null
-         * @readonly
+         * @initOnly
          */
         listNode: {
-            readOnly: true,
+            writeOnce: 'initOnly',
             value: null
         },
 
@@ -837,4 +851,4 @@ Y.AutoCompleteList = List;
 Y.AutoComplete = List;
 
 
-}, '3.4.0' ,{lang:['en'], after:['autocomplete-sources'], skinnable:true, requires:['autocomplete-base', 'event-resize', 'selector-css3', 'shim-plugin', 'widget', 'widget-position', 'widget-position-align']});
+}, '3.4.0' ,{lang:['en'], after:['autocomplete-sources'], requires:['autocomplete-base', 'event-resize', 'node-screen', 'selector-css3', 'shim-plugin', 'widget', 'widget-position', 'widget-position-align'], skinnable:true});

@@ -5,7 +5,7 @@ http://developer.yahoo.com/yui/license.html
 version: 3.4.0
 build: nightly
 */
-YUI.add('transition-native', function(Y) {
+YUI.add('transition', function(Y) {
 
 /**
 * Provides the transition method for Node.
@@ -15,18 +15,31 @@ YUI.add('transition-native', function(Y) {
 * @requires node-style
 */
 
-var TRANSITION = '-webkit-transition',
-    TRANSITION_CAMEL = 'WebkitTransition',
-    TRANSITION_PROPERTY_CAMEL = 'WebkitTransitionProperty',
-    TRANSITION_PROPERTY = '-webkit-transition-property',
-    TRANSITION_DURATION = '-webkit-transition-duration',
-    TRANSITION_TIMING_FUNCTION = '-webkit-transition-timing-function',
-    TRANSITION_DELAY = '-webkit-transition-delay',
-    TRANSITION_END = 'webkitTransitionEnd',
-    ON_TRANSITION_END = 'onwebkittransitionend',
-    TRANSFORM_CAMEL = 'WebkitTransform',
+var CAMEL_VENDOR_PREFIX = '',
+    VENDOR_PREFIX = '',
+    DOCUMENT = Y.config.doc,
+    DOCUMENT_ELEMENT = 'documentElement',
+    TRANSITION = 'transition',
+    TRANSITION_CAMEL = 'Transition',
+    TRANSITION_PROPERTY_CAMEL,
+    TRANSITION_PROPERTY,
+    TRANSITION_DURATION,
+    TRANSITION_TIMING_FUNCTION,
+    TRANSITION_DELAY,
+    TRANSITION_END,
+    ON_TRANSITION_END,
+    TRANSFORM_CAMEL,
 
     EMPTY_OBJ = {},
+
+    VENDORS = [
+        'Webkit',
+        'Moz'
+    ],
+
+    VENDOR_TRANSITION_END = {
+        Webkit: 'webkitTransitionEnd'
+    },
 
 /**
  * A class for constructing transition instances.
@@ -39,11 +52,6 @@ Transition = function() {
     this.init.apply(this, arguments);
 };
 
-Transition.fx = {};
-Transition.toggles = {};
-
-Transition._hasEnd = {};
-
 Transition._toCamel = function(property) {
     property = property.replace(/-([a-z])/gi, function(m0, m1) {
         return m1.toUpperCase();
@@ -54,11 +62,7 @@ Transition._toCamel = function(property) {
 
 Transition._toHyphen = function(property) {
     property = property.replace(/([A-Z]?)([a-z]+)([A-Z]?)/g, function(m0, m1, m2, m3) {
-        var str = '';
-        if (m1) {
-            str += '-' + m1.toLowerCase();
-        }
-        str += m2;
+        var str = ((m1) ? '-' + m1.toLowerCase() : '') + m2;
         
         if (m3) {
             str += '-' + m3.toLowerCase();
@@ -70,15 +74,42 @@ Transition._toHyphen = function(property) {
     return property;
 };
 
-
-Transition._reKeywords = /^(?:node|duration|iterations|easing|delay|on|onstart|onend)$/i;
+Transition.SHOW_TRANSITION = 'fadeIn';
+Transition.HIDE_TRANSITION = 'fadeOut';
 
 Transition.useNative = false;
 
-if (TRANSITION in Y.config.doc.documentElement.style) {
-    Transition.useNative = true;
-    Transition.supported = true; // TODO: remove
-}
+Y.Array.each(VENDORS, function(val) { // then vendor specific
+    var property = val + TRANSITION_CAMEL;
+    if (property in DOCUMENT[DOCUMENT_ELEMENT].style) {
+        CAMEL_VENDOR_PREFIX = val;
+        VENDOR_PREFIX = Transition._toHyphen(val) + '-';
+
+        Transition.useNative = true;
+        Transition.supported = true; // TODO: remove
+        Transition._VENDOR_PREFIX = val;
+    }
+});
+
+TRANSITION_CAMEL = CAMEL_VENDOR_PREFIX + TRANSITION_CAMEL;
+TRANSITION_PROPERTY_CAMEL = CAMEL_VENDOR_PREFIX + 'TransitionProperty';
+TRANSITION_PROPERTY = VENDOR_PREFIX + 'transition-property';
+TRANSITION_DURATION = VENDOR_PREFIX + 'transition-duration';
+TRANSITION_TIMING_FUNCTION = VENDOR_PREFIX + 'transition-timing-function';
+TRANSITION_DELAY = VENDOR_PREFIX + 'transition-delay';
+TRANSITION_END = 'transitionend';
+ON_TRANSITION_END = 'on' + CAMEL_VENDOR_PREFIX.toLowerCase() + 'transitionend';
+
+TRANSITION_END = VENDOR_TRANSITION_END[CAMEL_VENDOR_PREFIX] || TRANSITION_END;
+
+TRANSFORM_CAMEL = CAMEL_VENDOR_PREFIX + 'Transform';
+
+Transition.fx = {};
+Transition.toggles = {};
+
+Transition._hasEnd = {};
+
+Transition._reKeywords = /^(?:node|duration|iterations|easing|delay|on|onstart|onend)$/i;
 
 Y.Node.DOM_EVENTS[TRANSITION_END] = 1; 
 
@@ -271,7 +302,7 @@ Transition.prototype = {
             computed = getComputedStyle(node),
             attrs = Transition._nodeAttrs[uid],
             cssText = '',
-            cssTransition = computed[TRANSITION_PROPERTY],
+            cssTransition = computed[Transition._toCamel(TRANSITION_PROPERTY)],
 
             transitionText = TRANSITION_PROPERTY + ': ',
             duration = TRANSITION_DURATION + ': ',
@@ -284,9 +315,9 @@ Transition.prototype = {
         // preserve existing transitions
         if (cssTransition !== 'all') {
             transitionText += cssTransition + ',';
-            duration += computed[TRANSITION_DURATION] + ',';
-            easing += computed[TRANSITION_TIMING_FUNCTION] + ',';
-            delay += computed[TRANSITION_DELAY] + ',';
+            duration += computed[Transition._toCamel(TRANSITION_DURATION)] + ',';
+            easing += computed[Transition._toCamel(TRANSITION_TIMING_FUNCTION)] + ',';
+            delay += computed[Transition._toCamel(TRANSITION_DELAY)] + ',';
 
         }
 
@@ -294,7 +325,7 @@ Transition.prototype = {
         for (name in attrs) {
             hyphy = Transition._toHyphen(name);
             attr = attrs[name];
-            if (attrs.hasOwnProperty(name) && attr.transition === anim) {
+            if ((attr = attrs[name]) && attr.transition === anim) {
                 if (name in node.style) { // only native styles allowed
                     duration += anim._prepDur(attr.duration) + ',';
                     delay += anim._prepDur(attr.delay) + ',';
@@ -317,7 +348,7 @@ Transition.prototype = {
         if (!Transition._hasEnd[uid]) {
             //anim._detach = Y.on(TRANSITION_END, anim._onNativeEnd, node);
             //node[ON_TRANSITION_END] = anim._onNativeEnd;
-            node.addEventListener(TRANSITION_END, anim._onNativeEnd, false);
+            node.addEventListener(TRANSITION_END, anim._onNativeEnd, '');
             Transition._hasEnd[uid] = true;
 
         }
@@ -367,7 +398,7 @@ Transition.prototype = {
 
     _endNative: function(name) {
         var node = this._node,
-            value = node.ownerDocument.defaultView.getComputedStyle(node, '')[TRANSITION_PROPERTY];
+            value = node.ownerDocument.defaultView.getComputedStyle(node, '')[Transition._toCamel(TRANSITION_PROPERTY)];
 
         if (typeof value === 'string') {
             value = value.replace(new RegExp('(?:^|,\\s)' + name + ',?'), ',');
@@ -413,15 +444,18 @@ Transition.prototype = {
     },
 
     destroy: function() {
-        var anim = this;
+        var anim = this,
+            node = anim._node;
         /*
         if (anim._detach) {
             anim._detach.detach();
         }
         */
         //anim._node[ON_TRANSITION_END] = null;
-        node.removeEventListener(TRANSITION_END, anim._onNativeEnd, false);
-        anim._node = null;
+        if (node) {
+            node.removeEventListener(TRANSITION_END, anim._onNativeEnd, false);
+            anim._node = null;
+        }
     }
 };
 
@@ -505,7 +539,7 @@ Y.Node.prototype.show = function(name, config, callback) {
                 callback = config;
                 config = name;
             }
-            name = this.SHOW_TRANSITION; 
+            name = Transition.SHOW_TRANSITION; 
         }    
         this.transition(name, config, callback);
     }    
@@ -537,7 +571,7 @@ Y.Node.prototype.hide = function(name, config, callback) {
                 callback = config;
                 config = name;
             }
-            name = this.HIDE_TRANSITION; 
+            name = Transition.HIDE_TRANSITION; 
         }    
         this.transition(name, config, callback);
     } else if (name && !Y.Transition) { Y.log('unable to transition hide; missing transition module', 'warn', 'node'); // end if on nex
@@ -683,349 +717,4 @@ Transition.DEFAULT_TOGGLE = 'fade';
 
 
 
-}, '3.4.0' ,{requires:['node-base']});
-YUI.add('transition-timer', function(Y) {
-
-/*
-* The Transition Utility provides an API for creating advanced transitions.
-* @module transition
-*/
-
-/*
-* Provides the base Transition class, for animating numeric properties.
-*
-* @module transition
-* @submodule transition-timer
-*/
-
-
-var Transition = Y.Transition;
-
-Y.mix(Transition.prototype, {
-    _start: function() {
-        if (Transition.useNative) {
-            this._runNative();
-        } else {
-            this._runTimer();
-        }
-    },
-
-    _runTimer: function() {
-        var anim = this;
-        anim._initAttrs();
-
-        Transition._running[Y.stamp(anim)] = anim;
-        anim._startTime = new Date();
-        Transition._startTimer();
-    },
-
-    _endTimer: function() {
-        var anim = this;
-        delete Transition._running[Y.stamp(anim)];
-        anim._startTime = null;
-    },
-
-    _runFrame: function() {
-        var t = new Date() - this._startTime;
-        this._runAttrs(t);
-    },
-
-    _runAttrs: function(time) {
-        var anim = this,
-            node = anim._node,
-            config = anim._config,
-            uid = Y.stamp(node),
-            attrs = Transition._nodeAttrs[uid],
-            customAttr = Transition.behaviors,
-            done = false,
-            allDone = false,
-            data,
-            name,
-            attribute,
-            setter,
-            elapsed,
-            delay,
-            d,
-            t,
-            i;
-
-        for (name in attrs) {
-            attribute = attrs[name];
-            if ((attribute && attribute.transition === anim)) {
-                d = attribute.duration;
-                delay = attribute.delay;
-                elapsed = (time - delay) / 1000;
-                t = time;
-                data = {
-                    type: 'propertyEnd',
-                    propertyName: name,
-                    config: config,
-                    elapsedTime: elapsed
-                };
-
-                setter = (i in customAttr && 'set' in customAttr[i]) ?
-                        customAttr[i].set : Transition.DEFAULT_SETTER;
-
-                done = (t >= d);
-
-                if (t > d) {
-                    t = d;
-                }
-
-                if (!delay || time >= delay) {
-                    setter(anim, name, attribute.from, attribute.to, t - delay, d - delay,
-                        attribute.easing, attribute.unit); 
-
-                    if (done) {
-                        delete attrs[name];
-                        anim._count--;
-
-                        if (config[name] && config[name].on && config[name].on.end) {
-                            config[name].on.end.call(Y.one(node), data);
-                        }
-
-                        //node.fire('transition:propertyEnd', data);
-
-                        if (!allDone && anim._count <= 0) {
-                            allDone = true;
-                            anim._end(elapsed);
-                            anim._endTimer();
-                        }
-                    }
-                }
-
-            }
-        }
-    },
-
-    _initAttrs: function() {
-        var anim = this,
-            customAttr = Transition.behaviors,
-            uid = Y.stamp(anim._node),
-            attrs = Transition._nodeAttrs[uid],
-            attribute,
-            duration,
-            delay,
-            easing,
-            val,
-            name,
-            mTo,
-            mFrom,
-            unit, begin, end;
-
-        for (name in attrs) {
-            attribute = attrs[name];
-            if (attrs.hasOwnProperty(name) && (attribute && attribute.transition === anim)) {
-                duration = attribute.duration * 1000;
-                delay = attribute.delay * 1000;
-                easing = attribute.easing;
-                val = attribute.value;
-
-                // only allow supported properties
-                if (name in anim._node.style || name in Y.DOM.CUSTOM_STYLES) {
-                    begin = (name in customAttr && 'get' in customAttr[name])  ?
-                            customAttr[name].get(anim, name) : Transition.DEFAULT_GETTER(anim, name);
-
-                    mFrom = Transition.RE_UNITS.exec(begin);
-                    mTo = Transition.RE_UNITS.exec(val);
-
-                    begin = mFrom ? mFrom[1] : begin;
-                    end = mTo ? mTo[1] : val;
-                    unit = mTo ? mTo[2] : mFrom ?  mFrom[2] : ''; // one might be zero TODO: mixed units
-
-                    if (!unit && Transition.RE_DEFAULT_UNIT.test(name)) {
-                        unit = Transition.DEFAULT_UNIT;
-                    }
-
-                    if (typeof easing === 'string') {
-                        if (easing.indexOf('cubic-bezier') > -1) {
-                            easing = easing.substring(13, easing.length - 1).split(',');
-                        } else if (Transition.easings[easing]) {
-                            easing = Transition.easings[easing];
-                        }
-                    }
-
-                    attribute.from = Number(begin);
-                    attribute.to = Number(end);
-                    attribute.unit = unit;
-                    attribute.easing = easing;
-                    attribute.duration = duration + delay;
-                    attribute.delay = delay;
-                } else {
-                    delete attrs[name];
-                    anim._count--;
-                }
-            }
-        }
-    },
-
-    destroy: function() {
-        this.detachAll();
-        this._node = null;
-    }
-}, true);
-
-Y.mix(Y.Transition, {
-    _runtimeAttrs: {},
-    /*
-     * Regex of properties that should use the default unit.
-     *
-     * @property RE_DEFAULT_UNIT
-     * @static
-     */
-    RE_DEFAULT_UNIT: /^width|height|top|right|bottom|left|margin.*|padding.*|border.*$/i,
-
-    /*
-     * The default unit to use with properties that pass the RE_DEFAULT_UNIT test.
-     *
-     * @property DEFAULT_UNIT
-     * @static
-     */
-    DEFAULT_UNIT: 'px',
-
-    /*
-     * Time in milliseconds passed to setInterval for frame processing 
-     *
-     * @property intervalTime
-     * @default 20
-     * @static
-     */
-    intervalTime: 20,
-
-    /*
-     * Bucket for custom getters and setters
-     *
-     * @property behaviors
-     * @static
-     */
-    behaviors: {
-        left: {
-            get: function(anim, attr) {
-                return Y.DOM._getAttrOffset(anim._node, attr);
-            }
-        }
-    },
-
-    /*
-     * The default setter to use when setting object properties.
-     *
-     * @property DEFAULT_SETTER
-     * @static
-     */
-    DEFAULT_SETTER: function(anim, att, from, to, elapsed, duration, fn, unit) {
-        from = Number(from);
-        to = Number(to);
-
-        var node = anim._node,
-            val = Transition.cubicBezier(fn, elapsed / duration);
-
-        val = from + val[0] * (to - from);
-
-        if (node) {
-            if (att in node.style || att in Y.DOM.CUSTOM_STYLES) {
-                unit = unit || '';
-                Y.DOM.setStyle(node, att, val + unit);
-            }
-        } else {
-            anim._end();
-        }
-    },
-
-    /*
-     * The default getter to use when getting object properties.
-     *
-     * @property DEFAULT_GETTER
-     * @static
-     */
-    DEFAULT_GETTER: function(anim, att) {
-        var node = anim._node,
-            val = '';
-
-        if (att in node.style || att in Y.DOM.CUSTOM_STYLES) {
-            val = Y.DOM.getComputedStyle(node, att);
-        }
-
-        return val;
-    },
-
-    _startTimer: function() {
-        if (!Transition._timer) {
-            Transition._timer = setInterval(Transition._runFrame, Transition.intervalTime);
-        }
-    },
-
-    _stopTimer: function() {
-        clearInterval(Transition._timer);
-        Transition._timer = null;
-    },
-
-    /*
-     * Called per Interval to handle each animation frame.
-     * @method _runFrame
-     * @private
-     * @static
-     */    
-    _runFrame: function() {
-        var done = true,
-            anim;
-        for (anim in Transition._running) {
-            if (Transition._running[anim]._runFrame) {
-                done = false;
-                Transition._running[anim]._runFrame();
-            }
-        }
-
-        if (done) {
-            Transition._stopTimer();
-        }
-    },
-
-    cubicBezier: function(p, t) {
-        var x0 = 0,
-            y0 = 0,
-            x1 = p[0],
-            y1 = p[1],
-            x2 = p[2],
-            y2 = p[3],
-            x3 = 1,
-            y3 = 0,
-
-            A = x3 - 3 * x2 + 3 * x1 - x0,
-            B = 3 * x2 - 6 * x1 + 3 * x0,
-            C = 3 * x1 - 3 * x0,
-            D = x0,
-            E = y3 - 3 * y2 + 3 * y1 - y0,
-            F = 3 * y2 - 6 * y1 + 3 * y0,
-            G = 3 * y1 - 3 * y0,
-            H = y0,
-
-            x = (((A*t) + B)*t + C)*t + D,
-            y = (((E*t) + F)*t + G)*t + H;
-
-        return [x, y];
-    },
-
-    easings: {
-        ease: [0.25, 0, 1, 0.25],
-        linear: [0, 0, 1, 1],
-        'ease-in': [0.42, 0, 1, 1],
-        'ease-out': [0, 0, 0.58, 1],
-        'ease-in-out': [0.42, 0, 0.58, 1]
-    },
-
-    _running: {},
-    _timer: null,
-
-    RE_UNITS: /^(-?\d*\.?\d*){1}(em|ex|px|in|cm|mm|pt|pc|%)*$/
-}, true); 
-
-Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.right = Transition.behaviors.left;
-
-Y.Transition = Transition;
-
-
-}, '3.4.0' ,{requires:['transition-native', 'node-style']});
-
-
-YUI.add('transition', function(Y){}, '3.4.0' ,{use:['transition-native', 'transition-timer']});
-
+}, '3.4.0' ,{requires:['node-style']});

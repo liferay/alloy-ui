@@ -13,6 +13,14 @@ views, and controllers) for writing single-page JavaScript applications.
 
 @main app
 @module app
+@since 3.4.0
+**/
+
+/**
+Provides URL-based routing using HTML5 `pushState()` or the location hash.
+
+@submodule controller
+@since 3.4.0
 **/
 
 /**
@@ -22,10 +30,10 @@ This makes it easy to wire up route handlers for different application states
 while providing full back/forward navigation support and bookmarkable, shareable
 URLs.
 
-@submodule controller
 @class Controller
 @constructor
-@uses Base
+@extends Base
+@since 3.4.0
 **/
 
 var HistoryHash = Y.HistoryHash,
@@ -41,6 +49,11 @@ var HistoryHash = Y.HistoryHash,
     html5    = Y.HistoryBase.html5 && (!Y.UA.android || Y.UA.android >= 3),
     win      = Y.config.win,
     location = win.location,
+
+    // We have to queue up pushState calls to avoid race conditions, since the
+    // popstate event doesn't actually provide any info on what URL it's
+    // associated with.
+    saveQueue = [],
 
     /**
     Fired when the controller is ready to begin dispatching to route handlers.
@@ -75,7 +88,7 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     html5: html5,
 
     /**
-    Root path from which all routes should be evaluated.
+    Absolute root path from which all routes should be evaluated.
 
     For example, if your controller is running on a page at
     `http://example.com/myapp/` and you add a route with the path `/`, your
@@ -132,6 +145,15 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     **/
 
     /**
+    Whether or not we're currently in the process of dispatching to routes.
+
+    @property _dispatching
+    @type Boolean
+    @default undefined
+    @protected
+    **/
+
+    /**
     Whether or not the `ready` event has fired yet.
 
     @property _ready
@@ -166,6 +188,17 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     **/
     _regexUrlQuery: /\?([^#]*).*$/,
 
+    /**
+    Regex that matches everything before the path portion of an HTTP or HTTPS
+    URL. This will be used to strip this part of the URL from a string when we
+    only want the path.
+
+    @property _regexUrlStrip
+    @type RegExp
+    @protected
+    **/
+    _regexUrlStrip: /^https?:\/\/[^\/]*/i,
+
     // -- Lifecycle Methods ----------------------------------------------------
     initializer: function (config) {
         var self = this;
@@ -192,8 +225,9 @@ Y.Controller = Y.extend(Controller, Y.Base, {
         }
 
         // Fire a 'ready' event once we're ready to route. We wait first for all
-        // subclass initializers to finish, and then an additional 20ms to allow
-        // the browser to fire an initial `popstate` event if it wants to.
+        // subclass initializers to finish, then for window.onload, and then an
+        // additional 20ms to allow the browser to fire a useless initial
+        // `popstate` event if it wants to (and Chrome always wants to).
         self.publish(EVT_READY, {
             defaultFn  : self._defReadyFn,
             fireOnce   : true,
@@ -201,9 +235,11 @@ Y.Controller = Y.extend(Controller, Y.Base, {
         });
 
         self.once('initializedChange', function () {
-            setTimeout(function () {
-                self.fire(EVT_READY, {dispatched: !!self._dispatched});
-            }, 20);
+            Y.once('load', function () {
+                setTimeout(function () {
+                    self.fire(EVT_READY, {dispatched: !!self._dispatched});
+                }, 20);
+            });
         });
     },
 
@@ -229,22 +265,39 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     **/
     dispatch: function () {
         this.once(EVT_READY, function () {
-            var hash = this._getHashPath();
-
             this._ready = true;
 
-            if (html5 && hash && hash.charAt(0) === '/') {
-                // This is an HTML5 browser and we have a hash-based path in the
-                // URL, so we need to upgrade the URL to a non-hash URL. This
-                // will trigger a `history:change` event, which will in turn
-                // trigger a dispatch.
-                this._history.replace(null, {url: this._joinURL(hash)});
+            if (html5 && this.upgrade()) {
+                return;
             } else {
                 this._dispatch(this._getPath());
             }
         });
 
         return this;
+    },
+
+    /**
+    Gets the current route path, relative to the `root` (if any).
+
+    @method getPath
+    @return {String} Current route path.
+    **/
+    getPath: function () {
+        return this._getPath();
+    },
+
+    /**
+    Returns `true` if this controller has at least one route that matches the
+    specified URL path, `false` otherwise.
+
+    @method hasRoute
+    @param {String} path URL path to match.
+    @return {Boolean} `true` if there's at least one matching route, `false`
+      otherwise.
+    **/
+    hasRoute: function (path) {
+        return !!this.match(path).length;
     },
 
     /**
@@ -281,6 +334,28 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     },
 
     /**
+    Removes the `root` URL from the from of _path_ (if it's there) and returns
+    the result. The returned path will always have a leading `/`.
+
+    @method removeRoot
+    @param {String} path URL path.
+    @return {String} Rootless path.
+    **/
+    removeRoot: function (path) {
+        var root = this.root;
+
+        // Strip out the non-path part of the URL, if any (e.g.
+        // "http://foo.com"), so that we're left with just the path.
+        path = path.replace(this._regexUrlStrip, '');
+
+        if (root && path.indexOf(root) === 0) {
+            path = path.substring(root.length);
+        }
+
+        return path.charAt(0) === '/' ? path : '/' + path;
+    },
+
+    /**
     Replaces the current browser history entry with a new one, and dispatches to
     the first matching route handler, if any.
 
@@ -311,7 +386,7 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     @see save()
     **/
     replace: function (url) {
-        return this._save(url, true);
+        return this._queue(url, true);
     },
 
     /**
@@ -419,8 +494,33 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     @see replace()
     **/
     save: function (url) {
-        return this._save(url);
+        return this._queue(url);
     },
+
+    /**
+    Upgrades a hash-based URL to an HTML5 URL if necessary. In non-HTML5
+    browsers, this method is a noop.
+
+    @method upgrade
+    @return {Boolean} `true` if the URL was upgraded, `false` otherwise.
+    **/
+    upgrade: html5 ? function () {
+        var hash = this._getHashPath();
+
+        if (hash && hash.charAt(0) === '/') {
+            // This is an HTML5 browser and we have a hash-based path in the
+            // URL, so we need to upgrade the URL to a non-hash URL. This
+            // will trigger a `history:change` event, which will in turn
+            // trigger a dispatch.
+            this.once(EVT_READY, function () {
+                this.replace(hash);
+            });
+
+            return true;
+        }
+
+        return false;
+    } : function () { return false; },
 
     // -- Protected Methods ----------------------------------------------------
 
@@ -435,6 +535,34 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     **/
     _decode: function (string) {
         return decodeURIComponent(string.replace(/\+/g, ' '));
+    },
+
+    /**
+    Shifts the topmost `_save()` call off the queue and executes it. Does
+    nothing if the queue is empty.
+
+    @method _dequeue
+    @chainable
+    @see _queue
+    @protected
+    **/
+    _dequeue: function () {
+        var self = this,
+            fn;
+
+        // If window.onload hasn't yet fired, wait until it has before
+        // dequeueing. This will ensure that we don't call pushState() before an
+        // initial popstate event has fired.
+        if (!YUI.Env.windowLoaded) {
+            Y.once('load', function () {
+                self._dequeue();
+            });
+
+            return this;
+        }
+
+        fn = saveQueue.shift();
+        return fn ? fn() : this;
     },
 
     /**
@@ -454,15 +582,15 @@ Y.Controller = Y.extend(Controller, Y.Base, {
             routes = self.match(path),
             req;
 
-        self._dispatched = true;
+        self._dispatching = self._dispatched = true;
 
         if (!routes || !routes.length) {
-            return this;
+            return self;
         }
 
         req = self._getRequest(path);
 
-        function next(err) {
+        req.next = function (err) {
             var callback, matches, route;
 
             if (err) {
@@ -480,12 +608,14 @@ Y.Controller = Y.extend(Controller, Y.Base, {
                     req.params = matches.concat();
                 }
 
-                callback.call(self, req, next);
+                callback.call(self, req, req.next);
             }
-        }
+        };
 
-        next();
-        return this;
+        req.next();
+
+        self._dispatching = false;
+        return self._dequeue();
     },
 
     /**
@@ -508,9 +638,9 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     @protected
     **/
     _getPath: html5 ? function () {
-        return this._removeRoot(location.pathname);
+        return this.removeRoot(location.pathname);
     } : function () {
-        return this._getHashPath() || this._removeRoot(location.pathname);
+        return this._getHashPath() || this.removeRoot(location.pathname);
     },
 
     /**
@@ -627,22 +757,42 @@ Y.Controller = Y.extend(Controller, Y.Base, {
     },
 
     /**
-    Removes the `root` URL from the from of _path_ (if it's there) and returns
-    the result. The returned path will always have a leading `/`.
+    Queues up a `_save()` call to run after all previously-queued calls have
+    finished.
 
-    @method _removeRoot
-    @param {String} path URL path.
-    @return {String} Rootless path.
+    This is necessary because if we make multiple `_save()` calls before the
+    first call gets dispatched, then both calls will dispatch to the last call's
+    URL.
+
+    All arguments passed to `_queue()` will be passed on to `_save()` when the
+    queued function is executed.
+
+    @method _queue
+    @chainable
+    @see _dequeue
     @protected
     **/
-    _removeRoot: function (path) {
-        var root = this.root;
+    _queue: function () {
+        var args = arguments,
+            self = this;
 
-        if (root && path.indexOf(root) === 0) {
-            path = path.substring(root.length);
-        }
+        saveQueue.push(function () {
+            if (html5) {
+                // Wrapped in a timeout to ensure that _save() calls are always
+                // processed asynchronously. This ensures consistency between
+                // HTML5- and hash-based history.
+                setTimeout(function () {
+                    self._save.apply(self, args);
+                }, 1);
+            } else {
+                self._dispatching = true; // otherwise we'll dequeue too quickly
+                self._save.apply(self, args);
+            }
 
-        return path.charAt(0) === '/' ? path : '/' + path;
+            return self;
+        });
+
+        return !this._dispatching ? this._dequeue() : this;
     },
 
     /**
@@ -663,6 +813,7 @@ Y.Controller = Y.extend(Controller, Y.Base, {
         this._history[replace ? 'replace' : 'add'](null, {
             url: typeof url === 'string' ? this._joinURL(url) : url
         });
+
         return this;
     } : function (url, replace) {
         this._ready = true;
@@ -688,11 +839,7 @@ Y.Controller = Y.extend(Controller, Y.Base, {
         var self = this;
 
         if (self._ready) {
-            // We need to yield control to the UI thread to allow the browser to
-            // update window.location before we dispatch.
-            setTimeout(function () {
-                self._dispatch(self._getPath());
-            }, 1);
+            self._dispatch(self._getPath());
         }
     },
 
@@ -713,4 +860,4 @@ Y.Controller = Y.extend(Controller, Y.Base, {
 });
 
 
-}, '3.4.0' ,{requires:['array-extras', 'base-build', 'history'], optional:['querystring-parse']});
+}, '3.4.0' ,{optional:['querystring-parse'], requires:['array-extras', 'base-build', 'history']});

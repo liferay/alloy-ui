@@ -25,8 +25,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("allo
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 boolean defineVar = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy_util:component:defineVar")), true);
 java.lang.String excludeAttributes = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:component:excludeAttributes"));
