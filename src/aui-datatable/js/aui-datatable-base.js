@@ -5,11 +5,14 @@ var Lang = A.Lang,
 	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
+	CHANGE = 'change',
 	CHILD_NODES = 'childNodes',
 	COLUMNSET = 'columnset',
 	DATA = 'data',
 	HEADERS = 'headers',
 	ID = 'id',
+	RECORDSET = 'recordset',
+	RENDER = 'render',
 
 	_HASH = '#',
 	_SPACE = ' ';
@@ -18,8 +21,8 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	initializer: function() {
 		var instance = this;
 
-		instance.after('render', instance._afterRender);
-		instance.after('recordsetChange', instance._afterRecordsetChangeExt);
+		instance.after(RENDER, instance._afterRender);
+		instance.get(RECORDSET).after(CHANGE, A.bind(instance._afterRecordsetChangeExt, instance));
 	},
 
 	getCellNode: function(record, column) {
@@ -50,6 +53,7 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	_afterRecordsetChangeExt: function(event) {
 		var instance = this;
 
+		instance._uiSetRecordset(instance.get('recordset'));
 		instance._fixPluginsUI();
 	},
 
