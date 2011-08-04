@@ -1,3 +1,16 @@
+.aui-diagram-builder-anchor-node {
+	background: url(anchor-default.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-builder-anchor-hover,
+.aui-diagram-builder-anchor-node.yui3-dd-drop-active-valid {
+	background: url(anchor-valid.png) no-repeat scroll center center transparent;
+}
+
+.aui-diagram-builder-anchor-node.yui3-dd-drop-over {
+	background: url(anchor-drop-active.png) no-repeat scroll center center transparent;
+}
+
 .aui-diagram-builder-base .aui-diagram-builder-base-field {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;

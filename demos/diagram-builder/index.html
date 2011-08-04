@@ -44,15 +44,15 @@
 		.aui-diagram-builder-anchor-node.yui3-dd-dragging {
 		}
 
-		.aui-diagram-builder-anchor-hover,
+/*		.aui-diagram-builder-anchor-hover,
 		.aui-diagram-builder-anchor-node.yui3-dd-drop-active-valid {
 			background: #fff !important;
 			border: 3px solid #484A4C !important;
 			width: 9px !important;
 			height: 9px !important;
-		}
+		}*/
 
-		.aui-diagram-builder-anchor-node.yui3-dd-drop-over {
+/*		.aui-diagram-builder-anchor-node.yui3-dd-drop-over {
 			background: #F7F3E8;
 			border: 2px solid #747E80;
 			-moz-transform: scale(1.3);
@@ -61,7 +61,7 @@
 			-webkit-transform: scale(1.3);
 			-webkit-transition:-moz-transform 0.4s ease-in-out;
 			-webkit-transition: background-color 0.4s linear;
-		}
+		}*/
 
 		.log {
 			width: 300px;
@@ -1136,256 +1136,239 @@ AUI().use('aui-diagram-builder', 'io-form', function(A) {
 
 	A.WorkflowDesigner.types = A.DiagramBuilder.types;
 
-	// A.DiagramNodeState = A.Component.create({
-	// 	NAME: DIAGRAM_NODE_NAME,
+	A.DiagramNodeStateCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
 
-	// 	ATTRS: {
-	// 		initial: {
-	// 			value: false,
-	// 			validation: isBoolean
-	// 		},
+		ATTRS: {
+			initial: {
+				value: false,
+				validation: isBoolean
+			},
 
-	// 		notifications: {
-	// 			// value: {
-	// 			// 	name: 'string',
-	// 			// 	description: 'string',
-	// 			// 	template: 'string',
-	// 			// 	'template-type': 'string',
-	// 			// 	'notification-type': 'string',
-	// 			// 	recipients: {
-	// 			// 		address: 'string',
-	// 			//
-	// 			// 		role: {
-	// 			// 			roleId: 1234,
-	// 			// 			roleType: 'string',
-	// 			// 			name: 'string',
-	// 			// 			autoCreate: true
-	// 			// 		},
-	// 			//
-	// 			// 		user: {
-	// 			// 			'user-id': 1234,
-	// 			// 			'screen-name': 'string',
-	// 			// 			'email-address': 'string'
-	// 			// 		}
-	// 			// 	}
-	// 			// }
-	// 		},
+			notifications: {
+			},
 
-	// 		actions: {
-	// 			// value: {
-	// 			// 	name: 'string',
-	// 			// 	description: 'string',
-	// 			// 	script: 'string',
-	// 			// 	'script-language': 'string',
-	// 			// 	priority: 0
-	// 			// }
-	// 		},
+			actions: {
+			},
 
-	// 		strings: {
-	// 			value: {
-	// 				actions: 'Actions',
-	// 				addAnchorMessage: 'Add Anchor',
-	// 				assignments: 'Assignments',
-	// 				closeMessage: 'Close',
-	// 				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
-	// 				description: 'Description',
-	// 				editMessage: 'Edit',
-	// 				initial: 'Initial',
-	// 				name: 'Name',
-	// 				notifications: 'Notifications',
-	// 				type: 'Type'
-	// 			}
-	// 		},
+			strings: {
+				value: {
+					actions: 'Actions',
+					addAnchorMessage: 'Add Anchor',
+					assignments: 'Assignments',
+					closeMessage: 'Close',
+					deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
+					description: 'Description',
+					editMessage: 'Edit',
+					initial: 'Initial',
+					name: 'Name',
+					notifications: 'Notifications',
+					type: 'Type'
+				}
+			},
 
-	// 		xmlType: {
-	// 			value: STATE
-	// 		}
-	// 	},
+			xmlType: {
+				value: STATE
+			}
+		},
 
-	// 	EXTENDS: A.DiagramNodeState,
+		EXTENDS: A.DiagramNodeState,
 
-	// 	prototype: {
-	// 		SERIALIZABLE_ATTRS: A.DiagramNode.prototype.SERIALIZABLE_ATTRS.concat([INITIAL, XML_TYPE]),
+		prototype: {
+			SERIALIZABLE_ATTRS: A.DiagramNode.prototype.SERIALIZABLE_ATTRS.concat([INITIAL, XML_TYPE]),
 
-	// 		getConnectionNode: function() {
-	// 			return new A.DiagramNodeTask({
-	// 				xy: [100, 100] // TODO - find best position?
-	// 			});
-	// 		},
+			getConnectionNode: function() {
+				return new A.DiagramNodeTask({
+					xy: [100, 100] // TODO - find best position?
+				});
+			},
 
-	// 		getPropertyModel: function() {
-	// 			var instance = this;
+			getPropertyModel: function() {
+				var instance = this;
 
-	// 			var strings = instance.getStrings();
-	// 			var parentModel = A.DiagramNodeState.superclass.getPropertyModel.apply(this, arguments);
+				var strings = instance.getStrings();
+				var parentModel = A.DiagramNodeStateCustom.superclass.getPropertyModel.apply(this, arguments);
 
-	// 			return AArray(parentModel).concat([
-	// 				{
-	// 					attributeName: ACTIONS,
-	// 					editor: new A.ActionsEditor(),
-	// 					name: strings[ACTIONS]
-	// 				},
-	// 				{
-	// 					attributeName: NOTIFICATIONS,
-	// 					editor: new A.NotificationsEditor(),
-	// 					name: strings[NOTIFICATIONS]
-	// 				}
-	// 			]);
-	// 		}
-	// 	}
-	// });
+				return AArray(parentModel).concat([
+					{
+						attributeName: ACTIONS,
+						editor: new A.ActionsEditor(),
+						name: strings[ACTIONS]
+					},
+					{
+						attributeName: NOTIFICATIONS,
+						editor: new A.NotificationsEditor(),
+						name: strings[NOTIFICATIONS]
+					}
+				]);
+			}
+		}
+	});
 
-	// A.DiagramNodeStart = A.Component.create({
-	// 	NAME: DIAGRAM_NODE_NAME,
+	A.DiagramNodeStartCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
 
-	// 	ATTRS: {
-	// 		initial: {
-	// 			value: true
-	// 		},
+		ATTRS: {
+			initial: {
+				value: true
+			},
 
-	// 		maxFields: {
-	// 			value: 1
-	// 		},
+			maxFields: {
+				value: 1
+			},
 
-	// 		required: {
-	// 			value: true
-	// 		}
-	// 	},
+			required: {
+				value: true
+			}
+		},
 
-	// 	EXTENDS: A.DiagramNodeStart,
+		EXTENDS: A.DiagramNodeStateCustom,
 
-	// 	prototype: {
-	// 		getConnectionNode: function() {
-	// 			return new A.DiagramNodeCondition({
-	// 				xy: [100, 100] // TODO - find best position?
-	// 			});
-	// 		},
+		prototype: {
+			getConnectionNode: function() {
+				return new A.DiagramNodeCondition({
+					xy: [100, 100] // TODO - find best position?
+				});
+			},
 
-	// 		_valueControlsToolbar: function(val) {
-	// 			var instance = this;
+			_valueControlsToolbar: function(val) {
+				var instance = this;
 
-	// 			var strings = instance.getStrings();
+				var strings = instance.getStrings();
 
-	// 			return {
-	// 				activeState: false,
-	// 				children: [
-	// 					{
-	// 						handler: A.bind(instance._handleEditEvent, instance),
-	// 						icon: PENCIL,
-	// 						id: EDIT_EVENT,
-	// 						title: strings[EDIT_MESSAGE]
-	// 					},
-	// 					{
-	// 						handler: A.bind(instance._handleAddAnchorEvent, instance),
-	// 						icon: LINK,
-	// 						id: ADD_ANCHOR,
-	// 						title: strings[ADD_ANCHOR_MESSAGE]
-	// 					},
-	// 					{
-	// 						handler: A.bind(instance._handleAddNodeEvent, instance),
-	// 						icon: SHUFFLE,
-	// 						id: ADD_NODE
-	// 					}
-	// 				]
-	// 			};
-	// 		}
-	// 	}
-	// });
+				return {
+					activeState: false,
+					children: [
+						{
+							handler: A.bind(instance._handleEditEvent, instance),
+							icon: PENCIL,
+							id: EDIT_EVENT,
+							title: strings[EDIT_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddAnchorEvent, instance),
+							icon: LINK,
+							id: ADD_ANCHOR,
+							title: strings[ADD_ANCHOR_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddNodeEvent, instance),
+							icon: SHUFFLE,
+							id: ADD_NODE
+						}
+					]
+				};
+			}
+		}
+	});
 
-	// A.DiagramNodeEnd = A.Component.create({
-	// 	NAME: DIAGRAM_NODE_NAME,
+	A.DiagramNodeEndCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
 
-	// 	ATTRS: {
-	// 		required: {
-	// 			value: true
-	// 		}
-	// 	},
+		ATTRS: {
+			required: {
+				value: true
+			}
+		},
 
-	// 	EXTENDS: A.DiagramNodeEnd,
+		EXTENDS: A.DiagramNodeStateCustom,
 
-	// 	prototype: {
-	// 		_handleAddAnchorEvent: function(event) {
-	// 			var instance = this;
+		prototype: {
+			_handleAddAnchorEvent: function(event) {
+				var instance = this;
 
-	// 			instance.addField(
-	// 				{
-	// 					maxTargets: 0
-	// 				}
-	// 			);
-	// 		},
+				instance.addField(
+					{
+						maxTargets: 0
+					}
+				);
+			},
 
-	// 		_valueControlsToolbar: function(val) {
-	// 			var instance = this;
+			_valueControlsToolbar: function(val) {
+				var instance = this;
 
-	// 			var strings = instance.getStrings();
+				var strings = instance.getStrings();
 
-	// 			return {
-	// 				activeState: false,
-	// 				children: [
-	// 					{
-	// 						handler: A.bind(instance._handleEditEvent, instance),
-	// 						icon: PENCIL,
-	// 						id: EDIT_EVENT,
-	// 						title: strings[EDIT_MESSAGE]
-	// 					},
-	// 					{
-	// 						handler: A.bind(instance._handleAddAnchorEvent, instance),
-	// 						icon: LINK,
-	// 						id: ADD_ANCHOR,
-	// 						title: strings[ADD_ANCHOR_MESSAGE]
-	// 					}
-	// 				]
-	// 			};
-	// 		}
-	// 	}
-	// });
+				return {
+					activeState: false,
+					children: [
+						{
+							handler: A.bind(instance._handleEditEvent, instance),
+							icon: PENCIL,
+							id: EDIT_EVENT,
+							title: strings[EDIT_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddAnchorEvent, instance),
+							icon: LINK,
+							id: ADD_ANCHOR,
+							title: strings[ADD_ANCHOR_MESSAGE]
+						}
+					]
+				};
+			}
+		}
+	});
 
-	// A.DiagramNodeTask = A.Component.create({
-	// 	NAME: DIAGRAM_NODE_NAME,
+	A.DiagramNodeTaskCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
 
-	// 	ATTRS: {
-	// 		assignments: {
-	// 			value: {
-	// 				assignmentType: _EMPTY_STR
-	// 			},
-	// 			validator: isObject
-	// 		},
+		ATTRS: {
+			assignments: {
+				value: {
+					assignmentType: _EMPTY_STR
+				},
+				validator: isObject
+			},
 
-	// 		notifications: {
-	// 			value: {
-	// 				assignmentType: _EMPTY_STR
-	// 			},
-	// 			validator: isObject
-	// 		},
+			notifications: {
+				value: {
+					assignmentType: _EMPTY_STR
+				},
+				validator: isObject
+			},
 
-	// 		xmlType: {
-	// 			value: TASK
-	// 		}
-	// 	},
+			height: {
+				value: 70
+			},
 
-	// 	EXTENDS: A.DiagramNodeTask,
+			xmlType: {
+				value: TASK
+			},
 
-	// 	prototype: {
-	// 		SERIALIZABLE_ATTRS: A.DiagramNodeState.prototype.SERIALIZABLE_ATTRS.concat([ASSIGNMENTS, ACTIONS, NOTIFICATIONS]),
+			width: {
+				value: 70
+			}
+		},
 
-	// 		getPropertyModel: function() {
-	// 			var instance = this;
+		EXTENDS: A.DiagramNodeStateCustom,
 
-	// 			var strings = instance.getStrings();
-	// 			var parentModel = A.DiagramNodeTask.superclass.getPropertyModel.apply(this, arguments);
+		prototype: {
+			SERIALIZABLE_ATTRS: A.DiagramNodeState.prototype.SERIALIZABLE_ATTRS.concat([ASSIGNMENTS, ACTIONS, NOTIFICATIONS]),
 
-	// 			return AArray(parentModel).concat(
-	// 				[
-	// 					{
-	// 						attributeName: ASSIGNMENTS,
-	// 						editor: new A.AssignmentsEditor(),
-	// 						name: strings[ASSIGNMENTS]
-	// 					}
-	// 				]
-	// 			);
-	// 		}
-	// 	}
-	// });
+			getPropertyModel: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var parentModel = A.DiagramNodeTaskCustom.superclass.getPropertyModel.apply(this, arguments);
+
+				return AArray(parentModel).concat(
+					[
+						{
+							attributeName: ASSIGNMENTS,
+							editor: new A.AssignmentsEditor(),
+							name: strings[ASSIGNMENTS]
+						}
+					]
+				);
+			}
+		}
+	});
+
+	A.DiagramBuilder.types.state = A.DiagramNodeStateCustom;
+	A.DiagramBuilder.types.end = A.DiagramNodeEndCustom;
+	A.DiagramBuilder.types.start = A.DiagramNodeStartCustom;
+	A.DiagramBuilder.types.task = A.DiagramNodeTaskCustom;
 
 	// End of Liferay Workflow Nodes.
 
