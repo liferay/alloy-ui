@@ -2372,7 +2372,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	_initShapes: function() {
 		var instance = this;
 
-		var shape = instance.shape = instance.get(GRAPHIC).getShape(
+		var shape = instance.shape = instance.get(GRAPHIC).addShape(
 			instance.get(SHAPE)
 		);
 
