@@ -84,9 +84,13 @@ A.PolygonUtil = {
 
 		var angle = Math.atan2(y2-y1, x2-x1), centerX = (x2+x1)/2, centerY = (y2+y1)/2;
 
+		// Slide the arrow position along the line in 15px in polar coordinates
+		x2 = x2 - 15*Math.cos(angle);
+		y2 = y2 - 15*Math.sin(angle);
+
 		instance.drawPolygon(
 			shape,
-			instance.translatePoints(instance.rotatePoints(arrowPoints || instance.ARROW_POINTS, angle), centerX, centerY)
+			instance.translatePoints(instance.rotatePoints(arrowPoints || instance.ARROW_POINTS, angle), x2, y2)
 		);
 	},
 
@@ -302,7 +306,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				type: PATH,
 				stroke: {
 					color: instance.get(COLOR),
-					weight: 2
+					weight: 3
 				},
 				fill: {
 					color: instance.get(COLOR)
@@ -340,7 +344,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		},
 
 		color: {
-			value: '#666',
+			value: '#27aae1',
 			validator: isString
 		},
 
@@ -370,10 +374,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		shapeHover: {
 			value: {
 				fill: {
-					color: '#000'
+					color: '#666'
 				},
 				stroke: {
-					color: '#000',
+					color: '#666',
 					weight: 5
 				}
 			}
