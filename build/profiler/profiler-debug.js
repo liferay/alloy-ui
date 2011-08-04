@@ -10,7 +10,6 @@ YUI.add('profiler', function(Y) {
     /**
      * The YUI JavaScript profiler.
      * @module profiler
-     * @requires yui
      */
      
     //-------------------------------------------------------------------------
@@ -340,6 +339,7 @@ YUI.add('profiler', function(Y) {
          * returns all information (min, max, average, calls, etc.) for each
          * function.
          * @return {Object} An object containing all profile data.
+         * @method getFullReport
          * @static
          */
         getFullReport : function (filter /*:Function*/) /*:Object*/ {

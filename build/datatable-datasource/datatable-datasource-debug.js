@@ -93,7 +93,7 @@ Y.extend(DataTableDataSource, Y.Plugin.Base, {
     * @method _setDataSource
     * @description Creates new DataSource instance if one is not provided.
     * @param ds {Object | Y.DataSource}
-    * @returns Y.DataSource
+    * @return Y.DataSource
     * @private
     */
     _setDataSource: function(ds) {
@@ -175,7 +175,9 @@ Y.extend(DataTableDataSource, Y.Plugin.Base, {
      * @param e {Event.Facade} DataSource Event Facade object.
      */
     onDataReturnInitializeTable : function(e) {
-        this.get("host").set("recordset", new Y.Recordset({records: e.response.results}));
+        var records = (e.response && e.response.results) || [];
+
+        this.get("host").get("recordset").set("records", records);
     }
 });
 
