@@ -171,6 +171,7 @@ var Scroller = A.Component.create (
 					{
 						duration: instance._duration,
 						from: from,
+						intervalRate: 1,
 						to: to,
 						onTween: function(value) {
 							boundingBoxEl[SCROLL + instance._coordTL] = value;
@@ -178,7 +179,7 @@ var Scroller = A.Component.create (
 					}
 				);
 
-				instance._throttleAnimate = A.throttle(A.bind(instance._animate, instance), 50);
+				instance._throttleAnimate = instance._animate;
 			},
 
 			_defaultScrollFn: function(event) {
