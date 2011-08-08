@@ -17,7 +17,7 @@
 	border-radius: 4px;
 }
 
-.aui-diagram-builder-base-canvas {
+.aui-diagram-builder-base-drop-container {
 	position: relative;
 	background-image: url(checker-bg.png);
 	outline: 0;

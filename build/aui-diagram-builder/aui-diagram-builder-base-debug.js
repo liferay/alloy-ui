@@ -33,6 +33,7 @@ var Lang = A.Lang,
 	CANVAS = 'canvas',
 	CLEARFIX = 'clearfix',
 	CLEARFIX = 'clearfix',
+	COLUMN = 'column',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
@@ -55,9 +56,11 @@ var Lang = A.Lang,
 	ICON_CLASS = 'iconClass',
 	ID = 'id',
 	LABEL = 'label',
+	LAYOUT = 'layout',
 	LIST = 'list',
 	MAX_FIELDS = 'maxFields',
 	NODE = 'node',
+	PARENT_NODE = 'parentNode',
 	PROPERTY_LIST = 'propertyList',
 	RENDERED = 'rendered',
 	SAVE = 'save',
@@ -77,6 +80,7 @@ var Lang = A.Lang,
 	_SPACE = ' ',
 	_UNDERLINE = '_',
 
+	CSS_COLUMN = AgetClassName(COLUMN),
 	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
@@ -92,8 +96,11 @@ var Lang = A.Lang,
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
+	CSS_LAYOUT = AgetClassName(LAYOUT),
 	CSS_TABVIEW_CONTENT = AgetClassName(TABVIEW, CONTENT),
-	CSS_TABVIEW_LIST = AgetClassName(TABVIEW, LIST);
+	CSS_TABVIEW_LIST = AgetClassName(TABVIEW, LIST),
+	CSS_W15 = AgetClassName('w15'),
+	CSS_W85 = AgetClassName('w85');
 
 var AvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
@@ -427,7 +434,7 @@ var DiagramBuilderBase = A.Component.create(
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
 			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER, CSS_HELPER_CLEARFIX ].join(_SPACE) + '"></ul>',
-			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + [ CSS_W85, CSS_COLUMN, CSS_DIAGRAM_BUILDER_BASE_CANVAS].join(_SPACE) + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -490,7 +497,7 @@ var DiagramBuilderBase = A.Component.create(
 				instance._setupDrop();
 				instance._setupAvailableFieldsDrag();
 
-				contentBox.addClass(CSS_HELPER_CLEARFIX);
+				contentBox.addClass(CSS_HELPER_CLEARFIX).addClass(CSS_LAYOUT);
 			},
 
 			_afterActiveTabChange: function(event) {
@@ -539,7 +546,10 @@ var DiagramBuilderBase = A.Component.create(
 
 				canvas.appendChild(instance.dropContainer);
 
-				if (!canvas.inDoc()) {
+				if (canvas.inDoc()) {
+					canvas.get(PARENT_NODE).appendChild(canvas);
+				}
+				else {
 					contentBox.appendChild(canvas);
 				}
 			},
@@ -572,6 +582,8 @@ var DiagramBuilderBase = A.Component.create(
 					var tabView = new A.TabView(
 						instance.get(TAB_VIEW)
 					);
+
+					tabView.get(BOUNDING_BOX).addClass(CSS_COLUMN).addClass(CSS_W15);
 
 					instance.tabView = tabView;
 					instance.fieldsNode = tabView.getTab(0).get(CONTENT_NODE);
