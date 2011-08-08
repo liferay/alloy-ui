@@ -538,7 +538,10 @@ var DiagramBuilderBase = A.Component.create(
 				var canvas = instance.canvas;
 
 				canvas.appendChild(instance.dropContainer);
-				contentBox.appendChild(canvas);
+
+				if (!canvas.inDoc()) {
+					contentBox.appendChild(canvas);
+				}
 			},
 
 			_renderPropertyList: function() {
