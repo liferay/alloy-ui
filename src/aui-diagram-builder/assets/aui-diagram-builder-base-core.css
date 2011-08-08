@@ -35,7 +35,7 @@
 
 .aui-diagram-builder-base-content {
 	background-color: #f1f1f1;
-	padding-left: 260px;
+	/*padding-left: 260px;*/
 }
 
 .aui-diagram-builder-base-tabs-container .aui-tabview-list {
@@ -44,8 +44,8 @@
 
 .aui-diagram-builder-base-tabs-container {
 	float: left;
-	margin-left: -260px;
-	width: 260px;
+	/*margin-left: -260px;*/
+	/*width: 260px;*/
 }
 
 .aui-diagram-builder-base-canvas {
