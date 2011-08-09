@@ -242,7 +242,13 @@ A.mix(NODE_PROTOTYPE, {
 				return instance;
 			}
 
-			return instance.get(name) || instance.getAttribute(name);
+			var currentValue = instance.get(name);
+
+			if (!Lang.isValue(currentValue)) {
+				currentValue = instance.getAttribute(name);
+			}
+
+			return currentValue;
 		}
 	},
 
