@@ -118,7 +118,7 @@ var SimpleAnim = A.Component.create(
 				instance._timer = setInterval(
 					function() {
 						instance.animate()
-					}, 
+					},
 					intervalRate
 				);
 			}
