@@ -3,10 +3,13 @@
 }
 
 .aui-diagram-builder-base .aui-diagram-builder-base-field {
-	border: 1px solid #CCCCCC;
+	border-radius: 4px 4px 4px 4px;
+	float: left;
+	height: 63px;
 	list-style: none outside none;
-	margin: 3px 0;
-	padding: 10px 0;
+	margin: 2px;
+	text-align: center;
+	width: 79px;
 }
 
 .aui-diagram-builder-base .aui-diagram-builder-base-field-draggable {
@@ -14,12 +17,12 @@
 }
 
 .aui-diagram-builder-base .aui-diagram-builder-base-field:hover {
-	border: 1px solid #000000;
+	background-color: #fff;
 }
 
 .aui-diagram-builder-base-field-icon {
-	float: left;
-	margin: 2px 5px 0;
+	display: inline-block;
+	margin: 3px;
 }
 
 .aui-diagram-builder-base .aui-diagram-builder-base-field-icon-text {
@@ -35,14 +38,19 @@
 	padding-left: 260px;
 }
 
+.aui-diagram-builder-base-tabs-container .aui-tabview-list {
+	margin-bottom: 5px;
+}
+
 .aui-diagram-builder-base-tabs-container {
 	float: left;
 	margin-left: -260px;
 	width: 260px;
 }
 
-.aui-diagram-builder-base-content-container {
+.aui-diagram-builder-base-canvas {
 	background-color: #f5f5f5;
+	position: relative;
 }
 
 .aui-diagram-builder-base-fields-container {
@@ -50,12 +58,10 @@
 }
 
 .aui-diagram-builder-base-tabs-container-content {
-	padding: 5px;
 }
 
 .aui-diagram-node {
 	position: absolute;
-	background-color: #D96666;
 }
 
 .aui-diagram-builder-base-drop-container {
@@ -64,4 +70,43 @@
 
 .aui-diagram-builder-base-drop-container {
     height: 600px;
+}
+
+.aui-diagram-builder-anchor-node {
+	cursor: pointer;
+	height: 15px;
+	position: absolute;
+	width: 15px;
+}
+
+.aui-diagram-builder-anchor-node-max-targets {
+	cursor: auto;
+}
+
+.aui-diagram-node-content {
+	padding: 10px;
+}
+
+.aui-diagram-builder-controls {
+	display: none;
+}
+
+.aui-diagram-node-selected .aui-diagram-builder-controls {
+	display: block;
+	text-align: center;
+	padding: 3px;
+}
+
+.aui-diagram-node-controls-icon {
+	display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+
+.aui-diagram-node-selected {
+	border: 1px dotted #666;
+}
+
+.aui-diagram-node-focused {
+	outline: 0;
 }
