@@ -325,7 +325,7 @@ YUI.add('selection', function(Y) {
                 }
             });*/
 
-            /** Removed this, as it was causing Pasting to be funky in Safari
+            /* Removed this, as it was causing Pasting to be funky in Safari
             spans = Y.all('.Apple-style-span, .apple-style-span');
             spans.each(function(s) {
                 s.setAttribute('style', '');
@@ -709,7 +709,7 @@ YUI.add('selection', function(Y) {
             
             if (range.pasteHTML) {
                 if (offset === 0 && node && !node.previous() && node.get('nodeType') === 3) {
-                    /**
+                    /*
                     * For some strange reason, range.pasteHTML fails if the node is a textNode and
                     * the offset is 0. (The cursor is at the beginning of the line)
                     * It will always insert the new content at position 1 instead of 

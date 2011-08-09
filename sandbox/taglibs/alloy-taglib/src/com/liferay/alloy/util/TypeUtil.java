@@ -143,8 +143,14 @@ public class TypeUtil {
 				String genericsType = _getGenericsType(type);
 
 				if (Validator.isNotNull(genericsType)) {
-					if (!genericsType.equals(StringPool.QUESTION)) {
-						Class.forName(genericsType);
+					String[] genericsTypes = StringUtil.split(genericsType);
+
+					for (int i = 0; i < genericsTypes.length; i++) {
+						String curType = genericsTypes[i];
+
+						if (!curType.equals(StringPool.QUESTION)) {
+							Class.forName(curType);
+						}
 					}
 
 					type = _removeGenericsType(type);

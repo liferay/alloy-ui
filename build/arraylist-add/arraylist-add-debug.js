@@ -15,7 +15,6 @@ YUI.add('arraylist-add', function(Y) {
 
 /**
  * Adds methods add and remove to Y.ArrayList
- * @class ArrayList~add
  */
 Y.mix(Y.ArrayList.prototype, {
 
@@ -28,6 +27,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param {Number} index (Optional.)  Number representing the position at
      * which the item should be inserted.
      * @return {ArrayList} the instance.
+     * @for ArrayList
      * @chainable
      */
     add: function(item, index) {
@@ -53,6 +53,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param { Boolean } all If true, remove all occurrences.
      * @param { Function } comparator optional a/b function to test equivalence.
      * @return {ArrayList} the instance.
+     * @for ArrayList
      * @chainable
      */
     remove: function(needle, all, comparator) {
@@ -77,6 +78,7 @@ Y.mix(Y.ArrayList.prototype, {
      * @param { mixed } a item to test equivalence with.
      * @param { mixed } b other item to test equivalance.
      * @return { Boolean } true if items are deemed equivalent.
+     * @for ArrayList
      */
     itemsAreEqual: function(a, b) {
         return a === b;

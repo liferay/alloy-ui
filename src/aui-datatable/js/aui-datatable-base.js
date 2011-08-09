@@ -5,11 +5,14 @@ var Lang = A.Lang,
 	isNumber = Lang.isNumber,
 	isString = Lang.isString,
 
+	CHANGE = 'change',
 	CHILD_NODES = 'childNodes',
 	COLUMNSET = 'columnset',
 	DATA = 'data',
 	HEADERS = 'headers',
 	ID = 'id',
+	RECORDSET = 'recordset',
+	RECORDSET_CHANGE = 'recordsetChange',
 
 	_HASH = '#',
 	_SPACE = ' ';
@@ -18,8 +21,10 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	initializer: function() {
 		var instance = this;
 
-		instance.after('render', instance._afterRender);
-		instance.after('recordsetChange', instance._afterRecordsetChangeExt);
+		instance._bindRecordsetRecordChange();
+
+		instance.after(RECORDSET_CHANGE, instance._afterRecordsetChangeExt);
+		instance.after(instance._uiSetRecordsetExt, instance, '_uiSetRecordset');
 	},
 
 	getCellNode: function(record, column) {
@@ -40,26 +45,22 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		return A.one(_HASH+record.get(ID));
 	},
 
-	_afterRender: function() {
-		var instance = this;
-
-		instance._bindPluginsEvents();
-		instance._fixPluginsUI();
-	},
-
 	_afterRecordsetChangeExt: function(event) {
 		var instance = this;
 
-		instance._fixPluginsUI();
+		instance._bindRecordsetRecordChange();
 	},
 
-	_bindPluginsEvents: function() {
-		var instance = this;
-		var sort = instance.sort;
+	_afterRecordsetRecordChange: function(event) {
+	    var instance = this;
 
-		if (sort) {
-			sort.after('lastSortedByChange', A.bind(instance._fixPluginsUI, instance));
-		}
+		instance._uiSetRecordset(instance.get(RECORDSET));
+	},
+
+	_bindRecordsetRecordChange: function(event){
+		var instance = this;
+
+		instance.get(RECORDSET).after(CHANGE, A.bind(instance._afterRecordsetRecordChange, instance));
 	},
 
 	_fixPluginsUI: function() {
@@ -74,6 +75,12 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 			// TODO: Fix this on DataTable DataTableScroll
 			scroll._syncWidths();
 		}
+	},
+
+	_uiSetRecordsetExt: function(recordset){
+		var instance = this;
+
+		instance._fixPluginsUI();
 	}
 }, {});
 

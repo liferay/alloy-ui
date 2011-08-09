@@ -29,11 +29,12 @@ var Lang = A.Lang,
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
+	CANVAS = 'canvas',
+	CLEARFIX = 'clearfix',
 	CLEARFIX = 'clearfix',
 	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CONTENT_CONTAINER = 'contentContainer',
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
@@ -48,21 +49,22 @@ var Lang = A.Lang,
 	FIELDS_CONTAINER = 'fieldsContainer',
 	HEIGHT = 'height',
 	HELPER = 'helper',
+	HELPER = 'helper',
 	ICON = 'icon',
 	ICON_CLASS = 'iconClass',
 	ID = 'id',
 	LABEL = 'label',
 	LIST = 'list',
+	MAX_FIELDS = 'maxFields',
 	NODE = 'node',
-	NODE_SETTINGS = 'nodeSettings',
 	PROPERTY_LIST = 'propertyList',
 	RENDERED = 'rendered',
 	SAVE = 'save',
 	SETTINGS = 'settings',
 	TAB = 'tab',
+	TAB_VIEW = 'tabView',
 	TABS = 'tabs',
 	TABVIEW = 'tabview',
-	TAB_VIEW = 'tabView',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
 
@@ -70,20 +72,23 @@ var Lang = A.Lang,
 
 	_SPACE = ' ',
 	_DOT = '.',
-	_DOLLAR = '$',
+	_HASH = '#',
+	_SPACE = ' ',
+	_UNDERLINE = '_',
 
+	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
 	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, CONTENT, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
-	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, ICON),
 	CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, LABEL),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER, CONTENT),
+	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_BASE_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, ADD),
 	CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, SETTINGS),
+	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER),
+	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER, CONTENT),
 	CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TOOLBAR, CONTAINER),
+	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
 	CSS_TABVIEW_CONTENT = AgetClassName(TABVIEW, CONTENT),
@@ -143,10 +148,22 @@ var AvailableField = A.Component.create({
 
 	EXTENDS: A.Base,
 
+	buildNodeId: function(id) {
+		return AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
+	},
+
+	getAvailableFieldById: function(id) {
+		return A.AvailableField.getAvailableFieldByNode(_HASH+A.AvailableField.buildNodeId(id));
+	},
+
+	getAvailableFieldByNode: function(node) {
+		return A.one(node).getData(AVAILABLE_FIELD);
+	},
+
 	prototype: {
-		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD + '">' +
+		FIELD_ITEM_TEMPLATE: '<li class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELD, CSS_HELPER_CLEARFIX].join(_SPACE) + '">' +
 									'<span class="' + [ CSS_ICON, CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON ].join(_SPACE) + ' {iconClass}"></span>' +
-									'<span class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL + '"></span>' +
+									'<div class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL + '"></div>' +
 								'</li>',
 
 		initializer: function() {
@@ -208,23 +225,19 @@ var AvailableField = A.Component.create({
 			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE, val);
 		},
 
-		_uiSetLabel: function(val) {
-			var instance = this;
-
-			instance.labelNode.setContent(val);
-		},
-
 		_uiSetId: function(val) {
 			var instance = this;
 
 			instance.get(NODE).set(ID, val);
+		},
+
+		_uiSetLabel: function(val) {
+			var instance = this;
+
+			instance.labelNode.setContent(val);
 		}
 	}
 });
-
-AvailableField.buildNodeId = function(id) {
-	return AVAILABLE_FIELDS + _DOLLAR + FIELD + _DOLLAR + id;
-};
 
 A.AvailableField = AvailableField;
 
@@ -238,45 +251,15 @@ FieldSupport.ATTRS = {
 		validator: function(val) {
 			return isArray(val) || isArrayList(val);
 		}
+	},
+
+	maxFields: {
+		value: Infinity,
+		validator: isNumber
 	}
 };
 
 A.mix(FieldSupport.prototype, {
-	createFields: function(val) {
-		var instance = this;
-		var fields = [];
-
-		AArray.each(val, function(field) {
-			fields.push(instance.createField(field));
-		});
-
-		return new A.ArrayList(fields);
-	},
-
-	addField: function(field) {
-		var instance = this;
-
-		instance._updateFields(
-			instance.get(FIELDS).add(
-				instance.createField(field)
-			)
-		);
-	},
-
-	removeField: function(field) {
-		var instance = this;
-
-		instance._updateFields(
-			instance.get(FIELDS).remove(field)
-		);
-	},
-
-	_updateFields: function(fields) {
-		var instance = this;
-
-		instance.set(FIELDS, fields);
-	},
-
 	_setFields: function(val) {
 		var instance = this;
 
@@ -286,6 +269,51 @@ A.mix(FieldSupport.prototype, {
 		else {
 			return instance.createFields(val);
 		}
+	},
+
+	_updateFields: function(fields) {
+		var instance = this;
+
+		instance.set(FIELDS, fields);
+	},
+
+	addField: function(field) {
+		var instance = this;
+
+		if (instance.get(FIELDS).size() < instance.get(MAX_FIELDS)) {
+			var newField = instance.createField(field);
+
+			if (newField) {
+				instance._updateFields(
+					instance.get(FIELDS).add(newField)
+				);
+			}
+
+			return newField;
+		}
+
+		return null;
+	},
+
+	createFields: function(val) {
+		var instance = this;
+		var fields = [];
+
+		AArray.each(val, function(field, index) {
+			if (index < instance.get(MAX_FIELDS)) {
+				fields.push(instance.createField(field));
+			}
+		});
+
+		return new A.ArrayList(fields);
+	},
+
+	removeField: function(field) {
+		var instance = this;
+
+		instance._updateFields(
+			instance.get(FIELDS).remove(field)
+		);
 	},
 
 	/*
@@ -316,15 +344,15 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isArray
 			},
 
-			contentContainer: {
-				valueFn: function() {
-					return A.Node.create(this.CONTENT_CONTAINER_TEMPLATE);
-				}
+			availableFieldsDragConfig: {
+				value: null,
+				setter: '_setAvailableFieldsDragConfig',
+				validator: isObject
 			},
 
-			dropContainer: {
+			canvas: {
 				valueFn: function() {
-					return A.Node.create(this.DROP_CONTAINER_TEMPLATE);
+					return A.Node.create(this.CANVAS_TEMPLATE);
 				}
 			},
 
@@ -334,10 +362,10 @@ var DiagramBuilderBase = A.Component.create(
 				validator: isObject
 			},
 
-			availableFieldsDragConfig: {
-				value: null,
-				setter: '_setAvailableFieldsDragConfig',
-				validator: isObject
+			dropContainer: {
+				valueFn: function() {
+					return A.Node.create(this.DROP_CONTAINER_TEMPLATE);
+				}
 			},
 
 			fieldsContainer: {
@@ -356,9 +384,9 @@ var DiagramBuilderBase = A.Component.create(
 				value: {
 					addNode: 'Add node',
 					cancel: 'Cancel',
-					nodeSettings: 'Node settings',
 					propertyName: 'Property Name',
 					save: 'Save',
+					settings: 'Settings',
 					value: 'Value'
 				}
 			},
@@ -384,10 +412,10 @@ var DiagramBuilderBase = A.Component.create(
 		},
 
 		HTML_PARSER: {
-			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER,
 			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
 			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
-			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER
+			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
+			canvas: _DOT+CSS_DIAGRAM_BUILDER_BASE_CANVAS
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -395,10 +423,10 @@ var DiagramBuilderBase = A.Component.create(
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
-			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER + '"></div>',
 			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
 			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
-			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER + '"></ul>',
+			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER, CSS_HELPER_CLEARFIX ].join(_SPACE) + '"></ul>',
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -421,7 +449,7 @@ var DiagramBuilderBase = A.Component.create(
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
 
-				instance.contentContainer = instance.get(CONTENT_CONTAINER);
+				instance.canvas = instance.get(CANVAS);
 				instance.dropContainer = instance.get(DROP_CONTAINER);
 				instance.fieldsContainer = instance.get(FIELDS_CONTAINER);
 				instance.toolbarContainer = instance.get(TOOLBAR_CONTAINER);
@@ -434,14 +462,20 @@ var DiagramBuilderBase = A.Component.create(
 				return (drag === availableFieldsDrag.dd);
 			},
 
-			plotFields: function(fields) {
+			plotFields: function() {
+				var instance = this;
+				var fields = instance.get(FIELDS);
+
+				fields.each(function(field) {
+					instance.plotField(field);
+				});
 			},
 
 			renderUI: function() {
 				var instance = this;
 
 				instance._renderTabs();
-				instance._renderContentContainer();
+				instance._renderCanvas();
 
 				instance._uiSetAvailableFields(
 					instance.get(AVAILABLE_FIELDS)
@@ -497,13 +531,13 @@ var DiagramBuilderBase = A.Component.create(
 				instance.fire(SAVE);
 			},
 
-			_renderContentContainer: function() {
+			_renderCanvas: function() {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
-				var contentContainer = instance.contentContainer;
+				var canvas = instance.canvas;
 
-				contentContainer.appendChild(instance.dropContainer);
-				contentBox.appendChild(contentContainer);
+				canvas.appendChild(instance.dropContainer);
+				contentBox.appendChild(canvas);
 			},
 
 			_renderPropertyList: function() {
@@ -587,6 +621,7 @@ var DiagramBuilderBase = A.Component.create(
 				return A.merge(
 					{
 						bubbleTargets: instance,
+						groups: [AVAILABLE_FIELDS],
 						node: instance.dropContainer
 					},
 					val || {}
@@ -601,6 +636,7 @@ var DiagramBuilderBase = A.Component.create(
 						bubbleTargets: instance,
 						container: instance.get(BOUNDING_BOX),
 						dragConfig: {
+							groups: [AVAILABLE_FIELDS],
 							plugins: [
 								{
 									cfg: {
@@ -655,7 +691,7 @@ var DiagramBuilderBase = A.Component.create(
 
 					defaultValue.items = [
 						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_ADD, label: strings[ADD_NODE] },
-						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS, label: strings[NODE_SETTINGS] }
+						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS, label: strings[SETTINGS] }
 					];
 				}
 

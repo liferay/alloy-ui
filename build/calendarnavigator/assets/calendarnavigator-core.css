@@ -1,0 +1,28 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.4.0
+build: nightly
+*/
+.yui3-calendar-header {
+	padding-left:15px;
+	padding-right:15px;
+}
+
+.yui3-calendar-header-label {
+	width:100%;
+}
+
+.yui3-calendarnav-prevmonth {
+	width:15px;
+	margin-left:-15px;
+	cursor: pointer;
+}
+
+.yui3-calendarnav-nextmonth {
+	width:15px;
+	margin-right:-15px;
+	cursor: pointer;
+	text-align: right;
+}

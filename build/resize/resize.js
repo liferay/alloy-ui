@@ -1638,7 +1638,7 @@ Y.each(Y.Resize.prototype.ALL_HANDLES, function(handle, i) {
 });
 
 
-}, '3.4.0' ,{skinnable:true, requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop']});
+}, '3.4.0' ,{requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop'], skinnable:true});
 YUI.add('resize-proxy', function(Y) {
 
 var ACTIVE_HANDLE_NODE = 'activeHandleNode',

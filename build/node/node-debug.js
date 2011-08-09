@@ -7,19 +7,24 @@ build: nightly
 */
 YUI.add('node-base', function(Y) {
 
+/**
+ * @module node
+ * @submodule node-base
+ */
+
 var methods = [
 /**
  * Determines whether each node has the given className.
  * @method hasClass
  * @for Node
  * @param {String} className the class name to search for
- * @return {Boolean} Whether or not the element has the specified class 
+ * @return {Boolean} Whether or not the element has the specified class
  */
  'hasClass',
 
 /**
  * Adds a class name to each node.
- * @method addClass         
+ * @method addClass
  * @param {String} className the class name to add to the node's class attribute
  * @chainable
  */
@@ -27,7 +32,7 @@ var methods = [
 
 /**
  * Removes a class name from each node.
- * @method removeClass         
+ * @method removeClass
  * @param {String} className the class name to remove from the node's class attribute
  * @chainable
  */
@@ -36,7 +41,7 @@ var methods = [
 /**
  * Replace a class with another class for each node.
  * If no oldClassName is present, the newClassName is simply added.
- * @method replaceClass  
+ * @method replaceClass
  * @param {String} oldClassName the class name to be replaced
  * @param {String} newClassName the class name that will be replacing the old class name
  * @chainable
@@ -45,9 +50,9 @@ var methods = [
 
 /**
  * If the className exists on the node it is removed, if it doesn't exist it is added.
- * @method toggleClass  
+ * @method toggleClass
  * @param {String} className the class name to be toggled
- * @param {Boolean} force Option to force adding or removing the class. 
+ * @param {Boolean} force Option to force adding or removing the class.
  * @chainable
  */
  'toggleClass'
@@ -60,12 +65,12 @@ Y.Node.importMethod(Y.DOM, methods);
  * @see Node.hasClass
  * @for NodeList
  * @param {String} className the class name to search for
- * @return {Array} An array of booleans for each node bound to the NodeList. 
+ * @return {Array} An array of booleans for each node bound to the NodeList.
  */
 
 /**
  * Adds a class name to each node.
- * @method addClass         
+ * @method addClass
  * @see Node.addClass
  * @param {String} className the class name to add to the node's class attribute
  * @chainable
@@ -73,7 +78,7 @@ Y.Node.importMethod(Y.DOM, methods);
 
 /**
  * Removes a class name from each node.
- * @method removeClass         
+ * @method removeClass
  * @see Node.removeClass
  * @param {String} className the class name to remove from the node's class attribute
  * @chainable
@@ -82,7 +87,7 @@ Y.Node.importMethod(Y.DOM, methods);
 /**
  * Replace a class with another class for each node.
  * If no oldClassName is present, the newClassName is simply added.
- * @method replaceClass  
+ * @method replaceClass
  * @see Node.replaceClass
  * @param {String} oldClassName the class name to be replaced
  * @param {String} newClassName the class name that will be replacing the old class name
@@ -91,12 +96,17 @@ Y.Node.importMethod(Y.DOM, methods);
 
 /**
  * If the className exists on the node it is removed, if it doesn't exist it is added.
- * @method toggleClass  
+ * @method toggleClass
  * @see Node.toggleClass
  * @param {String} className the class name to be toggled
  * @chainable
  */
 Y.NodeList.importMethod(Y.Node.prototype, methods);
+/**
+ * @module node
+ * @submodule node-base
+ */
+
 var Y_Node = Y.Node,
     Y_DOM = Y.DOM;
 
@@ -107,6 +117,7 @@ var Y_Node = Y.Node,
  * @param {String} html The markup used to create the element
  * @param {HTMLDocument} doc An optional document context
  * @return {Node} A Node instance bound to a DOM node or fragment
+ * @for Node
  */
 Y_Node.create = function(html, doc) {
     if (doc && doc._node) {
@@ -194,8 +205,8 @@ Y.mix(Y_Node.prototype, {
 
     /**
      * @method appendChild
-     * @param {String | HTMLElement | Node} node Node to be appended 
-     * @return {Node} The appended node 
+     * @param {String | HTMLElement | Node} node Node to be appended
+     * @return {Node} The appended node
      */
     appendChild: function(node) {
         return Y_Node.scrubVal(this._insert(node));
@@ -203,16 +214,16 @@ Y.mix(Y_Node.prototype, {
 
     /**
      * @method insertBefore
-     * @param {String | HTMLElement | Node} newNode Node to be appended 
-     * @param {HTMLElement | Node} refNode Node to be inserted before 
-     * @return {Node} The inserted node 
+     * @param {String | HTMLElement | Node} newNode Node to be appended
+     * @param {HTMLElement | Node} refNode Node to be inserted before
+     * @return {Node} The inserted node
      */
     insertBefore: function(newNode, refNode) {
         return Y.Node.scrubVal(this._insert(newNode, refNode));
     },
 
     /**
-     * Appends the node to the given node. 
+     * Appends the node to the given node.
      * @method appendTo
      * @param {Y.Node | HTMLElement} node The node to append to
      * @chainable
@@ -234,7 +245,7 @@ Y.mix(Y_Node.prototype, {
     },
 
     /**
-     * Returns the node's current content (e.g. innerHTML) 
+     * Returns the node's current content (e.g. innerHTML)
      * @method getContent
      * @return {String} The current content
      */
@@ -290,6 +301,11 @@ Y.NodeList.importMethod(Y.Node.prototype, [
       */
     'getContent'
 ]);
+/**
+ * @module node
+ * @submodule node-base
+ */
+
 var Y_Node = Y.Node,
     Y_DOM = Y.DOM;
 
@@ -320,7 +336,7 @@ Y_Node.ATTRS = {
     /**
      * Allows for getting and setting the text of an element.
      * Formatting is preserved and special characters are treated literally.
-     * @config text
+     * @config for
      * @type String
      */
     'for': {
@@ -386,7 +402,7 @@ Y.Node.importMethod(Y.DOM, [
      * @for Node
      * @for NodeList
      * @chainable
-     * @param {string} name The attribute name 
+     * @param {string} name The attribute name
      * @param {string} value The value to set
      */
     'setAttribute',
@@ -396,18 +412,24 @@ Y.Node.importMethod(Y.DOM, [
      * @method getAttribute
      * @for Node
      * @for NodeList
-     * @param {string} name The attribute name 
-     * @return {string} The attribute value 
+     * @param {string} name The attribute name
+     * @return {string} The attribute value
      */
     'getAttribute'
 
 ]);
+/**
+ * @module node
+ * @submodule node-base
+ */
+
 var Y_Node = Y.Node;
 var Y_NodeList = Y.NodeList;
 /**
  * List of events that route to DOM events
  * @static
  * @property DOM_EVENTS
+ * @for Node
  */
 
 Y_Node.DOM_EVENTS = {
@@ -508,6 +530,7 @@ Y.mix(Y.NodeList.prototype, {
      * when the event fires.
      * @return {Object} Returns an event handle that can later be use to detach().
      * @see Event.on
+     * @for NodeList
      */
     on: function(type, fn, context) {
         return Y.on.apply(Y, this._prepEvtArgs.apply(this, arguments));
@@ -541,6 +564,23 @@ Y.mix(Y.NodeList.prototype, {
      */
     after: function(type, fn, context) {
         return Y.after.apply(Y, this._prepEvtArgs.apply(this, arguments));
+    },
+
+    /**
+     * Applies an one-time event listener to each Node bound to the NodeList
+     * that will be called only after all on() handlers are called and the
+     * event is not prevented.
+     *
+     * @method onceAfter
+     * @param {String} type The event being listened for
+     * @param {Function} fn The handler to call when the event fires
+     * @param {Object} context The context to call the handler with.
+     * Default is the NodeList instance.
+     * @return {Object} Returns an event handle that can later be use to detach().
+     * @see Event.on
+     */
+    onceAfter: function(type, fn, context) {
+        return Y.onceAfter.apply(Y, this._prepEvtArgs.apply(this, arguments));
     }
 });
 
@@ -597,24 +637,24 @@ Y.mix(Y.Node.prototype, {
         });
     }
 });
+/**
+ * @module node
+ * @submodule node-base
+ */
+
 var Y_Node = Y.Node;
 
-Y_Node.SHOW_TRANSITION = null;
-Y_Node.HIDE_TRANSITION = null;
-
 Y.mix(Y_Node.prototype, {
-    SHOW_TRANSITION: Y_Node.SHOW_TRANSITION,
-    HIDE_TRANSITION: Y_Node.HIDE_TRANSITION,
-
     /**
      * Makes the node visible.
      * If the "transition" module is loaded, show optionally
      * animates the showing of the node using either the default
      * transition effect ('fadeIn'), or the given named effect.
      * @method show
-     * @param {String} name A named Transition effect to use as the show effect. 
-     * @param {Object} config Options to use with the transition. 
-     * @param {Function} callback An optional function to run after the transition completes. 
+     * @for Node
+     * @param {String} name A named Transition effect to use as the show effect.
+     * @param {Object} config Options to use with the transition.
+     * @param {Function} callback An optional function to run after the transition completes.
      * @chainable
      */
     show: function(callback) {
@@ -626,6 +666,7 @@ Y.mix(Y_Node.prototype, {
     /**
      * The implementation for showing nodes.
      * Default is to toggle the style.display property.
+     * @method _show
      * @protected
      * @chainable
      */
@@ -645,7 +686,7 @@ Y.mix(Y_Node.prototype, {
     _toggleView: function(on, callback) {
         callback = arguments[arguments.length - 1];
 
-        // base on current state if not forcing 
+        // base on current state if not forcing
         if (typeof on != 'boolean') {
             on = (this._isHidden()) ? 1 : 0;
         }
@@ -669,9 +710,9 @@ Y.mix(Y_Node.prototype, {
      * animates the hiding of the node using either the default
      * transition effect ('fadeOut'), or the given named effect.
      * @method hide
-     * @param {String} name A named Transition effect to use as the show effect. 
-     * @param {Object} config Options to use with the transition. 
-     * @param {Function} callback An optional function to run after the transition completes. 
+     * @param {String} name A named Transition effect to use as the show effect.
+     * @param {Object} config Options to use with the transition.
+     * @param {Function} callback An optional function to run after the transition completes.
      * @chainable
      */
     hide: function(callback) {
@@ -683,6 +724,7 @@ Y.mix(Y_Node.prototype, {
     /**
      * The implementation for hiding nodes.
      * Default is to toggle the style.display property.
+     * @method _hide
      * @protected
      * @chainable
      */
@@ -698,9 +740,10 @@ Y.NodeList.importMethod(Y.Node.prototype, [
      * animates the showing of the node using either the default
      * transition effect ('fadeIn'), or the given named effect.
      * @method show
-     * @param {String} name A named Transition effect to use as the show effect. 
-     * @param {Object} config Options to use with the transition. 
-     * @param {Function} callback An optional function to run after the transition completes. 
+     * @param {String} name A named Transition effect to use as the show effect.
+     * @param {Object} config Options to use with the transition.
+     * @param {Function} callback An optional function to run after the transition completes.
+     * @for NodeList
      * @chainable
      */
     'show',
@@ -711,9 +754,9 @@ Y.NodeList.importMethod(Y.Node.prototype, [
      * animates the hiding of the node using either the default
      * transition effect ('fadeOut'), or the given named effect.
      * @method hide
-     * @param {String} name A named Transition effect to use as the show effect. 
-     * @param {Object} config Options to use with the transition. 
-     * @param {Function} callback An optional function to run after the transition completes. 
+     * @param {String} name A named Transition effect to use as the show effect.
+     * @param {Object} config Options to use with the transition.
+     * @param {Function} callback An optional function to run after the transition completes.
      * @chainable
      */
     'hide',
@@ -909,14 +952,14 @@ Y.each([
     'docHeight',
 
     /**
-     * Amount page has been scroll vertically 
+     * Pixel distance the page has been scrolled horizontally 
      * @config docScrollX
      * @type {Int}
      */
     'docScrollX',
 
     /**
-     * Amount page has been scroll horizontally 
+     * Pixel distance the page has been scrolled vertically 
      * @config docScrollY
      * @type {Int}
      */
@@ -1031,6 +1074,11 @@ Y.Node.importMethod(Y.DOM, [
 ]);
 
 /**
+ * @module node
+ * @submodule node-screen
+ */
+
+/**
  * Returns a region object for the node
  * @config region
  * @for Node
@@ -1106,12 +1154,17 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 YUI.add('node-pluginhost', function(Y) {
 
 /**
- * Registers plugins to be instantiated at the class level (plugins 
+ * @module node
+ * @submodule node-pluginhost
+ */
+
+/**
+ * Registers plugins to be instantiated at the class level (plugins
  * which should be plugged into every instance of Node by default).
  *
- * @method Node.plug
+ * @method plug
  * @static
- *
+ * @for Node
  * @param {Function | Array} plugin Either the plugin class, an array of plugin classes or an array of objects (with fn and cfg properties defined)
  * @param {Object} config (Optional) If plugin is the plugin class, the configuration for the plugin
  */
@@ -1125,7 +1178,7 @@ Y.Node.plug = function() {
 /**
  * Unregisters any class level plugins which have been registered by the Node
  *
- * @method Node.unplug
+ * @method unplug
  * @static
  *
  * @param {Function | Array} plugin The plugin class, or an array of plugin classes

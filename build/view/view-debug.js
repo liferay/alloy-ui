@@ -12,14 +12,23 @@ Represents a logical piece of an application's user interface, and provides a
 lightweight, overridable API for rendering content and handling delegated DOM
 events on a container element.
 
+@submodule view
+@since 3.4.0
+**/
+
+/**
+Represents a logical piece of an application's user interface, and provides a
+lightweight, overridable API for rendering content and handling delegated DOM
+events on a container element.
+
 The View class imposes little structure and provides only minimal functionality
 of its own: it's basically just an overridable API interface that helps you
 implement custom views.
 
-@submodule view
 @class View
 @constructor
-@uses Base
+@extends Base
+@since 3.4.0
 **/
 
 function View() {
@@ -53,7 +62,7 @@ Y.View = Y.extend(View, Y.Base, {
 
     @property container
     @type HTMLElement|Node|String
-    @default `"<div/>"`
+    @default "<div/>"
     **/
     container: '<div/>',
 
@@ -94,12 +103,12 @@ Y.View = Y.extend(View, Y.Base, {
 
     @property events
     @type Object
-    @default `{}`
+    @default {}
     **/
     events: {},
 
     /**
-    `Y.Model` instance associated with this view instance.
+    Model instance associated with this view instance.
 
     This is entirely optional. There's no requirement that views be associated
     with models, but if you do intend to associate your view with a model, then
@@ -108,6 +117,20 @@ Y.View = Y.extend(View, Y.Base, {
 
     @property model
     @type Model
+    @default undefined
+    **/
+
+    /**
+    ModelList instance associated with this view instance.
+
+    This is entirely optional. There's no requirement that views be associated
+    with model lists, but if you do intend to associate your view with a model
+    list, then specifying that list instance at instantiation time will cause a
+    reference to be stored here for convenience.
+
+    @property modelList
+    @type ModelList
+    @default undefined
     **/
 
     /**
@@ -123,7 +146,7 @@ Y.View = Y.extend(View, Y.Base, {
 
     @property template
     @type any
-    @default `''`
+    @default ''
     **/
     template: '',
 
@@ -136,6 +159,7 @@ Y.View = Y.extend(View, Y.Base, {
         // Use config properties if present; otherwise default to prototype
         // properties.
         config.model && (this.model = config.model);
+        config.modelList && (this.modelList = config.modelList);
         config.template && (this.template = config.template);
 
         // Merge events from the config into events in `this.events`, then

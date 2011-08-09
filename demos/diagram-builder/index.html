@@ -19,13 +19,74 @@
 			width: 250px;
 		}
 
-		.aui-diagram-node {
-			background-color: #D96666;
-			border: 2px solid black;
+		.aui-diagram-builder-base-drop-container .aui-diagram-node-editing .aui-diagram-node-content {
+			background-color: lightyellow !important;
 		}
 
-		.aui-diagram-builder-base-drop-container .aui-diagram-node.aui-diagram-node-editing {
-			background-color: lightyellow;
+		.aui-diagram-node {
+			z-index: 10 !important;
+		}
+
+		.aui-diagram-node-content {
+		}
+
+		.aui-diagram-builder-connector-wrapper {
+			z-index: 1;
+		}
+
+		.aui-basecelleditor {
+			z-index: 1000 !important;
+		}
+
+		.aui-diagram-builder-anchor-hover {
+		}
+
+		.aui-diagram-builder-anchor-node.yui3-dd-dragging {
+		}
+
+/*		.aui-diagram-builder-anchor-hover,
+		.aui-diagram-builder-anchor-node.yui3-dd-drop-active-valid {
+			background: #fff !important;
+			border: 3px solid #484A4C !important;
+			width: 9px !important;
+			height: 9px !important;
+		}*/
+
+/*		.aui-diagram-builder-anchor-node.yui3-dd-drop-over {
+			background: #F7F3E8;
+			border: 2px solid #747E80;
+			-moz-transform: scale(1.3);
+			-moz-transition:-moz-transform 0.4s ease-in-out;
+			-moz-transition: background-color 0.4s linear;
+			-webkit-transform: scale(1.3);
+			-webkit-transition:-moz-transform 0.4s ease-in-out;
+			-webkit-transition: background-color 0.4s linear;
+		}*/
+
+		.log {
+			width: 300px;
+			font-size: 10px;
+		}
+
+		.aui-assignments-cell-editor-hidden,
+		.aui-notifications-cell-editor-hidden,
+		.aui-actions-cell-editor-hidden {
+			display: none;
+		}
+
+		.aui-celleditor-actions-view,
+		.aui-celleditor-notifications-view,
+		.aui-celleditor-assignment-view {
+			padding: 5px 0;
+		}
+
+		.aui-celleditor-label {
+			font-size: 11px;
+			font-weight: bold;
+		}
+
+		.aui-diagram-builder-base .aui-diagram-builder-base-field {
+			position: relative;
 		}
 	</style>
 </head>
@@ -47,7 +108,7 @@
 								<span class="aui-tab-content"><a class="aui-tab-label" href="javascript:;">Add node</a></span>
 							</li>
 							<li class="aui-tab aui-state-default aui-diagram-builder-base-tab-settings">
-								<span class="aui-tab-content"><a class="aui-tab-label" href="javascript:;">Node settings</a></span>
+								<span class="aui-tab-content"><a class="aui-tab-label" href="javascript:;">Settings</a></span>
 							</li>
 						</ul>
 
@@ -58,7 +119,7 @@
 					</div>
 				</div>
 
-				<div class="aui-diagram-builder-base-content-container">
+				<div class="aui-diagram-builder-base-canvas">
 					<div class="aui-diagram-builder-base-drop-container"></div>
 				</div>
 
@@ -69,6 +130,10 @@
 		<br/>
 		<br/>
 
+		<button id="toJSON1">toJSON1</button>
+
+		<div id="json1"></div>
+
 		<div id="diagramBuilder2"></div>
 
 	</div>
@@ -76,88 +141,1423 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().use('aui-diagram-builder', function(A) {
+// TODO deletar anchors OK
+// TODO deletar connections (delete) OK
+// TODO Adicionar overlay de controles OK
+// TODO syncTargets dd delegate
+// TODO Adicionar groups/validation for connection - Partially OK
+// TODO Add events to graphics OK
+// TODO Select connection OK
+// TODO Delete selected connection OK
+// TODO Add name to the connectors
+// TODO Create InlineEditor for Assignments OK
+// TODO Generate XML
+// TODO Create InlineEditor for Actions, Notifications OK
 
-	diagramBuilder1 = new A.DiagramBuilder(
+// TODO Show connectors name
+// TODO Realign anchors to best fit?
+// TODO Better Connection path?
+
+AUI().use('aui-diagram-builder', 'io-form', 'event-valuechange', function(A) {
+
+	var Lang = A.Lang,
+		isBoolean = Lang.isBoolean,
+		isObject = Lang.isObject,
+		isArray = Lang.isArray,
+		isValue = Lang.isValue,
+
+		WidgetStdMod = A.WidgetStdMod,
+		AArray = A.Array,
+
+		ACTIONS = 'actions',
+		ACTIONS_CELL_EDITOR = 'actions-cell-editor',
+		ACTIONS_TYPE = 'actionsType',
+		ADD_ANCHOR = 'addAnchor',
+		ADD_ANCHOR_MESSAGE = 'addAnchorMessage',
+		ADD_NODE = 'addNode',
+		ASSIGNMENT = 'assignment',
+		ASSIGNMENT_TYPE = 'assignmentType',
+		ASSIGNMENTS = 'assignments',
+		ASSIGNMENTS_CELL_EDITOR = 'assignments-cell-editor',
+		ASSIGNMENTS_TYPE = 'assignmentsType',
+		AUTO_CREATE = 'autoCreate',
+		CANCEL = 'Cancel',
+		CELLEDITOR = 'celleditor',
+		CHECKED = 'checked',
+		CONDITION = 'condition',
+		CONTENT_BOX = 'contentBox',
+		DESCRIPTION = 'description',
+		DIAGRAM_BUILDER_NAME = 'diagram-builder',
+		DIAGRAM_NODE_NAME = 'diagram-node',
+		EDIT = 'Edit',
+		EDIT_EVENT = 'editEvent',
+		EDIT_MESSAGE = 'editMessage',
+		ELEMENT = 'element',
+		END = 'end',
+		FORK = 'fork',
+		HELPER = 'helper',
+		HIDDEN = 'hidden',
+		INITIAL = 'initial',
+		JOIN = 'join',
+		LABEL = 'label',
+		LANGUAGE = 'language',
+		LINK = 'link',
+		NAME = 'name',
+		NOTIFICATION = 'notification',
+		NOTIFICATION_TYPE = 'notificationType',
+		NOTIFICATIONS = 'notifications',
+		NOTIFICATIONS_CELL_EDITOR = 'notifications-cell-editor',
+		OFF = 'off',
+		PENCIL = 'pencil',
+		RESOURCE_ACTION = 'resourceAction',
+		RESOURCE_ACTIONS = 'resourceActions',
+		ROLE = 'role',
+		ROLE_ID = 'roleId',
+		ROLE_NAME = 'roleName',
+		ROLE_TYPE = 'roleType',
+		ROLES = 'roles',
+		SAVE = 'Save',
+		SCRIPT = 'script',
+		SCRIPT_LANGUAGE = 'scriptLanguage',
+		SCRIPTED_ASSIGNMENT = 'scriptedAssignment',
+		SHUFFLE = 'shuffle',
+		START = 'start',
+		STATE = 'state',
+		STRING = 'string',
+		TARGET = 'target',
+		TASK = 'task',
+		TEMPLATE = 'template',
+		TEMPLATE_LANGUAGE = 'templateLanguage',
+		TEXT = 'text',
+		TRANSITION = 'transition',
+		TRANSITIONS = 'transitions',
+		TYPE = 'type',
+		USER = 'user',
+		USER_ID = 'userId',
+		VALUE_CHANGE = 'valueChange',
+		VIEW = 'view',
+		WORKFLOW_DEFINITION_NAME = 'workflow-definition',
+		XML_TYPE = 'xmlType',
+		EMAIL_ADDRESS = 'emailAddress',
+		ACTION = 'action',
+		SCRIPT_LANGUAGE = 'scriptLanguage',
+		EXECUTION_TYPE = 'executionType',
+		RECIPIENTS = 'recipients',
+		EXECUTION_TYPE = 'executionType',
+
+		STR_CDATA_CLOSE = ']]>',
+		STR_CDATA_OPEN = '<![CDATA[',
+
+		_SPACE = ' ',
+		_EMPTY_STR = '',
+		_DOT = '.',
+		_DASH = '-',
+		_SPACE = ' ',
+		_AMPERSAND = '&',
+		_EQUALS = '=',
+
+		AgetClassName = A.getClassName,
+
+		CSS_CELLEDITOR_NOTIFICATION_TYPE = AgetClassName(CELLEDITOR, NOTIFICATION, TYPE),
+		CSS_CELLEDITOR_ACTIONS_TYPE = AgetClassName(CELLEDITOR, ACTIONS, TYPE),
+		CSS_CELLEDITOR_NOTIFICATION_VIEW = AgetClassName(CELLEDITOR, NOTIFICATION, VIEW),
+		CSS_CELLEDITOR_ACTIONS_VIEW = AgetClassName(CELLEDITOR, ACTIONS, VIEW),
+		CSS_CELLEDITOR_ASSIGNMENT_TYPE = AgetClassName(CELLEDITOR, ASSIGNMENT, TYPE),
+		CSS_CELLEDITOR_ASSIGNMENT_VIEW = AgetClassName(CELLEDITOR, ASSIGNMENT, VIEW),
+		CSS_CELLEDITOR_ELEMENT = AgetClassName(CELLEDITOR, ELEMENT),
+		CSS_CELLEDITOR_LABEL = AgetClassName(CELLEDITOR, LABEL),
+		CSS_HELPER_HIDDEN = AgetClassName(HELPER, HIDDEN),
+
+		LABEL_TEMPLATE = '<div class="'+CSS_CELLEDITOR_LABEL+'">{label}</div>',
+
+		cdata = function(value) {
+			return STR_CDATA_OPEN + value + STR_CDATA_CLOSE;
+		},
+
+		xmlfyObj = function(name, attrs) {
+			var instance = this;
+
+			var aBuffer = [_SPACE];
+			var normalizedName = uncamelize(name);
+
+			A.each(
+				attrs,
+				function(item, index, collection) {
+					if (item !== undefined) {
+						aBuffer.push([index, '="', item, '" '].join(_EMPTY_STR));
+					}
+				}
+			);
+
+			var attributes = Lang.trimRight(aBuffer.join(_EMPTY_STR));
+
+			var node = {
+				open: Lang.sub('<{name}{attrs}>', {
+					attrs: attributes,
+					name: normalizedName
+				}),
+				close: Lang.sub('</{name}>', { name: normalizedName })
+			};
+
+			return node;
+		},
+
+		xmlfy = function (name, content, attrs) {
+			var node = xmlfyObj(name, attrs);
+
+			return (node.open + (isValue(content) ? content : _EMPTY_STR) + node.close);
+		},
+
+		uncamelize = function(name) {
+			return _uncamelize(name, _DASH).toLowerCase();
+		},
+
+		_uncamelize = function(value, separator) {
+			separator = separator || ' ';
+
+			value = value.replace(/([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g, '$1' + separator + '$2$3');
+			value = value.replace(/([a-z])([A-Z])/g, '$1' + separator + '$2');
+
+			return value;
+		},
+
+		_serialize = A.IO.prototype._serialize,
+
+		_serializeForm = function(form) {
+			var data = {};
+			var params = _serialize(form.getDOM()).split(_AMPERSAND);
+
+			AArray.each(params, function(p) {
+				var keyVal = p.split(_EQUALS);
+				var key = keyVal[0];
+
+				if (key !== undefined) {
+					if (!isArray(data[key])) {
+						data[key] = [];
+					}
+
+					data[key].push(keyVal[1]);
+				}
+			});
+
+			return data;
+		};
+
+
+	// Liferay Workflow Nodes - MOVE THIS CODE!
+
+
+
+
+	A.AssignmentsEditor = A.Component.create({
+		NAME: ASSIGNMENTS_CELL_EDITOR,
+
+		ATTRS: {
+			assignmentsType: {
+				value: [
+					RESOURCE_ACTIONS,
+					ROLE_ID,
+					ROLE_TYPE,
+					SCRIPTED_ASSIGNMENT,
+					USER_ID
+				]
+			},
+
+			strings: {
+				value: {
+					assignmentType: 'Assignment type',
+					autoCreate: 'Auto Create',
+					cancel: 'Cancel',
+					edit: 'Edit',
+					language: 'Language',
+					resourceActions: 'Resource Actions',
+					roleId: 'Role ID',
+					roleName: 'Role Name',
+					roleType: 'Role Type',
+					save: 'Save',
+					script: 'Script',
+					scriptedAssignment: 'Scripted Assignment',
+					userId: 'User ID'
+				}
+			}
+		},
+
+		EXTENDS: A.BaseCellEditor,
+
+		prototype: {
+			CHECKBOX_TEMPLATE: '<div><input name="{name}" id="{id}" type="checkbox" value="true" /> '+
+								'<label for="{id}" class="'+CSS_CELLEDITOR_LABEL+'">{label}</label><div>',
+
+			INPUT_TEMPLATE: LABEL_TEMPLATE + '<input name="{name}" autocomplete="off" class="' + CSS_CELLEDITOR_ELEMENT + '" type="text" />',
+
+			OPTION_TEMPLATE: '<option value="{value}">{label}</option>',
+
+			SELECT_TEMPLATE: '<select name="{name}"></select>',
+
+			TEXTAREA_TEMPLATE: LABEL_TEMPLATE + '<textarea name="{name}" class="' + CSS_CELLEDITOR_ELEMENT + '"></textarea>',
+
+			VIEW_TEMPLATE: '<div class="' + [CSS_HELPER_HIDDEN, CSS_CELLEDITOR_ASSIGNMENT_VIEW].join(_SPACE) + '"></div>',
+
+			getValue: function() {
+				var instance = this;
+
+				return _serializeForm(instance.get(CONTENT_BOX));
+			},
+
+			showView: function(viewId) {
+				var instance = this;
+
+				var viewNode = instance.bodyNode.one(_DOT+CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+viewId.toLowerCase());
+
+				if (viewNode) {
+					instance.viewNodes.hide();
+					viewNode.show();
+				}
+				else {
+					instance.viewNodes.hide();
+				}
+			},
+
+			_afterRender: function() {
+				var instance = this;
+
+				A.AssignmentsEditor.superclass._afterRender.apply(this, arguments);
+
+				instance._renderType();
+				instance._renderViews();
+
+				instance.viewNodes = instance.bodyNode.all(_DOT+CSS_CELLEDITOR_ASSIGNMENT_VIEW);
+			},
+
+			_onTypeValueChange: function(event) {
+				var instance = this;
+
+				instance.showView(instance.typeSelect.val());
+			},
+
+			_renderResourceActionsView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var resourceActionsView = instance.resourceActionsView = A.Node.create(instance.VIEW_TEMPLATE);
+
+				resourceActionsView.addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+RESOURCE_ACTIONS.toLowerCase());
+
+				resourceActionsView.setContent(
+					Lang.sub(
+						instance.TEXTAREA_TEMPLATE,
+						{
+							name: RESOURCE_ACTIONS,
+							label: strings[RESOURCE_ACTIONS]
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, resourceActionsView, WidgetStdMod.AFTER);
+			},
+
+			_renderRoleIdView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var roleIdView = instance.roleIdView = A.Node.create(instance.VIEW_TEMPLATE);
+
+				roleIdView.addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+ROLE_ID.toLowerCase());
+
+				roleIdView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							name: ROLE_ID,
+							label: strings[ROLE_ID]
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, roleIdView, WidgetStdMod.AFTER);
+			},
+
+			_renderRoleTypeView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var roleTypeView = instance.roleTypeView = A.Node.create(instance.VIEW_TEMPLATE);
+
+				roleTypeView.addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+ROLE_TYPE.toLowerCase());
+
+				roleTypeView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							name: ROLE_TYPE,
+							label: strings[ROLE_TYPE]
+						}
+					) +
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							name: ROLE_NAME,
+							label: strings[ROLE_NAME]
+						}
+					) +
+					Lang.sub(
+						instance.CHECKBOX_TEMPLATE,
+						{
+							id: A.guid(),
+							name: AUTO_CREATE,
+							label: strings[AUTO_CREATE]
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, roleTypeView, WidgetStdMod.AFTER);
+			},
+
+			_renderScriptedAssignmentView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var scriptedAssignmentView = instance.scriptedAssignmentView = A.Node.create(instance.VIEW_TEMPLATE).addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+SCRIPTED_ASSIGNMENT.toLowerCase());
+
+				scriptedAssignmentView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							name: LANGUAGE,
+							label: strings[LANGUAGE]
+						}
+					) +
+					Lang.sub(
+						instance.TEXTAREA_TEMPLATE,
+						{
+							name: SCRIPT,
+							label: strings[SCRIPT]
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, scriptedAssignmentView, WidgetStdMod.AFTER);
+			},
+
+			_renderType: function() {
+				var instance = this;
+
+				var options = [];
+				var strings = instance.getStrings();
+
+				options.push(
+					Lang.sub(
+						instance.OPTION_TEMPLATE,
+						{
+							label: _EMPTY_STR,
+							value: _EMPTY_STR
+						}
+					)
+				);
+
+				AArray.each(
+					instance.get(ASSIGNMENTS_TYPE),
+					function(item, index, collection) {
+						options.push(Lang.sub(instance.OPTION_TEMPLATE, { value: item, label: (strings[item] || item) }));
+					}
+				);
+
+				var label = Lang.sub(
+					LABEL_TEMPLATE,
+					{
+						label: strings[ASSIGNMENT_TYPE],
+						name: ASSIGNMENT_TYPE
+					}
+				);
+
+				var select = instance.typeSelect = A.Node.create(
+					Lang.sub(
+						instance.SELECT_TEMPLATE,
+						{
+							name: ASSIGNMENT_TYPE
+						}
+					)
+				)
+				.setContent(options.join(_EMPTY_STR));
+
+				instance.setStdModContent(WidgetStdMod.BODY, label);
+				instance.setStdModContent(WidgetStdMod.BODY, select, WidgetStdMod.AFTER);
+				select.on(VALUE_CHANGE, A.bind(instance._onTypeValueChange, instance));
+			},
+
+			_renderUserView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var userView = instance.userView = A.Node.create(instance.VIEW_TEMPLATE);
+
+				userView.addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+USER_ID.toLowerCase());
+
+				userView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							label: strings[USER_ID],
+							name: USER_ID
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, userView, WidgetStdMod.AFTER);
+			},
+
+			_renderViews: function() {
+				var instance = this;
+
+				instance._renderUserView();
+				instance._renderRoleIdView();
+				instance._renderRoleTypeView();
+				instance._renderResourceActionsView();
+				instance._renderScriptedAssignmentView();
+			},
+
+			_syncElementsFocus: function() {
+				var instance = this;
+
+				instance.typeSelect.focus();
+			},
+
+			_format: function(val) {
+			    var instance = this;
+
+				return decodeURIComponent(instance.formatValue(instance.get('outputFormatter'), val));
+			},
+
+			_uiSetValue: function(val) {
+				var instance = this;
+
+				var contentBox = instance.get(CONTENT_BOX);
+
+				A.each(
+					val,
+					function(values, key) {
+						var fields = contentBox.all('[name="' + key + '"]');
+
+						values = AArray(values);
+
+						AArray.each(
+							values,
+							function (item, index, collection) {
+								values[index] = instance._format(item);
+							}
+						);
+
+						fields.each(function(item, index, collection) {
+							var value = values[index];
+
+							if (key === AUTO_CREATE) {
+								item.set(CHECKED, !!value);
+							}
+							else if (key === ASSIGNMENT_TYPE) {
+								instance.showView(value);
+								item.val(value);
+							}
+							else {
+								item.val(value);
+							}
+						});
+					}
+				);
+			}
+		}
+	});
+
+	A.NotificationsEditor = A.Component.create({
+		NAME: NOTIFICATIONS_CELL_EDITOR,
+
+		ATTRS: {
+			assignmentsType: {
+				value: [
+					ROLE_ID,
+					ROLE_TYPE,
+					USER_ID,
+					EMAIL_ADDRESS
+				]
+			},
+
+			strings: {
+				value: {
+					assignmentType: 'Assignment type',
+					autoCreate: 'Auto Create',
+					cancel: 'Cancel',
+					description: 'Description',
+					edit: 'Edit',
+					language: 'Language',
+					name: 'Name',
+					notificationType: 'Notification Type',
+					resourceActions: 'Resource Actions',
+					roleId: 'Role ID',
+					roleName: 'Role Name',
+					roleType: 'Role Type',
+					save: 'Save',
+					script: 'Script',
+					scriptedAssignment: 'Scripted Assignment',
+					template: 'Template',
+					templateLanguage: 'Template Language',
+					userId: 'User ID',
+					emailAddress: 'Email Address',
+					executionType: 'Execution Type'
+				}
+			}
+		},
+
+		EXTENDS: A.AssignmentsEditor,
+
+		prototype: {
+			NOTIFICATIONS_TEMPLATE: '<div class="' + CSS_CELLEDITOR_NOTIFICATION_TYPE+_DASH+NOTIFICATION.toLowerCase() + '"></div>',
+
+			_syncElementsFocus: function() {
+				var instance = this;
+
+				instance.bodyNode.one(':input').focus();
+			},
+
+			_renderEmailView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var emailView = instance.emailView = A.Node.create(instance.VIEW_TEMPLATE);
+
+				emailView.addClass(CSS_CELLEDITOR_ASSIGNMENT_TYPE+_DASH+EMAIL_ADDRESS.toLowerCase());
+
+				emailView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							label: strings[EMAIL_ADDRESS],
+							name: EMAIL_ADDRESS
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, emailView, WidgetStdMod.AFTER);
+			},
+
+			_renderNotificationView: function() {
+			    var instance = this;
+
+				var strings = instance.getStrings();
+				var notificationView = instance.notificationView = A.Node.create(instance.NOTIFICATIONS_TEMPLATE);
+
+				notificationView.setContent(
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							label: strings[NAME],
+							name: NAME
+						}
+						)+
+					Lang.sub(
+						instance.TEXTAREA_TEMPLATE,
+						{
+							label: strings[DESCRIPTION],
+							name: DESCRIPTION
+						}
+					) +
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							name: EXECUTION_TYPE,
+							label: strings[EXECUTION_TYPE]
+						}
+					) +
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							label: strings[TEMPLATE_LANGUAGE],
+							name: TEMPLATE_LANGUAGE
+						}
+					) +
+					Lang.sub(
+						instance.TEXTAREA_TEMPLATE,
+						{
+							label: strings[TEMPLATE],
+							name: TEMPLATE
+						}
+					) +
+					Lang.sub(
+						instance.INPUT_TEMPLATE,
+						{
+							label: strings[NOTIFICATION_TYPE],
+							name: NOTIFICATION_TYPE
+						}
+					)
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, notificationView, WidgetStdMod.BEFORE);
+			},
+
+			_renderViews: function() {
+				var instance = this;
+
+				A.NotificationsEditor.superclass._renderViews.apply(this, arguments);
+
+				instance._renderEmailView();
+				instance._renderNotificationView();
+			}
+		}
+	});
+
+	A.ActionsEditor = A.Component.create({
+		NAME: ACTIONS_CELL_EDITOR,
+
+		ATTRS: {
+			actionsType: {
+				value: [
+					ACTIONS
+				],
+				validator: isArray
+			},
+
+			strings: {
+				value: {
+					actions: 'Actions',
+					notifications: 'Notifications',
+					actionsType: 'Actions Type',
+					language: 'Language',
+					script: 'Script',
+					description: 'Description',
+					cancel: 'Cancel',
+					edit: 'Edit',
+					roleId: 'Role ID',
+					roleName: 'Role Name',
+					roleType: 'Role Type',
+					save: 'Save',
+					name: 'Name',
+					userId: 'User ID',
+					executionType: 'Execution Type'
+				}
+			}
+		},
+
+		EXTENDS: A.BaseCellEditor,
+
+		prototype: {
+			INPUT_TEMPLATE: LABEL_TEMPLATE + '<input name="{name}" autocomplete=OFF class="' + CSS_CELLEDITOR_ELEMENT + '" type=TEXT />',
+
+			TEXTAREA_TEMPLATE: LABEL_TEMPLATE + '<textarea name="{name}" class="' + CSS_CELLEDITOR_ELEMENT + '"></textarea>',
+
+			getValue: function() {
+				var instance = this;
+
+				return _serializeForm(instance.get(CONTENT_BOX));
+			},
+
+			_afterRender: function() {
+				var instance = this;
+
+				A.AssignmentsEditor.superclass._afterRender.apply(this, arguments);
+
+				instance._renderViews();
+			},
+
+			_format: function(val) {
+			    var instance = this;
+
+				return decodeURIComponent(instance.formatValue(instance.get('outputFormatter'), val));
+			},
+
+			_renderActionsView: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+
+				var actionsView = Lang.sub(
+					instance.INPUT_TEMPLATE,
+					{
+						name: NAME,
+						label: strings[NAME]
+					}
+				) +
+				Lang.sub(
+					instance.INPUT_TEMPLATE,
+					{
+						name: NAME,
+						label: strings[NAME]
+					}
+				) +
+				Lang.sub(
+					instance.TEXTAREA_TEMPLATE,
+					{
+						name: DESCRIPTION,
+						label: strings[DESCRIPTION]
+					}
+				) +
+				Lang.sub(
+					instance.INPUT_TEMPLATE,
+					{
+						name: EXECUTION_TYPE,
+						label: strings[EXECUTION_TYPE]
+					}
+				) +
+				Lang.sub(
+					instance.INPUT_TEMPLATE,
+					{
+						name:LANGUAGE,
+						label: strings[LANGUAGE]
+					}
+				) +
+				Lang.sub(
+					instance.TEXTAREA_TEMPLATE,
+					{
+						name: SCRIPT,
+						label: strings[SCRIPT]
+					}
+				);
+
+				instance.setStdModContent(WidgetStdMod.BODY, actionsView, WidgetStdMod.AFTER);
+			},
+
+			_renderViews: function() {
+				var instance = this;
+
+				instance._renderActionsView();
+			},
+
+			_syncElementsFocus: function() {
+				var instance = this;
+
+				instance.bodyNode.one(':input').focus();
+			},
+
+			_uiSetValue: function(val) {
+				var instance = this;
+
+				var contentBox = instance.get(CONTENT_BOX);
+
+				A.each(
+					val,
+					function(values, key) {
+						var fields = contentBox.all('[name="' + key + '"]');
+
+						values = AArray(values);
+
+						AArray.each(
+							values,
+							function (item, index, collection) {
+								values[index] = instance._format(item);
+							}
+						);
+
+						fields.each(function(item, index, collection) {
+							item.val(values[index]);
+						});
+					}
+				);
+			}
+		}
+	});
+
+
+	A.WorkflowDesigner = A.Component.create({
+		NAME: DIAGRAM_BUILDER_NAME,
+
+		EXTENDS: A.DiagramBuilder,
+
+		prototype: {
+			toXML: function() {
+				var instance = this;
+
+				var o = [];
+				var json = instance.toJSON();
+
+				o.push('<?xml version="1.0"?>');
+
+				var xWorkflowDefinition = xmlfyObj(WORKFLOW_DEFINITION_NAME, {
+					'xmlns': 'urn:liferay.com:liferay-workflow_6.0.0',
+					'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+					'xsi:schemaLocation': 'urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd'
+				});
+
+				o.push(xWorkflowDefinition.open);
+
+					AArray.each(
+						json.nodes,
+						function(data) {
+							var xNode = xmlfyObj(data.xmlType || data.type);
+
+							o.push(xNode.open);
+								o.push(xmlfy(NAME, data.name));
+
+								if (data.initial) {
+									o.push(xmlfy(INITIAL, true));
+								}
+
+								instance._appendXMLActions(o, data);
+								instance._appendXMLAssignments(o, data);
+								instance._appendXMLTransitions(o, data);
+							o.push(xNode.close);
+						}
+					);
+
+				o.push(xWorkflowDefinition.close);
+
+				console.log(o.join(_EMPTY_STR));
+			},
+
+			_appendXMLAssignments: function(o, data, lookupKey, wrapperNodeName) {
+				var instance = this;
+
+				var dAssignments = data[lookupKey || ASSIGNMENTS];
+
+				if (dAssignments) {
+					var xAssignments = xmlfyObj(wrapperNodeName || ASSIGNMENTS);
+					var assignmentType = dAssignments.assignmentType[0];
+
+					o.push(xAssignments.open);
+
+						if (assignmentType === RESOURCE_ACTIONS) {
+							o.push(xmlfy(RESOURCE_ACTIONS, xmlfy(RESOURCE_ACTION, dAssignments.resourceActions)));
+						}
+						else if (assignmentType === ROLE_ID) {
+							var xRoles = xmlfyObj(ROLES);
+
+							o.push(xRoles.open);
+								o.push(xmlfy(ROLE, xmlfy(ROLE_ID, dAssignments.roleId)));
+							o.push(xRoles.close);
+						}
+						else if (assignmentType === ROLE_TYPE) {
+							var xRoles = xmlfyObj(ROLES);
+							var xRole = xmlfyObj(ROLE);
+
+							o.push(xRoles.open);
+								AArray.each(dAssignments.roleType, function(type, index, collection) {
+									o.push(xRole.open);
+										o.push(xmlfy(ROLE_TYPE, dAssignments.type));
+										o.push(xmlfy(NAME, dAssignments.roleName[index]));
+										o.push(xmlfy(AUTO_CREATE, dAssignments.autoCreate[index] || String(false)));
+									o.push(xRole.close);
+								});
+							o.push(xRoles.close);
+						}
+						else if (assignmentType === SCRIPTED_ASSIGNMENT) {
+							var xScriptedAssignment = xmlfyObj(SCRIPTED_ASSIGNMENT);
+
+							o.push(xScriptedAssignment.open);
+								o.push(xmlfy(SCRIPT, cdata(dAssignments.script)));
+								o.push(xmlfy(SCRIPT_LANGUAGE, dAssignments.language));
+							o.push(xScriptedAssignment.close);
+						}
+						else if (assignmentType === USER_ID) {
+							o.push(xmlfy(USER, xmlfy(USER_ID, dAssignments.userId)));
+						}
+						else {
+							o.push('<user/>');
+						}
+
+					o.push(xAssignments.close);
+				}
+			},
+
+			_appendXMLTransitions: function(o, data) {
+				var instance = this;
+
+				if (data.transitions.length > 0) {
+					var xTransitions = xmlfyObj(TRANSITIONS);
+
+					o.push(xTransitions.open);
+						AArray.each(
+							data.transitions,
+							function(tData) {
+								var xTransition = xmlfyObj(TRANSITION);
+
+								o.push(xTransition.open);
+									o.push(xmlfy(NAME, tData.connector.name));
+									o.push(xmlfy(TARGET, tData.target));
+								o.push(xTransition.close);
+							}
+						);
+					o.push(xTransitions.close);
+				}
+			},
+
+			_appendXMLNotifications: function(o, data) {
+			    var instance = this;
+
+				var notifications = data.notifications;
+
+				if (notifications) {
+					AArray.each(
+						notifications.name,
+						function(name, index) {
+							var xNotification = xmlfyObj(NOTIFICATION);
+
+							o.push(xNotification.open);
+								o.push(xmlfy(NAME, name));
+								o.push(xmlfy(DESCRIPTION, notifications.description[index]));
+								o.push(xmlfy(EXECUTION_TYPE, notifications.executionType[index]));
+								o.push(xmlfy(TEMPLATE, cdata(notifications.template[index])));
+								o.push(xmlfy(TEMPLATE_LANGUAGE, notifications.templateLanguage[index]));
+								o.push(xmlfy(NOTIFICATION_TYPE, notifications.notificationType[index]));
+								instance._appendXMLAssignments(o, data, RECIPIENTS, RECIPIENTS);
+							o.push(xNotification.close);
+						}
+					);
+				}
+			},
+
+			_appendXMLActions: function(o, data) {
+			    var instance = this;
+
+				var actions = data.actions;
+				var xActions = xmlfyObj(ACTIONS);
+
+				o.push(xActions.open);
+
+					if (actions) {
+						var xAction = xmlfyObj(ACTION);
+
+						AArray.each(
+							actions.name,
+							function(name, index, collection) {
+								o.push(xAction.open);
+									o.push(xmlfy(NAME, name));
+									o.push(xmlfy(DESCRIPTION, actions.description[index]));
+									o.push(xmlfy(EXECUTION_TYPE, actions.executionType[index]));
+									o.push(xmlfy(SCRIPT, cdata(actions.script[index])));
+									o.push(xmlfy(SCRIPT_LANGUAGE, actions.language[index]));
+								o.push(xAction.close);
+							}
+						);
+					}
+
+					instance._appendXMLNotifications(o, data);
+
+				o.push(xActions.close);
+			}
+
+		}
+	});
+
+	A.DiagramNodeStateCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
+
+		ATTRS: {
+			initial: {
+				value: false,
+				validation: isBoolean
+			},
+
+			notifications: {
+				value: {
+					assignmentType: _EMPTY_STR
+				},
+				validator: isObject
+			},
+
+			actions: {
+			},
+
+			strings: {
+				value: {
+					actions: 'Actions',
+					addAnchorMessage: 'Add Anchor',
+					assignments: 'Assignments',
+					closeMessage: 'Close',
+					deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
+					description: 'Description',
+					editMessage: 'Edit',
+					initial: 'Initial',
+					name: 'Name',
+					notifications: 'Notifications',
+					type: 'Type'
+				}
+			},
+
+			xmlType: {
+				value: STATE
+			}
+		},
+
+		EXTENDS: A.DiagramNodeState,
+
+		prototype: {
+			SERIALIZABLE_ATTRS: A.DiagramNodeState.prototype.SERIALIZABLE_ATTRS.concat([ACTIONS, INITIAL, NOTIFICATIONS, XML_TYPE]),
+
+			getConnectionNode: function() {
+				return new A.DiagramNodeTask({
+					xy: [100, 100] // TODO - find best position?
+				});
+			},
+
+			getPropertyModel: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var parentModel = A.DiagramNodeStateCustom.superclass.getPropertyModel.apply(this, arguments);
+
+				return AArray(parentModel).concat([
+					{
+						attributeName: ACTIONS,
+						editor: new A.ActionsEditor(),
+						name: strings[ACTIONS]
+					},
+					{
+						attributeName: NOTIFICATIONS,
+						editor: new A.NotificationsEditor(),
+						name: strings[NOTIFICATIONS]
+					}
+				]);
+			}
+		}
+	});
+
+	A.DiagramNodeStartCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
+
+		ATTRS: {
+			initial: {
+				value: true
+			},
+
+			maxFields: {
+				value: 1
+			},
+
+			required: {
+				value: true
+			}
+		},
+
+		EXTENDS: A.DiagramNodeStateCustom,
+
+		prototype: {
+			getConnectionNode: function() {
+				return new A.DiagramNodeCondition({
+					xy: [100, 100] // TODO - find best position?
+				});
+			},
+
+			_valueControlsToolbar: function(val) {
+				var instance = this;
+
+				var strings = instance.getStrings();
+
+				return {
+					activeState: false,
+					children: [
+						{
+							handler: A.bind(instance._handleEditEvent, instance),
+							icon: PENCIL,
+							id: EDIT_EVENT,
+							title: strings[EDIT_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddAnchorEvent, instance),
+							icon: LINK,
+							id: ADD_ANCHOR,
+							title: strings[ADD_ANCHOR_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddNodeEvent, instance),
+							icon: SHUFFLE,
+							id: ADD_NODE
+						}
+					]
+				};
+			}
+		}
+	});
+
+	A.DiagramNodeEndCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
+
+		ATTRS: {
+			required: {
+				value: true
+			}
+		},
+
+		EXTENDS: A.DiagramNodeStateCustom,
+
+		prototype: {
+			_handleAddAnchorEvent: function(event) {
+				var instance = this;
+
+				instance.addField(
+					{
+						maxTargets: 0
+					}
+				);
+			},
+
+			_valueControlsToolbar: function(val) {
+				var instance = this;
+
+				var strings = instance.getStrings();
+
+				return {
+					activeState: false,
+					children: [
+						{
+							handler: A.bind(instance._handleEditEvent, instance),
+							icon: PENCIL,
+							id: EDIT_EVENT,
+							title: strings[EDIT_MESSAGE]
+						},
+						{
+							handler: A.bind(instance._handleAddAnchorEvent, instance),
+							icon: LINK,
+							id: ADD_ANCHOR,
+							title: strings[ADD_ANCHOR_MESSAGE]
+						}
+					]
+				};
+			}
+		}
+	});
+
+	A.DiagramNodeTaskCustom = A.Component.create({
+		NAME: DIAGRAM_NODE_NAME,
+
+		ATTRS: {
+			assignments: {
+				value: {
+					assignmentType: _EMPTY_STR
+				},
+				validator: isObject
+			},
+
+			height: {
+				value: 70
+			},
+
+			xmlType: {
+				value: TASK
+			},
+
+			width: {
+				value: 70
+			}
+		},
+
+		EXTENDS: A.DiagramNodeStateCustom,
+
+		prototype: {
+			SERIALIZABLE_ATTRS: A.DiagramNodeStateCustom.prototype.SERIALIZABLE_ATTRS.concat([ASSIGNMENTS]),
+
+			getPropertyModel: function() {
+				var instance = this;
+
+				var strings = instance.getStrings();
+				var parentModel = A.DiagramNodeTaskCustom.superclass.getPropertyModel.apply(this, arguments);
+
+				return AArray(parentModel).concat(
+					[
+						{
+							attributeName: ASSIGNMENTS,
+							editor: new A.AssignmentsEditor(),
+							name: strings[ASSIGNMENTS]
+						}
+					]
+				);
+			}
+		}
+	});
+
+	A.DiagramBuilder.types.state = A.DiagramNodeStateCustom;
+	A.DiagramBuilder.types.end = A.DiagramNodeEndCustom;
+	A.DiagramBuilder.types.start = A.DiagramNodeStartCustom;
+	A.DiagramBuilder.types.task = A.DiagramNodeTaskCustom;
+
+	// End of Liferay Workflow Nodes.
+
+
+
+
+
+
+// console.log(A.DiagramNode.buildNodeId('Task1'));
+
+	// A.on('available', function() { console.log('OKK'); }, '#' + A.DiagramNode.buildNodeId('Task1'));
+
+	var availableFields = [
+		{
+			type: 'task',
+			label: 'Task',
+			iconClass: 'aui-diagram-node-task-icon'
+		},
+		{
+			type: 'state',
+			label: 'State',
+			iconClass: 'aui-diagram-node-state-icon'
+		},
+		{
+			type: 'join',
+			label: 'Join',
+			iconClass: 'aui-diagram-node-join-icon'
+		},
+		{
+			type: 'fork',
+			label: 'Fork',
+			iconClass: 'aui-diagram-node-fork-icon'
+		},
+
+		{
+			type: 'start',
+			label: 'Start',
+			iconClass: 'aui-diagram-node-start-icon'
+		},
+		{
+			type: 'end',
+			label: 'End',
+			iconClass: 'aui-diagram-node-end-icon'
+		},
+		{
+			type: 'condition',
+			label: 'Condition',
+			iconClass: 'aui-diagram-node-condition-icon'
+		}
+	];
+
+	diagramBuilder1 = new A.WorkflowDesigner(
 		{
 			boundingBox: '#diagrambuilderBB',
 			srcNode: '#diagrambuilderCB',
 			// height: 600,
-			availableFields: [
+			availableFields: availableFields,
+			fields: [
 				{
-					type: 'node',
-					label: 'My special label',
-					iconClass: 'my-icon'
+					name: 'Task0',
+					type: 'task',
+					xy: [900, 200],
+					fields: [
+					]
 				},
 				{
-					type: 'node',
-					label: 'My special second label',
-					iconClass: 'my-second-icon',
-					draggable: false
+					name: 'StartNode',
+					type: 'start',
+					xy: [1200, 50],
+					fields: [
+						{}
+					]
+				},
+				{
+					name: 'EndNode',
+					type: 'end',
+					xy: [50, 50],
+					// fields: [
+					// ]
+				},
+				{
+					name: 'Task1',
+					type: 'task',
+					xy: [600, 200],
+					// fields: [
+					// 	{
+					// 	}
+					// ]
+				},
+				{
+					name: 'Task2',
+					type: 'task',
+					xy: [300, 200],
+					// fields: [
+					// 	{},
+					// 	{}
+					// ]
 				}
-			],
-			fields: [
-				{ bodyContent: 'Node1', xy: [200, 200] },
-				{ bodyContent: 'Node2' }
 			]
 		}
 	).render();
 
-	diagramBuilder2 = new A.DiagramBuilder(
+	// diagramBuilder1.connect('StartNode', 'Task1');
+
+	// diagramBuilder1.connect('StartNode', 'Task0');
+	// diagramBuilder1.connect('Task0', 'Task1');
+	// diagramBuilder1.connect('Task1', 'Task2');
+	// diagramBuilder1.connect('Task2', 'EndNode');
+
+	diagramBuilder1.connectAll([
 		{
-			after: {
-				cancel: function(event) {
-					console.log('cancel', event);
-				},
+			connector: { name: 'Task0Connector', description: 'Description...' },
+			source: 'StartNode',
+			target: 'Task0'
+		},
 
-				save: function(event) {
-					console.log('save', event);
-				},
+		{
+			connector: { name: 'Task1Connector', description: 'Description...' },
+			source: 'Task0',
+			target: 'Task1'
+		},
 
-				addField: function(event) {
-					// console.log('addField', event);
-				}
-			},
-			availableFields: [
-				{
-					type: 'node',
-					id: 'myLabel',
-					label: 'My label',
-					iconClass: 'my-icon'
-				},
-				{
-					id: 'mySecondLabel',
-					label: 'My second label',
-					iconClass: 'my-second-icon'
-				}
-			],
+		{
+			connector: { name: 'Task2Connector', description: 'Description...' },
+			source: 'Task1',
+			target: 'Task2'
+		},
 
-			fields: [
-				{ bodyContent: 'Node1', xy: [200, 200] },
-				{ bodyContent: 'Node2' }
-			],
-			// fields: new A.ArrayList([{a:1}, {a:2}]),
+		{
+			connector: { name: 'Task1EndConnector', description: 'Description...' },
+			source: 'Task1',
+			target: 'EndNode'
+		},
 
-			// propertyList: {
-			// 	recordset: [
-			// 		{
-			// 			name: 'Text1',
-			// 			value: 'Text value'
-			// 		},
-			// 		{
-			// 			name: 'Text2',
-			// 			value: 'Text value'
-			// 		},
-			// 		{
-			// 			name: 'Text3',
-			// 			value: 'Text value'
-			// 		}
-			// 	]
-			// }
+		{
+			// connector: { name: 'EndNodeConnector', description: 'Description...' },
+			source: 'Task2',
+			target: 'EndNode'
 		}
-	).render('#diagramBuilder2');
+	]);
 
-	diagramBuilder2.set('height', 1000);
+	A.one('#toJSON1').on('click', function(event) {
+		A.one('#json1').setContent( diagramBuilder1.toXML() );
+		A.one('#json1').setContent( A.JSON.stringify(diagramBuilder1.toJSON()) );
+	});
+
+	// diagramBuilder2 = new A.WorkflowDesigner(
+	// 	{
+	// 		after: {
+	// 			cancel: function(event) {
+	// 				console.log('cancel', event);
+	// 			},
+	//
+	// 			save: function(event) {
+	// 				console.log('save', event);
+	// 			},
+	//
+	// 			addField: function(event) {
+	// 				// console.log('addField', event);
+	// 			}
+	// 		},
+	// 		availableFields: availableFields,
+	//
+	// 		fields: [
+	// 			{
+	// 				bodyContent: 'Node1',
+	// 				xy: [200, 200]
+	// 			},
+	// 			{
+	// 				bodyContent: 'Node2'
+	// 			}
+	// 		],
+	// 		// fields: new A.ArrayList([{a:1}, {a:2}]),
+	//
+	// 		// propertyList: {
+	// 		// 	recordset: [
+	// 		// 		{
+	// 		// 			name: 'Text1',
+	// 		// 			value: 'Text value'
+	// 		// 		},
+	// 		// 		{
+	// 		// 			name: 'Text2',
+	// 		// 			value: 'Text value'
+	// 		// 		},
+	// 		// 		{
+	// 		// 			name: 'Text3',
+	// 		// 			value: 'Text value'
+	// 		// 		}
+	// 		// 	]
+	// 		// }
+	// 	}
+	// ).render('#diagramBuilder2');
+
+	// diagramBuilder2.set('height', 1000);
 	// diagramBuilder2.set('fields', [1,2]);
 	// diagramBuilder2.addField({bodyContent:'ABC'});
 

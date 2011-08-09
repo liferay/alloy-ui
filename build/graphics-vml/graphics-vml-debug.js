@@ -20,17 +20,33 @@ var Y_LANG = Y.Lang,
 	VMLPath,
 	VMLRect,
 	VMLEllipse,
-	VMLGraphic;
+	VMLGraphic,
+    VMLPieSlice;
 
 function VMLDrawing() {}
 
+/**
+ * Set of drawing methods for VML based classes.
+ *
+ * @module graphics
+ * @class VMLDrawing
+ * @constructor
+ */
 VMLDrawing.prototype = {
     /**
+     * Current x position of the drqwing.
+     *
+     * @property _currentX
+     * @type Number
      * @private
      */
     _currentX: 0,
 
     /**
+     * Current y position of the drqwing.
+     *
+     * @property _currentY
+     * @type Number
      * @private
      */
     _currentY: 0,
@@ -129,13 +145,15 @@ VMLDrawing.prototype = {
 
     /**
      * Draws a wedge.
-     * 
-     * @param {Number} x			x-coordinate of the wedge's center point
-     * @param {Number} y			y-coordinate of the wedge's center point
-     * @param {Number} startAngle	starting angle in degrees
-     * @param {Number} arc			sweep of the wedge. Negative values draw clockwise.
-     * @param {Number} radius		radius of wedge. If [optional] yRadius is defined, then radius is the x radius.
-     * @param {Number} yRadius		[optional] y radius for wedge.
+     *
+     * @method drawWedge
+     * @param {Number} x x-coordinate of the wedge's center point
+     * @param {Number} y y-coordinate of the wedge's center point
+     * @param {Number} startAngle starting angle in degrees
+     * @param {Number} arc sweep of the wedge. Negative values draw clockwise.
+     * @param {Number} radius radius of wedge. If [optional] yRadius is defined, then radius is the x radius.
+     * @param {Number} yRadius [optional] y radius for wedge.
+     * @private
      */
     drawWedge: function(x, y, startAngle, arc, radius, yRadius)
     {
@@ -152,15 +170,6 @@ VMLDrawing.prototype = {
         this._currentX = x;
         this._currentY = y;
         return this;
-    },
-    
-    /**
-     * Completes a drawing operation. 
-     *
-     * @method end
-     */
-    end: function() {
-        this._draw();
     },
 
     /**
@@ -211,6 +220,71 @@ VMLDrawing.prototype = {
     },
 
     /**
+     * Draws the graphic.
+     *
+     * @method _draw
+     * @private
+     */
+    _closePath: function()
+    {
+        var fill = this.get("fill"),
+            stroke = this.get("stroke"),
+            node = this.node,
+            w = this.get("width"),
+            h = this.get("height"),
+            path = this._path,
+            pathEnd = "";
+        node.style.visible = "hidden";
+        this._fillChangeHandler();
+        this._strokeChangeHandler();
+        if(path)
+        {
+            if(fill && fill.color)
+            {
+                pathEnd += ' x';
+            }
+            if(stroke)
+            {
+                pathEnd += ' e';
+            }
+        }
+        if(path)
+        {
+            node.path = path + pathEnd;
+        }
+        if(w && h)
+        {
+            node.coordSize =  w + ', ' + h;
+            node.style.position = "absolute";
+            node.style.width = w + "px";
+            node.style.height = h + "px";
+        }
+        this._path = path;
+        node.style.visible = "visible";
+        this._updateTransform();
+    },
+
+    /**
+     * Completes a drawing operation. 
+     *
+     * @method end
+     */
+    end: function()
+    {
+        this._closePath();
+    },
+
+    /**
+     * Clears the path.
+     *
+     * @method clear
+     */
+    clear: function()
+    {
+		this._path = "";
+    },
+
+    /**
      * Updates the size of the graphics object
      *
      * @method _trackSize
@@ -254,19 +328,38 @@ Y.VMLDrawing = VMLDrawing;
 /**
  * Base class for creating shapes.
  *
+ * @module graphics
  * @class VMLShape
+ * @constructor
+ * @param {Object} cfg (optional) Attribute configs
  */
 VMLShape = function() 
 {
+    this._transforms = [];
+    this.matrix = new Y.Matrix();
+    this.rotationMatrix = new Y.Matrix();
     VMLShape.superclass.constructor.apply(this, arguments);
 };
 
 VMLShape.NAME = "vmlShape";
 
-Y.extend(VMLShape, Y.BaseGraphic, {
+Y.extend(VMLShape, Y.BaseGraphic, Y.mix({
 	/**
-	 * @private
+	 * Indicates the type of shape
+	 *
+	 * @property _type
+	 * @readOnly
+	 * @type String
 	 */
+	_type: "shape",
+    
+    /**
+     * Init method, invoked during construction.
+     * Calls `initializer` method.
+     *
+     * @method init
+     * @protected
+     */
 	init: function()
 	{
 		this.initializer.apply(this, arguments);
@@ -283,15 +376,20 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 		var host = this,
             graphic = cfg.graphic;
         host._graphic = graphic;
-		host.createNode(); 
+		host.createNode();
+        this._updateHandler();
 	},
 
 	/**
+	 * Creates the dom node for the shape.
+	 *
+     * @method createNode
+	 * @return HTMLElement
 	 * @private
 	 */
 	createNode: function()
 	{
-		var node,
+        var node,
 			x = this.get("x"),
 			y = this.get("y"),
             w = this.get("width"),
@@ -326,7 +424,7 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 				dashstyle = stroke.dashstyle;
 				nodestring += ' stroked="t" strokecolor="' + stroke.color + '" strokeWeight="' + stroke.weight + 'px"';
 				
-				strokestring = '<stroke class="vmlstroke" xmlns="urn:schemas-microsft.com:vml" style="behavior:url(#default#VML);display:inline-block;"';
+				strokestring = '<stroke class="vmlstroke" xmlns="urn:schemas-microsft.com:vml" on="t" style="behavior:url(#default#VML);display:inline-block;"';
 				strokestring += ' opacity="' + opacity + '"';
 				if(endcap)
 				{
@@ -381,6 +479,8 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 			}
 
 			this.node = node;
+            this._strokeFlag = false;
+            this._fillFlag = false;
 	},
 
 	/**
@@ -426,7 +526,8 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	 * Set the position of the shape in page coordinates, regardless of how the node is positioned.
 	 *
 	 * @method setXY
-	 * @param {Array} Contains X & Y values for new position (coordinates are page-based)
+	 * @param {Array} Contains x & y values for new position (coordinates are page-based)
+     *
 	 */
 	setXY: function(xy)
 	{
@@ -474,6 +575,11 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	},
 
 	/**
+     * Calculates and returns properties for setting an initial stroke.
+     *
+     * @method _getStrokeProps
+     * @return Object
+     *
 	 * @private
 	 */
 	 _getStrokeProps: function()
@@ -488,7 +594,7 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 			len,
 			linecap,
 			linejoin;
-		if(stroke && stroke.weight && stroke.weight > 0)
+        if(stroke && stroke.weight && stroke.weight > 0)
 		{
 			props = {};
 			linecap = stroke.linecap || "flat";
@@ -543,6 +649,10 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	 */
 	_strokeChangeHandler: function(e)
 	{
+        if(!this._strokeFlag)
+        {
+            return;
+        }
 		var node = this.node,
 			stroke = this.get("stroke"),
 			strokeOpacity,
@@ -600,19 +710,25 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 				}
 			}
 			this._strokeNode.dashstyle = dash;
+            this._strokeNode.on = true;
 		}
 		else
 		{
             if(this._strokeNode)
             {
-                node.removeChild(this._strokeNode);
-                this._strokeNode = null;
+                this._strokeNode.on = false;
             }
 			node.stroked = false;
 		}
+        this._strokeFlag = false;
 	},
 
 	/**
+     * Calculates and returns properties for setting an initial fill.
+     *
+     * @method _getFillProps
+     * @return Object
+     *
 	 * @private
 	 */
 	_getFillProps: function()
@@ -660,7 +776,7 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 				    }
                 }
 			}
-			props.filled = filled
+			props.filled = filled;
 		}
 		return props;
 	},
@@ -673,17 +789,47 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	 */
 	_fillChangeHandler: function(e)
 	{
+        if(!this._fillFlag)
+        {
+            return;
+        }
 		var node = this.node,
 			fill = this.get("fill"),
 			fillOpacity,
 			fillstring,
-			filled = false;
+			filled = false,
+            i,
+            gradient;
 		if(fill)
 		{
 			if(fill.type == "radial" || fill.type == "linear")
 			{
 				filled = true;
-				this._setGradientFill(node, fill);
+				gradient = this._getGradientFill(fill);
+                if(this._fillNode)
+                {
+                    for(i in gradient)
+                    {
+                        if(gradient.hasOwnProperty(i))
+                        {
+                            this._fillNode.setAttribute(i, gradient[i]);
+                        }
+                    }
+                }
+                else
+                {
+                    fillstring = '<fill xmlns="urn:schemas-microsft.com:vml" class="vmlfill" style="behavior:url(#default#VML);display:inline-block;"';
+                    for(i in gradient)
+                    {
+                        if(gradient.hasOwnProperty(i))
+                        {
+                            fillstring += ' ' + i + '="' + gradient[i] + '"';
+                        }
+                    }
+                    fillstring += ' />';
+                    this._fillNode = DOCUMENT.createElement(fillstring);
+                    node.appendChild(this._fillNode);
+                }
 			}
 			else if(fill.color)
 			{
@@ -704,7 +850,7 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 					else
 					{     
                         fillstring = '<fill xmlns="urn:schemas-microsft.com:vml" class="vmlfill" style="behavior:url(#default#VML);display:inline-block;" type="solid" opacity="' + fillOpacity + '"/>';
-                        DOCUMENT.create(fillstring);
+                        this._fillNode = DOCUMENT.createElement(fillstring);
                         node.appendChild(this._fillNode);
 					}
 				}
@@ -716,12 +862,11 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 			}
 		}
 		node.filled = filled;
+        this._fillFlag = false;
 	},
 
-	/**
-	 * @private
-	 */
-	_updateFillNode: function(node)
+	//not used. remove next release.
+    _updateFillNode: function(node)
 	{
 		if(!this._fillNode)
 		{
@@ -730,6 +875,13 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 		}
 	},
 
+    /**
+     * Calculates and returns an object containing gradient properties for a fill node. 
+     *
+     * @method _getGradientFill
+     * @param {Object} fill Object containing fill properties.
+     * @return Object
+     */
 	_getGradientFill: function(fill)
 	{
 		var gradientProps = {},
@@ -756,23 +908,19 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 			rotation = fill.rotation || 0;
 		if(type === "linear")
 		{
-			if(rotation > 0 && rotation <= 90)
-			{
-				rotation = 450 - rotation;
-			}
-			else if(rotation <= 270)
-			{
-				rotation = 270 - rotation;
-			}
-			else if(rotation <= 360)
-			{
-				rotation = 630 - rotation;
-			}
-			else
-			{
-				rotation = 270;
-			}
-			gradientProps.type = "gradient";//"gradientunscaled";
+            if(rotation <= 270)
+            {
+                rotation = Math.abs(rotation - 270);
+            }
+			else if(rotation < 360)
+            {
+                rotation = 270 + (360 - rotation);
+            }
+            else
+            {
+                rotation = 270;
+            }
+            gradientProps.type = "gradient";//"gradientunscaled";
 			gradientProps.angle = rotation;
 		}
 		else if(type === "radial")
@@ -784,7 +932,6 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 			fx += cx;
 			fy += cy;
 			gradientProps.focussize = (gradientBoxWidth/w)/10 + "% " + (gradientBoxHeight/h)/10 + "%";
-			//gradientProps.focusSize = ((r - cx) * 10) + "% " + ((r - cy) * 10) + "%"; 
 			gradientProps.alignshape = false;
 			gradientProps.type = "gradientradial";
 			gradientProps.focus = "100%";
@@ -815,166 +962,134 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 		return gradientProps;
 	},
 
-	_setGradientFill: function(node, fill)
-	{
-		this._updateFillNode(node);
-		var gradientBoxWidth,
-			gradientBoxHeight,
-			type = fill.type,
-			w = this.get("width"),
-			h = this.get("height"),
-			isNumber = IS_NUM,
-			stop,
-			stops = fill.stops,
-			len = stops.length,
-			opacity,
-			color,
-			i = 0,
-			oi,
-			colorstring = "",
-			cx = fill.cx,
-			cy = fill.cy,
-			fx = fill.fx,
-			fy = fill.fy,
-			r = fill.r,
-			pct,
-			rotation = fill.rotation || 0;
-		if(type === "linear")
-		{
-			if(rotation > 0 && rotation <= 90)
-			{
-				rotation = 450 - rotation;
-			}
-			else if(rotation <= 270)
-			{
-				rotation = 270 - rotation;
-			}
-			else if(rotation <= 360)
-			{
-				rotation = 630 - rotation;
-			}
-			else
-			{
-				rotation = 270;
-			}
-			this._fillNode.type = "gradient";//"gradientunscaled";
-			this._fillNode.angle = rotation;
-		}
-		else if(type === "radial")
-		{
-			gradientBoxWidth = w * (r * 2);
-			gradientBoxHeight = h * (r * 2);
-			fx = r * 2 * (fx - 0.5);
-			fy = r * 2 * (fy - 0.5);
-			fx += cx;
-			fy += cy;
-			this._fillNode.focussize = (gradientBoxWidth/w)/10 + "% " + (gradientBoxHeight/h)/10 + "%";
-			//this._fillNode.focusSize = ((r - cx) * 10) + "% " + ((r - cy) * 10) + "%"; 
-			this._fillNode.alignshape = false;
-			this._fillNode.type = "gradientradial";
-			this._fillNode.focus = "100%";
-			this._fillNode.focusposition = Math.round(fx * 100) + "% " + Math.round(fy * 100) + "%";
-		}
-		for(;i < len; ++i) {
-			stop = stops[i];
-			color = stop.color;
-			opacity = stop.opacity;
-			opacity = isNumber(opacity) ? opacity : 1;
-			pct = stop.offset || i/(len-1);
-			pct *= (r * 2);
-			if(pct <= 1)
-			{
-				pct = Math.round(100 * pct) + "%";
-				oi = i > 0 ? i + 1 : "";
-				this._fillNode["opacity" + oi] = opacity + "";
-				colorstring += ", " + pct + " " + color;
-			}
-		}
-		pct = stops[1].offset || 0;
-		pct *= 100;
-		if(parseInt(pct, 10) < 100)
-		{
-			colorstring += ", 100% " + color;
-		}
-		this._fillNode.colors.value = colorstring.substr(2);
-	},
-
-	/**
+    /**
+     * Adds a transform to the shape.
+     *
+     * @method _addTransform
+     * @param {String} type The transform being applied.
+     * @param {Array} args The arguments for the transform.
 	 * @private
 	 */
 	_addTransform: function(type, args)
 	{
-		if(!this._transformArgs)
-		{
-			this._transformArgs = {};
-		}
-		this._transformArgs[type] = Array.prototype.slice.call(args, 0);
-		this._updateTransform();
+        args = Y.Array(args);
+        this._transform = Y_LANG.trim(this._transform + " " + type + "(" + args.join(", ") + ")");
+        args.unshift(type);
+        this._transforms.push(args);
+        if(this.initialized)
+        {
+            this._updateTransform();
+        }
 	},
-
+	
 	/**
+     * Applies all transforms.
+     *
+     * @method _updateTransform
 	 * @private
 	 */
 	_updateTransform: function()
 	{
-		var host = this,
-			node = host.node,
-			w,
-            h,
-            x = host.get("x"),
-			y = host.get("y"),
+		var node = this.node,
+            key,
+			transform,
 			transformOrigin,
-			transX,
-			transY,
-			tx,
-			ty,
-			originX,
-			originY,
-			absRot,
-			radCon,
-			sinRadians,
-			cosRadians,
-			x2,
-			y2,
-			coordSize,
-			transformArgs = host._transformArgs;
-		if(transformArgs)
-		{
-			w = host.get("width");
-			h = host.get("height");
-			coordSize = node.coordSize;
-			if(transformArgs.hasOwnProperty("translate"))
-			{
-				transX = 0 - (coordSize.x/w * host._translateX);
-				transY = 0 - (coordSize.y/h * host._translateY);
-				node.coordOrigin = transX + "," + transY;
-			}
-			if(transformArgs.hasOwnProperty("rotate"))
-			{
-				transformOrigin = host.get("transformOrigin");
-				tx = transformOrigin[0];
-				ty = transformOrigin[1];
-				originX = w * (tx - 0.5);
-				originY = h * (ty - 0.5);
-				absRot = Math.abs(host._rotation);
-				radCon = Math.PI/180;
-				sinRadians = parseFloat(parseFloat(Math.sin(absRot * radCon)).toFixed(8));
-				cosRadians = parseFloat(parseFloat(Math.cos(absRot * radCon)).toFixed(8));
-				x2 = (originX * cosRadians) - (originY * sinRadians);
-				y2 = (originX * sinRadians) + (originY * cosRadians);
-				node.style.rotation = host._rotation;
-				x = x + (originX - x2);
-				y = y + (originY - y2);
-			}
-		}
-		node.style.left = x + "px";
-		node.style.top = y + "px";
-        this._graphic.addToRedrawQueue(this);
-	},
+            x = this.get("x"),
+            y = this.get("y"),
+            w = this.get("width"),
+            h = this.get("height"),
+            cx,
+            cy,
+            dx,
+            dy,
+            originX,
+            originY,
+            translatedCenterX,
+            translatedCenterY,
+            oldBounds,
+            newBounds,
+            tx,
+            ty,
+            keys = [],
+            matrix = this.matrix,
+            rotationMatrix = this.rotationMatrix,
+            i = 0,
+            len = this._transforms.length;
 
+        if(this._transforms && this._transforms.length > 0)
+		{
+            transformOrigin = this.get("transformOrigin");
+            for(; i < len; ++i)
+            {
+                key = this._transforms[i].shift();
+                if(key)
+                {
+                    if(key == "rotate")
+                    {
+                        tx = transformOrigin[0];
+                        ty =  transformOrigin[1];
+                        oldBounds = this.getBounds(matrix);
+                        matrix[key].apply(matrix, this._transforms[i]);
+                        rotationMatrix[key].apply(rotationMatrix, this._transforms[i]);
+                        newBounds = this.getBounds(matrix);
+                        cx = w * 0.5;
+                        cy = h * 0.5;
+                        originX = w * (tx);
+                        originY = h * (ty);
+                        translatedCenterX = cx - originX;
+                        translatedCenterY = cy - originY;
+                        translatedCenterX = (matrix.a * translatedCenterX + matrix.b * translatedCenterY);
+                        translatedCenterY = (matrix.d * translatedCenterX + matrix.d * translatedCenterY);
+                        translatedCenterX += originX;
+                        translatedCenterY += originY;
+                        matrix.dx = rotationMatrix.dx + translatedCenterX - (newBounds.right - newBounds.left)/2;
+                        matrix.dy = rotationMatrix.dy + translatedCenterY - (newBounds.bottom - newBounds.top)/2;
+                    }
+                    else if(key == "scale")
+                    {
+				        transformOrigin = this.get("transformOrigin");
+                        tx = x + (transformOrigin[0] * this.get("width"));
+                        ty = y + (transformOrigin[1] * this.get("height")); 
+                        matrix.translate(tx, ty);
+                        matrix[key].apply(matrix, this._transforms[i]); 
+                        matrix.translate(0 - tx, 0 - ty);
+                    }
+                    else
+                    {
+                        matrix[key].apply(matrix, this._transforms[i]); 
+                        rotationMatrix[key].apply(rotationMatrix, this._transforms[i]); 
+                    }
+                    keys.push(key);
+                }
+			}
+            transform = matrix.toFilterText();
+		}
+        dx = matrix.dx;
+        dy = matrix.dy;
+        this._graphic.addToRedrawQueue(this);    
+        //only apply the filter if necessary as it degrades image quality
+        if(Y.Array.indexOf(keys, "skew") > -1 || Y.Array.indexOf(keys, "scale") > -1)
+		{
+            node.style.filter = transform;
+        }
+        else if(Y.Array.indexOf(keys,"rotate") > -1)
+        {
+            node.style.rotation = this._rotation;
+            dx = rotationMatrix.dx;
+            dy = rotationMatrix.dy;
+        }
+        this._transforms = [];
+        x += dx;
+        y += dy;
+        node.style.left = x + "px";
+		node.style.top = y + "px";
+    },
+	
 	/**
 	 * Storage for translateX
 	 *
+     * @property _translateX
+     * @type Number
 	 * @private
 	 */
 	_translateX: 0,
@@ -982,168 +1097,172 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	/**
 	 * Storage for translateY
 	 *
+     * @property _translateY
+     * @type Number
 	 * @private
 	 */
 	_translateY: 0,
+    
+    /**
+     * Storage for the transform attribute.
+     *
+     * @property _transform
+     * @type String
+     * @private
+     */
+    _transform: "",
 	
     /**
-	 * Applies translate transformation.
+	 * Specifies a 2d translation.
 	 *
 	 * @method translate
-	 * @param {Number} x The x-coordinate
-	 * @param {Number} y The y-coordinate
+	 * @param {Number} x The value to transate on the x-axis.
+	 * @param {Number} y The value to translate on the y-axis.
 	 */
 	translate: function(x, y)
 	{
-		this._translateX = x;
-		this._translateY = y;
+		this._translateX += x;
+		this._translateY += y;
 		this._addTransform("translate", arguments);
 	},
 
 	/**
-	 * Applies a skew to the x-coordinate
+	 * Translates the shape along the x-axis. When translating x and y coordinates,
+	 * use the `translate` method.
 	 *
-	 * @method skewX:q
+	 * @method translateX
+	 * @param {Number} y The value to translate.
+	 */
+	translateX: function(x)
+    {
+        this._translateX += x;
+        this._addTransform("translateX", arguments);
+    },
+
+	/**
+	 * Performs a translate on the y-coordinate. When translating x and y coordinates,
+	 * use the `translate` method.
+	 *
+	 * @method translateY
+	 * @param {Number} y The value to translate.
+	 */
+	translateY: function(y)
+    {
+        this._translateY += y;
+        this._addTransform("translateY", arguments);
+    },
+
+    /**
+     * Skews the shape around the x-axis and y-axis.
+     *
+     * @method skew
+     * @param {Number} x The value to skew on the x-axis.
+     * @param {Number} y The value to skew on the y-axis.
+     */
+    skew: function(x, y)
+    {
+        this._addTransform("skew", arguments);
+    },
+
+	/**
+	 * Skews the shape around the x-axis.
+	 *
+	 * @method skewX
 	 * @param {Number} x x-coordinate
 	 */
 	 skewX: function(x)
 	 {
-		//var node = this.node;
+		this._addTransform("skewX", arguments);
 	 },
 
 	/**
-	 * Applies a skew to the x-coordinate
+	 * Skews the shape around the y-axis.
 	 *
-	 * @method skewX:q
-	 * @param {Number} x x-coordinate
+	 * @method skewY
+	 * @param {Number} y y-coordinate
 	 */
 	 skewY: function(y)
 	 {
-		//var node = this.node;
+		this._addTransform("skewY", arguments);
 	 },
 
+
 	/**
+     * Storage for `rotation` atribute.
+     *
+     * @property _rotation
+     * @type Number
 	 * @private
 	 */
 	_rotation: 0,
 
-	 /**
-	  * Applies a rotation.
-	  *
-	  * @method rotate
-	  * @param
-	  */
+	/**
+	 * Rotates the shape clockwise around it transformOrigin.
+	 *
+	 * @method rotate
+	 * @param {Number} deg The degree of the rotation.
+	 */
 	 rotate: function(deg)
 	 {
-		this._rotation = deg;
+		this._rotation += deg;
 		this._addTransform("rotate", arguments);
 	 },
 
 	/**
-	 * Applies a scale transform
+	 * Specifies a 2d scaling operation.
 	 *
 	 * @method scale
 	 * @param {Number} val
 	 */
-	scale: function(val)
+	scale: function(x, y)
 	{
-		//var node = this.node;
+		this._addTransform("scale", arguments);
 	},
 
 	/**
-	 * Applies a matrix transformation
-	 *
-	 * @method matrix
-	 */
-	matrix: function(a, b, c, d, e, f)
-	{
-		//var node = this.node;
-	},
-
-	/**
-	 * @private
-	 */
-	isMouseEvent: function(type)
-	{
-		if(type.indexOf('mouse') > -1 || type.indexOf('click') > -1)
-		{
-			return true;
-		}
-		return false;
-	},
-
-	/**
-	 * @private
-	 */
-	before: function(type, fn)
-	{
-		if(this.isMouseEvent(type))
-		{
-			return Y.before(type, fn, "#" +  this.get("id"));
-		}
-		return Y.on.apply(this, arguments);
-	},
-
-	/**
+     * Overrides default `on` method. Checks to see if its a dom interaction event. If so, 
+     * return an event attached to the `node` element. If not, return the normal functionality.
+     *
+     * @method on
+     * @param {String} type event type
+     * @param {Object} callback function
 	 * @private
 	 */
 	on: function(type, fn)
 	{
-		if(this.isMouseEvent(type))
+		if(Y.Node.DOM_EVENTS[type])
 		{
-			return Y.on(type, fn, "#" +  this.get("id"));
+			return Y.one("#" +  this.get("id")).on(type, fn);
 		}
 		return Y.on.apply(this, arguments);
 	},
 
 	/**
-	 * @private
-	 */
-	after: function(type, fn)
-	{
-		if(this.isMouseEvent(type))
-		{
-			return Y.after(type, fn, "#" +  this.get("id"));
-		}
-		return Y.on.apply(this, arguments);
-	},
-
-	/**
+	 * Draws the shape.
+	 *
+	 * @method _draw
 	 * @private
 	 */
 	_draw: function()
 	{
-		var host = this,
-            node = host.node;
-		if(!node)
-		{
-		   host.createNode(); 
-		}
-		else
-		{
-			host._fillChangeHandler();
-			host._strokeChangeHandler();
-            node.style.width = this.get("width") + "px";
-            node.style.height = this.get("height") + "px"; 
-		}
-		host._updateTransform();
 	},
 
 	/**
+     * Updates `Shape` based on attribute changes.
+     *
+     * @method _updateHandler
 	 * @private
 	 */
 	_updateHandler: function(e)
 	{
-		var node = this.node;
-		if(node)
-		{
-			node.style.visible = "hidden";
-		}
-		this._draw();
-		if(node)
-		{
-			node.style.visible = "visible";
-		}
+		var host = this,
+            node = host.node;
+        host._fillChangeHandler();
+        host._strokeChangeHandler();
+        node.style.width = this.get("width") + "px";
+        node.style.height = this.get("height") + "px"; 
+        this._draw();
+		host._updateTransform();
 	},
 
 	/**
@@ -1212,29 +1331,61 @@ Y.extend(VMLShape, Y.BaseGraphic, {
 	/**
 	 * Returns the bounds for a shape.
 	 *
+     * Calculates the a new bounding box from the original corner coordinates (base on size and position) and the transform matrix.
+     * The calculated bounding box is used by the graphic instance to calculate its viewBox. 
+     *
 	 * @method getBounds
+     * @param {Matrix} [optional] cfg Reference to matrix instance
 	 * @return Object
 	 */
-	getBounds: function()
+	getBounds: function(cfg)
 	{
-		var w = this.get("width"),
-			h = this.get("height"),
+	    var wt,
+            bounds = {},
+            matrix = cfg || this.matrix,
+            a = matrix.a,
+            b = matrix.b,
+            c = matrix.c,
+            d = matrix.d,
+            dx = matrix.dx,
+            dy = matrix.dy,
+            w = this.get("width"),
+            h = this.get("height"),
+            left = this.get("x"), 
+            top = this.get("y"), 
+            right = left + w,
+            bottom = top + h,
 			stroke = this.get("stroke"),
-			x = this.get("x"),
-			y = this.get("y"),
-			wt = 0,
-			bounds = {};
-		if(stroke && stroke.weight)
+            //[x1, y1]
+            x1 = (a * left + c * top + dx), 
+            y1 = (b * left + d * top + dy),
+            //[x2, y2]
+            x2 = (a * right + c * top + dx),
+            y2 = (b * right + d * top + dy),
+            //[x3, y3]
+            x3 = (a * left + c * bottom + dx),
+            y3 = (b * left + d * bottom + dy),
+            //[x4, y4]
+            x4 = (a * right + c * bottom + dx),
+            y4 = (b * right + d * bottom + dy);
+        bounds.left = Math.min(x3, Math.min(x1, Math.min(x2, x4)));
+        bounds.right = Math.max(x3, Math.max(x1, Math.max(x2, x4)));
+        bounds.top = Math.min(y2, Math.min(y4, Math.min(y3, y1)));
+        bounds.bottom = Math.max(y2, Math.max(y4, Math.max(y3, y1)));
+        //if there is a stroke, extend the bounds to accomodate
+        if(stroke && stroke.weight)
 		{
 			wt = stroke.weight;
+            bounds.left -= wt;
+            bounds.right += wt;
+            bounds.top -= wt;
+            bounds.bottom += wt;
 		}
-		bounds.left = x - wt;
-		bounds.top = y - wt;
-		bounds.right = x + w + wt;
-		bounds.bottom = y + h + wt;
-		return bounds;
+        bounds.width = bounds.right - bounds.left;
+        bounds.height = bounds.bottom - bounds.top;
+        return bounds;
 	},
-
+	
     /**
      *  Destroys shape
      *
@@ -1260,14 +1411,14 @@ Y.extend(VMLShape, Y.BaseGraphic, {
             }
         }
     }
-});
+}, Y.VMLDrawing.prototype));
 
 VMLShape.ATTRS = {
 	/**
 	 * An array of x, y values which indicates the transformOrigin in which to rotate the shape. Valid values range between 0 and 1 representing a 
 	 * fraction of the shape's corresponding bounding box dimension. The default value is [0.5, 0.5].
 	 *
-	 * @attribute transformOrigin
+	 * @config transformOrigin
 	 * @type Array
 	 */
 	transformOrigin: {
@@ -1276,71 +1427,58 @@ VMLShape.ATTRS = {
 			return [0.5, 0.5];
 		}
 	},
-
-	/**
-	 * The rotation (in degrees) of the shape.
-	 *
-	 * @attribute rotation
-	 * @type Number
-	 */
-	rotation: {
-		setter: function(val)
-		{
-			this.rotate(val);
-		},
-
-		getter: function()
-		{
-			return this._rotation;
-		}
-	},
-
-	/**
-	 * Performs a translate on the x-coordinate. When translating x and y coordinates,
-	 * use the <code>translate</code> method.
-	 *
-	 * @attribute translateX
-	 * @type Number
-	 */
-	translateX: {
-		getter: function()
-		{
-			return this._translateX;
-		},
-
-		setter: function(val)
-		{
-			this._translateX = val;
-			this._addTransform("translate", [val, this._translateY]);
-			return val;
-		}
-	},
 	
-	/**
-	 * Performs a translate on the y-coordinate. When translating x and y coordinates,
-	 * use the <code>translate</code> method.
-	 *
-	 * @attribute translateX
-	 * @type Number
+    /**
+     * <p>A string containing, in order, transform operations applied to the shape instance. The `transform` string can contain the following values:
+     *     
+     *    <dl>
+     *        <dt>rotate</dt><dd>Rotates the shape clockwise around it transformOrigin.</dd>
+     *        <dt>translate</dt><dd>Specifies a 2d translation.</dd>
+     *        <dt>skew</dt><dd>Skews the shape around the x-axis and y-axis.</dd>
+     *        <dt>scale</dt><dd>Specifies a 2d scaling operation.</dd>
+     *        <dt>translateX</dt><dd>Translates the shape along the x-axis.</dd>
+     *        <dt>translateY</dt><dd>Translates the shape along the y-axis.</dd>
+     *        <dt>skewX</dt><dd>Skews the shape around the x-axis.</dd>
+     *        <dt>skewY</dt><dd>Skews the shape around the y-axis.</dd>
+     *    </dl>
+     * </p>
+     * <p>Applying transforms through the transform attribute will reset the transform matrix and apply a new transform. The shape class also contains corresponding methods for each transform
+     * that will apply the transform to the current matrix. The below code illustrates how you might use the `transform` attribute to instantiate a recangle with a rotation of 45 degrees.</p>
+            var myRect = new Y.Rect({
+                type:"rect",
+                width: 50,
+                height: 40,
+                transform: "rotate(45)"
+            };
+     * <p>The code below would apply `translate` and `rotate` to an existing shape.</p>
+    
+        myRect.set("transform", "translate(40, 50) rotate(45)");
+	 * @config transform
+     * @type String  
 	 */
-	translateY: {
-		getter: function()
-		{
-			return this._translateY;
-		},
-
+	transform: {
 		setter: function(val)
 		{
-			this._translateY = val;
-			this._addTransform("translate", [this._translateX, val]);
-			return val;
-		}
+            this.matrix.init();	
+		    this._transforms = this.matrix.getTransformArray(val);
+            this._transform = val;
+            if(this.initialized)
+            {
+                this._updateTransform();
+            }
+            return val;
+		},
+
+        getter: function()
+        {
+            return this._transform;
+        }
 	},
 
 	/**
 	 * Indicates the x position of shape.
 	 *
-	 * @attribute x
+	 * @config x
 	 * @type Number
 	 */
 	x: {
@@ -1350,7 +1488,7 @@ VMLShape.ATTRS = {
 	/**
 	 * Indicates the y position of shape.
 	 *
-	 * @attribute y
+	 * @config y
 	 * @type Number
 	 */
 	y: {
@@ -1360,7 +1498,7 @@ VMLShape.ATTRS = {
 	/**
 	 * Unique id for class instance.
 	 *
-	 * @attribute id
+	 * @config id
 	 * @type String
 	 */
 	id: {
@@ -1382,7 +1520,7 @@ VMLShape.ATTRS = {
 	
 	/**
 	 * 
-	 * @attribute width
+	 * @config width
 	 */
 	width: {
 		value: 0
@@ -1390,7 +1528,7 @@ VMLShape.ATTRS = {
 
 	/**
 	 * 
-	 * @attribute height
+	 * @config height
 	 */
 	height: {
 		value: 0
@@ -1399,7 +1537,7 @@ VMLShape.ATTRS = {
 	/**
 	 * Indicates whether the shape is visible.
 	 *
-	 * @attribute visible
+	 * @config visible
 	 * @type Boolean
 	 */
 	visible: {
@@ -1418,34 +1556,45 @@ VMLShape.ATTRS = {
 
 	/**
 	 * Contains information about the fill of the shape. 
-	 *  <dl>
-	 *      <dt>color</dt><dd>The color of the fill.</dd>
-	 *      <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the fill. The default value is 1.</dd>
-	 *      <dt>type</dt><dd>Type of fill.
-	 *          <dl>
-	 *              <dt>solid</dt><dd>Solid single color fill. (default)</dd>
-	 *              <dt>linear</dt><dd>Linear gradient fill.</dd>
-	 *              <dt>radial</dt><dd>Radial gradient fill.</dd>
-	 *          </dl>
-	 *      </dd>
-	 *  </dl>
+     *  <dl>
+     *      <dt>color</dt><dd>The color of the fill.</dd>
+     *      <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the fill. The default value is 1.</dd>
+     *      <dt>type</dt><dd>Type of fill.
+     *          <dl>
+     *              <dt>solid</dt><dd>Solid single color fill. (default)</dd>
+     *              <dt>linear</dt><dd>Linear gradient fill.</dd>
+     *              <dt>radial</dt><dd>Radial gradient fill.</dd>
+     *          </dl>
+     *      </dd>
+     *  </dl>
+     *  <p>If a `linear` or `radial` is specified as the fill type. The following additional property is used:
+     *  <dl>
+     *      <dt>stops</dt><dd>An array of objects containing the following properties:
+     *          <dl>
+     *              <dt>color</dt><dd>The color of the stop.</dd>
+     *              <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the stop. The default value is 1. Note: No effect for IE 6 - 8</dd>
+     *              <dt>offset</dt><dd>Number between 0 and 1 indicating where the color stop is positioned.</dd> 
+     *          </dl>
+     *      </dd>
+     *      <p>Linear gradients also have the following property:</p>
+     *      <dt>rotation</dt><dd>Linear gradients flow left to right by default. The rotation property allows you to change the flow by rotation. (e.g. A rotation of 180 would make the gradient pain from right to left.)</dd>
+     *      <p>Radial gradients have the following additional properties:</p>
+     *      <dt>r</dt><dd>Radius of the gradient circle.</dd>
+     *      <dt>fx</dt><dd>Focal point x-coordinate of the gradient.</dd>
+     *      <dt>fy</dt><dd>Focal point y-coordinate of the gradient.</dd>
+     *  </dl>
+     *  <p>The corresponding `SVGShape` class implements the following additional properties.</p>
+     *  <dl>
+     *      <dt>cx</dt><dd>
+     *          <p>The x-coordinate of the center of the gradient circle. Determines where the color stop begins. The default value 0.5.</p>
+     *      </dd>
+     *      <dt>cy</dt><dd>
+     *          <p>The y-coordinate of the center of the gradient circle. Determines where the color stop begins. The default value 0.5.</p>
+     *      </dd>
+     *  </dl>
+     *  <p>These properties are not currently implemented in `CanvasShape` or `VMLShape`.</p> 
 	 *
-	 *  <p>If a gradient (linear or radial) is specified as the fill type. The following properties are used:
-	 *  <dl>
-	 *      <dt>stops</dt><dd>An array of objects containing the following properties:
-	 *          <dl>
-	 *              <dt>color</dt><dd>The color of the stop.</dd>
-	 *              <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the stop. The default value is 1. Note: No effect for IE <= 8</dd>
-	 *              <dt>offset</dt><dd>Number between 0 and 1 indicating where the color stop is positioned.</dd> 
-	 *          </dl>
-	 *      </dd>
-	 *      <dt></dt><dd></dd>
-	 *      <dt></dt><dd></dd>
-	 *      <dt></dt><dd></dd>
-	 *  </dl>
-	 *  </p>
-	 *
-	 * @attribute fill
+	 * @config fill
 	 * @type Object 
 	 */
 	fill: {
@@ -1480,21 +1629,37 @@ VMLShape.ATTRS = {
 					fill.color = null;
 				}
 			}
-			return fill;
+			this._fillFlag = true;
+            return fill;
 		}
 	},
 
 	/**
 	 * Contains information about the stroke of the shape.
-	 *  <dl>
-	 *      <dt>color</dt><dd>The color of the stroke.</dd>
-	 *      <dt>weight</dt><dd>Number that indicates the width of the stroke.</dd>
-	 *      <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the stroke. The default value is 1.</dd>
-	 *      <dt>dashstyle</dt>Indicates whether to draw a dashed stroke. When set to "none", a solid stroke is drawn. When set to an array, the first index indicates the
-	 *      length of the dash. The second index indicates the length of gap.
-	 *  </dl>
+     *  <dl>
+     *      <dt>color</dt><dd>The color of the stroke.</dd>
+     *      <dt>weight</dt><dd>Number that indicates the width of the stroke.</dd>
+     *      <dt>opacity</dt><dd>Number between 0 and 1 that indicates the opacity of the stroke. The default value is 1.</dd>
+     *      <dt>dashstyle</dt>Indicates whether to draw a dashed stroke. When set to "none", a solid stroke is drawn. When set to an array, the first index indicates the
+     *  length of the dash. The second index indicates the length of gap.
+     *      <dt>linecap</dt><dd>Specifies the linecap for the stroke. The following values can be specified:
+     *          <dl>
+     *              <dt>butt (default)</dt><dd>Specifies a butt linecap.</dd>
+     *              <dt>square</dt><dd>Specifies a sqare linecap.</dd>
+     *              <dt>round</dt><dd>Specifies a round linecap.</dd>
+     *          </dl>
+     *      </dd>
+     *      <dt>linejoin</dt><dd>Specifies a linejoin for the stroke. The following values can be specified:
+     *          <dl>
+     *              <dt>round (default)</dt><dd>Specifies that the linejoin will be round.</dd>
+     *              <dt>bevel</dt><dd>Specifies a bevel for the linejoin.</dd>
+     *              <dt>miter limit</dt><dd>An integer specifying the miter limit of a miter linejoin. If you want to specify a linejoin of miter, you simply specify the limit as opposed to having
+     *  separate miter and miter limit values.</dd>
+     *          </dl>
+     *      </dd>
+     *  </dl>
 	 *
-	 * @attribute stroke
+	 * @config stroke
 	 * @type Object
 	 */
 	stroke: {
@@ -1516,6 +1681,7 @@ VMLShape.ATTRS = {
 				}
 			}
 			stroke = tmpl;
+            this._strokeFlag = true;
 			return stroke;
 		}
 	},
@@ -1523,7 +1689,7 @@ VMLShape.ATTRS = {
 	/**
 	 * Indicates whether or not the instance will size itself based on its contents.
 	 *
-	 * @attribute autoSize 
+	 * @config autoSize 
 	 * @type Boolean
 	 */
 	autoSize: {
@@ -1533,7 +1699,7 @@ VMLShape.ATTRS = {
 	/**
 	 * Determines whether the instance will receive mouse events.
 	 * 
-	 * @attribute pointerEvents
+	 * @config pointerEvents
 	 * @type string
 	 */
 	pointerEvents: {
@@ -1541,9 +1707,25 @@ VMLShape.ATTRS = {
 	},
 
 	/**
+	 * Dom node for the shape.
+	 *
+	 * @config node
+	 * @type HTMLElement
+	 * @readOnly
+	 */
+	node: {
+		readOnly: true,
+
+		getter: function()
+		{
+			return this.node;
+		}
+	},
+
+	/**
 	 * Reference to the container Graphic.
 	 *
-	 * @attribute graphic
+	 * @config graphic
 	 * @type Graphic
 	 */
 	graphic: {
@@ -1569,86 +1751,26 @@ VMLPath = function()
 };
 
 VMLPath.NAME = "vmlPath";
-Y.extend(VMLPath, Y.VMLShape, Y.merge(Y.VMLDrawing.prototype, {
-    /**
-     * Indicates the type of shape
+Y.extend(VMLPath, Y.VMLShape, {
+	/**
+     * Updates `Shape` based on attribute changes.
      *
-     * @property _type
-     * @readOnly
-     * @type String
-     */
-    _type: "shape",
-
-    /**
-     * Draws the graphic.
-     *
-     * @method _draw
-     * @private
-     */
-    _draw: function()
-    {
-        var fill = this.get("fill"),
-            stroke = this.get("stroke"),
-            node = this.node,
-            w = this.get("width"),
-            h = this.get("height"),
-            path = this.get("path"),
-            pathEnd = "";
-        node.style.visible = "hidden";
-        this._fillChangeHandler();
-        this._strokeChangeHandler();
-        if(path)
-        {
-            if(fill && fill.color)
-            {
-                pathEnd += ' x';
-            }
-            if(stroke)
-            {
-                pathEnd += ' e';
-            }
-        }
-        if(path)
-        {
-            node.path = path + pathEnd;
-        }
-        if(w && h)
-        {
-            node.coordSize =  w + ', ' + h;
-            node.style.position = "absolute";
-            node.style.width = w + "px";
-            node.style.height = h + "px";
-        }
-        this._path = path;
-        node.style.visible = "visible";
-        this._updateTransform();
-    },
-
-    /**
-     * Completes a drawing operation. 
-     *
-     * @method end
-     */
-    end: function()
-    {
-        this._draw();
-    },
-
-    /**
-     * Clears the path.
-     *
-     * @method clear
-     */
-    clear: function()
-    {
-		this._path = "";
+     * @method _updateHandler
+	 * @private
+	 */
+    _updateHandler: function()
+    {   
+        var host = this;
+            host._fillChangeHandler();
+            host._strokeChangeHandler();
+        host._updateTransform();
     }
-}));
+});
 VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Indicates the width of the shape
 	 * 
-	 * @attribute width 
+	 * @config width 
 	 * @type Number
 	 */
 	width: {
@@ -1667,7 +1789,7 @@ VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Indicates the height of the shape
 	 * 
-	 * @attribute height
+	 * @config height
 	 * @type Number
 	 */
 	height: {
@@ -1686,7 +1808,7 @@ VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Indicates the path used for the node.
 	 *
-	 * @attribute path
+	 * @config path
 	 * @type String
 	 */
 	path: {
@@ -1701,6 +1823,10 @@ VMLPath.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 Y.VMLPath = VMLPath;
 /**
  * Draws rectangles
+ *
+ * @module graphics
+ * @class VMLRect
+ * @constructor
  */
 VMLRect = function()
 {
@@ -1721,6 +1847,10 @@ VMLRect.ATTRS = Y.VMLShape.ATTRS;
 Y.VMLRect = VMLRect;
 /**
  * Draws an ellipse
+ *
+ * @module graphics
+ * @class VMLEllipse
+ * @constructor
  */
 VMLEllipse = function()
 {
@@ -1743,7 +1873,7 @@ VMLEllipse.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Horizontal radius for the ellipse.
 	 *
-	 * @attribute xRadius
+	 * @config xRadius
 	 * @type Number
 	 */
 	xRadius: {
@@ -1767,7 +1897,7 @@ VMLEllipse.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 	/**
 	 * Vertical radius for the ellipse.
 	 *
-	 * @attribute yRadius
+	 * @config yRadius
 	 * @type Number
 	 */
 	yRadius: {
@@ -1790,7 +1920,11 @@ VMLEllipse.ATTRS = Y.merge(Y.VMLShape.ATTRS, {
 });
 Y.VMLEllipse = VMLEllipse;
 /**
- * Draws an circle
+ * Draws a circle
+ *
+ * @module graphics
+ * @class VMLCircle
+ * @constructor
  */
 VMLCircle = function(cfg)
 {
@@ -1812,9 +1946,9 @@ Y.extend(VMLCircle, VMLShape, {
 
 VMLCircle.ATTRS = Y.merge(VMLShape.ATTRS, {
 	/**
-	 * Horizontal radius for the circle.
+	 * Radius for the circle.
 	 *
-	 * @attribute radius
+	 * @config radius
 	 * @type Number
 	 */
 	radius: {
@@ -1826,7 +1960,7 @@ VMLCircle.ATTRS = Y.merge(VMLShape.ATTRS, {
 	/**
 	 * Width of the circle
 	 *
-	 * @attribute width
+	 * @config width
 	 * @type Number
 	 */
 	width: {
@@ -1847,7 +1981,7 @@ VMLCircle.ATTRS = Y.merge(VMLShape.ATTRS, {
 	/**
 	 * Width of the circle
 	 *
-	 * @attribute width
+	 * @config width
 	 * @type Number
 	 */
 	height: {
@@ -1868,13 +2002,17 @@ VMLCircle.ATTRS = Y.merge(VMLShape.ATTRS, {
 Y.VMLCircle = VMLCircle;
 /**
  * Draws pie slices
+ *
+ * @module graphics
+ * @class VMLPieSlice
+ * @constructor
  */
 VMLPieSlice = function()
 {
 	VMLPieSlice.superclass.constructor.apply(this, arguments);
 };
 VMLPieSlice.NAME = "vmlPieSlice";
-Y.extend(VMLPieSlice, Y.VMLPath, {
+Y.extend(VMLPieSlice, Y.VMLShape, Y.mix({
     /**
      * Indicates the type of shape
      *
@@ -1883,21 +2021,6 @@ Y.extend(VMLPieSlice, Y.VMLPath, {
      * @type String
      */
     _type: "shape",
-	/**
-	 * Initializes the shape
-	 *
-	 * @private
-	 * @method _initialize
-	 */
-	initializer: function(cfg)
-	{
-		var host = this,
-            graphic = cfg.graphic;
-		host.createNode(); 
-        host._graphic = graphic;
-        host._updateHandler();
-        graphic.addToRedrawQueue(this);
-	},
 
 	/**
 	 * Change event listener
@@ -1905,7 +2028,7 @@ Y.extend(VMLPieSlice, Y.VMLPath, {
 	 * @private
 	 * @method _updateHandler
 	 */
-	_updateHandler: function(e)
+	_draw: function(e)
 	{
         var x = this.get("cx"),
             y = this.get("cy"),
@@ -1913,11 +2036,11 @@ Y.extend(VMLPieSlice, Y.VMLPath, {
             arc = this.get("arc"),
             radius = this.get("radius");
         this.clear();
-        this.drawWedge(x, y, startAngle, arc, radius)
-		this._draw();
+        this.drawWedge(x, y, startAngle, arc, radius);
+		this.end();
 	}
- });
-VMLPieSlice.ATTRS = Y.mix(Y.VMLPath.ATTRS, {
+ }, Y.VMLDrawing.prototype));
+VMLPieSlice.ATTRS = Y.mix({
     cx: {
         value: 0
     },
@@ -1928,7 +2051,7 @@ VMLPieSlice.ATTRS = Y.mix(Y.VMLPath.ATTRS, {
     /**
      * Starting angle in relation to a circle in which to begin the pie slice drawing.
      *
-     * @attribute startAngle
+     * @config startAngle
      * @type Number
      */
     startAngle: {
@@ -1938,7 +2061,7 @@ VMLPieSlice.ATTRS = Y.mix(Y.VMLPath.ATTRS, {
     /**
      * Arc of the slice.
      *
-     * @attribute arc
+     * @config arc
      * @type Number
      */
     arc: {
@@ -1948,13 +2071,13 @@ VMLPieSlice.ATTRS = Y.mix(Y.VMLPath.ATTRS, {
     /**
      * Radius of the circle in which the pie slice is drawn
      *
-     * @attribute radius
+     * @config radius
      * @type Number
      */
     radius: {
         value: 0
     }
-});
+}, Y.VMLShape.ATTRS);
 Y.VMLPieSlice = VMLPieSlice;
 /**
  * VMLGraphic is a simple drawing api that allows for basic drawing operations.
@@ -1969,12 +2092,18 @@ VMLGraphic = function() {
 VMLGraphic.NAME = "vmlGraphic";
 
 VMLGraphic.ATTRS = {
+    /**
+     * Whether or not to render the `Graphic` automatically after to a specified parent node after init. This can be a Node instance or a CSS selector string.
+     * 
+     * @config render
+     * @type Node | String 
+     */
     render: {},
 	
     /**
 	 * Unique id for class instance.
 	 *
-	 * @attribute id
+	 * @config id
 	 * @type String
 	 */
 	id: {
@@ -1997,7 +2126,7 @@ VMLGraphic.ATTRS = {
     /**
      * Key value pairs in which a shape instance is associated with its id.
      *
-     *  @attribute shapes
+     *  @config shapes
      *  @type Object
      *  @readOnly
      */
@@ -2013,7 +2142,7 @@ VMLGraphic.ATTRS = {
     /**
      *  Object containing size and coordinate data for the content of a Graphic in relation to the coordSpace node.
      *
-     *  @attribute contentBounds
+     *  @config contentBounds
      *  @type Object
      */
     contentBounds: {
@@ -2028,7 +2157,7 @@ VMLGraphic.ATTRS = {
     /**
      *  The html element that represents to coordinate system of the Graphic instance.
      *
-     *  @attribute node
+     *  @config node
      *  @type HTMLElement
      */
     node: {
@@ -2040,6 +2169,12 @@ VMLGraphic.ATTRS = {
         }
     },
 
+	/**
+	 * Indicates the width of the `Graphic`. 
+	 *
+	 * @config width
+	 * @type Number
+	 */
     width: {
         setter: function(val)
         {
@@ -2051,6 +2186,12 @@ VMLGraphic.ATTRS = {
         }
     },
 
+	/**
+	 * Indicates the height of the `Graphic`. 
+	 *
+	 * @config height 
+	 * @type Number
+	 */
     height: {
         setter: function(val)
         {
@@ -2066,7 +2207,7 @@ VMLGraphic.ATTRS = {
      *  Determines how the size of instance is calculated. If true, the width and height are determined by the size of the contents.
      *  If false, the width and height values are either explicitly set or determined by the size of the parent node's dimensions.
      *
-     *  @attribute autoSize
+     *  @config autoSize
      *  @type Boolean
      *  @default false
      */
@@ -2075,10 +2216,10 @@ VMLGraphic.ATTRS = {
     },
 
     /**
-     * When overflow is set to true, by default, the viewBox will resize to greater values but not values. (for performance)
-     * When resizing the viewBox down is desirable, set the resizeDown value to true.
+     * The contentBounds will resize to greater values but not values. (for performance)
+     * When resizing the contentBounds down is desirable, set the resizeDown value to true.
      *
-     * @attribute resizeDown 
+     * @config resizeDown 
      * @type Boolean
      */
     resizeDown: {
@@ -2098,7 +2239,7 @@ VMLGraphic.ATTRS = {
 	/**
 	 * Indicates the x-coordinate for the instance.
 	 *
-	 * @attribute x
+	 * @config x
 	 * @type Number
 	 */
     x: {
@@ -2121,7 +2262,7 @@ VMLGraphic.ATTRS = {
 	/**
 	 * Indicates the y-coordinate for the instance.
 	 *
-	 * @attribute y
+	 * @config y
 	 * @type Number
 	 */
     y: {
@@ -2145,7 +2286,7 @@ VMLGraphic.ATTRS = {
      * Indicates whether or not the instance will automatically redraw after a change is made to a shape.
      * This property will get set to false when batching operations.
      *
-     * @attribute autoDraw
+     * @config autoDraw
      * @type Boolean
      * @default true
      * @private
@@ -2167,11 +2308,19 @@ VMLGraphic.ATTRS = {
 
 Y.extend(VMLGraphic, Y.BaseGraphic, {
     /**
+     * Storage for `x` attribute.
+     *
+     * @property _x
+     * @type Number
      * @private
      */
     _x: 0,
 
     /**
+     * Storage for `y` attribute.
+     *
+     * @property _y
+     * @type Number
      * @private
      */
     _y: 0,
@@ -2256,26 +2405,28 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
     /**
      * Generates a shape instance by type.
      *
-     * @method getShape
+     * @method addShape
      * @param {String} type type of shape to generate.
      * @param {Object} cfg attributes for the shape
      * @return Shape
      */
-    getShape: function(cfg)
+    addShape: function(cfg)
     {
         cfg.graphic = this;
-        var shape = new this._shapeClass[cfg.type](cfg);
-        this.addShape(shape);
+        var shapeClass = this._getShapeClass(cfg.type),
+            shape = new shapeClass(cfg);
+        this._appendShape(shape);
         return shape;
     },
 
     /**
      * Adds a shape instance to the graphic instance.
      *
-     * @method addShape
+     * @method _appendShape
      * @param {Shape} shape The shape instance to be added to the graphic.
+     * @private
      */
-    addShape: function(shape)
+    _appendShape: function(shape)
     {
         var node = shape.node,
             parentNode = this._frag || this._node;
@@ -2293,7 +2444,7 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
      * Removes a shape instance from from the graphic instance.
      *
      * @method removeShape
-     * @param {Shape|String}
+     * @param {Shape|String} shape The instance or id of the shape to be removed.
      */
     removeShape: function(shape)
     {
@@ -2461,6 +2612,28 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
     },
 
     /**
+     * Returns a shape class. Used by `addShape`. 
+     *
+     * @method _getShapeClass
+     * @param {Shape | String} val Indicates which shape class. 
+     * @return Function 
+     * @private
+     */
+    _getShapeClass: function(val)
+    {
+        var shape = this._shapeClass[val];
+        if(shape)
+        {
+            return shape;
+        }
+        return val;
+    },
+
+    /**
+     * Look up for shape classes. Used by `addShape` to retrieve a class for instantiation.
+     *
+     * @property _shapeClass
+     * @type Object
      * @private
      */
     _shapeClass: {
@@ -2486,6 +2659,13 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
         this.set("autoDraw", autoDraw);
     },
     
+    /**
+     * Returns a document fragment to for attaching shapes.
+     *
+     * @method _getDocFrag
+     * @return DocumentFragment
+     * @private
+     */
     _getDocFrag: function()
     {
         if(!this._frag)
@@ -2524,6 +2704,12 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
         }
     },
 
+    /**
+     * Redraws all shapes.
+     *
+     * @method _redraw
+     * @private
+     */
     _redraw: function()
     {
         var box = this.get("resizeDown") ? this._getUpdatedContentBounds() : this._contentBounds;
@@ -2538,6 +2724,13 @@ Y.extend(VMLGraphic, Y.BaseGraphic, {
         }
     },
     
+    /**
+     * Recalculates and returns the `contentBounds` for the `Graphic` instance.
+     *
+     * @method _getUpdatedContentBounds
+     * @return {Object} 
+     * @private
+     */
     _getUpdatedContentBounds: function()
     {
         var bounds,
