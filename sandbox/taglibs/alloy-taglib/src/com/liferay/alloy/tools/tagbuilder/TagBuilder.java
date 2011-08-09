@@ -94,7 +94,11 @@ public class TagBuilder {
 			Map<String, Object> context = _getTemplateContext(component);
 
 			_createBaseTag(component, context);
-			_createPageJSP(component, context);
+
+			if (component.getWriteJSP()) {
+				_createPageJSP(component, context);
+			}
+
 			_createTag(component, context);
 		}
 
@@ -362,14 +366,17 @@ public class TagBuilder {
 			boolean alloyComponent = GetterUtil.getBoolean(
 				node.attributeValue("alloyComponent"));
 
+			boolean bodyContent = GetterUtil.getBoolean(
+				node.attributeValue("bodyContent"));
+
 			String module = GetterUtil.getString(
 				node.attributeValue("module"));
 
 			String parentClass = GetterUtil.getString(
 				node.attributeValue("parentClass"), _DEFAULT_PARENT_CLASS);
 
-			boolean bodyContent = GetterUtil.getBoolean(
-				node.attributeValue("bodyContent"));
+			boolean writeJSP = GetterUtil.getBoolean(
+				node.attributeValue("writeJSP"), true);
 
 			Component component = new Component(
 				componentPackage, name, alloyComponent, module, bodyContent,
@@ -377,6 +384,7 @@ public class TagBuilder {
 				_getAuthorList(node));
 
 			component.setParentClass(parentClass);
+			component.setWriteJSP(writeJSP);
 
 			components.add(component);
 		}
