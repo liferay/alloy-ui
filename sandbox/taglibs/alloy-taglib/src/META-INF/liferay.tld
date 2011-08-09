@@ -1351,4 +1351,16 @@ after rendering is complete.
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
+	<tag>
+		<name>no-jsp</name>
+		<tag-class>com.liferay.alloy.taglib.liferay.NoJSPTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<name>test</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<dynamic-attributes>true</dynamic-attributes>
+	</tag>
 </taglib>
