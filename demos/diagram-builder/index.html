@@ -82,7 +82,7 @@
 		<div id="diagrambuilderBB" class="aui-diagram-builder-base">
 			<div id="diagrambuilderCB" class="aui-helper-clearfix aui-diagram-builder-base-content">
 
-				<div class="aui-column aui-w15 aui-diagram-builder-base-tabs-container">
+				<div class="aui-diagram-builder-base-tabs-container">
 					<div class="aui-diagram-builder-base-tabs-container-content">
 						<ul class="aui-tabview-list aui-widget-hd">
 							<li class="aui-tab aui-state-default aui-state-active aui-tab-active aui-diagram-builder-base-tab-add">
@@ -100,8 +100,10 @@
 					</div>
 				</div>
 
-				<div class="aui-column aui-w85 aui-diagram-builder-base-canvas">
-					<div class="aui-diagram-builder-base-drop-container"></div>
+				<div class="aui-diagram-builder-base-content-container">
+					<div class="aui-diagram-builder-base-canvas">
+						<div class="aui-diagram-builder-base-drop-container"></div>
+					</div>
 				</div>
 
 			</div>
@@ -1491,52 +1493,52 @@ AUI().use('aui-diagram-builder', 'io-form', 'event-valuechange', function(A) {
 		A.one('#json1').setContent( A.JSON.stringify(diagramBuilder1.toJSON()) );
 	});
 
-	// diagramBuilder2 = new A.WorkflowDesigner(
-	// 	{
-	// 		after: {
-	// 			cancel: function(event) {
-	// 				console.log('cancel', event);
-	// 			},
-	//
-	// 			save: function(event) {
-	// 				console.log('save', event);
-	// 			},
-	//
-	// 			addField: function(event) {
-	// 				// console.log('addField', event);
-	// 			}
-	// 		},
-	// 		availableFields: availableFields,
-	//
-	// 		fields: [
-	// 			{
-	// 				bodyContent: 'Node1',
-	// 				xy: [200, 200]
-	// 			},
-	// 			{
-	// 				bodyContent: 'Node2'
-	// 			}
-	// 		],
-	// 		// fields: new A.ArrayList([{a:1}, {a:2}]),
-	//
-	// 		// propertyList: {
-	// 		// 	recordset: [
-	// 		// 		{
-	// 		// 			name: 'Text1',
-	// 		// 			value: 'Text value'
-	// 		// 		},
-	// 		// 		{
-	// 		// 			name: 'Text2',
-	// 		// 			value: 'Text value'
-	// 		// 		},
-	// 		// 		{
-	// 		// 			name: 'Text3',
-	// 		// 			value: 'Text value'
-	// 		// 		}
-	// 		// 	]
-	// 		// }
-	// 	}
-	// ).render('#diagramBuilder2');
+	diagramBuilder2 = new A.WorkflowDesigner(
+		{
+			after: {
+				cancel: function(event) {
+					console.log('cancel', event);
+				},
+
+				save: function(event) {
+					console.log('save', event);
+				},
+
+				addField: function(event) {
+					// console.log('addField', event);
+				}
+			},
+			availableFields: availableFields,
+
+			fields: [
+				{
+					bodyContent: 'Node1',
+					xy: [200, 200]
+				},
+				{
+					bodyContent: 'Node2'
+				}
+			],
+			// fields: new A.ArrayList([{a:1}, {a:2}]),
+
+			// propertyList: {
+			// 	recordset: [
+			// 		{
+			// 			name: 'Text1',
+			// 			value: 'Text value'
+			// 		},
+			// 		{
+			// 			name: 'Text2',
+			// 			value: 'Text value'
+			// 		},
+			// 		{
+			// 			name: 'Text3',
+			// 			value: 'Text value'
+			// 		}
+			// 	]
+			// }
+		}
+	).render('#diagramBuilder2');
 
 	// diagramBuilder2.set('height', 1000);
 	// diagramBuilder2.set('fields', [1,2]);
