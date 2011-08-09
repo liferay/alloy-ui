@@ -43,18 +43,25 @@
 }
 
 .aui-diagram-builder-base-tabs-container {
-	float: left;
-	/*margin-left: -260px;*/
-	/*width: 260px;*/
+	position: absolute;
+	width: 260px;
 }
 
 .aui-diagram-builder-base-canvas {
-	background-color: #f5f5f5;
 	position: relative;
 }
 
 .aui-diagram-builder-base-fields-container {
 	margin: 5px;
+}
+
+.aui-diagram-builder-base-content {
+	min-height: 400px;
+}
+
+
+.aui-diagram-builder-base-content-container {
+	padding-left: 260px;
 }
 
 .aui-diagram-builder-base-tabs-container-content {
