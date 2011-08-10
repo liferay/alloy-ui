@@ -72,6 +72,10 @@ public class Component extends BaseModel {
 		return _parentClass;
 	}
 
+	public boolean getWriteJSP() {
+		return _writeJSP;
+	}
+
 	public String getSafeName() {
 		return StringUtil.replace(
 			getName(), StringPool.PERIOD, StringPool.BLANK);
@@ -135,13 +139,18 @@ public class Component extends BaseModel {
 		_parentClass = parentClass;
 	}
 
+	public void setWriteJSP(boolean writeJSP) {
+		_writeJSP = writeJSP;
+	}
+
 	private boolean _alloyComponent;
 	private List<Attribute> _attributes;
+	private String[] _authors;
 	private boolean _bodyContent;
 	private List<Attribute> _events;
 	private String _module;
 	private String _package;
 	private String _parentClass;
-	private String[] _authors;
+	private boolean _writeJSP;
 
 }

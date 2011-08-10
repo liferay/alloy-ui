@@ -52,4 +52,15 @@
 		</attributes>
 		<events></events>
 	</component>
+	<component name="NoJSP" bodyContent="true" writeJSP="false">
+		<attributes>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+		<events></events>
+	</component>
 </taglibs>

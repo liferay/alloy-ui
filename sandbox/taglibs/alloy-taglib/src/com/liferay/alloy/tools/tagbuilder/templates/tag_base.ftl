@@ -15,7 +15,9 @@
 
 package ${packagePath}.${component.getPackage()}.base;
 
+<#if component.getWriteJSP() == true>
 import javax.servlet.http.HttpServletRequest;
+</#if>
 import javax.servlet.jsp.JspException;
 
 /**
@@ -83,6 +85,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 	</#if>
 
+	<#if component.getWriteJSP() == true>
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
@@ -90,6 +93,7 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 		</#list>
 	}
 
+	</#if>
 	protected static final String _ATTRIBUTE_NAMESPACE = "${namespace}";
 
 	<#if component.isBodyContent() == true>
