@@ -1,8 +1,11 @@
 package com.liferay.alloy.tools.model;
 
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.taglib.util.AttributesTagSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +100,30 @@ public class Component extends BaseModel {
 
 	public boolean isBodyContent() {
 		return _bodyContent;
+	}
+
+	public boolean isChildClassOf(String className) {
+		try {
+			String parentClassName = getParentClass();
+
+			if (Validator.isNotNull(parentClassName)) {
+				Thread currentThread = Thread.currentThread();
+
+				ClassLoader contextClassLoader =
+					currentThread.getContextClassLoader();
+
+				PortalClassLoaderUtil.setClassLoader(contextClassLoader);
+
+				Class<?> parentClass = Class.forName(parentClassName);
+				
+				Class<?> clazz = Class.forName(className);
+
+				return clazz.isAssignableFrom(parentClass);
+			}
+		} catch (Exception e) {
+		}
+
+		return false;
 	}
 
 	public void setAlloyComponent(boolean alloyComponent) {

@@ -12,6 +12,12 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+<#compress>
+
+<#assign isChildClassOfAttributeTagSupport = component.isChildClassOf("com.liferay.taglib.util.AttributesTagSupport")>
+<#assign isChildClassOfIncludeTag = component.isChildClassOf("com.liferay.taglib.util.IncludeTag")>
+
+</#compress>
 
 package ${packagePath}.${component.getPackage()}.base;
 
@@ -30,8 +36,10 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 
 	@Override
 	public int doStartTag() throws JspException {
+		<#if isChildClassOfAttributeTagSupport == true>
 		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
 
+		</#if>
 		return super.doStartTag();
 	}
 
@@ -44,12 +52,16 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	<#list component.getAttributesAndEvents() as attribute>
 	public void set${attribute.getCapitalizedName()}(${attribute.getRawInputType()} ${attribute.getSafeName()}) {
 		_${attribute.getSafeName()} = ${attribute.getSafeName()};
+		<#if isChildClassOfAttributeTagSupport == true>
 
 		setScopedAttribute("${attribute.getSafeName()}", ${attribute.getSafeName()});
+		</#if>
 	}
 
 	</#list>
+	<#if isChildClassOfIncludeTag == true>
 	@Override
+	</#if>
 	protected void cleanUp() {
 	<#list component.getAttributesAndEvents() as attribute>
 		<#compress>
@@ -69,33 +81,47 @@ public class Base${component.getSafeName()}Tag extends ${component.getParentClas
 	}
 
 	<#if component.isBodyContent() == true>
+	<#if isChildClassOfIncludeTag == true>
 	@Override
+	</#if>
 	protected String getEndPage() {
 		return _END_PAGE;
 	}
 
+	<#if isChildClassOfIncludeTag == true>
 	@Override
+	</#if>
 	protected String getStartPage() {
 		return _START_PAGE;
 	}
 	<#else>
+	<#if isChildClassOfIncludeTag == true>
 	@Override
+	</#if>
 	protected String getPage() {
 		return _PAGE;
 	}
 	</#if>
 
 	<#if component.getWriteJSP() == true>
+	<#if isChildClassOfIncludeTag == true>
 	@Override
+	</#if>
 	protected void setAttributes(HttpServletRequest request) {
 		<#list component.getAttributesAndEvents() as attribute>
+		<#if isChildClassOfAttributeTagSupport == true>
 		setNamespacedAttribute(request, "${attribute.getSafeName()}", _${attribute.getSafeName()});
+		<#else>
+		request.setAttribute("${attribute.getName()}", _${attribute.getSafeName()});
+		</#if>
 		</#list>
 	}
 
 	</#if>
+	<#if isChildClassOfAttributeTagSupport == true>
 	protected static final String _ATTRIBUTE_NAMESPACE = "${namespace}";
 
+	</#if>
 	<#if component.isBodyContent() == true>
 	private static final String _END_PAGE =
 		"${jspRelativePath}/end.jsp";
