@@ -22,12 +22,10 @@ import javax.servlet.jsp.JspException;
  * @author Nathan Cavanaugh
  * @generated
  */
-public class BaseNoJSPTag extends com.liferay.taglib.util.IncludeTag {
+public class BaseNoJSPTag extends com.liferay.portal.kernel.servlet.taglib.TagSupport {
 
 	@Override
 	public int doStartTag() throws JspException {
-		setAttributeNamespace(_ATTRIBUTE_NAMESPACE);
-
 		return super.doStartTag();
 	}
 
@@ -37,26 +35,19 @@ public class BaseNoJSPTag extends com.liferay.taglib.util.IncludeTag {
 
 	public void setTest(java.lang.String test) {
 		_test = test;
-
-		setScopedAttribute("test", test);
 	}
 
-	@Override
 	protected void cleanUp() {
 		_test = null;
 	}
 
-	@Override
 	protected String getEndPage() {
 		return _END_PAGE;
 	}
 
-	@Override
 	protected String getStartPage() {
 		return _START_PAGE;
 	}
-
-	protected static final String _ATTRIBUTE_NAMESPACE = "liferay:no-jsp:";
 
 	private static final String _END_PAGE =
 		"/html/taglib/liferay/no_jsp/end.jsp";

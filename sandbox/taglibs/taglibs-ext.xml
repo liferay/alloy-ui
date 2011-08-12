@@ -52,7 +52,7 @@
 		</attributes>
 		<events></events>
 	</component>
-	<component name="NoJSP" bodyContent="true" writeJSP="false">
+	<component name="NoJSP" bodyContent="true" parentClass="com.liferay.portal.kernel.servlet.taglib.TagSupport" writeJSP="false">
 		<attributes>
 			<attribute>
 				<name>test</name>
