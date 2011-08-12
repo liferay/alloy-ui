@@ -539,9 +539,7 @@ var Paginator = A.Component.create(
 			 * @type Number
 			 */
 			total: {
-				setter: function(v) {
-					return this._setTotal(v);
-				},
+				setter: '_setTotal',
 				value: 0,
 				validator: isNumber
 			},
@@ -1033,16 +1031,14 @@ var Paginator = A.Component.create(
 			 */
 			_setTotal: function(v) {
 				var instance = this;
+
 				var alwaysVisible = instance.get(ALWAYS_VISIBLE);
 				var containers = instance.get(CONTAINERS);
 
 				// if !alwaysVisible and there is nothing to show, hide it
-				if (!alwaysVisible && (v === 0)) {
-					containers.hide();
-				}
-				else {
-					containers.show();
-				}
+				var visible = (alwaysVisible || (v !== 0 && v > instance.get(ROWS_PER_PAGE)));
+
+				containers.toggle(visible);
 
 				return v;
 			},
