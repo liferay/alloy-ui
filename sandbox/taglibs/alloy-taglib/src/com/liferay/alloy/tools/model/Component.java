@@ -5,7 +5,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.taglib.util.AttributesTagSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +56,16 @@ public class Component extends BaseModel {
 
 	public String getCamelizedName() {
 		return TextFormatter.format(getName(), TextFormatter.M);
+	}
+
+	public String getClassName() {
+		String className = _className;
+
+		if (Validator.isNull(className)) {
+			className = getSafeName().concat(_CLASS_NAME_SUFFIX);
+		}
+
+		return className;
 	}
 
 	public List<Attribute> getEvents() {
@@ -146,6 +155,10 @@ public class Component extends BaseModel {
 		_bodyContent = bodyContent;
 	}
 
+	public void setClassName(String className) {
+		_className = className;
+	}
+
 	public void setEvents(List<Attribute> events) {
 		_events = events;
 
@@ -170,10 +183,13 @@ public class Component extends BaseModel {
 		_writeJSP = writeJSP;
 	}
 
+	private final static String _CLASS_NAME_SUFFIX = "Tag";
+
 	private boolean _alloyComponent;
 	private List<Attribute> _attributes;
 	private String[] _authors;
 	private boolean _bodyContent;
+	private String _className;
 	private List<Attribute> _events;
 	private String _module;
 	private String _package;

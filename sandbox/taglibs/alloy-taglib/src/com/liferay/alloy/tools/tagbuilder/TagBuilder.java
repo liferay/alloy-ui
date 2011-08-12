@@ -114,7 +114,7 @@ public class TagBuilder {
 
 		sb.append(_getJavaOutputBaseDir(component));
 		sb.append(_BASE_CLASS_PREFIX);
-		sb.append(component.getSafeName());
+		sb.append(component.getClassName());
 		sb.append(_CLASS_SUFFIX);
 
 		String content = _processTemplate(_tplTagBase, context);
@@ -177,7 +177,7 @@ public class TagBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_getJavaOutputDir(component));
-		sb.append(component.getSafeName());
+		sb.append(component.getClassName());
 		sb.append(_CLASS_SUFFIX);
 
 		String content = _processTemplate(_tplTag, context);
@@ -369,6 +369,9 @@ public class TagBuilder {
 			boolean bodyContent = GetterUtil.getBoolean(
 				node.attributeValue("bodyContent"));
 
+			String className = GetterUtil.getString(
+				node.attributeValue("className"));
+
 			String module = GetterUtil.getString(
 				node.attributeValue("module"));
 
@@ -383,6 +386,7 @@ public class TagBuilder {
 				_getAttributes(node), _getPrefixedEvents(node),
 				_getAuthorList(node));
 
+			component.setClassName(className);
 			component.setParentClass(parentClass);
 			component.setWriteJSP(writeJSP);
 
@@ -672,7 +676,7 @@ public class TagBuilder {
 	private static final String _ATTRIBUTES = "attributes";
 	private static final String _BASE = "base";
 	private static final String _BASE_CLASS_PREFIX = "Base";
-	private static final String _CLASS_SUFFIX = "Tag.java";
+	private static final String _CLASS_SUFFIX = ".java";
 	private static final String _COMPONENT = "component";
 	private static final String _DEFAULT_NAMESPACE = "alloy";
 	private static final String _DEFAULT_PARENT_CLASS = "com.liferay.taglib.util.IncludeTag";

@@ -32,7 +32,7 @@ import javax.servlet.jsp.JspException;
 </#list>
  * @generated
  */
-public class Base${component.getSafeName()}Tag extends ${component.getParentClass()} {
+public class Base${component.getClassName()} extends ${component.getParentClass()} {
 
 	@Override
 	public int doStartTag() throws JspException {
