@@ -354,6 +354,8 @@
 });</pre>
 
 					<h3 class="header">Getting a template from a node</h3>
+					<pre class="tpl">tpl = A.Template.from('#divContainingTplMarkup');</pre>
+					or
 					<pre class="tpl">tpl = A.one('#divContainingTplMarkup').toTemplate();</pre>
 
 					<h3 class="header">Rendering a template to a node</h3>
@@ -400,7 +402,7 @@ AUI().ready('aui-template', function(A) {
 		if (js) {
 			var outputParent = renderOutput.ancestor();
 			renderOutput.remove();
-			tpl.render(renderOutput, js, true);
+			tpl.render(renderOutput, js);
 			outputParent.append(renderOutput);
 		}
 	}, 'input.render-button');
