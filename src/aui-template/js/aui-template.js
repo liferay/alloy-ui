@@ -446,11 +446,13 @@ var Lang = A.Lang,
 		}
 	};
 
-	A.Node.prototype.toTemplate = function() {
+	var NODE_PROTO = A.Node.prototype;
+
+	NODE_PROTO.toTemplate = function() {
 		return Template.from(this);
 	};
 
-	A.Node.prototype.renderTemplate = function(tpl, data) {
+	NODE_PROTO.renderTemplate = function(tpl, data) {
 		var instance = this;
 
 		if (isString(tpl) || isArray(tpl)) {
@@ -463,6 +465,13 @@ var Lang = A.Lang,
 
 		return instance;
 	};
+
+	A.NodeList.importMethod(
+		NODE_PROTO,
+		[
+			'renderTemplate'
+		]
+	);
 
 	Template.from = function(node) {
 		node = A.one(node);
