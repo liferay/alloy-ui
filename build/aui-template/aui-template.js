@@ -13,8 +13,7 @@ var Lang = A.Lang,
 	REGEX_QUOTE = /'/g,
 	REGEX_QUOTE_ESCAPED = /\\'/g,
 
-	REGEX_TPL_VAR = /\{([\w-.#]+)(?:\:([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
-	REGEX_TPL_VAR_SIMPLE = /\{([\w-.#]+)(?:(\:)([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
+	REGEX_TPL_VAR = /\{([\w-.#$]+)(?:\:([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
 	REGEX_TPL_SCRIPTLET = /\{\[((?:\\\]|.|\n)*?)\]\}/g,
 
 	STR_BLANK = '',
@@ -68,6 +67,7 @@ var Lang = A.Lang,
 
 	STR_VALUES = 'values',
 	STR_PARENT = 'parent',
+	STR_SPECIAL_I = '$i',
 	STR_SPECIAL_INDEX = '$index',
 	STR_SPECIAL_COUNT = '$count',
 	STR_SPECIAL_LAST = '$last',
@@ -105,7 +105,11 @@ var Lang = A.Lang,
 
 	MAP_TPL_VALUES = {
 		'.': 'this._getValidValues(values)',
-		'#': STR_SPECIAL_INDEX
+		'#': STR_SPECIAL_INDEX,
+		'$index': STR_SPECIAL_INDEX,
+		'$i': STR_SPECIAL_I,
+		'$count': STR_SPECIAL_COUNT,
+		'$last': STR_SPECIAL_LAST
 	},
 
 	SRC_CREATE = {};
@@ -356,6 +360,7 @@ var Lang = A.Lang,
 								STR_VALUES,
 								STR_PARENT,
 								STR_SPECIAL_INDEX,
+								STR_SPECIAL_I,
 								STR_SPECIAL_COUNT,
 								STR_SPECIAL_LAST,
 								STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
@@ -366,6 +371,7 @@ var Lang = A.Lang,
 								STR_VALUES,
 								STR_PARENT,
 								STR_SPECIAL_INDEX,
+								STR_SPECIAL_I,
 								STR_SPECIAL_COUNT,
 								STR_SPECIAL_LAST,
 								STR_WITHVALUES + expressionValue + STR_WITHCLOSE

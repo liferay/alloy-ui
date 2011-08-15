@@ -721,15 +721,15 @@ A.mix(
 				where = where || STR_END;
 
 				if (where == STR_END) {
-					str = str.substr(0, length - ELLIPSIS.length) + ELLIPSIS;
+					str = str.substr(0, length - STR_ELLIPSIS.length) + STR_ELLIPSIS;
 				}
 				else if (where == STR_MIDDLE) {
 					var middlePoint = Math.floor(length / 2);
 
-					str = str.substr(0, middlePoint) + ELLIPSIS + str.substr(strLength - middlePoint);
+					str = str.substr(0, middlePoint) + STR_ELLIPSIS + str.substr(strLength - middlePoint);
 				}
 				else if (where == STR_START) {
-					str = ELLIPSIS + str.substr(strLength - length);
+					str = STR_ELLIPSIS + str.substr(strLength - length);
 				}
 			}
 
