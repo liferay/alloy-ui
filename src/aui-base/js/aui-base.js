@@ -7,19 +7,110 @@ var Lang = A.Lang,
 	LString = A.namespace('Lang.String'),
 	arrayIndexOf = AArray.indexOf,
 
-	EMPTY_STR = '',
+	STR_BLANK = '',
 
 	DOC = A.config.doc,
 	FIRST_CHILD = 'firstChild',
 	INNER_HTML = 'innerHTML',
 	NODE_VALUE = 'nodeValue',
-	NORMALIZE = 'normalize';
+	NORMALIZE = 'normalize',
+	REGEX_DASH = /-([a-z])/gi,
+	REGEX_ESCAPE_REGEX = /([.*+?^$(){}|[\]\/\\])/g,
+	REGEX_STRIP_SCRIPTS = /(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)/gi,
+	REGEX_STRIP_TAGS = /<\/?[^>]+>/gi,
+	REGEX_UNCAMELIZE = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
+	REGEX_UNCAMELIZE_REPLACE_SEPARATOR = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
+
+	STR_AMP = '&',
+	STR_CHEVRON_LEFT = '<',
+	STR_ELLIPSIS = '...',
+	STR_END = 'end',
+	STR_HASH = '#',
+	STR_MIDDLE = 'middle',
+	STR_START = 'start',
+	STR_ZERO = '0',
+
+	STR_G = 'g',
+	STR_S = 's',
+
+	mathBuffer = ['return value ', null, ';'],
+	htmlUnescapedValues = [],
+
+	cachedMathFn = A.cached(
+		function(mathArgs) {
+			mathBuffer[1] = mathArgs;
+
+			return new Function('value', mathBuffer.join(STR_BLANK));
+		}
+	),
+
+	MAP_HTML_CHARS_ESCAPED = {
+		'&': '&amp;',
+		'<': '&lt;',
+		'>': '&gt;',
+		'"': '&#034;',
+		'\'': '&#039;',
+		'/': '&#047;',
+		'`': '&#096;'
+	},
+	MAP_HTML_CHARS_UNESCAPED = {};
+
+	for (var i in MAP_HTML_CHARS_ESCAPED) {
+		if (MAP_HTML_CHARS_ESCAPED.hasOwnProperty(i)) {
+			var escapedValue = MAP_HTML_CHARS_ESCAPED[i];
+
+			MAP_HTML_CHARS_UNESCAPED[escapedValue] = i;
+
+			htmlUnescapedValues.push(i);
+		}
+	}
+
+	var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
+		REGEX_HTML_UNESCAPE = /&([^;]+);/g;
 
 A.mix(
 	LString,
 	{
+		camelize: A.cached(
+			function(str, separator) {
+				var regex = REGEX_DASH;
+
+				str = String(str);
+
+				if (separator) {
+					regex = new RegExp(separator + '([a-z])', 'gi');
+				}
+
+				return str.replace(regex, LString._camelize);
+			}
+		),
+
+		capitalize: A.cached(
+			function(str) {
+				if (str) {
+					str = String(str);
+
+					str = str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+				}
+
+				return str;
+			}
+		),
+
 		contains: function(s, ss) {
 		  return s.indexOf(ss) != -1;
+		},
+
+		defaultValue: function(str, defaultValue) {
+			if (Lang.isUndefined(str) || str == STR_BLANK) {
+				if (Lang.isUndefined(defaultValue)) {
+					defaultValue = STR_BLANK;
+				}
+
+				str = defaultValue;
+			}
+
+			return str;
 		},
 
 		endsWith: function(str, suffix) {
@@ -28,13 +119,17 @@ A.mix(
 			return ((length >= 0) && (str.indexOf(suffix, length) == length));
 		},
 
-		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
-		escapeRegEx: function(str) {
-			return str.replace(/([.*+?^$(){}|[\]\/\\])/g, '\\$1');
+		escapeHTML: function(str) {
+			return str.replace(REGEX_HTML_ESCAPE, LString._escapeHTML);
 		},
 
-		repeat: function(string, length) {
-			return new Array(length + 1).join(string);
+		// Courtesy of: http://simonwillison.net/2006/Jan/20/escape/
+		escapeRegEx: function(str) {
+			return str.replace(REGEX_ESCAPE_REGEX, '\\$1');
+		},
+
+		math: function(value, mathArgs) {
+			return cachedMathFn(mathArgs)(value);
 		},
 
 		padNumber: function(num, length, precision) {
@@ -45,38 +140,166 @@ A.mix(
 				index = str.length;
 			}
 
-			return LString.repeat('0', Math.max(0, length - index)) + str;
+			return LString.repeat(STR_ZERO, Math.max(0, length - index)) + str;
+		},
+
+		pluralize: function(count, singularVersion, pluralVersion) {
+			var suffix;
+
+			if (count == 1) {
+				suffix = singularVersion;
+			}
+			else {
+				suffix = pluralVersion || singularVersion + STR_S;
+			}
+
+			return count + ' ' + suffix;
 		},
 
 		remove: function(s, substitute, all) {
-			var re = new RegExp(LString.escapeRegEx(substitute), all ? 'g' : '');
+			var re = new RegExp(LString.escapeRegEx(substitute), all ? STR_G : STR_BLANK);
 
-			return s.replace(re, '');
+			return s.replace(re, STR_BLANK);
 		},
 
 		removeAll: function(s, substitute) {
 			return LString.remove(s, substitute, true);
 		},
 
+		repeat: function(string, length) {
+			return new Array(length + 1).join(string);
+		},
+
+		round: function(value, precision) {
+			value = Number(value);
+
+			if (Lang.isNumber(precision)) {
+				precision = Math.pow(10, precision);
+				value = Math.round(value * precision) / precision;
+			}
+
+			return value;
+		},
+
 		startsWith: function(str, prefix) {
 			return (str.lastIndexOf(prefix, 0) == 0);
 		},
 
+		stripScripts: function(str) {
+			if (str) {
+				str = String(str).replace(REGEX_STRIP_SCRIPTS, STR_BLANK);
+			}
+
+			return str;
+		},
+
+		stripTags: function(str) {
+			var instance = this;
+
+			if (str) {
+				str = String(str).replace(REGEX_STRIP_TAGS, STR_BLANK);
+			}
+
+			return str;
+		},
+
+		substr: function(str, start, length) {
+			return String(str).substr(start, length);
+		},
+
+		uncamelize: A.cached(
+			function(str, separator) {
+				separator = separator || ' ';
+
+				str = String(str);
+
+				str = str.replace(REGEX_UNCAMELIZE, '$1' + separator + '$2$3');
+				str = str.replace(REGEX_UNCAMELIZE_REPLACE_SEPARATOR, '$1' + separator + '$2');
+
+				return str;
+			}
+		),
+
+		toLowerCase: function(str) {
+			return String(str).toLowerCase();
+		},
+
+		toUpperCase: function(str) {
+			return String(str).toUpperCase();
+		},
+
 		trim: Lang.trim,
 
-		// inspired from Google unescape entities
-		unescapeEntities: function(str) {
-			if (LString.contains(str, '&')) {
-				if (DOC && !LString.contains(str, '<')) {
-					str = LString._unescapeEntitiesUsingDom(str);
+		truncate: function(str, length, where) {
+			str = String(str);
+
+			var strLength = str.length;
+
+			if (str && strLength > length) {
+				where = where || STR_END;
+
+				if (where == STR_END) {
+					str = str.substr(0, length - ELLIPSIS.length) + ELLIPSIS;
 				}
-				else {
-					// Fall back on pure XML entities
-					str = LString._unescapeXmlEntities(str);
+				else if (where == STR_MIDDLE) {
+					var middlePoint = Math.floor(length / 2);
+
+					str = str.substr(0, middlePoint) + ELLIPSIS + str.substr(strLength - middlePoint);
+				}
+				else if (where == STR_START) {
+					str = ELLIPSIS + str.substr(strLength - length);
 				}
 			}
 
 			return str;
+		},
+
+		undef: function(str) {
+			if (Lang.isUndefined(str)) {
+				str = STR_BLANK;
+			}
+
+			return str;
+		},
+
+		// inspired from Google unescape entities
+		unescapeEntities: function(str) {
+			if (LString.contains(str, STR_AMP)) {
+				if (DOC && !LString.contains(str, STR_CHEVRON_LEFT)) {
+					str = LString._unescapeEntitiesUsingDom(str);
+				}
+				else {
+					str = LString.unescapeHTML(str);
+				}
+			}
+
+			return str;
+		},
+
+		unescapeHTML: function(str) {
+			return str.replace(REGEX_HTML_UNESCAPE, LString._unescapeHTML);
+		},
+
+		_camelize: function(match0, match1) {
+			return match1.toUpperCase();
+		},
+
+		_escapeHTML: function(match) {
+			return MAP_HTML_CHARS_ESCAPED[match];
+		},
+
+		_unescapeHTML: function(match) {
+			var value = MAP_HTML_CHARS_UNESCAPED[match];
+
+			if (!value && entity.charAt(0) == STR_HASH) {
+				var charCode = Number(STR_ZERO + entity.substr(1));
+
+				if (!isNaN(charCode)) {
+					value = String.fromCharCode(charCode);
+				}
+			}
+
+			return value;
 		},
 
 		_unescapeEntitiesUsingDom: function(str) {
@@ -90,34 +313,9 @@ A.mix(
 
 			str = el.firstChild.nodeValue;
 
-			el[INNER_HTML] = EMPTY_STR;
+			el[INNER_HTML] = STR_BLANK;
 
 			return str;
-		},
-
-		_unescapeXmlEntities: function(str) {
-			return str.replace(/&([^;]+);/g, function(s, entity) {
-				switch (entity) {
-					case 'amp':
-						return '&';
-					case 'lt':
-						return '<';
-					case 'gt':
-						return '>';
-					case 'quot':
-						return '"';
-					default:
-						if (entity.charAt(0) == '#') {
-							var n = Number('0' + entity.substr(1));
-
-							if (!isNaN(n)) {
-								return String.fromCharCode(n);
-							}
-						}
-
-					return s;
-				}
-			});
 		},
 
 		_unescapeNode: DOC.createElement('a')
