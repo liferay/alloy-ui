@@ -49,6 +49,35 @@
 			height: 400px;
 			overflow: auto;
 		}
+
+		.nav {
+			position: fixed;
+			height: 100%;
+			right: 0;
+			top: 0;
+			width: 100px;
+		}
+
+		.nav:hover {
+			width: 200px;
+		}
+
+		.nav a {
+			background: #EAEAEA;
+			border-left: 5px solid transparent;
+			display: block;
+			padding: 2px 5px;
+			position: absolute;
+			right: 0;
+			left: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.nav a:hover {
+			border-left-color: #333;
+		}
 	</style>
 </head>
 
@@ -454,6 +483,38 @@ AUI().ready('aui-template', function(A) {
 		}
 	}, 'input.render-button');
 
+	var div = A.Node.create('<div class="nav"></div>');
+	var items = [];
+
+	A.all('h2').each(
+		function(item, index, collection) {
+			var id = item.guid();
+			var title = item.text();
+
+			items.push(
+				{
+					id: id,
+					title: title,
+					offsetY: item.getXY()[1]
+				}
+			);
+		}
+	);
+
+	data = {
+		items: items,
+		scaleFactor: A.getWin().height()/A.getBody().height()
+	}
+
+	tpl = A.Template(
+		'<tpl for="items">',
+			'<a href="#{id}" style="top: {[Math.round(values.offsetY * parent.scaleFactor)]}px">{title}</a>',
+		'</tpl>'
+	);
+
+	tpl.render(data, div);
+
+	A.getBody().append(div);
 });
 </script>
 
