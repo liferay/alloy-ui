@@ -16,6 +16,7 @@ var Lang = A.Lang,
 	NORMALIZE = 'normalize',
 	REGEX_DASH = /-([a-z])/gi,
 	REGEX_ESCAPE_REGEX = /([.*+?^$(){}|[\]\/\\])/g,
+	REGEX_NL2BR = /\r?\n/g,
 	REGEX_STRIP_SCRIPTS = /(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)/gi,
 	REGEX_STRIP_TAGS = /<\/?[^>]+>/gi,
 	REGEX_UNCAMELIZE = /([a-zA-Z][a-zA-Z])([A-Z])([a-z])/g,
@@ -130,6 +131,12 @@ A.mix(
 
 		math: function(value, mathArgs) {
 			return cachedMathFn(mathArgs)(value);
+		},
+
+		nl2br: function(str) {
+			var instance = this;
+
+			return String(str).replace(REGEX_NL2BR, '<br />');
 		},
 
 		padNumber: function(num, length, precision) {
