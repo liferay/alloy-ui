@@ -336,6 +336,22 @@ var Carousel = A.Component.create(
 			_renderMenu: function() {
 				var instance = this;
 
+				var tpl = new A.Template(
+					'<menu>',
+					'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PLAY, '"></a></li>',
+					'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PREV, '"></a></li>',
+					'<tpl for=".">',
+						'<li><a class="', CSS_MENU_ITEM, ' {[ $i == ', instance.get('activeIndex'),' ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">$index</a></li>',
+					'</tpl>',
+					'<li><a class="', CSS_MENU_NEXT, '"></a></li>',
+					'</menu>'
+				);
+
+				var menu = tpl.render(instance.nodeSelection);
+console.log(menu);
+				instance.get('contentBox').appendChild(menu);
+
+/*
 				var activeIndex = instance.get('activeIndex');
 
 				var buffer = [TPL_MENU_PLAY, TPL_MENU_PREV];
@@ -364,6 +380,7 @@ var Carousel = A.Component.create(
 				var menu = A.Node.create('<menu>' + buffer.join('') + '</menu>');
 
 				instance.get('contentBox').appendChild(menu);
+*/
 
 				return menu;
 			},
@@ -512,4 +529,4 @@ var Carousel = A.Component.create(
 
 A.Carousel = Carousel;
 
-}, '@VERSION@' ,{requires:['aui-base','anim'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-template','anim'], skinnable:true});

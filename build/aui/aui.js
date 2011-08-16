@@ -4731,7 +4731,7 @@ YUI.add('yui', function(Y){}, '3.4.0' ,{use:['yui-base','get','features','intl-b
 						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']},
 						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
 						'aui-calendar': {skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']},
-						'aui-carousel': {skinnable:true, requires:['aui-base','anim']},
+						'aui-carousel': {skinnable:true, requires:['aui-base','aui-template','anim']},
 						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
 						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
 						'aui-classnamemanager': {skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}, requires:['classnamemanager']},
