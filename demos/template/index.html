@@ -206,6 +206,60 @@
 			</div>
 		</div>
 
+		<div class="aui-layout-content" id="rendering">
+			<h2>Rendering from an Element</h2>
+			<p>You can place your template markup on the page in a couple of different formats. You can place it as a hidden div, inside of an input/textarea, or in a script element (if you use a script element, you MUST set the type="" attribute to something other than "text/javascript"; we use type="aui/template").</p>
+				</p>
+			<div class="aui-column aui-w50">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					
+					<h4>Script tag</h4>
+					<pre class="tpl">
+&lt;script id=&quot;scriptTPL&quot; type=&quot;aui/template&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/script&gt;</pre>
+
+					<h4>Hidden Div</h4>
+					<pre class="tpl">
+&lt;div class=&quot;aui-helper-hidden&quot; id=&quot;divTPL&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/div&gt;</pre>
+
+					<h4>Hidden Textarea</h4>
+					<pre class="tpl">
+&lt;textarea class=&quot;aui-helper-hidden&quot; id=&quot;textareaTPL&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/textarea&gt;</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w50">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<h4>Script tag</h4>
+					<pre class="js">
+var scriptTPL = A.one('#scriptTPL').toTemplate();
+scriptTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+
+					<h4>Hidden Div</h4>
+					<pre class="js">
+var divTPL = A.one('#divTPL').toTemplate();
+divTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+
+					<h4>Hidden Textarea</h4>
+					<pre class="js">
+var textareaTPL = A.one('#textareaTPL').toTemplate();
+textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+				</div>
+			</div>
+		</div>
+
 		<div class="aui-layout-content" id="embedding">
 			<h2>Embedding JavaScript</h2>
 			<p>You can embed arbitrary JS code into your templates using scriptlets. The result of the scriptlet expression is embedded into the template. A scriptlet is demarked with the special <code>{[ syntax ]}</code>. Scriptlets can accept any valid JS expression, but are also passed the following variables:
@@ -227,9 +281,7 @@
 	&lt;div class=&quot;scriptlet-row&quot; style=&quot;background-color: {[$index % 2 === 0 ? &#x27;#98C0F4&#x27; : &#x27;#DFE8F6&#x27;]};&quot;&gt;
 		{name} -  {[ A.getClassName(values.name, &#x27;styled&#x27;, &#x27;element&#x27;) ]}
 	&lt;/div&gt;
-&lt;/tpl&gt;
-
-					</pre>
+&lt;/tpl&gt;</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
@@ -241,8 +293,7 @@
 	{name: 'Kevin', age: 15},
 	{name: 'Arnie', age: 14},
 	{name: 'Alice', age: 22}
-]
-					</pre>
+]</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
@@ -271,16 +322,14 @@
 					<pre class="tpl">
 &lt;tpl for=&quot;devs&quot;&gt;
 	{#}. {.}&lt;tpl if=&quot;!$last&quot;&gt;,&lt;/tpl&gt;
-&lt;/tpl&gt;
-					</pre>
+&lt;/tpl&gt;</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
 				<div class="aui-column-content">
 					<h3 class="header">Javascript object</h3>
 					<pre class="js">
-{devs: ['Nate', 'Eduardo', 'Iliyan', 'Bruno', 'Jon', 'Aaron']}
-					</pre>
+{devs: ['Nate', 'Eduardo', 'Iliyan', 'Bruno', 'Jon', 'Aaron']}</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
@@ -301,8 +350,7 @@
 					<pre class="tpl">
 &lt;tpl for=&quot;rows&quot;&gt;
 	&lt;div style=&quot;background-color: {[ $i % 2 ? &#x27;#ccc&#x27; : &#x27;&#x27;]}; border-bottom: {[ !$last ? &#x27;1px solid #555&#x27; : &#x27;&#x27;]}&quot;&gt;{#}. {.}&lt;/div&gt;
-&lt;/tpl&gt;
-					</pre>
+&lt;/tpl&gt;</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
@@ -321,8 +369,7 @@
 		rows[rows.length] = getRandomString(i);
 	};
 	return obj;
-})();
-					</pre>
+})();</pre>
 				</div>
 			</div>
 			<div class="aui-column aui-w30">
@@ -412,14 +459,12 @@ AUI().ready('aui-template', function(A) {
 
 <div class="aui-helper-hidden" id="auiDivTPL">
 	From Div
-	<p>/open div---------</p>
 	<tpl for=".">
 		<p>{name}:{age} - {age * 5}</p>
 	</tpl>
-	<p>/close div---------</p>
 </div>
 
-<input id="auiInputTPL" type="hidden" value="From Input<p>/open input---------</p><tpl for=&quot;.&quot;><p>{#} {name}</p></tpl><p>/close input---------</p>">
+<input id="auiInputTPL" type="hidden" value="From Input<p><tpl for=&quot;.&quot;><p>{#} {name}</p></tpl>">
 
 <script id="auiScriptTPL" type="aui/template">
 	From Script
