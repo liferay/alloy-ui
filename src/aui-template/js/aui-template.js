@@ -334,7 +334,6 @@ var Lang = A.Lang,
 			html = BUFFER_HTML.join(STR_BLANK);
 
 			while (match = html.match(REGEX_TPL)) {
-				var exp = null;
 				var testFn = null;
 				var execFn = null;
 				var tplFn = null;
@@ -464,7 +463,7 @@ var Lang = A.Lang,
 		}
 
 		if (tpl && data) {
-			tpl.render(instance, data);
+			tpl.render(data, instance);
 		}
 
 		return instance;
