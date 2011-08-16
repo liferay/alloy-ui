@@ -158,16 +158,14 @@ var Lang = A.Lang,
 			return instance._parentTpl.compiled.call(instance, values, {}, 1, 1, 1);
 		},
 
-		render: function(node, values) {
+		render: function(values, node) {
 			var instance = this;
 
-			node = A.one(node);
+			var rendered = A.Node.create(instance.parse(values));
 
-			var rendered = null;
+			node = node && A.one(node);
 
 			if (node) {
-				rendered = A.Node.create(instance.parse(values));
-
 				node.setContent(rendered);
 			}
 
