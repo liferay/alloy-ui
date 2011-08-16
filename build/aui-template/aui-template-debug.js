@@ -7,11 +7,13 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isObject = Lang.isObject,
 	isValue = Lang.isValue,
+	isUndefined = Lang.isUndefined,
 
 	REGEX_TPL = /<tpl\b[^>]*?((for|if|exec)="([^"]+)")*?>((?:(?=([^<]+))\5|<(?!tpl\b[^>]*>))*?)<\/tpl>/,
 	REGEX_NEWLINE = /\r\n|\n/g,
 	REGEX_QUOTE = /'/g,
 	REGEX_QUOTE_ESCAPED = /\\'/g,
+	REGEX_PREFIX_GLOBAL_REPLACE = /^(?!\$)/,
 
 	REGEX_TPL_VAR = /\{([\w-.#$]+)(?:\:([\w.]*)(?:\((.*?)?\))?)?(\s?[+\-*\/]\s?[\d.+\-*\/()]+)?\}/g,
 	REGEX_TPL_SCRIPTLET = /\{\[((?:\\\]|.|\n)*?)\]\}/g,
@@ -28,6 +30,7 @@ var Lang = A.Lang,
 	STR_BRACE_CLOSE = '}',
 	STR_PAREN_OPEN = '(',
 	STR_PAREN_CLOSE = ')',
+	STR_GLOBAL_SYMBOL = '$',
 
 	STR_JOIN_OPEN = STR_QUOTE + STR_COMMA,
 	STR_JOIN_CLOSE = STR_COMMA + STR_QUOTE,
@@ -35,7 +38,7 @@ var Lang = A.Lang,
 	STR_JOIN_GROUP_OPEN = STR_JOIN_OPEN + STR_PAREN_OPEN,
 	STR_JOIN_GROUP_CLOSE = STR_PAREN_CLOSE + STR_JOIN_CLOSE,
 
-	STR_COMPILE_TPL_ARGS = 'values, parent, $index, $i, $count, $last',
+	STR_COMPILE_TPL_ARGS = 'values, parent, $index, $i, $count, $last, $ns, $ans, $yns',
 
 	BUFFER_HTML = ['<tpl>', null, '</tpl>'],
 
@@ -50,6 +53,8 @@ var Lang = A.Lang,
 		null,
 		STR_QUOTE + '].join("");};'
 	],
+
+	BUFFER_GLOBAL_PROP = ['MAP_GLOBALS["', null, '"]'],
 
 	BUFFER_VALUES_LOOKUP = [
 		'values["',
@@ -71,6 +76,9 @@ var Lang = A.Lang,
 	STR_SPECIAL_INDEX = '$index',
 	STR_SPECIAL_COUNT = '$count',
 	STR_SPECIAL_LAST = '$last',
+	STR_SPECIAL_ANS = '$ans',
+	STR_SPECIAL_NS = '$ns',
+	STR_SPECIAL_YNS = '$yns',
 	STR_RETURN = 'return ',
 	STR_WITHVALUES = 'with(values){ ',
 	STR_WITHCLOSE = '; }',
@@ -109,10 +117,18 @@ var Lang = A.Lang,
 		'$index': STR_SPECIAL_INDEX,
 		'$i': STR_SPECIAL_I,
 		'$count': STR_SPECIAL_COUNT,
-		'$last': STR_SPECIAL_LAST
+		'$last': STR_SPECIAL_LAST,
+		'$ans': STR_SPECIAL_ANS,
+		'$ns': STR_SPECIAL_NS,
+		'$yns': STR_SPECIAL_YNS
 	},
 
-	SRC_CREATE = {};
+	MAP_GLOBALS = {},
+
+	SRC_CREATE = {},
+
+	AUI_NS = A.getClassName(STR_BLANK),
+	YUI_NS = A.ClassNameManager.getClassName(STR_BLANK);
 
 	var Template = function(html, src) {
 		var instance = this;
@@ -188,6 +204,10 @@ var Lang = A.Lang,
 
 			var body = BUFFER_COMPILED_TPL_FN.join(STR_BLANK);
 
+			var $yns = instance.$yns;
+			var $ans = instance.$ans;
+			var $ns = instance.$ns;
+
 			eval(body);
 
 			tpl.compiled = function(values, parent, $index, $i, $count, $last) {
@@ -197,7 +217,7 @@ var Lang = A.Lang,
 
 				var testFn = tpl.testFn;
 
-				if (!testFn || testFn.call(instance, values, parent, $index, $i, $count, $last)) {
+				if (!testFn || testFn.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns)) {
 					var subValues = values;
 
 					var tplFn = tpl.tplFn;
@@ -217,7 +237,7 @@ var Lang = A.Lang,
 							var last = (index == length);
 							var subValue = subValues[i];
 
-							buffer[buffer.length] = compiledTplFn.call(instance, subValue, parent, index, i, length, last);
+							buffer[buffer.length] = compiledTplFn.call(instance, subValue, parent, index, i, length, last, $ns, $ans, $yns);
 
 							if (execFn) {
 								execFn.call(instance, subValues[i]);
@@ -227,7 +247,7 @@ var Lang = A.Lang,
 						subTpl = buffer.join(STR_BLANK);
 					}
 					else {
-						subTpl = compiledTplFn.call(instance, subValues, parent, $index, $i, $count, $last);
+						subTpl = compiledTplFn.call(instance, subValues, parent, $index, $i, $count, $last, $ns, $ans, $yns);
 					}
 				}
 
@@ -241,13 +261,13 @@ var Lang = A.Lang,
 			return STR_JOIN_GROUP_OPEN + code.replace(REGEX_QUOTE_ESCAPED, STR_QUOTE) + STR_JOIN_GROUP_CLOSE;
 		},
 
-		_compileSubTpl: function(id, values, parent, $index, $i, $count, $last) {
+		_compileSubTpl: function(id, values, parent, $index, $i, $count, $last, $ns, $ans, $yns) {
 			var instance = this;
 
 			var length;
 			var tpl = instance.tpls[id];
 
-			return tpl.compiled.call(instance, values, parent, $index, $i, $count, $last);
+			return tpl.compiled.call(instance, values, parent, $index, $i, $count, $last, $ns, $ans, $yns);
 		},
 
 		_compileTpl: function(match, name, methodName, args, math, offset, str) {
@@ -267,6 +287,12 @@ var Lang = A.Lang,
 					}
 					else if (name.indexOf(STR_DOT) > -1) {
 						value = TOKEN_VALUES_PROP + name;
+					}
+					else if (name.indexOf(STR_GLOBAL_SYMBOL) === 0 && (name in MAP_GLOBALS)) {
+						BUFFER_GLOBAL_PROP[1] = name;
+
+						value = BUFFER_GLOBAL_PROP.join(STR_BLANK);
+
 					}
 					else {
 						BUFFER_VALUES_LOOKUP[1] = name;
@@ -335,7 +361,6 @@ var Lang = A.Lang,
 			html = BUFFER_HTML.join(STR_BLANK);
 
 			while (match = html.match(REGEX_TPL)) {
-				var exp = null;
 				var testFn = null;
 				var execFn = null;
 				var tplFn = null;
@@ -361,6 +386,9 @@ var Lang = A.Lang,
 								STR_SPECIAL_I,
 								STR_SPECIAL_COUNT,
 								STR_SPECIAL_LAST,
+								STR_SPECIAL_NS,
+								STR_SPECIAL_ANS,
+								STR_SPECIAL_YNS,
 								STR_WITHVALUES + STR_RETURN + expressionValue + STR_WITHCLOSE
 							);
 						}
@@ -372,6 +400,9 @@ var Lang = A.Lang,
 								STR_SPECIAL_I,
 								STR_SPECIAL_COUNT,
 								STR_SPECIAL_LAST,
+								STR_SPECIAL_NS,
+								STR_SPECIAL_ANS,
+								STR_SPECIAL_YNS,
 								STR_WITHVALUES + expressionValue + STR_WITHCLOSE
 							);
 						}
@@ -448,8 +479,42 @@ var Lang = A.Lang,
 			}
 
 			return tpl;
-		}
+		},
+
+		$ans: AUI_NS,
+		$yns: YUI_NS
 	};
+
+	var TEMPLATE_PROTO = Template.prototype;
+
+	TEMPLATE_PROTO.$ns = AUI_NS;
+
+	var globalVar = function(key, value) {
+		var retVal = null;
+
+		if (isUndefined(value) && key) {
+			retVal = MAP_GLOBALS[key];
+		}
+		else {
+			if (key) {
+				key = String(key).replace(REGEX_PREFIX_GLOBAL_REPLACE, STR_GLOBAL_SYMBOL);
+
+				if (value !== null) {
+					MAP_GLOBALS[key] = value;
+					retVal = value;
+				}
+				else {
+					delete MAP_GLOBALS[key];
+				}
+			}
+		}
+
+		return retVal;
+	};
+
+	Template.globalVar = TEMPLATE_PROTO.globalVar = globalVar;
+
+	Template._GLOBALS = MAP_GLOBALS;
 
 	var NODE_PROTO = A.Node.prototype;
 
