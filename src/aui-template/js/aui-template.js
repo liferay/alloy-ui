@@ -127,7 +127,10 @@ var Lang = A.Lang,
 	SRC_CREATE = {},
 
 	AUI_NS = A.getClassName(STR_BLANK),
-	YUI_NS = A.ClassNameManager.getClassName(STR_BLANK);
+	YUI_NS = A.ClassNameManager.getClassName(STR_BLANK),
+
+	_INSTANCES = {},
+	_SNIPPETS = {};
 
 	var Template = function(html, src) {
 		var instance = this;
@@ -444,11 +447,14 @@ var Lang = A.Lang,
 			var tpl = args[0];
 
 			if (isArray(tpl)) {
-				tpl = tpl.join(STR_BLANK);
-
-				if (isObject(args[1])) {
+				if (isObject(tpl[tpl.length - 1])) {
+					config = tpl.pop();
+				}
+				else if (isObject(args[1])) {
 					config = args[1];
 				}
+
+				tpl = tpl.join(STR_BLANK);
 			}
 			else if (args.length > 1) {
 				var buffer = [];
@@ -542,25 +548,73 @@ var Lang = A.Lang,
 		]
 	);
 
-	Template.from = function(node) {
-		node = A.one(node);
+	A.mix(
+		Template,
+		{
+			from: function(node) {
+				node = A.one(node);
 
-		var content = STR_BLANK;
+				var content = STR_BLANK;
 
-		if (node) {
-			node = node.getDOM();
+				if (node) {
+					node = node.getDOM();
 
-			var nodeName = String(node && node.nodeName).toLowerCase();
+					var nodeName = String(node && node.nodeName).toLowerCase();
 
-			if (nodeName != 'script') {
-				content = node.value || node.innerHTML;
-			}
-			else {
-				content = node.text || node.textContent || node.innerHTML;
-			}
+					if (nodeName != 'script') {
+						content = node.value || node.innerHTML;
+					}
+					else {
+						content = node.text || node.textContent || node.innerHTML;
+					}
+				}
+
+				return new Template(content);
+			},
+
+			get: function(key) {
+				var snippet;
+				var template = _INSTANCES[key];
+
+				if (!template && (snippet = _SNIPPETS[key])) {
+					template = new Template(snippet);
+
+					_INSTANCES[key] = template;
+				}
+
+				return template;
+			},
+
+			parse: function(key, data) {
+				var template = Template.get(key);
+
+				return template && template.parse(data);
+			},
+
+			register: function(key, value) {
+				var instance = this;
+
+				var tpl = value;
+
+				if (A.instanceOf(value, Template) && !(key in _INSTANCES)) {
+					_INSTANCES[key] = value;
+				}
+				else if (!(key in _SNIPPETS)) {
+					_SNIPPETS[key] = value;
+				}
+
+				return value;
+			},
+
+			render: function(key, data, node) {
+				var template = Template.get(key);
+
+				return template && template.render(data, node);
+			},
+
+			_SNIPPETS: _SNIPPETS,
+			_INSTANCES: _INSTANCES
 		}
-
-		return new Template(content);
-	};
+	);
 
 	A.Template = Template;
