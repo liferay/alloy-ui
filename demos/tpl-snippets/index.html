@@ -17,7 +17,12 @@
 
 		.aui-label-simple-class {
 			font-weight: bold;
-			display: block;	
+			display: block;
+		}
+
+		.aui-label-simple-class-checkbox {
+			font-weight: bold;
+			padding-left: 3px;
 		}
 	</style>
 </head>
@@ -38,6 +43,9 @@
 	<h2>A.Template.get('textarea')</h2>
 	<div id="textarea1"></div><br/>
 	<div id="textarea2"></div>
+
+	<h2>A.Template.get('checkbox')</h2>
+	<div id="checkbox1"></div><br/>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -100,6 +108,15 @@ AUI().use('aui-tpl-snippets', function(A) {
 	}, '#textarea1');
 
 	textarea.render({ placeholder: 'Type your email address' }, '#textarea2');
+
+	var checkbox = A.Template.get('checkbox');
+
+	checkbox.render({
+		auiLabelCssClass: 'label-simple-class-checkbox',
+		name: 'checkboxName',
+		label: 'Checkbox label',
+		id: 'checkboxId'
+	}, '#checkbox1');
 
 });
 
