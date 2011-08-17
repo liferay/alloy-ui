@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="AlloyComponent" default="local">
+	<property file="build.aui-ace-editor-mode-javascript.properties" />
+
+	<import file="../../resources/builder/bootstrap.xml" />
+
+	<target name="all" depends="AlloyBootstrap.all">
+		<echo>Removing worker functionality from JavaScript Mode</echo>
+
+		<replace file="${project.dir}../../../build/aui-ace-editor/aui-ace-editor-mode-javascript.js">
+			<replacetoken><![CDATA[createWorker=function(a){var b=a.getDocument(),c=new j(["ace","pilot"],"worker-javascript.js","ace/mode/javascript_worker","JavaScriptWorker");c.call("setValue",[b.getValue()]),b.on("change",function(a){a.range={start:a.data.range.start,end:a.data.range.end},c.emit("change",a)}),c.on("jslint",function(b){var c=[];for(var d=0;d<b.data.length;d++){var e=b.data[d];e&&c.push({row:e.line-1,column:e.character-1,text:e.reason,type:"warning",lint:e})}a.setAnnotations(c)}),c.on("narcissus",function(b){a.setAnnotations([b.data])}),c.on("terminate",function(){a.clearAnnotations()});return c}]]></replacetoken>
+			  <replacevalue><![CDATA[createWorker=function(){return null}]]></replacevalue>
+		</replace>
+
+	</target>
+</project>
