@@ -130,8 +130,7 @@ var Lang = A.Lang,
 	AUI_NS = A.getClassName(STR_BLANK),
 	YUI_NS = A.ClassNameManager.getClassName(STR_BLANK),
 
-	_INSTANCES = {},
-	_SNIPPETS = {};
+	_INSTANCES = {};
 
 	var Template = function(html, src) {
 		var instance = this;
@@ -574,11 +573,10 @@ var Lang = A.Lang,
 			},
 
 			get: function(key) {
-				var snippet;
 				var template = _INSTANCES[key];
 
-				if (!template && (snippet = _SNIPPETS[key])) {
-					template = new Template(snippet);
+				if (template && !A.instanceOf(template, Template)) {
+					template = new Template(template);
 
 					_INSTANCES[key] = template;
 				}
@@ -597,11 +595,10 @@ var Lang = A.Lang,
 
 				var tpl = value;
 
-				if (A.instanceOf(value, Template) && !(key in _INSTANCES)) {
+				if (!(key in _INSTANCES) &&
+					(Lang.isArray(value) || A.instanceOf(value, Template))) {
+
 					_INSTANCES[key] = value;
-				}
-				else if (!(key in _SNIPPETS)) {
-					_SNIPPETS[key] = value;
 				}
 
 				return value;
@@ -613,7 +610,6 @@ var Lang = A.Lang,
 				return template && template.render(data, node);
 			},
 
-			_SNIPPETS: _SNIPPETS,
 			_INSTANCES: _INSTANCES
 		}
 	);
