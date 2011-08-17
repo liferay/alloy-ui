@@ -1203,7 +1203,7 @@ var AutoComplete = A.Component.create(
 					target = target.get('parentNode');
 
 					if (target) {
-						tagName.get('nodeName').toLowerCase();
+						tagName = target.get('nodeName').toLowerCase();
 					}
 				}
 			},
