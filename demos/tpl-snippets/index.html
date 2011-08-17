@@ -14,6 +14,11 @@
 		#wrapper {
 			padding: 10px;
 		}
+
+		.aui-label-simple-class {
+			font-weight: bold;
+			display: block;	
+		}
 	</style>
 </head>
 
@@ -25,6 +30,14 @@
 	<h2>A.Template.get('select')</h2>
 	<div id="select1"></div>
 	<div id="select2"></div>
+
+	<h2>A.Template.get('input')</h2>
+	<div id="input1"></div><br/>
+	<div id="input2"></div>
+
+	<h2>A.Template.get('textarea')</h2>
+	<div id="textarea1"></div><br/>
+	<div id="textarea2"></div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -56,6 +69,37 @@ AUI().use('aui-tpl-snippets', function(A) {
                { value: 'VALUE2', label: 'LABEL2' }
            ]
     }, '#select2');
+
+	var input = A.Template.get('input');
+
+	input.render({
+		auiCssClass: 'simple-class',
+		auiLabelCssClass: 'label-simple-class',
+		autocomplete: 'off',
+		id: 'inputNameId',
+		label: 'Enter your name:',
+		labelId: 'textareaLabelId',
+		labelName: 'textareaLabelName',
+		name: 'name',
+		type: 'text'
+	}, '#input1');
+
+	input.render({ type: 'text', placeholder: 'Type your email address' }, '#input2');
+
+	var textarea = A.Template.get('textarea');
+
+	textarea.render({
+		auiCssClass: 'simple-class',
+		auiLabelCssClass: 'label-simple-class',
+		autocomplete: 'off',
+		id: 'textareaNameId',
+		label: 'Enter your name:',
+		labelId: 'textareaLabelId',
+		labelName: 'textareaLabelName',
+		name: 'name'
+	}, '#textarea1');
+
+	textarea.render({ placeholder: 'Type your email address' }, '#textarea2');
 
 });
 
