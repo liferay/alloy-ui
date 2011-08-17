@@ -18,20 +18,22 @@
 }
 
 .aui-diagram-builder-base-canvas {
-	position: relative;
 	background-image: url(checker-bg.png);
-	outline: 0;
-
 	border-left: 1px solid #CCCCCC;
-    border-right: 1px solid #BBBBBB;
-
+	outline: 0;
+	z-index: 100;
     border-bottom: 1px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
     border-top: 1px solid #CCCCCC;
+    overflow: hidden;
 }
 
 .aui-diagram-builder-base-field-icon {
     width: 30px;
     height: 30px;
+}
+
+.aui-diagram-builder-base-drop-container {
 }
 
 .aui-diagram-node-task-icon {

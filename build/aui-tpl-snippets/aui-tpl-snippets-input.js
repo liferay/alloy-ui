@@ -1,0 +1,12 @@
+AUI.add('aui-tpl-snippets-input', function(A) {
+A.Template.register(
+	'input',
+	[
+		'<tpl if="values.label !== undefined">',
+			'<label class="{[A.TplSnippets.getClassName(values.auiLabelCssClass, values.labelCssClass)]}" for="{id}" id="{labelId}" name="{labelName}">{label}</label>',
+		'</tpl>',
+		'<input autocomplete="{autocomplete}" class="{[A.TplSnippets.getClassName(values.auiCssClass, values.cssClass)]}" id="{id}" name="{name}" placeholder="{placeholder}" type="{type}" value="{value}" />'
+	]
+);
+
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});

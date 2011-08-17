@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+		}
+
+		.aui-label-simple-class {
+			font-weight: bold;
+			display: block;	
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - TplSnippets Demo</h1>
+
+	<h2>A.Template.get('select')</h2>
+	<div id="select1"></div>
+	<div id="select2"></div>
+
+	<h2>A.Template.get('input')</h2>
+	<div id="input1"></div><br/>
+	<div id="input2"></div>
+
+	<h2>A.Template.get('textarea')</h2>
+	<div id="textarea1"></div><br/>
+	<div id="textarea2"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().use('aui-tpl-snippets', function(A) {
+
+	var select = A.Template.get('select');
+
+	select.render({
+          id: 'selectId1',
+          cssClass: [ 'test', 'abc' ],
+          auiCssClass: [ 'test', 'abc' ],
+          name: 'select1',
+          options: [
+               { value: 'VALUE', label: 'LABEL' },
+               { value: 'VALUE1', label: 'LABEL1' },
+               { value: 'VALUE2', label: 'LABEL2' }
+           ]
+    }, '#select1');
+
+    select.render({
+          id: 'selectId2',
+          cssClass: [ 'test', 'abc' ],
+          auiCssClass: [ 'test', 'abc' ],
+          name: 'select2',
+          options: [
+               { value: 'VALUE', label: 'LABEL' },
+               { value: 'VALUE1', label: 'LABEL1' },
+               { value: 'VALUE2', label: 'LABEL2' }
+           ]
+    }, '#select2');
+
+	var input = A.Template.get('input');
+
+	input.render({
+		auiCssClass: 'simple-class',
+		auiLabelCssClass: 'label-simple-class',
+		autocomplete: 'off',
+		id: 'inputNameId',
+		label: 'Enter your name:',
+		labelId: 'textareaLabelId',
+		labelName: 'textareaLabelName',
+		name: 'name',
+		type: 'text'
+	}, '#input1');
+
+	input.render({ type: 'text', placeholder: 'Type your email address' }, '#input2');
+
+	var textarea = A.Template.get('textarea');
+
+	textarea.render({
+		auiCssClass: 'simple-class',
+		auiLabelCssClass: 'label-simple-class',
+		autocomplete: 'off',
+		id: 'textareaNameId',
+		label: 'Enter your name:',
+		labelId: 'textareaLabelId',
+		labelName: 'textareaLabelName',
+		name: 'name'
+	}, '#textarea1');
+
+	textarea.render({ placeholder: 'Type your email address' }, '#textarea2');
+
+});
+
+</script>
+
+</body>
+</html>
