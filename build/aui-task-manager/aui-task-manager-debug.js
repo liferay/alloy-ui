@@ -82,7 +82,9 @@ var TaskManager = {
 
 		var task = tasks[id];
 
-		instance._taskLength -= 1;
+		if (instance._taskLength) {
+			instance._taskLength -= 1;
+		}
 
 		instance._lazyDestroy();
 
