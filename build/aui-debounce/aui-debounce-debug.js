@@ -3,6 +3,7 @@ var Lang = A.Lang;
 
 var AArray = A.Array;
 var isArray = Lang.isArray;
+var isString = Lang.isString;
 var isUndefined = Lang.isUndefined;
 
 var DEFAULT_ARGS = [];
@@ -14,6 +15,10 @@ var toArray = function(arr, fallback, index, arrayLike) {
 A.debounce = function(fn, delay, context, args) {
 	var id;
 	var tempArgs;
+
+	if (isString(fn) && context) {
+		fn = A.bind(fn, context);
+	}
 
 	delay = delay || 0;
 
@@ -61,6 +66,12 @@ A.debounce = function(fn, delay, context, args) {
 		}
 	};
 
+	var setDelay = function(delay) {
+		cancelFn();
+
+		delay = delay || 0;
+	};
+
 	var wrapped = function() {
 		var currentArgs = arguments.length ? arguments : args;
 
@@ -69,6 +80,7 @@ A.debounce = function(fn, delay, context, args) {
 
 	wrapped.cancel = cancelFn;
 	wrapped.delay = delayFn;
+	wrapped.setDelay = setDelay;
 
 	return wrapped;
 };
