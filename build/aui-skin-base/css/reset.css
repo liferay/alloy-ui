@@ -1,21 +1,15 @@
 /* ---------- Browser normalization ---------- */
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote{
 	margin: 0;
 	padding: 0;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	clear: both;
 }
 
 fieldset, img {
 	border-width: 0;
 }
 
-address, caption, cite, code, dfn, th, var {
+address, caption, cite, code, dfn, var {
 	font-style: normal;
 	font-weight: normal;
 }
