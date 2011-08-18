@@ -1,5 +1,6 @@
 var Lang = A.Lang,
 	now = Lang.now,
+	isEmpty = A.Object.isEmpty,
 
 	AArray = A.Array;
 
@@ -59,8 +60,6 @@ var TaskManager = {
 
 		instance._TASKS[id] = instance._create(repeats, instance._getNearestInterval(ms), A.rbind.apply(A, args));
 
-		instance._taskLength += 1;
-
 		instance._lazyInit();
 
 		return id;
@@ -80,10 +79,6 @@ var TaskManager = {
 		var tasks = instance._TASKS;
 
 		var task = tasks[id];
-
-		if (instance._taskLength) {
-			instance._taskLength -= 1;
-		}
 
 		instance._lazyDestroy();
 
@@ -130,7 +125,7 @@ var TaskManager = {
 	_lazyDestroy: function() {
 		var instance = TaskManager;
 
-		if (instance._initialized && !instance._taskLength) {
+		if (instance._initialized && isEmpty(instance._TASKS)) {
 			clearTimeout(instance._globalIntervalId);
 
 			instance._initialized = false;
@@ -140,7 +135,7 @@ var TaskManager = {
 	_lazyInit: function() {
 		var instance = TaskManager;
 
-		if (!instance._initialized && instance._taskLength) {
+		if (!instance._initialized && !isEmpty(instance._TASKS)) {
 			instance._lastRunTime = now();
 
 			instance._globalIntervalId = setTimeout(instance._runner, instance._INTERVAL);
@@ -202,8 +197,7 @@ var TaskManager = {
 
 	_lastRunTime: 0,
 	_globalIntervalId: 0,
-	_initialized: false,
-	_taskLength: 0
+	_initialized: false
 };
 
 A.clearInterval = TaskManager.clearInterval;
