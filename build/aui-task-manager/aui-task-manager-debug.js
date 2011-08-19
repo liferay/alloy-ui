@@ -101,7 +101,7 @@ var TaskManager = {
 	_decrementNextRunTime: function(task) {
 		var instance = TaskManager;
 
-		return task.next -= now() - task.lastRunTime;
+		return task.next = task.timeout - (now() - task.lastRunTime);
 	},
 
 	_getNearestInterval: function(num) {
@@ -151,11 +151,13 @@ var TaskManager = {
 		var interval = instance._INTERVAL;
 		var tasks = instance._TASKS;
 
+		var halfInterval = interval / 2;
+
 		for (var start = now(); i < length && now() - start < 50; i++) {
 			var taskId = pendingTasks[i];
 			var task = tasks[taskId];
 
-			if (task && instance._decrementNextRunTime(task) < interval / 2) {
+			if (task && instance._decrementNextRunTime(task) < halfInterval) {
 				instance.run(task);
 
 				if (instance.isRepeatable(task)) {
