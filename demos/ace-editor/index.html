@@ -40,14 +40,9 @@ AUI().use('aui-ace-editor-base', 'aui-ace-editor-mode-javascript', 'aui-ace-edit
 
 	// editor.getEditor().setTheme('ace/theme/cobalt');
 
-	var JavaScriptMode = require("ace/mode/javascript").Mode;
-	editor.getSession().setMode(new JavaScriptMode());
-
-	// var JSONMode = require("ace/mode/json").Mode;
-	// editor.getSession().setMode(new JSONMode());
-
-	// var XMLMode = require("ace/mode/xml").Mode;
-	// editor.getSession().setMode(new XMLMode());
+	editor.set('mode', 'javascript');
+	// editor.set('mode', 'json');
+	// editor.set('mode', 'xml');
 
 	// editor.set('value', 'Change the original content');
 });

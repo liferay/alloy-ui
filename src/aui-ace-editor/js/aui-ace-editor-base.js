@@ -27,6 +27,13 @@ var AceEditor = A.Component.create(
 				value: true
 			},
 
+			mode: {
+				lazyAdd: false,
+				getter: '_getMode',
+				setter: '_setMode',
+				value: EMPTY_STR
+			},
+
 			readOnly: {
 				lazyAdd: false,
 				getter: '_getReadOnly',
@@ -121,6 +128,12 @@ var AceEditor = A.Component.create(
 				return instance.getEditor().getHighlightActiveLine();
 			},
 
+			_getMode: function() {
+				var instance = this;
+
+				return instance.getSession().getMode();
+			},
+
 			_getReadOnly: function() {
 				var instance = this;
 
@@ -161,6 +174,21 @@ var AceEditor = A.Component.create(
 				var instance = this;
 
 				instance.getEditor().setHighlightActiveLine(value);
+			},
+
+			_setMode: function(value) {
+				var instance = this;
+
+				if (value) {
+					var Mode = require('ace/mode/' + value).Mode;
+
+					if (Mode !== undefined) {
+						instance.getSession().setMode(new Mode());
+					}
+					else {
+						throw new Error('The mode \'' + value + '\' is not available.');
+					}
+				}
 			},
 
 			_setReadOnly: function(value) {
