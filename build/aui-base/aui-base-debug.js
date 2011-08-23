@@ -12,16 +12,16 @@
             alloy: {
 				combine: false,
                 modules: {
-						'aui-ace-editor': {submodules: {'aui-ace-editor-theme-textmate': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-groovy': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-twilight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-vim': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-clojure': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore_soft': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scala': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-csharp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-pastel_on_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-cockpit-uncompressed': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-crimson_editor': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-cobalt': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-eclipse': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds_midnight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scss': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-cockpit': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-c_cpp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-kr_theme': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scad': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-perl': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-textile': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-json': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_light': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-mono_industrial': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-svg': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-java': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-vibrant_ink': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-dawn': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-python': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-emacs': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-monokai': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ruby': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-html': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-idle_fingers': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ocaml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-php': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-xml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-base': {skinnable:false, requires:['aui-component', 'aui-node']} }, skinnable:false, use:['aui-ace-editor-base','aui-ace-editor-mode-xml','aui-ace-editor-mode-php','aui-ace-editor-theme-solarized_dark','aui-ace-editor-mode-ocaml','aui-ace-editor-theme-idle_fingers','aui-ace-editor-mode-html','aui-ace-editor-mode-coffee','aui-ace-editor-worker-css','aui-ace-editor-mode-ruby','aui-ace-editor-theme-monokai','aui-ace-editor-mode-javascript','aui-ace-editor-keybinding-emacs','aui-ace-editor-mode-python','aui-ace-editor-theme-dawn','aui-ace-editor-theme-vibrant_ink','aui-ace-editor-mode-java','aui-ace-editor-mode-svg','aui-ace-editor-theme-merbivore','aui-ace-editor-theme-mono_industrial','aui-ace-editor-theme-solarized_light','aui-ace-editor-mode-json','aui-ace-editor-mode-textile','aui-ace-editor-mode-perl','aui-ace-editor-mode-scad','aui-ace-editor-theme-kr_theme','aui-ace-editor-mode-c_cpp','aui-ace-editor-cockpit','aui-ace-editor-theme-clouds','aui-ace-editor-mode-scss','aui-ace-editor-worker-coffee','aui-ace-editor-theme-clouds_midnight','aui-ace-editor-theme-eclipse','aui-ace-editor-theme-cobalt','aui-ace-editor-theme-crimson_editor','aui-ace-editor-cockpit-uncompressed','aui-ace-editor-worker-javascript','aui-ace-editor-theme-pastel_on_dark','aui-ace-editor-mode-css','aui-ace-editor-mode-csharp','aui-ace-editor-mode-scala','aui-ace-editor-theme-merbivore_soft','aui-ace-editor-mode-clojure','aui-ace-editor-keybinding-vim','aui-ace-editor-theme-twilight','aui-ace-editor-mode-groovy','aui-ace-editor-theme-textmate']},
+						'aui-ace-editor': {submodules: {'aui-ace-editor-theme-textmate': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-groovy': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-twilight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-vim': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-clojure': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore_soft': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scala': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-csharp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-pastel_on_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-cockpit-uncompressed': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-crimson_editor': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-cobalt': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-eclipse': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds_midnight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scss': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-cockpit': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-c_cpp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-kr_theme': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scad': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-perl': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-textile': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-json': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_light': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-mono_industrial': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-svg': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-java': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-vibrant_ink': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-dawn': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-python': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-emacs': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-monokai': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ruby': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-html': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-idle_fingers': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ocaml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-php': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-xml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-base': {skinnable:false, requires:['aui-component', 'aui-node']} }, use:['aui-ace-editor-base','aui-ace-editor-mode-xml','aui-ace-editor-mode-php','aui-ace-editor-theme-solarized_dark','aui-ace-editor-mode-ocaml','aui-ace-editor-theme-idle_fingers','aui-ace-editor-mode-html','aui-ace-editor-mode-coffee','aui-ace-editor-worker-css','aui-ace-editor-mode-ruby','aui-ace-editor-theme-monokai','aui-ace-editor-mode-javascript','aui-ace-editor-keybinding-emacs','aui-ace-editor-mode-python','aui-ace-editor-theme-dawn','aui-ace-editor-theme-vibrant_ink','aui-ace-editor-mode-java','aui-ace-editor-mode-svg','aui-ace-editor-theme-merbivore','aui-ace-editor-theme-mono_industrial','aui-ace-editor-theme-solarized_light','aui-ace-editor-mode-json','aui-ace-editor-mode-textile','aui-ace-editor-mode-perl','aui-ace-editor-mode-scad','aui-ace-editor-theme-kr_theme','aui-ace-editor-mode-c_cpp','aui-ace-editor-cockpit','aui-ace-editor-theme-clouds','aui-ace-editor-mode-scss','aui-ace-editor-worker-coffee','aui-ace-editor-theme-clouds_midnight','aui-ace-editor-theme-eclipse','aui-ace-editor-theme-cobalt','aui-ace-editor-theme-crimson_editor','aui-ace-editor-cockpit-uncompressed','aui-ace-editor-worker-javascript','aui-ace-editor-theme-pastel_on_dark','aui-ace-editor-mode-css','aui-ace-editor-mode-csharp','aui-ace-editor-mode-scala','aui-ace-editor-theme-merbivore_soft','aui-ace-editor-mode-clojure','aui-ace-editor-keybinding-vim','aui-ace-editor-theme-twilight','aui-ace-editor-mode-groovy','aui-ace-editor-theme-textmate'], skinnable:false},
 						'aui-aria': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false},
+						'aui-base': {skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']},
 						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
 						'aui-calendar': {skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']},
 						'aui-carousel': {skinnable:true, requires:['aui-base','aui-template','anim']},
 						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
 						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
-						'aui-classnamemanager': {requires:['classnamemanager'], skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}},
+						'aui-classnamemanager': {skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}, requires:['classnamemanager']},
 						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {skinnable:true, requires:['aui-color-picker','plugin']}, 'aui-color-picker-base': {skinnable:true, requires:['aui-overlay-context','dd-drag','slider','substitute','aui-button-item','aui-color-util','aui-form-base','aui-panel']} }, use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true},
 						'aui-color-util': {skinnable:false},
 						'aui-component': {skinnable:false, requires:['widget','aui-classnamemanager']},
@@ -36,7 +36,7 @@
 						'aui-diagram-builder': {submodules: {'aui-diagram-builder-connector': {skinnable:true, requires:['aui-base','arraylist-add','arraylist-filter','json','graphics','dd']}, 'aui-diagram-builder-impl': {skinnable:true, requires:['aui-diagram-builder-base','overlay']}, 'aui-diagram-builder-base': {skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']} }, use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector'], skinnable:true},
 						'aui-dialog-iframe': {skinnable:true, requires:['aui-base','aui-loading-mask','aui-resize-iframe','plugin']},
 						'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
-						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
+						'aui-drawing': {submodules: {'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
 						'aui-editable': {skinnable:true, requires:['aui-base','aui-form-combobox']},
 						'aui-editor': {submodules: {'aui-editor-creole-plugin': {requires:['aui-base','editor-base','aui-editor-html-creole','aui-editor-creole-parser']}, 'aui-editor-creole-parser': {requires:['aui-base']}, 'aui-editor-bbcode-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-toolbar-plugin': {requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']}, 'aui-editor-menu-plugin': {requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']}, 'aui-editor-tools-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-base': {requires:['aui-base','editor-base','aui-editor-toolbar-plugin']} }, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin'], skinnable:true},
 						'aui-event': {submodules: {'aui-event-input': {requires:['aui-base']}, 'aui-event-base': {requires:['event']} }, use:['aui-event-base','aui-event-input'], skinnable:false},
@@ -63,9 +63,9 @@
 						'aui-scroller': {skinnable:true, requires:['aui-base','aui-simple-anim']},
 						'aui-selector': {skinnable:false, requires:['selector-css3']},
 						'aui-simple-anim': {skinnable:false, requires:['aui-base']},
-						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
-						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css'},
+						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
+						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
+						'aui-skin-classic': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base']},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
@@ -485,7 +485,9 @@ AUI.add('aui-base', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
+	isNumber = Lang.isNumber,
 	isString = Lang.isString,
+	isUndefined = Lang.isUndefined,
 
 	AArray = A.Array,
 	LString = A.namespace('Lang.String'),
@@ -587,8 +589,8 @@ A.mix(
 		},
 
 		defaultValue: function(str, defaultValue) {
-			if (Lang.isUndefined(str) || str == STR_BLANK) {
-				if (Lang.isUndefined(defaultValue)) {
+			if (isUndefined(str) || str == STR_BLANK) {
+				if (isUndefined(defaultValue)) {
 					defaultValue = STR_BLANK;
 				}
 
@@ -664,7 +666,7 @@ A.mix(
 		round: function(value, precision) {
 			value = Number(value);
 
-			if (Lang.isNumber(precision)) {
+			if (isNumber(precision)) {
 				precision = Math.pow(10, precision);
 				value = Math.round(value * precision) / precision;
 			}
@@ -746,7 +748,7 @@ A.mix(
 		},
 
 		undef: function(str) {
-			if (Lang.isUndefined(str)) {
+			if (isUndefined(str)) {
 				str = STR_BLANK;
 			}
 
@@ -852,4 +854,52 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false});
+A.fn = function(fn, context, args) {
+	var wrappedFn;
+
+	// Explicitly set function arguments
+	if (!isNumber(fn)) {
+		var xargs = arguments;
+
+		if (xargs.length > 2) {
+			xargs = AArray(xargs, 2, true);
+		}
+
+		var dynamicLookup = (isString(fn) && context);
+
+		wrappedFn = function() {
+			fn = (!dynamicLookup) ? fn : context[fn];
+
+			return fn.apply(context || fn, xargs);
+		};
+	}
+	else {
+		// Set function arity
+		var argLength = fn;
+
+		fn = context;
+		context = args;
+
+		var dynamicLookup = (isString(fn) && context);
+
+		wrappedFn = function() {
+			fn = (!dynamicLookup) ? fn : context[fn];
+			context = context || fn;
+
+			var returnValue;
+
+			if (argLength > 0) {
+				returnValue = fn.apply(context, AArray(arguments, 0, true).slice(0, argLength));
+			}
+			else {
+				returnValue = fn.call(context);
+			}
+
+			return returnValue;
+		};
+	}
+
+	return wrappedFn;
+};
+
+}, '@VERSION@' ,{skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
