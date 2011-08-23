@@ -1,7 +1,9 @@
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isFunction = Lang.isFunction,
+	isNumber = Lang.isNumber,
 	isString = Lang.isString,
+	isUndefined = Lang.isUndefined,
 
 	AArray = A.Array,
 	LString = A.namespace('Lang.String'),
@@ -103,8 +105,8 @@ A.mix(
 		},
 
 		defaultValue: function(str, defaultValue) {
-			if (Lang.isUndefined(str) || str == STR_BLANK) {
-				if (Lang.isUndefined(defaultValue)) {
+			if (isUndefined(str) || str == STR_BLANK) {
+				if (isUndefined(defaultValue)) {
 					defaultValue = STR_BLANK;
 				}
 
@@ -180,7 +182,7 @@ A.mix(
 		round: function(value, precision) {
 			value = Number(value);
 
-			if (Lang.isNumber(precision)) {
+			if (isNumber(precision)) {
 				precision = Math.pow(10, precision);
 				value = Math.round(value * precision) / precision;
 			}
@@ -262,7 +264,7 @@ A.mix(
 		},
 
 		undef: function(str) {
-			if (Lang.isUndefined(str)) {
+			if (isUndefined(str)) {
 				str = STR_BLANK;
 			}
 
@@ -367,3 +369,51 @@ A.mix(
 		}
 	}
 );
+
+A.fn = function(fn, context, args) {
+	var wrappedFn;
+
+	// Explicitly set function arguments
+	if (!isNumber(fn)) {
+		var xargs = arguments;
+
+		if (xargs.length > 2) {
+			xargs = AArray(xargs, 2, true);
+		}
+
+		var dynamicLookup = (isString(fn) && context);
+
+		wrappedFn = function() {
+			fn = (!dynamicLookup) ? fn : context[fn];
+
+			return fn.apply(context || fn, xargs);
+		};
+	}
+	else {
+		// Set function arity
+		var argLength = fn;
+
+		fn = context;
+		context = args;
+
+		var dynamicLookup = (isString(fn) && context);
+
+		wrappedFn = function() {
+			fn = (!dynamicLookup) ? fn : context[fn];
+			context = context || fn;
+
+			var returnValue;
+
+			if (argLength > 0) {
+				returnValue = fn.apply(context, AArray(arguments, 0, true).slice(0, argLength));
+			}
+			else {
+				returnValue = fn.call(context);
+			}
+
+			return returnValue;
+		};
+	}
+
+	return wrappedFn;
+};
