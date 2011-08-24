@@ -13,4 +13,4 @@ A.Template.register(
 	]
 );
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
+}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
