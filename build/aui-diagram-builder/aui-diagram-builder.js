@@ -1032,6 +1032,22 @@ var DiagramBuilder = A.Component.create({
 			instance.tmpConnector = new A.Connector(instance.get(TMP_CONNECTOR));
 		},
 
+		clearFields: function() {
+		    var instance = this;
+			
+			var fields = [];
+
+			instance.get(FIELDS).each(function(field) {
+				fields.push(field);
+			});
+
+			AArray.each(fields, function(field) {
+				field.destroy();
+			});
+
+			fields = null;
+		},
+
 		closeEditProperties: function() {
 			var instance = this;
 			var editingNode = instance.editingNode;
@@ -1613,6 +1629,10 @@ var DiagramNode = A.Component.create({
 		destructor: function() {
 			var instance = this;
 
+			instance.get(FIELDS).each(function(anchor) {
+				anchor.destroy();
+			});
+
 			instance.get(BUILDER).removeField(instance);
 		},
 
@@ -1645,10 +1665,6 @@ var DiagramNode = A.Component.create({
 			var strings = instance.getStrings();
 
 			if (confirm(strings[DELETE_NODES_MESSAGE])) {
-				instance.get(FIELDS).each(function(anchor) {
-					anchor.destroy();
-				});
-
 				instance.destroy();
 			}
 
