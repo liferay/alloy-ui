@@ -522,11 +522,11 @@ var Lang = A.Lang,
 
 	var NODE_PROTO = A.Node.prototype;
 
-	NODE_PROTO.toTemplate = function() {
+	NODE_PROTO.toTpl = function() {
 		return Template.from(this);
 	};
 
-	NODE_PROTO.renderTemplate = function(tpl, data) {
+	NODE_PROTO.renderTpl = function(tpl, data) {
 		var instance = this;
 
 		if (isString(tpl) || isArray(tpl)) {
@@ -543,7 +543,7 @@ var Lang = A.Lang,
 	A.NodeList.importMethod(
 		NODE_PROTO,
 		[
-			'renderTemplate'
+			'renderTpl'
 		]
 	);
 
