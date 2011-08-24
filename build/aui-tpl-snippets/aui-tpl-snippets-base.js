@@ -3,15 +3,15 @@ var Lang = A.Lang,
 
 	AArray = A.Array,
 
-	_SPACE = ' ',
-	_EMPTY_STR = '';
+	STR_BLANK = '',
+	STR_SPACE = ' ';
 
 A.TplSnippets = {
 	getClassName: function(auiCssClass, cssClass) {
-		var prefix = _SPACE + A.getClassName(_EMPTY_STR);
+		var prefix = STR_SPACE + A.getClassName(STR_SPACE);
 
-		return  A.Array(cssClass).join(_SPACE) + (auiCssClass ? (prefix + A.Array(auiCssClass).join(prefix)) : _EMPTY_STR);
+		return  AArray(cssClass).join(STR_SPACE) + (auiCssClass ? (prefix + AArray(auiCssClass).join(prefix)) : STR_SPACE);
 	}
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-template']});
+}, '@VERSION@' ,{requires:['aui-template'], skinnable:false});
