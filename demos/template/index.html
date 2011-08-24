@@ -273,17 +273,17 @@
 					<h3 class="header">Javascript object</h3>
 					<h4>Script tag</h4>
 					<pre class="js">
-var scriptTPL = A.one('#scriptTPL').toTemplate();
+var scriptTPL = A.one('#scriptTPL').toTpl();
 scriptTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 
 					<h4>Hidden Div</h4>
 					<pre class="js">
-var divTPL = A.one('#divTPL').toTemplate();
+var divTPL = A.one('#divTPL').toTpl();
 divTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 
 					<h4>Hidden Textarea</h4>
 					<pre class="js">
-var textareaTPL = A.one('#textareaTPL').toTemplate();
+var textareaTPL = A.one('#textareaTPL').toTpl();
 textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 				</div>
 			</div>
@@ -432,12 +432,12 @@ textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
 					<h3 class="header">Getting a template from a node</h3>
 					<pre class="tpl">tpl = A.Template.from('#divContainingTplMarkup');</pre>
 					or
-					<pre class="tpl">tpl = A.one('#divContainingTplMarkup').toTemplate();</pre>
+					<pre class="tpl">tpl = A.one('#divContainingTplMarkup').toTpl();</pre>
 
 					<h3 class="header">Rendering a template to a node</h3>
 					<pre class="tpl">tpl.render({name: 'Nate', age: 31}, '#outputContainer');</pre>
 					or
-					<pre class="tpl">A.one('#outputContainer').renderTemplate(['This is my name: {name}'], {name: 'Nate', age: 31});</pre>
+					<pre class="tpl">A.one('#outputContainer').renderTpl(['This is my name: {name}'], {name: 'Nate', age: 31});</pre>
 
 					<h3 class="header">Parse a template to a string <i>without</i> rendering</h3>
 					<pre class="tpl">html = tpl.parse({name: 'Nate', age: 31});</pre>
