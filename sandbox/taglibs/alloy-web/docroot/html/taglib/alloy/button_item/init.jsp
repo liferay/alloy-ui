@@ -258,7 +258,7 @@ _updateOptions(_options, "onRender", onRender);
 _updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/button_item/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:button-item:";

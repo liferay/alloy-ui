@@ -97,7 +97,7 @@ _updateOptions(_options, "onLastSelectedChange", onLastSelectedChange);
 _updateOptions(_options, "onTypeChange", onTypeChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/tree_view/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:tree-view:";

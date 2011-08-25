@@ -42,7 +42,7 @@ _updateOptions(_options, "printBuffer", printBuffer);
 _updateOptions(_options, "use", use);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy_util/script/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy_util:script:";

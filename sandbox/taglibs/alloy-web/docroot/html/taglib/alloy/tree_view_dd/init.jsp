@@ -151,7 +151,7 @@ _updateOptions(_options, "onScrollDelayChange", onScrollDelayChange);
 _updateOptions(_options, "onTypeChange", onTypeChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/tree_view_dd/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:tree-view-dd:";

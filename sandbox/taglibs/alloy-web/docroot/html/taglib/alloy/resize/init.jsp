@@ -219,7 +219,7 @@ _updateOptions(_options, "onWrapTypesChange", onWrapTypesChange);
 _updateOptions(_options, "onWrapperChange", onWrapperChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/resize/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:resize:";

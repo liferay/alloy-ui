@@ -244,7 +244,7 @@ _updateOptions(_options, "onRender", onRender);
 _updateOptions(_options, "onWidthChange", onWidthChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/editable/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:editable:";
