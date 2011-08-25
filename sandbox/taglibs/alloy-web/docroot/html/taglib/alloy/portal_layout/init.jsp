@@ -61,7 +61,7 @@ _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/portal_layout/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:portal-layout:";

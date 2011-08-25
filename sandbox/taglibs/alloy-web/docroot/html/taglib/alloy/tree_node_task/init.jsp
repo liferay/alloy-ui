@@ -205,7 +205,7 @@ _updateOptions(_options, "onParentNodeChange", onParentNodeChange);
 _updateOptions(_options, "onPrevSiblingChange", onPrevSiblingChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/tree_node_task/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:tree-node-task:";

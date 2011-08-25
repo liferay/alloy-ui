@@ -199,7 +199,7 @@ _updateOptions(_options, "onUriChange", onUriChange);
 _updateOptions(_options, "onXdrChange", onXdrChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/io_request/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:io-request:";

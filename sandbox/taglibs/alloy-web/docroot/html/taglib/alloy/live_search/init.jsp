@@ -109,7 +109,7 @@ _updateOptions(_options, "onNodesChange", onNodesChange);
 _updateOptions(_options, "onShowChange", onShowChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/live_search/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:live-search:";

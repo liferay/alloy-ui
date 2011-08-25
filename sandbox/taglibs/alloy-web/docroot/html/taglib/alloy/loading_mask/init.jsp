@@ -85,7 +85,7 @@ _updateOptions(_options, "onStringsChange", onStringsChange);
 _updateOptions(_options, "onTargetChange", onTargetChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/loading_mask/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:loading-mask:";

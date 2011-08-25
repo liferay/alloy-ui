@@ -42,7 +42,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/a_io/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:a-io:";

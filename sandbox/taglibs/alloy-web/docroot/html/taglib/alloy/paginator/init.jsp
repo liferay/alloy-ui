@@ -217,7 +217,7 @@ _updateOptions(_options, "onTotalLabelChange", onTotalLabelChange);
 _updateOptions(_options, "onTotalPagesChange", onTotalPagesChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/paginator/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:paginator:";
