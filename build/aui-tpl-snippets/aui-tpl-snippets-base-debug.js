@@ -8,10 +8,10 @@ var Lang = A.Lang,
 
 A.TplSnippets = {
 	getClassName: function(auiCssClass, cssClass) {
-		var prefix = STR_SPACE + A.getClassName(STR_SPACE);
+		var prefix = STR_SPACE + A.getClassName(STR_BLANK);
 
-		return  AArray(cssClass).join(STR_SPACE) + (auiCssClass ? (prefix + AArray(auiCssClass).join(prefix)) : STR_SPACE);
+		return  AArray(cssClass).join(STR_SPACE) + (auiCssClass ? (prefix + AArray(auiCssClass).join(prefix)) : STR_BLANK);
 	}
 };
 
-}, '@VERSION@' ,{requires:['aui-template'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-template']});

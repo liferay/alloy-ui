@@ -8,13 +8,13 @@ var Lang = A.Lang,
 
 A.TplSnippets = {
 	getClassName: function(auiCssClass, cssClass) {
-		var prefix = STR_SPACE + A.getClassName(STR_SPACE);
+		var prefix = STR_SPACE + A.getClassName(STR_BLANK);
 
-		return  AArray(cssClass).join(STR_SPACE) + (auiCssClass ? (prefix + AArray(auiCssClass).join(prefix)) : STR_SPACE);
+		return  AArray(cssClass).join(STR_SPACE) + (auiCssClass ? (prefix + AArray(auiCssClass).join(prefix)) : STR_BLANK);
 	}
 };
 
-}, '@VERSION@' ,{requires:['aui-template'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-template']});
 AUI.add('aui-tpl-snippets-select', function(A) {
 A.Template.register(
 	'select',
@@ -30,7 +30,7 @@ A.Template.register(
 	]
 );
 
-}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
 AUI.add('aui-tpl-snippets-input', function(A) {
 A.Template.register(
 	'input',
@@ -42,7 +42,7 @@ A.Template.register(
 	]
 );
 
-}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
 AUI.add('aui-tpl-snippets-textarea', function(A) {
 A.Template.register(
 	'textarea',
@@ -54,7 +54,7 @@ A.Template.register(
 	]
 );
 
-}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
 AUI.add('aui-tpl-snippets-checkbox', function(A) {
 A.Template.register(
 	'checkbox',
@@ -66,8 +66,8 @@ A.Template.register(
 	]
 );
 
-}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
 
 
-AUI.add('aui-tpl-snippets', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-tpl-snippets-base','aui-tpl-snippets-select','aui-tpl-snippets-input','aui-tpl-snippets-textarea','aui-tpl-snippets-checkbox']});
+AUI.add('aui-tpl-snippets', function(A){}, '@VERSION@' ,{use:['aui-tpl-snippets-base','aui-tpl-snippets-select','aui-tpl-snippets-input','aui-tpl-snippets-textarea','aui-tpl-snippets-checkbox'], skinnable:false});
 
