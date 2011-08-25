@@ -38,11 +38,11 @@
 	/*padding-left: 260px;*/
 }
 
-.aui-diagram-builder-tabs-container .aui-tabview-list {
+.aui-diagram-builder-tabs .aui-tabview-list {
 	margin-bottom: 5px;
 }
 
-.aui-diagram-builder-tabs-container {
+.aui-diagram-builder-tabs {
 	position: absolute;
 	width: 260px;
 }
@@ -64,7 +64,7 @@
 	padding-left: 260px;
 }
 
-.aui-diagram-builder-tabs-container-content {
+.aui-diagram-builder-tabs-content {
 }
 
 .aui-diagram-node {
