@@ -25,7 +25,6 @@ var Lang = A.Lang,
 	AVAILABLE_FIELD = 'availableField',
 	AVAILABLE_FIELDS = 'availableFields',
 	AVAILABLE_FIELDS_DRAG_CONFIG = 'availableFieldsDragConfig',
-	BASE = 'base',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
@@ -39,7 +38,7 @@ var Lang = A.Lang,
 	CONTENT_NODE = 'contentNode',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DIAGRAM = 'diagram',
-	DIAGRAM_BUILDER_BASE = 'diagram-builder-base',
+	DIAGRAM_BUILDER = 'diagram-builder',
 	DISK = 'disk',
 	DRAGGABLE = 'draggable',
 	DROP = 'drop',
@@ -79,19 +78,19 @@ var Lang = A.Lang,
 	_UNDERLINE = '_',
 
 	CSS_COLUMN = AgetClassName(COLUMN),
-	CSS_DIAGRAM_BUILDER_BASE_CANVAS = AgetClassName(DIAGRAM, BUILDER, BASE, CANVAS),
-	CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, CONTENT, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, DROP, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_FIELD = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD),
-	CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, DRAGGABLE),
-	CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, ICON),
-	CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, BASE, FIELD, LABEL),
-	CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, FIELDS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, ADD),
-	CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, BASE, TAB, SETTINGS),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, BASE, TABS, CONTAINER, CONTENT),
-	CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, BASE, TOOLBAR, CONTAINER),
+	CSS_DIAGRAM_BUILDER_CANVAS = AgetClassName(DIAGRAM, BUILDER, CANVAS),
+	CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER = AgetClassName(DIAGRAM, BUILDER, CONTENT, CONTAINER),
+	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = AgetClassName(DIAGRAM, BUILDER, DROP, CONTAINER),
+	CSS_DIAGRAM_BUILDER_FIELD = AgetClassName(DIAGRAM, BUILDER, FIELD),
+	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
+	CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, FIELD, ICON),
+	CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, FIELD, LABEL),
+	CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
+	CSS_DIAGRAM_BUILDER_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, TAB, ADD),
+	CSS_DIAGRAM_BUILDER_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, TAB, SETTINGS),
+	CSS_DIAGRAM_BUILDER_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TABS, CONTAINER),
+	CSS_DIAGRAM_BUILDER_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, TABS, CONTAINER, CONTENT),
+	CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TOOLBAR, CONTAINER),
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
 	CSS_LAYOUT = AgetClassName(LAYOUT),
@@ -165,9 +164,9 @@ var AvailableField = A.Component.create({
 	},
 
 	prototype: {
-		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD + '">' +
-									'<span class="' + [ CSS_ICON, CSS_DIAGRAM_BUILDER_BASE_FIELD_ICON ].join(_SPACE) + ' {iconClass}"></span>' +
-									'<div class="' + CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL + '"></div>' +
+		FIELD_ITEM_TEMPLATE: '<li class="' + CSS_DIAGRAM_BUILDER_FIELD + '">' +
+									'<span class="' + [ CSS_ICON, CSS_DIAGRAM_BUILDER_FIELD_ICON ].join(_SPACE) + ' {iconClass}"></span>' +
+									'<div class="' + CSS_DIAGRAM_BUILDER_FIELD_LABEL + '"></div>' +
 								'</li>',
 
 		initializer: function() {
@@ -180,7 +179,7 @@ var AvailableField = A.Component.create({
 				labelChange: instance._afterLabelChange
 			});
 
-			instance.labelNode = node.one(_DOT+CSS_DIAGRAM_BUILDER_BASE_FIELD_LABEL);
+			instance.labelNode = node.one(_DOT+CSS_DIAGRAM_BUILDER_FIELD_LABEL);
 
 			instance._uiSetDraggable(
 				instance.get(DRAGGABLE)
@@ -226,7 +225,7 @@ var AvailableField = A.Component.create({
 		_uiSetDraggable: function(val) {
 			var instance = this;
 
-			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE, val);
+			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE, val);
 		},
 
 		_uiSetId: function(val) {
@@ -340,7 +339,7 @@ A.FieldSupport = FieldSupport;
 
 var DiagramBuilderBase = A.Component.create(
 	{
-		NAME: DIAGRAM_BUILDER_BASE,
+		NAME: DIAGRAM_BUILDER,
 
 		ATTRS: {
 			availableFields: {
@@ -422,11 +421,11 @@ var DiagramBuilderBase = A.Component.create(
 		},
 
 		HTML_PARSER: {
-			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER,
-			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER,
-			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER,
-			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER,
-			canvas: _DOT+CSS_DIAGRAM_BUILDER_BASE_CANVAS
+			contentContainer: _DOT+CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER,
+			dropContainer: _DOT+CSS_DIAGRAM_BUILDER_DROP_CONTAINER,
+			fieldsContainer: _DOT+CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER,
+			toolbarContainer: _DOT+CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER,
+			canvas: _DOT+CSS_DIAGRAM_BUILDER_CANVAS
 		},
 
 		UI_ATTRS: [AVAILABLE_FIELDS, FIELDS],
@@ -434,11 +433,11 @@ var DiagramBuilderBase = A.Component.create(
 		AUGMENTS: [A.FieldSupport],
 
 		prototype: {
-			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_CONTENT_CONTAINER + '"></div>',
-			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_DROP_CONTAINER + '"></div>',
-			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_BASE_TOOLBAR_CONTAINER + '"></div>',
-			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_BASE_FIELDS_CONTAINER, CSS_HELPER_CLEARFIX ].join(_SPACE) + '"></ul>',
-			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_BASE_CANVAS + '"></div>',
+			CONTENT_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_CONTENT_CONTAINER + '"></div>',
+			DROP_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_DROP_CONTAINER + '"></div>',
+			TOOLBAR_CONTAINER_TEMPLATE: '<div class="' + CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER + '"></div>',
+			FIELDS_CONTAINER_TEMPLATE: '<ul class="' + [CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER, CSS_HELPER_CLEARFIX ].join(_SPACE) + '"></ul>',
+			CANVAS_TEMPLATE: '<div tabindex="1" class="' + CSS_DIAGRAM_BUILDER_CANVAS + '"></div>',
 
 			fieldsNode: null,
 			propertyList: null,
@@ -676,7 +675,7 @@ var DiagramBuilderBase = A.Component.create(
 								}
 							]
 						},
-						nodes: _DOT+CSS_DIAGRAM_BUILDER_BASE_FIELD_DRAGGABLE
+						nodes: _DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
 					},
 					val || {}
 				);
@@ -707,11 +706,11 @@ var DiagramBuilderBase = A.Component.create(
 					after: {
 						activeTabChange: A.bind(instance._afterActiveTabChange, instance)
 					},
-					boundingBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER),
-					contentBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER_CONTENT),
+					boundingBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTAINER),
+					contentBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTAINER_CONTENT),
 					bubbleTargets: instance,
 					contentNode: boundingBox.one(_DOT+CSS_TABVIEW_CONTENT),
-					cssClass: CSS_DIAGRAM_BUILDER_BASE_TABS_CONTAINER,
+					cssClass: CSS_DIAGRAM_BUILDER_TABS_CONTAINER,
 					listNode: tabListNode,
 					render: instance.get(CONTENT_BOX)
 				};
@@ -720,8 +719,8 @@ var DiagramBuilderBase = A.Component.create(
 					var strings = instance.getStrings();
 
 					defaultValue.items = [
-						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_ADD, label: strings[ADD_NODE] },
-						{ cssClass: CSS_DIAGRAM_BUILDER_BASE_TAB_SETTINGS, label: strings[SETTINGS] }
+						{ cssClass: CSS_DIAGRAM_BUILDER_TAB_ADD, label: strings[ADD_NODE] },
+						{ cssClass: CSS_DIAGRAM_BUILDER_TAB_SETTINGS, label: strings[SETTINGS] }
 					];
 				}
 
