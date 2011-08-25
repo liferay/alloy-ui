@@ -1,8 +1,8 @@
-.aui-diagram-builder-base {
+.aui-diagram-builder {
 	margin: 0;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field {
+.aui-diagram-builder .aui-diagram-builder-field {
 	border-radius: 4px 4px 4px 4px;
 	float: left;
 	height: 63px;
@@ -12,70 +12,70 @@
 	width: 79px;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field-draggable {
+.aui-diagram-builder .aui-diagram-builder-field-draggable {
 	cursor: pointer;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field:hover {
+.aui-diagram-builder .aui-diagram-builder-field:hover {
 	background-color: #fff;
 }
 
-.aui-diagram-builder-base-field-icon {
+.aui-diagram-builder-field-icon {
 	display: inline-block;
 	margin: 3px;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field-icon-text {
+.aui-diagram-builder .aui-diagram-builder-field-icon-text {
 	background-position: -48px -80px;
 }
 
-.aui-diagram-builder-base .aui-property-list {
+.aui-diagram-builder .aui-property-list {
 	padding-bottom: 10px;
 }
 
-.aui-diagram-builder-base-content {
+.aui-diagram-builder-content {
 	background-color: #f1f1f1;
 	/*padding-left: 260px;*/
 }
 
-.aui-diagram-builder-base-tabs-container .aui-tabview-list {
+.aui-diagram-builder-tabs-container .aui-tabview-list {
 	margin-bottom: 5px;
 }
 
-.aui-diagram-builder-base-tabs-container {
+.aui-diagram-builder-tabs-container {
 	position: absolute;
 	width: 260px;
 }
 
-.aui-diagram-builder-base-canvas {
+.aui-diagram-builder-canvas {
 	position: relative;
 }
 
-.aui-diagram-builder-base-fields-container {
+.aui-diagram-builder-fields-container {
 	margin: 5px;
 }
 
-.aui-diagram-builder-base-content {
+.aui-diagram-builder-content {
 	min-height: 400px;
 }
 
 
-.aui-diagram-builder-base-content-container {
+.aui-diagram-builder-content-container {
 	padding-left: 260px;
 }
 
-.aui-diagram-builder-base-tabs-container-content {
+.aui-diagram-builder-tabs-container-content {
 }
 
 .aui-diagram-node {
 	position: absolute;
 }
 
-.aui-diagram-builder-base-drop-container {
+.aui-diagram-builder-drop-container {
 	position: relative;
 }
 
-.aui-diagram-builder-base-drop-container {
+.aui-diagram-builder-drop-container {
     height: 600px;
 }
 
