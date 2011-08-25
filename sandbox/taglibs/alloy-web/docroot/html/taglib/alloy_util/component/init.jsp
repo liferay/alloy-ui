@@ -52,7 +52,7 @@ _updateOptions(_options, "name", name);
 _updateOptions(_options, "options", options);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy_util/component/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy_util:component:";

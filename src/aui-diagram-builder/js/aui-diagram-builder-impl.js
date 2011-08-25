@@ -258,7 +258,7 @@ var DiagramBuilder = A.Component.create({
 				field.destroy();
 			});
 
-			fields = null;
+			fields = instance.editingConnector = instance.editingNode = instance.selectedNode = null;
 		},
 
 		closeEditProperties: function() {

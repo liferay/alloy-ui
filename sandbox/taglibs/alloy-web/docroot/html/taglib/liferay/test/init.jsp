@@ -46,7 +46,7 @@ _updateOptions(_options, "attrIntPrimitive", attrIntPrimitive);
 _updateOptions(_options, "attrInteger", attrInteger);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/liferay/test/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "liferay:test:";

@@ -79,7 +79,7 @@ _updateOptions(_options, "onInputChange", onInputChange);
 _updateOptions(_options, "onMaxLengthChange", onMaxLengthChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/char_counter/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:char-counter:";

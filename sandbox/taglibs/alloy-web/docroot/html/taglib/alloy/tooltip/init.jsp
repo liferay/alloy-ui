@@ -324,7 +324,7 @@ _updateOptions(_options, "onYChange", onYChange);
 _updateOptions(_options, "onZIndexChange", onZIndexChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/tooltip/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:tooltip:";
