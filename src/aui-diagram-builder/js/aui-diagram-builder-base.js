@@ -88,8 +88,8 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, TAB, ADD),
 	CSS_DIAGRAM_BUILDER_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, TAB, SETTINGS),
-	CSS_DIAGRAM_BUILDER_TABS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TABS, CONTAINER),
-	CSS_DIAGRAM_BUILDER_TABS_CONTAINER_CONTENT = AgetClassName(DIAGRAM, BUILDER, TABS, CONTAINER, CONTENT),
+	CSS_DIAGRAM_BUILDER_TABS = AgetClassName(DIAGRAM, BUILDER, TABS),
+	CSS_DIAGRAM_BUILDER_TABS_CONTENT = AgetClassName(DIAGRAM, BUILDER, TABS, CONTENT),
 	CSS_DIAGRAM_BUILDER_TOOLBAR_CONTAINER = AgetClassName(DIAGRAM, BUILDER, TOOLBAR, CONTAINER),
 	CSS_HELPER_CLEARFIX = AgetClassName(HELPER, CLEARFIX),
 	CSS_ICON = AgetClassName(ICON),
@@ -706,11 +706,11 @@ var DiagramBuilderBase = A.Component.create(
 					after: {
 						activeTabChange: A.bind(instance._afterActiveTabChange, instance)
 					},
-					boundingBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTAINER),
-					contentBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTAINER_CONTENT),
+					boundingBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS),
+					contentBox: boundingBox.one(_DOT+CSS_DIAGRAM_BUILDER_TABS_CONTENT),
 					bubbleTargets: instance,
 					contentNode: boundingBox.one(_DOT+CSS_TABVIEW_CONTENT),
-					cssClass: CSS_DIAGRAM_BUILDER_TABS_CONTAINER,
+					cssClass: CSS_DIAGRAM_BUILDER_TABS,
 					listNode: tabListNode,
 					render: instance.get(CONTENT_BOX)
 				};
