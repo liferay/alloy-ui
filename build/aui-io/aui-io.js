@@ -447,7 +447,15 @@ var IORequest = A.Component.create(
 
 				instance.set(ACTIVE, true);
 
-				var transaction = A.io(
+				var ioObj = instance._yuiIOObj;
+
+				if (!ioObj) {
+					ioObj = new A.IO();
+
+					instance._yuiIOObj = ioObj;
+				}
+
+				var transaction = ioObj.send(
 					instance.get(URI),
 					instance.get(CFG)
 				);
@@ -1205,5 +1213,5 @@ A.namespace('Plugin').IO = IOPlugin;
 }, '@VERSION@' ,{requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']});
 
 
-AUI.add('aui-io', function(A){}, '@VERSION@' ,{use:['aui-io-request','aui-io-plugin'], skinnable:false});
+AUI.add('aui-io', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-io-request','aui-io-plugin']});
 

@@ -18,30 +18,30 @@ if (typeof YUI != 'undefined') {
 }
 
 /**
- * The YUI global namespace object.  If YUI is already defined, the
- * existing YUI object will not be overwritten so that defined
- * namespaces are preserved.  It is the constructor for the object
- * the end user interacts with.  As indicated below, each instance
- * has full custom event support, but only if the event system
- * is available.  This is a self-instantiable factory function.  You
- * can invoke it directly like this:
- *
- *      YUI().use('*', function(Y) {
- *          // ready
- *      });
- *
- * But it also works like this:
- *
- *      var Y = YUI();
- *
- * @class YUI
- * @constructor
- * @global
- * @uses EventTarget
- * @param o* {object} 0..n optional configuration objects.  these values
- * are store in Y.config.  See <a href="config.html">Config</a> for the list of supported
- * properties.
- */
+The YUI global namespace object.  If YUI is already defined, the
+existing YUI object will not be overwritten so that defined
+namespaces are preserved.  It is the constructor for the object
+the end user interacts with.  As indicated below, each instance
+has full custom event support, but only if the event system
+is available.  This is a self-instantiable factory function.  You
+can invoke it directly like this:
+
+     YUI().use('*', function(Y) {
+         // ready
+     });
+
+But it also works like this:
+
+     var Y = YUI();
+
+@class YUI
+@constructor
+@global
+@uses EventTarget
+@param o* {object} 0..n optional configuration objects.  these values
+are store in Y.config.  See <a href="config.html">Config</a> for the list of supported
+properties.
+*/
     /*global YUI*/
     /*global YUI_config*/
     var YUI = function() {
@@ -60,17 +60,61 @@ if (typeof YUI != 'undefined') {
             // set up the core environment
             Y._init();
 
-            // YUI.GlobalConfig is a master configuration that might span
-            // multiple contexts in a non-browser environment.  It is applied
-            // first to all instances in all contexts.
+            /**
+                YUI.GlobalConfig is a master configuration that might span
+                multiple contexts in a non-browser environment.  It is applied
+                first to all instances in all contexts.
+                @property YUI.GlobalConfig
+                @type {Object}
+                @global
+                @example
+
+                    
+                    YUI.GlobalConfig = {
+                        filter: 'debug'
+                    };
+
+                    YUI().use('node', function(Y) {
+                        //debug files used here
+                    });
+
+                    YUI({
+                        filter: 'min'
+                    }).use('node', function(Y) {
+                        //min files used here
+                    });
+
+            */
             if (YUI.GlobalConfig) {
                 Y.applyConfig(YUI.GlobalConfig);
             }
+            
+            /**
+                YUI_config is a page-level config.  It is applied to all
+                instances created on the page.  This is applied after
+                YUI.GlobalConfig, and before the instance level configuration
+                objects.
+                @global
+                @property YUI_config
+                @type {Object}
+                @example
 
-            // YUI_Config is a page-level config.  It is applied to all
-            // instances created on the page.  This is applied after
-            // YUI.GlobalConfig, and before the instance level configuration
-            // objects.
+                    
+                    //Single global var to include before YUI seed file
+                    YUI_config = {
+                        filter: 'debug'
+                    };
+                    
+                    YUI().use('node', function(Y) {
+                        //debug files used here
+                    });
+
+                    YUI({
+                        filter: 'min'
+                    }).use('node', function(Y) {
+                        //min files used here
+                    });
+            */
             if (gconf) {
                 Y.applyConfig(gconf);
             }
@@ -189,7 +233,7 @@ proto = {
      * update the loader cache if necessary.  Updating Y.config directly
      * will not update the cache.
      * @method applyConfig
-     * @param {object} the configuration object.
+     * @param {object} o the configuration object.
      * @since 3.2.0
      */
     applyConfig: function(o) {
@@ -229,7 +273,12 @@ proto = {
             loader._config(o);
         }
     },
-
+    /**
+    * Old way to apply a config to the instance (calls `applyConfig` under the hood)
+    * @private
+    * @method _config
+    * @param {Object} o The config to apply
+    */
     _config: function(o) {
         this.applyConfig(o);
     },
@@ -237,6 +286,7 @@ proto = {
     /**
      * Initialize this YUI instance
      * @private
+     * @method _init
      */
     _init: function() {
         var filter,
@@ -383,8 +433,13 @@ proto = {
             bootstrap: true,
             cacheUse: true,
             fetchCSS: true,
-            use_rls: true
+            use_rls: true,
+            rls_timeout: 2000
         };
+
+        if (YUI.Env.rls_disabled) {
+            Y.config.use_rls = false;
+        }
 
         Y.config.lang = Y.config.lang || 'en-US';
 
@@ -453,33 +508,41 @@ proto = {
         return null;
     },
 
-    /**
-     * Registers a module with the YUI global.  The easiest way to create a
-     * first-class YUI module is to use the YUI component build tool.
-     *
-     * http://yuilibrary.com/projects/builder
-     *
-     * The build system will produce the `YUI.add` wrapper for you module, along
-     * with any configuration info required for the module.
-     * @method add
-     * @param name {String} module name.
-     * @param fn {Function} entry point into the module that
-     * is used to bind module to the YUI instance.
-     * @param version {String} version string.
-     * @param details {Object} optional config data:
-     * @param details.requires {Array} features that must be present before this module can be attached.
-     * @param details.optional {Array} optional features that should be present if loadOptional
-     * is defined.  Note: modules are not often loaded this way in YUI 3,
-     * but this field is still useful to inform the user that certain
-     * features in the component will require additional dependencies.
-     * @param details.use {Array} features that are included within this module which need to
-     * be attached automatically when this module is attached.  This
-     * supports the YUI 3 rollup system -- a module with submodules
-     * defined will need to have the submodules listed in the 'use'
-     * config.  The YUI component build tool does this for you.
-     * @return {YUI} the YUI instance.
-     *
-     */
+/**
+Registers a module with the YUI global.  The easiest way to create a
+first-class YUI module is to use the YUI component build tool.
+
+http://yuilibrary.com/projects/builder
+
+The build system will produce the `YUI.add` wrapper for you module, along
+with any configuration info required for the module.
+@method add
+@param name {String} module name.
+@param fn {Function} entry point into the module that is used to bind module to the YUI instance.
+@param {YUI} fn.Y The YUI instance this module is executed in.
+@param {String} fn.name The name of the module
+@param version {String} version string.
+@param details {Object} optional config data:
+@param details.requires {Array} features that must be present before this module can be attached.
+@param details.optional {Array} optional features that should be present if loadOptional
+ is defined.  Note: modules are not often loaded this way in YUI 3,
+ but this field is still useful to inform the user that certain
+ features in the component will require additional dependencies.
+@param details.use {Array} features that are included within this module which need to
+ be attached automatically when this module is attached.  This
+ supports the YUI 3 rollup system -- a module with submodules
+ defined will need to have the submodules listed in the 'use'
+ config.  The YUI component build tool does this for you.
+@return {YUI} the YUI instance.
+@example
+
+    YUI.add('davglass', function(Y, name) {
+        Y.davglass = function() {
+            alert('Dav was here!');
+        };
+    }, '3.4.0', { requires: ['yui-base', 'harley-davidson', 'mt-dew'] });
+
+*/
     add: function(name, fn, version, details) {
         details = details || {};
         var env = YUI.Env,
@@ -915,7 +978,7 @@ proto = {
             loader.insert(null, (fetchCSS) ? null : 'js');
             // loader.partial(missing, (fetchCSS) ? null : 'js');
 
-        } else if (len && Y.config.use_rls) {
+        } else if (len && Y.config.use_rls && !YUI.Env.rls_enabled) {
 
             G_ENV._rls_queue = G_ENV._rls_queue || new Y.Queue();
 
@@ -924,10 +987,7 @@ proto = {
 
                 var rls_end = function(o) {
                     handleLoader(o);
-                    G_ENV._rls_in_progress = false;
-                    if (G_ENV._rls_queue.size()) {
-                        G_ENV._rls_queue.next()();
-                    }
+                    instance.rls_advance();
                 },
                 rls_url = instance._rls(argz);
 
@@ -936,17 +996,22 @@ proto = {
                         rls_end(o);
                     });
                     instance.Get.script(rls_url, {
-                        data: argz
+                        data: argz,
+                        timeout: instance.config.rls_timeout,
+                        onFailure: instance.rls_handleFailure,
+                        onTimeout: instance.rls_handleTimeout
                     });
                 } else {
                     rls_end({
+                        success: true,
                         data: argz
                     });
                 }
             };
 
             G_ENV._rls_queue.add(function() {
-                G_ENV._rls_in_progress = true;                
+                G_ENV._rls_in_progress = true;
+                Y.rls_callback = callback;
                 Y.rls_locals(Y, args, handleRLS);
             });
 
@@ -962,6 +1027,7 @@ proto = {
                 Y._loading = false;
                 queue.running = false;
                 Env.bootstrapped = true;
+                G_ENV._bootstrapping = false;
                 if (Y._attach(['loader'])) {
                     Y._use(args, callback);
                 }
@@ -1030,7 +1096,7 @@ proto = {
     log: NOOP,
     message: NOOP,
     // this is replaced if the dump module is included
-    dump: NOOP,
+    dump: function (o) { return ''+o; },
 
     /**
      * Report an error.  The reporting mechanism is controled by
@@ -1981,7 +2047,8 @@ L.sub = function(s, o) {
  * Returns the current time in milliseconds.
  *
  * @method now
- * @return {int} Current time in milliseconds.
+ * @return {Number} Current time in milliseconds.
+ * @static
  * @since 3.3.0
  */
 L.now = Date.now || function () {
@@ -1989,8 +2056,9 @@ L.now = Date.now || function () {
 };
 /**
  * The YUI module contains the components required for building the YUI seed
- * file.  This includes the script loading mechanism, a simple queue, and the
+ * file. This includes the script loading mechanism, a simple queue, and the
  * core utilities for the library.
+ *
  * @module yui
  * @submodule yui-base
  */
@@ -2001,36 +2069,33 @@ var Lang   = Y.Lang,
     hasOwn = Object.prototype.hasOwnProperty;
 
 /**
- * Adds utilities to the YUI instance for working with arrays. Additional array
- * helpers can be found in the `collection` module.
- *
- * @class Array
- */
+Provides utility methods for working with arrays. Additional array helpers can
+be found in the `collection` and `array-extras` modules.
 
-/**
- * `Y.Array(thing)` returns an array created from _thing_. Depending on
- * _thing_'s type, one of the following will happen:
- *
- *  * Arrays are returned unmodified unless a non-zero _startIndex_ is
- *     specified.
- *  * Array-like collections (see `Array.test()`) are converted to arrays.
- *  * For everything else, a new array is created with _thing_ as the sole
- *     item.
- *
- * Note: elements that are also collections, such as `<form>` and `<select>`
- * elements, are not automatically converted to arrays. To force a conversion,
- * pass `true` as the value of the _force_ parameter.
- *
- * @method ()
- * @param {mixed} thing The thing to arrayify.
- * @param {int} [startIndex=0] If non-zero and _thing_ is an array or array-like
- *   collection, a subset of items starting at the specified index will be
- *   returned.
- * @param {boolean} [force=false] If `true`, _thing_ will be treated as an
- *   array-like collection no matter what.
- * @return {Array}
- * @static
- */
+`Y.Array(thing)` returns a native array created from _thing_. Depending on
+_thing_'s type, one of the following will happen:
+
+  * Arrays are returned unmodified unless a non-zero _startIndex_ is
+    specified.
+  * Array-like collections (see `Array.test()`) are converted to arrays.
+  * For everything else, a new array is created with _thing_ as the sole
+    item.
+
+Note: elements that are also collections, such as `<form>` and `<select>`
+elements, are not automatically converted to arrays. To force a conversion,
+pass `true` as the value of the _force_ parameter.
+
+@class Array
+@constructor
+@param {Any} thing The thing to arrayify.
+@param {Number} [startIndex=0] If non-zero and _thing_ is an array or array-like
+  collection, a subset of items starting at the specified index will be
+  returned.
+@param {Boolean} [force=false] If `true`, _thing_ will be treated as an
+  array-like collection no matter what.
+@return {Array} A native array created from _thing_, according to the rules
+  described above.
+**/
 function YArray(thing, startIndex, force) {
     var len, result;
 
@@ -2057,22 +2122,23 @@ function YArray(thing, startIndex, force) {
 Y.Array = YArray;
 
 /**
- * Evaluates _obj_ to determine if it's an array, an array-like collection, or
- * something else. This is useful when working with the function `arguments`
- * collection and `HTMLElement` collections.
- *
- * Note: This implementation doesn't consider elements that are also
- * collections, such as `<form>` and `<select>`, to be array-like.
- *
- * @method test
- * @param {object} obj Object to test.
- * @return {int} A number indicating the results of the test:
- *
- *  * 0: Neither an array nor an array-like collection.
- *  * 1: Real array.
- *  * 2: Array-like collection.
- * @static
- */
+Evaluates _obj_ to determine if it's an array, an array-like collection, or
+something else. This is useful when working with the function `arguments`
+collection and `HTMLElement` collections.
+
+Note: This implementation doesn't consider elements that are also
+collections, such as `<form>` and `<select>`, to be array-like.
+
+@method test
+@param {Object} obj Object to test.
+@return {Number} A number indicating the results of the test:
+
+  * 0: Neither an array nor an array-like collection.
+  * 1: Real array.
+  * 2: Array-like collection.
+
+@static
+**/
 YArray.test = function (obj) {
     var result = 0;
 
@@ -2093,19 +2159,19 @@ YArray.test = function (obj) {
 };
 
 /**
- * Dedupes an array of strings, returning an array that's guaranteed to contain
- * only one copy of a given string.
- *
- * This method differs from `Y.Array.unique` in that it's optimized for use only
- * with strings, whereas `unique` may be used with other types (but is slower).
- * Using `dedupe` with non-string values may result in unexpected behavior.
- *
- * @method dedupe
- * @param {String[]} array Array of strings to dedupe.
- * @return {Array} Deduped copy of _array_.
- * @static
- * @since 3.4.0
- */
+Dedupes an array of strings, returning an array that's guaranteed to contain
+only one copy of a given string.
+
+This method differs from `Array.unique()` in that it's optimized for use only
+with strings, whereas `unique` may be used with other types (but is slower).
+Using `dedupe()` with non-string values may result in unexpected behavior.
+
+@method dedupe
+@param {String[]} array Array of strings to dedupe.
+@return {Array} Deduped copy of _array_.
+@static
+@since 3.4.0
+**/
 YArray.dedupe = function (array) {
     var hash    = {},
         results = [],
@@ -2124,20 +2190,20 @@ YArray.dedupe = function (array) {
 };
 
 /**
- * Executes the supplied function on each item in the array. This method wraps
- * the native ES5 `Array.forEach()` method if available.
- *
- * @method each
- * @param {Array} array Array to iterate.
- * @param {Function} fn Function to execute on each item in the array.
- *   @param {mixed} fn.item Current array item.
- *   @param {Number} fn.index Current array index.
- *   @param {Array} fn.array Array being iterated.
- * @param {Object} [thisObj] `this` object to use when calling _fn_.
- * @return {YUI} The YUI instance.
- * @chainable
- * @static
- */
+Executes the supplied function on each item in the array. This method wraps
+the native ES5 `Array.forEach()` method if available.
+
+@method each
+@param {Array} array Array to iterate.
+@param {Function} fn Function to execute on each item in the array. The function
+  will receive the following arguments:
+    @param {Any} fn.item Current array item.
+    @param {Number} fn.index Current array index.
+    @param {Array} fn.array Array being iterated.
+@param {Object} [thisObj] `this` object to use when calling _fn_.
+@return {YUI} The YUI instance.
+@static
+**/
 YArray.each = YArray.forEach = Native.forEach ? function (array, fn, thisObj) {
     Native.forEach.call(array || [], fn, thisObj || Y);
     return Y;
@@ -2152,29 +2218,29 @@ YArray.each = YArray.forEach = Native.forEach ? function (array, fn, thisObj) {
 };
 
 /**
- * Alias for `each`.
- *
- * @method forEach
- * @static
- */
+Alias for `each()`.
+
+@method forEach
+@static
+**/
 
 /**
- * Returns an object using the first array as keys and the second as values. If
- * the second array is not provided, or if it doesn't contain the same number of
- * values as the first array, then `true` will be used in place of the missing
- * values.
- *
- * @example
- *
- *     Y.Array.hash(['a', 'b', 'c'], ['foo', 'bar']);
- *     // => {a: 'foo', b: 'bar', c: true}
- *
- * @method hash
- * @param {Array} keys Array to use as keys.
- * @param {Array} [values] Array to use as values.
- * @return {Object}
- * @static
- */
+Returns an object using the first array as keys and the second as values. If
+the second array is not provided, or if it doesn't contain the same number of
+values as the first array, then `true` will be used in place of the missing
+values.
+
+@example
+
+    Y.Array.hash(['a', 'b', 'c'], ['foo', 'bar']);
+    // => {a: 'foo', b: 'bar', c: true}
+
+@method hash
+@param {String[]} keys Array of strings to use as keys.
+@param {Array} [values] Array to use as values.
+@return {Object} Hash using the first array as keys and the second as values.
+@static
+**/
 YArray.hash = function (keys, values) {
     var hash = {},
         vlen = (values && values.length) || 0,
@@ -2190,18 +2256,18 @@ YArray.hash = function (keys, values) {
 };
 
 /**
- * Returns the index of the first item in the array that's equal (using a strict
- * equality check) to the specified _value_, or `-1` if the value isn't found.
- *
- * This method wraps the native ES5 `Array.indexOf()` method if available.
- *
- * @method indexOf
- * @param {Array} array Array to search.
- * @param {any} value Value to search for.
- * @return {Number} Index of the item strictly equal to _value_, or `-1` if not
- *   found.
- * @static
- */
+Returns the index of the first item in the array that's equal (using a strict
+equality check) to the specified _value_, or `-1` if the value isn't found.
+
+This method wraps the native ES5 `Array.indexOf()` method if available.
+
+@method indexOf
+@param {Array} array Array to search.
+@param {Any} value Value to search for.
+@return {Number} Index of the item strictly equal to _value_, or `-1` if not
+  found.
+@static
+**/
 YArray.indexOf = Native.indexOf ? function (array, value) {
     // TODO: support fromIndex
     return Native.indexOf.call(array, value);
@@ -2216,43 +2282,44 @@ YArray.indexOf = Native.indexOf ? function (array, value) {
 };
 
 /**
- * Numeric sort convenience function.
- *
- * The native `Array.prototype.sort()` function converts values to strings and
- * sorts them in lexicographic order, which is unsuitable for sorting numeric
- * values. Provide `Y.Array.numericSort` as a custom sort function when you want
- * to sort values in numeric order.
- *
- * @example
- *
- *     [42, 23, 8, 16, 4, 15].sort(Y.Array.numericSort);
- *     // => [4, 8, 15, 16, 23, 42]
- *
- * @method numericSort
- * @param {Number} a First value to compare.
- * @param {Number} b Second value to compare.
- * @return {Number} Difference between _a_ and _b_.
- * @static
- */
+Numeric sort convenience function.
+
+The native `Array.prototype.sort()` function converts values to strings and
+sorts them in lexicographic order, which is unsuitable for sorting numeric
+values. Provide `Array.numericSort` as a custom sort function when you want
+to sort values in numeric order.
+
+@example
+
+    [42, 23, 8, 16, 4, 15].sort(Y.Array.numericSort);
+    // => [4, 8, 15, 16, 23, 42]
+
+@method numericSort
+@param {Number} a First value to compare.
+@param {Number} b Second value to compare.
+@return {Number} Difference between _a_ and _b_.
+@static
+**/
 YArray.numericSort = function (a, b) {
     return a - b;
 };
 
 /**
- * Executes the supplied function on each item in the array. Returning a truthy
- * value from the function will stop the processing of remaining items.
- *
- * @method some
- * @param {Array} array Array to iterate.
- * @param {Function} fn Function to execute on each item.
- *   @param {mixed} fn.value Current array item.
- *   @param {Number} fn.index Current array index.
- *   @param {Array} fn.array Array being iterated.
- * @param {Object} [thisObj] `this` object to use when calling _fn_.
- * @return {Boolean} `true` if the function returns a truthy value on any of the
- *   items in the array; `false` otherwise.
- * @static
- */
+Executes the supplied function on each item in the array. Returning a truthy
+value from the function will stop the processing of remaining items.
+
+@method some
+@param {Array} array Array to iterate over.
+@param {Function} fn Function to execute on each item. The function will receive
+  the following arguments:
+    @param {Any} fn.value Current array item.
+    @param {Number} fn.index Current array index.
+    @param {Array} fn.array Array being iterated over.
+@param {Object} [thisObj] `this` object to use when calling _fn_.
+@return {Boolean} `true` if the function returns a truthy value on any of the
+  items in the array; `false` otherwise.
+@static
+**/
 YArray.some = Native.some ? function (array, fn, thisObj) {
     return Native.some.call(array, fn, thisObj);
 } : function (array, fn, thisObj) {
@@ -3293,9 +3360,7 @@ YUI.Env.aliases = {
     "resize": ["resize-base","resize-proxy","resize-constrain"],
     "slider": ["slider-base","slider-value-range","clickable-rail","range-slider"],
     "text": ["text-accentfold","text-wordbreak"],
-    "transition": ["transition-native","transition-timer"],
-    "widget": ["widget-base","widget-htmlparser","widget-uievents","widget-skin"],
-    "yui-rls": ["yui-base","get","features","intl-base","rls","yui-log","yui-later"]
+    "widget": ["widget-base","widget-htmlparser","widget-uievents","widget-skin"]
 };
 
 
@@ -3664,7 +3729,11 @@ var ua = Y.UA,
     _loaded = function(id, url) {
 
         var q = queues[id],
-            sync = !q.async;
+            sync = (q && !q.async);
+
+        if (!q) {
+            return;
+        }
 
         if (sync) {
             _clearTimeout(q);
@@ -3912,7 +3981,7 @@ Y.Get = {
     /**
      * The number of request required before an automatic purge.
      * Can be configured via the 'purgethreshold' config
-     * property PURGE_THRESH
+     * @property PURGE_THRESH
      * @static
      * @type int
      * @default 20
@@ -4221,7 +4290,7 @@ Y.mix(Y.namespace('Features'), {
 // Y.Features.test("load", "1");
 // caps=1:1;2:0;3:1;
 
-/* This file is auto-generated by src/loader/meta_join.py */
+/* This file is auto-generated by src/loader/scripts/meta_join.py */
 var add = Y.Features.add;
 // graphics-svg.js
 add('load', '0', {
@@ -4282,14 +4351,30 @@ add('load', '3', {
 }, 
     "trigger": "dom-style"
 });
-// 0
+// transition-test.js
 add('load', '4', {
+    "name": "transition-timer", 
+    "test": function (Y) {
+    var DOCUMENT = Y.config.doc,
+        node = (DOCUMENT) ? DOCUMENT.documentElement: null,
+        ret = true;
+
+    if (node && node.style) {
+        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style);
+    } 
+
+    return ret;
+}, 
+    "trigger": "transition"
+});
+// 0
+add('load', '5', {
     "name": "widget-base-ie", 
     "trigger": "widget-base", 
     "ua": "ie"
 });
 // autocomplete-list-keys-sniff.js
-add('load', '5', {
+add('load', '6', {
     "name": "autocomplete-list-keys", 
     "test": function (Y) {
     // Only add keyboard support to autocomplete-list if this doesn't appear to
@@ -4308,7 +4393,7 @@ add('load', '5', {
     "trigger": "autocomplete-list"
 });
 // graphics-canvas.js
-add('load', '6', {
+add('load', '7', {
     "name": "graphics-canvas-default", 
     "test": function(Y) {
     var DOCUMENT = Y.config.doc,
@@ -4318,7 +4403,7 @@ add('load', '6', {
     "trigger": "graphics"
 });
 // dd-gestures-test.js
-add('load', '7', {
+add('load', '8', {
     "name": "dd-gestures", 
     "test": function(Y) {
     return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
@@ -4326,7 +4411,7 @@ add('load', '7', {
     "trigger": "dd-drag"
 });
 // selector-test.js
-add('load', '8', {
+add('load', '9', {
     "name": "selector-css2", 
     "test": function (Y) {
     var DOCUMENT = Y.config.doc,
@@ -4337,7 +4422,7 @@ add('load', '8', {
     "trigger": "selector"
 });
 // history-hash-ie-test.js
-add('load', '9', {
+add('load', '10', {
     "name": "history-hash-ie", 
     "test": function (Y) {
     var docMode = Y.config.doc && Y.config.doc.documentMode;
@@ -4447,6 +4532,32 @@ YUI.add('rls', function(Y) {
 * @class rls
 */
 
+
+Y.rls_handleTimeout = function(o) {
+    Y.Get.abort(o.tId);
+    o.purge();
+    o.message = 'RLS request timed out, fetching loader';
+    Y.rls_failure(o);
+};
+
+Y.rls_handleFailure = function(o) {
+    o.message = 'RLS request failed, fetching loader';
+    Y.rls_failure(o);
+};
+
+Y.rls_failure = function(o) {
+    YUI.Env.rls_disabled = true;
+    Y.config.use_rls = false;
+    if (o.data) {
+        o.data.unshift('loader');
+        Y._use(o.data, function(Y, response) {
+            Y._notify(Y.rls_callback, response, o.data);
+            //Call the RLS done method, so it can progress the queue
+            Y.rls_advance();
+        });
+    }
+};
+
 /**
 * Checks the environment for local modules and deals with them before firing off an RLS request.
 * This needs to make sure that all dependencies are calculated before it can make an RLS request in
@@ -4460,6 +4571,14 @@ YUI.add('rls', function(Y) {
 * @param {Array} cb.argz The modified list or modules needed to require
 */
 Y.rls_locals = function(instance, argz, cb) {
+    if (YUI.Env.rls_disabled) {
+        var data = {
+            message: 'RLS is disabled, moving to loader',
+            data: argz
+        };
+        Y.rls_failure(data);
+        return;
+    }
     if (instance.config.modules) {
         var files = [], asked = Y.Array.hash(argz),
             PATH = 'fullpath', f,
@@ -4509,7 +4628,17 @@ Y.rls_locals = function(instance, argz, cb) {
 */
 Y.rls_needs = function(mod, instance) {
     var self = instance || this,
-        config = self.config;
+        config = self.config, i,
+        m = YUI.Env.aliases[mod];
+
+    if (m) {
+        for (i = 0; i < m.length; i++) {
+            if (Y.rls_needs(m[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     if (!YUI.Env.mods[mod] && !(config.modules && config.modules[mod])) {
         return true;
@@ -4526,7 +4655,7 @@ Y.rls_needs = function(mod, instance) {
  * @return {string} the url for the remote loader service call, returns false if no modules are required to be fetched (they are in the ENV already).
  */
 Y._rls = function(what) {
-    what.push('intl');
+    //what.push('intl');
     var config = Y.config,
         mods = config.modules,
         YArray = Y.Array,
@@ -4543,6 +4672,7 @@ Y._rls = function(what) {
             '2v': config.yui2,
             filt: config.filter,
             filts: config.filters,
+            ignore: config.ignore,
             tests: 1 // required in the template
         },
         // The rls base path
@@ -4556,13 +4686,28 @@ Y._rls = function(what) {
                     s.push(param + '={' + param + '}');
                 }
             }
-            // console.log('rls_tmpl: ' + s);
             return s.join('&');
         }(),
-        m = [], asked = {}, o, d, mod,
-        w = [], gallery = [],
+        m = [], asked = {}, o, d, mod, a, j,
+        w = [], 
         i, len = what.length,
         url;
+    
+    //Explode our aliases..
+    for (i = 0; i < len; i++) {
+        a = YUI.Env.aliases[what[i]];
+        if (a) {
+            for (j = 0; j < a.length; j++) {
+                w.push(a[j]);
+            }
+        } else {
+            w.push(what[i]);
+        }
+
+    }
+    what = w;
+    len = what.length;
+
     
     for (i = 0; i < len; i++) {
         asked[what[i]] = 1;
@@ -4574,7 +4719,7 @@ Y._rls = function(what) {
 
     if (mods) {
         for (i in mods) {
-            if (asked[i] && mods[i].requires) {
+            if (asked[i] && mods[i].requires && !mods[i].noop) {
                 len = mods[i].requires.length;
                 for (o = 0; o < len; o++) {
                     mod = mods[i].requires[o];
@@ -4584,12 +4729,14 @@ Y._rls = function(what) {
                         d = YUI.Env.mods[mod] || mods[mod];
                         if (d) {
                             d = d.details || d;
-                            if (d.requires) {
-                                YArray.each(d.requires, function(o) {
-                                    if (Y.rls_needs(o)) {
-                                        m.push(o);
-                                    }
-                                });
+                            if (!d.noop) {
+                                if (d.requires) {
+                                    YArray.each(d.requires, function(o) {
+                                        if (Y.rls_needs(o)) {
+                                            m.push(o);
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -4601,38 +4748,30 @@ Y._rls = function(what) {
     YObject.each(YUI.Env.mods, function(i) {
         if (asked[i.name]) {
             if (i.details && i.details.requires) {
-                YArray.each(i.details.requires, function(o) {
-                    if (Y.rls_needs(o)) {
-                        m.push(o);
-                    }
-                });
+                if (!i.noop) {
+                    YArray.each(i.details.requires, function(o) {
+                        if (Y.rls_needs(o)) {
+                            m.push(o);
+                        }
+                    });
+                }
             }
         }
     });
 
-    m = YArray.dedupe(m);
-    
-    YArray.each(m, function(mod) {
-        if (mod.indexOf('gallery-') === 0 || mod.indexOf('yui2-') === 0) {
-            gallery.push(mod);
-            if (!Y.Loader) {
-                //Fetch Loader..
-                w.push('loader-base');
-                what.push('loader-base');
-            }
-        } else {
-            w.push(mod);
-        }
-    });
-    m = w;
-
+    //Add in the debug modules
     if (rls.filt === 'debug') {
         m.unshift('dump', 'yui-log');
     }
+    //If they have a groups config, add the loader-base module
+    if (Y.config.groups) {
+        m.unshift('loader-base');
+    }
+
+    m = YArray.dedupe(m);
 
     //Strip Duplicates
     m = YArray.dedupe(m);
-    gallery = YArray.dedupe(gallery);
     what = YArray.dedupe(what);
 
     if (!m.length) {
@@ -4652,7 +4791,6 @@ Y._rls = function(what) {
     YUI._rls_active = {
         asked: what,
         attach: m,
-        gallery: gallery,
         inst: Y,
         url: url
     };
@@ -4668,12 +4806,22 @@ Y.rls_oncomplete = function(cb) {
     YUI._rls_active.cb = cb;
 };
 
+Y.rls_advance = function() {
+    var G_ENV = YUI.Env;
+
+    G_ENV._rls_in_progress = false;
+    if (G_ENV._rls_queue.size()) {
+        G_ENV._rls_queue.next()();
+    }
+};
+
 /**
 * Calls the callback registered with Y.rls_oncomplete when the RLS request (and it's dependency requests) is done.
 * @method rls_done
 * @param {Array} data The modules loaded
 */
 Y.rls_done = function(data) {
+    data.success = true;
     YUI._rls_active.cb(data);
 };
 
@@ -4713,12 +4861,17 @@ if (!YUI.$rls) {
         var rls_active = YUI._rls_active,
             Y = rls_active.inst;
         if (Y) {
-            if (req.css) {
-                Y.Get.css(rls_active.url + '&css=1');
+            if (req.error) {
+                Y.rls_failure({
+                    message: req.error,
+                    data: req.modules
+                });
             }
-            if (rls_active.gallery.length) {
-                req.modules = req.modules || [];
-                req.modules = [].concat(req.modules, rls_active.gallery);
+            if (YUI.Env && YUI.Env.rls_disabled) {
+                return;
+            }
+            if (req.css && Y.config.fetchCSS) {
+                Y.Get.css(rls_active.url + '&css=1');
             }
             if (req.modules && !req.css) {
                 if (req.modules.length) {
@@ -4736,17 +4889,28 @@ if (!YUI.$rls) {
                         YUI._rls_skins.push(v);
                     }
                 });
-                Y._attach([].concat(req.modules, rls_active.attach));
-                if (rls_active.gallery.length && Y.Loader) {
+
+                Y._attach([].concat(req.modules, rls_active.asked));
+                
+                var additional = req.missing;
+
+                if (Y.config.groups) {
+                    if (!additional) {
+                        additional = [];
+                    }
+                    additional = [].concat(additional, rls_active.what);
+                }
+
+                if (additional && Y.Loader) {
                     var loader = new Y.Loader(rls_active.inst.config);
                     loader.onEnd = Y.rls_done;
                     loader.context = Y;
-                    loader.data = rls_active.gallery;
+                    loader.data = additional;
                     loader.ignoreRegistered = false;
-                    loader.require(rls_active.gallery);
+                    loader.require(additional);
                     loader.insert(null, (Y.config.fetchCSS) ? null : 'js');
                 } else {
-                    Y.rls_done({ data: rls_active.asked });
+                    Y.rls_done({ data: req.modules });
                 }
             }
         }

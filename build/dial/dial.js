@@ -88,7 +88,7 @@ YUI.add('dial', function(Y) {
 
 		/**
          * diameter of the circular background object.
-		 * Other objects scale accordingly
+		 * Other objects scale accordingly.
 		 * Set this only before rendering.
          *
          * @attribute diameter
@@ -102,7 +102,7 @@ YUI.add('dial', function(Y) {
 
 		/**
          * diameter of the handle object which users drag to change the value.
-		 * Dial sets the pixel dimension of the marker equal to markerDiameter * diameter
+		 * Dial sets the pixel dimension of the handle equal to handleDiameter * diameter.
 		 * Set this only before rendering.
          *
          * @attribute handleDiameter
@@ -116,8 +116,7 @@ YUI.add('dial', function(Y) {
 
 		/**
          * diameter of the marker object which follows the angle of the handle during value changes.
-		 * Scaled relative to the diameter attribute
-		 * Dial sets the pixel dimension of the marker equal to markerDiameter * diameter
+		 * Dial sets the pixel dimension of the marker equal to markerDiameter * diameter.
 		 * Set this only before rendering.
          *
          * @attribute markerDiameter
@@ -131,7 +130,7 @@ YUI.add('dial', function(Y) {
 
 		/**
          * diameter of the center button object.
-		 * Dial sets the pixel dimension of the centerButton equal to centerButtonDiameter * diameter
+		 * Dial sets the pixel dimension of the centerButton equal to centerButtonDiameter * diameter.
 		 * Set this only before rendering.
          *
          * @attribute centerButtonDiameter
@@ -222,7 +221,7 @@ YUI.add('dial', function(Y) {
 
 		/**
 		 * distance from the center of the dial to the 
-		 * resting place of the center of the handle and marker. 
+		 * center of the marker and handle, when at rest. 
 		 * The value is a percent of the radius of the dial.
          *
          * @attribute handleDistance
@@ -443,9 +442,9 @@ YUI.add('dial', function(Y) {
             Y.on("key", Y.bind(this._onLeftRightKey, this), boundingBox, keyLeftRightSpec);
 			Y.on('mouseenter', function(){this.one('.' + Dial.CSS_CLASSES.resetString).removeClass(Dial.CSS_CLASSES.hidden);}, this._centerButtonNode);
 			Y.on('mouseleave', function(){this.one('.' + Dial.CSS_CLASSES.resetString).addClass(Dial.CSS_CLASSES.hidden);}, this._centerButtonNode);
-			Y.on('click', Y.bind(this._resetDial, this), this._centerButtonNode);
 			// Needed to replace mousedown/up with gesturemovestart/end to make behavior on touch devices work the same.
-			Y.on('gesturemovestart', function(e){e.stopPropagation();}, this._centerButtonNode); //[#2530206] need to add so mousedown doesn't propagate to ring and move the handle
+			Y.on('gesturemovestart', Y.bind(this._resetDial, this), this._centerButtonNode);  //[#2530441]    
+			Y.on('gesturemoveend', Y.bind(function(){this._handleNode.focus();}, this), this._centerButtonNode); 
 			Y.on('gesturemovestart', Y.bind(function(){this._handleNode.focus();}, this), this._handleNode);
 			Y.on('gesturemovestart', Y.bind(this._handleDrag, this), this._ringNode); // [#2530206] // need to send this to the _handleDrag
 			Y.on('gesturemoveend', Y.bind(function(){this._handleNode.focus();}, this), this._ringNode); // [#2530206] // need to re-focus on the handle so keyboard is accessible
@@ -479,7 +478,7 @@ YUI.add('dial', function(Y) {
 		
 		/**
 		 * handles the user dragging the handle around the Dial, calculates the angle, 
-		 * checks for wrapping around top center, handles exceeding min or max values 
+		 * checks for wrapping around top center 
 		 *
 		 * @method _handleDrag
          * @param e {DOMEvent} the drag event object
@@ -659,10 +658,10 @@ YUI.add('dial', function(Y) {
 		},
 
 		/**
-		 * returns the XY of the fixed position, handleDistance, from the center of the Dial (resting position)
-		 * The XY also represents the angle related to the current value
+		 * returns the XY of the fixed position, handleDistance, from the center of the Dial (resting position).
+		 * The XY also represents the angle related to the current value.
 		 * If typeArray is true, [X,Y] is returned.
-		 * If typeArray is false, the XY of the node passed is set.
+		 * If typeArray is false, the XY of the obj node passed in is set.
 		 *
 		 * @method _setNodeToFixedRadius
 		 * @param obj {Node}
@@ -708,13 +707,13 @@ YUI.add('dial', function(Y) {
         },
 
 		/**
-		 * sets the sizes of ring, center-button, marker and handle VML ovals in pixels.
-		 * Needed only in some IE versions 
-		 * that ignore percent style sizes/offsets.
+		 * sets the sizes of ring, center-button, marker, handle, and VML ovals in pixels.
+		 * Needed only because some IE versions 
+		 * ignore CSS percent sizes/offsets.
 		 * so these must be set in pixels.
 		 * Normally these are set in % of the ring.
 		 *
-		 * @method _setSizes       //FIXME: this name should have VML removed, doing for all.
+		 * @method _setSizes
 		 * @protected
 		 */
 		_setSizes : function(){
@@ -984,7 +983,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * sets Dial value to dial's max attr
 		 *
-		 * @method _decrMajor
+		 * @method _setToMax
 		 * @protected
 		 */
 		_setToMax : function(){
@@ -994,7 +993,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * sets Dial value to dial's min attr
 		 *
-		 * @method _decrMajor
+		 * @method _setToMin
 		 * @protected
 		 */
 		_setToMin : function(){
@@ -1008,12 +1007,17 @@ YUI.add('dial', function(Y) {
 		 * @protected
 		 */
 		_resetDial : function(e){
+            if(e){
+                e.stopPropagation(); //[#2530206] need to add so mousedown doesn't propagate to ring and move the handle
+            }
 			this.set('value', this._originalValue);
+			this._resetString.addClass(Dial.CSS_CLASSES.hidden); //[#2530441]
 			this._handleNode.focus();
 		},
 		
 		/**
-		 * returns the handle angle associated with the current value of the Dial. Returns a number between 0 and 360.
+		 * returns the handle angle associated with the current value of the Dial. 
+		 * Returns a number between 0 and 360.
 		 *
 		 * @method _getAngleFromValue
 		 * @param newVal {Number} the current value of the Dial

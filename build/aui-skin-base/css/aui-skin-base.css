@@ -1,21 +1,15 @@
 /* ---------- Browser normalization ---------- */
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote {
 	margin: 0;
 	padding: 0;
-}
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	clear: both;
 }
 
 fieldset, img {
 	border-width: 0;
 }
 
-address, caption, cite, code, dfn, th, var {
+address, caption, cite, code, dfn, var {
 	font-style: normal;
 	font-weight: normal;
 }
@@ -1647,7 +1641,9 @@ shadow or rounded corners.
 	box-shadow: 4px 4px 14px #777;
 }
 
-.aui-tab-active .aui-tab-label {
+.aui-tab-active .aui-tab-content {
+	-moz-box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
+	-webkit-box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
 	box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
 }
 

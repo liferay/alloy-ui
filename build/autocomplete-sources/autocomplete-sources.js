@@ -83,11 +83,12 @@ Y.mix(ACBase.prototype, {
         // Private internal _sendRequest method that will be assigned to
         // ioSource.sendRequest once io-base and json-parse are available.
         function _sendRequest(request) {
-            var query = request.query;
+            var cacheKey = request.request,
+                query    = request.query;
 
             // Return immediately on a cached response.
-            if (cache[query]) {
-                that[_SOURCE_SUCCESS](cache[query], request);
+            if (cache[cacheKey]) {
+                that[_SOURCE_SUCCESS](cache[cacheKey], request);
                 return;
             }
 
@@ -96,7 +97,7 @@ Y.mix(ACBase.prototype, {
                 ioRequest.abort();
             }
 
-            ioRequest = Y.io(that._getXHRUrl(source, query), {
+            ioRequest = Y.io(that._getXHRUrl(source, request), {
                 on: {
                     success: function (tid, response) {
                         var data;
@@ -108,7 +109,7 @@ Y.mix(ACBase.prototype, {
                         }
 
                         if (data) {
-                            cache[query] = data;
+                            cache[cacheKey] = data;
                             that[_SOURCE_SUCCESS](data, request);
                         }
                     }
@@ -156,10 +157,11 @@ Y.mix(ACBase.prototype, {
             lastRequest, loading;
 
         function _sendRequest(request) {
-            var query = request.query;
+            var cacheKey = request.request,
+                query    = request.query;
 
-            if (cache[query]) {
-                that[_SOURCE_SUCCESS](cache[query], request);
+            if (cache[cacheKey]) {
+                that[_SOURCE_SUCCESS](cache[cacheKey], request);
                 return;
             }
 
@@ -172,7 +174,7 @@ Y.mix(ACBase.prototype, {
             //
             // http://yuilibrary.com/projects/yui3/ticket/2529371
             source._config.on.success = function (data) {
-                cache[query] = data;
+                cache[cacheKey] = data;
                 that[_SOURCE_SUCCESS](data, request);
             };
 
@@ -295,16 +297,17 @@ Y.mix(ACBase.prototype, {
         }
 
         function _sendRequest(request) {
-            var query = request.query,
+            var cacheKey = request.request,
+                query    = request.query,
                 callback, env, maxResults, opts, yqlQuery;
 
-            if (cache[query]) {
-                that[_SOURCE_SUCCESS](cache[query], request);
+            if (cache[cacheKey]) {
+                that[_SOURCE_SUCCESS](cache[cacheKey], request);
                 return;
             }
 
             callback = function (data) {
-                cache[query] = data;
+                cache[cacheKey] = data;
                 that[_SOURCE_SUCCESS](data, request);
             };
 
@@ -398,22 +401,23 @@ Y.mix(ACBase.prototype, {
      *
      * @method _getXHRUrl
      * @param {String} url Base URL.
-     * @param {String} query AutoComplete query.
+     * @param {Object} request Request object containing `query` and `request`
+     *   properties.
      * @return {String} Formatted URL.
      * @protected
      * @for AutoCompleteBase
      */
-    _getXHRUrl: function (url, query) {
-        var maxResults      = this.get(MAX_RESULTS),
-            requestTemplate = this.get(REQUEST_TEMPLATE);
+    _getXHRUrl: function (url, request) {
+        var maxResults = this.get(MAX_RESULTS);
 
-        if (requestTemplate) {
-            url += requestTemplate(query);
+        if (request.query !== request.request) {
+            // Append the request template to the URL.
+            url += request.request;
         }
 
         return Lang.sub(url, {
             maxResults: maxResults > 0 ? maxResults : 1000,
-            query     : encodeURIComponent(query)
+            query     : encodeURIComponent(request.query)
         });
     },
 

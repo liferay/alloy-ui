@@ -3,6 +3,8 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
+	_serialize = A.IO.prototype._serialize,
+
 	NAME = 'form',
 
 	CSS_FORM = getClassName(NAME),
@@ -42,7 +44,7 @@ var Form = A.Component.create(
 				getter: function(value) {
 					var instance = this;
 
-					var values = A.io._serialize(instance.get('contentBox').getDOM());
+					var values = _serialize(instance.get('contentBox').getDOM());
 
 					return A.QueryString.parse(values);
 				},
@@ -531,7 +533,7 @@ var Form = A.Component.create(
 
 A.Form = Form;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']});
+}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse','io-form']});
 AUI.add('aui-form-combobox', function(A) {
 var Lang = A.Lang,
 
@@ -2474,5 +2476,5 @@ A.FormValidator = FormValidator;
 }, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
 
 
-AUI.add('aui-form', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator']});
+AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});
 

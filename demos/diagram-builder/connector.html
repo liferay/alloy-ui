@@ -1,0 +1,196 @@
+<html>
+<head>
+<style>
+/*Supplemental CSS for the YUI distribution*/
+#custom-doc { width: 95%; min-width: 950px; }
+#pagetitle {background-image: url(../../assets/bg_hd.gif);}
+canvas {
+    border:5px solid red;
+}
+
+#demo, #demo2 {
+    width:800px;
+    height:600px;
+    display: inline-block;
+    zoom:1;
+}
+
+#appdiv {
+	position: absolute;
+	top: 300px;
+	left: 300px;
+	width: 800px;
+	height: 800px;
+	background: #ccc;
+}
+
+#p1, #p2, #p3, #p4 {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	background: black;
+	z-index: 999;
+	opacity: .7;
+	filter: alpha(opacity=70);
+}
+
+#p1 {
+	top: 200px;
+	left: 400px;
+}
+
+#p2 {
+	top: 300px;
+	left: 600px;
+}
+
+#p3 {
+	top: 300px;
+	left: 300px;
+}
+
+#p4 {
+	top: 700px;
+	left: 300px;
+}
+
+.aui-diagram-builder-connector-wrapper {
+	z-index: 1;
+/*	position: absolute;*/
+}
+
+.aui-diagram-builder-anchor-node {
+	width: 15px;
+	height: 15px;
+	background: red;
+	position: absolute;
+	border: 1px solid green;
+	cursor: pointer;
+}
+
+.aui-diagram-builder-anchor-hover {
+	background: green;
+}
+</style>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+<body>
+	<div>
+		<h1>Chart with Multiple Axes</h1>
+
+		<div id="appdiv">
+			<div id="p1"></div>
+			<div id="p2"></div>
+
+			<div id="p3"></div>
+			<div id="p4"></div>
+		</div>
+
+		<div style="float:right" id="output"></div>
+
+		<script>
+			AUI().use('aui-diagram-builder', function (A) {
+
+				new A.DD.Delegate({
+					nodes: '#p1,#p2,#p3,#p4',
+					after: {
+						'drag:drag': function(event) {
+							var dragNode = this.get('dragNode');
+							var id = dragNode.get('id');
+							var xy = this.dd.lastXY;
+
+							// if (id === 'p1') {
+							// 	connector1.set('p1', xy);
+							// }
+							// else if (id === 'p2') {
+							// 	connector1.set('p2', xy);
+							// }
+							// else if (id === 'p3') {
+							// 	connector2.set('p1', xy);
+							// }
+							// else if (id === 'p4') {
+							// 	connector2.set('p2', xy);
+							// }
+
+							// ap11.alignConnectors();
+							// ap12.alignConnectors();
+
+							A.Anchor.getAnchors(dragNode).each(function(anchor) {
+								anchor.alignConnectors();
+							});
+						}
+					},
+					dragConfig: {
+						plugins: [
+							{
+								fn: A.Plugin.DDConstrained,
+								cfg: {
+									constrain: '#appdiv'
+								}
+							}
+						]
+					}
+				});
+
+				var p1 = A.one('#p1'), p2 = A.one('#p2'), p3 = A.one('#p3'), p4 = A.one('#p4');
+
+				ap21 = new A.Anchor({
+					container: '#p2',
+					viewport: '#appdiv'
+					// offset: [  ]
+				});
+
+				ap22 = new A.Anchor({
+					container: '#p2',
+					viewport: '#appdiv'
+					// offset: [  ]
+				});
+
+				ap11 = new A.Anchor({
+					container: '#p1',
+					viewport: '#appdiv',
+					targets: [ap21, ap22]
+				});
+
+				ap12 = new A.Anchor({
+					container: '#p1',
+					viewport: '#appdiv',
+					// targets: [ap23],
+					sources: [],
+					// node: A.Node.create('<div>custom</div>'),
+					// offset: [  ]
+				});
+
+
+				ap23 = new A.Anchor({
+					container: '#p2',
+					viewport: '#appdiv',
+					targets: [ap12]
+					// offset: [  ]
+				});
+
+				A.one('body').delegate('dblclick', function(event) {
+					// console.log(event);
+					new A.Anchor({
+						container: event.currentTarget,
+						connector: {
+							container: '#appdiv'
+						}
+					});
+
+					// ap12.alignConnectors();
+					// ap22.alignConnectors();
+
+					A.Anchor.getAnchors(event.currentTarget).each(function(anchor) {
+						anchor.alignConnectors();
+					});
+				}, '#p1,#p2,#p3,#p4');
+
+            });
+
+		</script>
+	</div>
+</body>
+</html>

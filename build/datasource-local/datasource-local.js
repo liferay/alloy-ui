@@ -99,16 +99,20 @@ Y.mix(DSLocal, {
      * @static
      */
     issueCallback: function (e, caller) {
-        var error = (e.error || e.response.error);
-        if(error) {
-            e.error = e.error || e.response.error;
-            caller.fire("error", e);
+        var callbacks = e.on || e.callback,
+            callback = callbacks && callbacks.success,
+            payload = e.details[0];
+
+        payload.error = (e.error || e.response.error);
+
+        if (payload.error) {
+            caller.fire("error", payload);
+            callback = callbacks && callbacks.failure;
         }
-        if(e.callback) {
-            var callbackFunc = (error && e.callback.failure) || e.callback.success;
-            if (callbackFunc) {
-                callbackFunc(e);
-            }
+
+        if (callback) {
+            //TODO: this should be executed from a specific context
+            callback(payload);
         }
     }
 });
@@ -139,7 +143,10 @@ Y.extend(DSLocal, Y.Base, {
          * <dl>                          
          * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
          * <dt>request (Object)</dt> <dd>The request.</dd>
-         * <dt>callback (Object)</dt> <dd>The callback object.</dd>
+         * <dt>callback (Object)</dt> <dd>The callback object
+         *   (deprecated, refer to <strong>on</strong></dd>
+         * <dt>on (Object)</dt> <dd>The map of configured callback
+         *   functions.</dd>
          * <dt>cfg (Object)</dt> <dd>Configuration object.</dd>
          * </dl>
          * @preventable _defRequestFn
@@ -154,7 +161,10 @@ Y.extend(DSLocal, Y.Base, {
          * <dl>
          * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
          * <dt>request (Object)</dt> <dd>The request.</dd>
-         * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+         * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+         *   <strong>on</strong> property</dd>
+         * <dt>on (Object)</dt> <dd>The map of configured transaction
+         *   callbacks.  An object with the following properties:
          *     <dl>
          *         <dt>success (Function)</dt> <dd>Success handler.</dd>
          *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -175,7 +185,10 @@ Y.extend(DSLocal, Y.Base, {
          * <dl>
          * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
          * <dt>request (Object)</dt> <dd>The request.</dd>
-         * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+         * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+         *   <strong>on</strong> property</dd>
+         * <dt>on (Object)</dt> <dd>The map of configured transaction
+         *   callbacks.  An object with the following properties:
          *     <dl>
          *         <dt>success (Function)</dt> <dd>Success handler.</dd>
          *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -183,13 +196,16 @@ Y.extend(DSLocal, Y.Base, {
          * </dd>
          * <dt>cfg (Object)</dt> <dd>Configuration object.</dd>
          * <dt>data (Object)</dt> <dd>Raw data.</dd>
-         * <dt>response (Object)</dt> <dd>Normalized response object with the following properties:
-         *     <dl>
-         *         <dt>results (Object)</dt> <dd>Parsed results.</dd>
-         *         <dt>meta (Object)</dt> <dd>Parsed meta data.</dd>
-         *         <dt>error (Boolean)</dt> <dd>Error flag.</dd>
-         *     </dl>
-         * </dd>
+         * <dt>response (Object)</dt>
+         *     <dd>Normalized response object with the following properties:
+         *         <dl>
+         *             <dt>results (Object)</dt> <dd>Parsed results.</dd>
+         *             <dt>meta (Object)</dt> <dd>Parsed meta data.</dd>
+         *             <dt>error (Boolean)</dt> <dd>Error flag.</dd>
+         *         </dl>
+         *     </dd>
+         * <dt>error</dt>
+         *     <dd>Any error that occurred along the transaction lifecycle.</dd>
          * </dl>
          * @preventable _defResponseFn
          */
@@ -203,7 +219,10 @@ Y.extend(DSLocal, Y.Base, {
          * <dl>
          * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
          * <dt>request (Object)</dt> <dd>The request.</dd>
-         * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+         * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+         *   <strong>on</strong> property</dd>
+         * <dt>on (Object)</dt> <dd>The map of configured transaction
+         *   callbacks.  An object with the following properties:
          *     <dl>
          *         <dt>success (Function)</dt> <dd>Success handler.</dd>
          *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -211,13 +230,16 @@ Y.extend(DSLocal, Y.Base, {
          * </dd>
          * <dt>cfg (Object)</dt> <dd>Configuration object.</dd>
          * <dt>data (Object)</dt> <dd>Raw data.</dd>
-         * <dt>response (Object)</dt> <dd>Normalized response object with the following properties:
-         *     <dl>
-         *         <dt>results (Object)</dt> <dd>Parsed results.</dd>
-         *         <dt>meta (Object)</dt> <dd>Parsed meta data.</dd>
-         *         <dt>error (Object)</dt> <dd>Error object.</dd>
-         *     </dl>
-         * </dd>
+         * <dt>response (Object)</dt>
+         *     <dd>Normalized response object with the following properties:
+         *         <dl>
+         *             <dt>results (Object)</dt> <dd>Parsed results.</dd>
+         *             <dt>meta (Object)</dt> <dd>Parsed meta data.</dd>
+         *             <dt>error (Object)</dt> <dd>Error object.</dd>
+         *         </dl>
+         *     </dd>
+         * <dt>error</dt>
+         *     <dd>Any error that occurred along the transaction lifecycle.</dd>
          * </dl>
          */
 
@@ -233,7 +255,10 @@ Y.extend(DSLocal, Y.Base, {
      * <dl>
      * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
      * <dt>request (Object)</dt> <dd>The request.</dd>
-     * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+     * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+     *   <strong>on</strong> property</dd>
+     * <dt>on (Object)</dt> <dd>The map of configured transaction
+     *   callbacks.  An object with the following properties:
      *     <dl>
      *         <dt>success (Function)</dt> <dd>Success handler.</dd>
      *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -244,14 +269,16 @@ Y.extend(DSLocal, Y.Base, {
      * @protected
      */
     _defRequestFn: function(e) {
-        var data = this.get("source");
+        var data = this.get("source"),
+            payload = e.details[0];
         
         // Problematic data
         if(LANG.isUndefined(data)) {
-            e.error = new Error("Local source undefined");
+            payload.error = new Error("Local source undefined");
         }
 
-        this.fire("data", Y.mix({data:data}, e));
+        payload.data = data;
+        this.fire("data", payload);
     },
 
     /**
@@ -262,7 +289,10 @@ Y.extend(DSLocal, Y.Base, {
      * <dl>
      * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
      * <dt>request (Object)</dt> <dd>The request.</dd>
-     * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+     * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+     *   <strong>on</strong> property</dd>
+     * <dt>on (Object)</dt> <dd>The map of configured transaction
+     *   callbacks.  An object with the following properties:
      *     <dl>
      *         <dt>success (Function)</dt> <dd>Success handler.</dd>
      *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -279,9 +309,11 @@ Y.extend(DSLocal, Y.Base, {
             response = {
                 results: (LANG.isArray(data)) ? data : [data],
                 meta: (meta) ? meta : {}
-            };
+            },
+            payload = e.details[0];
 
-        this.fire("response", Y.mix({response: response}, e));
+        payload.response = response;
+        this.fire("response", payload);
     },
 
     /**
@@ -292,7 +324,10 @@ Y.extend(DSLocal, Y.Base, {
      * <dl>
      * <dt>tId (Number)</dt> <dd>Unique transaction ID.</dd>
      * <dt>request (Object)</dt> <dd>The request.</dd>
-     * <dt>callback (Object)</dt> <dd>The callback object with the following properties:
+     * <dt>callback (Object)</dt> <dd>Deprecated alias for the
+     *   <strong>on</strong> property</dd>
+     * <dt>on (Object)</dt> <dd>The map of configured transaction
+     *   callbacks.  An object with the following properties:
      *     <dl>
      *         <dt>success (Function)</dt> <dd>Success handler.</dd>
      *         <dt>failure (Function)</dt> <dd>Failure handler.</dd>
@@ -317,13 +352,16 @@ Y.extend(DSLocal, Y.Base, {
     
     /**
      * Generates a unique transaction ID and fires <code>request</code> event.
+     * <strong>Note</strong>: the property <code>callback</code> is a
+     * deprecated alias for the <code>on</code> transaction configuration
+     * property described below.
      *
      * @method sendRequest
      * @param request {Object} An object literal with the following properties:
      *     <dl>
      *     <dt><code>request</code></dt>
      *     <dd>The request to send to the live data source, if any.</dd>
-     *     <dt><code>callback</code></dt>
+     *     <dt><code>on</code></dt>
      *     <dd>An object literal with the following properties:
      *         <dl>
      *         <dt><code>success</code></dt>
@@ -340,9 +378,22 @@ Y.extend(DSLocal, Y.Base, {
      * @return {Number} Transaction ID.
      */
     sendRequest: function(request) {
+        var tId = DSLocal._tId++,
+            callbacks;
+
         request = request || {};
-        var tId = DSLocal._tId++;
-        this.fire("request", {tId:tId, request:request.request, callback:request.callback, cfg:request.cfg || {}});
+
+        callbacks = request.on || request.callback;
+
+        this.fire("request", {
+            tId: tId,
+            request: request.request,
+            on: callbacks,
+            callback: callbacks,
+            cfg: request.cfg || {}
+        });
+
+
         return tId;
     }
 });

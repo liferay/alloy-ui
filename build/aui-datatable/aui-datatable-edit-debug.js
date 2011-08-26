@@ -294,8 +294,6 @@ A.mix(CellEditorSupport.prototype, {
 				selection.getActiveColumn().get(KEY),
 				event.newVal
 			);
-
-			instance.set(RECORDSET, recordset);
 		}
 	},
 

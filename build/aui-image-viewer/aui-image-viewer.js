@@ -84,10 +84,6 @@ var L = A.Lang,
 		return Array.prototype.slice.call(arguments).join(SPACE);
 	},
 
-	ESC = 'ESC',
-	RIGHT = 'RIGHT',
-	LEFT = 'LEFT',
-
 	getCN = A.getClassName,
 
 	CSS_HELPER_SCROLL_LOCK = getCN(HELPER, SCROLL, LOCK),
@@ -103,6 +99,10 @@ var L = A.Lang,
 	CSS_IMAGE_VIEWER_LINK = getCN(IMAGE_VIEWER, LINK),
 	CSS_IMAGE_VIEWER_LOADING = getCN(IMAGE_VIEWER, LOADING),
 	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
+
+	KEY_ESC = 'ESC',
+	KEY_RIGHT = 'RIGHT',
+	KEY_LEFT = 'LEFT',
 
 	MAP_RESET_DIMENSIONS = {
 		height: AUTO,
@@ -1307,13 +1307,13 @@ var ImageViewer = A.Component.create(
 					return false; // NOTE: return
 				}
 
-				if (event.isKey(LEFT)) {
+				if (event.isKey(KEY_LEFT)) {
 					instance.prev();
 				}
-				else if (event.isKey(RIGHT)) {
+				else if (event.isKey(KEY_RIGHT)) {
 					instance.next();
 				}
-				else if (event.isKey(ESC)) {
+				else if (event.isKey(KEY_ESC)) {
 					instance.close();
 				}
 			},
@@ -2240,5 +2240,5 @@ A.ImageGallery = ImageGallery;
 }, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery']});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
 

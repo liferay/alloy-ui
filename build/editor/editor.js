@@ -1307,7 +1307,7 @@ YUI.add('selection', function(Y) {
                 }
             });*/
 
-            /** Removed this, as it was causing Pasting to be funky in Safari
+            /* Removed this, as it was causing Pasting to be funky in Safari
             spans = Y.all('.Apple-style-span, .apple-style-span');
             spans.each(function(s) {
                 s.setAttribute('style', '');
@@ -1691,7 +1691,7 @@ YUI.add('selection', function(Y) {
             
             if (range.pasteHTML) {
                 if (offset === 0 && node && !node.previous() && node.get('nodeType') === 3) {
-                    /**
+                    /*
                     * For some strange reason, range.pasteHTML fails if the node is a textNode and
                     * the offset is 0. (The cursor is at the beginning of the line)
                     * It will always insert the new content at position 1 instead of 
@@ -2974,19 +2974,13 @@ YUI.add('editor-base', function(Y) {
                         } else if (Y.UA.gecko) {
                             this.frame.exec._command('inserthtml', EditorBase.TABKEY);
                         } else if (Y.UA.ie) {
-                            sel = new inst.Selection();
-                            if (sel._selection.pasteHTML) {
-                                sel._selection.pasteHTML(EditorBase.TABKEY);
-                            } else {
-                                console.log('IE9 is here.. SHould be default behaviour now');
-                                this.execCommand('inserthtml', EditorBase.TABKEY);
-                            }
+                            this.execCommand('inserthtml', EditorBase.TABKEY);
                         }
                     }
                     break;
             }
             if (Y.UA.webkit && e.commands && (e.commands.indent || e.commands.outdent)) {
-                /**
+                /*
                 * When executing execCommand 'indent or 'outdent' Webkit applies
                 * a class to the BLOCKQUOTE that adds left/right margin to it
                 * This strips that style so it is just a normal BLOCKQUOTE
@@ -3005,6 +2999,8 @@ YUI.add('editor-base', function(Y) {
                 cmds = e.commands;
             }
             
+            var normal = false;
+
             Y.each(changed, function(el) {
                 var tag = el.tagName.toLowerCase(),
                     cmd = EditorBase.TAG2CMD[tag];
@@ -3015,6 +3011,10 @@ YUI.add('editor-base', function(Y) {
 
                 //Bold and Italic styles
                 var s = el.currentStyle || el.style;
+                
+                if ((''+s.fontWeight) == 'normal') {
+                    normal = true;
+                }
                 if ((''+s.fontWeight) == 'bold') { //Cast this to a string
                     cmds.bold = 1;
                 }
@@ -3026,6 +3026,7 @@ YUI.add('editor-base', function(Y) {
                 if (s.fontStyle == 'italic') {
                     cmds.italic = 1;
                 }
+
                 if (s.textDecoration == 'underline') {
                     cmds.underline = 1;
                 }
@@ -3065,6 +3066,11 @@ YUI.add('editor-base', function(Y) {
                 
             });
             
+            if (normal) {
+                delete cmds.bold;
+                delete cmds.italic;
+            }
+
             e.dompath = inst.all(changed);
             e.classNames = classes;
             e.commands = cmds;
@@ -4320,8 +4326,10 @@ YUI.add('editor-para', function(Y) {
                     break;
                 case 'keyup':
                     if (Y.UA.gecko) {
-                        if (inst.config.doc && inst.config.doc.body && inst.config.doc.body.innerHTML.length < 2) {
-                            this._fixFirstPara();
+                        if (inst.config.doc && inst.config.doc.body && inst.config.doc.body.innerHTML.length < 20) {
+                            if (!inst.one(FIRST_P)) {
+                                this._fixFirstPara();
+                            }
                         }
                     }
                     break;
@@ -4383,7 +4391,7 @@ YUI.add('editor-para', function(Y) {
                         }
                     }
                     if (Y.UA.gecko) {
-                        /**
+                        /*
                         * This forced FF to redraw the content on backspace.
                         * On some occasions FF will leave a cursor residue after content has been deleted.
                         * Dropping in the empty textnode and then removing it causes FF to redraw and
@@ -4566,7 +4574,7 @@ YUI.add('editor-br', function(Y) {
                 case 'backspace-up':
                 case 'backspace-down':
                 case 'delete-up':
-                    /**
+                    /*
                     * This forced FF to redraw the content on backspace.
                     * On some occasions FF will leave a cursor residue after content has been deleted.
                     * Dropping in the empty textnode and then removing it causes FF to redraw and

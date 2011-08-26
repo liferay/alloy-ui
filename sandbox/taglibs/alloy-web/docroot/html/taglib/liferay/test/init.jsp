@@ -25,8 +25,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("life
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("liferay:test:test"));
 boolean attrBooleanPrimitive = GetterUtil.getBoolean(String.valueOf(request.getAttribute("liferay:test:attrBooleanPrimitive")));
@@ -41,7 +46,7 @@ _updateOptions(_options, "attrIntPrimitive", attrIntPrimitive);
 _updateOptions(_options, "attrInteger", attrInteger);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/liferay/test/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "liferay:test:";

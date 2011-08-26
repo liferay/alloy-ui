@@ -25,8 +25,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("allo
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 %>
 
@@ -271,7 +276,7 @@ _updateOptions(_options, "onYearNodeNameChange", onYearNodeNameChange);
 _updateOptions(_options, "onYearRangeChange", onYearRangeChange);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/date_picker_select/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy:date-picker-select:";

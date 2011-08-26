@@ -447,7 +447,15 @@ var IORequest = A.Component.create(
 
 				instance.set(ACTIVE, true);
 
-				var transaction = A.io(
+				var ioObj = instance._yuiIOObj;
+
+				if (!ioObj) {
+					ioObj = new A.IO();
+
+					instance._yuiIOObj = ioObj;
+				}
+
+				var transaction = ioObj.send(
 					instance.get(URI),
 					instance.get(CFG)
 				);

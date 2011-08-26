@@ -14,12 +14,12 @@
 
 package ${packagePath}.${component.getPackage()};
 
-import ${packagePath}.${component.getPackage()}.base.Base${component.getSafeName()}Tag;
+import ${packagePath}.${component.getPackage()}.base.Base${component.getClassName()};
 
 /**
 <#list component.getAuthors() as author>
  * @author ${author}
 </#list>
  */
-public class ${component.getSafeName()}Tag extends Base${component.getSafeName()}Tag {
+public class ${component.getClassName()} extends Base${component.getClassName()} {
 }

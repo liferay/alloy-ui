@@ -1,8 +1,10 @@
 package com.liferay.alloy.tools.model;
 
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +58,16 @@ public class Component extends BaseModel {
 		return TextFormatter.format(getName(), TextFormatter.M);
 	}
 
+	public String getClassName() {
+		String className = _className;
+
+		if (Validator.isNull(className)) {
+			className = getSafeName().concat(_CLASS_NAME_SUFFIX);
+		}
+
+		return className;
+	}
+
 	public List<Attribute> getEvents() {
 		return _events;
 	}
@@ -70,6 +82,10 @@ public class Component extends BaseModel {
 
 	public String getParentClass() {
 		return _parentClass;
+	}
+
+	public boolean getWriteJSP() {
+		return _writeJSP;
 	}
 
 	public String getSafeName() {
@@ -95,6 +111,30 @@ public class Component extends BaseModel {
 		return _bodyContent;
 	}
 
+	public boolean isChildClassOf(String className) {
+		try {
+			String parentClassName = getParentClass();
+
+			if (Validator.isNotNull(parentClassName)) {
+				Thread currentThread = Thread.currentThread();
+
+				ClassLoader contextClassLoader =
+					currentThread.getContextClassLoader();
+
+				PortalClassLoaderUtil.setClassLoader(contextClassLoader);
+
+				Class<?> parentClass = Class.forName(parentClassName);
+				
+				Class<?> clazz = Class.forName(className);
+
+				return clazz.isAssignableFrom(parentClass);
+			}
+		} catch (Exception e) {
+		}
+
+		return false;
+	}
+
 	public void setAlloyComponent(boolean alloyComponent) {
 		_alloyComponent = alloyComponent;
 	}
@@ -113,6 +153,10 @@ public class Component extends BaseModel {
 
 	public void setBodyContent(boolean bodyContent) {
 		_bodyContent = bodyContent;
+	}
+
+	public void setClassName(String className) {
+		_className = className;
 	}
 
 	public void setEvents(List<Attribute> events) {
@@ -135,13 +179,21 @@ public class Component extends BaseModel {
 		_parentClass = parentClass;
 	}
 
+	public void setWriteJSP(boolean writeJSP) {
+		_writeJSP = writeJSP;
+	}
+
+	private final static String _CLASS_NAME_SUFFIX = "Tag";
+
 	private boolean _alloyComponent;
 	private List<Attribute> _attributes;
+	private String[] _authors;
 	private boolean _bodyContent;
+	private String _className;
 	private List<Attribute> _events;
 	private String _module;
 	private String _package;
 	private String _parentClass;
-	private String[] _authors;
+	private boolean _writeJSP;
 
 }

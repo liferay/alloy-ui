@@ -25,8 +25,13 @@ CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("allo
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
-_options.putAll(scopedAttributes);
-_options.putAll(dynamicAttributes);
+if ((scopedAttributes != null) && !scopedAttributes.isEmpty()) {
+	_options.putAll(scopedAttributes);
+}
+
+if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
+	_options.putAll(dynamicAttributes);
+}
 
 java.lang.String position = GetterUtil.getString((java.lang.String)request.getAttribute("alloy_util:script:position"));
 java.lang.Boolean printBuffer = GetterUtil.getBoolean((java.lang.Boolean)request.getAttribute("alloy_util:script:printBuffer"));
@@ -37,7 +42,7 @@ _updateOptions(_options, "printBuffer", printBuffer);
 _updateOptions(_options, "use", use);
 %>
 
-<%@ include file="init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy_util/script/init-ext.jspf" %>
 
 <%!
 private static final String _NAMESPACE = "alloy_util:script:";
