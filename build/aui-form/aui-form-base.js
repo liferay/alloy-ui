@@ -533,4 +533,4 @@ var Form = A.Component.create(
 
 A.Form = Form;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']});
+}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse','io-form']});

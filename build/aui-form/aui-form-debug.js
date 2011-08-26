@@ -533,7 +533,7 @@ var Form = A.Component.create(
 
 A.Form = Form;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse']});
+}, '@VERSION@' ,{requires:['aui-base','aui-data-set','aui-form-field','querystring-parse','io-form']});
 AUI.add('aui-form-combobox', function(A) {
 var Lang = A.Lang,
 

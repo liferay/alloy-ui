@@ -28,6 +28,7 @@
 					includeAntRuntime="false"
 					memoryMaximumSize="${javac.memoryMaximumSize}"
 					nowarn="${javac.nowarn}"
+					source="1.5"
 					srcdir="src"
 				/>
 			</then>
@@ -40,6 +41,7 @@
 					destdir="classes"
 					includeAntRuntime="false"
 					nowarn="${javac.nowarn}"
+					source="1.5"
 					srcdir="src"
 				/>
 			</else>
