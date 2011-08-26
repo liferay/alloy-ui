@@ -8,7 +8,7 @@ var Lang = A.Lang,
 	HEIGHT = 'height',
 	WIDTH = 'width',
 
-	NAME = 'ace-ditor';
+	NAME = 'ace-editor';
 
 var AceEditor = A.Component.create(
 	{
