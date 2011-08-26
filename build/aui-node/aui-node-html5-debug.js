@@ -31,7 +31,7 @@ if (A.UA.ie) {
 		 * @protected
 		 */
 		HTML5._fragHTML5Shived = YUI.AUI.html5shiv(
-			document.createDocumentFragment()
+			A.config.doc.createDocumentFragment()
 		);
 	}
 
