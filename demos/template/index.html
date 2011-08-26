@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			padding: 10px;
+			width: 800px;
+			margin: 0 auto;
+		}
+
+		pre {
+			background: #eee;
+			overflow: auto;
+			width: 100%;
+		}
+
+		code {
+			background-color: #ddd;
+		}
+
+		h2 {
+			margin-bottom: 0.5em;
+			font-size: 1.8em;
+		}
+
+		.header {
+			font-size: 1.1em;
+		}
+
+		.aui-layout-content {
+			margin-bottom: 4em;
+		}
+
+		.note {
+			font-size: 0.9em;
+			color: #555;
+		}
+
+		#performance .render-output {
+			height: 400px;
+			overflow: auto;
+		}
+
+		.nav {
+			position: fixed;
+			height: 100%;
+			right: 0;
+			top: 0;
+			width: 100px;
+		}
+
+		.nav:hover {
+			width: 200px;
+		}
+
+		.nav a {
+			background: #EAEAEA;
+			border-left: 5px solid transparent;
+			display: block;
+			padding: 2px 5px;
+			position: absolute;
+			right: 0;
+			left: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.nav a:hover {
+			border-left-color: #333;
+		}
+	</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Template Demo</h1>
+
+
+	<div id="demo">
+		<p>AlloyUI Templates allow the ability to format text and JavaScript objects in an easy to use manner that is also performant.<br /></p>
+
+		<div class="aui-layout-content" id="simple">
+			<h2>Simple formatting</h2>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;div class=&quot;user-name&quot;&gt;Name: {name}&lt;/div&gt;
+&lt;div class=&quot;user-expertise&quot;&gt;Expertise: {expertise}&lt;/div&gt;
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+{name: 'Nate Cavanaugh', expertise: 'Procrastinating'}
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="looping">
+			<h2>Looping</h2>
+			<p>Loops can be nested, as well as operate on Arrays or Objects. If looping over an array, use the <code>{.}</code> variable to refer to the current item in the loop. If looping over an object, you can use the keys of the object such as <code>{name}</code> (if obj.name exists) or <code>{age}</code> (if obj.age exists), etc.</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;div class=&quot;user-name&quot;&gt;{name}&lt;/div&gt;
+&lt;ul class=&quot;user-faves&quot;&gt;
+	&lt;tpl for=&quot;faves&quot;&gt;
+		&lt;li class=&quot;fav&quot;&gt;{.}&lt;/li&gt;
+	&lt;/tpl&gt;
+&lt;/ul&gt;
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+{
+	name: 'Eduardo Lundgren',
+	faves: ['Dulce de leche', 'Liferay', 'Acai', 'Haagen Daaz', 'JavaScript']
+}
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="conditionals">
+			<h2>Conditionals</h2>
+			<p>You can test conditions using an if attribute of the tpl element.</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;tpl for=&quot;.&quot;&gt;
+	&lt;p&gt;
+	{name} current timezone is GMT
+	&lt;tpl if=&quot;residence == &#x27;Madrid&#x27;&quot;&gt;
+	+2.
+	&lt;/tpl&gt;
+	&lt;tpl if=&quot;residence == &#x27;Varna&#x27;&quot;&gt;
+	+3.
+	&lt;/tpl&gt;
+	&lt;tpl if=&quot;residence == &#x27;Olinda&#x27;&quot;&gt;
+	-2.
+	&lt;/tpl&gt;
+	&lt;/p&gt;
+&lt;/tpl&gt;
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+[
+	{name: 'Iliyan Peychev', residence: 'Madrid'},
+	{name: 'Bruno Basto', residence: 'Olinda'}
+]
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="formatting">
+			<h2>Formatting</h2>
+			<p>You have a couple of different formatting options available to you. To use the baked in formatting methods (which are all contained on A.Lang.String), you simply need to format your variable like so: <code>{var:formattingMethod}</code>. An example of this would be to capitalize the <code>name</code> variable, you would do: <code>{name:capitalize}</code>, or to repeat the age variable 10 times, you could do <code>{age:repeat(10)}</code>. You can also add your own methods on a per template instance by passing the last configuration item into the A.Template constructor as an object that contains methods. For example, <code>new A.Template('{name:customFormatter}', {customFormatter: function(str){return str;}})</code>
+				<p class="note">* The formatting methods can take any number of arguments, but the first argument is always implicitly passed, which is the string itself. So if you have no arguments, you don't need to use the parenthesis. If you do have other arguments, you need the parenthesis, but you don't need to pass the string itself.</p>
+				</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;tpl for=&quot;.&quot;&gt;
+	&lt;p&gt;&lt;b&gt;{title:toUpperCase}&lt;/b&gt;&lt;br /&gt;
+		by &lt;i&gt;{author}&lt;/i&gt;&lt;br /&gt;
+		{description:truncate(100)}
+	&lt;/p&gt;
+&lt;/tpl&gt;
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+[
+	{title: 'Mere Christianity', author: 'C.S. Lewis', description: 'In 1943 Great Britain, when hope and the moral fabric of society were threatened by the relentless inhumanity of global war, an Oxford don was invited to give a series of radio lectures addressing the central issues of Christianity. Over half a century after the original lectures, the topic retains it urgency. Expanded into book form, Mere Christianity never flinches as it sets out a rational basis for Christianity and builds an edifice of compassionate morality atop this foundation. As Mr. Lewis clearly demonstrates, Christianity is not a religion of flitting angels and blind faith, but of free will, an innate sense of justice and the grace of God. --This text refers to an out of print or unavailable edition of this title.'},
+	{title: 'Dark Rivers of the Heart', author: 'Dean Koontz', description: 'Do you dare step through the red door? Spencer Grant had no idea what drew him to the bar with the red door. He thought he would just sit down, have a slow beer or two, and talk to a stranger. He couldn\'t know that it would lead to a narrow escape from a bungalow targeted by a SWAT team. Or that it would leave him a wanted man. Now he is on the run from mysterious and ruthless men. He is in love with a woman he knows next to nothing about. And he is hiding from a past he can\'t fully remember. On his trail is a shadowy security agency that answers to no one--including the U.S. government—and a man who considers himself a compassionate Angel of Death. But worst of all, Spencer Grant is on a collision course with inner demons he thought he\'d buried years ago—inner demons that could destroy him if his enemies don\'t first.'},
+	{title: 'The Importance of Being Earnest', author: 'Oscar Wilde', description: 'The Importance of Being Earnest is an important play by Oscar Wilde, and is a comedy of manners that discusses the serious of society. Set in late Victorian England, the story is about the main charachter, John Worthing\'s, ficticious brother Ernest, which is the main source of the comedy in this work. This is an important play for those are fans of comedy plays and of course the works of Oscar Wilde.'},
+	{title: 'Pygmalion', author: 'G. B. Shaw', description: 'An idealistic professor transforms an unsophisticated Cockney girl into a refined young lady in this classic drama set in turn-of-the-century London.'},
+	{title: 'The Great Divorce', author: 'C. S. Lewis', description: 'What if anyone in Hell could take a bus trip to Heaven and stay there forever if they wanted to? In The Great Divorce C. S. Lewis again employs his formidable talent for fable and allegory. The writer finds himself in Hell boarding a bus bound for Heaven. The amazing opportunity is that anyone who wants to stay in Heaven, can. This is the starting point for an extraordinary meditation upon good and evil, grace and judgment. Lewis\'s revolutionary idea is the discovery that the gates of Hell are locked from the inside. In Lewis\'s own words, "If we insist on keeping Hell (or even earth) we shall not see Heaven: if we accept Heaven we shall not be able to retain even the smallest and most intimate souvenirs of Hell."'}
+]
+					</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="rendering">
+			<h2>Rendering from an Element</h2>
+			<p>You can place your template markup on the page in a couple of different formats. You can place it as a hidden div, inside of an input/textarea, or in a script element (if you use a script element, you MUST set the type="" attribute to something other than "text/javascript"; we use type="aui/template").</p>
+				</p>
+			<div class="aui-column aui-w50">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					
+					<h4>Script tag</h4>
+					<pre class="tpl">
+&lt;script id=&quot;scriptTPL&quot; type=&quot;aui/template&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/script&gt;</pre>
+
+					<h4>Hidden Div</h4>
+					<pre class="tpl">
+&lt;div class=&quot;aui-helper-hidden&quot; id=&quot;divTPL&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/div&gt;</pre>
+
+					<h4>Hidden Textarea</h4>
+					<pre class="tpl">
+&lt;textarea class=&quot;aui-helper-hidden&quot; id=&quot;textareaTPL&quot;&gt;
+	&lt;tpl for=&quot;.&quot;&gt;
+		{#} {.}
+	&lt;/tpl&gt;
+&lt;/textarea&gt;</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w50">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<h4>Script tag</h4>
+					<pre class="js">
+var scriptTPL = A.one('#scriptTPL').toTPL();
+scriptTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+
+					<h4>Hidden Div</h4>
+					<pre class="js">
+var divTPL = A.one('#divTPL').toTPL();
+divTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+
+					<h4>Hidden Textarea</h4>
+					<pre class="js">
+var textareaTPL = A.one('#textareaTPL').toTPL();
+textareaTPL.render(['Item 1', 'Item 2', 'Item 3'], '#somewhere');</pre>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="embedding">
+			<h2>Embedding JavaScript</h2>
+			<p>You can embed arbitrary JS code into your templates using scriptlets. The result of the scriptlet expression is embedded into the template. A scriptlet is demarked with the special <code>{[ syntax ]}</code>. Scriptlets can accept any valid JS expression, but are also passed the following variables:
+				<ul>
+					<li><code>values</code> - This is the current object that is being applied to the template</li>
+					<li>Any of the current template variables - so <code>{name}</code> would be available as <code>values.name</code>, <code>{skills}</code> as <code>values.skills</code>, etc</li>
+					<li><code>parent</code> - This is the object of the parent scope (for instance, when running in a loop, you can access the values of the parent scope)</li>
+				</ul>
+
+				If you need to do more advanced logic, consider placing the logic into a method on your template (which you can access like so: <code>this.<em>myMethodName()</em></code>)
+
+				<span class="note">* One thing to note, accessing or manipulating the DOM of the template is not allowed, as the JS is executing before the template has finished rendering. You can modify/read other parts of the DOM and have that value returned in your expression however.</span>
+				</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;tpl for=&quot;.&quot;&gt;
+	&lt;div class=&quot;scriptlet-row&quot; style=&quot;background-color: {[$index % 2 === 0 ? &#x27;#98C0F4&#x27; : &#x27;#DFE8F6&#x27;]};&quot;&gt;
+		{name} -  {[ A.getClassName(values.name, &#x27;styled&#x27;, &#x27;element&#x27;) ]}
+	&lt;/div&gt;
+&lt;/tpl&gt;</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+[
+	{name: 'Ollie', age: 18},
+	{name: 'Kevin', age: 15},
+	{name: 'Arnie', age: 14},
+	{name: 'Alice', age: 22}
+]</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="advancedLooping">
+			<h2>Advanced Looping</h2>
+			<p>Loops contain other special variables that help with processing logic of the data you're dealing with. The variables are:
+				<ul>
+					<li><code>{.}</code> - A shortcut to the current item itself</li>
+					<li><code>{#}</code> - A shortcut to the $index variable</li>
+					<li><code>{$index}</code> - This is the current number of the item in the loop, however it's 1-based, instead of 0-based like normal javascript arrays (also available in scriptlets as <code>$index</code>)</li>
+					<li><code>{$i}</code> - This is the current 0-based number of the item in the loop (also available in scriptlets as <code>$i</code>)</li>
+					<li><code>{$count}</code> - This is the total number of items of the array (also available in scriptlets as <code>$count</code>)</li>
+					<li><code>{$last}</code> - This is a true or false value indicating whether you are currently on the last item of the array (also available in scriptlets as <code>$last</code>)</li>
+				</ul>
+			</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;tpl for=&quot;devs&quot;&gt;
+	{#}. {.}&lt;tpl if=&quot;!$last&quot;&gt;,&lt;/tpl&gt;
+&lt;/tpl&gt;</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+{devs: ['Nate', 'Eduardo', 'Iliyan', 'Bruno', 'Jon', 'Aaron']}</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aui-layout-content" id="performance">
+			<h2>Performance</h2>
+			<p>Parsing a template is extremely fast. Because of the way it's compiled down, the end call is just basic string substitution. This test creates an object using 5,000 rows and parses it out.</p>
+			<p class="note">* There is one small cheat we do in this test, which is we move the container off DOM first. Modifying a live DOM element is always the most expensive part. For a ratio of comparison, for 5,000 rows, calling tpl.parse({...5,000...}) takes only about 5ms but the rendering portion (if done on DOM) takes about 300ms.</p>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Template markup</h3>
+					<pre class="tpl">
+&lt;tpl for=&quot;rows&quot;&gt;
+	&lt;div style=&quot;background-color: {[ $i % 2 ? &#x27;#ccc&#x27; : &#x27;&#x27;]}; border-bottom: {[ !$last ? &#x27;1px solid #555&#x27; : &#x27;&#x27;]}&quot;&gt;{#}. {.}&lt;/div&gt;
+&lt;/tpl&gt;</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<h3 class="header">Javascript object</h3>
+					<pre class="js">
+(function(){
+	var obj = {rows: []}, rows = obj.rows;
+	var data = ['Nate', 'Eduardo', 'Iliyan', 'Bruno', 'Jon', 'Aaron'];
+	var getRandomString = function(i){
+		var seed = 2147483648 * i;
+		  return Math.floor(Math.random() * seed).toString(36) + Math.abs(Math.floor(Math.random() * seed) ^ A.Lang.now()).toString(36);
+	}
+
+	for(var i = 0; i < 5000; i++) {
+		rows[rows.length] = getRandomString(i);
+	};
+	return obj;
+})();</pre>
+				</div>
+			</div>
+			<div class="aui-column aui-w30">
+				<div class="aui-column-content">
+					<input class="render-button" type="button" value="Render template" />
+					<div class="render-output"></div>
+				</div>
+			</div>
+		</div>
+
+		
+		<div class="aui-layout-content" id="examples">
+			<h2>Examples</h2>
+			<p>There are a couple of different ways in which you can create a template.<br />
+			The <code>A.Template</code> constructor can be passed either an array of strings as the first argument, or as just a series of strings.
+			</p>
+			<div class="aui-column">
+				<div class="aui-column-content">
+					<h3 class="header">Creating a new Template</h3>
+					<pre class="tpl">tpl = new A.Template('This is my', '{name}.');</pre>
+					or
+					<pre class="tpl">tpl = new A.Template(['And this is my', '{age}.']);</pre>
+
+					<h3 class="header">Making extra methods available to the template</h3>
+					<pre class="tpl">tpl = new A.Template('This is my {age:getMax(10)}.', {
+	getMax: function(value, max){
+		return Math.max(value, max);
+	}
+});</pre>
+
+					<h3 class="header">Getting a template from a node</h3>
+					<pre class="tpl">tpl = A.Template.from('#divContainingTplMarkup');</pre>
+					or
+					<pre class="tpl">tpl = A.one('#divContainingTplMarkup').toTPL();</pre>
+
+					<h3 class="header">Rendering a template to a node</h3>
+					<pre class="tpl">tpl.render({name: 'Nate', age: 31}, '#outputContainer');</pre>
+					or
+					<pre class="tpl">A.one('#outputContainer').renderTPL(['This is my name: {name}'], {name: 'Nate', age: 31});</pre>
+
+					<h3 class="header">Parse a template to a string <i>without</i> rendering</h3>
+					<pre class="tpl">html = tpl.parse({name: 'Nate', age: 31});</pre>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-template', function(A) {
+	A.getBody().delegate('click', function(event) {
+		var parent = event.currentTarget.ancestor();
+		var layoutContent = parent.ancestor('.aui-layout-content');
+
+		var id = layoutContent.guid();
+
+		var tplContent = A.Lang.String.unescapeHTML(layoutContent.one('pre.tpl').html());
+
+		var tpl = new A.Template(tplContent);
+
+		var renderOutput = parent.one('.render-output');
+
+		var jsNode = layoutContent.one('pre.js');
+
+		var js;
+
+		if (jsNode) {
+			js = jsNode.text();
+
+			if (js) {
+				eval('js = ' + js);
+			}
+		}
+
+		if (js) {
+			var outputParent = renderOutput.ancestor();
+			renderOutput.remove();
+			tpl.render(js, renderOutput);
+			outputParent.append(renderOutput);
+		}
+	}, 'input.render-button');
+
+	var div = A.Node.create('<div class="nav"></div>');
+	var items = [];
+
+	A.all('h2').each(
+		function(item, index, collection) {
+			var id = item.guid();
+			var title = item.text();
+
+			items.push(
+				{
+					id: id,
+					title: title,
+					offsetY: item.getXY()[1]
+				}
+			);
+		}
+	);
+
+	data = {
+		items: items,
+		scaleFactor: A.getWin().height()/A.getBody().height()
+	}
+
+	tpl = A.Template(
+		'<tpl for="items">',
+			'<a href="#{id}" style="top: {[Math.round(values.offsetY * parent.scaleFactor)]}px">{title}</a>',
+		'</tpl>'
+	);
+
+	tpl.render(data, div);
+
+	A.getBody().append(div);
+});
+</script>
+
+<div class="aui-helper-hidden" id="auiDivTPL">
+	From Div
+	<tpl for=".">
+		<p>{name}:{age} - {age * 5}</p>
+	</tpl>
+</div>
+
+<input id="auiInputTPL" type="hidden" value="From Input<p><tpl for=&quot;.&quot;><p>{#} {name}</p></tpl>">
+
+<script id="auiScriptTPL" type="aui/template">
+	From Script
+	<tpl for=".">
+		{name}:
+		<tpl if="age > 5">
+			<p>{age} - {age * 5}</p>
+		</tpl>
+		<tpl if="age <= 3">
+			<p>{age:padNumber(1, 2)}:lt5</p>
+		</tpl>
+		<tpl if="age <= 5">
+			<p>{age:math("* 10")}:lt5</p>
+		</tpl>
+	</tpl>
+</script>
+</body>
+</html>

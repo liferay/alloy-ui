@@ -1,67 +1,119 @@
-.aui-diagram-builder-base {
+.aui-diagram-builder {
 	margin: 0;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field {
-	border: 1px solid #CCCCCC;
+.aui-diagram-builder .aui-diagram-builder-field {
+	border-radius: 4px 4px 4px 4px;
+	float: left;
+	height: 63px;
 	list-style: none outside none;
-	margin: 3px 0;
-	padding: 10px 0;
+	margin: 2px;
+	text-align: center;
+	width: 79px;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field-draggable {
+.aui-diagram-builder .aui-diagram-builder-field-draggable {
 	cursor: pointer;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field:hover {
-	border: 1px solid #000000;
+.aui-diagram-builder .aui-diagram-builder-field:hover {
+	background-color: #fff;
 }
 
-.aui-diagram-builder-base-field-icon {
-	float: left;
-	margin: 2px 5px 0;
+.aui-diagram-builder-field-icon {
+	display: inline-block;
+	margin: 3px;
 }
 
-.aui-diagram-builder-base .aui-diagram-builder-base-field-icon-text {
+.aui-diagram-builder .aui-diagram-builder-field-icon-text {
 	background-position: -48px -80px;
 }
 
-.aui-diagram-builder-base .aui-property-list {
+.aui-diagram-builder .aui-property-list {
 	padding-bottom: 10px;
 }
 
-.aui-diagram-builder-base-content {
+.aui-diagram-builder-content {
 	background-color: #f1f1f1;
-	padding-left: 260px;
+	/*padding-left: 260px;*/
 }
 
-.aui-diagram-builder-base-tabs-container {
-	float: left;
-	margin-left: -260px;
+.aui-diagram-builder-tabs .aui-tabview-list {
+	margin-bottom: 5px;
+}
+
+.aui-diagram-builder-tabs {
+	position: absolute;
 	width: 260px;
 }
 
-.aui-diagram-builder-base-content-container {
-	background-color: #f5f5f5;
+.aui-diagram-builder-canvas {
+	position: relative;
 }
 
-.aui-diagram-builder-base-fields-container {
+.aui-diagram-builder-fields-container {
 	margin: 5px;
 }
 
-.aui-diagram-builder-base-tabs-container-content {
-	padding: 5px;
+.aui-diagram-builder-content {
+	min-height: 400px;
+}
+
+
+.aui-diagram-builder-content-container {
+	padding-left: 260px;
+}
+
+.aui-diagram-builder-tabs-content {
 }
 
 .aui-diagram-node {
 	position: absolute;
-	background-color: #D96666;
 }
 
-.aui-diagram-builder-base-drop-container {
+.aui-diagram-builder-drop-container {
 	position: relative;
 }
 
-.aui-diagram-builder-base-drop-container {
+.aui-diagram-builder-drop-container {
     height: 600px;
+}
+
+.aui-diagram-builder-anchor-node {
+	cursor: pointer;
+	height: 15px;
+	position: absolute;
+	width: 15px;
+}
+
+.aui-diagram-builder-anchor-node-max-targets {
+	cursor: auto;
+}
+
+.aui-diagram-node-content {
+	padding: 10px;
+}
+
+.aui-diagram-builder-controls {
+	display: none;
+}
+
+.aui-diagram-node-selected .aui-diagram-builder-controls {
+	display: block;
+	text-align: center;
+	padding: 3px;
+}
+
+.aui-diagram-node-controls-icon {
+	display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+
+.aui-diagram-node-selected {
+	border: 1px dotted #666;
+}
+
+.aui-diagram-node-focused {
+	outline: 0;
 }

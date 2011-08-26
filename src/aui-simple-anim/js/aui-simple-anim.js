@@ -13,6 +13,7 @@ var SimpleAnim = A.Component.create(
 			instance.duration = config.duration || 200;
 			instance.easing = config.easing || instance._easeOutQuad;
 			instance.from = config.from;
+			instance.intervalRate = config.intervalRate;
 			instance.to = config.to;
 
 			instance._ontween = config.onTween;
@@ -82,7 +83,7 @@ var SimpleAnim = A.Component.create(
 			animObj.active = true;
 
 			if (!instance.active) {
-				instance.start();
+				instance.start(animObj);
 			}
 		},
 
@@ -105,13 +106,20 @@ var SimpleAnim = A.Component.create(
 			}
 		},
 
-		start: function() {
+		start: function(animObj) {
 			var instance = this;
 
 			if (!instance._timer && !instance.active) {
+				var intervalRate = animObj.intervalRate || instance._intervalRate;
+
 				instance.active = true;
 
-				instance._timer = setInterval(A.bind(instance.animate, instance), instance._intervalRate);
+				instance._timer = setInterval(
+					function() {
+						instance.animate();
+					},
+					intervalRate
+				);
 			}
 		},
 
