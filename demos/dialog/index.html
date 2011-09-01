@@ -44,25 +44,25 @@ AUI().ready('aui-aria', 'aui-dialog', 'aui-overlay-manager', 'dd-constrain', fun
 		// zIndex: 0,
 		buttons: [
 			{
-				text: 'Change title',
+				label: 'Change title',
 				handler: function() {
 					this.set('title', 'Dialog - new title');
 				}
 			},
 			{
-				text: 'Change body',
+				label: 'Change body',
 				handler: function() {
 					this.set('bodyContent', 'New body content');
 				}
 			},
 			{
-				text: 'Toggle stack',
+				label: 'Toggle stack',
 				handler: function() {
 					this.set('stack', !this.get('stack'));
 				}
 			},
 			{
-				text: 'Refresh content',
+				label: 'Refresh content',
 				handler: function() {
 					this.io.start();
 				}
