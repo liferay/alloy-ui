@@ -11,19 +11,19 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isObject = L.isObject,
 
+	WidgetStdMod = A.WidgetStdMod,
+
 	toNumber = function(val) {
 		return parseInt(val, 10) || 0;
 	},
 
 	BLANK = '',
-	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
 	CLOSE = 'close',
 	CLOSETHICK = 'closethick',
 	CONSTRAIN_TO_VIEWPORT = 'constrain2view',
-	CONTAINER = 'container',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DESTROY_ON_CLOSE = 'destroyOnClose',
@@ -55,17 +55,11 @@ var L = A.Lang,
 	getCN = A.getClassName,
 
 	CSS_DIALOG = getCN(DIALOG),
-	CSS_DIALOG_BUTTON = getCN(DIALOG, BUTTON),
-	CSS_DIALOG_BUTTON_CONTAINER = getCN(DIALOG, BUTTON, CONTAINER),
-	CSS_DIALOG_BUTTON_DEFAULT = getCN(DIALOG, BUTTON, DEFAULT),
 	CSS_DIALOG_HD = getCN(DIALOG, HD),
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
 
-	NODE_BLANK_TEXT = document.createTextNode(''),
-
-	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
-	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>';
+	NODE_BLANK_TEXT = document.createTextNode('')
 
 /**
  * <p><img src="assets/images/aui-dialog/main.png"/></p>
@@ -556,34 +550,21 @@ Dialog.prototype = {
 		var instance = this;
 
 		var buttons = instance.get(BUTTONS);
-		var container = A.Node.create(TPL_BUTTON_CONTAINER);
-		var nodeModel = A.Node.create(TPL_BUTTON);
-
-		A.each(
-			buttons,
-			function(button, i) {
-				var node = nodeModel.clone();
-
-				if (button.isDefault) {
-					node.addClass(CSS_DIALOG_BUTTON_DEFAULT);
-				}
-
-				if (button.handler) {
-					var handler = button.handler;
-					var fn = handler.fn || handler;
-					var context = handler.context || instance;
-
-					node.on('click', fn, context);
-				}
-
-				node.html(button.text || BLANK);
-
-				container.append(node);
-			}
-		);
 
 		if (buttons.length) {
-			instance.set(FOOTER_CONTENT, container);
+			instance.buttons = new A.Toolbar(
+				{
+					children: buttons
+				}
+			)
+
+			instance.buttons._DEFAULT_CONTEXT = instance;
+
+			instance.buttons.render(instance.footerNode);
+
+			var toolbarBoundingBox = instance.buttons.get(BOUNDING_BOX);
+
+			instance.setStdModContent(WidgetStdMod.FOOTER, toolbarBoundingBox, WidgetStdMod.AFTER);
 		}
 	},
 
