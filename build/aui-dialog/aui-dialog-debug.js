@@ -60,7 +60,7 @@ var L = A.Lang,
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
 
-	NODE_BLANK_TEXT = document.createTextNode('')
+	NODE_BLANK_TEXT = document.createTextNode('');
 
 /**
  * <p><img src="assets/images/aui-dialog/main.png"/></p>
@@ -553,19 +553,19 @@ Dialog.prototype = {
 		var buttons = instance.get(BUTTONS);
 
 		if (buttons.length) {
-			instance.buttons = new A.Toolbar(
+			var footerButtons = new A.Toolbar(
 				{
 					children: buttons
 				}
-			)
+			);
 
-			instance.buttons._DEFAULT_CONTEXT = instance;
+			footerButtons._DEFAULT_CONTEXT = instance;
 
-			instance.buttons.render(instance.footerNode);
+			footerButtons.render(instance.footerNode);
 
-			var toolbarBoundingBox = instance.buttons.get(BOUNDING_BOX);
+			instance.fire('contentUpdate');
 
-			instance.setStdModContent(WidgetStdMod.FOOTER, toolbarBoundingBox, WidgetStdMod.AFTER);
+			instance.buttons = footerButtons;
 		}
 	},
 
@@ -927,4 +927,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
+}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
