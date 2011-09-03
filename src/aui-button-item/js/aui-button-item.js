@@ -146,29 +146,7 @@ var ButtonItem = A.Component.create(
 			 */
 			handler: {
 				lazyAdd: false,
-				value: null,
-				setter: function(value) {
-					var instance = this;
-
-					var fn = value;
-					var context = instance;
-					var args = instance;
-					var type = 'click';
-
-					if (Lang.isObject(fn)) {
-						var handlerConfig = fn;
-
-						fn = handlerConfig.fn || fn;
-						context = handlerConfig.context || context;
-						type = handlerConfig.type || type;
-					}
-
-					if (Lang.isFunction(fn)) {
-						instance.on(type, A.rbind(fn, context, args, handlerConfig.args));
-					}
-
-					return value;
-				}
+				value: null
 			},
 
 			/**
@@ -350,7 +328,7 @@ var ButtonItem = A.Component.create(
 				var title = instance.get('title');
 
 				if (icon) {
-					instance._uiSetIcon(icon)
+					instance._uiSetIcon(icon);
 				}
 
 				if (label) {
@@ -503,8 +481,11 @@ var ButtonItem = A.Component.create(
 				var fn = value;
 				var parent = instance.get('parent');
 				var context = (parent && parent._DEFAULT_CONTEXT) || instance._DEFAULT_CONTEXT || instance;
-				var args = instance;
+
 				var type = 'click';
+
+				var args = instance;
+				var customArgs;
 
 				if (Lang.isObject(fn)) {
 					var handlerConfig = fn;
@@ -512,10 +493,20 @@ var ButtonItem = A.Component.create(
 					fn = handlerConfig.fn || fn;
 					context = handlerConfig.context || context;
 					type = handlerConfig.type || type;
+
+					customArgs = handlerConfig.args;
 				}
 
 				if (Lang.isFunction(fn)) {
-					instance.on(type, A.rbind(fn, context, args, handlerConfig.args));
+					var interactionHandle = instance._interactionHandle;
+
+					if (interactionHandle) {
+						interactionHandle.detach();
+					}
+
+					var boundFn = A.rbind.apply(A, [fn, context, args].concat(customArgs || []));
+
+					instance._interactionHandle = instance.on(type, boundFn);
 				}
 			},
 
