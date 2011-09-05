@@ -1481,4 +1481,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base']});
+}, '@VERSION@' ,{requires:['node','classnamemanager']});

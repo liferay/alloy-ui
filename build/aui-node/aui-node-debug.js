@@ -1481,7 +1481,7 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base']});
+}, '@VERSION@' ,{requires:['node','classnamemanager']});
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
@@ -1572,7 +1572,7 @@ if (A.UA.ie) {
 	A.Do.before(HTML5._doBeforeCreate, A.DOM, '_create', A.DOM);
 }
 
-}, '@VERSION@' ,{requires:['collection','aui-base']});
+}, '@VERSION@' ,{requires:['collection','aui-node-base']});
 AUI.add('aui-node-html5-print', function(A) {
 var CONFIG = A.config,
 	DOC = CONFIG.doc,
@@ -2313,7 +2313,7 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
+}, '@VERSION@' ,{requires:['aui-node-base','anim','anim-node-plugin']});
 
 
 AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print','aui-node-fx']});

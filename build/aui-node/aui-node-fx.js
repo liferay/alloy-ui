@@ -330,4 +330,4 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base','anim','anim-node-plugin']});
+}, '@VERSION@' ,{requires:['aui-node-base','anim','anim-node-plugin']});
