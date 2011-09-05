@@ -5582,9 +5582,9 @@ A.fn = function(fn, context, args) {
 		var dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
-			fn = (!dynamicLookup) ? fn : context[fn];
+			var method = (!dynamicLookup) ? fn : context[fn];
 
-			return fn.apply(context || fn, xargs);
+			return method.apply(context || fn, xargs);
 		};
 	}
 	else {
@@ -5597,16 +5597,16 @@ A.fn = function(fn, context, args) {
 		var dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
-			fn = (!dynamicLookup) ? fn : context[fn];
-			context = context || fn;
+			var method = (!dynamicLookup) ? fn : context[fn];
+			context = context || method;
 
 			var returnValue;
 
 			if (argLength > 0) {
-				returnValue = fn.apply(context, AArray(arguments, 0, true).slice(0, argLength));
+				returnValue = method.apply(context, AArray(arguments, 0, true).slice(0, argLength));
 			}
 			else {
-				returnValue = fn.call(context);
+				returnValue = method.call(context);
 			}
 
 			return returnValue;
