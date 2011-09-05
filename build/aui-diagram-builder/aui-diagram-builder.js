@@ -821,6 +821,7 @@ var Lang = A.Lang,
 	ANCHORS = 'anchors',
 	ANCHORS_DRAG_CONFIG = 'anchorsDragConfig',
 	AVAILABLE_FIELD = 'availableField',
+	BACKSPACE = 'backspace',
 	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
@@ -1294,7 +1295,7 @@ var DiagramBuilder = A.Component.create({
 			if (event.isKey(ESC)) {
 				instance._onEscKey(event);
 			}
-			else if (event.isKey(DELETE)) {
+			else if (event.isKey(BACKSPACE) || event.isKey(DELETE)) {
 				instance._onDeleteKey(event);
 			}
 		},
