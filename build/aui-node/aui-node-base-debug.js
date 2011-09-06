@@ -8,6 +8,7 @@ AUI.add('aui-node-base', function(A) {
 
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	isUndefined = Lang.isUndefined,
@@ -1327,8 +1328,10 @@ A.NodeList.importMethod(
 	]
 );
 
+var NODELIST_PROTO = A.NodeList.prototype;
+
 A.mix(
-	A.NodeList.prototype,
+	NODELIST_PROTO,
 	{
 		/**
 	     * See <a href="Node.html#method_all">Node all</a>.
@@ -1419,6 +1422,33 @@ A.mix(
 		}
 	}
 );
+
+NODELIST_PROTO.__filter = NODELIST_PROTO.filter;
+
+NODELIST_PROTO.filter = function(value, context) {
+	var instance = this;
+
+	var newNodeList;
+
+	if (isFunction(value)) {
+		var nodes = [];
+
+		instance.each(
+			function(item, index, collection) {
+				if (value.call(context || item, item, index, collection)) {
+					nodes.push(item._node);
+				}
+			}
+		);
+
+		newNodeList = A.all(nodes);
+	}
+	else {
+		newNodeList = NODELIST_PROTO.__filter.call(instance, value);
+	}
+
+	return newNodeList;
+};
 
 A.mix(
 	A.NodeList,
