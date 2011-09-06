@@ -1,9 +1,11 @@
 AUI.add('aui-property-list', function(A) {
 var Lang = A.Lang,
+	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 
 	AUTO = 'auto',
 	COLUMNSET = 'columnset',
+	DATA = 'data',
 	DBLCLICK = 'dblclick',
 	HEIGHT = 'height',
 	KEY = 'key',
@@ -38,6 +40,17 @@ var PropertyList = A.Component.create({
 					},
 					{
 						editor: instance.getDefaultEditor(),
+						formatter: function(o) {
+							var instance = this;
+							var data = o.record.get(DATA);
+							var formatter = data.formatter;
+
+							if (isFunction(formatter)) {
+								return formatter.apply(instance, arguments);
+							}
+
+							return data.value;
+						},
 						key: VALUE,
 						label: instance.getString(VALUE),
 						sortable: true,
@@ -160,4 +173,4 @@ var PropertyList = A.Component.create({
 
 A.PropertyList = PropertyList;
 
-}, '@VERSION@' ,{requires:['aui-datatable'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable']});
