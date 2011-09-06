@@ -69,6 +69,7 @@ var Lang = A.Lang,
 	TABVIEW = 'tabview',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
+	UNIQUE = 'unique',
 
 	AgetClassName = A.getClassName,
 
@@ -86,6 +87,7 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
 	CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, FIELD, ICON),
 	CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, FIELD, LABEL),
+	CSS_DIAGRAM_BUILDER_BASE_FIELD_UNIQUE = AgetClassName(DIAGRAM, BUILDER, UNIQUE),
 	CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, TAB, ADD),
 	CSS_DIAGRAM_BUILDER_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, TAB, SETTINGS),
@@ -147,6 +149,11 @@ var AvailableField = A.Component.create({
 		type: {
 			value: NODE,
 			validator: isString
+		},
+
+		unique: {
+			value: false,
+			validator: isBoolean
 		}
 	},
 
@@ -192,6 +199,10 @@ var AvailableField = A.Component.create({
 
 			instance._uiSetLabel(
 				instance.get(LABEL)
+			);
+
+			instance._uiSetUnique(
+				instance.get(UNIQUE)
 			);
 		},
 
@@ -239,6 +250,12 @@ var AvailableField = A.Component.create({
 			var instance = this;
 
 			instance.labelNode.setContent(val);
+		},
+
+		_uiSetUnique: function(val) {
+			var instance = this;
+
+			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_BASE_FIELD_UNIQUE, val);
 		}
 	}
 });
@@ -281,7 +298,7 @@ A.mix(FieldSupport.prototype, {
 		instance.set(FIELDS, fields);
 	},
 
-	addField: function(field) {
+	addField: function(field, index) {
 		var instance = this;
 
 		if (instance.get(FIELDS).size() < instance.get(MAX_FIELDS)) {
@@ -289,7 +306,7 @@ A.mix(FieldSupport.prototype, {
 
 			if (newField) {
 				instance._updateFields(
-					instance.get(FIELDS).add(newField)
+					instance.get(FIELDS).add(newField, index)
 				);
 			}
 
@@ -456,7 +473,8 @@ var DiagramBuilderBase = A.Component.create(
 				});
 
 				instance.after({
-					render: instance._afterRender
+					render: instance._afterRender,
+					'recordset:update': instance._afterRecordsetUpdate
 				});
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
@@ -512,6 +530,12 @@ var DiagramBuilderBase = A.Component.create(
 				if (instance.get(RENDERED) && (tabContentNode === instance.settingsNode)) {
 					instance._renderSettings();
 				}
+			},
+
+			_afterRecordsetUpdate: function(event) {
+				var instance = this;
+
+				instance._handleSaveEvent();
 			},
 
 			_afterRender: function(event) {
@@ -738,11 +762,6 @@ var DiagramBuilderBase = A.Component.create(
 						bubbleTargets: instance,
 						children: [
 							{
-								handler: A.bind(instance._handleSaveEvent, instance),
-								label: strings[SAVE],
-								icon: DISK
-							},
-							{
 								handler: A.bind(instance._handleCancelEvent, instance),
 								label: strings[CANCEL]
 							}
@@ -783,6 +802,7 @@ var DiagramBuilderBase = A.Component.create(
 A.DiagramBuilderBase = DiagramBuilderBase;
 
 }, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});
+
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1430,8 +1450,6 @@ var DiagramBuilder = A.Component.create({
 					editingConnector.set(data.attributeName, data.value);
 				});
 			}
-
-			instance.closeEditProperties();
 		},
 
 		_renderGraphic: function() {
@@ -2193,6 +2211,7 @@ A.DiagramNodeTask = A.Component.create({
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
+
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3039,5 +3058,6 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 }, '@VERSION@' ,{requires:['aui-base','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
 
 
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector'], skinnable:true});
+
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector']});
 
