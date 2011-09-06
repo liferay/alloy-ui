@@ -644,8 +644,6 @@ var DiagramBuilder = A.Component.create({
 					editingConnector.set(data.attributeName, data.value);
 				});
 			}
-
-			instance.closeEditProperties();
 		},
 
 		_renderGraphic: function() {
