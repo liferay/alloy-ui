@@ -455,7 +455,8 @@ var DiagramBuilderBase = A.Component.create(
 				});
 
 				instance.after({
-					render: instance._afterRender
+					render: instance._afterRender,
+					'recordset:update': instance._afterRecordsetUpdate
 				});
 
 				instance.after(instance._afterUiSetHeight, instance, '_uiSetHeight');
@@ -511,6 +512,12 @@ var DiagramBuilderBase = A.Component.create(
 				if (instance.get(RENDERED) && (tabContentNode === instance.settingsNode)) {
 					instance._renderSettings();
 				}
+			},
+
+			_afterRecordsetUpdate: function(event) {
+				var instance = this;
+
+				instance._handleSaveEvent();
 			},
 
 			_afterRender: function(event) {
@@ -736,11 +743,6 @@ var DiagramBuilderBase = A.Component.create(
 						activeState: false,
 						bubbleTargets: instance,
 						children: [
-							{
-								handler: A.bind(instance._handleSaveEvent, instance),
-								label: strings[SAVE],
-								icon: DISK
-							},
 							{
 								handler: A.bind(instance._handleCancelEvent, instance),
 								label: strings[CANCEL]
