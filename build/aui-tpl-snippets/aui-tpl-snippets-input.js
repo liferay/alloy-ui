@@ -5,8 +5,8 @@ A.Template.register(
 		'<tpl if="values.label !== undefined">',
 			'<label class="{[A.TplSnippets.getClassName(values.auiLabelCssClass, values.labelCssClass)]}" for="{id}" id="{labelId}" name="{labelName}" style="{labelStyle}">{label}</label>',
 		'</tpl>',
-		'<input autocomplete="{autocomplete}" class="{[A.TplSnippets.getClassName(values.auiCssClass, values.cssClass)]}" id="{id}" name="{name}" placeholder="{placeholder}" size="{size}" style="{style}" type="{type}" value="{value}" />'
+		'<input autocomplete="{autocomplete}" class="{[A.TplSnippets.getClassName(values.auiCssClass, values.cssClass)]}" <tpl if="values.disabled">disabled="disabled"</tpl> id="{id}" name="{name}" placeholder="{placeholder}" size="{size}" style="{style}" type="{type}" value="{value}" />'
 	]
 );
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tpl-snippets-base']});
+}, '@VERSION@' ,{requires:['aui-tpl-snippets-base'], skinnable:false});
