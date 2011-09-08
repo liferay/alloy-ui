@@ -271,7 +271,7 @@ var ImageViewer = A.Component.create(
 								opacity: 1
 							},
 							easing: EASE_BOTH_STRONG,
-							duration: .8
+							duration: 0.8
 						},
 						value
 					);
@@ -338,7 +338,7 @@ var ImageViewer = A.Component.create(
 			 */
 			modal: {
 				value: {
-					opacity: .8,
+					opacity: 0.8,
 					background: '#000'
 				}
 			},
@@ -1173,6 +1173,38 @@ var ImageViewer = A.Component.create(
 			},
 
 			/**
+			 * Display the image once it's been loaded.
+			 *
+			 * @method _displayLoadedImage
+			 * @param {Node} image The loaded image
+			 * @protected
+			 */
+			_displayLoadedImage: function(image) {
+				var instance = this;
+
+				instance.setStdModContent(BODY, image);
+
+				instance._uiSetImageSize(image);
+
+				instance._syncImageViewerUI();
+
+				// invoke WidgetPosition _setAlignCenter to force center alignment
+				instance._setAlignCenter(true);
+
+				instance.set(LOADING, false);
+
+				instance.fire('load', { image: image });
+
+				if (instance.get(PRELOAD_NEIGHBOR_IMAGES)) {
+					// preload neighbor images
+					var currentIndex = instance.get(CURRENT_INDEX);
+
+					instance.preloadImage(currentIndex + 1);
+					instance.preloadImage(currentIndex - 1);
+				}
+			},
+
+			/**
 			 * Fires after the ImageViewer render phase.
 			 *
 			 * @method _afterRender
@@ -1238,7 +1270,7 @@ var ImageViewer = A.Component.create(
 
 				instance.close();
 
-				event.halt()
+				event.halt();
 			},
 
 			/**
@@ -1253,7 +1285,7 @@ var ImageViewer = A.Component.create(
 
 				instance.prev();
 
-				event.halt()
+				event.halt();
 			},
 
 			/**
@@ -1268,7 +1300,7 @@ var ImageViewer = A.Component.create(
 
 				instance.next();
 
-				event.halt()
+				event.halt();
 			},
 
 			/**
@@ -1339,31 +1371,15 @@ var ImageViewer = A.Component.create(
 
 					image.fx.on('end', function(info) {
 						instance.fire('anim', { anim: info, image: image });
+
+						instance._displayLoadedImage(image);
 					});
 
 					image.fx.setAttrs(imageAnim);
 					image.fx.stop().run();
 				}
-
-				instance.setStdModContent(BODY, image);
-
-				instance._uiSetImageSize(image);
-
-				instance._syncImageViewerUI();
-
-				// invoke WidgetPosition _setAlignCenter to force center alignment
-				instance._setAlignCenter(true);
-
-				instance.set(LOADING, false);
-
-				instance.fire('load', { image: image });
-
-				if (instance.get(PRELOAD_NEIGHBOR_IMAGES)) {
-					// preload neighbor images
-					var currentIndex = instance.get(CURRENT_INDEX);
-
-					instance.preloadImage(currentIndex + 1);
-					instance.preloadImage(currentIndex - 1);
+				else {
+					instance._displayLoadedImage(image);
 				}
 			},
 
