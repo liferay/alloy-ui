@@ -160,7 +160,13 @@ var AvailableField = A.Component.create({
 	},
 
 	getAvailableFieldByNode: function(node) {
-		return A.one(node).getData(AVAILABLE_FIELD);
+		var node = A.one(node);
+
+		if (isNode(A.one(node))) {
+			return node.getData(AVAILABLE_FIELD)
+		}
+
+		return null;
 	},
 
 	prototype: {
@@ -280,7 +286,7 @@ A.mix(FieldSupport.prototype, {
 		instance.set(FIELDS, fields);
 	},
 
-	addField: function(field) {
+	addField: function(field, index) {
 		var instance = this;
 
 		if (instance.get(FIELDS).size() < instance.get(MAX_FIELDS)) {
@@ -288,7 +294,7 @@ A.mix(FieldSupport.prototype, {
 
 			if (newField) {
 				instance._updateFields(
-					instance.get(FIELDS).add(newField)
+					instance.get(FIELDS).add(newField, index)
 				);
 			}
 

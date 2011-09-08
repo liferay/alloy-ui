@@ -5,38 +5,18 @@ var L = A.Lang,
 	isString = L.isString,
 
 	BOOLEAN = 'boolean',
-	BOUNDING_BOX = 'boundingBox',
-	BODY_CONTENT = 'bodyContent',
 	CHECKBOX = 'checkbox',
 	CHECKED = 'checked',
-	CHOICE = 'choice',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
-	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_CHECKBOX_FIELD = 'form-builder-checkbox-field',
-	ID = 'id',
-	ICON = 'icon',
-	INLINE = 'inline',
+	FORM_BUILDER_FIELD = 'form-builder-field',
 	LABEL = 'label',
 	LABELS = 'labels',
 	NAME = 'name',
 	NODE = 'node',
-	PARENT_NODE = 'parentNode',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	SIZE = 'size',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -50,12 +30,8 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_CHECKBOX = getCN(FORM_BUILDER_FIELD, CHECKBOX),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
-	CSS_FIELD_LABELS_INLINE = getCN(FIELD, LABELS, INLINE),
 
-	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_FORM_BUILDER_FIELD_CHECKBOX].join(SPACE) + '"></li>',
-
-	TPL_CHECKBOX = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHECKBOX, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="checkbox" value="{value}" {checked} />'
+	TPL_CHECKBOX = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHECKBOX, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="checkbox" value="{value}" {checked} />';
 
 var FormBuilderCheckBoxField = A.Component.create({
 
@@ -63,83 +39,31 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The type of the field data
-		 *
-		 * @attribute dataType
-		 */
 		dataType: {
 			value: BOOLEAN
 		},
 
-		/**
-		 * The checked state of the checkbox field
-		 *
-		 * @attribute predefinedValue
-		 */
 		predefinedValue: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_CHECKBOX;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
-		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-			A.FormBuilderCheckBoxField.superclass.bindUI.apply(instance, arguments);
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.on(
-				{
-					'change': A.bind(instance._onValueChange, instance)
-				}
-			);
-		},
-
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
 		renderUI: function() {
 			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
 			var templateNode = instance.get(TEMPLATE_NODE);
 			var labelNode = instance.get(LABEL_NODE);
 
@@ -148,100 +72,57 @@ var FormBuilderCheckBoxField = A.Component.create({
 			labelNode.insert(templateNode, labelNode, 'before');
 		},
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
+		getPropertyModel: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			var model = A.FormBuilderCheckBoxField.superclass.getPropertyModel.apply(instance, arguments);
+
+			AArray.each(model, function(item, index, collection) {
+				if (item.attributeName === PREDEFINED_VALUE) {
+					collection[index] = {
+						attributeName: PREDEFINED_VALUE,
+						editor: new A.RadioCellEditor({
+							options: {
+								'true': strings[YES],
+								'false': strings[NO]
+							}
+						}),
+						formatter: A.bind(instance._booleanFormatter, instance),
+						name: strings[PREDEFINED_VALUE]
+					};
+				}
+			});
+
+			return model;
+		},
+
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
 			var checked = instance.get(CHECKED);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
 					checked: checked ? 'checked="checked"' : EMPTY_STR,
-					id: id,
-					label: label,
-					name: name,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE)
 				}
-			)
-		},
-
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
-			var instance = this;
-
-			return A.Node.create(instance.getHTML());
-		},
-
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedCheckboxSettings) {
-				instance._renderedCheckboxSettings = true;
-
-				settingsNodesMap.predefinedValueSettingNode.get(PARENT_NODE).remove();
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'checkbox',
-							name: PREDEFINED_VALUE,
-							labelText: 'Checked',
-							labelAlign: 'left'
-						}
-					],
-					panelBody.item(0)
-				);
-
-				var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
-
-				predefinedValueNode.on(
-					{
-						change: A.bind(instance._onValueChange, instance)
-					}
-				);
-
-				predefinedValueNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
-			}
-		},
-
-		_onValueChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.get(CHECKED));
+			);
 		},
 
 		_uiSetPredefinedValue: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-			var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
 
-			if (predefinedValueNode) {
-				predefinedValueNode.set(CHECKED, val);
+			if (val) {
+				templateNode.setAttribute(CHECKED, val);
 			}
-
-			templateNode.set(CHECKED, val);
+			else {
+				templateNode.removeAttribute(CHECKED);
+			}
 		}
 
 	}
@@ -250,4 +131,4 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 A.FormBuilderCheckBoxField = FormBuilderCheckBoxField;
 
-A.FormBuilder.types['checkbox'] = A.FormBuilderCheckBoxField;
+A.FormBuilder.types.checkbox = A.FormBuilderCheckBoxField;
