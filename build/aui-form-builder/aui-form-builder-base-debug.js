@@ -182,6 +182,10 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		predefinedValue: {
+			value: _EMPTY_STR,
+		},
+
 		readOnlyAttributes: {
 			value: [],
 			validator: isArray
