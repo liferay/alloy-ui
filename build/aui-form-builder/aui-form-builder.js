@@ -1,9 +1,18 @@
 AUI.add('aui-form-builder-base', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
+	isBoolean = L.isBoolean,
 	isString = L.isString,
 	isObject = L.isObject,
 	isValue = L.isValue,
+
+	AArray = A.Array,
+
+	getAvailableFieldById = A.AvailableField.getAvailableFieldById,
+
+	isAvailableField = function(v) {
+		return (v instanceof A.AvailableField);
+	},
 
 	isNode = function(v) {
 		return (v instanceof A.Node);
@@ -23,50 +32,55 @@ var L = A.Lang,
 
 	DDM = A.DD.DDM,
 
-	ACTIVE = 'active',
 	ACCEPT_CHILDREN = 'acceptChildren',
-	AUTO_SELECT_FIELDS = 'autoSelectFields',
-	AVAILABLE_FIELDS = 'availableFields',
+	ACTIVE = 'active',
+	ADD = 'add',
 	APPEND = 'append',
+	AUTO_SELECT_FIELDS = 'autoSelectFields',
+	AVAILABLE_FIELD = 'availableField',
+	AVAILABLE_FIELDS = 'availableFields',
+	BASE = 'base',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
 	BUTTONS_NODE = 'buttonsNode',
 	CHILDREN = 'children',
-	CLONABLE_PORTAL_LAYOUT = 'clonable-portal-layout',
+	CLICK = 'click',
 	CLONE_NODE = 'cloneNode',
-	COMMA_AND_SPACE = ', ';
 	COMPONENT = 'component',
+	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DELETE = 'delete',
+	DATA = 'data',
+	DBLCLICK = 'dblclick',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DEFAULT_MESSAGE = 'defaultMessage',
 	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
+	DELETE = 'delete',
+	DIAGRAM = 'diagram',
 	DOT = '.',
-	DUPLICATE = 'duplicate',
 	DRAG = 'drag',
-	DRAGGING = 'dragging',
 	DRAG_CONTAINER = 'dragContainer',
 	DRAG_CONTAINER_NODE = 'dragContainerNode',
 	DRAG_NODES_LIST = 'dragNodesList',
-	DRAG_PORTAL_LAYOUT = 'dragPortalLayout',
+	DRAGGABLE = 'draggable',
+	DRAGGING = 'dragging',
 	DROP = 'drop',
 	DROP_CONTAINER = 'dropContainer',
 	DROP_CONTAINER_NODE = 'dropContainerNode',
-	DROP_PORTAL_LAYOUT = 'dropPortalLayout',
 	DROP_NODE = 'dropNode',
 	DROP_ZONE_NODE = 'dropZoneNode',
+	DUPLICATE = 'duplicate',
 	EDIT = 'edit',
+	EDITING = 'editing',
 	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
 	ENABLE_EDITING = 'enableEditing',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	KEY = 'key',
+	FIELDS_NESTED_LIST_CONFIG = 'fieldsNestedListConfig',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
 	FIXED = 'fixed',
@@ -74,353 +88,115 @@ var L = A.Lang,
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
 	FORM_LAYOUT = 'form-layout',
-	ID = 'id',
+	HELPER = 'helper',
+	HIDDEN = 'hidden',
 	ICON = 'icon',
+	ID = 'id',
 	INACTIVE = 'inactive',
 	INDEX = 'index',
 	INPUT = 'input',
 	ITEMS = 'items',
+	KEY = 'key',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	LAST = 'last',
 	LAST_CHILD = 'lastChild',
 	LIST = 'list',
+	LOCALIZATION_MAP = 'localizationMap',
 	MESSAGE = 'message',
+	MOUSEENTER = 'mouseenter',
+	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
 	NESTED_LIST = 'nestedList',
 	NODE = 'node',
+	OPTIONS = 'options',
 	OVER = 'over',
 	PARENT = 'parent',
 	PARENT_NODE = 'parentNode',
-	PLACEHOLDER = 'placeholder',
 	PLACE_AFTER = 'placeAfter',
 	PLACE_BEFORE = 'placeBefore',
+	PLACEHOLDER = 'placeholder',
+	PREDEFINED_VALUE = 'predefinedValue',
 	PREPEND = 'prepend',
-	HELPER = 'helper',
-	HIDDEN = 'hidden',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
+	RECORDS = 'records',
+	RECORDSET = 'recordset',
+	REGION = 'region',
+	REMOVE = 'remove',
 	RENDER = 'render',
+	RENDERED = 'rendered',
+	REQUIRED = 'required',
 	SAVE = 'save',
 	SELECTED = 'selected',
 	SETTINGS = 'settings',
-	SETTINGS_FORM_NODE = 'settingsFormNode',
 	SETTINGS_BUTTONS_NODE = 'settingsButtonsNode',
-	SRC_NODE = 'srcNode',
+	SETTINGS_FORM_NODE = 'settingsFormNode',
+	SHOW_LABEL = 'showLabel',
 	SPACE = ' ',
+	SRC_NODE = 'srcNode',
 	STATE = 'state',
 	STRINGS = 'strings',
 	TABS = 'tabs',
-	TABS_NODE = 'tabsNode',
 	TABS_CONTENT_NODE = 'tabsContentNode',
 	TABS_LIST_NODE = 'tabsListNode',
+	TABS_NODE = 'tabsNode',
 	TABVIEW = 'tabview',
 	TARGET = 'target',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TIP = 'tip',
 	TYPE = 'type',
 	UNIQUE = 'unique',
 	VALUE = 'value',
 	VALUES = 'values',
-	ZONE = 'zone',
-	REGION = 'region',
 	WIDGET = 'widget',
+	WIDTH = 'width',
+	ZONE = 'zone',
+
+	_COMMA = ',',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_HASH = '#',
+	_UNDERLINE = '_',
 
 	getCN = A.getClassName,
 
-	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
-	CSS_COMPONENT = getCN(COMPONENT),
+	AVAILABLE_FIELDS_ID_PREFIX = AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
+	FIELDS_ID_PREFIX = FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
+
 	CSS_DD_DRAGGING = getCN(DD, DRAGGING),
-	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
-	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
-	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
-	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
-	CSS_FORM_BUILDER_BUTTON_SAVE = getCN(FORM, BUILDER, BUTTON, SAVE),
-	CSS_FORM_BUILDER_DEFAULT_MESSAGE = getCN(FORM, BUILDER, DEFAULT, MESSAGE),
-	CSS_FORM_BUILDER_DRAG_CONTAINER = getCN(FORM, BUILDER, DRAG, CONTAINER),
-	CSS_FORM_BUILDER_DRAG_NODE = getCN(FORM, BUILDER, DRAG, NODE),
-	CSS_FORM_BUILDER_DROP_ACTIVE = getCN(FORM, BUILDER, DROP, ACTIVE),
-	CSS_FORM_BUILDER_DROP_CONTAINER = getCN(FORM, BUILDER, DROP, CONTAINER),
-	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
+	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = getCN(DIAGRAM, BUILDER, DROP, CONTAINER),
+	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
-	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
-	CSS_FORM_BUILDER_FIELD_CONTENT = getCN(FORM, BUILDER, FIELD, CONTENT),
-	CSS_FORM_BUILDER_FIELD_HIDDEN = getCN(FORM, BUILDER, FIELD, HIDDEN),
-	CSS_FORM_BUILDER_FIELD_ICON = getCN(FORM, BUILDER, FIELD, ICON),
-	CSS_FORM_BUILDER_FIELD_ICON_TEXT = getCN(FORM, BUILDER, FIELD, ICON, TEXT),
-	CSS_FORM_BUILDER_FIELD_OVER = getCN(FORM, BUILDER, FIELD, OVER),
-	CSS_FORM_BUILDER_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
-	CSS_FORM_BUILDER_HELPER = getCN(FORM, BUILDER, HELPER),
-	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
-	CSS_FORM_BUILDER_INACTIVE = getCN(FORM, BUILDER, INACTIVE),
-	CSS_FORM_BUILDER_LABEL = getCN(FORM, BUILDER, LABEL),
+	CSS_FORM_BUILDER_FIELD_EDITING = getCN(FORM, BUILDER, FIELD, EDITING),
 	CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
-	CSS_FORM_BUILDER_SETTINGS = getCN(FORM, BUILDER, SETTINGS),
-	CSS_FORM_BUILDER_SETTINGS_BUTTONS = getCN(FORM, BUILDER, SETTINGS, BUTTONS),
-	CSS_FORM_BUILDER_TABS_CONTAINER = getCN(FORM, BUILDER, TABS, CONTAINER),
-	CSS_TABVIEW_CONTENT = getCN(TABVIEW, CONTENT),
-	CSS_TABVIEW_LIST = getCN(TABVIEW, LIST),
-	CSS_ICON = getCN(ICON),
-	CSS_WIDGET = getCN(WIDGET),
+	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 
-	TPL_DEFAULT_MESSAGE = '<li class="' + CSS_FORM_BUILDER_DEFAULT_MESSAGE + '"></li>',
+	INVALID_CLONE_ATTRS = [ID, NAME],
 
-	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
+	TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
-	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-key="{key}">' +
-						'<span class="' + [CSS_FORM_BUILDER_ICON, CSS_ICON].join(SPACE) + ' {icon}"></span>' +
-						'<span class="' + CSS_FORM_BUILDER_LABEL + '">{label}</span>' +
-					'</li>',
+var FormBuilderAvailableField = A.Component.create({
+	NAME: AVAILABLE_FIELD,
 
-	TPL_DROP_CONTAINER = '<ul class="' + [CSS_FORM_BUILDER_DROP_CONTAINER].join(SPACE) + '"></ul>',
-
-	TPL_FIELD_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_HELPER_HIDDEN].join(SPACE) + '"></li>',
-
-	TPL_HELPER = '<div class="' + CSS_FORM_BUILDER_HELPER + '"></div>',
-
-	TPL_PLACEHOLDER = '<li class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></li>',
-
-	TPL_TABS = '<div class="' + CSS_FORM_BUILDER_TABS_CONTAINER + '"></div>',
-
-	TPL_TABS_CONTENT = '<div class="' + CSS_TABVIEW_CONTENT + '"></div>',
-
-	TPL_TABS_LIST = '<ul class="' + CSS_TABVIEW_LIST + '"></ul>',
-
-	TPL_SETTINGS = '<form class="' + CSS_FORM_BUILDER_SETTINGS + '"></form>',
-
-	TPL_SETTINGS_BUTTONS = '<div class="aui-button-row">' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Save" class="aui-button-input aui-form-builder-button-save">' +
-									'</span>' +
-								'</span>' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-secondary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Close" class="aui-button-input aui-form-builder-button-close">' +
-									'</span>' +
-								'</span>' +
-							'</div>',
-
-	TAB_INDEX_DRAG = 0,
-	TAB_INDEX_SETTINGS = 1,
-
-	DEFAULT_ICON_CLASS = [CSS_FORM_BUILDER_FIELD_ICON, CSS_FORM_BUILDER_FIELD_ICON_TEXT].join(SPACE),
-
-	INVALID_CLONE_ATTRS = [BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME],
-
-	INVALID_DBCLICK_TARGETS = 'button,input,label,select,textarea';
-
-var FormBuilderFieldSupport = function() {};
-
-FormBuilderFieldSupport.ATTRS = {
-	fields: {
-		value: [],
-		setter: '_setFields',
-		getter: function(val) {
-			return val || [];
+	ATTRS: {
+		readOnlyAttributes: {
+			value: [],
+			validator: isArray
 		},
-		validator: isArray
-	}
-};
 
-A.mix(FormBuilderFieldSupport.prototype, {
-	addField: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		fields = instance._removeFromParent(field);
-
-		fields.push(field);
-		instance.set(FIELDS, fields);
-	},
-
-	addFields: function(fields) {
-		var instance = this;
-
-		A.Array.each(
-			instance._normalizeFields(fields),
-			A.bind(instance.addField, instance)
-		);
-	},
-
-	contains: function(field, deep) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (field === undefined) {
-			return false;
+		unique: {
+			value: false,
+			validator: isBoolean
 		}
-
-		if (deep) {
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			return boundingBox.contains(field.get(BOUNDING_BOX));
-		}
-
-		return (instance.indexOf(field) > -1);
 	},
 
-	eachField: function(fn, deep) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		for (var i = 0; i < fields.length; i++) {
-			var field = fields[i];
-
-			if (deep) {
-				field.eachField(fn, deep);
-			}
-
-			if (fn.call(instance, field, i, fields) === false) {
-				return false;
-			}
-		}
-
-		return true;
-	},
-
-	getField: function(index) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		return fields[index];
-	},
-
-	getFixedFields: function() {
-		var instance = this;
-		var fields = [];
-
-		instance.eachField(function(field) {
-			if (field.get(FIXED)) {
-				fields.push(field);
-			}
-		}, true);
-
-		return fields;
-	},
-
-	indexOf: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		return A.Array.indexOf(fields, field);
-	},
-
-	insertField: function(index, field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		fields = instance._removeFromParent(field);
-
-		fields.splice(index, 0, field);
-
-		instance.set(FIELDS, fields);
-	},
-
-	removeField: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (isFormBuilderField(field) && (field.get(FIXED) || field.getFixedFields().length > 0)) {
-			return false;
-		}
-		else if (field.fixed === true) {
-			return false;
-		}
-
-		fields = instance._removeFromParent(field);
-
-		field.removeTarget(instance);
-
-		instance.set(FIELDS, fields);
-	},
-
-	removeFields: function(fields) {
-		var instance = this;
-
-		A.Array.each(
-			instance._normalizeFields(fields),
-			A.bind(instance.removeField, instance)
-		);
-	},
-
-	_getFormBuilder: function() {
-		return (this.get(FORM_BUILDER) || this);
-	},
-
-	_getRenderedField: function(index, field) {
-		var instance = this;
-		var fm = instance._getFormBuilder();
-
-		if (!isFormBuilderField(field)) {
-			field = fm._renderField(instance, index, field);
-		}
-
-		field.addTarget(fm);
-		field.set(PARENT, instance);
-
-		return field;
-	},
-
-	_normalizeFields: function(fields) {
-		var instance = this;
-		var output = [];
-		var fm = instance._getFormBuilder();
-		var availableFields = fm.get(AVAILABLE_FIELDS);
-		var uniqueFields = fm.uniqueFields;
-
-		fields = A.Array(fields);
-
-		A.Array.each(fields, function(field, i) {
-			field = instance._getRenderedField(i, field);
-
-			var key = field.get(KEY);
-			var unique = field.get(UNIQUE);
-
-			if (unique && !uniqueFields.containsKey(key)) {
-				uniqueFields.add(key, field);
-			}
-
-			if (unique && uniqueFields.contains(field)) {
-				output.push(field);
-			}
-			else if (unique && !uniqueFields.contains(field)) {
-				field.destroy();
-			}
-			else {
-				output.push(field);
-			}
-		});
-
-		return output;
-	},
-
-	_removeFromParent: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (isFormBuilderField(field)) {
-			var parent = field.get(PARENT);
-
-			if (parent && parent != instance) {
-				parent._removeFromParent(field);
-			}
-			else if (instance.contains(field)) {
-				A.Array.removeItem(fields, field);
-			}
-		}
-
-		return fields;
-	},
-
-	_setFields: function(val) {
-		var instance = this;
-
-		return instance._normalizeFields(val);
-	}
+	EXTENDS: A.AvailableField
 });
 
-A.FormBuilderFieldSupport = FormBuilderFieldSupport;
+A.FormBuilderAvailableField = FormBuilderAvailableField;
 
 var FormBuilder = A.Component.create({
 
@@ -428,773 +204,386 @@ var FormBuilder = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Whether to automatically select fields after dropping them
-		 *
-		 * @attribute autoSelectFields
-		 */
 		autoSelectFields: {
 			value: false
 		},
 
-		/**
-		 * The list of fields that can be used
-		 *
-		 * @attribute availableFields
-		 */
-		availableFields: {
-			lazyAdd: false,
-			value: [],
-			validator: isArray,
-			setter: function(val) {
-				A.each(val, function(availableField, index) {
-					availableField.key = availableField.key || index
-				});
-
-				return val;
-			}
-		},
-
-		/**
-		 * Wether the user can edit the fields value
-		 *
-		 * @attribute enableEditing
-		 */
 		enableEditing: {
 			value: true
 		},
 
-		/**
-		 * The A.NestedList configuration object
-		 *
-		 * @attribute nestedList
-		*/
-		nestedList: {
-			setter: function(val) {
-				var instance = this;
-
-				var config = A.merge({
-					dd: {
-						plugins: [
-							{
-								cfg: {
-									horizontal: false,
-									scrollDelay: 30
-								},
-								fn: A.Plugin.DDWinScroll
-							}
-						]
-					},
-					dropCondition: function(event) {
-						var dropCondition = false;
-						var dropNode = event.drop.get(NODE);
-
-						var field = dropNode.getData(FIELD);
-
-						if (field && field.get(ACCEPT_CHILDREN)) {
-							dropCondition = true;
-						}
-
-						return dropCondition;
-					},
-					dropOn: DOT + CSS_FORM_BUILDER_DROP_ZONE,
-					placeholder: A.Node.create(TPL_PLACEHOLDER),
-					sortCondition: function(event) {
-						var dropContainerNode = instance.get(DROP_CONTAINER_NODE);
-
-						return dropContainerNode.contains(event.drop.get(NODE));
-					}
-				}, val);
-
-				return config;
-			},
-			value: {}
+		fieldsNestedListConfig: {
+			setter: '_setFieldsNestedListConfig',
+			validator: isObject,
+			value: null
 		},
 
-		/**
-		 * Strings messages
-		 *
-		 * @attribute strings
-		 */
 		strings: {
-			value:
-			{
-				button: 'Button',
-				defaultMessage: 'Drop a field here',
-				emptySelection: 'No field selected',
-				large: 'Large',
-				medium: 'Medium',
-				reset: 'Reset',
-				small: 'Small',
-				submit: 'Submit',
-				type: 'Type'
-			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		defaultMessageNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DEFAULT_MESSAGE);
-			}
-		},
-
-		dragContainerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DRAG_CONTAINER);
-			}
-		},
-
-		dragNodesList: {
-			setter: function(val) {
-				A.each(val, function(node, index) {
-					node.setData(INDEX, index);
-				});
-			},
-			valueFn: '_valueDragNodesList'
-		},
-
-		dropContainerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DROP_CONTAINER);
-			}
-		},
-
-		settingsButtonsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SETTINGS_BUTTONS);
-			}
-		},
-
-		settingsFormNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SETTINGS);
-			}
-		},
-
-		tabsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS);
-			}
-		},
-
-		tabsContentNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS_CONTENT);
-			}
-		},
-
-		tabsListNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS_LIST);
+			value: {
+				addNode: 'Add field',
+				cancel: 'Cancel',
+				propertyName: 'Property Name',
+				save: 'Save',
+				settings: 'Settings',
+				value: 'Value'
 			}
 		}
 
 	},
 
-	AUGMENTS: [A.FormBuilderFieldSupport],
+	EXTENDS: A.DiagramBuilderBase,
 
-	HTML_PARSER: {
-		defaultMessageNode: DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE,
-		dragContainerNode: DOT + CSS_FORM_BUILDER_DRAG_CONTAINER,
-		dragNodesList: function(srcNode) {
-			var nodes = srcNode.all(DOT + CSS_FORM_BUILDER_DRAG_NODE);
-
-			return (nodes.size() <= 0) ? null : nodes;
-		},
-		dropContainerNode: DOT + CSS_FORM_BUILDER_DROP_CONTAINER,
-		settingsFormNode: FORM + DOT + CSS_FORM_BUILDER_SETTINGS,
-		settingsButtonsNode: DOT + CSS_FORM_BUILDER_SETTINGS_BUTTONS,
-		tabsNode: DOT + CSS_FORM_BUILDER_TABS_CONTAINER,
-		tabsContentNode: DOT + CSS_TABVIEW_CONTENT,
-		tabsListNode: DOT + CSS_TABVIEW_LIST
-	},
-
-	EXTENDS: A.Widget,
+	FIELDS_TAB: 0,
+	SETTINGS_TAB: 1,
 
 	prototype: {
 
-		/**
-		 * Initializer
-		 *
-		 * @method initializer
-		 */
+		uniqueFields: new A.DataSet(),
+
 		initializer: function() {
 			var instance = this;
 
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.dragContainerNode = instance.get(DRAG_CONTAINER_NODE);
-			instance.dragNodesList = instance.get(DRAG_NODES_LIST);
-			instance.dropContainerNode = instance.get(DROP_CONTAINER_NODE);
+			instance.on({
+				cancel: instance._onCancel,
+				'drag:end': instance._onDragEnd,
+				'drag:start': instance._onDragStart,
+				'drag:mouseDown': instance._onDragMouseDown,
+				save: instance._onSave
+			});
 
-			instance.settingsButtonsNode = instance.get(SETTINGS_BUTTONS_NODE);
-			instance.settingsFormNode = instance.get(SETTINGS_FORM_NODE);
+			instance.uniqueFields.after(ADD, A.bind(instance._afterUniqueFieldsAdd, instance));
+			instance.uniqueFields.after(REMOVE, A.bind(instance._afterUniqueFieldsRemove, instance));
 
-			instance.tabsNode = instance.get(TABS_NODE);
-			instance.tabsContentNode = instance.get(TABS_CONTENT_NODE);
-			instance.tabsListNode = instance.get(TABS_LIST_NODE);
-
-			instance._dragNestedList = new A.NestedList(instance.get(NESTED_LIST));
-			instance._dropNestedList = new A.NestedList(instance.get(NESTED_LIST));
-
-			instance._tabs = new A.TabView(
-				{
-					boundingBox: instance.tabsNode,
-					contentNode: instance.tabsContentNode,
-					listNode: instance.tabsListNode
-				}
-			);
-
-			if (!instance.tabsContentNode.inDoc()) {
-				instance._tabs.set(
-					ITEMS,
-					[
-						{label: 'Add a field', contentNode: instance.dragContainerNode},
-						{label: 'Field settings', content: instance.settingsFormNode}
-					]
-				);
-			}
+			instance.dropContainer.delegate(CLICK, A.bind(instance._onClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
+			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onDblClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 		},
 
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
-		renderUI: function() {
-			var instance = this;
-
-			instance.dragNodesList.appendTo(instance.dragContainerNode);
-
-			instance._tabs.render()
-		},
-
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var dropContainerNode = instance.dropContainerNode;
-			var settingsButtonsNode = instance.settingsButtonsNode;
-
-			instance._dragNestedList.on('drag:end', A.bind(instance._onDragEndDragNestedList, instance));
-			instance._dragNestedList.on('drag:start', A.bind(instance._onDragStartDragNestedList, instance));
-			instance._dropNestedList.on('drag:end', A.bind(instance._onDragEndDropNestedList, instance));
-
-			instance._tabs.after('activeTabChange', A.bind(instance._afterActiveTabChange, instance));
-
-			instance.uniqueFields.after('add', A.bind(instance._afterUniqueFieldsAdd, instance));
-			instance.uniqueFields.after('remove', A.bind(instance._afterUniqueFieldsRemove, instance));
-
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDelete, instance), DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDuplicate, instance), DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE);
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldEdit, instance), DOT + CSS_FORM_BUILDER_BUTTON_EDIT);
-			dropContainerNode.delegate('dblclick', A.bind(instance._onDbClickField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-			dropContainerNode.delegate('mouseenter', A.bind(instance._onMouseEnterField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-			dropContainerNode.delegate('mouseleave', A.bind(instance._onMouseLeaveField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-
-			settingsButtonsNode.delegate('click', A.bind(instance._onClickSettingsButton, instance), DOT + CSS_BUTTON_INPUT);
-
-			instance.after('*:fieldsChange', A.bind(instance._afterFieldsChange, instance));
-			instance.after('*:selectedChange', A.bind(instance._afterSelectedChange, instance));
-		},
-
-		/**
-		 * Sync phase
-		 *
-		 * @method syncUI
-		 */
 		syncUI: function() {
 			var instance = this;
 
-			instance.syncFieldsUI();
-
-			instance._syncDefaultMessage();
-			instance._syncUniqueFields();
-			instance._syncNestedList();
+			instance._setupAvailableFieldsNestedList();
+			instance._setupFieldsNestedList();
 		},
 
-		/**
-		 * Stores the unique fields instanciated
-		 *
-		 * @attribute uniqueFields
-		 */
-		uniqueFields: new A.DataSet(),
-
-		/**
-		 * Append fields to the given container
-		 *
-		 * @method appendFields
-		 */
-		appendFields: function(fields, container) {
+		closeEditProperties: function() {
 			var instance = this;
+			var field = instance.editingField;
+
+			instance.tabView.selectTab(A.FormBuilder.FIELDS_TAB);
+
+			if (field && field.get(RENDERED)) {
+				field.get(BOUNDING_BOX).removeClass(CSS_FORM_BUILDER_FIELD_EDITING);
+			}
+
+			instance.editingField = null;
+		},
+
+		createField: function(val) {
+			var instance = this;
+
+			if (!isFormBuilderField(val)) {
+				val = new (instance.getFieldClass(val.type || FIELD))(val);
+			}
+
+			val.set(BUILDER, instance);
+			val.set(PARENT, instance);
+
+			return val;
+		},
+
+		duplicateField: function(field) {
+			var instance = this;
+			var index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX));
+			var newField = instance._cloneField(field, true);
+
+			instance.insertField(newField, ++index, field.get(PARENT));
+		},
+
+		editField: function(field) {
+			var instance = this;
+
+			if (isFormBuilderField(field)) {
+				instance.closeEditProperties();
+
+				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
+
+				instance.propertyList.set(RECORDSET, field.getProperties());
+
+				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
+
+				instance.editingField = instance.selectedField = field;
+			}
+		},
+
+		getFieldClass: function(type) {
+			var instance = this;
+			var clazz = A.FormBuilder.types[type];
+
+			if (clazz) {
+				return clazz;
+			}
+			else {
+				A.log('The field type: [' + type + '] couldn\'t be found.');
+
+				return null;
+			}
+		},
+
+		insertField: function(field, index, parent) {
+			var instance = this;
+
+			parent = parent || instance;
+
+			// remove from previous parent
+			field.get(PARENT).removeField(field);
+
+			parent.addField(field, index);
+		},
+
+		plotField: function(field, container) {
+			var instance = this;
+			var boundingBox = field.get(BOUNDING_BOX);
+
+			if (!field.get(RENDERED)) {
+				field.render(container);
+			}
+			else {
+				container.append(boundingBox);
+			}
+
+			instance._syncUniqueField(field);
+
+			instance.fieldsNestedList.add(boundingBox);
+		},
+
+		plotFields: function(fields, container) {
+			var instance = this;
+
+			container = container || instance.dropContainer;
+			fields = fields || instance.get(FIELDS);
 
 			container.setContent(EMPTY_STR);
 
 			A.each(fields, function(field) {
-				var children = field.get(FIELDS);
-
-				container.append(field.get(BOUNDING_BOX));
-
-			    instance.appendFields(children, field.get(DROP_ZONE_NODE));
+				instance.plotField(field, container);
 			});
 		},
 
-		/**
-		 * Duplicates the given field
-		 *
-		 * @method duplicateField
-		 */
-		duplicateField: function(field) {
-			var instance = this;
-			var parent = field.get(PARENT);
-			var index = parent.indexOf(field);
-			var newFieldConfig = instance._cloneField(field, true);
-
-			parent.insertField(++index, newFieldConfig);
-		},
-
-		/**
-		 * Selects the given field
-		 *
-		 * @method selectField
-		 */
-		selectField: function(field) {
+		select: function(field) {
 			var instance = this;
 
-			field.set(SELECTED, true);
+			instance.unselectFields();
 
-			var firstSettingInput = instance.settingsFormNode.one(INPUT);
-
-			if (firstSettingInput) {
-				firstSettingInput.focus();
-				firstSettingInput.select();
-			}
-
-			instance._tabs.selectTab(TAB_INDEX_SETTINGS);
+			instance.selectedField = field.set(SELECTED, true).focus();
 		},
 
-		/**
-		 * Populates the dropContainerNode with the boundingBox nodes of each
-		 * of the fields components
-		 *
-		 * @method syncFieldsUI
-		 */
-		syncFieldsUI: function(event) {
-			var instance = this;
-			var fields = instance.get(FIELDS);
-			var container = instance.get(DROP_CONTAINER_NODE);
-
-			if (event && isFormBuilderField(event.target)) {
-				var field = event.target;
-
-				fields = field.get(FIELDS);
-				container = field.get(DROP_ZONE_NODE);
-			}
-
-			instance.appendFields(fields, container);
-		},
-
-		/**
-		 * Handles the activeTabChange event
-		 *
-		 * @method _afterActiveTabChange
-		 */
-		_afterActiveTabChange: function(event) {
+		unselectFields: function() {
 			var instance = this;
 			var selectedField = instance.selectedField;
-			var settingsFormNode = instance.get(SETTINGS_FORM_NODE);
-			var settingsButtonsNode = instance.get(SETTINGS_BUTTONS_NODE);
-			var strings = instance.get(STRINGS);
 
-			var containsField = instance.contains(selectedField, true);
-
-			if (!containsField) {
-				settingsFormNode.setContent(strings[EMPTY_SELECTION]);
+			if (selectedField) {
+				selectedField.set(SELECTED, false);
 			}
 
-			settingsButtonsNode.toggleClass(CSS_HELPER_HIDDEN, !containsField);
+			instance.selectedField = null;
 		},
 
-		/**
-		 * Handles the afterFieldsChange event
-		 *
-		 * @method _afterFieldsChange
-		 */
-		_afterFieldsChange: function() {
-			var instance = this;
-
-			instance.syncUI();
-		},
-
-		/**
-		 * Adds/removes the selected class according to the 'selected' attribute
-		 * value
-		 *
-		 * @method _afterSelectedChange
-		 */
-		_afterSelectedChange: function(event) {
-			var instance = this;
-			var field = event.target;
-			var prevSelected = instance.selectedField;
-
-			instance._syncSelectedFieldUI(field);
-
-			if (field.get(SELECTED)) {
-				instance.selectedField = field;
-
-				if (prevSelected && prevSelected != field) {
-					prevSelected.set(SELECTED, false);
-				}
-
-				field.renderSettings();
-			}
-		},
-
-		/**
-		 * Handles the add event for the unique fields
-		 *
-		 * @method _afterUniqueFieldsAdd
-		 */
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var key = event.attrName;
-			var dragNode = instance._getDragNodeByKey(key);
+			var availableField = event.attrName;
 
-			dragNode.addClass(CSS_FORM_BUILDER_INACTIVE);
-			dragNode.unselectable();
+			if (isAvailableField(availableField)) {
+				var node = availableField.get(NODE); 
+
+				availableField.set(DRAGGABLE, false);
+				node.unselectable();
+			}
 		},
 
-		/**
-		 * Handles the remove event for the unique fields
-		 *
-		 * @method _afterUniqueFieldsRemove
-		 */
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var key = event.attrName;
-			var dragNode = instance._getDragNodeByKey(key);
+			var availableField = event.attrName;
 
-			dragNode.removeClass(CSS_FORM_BUILDER_INACTIVE);
-			dragNode.selectable();
+			if (isAvailableField(availableField)) {
+				var node = availableField.get(NODE);
+
+				availableField.set(DRAGGABLE, true);
+				node.selectable();
+			}
 		},
 
-		/**
-		 * Clones a field
-		 *
-		 * @method _cloneField
-		 */
 		_cloneField: function(field, deep) {
 			var instance = this;
-			var type = field.get(TYPE);
+			var config  = {};
 
-			var config = {};
+			AArray.each(field.getProperties(), function(property) {
+				var name = property.attributeName;
 
-			A.each(field.getAttrs(), function(value, key) {
-				if (A.Array.indexOf(INVALID_CLONE_ATTRS, key) === -1 && !isNode(value)) {
-					config[key] = value;
+				if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
+					config[name] = property.value;
 				}
 			});
 
 			if (deep) {
-				var children = [];
+				config[FIELDS] = [];
 
-				A.each(field.get(FIELDS), function(child) {
-					children.push(instance._cloneField(child, deep));
+				A.each(field.get(FIELDS), function(child, index) {
+					if (!child.get(UNIQUE)) {
+						config[FIELDS][index] = instance._cloneField(child, deep);
+					}
+				});
+			}
+
+			return instance.createField(config);
+		},
+
+		_dropField: function(dragNode) {
+			var instance = this;
+			var availableField = dragNode.getData(AVAILABLE_FIELD);
+			var field = A.Widget.getByNode(dragNode);
+			var parentNode = dragNode.get(PARENT_NODE);
+
+			if (isAvailableField(availableField)) {
+				var id = availableField.get(ID).replace(
+					AVAILABLE_FIELDS_ID_PREFIX,
+					_EMPTY_STR
+				);
+
+				field = instance.createField({
+					fixed: availableField.get(FIXED),
+					id: id,
+					label: availableField.get(LABEL),
+					localizationMap: availableField.get(LOCALIZATION_MAP),
+					options: availableField.get(OPTIONS),
+					predefinedValue: availableField.get(PREDEFINED_VALUE),
+					readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
+					required: availableField.get(REQUIRED),
+					showLabel: availableField.get(SHOW_LABEL),
+					tip: availableField.get(TIP),
+					type: availableField.get(TYPE),
+					unique: availableField.get(UNIQUE),
+					width: availableField.get(WIDTH)
 				});
 
-				config[FIELDS] = children;
-			}
-
-			config[TYPE] = type;
-
-			return config;
-		},
-
-		/**
-		 * Add a field to the dropContainer
-		 *
-		 * @method _dropField
-		 */
-		_dropField: function(node) {
-			var instance = this;
-			var parentNode = node.get(PARENT_NODE);
-			var nodes = parentNode.all('> ' + DOT + CSS_FORM_BUILDER_FIELD);
-			var field = node.getData(FIELD);
-			var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
-
-			if (defaultMessageNode.inDoc()) {
-				defaultMessageNode.remove();
-			}
-
-			var parent = instance._getFieldParentByNode(node);
-			var index = nodes.indexOf(node);
-
-			if (!field) {
-				var availableFields = instance.get(AVAILABLE_FIELDS);
-
-				field = availableFields[node.getData(INDEX)];
-
-				// Remove remanescent node
-				node.remove();
-			}
-
-			parent.insertField(index, field);
-
-			return parent.getField(index);
-		},
-
-		/**
-		 * Return the dragNode to the given key
-		 *
-		 * @method _getDragNodeByKey
-		 */
-		_getDragNodeByKey: function(key) {
-			var instance = this;
-			var dragNodesList = instance.get(DRAG_NODES_LIST);
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-
-			for (var i = 0; i < availableFields.length; i++) {
-				if (key == availableFields[i].key) {
-					return dragNodesList.item(i);
+				if (availableField.get(UNIQUE)) {
+					field.set(NAME, availableField.get(NAME));
 				}
+
+				instance.select(field);
 			}
 
-			return null;
+			if (isFormBuilderField(field)){
+				var dropField = A.Widget.getByNode(parentNode);
+
+				if (!isFormBuilderField(dropField)) {
+					dropField = instance;
+				}
+
+				var index = instance._getFieldNodeIndex(dragNode);
+				
+				instance.insertField(field, index, dropField);
+			}
 		},
 
-		/**
-		 * Return the instance of a A.FormBuilderField for the given type
-		 *
-		 * @method _getFieldInstance
-		 */
-		_getFieldInstance: function(config, type) {
+		_getFieldId: function(field) {
 			var instance = this;
-			var type = type || config.type;
-			var typesMap = A.FormBuilder.types;
-			var fieldClass = isString(type) ? typesMap[type] : type;
+			var id = field.get(ID);
 
-			if (fieldClass !== undefined) {
-				return new fieldClass(config);
+			var prefix;
+
+			if (isAvailableField(field)) {
+				prefix = AVAILABLE_FIELDS_ID_PREFIX;
 			}
 			else {
-				A.log('The field type: [' + type + '] couldn\'t be found.');
+				prefix = FIELDS_ID_PREFIX;
 			}
 
-			return null;
+			return id.replace(prefix, _EMPTY_STR);
 		},
 
-		/**
-		 * Returns the parent of the field
-		 *
-		 * @method _getFieldParentByNode
-		 */
-		_getFieldParentByNode: function(node) {
+		_getFieldNodeIndex: function(fieldNode) {
 			var instance = this;
-			var parentNode = node.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
 
-			if (parentNode) {
-				return parentNode.getData(FIELD);
+			return fieldNode.get(PARENT_NODE).all(
+				// prevent the placeholder interference on the index
+				// calculation
+				'> *:not(' + _DOT+CSS_FORM_BUILDER_PLACEHOLDER + ')'
+			).indexOf(fieldNode);
+		},
+
+		_onClickField: function(event) {
+			var instance = this;
+			var field = A.Widget.getByNode(event.currentTarget);
+
+			instance.select(field);
+
+			event.stopPropagation();
+		},
+
+		_onDblClickField: function(event) {
+			var instance = this;
+
+			// Only enable editing if the double clicked node is inside the node
+			// contentBox.
+			if (!event.target.ancestor(_DOT+CSS_FORM_BUILDER_FIELD, true)) {
+				return;
 			}
 
-			return instance;
-		},
-
-		/**
-		 * Return the parent node for a given field or the dropContainerNode
-		 *
-		 * @method _getFieldParentNode
-		 */
-		_getFieldParentNode: function(field) {
-			var instance = this;
-			var parent = field.get(PARENT);
-
-			if (isFormBuilderField(parent)) {
-				return parent.get(BOUNDING_BOX);
-			}
-
-			return instance.get(DROP_CONTAINER_NODE);
-		},
-
-		/**
-		 * Handles the click event for the delete button of each field
-		 *
-		 * @method _onClickFieldDelete
-		 */
-		_onClickFieldDelete: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
-
-			if (isFormBuilderField(field)) {
-				var selectedField = instance.selectedField;
-
-				if (field == selectedField ||
-					field.contains(selectedField, true)) {
-
-					instance._tabs.selectTab(TAB_INDEX_DRAG);
-				}
-
-				field.set(SELECTED, false);
-
-				field.get(PARENT).removeField(field);
-			}
-		},
-
-		/**
-		 * Handles the click event for the duplicate button of each field
-		 *
-		 * @method _onClickFieldDuplicate
-		 */
-		_onClickFieldDuplicate: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
+			var field = A.Widget.getByNode(event.currentTarget);
 
 			if (field) {
-				instance.duplicateField(field);
+				instance.editField(field);
 			}
+
+			event.stopPropagation();
 		},
 
-		/**
-		 * Handles the click event for the edit button of each field
-		 *
-		 * @method _onClickFieldEdit
-		 */
-		_onClickFieldEdit: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
-
-			if (field) {
-				instance.selectField(field);
-			}
-		},
-
-		/**
-		 * Handles the click event for the settings buttons
-		 *
-		 * @method _onClickSettingsButton
-		 */
-		_onClickSettingsButton: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			if (target.hasClass(CSS_FORM_BUILDER_BUTTON_SAVE)) {
-				var selectedField = instance.selectedField;
-
-				if (selectedField) {
-					selectedField.saveSettings();
-				}
-			}
-
-			instance._tabs.selectTab(TAB_INDEX_DRAG);
-		},
-
-		/**
-		 * Handles the dblclick event for each field
-		 *
-		 * @method _onDbClickField
-		 */
-		_onDbClickField: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			if (target.test(INVALID_DBCLICK_TARGETS)) {
-				event.stopPropagation();
-
-				return false;
-			}
-
-			if (!target.getData(FIELD)) {
-				target = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			}
-
-			if (target) {
-				var field = target.getData(FIELD);
-
-				if (field) {
-					instance.selectField(field);
-				}
-			}
-
-			return false;
-		},
-
-		/**
-		 * Handle the drag:end event for the _dragNestedList instance
-		 *
-		 * @method _onDragEndDragNestedList
-		 */
-		_onDragEndDragNestedList: function(event) {
+		_onDragEnd: function(event) {
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
-			var dragContainerNode = instance.dragContainerNode;
-			var dropContainerNode = instance.dropContainerNode;
 
-			var newFieldNode = dropContainerNode.one(DOT + CSS_FORM_BUILDER_DRAG_NODE);
+			instance._dropField(dragNode);
 
-			if (newFieldNode) {
-				var field = instance._dropField(newFieldNode);
-
-				if (instance.get(AUTO_SELECT_FIELDS)) {
-					instance.selectField(field);
-				}
-			}
-			else {
-				drag.set(NODE, instance.originalNode);
-			}
-
-			if (dragContainerNode.contains(dragNode) &&
-				dragContainerNode.contains(instance.originalNode)) {
-
+			// skip already instanciated fields
+			if (!isFormBuilderField(A.Widget.getByNode(dragNode))) {
 				dragNode.remove();
+
+				drag.set(NODE, instance._originalDragNode);
 			}
 		},
 
-		/**
-		 * Handle the drag:end event for the _dropNestedList instance
-		 *
-		 * @method _onDragEndDropNestedList
-		 */
-		_onDragEndDropNestedList: function(event) {
+		_onDragMouseDown: function(event) {
+			var instance = this;
+			var dragNode = event.target.get(NODE);
+			var availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
+
+			if (isAvailableField(availableField) && !availableField.get(DRAGGABLE)) {
+				event.halt();
+			}
+		},
+
+		_onDragStart: function(event) {
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
 
-			if (dragNode.hasClass(CSS_FORM_BUILDER_FIELD)) {
-				instance._dropField(dragNode);
+			// skip already instanciated fields
+			if (isFormBuilderField(A.Widget.getByNode(dragNode))) {
+				return;
 			}
-		},
 
-		/**
-		 * Handle the drag:start event
-		 *
-		 * @method _onDragStartDragNestedList
-		 */
-		_onDragStartDragNestedList: function(event) {
-			var instance = this;
-			var drag = event.target;
-			var dragNode = drag.get(NODE);
-			var index = dragNode.getData(INDEX);
+			// in the dragEnd we`re going to restore the drag node
+			// to the original node
+			instance._originalDragNode = dragNode;
 
 			var clonedDragNode = dragNode.clone();
-
 			dragNode.placeBefore(clonedDragNode);
-			clonedDragNode.setData(INDEX, index);
 
 			drag.set(NODE, clonedDragNode);
+
+			var availableFieldData = dragNode.getData(AVAILABLE_FIELD);
+			clonedDragNode.setData(AVAILABLE_FIELD, availableFieldData);
 
 			clonedDragNode.attr(ID, EMPTY_STR);
 			clonedDragNode.hide();
@@ -1202,265 +591,140 @@ var FormBuilder = A.Component.create({
 			dragNode.removeClass(CSS_DD_DRAGGING);
 			dragNode.show();
 
-			instance.originalNode = dragNode;
-
-			var config = A.merge(
-				instance.get(NESTED_LIST),
-				{
-					nodes: clonedDragNode
-				}
-			);
-
-			(new A.NestedList(config));
+			instance.fieldsNestedList.add(clonedDragNode);
 		},
 
-		/**
-		 * Handle the mouseenter event for each field
-		 *
-		 * @method _onMouseEnterField
-		 */
-		_onMouseEnterField: function(event) {
+		_onSave: function(event) {
 			var instance = this;
-			var fieldBB = event.currentTarget;
-			var field = fieldBB.getData(FIELD);
+			var editingField = instance.editingField;
 
-			if (field) {
-				instance._toggleFieldButtonsNode(field, true);
+			if (editingField) {
+				var recordset = instance.propertyList.get(RECORDSET);
+				
+				AArray.each(recordset.get(RECORDS), function(record) {
+					var data = record.get(DATA);
+
+					editingField.set(data.attributeName, data.value);
+				});
+
+				instance._syncUniqueField(editingField);
 			}
 		},
 
-		/**
-		 * Handle the mouseleave event for each field
-		 *
-		 * @method _onMouseLeaveField
-		 */
-		_onMouseLeaveField: function(event) {
+		_setAvailableFields: function(val) {
 			var instance = this;
-			var fieldBB = event.currentTarget;
-			var field = fieldBB.getData(FIELD);
-			var val = false;
+			var fields = [];
 
-			if (field) {
-				if (field.get(SELECTED)) {
-					val = true;
-				}
-
-				instance._toggleFieldButtonsNode(field, val);
-			}
-		},
-
-		/**
-		 * Renders a field using the given configuration object
-		 *
-		 * @method _renderField
-		 */
-		_renderField: function(parent, index, config) {
-			var instance = this;
-
-			var container = parent.get(DROP_CONTAINER_NODE);
-
-			if (isFormBuilderField(parent)) {
-				container = parent.get(DROP_ZONE_NODE);
-			}
-
-			var boundingBox = A.Node.create(TPL_FIELD_BOUNDING_BOX);
-			var fields = parent.get(FIELDS);
-
-			if (fields.length > 0) {
-				container.insert(boundingBox, index);
-			}
-			else {
-				container.append(boundingBox);
-			}
-
-			config = A.merge(
-				config,
-				{
-					boundingBox: boundingBox,
-					key: config.key,
-					formBuilder: instance,
-					render: true,
-					after: {
-						render: function() {
-							boundingBox.removeClass(CSS_HELPER_HIDDEN);
-						}
-					}
-				}
-			);
-
-			if (config.disabled === undefined) {
-				config.disabled = !instance.get(ENABLE_EDITING);
-			}
-
-			return instance._getFieldInstance(config);
-		},
-
-		/**
-		 * Updates the default message UI
-		 *
-		 * @method _syncDefaultMessage
-		 */
-		_syncDefaultMessage: function() {
-			var instance = this;
-
-			if (!instance.dropContainerNode.hasChildNodes()) {
-				var strings = instance.get(STRINGS);
-				var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
-
-				defaultMessageNode.setContent(strings[DEFAULT_MESSAGE]);
-
-				instance.dropContainerNode.append(defaultMessageNode);
-			}
-		},
-
-		/**
-		 * Updates the nestedList nodes
-		 *
-		 * @method _syncNestedList
-		 */
-		_syncNestedList: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var uniqueFields = instance.uniqueFields;
-
-			instance._syncNodes();
-
-			instance.dragNodes.each(function(node, i) {
-				var field = availableFields[i];
-
-				if (!uniqueFields.containsKey(field.key)) {
-					instance._dragNestedList.add(node);
-				}
-			});
-
-			instance._dropNestedList.addAll(instance.dropNodes);
-		},
-
-		/**
-		 * Updates the dragNodes and dropNodes variables
-		 *
-		 * @method _syncNodes
-		 */
-		_syncNodes: function() {
-			var instance = this;
-			var dragContainerNode = instance.dragContainerNode;
-			var dropContainerNode = instance.dropContainerNode;
-
-			instance.dragNodes = dragContainerNode.all(DOT + CSS_FORM_BUILDER_FIELD);
-
-			instance.dropNodes = dropContainerNode.all(
-				[
-					DOT + CSS_FORM_BUILDER_FIELD,
-					DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE
-				].join(COMMA_AND_SPACE)
-			);
-		},
-
-		/**
-		 * description
-		 *
-		 * @method _syncSelectedFieldUI
-		 */
-		_syncSelectedFieldUI: function(field) {
-			var instance = this;
-			var value = field.get(SELECTED);
-			var fieldBB = field.get(BOUNDING_BOX);
-			var selected = instance.selectedField;
-
-			fieldBB.toggleClass(
-				CSS_FORM_BUILDER_FIELD_SELECTED,
-				value
-			);
-
-			if (!value && field.contains(selected)) {
-				value = true;
-			}
-
-			instance._toggleFieldButtonsNode(field, value);
-		},
-
-		/**
-		 * Sync the unique fields
-		 *
-		 * @method _syncUniqueFields
-		 */
-		_syncUniqueFields: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var fields = instance.get(FIELDS);
-			var uniqueFields = instance.uniqueFields;
-
-			uniqueFields.each(function(uniqueField, index){
-				if (!instance.contains(uniqueField, true)) {
-					uniqueFields.remove(uniqueField);
-				}
-			});
-
-			A.each(availableFields, function(availableField, index) {
-				if (availableField.unique) {
-					var key = availableField.key;
-
-					instance.eachField(function(field) {
-						if (field.get(KEY) == key) {
-							var config = A.merge(
-								instance._cloneField(field, false),
-								availableField
-							);
-
-							field.set(FIXED, config.fixed);
-							field.set(READ_ONLY_ATTRIBUTES, config.readOnlyAttributes);
-							field.set(UNIQUE, true);
-
-							availableFields[index] = config;
-
-							uniqueFields.add(key, field);
-						}
-					}, true);
-				}
-			});
-		},
-
-		/**
-		 * Toggle the visibility of the field buttons node
-		 *
-		 * @method _toggleButtonsNode
-		 */
-		_toggleFieldButtonsNode: function(field, val) {
-			var instance = this;
-			var buttonsNode = field.get(BUTTONS_NODE);
-
-			if (buttonsNode) {
-				buttonsNode.toggleClass(CSS_HELPER_HIDDEN, !val);
-			}
-		},
-
-		/**
-		 * Populates the dragNodesList attribute with values provided by the
-		 * availableFields attribute
-		 *
-		 * @method _valueDragNodesList
-		 */
-		_valueDragNodesList: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var buffer = [];
-
-			A.each(availableFields, function(item, index, collection) {
-				buffer.push(
-					A.substitute(
-						TPL_DRAG_NODE,
-						{
-							icon: item.iconClass || DEFAULT_ICON_CLASS,
-							label: item.entryLabel || item.label,
-							key: item.key || index,
-							type: item.type,
-							unique: item.unique
-						}
-					)
+			AArray.each(val, function(field, index) {
+				fields.push(
+					isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
 				);
 			});
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return fields;
+		},
+
+		_setFieldsNestedListConfig: function(val) {
+			var instance = this;
+			var dropContainer = instance.dropContainer;
+
+			return A.merge(
+				{
+					bubbleTargets: instance,
+					dd: {
+						groups: [AVAILABLE_FIELDS],
+						plugins: [
+							{
+								cfg: {
+									horizontal: false,
+									scrollDelay: 150
+								},
+								fn: A.Plugin.DDWinScroll
+							}
+						]
+					},
+					dropCondition: function(event) {
+						var dropNode = event.drop.get(NODE);
+						var field = A.Widget.getByNode(dropNode);
+
+						if (isFormBuilderField(field)) {
+							return true;
+						}
+
+						return false;
+					},
+					placeholder: A.Node.create(TPL_PLACEHOLDER),
+					dropOn: _DOT + CSS_FORM_BUILDER_DROP_ZONE,
+					sortCondition: function(event) {
+						var dropNode = event.drop.get(NODE);
+
+						return (dropNode !== instance.dropContainer &&
+								dropContainer.contains(dropNode));
+					}
+				},
+				val || {}
+			);
+		},
+
+		_setupAvailableFieldsNestedList: function() {
+			var instance = this;
+
+			if (!instance.availableFieldsNestedList) {
+				var availableFieldsNodes = instance.fieldsContainer.all(
+					_DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+				);
+				
+				instance.availableFieldsNestedList = new A.NestedList(
+					A.merge(
+						instance.get(FIELDS_NESTED_LIST_CONFIG),
+						{
+							nodes: availableFieldsNodes
+						}
+					)
+				);
+			}
+		},
+
+		_setupFieldsNestedList: function() {
+			var instance = this;
+
+			if (!instance.fieldsNestedList) {
+				instance.fieldsNestedList = new A.NestedList(
+					instance.get(FIELDS_NESTED_LIST_CONFIG)
+				);
+			}
+		},
+
+		_syncUniqueField: function(field) {
+			var instance = this;
+			var uniqueFields = instance.uniqueFields;
+
+			// Get the corresponding availableField to the given field
+			var availableField = getAvailableFieldById(
+				instance._getFieldId(field)
+			);
+
+			if (isAvailableField(availableField)) {
+				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
+					// Make one the "mirror" of the other
+					field.set(READ_ONLY_ATTRIBUTES, availableField.get(READ_ONLY_ATTRIBUTES));
+					field.set(UNIQUE, availableField.get(UNIQUE));
+
+					AArray.each(field.getProperties(), function(property) {
+						var name = property.attributeName;
+
+						if (name === ID) {
+							return;
+						}
+
+						availableField.set(name, property.value);
+					});
+
+					availableField.set(LOCALIZATION_MAP, field.get(LOCALIZATION_MAP));
+
+					uniqueFields.add(availableField, field);
+				}
+			}
 		}
 
 	}
@@ -1471,32 +735,43 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-nested-list','aui-tabs','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs','substitute'], skinnable:true});
+
 AUI.add('aui-form-builder-field', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
+	isObject = L.isObject,
 	isString = L.isString,
 
-	_serialize = A.IO.prototype._serialize,
+	AArray = A.Array,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
+	AVAILABLE_FIELD_ID = 'availableFieldId',
 	BODY_CONTENT = 'bodyContent',
+	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
 	BUTTONS_NODE = 'buttonsNode',
+	CANCEL = 'cancel',
 	CHECKBOX = 'checkbox',
 	CHECKED = 'checked',
 	CHILDREN = 'children',
 	CLEARFIX = 'clearfix',
 	CLOSE = 'close',
 	COMPONENT = 'component',
-	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	CONTENT_BOX = 'contentBox',
+	CONTROLS = 'controls',
+	CONTROLS_TOOLBAR = 'controlsToolbar',
 	DATA_TYPE = 'dataType',
 	DEFAULT = 'default',
 	DELETE = 'delete',
+	DELETE_EVENT = 'deleteEvent',
+	DELETE_FIELDS_MESSAGE = 'deleteFieldsMessage',
+	DELETE_MESSAGE = 'deleteMessage',
+	DESCRIPTION = 'description',
 	DISABLED = 'disabled',
 	DOT = '.',
 	DRAG = 'drag',
@@ -1504,13 +779,15 @@ var L = A.Lang,
 	DRAG_CONTAINER_NODE = 'dragContainerNode',
 	DRAG_NODES_LIST = 'dragNodesList',
 	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	DROP_NODE = 'dropNode',
 	DROP_ZONE = 'dropZone',
 	DROP_ZONE_NODE = 'dropZoneNode',
 	DUPLICATE = 'duplicate',
+	DUPLICATE_EVENT = 'duplicateEvent',
+	DUPLICATE_MESSAGE = 'duplicateMessage',
 	EDIT = 'edit',
+	EDIT_EVENT = 'editEvent',
+	EDIT_MESSAGE = 'editMessage',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
@@ -1519,6 +796,7 @@ var L = A.Lang,
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
 	FORM_BUILDER_FIELD = 'form-builder-field',
+	GEAR = 'gear',
 	HELP = 'help',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
@@ -1529,21 +807,27 @@ var L = A.Lang,
 	LIGHTBULB = 'lightbulb',
 	METADATA = 'metadata',
 	NAME = 'name',
+	NEWWIN = 'newwin',
+	NO = 'no',
 	NODE = 'node',
 	PANEL = 'panel',
+	PARENT = 'parent',
+	PENCIL = 'pencil',
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
+	RENDERED = 'rendered',
 	REQUIRED = 'required',
 	REQUIRED_FLAG_NODE = 'requiredFlagNode',
-	STATE = 'state',
 	SELECT = 'select',
+	SELECTED = 'selected',
 	SETTINGS = 'settings',
 	SETTINGS_FORM_NODE = 'settingsFormNode',
 	SHOW_LABEL = 'showLabel',
 	SIZE = 'size',
 	SPACE = ' ',
+	STATE = 'state',
 	STRING = 'string',
 	STRINGS = 'strings',
 	TEMPLATE_NODE = 'templateNode',
@@ -1553,63 +837,57 @@ var L = A.Lang,
 	TIP_ICON_NODE = 'tipIconNode',
 	TYPE = 'type',
 	UNIQUE = 'unique',
-	ZONE = 'zone',
 	WIDGET = 'widget',
+	YES = 'yes',
+	ZONE = 'zone',
+
+	_COMMA = ',',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_HASH = '#',
+	_UNDERLINE = '_',
 
 	getCN = A.getClassName,
 
 	CSS_COMPONENT = getCN(COMPONENT),
+	CSS_FB_BUTTON = getCN(FORM, BUILDER, BUTTON),
+	CSS_FB_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
+	CSS_FB_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
+	CSS_FB_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
+	CSS_FB_CONTROLS = getCN(FORM, BUILDER, BUTTON, CONTROLS),
+	CSS_FB_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
+	CSS_FB_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
+	CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
+	CSS_FB_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
+	CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
+	CSS_FB_FIXED = getCN(FORM, BUILDER, FIXED),
+	CSS_FB_ICON = getCN(FORM, BUILDER, ICON),
+	CSS_FB_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
+	CSS_FB_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
+	CSS_FB_ICON_EDIT = getCN(FORM, BUILDER, ICON, EDIT),
+	CSS_FB_ICON_TIP = getCN(FORM, BUILDER, ICON, TIP),
+	CSS_FB_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
+	CSS_FB_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
+	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
+	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
-	CSS_FIELD = getCN(FIELD),
-	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
-	CSS_FORM_BUILDER_BUTTON = getCN(FORM, BUILDER, BUTTON),
-	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
-	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
-	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
-	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
-	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
-	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
-	CSS_FORM_BUILDER_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
-	CSS_FORM_BUILDER_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
-	CSS_FORM_BUILDER_ICON_EDIT = getCN(FORM, BUILDER, ICON, EDIT),
-	CSS_FORM_BUILDER_ICON_TIP = getCN(FORM, BUILDER, ICON, TIP),
-	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
-	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
-	CSS_FORM_BUILDER_FIXED = getCN(FORM, BUILDER, FIXED),
-	CSS_FORM_BUILDER_REQUIRED = getCN(FORM, BUILDER, REQUIRED),
-	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 	CSS_WIDGET = getCN(WIDGET),
 
-	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD].join(SPACE) + '"></li>',
+	TPL_BOUNDING_BOX = '<div class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FB_FIELD].join(SPACE) + '"></div>',
+	TPL_DROP_ZONE = '<div class="' + CSS_FB_DROP_ZONE + '"></div>',
+	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '" for="{id}">{label}</label>',
+	TPL_REQUIRED_FLAG = '<span class="' + CSS_FB_REQUIRED + '">*</span>',
+	TPL_TIP_ICON = '<a href="javascript:;" class="' + CSS_FB_ICON_TIP + '"></a>';
 
-	TPL_BUTTONS = '<div class="' + [CSS_FORM_BUILDER_FIELD_BUTTONS, CSS_HELPER_HIDDEN].join(SPACE) + '">' +
-					'<a class="' + [CSS_FORM_BUILDER_BUTTON, CSS_FORM_BUILDER_BUTTON_EDIT].join(SPACE) + '" href="javascript:;" title="Edit">' +
-						'<div class="' + [CSS_FORM_BUILDER_ICON, CSS_FORM_BUILDER_ICON_EDIT].join(SPACE) + '"></div>' +
-					'</a>' +
-					'<a class="' + [CSS_FORM_BUILDER_BUTTON, CSS_FORM_BUILDER_BUTTON_DUPLICATE].join(SPACE) + '" href="javascript:;" title="Duplicate">' +
-						'<div class="' + [CSS_FORM_BUILDER_ICON, CSS_FORM_BUILDER_ICON_DUPLICATE].join(SPACE) + '"></div>' +
-					'</a>' +
-					'<a class="' + [CSS_FORM_BUILDER_BUTTON, CSS_FORM_BUILDER_BUTTON_DELETE].join(SPACE) + '" href="javascript:;" title="Delete">' +
-						'<div class="' + [CSS_FORM_BUILDER_ICON, CSS_FORM_BUILDER_ICON_DELETE].join(SPACE) + '"></div>' +
-					'</a>' +
-				  '</div>',
+var FormBuilderFieldBase = A.Component.create({
+	NAME: FORM_BUILDER_FIELD,
 
-	TPL_DIV = '<div class="' + CSS_HELPER_CLEARFIX + '"></div>',
-
-	TPL_DROP_ZONE = '<ul class="' + CSS_FORM_BUILDER_DROP_ZONE + '"></ul>',
-
-	TPL_FIELD_TEXT = '<span class="' + [CSS_FIELD, CSS_FIELD_TEXT].join(SPACE) + '"></span>',
-
-	TPL_LABEL = '<label class="' + CSS_FIELD_LABEL + '"></label>',
-
-	TPL_REQUIRED_FLAG = '<span class="' + CSS_FORM_BUILDER_REQUIRED + '">*</span>',
-
-	TPL_TEXT = '<p></p>',
-
-	TPL_TIP_ICON = '<a href="javascript:;" class="' + CSS_FORM_BUILDER_ICON_TIP + '"></a>';
+	AUGMENTS: [A.FieldSupport]
+});
 
 var FormBuilderField = A.Component.create({
 
@@ -1617,212 +895,126 @@ var FormBuilderField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Wether the field accepts children or nothing
-		 *
-		 * @attribute acceptChildren
-		 */
 		acceptChildren: {
 			value: true
 		},
 
-		/**
-		 * The type of the field data
-		 *
-		 * @attribute dataType
-		 */
+		controlsToolbar: {
+			validator: isObject,
+			valueFn: '_valueControlsToolbar'
+		},
+
 		dataType: {
 			value: STRING
 		},
 
-		/**
-		 * Wether the field is disabled for editing
-		 *
-		 * @attribute disabled
-		 */
 		disabled: {
 			value: false
 		},
 
-		/**
-		 * A fixed field cannot be removed once instanciated
-		 *
-		 * @attribute fixed
-		 */
 		fixed: {
 			value: false
 		},
 
-		/**
-		 * FormBuilder instance of the field
-		 *
-		 * @attribute formBuilder
-		 */
-		formBuilder: {
-			value: undefined
-		},
-
-		/**
-		 * The id of the field
-		 *
-		 * @attribute id
-		 */
 		id: {
-			value: EMPTY_STR
+			setter: '_setId'
 		},
 
-		/**
-		 * The aui icon css class of the field
-		 *
-		 * @attribute icon
-		 */
-		icon: {
-			value: EMPTY_STR
-		},
-
-		/**
-		 * The id of the available field that originated the field
-		 *
-		 * @attribute key
-		 * @private
-		 */
-		key: {
-			value: EMPTY_STR
-		},
-
-		/**
-		 * The label of the field
-		 *
-		 * @attribute label
-		 */
 		label: {
 			value: EMPTY_STR
 		},
 
-		/**
-		 * The localizationMap of the field
-		 *
-		 * @attribute label
-		 */
 		localizationMap: {
 			value: {}
 		},
 
-		/**
-		 * The name of the field
-		 *
-		 * @attribute name
-		 */
 		name: {
 			valueFn: function() {
 				var instance = this;
+				var type = instance.get(TYPE);
 
-				return instance.get(TYPE) + (++A.Env._uidx);
+				return A.FormBuilderField.buildFieldName(type);
 			}
 		},
 
-		/**
-		 * The parent of the field
-		 *
-		 * @attribute parent
-		 */
 		parent: {
 			value: null
 		},
 
-		/**
-		 * The default value of the field
-		 *
-		 * @attribute predefinedValue
-		 */
 		predefinedValue: {
 			value: EMPTY_STR
 		},
 
-		/**
-		 * The readOnly attributes
-		 *
-		 * @attribute readOnlyAttributes
-		 */
 		readOnlyAttributes: {
 			value: [],
 			validator: isArray
 		},
 
-		/**
-		 * Whether the field is required or not
-		 *
-		 * @attribute required
-		 */
 		required: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * Define the selected state of the field
-		 *
-		 * @attribute selected
-		 */
 		selected: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * Whether to show the label or not
-		 *
-		 * @attribute showLabel
-		 */
 		showLabel: {
 			setter: A.DataType.Boolean.parse,
 			value: true
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
+		strings: {
+			value: {
+				button: 'Button',
+				buttonType: 'Button Type',
+				deleteFieldsMessage: 'Are you sure you want to delete the selected field(s)?',
+				duplicateMessage: 'Duplicate',
+				editMessage: 'Edit',
+				label: 'Label',
+				large: 'Large',
+				medium: 'Medium',
+				multiple: 'Multiple',
+				name: 'Name',
+				no: 'No',
+				options: 'Options',
+				predefinedValue: 'Predefined Value',
+				required: 'Required',
+				reset: 'Reset',
+				showLabel: 'Show Label',
+				small: 'Small',
+				submit: 'Submit',
+				tip: 'Tip',
+				type: 'Type',
+				width: 'Width',
+				yes: 'Yes'
+			}
+		},
+
+		tabIndex: {
+			value: 1
+		},
+
 		template: {
 			value: EMPTY_STR
 		},
 
-		/**
-		 * A tip for the user
-		 *
-		 * @attribute tip
-		 */
 		tip: {
 			value: EMPTY_STR
 		},
 
-		/**
-		 * The type of the field. It's a unique identifier per field
-		 *
-		 * @attribute type
-		 */
 		type: {
 			value: EMPTY_STR
 		},
 
-		/**
-		 * Whether the field is unique or not
-		 *
-		 * @attribute unique
-		 */
 		unique: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/*
-		* HTML_PARSER attributes
-		*/
-		buttonsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_BUTTONS);
-			}
+		zIndex: {
+			value: 100
 		},
 
 		dropZoneNode: {
@@ -1833,7 +1025,17 @@ var FormBuilderField = A.Component.create({
 
 		labelNode: {
 			valueFn: function() {
-				return A.Node.create(TPL_LABEL);
+				var instance = this;
+
+				return A.Node.create(
+					A.substitute(
+						TPL_LABEL,
+						{
+							id: instance.get(ID),
+							label: instance.get(LABEL)
+						}
+					)
+				);
 			}
 		},
 
@@ -1855,30 +1057,32 @@ var FormBuilderField = A.Component.create({
 
 	},
 
-	AUGMENTS: [A.FormBuilderFieldSupport],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SHOW_LABEL, TIP, UNIQUE],
+	EXTENDS: FormBuilderFieldBase,
+
+	buildFieldId: function(id) {
+		return FIELDS + _UNDERLINE + FIELD + _UNDERLINE + id;
+	},
+
+	buildFieldName: function(type) {
+		return type + (++A.Env._uidx);	
+	},
 
 	HTML_PARSER: {
-		buttonsNode: DOT + CSS_FORM_BUILDER_FIELD_BUTTONS,
-		dropZoneNode: DOT + CSS_FORM_BUILDER_DROP_ZONE,
+		dropZoneNode: DOT + CSS_FB_DROP_ZONE,
 		labelNode: LABEL + DOT + CSS_FIELD_LABEL,
-		requiredFlagNode: DOT + CSS_FORM_BUILDER_REQUIRED,
-		tipIconNode: DOT + CSS_FORM_BUILDER_ICON_TIP
+		requiredFlagNode: DOT + CSS_FB_REQUIRED,
+		tipIconNode: DOT + CSS_FB_ICON_TIP
 	},
 
 	prototype: {
 		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
-		/**
-		 * Initializer
-		 *
-		 * @method initializer
-		 */
+		CONTROLS_TEMPLATE: '<div class="' + CSS_FB_CONTROLS + '"></div>',
+
 		initializer: function() {
 			var instance = this;
-
-			instance.get(BOUNDING_BOX).setData(FIELD, instance);
 
 			instance.toolTip = new A.Tooltip({
 				trigger: instance.get(TIP_ICON_NODE),
@@ -1886,25 +1090,8 @@ var FormBuilderField = A.Component.create({
 			});
 		},
 
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-		},
-
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
 		renderUI: function() {
 			var instance = this;
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var buttonsNode = instance.get(BUTTONS_NODE);
 			var contentBox = instance.get(CONTENT_BOX);
 			var labelNode = instance.get(LABEL_NODE);
 			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
@@ -1912,8 +1099,6 @@ var FormBuilderField = A.Component.create({
 			var tipIconNode = instance.get(TIP_ICON_NODE);
 
 			contentBox.addClass(CSS_HELPER_CLEARFIX);
-
-			boundingBox.prepend(buttonsNode);
 
 			contentBox.append(labelNode);
 			contentBox.append(requiredFlagNode);
@@ -1923,232 +1108,189 @@ var FormBuilderField = A.Component.create({
 			instance.toolTip.render();
 		},
 
-		/**
-		 * Settings nodes map
-		 *
-		 * @attribute settingsNodesMap
-		 */
-		settingsNodesMap: {},
-
-		/**
-		 * Saves the settings info from the settings form to the settings
-		 * attribute
-		 *
-		 * @method saveSettings
-		 */
-		saveSettings: function() {
+		destructor: function() {
 			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
 
-			A.Array.each(
-				_serialize(formNode._node).split('&'),
-				function(item) {
-					var keyVal = item.split('=');
+			instance.get(FIELDS).each(function(field) {
+				field.destroy();
+			});
 
-					instance.set(keyVal[0], decodeURIComponent(keyVal[1]));
+			var builder = instance.get(BUILDER);
+
+			if (builder.editingField === instance) {
+				delete builder.editingField;
+
+				builder.closeEditProperties();
+			}
+
+			if (builder.selectedField === instance) {
+				delete builder.selectedField;
+			}
+
+			if (instance.controlsToolbar) {
+				instance.controlsToolbar.destroy();
+			}
+
+			// destroy manually because NestedList doesn`t
+			// use delegate
+			instance.get(BOUNDING_BOX).dd.destroy();
+
+			instance.toolTip.destroy();
+
+			instance.get(PARENT).removeField(instance);
+
+			builder.uniqueFields.remove(instance);
+		},
+
+		createField: function(val) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			val = builder.createField(val);
+
+			val.set(PARENT, instance);
+
+			return val;
+		},
+
+		// To developer: Implement this
+		getHTML: function() {
+			return EMPTY_STR;
+		},
+
+		getNode: function() {
+			var instance = this;
+
+			return A.Node.create(instance.getHTML());
+		},
+
+		getProperties: function() {
+			var instance = this;
+			var propertyModel = instance.getPropertyModel();
+			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
+
+			AArray.each(propertyModel, function(property) {
+				var attribute = property.attributeName;
+				var value = instance.get(attribute), type = L.type(value);
+
+				if (type === BOOLEAN) {
+					value = String(value);
 				}
+
+				property.value = value;
+
+				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
+					property.editor = false;
+				}
+			});
+
+			return propertyModel;
+		},
+
+		getPropertyModel: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			return [
+				{
+					attributeName: TYPE,
+					editor: false,
+					name: strings[TYPE]
+				},
+				{
+					attributeName: LABEL,
+					editor: new A.TextCellEditor(),
+					name: strings[LABEL]
+				},
+				{
+					attributeName: SHOW_LABEL,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
+						}
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[SHOW_LABEL]
+				},
+				{
+					attributeName: REQUIRED,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
+						}
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[REQUIRED]
+				},
+				{
+					attributeName: NAME,
+					editor: new A.TextCellEditor({
+						validator: {
+							rules: {
+								value: {
+									required: true
+								}
+							}
+						}
+					}),
+					name: strings[NAME]
+				},
+				{
+					attributeName: PREDEFINED_VALUE,
+					editor: new A.TextCellEditor(),
+					name: strings[PREDEFINED_VALUE]
+				},
+				{
+					attributeName: TIP,
+					editor: new A.TextAreaCellEditor(),
+					name: strings[TIP]
+				}
+			];
+		},
+
+		_booleanFormatter: function(o) {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			var value = A.DataType.Boolean.parse(
+				o.record.get(DATA).value
+			);
+
+			return value ? strings[YES] : strings[NO];
+		},
+
+		_renderControlsToolbar: function() {
+			var instance = this;
+			var boundingBox = instance.get(BOUNDING_BOX);
+
+			if (!instance.controlsNode) {
+				instance.controlsNode = A.Node.create(instance.CONTROLS_TEMPLATE);
+				instance.controlsNode.appendTo(boundingBox);
+			}
+
+			var controlsToolbar = instance.controlsToolbar = new A.Toolbar(
+				instance.get(CONTROLS_TOOLBAR)
+			)
+			.render(instance.controlsNode);
+
+			controlsToolbar.get(BOUNDING_BOX).hide();
+
+			instance._uiSetFixed(
+				instance.get(FIXED)
 			);
 		},
 
-		/**
-		 * Renders the settings UI
-		 *
-		 * @method renderSettings
-		 */
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var strings = formBuilder.get(STRINGS);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			if (!instance.fieldSettingsNode) {
-				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
-
-				var propertiesNode = A.Node.create(TPL_DIV);
-
-				var fieldType = A.Node.create(TPL_FIELD_TEXT);
-				var fieldTypeLabel = A.Node.create(TPL_LABEL);
-				var fieldTypeText = A.Node.create(TPL_TEXT);
-
-				fieldTypeLabel.setContent(strings[TYPE]);
-				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
-
-				fieldType.append(fieldTypeLabel);
-				fieldType.append(fieldTypeText);
-				fieldType.appendTo(propertiesNode);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'text',
-							name: LABEL,
-							labelText: 'Label',
-							value: instance.get(LABEL)
-						},
-						{
-							type: 'checkbox',
-							name: SHOW_LABEL,
-							labelText: 'Show label',
-							labelAlign: 'left',
-							value: instance.get(SHOW_LABEL)
-						},
-						{
-							type: 'text',
-							name: NAME,
-							labelText: 'Name',
-							value: instance.get(NAME)
-						},
-						{
-							type: 'checkbox',
-							name: REQUIRED,
-							labelText: 'Required',
-							labelAlign: 'left',
-							value: REQUIRED
-						},
-						{
-							type: 'text',
-							name: PREDEFINED_VALUE,
-							labelText: 'Default value',
-							value: instance.get(PREDEFINED_VALUE)
-						},
-						{
-							type: 'textarea',
-							name: TIP,
-							labelText: 'Tip',
-							value: instance.get(TIP)
-						}
-					],
-					propertiesNode
-				);
-
-				var labelNode = settingsNodesMap.labelSettingNode;
-
-				labelNode.on(
-					{
-						input: A.bind(instance._onLabelInput, instance)
-					}
-				);
-
-				var showLabelNode = settingsNodesMap.showLabelSettingNode;
-
-				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				var requiredNode = settingsNodesMap.requiredSettingNode;
-
-				requiredNode.set(CHECKED, instance.get(REQUIRED));
-
-				requiredNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				instance.propertiesPanel = new A.Panel(
-					{
-						bodyContent: propertiesNode,
-						collapsible: true,
-						title: 'Properties'
-					}
-				).render();
-
-				instance.fieldSettingsNode.append(
-					instance.propertiesPanel.get(BOUNDING_BOX)
-				);
-			}
-
-			formNode.setContent(instance.fieldSettingsNode);
-		},
-
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
-		getHTML: function() {
-			//
-		},
-
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getNode
-		 */
-		getNode: function() {
-			//
-		},
-
-		_onLabelInput: function(event) {
-			var instance = this;
-			var target = event.target;
-			var value = target.val();
-
-			instance.set(LABEL, value);
-		},
-
-		_onSettingsFieldChange: function(event)  {
-			var instance = this;
-			var target = event.target;
-			var value = target.val();
-
-			if (target.get(TYPE) === CHECKBOX) {
-				value = target.get(CHECKED);
-			}
-
-			instance.set(target.get(NAME), value);
-		},
-
-		/**
-		 * Renders settings fields according to the given array of A.Field
-		 * configuration objects
-		 *
-		 * @method _renderSettingsFields
-		 */
-		_renderSettingsFields: function(fields, container) {
-			var instance = this;
-			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
-
-			A.each(fields, function(config) {
-				var field;
-
-				if (A.Array.indexOf(readOnlyAttributes, config.name) > -1) {
-					config.disabled = true;
-				}
-
-				if (config.type === SELECT) {
-					field = new A.Select(config);
-				}
-				else if (config.type === TEXTAREA) {
-					field = new A.Textarea(config);
-				}
-				else {
-					field = new A.Field(config);
-				}
-
-				field.render(container);
-
-				var fieldNode = field.get(NODE);
-
-				if (config.type === CHECKBOX) {
-					fieldNode.set(CHECKED, config.value);
-				}
-
-				instance.settingsNodesMap[config.name + 'SettingNode'] = fieldNode;
-			});
+		_setId: function(val) {
+			return A.FormBuilderField.buildFieldId(val);
 		},
 
 		_uiSetAcceptChildren: function(val) {
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
 			var dropZone = instance.get(DROP_ZONE_NODE);
-			var markupDropZone = boundingBox.one(DOT + CSS_FORM_BUILDER_DROP_ZONE);
+			var markupDropZone = boundingBox.one(DOT + CSS_FB_DROP_ZONE);
 
 			if (val && !markupDropZone) {
 				boundingBox.append(dropZone);
@@ -2173,12 +1315,57 @@ var FormBuilderField = A.Component.create({
 			}
 		},
 
+		_handleDuplicateEvent: function(event) {
+			var instance = this;
+
+			if (!instance.get(UNIQUE)) {
+				instance.get(BUILDER).duplicateField(instance);
+			}
+		},
+
+		_handleEditEvent: function(event) {
+			var instance = this;
+
+			instance.get(BUILDER).editField(instance);
+		},
+
+		_handleDeleteEvent: function(event) {
+			var instance = this;
+
+			if (!instance.get(REQUIRED)) {
+				var strings = instance.getStrings();
+
+				if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
+					instance.destroy();
+				}
+			}
+		},
+
+		_uiSetFields: function(val) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			builder.plotFields(val, instance.get(DROP_ZONE_NODE));
+		},
+
 		_uiSetFixed: function(val) {
 			var instance = this;
-			var buttonsNode = instance.get(BUTTONS_NODE);
-			var deleteNode = buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
-
-			deleteNode.toggleClass(CSS_HELPER_HIDDEN, val);
+			var controlsToolbar = instance.controlsToolbar;
+			var strings = instance.getStrings();
+			
+			if (controlsToolbar) {
+				if (val) {
+					controlsToolbar.remove(DELETE_EVENT);
+				}
+				else {
+					controlsToolbar.add({
+						handler: A.bind(instance._handleDeleteEvent, instance),
+						icon: CLOSE,
+						id: DELETE_EVENT,
+						title: strings[DELETE_MESSAGE]
+					});
+				}
+			}
 		},
 
 		_uiSetLabel: function(val) {
@@ -2209,6 +1396,25 @@ var FormBuilderField = A.Component.create({
 			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
 		},
 
+		_uiSetSelected: function(val) {
+			var instance = this;
+
+			instance.get(BOUNDING_BOX).toggleClass(CSS_FB_FIELD_SELECTED, val);
+
+			if (!instance.controlsToolbar) {
+				instance._renderControlsToolbar();
+			}
+
+			var toolbarBoundingBox = instance.controlsToolbar.get(BOUNDING_BOX);
+
+			if (val) {
+				toolbarBoundingBox.show();
+			}
+			else {
+				toolbarBoundingBox.hide();
+			}
+		},
+
 		_uiSetShowLabel: function(val)  {
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
@@ -2228,11 +1434,53 @@ var FormBuilderField = A.Component.create({
 		_uiSetUnique: function(val) {
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
-			var buttonsNode = instance.get(BUTTONS_NODE);
+			var controlsToolbar = instance.controlsToolbar;
+			var strings = instance.getStrings();
 
-			boundingBox.toggleClass(CSS_FORM_BUILDER_UNIQUE, val);
+			boundingBox.toggleClass(CSS_FB_UNIQUE, val);
 
-			buttonsNode.one(DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE).toggleClass(CSS_HELPER_HIDDEN, val);
+			if (controlsToolbar) {
+				if (val) {
+					controlsToolbar.remove(DUPLICATE_EVENT);
+				}
+				else {
+					controlsToolbar.add({
+						handler: A.bind(instance._handleDuplicateEvent, instance),
+						icon: NEWWIN,
+						id: DUPLICATE_EVENT,
+						title: strings[DUPLICATE_MESSAGE]
+					});
+				}
+			}
+		},
+
+		_valueControlsToolbar: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			return {
+				activeState: false,
+				children: [
+					{
+						handler: A.bind(instance._handleEditEvent, instance),
+						icon: GEAR,
+						id: EDIT_EVENT,
+						title: strings[EDIT_MESSAGE]
+					},
+					{
+						handler: A.bind(instance._handleDuplicateEvent, instance),
+						icon: NEWWIN,
+						id: DUPLICATE_EVENT,
+						title: strings[DUPLICATE_MESSAGE]
+					},
+					{
+						handler: A.bind(instance._handleDeleteEvent, instance),
+						icon: CLOSE,
+						id: DELETE_EVENT,
+						title: strings[DELETE_MESSAGE]
+					}
+				]
+			};
 		}
 
 	}
@@ -2247,52 +1495,30 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
 	toInitialCap = A.cached(
 		function(str) {
 			return str.substring(0, 1).toUpperCase() + str.substring(1);
 		}
 	),
 
-	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTON_TYPE = 'buttonType',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_BUTTON_FIELD = 'form-builder-button-field',
-	ID = 'id',
-	ICON = 'icon',
 	INPUT = 'input',
 	LABEL = 'label',
 	NAME = 'name',
 	NODE = 'node',
 	OPTION = 'option',
 	OPTIONS = 'options',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
 	RESET = 'reset',
 	SELECTED = 'selected',
-	SELECTED_INDEX = 'selectedIndex',
 	SUBMIT = 'submit',
 	SPACE = ' ',
 	STRINGS = 'strings',
@@ -2320,21 +1546,11 @@ var FormBuilderButtonField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Wether the field accepts children or nothing
-		 *
-		 * @attribute acceptChildren
-		 */
 		acceptChildren: {
 			value: false,
 			readOnly: true
 		},
 
-		/**
-		 * Specifies the type of the button field
-		 *
-		 * @attribute buttonType
-		 */
 		buttonType: {
 			value: SUBMIT,
 			validator: function(val) {
@@ -2342,29 +1558,14 @@ var FormBuilderButtonField = A.Component.create({
 			}
 		},
 
-		/**
-		 * The default value of the field
-		 *
-		 * @attribute value
-		 */
 		predefinedValue: {
 			value: toInitialCap(SUBMIT)
 		},
 
-		/**
-		 * Whether to show the label or not
-		 *
-		 * @attribute showLabel
-		 */
 		showLabel: {
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_INPUT;
@@ -2377,108 +1578,48 @@ var FormBuilderButtonField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var buttonType = instance.get(BUTTON_TYPE);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					type: buttonType,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					type: instance.get(BUTTON_TYPE),
+					value: instance.get(PREDEFINED_VALUE)
 				}
 			)
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
+			var model = A.FormBuilderButtonField.superclass.getPropertyModel.apply(instance, arguments);
 
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var buttonType = instance.get(BUTTON_TYPE);
-			var strings = formBuilder.get(STRINGS);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedButtonSettings) {
-				instance._renderedButtonSettings = true;
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				var selectFieldOptions = [];
-
-				A.each(BUTTON_TYPES, function(item){
-					selectFieldOptions.push(
-						{
-							labelText: strings[item],
-							value: item
+			model.push(
+				{
+					attributeName: BUTTON_TYPE,
+					editor: new A.RadioCellEditor({
+						options: {
+							'button': strings[BUTTON],
+							'reset': strings[RESET],
+							'submit': strings[SUBMIT]
 						}
-					);
-				});
+					}),
+					name: strings[BUTTON_TYPE]
+				}
+			);
 
-				instance._renderSettingsFields(
-					[
-						{
-							labelText: 'Button type',
-							name: BUTTON_TYPE,
-							options: selectFieldOptions,
-							type: 'select'
-						}
-					],
-					panelBody.item(0)
-				);
-
-				var buttonTypeNode = settingsNodesMap['buttonTypeSettingNode'];
-
-				buttonTypeNode.on({
-					change: A.bind(instance._onButtonTypeChange, instance)
-				});
-
-				var selectedIndex = A.Array(BUTTON_TYPES).indexOf(buttonType);
-
-				buttonTypeNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
-			}
+			return model;
 		},
-
-		_onButtonTypeChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(BUTTON_TYPE, target.get(VALUE));
-		},
-
+		
 		_uiSetButtonType: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
@@ -2500,38 +1641,18 @@ var L = A.Lang,
 	isString = L.isString,
 
 	BOOLEAN = 'boolean',
-	BOUNDING_BOX = 'boundingBox',
-	BODY_CONTENT = 'bodyContent',
 	CHECKBOX = 'checkbox',
 	CHECKED = 'checked',
-	CHOICE = 'choice',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
-	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_CHECKBOX_FIELD = 'form-builder-checkbox-field',
-	ID = 'id',
-	ICON = 'icon',
-	INLINE = 'inline',
+	FORM_BUILDER_FIELD = 'form-builder-field',
 	LABEL = 'label',
 	LABELS = 'labels',
 	NAME = 'name',
 	NODE = 'node',
-	PARENT_NODE = 'parentNode',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	SIZE = 'size',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -2545,12 +1666,8 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_CHECKBOX = getCN(FORM_BUILDER_FIELD, CHECKBOX),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
-	CSS_FIELD_LABELS_INLINE = getCN(FIELD, LABELS, INLINE),
 
-	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_FORM_BUILDER_FIELD_CHECKBOX].join(SPACE) + '"></li>',
-
-	TPL_CHECKBOX = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHECKBOX, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="checkbox" value="{value}" {checked} />'
+	TPL_CHECKBOX = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHECKBOX, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="checkbox" value="{value}" {checked} />';
 
 var FormBuilderCheckBoxField = A.Component.create({
 
@@ -2558,83 +1675,31 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The type of the field data
-		 *
-		 * @attribute dataType
-		 */
 		dataType: {
 			value: BOOLEAN
 		},
 
-		/**
-		 * The checked state of the checkbox field
-		 *
-		 * @attribute predefinedValue
-		 */
 		predefinedValue: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_CHECKBOX;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
-		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-			A.FormBuilderCheckBoxField.superclass.bindUI.apply(instance, arguments);
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.on(
-				{
-					'change': A.bind(instance._onValueChange, instance)
-				}
-			);
-		},
-
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
 		renderUI: function() {
 			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
 			var templateNode = instance.get(TEMPLATE_NODE);
 			var labelNode = instance.get(LABEL_NODE);
 
@@ -2643,100 +1708,57 @@ var FormBuilderCheckBoxField = A.Component.create({
 			labelNode.insert(templateNode, labelNode, 'before');
 		},
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
+		getPropertyModel: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			var model = A.FormBuilderCheckBoxField.superclass.getPropertyModel.apply(instance, arguments);
+
+			AArray.each(model, function(item, index, collection) {
+				if (item.attributeName === PREDEFINED_VALUE) {
+					collection[index] = {
+						attributeName: PREDEFINED_VALUE,
+						editor: new A.RadioCellEditor({
+							options: {
+								'true': strings[YES],
+								'false': strings[NO]
+							}
+						}),
+						formatter: A.bind(instance._booleanFormatter, instance),
+						name: strings[PREDEFINED_VALUE]
+					};
+				}
+			});
+
+			return model;
+		},
+
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
 			var checked = instance.get(CHECKED);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
 					checked: checked ? 'checked="checked"' : EMPTY_STR,
-					id: id,
-					label: label,
-					name: name,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE)
 				}
-			)
-		},
-
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
-			var instance = this;
-
-			return A.Node.create(instance.getHTML());
-		},
-
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderCheckBoxField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedCheckboxSettings) {
-				instance._renderedCheckboxSettings = true;
-
-				settingsNodesMap.predefinedValueSettingNode.get(PARENT_NODE).remove();
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'checkbox',
-							name: PREDEFINED_VALUE,
-							labelText: 'Checked',
-							labelAlign: 'left'
-						}
-					],
-					panelBody.item(0)
-				);
-
-				var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
-
-				predefinedValueNode.on(
-					{
-						change: A.bind(instance._onValueChange, instance)
-					}
-				);
-
-				predefinedValueNode.set(CHECKED, instance.get(PREDEFINED_VALUE));
-			}
-		},
-
-		_onValueChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.get(CHECKED));
+			);
 		},
 
 		_uiSetPredefinedValue: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-			var predefinedValueNode = settingsNodesMap.predefinedValueSettingNode;
 
-			if (predefinedValueNode) {
-				predefinedValueNode.set(CHECKED, val);
+			if (val) {
+				templateNode.setAttribute(CHECKED, val);
 			}
-
-			templateNode.set(CHECKED, val);
+			else {
+				templateNode.removeAttribute(CHECKED);
+			}
 		}
 
 	}
@@ -2745,19 +1767,8 @@ var FormBuilderCheckBoxField = A.Component.create({
 
 A.FormBuilderCheckBoxField = FormBuilderCheckBoxField;
 
-A.FormBuilder.types['checkbox'] = A.FormBuilderCheckBoxField;
+A.FormBuilder.types.checkbox = A.FormBuilderCheckBoxField;
 var L = A.Lang,
-	isArray = L.isArray,
-	isNumber = L.isNumber,
-	isString = L.isString,
-
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
 
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
@@ -2766,8 +1777,10 @@ var L = A.Lang,
 	DOT = '.',
 	DROP = 'drop',
 	EMPTY_STR = '',
+	SHOW_LABEL = 'showLabel',
 	FIELD = 'field',
 	FIELDS = 'fields',
+	DROP_ZONE_NODE = 'dropZoneNode',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_FIELDSET_FIELD = 'form-builder-fieldset-field',
 	ID = 'id',
@@ -2792,8 +1805,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 
 	TPL_FIELDSET = '<fieldset id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '"></fieldset>',
-
-	TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>'
+	TPL_LEGEND = '<legend class="' + CSS_FIELD_LABEL + '"></legend>';
 
 var FormBuilderFieldsetField = A.Component.create({
 
@@ -2801,47 +1813,25 @@ var FormBuilderFieldsetField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Wether the field accepts children or nothing
-		 *
-		 * @attribute acceptChildren
-		 */
 		acceptChildren: {
 			value: true,
 			readOnly: true
 		},
 
-		/**
-		 * The type of the field data
-		 *
-		 * @attribute dataType
-		 */
 		dataType: {
 			value: undefined
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
-		template: {
-			valueFn: function() {
-				return TPL_FIELDSET;
-			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
 		labelNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_LEGEND);
 			}
 		},
 
-		templateNode: {
-			valueFn: 'getNode'
+		template: {
+			valueFn: function() {
+				return TPL_FIELDSET;
+			}
 		}
 
 	},
@@ -2850,154 +1840,56 @@ var FormBuilderFieldsetField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 		CONTENT_TEMPLATE: TPL_FIELDSET,
 
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
-		renderUI: function() {
-			var instance = this;
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var buttonsNode = instance.get(BUTTONS_NODE);
-			var contentBox = instance.get(CONTENT_BOX);
-			var labelNode = instance.get(LABEL_NODE);
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			if (!boundingBox.contains(buttonsNode)) {
-				boundingBox.prepend(buttonsNode);
-			}
-
-			if (!contentBox.contains(labelNode)) {
-				contentBox.append(labelNode);
-			}
-		},
-
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id
+					id: instance.get(ID)
 				}
-			)
+			);
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
-
-		/**
-		 * Renders the settings UI
-		 *
-		 * @method renderSettings
-		 */
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var strings = formBuilder.get(STRINGS);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			if (!instance._renderedFieldsetSettings) {
-				instance._renderedFieldsetSettings = true;
-
-				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
-
-				var propertiesNode = A.Node.create(TPL_DIV);
-
-				var fieldType = A.Node.create(TPL_FIELD_TEXT);
-				var fieldTypeLabel = A.Node.create(TPL_LABEL);
-				var fieldTypeText = A.Node.create(TPL_TEXT);
-
-				fieldTypeLabel.setContent(strings[TYPE]);
-				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
-
-				fieldType.append(fieldTypeLabel);
-				fieldType.append(fieldTypeText);
-				fieldType.appendTo(propertiesNode);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'text',
-							name: LABEL,
-							labelText: 'Label',
-							value: instance.get(LABEL)
-						},
-						{
-							type: 'checkbox',
-							name: SHOW_LABEL,
-							labelText: 'Show label',
-							labelAlign: 'left',
-							value: instance.get(SHOW_LABEL)
+			return [
+				{
+					attributeName: TYPE,
+					editor: false,
+					name: strings[TYPE]
+				},
+				{
+					attributeName: LABEL,
+					editor: new A.TextCellEditor(),
+					name: strings[LABEL]
+				},
+				{
+					attributeName: SHOW_LABEL,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
 						}
-					],
-					propertiesNode
-				);
-
-				var labelNode = settingsNodesMap['labelSettingNode'];
-
-				labelNode.on(
-					{
-						input: A.bind(instance._onLabelInput, instance)
-					}
-				);
-
-				var showLabelNode = settingsNodesMap['showLabelSettingNode'];
-
-				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				instance.propertiesPanel = new A.Panel(
-					{
-						bodyContent: propertiesNode,
-						collapsible: true,
-						title: 'Properties'
-					}
-				).render();
-
-				instance.fieldSettingsNode.append(
-					instance.propertiesPanel.get(BOUNDING_BOX)
-				);
-			}
-
-			formNode.setContent(instance.fieldSettingsNode);
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[SHOW_LABEL]
+				}
+			];
 		},
 
 		_uiSetAcceptChildren: function(val) {
 			var instance = this;
 			var contentBox = instance.get(CONTENT_BOX);
 			var dropZone = instance.get(DROP_ZONE_NODE);
-			var markupDropZone = contentBox.one(DOT + CSS_FORM_BUILDER_DROP_ZONE);
+			var markupDropZone = contentBox.one(DOT+CSS_FORM_BUILDER_DROP_ZONE);
 
 			if (val && !markupDropZone) {
 				contentBox.append(dropZone);
@@ -3008,6 +1900,8 @@ var FormBuilderFieldsetField = A.Component.create({
 			else if (val && markupDropZone) {
 				instance.set(DROP_ZONE_NODE, markupDropZone);
 			}
+
+			instance.get(TEMPLATE_NODE).hide();
 		}
 
 	}
@@ -3018,30 +1912,15 @@ A.FormBuilderFieldsetField = FormBuilderFieldsetField;
 
 A.FormBuilder.types['fieldset'] = A.FormBuilderFieldsetField;
 var L = A.Lang,
-	isArray = L.isArray,
-	isNumber = L.isNumber,
-	isString = L.isString,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
-	BOUNDING_BOX = 'boundingBox',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DATA_TYPE = 'dataType',
 	DOT = '.',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_FILE_UPLOAD_FIELD = 'form-builder-file-upload-field',
-	ID = 'id',
 	ICON = 'icon',
+	ID = 'id',
 	LABEL = 'label',
 	NAME = 'name',
 	NODE = 'node',
@@ -3060,7 +1939,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
-	TPL_FILE_UPLOAD = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" type="file" value="{value}" />'
+	TPL_FILE_UPLOAD = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" type="file" value="{value}" />';
 
 var FormBuilderFileUploadField = A.Component.create({
 
@@ -3068,180 +1947,32 @@ var FormBuilderFileUploadField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_FILE_UPLOAD;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var size = instance.get(SIZE);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE)
 				}
-			)
-		},
-
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
-			var instance = this;
-
-			return A.Node.create(instance.getHTML());
-		},
-
-		/**
-		 * Renders the settings UI
-		 *
-		 * @method renderSettings
-		 */
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var strings = formBuilder.get(STRINGS);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			if (!instance._renderedFileUploadSettings) {
-				instance._renderedFileUploadSettings = true;
-
-				instance.fieldSettingsNode = A.Node.create(TPL_DIV);
-
-				var propertiesNode = A.Node.create(TPL_DIV);
-
-				var fieldType = A.Node.create(TPL_FIELD_TEXT);
-				var fieldTypeLabel = A.Node.create(TPL_LABEL);
-				var fieldTypeText = A.Node.create(TPL_TEXT);
-
-				fieldTypeLabel.setContent(strings[TYPE]);
-				fieldTypeText.setContent(instance.get(DATA_TYPE) || instance.get(TYPE));
-
-				fieldType.append(fieldTypeLabel);
-				fieldType.append(fieldTypeText);
-				fieldType.appendTo(propertiesNode);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'text',
-							name: LABEL,
-							labelText: 'Label',
-							value: instance.get(LABEL)
-						},
-						{
-							type: 'checkbox',
-							name: SHOW_LABEL,
-							labelText: 'Show label',
-							labelAlign: 'left',
-							value: instance.get(SHOW_LABEL)
-						},
-						{
-							type: 'text',
-							name: NAME,
-							labelText: 'Name',
-							value: instance.get(NAME)
-						},
-						{
-							type: 'checkbox',
-							name: REQUIRED,
-							labelText: 'Required',
-							labelAlign: 'left',
-							value: instance.get(REQUIRED)
-						},
-						{
-							type: 'textarea',
-							name: TIP,
-							labelText: 'Tip',
-							value: instance.get(TIP)
-						}
-					],
-					propertiesNode
-				);
-
-				var labelNode = settingsNodesMap.labelSettingNode;
-
-				labelNode.on(
-					{
-						input: A.bind(instance._onLabelInput, instance)
-					}
-				);
-
-				var showLabelNode = settingsNodesMap.showLabelSettingNode;
-
-				showLabelNode.set(CHECKED, instance.get(SHOW_LABEL));
-
-				showLabelNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				var requiredNode = settingsNodesMap.requiredSettingNode;
-
-				requiredNode.set(CHECKED, instance.get(REQUIRED));
-
-				requiredNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				instance.propertiesPanel = new A.Panel(
-					{
-						bodyContent: propertiesNode,
-						collapsible: true,
-						title: 'Properties'
-					}
-				).render();
-
-				instance.fieldSettingsNode.append(instance.propertiesPanel.get(BOUNDING_BOX));
-			}
-
-			formNode.setContent(instance.fieldSettingsNode);
+			);
 		}
 
 	}
@@ -3253,48 +1984,16 @@ A.FormBuilderFileUploadField = FormBuilderFileUploadField;
 A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
 var Lang = A.Lang,
 	AArray = A.Array,
-	isArray = Lang.isArray,
-	isNumber = Lang.isNumber,
 	isString = Lang.isString,
-	sub = Lang.sub,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
-	toInitialCap = A.cached(
-		function(str) {
-			return str.substring(0, 1).toUpperCase() + str.substring(1);
-		}
-	),
-
-	ADD = 'add',
-	ADD_NODE = 'addNode',
-	BOUNDING_BOX = 'boundingBox',
-	BUTTON = 'button',
-	BUTTON_TYPE = 'buttonType',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DEFAULT = 'default',
-	DEFAULT_LABEL = 'defaultLabel',
-	DEFAULT_OPTIONS = 'defaultOptions',
-	DEFAULT_VALUE = 'defaultValue',
-	DOT = '.',
+	DATA = 'data',
 	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
 	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_MULTIPLE_CHOICE_FIELD = 'form-builder-multiple-choice-field',
+	FORM_BUILDER_OPTIONS_EDITOR = 'form-builder-options-editor',
 	ICON = 'icon',
 	ID = 'id',
 	INPUT = 'input',
@@ -3307,10 +2006,7 @@ var Lang = A.Lang,
 	OPTION_TEMPLATE = 'optionTemplate',
 	OPTIONS = 'options',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	REMOVE = 'remove',
-	RESET = 'reset',
-	SUBMIT = 'submit',
+	RENDER = 'render',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -3318,276 +2014,43 @@ var Lang = A.Lang,
 	TYPE = 'type',
 	VALUE = 'value',
 
+	_COMMA = ',',
+	_SPACE = ' ',
+	_COMMA_AND_SPACE = _COMMA + _SPACE,
+	_EMPTY_STR = '',
+
 	getCN = A.getClassName,
+
+	getEditorOptions = function(val) {
+		var options = {};
+
+		AArray.each(
+			val,
+			function(item, index, collection) {
+				options[item.value] = item.label;
+			}
+		);
+
+		return options;
+	},
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_FIELD_OPTIONS_ADD = getCN(FIELD, OPTIONS, ADD),
-	CSS_FIELD_OPTIONS_ITEM = getCN(FIELD, OPTIONS, ITEM),
-	CSS_FIELD_OPTIONS_ITEM_INPUT = getCN(FIELD, OPTIONS, ITEM, INPUT),
-	CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL = getCN(FIELD, OPTIONS, ITEM, INPUT, LABEL),
-	CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE = getCN(FIELD, OPTIONS, ITEM, INPUT, VALUE),
-	CSS_FIELD_OPTIONS_ITEM_REMOVE = getCN(FIELD, OPTIONS, ITEM, REMOVE),
-
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE);
 
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
+var OptionsEditor = A.Component.create({
+	NAME: FORM_BUILDER_OPTIONS_EDITOR,	
 
-	STR_BLANK = '',
-
-	TPL_OPTION = '<div class="' + [CSS_FIELD_OPTIONS_ITEM, CSS_FIELD_LABELS_INLINE, CSS_HELPER_CLEARFIX].join(SPACE) + '">' +
-					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{label}" />' +
-					'<input type="text" class="' + [CSS_FIELD_OPTIONS_ITEM_INPUT, CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" value="{value}" />' +
-					'<a href="javascript:;" class="' + CSS_FIELD_OPTIONS_ITEM_REMOVE + '">&nbsp;</a>' +
-				 '</div>';
-
-	TPL_ADD = '<a class="' + CSS_FIELD_OPTIONS_ADD + '" href="javascript:;">Add an option</a>',
-
-	ENTER = 'ENTER';
-
-var FieldOptions = A.Component.create({
-
-	NAME: OPTIONS,
-
-	ATTRS: {
-
-		allowClear: {
-			value: false
-		},
-
-		defaultLabel: {
-			value: STR_BLANK
-		},
-
-		defaultValue: {
-			value: STR_BLANK
-		},
-
-		disabled: {
-			validator: isBoolean,
-			value: false
-		},
-
-		options: {
-			getter: '_getOptions',
-			validator: isArray,
-			value: []
-		},
-
-		addNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_ADD);
-			}
-		}
-
-	},
-
-	HTML_PARSER: {
-		addNode: DOT + CSS_FIELD_OPTIONS_ADD
-	},
-
-	UI_ATTRS: [OPTIONS, DISABLED],
-
-	EXTENDS: A.Widget,
+	EXTENDS: A.RadioCellEditor,
 
 	prototype: {
-
-		renderUI: function() {
+		initializer: function() {
 			var instance = this;
 
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var addNode = instance.get(ADD_NODE);
-
-			if (!addNode.inDoc()) {
-				boundingBox.append(addNode);
-			}
-		},
-
-		bindUI: function() {
-			var instance = this;
-
-			var boundingBox = instance.get(BOUNDING_BOX);
-			var addNode = instance.get(ADD_NODE);
-
-			addNode.on('click', A.bind(instance._onClickAdd, instance));
-
-			boundingBox.delegate('click', A.bind(instance._onClickOptionRemove, instance), DOT + CSS_FIELD_OPTIONS_ITEM_REMOVE);
-			boundingBox.delegate('keypress', A.bind(instance._onKeyPressOption, instance), DOT + CSS_FIELD_OPTIONS_ITEM_INPUT);
-		},
-
-		add: function(option) {
-			var instance = this;
-
-			var options = instance.get(OPTIONS);
-
-			options.push(option);
-
-			instance.set(OPTIONS, options);
-		},
-
-		clear: function() {
-			var instance = this;
-
-			if (instance.get(ALLOW_CLEAR)) {
-				instance.set(OPTIONS, []);
-			}
-		},
-
-		remove: function(index) {
-			var instance = this;
-
-			var contentBox = instance.get(CONTENT_BOX);
-			var optionNode = instance._getOptionNode(index);
-
-			if (!instance.get(DISABLED)) {
-				if (optionNode) {
-					optionNode.remove();
-				}
-
-				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
-			}
-		},
-
-		_addNewOption: function() {
-			var instance = this;
-
-			var newOptionNode = null;
-
-			if (!instance.get(DISABLED)) {
-				var contentBox = instance.get(CONTENT_BOX);
-
-				var optionHTML = sub(
-					TPL_OPTION,
-					{
-						label: instance.get(DEFAULT_LABEL),
-						value: instance.get(DEFAULT_VALUE)
-					}
-				);
-
-				newOptionNode = A.Node.create(optionHTML);
-
-				contentBox.append(newOptionNode);
-
-				var newOptionNodeInput = newOptionNode.one(INPUT);
-
-				newOptionNodeInput.focus();
-				newOptionNodeInput.select();
-
-				instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
-			}
-
-			return newOptionNode;
-		},
-
-		_getOptionNode: function(index) {
-			var instance = this;
-
-			return instance.items.item(index);
-		},
-
-		_getOptions: function(val) {
-			var instance = this;
-
-			var options = [];
-
-			if (instance.items) {
-				A.each(
-					instance.items,
-					function(item, index, collection) {
-						var labelInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_LABEL);
-						var valueInput = item.one(DOT + CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
-
-						var option = val[index] || {};
-
-						option.label = labelInput.val();
-						option.value = valueInput.val();
-
-						options.push(option);
-					}
-				);
-			}
-			else {
-				options = val;
-			}
-
-			return options;
-		},
-
-		_indexOfTarget: function(target) {
-			var instance = this;
-
-			var currentItem = target.ancestor(DOT + CSS_FIELD_OPTIONS_ITEM);
-
-			return instance.items.indexOf(currentItem);
-		},
-
-		_onClickAdd: function(event) {
-			var instance = this;
-
-			instance._addNewOption();
-		},
-
-		_onClickOptionRemove: function(event) {
-			var instance = this;
-
-			var options = instance.get(OPTIONS);
-			var index = instance._indexOfTarget(event.target);
-
-			instance.remove(index);
-		},
-
-		_onKeyPressOption: function(event) {
-			var instance = this;
-
-			var options = instance.get(OPTIONS);
-			var target = event.currentTarget;
-			var items = instance.items;
-
-			if (event.isKey(ENTER)) {
-				var index = instance._indexOfTarget(target);
-				var isValue = target.hasClass(CSS_FIELD_OPTIONS_ITEM_INPUT_VALUE);
-
-				if ((index == items.size() - 1) && isValue) {
-					instance._addNewOption();
-				}
-			}
-		},
-
-		_uiSetDisabled: function(val) {
-			var instance = this;
-
-			var addNode = instance.get(ADD_NODE);
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			addNode.toggleClass(CSS_HELPER_HIDDEN, val);
-			boundingBox.all(DOT + CSS_FIELD_OPTIONS_ITEM_REMOVE).toggleClass(CSS_HELPER_HIDDEN, val);
-
-			if (val) {
-				boundingBox.all(INPUT).setAttribute(DISABLED, val);
-			}
-			else {
-				boundingBox.all(INPUT).removeAttribute(DISABLED);
-			}
-		},
-
-		_uiSetOptions: function(val) {
-			var instance = this;
-
-			var contentBox = instance.get(CONTENT_BOX);
-
-			var buffer = [];
-
-			AArray.each(
-				val,
-				function(item, index, collection) {
-					buffer.push(sub(TPL_OPTION, item));
-				}
-			);
-
-			contentBox.setContent(buffer.join(STR_BLANK));
-
-			instance.items = contentBox.all(DOT + CSS_FIELD_OPTIONS_ITEM);
+			instance.after(RENDER, function() {
+				instance._onEditEvent();
+			});
 		}
 	}
 });
@@ -3598,24 +2061,13 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Wether the field accepts children or nothing
-		 *
-		 * @attribute acceptChildren
-		 */
 		acceptChildren: {
 			value: false,
 			readOnly: true
 		},
 
-		/**
-		 * The options of the multiple choice field
-		 *
-		 * @attribute options
-		 */
 		options: {
-			value:
-			[
+			value: [
 				{
 					label: 'option 1',
 					value: 'value 1'
@@ -3631,13 +2083,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			]
 		},
 
-		/**
-		 * The template for each option
-		 *
-		 * @attribute optionTemplate
-		 */
 		optionTemplate: {
-			value: '<option value="{value}">{label}</option>'
+			value: '<option {selected} value="{value}">{label}</option>'
 		}
 
 	},
@@ -3646,93 +2093,118 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var options = instance.get(OPTIONS);
+			var strings = instance.getStrings();
 
-			return A.FormBuilderMultipleChoiceField.superclass.getNode.apply(instance, arguments);
-		},
+			var model = A.FormBuilderMultipleChoiceField.superclass.getPropertyModel.apply(instance, arguments);
 
-		/**
-		 * Renders the settings UI
-		 *
-		 * @method renderSettings
-		 */
-		renderSettings: function() {
-			var instance = this;
+			AArray.each(
+				model,
+				function(item, index, collection) {
+					if (item.attributeName === PREDEFINED_VALUE) {
+						collection[index] = A.merge(
+							item,
+							{
+								editor: new A.RadioCellEditor({
+									options: getEditorOptions(options)
+								}),
+								formatter: function(o) {
+									var editorOptions = getEditorOptions(options);
+									var value = editorOptions[o.record.get(DATA).value];
 
-			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
+									if (!isString(value)) {
+										value = _EMPTY_STR;
+									}
 
-			A.FormBuilderMultipleChoiceField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedMultipleChoiceSettings) {
-				instance._renderedMultipleChoiceSettings = true;
-
-				var optionsPanelBody = A.Node.create(TPL_DIV);
-
-				instance.optionsPanel = new A.Panel(
-					{
-						bodyContent: optionsPanelBody,
-						collapsible: true,
-						title: 'Options'
+									return value;
+								}
+							}
+						);
 					}
-				).render();
+				}
+			);
 
-				var optionsDisabled = A.Array.indexOf(readOnlyAttributes, OPTIONS) > -1;
+			model.push(
+				{
+					attributeName: OPTIONS,
+					editor: new OptionsEditor({
+						editable: true,
+						options: getEditorOptions(options),
+						inputFormatter: function() {
+							var input = [];
 
-				instance.options = new FieldOptions(
-					{
-						disabled: optionsDisabled,
-						options: instance.get(OPTIONS)
-					}
-				).render(optionsPanelBody);
+							A.each(
+								this.get(OPTIONS),
+								function(item, index, collection) {
+									var option = {
+										label: item,
+										value: index
+									};
 
-				instance.fieldSettingsNode.append(instance.optionsPanel.get(BOUNDING_BOX));
-			}
-		},
+									AArray.each(
+										options,
+										function(oItem) {
+											if (oItem.value === index) {
+												option = A.merge(oItem, option);
+											}
+										}
+									);
 
-		/**
-		 * Saves the settings info from the settings form to the settings
-		 * attribute
-		 *
-		 * @method saveSettings
-		 */
-		saveSettings: function() {
-			var instance = this;
+									input.push(option);
+								}
+							);
 
-			A.FormBuilderMultipleChoiceField.superclass.saveSettings.apply(instance, arguments);
+							return input;
+						}
+					}),
+					formatter: function(o) {
+						var buffer = [];
 
-			instance.set(OPTIONS, instance.options.get(OPTIONS));
+						A.each(
+							o.record.get(DATA).value,
+							function(item, index, collection) {
+								buffer.push(item.label);
+							}
+						);
+
+						return buffer.join(_COMMA_AND_SPACE);
+					},
+					name: strings[OPTIONS]
+				}
+			);
+
+			return model;
 		},
 
 		_uiSetOptions: function(val) {
 			var instance = this;
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-			var optionTpl = instance.get(OPTION_TEMPLATE);
+			var predefinedValue = instance.get(PREDEFINED_VALUE);
 
 			var buffer = [];
 
-			AArray.each(
+			A.each(
 				val,
 				function(item, index, collection) {
-					buffer.push(sub(optionTpl, item));
+					buffer.push(
+						A.substitute(
+							instance.get(OPTION_TEMPLATE),
+							{
+								label: item.label,
+								selected: item.value === predefinedValue ? 'selected="selected"' : _EMPTY_STR,
+								value: item.value
+							}
+						)
+					);
 				}
 			);
 
-			templateNode.setContent(buffer.join(STR_BLANK));
+			instance.get(TEMPLATE_NODE).setContent(buffer.join(_EMPTY_STR));
 		}
 	}
 
@@ -3742,34 +2214,28 @@ A.FormBuilderMultipleChoiceField = FormBuilderMultipleChoiceField;
 
 A.FormBuilder.types['multiple-choice'] = A.FormBuilderMultipleChoiceField;
 var L = A.Lang,
-	isArray = L.isArray,
-	isBoolean = L.isBoolean,
-	isNumber = L.isNumber,
-	isString = L.isString,
 
-	BOUNDING_BOX = 'boundingBox',
-	BODY_CONTENT = 'bodyContent',
 	CHECKED = 'checked',
 	CHOICE = 'choice',
-	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	CONTENT_BOX = 'contentBox',
 	DOT = '.',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_RADIO_FIELD = 'form-builder-radio-field',
-	ID = 'id',
 	ICON = 'icon',
+	ID = 'id',
 	INLINE = 'inline',
 	LABEL = 'label',
 	LABELS = 'labels',
+	LEFT = 'left',
 	NAME = 'name',
 	NODE = 'node',
 	OPTIONS_CONTAINER_NODE = 'optionsContainerNode',
 	PREDEFINED_VALUE = 'predefinedValue',
 	RADIO = 'radio',
-	SIZE = 'size',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -3779,20 +2245,15 @@ var L = A.Lang,
 
 	CSS_FIELD = getCN(FIELD),
 	CSS_FIELD_CHOICE = getCN(FIELD, CHOICE),
+	CSS_FIELD_RADIO = getCN(FIELD, RADIO),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-	CSS_FORM_BUILDER_FIELD_RADIO = getCN(FORM_BUILDER_FIELD, RADIO),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER = getCN(FORM_BUILDER_FIELD, OPTIONS, CONTAINER),
+	CSS_FORM_BUILDER_FIELD_RADIO = getCN(FORM_BUILDER_FIELD, RADIO),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
-	CSS_FIELD_LABELS_INLINE = getCN(FIELD, LABELS, INLINE),
-
-	TPL_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_FORM_BUILDER_FIELD_RADIO].join(SPACE) + '"></li>',
 
 	TPL_OPTIONS_CONTAINER = '<div class="' + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER + '"></div>',
-
-	TPL_RADIO = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_CHOICE].join(SPACE) + '" name="{name}" type="radio" value="{value}" {checked} />',
-
-	TPL_FIELD = '<input type="hidden" />';
+	TPL_RADIO = '<div><input id="{id}" class="' + [CSS_FIELD, CSS_FIELD_CHOICE, CSS_FIELD_RADIO, CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" type="radio" value="{value}" {checked} {disabled} /><label class="aui-field-label" for="{id}">{label}</label></div>';
 
 var FormBuilderRadioField = A.Component.create({
 
@@ -3800,100 +2261,33 @@ var FormBuilderRadioField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The name of the field
-		 *
-		 * @attribute name
-		 */
 		name: {
 			value: RADIO
 		},
 
-		/**
-		 * The template for each option
-		 *
-		 * @attribute optionTemplate
-		 */
-		optionTemplate: {
-			value: TPL_RADIO
-		},
-
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_RADIO;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		optionsContainerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_OPTIONS_CONTAINER);
-			}
-		},
-
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		optionsContainerNode: DOT + CSS_FORM_BUILDER_FIELD_OPTIONS_CONTAINER,
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderMultipleChoiceField,
 
 	prototype: {
-		BOUNDING_TEMPLATE: TPL_BOUNDING_BOX,
 
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
-		renderUI: function() {
-			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
-			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
-
-			A.FormBuilderRadioField.superclass.renderUI.apply(instance, arguments);
-
-			contentBox.append(optionsContainerNode);
-		},
-
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
-			var instance = this;
-
-			return A.Node.create(TPL_FIELD);
-		},
-
-		_onFieldChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.val());
+		getHTML: function() {
+			return TPL_OPTIONS_CONTAINER;
 		},
 
 		_uiSetDisabled: function(val) {
 			var instance = this;
-			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
+			var templateNode = instance.get(TEMPLATE_NODE);
 
-			optionsContainerNode.all(INPUT).each(function(input){
+			templateNode.all(INPUT).each(function(input){
 				if (val) {
 					input.setAttribute(DISABLED, val);
 				}
@@ -3905,54 +2299,28 @@ var FormBuilderRadioField = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
-			var contentBox = instance.get(CONTENT_BOX);
-			var optionsContainerNode = instance.get(OPTIONS_CONTAINER_NODE);
+			var counter = 0;
 			var templateNode = instance.get(TEMPLATE_NODE);
 
-			optionsContainerNode.empty();
+			templateNode.setContent(EMPTY_STR);
 
-			A.each(val, function(item) {
-				var radioField = new A.Field(
-					{
-						type: RADIO,
-						disabled: instance.get(DISABLED),
-						name: instance.get(NAME),
-						labelText: item.label,
-						labelAlign: 'left',
-						value: item.value
-					}
-				).render(optionsContainerNode);
-
-				var radioFieldNode = radioField.get(NODE);
-
-				if (item.value == instance.get(PREDEFINED_VALUE)) {
-					radioFieldNode.set(CHECKED, true);
-				}
-
-				if (instance.get(DISABLED)) {
-					radioFieldNode.setAttribute(DISABLED, val);
-				}
-				else {
-					radioFieldNode.removeAttribute(DISABLED);
-				}
-
-				radioFieldNode.on(
-					{
-						change: A.bind(instance._onFieldChange, instance)
-					}
+			A.each(val, function(item, index, collection) {
+				templateNode.append(
+					A.Node.create(
+						A.substitute(
+							TPL_RADIO,
+							{
+								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,
+								disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
+								id: instance.get(ID) + counter++,
+								label: item.label,
+								name: instance.get(NAME),
+								value: item.value
+							}
+						)
+					)
 				);
 			});
-		},
-
-		_uiSetPredefinedValue: function(val) {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var predefinedValueNode = formNode.one('input[name=predefinedValue]');
-
-			if (predefinedValueNode) {
-				predefinedValueNode.val(val);
-			}
 		}
 
 	}
@@ -3961,47 +2329,21 @@ var FormBuilderRadioField = A.Component.create({
 
 A.FormBuilderRadioField = FormBuilderRadioField;
 
-A.FormBuilder.types['radio'] = A.FormBuilderRadioField;
+A.FormBuilder.types.radio = A.FormBuilderRadioField;
 var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
-	toInitialCap = A.cached(
-		function(str) {
-			return str.substring(0, 1).toUpperCase() + str.substring(1);
-		}
-	),
-
-	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
-	BUTTON_TYPE = 'buttonType',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DEFAULT_OPTIONS = 'defaultOptions',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_SELECT_FIELD = 'form-builder-select-field',
-	ID = 'id',
 	ICON = 'icon',
+	ID = 'id',
 	INPUT = 'input',
 	LABEL = 'label',
 	MULTIPLE = 'multiple',
@@ -4009,12 +2351,9 @@ var L = A.Lang,
 	NODE = 'node',
 	OPTION = 'option',
 	OPTIONS = 'options',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	RESET = 'reset',
+	SELECTED = 'selected',
 	SELECTED_INDEX = 'selectedIndex',
-	SUBMIT = 'submit',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -4030,7 +2369,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
-	TPL_SELECT = '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" value="{value}"></select>'
+	TPL_SELECT = '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" value="{value}"></select>';
 
 var FormBuilderSelectField = A.Component.create({
 
@@ -4038,32 +2377,15 @@ var FormBuilderSelectField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Whether the select is multiple or not
-		 *
-		 * @attribute multiple
-		 */
 		multiple: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_SELECT;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
@@ -4072,84 +2394,45 @@ var FormBuilderSelectField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderMultipleChoiceField,
 
 	prototype: {
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE)
 				}
-			)
+			);
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
+			var model = A.FormBuilderSelectField.superclass.getPropertyModel.apply(instance, arguments);
 
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderSelectField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedSelectSettings) {
-				instance._renderedSelectSettings = true;
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'checkbox',
-							name: MULTIPLE,
-							labelText: 'Multiple',
-							labelAlign: 'left'
+			model.push(
+				{
+					attributeName: MULTIPLE,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
 						}
-					],
-					panelBody.item(0)
-				);
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[MULTIPLE]
+				}
+			);
 
-				var multipleNode = settingsNodesMap['multipleSettingNode'];
-
-				multipleNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				multipleNode.set(CHECKED, instance.get(MULTIPLE));
-			}
+			return model;
 		},
 
 		_uiSetMultiple: function(val) {
@@ -4170,45 +2453,29 @@ var FormBuilderSelectField = A.Component.create({
 
 A.FormBuilderSelectField = FormBuilderSelectField;
 
-A.FormBuilder.types['select'] = A.FormBuilderSelectField;
+A.FormBuilder.types.select = A.FormBuilderSelectField;
 var L = A.Lang,
-	isArray = L.isArray,
-	isNumber = L.isNumber,
-	isString = L.isString,
-
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
 
 	BOUNDING_BOX = 'boundingBox',
-	CONTENT_BOX = 'contentBox',
 	CONTAINER = 'container',
+	CONTENT_BOX = 'contentBox',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
-	FORM_BUILDER_TEXT_FIELD = 'form-builder-input-field',
-	ID = 'id',
+	FORM_BUILDER_TEXT_FIELD = 'form-builder-text-field',
 	ICON = 'icon',
+	ID = 'id',
 	INPUT = 'input',
 	LABEL = 'label',
+	LARGE = 'large',
+	MEDIUM = 'medium',
 	NAME = 'name',
 	NODE = 'node',
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
+	SMALL = 'small',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -4222,11 +2489,10 @@ var L = A.Lang,
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
 	TPL_INPUT = '<input id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT].join(SPACE) + '" name="{name}" type="text" value="{value}" />',
 
-	WIDTH_VALUES_MAP = { small: 25, medium: 50, large: 100 }
+	WIDTH_VALUES_MAP = { 25: 'small', 50: 'medium', 100: 'large' };
 
 var FormBuilderTextField = A.Component.create({
 
@@ -4234,29 +2500,12 @@ var FormBuilderTextField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_INPUT;
 			}
 		},
 
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
-		},
-
-		/**
-		 * The width of the input
-		 *
-		 * @attribute width
-		 */
 		width: {
 			setter: A.DataType.String.evaluate,
 			value: 25
@@ -4266,153 +2515,51 @@ var FormBuilderTextField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-
-			A.FormBuilderTextField.superclass.bindUI.apply(instance, arguments);
-
-			var templateNode = instance.get(TEMPLATE_NODE);
-
-			templateNode.on(
-				{
-					input: A.bind(instance._onValueInput, instance)
-				}
-			);
-		},
-
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
-			var width = instance.get(WIDTH);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					value: value,
-					width: width
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE),
+					width: instance.get(WIDTH)
 				}
 			)
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
+			var model = A.FormBuilderTextField.superclass.getPropertyModel.apply(instance, arguments);
 
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-			var strings = formBuilder.get(STRINGS);
-
-			A.FormBuilderTextField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedInputSettings) {
-				instance._renderedInputSettings = true;
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				var counter = 0;
-				var selectedIndex = -1;
-				var widthOptions = [];
-
-				A.each(WIDTH_VALUES_MAP, function(value, key) {
-					if (value == instance.get(WIDTH)) {
-						selectedIndex = counter;
-					}
-
-					widthOptions.push(
-						{
-							labelText: strings[key],
-							value: value
+			model.push(
+				{
+					attributeName: WIDTH,
+					editor: new A.RadioCellEditor({
+						options: {
+							25: strings[SMALL],
+							50: strings[MEDIUM],
+							100: strings[LARGE]
 						}
-					);
+					}),
+					formatter: function(o) {
+						var value = o.record.get(DATA).value;
 
-					counter++;
-				});
+						return strings[WIDTH_VALUES_MAP[value]];
+					},
+					name: strings[WIDTH]
+				}
+			);
 
-				instance._renderSettingsFields(
-					[
-						{
-							labelText: 'Width',
-							name: WIDTH,
-							options: widthOptions,
-							type: 'select',
-							value: instance.get(WIDTH)
-						}
-					],
-					panelBody.item(0)
-				);
-
-				var predefinedValueNode = settingsNodesMap['predefinedValueSettingNode'];
-
-				predefinedValueNode.on(
-					{
-						input: A.bind(instance._onValueInput, instance)
-					}
-				);
-
-				var widthNode = settingsNodesMap['widthSettingNode'];
-
-				widthNode.on(
-					{
-						change: A.bind(instance._onWidthChange, instance)
-					}
-				);
-
-				widthNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
-			}
-		},
-
-		/**
-		 * Handles the onKeyUp event for the value nodes
-		 *
-		 * @method _onValueKeyUp
-		 */
-		_onValueInput: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(PREDEFINED_VALUE, target.val());
-		},
-
-		_onWidthChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(WIDTH, target.val());
+			return model;
 		},
 
 		_uiSetWidth: function(val) {
@@ -4437,37 +2584,8 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	BOUNDING_BOX = 'boundingBox',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
-	EMPTY_STR = '',
-	FIELD = 'field',
-	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_TEXTAREA_FIELD = 'form-builder-textarea-field',
-	ID = 'id',
-	ICON = 'icon',
-	LABEL = 'label',
-	NAME = 'name',
-	NODE = 'node',
-	PORTAL_LAYOUT = 'portalLayout',
-	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	SIZE = 'size',
-	SPACE = ' ',
-	TEMPLATE = 'template',
-	TEMPLATE_NODE = 'templateNode',
-	TEXT = 'text',
-	TEXTAREA = 'textarea',
-	VALUE = 'value',
 
 	getCN = A.getClassName,
 
@@ -4476,7 +2594,6 @@ var L = A.Lang,
 	CSS_FIELD_TEXTAREA = getCN(FIELD, TEXTAREA),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
-	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
 	TPL_TEXTAREA = '<textarea id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE, CSS_FIELD, CSS_FIELD_TEXT, CSS_FIELD_TEXTAREA].join(SPACE) + '" name="{name}">{value}</textarea>'
 
@@ -4486,70 +2603,36 @@ var FormBuilderTextAreaField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_TEXTAREA;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderTextField,
 
 	prototype: {
-
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
-		getHTML: function() {
+		
+		getPropertyModel: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var size = instance.get(SIZE);
-			var value = instance.get(PREDEFINED_VALUE);
+			var options = instance.get(OPTIONS);
 
-			return A.substitute(
-				template,
-				{
-					id: id,
-					label: label,
-					name: name,
-					value: value
+			var model = A.FormBuilderTextAreaField.superclass.getPropertyModel.apply(instance, arguments);
+
+			AArray.each(
+				model,
+				function(item, index, collection) {
+					if (item.attributeName === PREDEFINED_VALUE) {
+						collection[index].editor = new A.TextAreaCellEditor();
+					}
 				}
-			)
-		},
+			);
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getNode
-		 */
-		getNode: function() {
-			var instance = this;
-
-			return A.Node.create(instance.getHTML());
+			return model;
 		}
 
 	}
@@ -4560,8 +2643,9 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{requires:['aui-datatype','aui-form','aui-panel','aui-tooltip','io','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip','substitute'], skinnable:true});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
+
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
 

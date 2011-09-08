@@ -69,7 +69,6 @@ var Lang = A.Lang,
 	TABVIEW = 'tabview',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
-	UNIQUE = 'unique',
 
 	AgetClassName = A.getClassName,
 
@@ -87,7 +86,6 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = AgetClassName(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
 	CSS_DIAGRAM_BUILDER_FIELD_ICON = AgetClassName(DIAGRAM, BUILDER, FIELD, ICON),
 	CSS_DIAGRAM_BUILDER_FIELD_LABEL = AgetClassName(DIAGRAM, BUILDER, FIELD, LABEL),
-	CSS_DIAGRAM_BUILDER_BASE_FIELD_UNIQUE = AgetClassName(DIAGRAM, BUILDER, UNIQUE),
 	CSS_DIAGRAM_BUILDER_FIELDS_CONTAINER = AgetClassName(DIAGRAM, BUILDER, FIELDS, CONTAINER),
 	CSS_DIAGRAM_BUILDER_TAB_ADD = AgetClassName(DIAGRAM, BUILDER, TAB, ADD),
 	CSS_DIAGRAM_BUILDER_TAB_SETTINGS = AgetClassName(DIAGRAM, BUILDER, TAB, SETTINGS),
@@ -149,11 +147,6 @@ var AvailableField = A.Component.create({
 		type: {
 			value: NODE,
 			validator: isString
-		},
-
-		unique: {
-			value: false,
-			validator: isBoolean
 		}
 	},
 
@@ -168,7 +161,13 @@ var AvailableField = A.Component.create({
 	},
 
 	getAvailableFieldByNode: function(node) {
-		return A.one(node).getData(AVAILABLE_FIELD);
+		var node = A.one(node);
+
+		if (isNode(A.one(node))) {
+			return node.getData(AVAILABLE_FIELD)
+		}
+
+		return null;
 	},
 
 	prototype: {
@@ -199,10 +198,6 @@ var AvailableField = A.Component.create({
 
 			instance._uiSetLabel(
 				instance.get(LABEL)
-			);
-
-			instance._uiSetUnique(
-				instance.get(UNIQUE)
 			);
 		},
 
@@ -250,12 +245,6 @@ var AvailableField = A.Component.create({
 			var instance = this;
 
 			instance.labelNode.setContent(val);
-		},
-
-		_uiSetUnique: function(val) {
-			var instance = this;
-
-			instance.get(NODE).toggleClass(CSS_DIAGRAM_BUILDER_BASE_FIELD_UNIQUE, val);
 		}
 	}
 });

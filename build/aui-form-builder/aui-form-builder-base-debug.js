@@ -1,9 +1,18 @@
 AUI.add('aui-form-builder-base', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
+	isBoolean = L.isBoolean,
 	isString = L.isString,
 	isObject = L.isObject,
 	isValue = L.isValue,
+
+	AArray = A.Array,
+
+	getAvailableFieldById = A.AvailableField.getAvailableFieldById,
+
+	isAvailableField = function(v) {
+		return (v instanceof A.AvailableField);
+	},
 
 	isNode = function(v) {
 		return (v instanceof A.Node);
@@ -23,50 +32,55 @@ var L = A.Lang,
 
 	DDM = A.DD.DDM,
 
-	ACTIVE = 'active',
 	ACCEPT_CHILDREN = 'acceptChildren',
-	AUTO_SELECT_FIELDS = 'autoSelectFields',
-	AVAILABLE_FIELDS = 'availableFields',
+	ACTIVE = 'active',
+	ADD = 'add',
 	APPEND = 'append',
+	AUTO_SELECT_FIELDS = 'autoSelectFields',
+	AVAILABLE_FIELD = 'availableField',
+	AVAILABLE_FIELDS = 'availableFields',
+	BASE = 'base',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	BUTTON = 'button',
 	BUTTONS = 'buttons',
 	BUTTONS_NODE = 'buttonsNode',
 	CHILDREN = 'children',
-	CLONABLE_PORTAL_LAYOUT = 'clonable-portal-layout',
+	CLICK = 'click',
 	CLONE_NODE = 'cloneNode',
-	COMMA_AND_SPACE = ', ';
 	COMPONENT = 'component',
+	CONTAINER = 'container',
 	CONTENT = 'content',
 	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DELETE = 'delete',
+	DATA = 'data',
+	DBLCLICK = 'dblclick',
 	DD = 'dd',
 	DEFAULT = 'default',
 	DEFAULT_MESSAGE = 'defaultMessage',
 	DEFAULT_MESSAGE_NODE = 'defaultMessageNode',
+	DELETE = 'delete',
+	DIAGRAM = 'diagram',
 	DOT = '.',
-	DUPLICATE = 'duplicate',
 	DRAG = 'drag',
-	DRAGGING = 'dragging',
 	DRAG_CONTAINER = 'dragContainer',
 	DRAG_CONTAINER_NODE = 'dragContainerNode',
 	DRAG_NODES_LIST = 'dragNodesList',
-	DRAG_PORTAL_LAYOUT = 'dragPortalLayout',
+	DRAGGABLE = 'draggable',
+	DRAGGING = 'dragging',
 	DROP = 'drop',
 	DROP_CONTAINER = 'dropContainer',
 	DROP_CONTAINER_NODE = 'dropContainerNode',
-	DROP_PORTAL_LAYOUT = 'dropPortalLayout',
 	DROP_NODE = 'dropNode',
 	DROP_ZONE_NODE = 'dropZoneNode',
+	DUPLICATE = 'duplicate',
 	EDIT = 'edit',
+	EDITING = 'editing',
 	EMPTY_SELECTION = 'emptySelection',
 	EMPTY_STR = '',
 	ENABLE_EDITING = 'enableEditing',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	KEY = 'key',
+	FIELDS_NESTED_LIST_CONFIG = 'fieldsNestedListConfig',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
 	FIXED = 'fixed',
@@ -74,353 +88,115 @@ var L = A.Lang,
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
 	FORM_LAYOUT = 'form-layout',
-	ID = 'id',
+	HELPER = 'helper',
+	HIDDEN = 'hidden',
 	ICON = 'icon',
+	ID = 'id',
 	INACTIVE = 'inactive',
 	INDEX = 'index',
 	INPUT = 'input',
 	ITEMS = 'items',
+	KEY = 'key',
 	LABEL = 'label',
 	LABEL_NODE = 'labelNode',
 	LAST = 'last',
 	LAST_CHILD = 'lastChild',
 	LIST = 'list',
+	LOCALIZATION_MAP = 'localizationMap',
 	MESSAGE = 'message',
+	MOUSEENTER = 'mouseenter',
+	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
 	NESTED_LIST = 'nestedList',
 	NODE = 'node',
+	OPTIONS = 'options',
 	OVER = 'over',
 	PARENT = 'parent',
 	PARENT_NODE = 'parentNode',
-	PLACEHOLDER = 'placeholder',
 	PLACE_AFTER = 'placeAfter',
 	PLACE_BEFORE = 'placeBefore',
+	PLACEHOLDER = 'placeholder',
+	PREDEFINED_VALUE = 'predefinedValue',
 	PREPEND = 'prepend',
-	HELPER = 'helper',
-	HIDDEN = 'hidden',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
+	RECORDS = 'records',
+	RECORDSET = 'recordset',
+	REGION = 'region',
+	REMOVE = 'remove',
 	RENDER = 'render',
+	RENDERED = 'rendered',
+	REQUIRED = 'required',
 	SAVE = 'save',
 	SELECTED = 'selected',
 	SETTINGS = 'settings',
-	SETTINGS_FORM_NODE = 'settingsFormNode',
 	SETTINGS_BUTTONS_NODE = 'settingsButtonsNode',
-	SRC_NODE = 'srcNode',
+	SETTINGS_FORM_NODE = 'settingsFormNode',
+	SHOW_LABEL = 'showLabel',
 	SPACE = ' ',
+	SRC_NODE = 'srcNode',
 	STATE = 'state',
 	STRINGS = 'strings',
 	TABS = 'tabs',
-	TABS_NODE = 'tabsNode',
 	TABS_CONTENT_NODE = 'tabsContentNode',
 	TABS_LIST_NODE = 'tabsListNode',
+	TABS_NODE = 'tabsNode',
 	TABVIEW = 'tabview',
 	TARGET = 'target',
 	TEMPLATE_NODE = 'templateNode',
 	TEXT = 'text',
+	TIP = 'tip',
 	TYPE = 'type',
 	UNIQUE = 'unique',
 	VALUE = 'value',
 	VALUES = 'values',
-	ZONE = 'zone',
-	REGION = 'region',
 	WIDGET = 'widget',
+	WIDTH = 'width',
+	ZONE = 'zone',
+
+	_COMMA = ',',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_HASH = '#',
+	_UNDERLINE = '_',
 
 	getCN = A.getClassName,
 
-	CSS_BUTTON_INPUT = getCN(BUTTON, INPUT),
-	CSS_COMPONENT = getCN(COMPONENT),
+	AVAILABLE_FIELDS_ID_PREFIX = AVAILABLE_FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
+	FIELDS_ID_PREFIX = FIELDS + _UNDERLINE + FIELD + _UNDERLINE,
+
 	CSS_DD_DRAGGING = getCN(DD, DRAGGING),
-	CSS_HELPER_HIDDEN = getCN(HELPER, HIDDEN),
-	CSS_FORM_BUILDER_BUTTON_DELETE = getCN(FORM, BUILDER, BUTTON, DELETE),
-	CSS_FORM_BUILDER_BUTTON_DUPLICATE = getCN(FORM, BUILDER, BUTTON, DUPLICATE),
-	CSS_FORM_BUILDER_BUTTON_EDIT = getCN(FORM, BUILDER, BUTTON, EDIT),
-	CSS_FORM_BUILDER_BUTTON_SAVE = getCN(FORM, BUILDER, BUTTON, SAVE),
-	CSS_FORM_BUILDER_DEFAULT_MESSAGE = getCN(FORM, BUILDER, DEFAULT, MESSAGE),
-	CSS_FORM_BUILDER_DRAG_CONTAINER = getCN(FORM, BUILDER, DRAG, CONTAINER),
-	CSS_FORM_BUILDER_DRAG_NODE = getCN(FORM, BUILDER, DRAG, NODE),
-	CSS_FORM_BUILDER_DROP_ACTIVE = getCN(FORM, BUILDER, DROP, ACTIVE),
-	CSS_FORM_BUILDER_DROP_CONTAINER = getCN(FORM, BUILDER, DROP, CONTAINER),
-	CSS_FORM_BUILDER_DROP_NODE = getCN(FORM, BUILDER, DROP, NODE),
+	CSS_DIAGRAM_BUILDER_DROP_CONTAINER = getCN(DIAGRAM, BUILDER, DROP, CONTAINER),
+	CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE = getCN(DIAGRAM, BUILDER, FIELD, DRAGGABLE),
 	CSS_FORM_BUILDER_DROP_ZONE = getCN(FORM, BUILDER, DROP, ZONE),
 	CSS_FORM_BUILDER_FIELD = getCN(FORM, BUILDER, FIELD),
-	CSS_FORM_BUILDER_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
-	CSS_FORM_BUILDER_FIELD_CONTENT = getCN(FORM, BUILDER, FIELD, CONTENT),
-	CSS_FORM_BUILDER_FIELD_HIDDEN = getCN(FORM, BUILDER, FIELD, HIDDEN),
-	CSS_FORM_BUILDER_FIELD_ICON = getCN(FORM, BUILDER, FIELD, ICON),
-	CSS_FORM_BUILDER_FIELD_ICON_TEXT = getCN(FORM, BUILDER, FIELD, ICON, TEXT),
-	CSS_FORM_BUILDER_FIELD_OVER = getCN(FORM, BUILDER, FIELD, OVER),
-	CSS_FORM_BUILDER_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
-	CSS_FORM_BUILDER_HELPER = getCN(FORM, BUILDER, HELPER),
-	CSS_FORM_BUILDER_ICON = getCN(FORM, BUILDER, ICON),
-	CSS_FORM_BUILDER_INACTIVE = getCN(FORM, BUILDER, INACTIVE),
-	CSS_FORM_BUILDER_LABEL = getCN(FORM, BUILDER, LABEL),
+	CSS_FORM_BUILDER_FIELD_EDITING = getCN(FORM, BUILDER, FIELD, EDITING),
 	CSS_FORM_BUILDER_PLACEHOLDER = getCN(FORM, BUILDER, PLACEHOLDER),
-	CSS_FORM_BUILDER_SETTINGS = getCN(FORM, BUILDER, SETTINGS),
-	CSS_FORM_BUILDER_SETTINGS_BUTTONS = getCN(FORM, BUILDER, SETTINGS, BUTTONS),
-	CSS_FORM_BUILDER_TABS_CONTAINER = getCN(FORM, BUILDER, TABS, CONTAINER),
-	CSS_TABVIEW_CONTENT = getCN(TABVIEW, CONTENT),
-	CSS_TABVIEW_LIST = getCN(TABVIEW, LIST),
-	CSS_ICON = getCN(ICON),
-	CSS_WIDGET = getCN(WIDGET),
+	CSS_FORM_BUILDER_UNIQUE = getCN(FORM, BUILDER, UNIQUE),
 
-	TPL_DEFAULT_MESSAGE = '<li class="' + CSS_FORM_BUILDER_DEFAULT_MESSAGE + '"></li>',
+	INVALID_CLONE_ATTRS = [ID, NAME],
 
-	TPL_DRAG_CONTAINER = '<ul class="' + CSS_FORM_BUILDER_DRAG_CONTAINER + '"></ul>',
+	TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
 
-	TPL_DRAG_NODE = '<li class="' + [CSS_FORM_BUILDER_DRAG_NODE, CSS_FORM_BUILDER_FIELD].join(SPACE) + '" data-key="{key}">' +
-						'<span class="' + [CSS_FORM_BUILDER_ICON, CSS_ICON].join(SPACE) + ' {icon}"></span>' +
-						'<span class="' + CSS_FORM_BUILDER_LABEL + '">{label}</span>' +
-					'</li>',
+var FormBuilderAvailableField = A.Component.create({
+	NAME: AVAILABLE_FIELD,
 
-	TPL_DROP_CONTAINER = '<ul class="' + [CSS_FORM_BUILDER_DROP_CONTAINER].join(SPACE) + '"></ul>',
-
-	TPL_FIELD_BOUNDING_BOX = '<li class="' + [CSS_WIDGET, CSS_COMPONENT, CSS_FORM_BUILDER_FIELD, CSS_HELPER_HIDDEN].join(SPACE) + '"></li>',
-
-	TPL_HELPER = '<div class="' + CSS_FORM_BUILDER_HELPER + '"></div>',
-
-	TPL_PLACEHOLDER = '<li class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></li>',
-
-	TPL_TABS = '<div class="' + CSS_FORM_BUILDER_TABS_CONTAINER + '"></div>',
-
-	TPL_TABS_CONTENT = '<div class="' + CSS_TABVIEW_CONTENT + '"></div>',
-
-	TPL_TABS_LIST = '<ul class="' + CSS_TABVIEW_LIST + '"></ul>',
-
-	TPL_SETTINGS = '<form class="' + CSS_FORM_BUILDER_SETTINGS + '"></form>',
-
-	TPL_SETTINGS_BUTTONS = '<div class="aui-button-row">' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Save" class="aui-button-input aui-form-builder-button-save">' +
-									'</span>' +
-								'</span>' +
-								'<span class="aui-button aui-button-submit aui-state-positive aui-priority-secondary">' +
-									'<span class="aui-button-content">' +
-										'<input type="button" value="Close" class="aui-button-input aui-form-builder-button-close">' +
-									'</span>' +
-								'</span>' +
-							'</div>',
-
-	TAB_INDEX_DRAG = 0,
-	TAB_INDEX_SETTINGS = 1,
-
-	DEFAULT_ICON_CLASS = [CSS_FORM_BUILDER_FIELD_ICON, CSS_FORM_BUILDER_FIELD_ICON_TEXT].join(SPACE),
-
-	INVALID_CLONE_ATTRS = [BOUNDING_BOX, CONTENT_BOX, SRC_NODE, FIELDS, ID, SELECTED, TEMPLATE_NODE, LABEL_NODE, NAME],
-
-	INVALID_DBCLICK_TARGETS = 'button,input,label,select,textarea';
-
-var FormBuilderFieldSupport = function() {};
-
-FormBuilderFieldSupport.ATTRS = {
-	fields: {
-		value: [],
-		setter: '_setFields',
-		getter: function(val) {
-			return val || [];
+	ATTRS: {
+		readOnlyAttributes: {
+			value: [],
+			validator: isArray
 		},
-		validator: isArray
-	}
-};
 
-A.mix(FormBuilderFieldSupport.prototype, {
-	addField: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		fields = instance._removeFromParent(field);
-
-		fields.push(field);
-		instance.set(FIELDS, fields);
-	},
-
-	addFields: function(fields) {
-		var instance = this;
-
-		A.Array.each(
-			instance._normalizeFields(fields),
-			A.bind(instance.addField, instance)
-		);
-	},
-
-	contains: function(field, deep) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (field === undefined) {
-			return false;
+		unique: {
+			value: false,
+			validator: isBoolean
 		}
-
-		if (deep) {
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			return boundingBox.contains(field.get(BOUNDING_BOX));
-		}
-
-		return (instance.indexOf(field) > -1);
 	},
 
-	eachField: function(fn, deep) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		for (var i = 0; i < fields.length; i++) {
-			var field = fields[i];
-
-			if (deep) {
-				field.eachField(fn, deep);
-			}
-
-			if (fn.call(instance, field, i, fields) === false) {
-				return false;
-			}
-		}
-
-		return true;
-	},
-
-	getField: function(index) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		return fields[index];
-	},
-
-	getFixedFields: function() {
-		var instance = this;
-		var fields = [];
-
-		instance.eachField(function(field) {
-			if (field.get(FIXED)) {
-				fields.push(field);
-			}
-		}, true);
-
-		return fields;
-	},
-
-	indexOf: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		return A.Array.indexOf(fields, field);
-	},
-
-	insertField: function(index, field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		fields = instance._removeFromParent(field);
-
-		fields.splice(index, 0, field);
-
-		instance.set(FIELDS, fields);
-	},
-
-	removeField: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (isFormBuilderField(field) && (field.get(FIXED) || field.getFixedFields().length > 0)) {
-			return false;
-		}
-		else if (field.fixed === true) {
-			return false;
-		}
-
-		fields = instance._removeFromParent(field);
-
-		field.removeTarget(instance);
-
-		instance.set(FIELDS, fields);
-	},
-
-	removeFields: function(fields) {
-		var instance = this;
-
-		A.Array.each(
-			instance._normalizeFields(fields),
-			A.bind(instance.removeField, instance)
-		);
-	},
-
-	_getFormBuilder: function() {
-		return (this.get(FORM_BUILDER) || this);
-	},
-
-	_getRenderedField: function(index, field) {
-		var instance = this;
-		var fm = instance._getFormBuilder();
-
-		if (!isFormBuilderField(field)) {
-			field = fm._renderField(instance, index, field);
-		}
-
-		field.addTarget(fm);
-		field.set(PARENT, instance);
-
-		return field;
-	},
-
-	_normalizeFields: function(fields) {
-		var instance = this;
-		var output = [];
-		var fm = instance._getFormBuilder();
-		var availableFields = fm.get(AVAILABLE_FIELDS);
-		var uniqueFields = fm.uniqueFields;
-
-		fields = A.Array(fields);
-
-		A.Array.each(fields, function(field, i) {
-			field = instance._getRenderedField(i, field);
-
-			var key = field.get(KEY);
-			var unique = field.get(UNIQUE);
-
-			if (unique && !uniqueFields.containsKey(key)) {
-				uniqueFields.add(key, field);
-			}
-
-			if (unique && uniqueFields.contains(field)) {
-				output.push(field);
-			}
-			else if (unique && !uniqueFields.contains(field)) {
-				field.destroy();
-			}
-			else {
-				output.push(field);
-			}
-		});
-
-		return output;
-	},
-
-	_removeFromParent: function(field) {
-		var instance = this;
-		var fields = instance.get(FIELDS);
-
-		if (isFormBuilderField(field)) {
-			var parent = field.get(PARENT);
-
-			if (parent && parent != instance) {
-				parent._removeFromParent(field);
-			}
-			else if (instance.contains(field)) {
-				A.Array.removeItem(fields, field);
-			}
-		}
-
-		return fields;
-	},
-
-	_setFields: function(val) {
-		var instance = this;
-
-		return instance._normalizeFields(val);
-	}
+	EXTENDS: A.AvailableField
 });
 
-A.FormBuilderFieldSupport = FormBuilderFieldSupport;
+A.FormBuilderAvailableField = FormBuilderAvailableField;
 
 var FormBuilder = A.Component.create({
 
@@ -428,773 +204,386 @@ var FormBuilder = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Whether to automatically select fields after dropping them
-		 *
-		 * @attribute autoSelectFields
-		 */
 		autoSelectFields: {
 			value: false
 		},
 
-		/**
-		 * The list of fields that can be used
-		 *
-		 * @attribute availableFields
-		 */
-		availableFields: {
-			lazyAdd: false,
-			value: [],
-			validator: isArray,
-			setter: function(val) {
-				A.each(val, function(availableField, index) {
-					availableField.key = availableField.key || index
-				});
-
-				return val;
-			}
-		},
-
-		/**
-		 * Wether the user can edit the fields value
-		 *
-		 * @attribute enableEditing
-		 */
 		enableEditing: {
 			value: true
 		},
 
-		/**
-		 * The A.NestedList configuration object
-		 *
-		 * @attribute nestedList
-		*/
-		nestedList: {
-			setter: function(val) {
-				var instance = this;
-
-				var config = A.merge({
-					dd: {
-						plugins: [
-							{
-								cfg: {
-									horizontal: false,
-									scrollDelay: 30
-								},
-								fn: A.Plugin.DDWinScroll
-							}
-						]
-					},
-					dropCondition: function(event) {
-						var dropCondition = false;
-						var dropNode = event.drop.get(NODE);
-
-						var field = dropNode.getData(FIELD);
-
-						if (field && field.get(ACCEPT_CHILDREN)) {
-							dropCondition = true;
-						}
-
-						return dropCondition;
-					},
-					dropOn: DOT + CSS_FORM_BUILDER_DROP_ZONE,
-					placeholder: A.Node.create(TPL_PLACEHOLDER),
-					sortCondition: function(event) {
-						var dropContainerNode = instance.get(DROP_CONTAINER_NODE);
-
-						return dropContainerNode.contains(event.drop.get(NODE));
-					}
-				}, val);
-
-				return config;
-			},
-			value: {}
+		fieldsNestedListConfig: {
+			setter: '_setFieldsNestedListConfig',
+			validator: isObject,
+			value: null
 		},
 
-		/**
-		 * Strings messages
-		 *
-		 * @attribute strings
-		 */
 		strings: {
-			value:
-			{
-				button: 'Button',
-				defaultMessage: 'Drop a field here',
-				emptySelection: 'No field selected',
-				large: 'Large',
-				medium: 'Medium',
-				reset: 'Reset',
-				small: 'Small',
-				submit: 'Submit',
-				type: 'Type'
-			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		defaultMessageNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DEFAULT_MESSAGE);
-			}
-		},
-
-		dragContainerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DRAG_CONTAINER);
-			}
-		},
-
-		dragNodesList: {
-			setter: function(val) {
-				A.each(val, function(node, index) {
-					node.setData(INDEX, index);
-				});
-			},
-			valueFn: '_valueDragNodesList'
-		},
-
-		dropContainerNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_DROP_CONTAINER);
-			}
-		},
-
-		settingsButtonsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SETTINGS_BUTTONS);
-			}
-		},
-
-		settingsFormNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_SETTINGS);
-			}
-		},
-
-		tabsNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS);
-			}
-		},
-
-		tabsContentNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS_CONTENT);
-			}
-		},
-
-		tabsListNode: {
-			valueFn: function() {
-				return A.Node.create(TPL_TABS_LIST);
+			value: {
+				addNode: 'Add field',
+				cancel: 'Cancel',
+				propertyName: 'Property Name',
+				save: 'Save',
+				settings: 'Settings',
+				value: 'Value'
 			}
 		}
 
 	},
 
-	AUGMENTS: [A.FormBuilderFieldSupport],
+	EXTENDS: A.DiagramBuilderBase,
 
-	HTML_PARSER: {
-		defaultMessageNode: DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE,
-		dragContainerNode: DOT + CSS_FORM_BUILDER_DRAG_CONTAINER,
-		dragNodesList: function(srcNode) {
-			var nodes = srcNode.all(DOT + CSS_FORM_BUILDER_DRAG_NODE);
-
-			return (nodes.size() <= 0) ? null : nodes;
-		},
-		dropContainerNode: DOT + CSS_FORM_BUILDER_DROP_CONTAINER,
-		settingsFormNode: FORM + DOT + CSS_FORM_BUILDER_SETTINGS,
-		settingsButtonsNode: DOT + CSS_FORM_BUILDER_SETTINGS_BUTTONS,
-		tabsNode: DOT + CSS_FORM_BUILDER_TABS_CONTAINER,
-		tabsContentNode: DOT + CSS_TABVIEW_CONTENT,
-		tabsListNode: DOT + CSS_TABVIEW_LIST
-	},
-
-	EXTENDS: A.Widget,
+	FIELDS_TAB: 0,
+	SETTINGS_TAB: 1,
 
 	prototype: {
 
-		/**
-		 * Initializer
-		 *
-		 * @method initializer
-		 */
+		uniqueFields: new A.DataSet(),
+
 		initializer: function() {
 			var instance = this;
 
-			instance.boundingBox = instance.get(BOUNDING_BOX);
-			instance.dragContainerNode = instance.get(DRAG_CONTAINER_NODE);
-			instance.dragNodesList = instance.get(DRAG_NODES_LIST);
-			instance.dropContainerNode = instance.get(DROP_CONTAINER_NODE);
+			instance.on({
+				cancel: instance._onCancel,
+				'drag:end': instance._onDragEnd,
+				'drag:start': instance._onDragStart,
+				'drag:mouseDown': instance._onDragMouseDown,
+				save: instance._onSave
+			});
 
-			instance.settingsButtonsNode = instance.get(SETTINGS_BUTTONS_NODE);
-			instance.settingsFormNode = instance.get(SETTINGS_FORM_NODE);
+			instance.uniqueFields.after(ADD, A.bind(instance._afterUniqueFieldsAdd, instance));
+			instance.uniqueFields.after(REMOVE, A.bind(instance._afterUniqueFieldsRemove, instance));
 
-			instance.tabsNode = instance.get(TABS_NODE);
-			instance.tabsContentNode = instance.get(TABS_CONTENT_NODE);
-			instance.tabsListNode = instance.get(TABS_LIST_NODE);
-
-			instance._dragNestedList = new A.NestedList(instance.get(NESTED_LIST));
-			instance._dropNestedList = new A.NestedList(instance.get(NESTED_LIST));
-
-			instance._tabs = new A.TabView(
-				{
-					boundingBox: instance.tabsNode,
-					contentNode: instance.tabsContentNode,
-					listNode: instance.tabsListNode
-				}
-			);
-
-			if (!instance.tabsContentNode.inDoc()) {
-				instance._tabs.set(
-					ITEMS,
-					[
-						{label: 'Add a field', contentNode: instance.dragContainerNode},
-						{label: 'Field settings', content: instance.settingsFormNode}
-					]
-				);
-			}
+			instance.dropContainer.delegate(CLICK, A.bind(instance._onClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
+			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onDblClickField, instance), _DOT+CSS_FORM_BUILDER_FIELD);
 		},
 
-		/**
-		 * Render phase
-		 *
-		 * @method renderUI
-		 */
-		renderUI: function() {
-			var instance = this;
-
-			instance.dragNodesList.appendTo(instance.dragContainerNode);
-
-			instance._tabs.render()
-		},
-
-		/**
-		 * Bind phase
-		 *
-		 * @method bindUI
-		 */
-		bindUI: function() {
-			var instance = this;
-			var boundingBox = instance.boundingBox;
-			var dropContainerNode = instance.dropContainerNode;
-			var settingsButtonsNode = instance.settingsButtonsNode;
-
-			instance._dragNestedList.on('drag:end', A.bind(instance._onDragEndDragNestedList, instance));
-			instance._dragNestedList.on('drag:start', A.bind(instance._onDragStartDragNestedList, instance));
-			instance._dropNestedList.on('drag:end', A.bind(instance._onDragEndDropNestedList, instance));
-
-			instance._tabs.after('activeTabChange', A.bind(instance._afterActiveTabChange, instance));
-
-			instance.uniqueFields.after('add', A.bind(instance._afterUniqueFieldsAdd, instance));
-			instance.uniqueFields.after('remove', A.bind(instance._afterUniqueFieldsRemove, instance));
-
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDelete, instance), DOT + CSS_FORM_BUILDER_BUTTON_DELETE);
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldDuplicate, instance), DOT + CSS_FORM_BUILDER_BUTTON_DUPLICATE);
-			dropContainerNode.delegate('click', A.bind(instance._onClickFieldEdit, instance), DOT + CSS_FORM_BUILDER_BUTTON_EDIT);
-			dropContainerNode.delegate('dblclick', A.bind(instance._onDbClickField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-			dropContainerNode.delegate('mouseenter', A.bind(instance._onMouseEnterField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-			dropContainerNode.delegate('mouseleave', A.bind(instance._onMouseLeaveField, instance), DOT + CSS_FORM_BUILDER_FIELD);
-
-			settingsButtonsNode.delegate('click', A.bind(instance._onClickSettingsButton, instance), DOT + CSS_BUTTON_INPUT);
-
-			instance.after('*:fieldsChange', A.bind(instance._afterFieldsChange, instance));
-			instance.after('*:selectedChange', A.bind(instance._afterSelectedChange, instance));
-		},
-
-		/**
-		 * Sync phase
-		 *
-		 * @method syncUI
-		 */
 		syncUI: function() {
 			var instance = this;
 
-			instance.syncFieldsUI();
-
-			instance._syncDefaultMessage();
-			instance._syncUniqueFields();
-			instance._syncNestedList();
+			instance._setupAvailableFieldsNestedList();
+			instance._setupFieldsNestedList();
 		},
 
-		/**
-		 * Stores the unique fields instanciated
-		 *
-		 * @attribute uniqueFields
-		 */
-		uniqueFields: new A.DataSet(),
-
-		/**
-		 * Append fields to the given container
-		 *
-		 * @method appendFields
-		 */
-		appendFields: function(fields, container) {
+		closeEditProperties: function() {
 			var instance = this;
+			var field = instance.editingField;
+
+			instance.tabView.selectTab(A.FormBuilder.FIELDS_TAB);
+
+			if (field && field.get(RENDERED)) {
+				field.get(BOUNDING_BOX).removeClass(CSS_FORM_BUILDER_FIELD_EDITING);
+			}
+
+			instance.editingField = null;
+		},
+
+		createField: function(val) {
+			var instance = this;
+
+			if (!isFormBuilderField(val)) {
+				val = new (instance.getFieldClass(val.type || FIELD))(val);
+			}
+
+			val.set(BUILDER, instance);
+			val.set(PARENT, instance);
+
+			return val;
+		},
+
+		duplicateField: function(field) {
+			var instance = this;
+			var index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX));
+			var newField = instance._cloneField(field, true);
+
+			instance.insertField(newField, ++index, field.get(PARENT));
+		},
+
+		editField: function(field) {
+			var instance = this;
+
+			if (isFormBuilderField(field)) {
+				instance.closeEditProperties();
+
+				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
+
+				instance.propertyList.set(RECORDSET, field.getProperties());
+
+				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
+
+				instance.editingField = instance.selectedField = field;
+			}
+		},
+
+		getFieldClass: function(type) {
+			var instance = this;
+			var clazz = A.FormBuilder.types[type];
+
+			if (clazz) {
+				return clazz;
+			}
+			else {
+				A.log('The field type: [' + type + '] couldn\'t be found.');
+
+				return null;
+			}
+		},
+
+		insertField: function(field, index, parent) {
+			var instance = this;
+
+			parent = parent || instance;
+
+			// remove from previous parent
+			field.get(PARENT).removeField(field);
+
+			parent.addField(field, index);
+		},
+
+		plotField: function(field, container) {
+			var instance = this;
+			var boundingBox = field.get(BOUNDING_BOX);
+
+			if (!field.get(RENDERED)) {
+				field.render(container);
+			}
+			else {
+				container.append(boundingBox);
+			}
+
+			instance._syncUniqueField(field);
+
+			instance.fieldsNestedList.add(boundingBox);
+		},
+
+		plotFields: function(fields, container) {
+			var instance = this;
+
+			container = container || instance.dropContainer;
+			fields = fields || instance.get(FIELDS);
 
 			container.setContent(EMPTY_STR);
 
 			A.each(fields, function(field) {
-				var children = field.get(FIELDS);
-
-				container.append(field.get(BOUNDING_BOX));
-
-			    instance.appendFields(children, field.get(DROP_ZONE_NODE));
+				instance.plotField(field, container);
 			});
 		},
 
-		/**
-		 * Duplicates the given field
-		 *
-		 * @method duplicateField
-		 */
-		duplicateField: function(field) {
-			var instance = this;
-			var parent = field.get(PARENT);
-			var index = parent.indexOf(field);
-			var newFieldConfig = instance._cloneField(field, true);
-
-			parent.insertField(++index, newFieldConfig);
-		},
-
-		/**
-		 * Selects the given field
-		 *
-		 * @method selectField
-		 */
-		selectField: function(field) {
+		select: function(field) {
 			var instance = this;
 
-			field.set(SELECTED, true);
+			instance.unselectFields();
 
-			var firstSettingInput = instance.settingsFormNode.one(INPUT);
-
-			if (firstSettingInput) {
-				firstSettingInput.focus();
-				firstSettingInput.select();
-			}
-
-			instance._tabs.selectTab(TAB_INDEX_SETTINGS);
+			instance.selectedField = field.set(SELECTED, true).focus();
 		},
 
-		/**
-		 * Populates the dropContainerNode with the boundingBox nodes of each
-		 * of the fields components
-		 *
-		 * @method syncFieldsUI
-		 */
-		syncFieldsUI: function(event) {
-			var instance = this;
-			var fields = instance.get(FIELDS);
-			var container = instance.get(DROP_CONTAINER_NODE);
-
-			if (event && isFormBuilderField(event.target)) {
-				var field = event.target;
-
-				fields = field.get(FIELDS);
-				container = field.get(DROP_ZONE_NODE);
-			}
-
-			instance.appendFields(fields, container);
-		},
-
-		/**
-		 * Handles the activeTabChange event
-		 *
-		 * @method _afterActiveTabChange
-		 */
-		_afterActiveTabChange: function(event) {
+		unselectFields: function() {
 			var instance = this;
 			var selectedField = instance.selectedField;
-			var settingsFormNode = instance.get(SETTINGS_FORM_NODE);
-			var settingsButtonsNode = instance.get(SETTINGS_BUTTONS_NODE);
-			var strings = instance.get(STRINGS);
 
-			var containsField = instance.contains(selectedField, true);
-
-			if (!containsField) {
-				settingsFormNode.setContent(strings[EMPTY_SELECTION]);
+			if (selectedField) {
+				selectedField.set(SELECTED, false);
 			}
 
-			settingsButtonsNode.toggleClass(CSS_HELPER_HIDDEN, !containsField);
+			instance.selectedField = null;
 		},
 
-		/**
-		 * Handles the afterFieldsChange event
-		 *
-		 * @method _afterFieldsChange
-		 */
-		_afterFieldsChange: function() {
-			var instance = this;
-
-			instance.syncUI();
-		},
-
-		/**
-		 * Adds/removes the selected class according to the 'selected' attribute
-		 * value
-		 *
-		 * @method _afterSelectedChange
-		 */
-		_afterSelectedChange: function(event) {
-			var instance = this;
-			var field = event.target;
-			var prevSelected = instance.selectedField;
-
-			instance._syncSelectedFieldUI(field);
-
-			if (field.get(SELECTED)) {
-				instance.selectedField = field;
-
-				if (prevSelected && prevSelected != field) {
-					prevSelected.set(SELECTED, false);
-				}
-
-				field.renderSettings();
-			}
-		},
-
-		/**
-		 * Handles the add event for the unique fields
-		 *
-		 * @method _afterUniqueFieldsAdd
-		 */
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
-			var key = event.attrName;
-			var dragNode = instance._getDragNodeByKey(key);
+			var availableField = event.attrName;
 
-			dragNode.addClass(CSS_FORM_BUILDER_INACTIVE);
-			dragNode.unselectable();
+			if (isAvailableField(availableField)) {
+				var node = availableField.get(NODE); 
+
+				availableField.set(DRAGGABLE, false);
+				node.unselectable();
+			}
 		},
 
-		/**
-		 * Handles the remove event for the unique fields
-		 *
-		 * @method _afterUniqueFieldsRemove
-		 */
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
-			var key = event.attrName;
-			var dragNode = instance._getDragNodeByKey(key);
+			var availableField = event.attrName;
 
-			dragNode.removeClass(CSS_FORM_BUILDER_INACTIVE);
-			dragNode.selectable();
+			if (isAvailableField(availableField)) {
+				var node = availableField.get(NODE);
+
+				availableField.set(DRAGGABLE, true);
+				node.selectable();
+			}
 		},
 
-		/**
-		 * Clones a field
-		 *
-		 * @method _cloneField
-		 */
 		_cloneField: function(field, deep) {
 			var instance = this;
-			var type = field.get(TYPE);
+			var config  = {};
 
-			var config = {};
+			AArray.each(field.getProperties(), function(property) {
+				var name = property.attributeName;
 
-			A.each(field.getAttrs(), function(value, key) {
-				if (A.Array.indexOf(INVALID_CLONE_ATTRS, key) === -1 && !isNode(value)) {
-					config[key] = value;
+				if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
+					config[name] = property.value;
 				}
 			});
 
 			if (deep) {
-				var children = [];
+				config[FIELDS] = [];
 
-				A.each(field.get(FIELDS), function(child) {
-					children.push(instance._cloneField(child, deep));
+				A.each(field.get(FIELDS), function(child, index) {
+					if (!child.get(UNIQUE)) {
+						config[FIELDS][index] = instance._cloneField(child, deep);
+					}
+				});
+			}
+
+			return instance.createField(config);
+		},
+
+		_dropField: function(dragNode) {
+			var instance = this;
+			var availableField = dragNode.getData(AVAILABLE_FIELD);
+			var field = A.Widget.getByNode(dragNode);
+			var parentNode = dragNode.get(PARENT_NODE);
+
+			if (isAvailableField(availableField)) {
+				var id = availableField.get(ID).replace(
+					AVAILABLE_FIELDS_ID_PREFIX,
+					_EMPTY_STR
+				);
+
+				field = instance.createField({
+					fixed: availableField.get(FIXED),
+					id: id,
+					label: availableField.get(LABEL),
+					localizationMap: availableField.get(LOCALIZATION_MAP),
+					options: availableField.get(OPTIONS),
+					predefinedValue: availableField.get(PREDEFINED_VALUE),
+					readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
+					required: availableField.get(REQUIRED),
+					showLabel: availableField.get(SHOW_LABEL),
+					tip: availableField.get(TIP),
+					type: availableField.get(TYPE),
+					unique: availableField.get(UNIQUE),
+					width: availableField.get(WIDTH)
 				});
 
-				config[FIELDS] = children;
-			}
-
-			config[TYPE] = type;
-
-			return config;
-		},
-
-		/**
-		 * Add a field to the dropContainer
-		 *
-		 * @method _dropField
-		 */
-		_dropField: function(node) {
-			var instance = this;
-			var parentNode = node.get(PARENT_NODE);
-			var nodes = parentNode.all('> ' + DOT + CSS_FORM_BUILDER_FIELD);
-			var field = node.getData(FIELD);
-			var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
-
-			if (defaultMessageNode.inDoc()) {
-				defaultMessageNode.remove();
-			}
-
-			var parent = instance._getFieldParentByNode(node);
-			var index = nodes.indexOf(node);
-
-			if (!field) {
-				var availableFields = instance.get(AVAILABLE_FIELDS);
-
-				field = availableFields[node.getData(INDEX)];
-
-				// Remove remanescent node
-				node.remove();
-			}
-
-			parent.insertField(index, field);
-
-			return parent.getField(index);
-		},
-
-		/**
-		 * Return the dragNode to the given key
-		 *
-		 * @method _getDragNodeByKey
-		 */
-		_getDragNodeByKey: function(key) {
-			var instance = this;
-			var dragNodesList = instance.get(DRAG_NODES_LIST);
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-
-			for (var i = 0; i < availableFields.length; i++) {
-				if (key == availableFields[i].key) {
-					return dragNodesList.item(i);
+				if (availableField.get(UNIQUE)) {
+					field.set(NAME, availableField.get(NAME));
 				}
+
+				instance.select(field);
 			}
 
-			return null;
+			if (isFormBuilderField(field)){
+				var dropField = A.Widget.getByNode(parentNode);
+
+				if (!isFormBuilderField(dropField)) {
+					dropField = instance;
+				}
+
+				var index = instance._getFieldNodeIndex(dragNode);
+				
+				instance.insertField(field, index, dropField);
+			}
 		},
 
-		/**
-		 * Return the instance of a A.FormBuilderField for the given type
-		 *
-		 * @method _getFieldInstance
-		 */
-		_getFieldInstance: function(config, type) {
+		_getFieldId: function(field) {
 			var instance = this;
-			var type = type || config.type;
-			var typesMap = A.FormBuilder.types;
-			var fieldClass = isString(type) ? typesMap[type] : type;
+			var id = field.get(ID);
 
-			if (fieldClass !== undefined) {
-				return new fieldClass(config);
+			var prefix;
+
+			if (isAvailableField(field)) {
+				prefix = AVAILABLE_FIELDS_ID_PREFIX;
 			}
 			else {
-				A.log('The field type: [' + type + '] couldn\'t be found.');
+				prefix = FIELDS_ID_PREFIX;
 			}
 
-			return null;
+			return id.replace(prefix, _EMPTY_STR);
 		},
 
-		/**
-		 * Returns the parent of the field
-		 *
-		 * @method _getFieldParentByNode
-		 */
-		_getFieldParentByNode: function(node) {
+		_getFieldNodeIndex: function(fieldNode) {
 			var instance = this;
-			var parentNode = node.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
 
-			if (parentNode) {
-				return parentNode.getData(FIELD);
+			return fieldNode.get(PARENT_NODE).all(
+				// prevent the placeholder interference on the index
+				// calculation
+				'> *:not(' + _DOT+CSS_FORM_BUILDER_PLACEHOLDER + ')'
+			).indexOf(fieldNode);
+		},
+
+		_onClickField: function(event) {
+			var instance = this;
+			var field = A.Widget.getByNode(event.currentTarget);
+
+			instance.select(field);
+
+			event.stopPropagation();
+		},
+
+		_onDblClickField: function(event) {
+			var instance = this;
+
+			// Only enable editing if the double clicked node is inside the node
+			// contentBox.
+			if (!event.target.ancestor(_DOT+CSS_FORM_BUILDER_FIELD, true)) {
+				return;
 			}
 
-			return instance;
-		},
-
-		/**
-		 * Return the parent node for a given field or the dropContainerNode
-		 *
-		 * @method _getFieldParentNode
-		 */
-		_getFieldParentNode: function(field) {
-			var instance = this;
-			var parent = field.get(PARENT);
-
-			if (isFormBuilderField(parent)) {
-				return parent.get(BOUNDING_BOX);
-			}
-
-			return instance.get(DROP_CONTAINER_NODE);
-		},
-
-		/**
-		 * Handles the click event for the delete button of each field
-		 *
-		 * @method _onClickFieldDelete
-		 */
-		_onClickFieldDelete: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
-
-			if (isFormBuilderField(field)) {
-				var selectedField = instance.selectedField;
-
-				if (field == selectedField ||
-					field.contains(selectedField, true)) {
-
-					instance._tabs.selectTab(TAB_INDEX_DRAG);
-				}
-
-				field.set(SELECTED, false);
-
-				field.get(PARENT).removeField(field);
-			}
-		},
-
-		/**
-		 * Handles the click event for the duplicate button of each field
-		 *
-		 * @method _onClickFieldDuplicate
-		 */
-		_onClickFieldDuplicate: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
+			var field = A.Widget.getByNode(event.currentTarget);
 
 			if (field) {
-				instance.duplicateField(field);
+				instance.editField(field);
 			}
+
+			event.stopPropagation();
 		},
 
-		/**
-		 * Handles the click event for the edit button of each field
-		 *
-		 * @method _onClickFieldEdit
-		 */
-		_onClickFieldEdit: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var fieldBB = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			var field = fieldBB.getData(FIELD);
-
-			if (field) {
-				instance.selectField(field);
-			}
-		},
-
-		/**
-		 * Handles the click event for the settings buttons
-		 *
-		 * @method _onClickSettingsButton
-		 */
-		_onClickSettingsButton: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			if (target.hasClass(CSS_FORM_BUILDER_BUTTON_SAVE)) {
-				var selectedField = instance.selectedField;
-
-				if (selectedField) {
-					selectedField.saveSettings();
-				}
-			}
-
-			instance._tabs.selectTab(TAB_INDEX_DRAG);
-		},
-
-		/**
-		 * Handles the dblclick event for each field
-		 *
-		 * @method _onDbClickField
-		 */
-		_onDbClickField: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			if (target.test(INVALID_DBCLICK_TARGETS)) {
-				event.stopPropagation();
-
-				return false;
-			}
-
-			if (!target.getData(FIELD)) {
-				target = target.ancestor(DOT + CSS_FORM_BUILDER_FIELD);
-			}
-
-			if (target) {
-				var field = target.getData(FIELD);
-
-				if (field) {
-					instance.selectField(field);
-				}
-			}
-
-			return false;
-		},
-
-		/**
-		 * Handle the drag:end event for the _dragNestedList instance
-		 *
-		 * @method _onDragEndDragNestedList
-		 */
-		_onDragEndDragNestedList: function(event) {
+		_onDragEnd: function(event) {
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
-			var dragContainerNode = instance.dragContainerNode;
-			var dropContainerNode = instance.dropContainerNode;
 
-			var newFieldNode = dropContainerNode.one(DOT + CSS_FORM_BUILDER_DRAG_NODE);
+			instance._dropField(dragNode);
 
-			if (newFieldNode) {
-				var field = instance._dropField(newFieldNode);
-
-				if (instance.get(AUTO_SELECT_FIELDS)) {
-					instance.selectField(field);
-				}
-			}
-			else {
-				drag.set(NODE, instance.originalNode);
-			}
-
-			if (dragContainerNode.contains(dragNode) &&
-				dragContainerNode.contains(instance.originalNode)) {
-
+			// skip already instanciated fields
+			if (!isFormBuilderField(A.Widget.getByNode(dragNode))) {
 				dragNode.remove();
+
+				drag.set(NODE, instance._originalDragNode);
 			}
 		},
 
-		/**
-		 * Handle the drag:end event for the _dropNestedList instance
-		 *
-		 * @method _onDragEndDropNestedList
-		 */
-		_onDragEndDropNestedList: function(event) {
+		_onDragMouseDown: function(event) {
+			var instance = this;
+			var dragNode = event.target.get(NODE);
+			var availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
+
+			if (isAvailableField(availableField) && !availableField.get(DRAGGABLE)) {
+				event.halt();
+			}
+		},
+
+		_onDragStart: function(event) {
 			var instance = this;
 			var drag = event.target;
 			var dragNode = drag.get(NODE);
 
-			if (dragNode.hasClass(CSS_FORM_BUILDER_FIELD)) {
-				instance._dropField(dragNode);
+			// skip already instanciated fields
+			if (isFormBuilderField(A.Widget.getByNode(dragNode))) {
+				return;
 			}
-		},
 
-		/**
-		 * Handle the drag:start event
-		 *
-		 * @method _onDragStartDragNestedList
-		 */
-		_onDragStartDragNestedList: function(event) {
-			var instance = this;
-			var drag = event.target;
-			var dragNode = drag.get(NODE);
-			var index = dragNode.getData(INDEX);
+			// in the dragEnd we`re going to restore the drag node
+			// to the original node
+			instance._originalDragNode = dragNode;
 
 			var clonedDragNode = dragNode.clone();
-
 			dragNode.placeBefore(clonedDragNode);
-			clonedDragNode.setData(INDEX, index);
 
 			drag.set(NODE, clonedDragNode);
+
+			var availableFieldData = dragNode.getData(AVAILABLE_FIELD);
+			clonedDragNode.setData(AVAILABLE_FIELD, availableFieldData);
 
 			clonedDragNode.attr(ID, EMPTY_STR);
 			clonedDragNode.hide();
@@ -1202,265 +591,140 @@ var FormBuilder = A.Component.create({
 			dragNode.removeClass(CSS_DD_DRAGGING);
 			dragNode.show();
 
-			instance.originalNode = dragNode;
-
-			var config = A.merge(
-				instance.get(NESTED_LIST),
-				{
-					nodes: clonedDragNode
-				}
-			);
-
-			(new A.NestedList(config));
+			instance.fieldsNestedList.add(clonedDragNode);
 		},
 
-		/**
-		 * Handle the mouseenter event for each field
-		 *
-		 * @method _onMouseEnterField
-		 */
-		_onMouseEnterField: function(event) {
+		_onSave: function(event) {
 			var instance = this;
-			var fieldBB = event.currentTarget;
-			var field = fieldBB.getData(FIELD);
+			var editingField = instance.editingField;
 
-			if (field) {
-				instance._toggleFieldButtonsNode(field, true);
+			if (editingField) {
+				var recordset = instance.propertyList.get(RECORDSET);
+				
+				AArray.each(recordset.get(RECORDS), function(record) {
+					var data = record.get(DATA);
+
+					editingField.set(data.attributeName, data.value);
+				});
+
+				instance._syncUniqueField(editingField);
 			}
 		},
 
-		/**
-		 * Handle the mouseleave event for each field
-		 *
-		 * @method _onMouseLeaveField
-		 */
-		_onMouseLeaveField: function(event) {
+		_setAvailableFields: function(val) {
 			var instance = this;
-			var fieldBB = event.currentTarget;
-			var field = fieldBB.getData(FIELD);
-			var val = false;
+			var fields = [];
 
-			if (field) {
-				if (field.get(SELECTED)) {
-					val = true;
-				}
-
-				instance._toggleFieldButtonsNode(field, val);
-			}
-		},
-
-		/**
-		 * Renders a field using the given configuration object
-		 *
-		 * @method _renderField
-		 */
-		_renderField: function(parent, index, config) {
-			var instance = this;
-
-			var container = parent.get(DROP_CONTAINER_NODE);
-
-			if (isFormBuilderField(parent)) {
-				container = parent.get(DROP_ZONE_NODE);
-			}
-
-			var boundingBox = A.Node.create(TPL_FIELD_BOUNDING_BOX);
-			var fields = parent.get(FIELDS);
-
-			if (fields.length > 0) {
-				container.insert(boundingBox, index);
-			}
-			else {
-				container.append(boundingBox);
-			}
-
-			config = A.merge(
-				config,
-				{
-					boundingBox: boundingBox,
-					key: config.key,
-					formBuilder: instance,
-					render: true,
-					after: {
-						render: function() {
-							boundingBox.removeClass(CSS_HELPER_HIDDEN);
-						}
-					}
-				}
-			);
-
-			if (config.disabled === undefined) {
-				config.disabled = !instance.get(ENABLE_EDITING);
-			}
-
-			return instance._getFieldInstance(config);
-		},
-
-		/**
-		 * Updates the default message UI
-		 *
-		 * @method _syncDefaultMessage
-		 */
-		_syncDefaultMessage: function() {
-			var instance = this;
-
-			if (!instance.dropContainerNode.hasChildNodes()) {
-				var strings = instance.get(STRINGS);
-				var defaultMessageNode = instance.get(DEFAULT_MESSAGE_NODE);
-
-				defaultMessageNode.setContent(strings[DEFAULT_MESSAGE]);
-
-				instance.dropContainerNode.append(defaultMessageNode);
-			}
-		},
-
-		/**
-		 * Updates the nestedList nodes
-		 *
-		 * @method _syncNestedList
-		 */
-		_syncNestedList: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var uniqueFields = instance.uniqueFields;
-
-			instance._syncNodes();
-
-			instance.dragNodes.each(function(node, i) {
-				var field = availableFields[i];
-
-				if (!uniqueFields.containsKey(field.key)) {
-					instance._dragNestedList.add(node);
-				}
-			});
-
-			instance._dropNestedList.addAll(instance.dropNodes);
-		},
-
-		/**
-		 * Updates the dragNodes and dropNodes variables
-		 *
-		 * @method _syncNodes
-		 */
-		_syncNodes: function() {
-			var instance = this;
-			var dragContainerNode = instance.dragContainerNode;
-			var dropContainerNode = instance.dropContainerNode;
-
-			instance.dragNodes = dragContainerNode.all(DOT + CSS_FORM_BUILDER_FIELD);
-
-			instance.dropNodes = dropContainerNode.all(
-				[
-					DOT + CSS_FORM_BUILDER_FIELD,
-					DOT + CSS_FORM_BUILDER_DEFAULT_MESSAGE
-				].join(COMMA_AND_SPACE)
-			);
-		},
-
-		/**
-		 * description
-		 *
-		 * @method _syncSelectedFieldUI
-		 */
-		_syncSelectedFieldUI: function(field) {
-			var instance = this;
-			var value = field.get(SELECTED);
-			var fieldBB = field.get(BOUNDING_BOX);
-			var selected = instance.selectedField;
-
-			fieldBB.toggleClass(
-				CSS_FORM_BUILDER_FIELD_SELECTED,
-				value
-			);
-
-			if (!value && field.contains(selected)) {
-				value = true;
-			}
-
-			instance._toggleFieldButtonsNode(field, value);
-		},
-
-		/**
-		 * Sync the unique fields
-		 *
-		 * @method _syncUniqueFields
-		 */
-		_syncUniqueFields: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var fields = instance.get(FIELDS);
-			var uniqueFields = instance.uniqueFields;
-
-			uniqueFields.each(function(uniqueField, index){
-				if (!instance.contains(uniqueField, true)) {
-					uniqueFields.remove(uniqueField);
-				}
-			});
-
-			A.each(availableFields, function(availableField, index) {
-				if (availableField.unique) {
-					var key = availableField.key;
-
-					instance.eachField(function(field) {
-						if (field.get(KEY) == key) {
-							var config = A.merge(
-								instance._cloneField(field, false),
-								availableField
-							);
-
-							field.set(FIXED, config.fixed);
-							field.set(READ_ONLY_ATTRIBUTES, config.readOnlyAttributes);
-							field.set(UNIQUE, true);
-
-							availableFields[index] = config;
-
-							uniqueFields.add(key, field);
-						}
-					}, true);
-				}
-			});
-		},
-
-		/**
-		 * Toggle the visibility of the field buttons node
-		 *
-		 * @method _toggleButtonsNode
-		 */
-		_toggleFieldButtonsNode: function(field, val) {
-			var instance = this;
-			var buttonsNode = field.get(BUTTONS_NODE);
-
-			if (buttonsNode) {
-				buttonsNode.toggleClass(CSS_HELPER_HIDDEN, !val);
-			}
-		},
-
-		/**
-		 * Populates the dragNodesList attribute with values provided by the
-		 * availableFields attribute
-		 *
-		 * @method _valueDragNodesList
-		 */
-		_valueDragNodesList: function() {
-			var instance = this;
-			var availableFields = instance.get(AVAILABLE_FIELDS);
-			var buffer = [];
-
-			A.each(availableFields, function(item, index, collection) {
-				buffer.push(
-					A.substitute(
-						TPL_DRAG_NODE,
-						{
-							icon: item.iconClass || DEFAULT_ICON_CLASS,
-							label: item.entryLabel || item.label,
-							key: item.key || index,
-							type: item.type,
-							unique: item.unique
-						}
-					)
+			AArray.each(val, function(field, index) {
+				fields.push(
+					isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
 				);
 			});
 
-			return A.NodeList.create(buffer.join(EMPTY_STR));
+			return fields;
+		},
+
+		_setFieldsNestedListConfig: function(val) {
+			var instance = this;
+			var dropContainer = instance.dropContainer;
+
+			return A.merge(
+				{
+					bubbleTargets: instance,
+					dd: {
+						groups: [AVAILABLE_FIELDS],
+						plugins: [
+							{
+								cfg: {
+									horizontal: false,
+									scrollDelay: 150
+								},
+								fn: A.Plugin.DDWinScroll
+							}
+						]
+					},
+					dropCondition: function(event) {
+						var dropNode = event.drop.get(NODE);
+						var field = A.Widget.getByNode(dropNode);
+
+						if (isFormBuilderField(field)) {
+							return true;
+						}
+
+						return false;
+					},
+					placeholder: A.Node.create(TPL_PLACEHOLDER),
+					dropOn: _DOT + CSS_FORM_BUILDER_DROP_ZONE,
+					sortCondition: function(event) {
+						var dropNode = event.drop.get(NODE);
+
+						return (dropNode !== instance.dropContainer &&
+								dropContainer.contains(dropNode));
+					}
+				},
+				val || {}
+			);
+		},
+
+		_setupAvailableFieldsNestedList: function() {
+			var instance = this;
+
+			if (!instance.availableFieldsNestedList) {
+				var availableFieldsNodes = instance.fieldsContainer.all(
+					_DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+				);
+				
+				instance.availableFieldsNestedList = new A.NestedList(
+					A.merge(
+						instance.get(FIELDS_NESTED_LIST_CONFIG),
+						{
+							nodes: availableFieldsNodes
+						}
+					)
+				);
+			}
+		},
+
+		_setupFieldsNestedList: function() {
+			var instance = this;
+
+			if (!instance.fieldsNestedList) {
+				instance.fieldsNestedList = new A.NestedList(
+					instance.get(FIELDS_NESTED_LIST_CONFIG)
+				);
+			}
+		},
+
+		_syncUniqueField: function(field) {
+			var instance = this;
+			var uniqueFields = instance.uniqueFields;
+
+			// Get the corresponding availableField to the given field
+			var availableField = getAvailableFieldById(
+				instance._getFieldId(field)
+			);
+
+			if (isAvailableField(availableField)) {
+				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
+					// Make one the "mirror" of the other
+					field.set(READ_ONLY_ATTRIBUTES, availableField.get(READ_ONLY_ATTRIBUTES));
+					field.set(UNIQUE, availableField.get(UNIQUE));
+
+					AArray.each(field.getProperties(), function(property) {
+						var name = property.attributeName;
+
+						if (name === ID) {
+							return;
+						}
+
+						availableField.set(name, property.value);
+					});
+
+					availableField.set(LOCALIZATION_MAP, field.get(LOCALIZATION_MAP));
+
+					uniqueFields.add(availableField, field);
+				}
+			}
 		}
 
 	}
@@ -1471,4 +735,4 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-nested-list','aui-tabs','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs','substitute'], skinnable:true});
