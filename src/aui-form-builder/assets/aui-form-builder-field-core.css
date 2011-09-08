@@ -30,14 +30,7 @@
 .aui-form-builder-field .aui-field-checkbox,
 .aui-form-builder-field .aui-field-radio {
 	float: left;
-}
-
-.aui-form-builder-field .aui-field-radio {
-	margin: 3px 5px 0 0;
-}
-
-.aui-form-builder-field .aui-field-checkbox {
-	margin: 4px 5px 0 0;
+	margin: 2px 5px 0 0;
 }
 
 .aui-form-builder-field .aui-field-label {
@@ -60,6 +53,7 @@
 	display: block;
 	float: left;
 	height: 16px;
+	margin-top: -1px;
 	width: 16px;
 }
 
