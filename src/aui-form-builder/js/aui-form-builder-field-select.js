@@ -3,41 +3,15 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
-	toInitialCap = A.cached(
-		function(str) {
-			return str.substring(0, 1).toUpperCase() + str.substring(1);
-		}
-	),
-
-	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
-	BUTTON_TYPE = 'buttonType',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
-	DEFAULT_OPTIONS = 'defaultOptions',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_SELECT_FIELD = 'form-builder-select-field',
-	ID = 'id',
 	ICON = 'icon',
+	ID = 'id',
 	INPUT = 'input',
 	LABEL = 'label',
 	MULTIPLE = 'multiple',
@@ -45,12 +19,9 @@ var L = A.Lang,
 	NODE = 'node',
 	OPTION = 'option',
 	OPTIONS = 'options',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
-	PROXY = 'proxy',
-	RESET = 'reset',
+	SELECTED = 'selected',
 	SELECTED_INDEX = 'selectedIndex',
-	SUBMIT = 'submit',
 	SPACE = ' ',
 	TEMPLATE = 'template',
 	TEMPLATE_NODE = 'templateNode',
@@ -66,7 +37,7 @@ var L = A.Lang,
 	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
 	CSS_STATE_DEFAULT = getCN(STATE, DEFAULT),
 
-	TPL_SELECT = '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" value="{value}"></select>'
+	TPL_SELECT = '<select id="{id}" class="' + [CSS_FORM_BUILDER_FIELD_NODE].join(SPACE) + '" name="{name}" value="{value}"></select>';
 
 var FormBuilderSelectField = A.Component.create({
 
@@ -74,32 +45,15 @@ var FormBuilderSelectField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Whether the select is multiple or not
-		 *
-		 * @attribute multiple
-		 */
 		multiple: {
 			setter: A.DataType.Boolean.parse,
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_SELECT;
 			}
-		},
-
-		/*
-		* HTML_PARSER attributes
-		*/
-		templateNode: {
-			valueFn: 'getNode'
 		}
 
 	},
@@ -108,84 +62,45 @@ var FormBuilderSelectField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderMultipleChoiceField,
 
 	prototype: {
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					value: instance.get(PREDEFINED_VALUE)
 				}
-			)
+			);
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
+			var model = A.FormBuilderSelectField.superclass.getPropertyModel.apply(instance, arguments);
 
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderSelectField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedSelectSettings) {
-				instance._renderedSelectSettings = true;
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				instance._renderSettingsFields(
-					[
-						{
-							type: 'checkbox',
-							name: MULTIPLE,
-							labelText: 'Multiple',
-							labelAlign: 'left'
+			model.push(
+				{
+					attributeName: MULTIPLE,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
 						}
-					],
-					panelBody.item(0)
-				);
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[MULTIPLE]
+				}
+			);
 
-				var multipleNode = settingsNodesMap['multipleSettingNode'];
-
-				multipleNode.on(
-					{
-						change: A.bind(instance._onSettingsFieldChange, instance)
-					}
-				);
-
-				multipleNode.set(CHECKED, instance.get(MULTIPLE));
-			}
+			return model;
 		},
 
 		_uiSetMultiple: function(val) {
@@ -206,4 +121,4 @@ var FormBuilderSelectField = A.Component.create({
 
 A.FormBuilderSelectField = FormBuilderSelectField;
 
-A.FormBuilder.types['select'] = A.FormBuilderSelectField;
+A.FormBuilder.types.select = A.FormBuilderSelectField;

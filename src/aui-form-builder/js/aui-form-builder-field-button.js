@@ -3,52 +3,30 @@ var L = A.Lang,
 	isNumber = L.isNumber,
 	isString = L.isString,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
-	},
-
-	isNodeList = function(v) {
-		return (v instanceof A.NodeList);
-	},
-
 	toInitialCap = A.cached(
 		function(str) {
 			return str.substring(0, 1).toUpperCase() + str.substring(1);
 		}
 	),
 
-	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
 	BUTTON_TYPE = 'buttonType',
-	CONTENT_BOX = 'contentBox',
-	CONTAINER = 'container',
 	DOT = '.',
-	DRAG = 'drag',
-	DRAG_CONTAINER = 'dragContainer',
-	DRAG_CONTAINER_NODE = 'dragContainerNode',
-	DRAG_NODES_LIST = 'dragNodesList',
-	DROP = 'drop',
-	DROP_CONTAINER = 'dropContainer',
-	DROP_CONTAINER_NODE = 'dropContainerNode',
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER_FIELD = 'form-builder-field',
 	FORM_BUILDER_BUTTON_FIELD = 'form-builder-button-field',
-	ID = 'id',
-	ICON = 'icon',
 	INPUT = 'input',
 	LABEL = 'label',
 	NAME = 'name',
 	NODE = 'node',
 	OPTION = 'option',
 	OPTIONS = 'options',
-	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
 	RESET = 'reset',
 	SELECTED = 'selected',
-	SELECTED_INDEX = 'selectedIndex',
 	SUBMIT = 'submit',
 	SPACE = ' ',
 	STRINGS = 'strings',
@@ -76,21 +54,11 @@ var FormBuilderButtonField = A.Component.create({
 
 	ATTRS: {
 
-		/**
-		 * Wether the field accepts children or nothing
-		 *
-		 * @attribute acceptChildren
-		 */
 		acceptChildren: {
 			value: false,
 			readOnly: true
 		},
 
-		/**
-		 * Specifies the type of the button field
-		 *
-		 * @attribute buttonType
-		 */
 		buttonType: {
 			value: SUBMIT,
 			validator: function(val) {
@@ -98,29 +66,14 @@ var FormBuilderButtonField = A.Component.create({
 			}
 		},
 
-		/**
-		 * The default value of the field
-		 *
-		 * @attribute value
-		 */
 		predefinedValue: {
 			value: toInitialCap(SUBMIT)
 		},
 
-		/**
-		 * Whether to show the label or not
-		 *
-		 * @attribute showLabel
-		 */
 		showLabel: {
 			value: false
 		},
 
-		/**
-		 * The HTML template of the field
-		 *
-		 * @attribute template
-		 */
 		template: {
 			valueFn: function() {
 				return TPL_INPUT;
@@ -133,108 +86,48 @@ var FormBuilderButtonField = A.Component.create({
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
-	HTML_PARSER: {
-		templateNode: DOT + CSS_FORM_BUILDER_FIELD_NODE
-	},
-
 	EXTENDS: A.FormBuilderField,
 
 	prototype: {
 
-		/**
-		 * Returns the HTML content of the field
-		 *
-		 * @method getHTML
-		 */
 		getHTML: function() {
 			var instance = this;
-			var template = instance.get(TEMPLATE);
-			var id = instance.get(ID);
-			var label = instance.get(LABEL);
-			var name = instance.get(NAME);
-			var buttonType = instance.get(BUTTON_TYPE);
-			var value = instance.get(PREDEFINED_VALUE);
 
 			return A.substitute(
-				template,
+				instance.get(TEMPLATE),
 				{
-					id: id,
-					label: label,
-					name: name,
-					type: buttonType,
-					value: value
+					id: instance.get(ID),
+					label: instance.get(LABEL),
+					name: instance.get(NAME),
+					type: instance.get(BUTTON_TYPE),
+					value: instance.get(PREDEFINED_VALUE)
 				}
 			)
 		},
 
-		/**
-		 * Returns the A.Node of the field's HTML content
-		 *
-		 * @method getFieldNode
-		 */
-		getNode: function() {
+		getPropertyModel: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 
-			return A.Node.create(instance.getHTML());
-		},
+			var model = A.FormBuilderButtonField.superclass.getPropertyModel.apply(instance, arguments);
 
-		renderSettings: function() {
-			var instance = this;
-			var formBuilder = instance.get(FORM_BUILDER);
-			var formNode = formBuilder.get(SETTINGS_FORM_NODE);
-			var buttonType = instance.get(BUTTON_TYPE);
-			var strings = formBuilder.get(STRINGS);
-			var settingsNodesMap = instance.settingsNodesMap;
-
-			A.FormBuilderButtonField.superclass.renderSettings.apply(instance, arguments);
-
-			if (!instance._renderedButtonSettings) {
-				instance._renderedButtonSettings = true;
-
-				var panelBody = instance.propertiesPanel.get(BODY_CONTENT);
-
-				var selectFieldOptions = [];
-
-				A.each(BUTTON_TYPES, function(item){
-					selectFieldOptions.push(
-						{
-							labelText: strings[item],
-							value: item
+			model.push(
+				{
+					attributeName: BUTTON_TYPE,
+					editor: new A.RadioCellEditor({
+						options: {
+							'button': strings[BUTTON],
+							'reset': strings[RESET],
+							'submit': strings[SUBMIT]
 						}
-					);
-				});
+					}),
+					name: strings[BUTTON_TYPE]
+				}
+			);
 
-				instance._renderSettingsFields(
-					[
-						{
-							labelText: 'Button type',
-							name: BUTTON_TYPE,
-							options: selectFieldOptions,
-							type: 'select'
-						}
-					],
-					panelBody.item(0)
-				);
-
-				var buttonTypeNode = settingsNodesMap['buttonTypeSettingNode'];
-
-				buttonTypeNode.on({
-					change: A.bind(instance._onButtonTypeChange, instance)
-				});
-
-				var selectedIndex = A.Array(BUTTON_TYPES).indexOf(buttonType);
-
-				buttonTypeNode.all(OPTION).item(selectedIndex).set(SELECTED, true);
-			}
+			return model;
 		},
-
-		_onButtonTypeChange: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			instance.set(BUTTON_TYPE, target.get(VALUE));
-		},
-
+		
 		_uiSetButtonType: function(val) {
 			var instance = this;
 			var templateNode = instance.get(TEMPLATE_NODE);
