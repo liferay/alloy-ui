@@ -806,7 +806,7 @@ var DiagramNode = A.Component.create({
 	EXTENDS: DiagramNodeOverlay,
 
 	buildNodeId: function(id) {
-		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id;
+		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_-]/ig, '_');
 	},
 
 	prototype: {

@@ -791,7 +791,6 @@ var DiagramBuilderBase = A.Component.create(
 A.DiagramBuilderBase = DiagramBuilderBase;
 
 }, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});
-
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -1600,7 +1599,7 @@ var DiagramNode = A.Component.create({
 	EXTENDS: DiagramNodeOverlay,
 
 	buildNodeId: function(id) {
-		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id;
+		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_-]/ig, '_');
 	},
 
 	prototype: {
@@ -2200,7 +2199,6 @@ A.DiagramNodeTask = A.Component.create({
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
 }, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
-
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3047,6 +3045,5 @@ A.Anchor = A.Base.create('anchor', A.Base, [], {
 }, '@VERSION@' ,{requires:['aui-base','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
 
 
-
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector']});
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector'], skinnable:true});
 
