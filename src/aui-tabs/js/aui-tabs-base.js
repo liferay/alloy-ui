@@ -276,6 +276,10 @@ var Tab = A.Component.create(
 
 				event.halt();
 
+				if (instance.get('disabled')) {
+					return;
+				}
+
 				var tabView = instance.get('tabView');
 
 				tabView.set('activeTab', instance);
