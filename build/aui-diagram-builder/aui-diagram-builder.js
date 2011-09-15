@@ -1058,8 +1058,10 @@ var DiagramBuilder = A.Component.create({
 		closeEditProperties: function() {
 			var instance = this;
 			var editingNode = instance.editingNode;
+			var tabView = instance.tabView;
 
-			instance.tabView.selectTab(A.DiagramBuilder.FIELDS_TAB);
+			tabView.selectTab(A.DiagramBuilder.FIELDS_TAB);
+			tabView.disableTab(A.DiagramBuilder.SETTINGS_TAB);
 
 			if (editingNode) {
 				editingNode.get(BOUNDING_BOX).removeClass(CSS_DIAGRAM_NODE_EDITING);
@@ -1167,9 +1169,12 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			if (diagramNode) {
+				var tabView = instance.tabView;
+
 				instance.closeEditProperties();
 
-				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
+				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
+				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
 				instance.propertyList.set(RECORDSET, diagramNode.getProperties());
 
