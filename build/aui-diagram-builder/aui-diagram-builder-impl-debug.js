@@ -248,7 +248,7 @@ var DiagramBuilder = A.Component.create({
 
 		clearFields: function() {
 		    var instance = this;
-			
+
 			var fields = [];
 
 			instance.get(FIELDS).each(function(field) {
@@ -362,9 +362,11 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			if (connector) {
-				instance.closeEditProperties();
+				var tabView = instance.tabView;
 
-				instance.tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
+				instance.closeEditProperties();
+				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
+				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
 				instance.propertyList.set(RECORDSET, connector.getProperties());
 
@@ -379,7 +381,6 @@ var DiagramBuilder = A.Component.create({
 				var tabView = instance.tabView;
 
 				instance.closeEditProperties();
-
 				tabView.enableTab(A.DiagramBuilder.SETTINGS_TAB);
 				tabView.selectTab(A.DiagramBuilder.SETTINGS_TAB);
 
