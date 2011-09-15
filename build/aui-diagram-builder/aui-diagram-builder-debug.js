@@ -1017,7 +1017,6 @@ var DiagramBuilder = A.Component.create({
 			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 
 			instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT+CSS_DIAGRAM_NODE);
-			instance.dropContainer.delegate(DBLCLICK, A.bind(instance._onNodeEdit, instance), _DOT+CSS_DIAGRAM_NODE);
 			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onMouseenterAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onMouseleaveAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 		},
@@ -1401,6 +1400,8 @@ var DiagramBuilder = A.Component.create({
 			var diagramNode = A.Widget.getByNode(event.currentTarget);
 
 			instance.select(diagramNode);
+
+			instance._onNodeEdit(event);
 		},
 
 		_onNodeEdit: function(event) {
