@@ -422,7 +422,7 @@ var FormValidator = A.Component.create({
 
 			var message = (fieldStrings[rule] || strings[rule] || strings.DEFAULT);
 
-			return A.substitute(message, substituteRulesMap);
+			return Lang.sub(message, substituteRulesMap);
 		},
 
 		hasErrors: function() {
@@ -802,4 +802,4 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3']});

@@ -213,7 +213,7 @@ var Drawing = A.Component.create(
 				var instance = this;
 
 				if (isString(pathString)) {
-					pathString = A.substitute.apply(A, arguments);
+					pathString = Lang.sub(A, arguments);
 				}
 				else if (!isUndefined(pathString) && !isArray(pathString)) {
 					pathString += STR_EMPTY;
@@ -1871,4 +1871,4 @@ Drawing.Element = Element;
 
 A.Drawing = Drawing;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color-util','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util']});

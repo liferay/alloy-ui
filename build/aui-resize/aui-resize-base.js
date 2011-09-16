@@ -824,7 +824,7 @@ var Resize = A.Component.create(
 
 				// create handle node
 				var node = A.Node.create(
-					A.substitute(TPL_HANDLE, {
+					Lang.sub(TPL_HANDLE, {
 						handle: handle
 					})
 				);
@@ -1445,4 +1445,4 @@ A.each(ALL_HANDLES, function(handle, i) {
 
 A.Resize = Resize;
 
-}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop'], skinnable:true});

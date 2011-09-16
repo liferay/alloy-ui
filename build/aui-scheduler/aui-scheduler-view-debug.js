@@ -1122,7 +1122,7 @@ var SchedulerDayView = A.Component.create({
 
 			for (var hour = 0; hour <= 23; hour++) {
 				buffer.push(
-					A.substitute(
+					A.Lang.sub(
 						TPL_SCHEDULER_VIEW_DAY_TABLE_TIME,
 						{
 							hour: isoTime ? DateMath.toIsoTimeString(hour) : DateMath.toUsTimeString(hour, false, true)
@@ -1698,4 +1698,4 @@ var SchedulerMonthView = A.Component.create({
 
 A.SchedulerMonthView = SchedulerMonthView;
 
-}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','substitute','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-scheduler-event','aui-calendar','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true});
