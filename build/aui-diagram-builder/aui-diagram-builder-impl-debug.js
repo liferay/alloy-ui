@@ -329,17 +329,35 @@ var DiagramBuilder = A.Component.create({
 		deleteConnectors: function(connectors) {
 			var instance = this;
 
-			AArray.each(connectors, function(connector) {
-				var anchor = connector.get(ANCHOR);
+			var strings = instance.getStrings();
 
-				if (anchor) {
-					var target = anchor.findConnectorTarget(connector);
+			var selectedConnectors = instance.getSelectedConnectors();
 
-					if (target) {
-						anchor.disconnect(target);
+			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
+				AArray.each(connectors, function(connector) {
+					var anchor = connector.get(ANCHOR);
+
+					if (anchor) {
+						var target = anchor.findConnectorTarget(connector);
+
+						if (target) {
+							anchor.disconnect(target);
+						}
 					}
+				});
+			}
+		},
+
+		deleteSelectedNode: function() {
+		    var instance = this;
+
+			var selectedNode = instance.selectedNode;
+
+			if (selectedNode) {
+				if (!selectedNode.get(REQUIRED)) {
+					selectedNode.close();
 				}
-			});
+			}
 		},
 
 		eachConnetor: function(fn) {
@@ -569,21 +587,10 @@ var DiagramBuilder = A.Component.create({
 
 		_onDeleteKey: function(event) {
 			var instance = this;
-			var strings = instance.getStrings();
 
-			var selectedConnectors = instance.getSelectedConnectors();
+			instance.deleteConnectors();
 
-			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
-				instance.deleteConnectors(selectedConnectors);
-			}
-
-			var selectedNode = instance.selectedNode;
-
-			if (selectedNode) {
-				if (!selectedNode.get(REQUIRED)) {
-					selectedNode.close();
-				}
-			}
+			instance.deleteSelectedNode();
 
 			event.halt();
 		},
