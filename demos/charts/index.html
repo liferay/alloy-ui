@@ -80,7 +80,6 @@
 AUI().ready(
 	'aui-chart',
 	'datatype',
-	'substitute',
 	'aui-delayed-task',
 	function(A) {
 		
@@ -332,7 +331,7 @@ AUI().ready(
 				_createOutputField: function(obj) {
 					var instance = this;
 
-					var tpl = A.substitute(TPL_OUTPUT_FIELD, obj);
+					var tpl = Lang.sub(TPL_OUTPUT_FIELD, obj);
 
 					instance._output.append(tpl);
 
