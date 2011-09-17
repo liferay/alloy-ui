@@ -1165,7 +1165,7 @@ var ImageViewer = A.Component.create(
 				var total = instance.get(TOTAL_LINKS);
 				var current = instance.get(CURRENT_INDEX) + 1;
 
-				return A.substitute(v, {
+				return L.sub(v, {
 					current: current,
 					total: total
 				});
