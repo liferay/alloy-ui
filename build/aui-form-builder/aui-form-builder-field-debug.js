@@ -289,7 +289,7 @@ var FormBuilderField = A.Component.create({
 				var instance = this;
 
 				return A.Node.create(
-					A.substitute(
+					L.sub(
 						TPL_LABEL,
 						{
 							id: instance.get(ID),
@@ -846,7 +846,7 @@ var FormBuilderButtonField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID),
@@ -998,7 +998,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 			var instance = this;
 			var checked = instance.get(CHECKED);
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					checked: checked ? 'checked="checked"' : EMPTY_STR,
@@ -1109,7 +1109,7 @@ var FormBuilderFieldsetField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID)
@@ -1225,7 +1225,7 @@ var FormBuilderFileUploadField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID),
@@ -1453,7 +1453,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 				val,
 				function(item, index, collection) {
 					buffer.push(
-						A.substitute(
+						Lang.sub(
 							instance.get(OPTION_TEMPLATE),
 							{
 								label: item.label,
@@ -1568,7 +1568,7 @@ var FormBuilderRadioField = A.Component.create({
 			A.each(val, function(item, index, collection) {
 				templateNode.append(
 					A.Node.create(
-						A.substitute(
+						L.sub(
 							TPL_RADIO,
 							{
 								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,
@@ -1662,7 +1662,7 @@ var FormBuilderSelectField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID),
@@ -1783,7 +1783,7 @@ var FormBuilderTextField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID),
@@ -1904,4 +1904,4 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true});

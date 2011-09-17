@@ -895,7 +895,7 @@ var SchedulerEventRecorder = A.Component.create({
 				var instance = this;
 
 				var bodyContent = A.Node.create(
-					A.substitute(TPL_EVT_REC_OVERLAY, instance.get(STRINGS))
+					A.Lang.sub(TPL_EVT_REC_OVERLAY, instance.get(STRINGS))
 				);
 
 				return A.merge(
@@ -1237,4 +1237,4 @@ var SchedulerEventRecorder = A.Component.create({
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel'], skinnable:true});
