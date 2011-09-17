@@ -101,7 +101,7 @@ var FormBuilderCheckBoxField = A.Component.create({
 			var instance = this;
 			var checked = instance.get(CHECKED);
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					checked: checked ? 'checked="checked"' : EMPTY_STR,

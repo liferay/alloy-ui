@@ -806,7 +806,7 @@ var Resize = A.Component.create(
 
 				// create handle node
 				var node = A.Node.create(
-					A.substitute(TPL_HANDLE, {
+					Lang.sub(TPL_HANDLE, {
 						handle: handle
 					})
 				);
