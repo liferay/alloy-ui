@@ -127,7 +127,7 @@ var MediaViewerPlugin = A.Component.create(
 
 					host.set(STR_LOADING, false);
 
-					instance.fire(
+					host.fire(
 						'load',
 						{
 							media: media
