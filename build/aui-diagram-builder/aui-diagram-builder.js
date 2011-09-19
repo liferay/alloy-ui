@@ -1119,7 +1119,7 @@ var DiagramBuilder = A.Component.create({
 			return val;
 		},
 
-		deleteConnectors: function(connectors) {
+		deleteSelectedConnectors: function(connectors) {
 			var instance = this;
 
 			var strings = instance.getStrings();
@@ -1127,7 +1127,7 @@ var DiagramBuilder = A.Component.create({
 			var selectedConnectors = instance.getSelectedConnectors();
 
 			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
-				AArray.each(connectors, function(connector) {
+				AArray.each(selectedConnectors, function(connector) {
 					var anchor = connector.get(ANCHOR);
 
 					if (anchor) {
@@ -1381,7 +1381,7 @@ var DiagramBuilder = A.Component.create({
 		_onDeleteKey: function(event) {
 			var instance = this;
 
-			instance.deleteConnectors();
+			instance.deleteSelectedConnectors();
 
 			instance.deleteSelectedNode();
 
