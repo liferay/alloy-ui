@@ -45,6 +45,7 @@ var Lang = A.Lang,
 	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
+	VISIBLE = 'visible',
 	P2 = 'p2',
 	PATH = 'path',
 	SELECTED = 'selected',
@@ -81,11 +82,11 @@ A.PolygonUtil = {
 		shape.moveTo(x1, y1);
 		shape.lineTo(x2, y2);
 
-		var angle = Math.atan2(y2-y1, x2-x1), centerX = (x2+x1)/2, centerY = (y2+y1)/2;
+		var angle = Math.atan2(y2-y1, x2-x1);
 
 		// Slide the arrow position along the line in 15px in polar coordinates
-		x2 = x2 - 15*Math.cos(angle);
-		y2 = y2 - 15*Math.sin(angle);
+		x2 = x2 - 5*Math.cos(angle);
+		y2 = y2 - 5*Math.sin(angle);
 
 		instance.drawPolygon(
 			shape,
@@ -179,6 +180,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		A.PolygonUtil.drawLineArrow(shape, c1[0], c1[1], c2[0], c2[1], instance.get(ARROW_POINTS));
 
 		shape.end();
+
+		return instance;
 	},
 
 	getCoordinate: function(p) {
@@ -221,6 +224,22 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		];
 	},
 
+	hide: function() {
+	    var instance = this;
+
+		instance.shape.set(VISIBLE, false);
+
+		return instance;
+	},
+
+	show: function() {
+	    var instance = this;
+
+		instance.shape.set(VISIBLE, true);
+
+		return instance;
+	},
+
 	toJSON: function() {
 		var instance = this;
 		var output = {};
@@ -252,12 +271,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	_onShapeClick: function(event) {
 		var instance = this;
-		var anchor = instance.get(ANCHOR);
+		var builder = instance.get(BUILDER);
 		var selected = instance.get(SELECTED);
 
-		if (anchor) {
-			var builder = anchor.getBuilder();
-
+		if (builder) {
 			if (event.hasModifier()) {
 				builder.closeEditProperties();
 			}
@@ -280,7 +297,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		if (!instance.get(SELECTED)) {
-			instance._updateShape(instance.get(SHAPE_HOVER));
+			var shapeHover = instance.get(SHAPE_HOVER);
+
+			if (shapeHover) {
+				instance._updateShape(shapeHover);
+			}
 		}
 	},
 
@@ -334,7 +355,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 },{
 	ATTRS: {
-		anchor: {
+		builder: {
 		},
 
 		color: {
@@ -394,6 +415,16 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		sourceUID: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
+		targetUID: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
 		arrowPoints: {
 			value: A.PolygonUtil.ARROW_POINTS
 		},
@@ -410,421 +441,421 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 });
 
-A.Anchor = A.Base.create('anchor', A.Base, [], {
-	ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
-	NODE_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE + '"></div>',
+// A.Anchor = A.Base.create('anchor', A.Base, [], {
+// 	ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+// 	NODE_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE + '"></div>',
 
-	connectors: null,
+// 	connectors: null,
 
-	initializer: function() {
-		var instance = this;
+// 	initializer: function() {
+// 		var instance = this;
 
-		instance.connectors = {};
+// 		instance.connectors = {};
 
-		instance._renderNode();
+// 		instance._renderNode();
 
-		instance.connectTargets();
+// 		instance.connectTargets();
 
-		instance.after({
-			sourcesChange: instance._afterSourcesChange,
-			targetsChange: instance._afterTargetsChange
-		});
+// 		instance.after({
+// 			sourcesChange: instance._afterSourcesChange,
+// 			targetsChange: instance._afterTargetsChange
+// 		});
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
-	},
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
+// 	},
 
-	addSource: function(source) {
-		var instance = this;
+// 	addSource: function(source) {
+// 		var instance = this;
 
-		if (instance.get(SOURCES).size() < instance.get(MAX_SOURCES)) {
-			instance.set(
-				SOURCES,
-				instance.get(SOURCES).remove(source).add(source)
-			);
-		}
+// 		if (instance.get(SOURCES).size() < instance.get(MAX_SOURCES)) {
+// 			instance.set(
+// 				SOURCES,
+// 				instance.get(SOURCES).remove(source).add(source)
+// 			);
+// 		}
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	addTarget: function(target) {
-		var instance = this;
+// 	addTarget: function(target) {
+// 		var instance = this;
 
-		if (instance.get(TARGETS).size() < instance.get(MAX_TARGETS)) {
-			instance.set(
-				TARGETS,
-				instance.get(TARGETS).remove(target).add(target)
-			);
-		}
+// 		if (instance.get(TARGETS).size() < instance.get(MAX_TARGETS)) {
+// 			instance.set(
+// 				TARGETS,
+// 				instance.get(TARGETS).remove(target).add(target)
+// 			);
+// 		}
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	alignConnectors: function() {
-		var instance = this;
+// 	alignConnectors: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(function(target) {
-			var tConnector = instance.getConnector(target);
+// 		instance.get(TARGETS).each(function(target) {
+// 			var tConnector = instance.getConnector(target);
 
-			if (tConnector) {
-				tConnector.set(P1, instance.getCenterXY());
-				tConnector.set(P2, target.getCenterXY());
-			}
-		});
+// 			if (tConnector) {
+// 				tConnector.set(P1, instance.getCenterXY());
+// 				tConnector.set(P2, target.getCenterXY());
+// 			}
+// 		});
 
-		instance.get(SOURCES).each(function(source) {
-			var sConnector = source.getConnector(instance);
+// 		instance.get(SOURCES).each(function(source) {
+// 			var sConnector = source.getConnector(instance);
 
-			if (sConnector) {
-				sConnector.set(P1, source.getCenterXY());
-				sConnector.set(P2, instance.getCenterXY());
-			}
-		});
+// 			if (sConnector) {
+// 				sConnector.set(P1, source.getCenterXY());
+// 				sConnector.set(P2, instance.getCenterXY());
+// 			}
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	destroy: function() {
-		var instance = this;
+// 	destroy: function() {
+// 		var instance = this;
 
-		instance.disconnectTargets();
-		instance.disconnectSources();
+// 		instance.disconnectTargets();
+// 		instance.disconnectSources();
 
-		instance.get(NODE).remove();
-	},
+// 		instance.get(NODE).remove();
+// 	},
 
-	connect: function(target, connector) {
-		var instance = this;
+// 	connect: function(target, connector) {
+// 		var instance = this;
 
-		if (isDiagramNode(target)) {
-			target = target.findAvailableAnchor();
-		}
+// 		if (isDiagramNode(target)) {
+// 			target = target.findAvailableAnchor();
+// 		}
 
-		instance.addTarget(target);
-		target.addSource(instance);
+// 		instance.addTarget(target);
+// 		target.addSource(instance);
 
-		if (!instance.isConnected(target)) {
-			var c = A.merge(target.get(CONNECTOR), connector);
+// 		if (!instance.isConnected(target)) {
+// 			var c = A.merge(target.get(CONNECTOR), connector);
 
-			c.anchor = instance;
-			c.p1 = instance.getCenterXY();
-			c.p2 = target.getCenterXY();
+// 			c.anchor = instance;
+// 			c.p1 = instance.getCenterXY();
+// 			c.p2 = target.getCenterXY();
 
-			instance.connectors[target.get(ID)] = new A.Connector(c);
-		}
+// 			instance.connectors[target.get(ID)] = new A.Connector(c);
+// 		}
 
-		setTimeout(function() {
-			target.get(DIAGRAM_NODE).syncDropTargets();
-		}, 50);
+// 		setTimeout(function() {
+// 			target.get(DIAGRAM_NODE).syncDropTargets();
+// 		}, 50);
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	connectTargets: function() {
-		var instance = this;
+// 	connectTargets: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(A.bind(instance.connect, instance));
+// 		instance.get(TARGETS).each(A.bind(instance.connect, instance));
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	disconnect: function(target) {
-		var instance = this;
+// 	disconnect: function(target) {
+// 		var instance = this;
 
-		instance.getConnector(target).destroy();
-		instance.removeTarget(target);
-		target.removeSource(instance);
+// 		instance.getConnector(target).destroy();
+// 		instance.removeTarget(target);
+// 		target.removeSource(instance);
 
-		setTimeout(function() {
-			target.get(DIAGRAM_NODE).syncDropTargets();
-		}, 50);
-	},
+// 		setTimeout(function() {
+// 			target.get(DIAGRAM_NODE).syncDropTargets();
+// 		}, 50);
+// 	},
 
-	disconnectTargets: function() {
-		var instance = this;
+// 	disconnectTargets: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(function(target) {
-			instance.disconnect(target);
-		});
+// 		instance.get(TARGETS).each(function(target) {
+// 			instance.disconnect(target);
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	disconnectSources: function() {
-		var instance = this;
+// 	disconnectSources: function() {
+// 		var instance = this;
 
-		instance.get(SOURCES).each(function(source) {
-			source.disconnect(instance);
-		});
+// 		instance.get(SOURCES).each(function(source) {
+// 			source.disconnect(instance);
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	findConnectorTarget: function(connector) {
-		var instance = this;
-		var target = null;
+// 	findConnectorTarget: function(connector) {
+// 		var instance = this;
+// 		var target = null;
 
-		A.some(instance.connectors, function(c, targetId) {
-			if (c === connector) {
-				target = A.Anchor.getAnchorByNode(_HASH+targetId);
-				return true;
-			}
-		});
+// 		A.some(instance.connectors, function(c, targetId) {
+// 			if (c === connector) {
+// 				target = A.Anchor.getAnchorByNode(_HASH+targetId);
+// 				return true;
+// 			}
+// 		});
 
-		return target;
-	},
+// 		return target;
+// 	},
 
-	getBuilder: function() {
-		var instance = this;
+// 	getBuilder: function() {
+// 		var instance = this;
 
-		return instance.get(DIAGRAM_NODE).get(BUILDER);
-	},
+// 		return instance.get(DIAGRAM_NODE).get(BUILDER);
+// 	},
 
-	getCenterXY: function() {
-		var instance = this;
+// 	getCenterXY: function() {
+// 		var instance = this;
 
-		return instance.get(NODE).getCenterXY();
-	},
+// 		return instance.get(NODE).getCenterXY();
+// 	},
 
-	getConnector: function(target) {
-		var instance = this;
+// 	getConnector: function(target) {
+// 		var instance = this;
 
-		return instance.connectors[target.get(ID)];
-	},
+// 		return instance.connectors[target.get(ID)];
+// 	},
 
-	hasConnection: function() {
-		var instance = this;
+// 	hasConnection: function() {
+// 		var instance = this;
 
-		return ((instance.get(TARGETS).size() > 0) || (instance.get(SOURCES).size() > 0));
-	},
+// 		return ((instance.get(TARGETS).size() > 0) || (instance.get(SOURCES).size() > 0));
+// 	},
 
-	isConnected: function(target) {
-		var instance = this;
+// 	isConnected: function(target) {
+// 		var instance = this;
 
-		return instance.connectors.hasOwnProperty(target.get(ID));
-	},
+// 		return instance.connectors.hasOwnProperty(target.get(ID));
+// 	},
 
-	removeSource: function(source) {
-		var instance = this;
+// 	removeSource: function(source) {
+// 		var instance = this;
 
-		instance.set(
-			SOURCES,
-			instance.get(SOURCES).remove(source)
-		);
+// 		instance.set(
+// 			SOURCES,
+// 			instance.get(SOURCES).remove(source)
+// 		);
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	removeTarget: function(target) {
-		var instance = this;
+// 	removeTarget: function(target) {
+// 		var instance = this;
 
-		instance.set(
-			TARGETS,
-			instance.get(TARGETS).remove(target)
-		);
+// 		instance.set(
+// 			TARGETS,
+// 			instance.get(TARGETS).remove(target)
+// 		);
 
-		delete instance.connectors[target.get(ID)];
-		return instance;
-	},
+// 		delete instance.connectors[target.get(ID)];
+// 		return instance;
+// 	},
 
-	_afterSourcesChange: function(event) {
-		var instance = this;
+// 	_afterSourcesChange: function(event) {
+// 		var instance = this;
 
-		instance._uiSetSources(event.newVal);
-	},
+// 		instance._uiSetSources(event.newVal);
+// 	},
 
-	_afterTargetsChange: function(event) {
-		var instance = this;
+// 	_afterTargetsChange: function(event) {
+// 		var instance = this;
 
-		// TODO - event.prevVal is always equal to event.newVal, review this
-        // logic below, references between anchors needs to be cleaned up otherwise
-        // will store the wrong relationship between nodes.
+// 		// TODO - event.prevVal is always equal to event.newVal, review this
+//         // logic below, references between anchors needs to be cleaned up otherwise
+//         // will store the wrong relationship between nodes.
 
-		event.prevVal.each(function(anchor) {
-			anchor.removeSource(instance);
-		});
+// 		event.prevVal.each(function(anchor) {
+// 			anchor.removeSource(instance);
+// 		});
 
-		event.newVal.each(function(anchor) {
-			anchor.addSource(instance);
-		});
+// 		event.newVal.each(function(anchor) {
+// 			anchor.addSource(instance);
+// 		});
 
-		instance._uiSetTargets(event.newVal);
-	},
+// 		instance._uiSetTargets(event.newVal);
+// 	},
 
-	_renderNode: function() {
-		var instance = this;
-		var diagramNode = instance.get(DIAGRAM_NODE);
-		var container = diagramNode.get(BOUNDING_BOX);
+// 	_renderNode: function() {
+// 		var instance = this;
+// 		var diagramNode = instance.get(DIAGRAM_NODE);
+// 		var container = diagramNode.get(BOUNDING_BOX);
 
-		instance.wrapper = container.one(_DOT+CSS_DB_ANCHOR_NODE_WRAPPER) ||
-							A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE);
+// 		instance.wrapper = container.one(_DOT+CSS_DB_ANCHOR_NODE_WRAPPER) ||
+// 							A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE);
 
-		instance.wrapper.appendTo(container).appendChild(instance.get(NODE));
-	},
+// 		instance.wrapper.appendTo(container).appendChild(instance.get(NODE));
+// 	},
 
-	_setConnector: function(val) {
-		var instance = this;
+// 	_setConnector: function(val) {
+// 		var instance = this;
 
-		return A.merge(
-			{
-				graphic: instance.getBuilder().get(GRAPHIC)
-			},
-			val
-		);
-	},
+// 		return A.merge(
+// 			{
+// 				graphic: instance.getBuilder().get(GRAPHIC)
+// 			},
+// 			val
+// 		);
+// 	},
 
-	_setSources: function(val) {
-		var instance = this;
+// 	_setSources: function(val) {
+// 		var instance = this;
 
-		return instance._setAnchors(val);
-	},
+// 		return instance._setAnchors(val);
+// 	},
 
-	_setTargets: function(val) {
-		var instance = this;
+// 	_setTargets: function(val) {
+// 		var instance = this;
 
-		val = instance._setAnchors(val, true);
+// 		val = instance._setAnchors(val, true);
 
-		val.each(function(anchor) {
-			anchor.addSource(instance);
-		});
+// 		val.each(function(anchor) {
+// 			anchor.addSource(instance);
+// 		});
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setAnchors: function(val, target) {
-		var instance = this;
+// 	_setAnchors: function(val, target) {
+// 		var instance = this;
 
-		if (!isArrayList(val)) {
-			var targets = [];
+// 		if (!isArrayList(val)) {
+// 			var targets = [];
 
-			A.Array.some(val, function(target, index) {
-				if (index >= instance.get(target ? MAX_TARGETS : MAX_SOURCES)) {
-					return true;
-				}
+// 			A.Array.some(val, function(target, index) {
+// 				if (index >= instance.get(target ? MAX_TARGETS : MAX_SOURCES)) {
+// 					return true;
+// 				}
 
-				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
-			});
+// 				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
+// 			});
 
-			val = new A.ArrayList(targets);
-		}
+// 			val = new A.ArrayList(targets);
+// 		}
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setMaxSources: function(val) {
-		var instance = this;
+// 	_setMaxSources: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxSources(
-			instance.get(MAX_SOURCES)
-		);
+// 		instance._uiSetMaxSources(
+// 			instance.get(MAX_SOURCES)
+// 		);
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setMaxTargets: function(val) {
-		var instance = this;
+// 	_setMaxTargets: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setNode: function(val) {
-		var instance = this;
-		var id = instance.get(ID);
+// 	_setNode: function(val) {
+// 		var instance = this;
+// 		var id = instance.get(ID);
 
-		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
-	},
+// 		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
+// 	},
 
-	_uiSetSources: function(val) {
-		var instance = this;
+// 	_uiSetSources: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxSources(
-			instance.get(MAX_SOURCES)
-		);
-	},
+// 		instance._uiSetMaxSources(
+// 			instance.get(MAX_SOURCES)
+// 		);
+// 	},
 
-	_uiSetMaxSources: function(val) {
-		var instance = this;
-		var node = instance.get(NODE);
+// 	_uiSetMaxSources: function(val) {
+// 		var instance = this;
+// 		var node = instance.get(NODE);
 
-		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_SOURCES, (instance.get(SOURCES).size() === val));
-	},
+// 		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_SOURCES, (instance.get(SOURCES).size() === val));
+// 	},
 
-	_uiSetMaxTargets: function(val) {
-		var instance = this;
-		var node = instance.get(NODE);
+// 	_uiSetMaxTargets: function(val) {
+// 		var instance = this;
+// 		var node = instance.get(NODE);
 
-		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_TARGETS, (instance.get(TARGETS).size() === val));
-	},
+// 		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_TARGETS, (instance.get(TARGETS).size() === val));
+// 	},
 
-	_uiSetTargets: function(val) {
-		var instance = this;
+// 	_uiSetTargets: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
-	}
-},{
-	ATTRS: {
-		diagramNode: {
-		},
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
+// 	}
+// },{
+// 	ATTRS: {
+// 		diagramNode: {
+// 		},
 
-		connector: {
-			setter: '_setConnector',
-			value: {},
-			validator: isObject
-		},
+// 		connector: {
+// 			setter: '_setConnector',
+// 			value: {},
+// 			validator: isObject
+// 		},
 
-		id: {
-			readOnly: true,
-			valueFn: function() {
-				return A.guid();
-			}
-		},
+// 		id: {
+// 			readOnly: true,
+// 			valueFn: function() {
+// 				return A.guid();
+// 			}
+// 		},
 
-		maxSources: {
-			setter: '_setMaxSources',
-			value: 1,
-			validator: isNumber
-		},
+// 		maxSources: {
+// 			setter: '_setMaxSources',
+// 			value: 1,
+// 			validator: isNumber
+// 		},
 
-		maxTargets: {
-			setter: '_setMaxTargets',
-			value: 1,
-			validator: isNumber
-		},
+// 		maxTargets: {
+// 			setter: '_setMaxTargets',
+// 			value: 1,
+// 			validator: isNumber
+// 		},
 
-		node: {
-			setter: '_setNode',
-			valueFn: function() {
-				var instance = this;
+// 		node: {
+// 			setter: '_setNode',
+// 			valueFn: function() {
+// 				var instance = this;
 
-				return A.Node.create(instance.NODE_TEMPLATE);
-			}
-		},
+// 				return A.Node.create(instance.NODE_TEMPLATE);
+// 			}
+// 		},
 
-		sources: {
-			value: [],
-			setter: '_setSources',
-			validator: function(val) {
-				return isArray(val) || isArrayList(val);
-			}
-		},
+// 		sources: {
+// 			value: [],
+// 			setter: '_setSources',
+// 			validator: function(val) {
+// 				return isArray(val) || isArrayList(val);
+// 			}
+// 		},
 
-		targets: {
-			value: [],
-			setter: '_setTargets',
-			validator: function(val) {
-				return isArray(val) || isArrayList(val);
-			}
-		}
-	},
+// 		targets: {
+// 			value: [],
+// 			setter: '_setTargets',
+// 			validator: function(val) {
+// 				return isArray(val) || isArrayList(val);
+// 			}
+// 		}
+// 	},
 
-	getAnchorByNode: function(node) {
-		return isAnchor(node) ? node : A.one(node).getData(DATA_ANCHOR);
-	}
-});
+// 	getAnchorByNode: function(node) {
+// 		return isAnchor(node) ? node : A.one(node).getData(DATA_ANCHOR);
+// 	}
+// });

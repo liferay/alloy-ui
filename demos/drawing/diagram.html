@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
 </head>
-<style type="text/css" media="screen"> 
+<style type="text/css" media="screen">
 	#demo {
 		height: 480px;
 		margin: 0 auto;
@@ -95,6 +95,8 @@ AUI().ready('aui-drawing', function(A) {
 		var y3 = [0, 0, 0, 0, y1 + dy, y1 - dy, y4, y4][res[1]].toFixed(3);
 
 		var path = ['M', x1.toFixed(3), y1.toFixed(3), 'C', x2, y2, x3, y3, x4.toFixed(3), y4.toFixed(3)].join(',');
+
+console.log(dx, dy, path);
 
 		if (line && line.line) {
 			if (line.bg) {

@@ -798,6 +798,9 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isBoolean = Lang.isBoolean,
 
+	emptyFn = Lang.emptyFn,
+
+	WidgetStdMod = A.WidgetStdMod,
 	AArray = A.Array,
 
 	isDiagramBuilder = function(val) {
@@ -808,9 +811,21 @@ var Lang = A.Lang,
 		return (val instanceof A.DiagramNode);
 	},
 
-	isAnchor = function(val) {
-		return (val instanceof A.Anchor);
+	isConnector = function(val) {
+		return (val instanceof A.Connector);
 	},
+
+	isArrayList = function(val) {
+		return (val instanceof A.ArrayList);
+	},
+
+	isDataSet = function(val) {
+		return (val instanceof A.DataSet);
+	},
+
+	// isAnchor = function(val) {
+	// 	return (val instanceof A.Anchor);
+	// },
 
 	getLeftTop = function(container, node) {
 		var nodeXY = isArray(node) ? node : node.getXY();
@@ -827,13 +842,21 @@ var Lang = A.Lang,
 	ADD_NODE = 'addNode',
 	ANCHOR = 'anchor',
 	ANCHORS = 'anchors',
+	SOURCE_UID = 'sourceUID',
+	TARGET_UID = 'targetUID',
+	RADIUS = 'radius',
 	ANCHORS_DRAG_CONFIG = 'anchorsDragConfig',
+	SHAPE_DRAG_CONFIG = 'shapeDragConfig',
 	AVAILABLE_FIELD = 'availableField',
 	BACKSPACE = 'backspace',
+	LOCK = 'lock',
 	BOOLEAN = 'boolean',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
+	SOURCES = 'sources',
+	TARGETS = 'targets',
+	VISIBLE = 'visible',
 	CANVAS = 'canvas',
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
@@ -852,6 +875,7 @@ var Lang = A.Lang,
 	DIAGRAM_BUILDER_NAME = 'diagram-builder',
 	DIAGRAM_NODE = 'diagramNode',
 	DIAGRAM_NODE_NAME = 'diagram-node',
+	DIAGRAM_NODE_MANAGER_NAME = 'diagram-node-manager',
 	DRAG_NODE = 'dragNode',
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
@@ -894,12 +918,16 @@ var Lang = A.Lang,
 	TARGET = 'target',
 	TARGETS = 'targets',
 	TASK = 'task',
-	TMP_CONNECTOR = 'tmpConnector',
+	TMP_CONNECTOR = 'connector',
 	TYPE = 'type',
 	WIDTH = 'width',
 	WRAPPER = 'wrapper',
 	XY = 'xy',
 	Z_INDEX = 'zIndex',
+	SHAPE = 'shape',
+	SHAPE_BOUNDARY = 'shapeBoundary',
+	SHAPE_INVITE = 'shapeInvite',
+	BOUNDARY = 'boundary',
 
 	_DASH = '-',
 	_DOT = '.',
@@ -916,45 +944,46 @@ var Lang = A.Lang,
 	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
 	CSS_DB_CONTROLS = AgetClassName(DIAGRAM, BUILDER, CONTROLS),
 	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
+	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
 	CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
 	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED);
 
 // REMOVE THIS!
 var __dump = function() {
-    var PAD = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', BR = '<br/>';
+	var PAD = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', BR = '<br/>';
 
-    A.all('.aui-diagram-node').each(function(n) {
-        var b = _EMPTY_STR,
-            dn = A.Widget.getByNode(n),
-            dnName = dn.get('name'),
-            dnBB = dn.get('boundingBox'),
-            log = dnBB.one('.log') || A.Node.create('<div class=log />').appendTo(dnBB);
+	A.all('.aui-diagram-node').each(function(n) {
+		var b = _EMPTY_STR,
+			dn = A.Widget.getByNode(n),
+			dnName = dn.get('name'),
+			dnBB = dn.get('boundingBox'),
+			log = dnBB.one('.log') || A.Node.create('<div class=log />').appendTo(dnBB);
 
-        b += dnName + BR;
+		b += dnName + BR;
 
-        dn.get(FIELDS).each(function(a) {
-            b += PAD + 'a: ' + a.get('id') + BR;
+		dn.get(FIELDS).each(function(a) {
+			b += PAD + 'a: ' + a.get('id') + BR;
 
-            a.get('targets').each(function(t) {
+			a.get('targets').each(function(t) {
 				var tdn = t.get(DIAGRAM_NODE);
 
 				t.get('node').setContent(t.get('id'));
 
 				b += PAD + PAD + 't: ' + tdn.get('name') + ' (s: ' + t.get('id') + ')' + BR;
-            });
+			});
 
-            a.get('sources').each(function(s) {
+			a.get('sources').each(function(s) {
 				var sdn = s.get(DIAGRAM_NODE);
 
 				s.get('node').setContent(s.get('id'));
 
 				b += PAD + PAD + 's: ' + sdn.get('name') + ' (t: ' + s.get('id') + ')' + BR;
-            });
-        });
+			});
+		});
 
-        log.setContent(b);
-    });
+		log.setContent(b);
+	});
 };
 // END.
 
@@ -987,10 +1016,9 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
-		tmpConnector: {
-			setter: '_setTmpConnector',
-			value: {},
-			validator: isObject
+		connector: {
+			setter: '_setConnector',
+			value: null
 		}
 	},
 
@@ -1005,6 +1033,10 @@ var DiagramBuilder = A.Component.create({
 
 		initializer: function() {
 			var instance = this;
+
+			instance.after({
+				render: instance.syncConnectionsUI
+			});
 
 			instance.on({
 				cancel: instance._onCancel,
@@ -1036,11 +1068,19 @@ var DiagramBuilder = A.Component.create({
 
 			instance._setupFieldsDrag();
 
-			instance.tmpConnector = new A.Connector(instance.get(TMP_CONNECTOR));
+			instance.connector = instance.get(TMP_CONNECTOR);
+		},
+
+		syncConnectionsUI: function() {
+			var instance = this;
+
+			instance.get(FIELDS).each(function(diagramNode) {
+				diagramNode.syncConnectionsUI();
+			});
 		},
 
 		clearFields: function() {
-		    var instance = this;
+			var instance = this;
 
 			var fields = [];
 
@@ -1071,7 +1111,7 @@ var DiagramBuilder = A.Component.create({
 			instance.editingNode = null;
 		},
 
-		connect: function(diagramNode1, diagramNode2, optConnector) {
+		connect: function(diagramNode1, diagramNode2) {
 			var instance = this;
 
 			if (isString(diagramNode1)) {
@@ -1083,12 +1123,7 @@ var DiagramBuilder = A.Component.create({
 			}
 
 			if (diagramNode1 && diagramNode2) {
-				var a1 = diagramNode1.findAvailableAnchor();
-				var a2 = diagramNode2.findAvailableAnchor();
-
-				if (a1 && a2) {
-					a1.connect(a2, optConnector);
-				}
+				diagramNode1.connect(diagramNode2.toTarget());
 			}
 
 			return instance;
@@ -1111,10 +1146,11 @@ var DiagramBuilder = A.Component.create({
 
 			if (!isDiagramNode(val)) {
 				val.builder = instance;
+				val.bubbleTargets = instance;
 				val = new (instance.getFieldClass(val.type || NODE))(val);
 			}
 
-			val.set(BUILDER, instance);
+			// val.set(BUILDER, instance);
 
 			return val;
 		},
@@ -1128,21 +1164,13 @@ var DiagramBuilder = A.Component.create({
 
 			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
 				AArray.each(selectedConnectors, function(connector) {
-					var anchor = connector.get(ANCHOR);
-
-					if (anchor) {
-						var target = anchor.findConnectorTarget(connector);
-
-						if (target) {
-							anchor.disconnect(target);
-						}
-					}
+					// var dia = A.DiagramNode.getNodeByName(connector);
 				});
 			}
 		},
 
 		deleteSelectedNode: function() {
-		    var instance = this;
+			var instance = this;
 
 			var selectedNode = instance.selectedNode;
 
@@ -1153,19 +1181,14 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
-		eachConnetor: function(fn) {
+		eachConnector: function(fn) {
 			var instance = this;
 			var stop = false;
 
-			instance.get(FIELDS).some(function(diagramNode) {
-				diagramNode.get(FIELDS).some(function(anchor) {
-					A.some(anchor.connectors, function(connector) {
-						stop = fn.call(instance, connector, anchor, diagramNode);
-						return stop;
-					});
-					return stop;
+			instance.get(FIELDS).each(function(diagramNode) {
+				diagramNode.get(TARGETS).each(function(target) {
+					fn.call(instance, diagramNode.getConnector(target), target, diagramNode);
 				});
-				return stop;
 			});
 		},
 
@@ -1207,7 +1230,7 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 			var selected = [];
 
-			instance.eachConnetor(function(connector) {
+			instance.eachConnector(function(connector) {
 				if (connector.get(SELECTED)) {
 					selected.push(connector);
 				}
@@ -1344,10 +1367,17 @@ var DiagramBuilder = A.Component.create({
 			if (instance.isFieldsDrag(drag)) {
 				var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
 
-				diagramNode.get(FIELDS).each(function(anchor) {
-					anchor.alignConnectors();
-				});
+				diagramNode.alignSources();
+				diagramNode.alignTargets();
 			}
+
+			// if (instance.isFieldsDrag(drag)) {
+			// 	var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
+
+			// 	diagramNode.get(FIELDS).each(function(anchor) {
+			// 		anchor.alignConnectors();
+			// 	});
+			// }
 		},
 
 		_onDragEnd: function(event) {
@@ -1460,19 +1490,27 @@ var DiagramBuilder = A.Component.create({
 			instance.get(GRAPHIC).render(instance.get(CANVAS));
 		},
 
-		_setTmpConnector: function(val) {
+		_setConnector: function(val) {
 			var instance = this;
-			var xy = instance.get(CANVAS).getXY();
 
-			return A.merge(
-				{
-					p1: xy,
-					p2: xy,
-					lazyDraw: true,
-					graphic: instance.get(GRAPHIC)
-				},
-				val
-			);
+			if (!isConnector(val)) {
+				var xy = instance.get(CANVAS).getXY();
+
+				val = new A.Connector(
+					A.merge(
+						{
+							graphic: instance.get(GRAPHIC),
+							lazyDraw: true,
+							p1: xy,
+							p2: xy,
+							shapeHover: null
+						},
+						val
+					)
+				);
+			}
+
+			return val;
 		},
 
 		_setFieldsDragConfig: function(val) {
@@ -1519,6 +1557,58 @@ A.DiagramBuilder = DiagramBuilder;
 
 A.DiagramBuilder.types = {};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var DiagramNodeManagerBase = A.Component.create({
+	NAME: DIAGRAM_NODE_MANAGER_NAME,
+
+	EXTENDS: A.Base
+});
+
+A.DiagramNodeManager = new DiagramNodeManagerBase();
+
+
 var DiagramNodeOverlay = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
@@ -1528,23 +1618,67 @@ var DiagramNodeOverlay = A.Component.create({
 	// such as: addField, removeField. Although the attribute is called "fields" due to
 	// the augmentation, those fields are the anchors. TODO: Allow A.FieldSupport to
 	// customize the name of the attribute and method sufixes.
-	AUGMENTS: [A.FieldSupport]
+	// AUGMENTS: [A.FieldSupport]
 });
 
 var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
-	UI_ATTRS: [FIELDS, NAME, REQUIRED, SELECTED],
+	UI_ATTRS: [NAME, REQUIRED, SELECTED],
 
 	ATTRS: {
-		anchorsDragConfig: {
-			value: null,
-			setter: '_setAnchorsDragConfig',
+		builder: {
+			validator: isDiagramBuilder
+		},
+
+		graphic: {
+			writeOnce: true,
 			validator: isObject
 		},
 
-		builder: {
-			validator: isDiagramBuilder
+		shapeBoundary: {
+			validator: isObject,
+			value: {
+				height: 40,
+				type: 'rect',
+				stroke: {
+					weight: 10,
+					// color: '#f00'
+					color: 'transparent'
+				},
+				width: 40
+			}
+		},
+
+		shapeInvite: {
+			validator: isObject,
+			value: {
+				radius: 10,
+				type: 'circle',
+				stroke: {
+					weight: 5,
+					color: '#ff6600',
+					opacity: .8
+				},
+				fill: {
+					color: '#ffd700',
+					opacity: .8
+				}
+			}
+		},
+
+		sources: {
+			// lazyAdd: false,
+			value: null,
+			writeOnce: true,
+			setter: '_setSources'
+		},
+
+		targets: {
+			// lazyAdd: false,
+			value: null,
+			writeOnce: true,
+			setter: '_setTargets'
 		},
 
 		required: {
@@ -1612,72 +1746,114 @@ var DiagramNode = A.Component.create({
 
 	EXTENDS: DiagramNodeOverlay,
 
+	getNodeByName: function(name) {
+		return A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(name));
+	},
+
 	buildNodeId: function(id) {
 		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_-]/ig, '_');
 	},
 
 	prototype: {
-		ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+		boundary: null,
+
+		connectors: null,
+
+		isOverBoundary: false,
+
+		publishedSource: null,
 
 		CONTROLS_TEMPLATE: '<div class="' + CSS_DB_CONTROLS + '"></div>',
 
-		SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY, MAX_FIELDS],
+		SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY],
 
 		initializer: function() {
 			var instance = this;
 
-			instance._renderNodes();
-			instance._setupAnchorsDrag();
+			instance.connectors = {};
 
 			instance.after({
 				render: instance._afterRender
 			});
 
-			instance.on({
-				'drag:drag': instance._onAnchorDrag,
-				'drag:end': instance._onAnchorDragEnd,
-				'drag:start': instance._onAnchorDragStart,
-				'drop:hit': instance._onAnchorDropHit
+			instance.publish({
+				boundaryDrag: { defaultFn: instance._defBoundaryDrag },
+				boundaryDragEnd: { defaultFn: instance._defBoundaryDragEnd },
+				boundaryDragOut: { defaultFn: instance._defBoundaryDragOut },
+				boundaryDragOver: { defaultFn: instance._defBoundaryDragOver },
+				boundaryDragStart: { defaultFn: instance._defBoundaryDragStart },
+				boundaryDrop: { defaultFn: instance._defBoundaryDrop },
+				boundaryMouseEnter: { defaultFn: instance._defBoundaryMouseEnter },
+				boundaryMouseLeave: { defaultFn: instance._defBoundaryMouseLeave }
 			});
 
-			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
+			A.DiagramNodeManager.on({
+				publishedSource: function(event) {
+					instance.publishedSource = event.source;
+				},
+				sourceReleased: function(event) {
+					instance.publishedSource.isOverBoundary = false;
+					instance.publishedSource = null;
+				}
+			});
 
-			// REMOVE THIS!
-			// instance.set('bodyContent', instance.get(NAME));
+			// instance.after('dataset:add', A.debounce(instance._afterSourceOrTargetChange, 50, instance));
+			// instance.after('dataset:add', A.bind(instance._afterSourceOrTargetAdd, instance));
+			// instance.on('dataset:remove', A.debounce(instance._afterSourceOrTargetChange, 50, instance));
+
+			// console.log(instance.get(TARGETS));
+			// instance.get(SOURCES);
+
+			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
 		},
 
 		destructor: function() {
 			var instance = this;
 
-			instance.get(FIELDS).each(function(anchor) {
-				anchor.destroy();
-			});
-
+			instance.invite.destroy();
+			instance.get(GRAPHIC).destroy();
 			instance.get(BUILDER).removeField(instance);
 		},
 
-		alignAnchors: function() {
+		alignTargets: function() {
 			var instance = this;
-			var anchors = instance.get(FIELDS);
 
-			var cRegion = instance.get(BOUNDING_BOX).get(REGION),
-				dAngle = Math.floor(360/anchors.size()),
-				a = cRegion.width/2,
-				b = cRegion.height/2,
-				centerX = cRegion.left + cRegion.width/2,
-				centerY = cRegion.top + cRegion.height/2;
+			instance.get(TARGETS).each(A.bind(instance.alignTarget, instance));
+		},
 
-			anchors.each(function(anchor, index) {
-				var anchorNode = anchor.get(NODE);
-				var aRegion = anchorNode.get(REGION);
-				var exy = instance._getEllipseXY(a, b, centerX, centerY, index*dAngle);
+		alignSources: function() {
+			var instance = this;
 
-				anchorNode.setXY([ exy[0] - aRegion.width/2, exy[1] - aRegion.height/2 ]);
+			instance.get(SOURCES).each(A.bind(instance.alignSource, instance));
+		},
 
-				anchor.alignConnectors();
-			});
+		alignSource: function(source) {
+			var instance = this;
+			var diagramNode = A.DiagramNode.getNodeByName(source.name);
 
-			return instance;
+			if (diagramNode) {
+				diagramNode.alignTargets();
+			}
+		},
+
+		alignTarget: function(target) {
+			var instance = this;
+			var diagramNode = A.DiagramNode.getNodeByName(target.name);
+
+			if (diagramNode) {
+				var connector = instance.getConnector(target);
+
+				if (connector) {
+					connector.set(P1, instance._normalizeDiagramNodeXY(instance, target.xy));
+					connector.set(P2, instance._normalizeDiagramNodeXY(diagramNode, target.destXY));
+				}
+			}
+		},
+
+		getConnector: function(target) {
+			var instance = this;
+
+			return instance.connectors[target.uid];
 		},
 
 		close: function() {
@@ -1688,56 +1864,19 @@ var DiagramNode = A.Component.create({
 				instance.destroy();
 			}
 
-			// __dump();
-
 			return instance;
 		},
 
-		createField: function(val) {
+		getContainer: function() {
 			var instance = this;
 
-			if (!isAnchor(val)) {
-				var builder = instance.get(BUILDER);
-
-				val.diagramNode = instance;
-
-				val = new A.Anchor(val);
-			}
-
-			return val;
-		},
-
-		findAvailableAnchor: function() {
-			var instance = this;
-			var available = null;
-
-			instance.get(FIELDS).some(function(anchor) {
-				if (!anchor.hasConnection()) {
-					available = anchor;
-
-					return true;
-				}
-			});
-
-			if (!available) {
-				available = instance.addField({});
-			}
-
-			return available;
-		},
-
-		getConnectionNode: function() {
-			var instance = this;
-
-			return new A.DiagramNode({
-				xy: [100, 100] // TODO - find best position?
-			});
+			return (instance.get(BUILDER).dropContainer || instance.get(BOUNDING_BOX).get(PARENT_NODE));
 		},
 
 		getLeftTop: function() {
 			var instance = this;
 
-			return getLeftTop(instance.get(BOUNDING_BOX), instance._getContainer());
+			return getLeftTop(instance.get(BOUNDING_BOX), instance.getContainer());
 		},
 
 		getProperties: function() {
@@ -1788,72 +1927,254 @@ var DiagramNode = A.Component.create({
 			];
 		},
 
-		syncDragTargets: function() {
+		renderShapeBoundary: function() {
 			var instance = this;
 
-			instance.anchorsDrag.syncTargets();
+			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(instance.get(SHAPE_BOUNDARY));
+
+			boundary.end();
+
+			return boundary;
 		},
 
-		syncDropTargets: function(anchor) {
+		renderShapeInvite: function() {
 			var instance = this;
 
-			instance.get(FIELDS).each(function(anchor) {
-				var drop = A.DD.DDM.getDrop(anchor.get(NODE));
+			var invite = instance.invite = instance.get(BUILDER).get(GRAPHIC).addShape(instance.get(SHAPE_INVITE));
 
-				if (drop) {
-					if (anchor.get(SOURCES).size() === anchor.get(MAX_SOURCES)) {
-						drop.removeFromGroup(ANCHORS);
-					}
-					else {
-						drop.addToGroup(ANCHORS);
-					}
+			invite.set(VISIBLE, false);
+			invite.end();
+
+			return invite;
+		},
+
+		syncConnectionsUI: function() {
+			var instance = this;
+
+			instance.get(TARGETS).each(A.bind(instance.connect, instance));
+		},
+
+		addNodeSource: function(source) {
+			var instance = this;
+			var sources = instance.get(SOURCES);
+
+			source = instance.createSourceOrTargetObj(source);
+
+			if (!sources.containsKey(source.uid)) {
+				source.uid = A.guid();
+				sources.add(source.uid, source);
+			}
+		},
+
+		createSourceOrTargetObj: function(val) {
+			var instance = this;
+			var target = { xy: [0,0], destXY: [0,0], uid: A.guid() };
+
+			if (isString(val)) {
+				target.name = val;
+			}
+			else if (isObject(val)) {
+				target = A.mix(val, target);
+			}
+
+			return target;
+		},
+
+		addNodeTarget: function(target) {
+			var instance = this;
+			var targets = instance.get(TARGETS);
+
+			target = instance.createSourceOrTargetObj(target);
+
+			if (!targets.containsKey(target.uid)) {
+				target.uid = A.guid();
+				targets.add(target.uid, target);
+			}
+		},
+
+		removeNodeSource: function(source) {
+			var instance = this;
+
+			return instance.get(SOURCES).removeKey(source.uid);
+		},
+
+		removeNodeTarget: function(target) {
+			var instance = this;
+
+			return instance.get(TARGETS).removeKey(target.uid);
+		},
+
+		isTargetConnected: function(target) {
+			var instance = this;
+
+			return instance.connectors.hasOwnProperty(target.uid);
+		},
+
+		toTarget: function() {
+			var instance = this;
+
+			return instance.createSourceOrTargetObj({ name: instance.get(NAME) });
+		},
+
+		connect: function(target) {
+			var instance = this;
+			var connector = null;
+
+			target = instance.createSourceOrTargetObj(target);
+
+			var diagramNode = A.DiagramNode.getNodeByName(target.name);
+
+			if (diagramNode) {
+				if (!instance.isTargetConnected(target)) {
+					var source = instance.createSourceOrTargetObj({ name: instance.get(NAME) });
+
+					diagramNode.addNodeSource(source);
+					instance.addNodeTarget(target);
+
+					connector = new A.Connector({
+						graphic: instance.get(BUILDER).get(GRAPHIC),
+						sourceUID: source.uid,
+						targetUID: target.uid
+					});
+console.log('CONNECT', target);
+					instance.connectors[target.uid] = connector;
 				}
-			});
+			}
+
+			instance.alignTarget(target);
+
+			return connector;
+		},
+
+		disconnect: function(connector) {
+			var instance = this;
+			var targetUID = connector.get(TARGET_UID);
+			var target = instance.get(TARGETS).item(targetUID);
+			var diagramNode = A.DiagramNode.getNodeByName(target.name);
+
+			if (diagramNode && instance.isTargetConnected(target)) {
+				diagramNode.removeNodeSource(connector.get(SOURCE_UID));
+				instance.removeNodeTarget(targetUID);
+				connector.destroy();
+			}
+		},
+
+		// _onAnchorDropHit: function(event) {
+		// 	var instance = this;
+		// 	var source = A.Anchor.getAnchorByNode(event.drag.get(NODE));
+		// 	var target = A.Anchor.getAnchorByNode(event.drop.get(NODE));
+
+		// 	source.connect(target);
+
+		// 	__dump();
+		// },
+
+		_normalizeDiagramNodeXY: function(diagramNode, offsetXY) {
+			var instance = this;
+			var dnXY = diagramNode.get(BOUNDING_BOX).getXY();
+
+			return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
 		},
 
 		_afterRender: function(event) {
 			var instance = this;
 
-			instance.alignAnchors();
-
+			instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR, WidgetStdMod.AFTER);
+			instance._renderGraphic();
 			instance._renderControls();
 		},
 
-		_getContainer: function() {
+		_bindBoundaryEvents: function() {
 			var instance = this;
 
-			return (instance.get(BUILDER).dropContainer || instance.get(BOUNDING_BOX).get(PARENT_NODE));
+			instance.boundary.detachAll().on({
+				mouseenter: A.bind(instance._onBoundaryMouseEnter, instance),
+				mouseleave: A.bind(instance._onBoundaryMouseLeave, instance)
+			});
 		},
 
-		_getEllipseXY: function(a, b, centerX, centerY, angle) {
-			var t = angle*Math.PI/180;
-
-			return [ centerX + a*Math.cos(t), centerY - b*Math.sin(t) ];
-		},
-
-		_handleAddAnchorEvent: function(event) {
-			var instance = this;
-
-			instance.addField({});
-		},
-
-		_handleAddNodeEvent: function(event) {
+		_defBoundaryDrag: function(event) {
 			var instance = this;
 			var builder = instance.get(BUILDER);
-			var source = instance.findAvailableAnchor();
+			var mouseXY = instance.boundaryDragDelegate.dd.mouseXY;
 
-			if (source) {
-				var diagramNode = instance.getConnectionNode();
+			builder.connector.set(P2, mouseXY);
 
-				builder.addField(diagramNode);
-				source.connect(diagramNode.addField({}));
+			if (instance.isOverBoundary) {
+				var invite = instance.invite;
+				var offset = invite.get(RADIUS) || 0;
+				var mouseXY = instance.boundaryDragDelegate.dd.mouseXY;
+
+				if (!invite.get(VISIBLE)) {
+					invite.set(VISIBLE, true);
+				}
+
+				invite.setXY([ mouseXY[0] - offset, mouseXY[1] - offset ]);
 			}
 		},
 
-		_handleEditEvent: function(event) {
+		_defBoundaryDragEnd: function(event) {
 			var instance = this;
 
-			instance.get(BUILDER).editNode(instance);
+			instance.get(BUILDER).connector.hide();
+
+			instance.publishedSource.invite.set(VISIBLE, false);
+
+			A.DiagramNodeManager.fire('sourceReleased', { source: instance });
+
+			console.log('_defBoundaryDragEnd', event);
+		},
+
+		_defBoundaryDragOut: function(event) {
+			var instance = this;
+			var publishedSource = instance.publishedSource;
+
+			publishedSource.isOverBoundary = false;
+
+			publishedSource.invite.set(VISIBLE, false);
+
+			console.log('_defBoundaryDragOut', event, instance.invite);
+		},
+
+		_defBoundaryDragOver: function(event) {
+			var instance = this;
+			var publishedSource = instance.publishedSource;
+
+			if (publishedSource !== instance) {
+				publishedSource.isOverBoundary = true;
+			}
+
+			console.log('_defBoundaryDragOver', event);
+		},
+
+		_defBoundaryDragStart: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+			var startXY = instance.boundaryDragDelegate.dd.startXY;
+
+			builder.connector.show().set(P1, startXY);
+
+			A.DiagramNodeManager.fire('publishedSource', { source: instance });
+
+			console.log('_defBoundaryDragStart', event);
+		},
+
+		_defBoundaryDrop: function(event) {
+			var instance = this;
+
+			console.log('_defBoundaryDrop', event);
+		},
+
+		_defBoundaryMouseEnter: function(event) {
+			var instance = this;
+
+			console.log('_defBoundaryMouseEnter', event);
+		},
+
+		_defBoundaryMouseLeave: function(event) {
+			var instance = this;
+
+			console.log('_defBoundaryMouseLeave', event);
 		},
 
 		_handleCloseEvent: function(event) {
@@ -1864,36 +2185,76 @@ var DiagramNode = A.Component.create({
 			}
 		},
 
-		_onAnchorDrag: function(event) {
+		_handleEditEvent: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
 
-			builder.tmpConnector.set(P2, event.target.get(DRAG_NODE).getCenterXY());
+			instance.get(BUILDER).editNode(instance);
 		},
 
-		_onAnchorDragEnd: function(event) {
+		_onBoundaryDrag: function(event) {
 			var instance = this;
-			var shape = instance.get(BUILDER).tmpConnector.shape;
 
-			shape.clear();
-			shape.end();
+			instance.fire('boundaryDrag', {
+				dragEvent: event,
+				source: instance.publishedSource
+			});
 		},
 
-		_onAnchorDragStart: function(event) {
+		_onBoundaryDragEnd: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
+			var publishedSource = instance.publishedSource;
 
-			builder.tmpConnector.set(P1, event.target.get(NODE).getCenterXY());
+			if (publishedSource && instance.isOverBoundary) {
+				instance.fire('boundaryDrop', {
+					dragEvent: event,
+					source: publishedSource
+				});
+			}
+
+			instance.fire('boundaryDragEnd', {
+				dragEvent: event,
+				source: publishedSource
+			});
 		},
 
-		_onAnchorDropHit: function(event) {
+		_onBoundaryDragStart: function(event) {
 			var instance = this;
-			var source = A.Anchor.getAnchorByNode(event.drag.get(NODE));
-			var target = A.Anchor.getAnchorByNode(event.drop.get(NODE));
 
-			source.connect(target);
+			instance.fire('boundaryDragStart', {
+				dragEvent: event
+			});
+		},
 
-			// __dump();
+		_onBoundaryMouseEnter: function(event) {
+			var instance = this;
+			var publishedSource = instance.publishedSource;
+
+			instance.fire('boundaryMouseEnter', {
+				domEvent: event
+			});
+
+			if (publishedSource) {
+				instance.fire('boundaryDragOver', {
+					domEvent: event,
+					source: publishedSource
+				});
+			}
+		},
+
+		_onBoundaryMouseLeave: function(event) {
+			var instance = this;
+			var publishedSource = instance.publishedSource;
+
+			instance.fire('boundaryMouseLeave', {
+				domEvent: event
+			});
+
+			if (publishedSource) {
+				instance.fire('boundaryDragOut', {
+					domEvent: event,
+					source: publishedSource
+				});
+			}
 		},
 
 		_renderControls: function() {
@@ -1901,13 +2262,6 @@ var DiagramNode = A.Component.create({
 			var boundingBox = instance.get(BOUNDING_BOX);
 
 			instance.controlsNode = A.Node.create(instance.CONTROLS_TEMPLATE).appendTo(boundingBox);
-		},
-
-		_renderNodes: function() {
-			var instance = this;
-			var boundingBox = instance.get(BOUNDING_BOX);
-
-			instance.anchorWrapper = A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE).appendTo(boundingBox);
 		},
 
 		_renderControlsToolbar: function(event) {
@@ -1918,72 +2272,104 @@ var DiagramNode = A.Component.create({
 			)
 			.render(instance.controlsNode);
 
-			instance._uiSetRequired(
-				instance.get(REQUIRED)
-			);
+			instance._uiSetRequired(instance.get(REQUIRED));
 		},
 
-		_setAnchorsDragConfig: function(val) {
+		_renderGraphic: function() {
 			var instance = this;
+
+			instance.set(
+				GRAPHIC,
+				new A.Graphic({
+					height: instance.get(HEIGHT),
+					render: instance.bodyNode,
+					width: instance.get(WIDTH)
+				})
+			);
+
+			instance.renderShapeInvite();
+			instance.renderShapeBoundary().addClass(CSS_DIAGRAM_NODE_SHAPE_BOUNDARY);
+
+			instance._bindBoundaryEvents();
+			instance._setupBoundaryDrag();
+		},
+
+		_setSources: function(val) {
+			var instance = this;
+
+			if (!isDataSet(val)) {
+				val = instance._createDataSet();
+			}
+
+			return val;
+		},
+
+		_setTargets: function(val) {
+			var instance = this;
+
+			if (!isDataSet(val)) {
+				var dataSet = instance._createDataSet();
+
+				A.Array.each(val, function(target) {
+					var uid = A.guid();
+
+					target = isObject(target) ? A.mix(target, { uid: uid }) : { uid: uid, name: target };
+
+					dataSet.add(uid, instance.createSourceOrTargetObj(target));
+				});
+
+				val = dataSet;
+			}
+
+			// val.eachKey(function(target, key) {
+			// 	target.addNodeSource({ name: instance.get(NAME) });
+			// });
+
+			return val;
+		},
+
+		_setupBoundaryDrag: function() {
+			var instance = this;
+
 			var builder = instance.get(BUILDER);
 
-			return A.merge(
-				{
-					bubbleTargets: instance,
-					container: instance.anchorWrapper,
-					dragConfig: {
-						groups: [ANCHORS],
-						plugins: [
-							{
-								cfg: {
-									constrain: (builder ? builder.get(CANVAS) : null)
-								},
-								fn: A.Plugin.DDConstrained
+			instance.boundaryDragDelegate = new A.DD.Delegate({
+				container: instance.bodyNode,
+				nodes: _DOT+CSS_DIAGRAM_NODE_SHAPE_BOUNDARY,
+				dragConfig: {
+					useShim: false,
+					plugins: [
+						{
+							cfg: {
+								constrain: (builder ? builder.get(CANVAS) : null)
 							},
-							{
-								cfg: {
-									scrollDelay: 150
-								},
-								fn: A.Plugin.DDWinScroll
+							fn: A.Plugin.DDConstrained
+						},
+						{
+							cfg: {
+								scrollDelay: 150
 							},
-							{
-								cfg: {
-									moveOnEnd: false
-								},
-								fn: A.Plugin.DDProxy
-							}
-						]
-					},
-					nodes: _DOT+CSS_DB_ANCHOR_NODE,
-					target: true
+							fn: A.Plugin.DDWinScroll
+						},
+						{
+							cfg: {
+								borderStyle: '0px',
+								moveOnEnd: false,
+								resizeFrame: false
+							},
+							fn: A.Plugin.DDProxy
+						}
+					]
 				},
-				val || {}
-			);
-		},
+				on: {
+					'drag:drag': A.bind(instance._onBoundaryDrag, instance),
+					'drag:end': A.bind(instance._onBoundaryDragEnd, instance),
+					'drag:start': A.bind(instance._onBoundaryDragStart, instance)
+				}
+			});
 
-		_setupAnchorsDrag: function() {
-			var instance = this;
-
-			instance.anchorsDrag = new A.DD.Delegate(
-				instance.get(ANCHORS_DRAG_CONFIG)
-			);
-
-			instance.anchorsDrag.dd
-				.addInvalid(_DOT+CSS_DB_ANCHOR_NODE_MAX_TARGETS);
-				// .addInvalid(_DOT+CSS_DB_ANCHOR_NODE_MAX_SOURCES);
-		},
-
-		_uiSetFields: function(val) {
-			var instance = this;
-
-			if (instance.get(RENDERED)) {
-				instance.alignAnchors();
-
-				// setTimeout(function() {
-					instance.syncDragTargets();
-					instance.syncDropTargets();
-				// }, 50);
-			}
+			// Drag _unprep method invoke .detachAll() on the node, so we need to rebind the events.
+			A.Do.after(instance._bindBoundaryEvents, instance.boundaryDragDelegate.dd, '_unprep', instance);
 		},
 
 		_uiSetName: function(val) {
@@ -2021,18 +2407,22 @@ var DiagramNode = A.Component.create({
 			if (val && !instance.controlsToolbar) {
 				instance._renderControlsToolbar();
 			}
-
-			// if (instance.get(RENDERED)) {
-				// instance.alignAnchors();
-			// }
 		},
 
 		_uiSetXY : function(val) {
 			var instance = this;
-			var containerXY = instance._getContainer().getXY();
+			var containerXY = instance.getContainer().getXY();
 
-            this._posNode.setXY([ val[0] + containerXY[0], val[1] + containerXY[1] ]);
-        },
+			this._posNode.setXY([ val[0] + containerXY[0], val[1] + containerXY[1] ]);
+		},
+
+		_createDataSet: function() {
+			var instance = this;
+
+			return new A.DataSet({
+				bubbleTargets: instance
+			});
+		},
 
 		_valueControlsToolbar: function(val) {
 			var instance = this;
@@ -2046,17 +2436,6 @@ var DiagramNode = A.Component.create({
 						icon: PENCIL,
 						id: EDIT_EVENT,
 						title: strings[EDIT_MESSAGE]
-					},
-					{
-						handler: A.bind(instance._handleAddAnchorEvent, instance),
-						icon: LINK,
-						id: ADD_ANCHOR,
-						title: strings[ADD_ANCHOR_MESSAGE]
-					},
-					{
-						handler: A.bind(instance._handleAddNodeEvent, instance),
-						icon: SHUFFLE,
-						id: ADD_NODE
 					},
 					{
 						handler: A.bind(instance._handleCloseEvent, instance),
@@ -2091,7 +2470,7 @@ A.DiagramNodeState = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNode,
+	EXTENDS: A.DiagramNode
 });
 
 A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
@@ -2114,6 +2493,22 @@ A.DiagramNodeCondition = A.Component.create({
 	},
 
 	EXTENDS: A.DiagramNodeState,
+
+	prototype: {
+		renderShapeBoundary: function() {
+			var instance = this;
+
+			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
+				instance.get(SHAPE_BOUNDARY)
+			);
+
+			boundary.translate(10, 10);
+			boundary.rotate(45);
+			boundary.end();
+
+			return boundary;
+		}
+	}
 });
 
 A.DiagramBuilder.types[CONDITION] = A.DiagramNodeCondition;
@@ -2127,7 +2522,7 @@ A.DiagramNodeStart = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState,
+	EXTENDS: A.DiagramNodeState
 });
 
 A.DiagramBuilder.types[START] = A.DiagramNodeStart;
@@ -2141,7 +2536,7 @@ A.DiagramNodeEnd = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState,
+	EXTENDS: A.DiagramNodeState
 });
 
 A.DiagramBuilder.types[END] = A.DiagramNodeEnd;
@@ -2163,7 +2558,7 @@ A.DiagramNodeJoin = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState,
+	EXTENDS: A.DiagramNodeState
 });
 
 A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
@@ -2185,7 +2580,7 @@ A.DiagramNodeFork = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState,
+	EXTENDS: A.DiagramNodeState
 });
 
 A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
@@ -2207,12 +2602,12 @@ A.DiagramNodeTask = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState,
+	EXTENDS: A.DiagramNodeState
 });
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-diagram-builder-base','overlay'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2261,6 +2656,7 @@ var Lang = A.Lang,
 	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
+	VISIBLE = 'visible',
 	P2 = 'p2',
 	PATH = 'path',
 	SELECTED = 'selected',
@@ -2297,11 +2693,11 @@ A.PolygonUtil = {
 		shape.moveTo(x1, y1);
 		shape.lineTo(x2, y2);
 
-		var angle = Math.atan2(y2-y1, x2-x1), centerX = (x2+x1)/2, centerY = (y2+y1)/2;
+		var angle = Math.atan2(y2-y1, x2-x1);
 
 		// Slide the arrow position along the line in 15px in polar coordinates
-		x2 = x2 - 15*Math.cos(angle);
-		y2 = y2 - 15*Math.sin(angle);
+		x2 = x2 - 5*Math.cos(angle);
+		y2 = y2 - 5*Math.sin(angle);
 
 		instance.drawPolygon(
 			shape,
@@ -2395,6 +2791,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		A.PolygonUtil.drawLineArrow(shape, c1[0], c1[1], c2[0], c2[1], instance.get(ARROW_POINTS));
 
 		shape.end();
+
+		return instance;
 	},
 
 	getCoordinate: function(p) {
@@ -2437,6 +2835,22 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		];
 	},
 
+	hide: function() {
+	    var instance = this;
+
+		instance.shape.set(VISIBLE, false);
+
+		return instance;
+	},
+
+	show: function() {
+	    var instance = this;
+
+		instance.shape.set(VISIBLE, true);
+
+		return instance;
+	},
+
 	toJSON: function() {
 		var instance = this;
 		var output = {};
@@ -2468,12 +2882,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	_onShapeClick: function(event) {
 		var instance = this;
-		var anchor = instance.get(ANCHOR);
+		var builder = instance.get(BUILDER);
 		var selected = instance.get(SELECTED);
 
-		if (anchor) {
-			var builder = anchor.getBuilder();
-
+		if (builder) {
 			if (event.hasModifier()) {
 				builder.closeEditProperties();
 			}
@@ -2496,7 +2908,11 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		if (!instance.get(SELECTED)) {
-			instance._updateShape(instance.get(SHAPE_HOVER));
+			var shapeHover = instance.get(SHAPE_HOVER);
+
+			if (shapeHover) {
+				instance._updateShape(shapeHover);
+			}
 		}
 	},
 
@@ -2550,7 +2966,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 },{
 	ATTRS: {
-		anchor: {
+		builder: {
 		},
 
 		color: {
@@ -2610,6 +3026,16 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
+		sourceUID: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
+		targetUID: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
 		arrowPoints: {
 			value: A.PolygonUtil.ARROW_POINTS
 		},
@@ -2626,427 +3052,427 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 });
 
-A.Anchor = A.Base.create('anchor', A.Base, [], {
-	ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
-	NODE_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE + '"></div>',
+// A.Anchor = A.Base.create('anchor', A.Base, [], {
+// 	ANCHOR_WRAPPER_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE_WRAPPER + '"></div>',
+// 	NODE_TEMPLATE: '<div class="' + CSS_DB_ANCHOR_NODE + '"></div>',
 
-	connectors: null,
+// 	connectors: null,
 
-	initializer: function() {
-		var instance = this;
+// 	initializer: function() {
+// 		var instance = this;
 
-		instance.connectors = {};
+// 		instance.connectors = {};
 
-		instance._renderNode();
+// 		instance._renderNode();
 
-		instance.connectTargets();
+// 		instance.connectTargets();
 
-		instance.after({
-			sourcesChange: instance._afterSourcesChange,
-			targetsChange: instance._afterTargetsChange
-		});
+// 		instance.after({
+// 			sourcesChange: instance._afterSourcesChange,
+// 			targetsChange: instance._afterTargetsChange
+// 		});
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
-	},
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
+// 	},
 
-	addSource: function(source) {
-		var instance = this;
+// 	addSource: function(source) {
+// 		var instance = this;
 
-		if (instance.get(SOURCES).size() < instance.get(MAX_SOURCES)) {
-			instance.set(
-				SOURCES,
-				instance.get(SOURCES).remove(source).add(source)
-			);
-		}
+// 		if (instance.get(SOURCES).size() < instance.get(MAX_SOURCES)) {
+// 			instance.set(
+// 				SOURCES,
+// 				instance.get(SOURCES).remove(source).add(source)
+// 			);
+// 		}
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	addTarget: function(target) {
-		var instance = this;
+// 	addTarget: function(target) {
+// 		var instance = this;
 
-		if (instance.get(TARGETS).size() < instance.get(MAX_TARGETS)) {
-			instance.set(
-				TARGETS,
-				instance.get(TARGETS).remove(target).add(target)
-			);
-		}
+// 		if (instance.get(TARGETS).size() < instance.get(MAX_TARGETS)) {
+// 			instance.set(
+// 				TARGETS,
+// 				instance.get(TARGETS).remove(target).add(target)
+// 			);
+// 		}
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	alignConnectors: function() {
-		var instance = this;
+// 	alignConnectors: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(function(target) {
-			var tConnector = instance.getConnector(target);
+// 		instance.get(TARGETS).each(function(target) {
+// 			var tConnector = instance.getConnector(target);
 
-			if (tConnector) {
-				tConnector.set(P1, instance.getCenterXY());
-				tConnector.set(P2, target.getCenterXY());
-			}
-		});
+// 			if (tConnector) {
+// 				tConnector.set(P1, instance.getCenterXY());
+// 				tConnector.set(P2, target.getCenterXY());
+// 			}
+// 		});
 
-		instance.get(SOURCES).each(function(source) {
-			var sConnector = source.getConnector(instance);
+// 		instance.get(SOURCES).each(function(source) {
+// 			var sConnector = source.getConnector(instance);
 
-			if (sConnector) {
-				sConnector.set(P1, source.getCenterXY());
-				sConnector.set(P2, instance.getCenterXY());
-			}
-		});
+// 			if (sConnector) {
+// 				sConnector.set(P1, source.getCenterXY());
+// 				sConnector.set(P2, instance.getCenterXY());
+// 			}
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	destroy: function() {
-		var instance = this;
+// 	destroy: function() {
+// 		var instance = this;
 
-		instance.disconnectTargets();
-		instance.disconnectSources();
+// 		instance.disconnectTargets();
+// 		instance.disconnectSources();
 
-		instance.get(NODE).remove();
-	},
+// 		instance.get(NODE).remove();
+// 	},
 
-	connect: function(target, connector) {
-		var instance = this;
+// 	connect: function(target, connector) {
+// 		var instance = this;
 
-		if (isDiagramNode(target)) {
-			target = target.findAvailableAnchor();
-		}
+// 		if (isDiagramNode(target)) {
+// 			target = target.findAvailableAnchor();
+// 		}
 
-		instance.addTarget(target);
-		target.addSource(instance);
+// 		instance.addTarget(target);
+// 		target.addSource(instance);
 
-		if (!instance.isConnected(target)) {
-			var c = A.merge(target.get(CONNECTOR), connector);
+// 		if (!instance.isConnected(target)) {
+// 			var c = A.merge(target.get(CONNECTOR), connector);
 
-			c.anchor = instance;
-			c.p1 = instance.getCenterXY();
-			c.p2 = target.getCenterXY();
+// 			c.anchor = instance;
+// 			c.p1 = instance.getCenterXY();
+// 			c.p2 = target.getCenterXY();
 
-			instance.connectors[target.get(ID)] = new A.Connector(c);
-		}
+// 			instance.connectors[target.get(ID)] = new A.Connector(c);
+// 		}
 
-		setTimeout(function() {
-			target.get(DIAGRAM_NODE).syncDropTargets();
-		}, 50);
+// 		setTimeout(function() {
+// 			target.get(DIAGRAM_NODE).syncDropTargets();
+// 		}, 50);
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	connectTargets: function() {
-		var instance = this;
+// 	connectTargets: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(A.bind(instance.connect, instance));
+// 		instance.get(TARGETS).each(A.bind(instance.connect, instance));
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	disconnect: function(target) {
-		var instance = this;
+// 	disconnect: function(target) {
+// 		var instance = this;
 
-		instance.getConnector(target).destroy();
-		instance.removeTarget(target);
-		target.removeSource(instance);
+// 		instance.getConnector(target).destroy();
+// 		instance.removeTarget(target);
+// 		target.removeSource(instance);
 
-		setTimeout(function() {
-			target.get(DIAGRAM_NODE).syncDropTargets();
-		}, 50);
-	},
+// 		setTimeout(function() {
+// 			target.get(DIAGRAM_NODE).syncDropTargets();
+// 		}, 50);
+// 	},
 
-	disconnectTargets: function() {
-		var instance = this;
+// 	disconnectTargets: function() {
+// 		var instance = this;
 
-		instance.get(TARGETS).each(function(target) {
-			instance.disconnect(target);
-		});
+// 		instance.get(TARGETS).each(function(target) {
+// 			instance.disconnect(target);
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	disconnectSources: function() {
-		var instance = this;
+// 	disconnectSources: function() {
+// 		var instance = this;
 
-		instance.get(SOURCES).each(function(source) {
-			source.disconnect(instance);
-		});
+// 		instance.get(SOURCES).each(function(source) {
+// 			source.disconnect(instance);
+// 		});
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	findConnectorTarget: function(connector) {
-		var instance = this;
-		var target = null;
+// 	findConnectorTarget: function(connector) {
+// 		var instance = this;
+// 		var target = null;
 
-		A.some(instance.connectors, function(c, targetId) {
-			if (c === connector) {
-				target = A.Anchor.getAnchorByNode(_HASH+targetId);
-				return true;
-			}
-		});
+// 		A.some(instance.connectors, function(c, targetId) {
+// 			if (c === connector) {
+// 				target = A.Anchor.getAnchorByNode(_HASH+targetId);
+// 				return true;
+// 			}
+// 		});
 
-		return target;
-	},
+// 		return target;
+// 	},
 
-	getBuilder: function() {
-		var instance = this;
+// 	getBuilder: function() {
+// 		var instance = this;
 
-		return instance.get(DIAGRAM_NODE).get(BUILDER);
-	},
+// 		return instance.get(DIAGRAM_NODE).get(BUILDER);
+// 	},
 
-	getCenterXY: function() {
-		var instance = this;
+// 	getCenterXY: function() {
+// 		var instance = this;
 
-		return instance.get(NODE).getCenterXY();
-	},
+// 		return instance.get(NODE).getCenterXY();
+// 	},
 
-	getConnector: function(target) {
-		var instance = this;
+// 	getConnector: function(target) {
+// 		var instance = this;
 
-		return instance.connectors[target.get(ID)];
-	},
+// 		return instance.connectors[target.get(ID)];
+// 	},
 
-	hasConnection: function() {
-		var instance = this;
+// 	hasConnection: function() {
+// 		var instance = this;
 
-		return ((instance.get(TARGETS).size() > 0) || (instance.get(SOURCES).size() > 0));
-	},
+// 		return ((instance.get(TARGETS).size() > 0) || (instance.get(SOURCES).size() > 0));
+// 	},
 
-	isConnected: function(target) {
-		var instance = this;
+// 	isConnected: function(target) {
+// 		var instance = this;
 
-		return instance.connectors.hasOwnProperty(target.get(ID));
-	},
+// 		return instance.connectors.hasOwnProperty(target.get(ID));
+// 	},
 
-	removeSource: function(source) {
-		var instance = this;
+// 	removeSource: function(source) {
+// 		var instance = this;
 
-		instance.set(
-			SOURCES,
-			instance.get(SOURCES).remove(source)
-		);
+// 		instance.set(
+// 			SOURCES,
+// 			instance.get(SOURCES).remove(source)
+// 		);
 
-		return instance;
-	},
+// 		return instance;
+// 	},
 
-	removeTarget: function(target) {
-		var instance = this;
+// 	removeTarget: function(target) {
+// 		var instance = this;
 
-		instance.set(
-			TARGETS,
-			instance.get(TARGETS).remove(target)
-		);
+// 		instance.set(
+// 			TARGETS,
+// 			instance.get(TARGETS).remove(target)
+// 		);
 
-		delete instance.connectors[target.get(ID)];
-		return instance;
-	},
+// 		delete instance.connectors[target.get(ID)];
+// 		return instance;
+// 	},
 
-	_afterSourcesChange: function(event) {
-		var instance = this;
+// 	_afterSourcesChange: function(event) {
+// 		var instance = this;
 
-		instance._uiSetSources(event.newVal);
-	},
+// 		instance._uiSetSources(event.newVal);
+// 	},
 
-	_afterTargetsChange: function(event) {
-		var instance = this;
+// 	_afterTargetsChange: function(event) {
+// 		var instance = this;
 
-		// TODO - event.prevVal is always equal to event.newVal, review this
-        // logic below, references between anchors needs to be cleaned up otherwise
-        // will store the wrong relationship between nodes.
+// 		// TODO - event.prevVal is always equal to event.newVal, review this
+//         // logic below, references between anchors needs to be cleaned up otherwise
+//         // will store the wrong relationship between nodes.
 
-		event.prevVal.each(function(anchor) {
-			anchor.removeSource(instance);
-		});
+// 		event.prevVal.each(function(anchor) {
+// 			anchor.removeSource(instance);
+// 		});
 
-		event.newVal.each(function(anchor) {
-			anchor.addSource(instance);
-		});
+// 		event.newVal.each(function(anchor) {
+// 			anchor.addSource(instance);
+// 		});
 
-		instance._uiSetTargets(event.newVal);
-	},
+// 		instance._uiSetTargets(event.newVal);
+// 	},
 
-	_renderNode: function() {
-		var instance = this;
-		var diagramNode = instance.get(DIAGRAM_NODE);
-		var container = diagramNode.get(BOUNDING_BOX);
+// 	_renderNode: function() {
+// 		var instance = this;
+// 		var diagramNode = instance.get(DIAGRAM_NODE);
+// 		var container = diagramNode.get(BOUNDING_BOX);
 
-		instance.wrapper = container.one(_DOT+CSS_DB_ANCHOR_NODE_WRAPPER) ||
-							A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE);
+// 		instance.wrapper = container.one(_DOT+CSS_DB_ANCHOR_NODE_WRAPPER) ||
+// 							A.Node.create(instance.ANCHOR_WRAPPER_TEMPLATE);
 
-		instance.wrapper.appendTo(container).appendChild(instance.get(NODE));
-	},
+// 		instance.wrapper.appendTo(container).appendChild(instance.get(NODE));
+// 	},
 
-	_setConnector: function(val) {
-		var instance = this;
+// 	_setConnector: function(val) {
+// 		var instance = this;
 
-		return A.merge(
-			{
-				graphic: instance.getBuilder().get(GRAPHIC)
-			},
-			val
-		);
-	},
+// 		return A.merge(
+// 			{
+// 				graphic: instance.getBuilder().get(GRAPHIC)
+// 			},
+// 			val
+// 		);
+// 	},
 
-	_setSources: function(val) {
-		var instance = this;
+// 	_setSources: function(val) {
+// 		var instance = this;
 
-		return instance._setAnchors(val);
-	},
+// 		return instance._setAnchors(val);
+// 	},
 
-	_setTargets: function(val) {
-		var instance = this;
+// 	_setTargets: function(val) {
+// 		var instance = this;
 
-		val = instance._setAnchors(val, true);
+// 		val = instance._setAnchors(val, true);
 
-		val.each(function(anchor) {
-			anchor.addSource(instance);
-		});
+// 		val.each(function(anchor) {
+// 			anchor.addSource(instance);
+// 		});
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setAnchors: function(val, target) {
-		var instance = this;
+// 	_setAnchors: function(val, target) {
+// 		var instance = this;
 
-		if (!isArrayList(val)) {
-			var targets = [];
+// 		if (!isArrayList(val)) {
+// 			var targets = [];
 
-			A.Array.some(val, function(target, index) {
-				if (index >= instance.get(target ? MAX_TARGETS : MAX_SOURCES)) {
-					return true;
-				}
+// 			A.Array.some(val, function(target, index) {
+// 				if (index >= instance.get(target ? MAX_TARGETS : MAX_SOURCES)) {
+// 					return true;
+// 				}
 
-				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
-			});
+// 				targets.push( isAnchor(target) ? target : new A.Anchor(target) );
+// 			});
 
-			val = new A.ArrayList(targets);
-		}
+// 			val = new A.ArrayList(targets);
+// 		}
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setMaxSources: function(val) {
-		var instance = this;
+// 	_setMaxSources: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxSources(
-			instance.get(MAX_SOURCES)
-		);
+// 		instance._uiSetMaxSources(
+// 			instance.get(MAX_SOURCES)
+// 		);
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setMaxTargets: function(val) {
-		var instance = this;
+// 	_setMaxTargets: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
 
-		return val;
-	},
+// 		return val;
+// 	},
 
-	_setNode: function(val) {
-		var instance = this;
-		var id = instance.get(ID);
+// 	_setNode: function(val) {
+// 		var instance = this;
+// 		var id = instance.get(ID);
 
-		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
-	},
+// 		return A.one(val).set(ID, id).setData(DATA_ANCHOR, instance);
+// 	},
 
-	_uiSetSources: function(val) {
-		var instance = this;
+// 	_uiSetSources: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxSources(
-			instance.get(MAX_SOURCES)
-		);
-	},
+// 		instance._uiSetMaxSources(
+// 			instance.get(MAX_SOURCES)
+// 		);
+// 	},
 
-	_uiSetMaxSources: function(val) {
-		var instance = this;
-		var node = instance.get(NODE);
+// 	_uiSetMaxSources: function(val) {
+// 		var instance = this;
+// 		var node = instance.get(NODE);
 
-		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_SOURCES, (instance.get(SOURCES).size() === val));
-	},
+// 		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_SOURCES, (instance.get(SOURCES).size() === val));
+// 	},
 
-	_uiSetMaxTargets: function(val) {
-		var instance = this;
-		var node = instance.get(NODE);
+// 	_uiSetMaxTargets: function(val) {
+// 		var instance = this;
+// 		var node = instance.get(NODE);
 
-		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_TARGETS, (instance.get(TARGETS).size() === val));
-	},
+// 		node.toggleClass(CSS_DB_ANCHOR_NODE_MAX_TARGETS, (instance.get(TARGETS).size() === val));
+// 	},
 
-	_uiSetTargets: function(val) {
-		var instance = this;
+// 	_uiSetTargets: function(val) {
+// 		var instance = this;
 
-		instance._uiSetMaxTargets(
-			instance.get(MAX_TARGETS)
-		);
-	}
-},{
-	ATTRS: {
-		diagramNode: {
-		},
+// 		instance._uiSetMaxTargets(
+// 			instance.get(MAX_TARGETS)
+// 		);
+// 	}
+// },{
+// 	ATTRS: {
+// 		diagramNode: {
+// 		},
 
-		connector: {
-			setter: '_setConnector',
-			value: {},
-			validator: isObject
-		},
+// 		connector: {
+// 			setter: '_setConnector',
+// 			value: {},
+// 			validator: isObject
+// 		},
 
-		id: {
-			readOnly: true,
-			valueFn: function() {
-				return A.guid();
-			}
-		},
+// 		id: {
+// 			readOnly: true,
+// 			valueFn: function() {
+// 				return A.guid();
+// 			}
+// 		},
 
-		maxSources: {
-			setter: '_setMaxSources',
-			value: 1,
-			validator: isNumber
-		},
+// 		maxSources: {
+// 			setter: '_setMaxSources',
+// 			value: 1,
+// 			validator: isNumber
+// 		},
 
-		maxTargets: {
-			setter: '_setMaxTargets',
-			value: 1,
-			validator: isNumber
-		},
+// 		maxTargets: {
+// 			setter: '_setMaxTargets',
+// 			value: 1,
+// 			validator: isNumber
+// 		},
 
-		node: {
-			setter: '_setNode',
-			valueFn: function() {
-				var instance = this;
+// 		node: {
+// 			setter: '_setNode',
+// 			valueFn: function() {
+// 				var instance = this;
 
-				return A.Node.create(instance.NODE_TEMPLATE);
-			}
-		},
+// 				return A.Node.create(instance.NODE_TEMPLATE);
+// 			}
+// 		},
 
-		sources: {
-			value: [],
-			setter: '_setSources',
-			validator: function(val) {
-				return isArray(val) || isArrayList(val);
-			}
-		},
+// 		sources: {
+// 			value: [],
+// 			setter: '_setSources',
+// 			validator: function(val) {
+// 				return isArray(val) || isArrayList(val);
+// 			}
+// 		},
 
-		targets: {
-			value: [],
-			setter: '_setTargets',
-			validator: function(val) {
-				return isArray(val) || isArrayList(val);
-			}
-		}
-	},
+// 		targets: {
+// 			value: [],
+// 			setter: '_setTargets',
+// 			validator: function(val) {
+// 				return isArray(val) || isArrayList(val);
+// 			}
+// 		}
+// 	},
 
-	getAnchorByNode: function(node) {
-		return isAnchor(node) ? node : A.one(node).getData(DATA_ANCHOR);
-	}
-});
+// 	getAnchorByNode: function(node) {
+// 		return isAnchor(node) ? node : A.one(node).getData(DATA_ANCHOR);
+// 	}
+// });
 
 }, '@VERSION@' ,{requires:['aui-base','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
 
 
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl','aui-diagram-builder-connector'], skinnable:true});
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true});
 
