@@ -208,7 +208,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 				val,
 				function(item, index, collection) {
 					buffer.push(
-						A.substitute(
+						Lang.sub(
 							instance.get(OPTION_TEMPLATE),
 							{
 								label: item.label,

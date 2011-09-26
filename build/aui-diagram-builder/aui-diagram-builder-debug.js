@@ -1119,7 +1119,7 @@ var DiagramBuilder = A.Component.create({
 			return val;
 		},
 
-		deleteConnectors: function(connectors) {
+		deleteSelectedConnectors: function(connectors) {
 			var instance = this;
 
 			var strings = instance.getStrings();
@@ -1127,7 +1127,7 @@ var DiagramBuilder = A.Component.create({
 			var selectedConnectors = instance.getSelectedConnectors();
 
 			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
-				AArray.each(connectors, function(connector) {
+				AArray.each(selectedConnectors, function(connector) {
 					var anchor = connector.get(ANCHOR);
 
 					if (anchor) {
@@ -1381,7 +1381,7 @@ var DiagramBuilder = A.Component.create({
 		_onDeleteKey: function(event) {
 			var instance = this;
 
-			instance.deleteConnectors();
+			instance.deleteSelectedConnectors();
 
 			instance.deleteSelectedNode();
 
@@ -2247,7 +2247,6 @@ var Lang = A.Lang,
 	COLOR = 'color',
 	CONNECTOR = 'connector',
 	DATA_ANCHOR = 'dataAnchor',
-	DESCRIPTION = 'description',
 	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
 	FILL = 'fill',
@@ -2355,7 +2354,7 @@ A.PolygonUtil = {
 };
 
 A.Connector = A.Base.create('line', A.Base, [], {
-	SERIALIZABLE_ATTRS: [COLOR, DESCRIPTION, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
+	SERIALIZABLE_ATTRS: [COLOR, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
 
 	shape: null,
 
@@ -2422,11 +2421,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var strings = anchor ? anchor.get(DIAGRAM_NODE).getStrings() : {};
 
 		return [
-			{
-				attributeName: DESCRIPTION,
-				editor: new A.TextAreaCellEditor(),
-				name: strings[DESCRIPTION]
-			},
 			{
 				attributeName: NAME,
 				editor: new A.TextCellEditor({
@@ -2561,11 +2555,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 		color: {
 			value: '#27aae1',
-			validator: isString
-		},
-
-		description: {
-			value: _EMPTY_STR,
 			validator: isString
 		},
 

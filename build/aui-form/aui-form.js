@@ -1007,7 +1007,7 @@ var Field = A.Component.create(
 
 				var fieldTemplate = instance.FIELD_TEMPLATE;
 
-				instance.FIELD_TEMPLATE = A.substitute(
+				instance.FIELD_TEMPLATE = Lang.sub(
 					fieldTemplate,
 					{
 						cssClass: CSS_FIELD_INPUT,
@@ -1202,7 +1202,7 @@ var Field = A.Component.create(
 
 A.Field = Field;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-component','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-component']});
 AUI.add('aui-form-select', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2085,7 +2085,7 @@ var FormValidator = A.Component.create({
 
 			var message = (fieldStrings[rule] || strings[rule] || strings.DEFAULT);
 
-			return A.substitute(message, substituteRulesMap);
+			return L.sub(message, substituteRulesMap);
 		},
 
 		hasErrors: function() {
@@ -2473,7 +2473,7 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3','substitute']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3']});
 
 
 AUI.add('aui-form', function(A){}, '@VERSION@' ,{use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield','aui-form-validator'], skinnable:false});

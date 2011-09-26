@@ -406,7 +406,7 @@ var Paginator = A.Component.create(
 				getter: function() {
 					var instance = this;
 
-					return A.substitute(PAGE_REPORT_LABEL_TPL, {
+					return L.sub(PAGE_REPORT_LABEL_TPL, {
 						page: instance.get(PAGE),
 						totalPages: instance.get(TOTAL_PAGES)
 					});
@@ -572,7 +572,7 @@ var Paginator = A.Component.create(
 				getter: function() {
 					var instance = this;
 
-					return A.substitute(TOTAL_LABEL_TPL, {
+					return L.sub(TOTAL_LABEL_TPL, {
 						total: instance.get(TOTAL)
 					});
 				},
@@ -987,7 +987,7 @@ var Paginator = A.Component.create(
 					}
 
 					// substitute the {keys} on the templates with the real outerHTML templates
-					instance.templatesCache = A.substitute(v,
+					instance.templatesCache = L.sub(v,
 						{
 							CurrentPageReport: outer(PAGE_REPORT_EL),
 							FirstPageLink: outer(FIRST_PAGE_LINK),
@@ -1237,4 +1237,4 @@ var Paginator = A.Component.create(
 
 A.Paginator = Paginator;
 
-}, '@VERSION@' ,{requires:['aui-base','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:true});

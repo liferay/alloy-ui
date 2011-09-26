@@ -938,11 +938,11 @@ var BaseOptionsCellEditor = A.Component.create({
 				};
 
 				if (optionTpl) {
-					optionsBuffer.push(A.substitute(optionTpl, values));
+					optionsBuffer.push(Lang.sub(optionTpl, values));
 				}
 
 				if (optionWrapperTpl) {
-					wrappersBuffer.push(A.substitute(optionWrapperTpl, values));
+					wrappersBuffer.push(Lang.sub(optionWrapperTpl, values));
 				}
 			});
 
