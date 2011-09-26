@@ -96,7 +96,7 @@ var LoadingMask = A.Component.create(
 					var strings = instance.get(STRINGS);
 
 					return A.Node.create(
-						A.substitute(TPL_MESSAGE_LOADING, [strings.loading])
+						Lang.sub(TPL_MESSAGE_LOADING, [strings.loading])
 					);
 				}
 			},
@@ -345,4 +345,4 @@ A.each([HIDE, SHOW, TOGGLE], function(method) {
 
 A.LoadingMask = LoadingMask;
 
-}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin','substitute'], skinnable:true});
+}, '@VERSION@' ,{requires:['aui-overlay-mask','plugin'], skinnable:true});

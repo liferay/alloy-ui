@@ -149,7 +149,7 @@ Util.UPDATE_POSITION = function(obj) {
 	Util.SET_ATTRS(
 		obj.pattern,
 		{
-			patternTransform: A.substitute('translate({0},{1})', [bbox.x, bbox.y])
+			patternTransform: Lang.sub('translate({0},{1})', [bbox.x, bbox.y])
 		}
 	);
 };
@@ -1110,13 +1110,13 @@ ELEMENT_PROTOTYPE.rotate = function(deg, cx, cy) {
 	cy = cy == null ? bbox.y + bbox.height / 2 : cy;
 
 	if (instance._.rt.deg) {
-		instance.transformations[0] = A.substitute('rotate({0} {1} {2})', [instance._.rt.deg, cx, cy]);
+		instance.transformations[0] = Lang.sub('rotate({0} {1} {2})', [instance._.rt.deg, cx, cy]);
 
 		if (instance.clip) {
 			Util.SET_ATTRS(
 				instance.clip,
 				{
-					transform: A.substitute("rotate({0} {1} {2})", [-instance._.rt.deg, cx, cy])
+					transform: Lang.sub("rotate({0} {1} {2})", [-instance._.rt.deg, cx, cy])
 				}
 			);
 		}
@@ -1416,4 +1416,4 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 	}
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base']});

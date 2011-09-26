@@ -388,7 +388,7 @@ var Field = A.Component.create(
 
 				var fieldTemplate = instance.FIELD_TEMPLATE;
 
-				instance.FIELD_TEMPLATE = A.substitute(
+				instance.FIELD_TEMPLATE = Lang.sub(
 					fieldTemplate,
 					{
 						cssClass: CSS_FIELD_INPUT,

@@ -212,7 +212,7 @@ var Drawing = A.Component.create(
 				var instance = this;
 
 				if (isString(pathString)) {
-					pathString = A.substitute.apply(A, arguments);
+					pathString = Lang.sub.apply(A, arguments);
 				}
 				else if (!isUndefined(pathString) && !isArray(pathString)) {
 					pathString += STR_EMPTY;

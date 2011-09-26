@@ -213,7 +213,7 @@ var Drawing = A.Component.create(
 				var instance = this;
 
 				if (isString(pathString)) {
-					pathString = A.substitute.apply(A, arguments);
+					pathString = Lang.sub.apply(A, arguments);
 				}
 				else if (!isUndefined(pathString) && !isArray(pathString)) {
 					pathString += STR_EMPTY;
@@ -2023,7 +2023,7 @@ Util.UPDATE_POSITION = function(obj) {
 	Util.SET_ATTRS(
 		obj.pattern,
 		{
-			patternTransform: A.substitute('translate({0},{1})', [bbox.x, bbox.y])
+			patternTransform: Lang.sub('translate({0},{1})', [bbox.x, bbox.y])
 		}
 	);
 };
@@ -2984,13 +2984,13 @@ ELEMENT_PROTOTYPE.rotate = function(deg, cx, cy) {
 	cy = cy == null ? bbox.y + bbox.height / 2 : cy;
 
 	if (instance._.rt.deg) {
-		instance.transformations[0] = A.substitute('rotate({0} {1} {2})', [instance._.rt.deg, cx, cy]);
+		instance.transformations[0] = Lang.sub('rotate({0} {1} {2})', [instance._.rt.deg, cx, cy]);
 
 		if (instance.clip) {
 			Util.SET_ATTRS(
 				instance.clip,
 				{
-					transform: A.substitute("rotate({0} {1} {2})", [-instance._.rt.deg, cx, cy])
+					transform: Lang.sub("rotate({0} {1} {2})", [-instance._.rt.deg, cx, cy])
 				}
 			);
 		}
@@ -3290,7 +3290,7 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 	}
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base']});
 AUI.add('aui-drawing-vml', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3463,7 +3463,7 @@ Util.path2vml = function(path) {
 
 Util.rectPath = function(x, y, w, h, r) {
 	if (r) {
-		return A.substitute(
+		return Lang.sub(
 			TPL_RECTANGLE_ROUNDED_CORNER,
 			[
 				x + r,
@@ -3478,7 +3478,7 @@ Util.rectPath = function(x, y, w, h, r) {
 		);
 	}
 	else {
-		return A.substitute(
+		return Lang.sub(
 			TPL_RECTANGLE,
 			[
 				x,
@@ -3622,7 +3622,7 @@ Impl = Drawing.Impl = {
 
 		var canvasStyle = canvas.style;
 
-		canvas.style.cssText = A.substitute(TPL_CSS_TEXT_CANVAS, [height, width]);
+		canvas.style.cssText = Lang.sub(TPL_CSS_TEXT_CANVAS, [height, width]);
 
 		contentBox.prepend(canvas);
 	},
@@ -3634,7 +3634,7 @@ Impl = Drawing.Impl = {
 		var oval = Util.CREATE_ELEMENT('oval');
 		var ovalStyle = oval.style;
 
-		group.style.cssText = A.substitute(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
+		group.style.cssText = Lang.sub(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
 		group.coordsize = DEFAULT_VML_COORD_SIZE;
 		group.coordorigin = instance.coordorigin;
 		group.appendChild(oval);
@@ -3675,7 +3675,7 @@ Impl = Drawing.Impl = {
 		var group = Util.CREATE_ELEMENT('group');
 		var oval = Util.CREATE_ELEMENT('oval');
 
-		group.style.cssText = A.substitute(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
+		group.style.cssText = Lang.sub(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
 		group.coordsize = DEFAULT_VML_COORD_SIZE;
 		group.coordorigin = instance.coordorigin;
 		group.appendChild(oval);
@@ -3717,7 +3717,7 @@ Impl = Drawing.Impl = {
 		var oval = Util.CREATE_ELEMENT('image');
 		var ovalStyle = oval.style;
 
-		group.style.cssText = A.substitute(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
+		group.style.cssText = Lang.sub(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
 		group.coordsize = DEFAULT_VML_COORD_SIZE;
 		group.coordorigin = instance.coordorigin;
 
@@ -3753,7 +3753,7 @@ Impl = Drawing.Impl = {
 
 		var group = Util.CREATE_ELEMENT('group');
 
-		group.style.cssText = A.substitute(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
+		group.style.cssText = Lang.sub(TPL_CSS_TEXT_ELEMENT, [setDefaultUnit(instance.get('height')), setDefaultUnit(instance.get('width'))]);
 		group.coordsize = instance.coordsize;
 		group.coordorigin = instance.coordorigin;
 
@@ -3824,11 +3824,11 @@ Impl = Drawing.Impl = {
 		var width = setDefaultUnit(instance.get('width'));
 		var height = setDefaultUnit(instance.get('height'));
 
-		group.style.cssText = A.substitute(TPL_CSS_TEXT_ELEMENT, [height, width]);
+		group.style.cssText = Lang.sub(TPL_CSS_TEXT_ELEMENT, [height, width]);
 		group.coordsize = DEFAULT_VML_COORD_SIZE;
 		group.coordorigin = instance.coordorigin;
 
-		path.v = A.substitute(
+		path.v = Lang.sub(
 			'm{0},{1}l{2},{1}',
 			[
 				MATH_ROUND(x * 10),
@@ -3975,7 +3975,7 @@ Impl = Drawing.Impl = {
 				var dstyle = div.style;
 				var group = node.parentNode;
 
-				dstyle.clip = A.substitute('rect({1}px {2}px {3}px {0}px)', rect);
+				dstyle.clip = Lang.sub('rect({1}px {2}px {3}px {0}px)', rect);
 
 				if (!node.clipRect) {
 					dstyle.position = 'absolute';
@@ -4707,7 +4707,7 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 		this.attrs.blur = size;
 
 		s.filter = f + STR_SPACE + STR_MS_PROG_ID_PREFIX + '.Blur(pixelradius=' + (+size || 1.5) + ')';
-		s.margin = A.substitute('-{0}px 0 0 -{0}px', [MATH_ROUND(+size || 1.5)]);
+		s.margin = Lang.sub('-{0}px 0 0 -{0}px', [MATH_ROUND(+size || 1.5)]);
 	}
 	else {
 		s.filter = f;
@@ -4762,7 +4762,7 @@ DRAWING_PROTOTYPE._uiSetHeight = function(value) {
 	canvasStyle.clip = 'rect(0 ' + width  + ' ' + value + ' 0)';
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base','substitute']});
+}, '@VERSION@' ,{requires:['aui-drawing-base']});
 AUI.add('aui-drawing-animate', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -5914,5 +5914,5 @@ A.Drawing.prototype.safari = function() {
 }, '@VERSION@' ,{requires:['aui-drawing-base']});
 
 
-AUI.add('aui-drawing', function(A){}, '@VERSION@' ,{plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false});
+AUI.add('aui-drawing', function(A){}, '@VERSION@' ,{plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}, skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts']});
 
