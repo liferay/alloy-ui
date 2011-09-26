@@ -19,6 +19,7 @@
 	font-weight: bold;
 	border: 0;
 	padding: 0;
+	width: auto;
 }
 
 .aui-image-gallery-paginator .aui-image-gallery-paginator-thumb {
