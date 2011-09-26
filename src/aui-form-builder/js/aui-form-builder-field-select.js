@@ -69,7 +69,7 @@ var FormBuilderSelectField = A.Component.create({
 		getHTML: function() {
 			var instance = this;
 
-			return A.substitute(
+			return L.sub(
 				instance.get(TEMPLATE),
 				{
 					id: instance.get(ID),

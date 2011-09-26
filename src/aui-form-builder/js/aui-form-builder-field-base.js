@@ -288,7 +288,7 @@ var FormBuilderField = A.Component.create({
 				var instance = this;
 
 				return A.Node.create(
-					A.substitute(
+					L.sub(
 						TPL_LABEL,
 						{
 							id: instance.get(ID),

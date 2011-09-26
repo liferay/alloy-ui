@@ -74,7 +74,7 @@ AUI().ready('aui-image-viewer-gallery', 'aui-media-viewer-plugin', function(A) {
 					'providers.dailymotion': {
 						container: '<iframe frameborder="0" width="{width}" height="{height}" src="http://www.dailymotion.com/embed/video/{media}"></iframe>',
 						matcher: new RegExp(
-							A.substitute(
+							A.Lang.sub(
 								A.MediaViewerPlugin.REGEX_DOMAIN,
 								{
 									domain: 'dailymotion.com'
