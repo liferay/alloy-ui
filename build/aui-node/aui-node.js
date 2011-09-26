@@ -1521,7 +1521,41 @@ A.mix(
 	}
 );
 
-}, '@VERSION@' ,{requires:['node','aui-classnamemanager','array-extras']});
+var getRegExp = A.DOM._getRegExp;
+
+var prefix = function(prefix, str) {
+	str = String(str);
+
+	if (str.indexOf(prefix) !== 0) {
+		str = prefix + str;
+	}
+
+	return str;
+};
+
+var prefixSelector = function(ns, id) {
+	return '#' + prefix(ns, id);
+};
+
+A.Node.cssId = prefixSelector;
+
+A.queryNS = function(ns, selector, methodName) {
+	selector = selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
+
+	return A[methodName || 'one'](selector);
+};
+
+A.oneNS = A.queryNS;
+
+A.allNS = function(ns, selector) {
+	return A.queryNS(ns, selector, 'all');
+}
+
+A.byIdNS = function(ns, id) {
+	return A.one(prefixSelector(ns, id));
+};
+
+}, '@VERSION@' ,{requires:['node','aui-classnamemanager']});
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
