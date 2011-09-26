@@ -92,7 +92,7 @@ var FormBuilderRadioField = A.Component.create({
 			A.each(val, function(item, index, collection) {
 				templateNode.append(
 					A.Node.create(
-						A.substitute(
+						L.sub(
 							TPL_RADIO,
 							{
 								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,

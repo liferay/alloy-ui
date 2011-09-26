@@ -421,7 +421,7 @@ var FormValidator = A.Component.create({
 
 			var message = (fieldStrings[rule] || strings[rule] || strings.DEFAULT);
 
-			return A.substitute(message, substituteRulesMap);
+			return L.sub(message, substituteRulesMap);
 		},
 
 		hasErrors: function() {
