@@ -14,17 +14,18 @@
 }
 
 .aui-image-gallery-paginator .aui-paginator-link {
+	border-width: 0;
 	color: white;
+	display: inline-block;
 	font-size: larger;
 	font-weight: bold;
-	border: 0;
 	padding: 0;
 	width: auto;
 }
 
 .aui-image-gallery-paginator .aui-image-gallery-paginator-thumb {
-	background: transparent url() no-repeat 50% 50%;
-	border: 0;
+	background: transparent none no-repeat 50% 50%;
+	border-width: 0;
 	cursor: pointer;
 	display: inline-block;
 	height: 55px;
