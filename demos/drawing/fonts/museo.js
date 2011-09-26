@@ -30,6 +30,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-drawing-font']
+		requires: ['aui-drawing-fonts']
 	}
 );
