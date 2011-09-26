@@ -110,10 +110,8 @@ AUI().ready('aui-aria', 'aui-overlay-context-panel', 'aui-overlay-manager', func
 		contextPanel.align('#simpleContextPanel', [ overlayPoint, targetPoint ]);
 	};
 
-	A.on('click', function() { alignContextPanel(contextPanel1); }, '#overlayPoint');
-	A.on('click', function() { alignContextPanel(contextPanel1); }, '#targetPoint');
-	A.on('keydown', function() { alignContextPanel(contextPanel1); }, '#overlayPoint');
-	A.on('keydown', function() { alignContextPanel(contextPanel1); }, '#targetPoint');
+	A.one('#overlayPoint').on(['click', 'change', 'keydown'], function() { alignContextPanel(contextPanel1); });
+	A.one('#targetPoint').on(['click', 'change', 'keydown'], function() { alignContextPanel(contextPanel1); });
 
 	alignContextPanel(contextPanel1);
 
