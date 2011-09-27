@@ -2,23 +2,10 @@ AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isBoolean = Lang.isBoolean,
-	isNumber = Lang.isNumber,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 
 	AArray = A.Array,
-
-	isAnchor = function(val) {
-		return (val instanceof A.Anchor);
-	},
-
-	isArrayList = function(val) {
-		return (val instanceof A.ArrayList);
-	},
-
-	isDiagramNode = function(val) {
-		return (val instanceof A.DiagramNode);
-	},
 
 	isGraphic = function(val) {
 		return (val instanceof A.Graphic);
@@ -26,48 +13,26 @@ var Lang = A.Lang,
 
 	ANCHOR = 'anchor',
 	ARROW_POINTS = 'arrowPoints',
-	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CLICK = 'click',
 	COLOR = 'color',
 	CONNECTOR = 'connector',
-	DATA_ANCHOR = 'dataAnchor',
-	DIAGRAM = 'diagram',
 	DIAGRAM_NODE = 'diagramNode',
 	FILL = 'fill',
 	GRAPHIC = 'graphic',
-	ID = 'id',
 	LAZY_DRAW = 'lazyDraw',
-	MAX = 'max',
-	MAX_SOURCES = 'maxSources',
-	MAX_TARGETS = 'maxTargets',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
-	NODE = 'node',
 	P1 = 'p1',
-	VISIBLE = 'visible',
 	P2 = 'p2',
 	PATH = 'path',
 	SELECTED = 'selected',
 	SHAPE = 'shape',
 	SHAPE_HOVER = 'shapeHover',
 	SHAPE_SELECTED = 'shapeSelected',
-	SOURCES = 'sources',
 	STROKE = 'stroke',
-	TARGETS = 'targets',
-	WRAPPER = 'wrapper',
-
-	_DOT = '.',
-	_EMPTY_STR = '',
-	_HASH = '#',
-
-	AgetClassName = A.getClassName,
-
-	CSS_DB_ANCHOR_NODE_MAX_TARGETS = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, TARGETS),
-	CSS_DB_ANCHOR_NODE_MAX_SOURCES = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, SOURCES),
-	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
-	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE);
+	VISIBLE = 'visible';
 
 A.PolygonUtil = {
 	ARROW_POINTS: [
@@ -332,6 +297,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		);
 	},
 
+	_uiSetSelected: function(val, draw) {
+		var instance = this;
+
+		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
+	},
+
 	_updateShape: function(cShape, draw) {
 		var instance = this;
 		var shape = instance.shape;
@@ -347,21 +318,23 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		if (draw !== false) {
 			instance.draw();
 		}
-	},
-
-	_uiSetSelected: function(val, draw) {
-		var instance = this;
-
-		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
 	}
 },{
 	ATTRS: {
+		arrowPoints: {
+			value: A.PolygonUtil.ARROW_POINTS
+		},
+
 		builder: {
 		},
 
 		color: {
 			value: '#27aae1',
 			validator: isString
+		},
+
+		graphic: {
+			validator: isGraphic
 		},
 
 		lazyDraw: {
@@ -378,8 +351,24 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isString
 		},
 
-		graphic: {
-			validator: isGraphic
+		p1: {
+			value: [0, 0],
+			validator: isArray
+		},
+
+		p2: {
+			value: [0, 0],
+			validator: isArray
+		},
+
+		selected: {
+			value: false,
+			validator: isBoolean
+		},
+
+		shape: {
+			value: null,
+			setter: '_setShape'
 		},
 
 		shapeHover: {
@@ -394,16 +383,6 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
-		selected: {
-			value: false,
-			validator: isBoolean
-		},
-
-		shape: {
-			value: null,
-			setter: '_setShape'
-		},
-
 		shapeSelected: {
 			value: {
 				fill: {
@@ -416,28 +395,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			}
 		},
 
-		sourceUID: {
-			value: _EMPTY_STR,
-			validator: isString
-		},
-
-		targetUID: {
-			value: _EMPTY_STR,
-			validator: isString
-		},
-
-		arrowPoints: {
-			value: A.PolygonUtil.ARROW_POINTS
-		},
-
-		p1: {
-			value: [0, 0],
-			validator: isArray
-		},
-
-		p2: {
-			value: [0, 0],
-			validator: isArray
+		transition: {
+			value: {},
+			validator: isObject
 		}
 	}
 });

@@ -1,38 +1,12 @@
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
+	isBoolean = Lang.isBoolean,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
-	isBoolean = Lang.isBoolean,
-
-	emptyFn = Lang.emptyFn,
 
 	WidgetStdMod = A.WidgetStdMod,
 	AArray = A.Array,
-
-	isDiagramBuilder = function(val) {
-		return (val instanceof A.DiagramBuilderBase);
-	},
-
-	isDiagramNode = function(val) {
-		return (val instanceof A.DiagramNode);
-	},
-
-	isConnector = function(val) {
-		return (val instanceof A.Connector);
-	},
-
-	isArrayList = function(val) {
-		return (val instanceof A.ArrayList);
-	},
-
-	isDataSet = function(val) {
-		return (val instanceof A.DataSet);
-	},
-
-	// isAnchor = function(val) {
-	// 	return (val instanceof A.Anchor);
-	// },
 
 	getLeftTop = function(container, node) {
 		var nodeXY = isArray(node) ? node : node.getXY();
@@ -43,38 +17,40 @@ var Lang = A.Lang,
 		});
 	},
 
+	isConnector = function(val) {
+		return (val instanceof A.Connector);
+	},
+
+	isDataSet = function(val) {
+		return (val instanceof A.DataSet);
+	},
+
+	isDiagramBuilder = function(val) {
+		return (val instanceof A.DiagramBuilderBase);
+	},
+
+	isDiagramNode = function(val) {
+		return (val instanceof A.DiagramNode);
+	},
+
 	ACTIVE_ELEMENT = 'activeElement',
-	ADD_ANCHOR = 'addAnchor',
-	ADD_ANCHOR_MESSAGE = 'addAnchorMessage',
-	ADD_NODE = 'addNode',
-	ANCHOR = 'anchor',
-	ANCHORS = 'anchors',
-	CONNECTORS = 'connectors',
-	SOURCE_UID = 'sourceUID',
-	TARGET_UID = 'targetUID',
-	RADIUS = 'radius',
-	ANCHORS_DRAG_CONFIG = 'anchorsDragConfig',
-	SHAPE_DRAG_CONFIG = 'shapeDragConfig',
 	AVAILABLE_FIELD = 'availableField',
 	BACKSPACE = 'backspace',
-	LOCK = 'lock',
 	BOOLEAN = 'boolean',
+	BOUNDARY = 'boundary',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
 	CANCEL = 'cancel',
-	SOURCES = 'sources',
-	TARGETS = 'targets',
-	VISIBLE = 'visible',
 	CANVAS = 'canvas',
 	CLICK = 'click',
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
 	CONDITION = 'condition',
+	CONNECTORS = 'connectors',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
 	DATA = 'data',
-	DBLCLICK = 'dblclick',
 	DELETE = 'delete',
 	DELETE_CONNECTORS_MESSAGE = 'deleteConnectorsMessage',
 	DELETE_NODES_MESSAGE = 'deleteNodesMessage',
@@ -82,12 +58,12 @@ var Lang = A.Lang,
 	DIAGRAM = 'diagram',
 	DIAGRAM_BUILDER_NAME = 'diagram-builder',
 	DIAGRAM_NODE = 'diagramNode',
-	DIAGRAM_NODE_NAME = 'diagram-node',
 	DIAGRAM_NODE_MANAGER_NAME = 'diagram-node-manager',
+	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
+	EDITING = 'editing',
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
-	EDITING = 'editing',
 	END = 'end',
 	ESC = 'esc',
 	FIELD = 'field',
@@ -96,46 +72,38 @@ var Lang = A.Lang,
 	FORK = 'fork',
 	GRAPHIC = 'graphic',
 	HEIGHT = 'height',
-	HOVER = 'hover',
 	ID = 'id',
 	JOIN = 'join',
 	KEYDOWN = 'keydown',
-	LINK = 'link',
-	MAX = 'max',
-	MAX_FIELDS = 'maxFields',
-	MAX_SOURCES = 'maxSources',
-	MOUSEENTER = 'mouseenter',
-	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
 	P2 = 'p2',
 	PARENT_NODE = 'parentNode',
 	PENCIL = 'pencil',
+	RADIUS = 'radius',
 	RECORDS = 'records',
 	RECORDSET = 'recordset',
-	REGION = 'region',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
 	SELECTED = 'selected',
-	SHUFFLE = 'shuffle',
-	SOURCE = 'source',
-	SOURCES = 'sources',
-	START = 'start',
-	STATE = 'state',
-	TARGET = 'target',
-	TARGETS = 'targets',
-	TASK = 'task',
-	TMP_CONNECTOR = 'connector',
-	TYPE = 'type',
-	WIDTH = 'width',
-	WRAPPER = 'wrapper',
-	XY = 'xy',
-	Z_INDEX = 'zIndex',
 	SHAPE = 'shape',
 	SHAPE_BOUNDARY = 'shapeBoundary',
 	SHAPE_INVITE = 'shapeInvite',
-	BOUNDARY = 'boundary',
+	SOURCE = 'source',
+	START = 'start',
+	STATE = 'state',
+	TARGET = 'target',
+	TASK = 'task',
+	TMP_CONNECTOR = 'connector',
+	TRANSITION = 'transition',
+	TRANSITIONS = 'transitions',
+	TYPE = 'type',
+	VISIBLE = 'visible',
+	WIDTH = 'width',
+	XY = 'xy',
+	Z_INDEX = 'zIndex',
+
 
 	_DASH = '-',
 	_DOT = '.',
@@ -145,11 +113,6 @@ var Lang = A.Lang,
 
 	AgetClassName = A.getClassName,
 
-	CSS_DB_ANCHOR_NODE_MAX_TARGETS = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, TARGETS),
-	// CSS_DB_ANCHOR_NODE_MAX_SOURCES = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, MAX, SOURCES),
-	CSS_DB_ANCHOR_HOVER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, HOVER),
-	CSS_DB_ANCHOR_NODE = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE),
-	CSS_DB_ANCHOR_NODE_WRAPPER = AgetClassName(DIAGRAM, BUILDER, ANCHOR, NODE, WRAPPER),
 	CSS_DB_CONTROLS = AgetClassName(DIAGRAM, BUILDER, CONTROLS),
 	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
 	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
@@ -170,16 +133,8 @@ window.__dump = function() {
 
 		b += dnName + BR;
 
-		dn.get('targets').each(function(t) {
-			var tdn = A.DiagramNode.getNodeByName(t.name);
-
+		dn.get('transitions').each(function(t) {
 			b += PAD + PAD + 't: ' + A.Object.values(t) + BR;
-		});
-
-		dn.get('sources').each(function(s) {
-			var sdn = A.DiagramNode.getNodeByName(s.name);
-
-			b += PAD + PAD + 's: ' + A.Object.values(s) + BR;
 		});
 
 		log.setContent(b);
@@ -191,6 +146,11 @@ var DiagramBuilder = A.Component.create({
 	NAME: DIAGRAM_BUILDER_NAME,
 
 	ATTRS: {
+		connector: {
+			setter: '_setConnector',
+			value: null
+		},
+
 		fieldsDragConfig: {
 			value: null,
 			setter: '_setFieldsDragConfig',
@@ -214,11 +174,6 @@ var DiagramBuilder = A.Component.create({
 				settings: 'Settings',
 				value: 'Value'
 			}
-		},
-
-		connector: {
-			setter: '_setConnector',
-			value: null
 		}
 	},
 
@@ -249,8 +204,6 @@ var DiagramBuilder = A.Component.create({
 			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 
 			instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT+CSS_DIAGRAM_NODE);
-			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onMouseenterAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
-			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onMouseleaveAnchors, instance), _DOT+CSS_DB_ANCHOR_NODE);
 		},
 
 		renderUI: function() {
@@ -284,12 +237,12 @@ var DiagramBuilder = A.Component.create({
 
 			var fields = [];
 
-			instance.get(FIELDS).each(function(field) {
-				fields.push(field);
+			instance.get(FIELDS).each(function(diagramNode) {
+				fields.push(diagramNode);
 			});
 
-			AArray.each(fields, function(field) {
-				field.destroy();
+			AArray.each(fields, function(diagramNode) {
+				diagramNode.destroy();
 			});
 
 			fields = instance.editingConnector = instance.editingNode = instance.selectedNode = null;
@@ -323,7 +276,7 @@ var DiagramBuilder = A.Component.create({
 			}
 
 			if (diagramNode1 && diagramNode2) {
-				diagramNode1.connect(diagramNode2.toTarget());
+				diagramNode1.connect(diagramNode2.get(NAME));
 			}
 
 			return instance;
@@ -356,44 +309,15 @@ var DiagramBuilder = A.Component.create({
 		deleteSelectedConnectors: function() {
 			var instance = this;
 			var strings = instance.getStrings();
+			var selectedConnectors = instance.getSelectedConnectors();
 
 			if (selectedConnectors.length && confirm(strings[DELETE_CONNECTORS_MESSAGE])) {
-				AArray.each(instance.getSelectedConnectors(), function(connector) {
-					var source = instance.getSourceByUID(connector.get(SOURCE_UID));
-					var sourceDiagramNode = A.DiagramNode.getNodeByName(source.name);
+				AArray.each(selectedConnectors, function(connector) {
+					var transition = connector.get(TRANSITION);
 
-					sourceDiagramNode.disconnect(connector);
+					A.DiagramNode.getNodeByName(transition.source).disconnect(transition);
 				});
 			}
-		},
-
-		getTargetByUID: function(uid) {
-		    var instance = this;
-
-			return instance.getTargetOrSourceByUID(TARGETS, uid);
-		},
-
-		getSourceByUID: function(uid) {
-		    var instance = this;
-
-			return instance.getTargetOrSourceByUID(SOURCES, uid);
-		},
-
-		getTargetOrSourceByUID: function(targetsOrSources, uid) {
-		    var instance = this;
-			var value = null;
-
-			instance.get(FIELDS).some(function(diagramNode) {
-				diagramNode.get(targetsOrSources).eachKey(function(kuid) {
-					if (kuid === uid) {
-						value = this.item(kuid);
-					}
-					return !value;
-				});
-				return !!value;
-			});
-
-			return value;
 		},
 
 		deleteSelectedNode: function() {
@@ -407,11 +331,10 @@ var DiagramBuilder = A.Component.create({
 
 		eachConnector: function(fn) {
 			var instance = this;
-			var stop = false;
 
 			instance.get(FIELDS).each(function(diagramNode) {
-				diagramNode.get(TARGETS).each(function(target) {
-					fn.call(instance, diagramNode.getConnector(target), target, diagramNode);
+				diagramNode.get(TRANSITIONS).each(function(transition) {
+					fn.call(instance, diagramNode.getConnector(transition), transition, diagramNode);
 				});
 			});
 		},
@@ -450,6 +373,36 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
+		getFieldClass: function(type) {
+			var instance = this;
+			var clazz = A.DiagramBuilder.types[type];
+
+			if (clazz) {
+				return clazz;
+			}
+			else {
+				A.log('The field type: [' + type + '] couldn\'t be found.');
+
+				return null;
+			}
+		},
+
+		getNodesByTransitionProperty: function(property, value) {
+		    var instance = this;
+			var nodes = [];
+
+			instance.get(FIELDS).some(function(diagramNode) {
+				diagramNode.get(TRANSITIONS).each(function(transition) {
+					if (transition[property] === value) {
+						nodes.push(diagramNode);
+						return false;
+					}
+				});
+			});
+
+			return nodes;
+		},
+
 		getSelectedConnectors: function() {
 			var instance = this;
 			var selected = [];
@@ -463,18 +416,10 @@ var DiagramBuilder = A.Component.create({
 			return selected;
 		},
 
-		getFieldClass: function(type) {
-			var instance = this;
-			var clazz = A.DiagramBuilder.types[type];
+		getSourceNodes: function(diagramNode) {
+		    var instance = this;
 
-			if (clazz) {
-				return clazz;
-			}
-			else {
-				A.log('The field type: [' + type + '] couldn\'t be found.');
-
-				return null;
-			}
+			return instance.getNodesByTransitionProperty(TARGET, diagramNode.get(NAME));
 		},
 
 		isFieldsDrag: function(drag) {
@@ -490,25 +435,6 @@ var DiagramBuilder = A.Component.create({
 			if (!field.get(RENDERED)) {
 				field.render(instance.dropContainer);
 			}
-		},
-
-		unselectConnectors: function() {
-			var instance = this;
-
-			AArray.each(instance.getSelectedConnectors(), function(connector) {
-				connector.set(SELECTED, false);
-			});
-		},
-
-		unselectNodes: function() {
-			var instance = this;
-			var selectedNode = instance.selectedNode;
-
-			if (selectedNode) {
-				selectedNode.set(SELECTED, false);
-			}
-
-			instance.selectedNode = null;
 		},
 
 		select: function(diagramNode) {
@@ -534,33 +460,46 @@ var DiagramBuilder = A.Component.create({
 				nodes: []
 			};
 
-			instance.get(FIELDS).each(function(field) {
-				var nodeName = field.get(NAME);
-
+			instance.get(FIELDS).each(function(diagramNode) {
 				var node = {
 					transitions: []
 				};
 
 				// serialize node attributes
-				AArray.each(field.SERIALIZABLE_ATTRS, function(attributeName) {
-					node[attributeName] = field.get(attributeName);
+				AArray.each(diagramNode.SERIALIZABLE_ATTRS, function(attributeName) {
+					node[attributeName] = diagramNode.get(attributeName);
 				});
 
 				// serialize node transitions
-				field.get(TARGETS).each(function(t) {
-					var connector = field.getConnector(t);
-
-					node.transitions.push({
-						connector: connector.toJSON(),
-						source: instance.getSourceByUID(connector.get(SOURCE_UID)),
-						target: t
-					});
+				diagramNode.get(TRANSITIONS).each(function(transition) {
+					var connector = diagramNode.getConnector(transition);
+					transition.connector = connector.toJSON();
+					node.transitions.push(transition);
 				});
 
 				output.nodes.push(node);
 			});
 
 			return output;
+		},
+
+		unselectConnectors: function() {
+			var instance = this;
+
+			AArray.each(instance.getSelectedConnectors(), function(connector) {
+				connector.set(SELECTED, false);
+			});
+		},
+
+		unselectNodes: function() {
+			var instance = this;
+			var selectedNode = instance.selectedNode;
+
+			if (selectedNode) {
+				selectedNode.set(SELECTED, false);
+			}
+
+			instance.selectedNode = null;
 		},
 
 		_afterKeyEvent: function(event) {
@@ -584,6 +523,14 @@ var DiagramBuilder = A.Component.create({
 			instance.closeEditProperties();
 		},
 
+		_onDeleteKey: function(event) {
+			var instance = this;
+
+			instance.deleteSelectedConnectors();
+			instance.deleteSelectedNode();
+			event.halt();
+		},
+
 		_onDrag: function(event) {
 			var instance = this;
 			var drag = event.target;
@@ -591,17 +538,12 @@ var DiagramBuilder = A.Component.create({
 			if (instance.isFieldsDrag(drag)) {
 				var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
 
-				diagramNode.alignSources();
-				diagramNode.alignTargets();
+				diagramNode.alignTransitions();
+
+				AArray.each(instance.getSourceNodes(diagramNode), function(sourceNode) {
+					sourceNode.alignTransitions();
+				});
 			}
-
-			// if (instance.isFieldsDrag(drag)) {
-			// 	var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
-
-			// 	diagramNode.get(FIELDS).each(function(anchor) {
-			// 		anchor.alignConnectors();
-			// 	});
-			// }
 		},
 
 		_onDragEnd: function(event) {
@@ -624,42 +566,18 @@ var DiagramBuilder = A.Component.create({
 
 				var newField = instance.addField({
 					xy: getLeftTop(drag.lastXY, instance.dropContainer),
-					type: availableField.get(TYPE),
-					fields: [{}]
+					type: availableField.get(TYPE)
 				});
 
 				instance.select(newField);
 			}
 		},
 
-		_onDeleteKey: function(event) {
-			var instance = this;
-
-			instance.deleteSelectedConnectors();
-
-			instance.deleteSelectedNode();
-
-			event.halt();
-		},
-
 		_onEscKey: function(event) {
 			var instance = this;
 
 			instance.stopEditing();
-
 			event.halt();
-		},
-
-		_onMouseenterAnchors: function(event) {
-			var instance = this;
-
-			event.currentTarget.addClass(CSS_DB_ANCHOR_HOVER);
-		},
-
-		_onMouseleaveAnchors: function(event) {
-			var instance = this;
-
-			event.currentTarget.removeClass(CSS_DB_ANCHOR_HOVER);
 		},
 
 		_onNodeClick: function(event) {
@@ -833,18 +751,6 @@ var DiagramNodeManagerBase = A.Component.create({
 A.DiagramNodeManager = new DiagramNodeManagerBase();
 
 
-var DiagramNodeOverlay = A.Component.create({
-	NAME: DIAGRAM_NODE_NAME,
-
-	EXTENDS: A.Overlay,
-
-	// A.FieldSupport augment the class with "fields" attribute and util methods
-	// such as: addField, removeField. Although the attribute is called "fields" due to
-	// the augmentation, those fields are the anchors. TODO: Allow A.FieldSupport to
-	// customize the name of the attribute and method sufixes.
-	// AUGMENTS: [A.FieldSupport]
-});
-
 var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
@@ -855,9 +761,47 @@ var DiagramNode = A.Component.create({
 			validator: isDiagramBuilder
 		},
 
+		connectors: {
+			valueFn: '_createDataSet',
+			writeOnce: true
+		},
+
+		controlsToolbar: {
+			validator: isObject,
+			valueFn: '_valueControlsToolbar'
+		},
+
+		description: {
+			value: _EMPTY_STR,
+			validator: isString
+		},
+
 		graphic: {
 			writeOnce: true,
 			validator: isObject
+		},
+
+		height: {
+			value: 60
+		},
+
+		name: {
+			valueFn: function() {
+				var instance = this;
+
+				return instance.get(TYPE) + (++A.Env._uidx);
+			},
+			validator: isString
+		},
+
+		required: {
+			value: false,
+			validator: isBoolean
+		},
+
+		selected: {
+			value: false,
+			validator: isBoolean
 		},
 
 		shapeBoundary: {
@@ -882,67 +826,17 @@ var DiagramNode = A.Component.create({
 				stroke: {
 					weight: 5,
 					color: '#ff6600',
-					opacity: .8
+					opacity: 0.8
 				},
 				fill: {
 					color: '#ffd700',
-					opacity: .8
+					opacity: 0.8
 				}
 			}
 		},
 
-		connectors: {
-			valueFn: function() {
-				return new A.DataSet();
-			},
-			writeOnce: true
-		},
-
-		sources: {
-			// lazyAdd: false,
-			value: null,
-			writeOnce: true,
-			setter: '_setSources'
-		},
-
-		targets: {
-			// lazyAdd: false,
-			value: null,
-			writeOnce: true,
-			setter: '_setTargets'
-		},
-
-		required: {
-			value: false,
-			validator: isBoolean
-		},
-
-		description: {
-			value: _EMPTY_STR,
-			validator: isString
-		},
-
-		height: {
-			value: 60
-		},
-
-		name: {
-			valueFn: function() {
-				var instance = this;
-
-				return instance.get(TYPE) + (++A.Env._uidx);
-			},
-			validator: isString
-		},
-
-		selected: {
-			value: false,
-			validator: isBoolean
-		},
-
 		strings: {
 			value: {
-				addAnchorMessage: 'Add Anchor',
 				closeMessage: 'Close',
 				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
 				description: 'Description',
@@ -952,14 +846,19 @@ var DiagramNode = A.Component.create({
 			}
 		},
 
+		tabIndex: {
+			value: 1
+		},
+
+		transitions: {
+			value: null,
+			writeOnce: true,
+			setter: '_setTransitions'
+		},
+
 		type: {
 			value: NODE,
 			validator: isString
-		},
-
-		controlsToolbar: {
-			validator: isObject,
-			valueFn: '_valueControlsToolbar'
 		},
 
 		width: {
@@ -968,21 +867,17 @@ var DiagramNode = A.Component.create({
 
 		zIndex: {
 			value: 100
-		},
-
-		tabIndex: {
-			value: 1
 		}
 	},
 
-	EXTENDS: DiagramNodeOverlay,
+	EXTENDS: A.Overlay,
 
 	getNodeByName: function(name) {
 		return A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(name));
 	},
 
 	buildNodeId: function(id) {
-		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_-]/ig, '_');
+		return DIAGRAM_NODE + _UNDERLINE + FIELD + _UNDERLINE + id.replace(/[^a-z0-9.:_\-]/ig, '_');
 	},
 
 	prototype: {
@@ -1000,6 +895,7 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.after({
+				'dataset:remove': A.bind(instance._afterDataSetRemove, instance),
 				render: instance._afterRender
 			});
 
@@ -1035,43 +931,36 @@ var DiagramNode = A.Component.create({
 			instance.get(BUILDER).removeField(instance);
 		},
 
-		alignTargets: function() {
+		addTransition: function(transition) {
 			var instance = this;
+			var transitions = instance.get(TRANSITIONS);
 
-			instance.get(TARGETS).each(A.bind(instance.alignTarget, instance));
-		},
+			transition = instance.prepareTransition(transition);
 
-		alignSources: function() {
-			var instance = this;
-
-			instance.get(SOURCES).each(A.bind(instance.alignSource, instance));
-		},
-
-		alignSource: function(source) {
-			var instance = this;
-			var diagramNode = A.DiagramNode.getNodeByName(source.name);
-
-			if (diagramNode) {
-				diagramNode.alignTargets();
+			if (!transitions.containsKey(transition.uid)) {
+				transition.uid = A.guid();
+				transitions.add(transition.uid, transition);
 			}
+
+			return transition;
 		},
 
-		alignTarget: function(target) {
+		alignTransition: function(transition) {
 			var instance = this;
-			var diagramNode = A.DiagramNode.getNodeByName(target.name);
+			var diagramNode = A.DiagramNode.getNodeByName(transition.target);
 
 			if (diagramNode) {
-				instance.getConnector(target).setAttrs({
-					p1: instance._adjustDiagramNodeOffset(instance, target.xy),
-					p2: instance._adjustDiagramNodeOffset(diagramNode, target.destXY)
+				instance.getConnector(transition).setAttrs({
+					p1: instance._adjustDiagramNodeOffset(instance, transition.sourceXY),
+					p2: instance._adjustDiagramNodeOffset(diagramNode, transition.targetXY)
 				});
 			}
 		},
 
-		getConnector: function(target) {
+		alignTransitions: function() {
 			var instance = this;
 
-			return instance.get(CONNECTORS).item(target.uid);
+			instance.get(TRANSITIONS).each(A.bind(instance.alignTransition, instance));
 		},
 
 		close: function() {
@@ -1083,6 +972,46 @@ var DiagramNode = A.Component.create({
 			}
 
 			return instance;
+		},
+
+		connect: function(transition) {
+			var instance = this;
+
+			transition = instance.addTransition(transition);
+
+			var connector = null;
+			var diagramNode = A.DiagramNode.getNodeByName(transition.target);
+
+			if (diagramNode) {
+				if (!instance.isTransitionConnected(transition)) {
+					connector = new A.Connector({
+						graphic: instance.get(BUILDER).get(GRAPHIC),
+						transition: transition
+					});
+
+					instance.get(CONNECTORS).add(transition.uid, connector);
+				}
+			}
+
+			instance.alignTransition(transition);
+
+			return connector;
+		},
+
+		disconnect: function(transition) {
+			var instance = this;
+
+			if (instance.isTransitionConnected(transition)) {
+				instance.removeTransition(transition);
+			}
+
+			__dump();
+		},
+
+		getConnector: function(transition) {
+			var instance = this;
+
+			return instance.get(CONNECTORS).item(transition.uid);
 		},
 
 		getContainer: function() {
@@ -1145,6 +1074,39 @@ var DiagramNode = A.Component.create({
 			];
 		},
 
+		isTransitionConnected: function(transition) {
+			var instance = this;
+
+			return instance.get(CONNECTORS).containsKey(transition.uid);
+		},
+
+		prepareTransition: function(val) {
+			var instance = this;
+
+			var transition = {
+				source: instance.get(NAME),
+				sourceXY: [0,0],
+				target: null,
+				targetXY: [0,0],
+				uid: A.guid()
+			};
+
+			if (isString(val)) {
+				transition.target = val;
+			}
+			else if (isObject(val)) {
+				transition = A.merge(transition, val);
+			}
+
+			return transition;
+		},
+
+		removeTransition: function(transition) {
+			var instance = this;
+
+			return instance.get(TRANSITIONS).removeKey(transition.uid);
+		},
+
 		renderShapeBoundary: function() {
 			var instance = this;
 
@@ -1169,132 +1131,25 @@ var DiagramNode = A.Component.create({
 		syncConnectionsUI: function() {
 			var instance = this;
 
-			instance.get(TARGETS).each(A.bind(instance.connect, instance));
+			instance.get(TRANSITIONS).each(A.bind(instance.connect, instance));
 		},
-
-		addNodeSource: function(source) {
-			var instance = this;
-			var sources = instance.get(SOURCES);
-
-			source = instance.createSourceOrTargetObj(source);
-
-			if (!sources.containsKey(source.uid)) {
-				source.uid = A.guid();
-				sources.add(source.uid, source);
-			}
-		},
-
-		createSourceOrTargetObj: function(val) {
-			var instance = this;
-			var target = { xy: [0,0], destXY: [0,0], uid: A.guid() };
-
-			if (isString(val)) {
-				target.name = val;
-			}
-			else if (isObject(val)) {
-				target = A.mix(val, target);
-			}
-
-			return target;
-		},
-
-		addNodeTarget: function(target) {
-			var instance = this;
-			var targets = instance.get(TARGETS);
-
-			target = instance.createSourceOrTargetObj(target);
-
-			if (!targets.containsKey(target.uid)) {
-				target.uid = A.guid();
-				targets.add(target.uid, target);
-			}
-		},
-
-		removeNodeSource: function(source) {
-			var instance = this;
-
-			return instance.get(SOURCES).removeKey(source.uid);
-		},
-
-		removeNodeTarget: function(target) {
-			var instance = this;
-
-			return instance.get(TARGETS).removeKey(target.uid);
-		},
-
-		isTargetConnected: function(target) {
-			var instance = this;
-
-			return instance.get(CONNECTORS).containsKey(target.uid);
-		},
-
-		toTarget: function() {
-			var instance = this;
-
-			return instance.createSourceOrTargetObj({ name: instance.get(NAME) });
-		},
-
-		connect: function(target) {
-			var instance = this;
-			var connector = null;
-
-			target = instance.createSourceOrTargetObj(target);
-
-			var diagramNode = A.DiagramNode.getNodeByName(target.name);
-
-			if (diagramNode) {
-				if (!instance.isTargetConnected(target)) {
-					var source = instance.createSourceOrTargetObj({ name: instance.get(NAME) });
-
-					diagramNode.addNodeSource(source);
-					instance.addNodeTarget(target);
-
-					connector = new A.Connector({
-						graphic: instance.get(BUILDER).get(GRAPHIC),
-						sourceUID: source.uid,
-						targetUID: target.uid
-					});
-
-					instance.get(CONNECTORS).add(target.uid, connector);
-				}
-			}
-
-			instance.alignTarget(target);
-
-			return connector;
-		},
-
-		disconnect: function(connector) {
-			var instance = this;
-			var target = instance.get(TARGETS).item(connector.get(TARGET_UID));
-			var targetDiagramNode = A.DiagramNode.getNodeByName(target.name);
-
-			if (targetDiagramNode && instance.isTargetConnected(target)) {
-				var source = targetDiagramNode.get(SOURCES).item(connector.get(SOURCE_UID));
-
-				connector.destroy();
-				targetDiagramNode.removeNodeSource(source);
-				instance.removeNodeTarget(target);
-			}
-
-			__dump();
-		},
-
-		// _onAnchorDropHit: function(event) {
-		// 	var instance = this;
-		// 	var source = A.Anchor.getAnchorByNode(event.drag.get(NODE));
-		// 	var target = A.Anchor.getAnchorByNode(event.drop.get(NODE));
-
-		// 	source.connect(target);
-
-		// 	__dump();
-		// },
-
 		_adjustDiagramNodeOffset: function(diagramNode, offsetXY) {
 			var instance = this;
 			var dnXY = diagramNode.get(BOUNDING_BOX).getXY();
 
 			return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
+		},
+
+		_afterDataSetRemove: function(event) {
+			var instance = this;
+			var dataSet = event.target;
+
+			if (dataSet === instance.get(TRANSITIONS)) {
+				instance.get(CONNECTORS).removeKey(event.prevVal.uid);
+			}
+			else if (dataSet === instance.get(CONNECTORS)) {
+				event.prevVal.destroy();
+			}
 		},
 
 		_afterRender: function(event) {
@@ -1314,6 +1169,14 @@ var DiagramNode = A.Component.create({
 			});
 		},
 
+		_createDataSet: function() {
+			var instance = this;
+
+			return new A.DataSet({
+				bubbleTargets: instance
+			});
+		},
+
 		_defBoundaryDrag: function(event) {
 			var instance = this;
 			var builder = instance.get(BUILDER);
@@ -1324,7 +1187,6 @@ var DiagramNode = A.Component.create({
 			if (instance.publishedTarget) {
 				var invite = instance.invite;
 				var offset = invite.get(RADIUS) || 0;
-				var mouseXY = instance.boundaryDragDelegate.dd.mouseXY;
 
 				if (!invite.get(VISIBLE)) {
 					invite.set(VISIBLE, true);
@@ -1338,10 +1200,9 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.get(BUILDER).connector.hide();
-
 			instance.publishedSource.invite.set(VISIBLE, false);
 
-			A.DiagramNodeManager.fire('releasedSource', { source: instance });
+			A.DiagramNodeManager.fire('releasedSource', { releasedSource: instance });
 		},
 
 		_defBoundaryDragOut: function(event) {
@@ -1349,7 +1210,6 @@ var DiagramNode = A.Component.create({
 			var publishedSource = instance.publishedSource;
 
 			publishedSource.publishedTarget = null;
-
 			publishedSource.invite.set(VISIBLE, false);
 		},
 
@@ -1368,7 +1228,6 @@ var DiagramNode = A.Component.create({
 			var startXY = instance.boundaryDragDelegate.dd.startXY;
 
 			builder.connector.show().set(P1, startXY);
-
 			A.DiagramNodeManager.fire('publishedSource', { publishedSource: instance });
 		},
 
@@ -1377,12 +1236,14 @@ var DiagramNode = A.Component.create({
 			var dd = instance.boundaryDragDelegate.dd;
 			var sourceDiagramNode = event.publishedSource;
 			var targetDiagramNode = event.publishedTarget;
-			var target = targetDiagramNode.toTarget();
 
-			target.xy = getLeftTop(dd.startXY, sourceDiagramNode.get(BOUNDING_BOX));
-			target.destXY = getLeftTop(dd.mouseXY, targetDiagramNode.get(BOUNDING_BOX));
-
-			sourceDiagramNode.connect(target);
+			sourceDiagramNode.connect(
+				sourceDiagramNode.prepareTransition({
+					sourceXY: getLeftTop(dd.startXY, sourceDiagramNode.get(BOUNDING_BOX)),
+					target: targetDiagramNode.get(NAME),
+					targetXY: getLeftTop(dd.mouseXY, targetDiagramNode.get(BOUNDING_BOX))
+				})
+			);
 		},
 
 		_handleCloseEvent: function(event) {
@@ -1504,36 +1365,22 @@ var DiagramNode = A.Component.create({
 			instance._setupBoundaryDrag();
 		},
 
-		_setSources: function(val) {
-			var instance = this;
-
-			if (!isDataSet(val)) {
-				val = instance._createDataSet();
-			}
-
-			return val;
-		},
-
-		_setTargets: function(val) {
+		_setTransitions: function(val) {
 			var instance = this;
 
 			if (!isDataSet(val)) {
 				var dataSet = instance._createDataSet();
 
-				A.Array.each(val, function(target) {
+				A.Array.each(val, function(transition) {
 					var uid = A.guid();
 
-					target = isObject(target) ? A.mix(target, { uid: uid }) : { uid: uid, name: target };
+					transition = isObject(transition) ? A.mix(transition, { uid: uid }) : { uid: uid, target: transition };
 
-					dataSet.add(uid, instance.createSourceOrTargetObj(target));
+					dataSet.add(uid, instance.prepareTransition(transition));
 				});
 
 				val = dataSet;
 			}
-
-			// val.eachKey(function(target, key) {
-			// 	target.addNodeSource({ name: instance.get(NAME) });
-			// });
 
 			return val;
 		},
@@ -1624,14 +1471,6 @@ var DiagramNode = A.Component.create({
 			var containerXY = instance.getContainer().getXY();
 
 			this._posNode.setXY([ val[0] + containerXY[0], val[1] + containerXY[1] ]);
-		},
-
-		_createDataSet: function() {
-			var instance = this;
-
-			return new A.DataSet({
-				bubbleTargets: instance
-			});
 		},
 
 		_valueControlsToolbar: function(val) {
