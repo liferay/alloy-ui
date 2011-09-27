@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="AlloyMacrolib">
-	<property name="regex.clean.vars" value="^component\.details\..*|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)|component.*$"/>
+	<property name="regex.clean.vars" value="^component\.details\..*|global\.build\.component|component\.rollup\.modules\.buildfiles|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)|component.*$"/>
 	<property name="aui.default.moduledefaultstemplate" value="${project.dir}/resources/builder/templates/moduledeftemplate.txt"/>
 	<property name="aui.default.defaultstemplate" value="${project.dir}/resources/builder/templates/moduledefaults.txt"/>
 	<property name="aui.default.defaultsfile" value="${project.dir}/resources/temp/defaults.js"/>
@@ -263,7 +263,7 @@
 		<attribute name="defaultsfile" default="${aui.default.defaultsfile}"/>
 		<sequential>
 			<property name="aui.base.component.dir" value="${global.build.base}/${build.aui.prefix}aui-base/" />
-			<property name="aui.base.component.tmp.dir" value="${project.dir}/src/${build.aui.prefix}aui-base/build_tmp/" />
+			<property name="aui.base.component.tmp.dir" value="${project.dir}/src/${build.aui.prefix}aui-base/build_rollup_tmp/" />
 
 			<if>
 				<not>
