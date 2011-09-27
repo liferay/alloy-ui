@@ -1322,6 +1322,8 @@ var DiagramNode = A.Component.create({
 				dragEvent: event,
 				publishedSource: publishedSource
 			});
+
+			event.target.get(DRAG_NODE).show();
 		},
 
 		_onBoundaryDragStart: function(event) {
@@ -1330,6 +1332,8 @@ var DiagramNode = A.Component.create({
 			instance.fire('boundaryDragStart', {
 				dragEvent: event
 			});
+
+			event.target.get(DRAG_NODE).hide();
 		},
 
 		_onBoundaryMouseEnter: function(event) {
