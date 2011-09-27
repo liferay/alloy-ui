@@ -1529,12 +1529,16 @@ var prefixSelector = function(ns, id) {
 	return '#' + prefix(ns, id);
 };
 
+var formatSelectorNS = function(ns, selector) {
+	return selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
+};
+
 A.Node.cssId = prefixSelector;
 
-A.queryNS = function(ns, selector, methodName) {
-	selector = selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
+A.Node.formatSelectorNS = formatSelectorNS;
 
-	return A[methodName || 'one'](selector);
+A.queryNS = function(ns, selector, methodName) {
+	return A[methodName || 'one'](formatSelectorNS(ns, selector));
 };
 
 A.oneNS = A.queryNS;
