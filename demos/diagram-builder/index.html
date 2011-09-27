@@ -131,39 +131,43 @@ AUI().use('aui-diagram-builder', function(A) {
 			},
 			fields: [
 				{
-					name: 'Task0',
-					type: 'condition',
-					xy: [900, 200]
-				},
-				{
-					name: 'Task1',
-					type: 'fork',
-					xy: [900, 400]
-				},
-				// {
-				// 	name: 'TaskA',
-				// 	type: 'fork',
-				// },
-				// {
-				// 	name: 'TaskB',
-				// 	type: 'fork',
-				// },
-				// {
-				// 	name: 'TaskC',
-				// 	type: 'fork',
-				// },
-				// {
-				// 	name: 'TaskD',
-				// 	type: 'fork',
-				// },
-				{
 					// transitions: [
 					// 	'Task1',
 					// 	{ target: 'Task0' }
 					// ],
-					name: 'StartNode',
+					name: 'StartNode0',
 					type: 'start',
-					xy: [1200, 50]
+					xy: [10, 10]
+				},
+				{
+					name: 'Condition0',
+					type: 'condition',
+					xy: [100, 100]
+				},
+				{
+					name: 'State0',
+					type: 'state',
+					xy: [250, 100]
+				},
+				{
+					name: 'Join0',
+					type: 'join',
+					xy: [100, 300]
+				},
+				{
+					name: 'Task0',
+					type: 'task',
+					xy: [400, 100]
+				},
+				{
+					name: 'Fork0',
+					type: 'fork',
+					xy: [400, 300]
+				},
+				{
+					name: 'EndNode0',
+					type: 'end',
+					xy: [600, 10]
 				}
 			],
 			render: true
@@ -172,10 +176,10 @@ AUI().use('aui-diagram-builder', function(A) {
 
 	// db1.syncTargetsUI();
 
-	var task2 = db1.addField({
-		name: 'Task2',
-		type: 'condition'
-	});
+	// var task2 = db1.addField({
+	// 	name: 'Task2',
+	// 	type: 'condition'
+	// });
 
 	// task2.addTransition('Task1');
 	// task2.connect('Task1');
@@ -183,18 +187,38 @@ AUI().use('aui-diagram-builder', function(A) {
 	db1.connectAll([
 		{
 			connector: { name: 'Task0Connector' },
-			source: 'StartNode',
-			target: 'Task0'
+			source: 'StartNode0',
+			target: 'Condition0'
 		},
 		{
 			connector: { name: 'Task1Connector' },
-			source: 'StartNode',
-			target: 'Task1'
+			source: 'Condition0',
+			target: 'State0'
 		},
 		{
 			connector: { name: 'Task2Connector' },
-			source: 'Task2',
-			target: 'Task1'
+			source: 'State0',
+			target: 'Join0'
+		},
+		{
+			connector: { name: 'Task3Connector' },
+			source: 'Join0',
+			target: 'Task0'
+		},
+		{
+			connector: { name: 'Task4Connector' },
+			source: 'Task0',
+			target: 'Fork0'
+		},
+		{
+			connector: { name: 'Task5Connector' },
+			source: 'Fork0',
+			target: 'EndNode0'
+		},
+		{
+			connector: { name: 'Task5Connector' },
+			source: 'State0',
+			target: 'EndNode0'
 		}
 	]);
 
