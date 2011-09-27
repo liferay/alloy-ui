@@ -168,6 +168,7 @@ var DiagramBuilder = A.Component.create({
 				addNode: 'Add node',
 				cancel: 'Cancel',
 				deleteConnectorsMessage: 'Are you sure you want to delete the selected connector(s)?',
+				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
 				propertyName: 'Property Name',
 				save: 'Save',
 				settings: 'Settings',
@@ -182,6 +183,8 @@ var DiagramBuilder = A.Component.create({
 	SETTINGS_TAB: 1,
 
 	prototype: {
+		editingConnector: null,
+		editingNode: null,
 		selectedConnector: null,
 		selectedNode: null,
 
@@ -259,8 +262,7 @@ var DiagramBuilder = A.Component.create({
 				editingNode.get(BOUNDING_BOX).removeClass(CSS_DIAGRAM_NODE_EDITING);
 			}
 
-			instance.editingConnector = null;
-			instance.editingNode = null;
+			instance.editingConnector = instance.editingNode = null;
 		},
 
 		connect: function(diagramNode1, diagramNode2) {
@@ -316,15 +318,20 @@ var DiagramBuilder = A.Component.create({
 
 					A.DiagramNode.getNodeByName(transition.source).disconnect(transition);
 				});
+
+				instance.stopEditing();
 			}
 		},
 
 		deleteSelectedNode: function() {
 			var instance = this;
+			var strings = instance.getStrings();
 			var selectedNode = instance.selectedNode;
 
-			if (selectedNode && !selectedNode.get(REQUIRED)) {
+			if (selectedNode && !selectedNode.get(REQUIRED) && confirm(strings[DELETE_NODES_MESSAGE])) {
 				selectedNode.close();
+				instance.editingNode = instance.selectedNode = null;
+				instance.stopEditing();
 			}
 		},
 
@@ -640,6 +647,7 @@ var DiagramBuilder = A.Component.create({
 				val = new A.Connector(
 					A.merge(
 						{
+							builder: instance,
 							graphic: instance.get(GRAPHIC),
 							lazyDraw: true,
 							p1: xy,
@@ -837,7 +845,6 @@ var DiagramNode = A.Component.create({
 		strings: {
 			value: {
 				closeMessage: 'Close',
-				deleteNodesMessage: 'Are you sure you want to delete the selected node(s)?',
 				description: 'Description',
 				editMessage: 'Edit',
 				name: 'Name',
@@ -898,6 +905,10 @@ var DiagramNode = A.Component.create({
 				render: instance._afterRender
 			});
 
+			instance.on({
+				nameChange: instance._onNameChange
+			});
+
 			instance.publish({
 				boundaryDrag: { defaultFn: instance._defBoundaryDrag },
 				boundaryDragEnd: { defaultFn: instance._defBoundaryDragEnd },
@@ -924,6 +935,10 @@ var DiagramNode = A.Component.create({
 
 		destructor: function() {
 			var instance = this;
+
+			instance.eachConnector(function(connector, index, sourceNode) {
+				sourceNode.removeTransition(connector.get(TRANSITION));
+			});
 
 			instance.invite.destroy();
 			instance.get(GRAPHIC).destroy();
@@ -964,13 +979,8 @@ var DiagramNode = A.Component.create({
 
 		close: function() {
 			var instance = this;
-			var strings = instance.getStrings();
 
-			if (confirm(strings[DELETE_NODES_MESSAGE])) {
-				instance.destroy();
-			}
-
-			return instance;
+			return instance.destroy();
 		},
 
 		connect: function(transition) {
@@ -983,8 +993,11 @@ var DiagramNode = A.Component.create({
 
 			if (diagramNode) {
 				if (!instance.isTransitionConnected(transition)) {
+					var builder = instance.get(BUILDER);
+
 					connector = new A.Connector({
-						graphic: instance.get(BUILDER).get(GRAPHIC),
+						builder: builder,
+						graphic: builder.get(GRAPHIC),
 						transition: transition
 					});
 
@@ -1005,6 +1018,28 @@ var DiagramNode = A.Component.create({
 			}
 
 			__dump();
+		},
+
+		eachConnector: function(fn) {
+		    var instance = this;
+			var sourceNodes = [], connectors = [].concat(instance.get(CONNECTORS).values), tIndex = connectors.length;
+
+			AArray.each(instance.get(BUILDER).getSourceNodes(instance), function(sourceNode) {
+				sourceNode.get(CONNECTORS).each(function(connector) {
+					if (instance.get(NAME) === connector.get(TRANSITION).target) {
+						sourceNodes.push(sourceNode);
+						connectors.push(connector);
+					}
+				});
+			});
+
+			AArray.each(connectors, function(connector, index) {
+				fn.call(instance, connector, index, (index < tIndex) ? instance : sourceNodes[index - tIndex]);
+			});
+
+			connectors = sourceNodes = null;
+
+			return connectors;
 		},
 
 		getConnector: function(transition) {
@@ -1132,6 +1167,7 @@ var DiagramNode = A.Component.create({
 
 			instance.get(TRANSITIONS).each(A.bind(instance.connect, instance));
 		},
+
 		_adjustDiagramNodeOffset: function(diagramNode, offsetXY) {
 			var instance = this;
 			var dnXY = diagramNode.get(BOUNDING_BOX).getXY();
@@ -1325,6 +1361,17 @@ var DiagramNode = A.Component.create({
 					publishedSource: publishedSource
 				});
 			}
+		},
+
+		_onNameChange: function(event) {
+		    var instance = this;
+
+			instance.eachConnector(function(connector, index, sourceNode) {
+				var transition = connector.get(TRANSITION);
+
+				transition[(instance === sourceNode) ? SOURCE : TARGET] = event.newVal;
+				connector.set(TRANSITION, transition);
+			});
 		},
 
 		_renderControls: function() {
