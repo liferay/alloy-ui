@@ -157,6 +157,16 @@ A.mix(
 			return count + ' ' + suffix;
 		},
 
+		prefix: function(prefix, str) {
+			str = String(str);
+
+			if (str.indexOf(prefix) !== 0) {
+				str = prefix + str;
+			}
+
+			return str;
+		},
+
 		remove: function(s, substitute, all) {
 			var re = new RegExp(LString.escapeRegEx(substitute), all ? STR_G : STR_BLANK);
 
