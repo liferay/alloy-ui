@@ -1472,8 +1472,6 @@ A.mix(
 	}
 );
 
-
-
 NODELIST_PROTO.__filter = NODELIST_PROTO.filter;
 
 NODELIST_PROTO.filter = function(value, context) {
