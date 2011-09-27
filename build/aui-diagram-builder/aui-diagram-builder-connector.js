@@ -191,7 +191,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	},
 
 	hide: function() {
-	    var instance = this;
+		var instance = this;
 
 		instance.shape.set(VISIBLE, false);
 
@@ -199,7 +199,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	},
 
 	show: function() {
-	    var instance = this;
+		var instance = this;
 
 		instance.shape.set(VISIBLE, true);
 

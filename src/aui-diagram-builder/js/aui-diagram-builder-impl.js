@@ -394,7 +394,7 @@ var DiagramBuilder = A.Component.create({
 		},
 
 		getNodesByTransitionProperty: function(property, value) {
-		    var instance = this;
+			var instance = this;
 			var nodes = [];
 
 			instance.get(FIELDS).some(function(diagramNode) {
@@ -423,7 +423,7 @@ var DiagramBuilder = A.Component.create({
 		},
 
 		getSourceNodes: function(diagramNode) {
-		    var instance = this;
+			var instance = this;
 
 			return instance.getNodesByTransitionProperty(TARGET, diagramNode.get(NAME));
 		},
@@ -813,25 +813,16 @@ var DiagramNode = A.Component.create({
 
 		shapeBoundary: {
 			validator: isObject,
-			value: {
-				height: 40,
-				type: 'rect',
-				stroke: {
-					weight: 10,
-					color: '#f00'
-					// color: 'transparent'
-				},
-				width: 40
-			}
+			valueFn: '_valueShapeBoundary'
 		},
 
 		shapeInvite: {
 			validator: isObject,
 			value: {
-				radius: 10,
+				radius: 12,
 				type: 'circle',
 				stroke: {
-					weight: 5,
+					weight: 6,
 					color: '#ff6600',
 					opacity: 0.8
 				},
@@ -1021,7 +1012,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		eachConnector: function(fn) {
-		    var instance = this;
+			var instance = this;
 			var sourceNodes = [], connectors = [].concat(instance.get(CONNECTORS).values), tIndex = connectors.length;
 
 			AArray.each(instance.get(BUILDER).getSourceNodes(instance), function(sourceNode) {
@@ -1368,7 +1359,7 @@ var DiagramNode = A.Component.create({
 		},
 
 		_onNameChange: function(event) {
-		    var instance = this;
+			var instance = this;
 
 			instance.eachConnector(function(connector, index, sourceNode) {
 				var transition = connector.get(TRANSITION);
@@ -1544,6 +1535,20 @@ var DiagramNode = A.Component.create({
 					}
 				]
 			};
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return {
+				height: 40,
+				type: 'rect',
+				stroke: {
+					weight: 7,
+					color: 'transparent'
+				},
+				width: 40
+			};
 		}
 	}
 });
@@ -1569,7 +1574,35 @@ A.DiagramNodeState = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNode
+	EXTENDS: A.DiagramNode,
+
+	prototype: {
+		renderShapeBoundary: function() {
+			var instance = this;
+
+			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
+				instance.get(SHAPE_BOUNDARY)
+			);
+
+			boundary.translate(5, 5);
+			boundary.end();
+
+			return boundary;
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return {
+				radius: 15,
+				type: 'circle',
+				stroke: {
+					weight: 7,
+					color: 'transparent'
+				}
+			};
+		}
+	}
 });
 
 A.DiagramBuilder.types[STATE] = A.DiagramNodeState;
@@ -1606,6 +1639,12 @@ A.DiagramNodeCondition = A.Component.create({
 			boundary.end();
 
 			return boundary;
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
 		}
 	}
 });
@@ -1657,7 +1696,21 @@ A.DiagramNodeJoin = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState
+	EXTENDS: A.DiagramNodeState,
+
+	prototype: {
+		renderShapeBoundary: function() {
+			var instance = this;
+
+			return A.DiagramNodeCondition.prototype.renderShapeBoundary.apply(instance, arguments);
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
+		}
+	}
 });
 
 A.DiagramBuilder.types[JOIN] = A.DiagramNodeJoin;
@@ -1679,7 +1732,21 @@ A.DiagramNodeFork = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState
+	EXTENDS: A.DiagramNodeState,
+
+	prototype: {
+		renderShapeBoundary: function() {
+			var instance = this;
+
+			return A.DiagramNodeCondition.prototype.renderShapeBoundary.apply(instance, arguments);
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
+		}
+	}
 });
 
 A.DiagramBuilder.types[FORK] = A.DiagramNodeFork;
@@ -1701,7 +1768,36 @@ A.DiagramNodeTask = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DiagramNodeState
+	EXTENDS: A.DiagramNodeState,
+
+	prototype: {
+		renderShapeBoundary: function() {
+			var instance = this;
+
+			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(
+				instance.get(SHAPE_BOUNDARY)
+			);
+
+			boundary.translate(8, 8);
+			boundary.end();
+
+			return boundary;
+		},
+
+		_valueShapeBoundary: function() {
+			var instance = this;
+
+			return {
+				height: 55,
+				type: 'rect',
+				stroke: {
+					weight: 7,
+					color: 'transparent'
+				},
+				width: 55
+			};
+		}
+	}
 });
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
