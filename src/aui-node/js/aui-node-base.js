@@ -131,18 +131,6 @@ A.mix(NODE_PROTO, {
 		return instance.all(formatSelectorNS(ns, selector));
 	},
 
-	byId: function(id) {
-		var instance = this;
-
-		return A.one(A.DOM.byId(id, instance._node));
-	},
-
-	byIdNS: function(ns, id) {
-		var instance = this;
-
-		return instance.one(prefixSelector(ns, id));
-	},
-
 	/**
 	 * <p>Returns the current ancestors of the node element. If a selector is
 	 * specified, the ancestors are filtered to match the selector.</p>
@@ -1413,18 +1401,6 @@ A.mix(
 			var instance = this;
 
 			return instance.all(formatSelectorNS(ns, selector));
-		},
-
-		byId: function(id) {
-			var instance = this;
-
-			return instance.one(prefixSelector(STR_EMPTY, id));
-		},
-
-		byIdNS: function(ns, id) {
-			var instance = this;
-
-			return instance.one(prefixSelector(ns, id));
 		},
 
 		/**
