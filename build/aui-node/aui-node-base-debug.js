@@ -1523,15 +1523,7 @@ A.mix(
 
 var getRegExp = A.DOM._getRegExp;
 
-var prefix = function(prefix, str) {
-	str = String(str);
-
-	if (str.indexOf(prefix) !== 0) {
-		str = prefix + str;
-	}
-
-	return str;
-};
+var prefix = Lang.String.prefix;
 
 var prefixSelector = function(ns, id) {
 	return '#' + prefix(ns, id);
@@ -1555,4 +1547,4 @@ A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
 
-}, '@VERSION@' ,{requires:['node','aui-classnamemanager']});
+}, '@VERSION@' ,{requires:['aui-base-lang','node','aui-classnamemanager']});

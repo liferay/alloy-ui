@@ -48,7 +48,7 @@
 						'aui-loading-mask': {requires:['aui-overlay-mask','plugin'], skinnable:true},
 						'aui-messaging': {requires:['aui-base','aui-task-manager','querystring'], skinnable:false},
 						'aui-nested-list': {requires:['aui-base','dd-drag','dd-drop','dd-proxy'], skinnable:false},
-						'aui-node': {submodules: {'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['node','aui-classnamemanager']} }, skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']},
+						'aui-node': {submodules: {'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base-lang','node','aui-classnamemanager']} }, skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']},
 						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task','aui-aria']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']},
 						'aui-paginator': {requires:['aui-base'], skinnable:true},
 						'aui-panel': {requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true},
@@ -714,6 +714,16 @@ A.mix(
 			}
 
 			return count + ' ' + suffix;
+		},
+
+		prefix: function(prefix, str) {
+			str = String(str);
+
+			if (str.indexOf(prefix) !== 0) {
+				str = prefix + str;
+			}
+
+			return str;
 		},
 
 		remove: function(s, substitute, all) {
