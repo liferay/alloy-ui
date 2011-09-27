@@ -14,12 +14,18 @@ var Lang = A.Lang,
 	isValue = Lang.isValue,
 
 	AArray = A.Array,
+	Node = A.Node,
+	NodeList = A.NodeList,
 
 	getClassName = A.getClassName,
+	getRegExp = A.DOM._getRegExp,
+
+	prefix = Lang.String.prefix,
 
 	CONFIG = A.config,
 
-	NODE_PROTOTYPE = A.Node.prototype,
+	NODE_PROTO = Node.prototype,
+	NODELIST_PROTO = NodeList.prototype,
 
 	STR_EMPTY = '',
 
@@ -64,6 +70,14 @@ var Lang = A.Lang,
 		l: 'paddingLeft',
 		r: 'paddingRight',
 		t: 'paddingTop'
+	},
+
+	prefixSelector = function(ns, id) {
+		return '#' + prefix(ns, id);
+	},
+
+	formatSelectorNS = function(ns, selector) {
+		return selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
 	};
 
 	/*
@@ -96,6 +110,10 @@ var Lang = A.Lang,
 
 	div = null;
 
+	Node.cssId = prefixSelector;
+
+	Node.formatSelectorNS = formatSelectorNS;
+
 /**
  * Augment the <a href="Node.html">YUI3 Node</a> with more util methods.
  *
@@ -106,7 +124,13 @@ var Lang = A.Lang,
  * @constructor
  * @uses Node
  */
-A.mix(NODE_PROTOTYPE, {
+A.mix(NODE_PROTO, {
+	allNS: function(ns, selector) {
+		var instance = this;
+
+		return instance.all(formatSelectorNS(ns, selector));
+	},
+
 	/**
 	 * <p>Returns the current ancestors of the node element. If a selector is
 	 * specified, the ancestors are filtered to match the selector.</p>
@@ -281,7 +305,7 @@ A.mix(NODE_PROTOTYPE, {
 
 					outerHTML = outerHTML.replace(REGEX_IE8_ACTION, '="$1">').replace(REGEX_LEADING_WHITE_SPACE, STR_EMPTY);
 
-					clone = A.Node.create(outerHTML);
+					clone = Node.create(outerHTML);
 				}
 				else {
 					clone = A.one(el.cloneNode());
@@ -349,7 +373,7 @@ A.mix(NODE_PROTOTYPE, {
 
 		instance.all('>*').remove().purge();
 
-		var el = A.Node.getDOMNode(instance);
+		var el = Node.getDOMNode(instance);
 
 		while (el.firstChild) {
 			el.removeChild(el.firstChild);
@@ -368,7 +392,7 @@ A.mix(NODE_PROTOTYPE, {
 	getDOM: function() {
 		var instance = this;
 
-		return A.Node.getDOMNode(instance);
+		return Node.getDOMNode(instance);
 	},
 
 	/**
@@ -518,6 +542,12 @@ A.mix(NODE_PROTOTYPE, {
 		return this;
 	},
 
+	oneNS: function(ns, selector) {
+		var instance = this;
+
+		return instance.one(formatSelectorNS(ns, selector));
+	},
+
 	/**
 	 * Gets the outerHTML of a node, which islike innerHTML, except that it
 	 * actually contains the HTML of the node itself.
@@ -533,7 +563,7 @@ A.mix(NODE_PROTOTYPE, {
 			return domEl.outerHTML;
 		}
 
-		var temp = A.Node.create('<div></div>').append(
+		var temp = Node.create('<div></div>').append(
 			this.clone()
 		);
 
@@ -634,7 +664,7 @@ A.mix(NODE_PROTOTYPE, {
 	/**
 	 * Generate an unique identifier and reset the id attribute of the node
      * instance using the new value. Invokes the
-     * <a href="A.Node.html#method_guid">guid</a>.
+     * <a href="Node.html#method_guid">guid</a>.
 	 *
 	 * @method resetId
 	 * @chainable
@@ -1008,7 +1038,7 @@ A.mix(NODE_PROTOTYPE, {
 
 		if (parent) {
 			if (isString(newNode)) {
-				newNode = A.Node.create(newNode);
+				newNode = Node.create(newNode);
 			}
 
 			parent.insertBefore(newNode, refNode);
@@ -1027,14 +1057,14 @@ A.mix(NODE_PROTOTYPE, {
 	}
 }, true);
 
-NODE_PROTOTYPE.__show = NODE_PROTOTYPE._show;
-NODE_PROTOTYPE.__hide = NODE_PROTOTYPE._hide;
-NODE_PROTOTYPE.__isHidden = NODE_PROTOTYPE._isHidden;
+NODE_PROTO.__show = NODE_PROTO._show;
+NODE_PROTO.__hide = NODE_PROTO._hide;
+NODE_PROTO.__isHidden = NODE_PROTO._isHidden;
 
-NODE_PROTOTYPE._isHidden = function() {
+NODE_PROTO._isHidden = function() {
 	var instance = this;
 
-	return NODE_PROTOTYPE.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HELPER_HIDDEN);
+	return NODE_PROTO.__isHidden.call(instance) || instance.hasClass(instance._hideClass || CSS_HELPER_HIDDEN);
 };
 /**
  * <p>Hide the node adding a css class on it. If <code>cssClass</code> is not
@@ -1049,7 +1079,7 @@ NODE_PROTOTYPE._isHidden = function() {
  * @chainable
  * @param {string} cssClass Class name to hide the element. Optional.
  */
-NODE_PROTOTYPE._hide = function() {
+NODE_PROTO._hide = function() {
 	var instance = this;
 
 	instance.addClass(instance._hideClass || CSS_HELPER_HIDDEN);
@@ -1071,7 +1101,7 @@ NODE_PROTOTYPE._hide = function() {
  * @chainable
  * @param {string} cssClass Class name to hide the element. Optional.
  */
-NODE_PROTOTYPE._show = function() {
+NODE_PROTO._show = function() {
 	var instance = this;
 
 	instance.removeClass(instance._hideClass || CSS_HELPER_HIDDEN);
@@ -1176,7 +1206,7 @@ A.each(
 
 		var dimensionType = item.toLowerCase();
 
-		NODE_PROTOTYPE[dimensionType] = function(size) {
+		NODE_PROTO[dimensionType] = function(size) {
 			var instance = this;
 
 			var returnValue = instance;
@@ -1218,13 +1248,13 @@ A.each(
 			return returnValue;
 		};
 
-		NODE_PROTOTYPE[INNER + item] = function() {
+		NODE_PROTO[INNER + item] = function() {
 			var instance = this;
 
 			return instance[dimensionType]() + instance.getPadding(sides);
 		};
 
-		NODE_PROTOTYPE[OUTER + item] = function(margin) {
+		NODE_PROTO[OUTER + item] = function(margin) {
 			var instance = this;
 
 			var innerSize = instance[INNER + item]();
@@ -1290,8 +1320,8 @@ if (!SUPPORT_OPTIONAL_TBODY) {
  * @constructor
  * @uses A.Node
  */
-A.NodeList.importMethod(
-	NODE_PROTOTYPE,
+NodeList.importMethod(
+	NODE_PROTO,
 	[
 		'after',
 
@@ -1337,8 +1367,6 @@ A.NodeList.importMethod(
 	]
 );
 
-var NODELIST_PROTO = A.NodeList.prototype;
-
 A.mix(
 	NODELIST_PROTO,
 	{
@@ -1369,6 +1397,12 @@ A.mix(
 			return A.all(newNodeList);
 		},
 
+		allNS: function(ns, selector) {
+			var instance = this;
+
+			return instance.all(formatSelectorNS(ns, selector));
+		},
+
 		/**
 		 * Returns the first element in the node list collection.
 		 *
@@ -1389,7 +1423,7 @@ A.mix(
 		getDOM: function() {
 			var instance = this;
 
-			return A.NodeList.getDOMNodes(this);
+			return NodeList.getDOMNodes(this);
 		},
 
 		/**
@@ -1428,9 +1462,17 @@ A.mix(
 			}
 
 			return newNode;
+		},
+
+		oneNS: function(ns, selector) {
+			var instance = this;
+
+			return instance.one(formatSelectorNS(ns, selector));
 		}
 	}
 );
+
+
 
 NODELIST_PROTO.__filter = NODELIST_PROTO.filter;
 
@@ -1460,7 +1502,7 @@ NODELIST_PROTO.filter = function(value, context) {
 };
 
 A.mix(
-	A.NodeList,
+	NodeList,
 	{
 		create: function(html) {
 			var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
@@ -1519,22 +1561,6 @@ A.mix(
 		}
 	}
 );
-
-var getRegExp = A.DOM._getRegExp;
-
-var prefix = Lang.String.prefix;
-
-var prefixSelector = function(ns, id) {
-	return '#' + prefix(ns, id);
-};
-
-var formatSelectorNS = function(ns, selector) {
-	return selector.replace(getRegExp('(#|\\[id=(\\\"|\\\'))(?!' + ns + ')', 'g'), '$1' + ns);
-};
-
-A.Node.cssId = prefixSelector;
-
-A.Node.formatSelectorNS = formatSelectorNS;
 
 A.queryNS = function(ns, selector, methodName) {
 	return A[methodName || 'one'](formatSelectorNS(ns, selector));
