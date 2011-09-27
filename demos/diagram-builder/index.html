@@ -140,10 +140,26 @@ AUI().use('aui-diagram-builder', function(A) {
 					type: 'fork',
 					xy: [900, 400]
 				},
+				// {
+				// 	name: 'TaskA',
+				// 	type: 'fork',
+				// },
+				// {
+				// 	name: 'TaskB',
+				// 	type: 'fork',
+				// },
+				// {
+				// 	name: 'TaskC',
+				// 	type: 'fork',
+				// },
+				// {
+				// 	name: 'TaskD',
+				// 	type: 'fork',
+				// },
 				{
-					// targets: [
+					// transitions: [
 					// 	'Task1',
-					// 	{ name: 'Task0' }
+					// 	{ target: 'Task0' }
 					// ],
 					name: 'StartNode',
 					type: 'start',
@@ -161,7 +177,7 @@ AUI().use('aui-diagram-builder', function(A) {
 		type: 'condition'
 	});
 
-	// task2.addNodeTarget('Task1');
+	// task2.addTransition('Task1');
 	// task2.connect('Task1');
 
 	db1.connectAll([
