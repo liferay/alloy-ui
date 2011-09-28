@@ -157,6 +157,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		instance.shape.destroy();
+		instance.shapeArrow.destroy();
 	},
 
 	draw: function() {
