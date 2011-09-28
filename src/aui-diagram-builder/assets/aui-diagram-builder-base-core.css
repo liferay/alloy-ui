@@ -68,6 +68,7 @@
 }
 
 .aui-diagram-node {
+	cursor: move;
 	position: absolute;
 }
 
@@ -112,4 +113,8 @@
 
 .aui-diagram-node-focused {
 	outline: 0;
+}
+
+.aui-diagram-node-shape-boundary {
+	cursor: crosshair;
 }
