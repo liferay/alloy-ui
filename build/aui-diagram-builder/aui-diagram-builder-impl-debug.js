@@ -282,7 +282,7 @@ var DiagramBuilder = A.Component.create({
 			instance.editingConnector = instance.editingNode = null;
 		},
 
-		connect: function(diagramNode1, diagramNode2) {
+		connect: function(diagramNode1, diagramNode2, optConnector) {
 			var instance = this;
 
 			if (isString(diagramNode1)) {
@@ -294,7 +294,7 @@ var DiagramBuilder = A.Component.create({
 			}
 
 			if (diagramNode1 && diagramNode2) {
-				diagramNode1.connect(diagramNode2.get(NAME));
+				diagramNode1.connect(diagramNode2.get(NAME), optConnector);
 			}
 
 			return instance;
@@ -960,7 +960,7 @@ var DiagramNode = A.Component.create({
 			return instance.destroy();
 		},
 
-		connect: function(transition) {
+		connect: function(transition, optConnector) {
 			var instance = this;
 
 			transition = instance.addTransition(transition);
@@ -978,11 +978,13 @@ var DiagramNode = A.Component.create({
 						targetXY: bestMatch[1]
 					});
 
-					connector = new A.Connector({
-						builder: builder,
-						graphic: builder.get(GRAPHIC),
-						transition: transition
-					});
+					connector = new A.Connector(
+						A.merge({
+							builder: builder,
+							graphic: builder.get(GRAPHIC),
+							transition: transition
+						}, optConnector)
+					);
 
 					instance.get(CONNECTORS).add(transition.uid, connector);
 				}
@@ -999,8 +1001,6 @@ var DiagramNode = A.Component.create({
 			if (instance.isTransitionConnected(transition)) {
 				instance.removeTransition(transition);
 			}
-
-			__dump();
 		},
 
 		eachConnector: function(fn) {
