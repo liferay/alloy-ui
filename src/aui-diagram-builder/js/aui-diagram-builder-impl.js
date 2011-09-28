@@ -7,31 +7,6 @@ var Lang = A.Lang,
 	WidgetStdMod = A.WidgetStdMod,
 	AArray = A.Array,
 
-	getLeftTop = function(container, node) {
-		var nodeXY = isArray(node) ? node : node.getXY();
-		var containerXY = isArray(container) ? container : container.getXY();
-
-		return AArray.map(containerXY, function(val, i) {
-			return Math.max(0, val - nodeXY[i]);
-		});
-	},
-
-	isConnector = function(val) {
-		return (val instanceof A.Connector);
-	},
-
-	isDataSet = function(val) {
-		return (val instanceof A.DataSet);
-	},
-
-	isDiagramBuilder = function(val) {
-		return (val instanceof A.DiagramBuilderBase);
-	},
-
-	isDiagramNode = function(val) {
-		return (val instanceof A.DiagramNode);
-	},
-
 	ACTIVE_ELEMENT = 'activeElement',
 	AVAILABLE_FIELD = 'availableField',
 	BACKSPACE = 'backspace',
@@ -117,7 +92,74 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
 	CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
-	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED);
+	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED),
+
+	CIRCLE_POINTS = [[35, 20], [28, 33], [14, 34], [5, 22], [10, 9], [24, 6], [34, 16], [31, 30], [18, 35], [6, 26], [7, 12], [20, 5], [33, 12], [34, 26], [22, 35], [9, 30], [6, 16], [16, 6], [30, 9], [35, 22], [26, 34], [12, 33], [5, 20], [12, 7], [26, 6], [35, 18], [30, 31], [16, 34], [6, 24], [9, 10], [22, 5], [34, 14], [33, 28], [20, 35], [7, 28], [6, 14], [18, 5], [31, 10], [34, 24], [24, 34], [10, 31], [5, 18], [14, 6], [28, 8], [35, 20], [28, 33], [14, 34], [5, 22], [10, 8], [25, 6], [34, 16], [31, 30], [18, 35], [6, 26], [8, 12], [20, 5], [33, 12], [33, 27], [22, 35], [8, 30], [6, 15], [16, 6], [30, 9], [35, 23], [26, 34], [12, 32], [5, 20], [12, 7], [27, 7], [35, 18], [29, 32], [15, 34]],
+	DIAMOND_POINTS = [ [30,5], [35,10], [40,15], [45,20], [50,25], [55,30], [50,35], [45,40], [40,45], [35,50], [30,55], [25,50], [20,45], [15,40], [10,35], [5,30], [10,25], [15,20], [20,15], [25,10] ],
+	SQUARE_POINTS = [ [5,5], [10,5], [15,5], [20,5] ,[25,5], [30,5], [35,5], [40,5], [50,5], [55,5], [60,5], [65, 5], [65,10], [65,15], [65,20], [65,25], [65,30], [65,35], [65,40], [65,45], [65,50], [65,55], [65, 60], [65, 65], [60,65], [55,65], [50,65], [45,65], [40,65], [35,65], [30,65], [25,65], [20,65], [15,65], [10,65], [5, 65], [5,60], [5,55], [5,50], [5,45], [5,40], [5,35], [5,30], [5,25], [5,20], [5,15], [5,10] ],
+
+	adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
+		var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get(BOUNDING_BOX).getXY();
+
+		return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
+	},
+
+	pythagoreanDistance = function(p1, p2) {
+		var dx = p2[0]-p1[0], dy = p2[1]-p1[1];
+
+		return Math.sqrt(dx*dx + dy*dy);
+	},
+
+	findHotPointBestMatches = function(diagramNode1, diagramNode2) {
+		var hp1 = diagramNode1.hotPoints,
+			hp2 = diagramNode2.hotPoints,
+			xy1 = diagramNode1.get(BOUNDING_BOX).getXY(),
+			xy2 = diagramNode2.get(BOUNDING_BOX).getXY(), len1, len2, i, j, minDistance = Infinity, match = [[0,0], [0,0]];
+
+		for (i = 0, len1 = hp1.length; i < len1; i++) {
+			var value1 = hp1[i],
+				adjustedValue1 = adjustDiagramNodeOffset(xy1, value1);
+
+			for (j = 0, len2 = hp2.length; j < len2; j++) {
+				var value2 = hp2[j],
+					adjustedValue2 = adjustDiagramNodeOffset(xy2, value2),
+					distance = pythagoreanDistance(adjustedValue2, adjustedValue1);
+
+				if (distance < minDistance) {
+					match[0] = value1;
+					match[1] = value2;
+					minDistance = distance;
+				}
+			}
+		}
+
+		return match;
+	},
+
+	getLeftTop = function(container, node) {
+		var nodeXY = isArray(node) ? node : node.getXY();
+		var containerXY = isArray(container) ? container : container.getXY();
+
+		return AArray.map(containerXY, function(val, i) {
+			return Math.max(0, val - nodeXY[i]);
+		});
+	},
+
+	isConnector = function(val) {
+		return (val instanceof A.Connector);
+	},
+
+	isDataSet = function(val) {
+		return (val instanceof A.DataSet);
+	},
+
+	isDiagramBuilder = function(val) {
+		return (val instanceof A.DiagramBuilderBase);
+	},
+
+	isDiagramNode = function(val) {
+		return (val instanceof A.DiagramNode);
+	};
 
 // REMOVE THIS!
 window.__dump = function() {
@@ -880,6 +922,8 @@ var DiagramNode = A.Component.create({
 	prototype: {
 		boundary: null,
 
+		hotPoints: [ [0,0] ],
+
 		publishedTarget: null,
 
 		publishedSource: null,
@@ -955,9 +999,16 @@ var DiagramNode = A.Component.create({
 			var diagramNode = A.DiagramNode.getNodeByName(transition.target);
 
 			if (diagramNode) {
+				var bestMatch = findHotPointBestMatches(instance, diagramNode);
+
+				transition = A.merge(transition, {
+					sourceXY: bestMatch[0],
+					targetXY: bestMatch[1]
+				});
+
 				instance.getConnector(transition).setAttrs({
-					p1: instance._adjustDiagramNodeOffset(instance, transition.sourceXY),
-					p2: instance._adjustDiagramNodeOffset(diagramNode, transition.targetXY)
+					p1: adjustDiagramNodeOffset(instance, transition.sourceXY),
+					p2: adjustDiagramNodeOffset(diagramNode, transition.targetXY)
 				});
 			}
 		},
@@ -985,6 +1036,12 @@ var DiagramNode = A.Component.create({
 			if (diagramNode) {
 				if (!instance.isTransitionConnected(transition)) {
 					var builder = instance.get(BUILDER);
+					var bestMatch = findHotPointBestMatches(instance, diagramNode);
+
+					A.mix(transition, {
+						sourceXY: bestMatch[0],
+						targetXY: bestMatch[1]
+					});
 
 					connector = new A.Connector({
 						builder: builder,
@@ -1110,9 +1167,7 @@ var DiagramNode = A.Component.create({
 
 			var transition = {
 				source: instance.get(NAME),
-				sourceXY: [0,0],
 				target: null,
-				targetXY: [0,0],
 				uid: A.guid()
 			};
 
@@ -1157,13 +1212,6 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			instance.get(TRANSITIONS).each(A.bind(instance.connect, instance));
-		},
-
-		_adjustDiagramNodeOffset: function(diagramNode, offsetXY) {
-			var instance = this;
-			var dnXY = diagramNode.get(BOUNDING_BOX).getXY();
-
-			return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
 		},
 
 		_afterDataSetRemove: function(event) {
@@ -1577,6 +1625,8 @@ A.DiagramNodeState = A.Component.create({
 	EXTENDS: A.DiagramNode,
 
 	prototype: {
+		hotPoints: CIRCLE_POINTS,
+
 		renderShapeBoundary: function() {
 			var instance = this;
 
@@ -1627,6 +1677,8 @@ A.DiagramNodeCondition = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
+		hotPoints: DIAMOND_POINTS,
+
 		renderShapeBoundary: function() {
 			var instance = this;
 
@@ -1699,6 +1751,8 @@ A.DiagramNodeJoin = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
+		hotPoints: DIAMOND_POINTS,
+
 		renderShapeBoundary: function() {
 			var instance = this;
 
@@ -1735,6 +1789,8 @@ A.DiagramNodeFork = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
+		hotPoints: DIAMOND_POINTS,
+
 		renderShapeBoundary: function() {
 			var instance = this;
 
@@ -1771,6 +1827,8 @@ A.DiagramNodeTask = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
+		hotPoints: SQUARE_POINTS,
+
 		renderShapeBoundary: function() {
 			var instance = this;
 

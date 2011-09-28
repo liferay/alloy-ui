@@ -96,7 +96,7 @@ AUI().ready('aui-drawing', function(A) {
 
 		var path = ['M', x1.toFixed(3), y1.toFixed(3), 'C', x2, y2, x3, y3, x4.toFixed(3), y4.toFixed(3)].join(',');
 
-console.log(dx, dy, path);
+console.log(res);
 
 		if (line && line.line) {
 			if (line.bg) {
@@ -154,7 +154,7 @@ console.log(dx, dy, path);
 
 		this.attr(attrs);
 
-		for (var i = connections.length; i--;) {
+		for (var i = 1; i--;) {
 			drawing.connection(connections[i]);
 		}
 

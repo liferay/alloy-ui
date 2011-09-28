@@ -6,8 +6,31 @@ var Lang = A.Lang,
 
 	AArray = A.Array,
 
+	// The first Bernstein basis polynomials (n=3), http://en.wikipedia.org/wiki/B%C3%A9zier_curve
+	// The t in the function for a linear Bézier curve can be thought of as describing how far B(t) is from P0 to P1.
+	// For example when t=0.25, B(t) is one quarter of the way from point P0 to P1. As t varies from 0 to 1, B(t) describes a straight line from P0 to P1.
+	B1 = function(t) { return (t*t*t); },
+	B2 = function(t) { return (3*t*t*(1-t)); },
+	B3 = function(t) { return (3*t*(1-t)*(1-t)); },
+	B4 = function(t) { return ((1-t)*(1-t)*(1-t)); },
+
+	// Find a Cubic Bezier point based on the control points. Consider the first two control points as the start and end point respectively.
+	getCubicBezier = function(t, startPos, endPos, cp1, cp2) {
+		var x = startPos[0] * B1(t) + cp1[0] * B2(t) + cp2[0] * B3(t) + endPos[0] * B4(t);
+		var y = startPos[1] * B1(t) + cp1[1] * B2(t) + cp2[1] * B3(t) + endPos[1] * B4(t);
+		return [x, y];
+	},
+
 	isGraphic = function(val) {
 		return (val instanceof A.Graphic);
+	},
+
+	toDegrees = function(angleRadians) {
+	  return angleRadians * 180 / Math.PI;
+	},
+
+	sign = function(x) {
+		return x === 0 ? 0 : (x < 0 ? -1 : 1);
 	},
 
 	ANCHOR = 'anchor',
@@ -28,6 +51,9 @@ var Lang = A.Lang,
 	PATH = 'path',
 	SELECTED = 'selected',
 	SHAPE = 'shape',
+	SHAPE_ARROW = 'shapeArrow',
+	SHAPE_ARROW_HOVER = 'shapeArrowHover',
+	SHAPE_ARROW_SELECTED = 'shapeArrowSelected',
 	SHAPE_HOVER = 'shapeHover',
 	SHAPE_SELECTED = 'shapeSelected',
 	STROKE = 'stroke',
@@ -41,15 +67,14 @@ A.PolygonUtil = {
 		[ 6, 0 ]
 	],
 
-	drawLineArrow: function(shape, x1, y1, x2, y2, arrowPoints) {
+	drawArrow: function(shape, x1, y1, x2, y2, arrowPoints) {
 		var instance = this;
-
-		shape.moveTo(x1, y1);
-		shape.lineTo(x2, y2);
 
 		var angle = Math.atan2(y2-y1, x2-x1);
 
-		// Slide the arrow position along the line in 15px in polar coordinates
+		shape.moveTo(x2, y2);
+
+		// Slide the arrow position along the line in 5px in polar coordinates
 		x2 = x2 - 5*Math.cos(angle);
 		y2 = y2 - 5*Math.sin(angle);
 
@@ -107,6 +132,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	SERIALIZABLE_ATTRS: [COLOR, LAZY_DRAW, NAME, SHAPE_SELECTED, SHAPE_HOVER, /*SHAPE,*/ P1, P2],
 
 	shape: null,
+	shapeArrow: null,
 
 	initializer: function(config) {
 		var instance = this;
@@ -136,15 +162,58 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	draw: function() {
 		var instance = this;
 		var shape = instance.shape;
+		var shapeArrow = instance.shapeArrow;
 
-		var c1 = instance.getCoordinate(instance.get(P1));
-		var c2 = instance.getCoordinate(instance.get(P2));
+		var p1 = instance.get(P1),
+			p2 = instance.get(P2),
+			c1 = instance.getCoordinate(p1),
+			c2 = instance.getCoordinate(p2),
+			x1 = c1[0],
+			y1 = c1[1],
+			x2 = c2[0],
+			y2 = c2[1],
+			dx = Math.max(Math.abs(x1 - x2) / 2, 10),
+			dy = Math.max(Math.abs(y1 - y2) / 2, 10),
+
+			curveArgs = null,
+			nQuadrantSections = 8,
+			angle = toDegrees(Math.atan2(y2-y1, x2-x1)),
+			pseudoQuadrant = Math.round(Math.abs(angle)/(360/nQuadrantSections));
+
+		if (sign(angle) < 0) {
+			curveArgs = [
+				[x1+dx, y1, x2-dx, y2, x2, y2], //3,6
+				[x1+dx, y1, x2, y1-dy, x2, y2], //3,5
+				[x1, y1-dy, x2, y1-dy, x2, y2], //0,5
+				[x1-dx, y1, x2, y1-dy, x2, y2], //2,5
+				[x1-dx, y1, x2+dx, y2, x2, y2] //2,7
+			];
+		}
+		else {
+			curveArgs = [
+				[x1+dx, y1, x2-dx, y2, x2, y2], //3,6
+				[x1+dx, y1, x2, y1+dy, x2, y2], //3,4
+				[x1, y1+dy, x2, y1+dy, x2, y2], //1,4
+				[x1-dx, y1, x2, y1+dy, x2, y2], //2,4
+				[x1-dx, y1, x2+dx, y2, x2, y2] //2,7
+			];
+		}
+
+		var cp = curveArgs[pseudoQuadrant];
 
 		shape.clear();
-
-		A.PolygonUtil.drawLineArrow(shape, c1[0], c1[1], c2[0], c2[1], instance.get(ARROW_POINTS));
-
+		shape.moveTo(x1, y1);
+		shape.curveTo.apply(shape, cp);
 		shape.end();
+
+		// Extract the angle from a segment of the current Cubic Bezier curve to rotate the arrow.
+		// The segment should be an extremities for better angle extraction, on this particular case t = [0 to 0.025].
+		var xy1 = getCubicBezier(0, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]),
+			xy2 = getCubicBezier(0.025, [x1, y1], [x2, y2], [cp[0], cp[1]], [cp[2], cp[3]]);
+
+		shapeArrow.clear();
+		A.PolygonUtil.drawArrow(shapeArrow, xy2[0], xy2[1], xy1[0], xy1[1], instance.get(ARROW_POINTS));
+		shapeArrow.end();
 
 		return instance;
 	},
@@ -193,6 +262,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		instance.shape.set(VISIBLE, false);
+		instance.shapeArrow.set(VISIBLE, false);
 
 		return instance;
 	},
@@ -201,6 +271,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		instance.shape.set(VISIBLE, true);
+		instance.shapeArrow.set(VISIBLE, true);
 
 		return instance;
 	},
@@ -229,9 +300,14 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			instance.get(SHAPE)
 		);
 
+		var shapeArrow = instance.shapeArrow = instance.get(GRAPHIC).addShape(
+			instance.get(SHAPE_ARROW)
+		);
+
 		shape.on(CLICK, A.bind(instance._onShapeClick, instance));
 		shape.on(MOUSEENTER, A.bind(instance._onShapeMouseEnter, instance));
 		shape.on(MOUSELEAVE, A.bind(instance._onShapeMouseLeave, instance));
+		shapeArrow.on(CLICK, A.bind(instance._onShapeClick, instance));
 	},
 
 	_onShapeClick: function(event) {
@@ -263,9 +339,14 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 		if (!instance.get(SELECTED)) {
 			var shapeHover = instance.get(SHAPE_HOVER);
+			var shapeArrowHover = instance.get(SHAPE_ARROW_HOVER);
 
 			if (shapeHover) {
-				instance._updateShape(shapeHover);
+				instance._updateShape(instance.shape, shapeHover);
+			}
+
+			if (shapeArrowHover) {
+				instance._updateShape(instance.shapeArrow, shapeArrowHover);
 			}
 		}
 	},
@@ -274,7 +355,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		var instance = this;
 
 		if (!instance.get(SELECTED)) {
-			instance._updateShape(instance.get(SHAPE));
+			instance._updateShape(instance.shape, instance.get(SHAPE));
+			instance._updateShape(instance.shapeArrow, instance.get(SHAPE_ARROW));
 		}
 	},
 
@@ -286,10 +368,28 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				type: PATH,
 				stroke: {
 					color: instance.get(COLOR),
-					weight: 3
-				},
+					weight: 2,
+					opacity: 1
+				}
+			},
+			val
+		);
+	},
+
+	_setShapeArrow: function(val) {
+		var instance = this;
+
+		return A.merge(
+			{
+				type: PATH,
 				fill: {
-					color: instance.get(COLOR)
+					color: instance.get(COLOR),
+					opacity: 1
+				},
+				stroke: {
+					color: instance.get(COLOR),
+					weight: 2,
+					opacity: 1
 				}
 			},
 			val
@@ -299,12 +399,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	_uiSetSelected: function(val, draw) {
 		var instance = this;
 
-		instance._updateShape(val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
+		instance._updateShape(instance.shape, val ? instance.get(SHAPE_SELECTED) : instance.get(SHAPE), draw);
+		instance._updateShape(instance.shapeArrow, val ? instance.get(SHAPE_ARROW_SELECTED) : instance.get(SHAPE_ARROW), draw);
 	},
 
-	_updateShape: function(cShape, draw) {
+	_updateShape: function(shape, cShape, draw) {
 		var instance = this;
-		var shape = instance.shape;
 
 		if (cShape.hasOwnProperty(FILL)) {
 			shape.set(FILL, cShape[FILL]);
@@ -370,26 +470,53 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			setter: '_setShape'
 		},
 
-		shapeHover: {
+		shapeArrow: {
+			value: null,
+			setter: '_setShapeArrow'
+		},
+
+		shapeArrowHover: {
 			value: {
 				fill: {
-					color: '#666'
+					color: '#ffd700'
 				},
 				stroke: {
-					color: '#666',
-					weight: 5
+					color: '#ffd700',
+					weight: 5,
+					opacity: 0.8
+				}
+			}
+		},
+
+		shapeArrowSelected: {
+			value: {
+				fill: {
+					color: '#ff6600'
+				},
+				stroke: {
+					color: '#ff6600',
+					weight: 5,
+					opacity: 0.8
+				}
+			}
+		},
+
+		shapeHover: {
+			value: {
+				stroke: {
+					color: '#ffd700',
+					weight: 5,
+					opacity: 0.8
 				}
 			}
 		},
 
 		shapeSelected: {
 			value: {
-				fill: {
-					color: '#000'
-				},
 				stroke: {
-					color: '#000',
-					weight: 5
+					color: '#ff6600',
+					weight: 5,
+					opacity: 0.8
 				}
 			}
 		},
@@ -397,6 +524,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		transition: {
 			value: {},
 			validator: isObject
-		}
+		},
+
+			value: [0, 0],
+			validator: isArray
+		},
+
+		p2: {
 	}
 });
