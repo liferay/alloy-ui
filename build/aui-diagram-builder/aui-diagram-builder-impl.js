@@ -95,10 +95,6 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
 	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED),
 
-	CIRCLE_POINTS = [[35, 20], [28, 33], [14, 34], [5, 22], [10, 9], [24, 6], [34, 16], [31, 30], [18, 35], [6, 26], [7, 12], [20, 5], [33, 12], [34, 26], [22, 35], [9, 30], [6, 16], [16, 6], [30, 9], [35, 22], [26, 34], [12, 33], [5, 20], [12, 7], [26, 6], [35, 18], [30, 31], [16, 34], [6, 24], [9, 10], [22, 5], [34, 14], [33, 28], [20, 35], [7, 28], [6, 14], [18, 5], [31, 10], [34, 24], [24, 34], [10, 31], [5, 18], [14, 6], [28, 8], [35, 20], [28, 33], [14, 34], [5, 22], [10, 8], [25, 6], [34, 16], [31, 30], [18, 35], [6, 26], [8, 12], [20, 5], [33, 12], [33, 27], [22, 35], [8, 30], [6, 15], [16, 6], [30, 9], [35, 23], [26, 34], [12, 32], [5, 20], [12, 7], [27, 7], [35, 18], [29, 32], [15, 34]],
-	DIAMOND_POINTS = [ [30,5], [35,10], [40,15], [45,20], [50,25], [55,30], [50,35], [45,40], [40,45], [35,50], [30,55], [25,50], [20,45], [15,40], [10,35], [5,30], [10,25], [15,20], [20,15], [25,10] ],
-	SQUARE_POINTS = [ [5,5], [10,5], [15,5], [20,5] ,[25,5], [30,5], [35,5], [40,5], [50,5], [55,5], [60,5], [65, 5], [65,10], [65,15], [65,20], [65,25], [65,30], [65,35], [65,40], [65,45], [65,50], [65,55], [65, 60], [65, 65], [60,65], [55,65], [50,65], [45,65], [40,65], [35,65], [30,65], [25,65], [20,65], [15,65], [10,65], [5, 65], [5,60], [5,55], [5,50], [5,45], [5,40], [5,35], [5,30], [5,25], [5,20], [5,15], [5,10] ],
-
 	adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
 		var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get(BOUNDING_BOX).getXY();
 
@@ -161,28 +157,6 @@ var Lang = A.Lang,
 	isDiagramNode = function(val) {
 		return (val instanceof A.DiagramNode);
 	};
-
-// REMOVE THIS!
-window.__dump = function() {
-	var PAD = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', BR = '<br/>';
-
-	A.all('.aui-diagram-node').each(function(n) {
-		var b = _EMPTY_STR,
-			dn = A.Widget.getByNode(n),
-			dnName = dn.get('name'),
-			dnBB = dn.get('boundingBox'),
-			log = dnBB.one('.log') || A.Node.create('<div class=log />').appendTo(dnBB);
-
-		b += dnName + BR;
-
-		dn.get('transitions').each(function(t) {
-			b += PAD + PAD + 't: ' + A.Object.values(t) + BR;
-		});
-
-		log.setContent(b);
-	});
-};
-// END.
 
 var DiagramBuilder = A.Component.create({
 	NAME: DIAGRAM_BUILDER_NAME,
@@ -749,49 +723,6 @@ A.DiagramBuilder = DiagramBuilder;
 
 A.DiagramBuilder.types = {};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var DiagramNodeManagerBase = A.Component.create({
 	NAME: DIAGRAM_NODE_MANAGER_NAME,
 
@@ -799,7 +730,6 @@ var DiagramNodeManagerBase = A.Component.create({
 });
 
 A.DiagramNodeManager = new DiagramNodeManagerBase();
-
 
 var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
@@ -911,6 +841,10 @@ var DiagramNode = A.Component.create({
 	},
 
 	EXTENDS: A.Overlay,
+
+	CIRCLE_POINTS: [[35, 20], [28, 33], [14, 34], [5, 22], [10, 9], [24, 6], [34, 16], [31, 30], [18, 35], [6, 26], [7, 12], [20, 5], [33, 12], [34, 26], [22, 35], [9, 30], [6, 16], [16, 6], [30, 9], [35, 22], [26, 34], [12, 33], [5, 20], [12, 7], [26, 6], [35, 18], [30, 31], [16, 34], [6, 24], [9, 10], [22, 5], [34, 14], [33, 28], [20, 35], [7, 28], [6, 14], [18, 5], [31, 10], [34, 24], [24, 34], [10, 31], [5, 18], [14, 6], [28, 8], [35, 20], [28, 33], [14, 34], [5, 22], [10, 8], [25, 6], [34, 16], [31, 30], [18, 35], [6, 26], [8, 12], [20, 5], [33, 12], [33, 27], [22, 35], [8, 30], [6, 15], [16, 6], [30, 9], [35, 23], [26, 34], [12, 32], [5, 20], [12, 7], [27, 7], [35, 18], [29, 32], [15, 34]],
+	DIAMOND_POINTS: [ [30,5], [35,10], [40,15], [45,20], [50,25], [55,30], [50,35], [45,40], [40,45], [35,50], [30,55], [25,50], [20,45], [15,40], [10,35], [5,30], [10,25], [15,20], [20,15], [25,10] ],
+	SQUARE_POINTS: [ [5,5], [10,5], [15,5], [20,5] ,[25,5], [30,5], [35,5], [40,5], [50,5], [55,5], [60,5], [65, 5], [65,10], [65,15], [65,20], [65,25], [65,30], [65,35], [65,40], [65,45], [65,50], [65,55], [65, 60], [65, 65], [60,65], [55,65], [50,65], [45,65], [40,65], [35,65], [30,65], [25,65], [20,65], [15,65], [10,65], [5, 65], [5,60], [5,55], [5,50], [5,45], [5,40], [5,35], [5,30], [5,25], [5,20], [5,15], [5,10] ],
 
 	getNodeByName: function(name) {
 		return A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(name));
@@ -1626,7 +1560,7 @@ A.DiagramNodeState = A.Component.create({
 	EXTENDS: A.DiagramNode,
 
 	prototype: {
-		hotPoints: CIRCLE_POINTS,
+		hotPoints: A.DiagramNode.CIRCLE_POINTS,
 
 		renderShapeBoundary: function() {
 			var instance = this;
@@ -1678,7 +1612,7 @@ A.DiagramNodeCondition = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
-		hotPoints: DIAMOND_POINTS,
+		hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
 		renderShapeBoundary: function() {
 			var instance = this;
@@ -1752,7 +1686,7 @@ A.DiagramNodeJoin = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
-		hotPoints: DIAMOND_POINTS,
+		hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
 		renderShapeBoundary: function() {
 			var instance = this;
@@ -1790,7 +1724,7 @@ A.DiagramNodeFork = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
-		hotPoints: DIAMOND_POINTS,
+		hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
 		renderShapeBoundary: function() {
 			var instance = this;
@@ -1828,7 +1762,7 @@ A.DiagramNodeTask = A.Component.create({
 	EXTENDS: A.DiagramNodeState,
 
 	prototype: {
-		hotPoints: SQUARE_POINTS,
+		hotPoints: A.DiagramNode.SQUARE_POINTS,
 
 		renderShapeBoundary: function() {
 			var instance = this;
