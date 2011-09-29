@@ -9,6 +9,7 @@ var Lang = A.Lang,
 
 	ACTIVE_ELEMENT = 'activeElement',
 	AVAILABLE_FIELD = 'availableField',
+	AVAILABLE_FIELDS = 'availableFields',
 	BACKSPACE = 'backspace',
 	BOOLEAN = 'boolean',
 	BOUNDARY = 'boundary',
@@ -20,10 +21,12 @@ var Lang = A.Lang,
 	CLOSE_EVENT = 'closeEvent',
 	CLOSE_MESSAGE = 'closeMessage',
 	CONDITION = 'condition',
+	CONNECTOR = 'connector',
 	CONNECTORS = 'connectors',
 	CONTENT = 'content',
 	CONTROLS = 'controls',
 	CONTROLS_TOOLBAR = 'controlsToolbar',
+	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DATA = 'data',
 	DELETE = 'delete',
 	DELETE_CONNECTORS_MESSAGE = 'deleteConnectorsMessage',
@@ -35,9 +38,9 @@ var Lang = A.Lang,
 	DIAGRAM_NODE_MANAGER_NAME = 'diagram-node-manager',
 	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
-	EDITING = 'editing',
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
+	EDITING = 'editing',
 	END = 'end',
 	ESC = 'esc',
 	FIELD = 'field',
@@ -64,9 +67,12 @@ var Lang = A.Lang,
 	SHAPE = 'shape',
 	SHAPE_BOUNDARY = 'shapeBoundary',
 	SHAPE_INVITE = 'shapeInvite',
+	SHOW_SUGGEST_CONNECTOR = 'showSuggestConnector',
 	SOURCE = 'source',
 	START = 'start',
 	STATE = 'state',
+	SUGGEST = 'suggest',
+	SUGGEST_CONNECTOR_OVERLAY = 'suggestConnectorOverlay',
 	TARGET = 'target',
 	TASK = 'task',
 	TMP_CONNECTOR = 'connector',
@@ -78,7 +84,6 @@ var Lang = A.Lang,
 	XY = 'xy',
 	Z_INDEX = 'zIndex',
 
-
 	_DASH = '-',
 	_DOT = '.',
 	_EMPTY_STR = '',
@@ -88,11 +93,13 @@ var Lang = A.Lang,
 	AgetClassName = A.getClassName,
 
 	CSS_DB_CONTROLS = AgetClassName(DIAGRAM, BUILDER, CONTROLS),
+	CSS_DIAGRAM_BUILDER_FIELD = AgetClassName(DIAGRAM, BUILDER, FIELD),
 	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
-	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
 	CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
 	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED),
+	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
+	CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName(DIAGRAM, NODE, SUGGEST, CONNECTOR),
 
 	adjustDiagramNodeOffset = function(diagramNode, offsetXY) {
 		var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get(BOUNDING_BOX).getXY();
@@ -106,7 +113,7 @@ var Lang = A.Lang,
 		return Math.sqrt(dx*dx + dy*dy);
 	},
 
-	findHotPointBestMatches = function(diagramNode1, diagramNode2) {
+	findHotPointBestMatch = function(diagramNode1, diagramNode2) {
 		var hp1 = diagramNode1.hotPoints,
 			hp2 = diagramNode2.hotPoints,
 			xy1 = diagramNode1.get(BOUNDING_BOX).getXY(),
@@ -190,6 +197,16 @@ var DiagramBuilder = A.Component.create({
 				settings: 'Settings',
 				value: 'Value'
 			}
+		},
+
+		showSuggestConnector: {
+			validator: isBoolean,
+			value: true
+		},
+
+		suggestConnectorOverlay: {
+			value: null,
+			setter: '_setSuggestConnectorOverlay'
 		}
 	},
 
@@ -200,8 +217,15 @@ var DiagramBuilder = A.Component.create({
 
 	prototype: {
 		editingConnector: null,
+
 		editingNode: null,
+
+		publishedSource: null,
+
+		publishedTarget: null,
+
 		selectedConnector: null,
+
 		selectedNode: null,
 
 		initializer: function() {
@@ -217,6 +241,13 @@ var DiagramBuilder = A.Component.create({
 				'drag:end': instance._onDragEnd,
 				'drop:hit': instance._onDropHit,
 				save: instance._onSave
+			});
+
+			A.DiagramNodeManager.on({
+				publishedSource: function(event) {
+					instance.publishedTarget = null;
+					instance.publishedSource = event.publishedSource;
+				}
 			});
 
 			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
@@ -351,6 +382,12 @@ var DiagramBuilder = A.Component.create({
 			}
 		},
 
+		destructor: function(attribute){
+			var instance = this;
+
+			instance.get(SUGGEST_CONNECTOR_OVERLAY).destroy();
+		},
+
 		eachConnector: function(fn) {
 			var instance = this;
 
@@ -413,7 +450,7 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 			var nodes = [];
 
-			instance.get(FIELDS).some(function(diagramNode) {
+			instance.get(FIELDS).each(function(diagramNode) {
 				diagramNode.get(TRANSITIONS).each(function(transition) {
 					if (transition[property] === value) {
 						nodes.push(diagramNode);
@@ -444,11 +481,17 @@ var DiagramBuilder = A.Component.create({
 			return instance.getNodesByTransitionProperty(TARGET, diagramNode.get(NAME));
 		},
 
+		hideSuggestConnetorOverlay: function(diagramNode, drag) {
+			var instance = this;
+
+			instance.connector.hide();
+			instance.get(SUGGEST_CONNECTOR_OVERLAY).hide();
+		},
+
 		isFieldsDrag: function(drag) {
 			var instance = this;
-			var fieldsDrag = instance.fieldsDrag;
 
-			return (drag === fieldsDrag.dd);
+			return (drag === instance.fieldsDrag.dd);
 		},
 
 		plotField: function(field) {
@@ -465,6 +508,16 @@ var DiagramBuilder = A.Component.create({
 			instance.unselectNodes();
 
 			instance.selectedNode = diagramNode.set(SELECTED, true).focus();
+		},
+
+		showSuggestConnetorOverlay: function(xy) {
+			var instance = this;
+
+			instance.get(SUGGEST_CONNECTOR_OVERLAY).setAttrs({
+				xy: xy || instance.connector.get(P2)
+			})
+			.show()
+			.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 		},
 
 		stopEditing: function() {
@@ -571,10 +624,9 @@ var DiagramBuilder = A.Component.create({
 		_onDragEnd: function(event) {
 			var instance = this;
 			var drag = event.target;
+			var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
 
-			if (instance.isFieldsDrag(drag)) {
-				var diagramNode = A.Widget.getByNode(drag.get(DRAG_NODE));
-
+			if (diagramNode && instance.isFieldsDrag(drag)) {
 				diagramNode.set(XY, diagramNode.getLeftTop());
 			}
 		},
@@ -598,6 +650,7 @@ var DiagramBuilder = A.Component.create({
 		_onEscKey: function(event) {
 			var instance = this;
 
+			instance.hideSuggestConnetorOverlay();
 			instance.stopEditing();
 			event.halt();
 		},
@@ -646,6 +699,20 @@ var DiagramBuilder = A.Component.create({
 					editingConnector.set(data.attributeName, data.value);
 				});
 			}
+		},
+
+		_onSuggestConnectorNodeClick: function(event) {
+			var instance = this;
+			var availableField = event.currentTarget.getData(AVAILABLE_FIELD);
+			var connector = instance.connector;
+
+			var node = instance.addField({
+				type: availableField.get(TYPE),
+				xy: connector.getCoordinate(connector.get(P2))
+			});
+
+			instance.hideSuggestConnetorOverlay();
+			instance.publishedSource.connectNode(node);
 		},
 
 		_renderGraphic: function() {
@@ -706,6 +773,33 @@ var DiagramBuilder = A.Component.create({
 				},
 				val || {}
 			);
+		},
+
+		_setSuggestConnectorOverlay: function(val) {
+			var instance = this;
+
+			if (!val) {
+				var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
+
+				AArray.each(instance.get(AVAILABLE_FIELDS), function(field) {
+					var node = field.get(NODE);
+
+					docFrag.appendChild(
+						node.clone().setData(AVAILABLE_FIELD, node.getData(AVAILABLE_FIELD))
+					);
+				});
+
+				val = new A.Overlay({
+					bodyContent: docFrag,
+					render: true,
+					visible: false,
+					zIndex: 10000
+				});
+
+				val.get(BOUNDING_BOX).delegate(CLICK, A.bind(instance._onSuggestConnectorNodeClick, instance), _DOT+CSS_DIAGRAM_BUILDER_FIELD);
+			}
+
+			return val;
 		},
 
 		_setupFieldsDrag: function() {
@@ -858,10 +952,6 @@ var DiagramNode = A.Component.create({
 
 		hotPoints: [ [0,0] ],
 
-		publishedTarget: null,
-
-		publishedSource: null,
-
 		CONTROLS_TEMPLATE: '<div class="' + CSS_DB_CONTROLS + '"></div>',
 
 		SERIALIZABLE_ATTRS: [DESCRIPTION, NAME, REQUIRED, TYPE, WIDTH, HEIGHT, Z_INDEX, XY],
@@ -887,16 +977,6 @@ var DiagramNode = A.Component.create({
 				boundaryDrop: { defaultFn: instance._defBoundaryDrop },
 				boundaryMouseEnter: {},
 				boundaryMouseLeave: {}
-			});
-
-			A.DiagramNodeManager.on({
-				publishedSource: function(event) {
-					instance.publishedSource = event.publishedSource;
-				},
-				releasedSource: function(event) {
-					instance.publishedSource.publishedTarget = null;
-					instance.publishedSource = null;
-				}
 			});
 
 			instance.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_NODE+_DASH+instance.get(TYPE));
@@ -933,7 +1013,7 @@ var DiagramNode = A.Component.create({
 			var diagramNode = A.DiagramNode.getNodeByName(transition.target);
 
 			if (diagramNode) {
-				var bestMatch = findHotPointBestMatches(instance, diagramNode);
+				var bestMatch = findHotPointBestMatch(instance, diagramNode);
 
 				transition = A.merge(transition, {
 					sourceXY: bestMatch[0],
@@ -970,7 +1050,7 @@ var DiagramNode = A.Component.create({
 			if (diagramNode) {
 				if (!instance.isTransitionConnected(transition)) {
 					var builder = instance.get(BUILDER);
-					var bestMatch = findHotPointBestMatches(instance, diagramNode);
+					var bestMatch = findHotPointBestMatch(instance, diagramNode);
 
 					A.mix(transition, {
 						sourceXY: bestMatch[0],
@@ -992,6 +1072,19 @@ var DiagramNode = A.Component.create({
 			instance.alignTransition(transition);
 
 			return connector;
+		},
+
+		connectNode: function(diagramNode) {
+			var instance = this;
+			var dd = instance.boundaryDragDelegate.dd;
+
+			instance.connect(
+				instance.prepareTransition({
+					sourceXY: getLeftTop(dd.startXY, instance.get(BOUNDING_BOX)),
+					target: diagramNode.get(NAME),
+					targetXY: getLeftTop(dd.mouseXY, diagramNode.get(BOUNDING_BOX))
+				})
+			);
 		},
 
 		disconnect: function(transition) {
@@ -1088,6 +1181,12 @@ var DiagramNode = A.Component.create({
 					name: strings[TYPE]
 				}
 			];
+		},
+
+		isBoundaryDrag: function(drag) {
+			var instance = this;
+
+			return (drag === instance.boundaryDragDelegate.dd);
 		},
 
 		isTransitionConnected: function(transition) {
@@ -1192,7 +1291,7 @@ var DiagramNode = A.Component.create({
 
 			builder.connector.set(P2, mouseXY);
 
-			if (instance.publishedTarget) {
+			if (builder.publishedTarget) {
 				var invite = instance.invite;
 				var offset = invite.get(RADIUS) || 0;
 
@@ -1206,27 +1305,34 @@ var DiagramNode = A.Component.create({
 
 		_defBoundaryDragEnd: function(event) {
 			var instance = this;
+			var drag = event.target;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+			var isConnecting = publishedSource && builder.publishedTarget;
 
-			instance.get(BUILDER).connector.hide();
-			instance.publishedSource.invite.set(VISIBLE, false);
-
-			A.DiagramNodeManager.fire('releasedSource', { releasedSource: instance });
+			if (!isConnecting && builder.get(SHOW_SUGGEST_CONNECTOR)) {
+				builder.showSuggestConnetorOverlay();
+			}
+			else {
+				builder.connector.hide();
+				publishedSource.invite.set(VISIBLE, false);
+			}
 		},
 
 		_defBoundaryDragOut: function(event) {
 			var instance = this;
-			var publishedSource = instance.publishedSource;
+			var builder = instance.get(BUILDER);
 
-			publishedSource.publishedTarget = null;
-			publishedSource.invite.set(VISIBLE, false);
+			builder.publishedTarget = null;
+			builder.publishedSource.invite.set(VISIBLE, false);
 		},
 
 		_defBoundaryDragOver: function(event) {
 			var instance = this;
-			var publishedSource = instance.publishedSource;
+			var builder = instance.get(BUILDER);
 
-			if (publishedSource !== instance) {
-				publishedSource.publishedTarget = instance;
+			if (builder.publishedSource !== instance) {
+				builder.publishedTarget = instance;
 			}
 		},
 
@@ -1241,17 +1347,8 @@ var DiagramNode = A.Component.create({
 
 		_defBoundaryDrop: function(event) {
 			var instance = this;
-			var dd = instance.boundaryDragDelegate.dd;
-			var sourceDiagramNode = event.publishedSource;
-			var targetDiagramNode = event.publishedTarget;
 
-			sourceDiagramNode.connect(
-				sourceDiagramNode.prepareTransition({
-					sourceXY: getLeftTop(dd.startXY, sourceDiagramNode.get(BOUNDING_BOX)),
-					target: targetDiagramNode.get(NAME),
-					targetXY: getLeftTop(dd.mouseXY, targetDiagramNode.get(BOUNDING_BOX))
-				})
-			);
+			instance.connectNode(event.publishedTarget);
 		},
 
 		_handleCloseEvent: function(event) {
@@ -1270,17 +1367,19 @@ var DiagramNode = A.Component.create({
 
 		_onBoundaryDrag: function(event) {
 			var instance = this;
+			var builder = instance.get(BUILDER);
 
 			instance.fire('boundaryDrag', {
 				dragEvent: event,
-				publishedSource: instance.publishedSource
+				publishedSource: builder.publishedSource
 			});
 		},
 
 		_onBoundaryDragEnd: function(event) {
 			var instance = this;
-			var publishedSource = instance.publishedSource;
-			var publishedTarget = instance.publishedTarget;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+			var publishedTarget = builder.publishedTarget;
 
 			if (publishedSource && publishedTarget) {
 				instance.fire('boundaryDrop', {
@@ -1310,7 +1409,8 @@ var DiagramNode = A.Component.create({
 
 		_onBoundaryMouseEnter: function(event) {
 			var instance = this;
-			var publishedSource = instance.publishedSource;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
 
 			instance.fire('boundaryMouseEnter', {
 				domEvent: event
@@ -1326,7 +1426,8 @@ var DiagramNode = A.Component.create({
 
 		_onBoundaryMouseLeave: function(event) {
 			var instance = this;
-			var publishedSource = instance.publishedSource;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
 
 			instance.fire('boundaryMouseLeave', {
 				domEvent: event
@@ -1414,6 +1515,7 @@ var DiagramNode = A.Component.create({
 			var builder = instance.get(BUILDER);
 
 			instance.boundaryDragDelegate = new A.DD.Delegate({
+				bubbleTargets: instance,
 				container: instance.bodyNode,
 				nodes: _DOT+CSS_DIAGRAM_NODE_SHAPE_BOUNDARY,
 				dragConfig: {
@@ -1627,11 +1729,7 @@ A.DiagramNodeCondition = A.Component.create({
 			return boundary;
 		},
 
-		_valueShapeBoundary: function() {
-			var instance = this;
-
-			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
-		}
+		_valueShapeBoundary: A.DiagramNode.prototype._valueShapeBoundary
 	}
 });
 
@@ -1687,17 +1785,9 @@ A.DiagramNodeJoin = A.Component.create({
 	prototype: {
 		hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
-		renderShapeBoundary: function() {
-			var instance = this;
+		renderShapeBoundary: A.DiagramNodeCondition.prototype.renderShapeBoundary,
 
-			return A.DiagramNodeCondition.prototype.renderShapeBoundary.apply(instance, arguments);
-		},
-
-		_valueShapeBoundary: function() {
-			var instance = this;
-
-			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
-		}
+		_valueShapeBoundary: A.DiagramNode.prototype._valueShapeBoundary
 	}
 });
 
@@ -1725,17 +1815,9 @@ A.DiagramNodeFork = A.Component.create({
 	prototype: {
 		hotPoints: A.DiagramNode.DIAMOND_POINTS,
 
-		renderShapeBoundary: function() {
-			var instance = this;
+		renderShapeBoundary: A.DiagramNodeCondition.prototype.renderShapeBoundary,
 
-			return A.DiagramNodeCondition.prototype.renderShapeBoundary.apply(instance, arguments);
-		},
-
-		_valueShapeBoundary: function() {
-			var instance = this;
-
-			return A.DiagramNodeState.superclass._valueShapeBoundary.apply(instance, arguments);
-		}
+		_valueShapeBoundary: A.DiagramNode.prototype._valueShapeBoundary
 	}
 });
 
