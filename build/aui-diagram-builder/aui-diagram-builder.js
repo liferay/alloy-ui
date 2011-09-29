@@ -843,6 +843,9 @@ var Lang = A.Lang,
 	FORK = 'fork',
 	GRAPHIC = 'graphic',
 	HEIGHT = 'height',
+	HIGHLIGHT_DROP_ZONES = 'highlightDropZones',
+	HIGHLIGHT_BOUNDARY_STROKE = 'highlightBoundaryStroke',
+	HIGHLIGHTED = 'highlighted',
 	ID = 'id',
 	JOIN = 'join',
 	KEYDOWN = 'keydown',
@@ -865,6 +868,7 @@ var Lang = A.Lang,
 	SOURCE = 'source',
 	START = 'start',
 	STATE = 'state',
+	STROKE = 'stroke',
 	SUGGEST = 'suggest',
 	SUGGEST_CONNECTOR_OVERLAY = 'suggestConnectorOverlay',
 	TARGET = 'target',
@@ -978,6 +982,11 @@ var DiagramBuilder = A.Component.create({
 				return new A.Graphic();
 			},
 			validator: isObject
+		},
+
+		highlightDropZones: {
+			validator: isBoolean,
+			value: true
 		},
 
 		strings: {
@@ -1621,7 +1630,7 @@ A.DiagramNodeManager = new DiagramNodeManagerBase();
 var DiagramNode = A.Component.create({
 	NAME: DIAGRAM_NODE_NAME,
 
-	UI_ATTRS: [NAME, REQUIRED, SELECTED],
+	UI_ATTRS: [HIGHLIGHTED, NAME, REQUIRED, SELECTED],
 
 	ATTRS: {
 		builder: {
@@ -1652,6 +1661,11 @@ var DiagramNode = A.Component.create({
 			value: 60
 		},
 
+		highlighted: {
+			validator: isBoolean,
+			value: false
+		},
+
 		name: {
 			valueFn: function() {
 				var instance = this;
@@ -1674,6 +1688,15 @@ var DiagramNode = A.Component.create({
 		shapeBoundary: {
 			validator: isObject,
 			valueFn: '_valueShapeBoundary'
+		},
+
+		highlightBoundaryStroke: {
+			validator: isObject,
+			value: {
+				weight: 7,
+				color: '#484B4C',
+				opacity: 0.25
+			}
 		},
 
 		shapeInvite: {
@@ -2059,6 +2082,7 @@ var DiagramNode = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR, WidgetStdMod.AFTER);
 			instance._renderGraphic();
 			instance._renderControls();
+			instance._uiSetHighlighted(instance.get(HIGHLIGHTED));
 		},
 
 		_bindBoundaryEvents: function() {
@@ -2111,6 +2135,12 @@ var DiagramNode = A.Component.create({
 				builder.connector.hide();
 				publishedSource.invite.set(VISIBLE, false);
 			}
+
+			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
+				builder.get(FIELDS).each(function(diagramNode) {
+					diagramNode.set(HIGHLIGHTED, false);
+				});
+			}
 		},
 
 		_defBoundaryDragOut: function(event) {
@@ -2136,6 +2166,13 @@ var DiagramNode = A.Component.create({
 			var startXY = instance.boundaryDragDelegate.dd.startXY;
 
 			builder.connector.show().set(P1, startXY);
+
+			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
+				builder.get(FIELDS).each(function(diagramNode) {
+					diagramNode.set(HIGHLIGHTED, true);
+				});
+			}
+
 			A.DiagramNodeManager.fire('publishedSource', { publishedSource: instance });
 		},
 
@@ -2346,6 +2383,18 @@ var DiagramNode = A.Component.create({
 
 			// Drag _unprep method invoke .detachAll() on the node, so we need to rebind the events.
 			A.Do.after(instance._bindBoundaryEvents, instance.boundaryDragDelegate.dd, '_unprep', instance);
+		},
+
+		_uiSetHighlighted: function(val) {
+			var instance = this;
+
+			if (instance.get(RENDERED)) {
+				var stroke = val ? instance.get(HIGHLIGHT_BOUNDARY_STROKE) : instance.get(SHAPE_BOUNDARY+_DOT+STROKE);
+
+				if (stroke) {
+					instance.boundary.set(STROKE, stroke);
+				}
+			}
 		},
 
 		_uiSetName: function(val) {
