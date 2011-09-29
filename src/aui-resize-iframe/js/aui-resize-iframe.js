@@ -232,7 +232,7 @@ A.mix(
 		_getContentHeight: function(iframeWin, iframeDoc, fallbackHeight) {
 			var contentHeight = null;
 
-			if (iframeDoc) {
+			if (iframeDoc && iframeWin.location.href != 'about:blank') {
 				var docEl = iframeDoc.documentElement;
 				var iframeBody = iframeDoc.body;
 
