@@ -163,7 +163,7 @@ var AvailableField = A.Component.create({
 	getAvailableFieldByNode: function(node) {
 		var node = A.one(node);
 
-		if (isNode(A.one(node))) {
+		if (isNode(node)) {
 			return node.getData(AVAILABLE_FIELD)
 		}
 
