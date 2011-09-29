@@ -118,3 +118,29 @@
 .aui-diagram-node-shape-boundary {
 	cursor: crosshair;
 }
+
+.aui-diagram-node-suggest-connector {
+	background-color: #fff;
+	border-radius: 4px 4px 4px 4px;
+	border: 1px solid #F1F1F1;
+	width: 250px;
+
+	-moz-box-shadow: 4px 4px 14px #777;
+	-webkit-box-shadow: 4px 4px 14px #777;
+	box-shadow: 4px 4px 14px #777;
+}
+
+.aui-diagram-node-suggest-connector .aui-diagram-builder-field:hover {
+	background-color: #F1F1F1;
+}
+
+.aui-diagram-node-suggest-connector .aui-diagram-builder-field {
+	border-radius: 4px 4px 4px 4px;
+	cursor: pointer;
+	float: left;
+	height: 63px;
+	list-style: none outside none;
+	margin: 2px;
+	text-align: center;
+	width: 79px;
+}
