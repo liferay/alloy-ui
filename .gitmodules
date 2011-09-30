@@ -4,3 +4,6 @@
 [submodule "lib/ace"]
 	path = lib/ace
 	url = git://github.com/ajaxorg/ace.git
+[submodule "lib/builder"]
+	path = lib/builder
+	url = git@github.com:eduardolundgren/builder.git
