@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project name="AlloyMacrolib">
-	<property name="regex.clean.vars" value="^component\.details\..*|global\.build\.component|component\.rollup\.modules\.buildfiles|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)|component.*$"/>
+	<property name="regex.clean.vars" value="^component\.details\..*|global\.build\.component|details\.list|details|component\.(rollup|use|supersedes|requires|optional|lang|skinnable)|component.*$"/>
 	<property name="aui.default.moduledefaultstemplate" value="${project.dir}/resources/builder/templates/moduledeftemplate.txt"/>
 	<property name="aui.default.defaultstemplate" value="${project.dir}/resources/builder/templates/moduledefaults.txt"/>
 	<property name="aui.default.defaultsfile" value="${project.dir}/resources/temp/defaults.js"/>
@@ -109,12 +109,19 @@
 				<then>
 					<var name="submodule.details.hash" value=""/>
 
-					<for list="${component.use}" param="file" trim="true">
+					<for delimiter=", " list="${component.rollup.modules.buildfiles}" param="file" trim="true">
 						<sequential>
+							<propertyregex property="propertiesfile"
+							               input="@{file}"
+							               regexp=".xml$"
+							               replace=".properties" />
 							<clean-variables regex="${regex.clean.vars}"/>
-							<var file="${project.dir}/src/${submodule.module.name}/build.@{file}.properties"/>
+
+							<var file="${project.dir}/src/${submodule.module.name}/${propertiesfile}"/>
 							<createdetails/>
 							<var name="submodule.details.hash" value="'${component}': ${component.details.hash}, ${submodule.details.hash}"/>
+
+							<var name="propertiesfile" unset="true"/>
 						</sequential>
 					</for>
 
@@ -270,6 +277,7 @@
 					<available file="${aui.base.component.tmp.dir}" />
 				</not>
 				<then>
+					<clean-variables regex="component\.rollup\.modules\.buildfiles"/>
 					<subant target="local">
 						<fileset dir="${project.dir}/src/${build.aui.prefix}aui-base/">
 							<include name="build.xml"/>
