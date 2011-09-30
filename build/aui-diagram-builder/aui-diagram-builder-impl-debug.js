@@ -50,12 +50,13 @@ var Lang = A.Lang,
 	FORK = 'fork',
 	GRAPHIC = 'graphic',
 	HEIGHT = 'height',
-	HIGHLIGHT_DROP_ZONES = 'highlightDropZones',
 	HIGHLIGHT_BOUNDARY_STROKE = 'highlightBoundaryStroke',
+	HIGHLIGHT_DROP_ZONES = 'highlightDropZones',
 	HIGHLIGHTED = 'highlighted',
 	ID = 'id',
 	JOIN = 'join',
 	KEYDOWN = 'keydown',
+	LOCK = 'lock',
 	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
@@ -496,6 +497,7 @@ var DiagramBuilder = A.Component.create({
 
 			instance.connector.hide();
 			instance.get(SUGGEST_CONNECTOR_OVERLAY).hide();
+			instance.fieldsDrag.dd.set(LOCK, false);
 		},
 
 		isFieldsDrag: function(drag) {
@@ -523,11 +525,10 @@ var DiagramBuilder = A.Component.create({
 		showSuggestConnetorOverlay: function(xy) {
 			var instance = this;
 
-			instance.get(SUGGEST_CONNECTOR_OVERLAY).setAttrs({
-				xy: xy || instance.connector.get(P2)
-			})
-			.show()
-			.get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
+			instance.get(SUGGEST_CONNECTOR_OVERLAY).set(XY, xy || instance.connector.get(P2))
+				.show().get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
+
+			instance.fieldsDrag.dd.set(LOCK, true);
 		},
 
 		stopEditing: function() {
@@ -1675,13 +1676,13 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 
 			return {
-				height: 40,
+				height: 41,
 				type: 'rect',
 				stroke: {
 					weight: 7,
 					color: 'transparent'
 				},
-				width: 40
+				width: 41
 			};
 		}
 	}
