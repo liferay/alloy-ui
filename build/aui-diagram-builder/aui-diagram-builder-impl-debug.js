@@ -81,7 +81,6 @@ var Lang = A.Lang,
 	SUGGEST_CONNECTOR_OVERLAY = 'suggestConnectorOverlay',
 	TARGET = 'target',
 	TASK = 'task',
-	TMP_CONNECTOR = 'connector',
 	TRANSITION = 'transition',
 	TRANSITIONS = 'transitions',
 	TYPE = 'type',
@@ -155,19 +154,19 @@ var Lang = A.Lang,
 	},
 
 	isConnector = function(val) {
-		return (val instanceof A.Connector);
+		return A.instanceOf(val, A.Connector);
 	},
 
 	isDataSet = function(val) {
-		return (val instanceof A.DataSet);
+		return A.instanceOf(val, A.DataSet);
 	},
 
 	isDiagramBuilder = function(val) {
-		return (val instanceof A.DiagramBuilderBase);
+		return A.instanceOf(val, A.DiagramBuilderBase);
 	},
 
 	isDiagramNode = function(val) {
-		return (val instanceof A.DiagramNode);
+		return A.instanceOf(val, A.DiagramNode);
 	};
 
 var DiagramBuilder = A.Component.create({
@@ -281,7 +280,7 @@ var DiagramBuilder = A.Component.create({
 
 			instance._setupFieldsDrag();
 
-			instance.connector = instance.get(TMP_CONNECTOR);
+			instance.connector = instance.get(CONNECTOR);
 		},
 
 		syncConnectionsUI: function() {
@@ -719,7 +718,7 @@ var DiagramBuilder = A.Component.create({
 
 			var node = instance.addField({
 				type: availableField.get(TYPE),
-				xy: connector.getCoordinate(connector.get(P2))
+				xy: connector.toCoordinate(connector.get(P2))
 			});
 
 			instance.hideSuggestConnetorOverlay();
@@ -746,7 +745,8 @@ var DiagramBuilder = A.Component.create({
 							lazyDraw: true,
 							p1: xy,
 							p2: xy,
-							shapeHover: null
+							shapeHover: null,
+							showName: false
 						},
 						val
 					)
@@ -1336,7 +1336,7 @@ var DiagramNode = A.Component.create({
 			var publishedSource = builder.publishedSource;
 			var isConnecting = publishedSource && builder.publishedTarget;
 
-			if (!isConnecting && builder.get(SHOW_SUGGEST_CONNECTOR)) {
+			if (!isConnecting && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
 				builder.showSuggestConnetorOverlay();
 			}
 			else {
