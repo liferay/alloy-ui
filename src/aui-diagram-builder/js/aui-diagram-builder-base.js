@@ -6,15 +6,15 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 
 	isArrayList = function(val) {
-		return (val instanceof A.ArrayList);
+		return A.instanceOf(val, A.ArrayList);
 	},
 
 	isNode = function(val) {
-		return (val instanceof A.Node);
+		return A.instanceOf(val, A.Node);
 	},
 
 	isAvailableField = function(val) {
-		return (val instanceof A.AvailableField);
+		return A.instanceOf(val, A.AvailableField);
 	},
 
 	AArray = A.Array,
