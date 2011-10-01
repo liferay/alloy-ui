@@ -325,7 +325,7 @@ A.mix(NODE_PROTO, {
 
 	/**
 	 * <p>Centralize the current Node instance with the passed
-     * <code>centerWith</code> Node, if not specified, the body will be
+     * <code>val</code> Array, Node, String, or Region, if not specified, the body will be
      * used.</p>
      *
      * Example:
@@ -337,20 +337,33 @@ A.mix(NODE_PROTO, {
 	 *
 	 * @method center
 	 * @chainable
-	 * @param {Node | String} centerWith Node to center with
+	 * @param {Array | Node | Region | String} val Array, Node, String, or Region to center with
 	 */
-	center: function(centerWith) {
-		var instance = this;
+	center: function(val) {
+		var instance = this,
+			nodeRegion = instance.get(REGION),
+			x,
+			y;
 
-		centerWith = (centerWith && A.one(centerWith)) || A.getBody();
+		if (isArray(val)) {
+			x = val[0];
+			y = val[1];
+		}
+		else {
+			var region;
 
-		var centerWithRegion = centerWith.get(REGION);
-		var nodeRegion = instance.get(REGION);
+			if (isObject(val) && !A.instanceOf(val, A.Node)) {
+				region = val;
+			}
+			else {
+				region = (A.one(val) || A.getBody()).get(REGION);
+			}
 
-		var xCenterWith = centerWithRegion.left + (centerWithRegion.width / 2);
-		var yCenterWith = centerWithRegion.top + (centerWithRegion.height / 2);
+			x = region.left + (region.width / 2);
+			y = region.top + (region.height / 2);
+		}
 
-		instance.setXY([xCenterWith - (nodeRegion.width / 2), yCenterWith - (nodeRegion.height / 2)]);
+		instance.setXY([x - (nodeRegion.width / 2), y - (nodeRegion.height / 2)]);
 	},
 
 	/**
@@ -410,7 +423,7 @@ A.mix(NODE_PROTO, {
 	},
 
 	/**
-	 * Gets the current center position of the node in page coordinates. 
+	 * Gets the current center position of the node in page coordinates.
 	 * @method getCenterXY
 	 * @for Node
 	 * @return {Array} The XY position of the node
