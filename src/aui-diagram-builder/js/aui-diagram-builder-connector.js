@@ -167,12 +167,12 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		instance._uiSetShowName(instance.get(SHOW_NAME));
 	},
 
-	destroy: function() {
+	destructor: function() {
 		var instance = this;
 
 		instance.shape.destroy();
 		instance.shapeArrow.destroy();
-		instance.get(NODE_NAME).destroy();
+		instance.get(NODE_NAME).remove();
 	},
 
 	draw: function() {
