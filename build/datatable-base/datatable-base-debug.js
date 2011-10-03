@@ -1144,7 +1144,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches TABLE element to given container.
     *
     * @method _addTableNode
-    * @param containerNode {Y.Node} Parent node.
+    * @param containerNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1159,7 +1159,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches COLGROUP element to given TABLE.
     *
     * @method _addColgroupNode
-    * @param tableNode {Y.Node} Parent node.
+    * @param tableNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1185,7 +1185,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches THEAD element to given container.
     *
     * @method _addTheadNode
-    * @param tableNode {Y.Node} Parent node.
+    * @param tableNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1200,7 +1200,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches TBODY element to given container.
     *
     * @method _addTbodyNode
-    * @param tableNode {Y.Node} Parent node.
+    * @param tableNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1213,7 +1213,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches message display element to given container.
     *
     * @method _addMessageNode
-    * @param tableNode {Y.Node} Parent node.
+    * @param tableNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1226,7 +1226,7 @@ Y.extend(DTBase, Y.Widget, {
     * Creates and attaches CAPTION element to given container.
     *
     * @method _addCaptionNode
-    * @param tableNode {Y.Node} Parent node.
+    * @param tableNode {Node} Parent node.
     * @protected
     * @return Y.Node
     */
@@ -1332,7 +1332,7 @@ Y.extend(DTBase, Y.Widget, {
      * Updates THEAD.
      *
      * @method _uiSetColumnset
-     * @param cs {Y.Columnset} New Columnset.
+     * @param cs {Columnset} New Columnset.
      * @protected
      */
     _uiSetColumnset: function(cs) {
@@ -1485,7 +1485,7 @@ Y.extend(DTBase, Y.Widget, {
      * Updates TBODY.
      *
      * @method _uiSetRecordset
-     * @param rs {Y.Recordset} New Recordset.
+     * @param rs {Recordset} New Recordset.
      * @protected
      */
     _uiSetRecordset: function(rs) {

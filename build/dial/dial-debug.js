@@ -44,7 +44,7 @@ YUI.add('dial', function(Y) {
     /**
      * The identity of the widget.
      *
-     * @property Dial.NAME
+     * @property NAME
      * @type String
      * @default 'dial'
      * @readOnly
@@ -57,7 +57,7 @@ YUI.add('dial', function(Y) {
      * Static property used to define the default attribute configuration of
      * the Widget.
      *
-     * @property Dial.ATTRS
+     * @property ATTRS
      * @type {Object}
      * @protected
      * @static
@@ -237,7 +237,7 @@ YUI.add('dial', function(Y) {
 	/**
 	 * returns a properly formed yui class name
 	 *
-	 * @function
+	 * @method
 	 * @param {String} string to be appended at the end of class name
 	 * @return
 	 * @private
@@ -249,7 +249,7 @@ YUI.add('dial', function(Y) {
     /**
 	 * array of static constants used to identify the classname applied to the Dial DOM objects 
 	 *
-     * @property Dial.CSS_CLASSES
+     * @property CSS_CLASSES
      * @type {Array}
 	 * @private
      * @static
@@ -280,7 +280,7 @@ YUI.add('dial', function(Y) {
     /**
      * template that will contain the Dial's label.
      *
-     * @property Dial.LABEL_TEMPLATE
+     * @property LABEL_TEMPLATE
      * @type {HTML}
      * @default &lt;div id="' + labelId + '" class="[...-label]">&lt;span class="[...-label-string]">{label}&lt;/span>&lt;span class="[...-value-string]">&lt;/span>&lt;/div>
 	 * @protected
@@ -291,7 +291,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * template that will contain the Dial's background ring.
 		 *
-		 * @property Dial.RING_TEMPLATE
+		 * @property RING_TEMPLATE
 		 * @type {HTML}
 		 * @default &lt;div class="[...-ring]">&lt;div class="[...-northMark]">&lt;/div>&lt;/div>
 		 * @protected
@@ -301,7 +301,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * template that will contain the Dial's current angle marker.
 		 *
-		 * @property Dial.MARKER_TEMPLATE
+		 * @property MARKER_TEMPLATE
 		 * @type {HTML}
 		 * @default &lt;div class="[...-marker] [...-marker-hidden]">&lt;div class="[...-markerUser]">&lt;/div>&lt;/div>
 		 * @protected
@@ -311,7 +311,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * template that will contain the Dial's center button.
 		 *
-		 * @property Dial.CENTER_BUTTON_TEMPLATE
+		 * @property CENTER_BUTTON_TEMPLATE
 		 * @type {HTML}
 		 * @default &lt;div class="[...-centerButton]">&lt;div class="[...-resetString]">' + Y.substitute('{resetStr}', Dial.ATTRS.strings.value) + '&lt;/div>&lt;/div>
 		 * @protected
@@ -321,7 +321,7 @@ YUI.add('dial', function(Y) {
 		/**
 		 * template that will contain the Dial's handle.
 		 *
-		 * @property Dial.HANDLE_TEMPLATE
+		 * @property HANDLE_TEMPLATE
 		 * @type {HTML}
 		 * @default &lt;div class="[...-handle]">&lt;div class="[...-handleUser]" aria-labelledby="' + labelId + '" aria-valuetext="" aria-valuemax="" aria-valuemin="" aria-valuenow="" role="slider"  tabindex="0">&lt;/div>&lt;/div>';// title="{tooltipHandle}"
 		 * @protected
@@ -393,7 +393,7 @@ YUI.add('dial', function(Y) {
         },
 
 		/**
-		 * Sets -webkit-border-radius to 50% of width/height of the ring, handle-user, marker-user, and center-button.
+		 * Sets -webkit-border-radius to 50% of width/height of the ring, handle, marker, and center-button.
 		 * This is needed for iOS 3.x.
 		 * The objects render square if the radius is > 50% of the width/height
 		 * @method _setBorderRadius
@@ -1127,5 +1127,4 @@ YUI.add('dial', function(Y) {
 	Y.Dial = Dial;
 
 
-
-}, '3.4.0' ,{requires:['widget', 'dd-drag', 'substitute', 'event-mouseenter', 'event-move', 'event-key', 'transition', 'intl'], lang:['en','es' ], skinnable:true});
+}, '3.4.0' ,{lang:['en','es' ], skinnable:true, requires:['widget', 'dd-drag', 'substitute', 'event-mouseenter', 'event-move', 'event-key', 'transition', 'intl']});

@@ -36,7 +36,7 @@ function PaginatorPlugin() {
 /**
  * The identity of the plugin
  *
- * @property ScrollViewPaginator.NAME
+ * @property NAME
  * @type String
  * @default 'paginatorPlugin'
  * @static
@@ -46,7 +46,7 @@ PaginatorPlugin.NAME = 'pluginScrollViewPaginator';
 /**
  * The namespace on which the plugin will reside
  *
- * @property ScrollViewPaginator.NS
+ * @property NS
  * @type String
  * @default 'pages'
  * @static
@@ -56,7 +56,7 @@ PaginatorPlugin.NS = 'pages';
 /**
  * The default attribute configuration for the plugin
  *
- * @property ScrollViewPaginator.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

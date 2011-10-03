@@ -136,4 +136,4 @@ YUI.add('editor-br', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});

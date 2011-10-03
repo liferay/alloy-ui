@@ -517,7 +517,7 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
     /**
      * The identity of the widget.
      *
-     * @property SliderBase.NAME
+     * @property NAME
      * @type String
      * @default 'sliderBase'
      * @readOnly
@@ -530,7 +530,7 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
      * Static property used to define the default attribute configuration of
      * the Widget.
      *
-     * @property SliderBase.ATTRS
+     * @property ATTRS
      * @type {Object}
      * @protected
      * @static
@@ -582,7 +582,6 @@ Y.SliderBase = Y.extend( SliderBase, Y.Widget, {
         }
     }
 });
-
 
 
 }, '3.4.0' ,{requires:['widget', 'substitute', 'dd-constrain']});

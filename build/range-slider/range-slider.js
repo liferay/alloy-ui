@@ -12,6 +12,7 @@ YUI.add('range-slider', function(Y) {
  * background rail element.
  * 
  * @module slider
+ * @main slider
  * @submodule range-slider
  */
 
@@ -29,7 +30,6 @@ YUI.add('range-slider', function(Y) {
  */
 Y.Slider = Y.Base.build( 'slider', Y.SliderBase,
     [ Y.SliderValueRange, Y.ClickableRail ] );
-
 
 
 }, '3.4.0' ,{requires:['slider-base', 'clickable-rail', 'slider-value-range']});

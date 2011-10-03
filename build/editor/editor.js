@@ -563,7 +563,7 @@ YUI.add('frame', function(Y) {
         * @method render
         * @description Render the iframe into the container config option or open the window.
         * @param {String/HTMLElement/Node} node The node to render to
-        * @return {Y.Frame}
+        * @return {Frame}
         * @chainable
         */
         render: function(node) {
@@ -986,7 +986,7 @@ YUI.add('frame', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});
 YUI.add('selection', function(Y) {
 
     /**
@@ -1858,7 +1858,7 @@ YUI.add('selection', function(Y) {
         * Destroy the range.
         * @method remove
         * @chainable
-        * @return {Y.Selection}
+        * @return {Selection}
         */
         remove: function() {
             this._selection.removeAllRanges();
@@ -1882,7 +1882,7 @@ YUI.add('selection', function(Y) {
         * @param {Node} node The node to select
         * @param {Boolean} collapse Should the range be collapsed after insertion. default: false
         * @chainable
-        * @return {Y.Selection}
+        * @return {Selection}
         */
         selectNode: function(node, collapse, end) {
             if (!node) {
@@ -1981,7 +1981,7 @@ YUI.add('selection', function(Y) {
     };
 
 
-}, '3.4.0' ,{requires:['node'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['node']});
 YUI.add('exec-command', function(Y) {
 
 
@@ -2639,7 +2639,7 @@ YUI.add('exec-command', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['frame'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['frame']});
 YUI.add('editor-tab', function(Y) {
 
 
@@ -2707,7 +2707,7 @@ YUI.add('editor-tab', function(Y) {
     Y.Plugin.EditorTab = EditorTab;
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 YUI.add('createlink-base', function(Y) {
 
 
@@ -2791,7 +2791,7 @@ YUI.add('createlink-base', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 YUI.add('editor-base', function(Y) {
 
 
@@ -3570,16 +3570,13 @@ YUI.add('editor-base', function(Y) {
         */
         NAME: 'editorBase',
         /**
-        * Editor Strings
+        * Editor Strings.  By default contains only the `title` property for the
+        * Title of frame document (default "Rich Text Editor").
+        *
         * @static
         * @property STRINGS
         */
         STRINGS: {
-            /**
-            * Title of frame document: Rich Text Editor
-            * @static
-            * @property STRINGS.title
-            */
             title: 'Rich Text Editor'
         },
         ATTRS: {
@@ -3686,7 +3683,7 @@ YUI.add('editor-base', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['base', 'frame', 'node', 'exec-command', 'selection'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['base', 'frame', 'node', 'exec-command', 'selection']});
 YUI.add('editor-lists', function(Y) {
 
 
@@ -3806,7 +3803,7 @@ YUI.add('editor-lists', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 YUI.add('editor-bidi', function(Y) {
 
 
@@ -4067,8 +4064,11 @@ YUI.add('editor-bidi', function(Y) {
 
     /**
      * bidi execCommand override for setting the text direction of a node.
+     * This property is added to the `Y.Plugin.ExecCommands.COMMANDS`
+     * collection.
+     *
      * @for Plugin.ExecCommand
-     * @property COMMANDS.bidi
+     * @property bidi
      */
     //TODO -- This should not add this command unless the plugin is added to the instance..
     Y.Plugin.ExecCommand.COMMANDS.bidi = function(cmd, direction) {
@@ -4138,7 +4138,7 @@ YUI.add('editor-bidi', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 YUI.add('editor-para', function(Y) {
 
 
@@ -4493,7 +4493,7 @@ YUI.add('editor-para', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 YUI.add('editor-br', function(Y) {
 
 
@@ -4625,8 +4625,8 @@ YUI.add('editor-br', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['editor-base'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 
 
-YUI.add('editor', function(Y){}, '3.4.0' ,{skinnable:false, use:['frame', 'selection', 'exec-command', 'editor-base', 'editor-para', 'editor-br', 'editor-bidi', 'editor-tab', 'createlink-base']});
+YUI.add('editor', function(Y){}, '3.4.0' ,{use:['frame', 'selection', 'exec-command', 'editor-base', 'editor-para', 'editor-br', 'editor-bidi', 'editor-tab', 'createlink-base'], skinnable:false});
 

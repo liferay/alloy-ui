@@ -38,7 +38,7 @@ But it also works like this:
 @constructor
 @global
 @uses EventTarget
-@param o* {object} 0..n optional configuration objects.  these values
+@param o* {Object} 0..n optional configuration objects.  these values
 are store in Y.config.  See <a href="config.html">Config</a> for the list of supported
 properties.
 */
@@ -64,9 +64,10 @@ properties.
                 YUI.GlobalConfig is a master configuration that might span
                 multiple contexts in a non-browser environment.  It is applied
                 first to all instances in all contexts.
-                @property YUI.GlobalConfig
+                @property GlobalConfig
                 @type {Object}
                 @global
+                @static
                 @example
 
                     
@@ -233,7 +234,7 @@ proto = {
      * update the loader cache if necessary.  Updating Y.config directly
      * will not update the cache.
      * @method applyConfig
-     * @param {object} o the configuration object.
+     * @param {Object} o the configuration object.
      * @since 3.2.0
      */
     applyConfig: function(o) {
@@ -1070,26 +1071,36 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
 
 
     /**
-     * Returns the namespace specified and creates it if it doesn't exist
-     * 
-     *      YUI.namespace("property.package");
-     *      YUI.namespace("YAHOO.property.package");
-     * 
-     * Either of the above would create `YUI.property`, then
-     * `YUI.property.package` (`YAHOO` is scrubbed out, this is
-     * to remain compatible with YUI2)
-     *
-     * Be careful when naming packages. Reserved words may work in some browsers
-     * and not others. For instance, the following will fail in Safari:
-     * 
-     *      YUI.namespace("really.long.nested.namespace");
-     * 
-     * This fails because "long" is a future reserved word in ECMAScript
-     *
-     * @method namespace
-     * @param  {string*} arguments 1-n namespaces to create.
-     * @return {object}  A reference to the last namespace object created.
-     */
+    Adds a namespace object onto the YUI global if called statically:
+
+        // creates YUI.your.namespace.here as nested objects
+        YUI.namespace("your.namespace.here");
+
+    If called as an instance method on the YUI instance, it creates the
+    namespace on the instance:
+
+         // creates Y.property.package
+         Y.namespace("property.package");
+    
+    Dots in the input string cause `namespace` to create nested objects for
+    each token. If any part of the requested namespace already exists, the
+    current object will be left in place.  This allows multiple calls to
+    `namespace` to preserve existing namespaced properties.
+    
+    If the first token in the namespace string is "YAHOO", the token is
+    discarded.
+
+    Be careful when naming packages. Reserved words may work in some browsers
+    and not others. For instance, the following will fail in some browsers:
+    
+         Y.namespace("really.long.nested.namespace");
+    
+    This fails because `long` is a future reserved word in ECMAScript
+    
+    @method namespace
+    @param  {String[]} namespace* 1-n namespaces to create.
+    @return {Object}  A reference to the last namespace object created.
+    **/
     namespace: function() {
         var a = arguments, o = this, i = 0, j, d, arg;
         for (; i < a.length; i++) {
@@ -1720,9 +1731,7 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
  */
 
 /**
- * The parameter defaults for the remote loader service.
- * Requires the rls submodule.  The properties that are
- * supported:
+ * The parameter defaults for the remote loader service. **Requires the rls seed file.** The properties that are supported:
  * 
  *  * `m`: comma separated list of module requirements.  This
  *    must be the param name even for custom implemetations.
@@ -1742,23 +1751,26 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
  *
  * @since 3.2.0
  * @property rls
+ * @type {Object}
  */
 
 /**
- * The base path to the remote loader service
+ * The base path to the remote loader service. **Requires the rls seed file.**
  *
  * @since 3.2.0
  * @property rls_base
+ * @type {String}
  */
 
 /**
  * The template to use for building the querystring portion
  * of the remote loader service url.  The default is determined
  * by the rls config -- each property that has a value will be
- * represented.
+ * represented. **Requires the rls seed file.**
  * 
  * @since 3.2.0
  * @property rls_tmpl
+ * @type {String}
  * @example
  *      m={m}&v={v}&env={env}&lang={lang}&filt={filt}&tests={tests}
  *
@@ -1766,10 +1778,11 @@ Y.log('Fetching loader: ' + config.base + config.loaderPath, 'info', 'yui');
 
 /**
  * Configure the instance to use a remote loader service instead of
- * the client loader.
+ * the client loader. **Requires the rls seed file.**
  *
  * @since 3.2.0
  * @property use_rls
+ * @type {Boolean}
  */
 YUI.add('yui-base', function(Y) {
 
@@ -2076,6 +2089,7 @@ L.now = Date.now || function () {
  * core utilities for the library.
  *
  * @module yui
+ * @main yui
  * @submodule yui-base
  */
 
@@ -3032,11 +3046,14 @@ O.isEmpty = function (obj) {
  * @class UA
  * @static
  */
+
 /**
-* Static method for parsing the UA string. Defaults to assigning it's value to Y.UA
+* Static method on `YUI.Env` for parsing a UA string.  Called at instantiation
+* to populate `Y.UA`.
+*
 * @static
-* @method Env.parseUA
-* @param {String} subUA Parse this UA string instead of navigator.userAgent
+* @method parseUA
+* @param {String} [subUA=navigator.userAgent] UA string to parse
 * @returns {Object} The Y.UA object
 */
 YUI.Env.parseUA = function(subUA) {
@@ -4324,8 +4341,37 @@ Y.mix(Y.namespace('Features'), {
 
 /* This file is auto-generated by src/loader/scripts/meta_join.py */
 var add = Y.Features.add;
-// graphics-svg.js
+// graphics-canvas-default
 add('load', '0', {
+    "name": "graphics-canvas-default", 
+    "test": function(Y) {
+    var DOCUMENT = Y.config.doc,
+		canvas = DOCUMENT && DOCUMENT.createElement("canvas");
+	return (DOCUMENT && !DOCUMENT.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") && (canvas && canvas.getContext && canvas.getContext("2d")));
+}, 
+    "trigger": "graphics"
+});
+// autocomplete-list-keys
+add('load', '1', {
+    "name": "autocomplete-list-keys", 
+    "test": function (Y) {
+    // Only add keyboard support to autocomplete-list if this doesn't appear to
+    // be an iOS or Android-based mobile device.
+    //
+    // There's currently no feasible way to actually detect whether a device has
+    // a hardware keyboard, so this sniff will have to do. It can easily be
+    // overridden by manually loading the autocomplete-list-keys module.
+    //
+    // Worth noting: even though iOS supports bluetooth keyboards, Mobile Safari
+    // doesn't fire the keyboard events used by AutoCompleteList, so there's
+    // no point loading the -keys module even when a bluetooth keyboard may be
+    // available.
+    return !(Y.UA.ios || Y.UA.android);
+}, 
+    "trigger": "autocomplete-list"
+});
+// graphics-svg
+add('load', '2', {
     "name": "graphics-svg", 
     "test": function(Y) {
     var DOCUMENT = Y.config.doc;
@@ -4333,18 +4379,20 @@ add('load', '0', {
 }, 
     "trigger": "graphics"
 });
-// ie-base-test.js
-add('load', '1', {
-    "name": "event-base-ie", 
-    "test": function(Y) {
-    var imp = Y.config.doc && Y.config.doc.implementation;
-    return (imp && (!imp.hasFeature('Events', '2.0')));
+// history-hash-ie
+add('load', '3', {
+    "name": "history-hash-ie", 
+    "test": function (Y) {
+    var docMode = Y.config.doc && Y.config.doc.documentMode;
+
+    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
+            !docMode || docMode < 8);
 }, 
-    "trigger": "node-base"
+    "trigger": "history-hash"
 });
-// graphics-vml.js
-add('load', '2', {
-    "name": "graphics-vml", 
+// graphics-vml-default
+add('load', '4', {
+    "name": "graphics-vml-default", 
     "test": function(Y) {
     var DOCUMENT = Y.config.doc,
 		canvas = DOCUMENT && DOCUMENT.createElement("canvas");
@@ -4352,8 +4400,39 @@ add('load', '2', {
 }, 
     "trigger": "graphics"
 });
-// ie-style-test.js
-add('load', '3', {
+// graphics-svg-default
+add('load', '5', {
+    "name": "graphics-svg-default", 
+    "test": function(Y) {
+    var DOCUMENT = Y.config.doc;
+	return (DOCUMENT && DOCUMENT.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1"));
+}, 
+    "trigger": "graphics"
+});
+// widget-base-ie
+add('load', '6', {
+    "name": "widget-base-ie", 
+    "trigger": "widget-base", 
+    "ua": "ie"
+});
+// transition-timer
+add('load', '7', {
+    "name": "transition-timer", 
+    "test": function (Y) {
+    var DOCUMENT = Y.config.doc,
+        node = (DOCUMENT) ? DOCUMENT.documentElement: null,
+        ret = true;
+
+    if (node && node.style) {
+        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style);
+    } 
+
+    return ret;
+}, 
+    "trigger": "transition"
+});
+// dom-style-ie
+add('load', '8', {
     "name": "dom-style-ie", 
     "test": function (Y) {
 
@@ -4383,66 +4462,7 @@ add('load', '3', {
 }, 
     "trigger": "dom-style"
 });
-// transition-test.js
-add('load', '4', {
-    "name": "transition-timer", 
-    "test": function (Y) {
-    var DOCUMENT = Y.config.doc,
-        node = (DOCUMENT) ? DOCUMENT.documentElement: null,
-        ret = true;
-
-    if (node && node.style) {
-        ret = !('MozTransition' in node.style || 'WebkitTransition' in node.style);
-    } 
-
-    return ret;
-}, 
-    "trigger": "transition"
-});
-// 0
-add('load', '5', {
-    "name": "widget-base-ie", 
-    "trigger": "widget-base", 
-    "ua": "ie"
-});
-// autocomplete-list-keys-sniff.js
-add('load', '6', {
-    "name": "autocomplete-list-keys", 
-    "test": function (Y) {
-    // Only add keyboard support to autocomplete-list if this doesn't appear to
-    // be an iOS or Android-based mobile device.
-    //
-    // There's currently no feasible way to actually detect whether a device has
-    // a hardware keyboard, so this sniff will have to do. It can easily be
-    // overridden by manually loading the autocomplete-list-keys module.
-    //
-    // Worth noting: even though iOS supports bluetooth keyboards, Mobile Safari
-    // doesn't fire the keyboard events used by AutoCompleteList, so there's
-    // no point loading the -keys module even when a bluetooth keyboard may be
-    // available.
-    return !(Y.UA.ios || Y.UA.android);
-}, 
-    "trigger": "autocomplete-list"
-});
-// graphics-canvas.js
-add('load', '7', {
-    "name": "graphics-canvas-default", 
-    "test": function(Y) {
-    var DOCUMENT = Y.config.doc,
-		canvas = DOCUMENT && DOCUMENT.createElement("canvas");
-	return (DOCUMENT && !DOCUMENT.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") && (canvas && canvas.getContext && canvas.getContext("2d")));
-}, 
-    "trigger": "graphics"
-});
-// dd-gestures-test.js
-add('load', '8', {
-    "name": "dd-gestures", 
-    "test": function(Y) {
-    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
-}, 
-    "trigger": "dd-drag"
-});
-// selector-test.js
+// selector-css2
 add('load', '9', {
     "name": "selector-css2", 
     "test": function (Y) {
@@ -4453,16 +4473,48 @@ add('load', '9', {
 }, 
     "trigger": "selector"
 });
-// history-hash-ie-test.js
+// event-base-ie
 add('load', '10', {
-    "name": "history-hash-ie", 
-    "test": function (Y) {
-    var docMode = Y.config.doc && Y.config.doc.documentMode;
-
-    return Y.UA.ie && (!('onhashchange' in Y.config.win) ||
-            !docMode || docMode < 8);
+    "name": "event-base-ie", 
+    "test": function(Y) {
+    var imp = Y.config.doc && Y.config.doc.implementation;
+    return (imp && (!imp.hasFeature('Events', '2.0')));
 }, 
-    "trigger": "history-hash"
+    "trigger": "node-base"
+});
+// dd-gestures
+add('load', '11', {
+    "name": "dd-gestures", 
+    "test": function(Y) {
+    return (Y.config.win && ('ontouchstart' in Y.config.win && !Y.UA.chrome));
+}, 
+    "trigger": "dd-drag"
+});
+// scrollview-base-ie
+add('load', '12', {
+    "name": "scrollview-base-ie", 
+    "trigger": "scrollview-base", 
+    "ua": "ie"
+});
+// graphics-canvas
+add('load', '13', {
+    "name": "graphics-canvas", 
+    "test": function(Y) {
+    var DOCUMENT = Y.config.doc,
+		canvas = DOCUMENT && DOCUMENT.createElement("canvas");
+	return (DOCUMENT && !DOCUMENT.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") && (canvas && canvas.getContext && canvas.getContext("2d")));
+}, 
+    "trigger": "graphics"
+});
+// graphics-vml
+add('load', '14', {
+    "name": "graphics-vml", 
+    "test": function(Y) {
+    var DOCUMENT = Y.config.doc,
+		canvas = DOCUMENT && DOCUMENT.createElement("canvas");
+    return (DOCUMENT && !DOCUMENT.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1") && (!canvas || !canvas.getContext || !canvas.getContext("2d")));
+}, 
+    "trigger": "graphics"
 });
 
 
@@ -4800,13 +4852,19 @@ Y._rls = function(what) {
         }
     });
 
+    function addIfNeeded(module) {
+        if (Y.rls_needs(module)) {
+            m.unshift(module);
+        }
+    }
+
     //Add in the debug modules
     if (rls.filt === 'debug') {
-        m.unshift('dump', 'yui-log');
+        YArray.each(['dump', 'yui-log'], addIfNeeded);
     }
     //If they have a groups config, add the loader-base module
     if (Y.config.groups) {
-        m.unshift('loader-base');
+        addIfNeeded('loader-base');
     }
 
     m = YArray.dedupe(m);

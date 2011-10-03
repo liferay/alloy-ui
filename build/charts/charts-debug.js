@@ -12,6 +12,7 @@ YUI.add('charts', function(Y) {
  * graphically.
  *
  * @module charts
+ * @main charts
  */
 var DOCUMENT = Y.config.doc,
     LeftAxisLayout,
@@ -23,6 +24,7 @@ var DOCUMENT = Y.config.doc,
  * The Renderer class is a base class for chart components that use the `styles`
  * attribute.
  *
+ * @module charts
  * @class Renderer
  * @constructor
  */
@@ -138,6 +140,7 @@ Y.Renderer = Renderer;
 /**
  * Algorithmic strategy for rendering a left axis.
  *
+ * @module charts
  * @class LeftAxisLayout
  * @constructor
  */
@@ -547,8 +550,9 @@ Y.LeftAxisLayout = LeftAxisLayout;
 /**
  * RightAxisLayout contains algorithms for rendering a right axis.
  *
- * @constructor
+ * @module charts
  * @class RightAxisLayout
+ * @constructor
  */
 RightAxisLayout = function(){};
 
@@ -945,6 +949,7 @@ Y.RightAxisLayout = RightAxisLayout;
 /**
  * Contains algorithms for rendering a bottom axis.
  *
+ * @module charts
  * @class BottomAxisLayout
  * @Constructor
  */
@@ -1342,6 +1347,7 @@ Y.BottomAxisLayout = BottomAxisLayout;
 /**
  * Contains algorithms for rendering a top axis.
  *
+ * @module charts
  * @class TopAxisLayout
  * @constructor
  */
@@ -2779,7 +2785,7 @@ Y.Axis = Y.Base.create("axis", Y.Widget, [Y.Renderer], {
 /**
  * AxisType is an abstract class that manages the data for an axis.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class AxisType
  * @constructor
  * @extends Axis
@@ -3451,9 +3457,10 @@ Y.AxisType = Y.Base.create("baseAxis", Y.Axis, [], {
 /**
  * NumericAxis manages numeric data on an axis.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class NumericAxis
  * @constructor
+ * @param {Object} config (optional) Configuration parameters for the Chart.
  * @extends AxisType
  */
 function NumericAxis(config)
@@ -3958,9 +3965,10 @@ Y.NumericAxis = NumericAxis;
 /**
  * StackedAxis manages stacked numeric data on an axis.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class StackedAxis
  * @constructor
+ * @param {Object} config (optional) Configuration parameters for the Chart.
  * @extends NumericAxis
  */
 function StackedAxis(config)
@@ -4047,9 +4055,10 @@ Y.StackedAxis = StackedAxis;
 /**
  * TimeAxis manages time data on an axis.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class TimeAxis
  * @constructor
+ * @param {Object} config (optional) Configuration parameters for the Chart.
  * @extends AxisType
  */
 function TimeAxis(config)
@@ -4364,9 +4373,10 @@ Y.TimeAxis = TimeAxis;
 /**
  * CategoryAxis manages category data on an axis.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class CategoryAxis
  * @constructor
+ * @param {Object} config (optional) Configuration parameters for the Chart.
  * @extends AxisType
  */
 function CategoryAxis(config)
@@ -4579,6 +4589,7 @@ Y.CategoryAxis = CategoryAxis;
 /**
  * Utility class used for calculating curve points.
  *
+ * @module charts
  * @class CurveUtil
  * @constructor
  */
@@ -4697,6 +4708,7 @@ Y.CurveUtil = CurveUtil;
 /**
  * Utility class used for creating stacked series.
  *
+ * @module charts
  * @class StackingUtil
  * @constructor
  */
@@ -4758,6 +4770,7 @@ Y.StackingUtil = StackingUtil;
 /**
  * Utility class used for drawing lines.
  *
+ * @module charts
  * @class Lines
  * @constructor
  */
@@ -5022,6 +5035,7 @@ Y.Lines = Lines;
 /**
  * Utility class used for drawing area fills.
  *
+ * @module charts
  * @class Fills
  * @constructor
  */
@@ -5384,6 +5398,7 @@ Y.Fills = Fills;
 /**
  * Utility class used for drawing markers.
  *
+ * @module charts
  * @class Plots
  * @constructor
  */
@@ -5784,6 +5799,7 @@ Y.Plots = Plots;
 /**
  * Histogram is the base class for Column and Bar series.
  *
+ * @module charts
  * @class Histogram
  * @constructor
  */
@@ -5953,6 +5969,7 @@ Y.Histogram = Histogram;
 /**
  * The CartesianSeries class creates a chart with horizontal and vertical axes.
  *
+ * @module charts
  * @class CartesianSeries
  * @extends Base
  * @uses Renderer
@@ -6700,6 +6717,7 @@ Y.CartesianSeries = Y.Base.create("cartesianSeries", Y.Base, [Y.Renderer], {
  * The MarkerSeries class renders quantitative data by plotting relevant data points 
  * on a graph.
  *
+ * @module charts
  * @class MarkerSeries
  * @extends CartesianSeries
  * @uses Plots
@@ -6801,6 +6819,7 @@ Y.MarkerSeries = Y.Base.create("markerSeries", Y.CartesianSeries, [Y.Plots], {
 /**
  * The LineSeries class renders quantitative data on a graph by connecting relevant data points.
  *
+ * @module charts
  * @class LineSeries
  * @extends CartesianSeries
  * @uses Lines
@@ -6894,6 +6913,7 @@ Y.LineSeries = Y.Base.create("lineSeries", Y.CartesianSeries, [Y.Lines], {
 /**
  * SplineSeries renders a graph with data points connected by a curve.
  *
+ * @module charts
  * @class SplineSeries
  * @constructor
  * @extends CartesianSeries
@@ -6956,6 +6976,7 @@ Y.SplineSeries = Y.Base.create("splineSeries",  Y.LineSeries, [Y.CurveUtil, Y.Li
 /**
  * AreaSplineSeries renders an area graph with data points connected by a curve.
  *
+ * @module charts
  * @class AreaSplineSeries
  * @constructor
  * @extends CartesianSeries
@@ -7008,6 +7029,7 @@ Y.AreaSplineSeries = Y.Base.create("areaSplineSeries", Y.CartesianSeries, [Y.Fil
  * StackedSplineSeries creates spline graphs in which the different series are stacked along a value axis
  * to indicate their contribution to a cumulative total.
  *
+ * @module charts
  * @class StackedSplineSeries
  * @constructor
  * @extends SplineSeries
@@ -7045,6 +7067,7 @@ Y.StackedSplineSeries = Y.Base.create("stackedSplineSeries", Y.SplineSeries, [Y.
  * StackedMarkerSeries plots markers with different series stacked along the value axis to indicate each
  * series' contribution to a cumulative total.
  *
+ * @module charts
  * @class StackedMarkerSeries
  * @constructor
  * @extends MarkerSeries
@@ -7083,6 +7106,7 @@ Y.StackedMarkerSeries = Y.Base.create("stackedMarkerSeries", Y.MarkerSeries, [Y.
  * lengths are proportional to the values they represent along a vertical axis.
  * and the relevant data points.
  *
+ * @module charts
  * @class ColumnSeries
  * @extends MarkerSeries
  * @uses Histogram
@@ -7225,6 +7249,7 @@ Y.ColumnSeries = Y.Base.create("columnSeries", Y.MarkerSeries, [Y.Histogram], {
  * lengths are proportional to the values they represent along a horizontal axis.
  * and the relevant data points.
  *
+ * @module charts
  * @class BarSeries
  * @extends MarkerSeries
  * @uses Histogram
@@ -7375,6 +7400,7 @@ Y.BarSeries = Y.Base.create("barSeries", Y.MarkerSeries, [Y.Histogram], {
  * The AreaSeries class renders quantitative data on a graph by creating a fill between 0
  * and the relevant data points.
  *
+ * @module charts
  * @class AreaSeries
  * @extends CartesianSeries
  * @uses Fills
@@ -7464,6 +7490,7 @@ Y.AreaSeries = Y.Base.create("areaSeries", Y.CartesianSeries, [Y.Fills], {
 /**
  * StackedAreaSplineSeries creates a stacked area chart with points data points connected by a curve.
  *
+ * @module charts
  * @class StackedAreaSplineSeries
  * @constructor
  * @extends AreaSeries
@@ -7503,6 +7530,7 @@ Y.StackedAreaSplineSeries = Y.Base.create("stackedAreaSplineSeries", Y.AreaSerie
  * series type has a corresponding boolean attribute indicating if it is rendered. By default, lines and plots 
  * are rendered and area is not. 
  *
+ * @module charts
  * @class ComboSeries
  * @extends CartesianSeries 
  * @uses Fills
@@ -7746,11 +7774,11 @@ Y.ComboSeries = Y.Base.create("comboSeries", Y.CartesianSeries, [Y.Fills, Y.Line
          * Style properties for the series. Contains a key indexed hash of the following:
          *  <dl>
          *      <dt>marker</dt><dd>Style properties for the markers in the series. Specific style attributes are listed
-         *      <a href="#config_marker">here</a>.</dd>
+         *      <a href="#attr_marker">here</a>.</dd>
          *      <dt>line</dt><dd>Style properties for the lines in the series. Specific
-         *      style attributes are listed <a href="#config_line">here</a>.</dd>
+         *      style attributes are listed <a href="#attr_line">here</a>.</dd>
          *      <dt>area</dt><dd>Style properties for the area fills in the series. Specific style attributes are listed
-         *      <a href="#config_area">here</a>.</dd>
+         *      <a href="#attr_area">here</a>.</dd>
          *  </dl>
          *
          * @attribute styles
@@ -7770,6 +7798,7 @@ Y.ComboSeries = Y.Base.create("comboSeries", Y.CartesianSeries, [Y.Fills, Y.Line
  * series type has a corresponding boolean attribute indicating if it is rendered. By default, all three types are
  * rendered.  
  *
+ * @module charts
  * @class StackedComboSeries
  * @extends ComboSeries
  * @uses StackingUtil
@@ -7842,6 +7871,7 @@ Y.StackedComboSeries = Y.Base.create("stackedComboSeries", Y.ComboSeries, [Y.Sta
  * series type has a corresponding boolean attribute indicating if it is rendered. By default, splines and plots 
  * are rendered and areaspline is not. 
  *
+ * @module charts
  * @class ComboSplineSeries
  * @extends ComboSeries
  * @extends CurveUtil
@@ -7890,6 +7920,7 @@ Y.ComboSplineSeries = Y.Base.create("comboSplineSeries", Y.ComboSeries, [Y.Curve
  * series type has a corresponding boolean attribute indicating if it is rendered. By default, all three types are
  * rendered.  
  *
+ * @module charts
  * @class StackedComboSplineSeries
  * @extends StackedComboSeries
  * @uses CurveUtil
@@ -7947,6 +7978,7 @@ Y.StackedComboSplineSeries = Y.Base.create("stackedComboSplineSeries", Y.Stacked
  * StackedLineSeries creates line graphs in which the different series are stacked along a value axis
  * to indicate their contribution to a cumulative total.
  *
+ * @module charts
  * @class StackedLineSeries
  * @constructor
  * @extends  LineSeries
@@ -7982,9 +8014,10 @@ Y.StackedLineSeries = Y.Base.create("stackedLineSeries", Y.LineSeries, [Y.Stacki
 /**
  * StackedAreaSeries area fills to display data showing its contribution to a whole.
  *
- * @param {Object} config (optional) Configuration parameters for the Chart.
+ * @module charts
  * @class StackedAreaSeries
  * @constructor
+ * @param {Object} config (optional) Configuration parameters for the Chart.
  * @extends AreaSeries
  * @uses StackingUtil
  */
@@ -8031,6 +8064,7 @@ Y.StackedAreaSeries = Y.Base.create("stackedAreaSeries", Y.AreaSeries, [Y.Stacki
  * The StackedColumnSeries renders column chart in which series are stacked vertically to show
  * their contribution to the cumulative total.
  *
+ * @module charts
  * @class StackedColumnSeries
  * @extends ColumnSeries
  * @uses StackingUtil
@@ -8294,6 +8328,7 @@ Y.StackedColumnSeries = Y.Base.create("stackedColumnSeries", Y.ColumnSeries, [Y.
  * The StackedBarSeries renders bar chart in which series are stacked horizontally to show
  * their contribution to the cumulative total.
  *
+ * @module charts
  * @class StackedBarSeries
  * @extends BarSeries
  * @uses StackingUtil
@@ -8570,6 +8605,7 @@ Y.StackedBarSeries = Y.Base.create("stackedBarSeries", Y.BarSeries, [Y.StackingU
  * PieSeries visualizes data as a circular chart divided into wedges which represent data as a 
  * percentage of a whole.
  *
+ * @module charts
  * @class PieSeries
  * @constructor
  * @extends MarkerSeries
@@ -9282,6 +9318,7 @@ Y.PieSeries = Y.Base.create("pieSeries", Y.MarkerSeries, [], {
 /**
  * Gridlines draws gridlines on a Graph.
  *
+ * @module charts
  * @class Gridlines
  * @constructor
  * @extends Base
@@ -9468,6 +9505,7 @@ Y.Gridlines = Y.Base.create("gridlines", Y.Base, [Y.Renderer], {
  * Graph manages and contains series instances for a `CartesianChart`
  * instance.
  *
+ * @module charts
  * @class Graph
  * @constructor
  * @extends Widget
@@ -10189,6 +10227,7 @@ Y.Graph = Y.Base.create("graph", Y.Widget, [Y.Renderer], {
 /**
  * The ChartBase class is an abstract class used to create charts.
  *
+ * @module charts
  * @class ChartBase
  * @constructor
  */
@@ -11030,6 +11069,7 @@ Y.ChartBase = ChartBase;
 /**
  * The CartesianChart class creates a chart with horizontal and vertical axes.
  *
+ * @module charts
  * @class CartesianChart
  * @extends ChartBase
  * @constructor
@@ -12238,19 +12278,19 @@ Y.CartesianChart = Y.Base.create("cartesianChart", Y.Widget, [Y.ChartBase], {
          *      <dt>series</dt><dd>A key indexed hash containing references to the `styles` attribute for each series in the chart.
          *      Specific style attributes vary depending on the series:
          *      <ul>
-         *          <li><a href="AreaSeries.html#config_styles">AreaSeries</a></li>
-         *          <li><a href="BarSeries.html#config_styles">BarSeries</a></li>
-         *          <li><a href="ColumnSeries.html#config_styles">ColumnSeries</a></li>
-         *          <li><a href="ComboSeries.html#config_styles">ComboSeries</a></li>
-         *          <li><a href="LineSeries.html#config_styles">LineSeries</a></li>
-         *          <li><a href="MarkerSeries.html#config_styles">MarkerSeries</a></li>
-         *          <li><a href="SplineSeries.html#config_styles">SplineSeries</a></li>
+         *          <li><a href="AreaSeries.html#attr_styles">AreaSeries</a></li>
+         *          <li><a href="BarSeries.html#attr_styles">BarSeries</a></li>
+         *          <li><a href="ColumnSeries.html#attr_styles">ColumnSeries</a></li>
+         *          <li><a href="ComboSeries.html#attr_styles">ComboSeries</a></li>
+         *          <li><a href="LineSeries.html#attr_styles">LineSeries</a></li>
+         *          <li><a href="MarkerSeries.html#attr_styles">MarkerSeries</a></li>
+         *          <li><a href="SplineSeries.html#attr_styles">SplineSeries</a></li>
          *      </ul>
          *      </dd>
          *      <dt>axes</dt><dd>A key indexed hash containing references to the `styles` attribute for each axes in the chart. Specific
-         *      style attributes can be found in the <a href="Axis.html#config_styles">Axis</a> class.</dd>
+         *      style attributes can be found in the <a href="Axis.html#attr_styles">Axis</a> class.</dd>
          *      <dt>graph</dt><dd>A reference to the `styles` attribute in the chart. Specific style attributes can be found in the
-         *      <a href="Graph.html#config_styles">Graph</a> class.</dd>
+         *      <a href="Graph.html#attr_styles">Graph</a> class.</dd>
          *  </dl>
          *
          * @attribute styles
@@ -12566,6 +12606,7 @@ Y.CartesianChart = Y.Base.create("cartesianChart", Y.Widget, [Y.ChartBase], {
 /**
  * The PieChart class creates a pie chart
  *
+ * @module charts
  * @class PieChart
  * @extends ChartBase
  * @constructor
@@ -12915,6 +12956,7 @@ Y.PieChart = Y.Base.create("pieChart", Y.Widget, [Y.ChartBase], {
 /**
  * The Chart class is the basic application used to create a chart.
  *
+ * @module charts
  * @class Chart
  * @constructor
  */

@@ -662,4 +662,4 @@ YUI.add('exec-command', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['frame'], skinnable:false});
+}, '3.4.0' ,{skinnable:false, requires:['frame']});

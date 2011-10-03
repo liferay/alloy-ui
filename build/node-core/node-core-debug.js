@@ -10,6 +10,7 @@ YUI.add('node-core', function(Y) {
 /**
  * The Node Utility provides a DOM-like interface for interacting with DOM nodes.
  * @module node
+ * @main node
  * @submodule node-core
  */
 
@@ -142,7 +143,7 @@ Y_Node._instances = {};
  * @method getDOMNode
  * @static
  *
- * @param {Y.Node || HTMLNode} node The Node instance or an HTMLNode
+ * @param {Node | HTMLNode} node The Node instance or an HTMLNode
  * @return {HTMLNode} The DOM node bound to the Node instance.  If a DOM node is passed
  * as the node argument, it is simply returned.
  */
@@ -162,7 +163,7 @@ Y_Node.getDOMNode = function(node) {
  * @static
  *
  * @param {any} node The Node instance or an HTMLNode
- * @return {Y.Node | Y.NodeList | any} Depends on what is returned from the DOM node.
+ * @return {Node | NodeList | Any} Depends on what is returned from the DOM node.
  */
 Y_Node.scrubVal = function(val, node) {
     if (val) { // only truthy values are risky
@@ -261,7 +262,7 @@ Y_Node.importMethod = function(host, name, altName) {
  * use <code>Y.all</code>, which returns a NodeList when no match is found.
  * @method one
  * @param {String | HTMLElement} node a node or Selector
- * @return {Y.Node | null} a Node instance or null if no match found.
+ * @return {Node | null} a Node instance or null if no match found.
  * @for YUI
  */
 
@@ -273,7 +274,7 @@ Y_Node.importMethod = function(host, name, altName) {
  * @method one
  * @static
  * @param {String | HTMLElement} node a node or Selector
- * @return {Y.Node | null} a Node instance or null if no match found.
+ * @return {Node | null} a Node instance or null if no match found.
  * @for Node
  */
 Y_Node.one = function(node) {
@@ -665,7 +666,7 @@ Y.mix(Y_Node.prototype, {
      * and does not change the node bound to the Node instance.
      * Shortcut for myNode.get('parentNode').replaceChild(newNode, myNode);
      * @method replace
-     * @param {Y.Node || HTMLNode} newNode Node to be inserted
+     * @param {Node | HTMLNode} newNode Node to be inserted
      * @chainable
      *
      */
@@ -927,7 +928,7 @@ NodeList.NAME = 'NodeList';
  * @method getDOMNodes
  * @static
  *
- * @param {Y.NodeList} nodelist The NodeList instance
+ * @param {NodeList} nodelist The NodeList instance
  * @return {Array} The array of DOM nodes bound to the NodeList
  */
 NodeList.getDOMNodes = function(nodelist) {
@@ -1061,7 +1062,7 @@ Y.mix(NodeList.prototype, {
     /**
      * Creates a documenFragment from the nodes bound to the NodeList instance
      * @method toFrag
-     * @return Node a Node instance bound to the documentFragment
+     * @return {Node} a Node instance bound to the documentFragment
      */
     toFrag: function() {
         return Y.one(Y.DOM._nl2frag(this._nodes));
@@ -1071,7 +1072,7 @@ Y.mix(NodeList.prototype, {
      * Returns the index of the node in the NodeList instance
      * or -1 if the node isn't found.
      * @method indexOf
-     * @param {Y.Node || DOMNode} node the node to search for
+     * @param {Node | DOMNode} node the node to search for
      * @return {Int} the index of the node value or -1 if not found
      */
     indexOf: function(node) {
@@ -1362,7 +1363,7 @@ var Y_NodeList = Y.NodeList,
           * @return {NodeList} A new NodeList comprised of this NodeList joined with the input.
           */
         'concat': 1,
-        /** Removes the first last from the NodeList and returns it.
+        /** Removes the last from the NodeList and returns it.
           * @for NodeList
           * @method pop
           * @return {Node} The last item in the NodeList.
@@ -1404,7 +1405,7 @@ var Y_NodeList = Y.NodeList,
         'splice': 1,
         /** Adds the given Node(s) to the beginning of the NodeList.
           * @for NodeList
-          * @method push
+          * @method unshift
           * @param {Node | DOMNode} nodes One or more nodes to add to the NodeList.
           */
         'unshift': 0

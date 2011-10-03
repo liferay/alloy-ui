@@ -410,24 +410,6 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ], 
         "type": "css"
     }, 
-    "cssgrids-context-deprecated": {
-        "optional": [
-            "cssreset-context"
-        ], 
-        "requires": [
-            "cssfonts-context"
-        ], 
-        "type": "css"
-    }, 
-    "cssgrids-deprecated": {
-        "optional": [
-            "cssreset"
-        ], 
-        "requires": [
-            "cssfonts"
-        ], 
-        "type": "css"
-    }, 
     "cssreset": {
         "type": "css"
     }, 
@@ -1766,7 +1748,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         "requires": [
             "event-custom", 
             "node", 
-            "swfdetect"
+            "swfdetect", 
+            "escape"
         ]
     }, 
     "swfdetect": {}, 
@@ -2011,7 +1994,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ]
     }
 };
-YUI.Env[Y.version].md5 = 'fbf2d694a982e8290f58fd1694becad2';
+YUI.Env[Y.version].md5 = '516f2598fb0cef4337e32df3a89e5124';
 
 
 }, '3.4.0' ,{requires:['loader-base']});

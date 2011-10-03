@@ -106,12 +106,13 @@ if (!YUI.Env[Y.version]) {
  * YUI files.
  *
  * @module loader
+ * @main loader
  * @submodule loader-base
  */
 
 var NOT_FOUND = {},
     NO_REQUIREMENTS = [],
-    MAX_URL_LENGTH = (Y.UA.ie) ? 2048 : 8192,
+    MAX_URL_LENGTH = 2048,
     GLOBAL_ENV = YUI.Env,
     GLOBAL_LOADED = GLOBAL_ENV._loaded,
     CSS = 'css',
@@ -142,7 +143,7 @@ var NOT_FOUND = {},
 /**
  * The component metadata is stored in Y.Env.meta.
  * Part of the loader module.
- * @property Env.meta
+ * @property meta
  * @for YUI
  */
 Y.Env.meta = META;
@@ -387,21 +388,12 @@ Y.Loader = function(o) {
     */
     self.comboSep = '&';
     /**
-     * Max url length for combo urls.  The default is 2048 for
-     * internet explorer, and 8192 otherwise.  This is the URL
+     * Max url length for combo urls.  The default is 2048. This is the URL
      * limit for the Yahoo! hosted combo servers.  If consuming
      * a different combo service that has a different URL limit
      * it is possible to override this default by supplying
      * the maxURLLength config option.  The config option will
      * only take effect if lower than the default.
-     *
-     * Browsers:
-     *    IE: 2048
-     *    Other A-Grade Browsers: Higher that what is typically supported
-     *    'capable' mobile browsers:
-     *
-     * Servers:
-     *    Apache: 8192
      *
      * @property maxURLLength
      * @type int
@@ -2182,8 +2174,12 @@ Y.log('Undefined module: ' + mname + ', matched a pattern: ' +
 
                             frag = ((L.isValue(m.root)) ? m.root : self.root) + m.path;
 
-                            if ((url !== j) && (i < (len - 1)) &&
+                            if ((url !== j) && (i <= (len - 1)) &&
                             ((frag.length + url.length) > self.maxURLLength)) {
+                                //Hack until this is rewritten to use an array and not string concat:
+                                if (url.substr(url.length - 1, 1) === self.comboSep) {
+                                    url = url.substr(0, (url.length - 1));
+                                }
                                 urls.push(self._filter(url));
                                 url = j;
                             }
@@ -2199,6 +2195,10 @@ Y.log('Undefined module: ' + mname + ', matched a pattern: ' +
                     }
 
                     if (combining.length && (url != j)) {
+                        //Hack until this is rewritten to use an array and not string concat:
+                        if (url.substr(url.length - 1, 1) === self.comboSep) {
+                            url = url.substr(0, (url.length - 1));
+                        }
                         urls.push(self._filter(url));
                     }
                 }
@@ -2985,24 +2985,6 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "cssgrids": {
         "optional": [
             "cssreset", 
-            "cssfonts"
-        ], 
-        "type": "css"
-    }, 
-    "cssgrids-context-deprecated": {
-        "optional": [
-            "cssreset-context"
-        ], 
-        "requires": [
-            "cssfonts-context"
-        ], 
-        "type": "css"
-    }, 
-    "cssgrids-deprecated": {
-        "optional": [
-            "cssreset"
-        ], 
-        "requires": [
             "cssfonts"
         ], 
         "type": "css"
@@ -4345,7 +4327,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         "requires": [
             "event-custom", 
             "node", 
-            "swfdetect"
+            "swfdetect", 
+            "escape"
         ]
     }, 
     "swfdetect": {}, 
@@ -4590,7 +4573,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ]
     }
 };
-YUI.Env[Y.version].md5 = 'fbf2d694a982e8290f58fd1694becad2';
+YUI.Env[Y.version].md5 = '516f2598fb0cef4337e32df3a89e5124';
 
 
 }, '3.4.0' ,{requires:['loader-base']});

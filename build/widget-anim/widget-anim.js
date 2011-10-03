@@ -50,7 +50,7 @@ function WidgetAnim(config) {
  * The namespace for the plugin. This will be the property on the widget, which will 
  * reference the plugin instance, when it's plugged in.
  *
- * @property WidgetAnim.NS
+ * @property NS
  * @static
  * @type String
  * @default "anim"
@@ -61,7 +61,7 @@ WidgetAnim.NS = "anim";
  * The NAME of the WidgetAnim class. Used to prefix events generated
  * by the plugin class.
  *
- * @property WidgetAnim.NAME
+ * @property NAME
  * @static
  * @type String
  * @default "pluginWidgetAnim"
@@ -72,7 +72,7 @@ WidgetAnim.NAME = "pluginWidgetAnim";
  * Pre-Packaged Animation implementations, which can be used for animShow and animHide attribute 
  * values.
  *
- * @property WidgetAnim.ANIMATIONS
+ * @property ANIMATIONS
  * @static
  * @type Object
  * @default "pluginWidgetAnim"
@@ -117,7 +117,7 @@ WidgetAnim.ANIMATIONS = {
  * Static property used to define the default attribute 
  * configuration for the plugin.
  *
- * @property WidgetAnim.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */

@@ -35,7 +35,7 @@ var CLASS_NAME_PREFIX = 'classNamePrefix',
 /**
  * Configuration property indicating the prefix for all CSS class names in this YUI instance.
  *
- * @property Y.config.classNamePrefix
+ * @property classNamePrefix
  * @type {String}
  * @default "yui"
  * @static
@@ -46,7 +46,7 @@ CONFIG[CLASS_NAME_PREFIX] = CONFIG[CLASS_NAME_PREFIX] || 'yui3';
  * Configuration property indicating the delimiter used to compose all CSS class names in
  * this YUI instance.
  *
- * @property Y.config.classNameDelimiter
+ * @property classNameDelimiter
  * @type {String}
  * @default "-"
  * @static

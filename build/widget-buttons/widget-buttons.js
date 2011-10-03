@@ -47,7 +47,7 @@ function WidgetButtons(config) {
  * Static property used to define the default attribute 
  * configuration introduced by WidgetButtons.
  * 
- * @property WidgetButtons.ATTRS
+ * @property ATTRS
  * @type Object
  * @static
  */
@@ -89,13 +89,13 @@ WidgetButtons.ATTRS = {
  * Static hash of buttons that have all their properties defined, so that they can be used by supplying a value to the "type" property in the button attribute.
  * The "close" button is currently defined in this object (sets the [x] in the top-right of the header). 
  * 
- * @property WidgetButtons.DEFAULT_BUTTONS
+ * @property DEFAULT_BUTTONS
  * @static
  * @type object
  */
 WidgetButtons.DEFAULT_BUTTONS = {
     "close": {
-        value:'<div style="background:url(../../assets/skins/sam/sprite_icons.gif) no-repeat; width:13px; height:13px; background-position: 0 2px;"></div>',
+        value:'<div style="background:url(http://yui.yahooapis.com/3.4.0pr3/build/panel/assets/skins/sam/sprite_icons.gif) no-repeat; width:13px; height:13px; background-position: 0 2px;"></div>',
         action: function(e) {
                     e.preventDefault();
                     this.hide();
@@ -107,7 +107,7 @@ WidgetButtons.DEFAULT_BUTTONS = {
 /**
  * Static hash of default class names used for the inner <span> ("content"), the <a> ("button"), and the outer span ("wrapper")
  * 
- * @property WidgetButtons.BUTTON_CLASS_NAMES
+ * @property BUTTON_CLASS_NAMES
  * @static
  * @type object
  */
@@ -123,7 +123,7 @@ WidgetButtons.BUTTON_CLASS_NAMES = {
  * <p>defaultTemplate: Specifies the HTML markup for each button</p>
  * <p>wrapper: Specifies the HTML markup for the wrapper, which is a DOM Element that wraps around all the buttons</p>
  * 
- * @property WidgetButtons.TEMPLATES
+ * @property TEMPLATES
  * @static
  * @type object
  */
