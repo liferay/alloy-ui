@@ -1392,9 +1392,7 @@ var DiagramNode = A.Component.create({
 		_handleCloseEvent: function(event) {
 			var instance = this;
 
-			if (!instance.get(REQUIRED)) {
-				instance.close();
-			}
+			instance.get(BUILDER).deleteSelectedNode();
 		},
 
 		_handleEditEvent: function(event) {
