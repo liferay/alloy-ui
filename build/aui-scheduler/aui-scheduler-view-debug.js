@@ -327,6 +327,9 @@ var SchedulerView = A.Component.create({
 });
 
 A.SchedulerView = A.Base.create(SCHEDULER_VIEW, SchedulerView, [A.WidgetStdMod]);
+var Lang = A.Lang,
+	sub = Lang.sub;
+
 var getNodeListHTMLParser = function(selector, sizeCondition) {
 		return function(srcNode) {
 			var nodes = srcNode.all(selector);
@@ -1122,7 +1125,7 @@ var SchedulerDayView = A.Component.create({
 
 			for (var hour = 0; hour <= 23; hour++) {
 				buffer.push(
-					A.Lang.sub(
+					sub(
 						TPL_SCHEDULER_VIEW_DAY_TABLE_TIME,
 						{
 							hour: isoTime ? DateMath.toIsoTimeString(hour) : DateMath.toUsTimeString(hour, false, true)
