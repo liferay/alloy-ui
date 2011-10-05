@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <project name="AlloyBootstrap">
 	<import file="properties.xml" description="Alloy Default Build Properties"/>
+
+	<exec executable="git" dir="${project.dir}">
+		<arg value="submodule" />
+		<arg value="update" />
+		<arg value="--init" />
+	</exec>
+
 	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
 
