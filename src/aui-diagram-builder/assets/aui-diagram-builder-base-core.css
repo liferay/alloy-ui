@@ -101,6 +101,12 @@
 	padding: 3px;
 }
 
+.aui-diagram-node-state .aui-diagram-builder-controls,
+.aui-diagram-node-start .aui-diagram-builder-controls,
+.aui-diagram-node-end .aui-diagram-builder-controls {
+	margin-left: -7px;
+}
+
 .aui-diagram-node-controls-icon {
 	display: inline-block;
     margin-top: -3px;
