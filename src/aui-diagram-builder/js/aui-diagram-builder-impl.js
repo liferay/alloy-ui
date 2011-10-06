@@ -664,6 +664,13 @@ var DiagramBuilder = A.Component.create({
 			event.halt();
 		},
 
+		_onCanvasClick: function(event) {
+			var instance = this;
+
+			instance.stopEditing();
+			instance.hideSuggestConnetorOverlay();
+		},
+
 		_onNodeClick: function(event) {
 			var instance = this;
 			var diagramNode = A.Widget.getByNode(event.currentTarget);
@@ -726,8 +733,10 @@ var DiagramBuilder = A.Component.create({
 
 		_renderGraphic: function() {
 			var instance = this;
+			var graphic = instance.get(GRAPHIC);
 
-			instance.get(GRAPHIC).render(instance.get(CANVAS));
+			graphic.render(instance.get(CANVAS));
+			A.one(graphic.get(NODE)).on(CLICK, A.bind(instance._onCanvasClick, instance));
 		},
 
 		_setConnector: function(val) {
