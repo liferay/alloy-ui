@@ -40,9 +40,9 @@ AUI().ready('aui-dialog','aui-dialog-iframe', function(A) {
 		A.Plugin.DialogIframe,
 		{
 			uri: 'assets/content.html',
-			bindLoadHandler: function() {
-				A.on('iframeReady', A.bind(this.fire, this, 'load'));
-			},
+			// bindLoadHandler: function() {
+			// 	A.on('iframeReady', A.bind(this.fire, this, 'load'));
+			// },
 			// uri: 'http://google.com',
 			iframeCssClass: 'dialog-iframe',
 			after: {
