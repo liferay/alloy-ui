@@ -100,8 +100,6 @@ var MediaViewerPlugin = A.Component.create(
 				if (mediaType != STR_IMAGE) {
 					host.setStdModContent(STR_BODY, '');
 				}
-
-				return true;
 			},
 
 			loadMedia: function(linkHref) {
