@@ -672,7 +672,6 @@ var ImageGallery = A.Component.create(
 					return false; // NOTE: return
 				}
 
-				var currentIndex = instance.get(CURRENT_INDEX);
 				var paginatorIndex = page - 1;
 
 				// check if the beforeState page number is different from the newState page number.
@@ -680,21 +679,34 @@ var ImageGallery = A.Component.create(
 					// updating currentIndex
 					instance.set(CURRENT_INDEX, paginatorIndex);
 
-					// loading current index image
-					instance.loadImage(
-						instance.getCurrentLink().attr(HREF)
-					);
-
 					// updating the UI of the paginator
 					paginatorInstance.setState(newState);
 
-					// restart the timer if the user change the image, respecting the paused state
-					var paused = instance.get(PAUSED);
-					var playing = instance.get(PLAYING);
+					instance._processChangeRequest();
+				}
+			},
 
-					if (playing && !paused) {
-						instance._startTimer();
-					}
+			/**
+			 * Process the change request.
+			 * Load image and restart the timer, if needed.
+			 *
+			 * @method _processChangeRequest
+			 * @protected
+			 */
+			_processChangeRequest: function() {
+				var instance = this;
+
+				// loading current index image
+				instance.loadImage(
+					instance.getCurrentLink().attr(HREF)
+				);
+
+				// restart the timer if the user change the image, respecting the paused state
+				var paused = instance.get(PAUSED);
+				var playing = instance.get(PLAYING);
+
+				if (playing && !paused) {
+					instance._startTimer();
 				}
 			},
 
