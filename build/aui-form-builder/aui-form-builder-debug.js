@@ -794,7 +794,6 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FIXED = 'fixed',
 	FOR = 'for',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -864,7 +863,6 @@ var L = A.Lang,
 	CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FB_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
-	CSS_FB_FIXED = getCN(FORM, BUILDER, FIXED),
 	CSS_FB_ICON = getCN(FORM, BUILDER, ICON),
 	CSS_FB_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
 	CSS_FB_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
@@ -912,10 +910,6 @@ var FormBuilderField = A.Component.create({
 		},
 
 		disabled: {
-			value: false
-		},
-
-		fixed: {
 			value: false
 		},
 
@@ -1060,7 +1054,7 @@ var FormBuilderField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
 	EXTENDS: FormBuilderFieldBase,
 
@@ -1280,8 +1274,8 @@ var FormBuilderField = A.Component.create({
 
 			controlsToolbar.get(BOUNDING_BOX).hide();
 
-			instance._uiSetFixed(
-				instance.get(FIXED)
+			instance._uiSetRequired(
+				instance.get(REQUIRED)
 			);
 		},
 
@@ -1351,26 +1345,6 @@ var FormBuilderField = A.Component.create({
 			builder.plotFields(val, instance.get(DROP_ZONE_NODE));
 		},
 
-		_uiSetFixed: function(val) {
-			var instance = this;
-			var controlsToolbar = instance.controlsToolbar;
-			var strings = instance.getStrings();
-			
-			if (controlsToolbar) {
-				if (val) {
-					controlsToolbar.remove(DELETE_EVENT);
-				}
-				else {
-					controlsToolbar.add({
-						handler: A.bind(instance._handleDeleteEvent, instance),
-						icon: CLOSE,
-						id: DELETE_EVENT,
-						title: strings[DELETE_MESSAGE]
-					});
-				}
-			}
-		},
-
 		_uiSetLabel: function(val) {
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
@@ -1395,6 +1369,22 @@ var FormBuilderField = A.Component.create({
 		_uiSetRequired: function(val) {
 			var instance = this;
 			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
+			var controlsToolbar = instance.controlsToolbar;
+			var strings = instance.getStrings();
+
+			if (controlsToolbar) {
+				if (val) {
+					controlsToolbar.remove(DELETE_EVENT);
+				}
+				else {
+					controlsToolbar.add({
+						handler: A.bind(instance._handleDeleteEvent, instance),
+						icon: CLOSE,
+						id: DELETE_EVENT,
+						title: strings[DELETE_MESSAGE]
+					});
+				}
+			}
 
 			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
 		},
