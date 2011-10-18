@@ -1,5 +1,6 @@
 AUI.add('aui-base-lang', function(A) {
 var Lang = A.Lang,
+	AArray = A.Array,
 	isNumber = Lang.isNumber,
 	isUndefined = Lang.isUndefined,
 
@@ -331,6 +332,31 @@ A.mix(
 		},
 
 		_unescapeNode: DOC.createElement('a')
+	}
+);
+
+A.mix(
+	AArray,
+	{
+		stableSort: function(array, sorter) {
+			var i, len = array.length;
+
+			for (i = 0; i < len; i++) {
+				array[i] = { index: i, value: array[i] };
+			}
+
+			array.sort(
+				function(a, b) {
+					var result = sorter.call(array, a.value, b.value);
+
+					return (result === 0) ? (a.index - b.index) : result;
+				}
+			);
+
+			for (var i = 0; i < len; i++) {
+				array[i] = array[i].value;
+			}
+		}
 	}
 );
 
