@@ -1317,7 +1317,7 @@ var OptionsEditor = A.Component.create({
 		_createEditBuffer: function() {
 			var instance = this;
 			var strings = instance.getStrings();
-			
+
 			var buffer = [];
 
 			buffer.push(
@@ -1418,7 +1418,18 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						collection[index] = A.merge(
 							item,
 							{
-								editor: instance.predefinedValueEditor
+								editor: instance.predefinedValueEditor,
+								formatter: function(o) {
+									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
+
+									var value = editorOptions[o.record.get(DATA).value];
+
+									if (!isString(value)) {
+										value = _EMPTY_STR;
+									}
+
+									return value;
+								}
 							}
 						);
 					}
