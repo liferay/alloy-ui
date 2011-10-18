@@ -1,12 +1,34 @@
 <?xml version="1.0"?>
-<project name="AlloyBootstrap">
+<project name="AlloyBootstrap" xmlns:a="antlib:ise.antelope.tasks">
 	<import file="properties.xml" description="Alloy Default Build Properties"/>
 
-	<exec executable="git" dir="${project.dir}">
-		<arg value="submodule" />
-		<arg value="update" />
-		<arg value="--init" />
-	</exec>
+	<path id="lib.classpath">
+		<fileset dir="${project.dir}/resources/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
+
+	<if>
+		<or>
+			<not>
+				<available file="${project.dir}/lib/ace" type="dir" />
+			</not>
+			<not>
+				<available file="${project.dir}/lib/builder" type="dir" />
+			</not>
+			<not>
+				<available file="${project.dir}/lib/yui3" type="dir" />
+			</not>
+		</or>
+		<then>
+			<exec executable="git" dir="${project.dir}">
+				<arg value="submodule" />
+				<arg value="update" />
+				<arg value="--init" />
+			</exec>
+		</then>
+	</if>
 
 	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
