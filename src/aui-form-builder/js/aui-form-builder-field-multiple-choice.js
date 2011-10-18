@@ -2,14 +2,19 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
 
+	ADD_OPTION = 'addOption',
 	DATA = 'data',
 	DRAG = 'drag',
 	DROP = 'drop',
+	EDITOR = 'editor',
+	EDITABLE = 'editable',
+	EDIT_OPTIONS = 'editOptions',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
+	FORM_BUILDER = 'form-builder',
 	FORM_BUILDER_MULTIPLE_CHOICE_FIELD = 'form-builder-multiple-choice-field',
 	FORM_BUILDER_OPTIONS_EDITOR = 'form-builder-options-editor',
+	HIDDEN = 'hidden',
 	ICON = 'icon',
 	ID = 'id',
 	INPUT = 'input',
@@ -52,8 +57,9 @@ var Lang = A.Lang,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE);
+	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER, FIELD),
+	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+	CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
 var OptionsEditor = A.Component.create({
 	NAME: FORM_BUILDER_OPTIONS_EDITOR,	
@@ -61,12 +67,53 @@ var OptionsEditor = A.Component.create({
 	EXTENDS: A.RadioCellEditor,
 
 	prototype: {
+		ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
+
 		initializer: function() {
 			var instance = this;
+
+			instance.set(EDITABLE, false);
 
 			instance.after(RENDER, function() {
 				instance._onEditEvent();
 			});
+		},
+		
+		_createEditBuffer: function() {
+			var instance = this;
+			var strings = instance.getStrings();
+
+			var buffer = [];
+
+			buffer.push(
+				Lang.sub(instance.EDIT_LABEL_TEMPLATE, {
+					editOptions: strings[EDIT_OPTIONS]
+				})
+			);
+
+			A.each(instance.get(OPTIONS), function(name, value) {
+				buffer.push(instance._createEditOption(name, value));
+			});
+
+			buffer.push(
+				Lang.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
+					addOption: strings[ADD_OPTION]
+				})
+			);
+
+			return buffer.join(_EMPTY_STR);
+		},
+
+		_onSubmit: function(event) {
+			var instance = this;
+			var validator = event.validator;
+
+			instance.saveOptions();
+			instance._handleSaveEvent();
+
+			if (validator) {
+				validator.formEvent.halt();
+			}
 		}
 	}
 });
@@ -113,6 +160,15 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 	prototype: {
 
+		initializer: function() {
+			var instance = this;
+			var options = instance.get(OPTIONS);
+
+			instance.predefinedValueEditor = new A.RadioCellEditor({
+				options: getEditorOptions(options)
+			});
+		},
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -127,19 +183,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						collection[index] = A.merge(
 							item,
 							{
-								editor: new A.RadioCellEditor({
-									options: getEditorOptions(options)
-								}),
-								formatter: function(o) {
-									var editorOptions = getEditorOptions(options);
-									var value = editorOptions[o.record.get(DATA).value];
-
-									if (!isString(value)) {
-										value = _EMPTY_STR;
-									}
-
-									return value;
-								}
+								editor: instance.predefinedValueEditor
 							}
 						);
 					}
@@ -151,6 +195,13 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 					attributeName: OPTIONS,
 					editor: new OptionsEditor({
 						editable: true,
+						on: {
+							optionsChange : function (event) {
+								var newOptions = event.newVal;
+
+								instance.predefinedValueEditor.set(OPTIONS, newOptions);
+							}
+						},
 						options: getEditorOptions(options),
 						inputFormatter: function() {
 							var input = [];

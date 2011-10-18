@@ -1130,8 +1130,11 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
+			var value = instance.get(VALUE)
+
 			instance._createOptions(val);
 			instance._syncElementsName();
+			instance._uiSetValue(value);
 		},
 
 		_uiSetValue: function(val) {
