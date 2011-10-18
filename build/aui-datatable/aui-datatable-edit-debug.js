@@ -1131,8 +1131,11 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
+			var value = instance.get(VALUE)
+
 			instance._createOptions(val);
 			instance._syncElementsName();
+			instance._uiSetValue(value);
 		},
 
 		_uiSetValue: function(val) {
@@ -1442,4 +1445,4 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']});
