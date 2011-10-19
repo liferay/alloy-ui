@@ -1241,9 +1241,9 @@ var Lang = A.Lang,
 	DATA = 'data',
 	DRAG = 'drag',
 	DROP = 'drop',
-	EDITOR = 'editor',
-	EDITABLE = 'editable',
 	EDIT_OPTIONS = 'editOptions',
+	EDITABLE = 'editable',
+	EDITOR = 'editor',
 	FIELD = 'field',
 	FIELDS = 'fields',
 	FORM_BUILDER = 'form-builder',
@@ -1271,9 +1271,8 @@ var Lang = A.Lang,
 	VALUE = 'value',
 
 	_COMMA = ',',
-	_SPACE = ' ',
-	_COMMA_AND_SPACE = _COMMA + _SPACE,
 	_EMPTY_STR = '',
+	_SPACE = ' ',
 
 	getCN = A.getClassName,
 
@@ -1297,7 +1296,13 @@ var Lang = A.Lang,
 	CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
 var OptionsEditor = A.Component.create({
-	NAME: FORM_BUILDER_OPTIONS_EDITOR,	
+	NAME: FORM_BUILDER_OPTIONS_EDITOR,
+
+	ATTRS: {
+		editable: {
+			value: false
+		}
+	},
 
 	EXTENDS: A.RadioCellEditor,
 
@@ -1307,58 +1312,25 @@ var OptionsEditor = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.set(EDITABLE, false);
-
 			instance.after(RENDER, function() {
 				instance._onEditEvent();
 			});
 		},
-		
-		_createEditBuffer: function() {
-			var instance = this;
-			var strings = instance.getStrings();
-
-			var buffer = [];
-
-			buffer.push(
-				Lang.sub(instance.EDIT_LABEL_TEMPLATE, {
-					editOptions: strings[EDIT_OPTIONS]
-				})
-			);
-
-			A.each(instance.get(OPTIONS), function(name, value) {
-				buffer.push(instance._createEditOption(name, value));
-			});
-
-			buffer.push(
-				Lang.sub(instance.EDIT_ADD_LINK_TEMPLATE, {
-					addOption: strings[ADD_OPTION]
-				})
-			);
-
-			return buffer.join(_EMPTY_STR);
-		},
 
 		_onSubmit: function(event) {
 			var instance = this;
-			var validator = event.validator;
 
 			instance.saveOptions();
-			instance._handleSaveEvent();
 
-			if (validator) {
-				validator.formEvent.halt();
-			}
+			OptionsEditor.superclass._onSubmit.apply(this, arguments);
 		}
 	}
 });
 
 var FormBuilderMultipleChoiceField = A.Component.create({
-
 	NAME: FORM_BUILDER_MULTIPLE_CHOICE_FIELD,
 
 	ATTRS: {
-
 		acceptChildren: {
 			value: false,
 			readOnly: true
@@ -1443,9 +1415,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						editable: true,
 						on: {
 							optionsChange : function (event) {
-								var newOptions = event.newVal;
-
-								instance.predefinedValueEditor.set(OPTIONS, newOptions);
+								instance.predefinedValueEditor.set(OPTIONS, event.newVal);
 							}
 						},
 						options: getEditorOptions(options),
@@ -1486,7 +1456,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 							}
 						);
 
-						return buffer.join(_COMMA_AND_SPACE);
+						return buffer.join(_COMMA+_SPACE);
 					},
 					name: strings[OPTIONS]
 				}
@@ -1956,4 +1926,4 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
+}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true});

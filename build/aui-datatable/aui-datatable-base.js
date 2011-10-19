@@ -194,4 +194,4 @@ A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableSc
     NAME: "dataTableScroll"
 });
 
-}, '@VERSION@' ,{requires:['aui-base','datatable','plugin','recordset-sort']});
+}, '@VERSION@' ,{requires:['aui-base','datatable','plugin']});
