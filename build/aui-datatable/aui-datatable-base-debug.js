@@ -163,6 +163,22 @@ A.Recordset = A.Base.create('recordset', A.Recordset, [], {
 	}
 }, {});
 
+A.Plugin.RecordsetSort.prototype._defSortFn = function(event) {
+	var instance = this;
+
+	var host = instance.get("host");
+	var items = host._items;
+
+    A.Array.stableSort(
+    	items,
+        function (a, b) {
+            return event.sorter.call(items, a, b, event.field, event.desc);
+        }
+    );
+
+    instance.set('lastSortProperties', event);
+};
+
 // A.Plugin.DataTableScroll _syncWidths YUI implementation breaks when recordset is empty.
 A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableScroll, [], {
 	_syncWidths: function() {
@@ -178,4 +194,4 @@ A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableSc
     NAME: "dataTableScroll"
 });
 
-}, '@VERSION@' ,{requires:['aui-base','datatable','plugin']});
+}, '@VERSION@' ,{requires:['aui-base','datatable','plugin','recordset-sort']});
