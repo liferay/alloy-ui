@@ -6,10 +6,9 @@
 		<fileset dir="${project.dir}/resources/lib" includes="*.jar" />
 	</path>
 
-	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
-	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
+	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" uri="antlib:ise.antelope.tasks" />
 
-	<if>
+	<a:if>
 		<or>
 			<not>
 				<available file="${project.dir}/lib/ace" type="dir" />
@@ -28,7 +27,7 @@
 				<arg value="--init" />
 			</exec>
 		</then>
-	</if>
+	</a:if>
 
 	<import file="${builddir}/3.x/bootstrap.xml" description="Default Build Properties and Targets"/>
 	<import file="macrolib.xml" description="Alloy Macrodef Utilities"/>
