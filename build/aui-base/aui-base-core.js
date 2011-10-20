@@ -468,4 +468,4 @@ A.fn = function(fn, context, args) {
 	return wrappedFn;
 };
 
-}, '@VERSION@' ,{requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
