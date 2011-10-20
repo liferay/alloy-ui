@@ -75,7 +75,7 @@ var AceEditor = A.Component.create(
 				lazyAdd: false,
 				getter: '_getValue',
 				setter: '_setValue',
-				value: EMPTY_STR,
+				value: EMPTY_STR
 			},
 
 			width: {
@@ -250,4 +250,4 @@ var AceEditor = A.Component.create(
 
 A.AceEditor = AceEditor;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-component', 'aui-node']});
+}, '@VERSION@' ,{requires:['aui-component', 'aui-node'], skinnable:false});
