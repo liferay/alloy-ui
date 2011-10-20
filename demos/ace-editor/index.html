@@ -14,6 +14,12 @@
 	#wrapper {
 		padding: 10px;
 	}
+
+	#editor {
+		width: 800px;
+		height: 400px;
+		position: relative;
+	}
 </style>
 <body>
 
@@ -23,7 +29,7 @@
 	<div id="editor"></div>
 </div>
 <script type="text/javascript" charset="utf-8">
-AUI().use('aui-ace-editor-base', 'aui-ace-editor-mode-javascript', 'aui-ace-editor-mode-xml', function(A) {
+AUI().ready('aui-ace-editor-base', 'aui-ace-editor-mode-javascript', 'aui-ace-editor-mode-xml', function(A) {
 	var editor = new A.AceEditor(
 		{
 			boundingBox: '#editor',
