@@ -739,7 +739,7 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs']});
 AUI.add('aui-form-builder-field', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
@@ -818,6 +818,7 @@ var L = A.Lang,
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
+	READ_ONLY = 'readOnly',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
@@ -942,9 +943,14 @@ var FormBuilderField = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		readOnly: {
+			validator: isBoolean,
+			value: false
+		},
+
 		readOnlyAttributes: {
-			value: [],
-			validator: isArray
+			validator: isArray,
+			value: []
 		},
 
 		required: {
@@ -977,6 +983,7 @@ var FormBuilderField = A.Component.create({
 				no: 'No',
 				options: 'Options',
 				predefinedValue: 'Predefined Value',
+				readOnly: 'Read Only',
 				required: 'Required',
 				reset: 'Reset',
 				showLabel: 'Show Label',
@@ -1209,6 +1216,17 @@ var FormBuilderField = A.Component.create({
 					}),
 					formatter: A.bind(instance._booleanFormatter, instance),
 					name: strings[SHOW_LABEL]
+				},
+				{
+					attributeName: READ_ONLY,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
+						}
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[READ_ONLY]
 				},
 				{
 					attributeName: REQUIRED,
@@ -2668,8 +2686,8 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
 
