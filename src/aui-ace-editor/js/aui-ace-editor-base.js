@@ -73,7 +73,7 @@ var AceEditor = A.Component.create(
 				lazyAdd: false,
 				getter: '_getValue',
 				setter: '_setValue',
-				value: EMPTY_STR,
+				value: EMPTY_STR
 			},
 
 			width: {
