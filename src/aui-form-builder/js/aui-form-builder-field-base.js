@@ -149,7 +149,6 @@ var FormBuilderFieldBase = A.Component.create({
 });
 
 var FormBuilderField = A.Component.create({
-
 	NAME: FORM_BUILDER_FIELD,
 
 	ATTRS: {

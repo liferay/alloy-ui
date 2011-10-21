@@ -84,7 +84,6 @@ var L = A.Lang,
 	FIELDS_NESTED_LIST_CONFIG = 'fieldsNestedListConfig',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
-	FIXED = 'fixed',
 	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -183,6 +182,11 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		options: {
+			validator: isObject,
+			value: {}
+		},
+
 		predefinedValue: {
 			value: _EMPTY_STR,
 		},
@@ -192,9 +196,27 @@ var FormBuilderAvailableField = A.Component.create({
 			validator: isArray
 		},
 
+		required: {
+			validator: isBoolean,
+			value: false
+		},
+
+		showLabel: {
+			validator: isBoolean,
+			value: true
+		},
+
+		tip: {
+			validator: isString,
+			value: _EMPTY_STR
+		},
+
 		unique: {
 			value: false,
 			validator: isBoolean
+		},
+
+		width: {
 		}
 	},
 
@@ -461,10 +483,10 @@ var FormBuilder = A.Component.create({
 				);
 
 				field = instance.createField({
-					fixed: availableField.get(FIXED),
 					id: id,
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
+					name: id,
 					options: availableField.get(OPTIONS),
 					predefinedValue: availableField.get(PREDEFINED_VALUE),
 					readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
@@ -475,10 +497,6 @@ var FormBuilder = A.Component.create({
 					unique: availableField.get(UNIQUE),
 					width: availableField.get(WIDTH)
 				});
-
-				if (availableField.get(UNIQUE)) {
-					field.set(NAME, availableField.get(NAME));
-				}
 
 				instance.select(field);
 			}
@@ -717,22 +735,6 @@ var FormBuilder = A.Component.create({
 
 			if (isAvailableField(availableField)) {
 				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
-					// Make one the "mirror" of the other
-					field.set(READ_ONLY_ATTRIBUTES, availableField.get(READ_ONLY_ATTRIBUTES));
-					field.set(UNIQUE, availableField.get(UNIQUE));
-
-					AArray.each(field.getProperties(), function(property) {
-						var name = property.attributeName;
-
-						if (name === ID) {
-							return;
-						}
-
-						availableField.set(name, property.value);
-					});
-
-					availableField.set(LOCALIZATION_MAP, field.get(LOCALIZATION_MAP));
-
 					uniqueFields.add(availableField, field);
 				}
 			}
@@ -906,7 +908,6 @@ var FormBuilderFieldBase = A.Component.create({
 });
 
 var FormBuilderField = A.Component.create({
-
 	NAME: FORM_BUILDER_FIELD,
 
 	ATTRS: {
