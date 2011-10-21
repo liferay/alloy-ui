@@ -1294,6 +1294,15 @@ var CheckboxCellEditor = A.Component.create({
 			if (options && options.size()) {
 				options.item(0).focus();
 			}
+		},
+
+		_syncElementsName: function() {
+			var instance = this;
+			var options = instance.options;
+
+			if (options) {
+				options.setAttribute(NAME, instance.get(ELEMENT_NAME));
+			}
 		}
 	}
 });
@@ -1324,15 +1333,6 @@ var RadioCellEditor = A.Component.create({
 			var instance = this;
 
 			return instance._getSelectedOptions().get(VALUE)[0];
-		},
-
-		_syncElementsName: function() {
-			var instance = this;
-			var options = instance.options;
-
-			if (options) {
-				options.setAttribute(NAME, instance.get(ELEMENT_NAME));
-			}
 		}
 	}
 });
