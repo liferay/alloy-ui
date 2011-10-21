@@ -33,6 +33,7 @@ var L = A.Lang,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
 	ACTIVE = 'active',
+	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	ADD = 'add',
 	APPEND = 'append',
 	AUTO_SELECT_FIELDS = 'autoSelectFields',
@@ -206,6 +207,10 @@ var FormBuilder = A.Component.create({
 	NAME: FORM_BUILDER,
 
 	ATTRS: {
+		allowRemoveRequiredFields: {
+			validator: isBoolean,
+			value: false
+		},
 
 		autoSelectFields: {
 			value: false
@@ -233,6 +238,8 @@ var FormBuilder = A.Component.create({
 		}
 
 	},
+
+	UI_ATTRS: [ALLOW_REMOVE_REQUIRED_FIELDS],
 
 	EXTENDS: A.DiagramBuilderBase,
 
@@ -396,7 +403,7 @@ var FormBuilder = A.Component.create({
 			var availableField = event.attrName;
 
 			if (isAvailableField(availableField)) {
-				var node = availableField.get(NODE); 
+				var node = availableField.get(NODE);
 
 				availableField.set(DRAGGABLE, false);
 				node.unselectable();
@@ -483,7 +490,7 @@ var FormBuilder = A.Component.create({
 				}
 
 				var index = instance._getFieldNodeIndex(dragNode);
-				
+
 				instance.insertField(field, index, dropField);
 			}
 		},
@@ -603,7 +610,7 @@ var FormBuilder = A.Component.create({
 
 			if (editingField) {
 				var recordset = instance.propertyList.get(RECORDSET);
-				
+
 				AArray.each(recordset.get(RECORDS), function(record) {
 					var data = record.get(DATA);
 
@@ -676,7 +683,7 @@ var FormBuilder = A.Component.create({
 				var availableFieldsNodes = instance.fieldsContainer.all(
 					_DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
 				);
-				
+
 				instance.availableFieldsNestedList = new A.NestedList(
 					A.merge(
 						instance.get(FIELDS_NESTED_LIST_CONFIG),
@@ -728,8 +735,15 @@ var FormBuilder = A.Component.create({
 					uniqueFields.add(availableField, field);
 				}
 			}
-		}
+		},
 
+		_uiSetAllowRemoveRequiredFields: function(val) {
+			var instance = this;
+
+			instance.get(FIELDS).each(function(field) {
+				field._uiSetRequired(field.get(REQUIRED));
+			});
+		}
 	}
 
 });
