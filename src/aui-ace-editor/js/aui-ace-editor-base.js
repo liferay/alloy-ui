@@ -101,7 +101,7 @@ var AceEditor = A.Component.create(
 			getSelection: function() {
 				var instance = this;
 
-				return instance.getSession().doc.getTextRange(instance.getEditor().getSelectionRange())
+				return instance.getSession().doc.getTextRange(instance.getEditor().getSelectionRange());
 			},
 
 			getSession: function() {
@@ -194,7 +194,7 @@ var AceEditor = A.Component.create(
 			_setReadOnly: function(value) {
 				var instance = this;
 
-				instance.getEditor().setReadOnly(value)
+				instance.getEditor().setReadOnly(value);
 			},
 
 			_setShowPrintMargin: function(value) {
