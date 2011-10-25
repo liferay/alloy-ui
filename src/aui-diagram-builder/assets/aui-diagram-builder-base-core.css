@@ -4,19 +4,23 @@
 
 .aui-diagram-builder .aui-diagram-builder-field {
 	border-radius: 4px 4px 4px 4px;
+	filter: alpha(opacity = 50);
 	float: left;
 	height: 63px;
 	list-style: none outside none;
 	margin: 2px;
+	opacity: .5;
 	text-align: center;
 	width: 79px;
 }
 
 .aui-diagram-builder .aui-diagram-builder-field-draggable {
 	cursor: pointer;
+	filter: alpha(opacity = 100);
+	opacity: 1;
 }
 
-.aui-diagram-builder .aui-diagram-builder-field:hover {
+.aui-diagram-builder .aui-diagram-builder-field.aui-diagram-builder-field-draggable:hover {
 	background-color: #fff;
 }
 
