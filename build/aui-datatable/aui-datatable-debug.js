@@ -1304,7 +1304,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 		addNewOption: function(name, value) {
 			var instance = this;
-			var lastRow = instance.editContainer.all(_DOT+CSS_CELLEDITOR_EDIT_OPTION_ROW).last();
+			var addOptionLink = instance.editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION);
 
 			var newRow = A.Node.create(
 				instance._createEditOption(
@@ -1313,7 +1313,7 @@ var BaseOptionsCellEditor = A.Component.create({
 				)
 			);
 
-			lastRow.placeAfter(newRow);
+			addOptionLink.placeBefore(newRow);
 			newRow.one(INPUT).focus();
 		},
 
@@ -1869,7 +1869,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']});
+}, '@VERSION@' ,{requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
 AUI.add('aui-datatable-selection', function(A) {
 // TODO - add support for row/column selection
 
@@ -2295,8 +2295,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 A.namespace("Plugin").DataTableSelection = DataTableSelection;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-base']});
+}, '@VERSION@' ,{requires:['aui-datatable-base'], skinnable:true});
 
 
-AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']});
+AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection'], skinnable:false});
 
