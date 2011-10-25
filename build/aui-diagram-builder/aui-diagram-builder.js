@@ -2526,7 +2526,8 @@ var DiagramNode = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 41
 			};
@@ -2580,7 +2581,8 @@ A.DiagramNodeState = A.Component.create({
 				type: 'circle',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				}
 			};
 		}
@@ -2760,7 +2762,8 @@ A.DiagramNodeTask = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 55
 			};
