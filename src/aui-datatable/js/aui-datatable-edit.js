@@ -864,7 +864,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 		addNewOption: function(name, value) {
 			var instance = this;
-			var lastRow = instance.editContainer.all(_DOT+CSS_CELLEDITOR_EDIT_OPTION_ROW).last();
+			var addOptionLink = instance.editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION);
 
 			var newRow = A.Node.create(
 				instance._createEditOption(
@@ -873,7 +873,7 @@ var BaseOptionsCellEditor = A.Component.create({
 				)
 			);
 
-			lastRow.placeAfter(newRow);
+			addOptionLink.placeBefore(newRow);
 			newRow.one(INPUT).focus();
 		},
 

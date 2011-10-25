@@ -186,8 +186,7 @@ var FormBuilderAvailableField = A.Component.create({
 		},
 
 		options: {
-			validator: isObject,
-			value: {}
+			validator: isObject
 		},
 
 		predefinedValue: {
