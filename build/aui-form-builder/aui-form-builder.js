@@ -182,13 +182,17 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		name: {
+			value: _EMPTY_STR
+		},
+
 		options: {
 			validator: isObject,
 			value: {}
 		},
 
 		predefinedValue: {
-			value: _EMPTY_STR,
+			value: _EMPTY_STR
 		},
 
 		readOnlyAttributes: {
@@ -477,16 +481,10 @@ var FormBuilder = A.Component.create({
 			var parentNode = dragNode.get(PARENT_NODE);
 
 			if (isAvailableField(availableField)) {
-				var id = availableField.get(ID).replace(
-					AVAILABLE_FIELDS_ID_PREFIX,
-					_EMPTY_STR
-				);
-
-				field = instance.createField({
-					id: id,
+				var config = {
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
-					name: id,
+					name: availableField.get(NAME),
 					options: availableField.get(OPTIONS),
 					predefinedValue: availableField.get(PREDEFINED_VALUE),
 					readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
@@ -496,9 +494,13 @@ var FormBuilder = A.Component.create({
 					type: availableField.get(TYPE),
 					unique: availableField.get(UNIQUE),
 					width: availableField.get(WIDTH)
-				});
+				};
 
-				instance.select(field);
+				if (config.unique) {
+					config.id = instance._getFieldId(availableField);
+				}
+
+				field = instance.createField(config);
 			}
 
 			if (isFormBuilderField(field)){
@@ -511,6 +513,8 @@ var FormBuilder = A.Component.create({
 				var index = instance._getFieldNodeIndex(dragNode);
 
 				instance.insertField(field, index, dropField);
+
+				instance.select(field);
 			}
 		},
 
