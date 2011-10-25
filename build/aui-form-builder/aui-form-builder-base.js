@@ -484,7 +484,6 @@ var FormBuilder = A.Component.create({
 				var config = {
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
-					name: availableField.get(NAME),
 					options: availableField.get(OPTIONS),
 					predefinedValue: availableField.get(PREDEFINED_VALUE),
 					readOnlyAttributes: availableField.get(READ_ONLY_ATTRIBUTES),
@@ -498,6 +497,7 @@ var FormBuilder = A.Component.create({
 
 				if (config.unique) {
 					config.id = instance._getFieldId(availableField);
+					config.name = availableField.get(NAME);
 				}
 
 				field = instance.createField(config);
