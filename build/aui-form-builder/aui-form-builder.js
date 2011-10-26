@@ -90,6 +90,7 @@ var L = A.Lang,
 	FORM_LAYOUT = 'form-layout',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
+	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
 	ICON = 'icon',
 	ID = 'id',
 	INACTIVE = 'inactive',
@@ -182,6 +183,11 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		hiddenAttributes: {
+			value: [],
+			validator: isArray
+		},
+
 		name: {
 			value: _EMPTY_STR
 		},
@@ -343,7 +349,7 @@ var FormBuilder = A.Component.create({
 
 				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, field.getProperties());
+				instance.propertyList.set(RECORDSET, instance.getFieldProperties(field));
 
 				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
 
@@ -363,6 +369,12 @@ var FormBuilder = A.Component.create({
 
 				return null;
 			}
+		},
+
+		getFieldProperties: function(field) {
+			var instance = this;
+
+			return field.getProperties();
 		},
 
 		insertField: function(field, index, parent) {
@@ -452,7 +464,7 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var config  = {};
 
-			AArray.each(field.getProperties(), function(property) {
+			AArray.each(instance.getFieldProperties(field), function(property) {
 				var name = property.attributeName;
 
 				if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
@@ -481,6 +493,7 @@ var FormBuilder = A.Component.create({
 
 			if (isAvailableField(availableField)) {
 				var config = {
+					hiddenAttributes: availableField.get(HIDDEN_ATTRIBUTES),
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
 					options: availableField.get(OPTIONS),
@@ -758,7 +771,7 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs']});
 AUI.add('aui-form-builder-field', function(A) {
 var L = A.Lang,
 	isArray = L.isArray,
@@ -822,6 +835,7 @@ var L = A.Lang,
 	HELP = 'help',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
+	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
 	ICON = 'icon',
 	ID = 'id',
 	LABEL = 'label',
@@ -930,6 +944,11 @@ var FormBuilderField = A.Component.create({
 
 		disabled: {
 			value: false
+		},
+
+		hiddenAttributes: {
+			validator: isArray,
+			value: []
 		},
 
 		id: {
@@ -1189,10 +1208,18 @@ var FormBuilderField = A.Component.create({
 		getProperties: function() {
 			var instance = this;
 			var propertyModel = instance.getPropertyModel();
+			var hiddenAttributes = instance.get(HIDDEN_ATTRIBUTES);
 			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
+			var properties = [];
 
 			AArray.each(propertyModel, function(property) {
 				var attribute = property.attributeName;
+
+				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+				if (AArray.indexOf(hiddenAttributes, attribute) > -1) {
+					return;
+				}
+
 				var value = instance.get(attribute), type = L.type(value);
 
 				if (type === BOOLEAN) {
@@ -1201,12 +1228,15 @@ var FormBuilderField = A.Component.create({
 
 				property.value = value;
 
+				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
 				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
 					property.editor = false;
 				}
+
+				properties.push(property);
 			});
 
-			return propertyModel;
+			return properties;
 		},
 
 		getPropertyModel: function() {
@@ -2704,8 +2734,8 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
 
 
-AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true});
+AUI.add('aui-form-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']});
 
