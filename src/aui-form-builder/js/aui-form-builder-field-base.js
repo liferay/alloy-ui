@@ -60,6 +60,7 @@ var L = A.Lang,
 	HELP = 'help',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
+	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
 	ICON = 'icon',
 	ID = 'id',
 	LABEL = 'label',
@@ -168,6 +169,11 @@ var FormBuilderField = A.Component.create({
 
 		disabled: {
 			value: false
+		},
+
+		hiddenAttributes: {
+			validator: isArray,
+			value: []
 		},
 
 		id: {
@@ -427,10 +433,18 @@ var FormBuilderField = A.Component.create({
 		getProperties: function() {
 			var instance = this;
 			var propertyModel = instance.getPropertyModel();
+			var hiddenAttributes = instance.get(HIDDEN_ATTRIBUTES);
 			var readOnlyAttributes = instance.get(READ_ONLY_ATTRIBUTES);
+			var properties = [];
 
 			AArray.each(propertyModel, function(property) {
 				var attribute = property.attributeName;
+
+				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
+				if (AArray.indexOf(hiddenAttributes, attribute) > -1) {
+					return;
+				}
+
 				var value = instance.get(attribute), type = L.type(value);
 
 				if (type === BOOLEAN) {
@@ -439,12 +453,15 @@ var FormBuilderField = A.Component.create({
 
 				property.value = value;
 
+				// TODO - Change checking to use hashes O(1) instead of indexOf arrays O(N)
 				if (AArray.indexOf(readOnlyAttributes, attribute) > -1) {
 					property.editor = false;
 				}
+
+				properties.push(property);
 			});
 
-			return propertyModel;
+			return properties;
 		},
 
 		getPropertyModel: function() {

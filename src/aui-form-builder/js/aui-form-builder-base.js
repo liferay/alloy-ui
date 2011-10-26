@@ -89,6 +89,7 @@ var L = A.Lang,
 	FORM_LAYOUT = 'form-layout',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
+	HIDDEN_ATTRIBUTES = 'hiddenAttributes',
 	ICON = 'icon',
 	ID = 'id',
 	INACTIVE = 'inactive',
@@ -181,6 +182,11 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		hiddenAttributes: {
+			value: [],
+			validator: isArray
+		},
+
 		name: {
 			value: _EMPTY_STR
 		},
@@ -342,7 +348,7 @@ var FormBuilder = A.Component.create({
 
 				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
 
-				instance.propertyList.set(RECORDSET, field.getProperties());
+				instance.propertyList.set(RECORDSET, instance.getFieldProperties(field));
 
 				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
 
@@ -362,6 +368,12 @@ var FormBuilder = A.Component.create({
 
 				return null;
 			}
+		},
+
+		getFieldProperties: function(field) {
+			var instance = this;
+
+			return field.getProperties();
 		},
 
 		insertField: function(field, index, parent) {
@@ -451,7 +463,7 @@ var FormBuilder = A.Component.create({
 			var instance = this;
 			var config  = {};
 
-			AArray.each(field.getProperties(), function(property) {
+			AArray.each(instance.getFieldProperties(field), function(property) {
 				var name = property.attributeName;
 
 				if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
@@ -480,6 +492,7 @@ var FormBuilder = A.Component.create({
 
 			if (isAvailableField(availableField)) {
 				var config = {
+					hiddenAttributes: availableField.get(HIDDEN_ATTRIBUTES),
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
 					options: availableField.get(OPTIONS),
