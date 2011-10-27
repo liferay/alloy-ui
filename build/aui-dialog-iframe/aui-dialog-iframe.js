@@ -20,6 +20,15 @@ var Lang = A.Lang,
 var DialogIframePlugin = A.Component.create(
 	{
 		ATTRS: {
+			bindLoadHandler: {
+				validator: Lang.isFunction,
+				value: function() {
+					var instance = this;
+
+					instance.node.on('load', A.bind(instance.fire, instance, 'load'));
+				}
+			},
+
 			closeOnEscape: {
 				value: true
 			},
@@ -103,7 +112,9 @@ var DialogIframePlugin = A.Component.create(
 
 				instance.after('uriChange', instance._afterUriChange);
 
-				instance.node.on('load', A.bind(instance.fire, instance, 'load'));
+				var bindLoadHandler = instance.get('bindLoadHandler');
+
+				bindLoadHandler.call(instance);
 			},
 
 			destructor: function() {

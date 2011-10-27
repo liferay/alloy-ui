@@ -39,6 +39,7 @@ var Lang = A.Lang,
 	DIAGRAM_NODE_MANAGER_NAME = 'diagram-node-manager',
 	DIAGRAM_NODE_NAME = 'diagram-node',
 	DRAG_NODE = 'dragNode',
+	DRAGGING = 'dragging',
 	EDIT_EVENT = 'editEvent',
 	EDIT_MESSAGE = 'editMessage',
 	EDITING = 'editing',
@@ -57,6 +58,8 @@ var Lang = A.Lang,
 	JOIN = 'join',
 	KEYDOWN = 'keydown',
 	LOCK = 'lock',
+	MOUSEENTER = 'mouseenter',
+	MOUSELEAVE = 'mouseleave',
 	NAME = 'name',
 	NODE = 'node',
 	P1 = 'p1',
@@ -263,6 +266,8 @@ var DiagramBuilder = A.Component.create({
 			instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 
 			instance.dropContainer.delegate(CLICK, A.bind(instance._onNodeClick, instance), _DOT+CSS_DIAGRAM_NODE);
+			instance.dropContainer.delegate(MOUSEENTER, A.bind(instance._onNodeMouseEnter, instance), _DOT+CSS_DIAGRAM_NODE);
+			instance.dropContainer.delegate(MOUSELEAVE, A.bind(instance._onNodeMouseLeave, instance), _DOT+CSS_DIAGRAM_NODE);
 		},
 
 		renderUI: function() {
@@ -499,6 +504,12 @@ var DiagramBuilder = A.Component.create({
 			instance.fieldsDrag.dd.set(LOCK, false);
 		},
 
+		isAbleToConnect: function() {
+			var instance = this;
+
+			return !!(instance.publishedSource && instance.publishedTarget);
+		},
+
 		isFieldsDrag: function(drag) {
 			var instance = this;
 
@@ -665,6 +676,13 @@ var DiagramBuilder = A.Component.create({
 			event.halt();
 		},
 
+		_onCanvasClick: function(event) {
+			var instance = this;
+
+			instance.stopEditing();
+			instance.hideSuggestConnetorOverlay();
+		},
+
 		_onNodeClick: function(event) {
 			var instance = this;
 			var diagramNode = A.Widget.getByNode(event.currentTarget);
@@ -686,6 +704,23 @@ var DiagramBuilder = A.Component.create({
 
 			if (diagramNode) {
 				instance.editNode(diagramNode);
+			}
+		},
+
+		_onNodeMouseEnter: function(event) {
+			var instance = this;
+			var diagramNode = A.Widget.getByNode(event.currentTarget);
+
+			diagramNode.set(HIGHLIGHTED, true);
+		},
+
+		_onNodeMouseLeave: function(event) {
+			var instance = this;
+			var publishedSource = instance.publishedSource;
+			var diagramNode = A.Widget.getByNode(event.currentTarget);
+
+			if (!publishedSource || !publishedSource.boundaryDragDelegate.dd.get(DRAGGING)) {
+				diagramNode.set(HIGHLIGHTED, false);
 			}
 		},
 
@@ -727,8 +762,10 @@ var DiagramBuilder = A.Component.create({
 
 		_renderGraphic: function() {
 			var instance = this;
+			var graphic = instance.get(GRAPHIC);
 
-			instance.get(GRAPHIC).render(instance.get(CANVAS));
+			graphic.render(instance.get(CANVAS));
+			A.one(graphic.get(NODE)).on(CLICK, A.bind(instance._onCanvasClick, instance));
 		},
 
 		_setConnector: function(val) {
@@ -927,6 +964,7 @@ var DiagramNode = A.Component.create({
 		strings: {
 			value: {
 				closeMessage: 'Close',
+				connectMessage: 'Connect',
 				description: 'Description',
 				editMessage: 'Edit',
 				name: 'Name',
@@ -994,12 +1032,12 @@ var DiagramNode = A.Component.create({
 			});
 
 			instance.publish({
-				boundaryDrag: { defaultFn: instance._defBoundaryDrag },
-				boundaryDragEnd: { defaultFn: instance._defBoundaryDragEnd },
-				boundaryDragOut: { defaultFn: instance._defBoundaryDragOut },
-				boundaryDragOver: { defaultFn: instance._defBoundaryDragOver },
-				boundaryDragStart: { defaultFn: instance._defBoundaryDragStart },
-				boundaryDrop: { defaultFn: instance._defBoundaryDrop },
+				connectDrop: { defaultFn: instance.connectDrop },
+				connectEnd: { defaultFn: instance.connectEnd },
+				connectMove: { defaultFn: instance.connectMove },
+				connectOutTarget: { defaultFn: instance.connectOutTarget },
+				connectOverTarget: { defaultFn: instance.connectOverTarget },
+				connectStart: { defaultFn: instance.connectStart },
 				boundaryMouseEnter: {},
 				boundaryMouseLeave: {}
 			});
@@ -1099,6 +1137,52 @@ var DiagramNode = A.Component.create({
 			return connector;
 		},
 
+		connectDrop: function(event) {
+			var instance = this;
+
+			instance.connectNode(event.publishedTarget);
+		},
+
+		connectEnd: function(event) {
+			var instance = this;
+			var drag = event.target;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+
+			if (!builder.isAbleToConnect() && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
+				builder.showSuggestConnetorOverlay();
+			}
+			else {
+				builder.connector.hide();
+				publishedSource.invite.set(VISIBLE, false);
+			}
+
+			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
+				builder.get(FIELDS).each(function(diagramNode) {
+					diagramNode.set(HIGHLIGHTED, false);
+				});
+			}
+		},
+
+		connectMove: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+			var mouseXY = event.mouseXY;
+
+			builder.connector.set(P2, mouseXY);
+
+			if (builder.publishedTarget) {
+				var invite = instance.invite;
+				var offset = invite.get(RADIUS) || 0;
+
+				if (!invite.get(VISIBLE)) {
+					invite.set(VISIBLE, true);
+				}
+
+				invite.setXY([ mouseXY[0] - offset, mouseXY[1] - offset ]);
+			}
+		},
+
 		connectNode: function(diagramNode) {
 			var instance = this;
 			var dd = instance.boundaryDragDelegate.dd;
@@ -1110,6 +1194,38 @@ var DiagramNode = A.Component.create({
 					targetXY: getLeftTop(dd.mouseXY, diagramNode.get(BOUNDING_BOX))
 				})
 			);
+		},
+
+		connectOutTarget: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			builder.publishedTarget = null;
+			builder.publishedSource.invite.set(VISIBLE, false);
+		},
+
+		connectOverTarget: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			if (builder.publishedSource !== instance) {
+				builder.publishedTarget = instance;
+			}
+		},
+
+		connectStart: function(event) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			builder.connector.show().set(P1, event.startXY);
+
+			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
+				builder.get(FIELDS).each(function(diagramNode) {
+					diagramNode.set(HIGHLIGHTED, true);
+				});
+			}
+
+			A.DiagramNodeManager.fire('publishedSource', { publishedSource: instance });
 		},
 
 		disconnect: function(transition) {
@@ -1250,8 +1366,6 @@ var DiagramNode = A.Component.create({
 
 			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(instance.get(SHAPE_BOUNDARY));
 
-			boundary.end();
-
 			return boundary;
 		},
 
@@ -1261,7 +1375,6 @@ var DiagramNode = A.Component.create({
 			var invite = instance.invite = instance.get(BUILDER).get(GRAPHIC).addShape(instance.get(SHAPE_INVITE));
 
 			invite.set(VISIBLE, false);
-			invite.end();
 
 			return invite;
 		},
@@ -1310,90 +1423,68 @@ var DiagramNode = A.Component.create({
 			});
 		},
 
-		_defBoundaryDrag: function(event) {
-			var instance = this;
-			var builder = instance.get(BUILDER);
-			var mouseXY = instance.boundaryDragDelegate.dd.mouseXY;
-
-			builder.connector.set(P2, mouseXY);
-
-			if (builder.publishedTarget) {
-				var invite = instance.invite;
-				var offset = invite.get(RADIUS) || 0;
-
-				if (!invite.get(VISIBLE)) {
-					invite.set(VISIBLE, true);
-				}
-
-				invite.setXY([ mouseXY[0] - offset, mouseXY[1] - offset ]);
-			}
-		},
-
-		_defBoundaryDragEnd: function(event) {
-			var instance = this;
-			var drag = event.target;
-			var builder = instance.get(BUILDER);
-			var publishedSource = builder.publishedSource;
-			var isConnecting = publishedSource && builder.publishedTarget;
-
-			if (!isConnecting && builder.get(SHOW_SUGGEST_CONNECTOR) && builder.connector.get(VISIBLE)) {
-				builder.showSuggestConnetorOverlay();
-			}
-			else {
-				builder.connector.hide();
-				publishedSource.invite.set(VISIBLE, false);
-			}
-
-			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
-				builder.get(FIELDS).each(function(diagramNode) {
-					diagramNode.set(HIGHLIGHTED, false);
-				});
-			}
-		},
-
-		_defBoundaryDragOut: function(event) {
-			var instance = this;
-			var builder = instance.get(BUILDER);
-
-			builder.publishedTarget = null;
-			builder.publishedSource.invite.set(VISIBLE, false);
-		},
-
-		_defBoundaryDragOver: function(event) {
-			var instance = this;
-			var builder = instance.get(BUILDER);
-
-			if (builder.publishedSource !== instance) {
-				builder.publishedTarget = instance;
-			}
-		},
-
-		_defBoundaryDragStart: function(event) {
-			var instance = this;
-			var builder = instance.get(BUILDER);
-			var startXY = instance.boundaryDragDelegate.dd.startXY;
-
-			builder.connector.show().set(P1, startXY);
-
-			if (builder.get(HIGHLIGHT_DROP_ZONES)) {
-				builder.get(FIELDS).each(function(diagramNode) {
-					diagramNode.set(HIGHLIGHTED, true);
-				});
-			}
-
-			A.DiagramNodeManager.fire('publishedSource', { publishedSource: instance });
-		},
-
-		_defBoundaryDrop: function(event) {
-			var instance = this;
-
-			instance.connectNode(event.publishedTarget);
-		},
-
 		_handleCloseEvent: function(event) {
 			var instance = this;
 
 			instance.get(BUILDER).deleteSelectedNode();
+		},
+
+		_handleConnectStart: function(startXY) {
+			var instance = this;
+
+			instance.fire('connectStart', { startXY: startXY });
+		},
+
+		_handleConnectMove: function(mouseXY) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+
+			instance.fire('connectMove', {
+				mouseXY: mouseXY,
+				publishedSource: builder.publishedSource
+			});
+		},
+
+		_handleConnectEnd: function() {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+			var publishedTarget = builder.publishedTarget;
+
+			if (publishedSource && publishedTarget) {
+				instance.fire('connectDrop', {
+					publishedSource: publishedSource,
+					publishedTarget: publishedTarget
+				});
+			}
+
+			instance.fire('connectEnd', {
+				publishedSource: publishedSource
+			});
+		},
+
+		_handleConnectOutTarget: function(mouseXY) {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+
+			if (publishedSource) {
+				instance.fire('connectOutTarget', {
+					publishedSource: publishedSource
+				});
+			}
+		},
+
+		_handleConnectOverTarget: function() {
+			var instance = this;
+			var builder = instance.get(BUILDER);
+			var publishedSource = builder.publishedSource;
+
+			if (publishedSource) {
+				instance.fire('connectOverTarget', {
+					publishedSource: publishedSource
+				});
+			}
 		},
 
 		_handleEditEvent: function(event) {
@@ -1404,78 +1495,42 @@ var DiagramNode = A.Component.create({
 
 		_onBoundaryDrag: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
 
-			instance.fire('boundaryDrag', {
-				dragEvent: event,
-				publishedSource: builder.publishedSource
-			});
+			instance._handleConnectMove(instance.boundaryDragDelegate.dd.mouseXY);
 		},
 
 		_onBoundaryDragEnd: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
-			var publishedSource = builder.publishedSource;
-			var publishedTarget = builder.publishedTarget;
 
-			if (publishedSource && publishedTarget) {
-				instance.fire('boundaryDrop', {
-					dragEvent: event,
-					publishedSource: publishedSource,
-					publishedTarget: publishedTarget
-				});
-			}
-
-			instance.fire('boundaryDragEnd', {
-				dragEvent: event,
-				publishedSource: publishedSource
-			});
-
+			instance._handleConnectEnd();
 			event.target.get(DRAG_NODE).show();
 		},
 
 		_onBoundaryDragStart: function(event) {
 			var instance = this;
 
-			instance.fire('boundaryDragStart', {
-				dragEvent: event
-			});
-
+			instance._handleConnectStart(instance.boundaryDragDelegate.dd.startXY);
 			event.target.get(DRAG_NODE).hide();
 		},
 
 		_onBoundaryMouseEnter: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
-			var publishedSource = builder.publishedSource;
 
 			instance.fire('boundaryMouseEnter', {
 				domEvent: event
 			});
 
-			if (publishedSource) {
-				instance.fire('boundaryDragOver', {
-					domEvent: event,
-					publishedSource: publishedSource
-				});
-			}
+			instance._handleConnectOverTarget();
 		},
 
 		_onBoundaryMouseLeave: function(event) {
 			var instance = this;
-			var builder = instance.get(BUILDER);
-			var publishedSource = builder.publishedSource;
 
 			instance.fire('boundaryMouseLeave', {
 				domEvent: event
 			});
 
-			if (publishedSource) {
-				instance.fire('boundaryDragOut', {
-					domEvent: event,
-					publishedSource: publishedSource
-				});
-			}
+			instance._handleConnectOutTarget();
 		},
 
 		_onNameChange: function(event) {
@@ -1678,7 +1733,8 @@ var DiagramNode = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 41
 			};
@@ -1720,7 +1776,6 @@ A.DiagramNodeState = A.Component.create({
 			);
 
 			boundary.translate(5, 5);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1733,7 +1788,8 @@ A.DiagramNodeState = A.Component.create({
 				type: 'circle',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				}
 			};
 		}
@@ -1773,7 +1829,6 @@ A.DiagramNodeCondition = A.Component.create({
 
 			boundary.translate(10, 10);
 			boundary.rotate(45);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1902,7 +1957,6 @@ A.DiagramNodeTask = A.Component.create({
 			);
 
 			boundary.translate(8, 8);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1915,7 +1969,8 @@ A.DiagramNodeTask = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 55
 			};
@@ -1925,4 +1980,4 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});

@@ -34,6 +34,7 @@ var L = A.Lang,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
 	ACTIVE = 'active',
+	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	ADD = 'add',
 	APPEND = 'append',
 	AUTO_SELECT_FIELDS = 'autoSelectFields',
@@ -83,7 +84,6 @@ var L = A.Lang,
 	FIELDS_NESTED_LIST_CONFIG = 'fieldsNestedListConfig',
 	FIRST = 'first',
 	FIRST_CHILD = 'firstChild',
-	FIXED = 'fixed',
 	FOCUSED = 'focused',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -182,8 +182,16 @@ var FormBuilderAvailableField = A.Component.create({
 	NAME: AVAILABLE_FIELD,
 
 	ATTRS: {
+		name: {
+			value: _EMPTY_STR
+		},
+
+		options: {
+			validator: isObject
+		},
+
 		predefinedValue: {
-			value: _EMPTY_STR,
+			value: _EMPTY_STR
 		},
 
 		readOnlyAttributes: {
@@ -191,9 +199,27 @@ var FormBuilderAvailableField = A.Component.create({
 			validator: isArray
 		},
 
+		required: {
+			validator: isBoolean,
+			value: false
+		},
+
+		showLabel: {
+			validator: isBoolean,
+			value: true
+		},
+
+		tip: {
+			validator: isString,
+			value: _EMPTY_STR
+		},
+
 		unique: {
 			value: false,
 			validator: isBoolean
+		},
+
+		width: {
 		}
 	},
 
@@ -207,6 +233,10 @@ var FormBuilder = A.Component.create({
 	NAME: FORM_BUILDER,
 
 	ATTRS: {
+		allowRemoveRequiredFields: {
+			validator: isBoolean,
+			value: false
+		},
 
 		autoSelectFields: {
 			value: false
@@ -234,6 +264,8 @@ var FormBuilder = A.Component.create({
 		}
 
 	},
+
+	UI_ATTRS: [ALLOW_REMOVE_REQUIRED_FIELDS],
 
 	EXTENDS: A.DiagramBuilderBase,
 
@@ -397,7 +429,7 @@ var FormBuilder = A.Component.create({
 			var availableField = event.attrName;
 
 			if (isAvailableField(availableField)) {
-				var node = availableField.get(NODE); 
+				var node = availableField.get(NODE);
 
 				availableField.set(DRAGGABLE, false);
 				node.unselectable();
@@ -448,14 +480,7 @@ var FormBuilder = A.Component.create({
 			var parentNode = dragNode.get(PARENT_NODE);
 
 			if (isAvailableField(availableField)) {
-				var id = availableField.get(ID).replace(
-					AVAILABLE_FIELDS_ID_PREFIX,
-					_EMPTY_STR
-				);
-
-				field = instance.createField({
-					fixed: availableField.get(FIXED),
-					id: id,
+				var config = {
 					label: availableField.get(LABEL),
 					localizationMap: availableField.get(LOCALIZATION_MAP),
 					options: availableField.get(OPTIONS),
@@ -467,13 +492,14 @@ var FormBuilder = A.Component.create({
 					type: availableField.get(TYPE),
 					unique: availableField.get(UNIQUE),
 					width: availableField.get(WIDTH)
-				});
+				};
 
-				if (availableField.get(UNIQUE)) {
-					field.set(NAME, availableField.get(NAME));
+				if (config.unique) {
+					config.id = instance._getFieldId(availableField);
+					config.name = availableField.get(NAME);
 				}
 
-				instance.select(field);
+				field = instance.createField(config);
 			}
 
 			if (isFormBuilderField(field)){
@@ -484,8 +510,10 @@ var FormBuilder = A.Component.create({
 				}
 
 				var index = instance._getFieldNodeIndex(dragNode);
-				
+
 				instance.insertField(field, index, dropField);
+
+				instance.select(field);
 			}
 		},
 
@@ -604,7 +632,7 @@ var FormBuilder = A.Component.create({
 
 			if (editingField) {
 				var recordset = instance.propertyList.get(RECORDSET);
-				
+
 				AArray.each(recordset.get(RECORDS), function(record) {
 					var data = record.get(DATA);
 
@@ -677,7 +705,7 @@ var FormBuilder = A.Component.create({
 				var availableFieldsNodes = instance.fieldsContainer.all(
 					_DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
 				);
-				
+
 				instance.availableFieldsNestedList = new A.NestedList(
 					A.merge(
 						instance.get(FIELDS_NESTED_LIST_CONFIG),
@@ -710,27 +738,18 @@ var FormBuilder = A.Component.create({
 
 			if (isAvailableField(availableField)) {
 				if (availableField.get(UNIQUE) || field.get(UNIQUE)) {
-					// Make one the "mirror" of the other
-					field.set(READ_ONLY_ATTRIBUTES, availableField.get(READ_ONLY_ATTRIBUTES));
-					field.set(UNIQUE, availableField.get(UNIQUE));
-
-					AArray.each(field.getProperties(), function(property) {
-						var name = property.attributeName;
-
-						if (name === ID) {
-							return;
-						}
-
-						availableField.set(name, property.value);
-					});
-
-					availableField.set(LOCALIZATION_MAP, field.get(LOCALIZATION_MAP));
-
 					uniqueFields.add(availableField, field);
 				}
 			}
-		}
+		},
 
+		_uiSetAllowRemoveRequiredFields: function(val) {
+			var instance = this;
+
+			instance.get(FIELDS).each(function(field) {
+				field._uiSetRequired(field.get(REQUIRED));
+			});
+		}
 	}
 
 });
@@ -749,6 +768,7 @@ var L = A.Lang,
 	AArray = A.Array,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
+	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	AVAILABLE_FIELD_ID = 'availableFieldId',
 	BODY_CONTENT = 'bodyContent',
 	BOOLEAN = 'boolean',
@@ -794,7 +814,6 @@ var L = A.Lang,
 	EMPTY_STR = '',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FIXED = 'fixed',
 	FOR = 'for',
 	FORM = 'form',
 	FORM_BUILDER = 'formBuilder',
@@ -819,6 +838,7 @@ var L = A.Lang,
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
+	READ_ONLY = 'readOnly',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
@@ -864,7 +884,6 @@ var L = A.Lang,
 	CSS_FB_FIELD = getCN(FORM, BUILDER, FIELD),
 	CSS_FB_FIELD_BUTTONS = getCN(FORM, BUILDER, FIELD, BUTTONS),
 	CSS_FB_FIELD_SELECTED = getCN(FORM, BUILDER, FIELD, SELECTED),
-	CSS_FB_FIXED = getCN(FORM, BUILDER, FIXED),
 	CSS_FB_ICON = getCN(FORM, BUILDER, ICON),
 	CSS_FB_ICON_DELETE = getCN(FORM, BUILDER, ICON, DELETE),
 	CSS_FB_ICON_DUPLICATE = getCN(FORM, BUILDER, ICON, DUPLICATE),
@@ -893,11 +912,9 @@ var FormBuilderFieldBase = A.Component.create({
 });
 
 var FormBuilderField = A.Component.create({
-
 	NAME: FORM_BUILDER_FIELD,
 
 	ATTRS: {
-
 		acceptChildren: {
 			value: true
 		},
@@ -912,10 +929,6 @@ var FormBuilderField = A.Component.create({
 		},
 
 		disabled: {
-			value: false
-		},
-
-		fixed: {
 			value: false
 		},
 
@@ -948,9 +961,14 @@ var FormBuilderField = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		readOnly: {
+			validator: isBoolean,
+			value: false
+		},
+
 		readOnlyAttributes: {
-			value: [],
-			validator: isArray
+			validator: isArray,
+			value: []
 		},
 
 		required: {
@@ -983,6 +1001,7 @@ var FormBuilderField = A.Component.create({
 				no: 'No',
 				options: 'Options',
 				predefinedValue: 'Predefined Value',
+				readOnly: 'Read Only',
 				required: 'Required',
 				reset: 'Reset',
 				showLabel: 'Show Label',
@@ -1060,7 +1079,7 @@ var FormBuilderField = A.Component.create({
 
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, FIXED, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
+	UI_ATTRS: [ACCEPT_CHILDREN, DISABLED, FIELDS, LABEL, NAME, PREDEFINED_VALUE, REQUIRED, SELECTED, SHOW_LABEL, TIP, UNIQUE],
 
 	EXTENDS: FormBuilderFieldBase,
 
@@ -1069,7 +1088,7 @@ var FormBuilderField = A.Component.create({
 	},
 
 	buildFieldName: function(type) {
-		return type + (++A.Env._uidx);	
+		return type + (++A.Env._uidx);
 	},
 
 	HTML_PARSER: {
@@ -1217,6 +1236,17 @@ var FormBuilderField = A.Component.create({
 					name: strings[SHOW_LABEL]
 				},
 				{
+					attributeName: READ_ONLY,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
+						}
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[READ_ONLY]
+				},
+				{
 					attributeName: REQUIRED,
 					editor: new A.RadioCellEditor({
 						options: {
@@ -1280,8 +1310,8 @@ var FormBuilderField = A.Component.create({
 
 			controlsToolbar.get(BOUNDING_BOX).hide();
 
-			instance._uiSetFixed(
-				instance.get(FIXED)
+			instance._uiSetRequired(
+				instance.get(REQUIRED)
 			);
 		},
 
@@ -1335,12 +1365,10 @@ var FormBuilderField = A.Component.create({
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
-			if (!instance.get(REQUIRED)) {
-				var strings = instance.getStrings();
+			var strings = instance.getStrings();
 
-				if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
-					instance.destroy();
-				}
+			if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
+				instance.destroy();
 			}
 		},
 
@@ -1349,26 +1377,6 @@ var FormBuilderField = A.Component.create({
 			var builder = instance.get(BUILDER);
 
 			builder.plotFields(val, instance.get(DROP_ZONE_NODE));
-		},
-
-		_uiSetFixed: function(val) {
-			var instance = this;
-			var controlsToolbar = instance.controlsToolbar;
-			var strings = instance.getStrings();
-			
-			if (controlsToolbar) {
-				if (val) {
-					controlsToolbar.remove(DELETE_EVENT);
-				}
-				else {
-					controlsToolbar.add({
-						handler: A.bind(instance._handleDeleteEvent, instance),
-						icon: CLOSE,
-						id: DELETE_EVENT,
-						title: strings[DELETE_MESSAGE]
-					});
-				}
-			}
 		},
 
 		_uiSetLabel: function(val) {
@@ -1394,9 +1402,25 @@ var FormBuilderField = A.Component.create({
 
 		_uiSetRequired: function(val) {
 			var instance = this;
-			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
+			var builder = instance.get(BUILDER);
+			var controlsToolbar = instance.controlsToolbar;
+			var strings = instance.getStrings();
 
-			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+			if (controlsToolbar) {
+				if (val && !builder.get(ALLOW_REMOVE_REQUIRED_FIELDS)) {
+					controlsToolbar.remove(DELETE_EVENT);
+				}
+				else {
+					controlsToolbar.add({
+						handler: A.bind(instance._handleDeleteEvent, instance),
+						icon: CLOSE,
+						id: DELETE_EVENT,
+						title: strings[DELETE_MESSAGE]
+					});
+				}
+			}
+
+			instance.get(REQUIRED_FLAG_NODE).toggleClass(CSS_HELPER_HIDDEN, !val);
 		},
 
 		_uiSetSelected: function(val) {
@@ -1989,14 +2013,19 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
 
+	ADD_OPTION = 'addOption',
 	DATA = 'data',
 	DRAG = 'drag',
 	DROP = 'drop',
+	EDIT_OPTIONS = 'editOptions',
+	EDITABLE = 'editable',
+	EDITOR = 'editor',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
+	FORM_BUILDER = 'form-builder',
 	FORM_BUILDER_MULTIPLE_CHOICE_FIELD = 'form-builder-multiple-choice-field',
 	FORM_BUILDER_OPTIONS_EDITOR = 'form-builder-options-editor',
+	HIDDEN = 'hidden',
 	ICON = 'icon',
 	ID = 'id',
 	INPUT = 'input',
@@ -2018,9 +2047,8 @@ var Lang = A.Lang,
 	VALUE = 'value',
 
 	_COMMA = ',',
-	_SPACE = ' ',
-	_COMMA_AND_SPACE = _COMMA + _SPACE,
 	_EMPTY_STR = '',
+	_SPACE = ' ',
 
 	getCN = A.getClassName,
 
@@ -2039,31 +2067,48 @@ var Lang = A.Lang,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE);
+	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER, FIELD),
+	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+	CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
 var OptionsEditor = A.Component.create({
-	NAME: FORM_BUILDER_OPTIONS_EDITOR,	
+	NAME: FORM_BUILDER_OPTIONS_EDITOR,
+
+	ATTRS: {
+		editable: {
+			setter: function() {
+				return false;	
+			}
+		}
+	},
 
 	EXTENDS: A.RadioCellEditor,
 
 	prototype: {
+		ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
+
 		initializer: function() {
 			var instance = this;
 
 			instance.after(RENDER, function() {
 				instance._onEditEvent();
 			});
+		},
+
+		_onSubmit: function(event) {
+			var instance = this;
+
+			instance.saveOptions();
+
+			OptionsEditor.superclass._onSubmit.apply(this, arguments);
 		}
 	}
 });
 
 var FormBuilderMultipleChoiceField = A.Component.create({
-
 	NAME: FORM_BUILDER_MULTIPLE_CHOICE_FIELD,
 
 	ATTRS: {
-
 		acceptChildren: {
 			value: false,
 			readOnly: true
@@ -2100,6 +2145,15 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 	prototype: {
 
+		initializer: function() {
+			var instance = this;
+			var options = instance.get(OPTIONS);
+
+			instance.predefinedValueEditor = new A.RadioCellEditor({
+				options: getEditorOptions(options)
+			});
+		},
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -2114,11 +2168,10 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						collection[index] = A.merge(
 							item,
 							{
-								editor: new A.RadioCellEditor({
-									options: getEditorOptions(options)
-								}),
+								editor: instance.predefinedValueEditor,
 								formatter: function(o) {
-									var editorOptions = getEditorOptions(options);
+									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
+
 									var value = editorOptions[o.record.get(DATA).value];
 
 									if (!isString(value)) {
@@ -2138,6 +2191,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 					attributeName: OPTIONS,
 					editor: new OptionsEditor({
 						editable: true,
+						on: {
+							optionsChange : function (event) {
+								instance.predefinedValueEditor.set(OPTIONS, event.newVal);
+							}
+						},
 						options: getEditorOptions(options),
 						inputFormatter: function() {
 							var input = [];
@@ -2176,7 +2234,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 							}
 						);
 
-						return buffer.join(_COMMA_AND_SPACE);
+						return buffer.join(_COMMA+_SPACE);
 					},
 					name: strings[OPTIONS]
 				}

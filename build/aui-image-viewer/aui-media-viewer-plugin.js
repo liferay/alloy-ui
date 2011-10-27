@@ -83,8 +83,24 @@ var MediaViewerPlugin = A.Component.create(
 
 				var handles = instance._handles;
 
+				handles.changeReqeust = instance.afterHostMethod('_changeRequest', instance._restoreMedia);
+				handles.close = instance.beforeHostMethod('close', instance.close);
 				handles.loadMedia = instance.beforeHostMethod('loadImage', instance.loadMedia);
 				handles.preloadImage = instance.beforeHostMethod('preloadImage', instance.preloadImage);
+			},
+
+			close: function() {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var source = host.getCurrentLink();
+
+				var mediaType = instance._getMediaType(source.attr('href'));
+
+				if (mediaType != STR_IMAGE) {
+					host.setStdModContent(STR_BODY, '');
+				}
 			},
 
 			loadMedia: function(linkHref) {
@@ -184,6 +200,22 @@ var MediaViewerPlugin = A.Component.create(
 				);
 
 				return mediaType;
+			},
+
+			_restoreMedia: function(event) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var source = host.getCurrentLink();
+
+				var href = source.attr('href');
+
+				var mediaType = instance._getMediaType(href);
+
+				if (mediaType != STR_IMAGE && !host.getStdModNode(STR_BODY).html()) {
+					host._processChangeRequest();
+				}
 			},
 
 			_uiSetContainerSize: function(width, height) {

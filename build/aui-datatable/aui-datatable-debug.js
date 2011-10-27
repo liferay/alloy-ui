@@ -163,6 +163,22 @@ A.Recordset = A.Base.create('recordset', A.Recordset, [], {
 	}
 }, {});
 
+A.Plugin.RecordsetSort.prototype._defSortFn = function(event) {
+	var instance = this;
+
+	var host = instance.get("host");
+	var items = host._items;
+
+    A.Array.stableSort(
+    	items,
+        function (a, b) {
+            return event.sorter.call(items, a, b, event.field, event.desc);
+        }
+    );
+
+    instance.set('lastSortProperties', event);
+};
+
 // A.Plugin.DataTableScroll _syncWidths YUI implementation breaks when recordset is empty.
 A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableScroll, [], {
 	_syncWidths: function() {
@@ -432,8 +448,8 @@ var Lang = A.Lang,
 	LString = Lang.String,
 
 	_toInitialCap = A.cached(function(str) {
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }),
+		return str.substring(0, 1).toUpperCase() + str.substring(1);
+	}),
 
 	isBaseEditor = function(val) {
 		return (val instanceof A.BaseCellEditor);
@@ -501,7 +517,6 @@ var Lang = A.Lang,
 	RETURN = 'return',
 	ROW = 'row',
 	SAVE = 'save',
-	SAVE_OPTIONS = 'saveOptions',
 	SELECTED = 'selected',
 	SELECTED_ATTR_NAME = 'selectedAttrName',
 	SHOW_TOOLBAR = 'showToolbar',
@@ -536,7 +551,6 @@ var Lang = A.Lang,
 	CSS_CELLEDITOR_EDIT_LABEL = AgetClassName(CELLEDITOR, EDIT, LABEL),
 	CSS_CELLEDITOR_EDIT_LINK = AgetClassName(CELLEDITOR, EDIT, LINK),
 	CSS_CELLEDITOR_EDIT_OPTION_ROW = AgetClassName(CELLEDITOR, EDIT, OPTION, ROW),
-	CSS_CELLEDITOR_EDIT_SAVE_OPTION = AgetClassName(CELLEDITOR, EDIT, SAVE, OPTION),
 	CSS_CELLEDITOR_ELEMENT = AgetClassName(CELLEDITOR, ELEMENT),
 	CSS_CELLEDITOR_LABEL = AgetClassName(CELLEDITOR, LABEL),
 	CSS_CELLEDITOR_OPTION = AgetClassName(CELLEDITOR, OPTION),
@@ -745,7 +759,7 @@ A.DataTable.Base = A.Base.create('dataTable', A.DataTable.Base, [A.DataTable.Cel
 var BaseCellEditor = A.Component.create({
 	NAME: BASE_CELL_EDITOR,
 
-    ATTRS: {
+	ATTRS: {
 		editable: {
 			value: false,
 			validator: isBoolean
@@ -832,7 +846,7 @@ var BaseCellEditor = A.Component.create({
 		visible: {
 			value: false
 		}
-    },
+	},
 
 	EXTENDS: A.Overlay,
 
@@ -851,7 +865,7 @@ var BaseCellEditor = A.Component.create({
 			var instance = this;
 
 			instance._initEvents();
-	    },
+		},
 
 		destructor: function() {
 			var instance = this;
@@ -1253,7 +1267,6 @@ var BaseOptionsCellEditor = A.Component.create({
 				name: 'Name',
 				remove: 'Remove',
 				save: 'Save',
-				saveOptions: 'Save options',
 				stopEditing: 'Stop editing',
 				value: 'Value'
 			}
@@ -1276,7 +1289,6 @@ var BaseOptionsCellEditor = A.Component.create({
 
 		EDIT_ADD_LINK_TEMPLATE: '<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{addOption}</a> ',
 		EDIT_LABEL_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_LABEL + '">{editOptions}</div>',
-		EDIT_SAVE_LINK_TEMPLATE: '<a class="' + [ CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_SAVE_OPTION ].join(_SPACE) + '" href="javascript:void(0);">{saveOptions}</a> ',
 
 		editContainer: null,
 		editSortable: null,
@@ -1292,7 +1304,7 @@ var BaseOptionsCellEditor = A.Component.create({
 
 		addNewOption: function(name, value) {
 			var instance = this;
-			var lastRow = instance.editContainer.all(_DOT+CSS_CELLEDITOR_EDIT_OPTION_ROW).last();
+			var addOptionLink = instance.editContainer.one(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION);
 
 			var newRow = A.Node.create(
 				instance._createEditOption(
@@ -1301,7 +1313,7 @@ var BaseOptionsCellEditor = A.Component.create({
 				)
 			);
 
-			lastRow.placeAfter(newRow);
+			addOptionLink.placeBefore(newRow);
 			newRow.one(INPUT).focus();
 		},
 
@@ -1407,12 +1419,6 @@ var BaseOptionsCellEditor = A.Component.create({
 				})
 			);
 
-			buffer.push(
-				Lang.sub(instance.EDIT_SAVE_LINK_TEMPLATE, {
-					saveOptions: strings[SAVE_OPTIONS]
-				})
-			);
-
 			return buffer.join(_EMPTY_STR);
 		},
 
@@ -1491,9 +1497,6 @@ var BaseOptionsCellEditor = A.Component.create({
 			if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
 				instance.addNewOption();
 			}
-			else if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_SAVE_OPTION)) {
-				instance.saveOptions();
-			}
 			else if (currentTarget.test(_DOT+CSS_CELLEDITOR_EDIT_HIDE_OPTION)) {
 				instance.toggleEdit();
 			}
@@ -1554,6 +1557,7 @@ var BaseOptionsCellEditor = A.Component.create({
 		_uiSetOptions: function(val) {
 			var instance = this;
 
+			instance._uiSetValue(instance.get(VALUE));
 			instance._createOptions(val);
 			instance._syncElementsName();
 		},
@@ -1729,6 +1733,15 @@ var CheckboxCellEditor = A.Component.create({
 			if (options && options.size()) {
 				options.item(0).focus();
 			}
+		},
+
+		_syncElementsName: function() {
+			var instance = this;
+			var options = instance.options;
+
+			if (options) {
+				options.setAttribute(NAME, instance.get(ELEMENT_NAME));
+			}
 		}
 	}
 });
@@ -1759,15 +1772,6 @@ var RadioCellEditor = A.Component.create({
 			var instance = this;
 
 			return instance._getSelectedOptions().get(VALUE)[0];
-		},
-
-		_syncElementsName: function() {
-			var instance = this;
-			var options = instance.options;
-
-			if (options) {
-				options.setAttribute(NAME, instance.get(ELEMENT_NAME));
-			}
 		}
 	}
 });
