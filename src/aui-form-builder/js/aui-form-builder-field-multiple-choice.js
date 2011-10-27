@@ -65,7 +65,9 @@ var OptionsEditor = A.Component.create({
 
 	ATTRS: {
 		editable: {
-			value: false
+			setter: function() {
+				return false;	
+			}
 		}
 	},
 
