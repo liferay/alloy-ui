@@ -1,0 +1,1 @@
+AUI.add("aui-arraysort",function(a){ASort=a.ArraySort;a.mix(ASort,{compareIgnoreWhiteSpace:function(d,c,f){var e;if((d==="")&&(c==="")){e=0;}else{if(d===""){e=1;}else{if(c===""){e=-1;}else{e=ASort.compare(d,c,f);}}}return e;}});},"@VERSION@",{requires:["arraysort"],skinnable:false});

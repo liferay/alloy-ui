@@ -338,6 +338,11 @@ A.mix(
 A.mix(
 	AArray,
 	{
+		/** 
+		 * Sorts an object array keeping the order of equal items. ECMA script
+		 * standard does not specify the behaviour when the compare function
+		 * returns the value 0;
+ 		 */
 		stableSort: function(array, sorter) {
 			var i, len = array.length;
 
@@ -353,7 +358,7 @@ A.mix(
 				}
 			);
 
-			for (var i = 0; i < len; i++) {
+			for (i = 0; i < len; i++) {
 				array[i] = array[i].value;
 			}
 		}

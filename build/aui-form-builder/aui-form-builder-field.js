@@ -7,6 +7,7 @@ var L = A.Lang,
 	AArray = A.Array,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
+	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
 	AVAILABLE_FIELD_ID = 'availableFieldId',
 	BODY_CONTENT = 'bodyContent',
 	BOOLEAN = 'boolean',
@@ -76,6 +77,7 @@ var L = A.Lang,
 	PORTAL_LAYOUT = 'portalLayout',
 	PREDEFINED_VALUE = 'predefinedValue',
 	PROXY = 'proxy',
+	READ_ONLY = 'readOnly',
 	READ_ONLY_ATTRIBUTES = 'readOnlyAttributes',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
@@ -149,11 +151,9 @@ var FormBuilderFieldBase = A.Component.create({
 });
 
 var FormBuilderField = A.Component.create({
-
 	NAME: FORM_BUILDER_FIELD,
 
 	ATTRS: {
-
 		acceptChildren: {
 			value: true
 		},
@@ -200,9 +200,14 @@ var FormBuilderField = A.Component.create({
 			value: EMPTY_STR
 		},
 
+		readOnly: {
+			validator: isBoolean,
+			value: false
+		},
+
 		readOnlyAttributes: {
-			value: [],
-			validator: isArray
+			validator: isArray,
+			value: []
 		},
 
 		required: {
@@ -235,6 +240,7 @@ var FormBuilderField = A.Component.create({
 				no: 'No',
 				options: 'Options',
 				predefinedValue: 'Predefined Value',
+				readOnly: 'Read Only',
 				required: 'Required',
 				reset: 'Reset',
 				showLabel: 'Show Label',
@@ -321,7 +327,7 @@ var FormBuilderField = A.Component.create({
 	},
 
 	buildFieldName: function(type) {
-		return type + (++A.Env._uidx);	
+		return type + (++A.Env._uidx);
 	},
 
 	HTML_PARSER: {
@@ -469,6 +475,17 @@ var FormBuilderField = A.Component.create({
 					name: strings[SHOW_LABEL]
 				},
 				{
+					attributeName: READ_ONLY,
+					editor: new A.RadioCellEditor({
+						options: {
+							'true': strings[YES],
+							'false': strings[NO]
+						}
+					}),
+					formatter: A.bind(instance._booleanFormatter, instance),
+					name: strings[READ_ONLY]
+				},
+				{
 					attributeName: REQUIRED,
 					editor: new A.RadioCellEditor({
 						options: {
@@ -587,12 +604,10 @@ var FormBuilderField = A.Component.create({
 		_handleDeleteEvent: function(event) {
 			var instance = this;
 
-			if (!instance.get(REQUIRED)) {
-				var strings = instance.getStrings();
+			var strings = instance.getStrings();
 
-				if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
-					instance.destroy();
-				}
+			if (confirm(strings[DELETE_FIELDS_MESSAGE])) {
+				instance.destroy();
 			}
 		},
 
@@ -626,12 +641,12 @@ var FormBuilderField = A.Component.create({
 
 		_uiSetRequired: function(val) {
 			var instance = this;
-			var requiredFlagNode = instance.get(REQUIRED_FLAG_NODE);
+			var builder = instance.get(BUILDER);
 			var controlsToolbar = instance.controlsToolbar;
 			var strings = instance.getStrings();
 
 			if (controlsToolbar) {
-				if (val) {
+				if (val && !builder.get(ALLOW_REMOVE_REQUIRED_FIELDS)) {
 					controlsToolbar.remove(DELETE_EVENT);
 				}
 				else {
@@ -644,7 +659,7 @@ var FormBuilderField = A.Component.create({
 				}
 			}
 
-			requiredFlagNode.toggleClass(CSS_HELPER_HIDDEN, !val);
+			instance.get(REQUIRED_FLAG_NODE).toggleClass(CSS_HELPER_HIDDEN, !val);
 		},
 
 		_uiSetSelected: function(val) {
@@ -1300,7 +1315,9 @@ var OptionsEditor = A.Component.create({
 
 	ATTRS: {
 		editable: {
-			value: false
+			setter: function() {
+				return false;	
+			}
 		}
 	},
 

@@ -1366,8 +1366,6 @@ var DiagramNode = A.Component.create({
 
 			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(instance.get(SHAPE_BOUNDARY));
 
-			boundary.end();
-
 			return boundary;
 		},
 
@@ -1377,7 +1375,6 @@ var DiagramNode = A.Component.create({
 			var invite = instance.invite = instance.get(BUILDER).get(GRAPHIC).addShape(instance.get(SHAPE_INVITE));
 
 			invite.set(VISIBLE, false);
-			invite.end();
 
 			return invite;
 		},
@@ -1736,7 +1733,8 @@ var DiagramNode = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 41
 			};
@@ -1778,7 +1776,6 @@ A.DiagramNodeState = A.Component.create({
 			);
 
 			boundary.translate(5, 5);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1791,7 +1788,8 @@ A.DiagramNodeState = A.Component.create({
 				type: 'circle',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				}
 			};
 		}
@@ -1831,7 +1829,6 @@ A.DiagramNodeCondition = A.Component.create({
 
 			boundary.translate(10, 10);
 			boundary.rotate(45);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1960,7 +1957,6 @@ A.DiagramNodeTask = A.Component.create({
 			);
 
 			boundary.translate(8, 8);
-			boundary.end();
 
 			return boundary;
 		},
@@ -1973,7 +1969,8 @@ A.DiagramNodeTask = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 55
 			};
@@ -1983,4 +1980,4 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});

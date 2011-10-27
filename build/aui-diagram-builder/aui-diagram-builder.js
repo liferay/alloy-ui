@@ -790,7 +790,7 @@ var DiagramBuilderBase = A.Component.create(
 
 A.DiagramBuilderBase = DiagramBuilderBase;
 
-}, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']});
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2159,8 +2159,6 @@ var DiagramNode = A.Component.create({
 
 			var boundary = instance.boundary = instance.get(GRAPHIC).addShape(instance.get(SHAPE_BOUNDARY));
 
-			boundary.end();
-
 			return boundary;
 		},
 
@@ -2170,7 +2168,6 @@ var DiagramNode = A.Component.create({
 			var invite = instance.invite = instance.get(BUILDER).get(GRAPHIC).addShape(instance.get(SHAPE_INVITE));
 
 			invite.set(VISIBLE, false);
-			invite.end();
 
 			return invite;
 		},
@@ -2529,7 +2526,8 @@ var DiagramNode = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 41
 			};
@@ -2571,7 +2569,6 @@ A.DiagramNodeState = A.Component.create({
 			);
 
 			boundary.translate(5, 5);
-			boundary.end();
 
 			return boundary;
 		},
@@ -2584,7 +2581,8 @@ A.DiagramNodeState = A.Component.create({
 				type: 'circle',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				}
 			};
 		}
@@ -2624,7 +2622,6 @@ A.DiagramNodeCondition = A.Component.create({
 
 			boundary.translate(10, 10);
 			boundary.rotate(45);
-			boundary.end();
 
 			return boundary;
 		},
@@ -2753,7 +2750,6 @@ A.DiagramNodeTask = A.Component.create({
 			);
 
 			boundary.translate(8, 8);
-			boundary.end();
 
 			return boundary;
 		},
@@ -2766,7 +2762,8 @@ A.DiagramNodeTask = A.Component.create({
 				type: 'rect',
 				stroke: {
 					weight: 7,
-					color: 'transparent'
+					color: 'transparent',
+					opacity: 0
 				},
 				width: 55
 			};
@@ -2776,7 +2773,7 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3407,8 +3404,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 });
 
-}, '@VERSION@' ,{requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd']});
 
 
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true});
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-diagram-builder-base','aui-diagram-builder-impl']});
 
