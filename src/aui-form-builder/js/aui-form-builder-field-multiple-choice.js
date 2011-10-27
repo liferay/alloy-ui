@@ -2,14 +2,19 @@ var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
 
+	ADD_OPTION = 'addOption',
 	DATA = 'data',
 	DRAG = 'drag',
 	DROP = 'drop',
+	EDIT_OPTIONS = 'editOptions',
+	EDITABLE = 'editable',
+	EDITOR = 'editor',
 	FIELD = 'field',
 	FIELDS = 'fields',
-	FORM_BUILDER_FIELD = 'form-builder-field',
+	FORM_BUILDER = 'form-builder',
 	FORM_BUILDER_MULTIPLE_CHOICE_FIELD = 'form-builder-multiple-choice-field',
 	FORM_BUILDER_OPTIONS_EDITOR = 'form-builder-options-editor',
+	HIDDEN = 'hidden',
 	ICON = 'icon',
 	ID = 'id',
 	INPUT = 'input',
@@ -31,9 +36,8 @@ var Lang = A.Lang,
 	VALUE = 'value',
 
 	_COMMA = ',',
-	_SPACE = ' ',
-	_COMMA_AND_SPACE = _COMMA + _SPACE,
 	_EMPTY_STR = '',
+	_SPACE = ' ',
 
 	getCN = A.getClassName,
 
@@ -52,31 +56,48 @@ var Lang = A.Lang,
 
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER_FIELD),
-	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE);
+	CSS_FORM_BUILDER_FIELD = getCN(FORM_BUILDER, FIELD),
+	CSS_FORM_BUILDER_FIELD_NODE = getCN(FORM_BUILDER_FIELD, NODE),
+	CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN = getCN(FORM_BUILDER, OPTIONS, EDITOR, HIDDEN);
 
 var OptionsEditor = A.Component.create({
-	NAME: FORM_BUILDER_OPTIONS_EDITOR,	
+	NAME: FORM_BUILDER_OPTIONS_EDITOR,
+
+	ATTRS: {
+		editable: {
+			setter: function() {
+				return false;	
+			}
+		}
+	},
 
 	EXTENDS: A.RadioCellEditor,
 
 	prototype: {
+		ELEMENT_TEMPLATE: '<div class="' + CSS_FORM_BUILDER_OPTIONS_EDITOR_HIDDEN + '"></div>',
+
 		initializer: function() {
 			var instance = this;
 
 			instance.after(RENDER, function() {
 				instance._onEditEvent();
 			});
+		},
+
+		_onSubmit: function(event) {
+			var instance = this;
+
+			instance.saveOptions();
+
+			OptionsEditor.superclass._onSubmit.apply(this, arguments);
 		}
 	}
 });
 
 var FormBuilderMultipleChoiceField = A.Component.create({
-
 	NAME: FORM_BUILDER_MULTIPLE_CHOICE_FIELD,
 
 	ATTRS: {
-
 		acceptChildren: {
 			value: false,
 			readOnly: true
@@ -113,6 +134,15 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 	prototype: {
 
+		initializer: function() {
+			var instance = this;
+			var options = instance.get(OPTIONS);
+
+			instance.predefinedValueEditor = new A.RadioCellEditor({
+				options: getEditorOptions(options)
+			});
+		},
+
 		getPropertyModel: function() {
 			var instance = this;
 			var options = instance.get(OPTIONS);
@@ -127,11 +157,10 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						collection[index] = A.merge(
 							item,
 							{
-								editor: new A.RadioCellEditor({
-									options: getEditorOptions(options)
-								}),
+								editor: instance.predefinedValueEditor,
 								formatter: function(o) {
-									var editorOptions = getEditorOptions(options);
+									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
+
 									var value = editorOptions[o.record.get(DATA).value];
 
 									if (!isString(value)) {
@@ -151,6 +180,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 					attributeName: OPTIONS,
 					editor: new OptionsEditor({
 						editable: true,
+						on: {
+							optionsChange : function (event) {
+								instance.predefinedValueEditor.set(OPTIONS, event.newVal);
+							}
+						},
 						options: getEditorOptions(options),
 						inputFormatter: function() {
 							var input = [];
@@ -189,7 +223,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 							}
 						);
 
-						return buffer.join(_COMMA_AND_SPACE);
+						return buffer.join(_COMMA+_SPACE);
 					},
 					name: strings[OPTIONS]
 				}
