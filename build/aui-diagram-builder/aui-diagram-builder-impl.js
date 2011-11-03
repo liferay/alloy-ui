@@ -57,6 +57,7 @@ var Lang = A.Lang,
 	ID = 'id',
 	JOIN = 'join',
 	KEYDOWN = 'keydown',
+	LABEL = 'label',
 	LOCK = 'lock',
 	MOUSEENTER = 'mouseenter',
 	MOUSELEAVE = 'mouseleave',
@@ -105,6 +106,7 @@ var Lang = A.Lang,
 	CSS_DIAGRAM_NODE = AgetClassName(DIAGRAM, NODE),
 	CSS_DIAGRAM_NODE_CONTENT = AgetClassName(DIAGRAM, NODE, CONTENT),
 	CSS_DIAGRAM_NODE_EDITING = AgetClassName(DIAGRAM, NODE, EDITING),
+	CSS_DIAGRAM_NODE_LABEL = AgetClassName(DIAGRAM, NODE, LABEL),
 	CSS_DIAGRAM_NODE_SELECTED = AgetClassName(DIAGRAM, NODE, SELECTED),
 	CSS_DIAGRAM_NODE_SHAPE_BOUNDARY = AgetClassName(DIAGRAM, NODE, SHAPE, BOUNDARY),
 	CSS_DIAGRAM_SUGGEST_CONNECTOR = AgetClassName(DIAGRAM, NODE, SUGGEST, CONNECTOR),
@@ -1011,6 +1013,8 @@ var DiagramNode = A.Component.create({
 	},
 
 	prototype: {
+		LABEL_TEMPLATE: '<div class="' + CSS_DIAGRAM_NODE_LABEL + '">{label}</div>',
+
 		boundary: null,
 
 		hotPoints: [ [0,0] ],
@@ -1403,6 +1407,7 @@ var DiagramNode = A.Component.create({
 			instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR, WidgetStdMod.AFTER);
 			instance._renderGraphic();
 			instance._renderControls();
+			instance._renderLabel();
 			instance._uiSetHighlighted(instance.get(HIGHLIGHTED));
 		},
 
@@ -1581,6 +1586,18 @@ var DiagramNode = A.Component.create({
 			instance._setupBoundaryDrag();
 		},
 
+		_renderLabel: function() {
+			var instance = this;
+
+			instance.labelNode = A.Node.create(
+				Lang.sub(instance.LABEL_TEMPLATE, {
+					label: instance.get('name')
+				})
+			);
+
+			instance.get('contentBox').placeAfter(instance.labelNode);
+		},
+
 		_setTransitions: function(val) {
 			var instance = this;
 
@@ -1663,6 +1680,10 @@ var DiagramNode = A.Component.create({
 			var boundingBox = instance.get(BOUNDING_BOX);
 
 			boundingBox.set(ID, A.DiagramNode.buildNodeId(val));
+
+			if (instance.get('rendered')) {
+				instance.labelNode.setContent(val);
+			}
 		},
 
 		_uiSetRequired: function(val) {
