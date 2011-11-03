@@ -76,6 +76,10 @@
 	position: absolute;
 }
 
+.aui-diagram-node-label {
+	text-align: center;
+}
+
 .aui-diagram-builder-drop-container {
 	position: relative;
 }
