@@ -17,7 +17,7 @@
 <%@ include file="init.jsp" %>
 <#if component.isAlloyComponent()>
 
-<alloy:component
+<aui:component
 	excludeAttributes="var,javaScriptAttributes,useMarkup"
 	tagPageContext="<%= pageContext %>"
 	options="<%= options %>"
