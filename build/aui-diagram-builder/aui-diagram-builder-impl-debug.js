@@ -1386,7 +1386,9 @@ var DiagramNode = A.Component.create({
 		syncConnectionsUI: function() {
 			var instance = this;
 
-			instance.get(TRANSITIONS).each(A.bind(instance.connect, instance));
+			instance.get(TRANSITIONS).each(function(transition) {
+				instance.connect(transition, transition.connector);
+			});
 		},
 
 		_afterDataSetRemove: function(event) {
