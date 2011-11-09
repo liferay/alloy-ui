@@ -130,6 +130,8 @@ var NOT_FOUND = {},
     ON_PAGE = GLOBAL_ENV.mods,
     modulekey,
     cache,
+	explode_done = {},
+    get_module = {},
     _path = function(dir, file, type, nomin) {
                         var path = dir + '/' + file;
                         if (!nomin) {
@@ -1295,15 +1297,18 @@ Y.Loader.prototype = {
             return NO_REQUIREMENTS;
         }
 
-        var i, m, j, add, packName, lang, testresults = this.testresults,
+		if (get_module[mod.name]) {
+            return get_module[mod.name];
+        }
+
+        var i, m, j, add, packName, lang,
             name = mod.name, cond, go,
             adddef = ON_PAGE[name] && ON_PAGE[name].details,
-            d, k, m1,
+            d,
             r, old_mod,
-            o, skinmod, skindef, skinpar, skinname,
+            o, skinmod, skindef,
             intl = mod.lang || mod.intl,
             info = this.moduleInfo,
-            ftests = Y.Features && Y.Features.tests.load,
             hash;
 
         // console.log(name);
@@ -1327,19 +1332,12 @@ Y.Loader.prototype = {
 
         d = [];
         hash = {};
-        
-        r = this.filterRequires(mod.requires);
-        if (mod.lang) {
-            //If a module has a lang attribute, auto add the intl requirement.
-            d.unshift('intl');
-            r.unshift('intl');
-            intl = true;
-        }
+
+        r = mod.requires;
         o = mod.optional;
 
 
         mod._parsed = true;
-        mod.langCache = this.lang;
 
         for (i = 0; i < r.length; i++) {
             if (!hash[r[i]]) {
@@ -1406,52 +1404,32 @@ Y.Loader.prototype = {
         cond = this.conditions[name];
 
         if (cond) {
-            if (testresults && ftests) {
-                oeach(testresults, function(result, id) {
-                    var condmod = ftests[id].name;
-                    if (!hash[condmod] && ftests[id].trigger == name) {
-                        if (result && ftests[id]) {
-                            hash[condmod] = true;
-                            d.push(condmod);
-                        }
-                    }
-                });
-            } else {
-                oeach(cond, function(def, condmod) {
-                    if (!hash[condmod]) {
-                        go = def && ((def.ua && Y.UA[def.ua]) ||
-                                     (def.test && def.test(Y, r)));
-                        if (go) {
-                            hash[condmod] = true;
-                            d.push(condmod);
-                            m = this.getModule(condmod);
-                            if (m) {
-                                add = this.getRequires(m);
-                                for (j = 0; j < add.length; j++) {
-                                    d.push(add[j]);
-                                }
+            oeach(cond, function(def, condmod) {
+
+                if (!hash[condmod]) {
+                    go = def && ((def.ua && Y.UA[def.ua]) ||
+                                 (def.test && def.test(Y, r)));
+                    if (go) {
+                        hash[condmod] = true;
+                        d.push(condmod);
+                        m = this.getModule(condmod);
+                        if (m) {
+                            add = this.getRequires(m);
+                            for (j = 0; j < add.length; j++) {
+                                d.push(add[j]);
                             }
                         }
                     }
-                }, this);
-            }
+                }
+            }, this);
         }
 
         // Create skin modules
         if (mod.skinnable) {
             skindef = this.skin.overrides;
-            oeach(YUI.Env.aliases, function(o, n) {
-                if (Y.Array.indexOf(o, name) > -1) {
-                    skinpar = n;
-                }
-            });
-            if (skindef && (skindef[name] || (skinpar && skindef[skinpar]))) {
-                skinname = name;
-                if (skindef[skinpar]) {
-                    skinname = skinpar;
-                }
-                for (i = 0; i < skindef[skinname].length; i++) {
-                    skinmod = this._addSkin(skindef[skinname][i], name);
+            if (skindef && skindef[name]) {
+                for (i = 0; i < skindef[name].length; i++) {
+                    skinmod = this._addSkin(skindef[name][i], name);
                     d.push(skinmod);
                 }
             } else {
@@ -1466,17 +1444,21 @@ Y.Loader.prototype = {
 
             if (mod.lang && !mod.langPack && Y.Intl) {
                 lang = Y.Intl.lookupBestLang(this.lang || ROOT_LANG, mod.lang);
+                mod.langCache = this.lang;
                 packName = this.getLangPackName(lang, name);
                 if (packName) {
                     d.unshift(packName);
                 }
             }
+
             d.unshift(INTL);
         }
 
         mod.expanded_map = YArray.hash(d);
 
         mod.expanded = YObject.keys(mod.expanded_map);
+
+        get_module[mod.name] = mod;
 
         return mod.expanded;
     },
@@ -1662,18 +1644,15 @@ Y.Loader.prototype = {
      * @private
      */
     _explode: function() {
-        var r = this.required, m, reqs, done = {},
+        var r = this.required, m, reqs,
             self = this;
 
         // the setup phase is over, all modules have been created
         self.dirty = false;
 
-        self._explodeRollups();
-        r = self.required;
-        
         oeach(r, function(v, name) {
-            if (!done[name]) {
-                done[name] = true;
+            if (!explode_done[name]) {
+                explode_done[name] = true;
                 m = self.getModule(name);
                 if (m) {
                     var expound = m.expound;
@@ -1685,7 +1664,13 @@ Y.Loader.prototype = {
                     }
 
                     reqs = self.getRequires(m);
-                    Y.mix(r, YArray.hash(reqs));
+
+                    var len = reqs.length, i;
+                    for (i = 0; i < len; i++) {
+                        if (!r[reqs[i]]) {
+                            r[reqs[i]] = true;
+                        }
+                    }
                 }
             }
         });
