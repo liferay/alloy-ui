@@ -109,12 +109,7 @@ Messaging = {
 	_formatEventObject: function(obj) {
 		var instance = this;
 
-		var data = obj.data;
-
-		var responseData = instance._getResponseData(data);
-
-		obj.data = data;
-		obj.responseData = responseData;
+		obj.responseData = instance._getResponseData(obj.data);
 
 		return obj;
 	},
