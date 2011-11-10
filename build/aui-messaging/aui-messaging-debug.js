@@ -110,12 +110,7 @@ Messaging = {
 	_formatEventObject: function(obj) {
 		var instance = this;
 
-		var data = obj.data;
-
-		var responseData = instance._getResponseData(data);
-
-		obj.data = data;
-		obj.responseData = responseData;
+		obj.responseData = instance._getResponseData(obj.data);
 
 		return obj;
 	},
@@ -181,4 +176,4 @@ A.receiveMessage = fnReceiveMessage;
 
 A.Messaging = Messaging;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-task-manager','querystring']});
+}, '@VERSION@' ,{requires:['aui-base','aui-task-manager','querystring'], skinnable:false});
