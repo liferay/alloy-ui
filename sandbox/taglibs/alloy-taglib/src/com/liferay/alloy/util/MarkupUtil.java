@@ -12,7 +12,7 @@ import com.liferay.util.PwdGenerator;
 public class MarkupUtil {
 
 	public static String getClassName(Object... args) {
-		Object[] classes =  ArrayUtil.clone(args);
+		Object[] classes =  new Object[args.length + 1];
 
 		ArrayUtil.combine(
 			new String[] { Constants.CSS_CLASS_PREFIX }, args, classes);
