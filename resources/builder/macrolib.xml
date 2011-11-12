@@ -237,11 +237,11 @@
 			</delete>
 
 			<concat destfile="${aui.combined.file}" fixlastline="yes" eol="${buildfiles.eol}">
-				<header file="${global.build.base}/yui-base/yui-base.js"/>
+				<header file="${global.build.base}/yui/yui.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base.js"/>
 			</concat>
 			<concat destfile="${aui.combined.min.file}" fixlastline="yes" eol="${buildfiles.eol}">
-				<header file="${global.build.base}/yui-base/yui-base-min.js"/>
+				<header file="${global.build.base}/yui/yui-min.js"/>
 				<fileset dir="${global.build.base}/${build.aui.prefix}aui-base" includes="${build.aui.prefix}aui-base-min.js"/>
 			</concat>
 
