@@ -10,18 +10,6 @@ import org.apache.commons.lang.StringUtils;
 
 public class Attribute extends BaseModel {
 
-	public Attribute(
-		String name, String inputType, String outputType, String defaultValue,
-		String description, boolean required) {
-
-		setName(name);
-		setInputType(inputType);
-		setOutputType(outputType);
-		setDefaultValue(defaultValue);
-		setDescription(description);
-		setRequired(required);
-	}
-
 	public String getCapitalizedName() {
 		return StringUtils.capitalize(getSafeName());
 	}
@@ -98,8 +86,16 @@ public class Attribute extends BaseModel {
 		return events.contains(this);
 	}
 
+	public boolean isGettable() {
+		return _gettable;
+	}
+
 	public boolean isRequired() {
 		return _required;
+	}
+
+	public boolean isSettable() {
+		return _settable;
 	}
 
 	public void setComponent(Component component) {
@@ -114,6 +110,10 @@ public class Attribute extends BaseModel {
 		_description = description;
 	}
 
+	public void setGettable(boolean gettable) {
+		_gettable = gettable;
+	}
+
 	public void setInputType(String inputType) {
 		_inputType = inputType;
 	}
@@ -126,11 +126,17 @@ public class Attribute extends BaseModel {
 		_required = required;
 	}
 
+	public void setSettable(boolean settable) {
+		_settable = settable;
+	}
+
 	private Component _component;
 	private String _defaultValue;
 	private String _description;
+	private boolean _gettable = true;
 	private String _inputType;
 	private String _outputType;
 	private boolean _required;
+	private boolean _settable = true;
 
 }

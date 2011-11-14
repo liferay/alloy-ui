@@ -44,12 +44,15 @@ public class Base${component.getClassName()} extends ${component.getParentClass(
 	}
 
 	<#list component.getAttributesAndEvents() as attribute>
+	<#if attribute.isGettable()>
 	public ${attribute.getRawInputType()} get${attribute.getCapitalizedName()}() {
 		return _${attribute.getSafeName()};
 	}
 
+	</#if>
 	</#list>
 	<#list component.getAttributesAndEvents() as attribute>
+	<#if attribute.isSettable()>
 	public void set${attribute.getCapitalizedName()}(${attribute.getRawInputType()} ${attribute.getSafeName()}) {
 		_${attribute.getSafeName()} = ${attribute.getSafeName()};
 		<#if isChildClassOfAttributeTagSupport == true>
@@ -58,6 +61,7 @@ public class Base${component.getClassName()} extends ${component.getParentClass(
 		</#if>
 	}
 
+	</#if>
 	</#list>
 	<#if isChildClassOfIncludeTag == true>
 	@Override
@@ -76,7 +80,9 @@ public class Base${component.getClassName()} extends ${component.getParentClass(
 		<#assign defaultValue = getCleanUpValue(outputSimpleClassName, defaultValue)>
 		
 		</#compress>
+		<#if attribute.isGettable() || attribute.isSettable()>
 		_${attribute.getSafeName()} = ${defaultValue};
+		</#if>
 	</#list>
 	}
 
@@ -146,7 +152,9 @@ public class Base${component.getClassName()} extends ${component.getParentClass(
 	<#assign defaultValue = getCleanUpValue(outputSimpleClassName, defaultValue)>
 	
 	</#compress>
+	<#if attribute.isGettable() || attribute.isSettable()>
 	private ${attribute.getRawInputType()} _${attribute.getSafeName()} = ${defaultValue};
+	</#if>
 	</#list>
 
 }

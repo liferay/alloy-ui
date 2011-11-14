@@ -292,24 +292,35 @@ public class TagBuilder {
 		}
 
 		for (Element attributeNode : nodes) {
+			String defaultValue = attributeNode.elementText("defaultValue");
+			String description = attributeNode.elementText("description");
 			String name = attributeNode.elementText("name");
 			String type = GetterUtil.getString(
 				attributeNode.elementText("type"), _DEFAULT_TYPE);
-
 			String inputType = GetterUtil.getString(
 				attributeNode.elementText("inputType"), type);
-
 			String outputType = GetterUtil.getString(
 				attributeNode.elementText("outputType"), type);
 
-			String defaultValue = attributeNode.elementText("defaultValue");
-			String description = attributeNode.elementText("description");
+			boolean gettable = GetterUtil.getBoolean(
+				attributeNode.elementText("gettable"), true);
 			boolean required = GetterUtil.getBoolean(
 				attributeNode.elementText("required"));
+			boolean settable = GetterUtil.getBoolean(
+				attributeNode.elementText("settable"), true);
 
-			attributes.add(
-				new Attribute(name, inputType, outputType, defaultValue,
-				description, required));
+			Attribute attribute = new Attribute();
+
+			attribute.setDefaultValue(defaultValue);
+			attribute.setDescription(description);
+			attribute.setGettable(gettable);
+			attribute.setInputType(inputType);
+			attribute.setName(name);
+			attribute.setOutputType(outputType);
+			attribute.setRequired(required);
+			attribute.setSettable(settable);
+
+			attributes.add(attribute);
 		}
 
 		return attributes;

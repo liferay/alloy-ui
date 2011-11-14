@@ -279,10 +279,10 @@ public class XMLBuilder {
 				Iterator<String> it = typeJSON.keys();
 
 				while (it.hasNext()) {
-					String attributeName = it.next();
+					String name = it.next();
 
 					JSONObject attributeJSON = JSONUtil.getJSONObject(
-						typeJSON, attributeName);
+						typeJSON, name);
 
 					String inputType = GetterUtil.getString(
 						JSONUtil.getString(attributeJSON, "type"),
@@ -305,9 +305,14 @@ public class XMLBuilder {
 					boolean required = GetterUtil.getBoolean(
 						JSONUtil.getString(attributeJSON, "required"));
 
-					Attribute attribute = new Attribute(
-						attributeName, inputType, outputType, defaultValue, description,
-							required);
+					Attribute attribute = new Attribute();
+
+					attribute.setName(name);
+					attribute.setInputType(inputType);
+					attribute.setOutputType(outputType);
+					attribute.setDefaultValue(defaultValue);
+					attribute.setDescription(description);
+					attribute.setRequired(required);
 
 					attributes.add(attribute);
 				}
