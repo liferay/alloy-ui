@@ -54,6 +54,14 @@ import org.json.JSONObject;
  */
 public class XMLBuilder {
 
+	public static void main(String[] args) throws Exception {
+		String componentsJSON = System.getProperty("xmlbuilder.components.json");
+		String componentsXML = System.getProperty("tagbuilder.components.xml");
+		String componentExcluded = System.getProperty("xmlbuilder.components.excluded");
+
+		new XMLBuilder(componentsJSON, componentsXML, componentExcluded);
+	}
+
 	public XMLBuilder(String componentsJSON, String componentsXML,
 			String componentExcluded)
 		throws Exception {
@@ -77,14 +85,6 @@ public class XMLBuilder {
 		_classMapJSON = _json.getJSONObject("classmap");
 
 		_create();
-	}
-
-	public static void main(String[] args) throws Exception {
-		String componentsJSON = System.getProperty("xmlbuilder.components.json");
-		String componentsXML = System.getProperty("tagbuilder.components.xml");
-		String componentExcluded = System.getProperty("xmlbuilder.components.excluded");
-
-		new XMLBuilder(componentsJSON, componentsXML, componentExcluded);
 	}
 
 	public ArrayList<Attribute> getComponentAttributes(String className) {
@@ -141,7 +141,9 @@ public class XMLBuilder {
 	}
 
 	public boolean isExcludedComponent(Component component) {
-		return (!component.getModule().startsWith(AUI_PREFIX) ||
+		String module = component.getModule();
+
+		return (!module.startsWith(AUI_PREFIX) ||
 				_componentExcluded.contains(component.getName()));
 	}
 
