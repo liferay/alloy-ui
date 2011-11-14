@@ -20,6 +20,7 @@ var L = A.Lang,
 	DOT = '.',
 	ENTRY = 'entry',
 	HANDLER = 'handler',
+	HELPER = 'helper',
 	HIDDEN = 'hidden',
 	HREF = 'href',
 	IMAGE_GALLERY = 'image-gallery',
@@ -27,7 +28,6 @@ var L = A.Lang,
 	LEFT = 'left',
 	LINKS = 'links',
 	OFFSET_WIDTH = 'offsetWidth',
-	OVERLAY = 'overlay',
 	PAGE = 'page',
 	PAGINATOR = 'paginator',
 	PAGINATOR_EL = 'paginatorEl',
@@ -64,7 +64,7 @@ var L = A.Lang,
 	CSS_IMAGE_GALLERY_PAGINATOR_THUMB = getCN(IMAGE_GALLERY, PAGINATOR, THUMB),
 	CSS_IMAGE_GALLERY_PLAYER = getCN(IMAGE_GALLERY, PLAYER),
 	CSS_IMAGE_GALLERY_PLAYER_CONTENT = getCN(IMAGE_GALLERY, PLAYER, CONTENT),
-	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
+	CSS_OVERLAY_HIDDEN = getCN(HELPER, HIDDEN),
 
 	TEMPLATE_PLAYING_LABEL = '(playing)',
 	TEMPLATE_PAGINATOR = '<div class="'+CSS_IMAGE_GALLERY_PAGINATOR_CONTENT+'">{PageLinks}</div>',
@@ -680,21 +680,34 @@ var ImageGallery = A.Component.create(
 					// updating currentIndex
 					instance.set(CURRENT_INDEX, paginatorIndex);
 
-					// loading current index image
-					instance.loadImage(
-						instance.getCurrentLink().attr(HREF)
-					);
-
 					// updating the UI of the paginator
 					paginatorInstance.setState(newState);
 
-					// restart the timer if the user change the image, respecting the paused state
-					var paused = instance.get(PAUSED);
-					var playing = instance.get(PLAYING);
+					instance._processChangeRequest();
+				}
+			},
 
-					if (playing && !paused) {
-						instance._startTimer();
-					}
+			/**
+			 * Process the change request.
+			 * Load image and restart the timer, if needed.
+			 *
+			 * @method _processChangeRequest
+			 * @protected
+			 */
+			_processChangeRequest: function() {
+				var instance = this;
+
+				// loading current index image
+				instance.loadImage(
+					instance.getCurrentLink().attr(HREF)
+				);
+
+				// restart the timer if the user change the image, respecting the paused state
+				var paused = instance.get(PAUSED);
+				var playing = instance.get(PLAYING);
+
+				if (playing && !paused) {
+					instance._startTimer();
 				}
 			},
 

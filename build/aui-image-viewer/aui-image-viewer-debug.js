@@ -1466,6 +1466,7 @@ var L = A.Lang,
 	DOT = '.',
 	ENTRY = 'entry',
 	HANDLER = 'handler',
+	HELPER = 'helper',
 	HIDDEN = 'hidden',
 	HREF = 'href',
 	IMAGE_GALLERY = 'image-gallery',
@@ -1473,7 +1474,6 @@ var L = A.Lang,
 	LEFT = 'left',
 	LINKS = 'links',
 	OFFSET_WIDTH = 'offsetWidth',
-	OVERLAY = 'overlay',
 	PAGE = 'page',
 	PAGINATOR = 'paginator',
 	PAGINATOR_EL = 'paginatorEl',
@@ -1510,7 +1510,7 @@ var L = A.Lang,
 	CSS_IMAGE_GALLERY_PAGINATOR_THUMB = getCN(IMAGE_GALLERY, PAGINATOR, THUMB),
 	CSS_IMAGE_GALLERY_PLAYER = getCN(IMAGE_GALLERY, PLAYER),
 	CSS_IMAGE_GALLERY_PLAYER_CONTENT = getCN(IMAGE_GALLERY, PLAYER, CONTENT),
-	CSS_OVERLAY_HIDDEN = getCN(OVERLAY, HIDDEN),
+	CSS_OVERLAY_HIDDEN = getCN(HELPER, HIDDEN),
 
 	TEMPLATE_PLAYING_LABEL = '(playing)',
 	TEMPLATE_PAGINATOR = '<div class="'+CSS_IMAGE_GALLERY_PAGINATOR_CONTENT+'">{PageLinks}</div>',
@@ -2126,21 +2126,34 @@ var ImageGallery = A.Component.create(
 					// updating currentIndex
 					instance.set(CURRENT_INDEX, paginatorIndex);
 
-					// loading current index image
-					instance.loadImage(
-						instance.getCurrentLink().attr(HREF)
-					);
-
 					// updating the UI of the paginator
 					paginatorInstance.setState(newState);
 
-					// restart the timer if the user change the image, respecting the paused state
-					var paused = instance.get(PAUSED);
-					var playing = instance.get(PLAYING);
+					instance._processChangeRequest();
+				}
+			},
 
-					if (playing && !paused) {
-						instance._startTimer();
-					}
+			/**
+			 * Process the change request.
+			 * Load image and restart the timer, if needed.
+			 *
+			 * @method _processChangeRequest
+			 * @protected
+			 */
+			_processChangeRequest: function() {
+				var instance = this;
+
+				// loading current index image
+				instance.loadImage(
+					instance.getCurrentLink().attr(HREF)
+				);
+
+				// restart the timer if the user change the image, respecting the paused state
+				var paused = instance.get(PAUSED);
+				var playing = instance.get(PLAYING);
+
+				if (playing && !paused) {
+					instance._startTimer();
 				}
 			},
 
@@ -2268,7 +2281,286 @@ var ImageGallery = A.Component.create(
 A.ImageGallery = ImageGallery;
 
 }, '@VERSION@' ,{requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true});
+AUI.add('aui-media-viewer-plugin', function(A) {
+/**
+ * The ImageViewer Media Plugin
+ *
+ * @module aui-media-viewer-plugin
+ */
+
+var Lang = A.Lang,
+	Do = A.Do,
+
+	STR_BODY = 'body',
+	STR_HREF = 'href',
+	STR_IMAGE = 'image',
+	STR_LOADING = 'loading',
+	STR_PROVIDERS = 'providers',
+
+	NAME = 'mediaViewerPlugin',
+
+	DATA_OPTIONS = 'data-options',
+
+	DEFAULT_OPTIONS = {
+		height: 360,
+		width: 640,
+		wmode: 'embed'
+	},
+
+	REGEX_DOMAIN = 'https?://(?:www\\.)?{domain}',
+
+	REGEX_PARAM = '(?:[\\?&]|^){param}=([^&#]*)';
+
+var MediaViewerPlugin = A.Component.create(
+	{
+		NAME: NAME,
+		NS: 'media',
+
+		ATTRS: {
+			providers: {
+				validator: Lang.isObject,
+				value: {
+					'flash': {
+						container: '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="{width}" height="{height}"><param name="wmode" value="{wmode}" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="{media}" /><embed src="{media}" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="{width}" height="{height}" wmode="{wmode}"></embed></object>',
+						matcher: /\b.swf\b/i,
+						options: DEFAULT_OPTIONS,
+						mediaRegex: /([^?&#]+)/
+					},
+					'youtube': {
+						container: '<iframe width="{width}" height="{height}" src="http://www.youtube.com/embed/{media}" frameborder="0" allowfullscreen></iframe>',
+						matcher: new RegExp(
+							Lang.sub(
+								REGEX_DOMAIN,
+								{
+									domain: 'youtube.com'
+								}
+							),
+							'i'
+						),
+						options: DEFAULT_OPTIONS,
+						mediaRegex: /[\?&]v=([^&#]*)/i
+					},
+					'vimeo': {
+						container: '<iframe src="http://player.vimeo.com/video/{media}?title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff" width="{width}" height="{height}" frameborder="0"></iframe>',
+						matcher: new RegExp(
+							Lang.sub(
+								REGEX_DOMAIN,
+								{
+									domain: 'vimeo.com'
+								}
+							),
+							'i'
+						),
+						options: DEFAULT_OPTIONS,
+						mediaRegex: /\/(\d+)/
+					}
+				}
+			}
+		},
+
+		EXTENDS: A.Plugin.Base,
+
+		prototype: {
+			initializer: function(config) {
+				var instance = this;
+
+				var handles = instance._handles;
+
+				handles.changeReqeust = instance.afterHostMethod('_changeRequest', instance._restoreMedia);
+				handles.close = instance.beforeHostMethod('close', instance.close);
+				handles.loadMedia = instance.beforeHostMethod('loadImage', instance.loadMedia);
+				handles.preloadImage = instance.beforeHostMethod('preloadImage', instance.preloadImage);
+			},
+
+			close: function() {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var source = host.getCurrentLink();
+
+				var mediaType = instance._getMediaType(source.attr('href'));
+
+				if (mediaType != STR_IMAGE) {
+					host.setStdModContent(STR_BODY, '');
+				}
+			},
+
+			loadMedia: function(linkHref) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var mediaType = instance._getMediaType(linkHref);
+
+				var result = true;
+
+				if (mediaType != STR_IMAGE) {
+					var providers = instance.get(STR_PROVIDERS)[mediaType];
+
+					var source = host.getCurrentLink();
+
+					var options = instance._updateOptions(
+						source,
+						A.clone(providers.options)
+					);
+
+					var media = providers.mediaRegex.exec(linkHref);
+
+					if (media) {
+						options.media = media[1];
+					}
+
+					var container = Lang.sub(
+						providers.container,
+						options
+					);
+
+					host.setStdModContent(STR_BODY, container);
+
+					host._syncImageViewerUI();
+
+					instance._uiSetContainerSize(options.width, options.height);
+
+					host._setAlignCenter(true);
+
+					host.set(STR_LOADING, false);
+
+					host.fire(
+						'load',
+						{
+							media: media
+						}
+					);
+
+					if (host.get('preloadNeighborImages')) {
+						var currentIndex = host.get('currentIndex');
+
+						host.preloadImage(currentIndex + 1);
+						host.preloadImage(currentIndex - 1);
+					}
+
+					result = new Do.Prevent();
+				}
+
+				return result;
+			},
+
+			preloadImage: function(index) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var currentLink = host.getLink(index);
+
+				var result = new Do.Prevent();
+
+				if (currentLink) {
+					var linkHref = currentLink.attr(STR_HREF);
+
+					var mediaType = instance._getMediaType(linkHref);
+
+					if (mediaType == STR_IMAGE) {
+						result = true;
+					}
+				}
+
+				return result;
+			},
+
+			_getMediaType: function(source) {
+				var instance = this;
+
+				var providers = instance.get(STR_PROVIDERS);
+
+				var mediaType = STR_IMAGE;
+
+				A.some(
+					providers,
+					function(value, key, collection) {
+						return value.matcher.test(source) && (mediaType = key);
+					}
+				);
+
+				return mediaType;
+			},
+
+			_restoreMedia: function(event) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var source = host.getCurrentLink();
+
+				var href = source.attr('href');
+
+				var mediaType = instance._getMediaType(href);
+
+				if (mediaType != STR_IMAGE && !host.getStdModNode(STR_BODY).html()) {
+					host._processChangeRequest();
+				}
+			},
+
+			_uiSetContainerSize: function(width, height) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var bodyNode = host.bodyNode;
+
+				bodyNode.setStyles(
+					{
+						height: height,
+						width: width
+					}
+				);
+			},
+
+			_updateOptions: function(source, options) {
+				var dataOptions = source.attr(DATA_OPTIONS);
+				var linkHref = source.attr(STR_HREF);
+
+				A.each(
+					options,
+					function(value, key, collection) {
+						var regexParam = new RegExp(
+							Lang.sub(
+								REGEX_PARAM,
+								{
+									param: key
+								}
+							)
+						);
+
+						var result = regexParam.exec(dataOptions) || regexParam.exec(linkHref);
+
+						if (result) {
+							options[key] = result[1];
+						}
+					}
+				);
+
+				return options;
+			},
+
+			_handles: {}
+		},
+
+		DATA_OPTIONS: DATA_OPTIONS,
+
+		DEFAULT_OPTIONS: DEFAULT_OPTIONS,
+
+		REGEX_DOMAIN: REGEX_DOMAIN,
+		REGEX_PARAM: REGEX_PARAM
+	}
+);
+
+A.MediaViewerPlugin = MediaViewerPlugin;
+
+A.MediaViewer = A.ImageViewer;
+
+}, '@VERSION@' ,{skinnable:false, requires:['aui-image-viewer-base']});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery'], skinnable:true});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin'], skinnable:true});
 
