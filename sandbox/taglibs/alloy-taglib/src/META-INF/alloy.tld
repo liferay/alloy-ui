@@ -3646,12 +3646,6 @@ cannot prevent initialization).
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
 	<tag>
-		<name>checkbox-cell-editor</name>
-		<tag-class>com.liferay.alloy.taglib.alloy.CheckboxCellEditorTag</tag-class>
-		<body-content>JSP</body-content>
-		<dynamic-attributes>true</dynamic-attributes>
-	</tag>
-	<tag>
 		<name>color-picker</name>
 		<tag-class>com.liferay.alloy.taglib.alloy.ColorPickerTag</tag-class>
 		<body-content>JSP</body-content>
