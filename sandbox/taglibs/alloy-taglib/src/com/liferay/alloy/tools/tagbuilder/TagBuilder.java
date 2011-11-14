@@ -372,6 +372,9 @@ public class TagBuilder {
 			String className = GetterUtil.getString(
 				node.attributeValue("className"));
 
+			boolean dynamicAttributes = GetterUtil.getBoolean(
+				node.attributeValue("dynamicAttributes"), true);
+
 			String module = GetterUtil.getString(
 				node.attributeValue("module"));
 
@@ -387,6 +390,7 @@ public class TagBuilder {
 				_getAuthorList(node));
 
 			component.setClassName(className);
+			component.setDynamicAttributes(dynamicAttributes);
 			component.setParentClass(parentClass);
 			component.setWriteJSP(writeJSP);
 

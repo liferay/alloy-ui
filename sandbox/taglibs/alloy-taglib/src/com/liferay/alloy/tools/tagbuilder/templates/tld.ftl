@@ -25,7 +25,9 @@
 			<type>${attribute.getInputType()}</type>
 		</attribute>
 		</#list>
+		<#if component.isDynamicAttributes()>
 		<dynamic-attributes>true</dynamic-attributes>
+		</#if>
 	</tag>
 </#list>
 </taglib>
