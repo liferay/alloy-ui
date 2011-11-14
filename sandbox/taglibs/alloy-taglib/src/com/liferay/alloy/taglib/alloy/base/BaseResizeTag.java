@@ -68,6 +68,10 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _handles;
 	}
 
+	public java.lang.Object getHandlesWrapper() {
+		return _handlesWrapper;
+	}
+
 	public boolean getInitialized() {
 		return _initialized;
 	}
@@ -102,10 +106,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getProxyEl() {
 		return _proxyEl;
-	}
-
-	public java.lang.String getProxyNode() {
-		return _proxyNode;
 	}
 
 	public boolean getResizing() {
@@ -172,6 +172,10 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterHandlesChange;
 	}
 
+	public java.lang.Object getAfterHandlesWrapperChange() {
+		return _afterHandlesWrapperChange;
+	}
+
 	public java.lang.Object getAfterInit() {
 		return _afterInit;
 	}
@@ -210,10 +214,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterProxyElChange() {
 		return _afterProxyElChange;
-	}
-
-	public java.lang.Object getAfterProxyNodeChange() {
-		return _afterProxyNodeChange;
 	}
 
 	public java.lang.Object getAfterAlign() {
@@ -300,6 +300,10 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		return _onHandlesChange;
 	}
 
+	public java.lang.Object getOnHandlesWrapperChange() {
+		return _onHandlesWrapperChange;
+	}
+
 	public java.lang.Object getOnInit() {
 		return _onInit;
 	}
@@ -338,10 +342,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnProxyElChange() {
 		return _onProxyElChange;
-	}
-
-	public java.lang.Object getOnProxyNodeChange() {
-		return _onProxyNodeChange;
 	}
 
 	public java.lang.Object getOnAlign() {
@@ -442,6 +442,12 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("handles", handles);
 	}
 
+	public void setHandlesWrapper(java.lang.Object handlesWrapper) {
+		_handlesWrapper = handlesWrapper;
+
+		setScopedAttribute("handlesWrapper", handlesWrapper);
+	}
+
 	public void setInitialized(boolean initialized) {
 		_initialized = initialized;
 
@@ -494,12 +500,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_proxyEl = proxyEl;
 
 		setScopedAttribute("proxyEl", proxyEl);
-	}
-
-	public void setProxyNode(java.lang.String proxyNode) {
-		_proxyNode = proxyNode;
-
-		setScopedAttribute("proxyNode", proxyNode);
 	}
 
 	public void setResizing(boolean resizing) {
@@ -598,6 +598,12 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterHandlesChange", afterHandlesChange);
 	}
 
+	public void setAfterHandlesWrapperChange(java.lang.Object afterHandlesWrapperChange) {
+		_afterHandlesWrapperChange = afterHandlesWrapperChange;
+
+		setScopedAttribute("afterHandlesWrapperChange", afterHandlesWrapperChange);
+	}
+
 	public void setAfterInit(java.lang.Object afterInit) {
 		_afterInit = afterInit;
 
@@ -656,12 +662,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_afterProxyElChange = afterProxyElChange;
 
 		setScopedAttribute("afterProxyElChange", afterProxyElChange);
-	}
-
-	public void setAfterProxyNodeChange(java.lang.Object afterProxyNodeChange) {
-		_afterProxyNodeChange = afterProxyNodeChange;
-
-		setScopedAttribute("afterProxyNodeChange", afterProxyNodeChange);
 	}
 
 	public void setAfterAlign(java.lang.Object afterAlign) {
@@ -790,6 +790,12 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onHandlesChange", onHandlesChange);
 	}
 
+	public void setOnHandlesWrapperChange(java.lang.Object onHandlesWrapperChange) {
+		_onHandlesWrapperChange = onHandlesWrapperChange;
+
+		setScopedAttribute("onHandlesWrapperChange", onHandlesWrapperChange);
+	}
+
 	public void setOnInit(java.lang.Object onInit) {
 		_onInit = onInit;
 
@@ -848,12 +854,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_onProxyElChange = onProxyElChange;
 
 		setScopedAttribute("onProxyElChange", onProxyElChange);
-	}
-
-	public void setOnProxyNodeChange(java.lang.Object onProxyNodeChange) {
-		_onProxyNodeChange = onProxyNodeChange;
-
-		setScopedAttribute("onProxyNodeChange", onProxyNodeChange);
 	}
 
 	public void setOnAlign(java.lang.Object onAlign) {
@@ -933,6 +933,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_defMinWidth = 15;
 		_destroyed = false;
 		_handles = null;
+		_handlesWrapper = null;
 		_initialized = false;
 		_maxHeight = 2147483647;
 		_maxWidth = 2147483647;
@@ -942,7 +943,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_preserveRatio = false;
 		_proxy = false;
 		_proxyEl = null;
-		_proxyNode = null;
 		_resizing = false;
 		_tickX = null;
 		_tickY = null;
@@ -959,6 +959,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_afterDestroy = null;
 		_afterDestroyedChange = null;
 		_afterHandlesChange = null;
+		_afterHandlesWrapperChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
 		_afterMaxHeightChange = null;
@@ -969,7 +970,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_afterPreserveRatioChange = null;
 		_afterProxyChange = null;
 		_afterProxyElChange = null;
-		_afterProxyNodeChange = null;
 		_afterAlign = null;
 		_afterEnd = null;
 		_afterMouseUp = null;
@@ -991,6 +991,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_onDestroy = null;
 		_onDestroyedChange = null;
 		_onHandlesChange = null;
+		_onHandlesWrapperChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
 		_onMaxHeightChange = null;
@@ -1001,7 +1002,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		_onPreserveRatioChange = null;
 		_onProxyChange = null;
 		_onProxyElChange = null;
-		_onProxyNodeChange = null;
 		_onAlign = null;
 		_onEnd = null;
 		_onMouseUp = null;
@@ -1031,6 +1031,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "defMinWidth", _defMinWidth);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "handles", _handles);
+		setNamespacedAttribute(request, "handlesWrapper", _handlesWrapper);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "maxHeight", _maxHeight);
 		setNamespacedAttribute(request, "maxWidth", _maxWidth);
@@ -1040,7 +1041,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "preserveRatio", _preserveRatio);
 		setNamespacedAttribute(request, "proxy", _proxy);
 		setNamespacedAttribute(request, "proxyEl", _proxyEl);
-		setNamespacedAttribute(request, "proxyNode", _proxyNode);
 		setNamespacedAttribute(request, "resizing", _resizing);
 		setNamespacedAttribute(request, "tickX", _tickX);
 		setNamespacedAttribute(request, "tickY", _tickY);
@@ -1057,6 +1057,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterHandlesChange", _afterHandlesChange);
+		setNamespacedAttribute(request, "afterHandlesWrapperChange", _afterHandlesWrapperChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
 		setNamespacedAttribute(request, "afterMaxHeightChange", _afterMaxHeightChange);
@@ -1067,7 +1068,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterPreserveRatioChange", _afterPreserveRatioChange);
 		setNamespacedAttribute(request, "afterProxyChange", _afterProxyChange);
 		setNamespacedAttribute(request, "afterProxyElChange", _afterProxyElChange);
-		setNamespacedAttribute(request, "afterProxyNodeChange", _afterProxyNodeChange);
 		setNamespacedAttribute(request, "afterAlign", _afterAlign);
 		setNamespacedAttribute(request, "afterEnd", _afterEnd);
 		setNamespacedAttribute(request, "afterMouseUp", _afterMouseUp);
@@ -1089,6 +1089,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onHandlesChange", _onHandlesChange);
+		setNamespacedAttribute(request, "onHandlesWrapperChange", _onHandlesWrapperChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 		setNamespacedAttribute(request, "onMaxHeightChange", _onMaxHeightChange);
@@ -1099,7 +1100,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onPreserveRatioChange", _onPreserveRatioChange);
 		setNamespacedAttribute(request, "onProxyChange", _onProxyChange);
 		setNamespacedAttribute(request, "onProxyElChange", _onProxyElChange);
-		setNamespacedAttribute(request, "onProxyNodeChange", _onProxyNodeChange);
 		setNamespacedAttribute(request, "onAlign", _onAlign);
 		setNamespacedAttribute(request, "onEnd", _onEnd);
 		setNamespacedAttribute(request, "onMouseUp", _onMouseUp);
@@ -1127,6 +1127,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _defMinWidth = 15;
 	private boolean _destroyed = false;
 	private java.lang.Object _handles = null;
+	private java.lang.Object _handlesWrapper = null;
 	private boolean _initialized = false;
 	private java.lang.Object _maxHeight = 2147483647;
 	private java.lang.Object _maxWidth = 2147483647;
@@ -1136,7 +1137,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _preserveRatio = false;
 	private boolean _proxy = false;
 	private java.lang.String _proxyEl = null;
-	private java.lang.String _proxyNode = null;
 	private boolean _resizing = false;
 	private java.lang.Object _tickX = null;
 	private java.lang.Object _tickY = null;
@@ -1153,6 +1153,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterDestroy = null;
 	private java.lang.Object _afterDestroyedChange = null;
 	private java.lang.Object _afterHandlesChange = null;
+	private java.lang.Object _afterHandlesWrapperChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
 	private java.lang.Object _afterMaxHeightChange = null;
@@ -1163,7 +1164,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterPreserveRatioChange = null;
 	private java.lang.Object _afterProxyChange = null;
 	private java.lang.Object _afterProxyElChange = null;
-	private java.lang.Object _afterProxyNodeChange = null;
 	private java.lang.Object _afterAlign = null;
 	private java.lang.Object _afterEnd = null;
 	private java.lang.Object _afterMouseUp = null;
@@ -1185,6 +1185,7 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onDestroy = null;
 	private java.lang.Object _onDestroyedChange = null;
 	private java.lang.Object _onHandlesChange = null;
+	private java.lang.Object _onHandlesWrapperChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
 	private java.lang.Object _onMaxHeightChange = null;
@@ -1195,7 +1196,6 @@ public class BaseResizeTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onPreserveRatioChange = null;
 	private java.lang.Object _onProxyChange = null;
 	private java.lang.Object _onProxyElChange = null;
-	private java.lang.Object _onProxyNodeChange = null;
 	private java.lang.Object _onAlign = null;
 	private java.lang.Object _onEnd = null;
 	private java.lang.Object _onMouseUp = null;

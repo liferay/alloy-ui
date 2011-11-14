@@ -96,16 +96,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _initialized;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public java.lang.String getMonthNode() {
 		return _monthNode;
 	}
 
 	public java.lang.String getMonthNodeName() {
 		return _monthNodeName;
+	}
+
+	public boolean getNullableDay() {
+		return _nullableDay;
+	}
+
+	public boolean getNullableMonth() {
+		return _nullableMonth;
+	}
+
+	public boolean getNullableYear() {
+		return _nullableYear;
 	}
 
 	public boolean getPopulateDay() {
@@ -252,16 +260,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _afterInitializedChange;
 	}
 
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
-	}
-
 	public java.lang.Object getAfterMonthNodeChange() {
 		return _afterMonthNodeChange;
 	}
 
 	public java.lang.Object getAfterMonthNodeNameChange() {
 		return _afterMonthNodeNameChange;
+	}
+
+	public java.lang.Object getAfterNullableDayChange() {
+		return _afterNullableDayChange;
+	}
+
+	public java.lang.Object getAfterNullableMonthChange() {
+		return _afterNullableMonthChange;
+	}
+
+	public java.lang.Object getAfterNullableYearChange() {
+		return _afterNullableYearChange;
 	}
 
 	public java.lang.Object getAfterPopulateDayChange() {
@@ -416,16 +432,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		return _onInitializedChange;
 	}
 
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
-	}
-
 	public java.lang.Object getOnMonthNodeChange() {
 		return _onMonthNodeChange;
 	}
 
 	public java.lang.Object getOnMonthNodeNameChange() {
 		return _onMonthNodeNameChange;
+	}
+
+	public java.lang.Object getOnNullableDayChange() {
+		return _onNullableDayChange;
+	}
+
+	public java.lang.Object getOnNullableMonthChange() {
+		return _onNullableMonthChange;
+	}
+
+	public java.lang.Object getOnNullableYearChange() {
+		return _onNullableYearChange;
 	}
 
 	public java.lang.Object getOnPopulateDayChange() {
@@ -604,12 +628,6 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
-	}
-
 	public void setMonthNode(java.lang.String monthNode) {
 		_monthNode = monthNode;
 
@@ -620,6 +638,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_monthNodeName = monthNodeName;
 
 		setScopedAttribute("monthNodeName", monthNodeName);
+	}
+
+	public void setNullableDay(boolean nullableDay) {
+		_nullableDay = nullableDay;
+
+		setScopedAttribute("nullableDay", nullableDay);
+	}
+
+	public void setNullableMonth(boolean nullableMonth) {
+		_nullableMonth = nullableMonth;
+
+		setScopedAttribute("nullableMonth", nullableMonth);
+	}
+
+	public void setNullableYear(boolean nullableYear) {
+		_nullableYear = nullableYear;
+
+		setScopedAttribute("nullableYear", nullableYear);
 	}
 
 	public void setPopulateDay(boolean populateDay) {
@@ -838,12 +874,6 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
-	}
-
 	public void setAfterMonthNodeChange(java.lang.Object afterMonthNodeChange) {
 		_afterMonthNodeChange = afterMonthNodeChange;
 
@@ -854,6 +884,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterMonthNodeNameChange = afterMonthNodeNameChange;
 
 		setScopedAttribute("afterMonthNodeNameChange", afterMonthNodeNameChange);
+	}
+
+	public void setAfterNullableDayChange(java.lang.Object afterNullableDayChange) {
+		_afterNullableDayChange = afterNullableDayChange;
+
+		setScopedAttribute("afterNullableDayChange", afterNullableDayChange);
+	}
+
+	public void setAfterNullableMonthChange(java.lang.Object afterNullableMonthChange) {
+		_afterNullableMonthChange = afterNullableMonthChange;
+
+		setScopedAttribute("afterNullableMonthChange", afterNullableMonthChange);
+	}
+
+	public void setAfterNullableYearChange(java.lang.Object afterNullableYearChange) {
+		_afterNullableYearChange = afterNullableYearChange;
+
+		setScopedAttribute("afterNullableYearChange", afterNullableYearChange);
 	}
 
 	public void setAfterPopulateDayChange(java.lang.Object afterPopulateDayChange) {
@@ -1084,12 +1132,6 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnMonthNodeChange(java.lang.Object onMonthNodeChange) {
 		_onMonthNodeChange = onMonthNodeChange;
 
@@ -1100,6 +1142,24 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onMonthNodeNameChange = onMonthNodeNameChange;
 
 		setScopedAttribute("onMonthNodeNameChange", onMonthNodeNameChange);
+	}
+
+	public void setOnNullableDayChange(java.lang.Object onNullableDayChange) {
+		_onNullableDayChange = onNullableDayChange;
+
+		setScopedAttribute("onNullableDayChange", onNullableDayChange);
+	}
+
+	public void setOnNullableMonthChange(java.lang.Object onNullableMonthChange) {
+		_onNullableMonthChange = onNullableMonthChange;
+
+		setScopedAttribute("onNullableMonthChange", onNullableMonthChange);
+	}
+
+	public void setOnNullableYearChange(java.lang.Object onNullableYearChange) {
+		_onNullableYearChange = onNullableYearChange;
+
+		setScopedAttribute("onNullableYearChange", onNullableYearChange);
 	}
 
 	public void setOnPopulateDayChange(java.lang.Object onPopulateDayChange) {
@@ -1240,9 +1300,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_hideClass = "aui-helper-hidden";
 		_datepickerselectId = null;
 		_initialized = false;
-		_locale = "en";
 		_monthNode = null;
 		_monthNodeName = "month";
+		_nullableDay = false;
+		_nullableMonth = false;
+		_nullableYear = false;
 		_populateDay = true;
 		_populateMonth = true;
 		_populateYear = true;
@@ -1279,9 +1341,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterMonthNodeChange = null;
 		_afterMonthNodeNameChange = null;
+		_afterNullableDayChange = null;
+		_afterNullableMonthChange = null;
+		_afterNullableYearChange = null;
 		_afterPopulateDayChange = null;
 		_afterPopulateMonthChange = null;
 		_afterPopulateYearChange = null;
@@ -1320,9 +1384,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onMonthNodeChange = null;
 		_onMonthNodeNameChange = null;
+		_onNullableDayChange = null;
+		_onNullableMonthChange = null;
+		_onNullableYearChange = null;
 		_onPopulateDayChange = null;
 		_onPopulateMonthChange = null;
 		_onPopulateYearChange = null;
@@ -1368,9 +1434,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "datepickerselectId", _datepickerselectId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "monthNode", _monthNode);
 		setNamespacedAttribute(request, "monthNodeName", _monthNodeName);
+		setNamespacedAttribute(request, "nullableDay", _nullableDay);
+		setNamespacedAttribute(request, "nullableMonth", _nullableMonth);
+		setNamespacedAttribute(request, "nullableYear", _nullableYear);
 		setNamespacedAttribute(request, "populateDay", _populateDay);
 		setNamespacedAttribute(request, "populateMonth", _populateMonth);
 		setNamespacedAttribute(request, "populateYear", _populateYear);
@@ -1407,9 +1475,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMonthNodeChange", _afterMonthNodeChange);
 		setNamespacedAttribute(request, "afterMonthNodeNameChange", _afterMonthNodeNameChange);
+		setNamespacedAttribute(request, "afterNullableDayChange", _afterNullableDayChange);
+		setNamespacedAttribute(request, "afterNullableMonthChange", _afterNullableMonthChange);
+		setNamespacedAttribute(request, "afterNullableYearChange", _afterNullableYearChange);
 		setNamespacedAttribute(request, "afterPopulateDayChange", _afterPopulateDayChange);
 		setNamespacedAttribute(request, "afterPopulateMonthChange", _afterPopulateMonthChange);
 		setNamespacedAttribute(request, "afterPopulateYearChange", _afterPopulateYearChange);
@@ -1448,9 +1518,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMonthNodeChange", _onMonthNodeChange);
 		setNamespacedAttribute(request, "onMonthNodeNameChange", _onMonthNodeNameChange);
+		setNamespacedAttribute(request, "onNullableDayChange", _onNullableDayChange);
+		setNamespacedAttribute(request, "onNullableMonthChange", _onNullableMonthChange);
+		setNamespacedAttribute(request, "onNullableYearChange", _onNullableYearChange);
 		setNamespacedAttribute(request, "onPopulateDayChange", _onPopulateDayChange);
 		setNamespacedAttribute(request, "onPopulateMonthChange", _onPopulateMonthChange);
 		setNamespacedAttribute(request, "onPopulateYearChange", _onPopulateYearChange);
@@ -1494,9 +1566,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.String _datepickerselectId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private java.lang.String _monthNode = null;
 	private java.lang.String _monthNodeName = "month";
+	private boolean _nullableDay = false;
+	private boolean _nullableMonth = false;
+	private boolean _nullableYear = false;
 	private boolean _populateDay = true;
 	private boolean _populateMonth = true;
 	private boolean _populateYear = true;
@@ -1533,9 +1607,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMonthNodeChange = null;
 	private java.lang.Object _afterMonthNodeNameChange = null;
+	private java.lang.Object _afterNullableDayChange = null;
+	private java.lang.Object _afterNullableMonthChange = null;
+	private java.lang.Object _afterNullableYearChange = null;
 	private java.lang.Object _afterPopulateDayChange = null;
 	private java.lang.Object _afterPopulateMonthChange = null;
 	private java.lang.Object _afterPopulateYearChange = null;
@@ -1574,9 +1650,11 @@ public class BaseDatePickerSelectTag extends com.liferay.taglib.util.IncludeTag 
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMonthNodeChange = null;
 	private java.lang.Object _onMonthNodeNameChange = null;
+	private java.lang.Object _onNullableDayChange = null;
+	private java.lang.Object _onNullableMonthChange = null;
+	private java.lang.Object _onNullableYearChange = null;
 	private java.lang.Object _onPopulateDayChange = null;
 	private java.lang.Object _onPopulateMonthChange = null;
 	private java.lang.Object _onPopulateYearChange = null;

@@ -201,14 +201,6 @@ has been through the init lifecycle phase.<!--{"event":false,"inputType":"boolea
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The default locale for the widget. NOTE: Using get/set on the "strings" attribute will
-return/set strings for this locale.<!--{"event":false,"inputType":"java.lang.String","outputType":"java.lang.String","required":false,"defaultValue":"en"}-->]]></description>
-			<name>locale</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
 			<description><![CDATA[The key or numeric index in the schema to match the result against.<!--{"event":false,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false,"defaultValue":"0"}-->]]></description>
 			<name>matchKey</name>
 			<required>false</required>
@@ -623,13 +615,6 @@ a selected item.<!--{"event":true,"inputType":"java.lang.Object","outputType":"j
 		<attribute>
 			<description><![CDATA[Handles the itemSelect event. Fired when an item in the list is selected.<!--{"event":true,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>afterItemSelect</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Fires when the value for the configuration attribute 'locale' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"event":true,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
-			<name>afterLocaleChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>
@@ -1106,13 +1091,6 @@ a selected item.<!--{"event":true,"inputType":"java.lang.Object","outputType":"j
 		<attribute>
 			<description><![CDATA[Handles the itemSelect event. Fired when an item in the list is selected.<!--{"event":true,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
 			<name>onItemSelect</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<type>java.lang.Object</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Fires when the value for the configuration attribute 'locale' is changed. You can listen for the event using the <a href="Attribute.html#method_on">on</a> method if you wish to be notified before the attribute's value has changed, or using the <a href="Event.Target.html#method_after">after</a> method if you wish to be notified after the attribute's value has changed.<!--{"event":true,"inputType":"java.lang.Object","outputType":"java.lang.Object","required":false}-->]]></description>
-			<name>onLocaleChange</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 			<type>java.lang.Object</type>

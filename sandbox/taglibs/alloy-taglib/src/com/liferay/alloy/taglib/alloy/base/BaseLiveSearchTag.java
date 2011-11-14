@@ -68,6 +68,10 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		return _nodes;
 	}
 
+	public java.lang.String getSearchValue() {
+		return _searchValue;
+	}
+
 	public java.lang.Object getShow() {
 		return _show;
 	}
@@ -116,6 +120,10 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterNodesChange;
 	}
 
+	public java.lang.Object getAfterSearchValueChange() {
+		return _afterSearchValueChange;
+	}
+
 	public java.lang.Object getAfterShowChange() {
 		return _afterShowChange;
 	}
@@ -162,6 +170,10 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnNodesChange() {
 		return _onNodesChange;
+	}
+
+	public java.lang.Object getOnSearchValueChange() {
+		return _onSearchValueChange;
 	}
 
 	public java.lang.Object getOnShowChange() {
@@ -220,6 +232,12 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		_nodes = nodes;
 
 		setScopedAttribute("nodes", nodes);
+	}
+
+	public void setSearchValue(java.lang.String searchValue) {
+		_searchValue = searchValue;
+
+		setScopedAttribute("searchValue", searchValue);
 	}
 
 	public void setShow(java.lang.Object show) {
@@ -294,6 +312,12 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterNodesChange", afterNodesChange);
 	}
 
+	public void setAfterSearchValueChange(java.lang.Object afterSearchValueChange) {
+		_afterSearchValueChange = afterSearchValueChange;
+
+		setScopedAttribute("afterSearchValueChange", afterSearchValueChange);
+	}
+
 	public void setAfterShowChange(java.lang.Object afterShowChange) {
 		_afterShowChange = afterShowChange;
 
@@ -366,6 +390,12 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onNodesChange", onNodesChange);
 	}
 
+	public void setOnSearchValueChange(java.lang.Object onSearchValueChange) {
+		_onSearchValueChange = onSearchValueChange;
+
+		setScopedAttribute("onSearchValueChange", onSearchValueChange);
+	}
+
 	public void setOnShowChange(java.lang.Object onShowChange) {
 		_onShowChange = onShowChange;
 
@@ -383,6 +413,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		_input = null;
 		_matchRegex = null;
 		_nodes = null;
+		_searchValue = null;
 		_show = null;
 		_afterDataChange = null;
 		_afterDelayChange = null;
@@ -395,6 +426,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInputChange = null;
 		_afterMatchRegexChange = null;
 		_afterNodesChange = null;
+		_afterSearchValueChange = null;
 		_afterShowChange = null;
 		_onDataChange = null;
 		_onDelayChange = null;
@@ -407,6 +439,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		_onInputChange = null;
 		_onMatchRegexChange = null;
 		_onNodesChange = null;
+		_onSearchValueChange = null;
 		_onShowChange = null;
 	}
 
@@ -426,6 +459,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "input", _input);
 		setNamespacedAttribute(request, "matchRegex", _matchRegex);
 		setNamespacedAttribute(request, "nodes", _nodes);
+		setNamespacedAttribute(request, "searchValue", _searchValue);
 		setNamespacedAttribute(request, "show", _show);
 		setNamespacedAttribute(request, "afterDataChange", _afterDataChange);
 		setNamespacedAttribute(request, "afterDelayChange", _afterDelayChange);
@@ -438,6 +472,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterInputChange", _afterInputChange);
 		setNamespacedAttribute(request, "afterMatchRegexChange", _afterMatchRegexChange);
 		setNamespacedAttribute(request, "afterNodesChange", _afterNodesChange);
+		setNamespacedAttribute(request, "afterSearchValueChange", _afterSearchValueChange);
 		setNamespacedAttribute(request, "afterShowChange", _afterShowChange);
 		setNamespacedAttribute(request, "onDataChange", _onDataChange);
 		setNamespacedAttribute(request, "onDelayChange", _onDelayChange);
@@ -450,6 +485,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onInputChange", _onInputChange);
 		setNamespacedAttribute(request, "onMatchRegexChange", _onMatchRegexChange);
 		setNamespacedAttribute(request, "onNodesChange", _onNodesChange);
+		setNamespacedAttribute(request, "onSearchValueChange", _onSearchValueChange);
 		setNamespacedAttribute(request, "onShowChange", _onShowChange);
 	}
 
@@ -467,6 +503,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _input = null;
 	private java.lang.Object _matchRegex = null;
 	private java.lang.Object _nodes = null;
+	private java.lang.String _searchValue = null;
 	private java.lang.Object _show = null;
 	private java.lang.Object _afterDataChange = null;
 	private java.lang.Object _afterDelayChange = null;
@@ -479,6 +516,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterInputChange = null;
 	private java.lang.Object _afterMatchRegexChange = null;
 	private java.lang.Object _afterNodesChange = null;
+	private java.lang.Object _afterSearchValueChange = null;
 	private java.lang.Object _afterShowChange = null;
 	private java.lang.Object _onDataChange = null;
 	private java.lang.Object _onDelayChange = null;
@@ -491,6 +529,7 @@ public class BaseLiveSearchTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onInputChange = null;
 	private java.lang.Object _onMatchRegexChange = null;
 	private java.lang.Object _onNodesChange = null;
+	private java.lang.Object _onSearchValueChange = null;
 	private java.lang.Object _onShowChange = null;
 
 }

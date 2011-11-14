@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:align")));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:alignOn")));
 java.lang.String dialogBodyContent = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogBodyContent"));
 java.util.ArrayList buttons = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:buttons"), "[]"));
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:dialog:centered");
@@ -47,7 +48,6 @@ boolean collapsed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("a
 boolean collapsible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:collapsible")), false);
 java.lang.Object constrain = (java.lang.Object)request.getAttribute("alloy:dialog:constrain");
 java.util.HashMap constrain2view = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:constrain2view")));
-java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:cssClass"));
 boolean destroyOnClose = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:destroyOnClose")), false);
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:destroyed")), false);
 boolean disabled = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:disabled")), false);
@@ -59,11 +59,9 @@ boolean focused = GetterUtil.getBoolean(String.valueOf(request.getAttribute("all
 java.lang.Object footerContent = (java.lang.Object)request.getAttribute("alloy:dialog:footerContent");
 java.lang.Object headerContent = (java.lang.Object)request.getAttribute("alloy:dialog:headerContent");
 java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:dialog:height");
-java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:hideClass"), "aui-helper-hidden");
 java.util.ArrayList icons = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:dialog:icons"), "[]"));
 java.lang.String dialogId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:dialogId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:dialog:locale"), "en");
 boolean modal = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:modal")), false);
 boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:dialog:preventOverlap")), false);
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:dialog:render");
@@ -84,6 +82,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:dialog:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:dialog:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterAlignOnChange");
 java.lang.Object afterBodyContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterBodyContentChange");
 java.lang.Object afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterBoundingBoxChange");
 java.lang.Object afterButtonsChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterButtonsChange");
@@ -94,7 +93,6 @@ java.lang.Object afterCollapsibleChange = (java.lang.Object)request.getAttribute
 java.lang.Object afterConstrain2viewChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterConstrain2viewChange");
 java.lang.Object afterConstrainChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterConstrainChange");
 java.lang.Object afterContentBoxChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterContentBoxChange");
-java.lang.Object afterCssClassChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterCssClassChange");
 java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:dialog:afterDestroy");
 java.lang.Object afterDestroyOnCloseChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterDestroyOnCloseChange");
 java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterDestroyedChange");
@@ -107,12 +105,10 @@ java.lang.Object afterFocusedChange = (java.lang.Object)request.getAttribute("al
 java.lang.Object afterFooterContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterFooterContentChange");
 java.lang.Object afterHeaderContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterHeaderContentChange");
 java.lang.Object afterHeightChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterHeightChange");
-java.lang.Object afterHideClassChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterHideClassChange");
 java.lang.Object afterIconsChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterIconsChange");
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:dialog:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterLocaleChange");
 java.lang.Object afterModalChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterModalChange");
 java.lang.Object afterPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterPreventOverlapChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterRenderChange");
@@ -136,6 +132,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:d
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:dialog:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:dialog:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:dialog:onAlignOnChange");
 java.lang.Object onBodyContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:onBodyContentChange");
 java.lang.Object onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:dialog:onBoundingBoxChange");
 java.lang.Object onButtonsChange = (java.lang.Object)request.getAttribute("alloy:dialog:onButtonsChange");
@@ -146,7 +143,6 @@ java.lang.Object onCollapsibleChange = (java.lang.Object)request.getAttribute("a
 java.lang.Object onConstrain2viewChange = (java.lang.Object)request.getAttribute("alloy:dialog:onConstrain2viewChange");
 java.lang.Object onConstrainChange = (java.lang.Object)request.getAttribute("alloy:dialog:onConstrainChange");
 java.lang.Object onContentBoxChange = (java.lang.Object)request.getAttribute("alloy:dialog:onContentBoxChange");
-java.lang.Object onCssClassChange = (java.lang.Object)request.getAttribute("alloy:dialog:onCssClassChange");
 java.lang.Object onDestroy = (java.lang.Object)request.getAttribute("alloy:dialog:onDestroy");
 java.lang.Object onDestroyOnCloseChange = (java.lang.Object)request.getAttribute("alloy:dialog:onDestroyOnCloseChange");
 java.lang.Object onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:dialog:onDestroyedChange");
@@ -159,12 +155,10 @@ java.lang.Object onFocusedChange = (java.lang.Object)request.getAttribute("alloy
 java.lang.Object onFooterContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:onFooterContentChange");
 java.lang.Object onHeaderContentChange = (java.lang.Object)request.getAttribute("alloy:dialog:onHeaderContentChange");
 java.lang.Object onHeightChange = (java.lang.Object)request.getAttribute("alloy:dialog:onHeightChange");
-java.lang.Object onHideClassChange = (java.lang.Object)request.getAttribute("alloy:dialog:onHideClassChange");
 java.lang.Object onIconsChange = (java.lang.Object)request.getAttribute("alloy:dialog:onIconsChange");
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:dialog:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:dialog:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:dialog:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:dialog:onLocaleChange");
 java.lang.Object onModalChange = (java.lang.Object)request.getAttribute("alloy:dialog:onModalChange");
 java.lang.Object onPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:dialog:onPreventOverlapChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:dialog:onRenderChange");
@@ -189,6 +183,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:dialo
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:dialog:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "dialogBodyContent", dialogBodyContent);
 _updateOptions(_options, "boundingBox", boundingBox);
 _updateOptions(_options, "buttons", buttons);
@@ -199,7 +194,6 @@ _updateOptions(_options, "collapsible", collapsible);
 _updateOptions(_options, "constrain", constrain);
 _updateOptions(_options, "constrain2view", constrain2view);
 _updateOptions(_options, "contentBox", contentBox);
-_updateOptions(_options, "cssClass", cssClass);
 _updateOptions(_options, "destroyOnClose", destroyOnClose);
 _updateOptions(_options, "destroyed", destroyed);
 _updateOptions(_options, "disabled", disabled);
@@ -211,11 +205,9 @@ _updateOptions(_options, "focused", focused);
 _updateOptions(_options, "footerContent", footerContent);
 _updateOptions(_options, "headerContent", headerContent);
 _updateOptions(_options, "height", height);
-_updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "icons", icons);
 _updateOptions(_options, "dialogId", dialogId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "modal", modal);
 _updateOptions(_options, "preventOverlap", preventOverlap);
 _updateOptions(_options, "render", render);
@@ -237,6 +229,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterBodyContentChange", afterBodyContentChange);
 _updateOptions(_options, "afterBoundingBoxChange", afterBoundingBoxChange);
 _updateOptions(_options, "afterButtonsChange", afterButtonsChange);
@@ -247,7 +240,6 @@ _updateOptions(_options, "afterCollapsibleChange", afterCollapsibleChange);
 _updateOptions(_options, "afterConstrain2viewChange", afterConstrain2viewChange);
 _updateOptions(_options, "afterConstrainChange", afterConstrainChange);
 _updateOptions(_options, "afterContentBoxChange", afterContentBoxChange);
-_updateOptions(_options, "afterCssClassChange", afterCssClassChange);
 _updateOptions(_options, "afterDestroy", afterDestroy);
 _updateOptions(_options, "afterDestroyOnCloseChange", afterDestroyOnCloseChange);
 _updateOptions(_options, "afterDestroyedChange", afterDestroyedChange);
@@ -260,12 +252,10 @@ _updateOptions(_options, "afterFocusedChange", afterFocusedChange);
 _updateOptions(_options, "afterFooterContentChange", afterFooterContentChange);
 _updateOptions(_options, "afterHeaderContentChange", afterHeaderContentChange);
 _updateOptions(_options, "afterHeightChange", afterHeightChange);
-_updateOptions(_options, "afterHideClassChange", afterHideClassChange);
 _updateOptions(_options, "afterIconsChange", afterIconsChange);
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterModalChange", afterModalChange);
 _updateOptions(_options, "afterPreventOverlapChange", afterPreventOverlapChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
@@ -289,6 +279,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onBodyContentChange", onBodyContentChange);
 _updateOptions(_options, "onBoundingBoxChange", onBoundingBoxChange);
 _updateOptions(_options, "onButtonsChange", onButtonsChange);
@@ -299,7 +290,6 @@ _updateOptions(_options, "onCollapsibleChange", onCollapsibleChange);
 _updateOptions(_options, "onConstrain2viewChange", onConstrain2viewChange);
 _updateOptions(_options, "onConstrainChange", onConstrainChange);
 _updateOptions(_options, "onContentBoxChange", onContentBoxChange);
-_updateOptions(_options, "onCssClassChange", onCssClassChange);
 _updateOptions(_options, "onDestroy", onDestroy);
 _updateOptions(_options, "onDestroyOnCloseChange", onDestroyOnCloseChange);
 _updateOptions(_options, "onDestroyedChange", onDestroyedChange);
@@ -312,12 +302,10 @@ _updateOptions(_options, "onFocusedChange", onFocusedChange);
 _updateOptions(_options, "onFooterContentChange", onFooterContentChange);
 _updateOptions(_options, "onHeaderContentChange", onHeaderContentChange);
 _updateOptions(_options, "onHeightChange", onHeightChange);
-_updateOptions(_options, "onHideClassChange", onHideClassChange);
 _updateOptions(_options, "onIconsChange", onIconsChange);
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onModalChange", onModalChange);
 _updateOptions(_options, "onPreventOverlapChange", onPreventOverlapChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);

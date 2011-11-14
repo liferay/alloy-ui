@@ -36,6 +36,10 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		return _align;
 	}
 
+	public java.lang.Object getAlignOn() {
+		return _alignOn;
+	}
+
 	public java.lang.Object getOverlaycontextBodyContent() {
 		return _overlaycontextBodyContent;
 	}
@@ -120,10 +124,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
@@ -194,6 +194,10 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterAlignChange() {
 		return _afterAlignChange;
+	}
+
+	public java.lang.Object getAfterAlignOnChange() {
+		return _afterAlignOnChange;
 	}
 
 	public java.lang.Object getAfterBodyContentChange() {
@@ -288,10 +292,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
-	}
-
 	public java.lang.Object getAfterPreventOverlapChange() {
 		return _afterPreventOverlapChange;
 	}
@@ -370,6 +370,10 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnAlignChange() {
 		return _onAlignChange;
+	}
+
+	public java.lang.Object getOnAlignOnChange() {
+		return _onAlignOnChange;
 	}
 
 	public java.lang.Object getOnBodyContentChange() {
@@ -464,10 +468,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
-	}
-
 	public java.lang.Object getOnPreventOverlapChange() {
 		return _onPreventOverlapChange;
 	}
@@ -548,6 +548,12 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_align = align;
 
 		setScopedAttribute("align", align);
+	}
+
+	public void setAlignOn(java.lang.Object alignOn) {
+		_alignOn = alignOn;
+
+		setScopedAttribute("alignOn", alignOn);
 	}
 
 	public void setOverlaycontextBodyContent(java.lang.Object overlaycontextBodyContent) {
@@ -676,12 +682,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
-	}
-
 	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
@@ -788,6 +788,12 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_afterAlignChange = afterAlignChange;
 
 		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
+	public void setAfterAlignOnChange(java.lang.Object afterAlignOnChange) {
+		_afterAlignOnChange = afterAlignOnChange;
+
+		setScopedAttribute("afterAlignOnChange", afterAlignOnChange);
 	}
 
 	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
@@ -928,12 +934,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
-	}
-
 	public void setAfterPreventOverlapChange(java.lang.Object afterPreventOverlapChange) {
 		_afterPreventOverlapChange = afterPreventOverlapChange;
 
@@ -1052,6 +1052,12 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_onAlignChange = onAlignChange;
 
 		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
+	public void setOnAlignOnChange(java.lang.Object onAlignOnChange) {
+		_onAlignOnChange = onAlignOnChange;
+
+		setScopedAttribute("onAlignOnChange", onAlignOnChange);
 	}
 
 	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
@@ -1192,12 +1198,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnPreventOverlapChange(java.lang.Object onPreventOverlapChange) {
 		_onPreventOverlapChange = onPreventOverlapChange;
 
@@ -1315,6 +1315,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void cleanUp() {
 		_align = null;
+		_alignOn = null;
 		_overlaycontextBodyContent = null;
 		_boundingBox = null;
 		_cancellableHide = true;
@@ -1336,7 +1337,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_hideOnDocumentClick = true;
 		_overlaycontextId = null;
 		_initialized = false;
-		_locale = "en";
 		_preventOverlap = false;
 		_render = null;
 		_rendered = false;
@@ -1355,6 +1355,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_y = 0;
 		_zIndex = 0;
 		_afterAlignChange = null;
+		_afterAlignOnChange = null;
 		_afterBodyContentChange = null;
 		_afterBoundingBoxChange = null;
 		_afterCancellableHideChange = null;
@@ -1378,7 +1379,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
@@ -1399,6 +1399,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_afterYChange = null;
 		_afterZIndexChange = null;
 		_onAlignChange = null;
+		_onAlignOnChange = null;
 		_onBodyContentChange = null;
 		_onBoundingBoxChange = null;
 		_onCancellableHideChange = null;
@@ -1422,7 +1423,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
@@ -1452,6 +1452,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
+		setNamespacedAttribute(request, "alignOn", _alignOn);
 		setNamespacedAttribute(request, "overlaycontextBodyContent", _overlaycontextBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "cancellableHide", _cancellableHide);
@@ -1473,7 +1474,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "hideOnDocumentClick", _hideOnDocumentClick);
 		setNamespacedAttribute(request, "overlaycontextId", _overlaycontextId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
@@ -1492,6 +1492,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "y", _y);
 		setNamespacedAttribute(request, "zIndex", _zIndex);
 		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
+		setNamespacedAttribute(request, "afterAlignOnChange", _afterAlignOnChange);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterCancellableHideChange", _afterCancellableHideChange);
@@ -1515,7 +1516,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
@@ -1536,6 +1536,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterYChange", _afterYChange);
 		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
 		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
+		setNamespacedAttribute(request, "onAlignOnChange", _onAlignOnChange);
 		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onCancellableHideChange", _onCancellableHideChange);
@@ -1559,7 +1560,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
@@ -1587,6 +1587,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/overlay_context/page.jsp";
 
 	private java.lang.Object _align = null;
+	private java.lang.Object _alignOn = null;
 	private java.lang.Object _overlaycontextBodyContent = null;
 	private java.lang.String _boundingBox = null;
 	private boolean _cancellableHide = true;
@@ -1608,7 +1609,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _hideOnDocumentClick = true;
 	private java.lang.String _overlaycontextId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
@@ -1627,6 +1627,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _y = 0;
 	private java.lang.Object _zIndex = 0;
 	private java.lang.Object _afterAlignChange = null;
+	private java.lang.Object _afterAlignOnChange = null;
 	private java.lang.Object _afterBodyContentChange = null;
 	private java.lang.Object _afterBoundingBoxChange = null;
 	private java.lang.Object _afterCancellableHideChange = null;
@@ -1650,7 +1651,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
@@ -1671,6 +1671,7 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterYChange = null;
 	private java.lang.Object _afterZIndexChange = null;
 	private java.lang.Object _onAlignChange = null;
+	private java.lang.Object _onAlignOnChange = null;
 	private java.lang.Object _onBodyContentChange = null;
 	private java.lang.Object _onBoundingBoxChange = null;
 	private java.lang.Object _onCancellableHideChange = null;
@@ -1694,7 +1695,6 @@ public class BaseOverlayContextTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;

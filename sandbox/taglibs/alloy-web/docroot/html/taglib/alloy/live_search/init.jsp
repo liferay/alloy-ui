@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.lang.Object data = (java.lang.Object)request.getAttribute("alloy:live-search:data");
@@ -47,6 +47,7 @@ boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute(
 java.lang.String input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:input"));
 java.lang.Object matchRegex = (java.lang.Object)request.getAttribute("alloy:live-search:matchRegex");
 java.lang.Object nodes = (java.lang.Object)request.getAttribute("alloy:live-search:nodes");
+java.lang.String searchValue = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:live-search:searchValue"));
 java.lang.Object show = (java.lang.Object)request.getAttribute("alloy:live-search:show");
 java.lang.Object afterDataChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterDataChange");
 java.lang.Object afterDelayChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterDelayChange");
@@ -59,6 +60,7 @@ java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute
 java.lang.Object afterInputChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterInputChange");
 java.lang.Object afterMatchRegexChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterMatchRegexChange");
 java.lang.Object afterNodesChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterNodesChange");
+java.lang.Object afterSearchValueChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterSearchValueChange");
 java.lang.Object afterShowChange = (java.lang.Object)request.getAttribute("alloy:live-search:afterShowChange");
 java.lang.Object onDataChange = (java.lang.Object)request.getAttribute("alloy:live-search:onDataChange");
 java.lang.Object onDelayChange = (java.lang.Object)request.getAttribute("alloy:live-search:onDelayChange");
@@ -71,6 +73,7 @@ java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("a
 java.lang.Object onInputChange = (java.lang.Object)request.getAttribute("alloy:live-search:onInputChange");
 java.lang.Object onMatchRegexChange = (java.lang.Object)request.getAttribute("alloy:live-search:onMatchRegexChange");
 java.lang.Object onNodesChange = (java.lang.Object)request.getAttribute("alloy:live-search:onNodesChange");
+java.lang.Object onSearchValueChange = (java.lang.Object)request.getAttribute("alloy:live-search:onSearchValueChange");
 java.lang.Object onShowChange = (java.lang.Object)request.getAttribute("alloy:live-search:onShowChange");
 
 _updateOptions(_options, "data", data);
@@ -82,6 +85,7 @@ _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "input", input);
 _updateOptions(_options, "matchRegex", matchRegex);
 _updateOptions(_options, "nodes", nodes);
+_updateOptions(_options, "searchValue", searchValue);
 _updateOptions(_options, "show", show);
 _updateOptions(_options, "afterDataChange", afterDataChange);
 _updateOptions(_options, "afterDelayChange", afterDelayChange);
@@ -94,6 +98,7 @@ _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
 _updateOptions(_options, "afterInputChange", afterInputChange);
 _updateOptions(_options, "afterMatchRegexChange", afterMatchRegexChange);
 _updateOptions(_options, "afterNodesChange", afterNodesChange);
+_updateOptions(_options, "afterSearchValueChange", afterSearchValueChange);
 _updateOptions(_options, "afterShowChange", afterShowChange);
 _updateOptions(_options, "onDataChange", onDataChange);
 _updateOptions(_options, "onDelayChange", onDelayChange);
@@ -106,6 +111,7 @@ _updateOptions(_options, "onInitializedChange", onInitializedChange);
 _updateOptions(_options, "onInputChange", onInputChange);
 _updateOptions(_options, "onMatchRegexChange", onMatchRegexChange);
 _updateOptions(_options, "onNodesChange", onNodesChange);
+_updateOptions(_options, "onSearchValueChange", onSearchValueChange);
 _updateOptions(_options, "onShowChange", onShowChange);
 %>
 

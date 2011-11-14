@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.lang.String cssClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:progress-bar:cssClass"));
@@ -47,7 +47,6 @@ java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getA
 java.lang.String progressbarId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:progress-bar:progressbarId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:progress-bar:initialized")), false);
 java.lang.String label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:progress-bar:label"));
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:progress-bar:locale"), "en");
 int max = GetterUtil.getInteger(String.valueOf(request.getAttribute("alloy:progress-bar:max")), 100);
 int min = GetterUtil.getInteger(String.valueOf(request.getAttribute("alloy:progress-bar:min")), 0);
 java.lang.String orientation = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:progress-bar:orientation"), "horizontal");
@@ -76,7 +75,6 @@ java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:p
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterInitializedChange");
 java.lang.Object afterLabelChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterLabelChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterLocaleChange");
 java.lang.Object afterMaxChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterMaxChange");
 java.lang.Object afterMinChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterMinChange");
 java.lang.Object afterOrientationChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:afterOrientationChange");
@@ -108,7 +106,6 @@ java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:prog
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:progress-bar:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onInitializedChange");
 java.lang.Object onLabelChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onLabelChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onLocaleChange");
 java.lang.Object onMaxChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onMaxChange");
 java.lang.Object onMinChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onMinChange");
 java.lang.Object onOrientationChange = (java.lang.Object)request.getAttribute("alloy:progress-bar:onOrientationChange");
@@ -139,7 +136,6 @@ _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "progressbarId", progressbarId);
 _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "label", label);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "max", max);
 _updateOptions(_options, "min", min);
 _updateOptions(_options, "orientation", orientation);
@@ -169,7 +165,6 @@ _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
 _updateOptions(_options, "afterLabelChange", afterLabelChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterMaxChange", afterMaxChange);
 _updateOptions(_options, "afterMinChange", afterMinChange);
 _updateOptions(_options, "afterOrientationChange", afterOrientationChange);
@@ -201,7 +196,6 @@ _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 _updateOptions(_options, "onLabelChange", onLabelChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onMaxChange", onMaxChange);
 _updateOptions(_options, "onMinChange", onMinChange);
 _updateOptions(_options, "onOrientationChange", onOrientationChange);

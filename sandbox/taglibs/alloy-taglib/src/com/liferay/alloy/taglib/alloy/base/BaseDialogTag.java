@@ -36,6 +36,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _align;
 	}
 
+	public java.lang.Object getAlignOn() {
+		return _alignOn;
+	}
+
 	public java.lang.String getDialogBodyContent() {
 		return _dialogBodyContent;
 	}
@@ -74,10 +78,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.String getContentBox() {
 		return _contentBox;
-	}
-
-	public java.lang.String getCssClass() {
-		return _cssClass;
 	}
 
 	public boolean getDestroyOnClose() {
@@ -124,10 +124,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
-		return _hideClass;
-	}
-
 	public java.lang.Object getIcons() {
 		return _icons;
 	}
@@ -138,10 +134,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public boolean getInitialized() {
 		return _initialized;
-	}
-
-	public java.lang.String getLocale() {
-		return _locale;
 	}
 
 	public boolean getModal() {
@@ -228,6 +220,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterAlignChange;
 	}
 
+	public java.lang.Object getAfterAlignOnChange() {
+		return _afterAlignOnChange;
+	}
+
 	public java.lang.Object getAfterBodyContentChange() {
 		return _afterBodyContentChange;
 	}
@@ -266,10 +262,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterContentBoxChange() {
 		return _afterContentBoxChange;
-	}
-
-	public java.lang.Object getAfterCssClassChange() {
-		return _afterCssClassChange;
 	}
 
 	public java.lang.Object getAfterDestroy() {
@@ -320,10 +312,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterHeightChange;
 	}
 
-	public java.lang.Object getAfterHideClassChange() {
-		return _afterHideClassChange;
-	}
-
 	public java.lang.Object getAfterIconsChange() {
 		return _afterIconsChange;
 	}
@@ -338,10 +326,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
-	}
-
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterModalChange() {
@@ -436,6 +420,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _onAlignChange;
 	}
 
+	public java.lang.Object getOnAlignOnChange() {
+		return _onAlignOnChange;
+	}
+
 	public java.lang.Object getOnBodyContentChange() {
 		return _onBodyContentChange;
 	}
@@ -474,10 +462,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnContentBoxChange() {
 		return _onContentBoxChange;
-	}
-
-	public java.lang.Object getOnCssClassChange() {
-		return _onCssClassChange;
 	}
 
 	public java.lang.Object getOnDestroy() {
@@ -528,10 +512,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		return _onHeightChange;
 	}
 
-	public java.lang.Object getOnHideClassChange() {
-		return _onHideClassChange;
-	}
-
 	public java.lang.Object getOnIconsChange() {
 		return _onIconsChange;
 	}
@@ -546,10 +526,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
-	}
-
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
 	}
 
 	public java.lang.Object getOnModalChange() {
@@ -646,6 +622,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("align", align);
 	}
 
+	public void setAlignOn(java.lang.Object alignOn) {
+		_alignOn = alignOn;
+
+		setScopedAttribute("alignOn", alignOn);
+	}
+
 	public void setDialogBodyContent(java.lang.String dialogBodyContent) {
 		_dialogBodyContent = dialogBodyContent;
 
@@ -704,12 +686,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_contentBox = contentBox;
 
 		setScopedAttribute("contentBox", contentBox);
-	}
-
-	public void setCssClass(java.lang.String cssClass) {
-		_cssClass = cssClass;
-
-		setScopedAttribute("cssClass", cssClass);
 	}
 
 	public void setDestroyOnClose(boolean destroyOnClose) {
@@ -778,12 +754,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
-		_hideClass = hideClass;
-
-		setScopedAttribute("hideClass", hideClass);
-	}
-
 	public void setIcons(java.lang.Object icons) {
 		_icons = icons;
 
@@ -800,12 +770,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
-	}
-
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
 	}
 
 	public void setModal(boolean modal) {
@@ -934,6 +898,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterAlignChange", afterAlignChange);
 	}
 
+	public void setAfterAlignOnChange(java.lang.Object afterAlignOnChange) {
+		_afterAlignOnChange = afterAlignOnChange;
+
+		setScopedAttribute("afterAlignOnChange", afterAlignOnChange);
+	}
+
 	public void setAfterBodyContentChange(java.lang.Object afterBodyContentChange) {
 		_afterBodyContentChange = afterBodyContentChange;
 
@@ -992,12 +962,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterContentBoxChange = afterContentBoxChange;
 
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
-	}
-
-	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
-		_afterCssClassChange = afterCssClassChange;
-
-		setScopedAttribute("afterCssClassChange", afterCssClassChange);
 	}
 
 	public void setAfterDestroy(java.lang.Object afterDestroy) {
@@ -1072,12 +1036,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
-		_afterHideClassChange = afterHideClassChange;
-
-		setScopedAttribute("afterHideClassChange", afterHideClassChange);
-	}
-
 	public void setAfterIconsChange(java.lang.Object afterIconsChange) {
 		_afterIconsChange = afterIconsChange;
 
@@ -1100,12 +1058,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
-	}
-
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterModalChange(java.lang.Object afterModalChange) {
@@ -1246,6 +1198,12 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onAlignChange", onAlignChange);
 	}
 
+	public void setOnAlignOnChange(java.lang.Object onAlignOnChange) {
+		_onAlignOnChange = onAlignOnChange;
+
+		setScopedAttribute("onAlignOnChange", onAlignOnChange);
+	}
+
 	public void setOnBodyContentChange(java.lang.Object onBodyContentChange) {
 		_onBodyContentChange = onBodyContentChange;
 
@@ -1304,12 +1262,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onContentBoxChange = onContentBoxChange;
 
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
-	}
-
-	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
-		_onCssClassChange = onCssClassChange;
-
-		setScopedAttribute("onCssClassChange", onCssClassChange);
 	}
 
 	public void setOnDestroy(java.lang.Object onDestroy) {
@@ -1384,12 +1336,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
-		_onHideClassChange = onHideClassChange;
-
-		setScopedAttribute("onHideClassChange", onHideClassChange);
-	}
-
 	public void setOnIconsChange(java.lang.Object onIconsChange) {
 		_onIconsChange = onIconsChange;
 
@@ -1412,12 +1358,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
-	}
-
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
 	}
 
 	public void setOnModalChange(java.lang.Object onModalChange) {
@@ -1555,6 +1495,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void cleanUp() {
 		_align = null;
+		_alignOn = null;
 		_dialogBodyContent = null;
 		_boundingBox = null;
 		_buttons = null;
@@ -1565,7 +1506,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_constrain = null;
 		_constrain2view = null;
 		_contentBox = null;
-		_cssClass = null;
 		_destroyOnClose = false;
 		_destroyed = false;
 		_disabled = false;
@@ -1577,11 +1517,9 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
 		_icons = null;
 		_dialogId = null;
 		_initialized = false;
-		_locale = "en";
 		_modal = false;
 		_preventOverlap = false;
 		_render = null;
@@ -1603,6 +1541,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_y = 0;
 		_zIndex = 0;
 		_afterAlignChange = null;
+		_afterAlignOnChange = null;
 		_afterBodyContentChange = null;
 		_afterBoundingBoxChange = null;
 		_afterButtonsChange = null;
@@ -1613,7 +1552,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterConstrain2viewChange = null;
 		_afterConstrainChange = null;
 		_afterContentBoxChange = null;
-		_afterCssClassChange = null;
 		_afterDestroy = null;
 		_afterDestroyOnCloseChange = null;
 		_afterDestroyedChange = null;
@@ -1626,12 +1564,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterFooterContentChange = null;
 		_afterHeaderContentChange = null;
 		_afterHeightChange = null;
-		_afterHideClassChange = null;
 		_afterIconsChange = null;
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterModalChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
@@ -1655,6 +1591,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_afterYChange = null;
 		_afterZIndexChange = null;
 		_onAlignChange = null;
+		_onAlignOnChange = null;
 		_onBodyContentChange = null;
 		_onBoundingBoxChange = null;
 		_onButtonsChange = null;
@@ -1665,7 +1602,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onConstrain2viewChange = null;
 		_onConstrainChange = null;
 		_onContentBoxChange = null;
-		_onCssClassChange = null;
 		_onDestroy = null;
 		_onDestroyOnCloseChange = null;
 		_onDestroyedChange = null;
@@ -1678,12 +1614,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		_onFooterContentChange = null;
 		_onHeaderContentChange = null;
 		_onHeightChange = null;
-		_onHideClassChange = null;
 		_onIconsChange = null;
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onModalChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
@@ -1716,6 +1650,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
+		setNamespacedAttribute(request, "alignOn", _alignOn);
 		setNamespacedAttribute(request, "dialogBodyContent", _dialogBodyContent);
 		setNamespacedAttribute(request, "boundingBox", _boundingBox);
 		setNamespacedAttribute(request, "buttons", _buttons);
@@ -1726,7 +1661,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "constrain", _constrain);
 		setNamespacedAttribute(request, "constrain2view", _constrain2view);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
-		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "destroyOnClose", _destroyOnClose);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
@@ -1738,11 +1672,9 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "footerContent", _footerContent);
 		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
-		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "icons", _icons);
 		setNamespacedAttribute(request, "dialogId", _dialogId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "modal", _modal);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
@@ -1764,6 +1696,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "y", _y);
 		setNamespacedAttribute(request, "zIndex", _zIndex);
 		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
+		setNamespacedAttribute(request, "afterAlignOnChange", _afterAlignOnChange);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
 		setNamespacedAttribute(request, "afterBoundingBoxChange", _afterBoundingBoxChange);
 		setNamespacedAttribute(request, "afterButtonsChange", _afterButtonsChange);
@@ -1774,7 +1707,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterConstrain2viewChange", _afterConstrain2viewChange);
 		setNamespacedAttribute(request, "afterConstrainChange", _afterConstrainChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
-		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyOnCloseChange", _afterDestroyOnCloseChange);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
@@ -1787,12 +1719,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
 		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
-		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterIconsChange", _afterIconsChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterModalChange", _afterModalChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
@@ -1816,6 +1746,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterYChange", _afterYChange);
 		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
 		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
+		setNamespacedAttribute(request, "onAlignOnChange", _onAlignOnChange);
 		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
 		setNamespacedAttribute(request, "onBoundingBoxChange", _onBoundingBoxChange);
 		setNamespacedAttribute(request, "onButtonsChange", _onButtonsChange);
@@ -1826,7 +1757,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onConstrain2viewChange", _onConstrain2viewChange);
 		setNamespacedAttribute(request, "onConstrainChange", _onConstrainChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
-		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyOnCloseChange", _onDestroyOnCloseChange);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
@@ -1839,12 +1769,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
 		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
-		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onIconsChange", _onIconsChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onModalChange", _onModalChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
@@ -1875,6 +1803,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/dialog/page.jsp";
 
 	private java.lang.Object _align = null;
+	private java.lang.Object _alignOn = null;
 	private java.lang.String _dialogBodyContent = null;
 	private java.lang.String _boundingBox = null;
 	private java.lang.Object _buttons = null;
@@ -1885,7 +1814,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _constrain = null;
 	private java.lang.Object _constrain2view = null;
 	private java.lang.String _contentBox = null;
-	private java.lang.String _cssClass = null;
 	private boolean _destroyOnClose = false;
 	private boolean _destroyed = false;
 	private boolean _disabled = false;
@@ -1897,11 +1825,9 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.Object _icons = null;
 	private java.lang.String _dialogId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private boolean _modal = false;
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
@@ -1923,6 +1849,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _y = 0;
 	private java.lang.Object _zIndex = 0;
 	private java.lang.Object _afterAlignChange = null;
+	private java.lang.Object _afterAlignOnChange = null;
 	private java.lang.Object _afterBodyContentChange = null;
 	private java.lang.Object _afterBoundingBoxChange = null;
 	private java.lang.Object _afterButtonsChange = null;
@@ -1933,7 +1860,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterConstrain2viewChange = null;
 	private java.lang.Object _afterConstrainChange = null;
 	private java.lang.Object _afterContentBoxChange = null;
-	private java.lang.Object _afterCssClassChange = null;
 	private java.lang.Object _afterDestroy = null;
 	private java.lang.Object _afterDestroyOnCloseChange = null;
 	private java.lang.Object _afterDestroyedChange = null;
@@ -1946,12 +1872,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterFooterContentChange = null;
 	private java.lang.Object _afterHeaderContentChange = null;
 	private java.lang.Object _afterHeightChange = null;
-	private java.lang.Object _afterHideClassChange = null;
 	private java.lang.Object _afterIconsChange = null;
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterModalChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
@@ -1975,6 +1899,7 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterYChange = null;
 	private java.lang.Object _afterZIndexChange = null;
 	private java.lang.Object _onAlignChange = null;
+	private java.lang.Object _onAlignOnChange = null;
 	private java.lang.Object _onBodyContentChange = null;
 	private java.lang.Object _onBoundingBoxChange = null;
 	private java.lang.Object _onButtonsChange = null;
@@ -1985,7 +1910,6 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onConstrain2viewChange = null;
 	private java.lang.Object _onConstrainChange = null;
 	private java.lang.Object _onContentBoxChange = null;
-	private java.lang.Object _onCssClassChange = null;
 	private java.lang.Object _onDestroy = null;
 	private java.lang.Object _onDestroyOnCloseChange = null;
 	private java.lang.Object _onDestroyedChange = null;
@@ -1998,12 +1922,10 @@ public class BaseDialogTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onFooterContentChange = null;
 	private java.lang.Object _onHeaderContentChange = null;
 	private java.lang.Object _onHeightChange = null;
-	private java.lang.Object _onHideClassChange = null;
 	private java.lang.Object _onIconsChange = null;
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onModalChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;

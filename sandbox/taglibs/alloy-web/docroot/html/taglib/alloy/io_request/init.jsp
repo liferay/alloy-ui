@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 boolean active = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:io-request:active")), false);
@@ -74,12 +74,6 @@ java.lang.Object afterHeadersChange = (java.lang.Object)request.getAttribute("al
 java.lang.Object afterHostChange = (java.lang.Object)request.getAttribute("alloy:io-request:afterHostChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:io-request:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:io-request:afterInitializedChange");
-java.lang.Object afterComplete = (java.lang.Object)request.getAttribute("alloy:io-request:afterComplete");
-java.lang.Object afterEnd = (java.lang.Object)request.getAttribute("alloy:io-request:afterEnd");
-java.lang.Object afterFailure = (java.lang.Object)request.getAttribute("alloy:io-request:afterFailure");
-java.lang.Object afterStart = (java.lang.Object)request.getAttribute("alloy:io-request:afterStart");
-java.lang.Object afterSuccess = (java.lang.Object)request.getAttribute("alloy:io-request:afterSuccess");
-java.lang.Object afterXdrReady = (java.lang.Object)request.getAttribute("alloy:io-request:afterXdrReady");
 java.lang.Object afterMethodChange = (java.lang.Object)request.getAttribute("alloy:io-request:afterMethodChange");
 java.lang.Object afterResponseDataChange = (java.lang.Object)request.getAttribute("alloy:io-request:afterResponseDataChange");
 java.lang.Object afterSelectorChange = (java.lang.Object)request.getAttribute("alloy:io-request:afterSelectorChange");
@@ -103,12 +97,6 @@ java.lang.Object onHeadersChange = (java.lang.Object)request.getAttribute("alloy
 java.lang.Object onHostChange = (java.lang.Object)request.getAttribute("alloy:io-request:onHostChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:io-request:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:io-request:onInitializedChange");
-java.lang.Object onComplete = (java.lang.Object)request.getAttribute("alloy:io-request:onComplete");
-java.lang.Object onEnd = (java.lang.Object)request.getAttribute("alloy:io-request:onEnd");
-java.lang.Object onFailure = (java.lang.Object)request.getAttribute("alloy:io-request:onFailure");
-java.lang.Object onStart = (java.lang.Object)request.getAttribute("alloy:io-request:onStart");
-java.lang.Object onSuccess = (java.lang.Object)request.getAttribute("alloy:io-request:onSuccess");
-java.lang.Object onXdrReady = (java.lang.Object)request.getAttribute("alloy:io-request:onXdrReady");
 java.lang.Object onMethodChange = (java.lang.Object)request.getAttribute("alloy:io-request:onMethodChange");
 java.lang.Object onResponseDataChange = (java.lang.Object)request.getAttribute("alloy:io-request:onResponseDataChange");
 java.lang.Object onSelectorChange = (java.lang.Object)request.getAttribute("alloy:io-request:onSelectorChange");
@@ -154,12 +142,6 @@ _updateOptions(_options, "afterHeadersChange", afterHeadersChange);
 _updateOptions(_options, "afterHostChange", afterHostChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterComplete", afterComplete);
-_updateOptions(_options, "afterEnd", afterEnd);
-_updateOptions(_options, "afterFailure", afterFailure);
-_updateOptions(_options, "afterStart", afterStart);
-_updateOptions(_options, "afterSuccess", afterSuccess);
-_updateOptions(_options, "afterXdrReady", afterXdrReady);
 _updateOptions(_options, "afterMethodChange", afterMethodChange);
 _updateOptions(_options, "afterResponseDataChange", afterResponseDataChange);
 _updateOptions(_options, "afterSelectorChange", afterSelectorChange);
@@ -183,12 +165,6 @@ _updateOptions(_options, "onHeadersChange", onHeadersChange);
 _updateOptions(_options, "onHostChange", onHostChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onComplete", onComplete);
-_updateOptions(_options, "onEnd", onEnd);
-_updateOptions(_options, "onFailure", onFailure);
-_updateOptions(_options, "onStart", onStart);
-_updateOptions(_options, "onSuccess", onSuccess);
-_updateOptions(_options, "onXdrReady", onXdrReady);
 _updateOptions(_options, "onMethodChange", onMethodChange);
 _updateOptions(_options, "onResponseDataChange", onResponseDataChange);
 _updateOptions(_options, "onSelectorChange", onSelectorChange);

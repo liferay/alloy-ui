@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.lang.String activeHandle = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:activeHandle"));
@@ -47,6 +47,7 @@ java.lang.Number defMinHeight = GetterUtil.getNumber(String.valueOf(request.getA
 java.lang.Number defMinWidth = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:resize:defMinWidth")), 15);
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:resize:destroyed")), false);
 java.lang.Object handles = (java.lang.Object)request.getAttribute("alloy:resize:handles");
+java.lang.Object handlesWrapper = (java.lang.Object)request.getAttribute("alloy:resize:handlesWrapper");
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:resize:initialized")), false);
 java.lang.Number maxHeight = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:resize:maxHeight")), 2147483647);
 java.lang.Number maxWidth = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:resize:maxWidth")), 2147483647);
@@ -56,7 +57,6 @@ java.lang.Object node = (java.lang.Object)request.getAttribute("alloy:resize:nod
 boolean preserveRatio = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:resize:preserveRatio")), false);
 boolean proxy = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:resize:proxy")), false);
 java.lang.String proxyEl = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:proxyEl"));
-java.lang.String proxyNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:resize:proxyNode"));
 boolean resizing = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:resize:resizing")), false);
 java.lang.Object tickX = (java.lang.Object)request.getAttribute("alloy:resize:tickX");
 java.lang.Object tickY = (java.lang.Object)request.getAttribute("alloy:resize:tickY");
@@ -73,6 +73,7 @@ java.lang.Object afterDefMinWidthChange = (java.lang.Object)request.getAttribute
 java.lang.Object afterDestroy = (java.lang.Object)request.getAttribute("alloy:resize:afterDestroy");
 java.lang.Object afterDestroyedChange = (java.lang.Object)request.getAttribute("alloy:resize:afterDestroyedChange");
 java.lang.Object afterHandlesChange = (java.lang.Object)request.getAttribute("alloy:resize:afterHandlesChange");
+java.lang.Object afterHandlesWrapperChange = (java.lang.Object)request.getAttribute("alloy:resize:afterHandlesWrapperChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:resize:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:resize:afterInitializedChange");
 java.lang.Object afterMaxHeightChange = (java.lang.Object)request.getAttribute("alloy:resize:afterMaxHeightChange");
@@ -83,7 +84,6 @@ java.lang.Object afterNodeChange = (java.lang.Object)request.getAttribute("alloy
 java.lang.Object afterPreserveRatioChange = (java.lang.Object)request.getAttribute("alloy:resize:afterPreserveRatioChange");
 java.lang.Object afterProxyChange = (java.lang.Object)request.getAttribute("alloy:resize:afterProxyChange");
 java.lang.Object afterProxyElChange = (java.lang.Object)request.getAttribute("alloy:resize:afterProxyElChange");
-java.lang.Object afterProxyNodeChange = (java.lang.Object)request.getAttribute("alloy:resize:afterProxyNodeChange");
 java.lang.Object afterAlign = (java.lang.Object)request.getAttribute("alloy:resize:afterAlign");
 java.lang.Object afterEnd = (java.lang.Object)request.getAttribute("alloy:resize:afterEnd");
 java.lang.Object afterMouseUp = (java.lang.Object)request.getAttribute("alloy:resize:afterMouseUp");
@@ -105,6 +105,7 @@ java.lang.Object onDefMinWidthChange = (java.lang.Object)request.getAttribute("a
 java.lang.Object onDestroy = (java.lang.Object)request.getAttribute("alloy:resize:onDestroy");
 java.lang.Object onDestroyedChange = (java.lang.Object)request.getAttribute("alloy:resize:onDestroyedChange");
 java.lang.Object onHandlesChange = (java.lang.Object)request.getAttribute("alloy:resize:onHandlesChange");
+java.lang.Object onHandlesWrapperChange = (java.lang.Object)request.getAttribute("alloy:resize:onHandlesWrapperChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:resize:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:resize:onInitializedChange");
 java.lang.Object onMaxHeightChange = (java.lang.Object)request.getAttribute("alloy:resize:onMaxHeightChange");
@@ -115,7 +116,6 @@ java.lang.Object onNodeChange = (java.lang.Object)request.getAttribute("alloy:re
 java.lang.Object onPreserveRatioChange = (java.lang.Object)request.getAttribute("alloy:resize:onPreserveRatioChange");
 java.lang.Object onProxyChange = (java.lang.Object)request.getAttribute("alloy:resize:onProxyChange");
 java.lang.Object onProxyElChange = (java.lang.Object)request.getAttribute("alloy:resize:onProxyElChange");
-java.lang.Object onProxyNodeChange = (java.lang.Object)request.getAttribute("alloy:resize:onProxyNodeChange");
 java.lang.Object onAlign = (java.lang.Object)request.getAttribute("alloy:resize:onAlign");
 java.lang.Object onEnd = (java.lang.Object)request.getAttribute("alloy:resize:onEnd");
 java.lang.Object onMouseUp = (java.lang.Object)request.getAttribute("alloy:resize:onMouseUp");
@@ -137,6 +137,7 @@ _updateOptions(_options, "defMinHeight", defMinHeight);
 _updateOptions(_options, "defMinWidth", defMinWidth);
 _updateOptions(_options, "destroyed", destroyed);
 _updateOptions(_options, "handles", handles);
+_updateOptions(_options, "handlesWrapper", handlesWrapper);
 _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "maxHeight", maxHeight);
 _updateOptions(_options, "maxWidth", maxWidth);
@@ -146,7 +147,6 @@ _updateOptions(_options, "node", node);
 _updateOptions(_options, "preserveRatio", preserveRatio);
 _updateOptions(_options, "proxy", proxy);
 _updateOptions(_options, "proxyEl", proxyEl);
-_updateOptions(_options, "proxyNode", proxyNode);
 _updateOptions(_options, "resizing", resizing);
 _updateOptions(_options, "tickX", tickX);
 _updateOptions(_options, "tickY", tickY);
@@ -163,6 +163,7 @@ _updateOptions(_options, "afterDefMinWidthChange", afterDefMinWidthChange);
 _updateOptions(_options, "afterDestroy", afterDestroy);
 _updateOptions(_options, "afterDestroyedChange", afterDestroyedChange);
 _updateOptions(_options, "afterHandlesChange", afterHandlesChange);
+_updateOptions(_options, "afterHandlesWrapperChange", afterHandlesWrapperChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
 _updateOptions(_options, "afterMaxHeightChange", afterMaxHeightChange);
@@ -173,7 +174,6 @@ _updateOptions(_options, "afterNodeChange", afterNodeChange);
 _updateOptions(_options, "afterPreserveRatioChange", afterPreserveRatioChange);
 _updateOptions(_options, "afterProxyChange", afterProxyChange);
 _updateOptions(_options, "afterProxyElChange", afterProxyElChange);
-_updateOptions(_options, "afterProxyNodeChange", afterProxyNodeChange);
 _updateOptions(_options, "afterAlign", afterAlign);
 _updateOptions(_options, "afterEnd", afterEnd);
 _updateOptions(_options, "afterMouseUp", afterMouseUp);
@@ -195,6 +195,7 @@ _updateOptions(_options, "onDefMinWidthChange", onDefMinWidthChange);
 _updateOptions(_options, "onDestroy", onDestroy);
 _updateOptions(_options, "onDestroyedChange", onDestroyedChange);
 _updateOptions(_options, "onHandlesChange", onHandlesChange);
+_updateOptions(_options, "onHandlesWrapperChange", onHandlesWrapperChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 _updateOptions(_options, "onMaxHeightChange", onMaxHeightChange);
@@ -205,7 +206,6 @@ _updateOptions(_options, "onNodeChange", onNodeChange);
 _updateOptions(_options, "onPreserveRatioChange", onPreserveRatioChange);
 _updateOptions(_options, "onProxyChange", onProxyChange);
 _updateOptions(_options, "onProxyElChange", onProxyElChange);
-_updateOptions(_options, "onProxyNodeChange", onProxyNodeChange);
 _updateOptions(_options, "onAlign", onAlign);
 _updateOptions(_options, "onEnd", onEnd);
 _updateOptions(_options, "onMouseUp", onMouseUp);

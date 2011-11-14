@@ -176,30 +176,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.Object getAfterComplete() {
-		return _afterComplete;
-	}
-
-	public java.lang.Object getAfterEnd() {
-		return _afterEnd;
-	}
-
-	public java.lang.Object getAfterFailure() {
-		return _afterFailure;
-	}
-
-	public java.lang.Object getAfterStart() {
-		return _afterStart;
-	}
-
-	public java.lang.Object getAfterSuccess() {
-		return _afterSuccess;
-	}
-
-	public java.lang.Object getAfterXdrReady() {
-		return _afterXdrReady;
-	}
-
 	public java.lang.Object getAfterMethodChange() {
 		return _afterMethodChange;
 	}
@@ -290,30 +266,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
-	}
-
-	public java.lang.Object getOnComplete() {
-		return _onComplete;
-	}
-
-	public java.lang.Object getOnEnd() {
-		return _onEnd;
-	}
-
-	public java.lang.Object getOnFailure() {
-		return _onFailure;
-	}
-
-	public java.lang.Object getOnStart() {
-		return _onStart;
-	}
-
-	public java.lang.Object getOnSuccess() {
-		return _onSuccess;
-	}
-
-	public java.lang.Object getOnXdrReady() {
-		return _onXdrReady;
 	}
 
 	public java.lang.Object getOnMethodChange() {
@@ -564,42 +516,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterComplete(java.lang.Object afterComplete) {
-		_afterComplete = afterComplete;
-
-		setScopedAttribute("afterComplete", afterComplete);
-	}
-
-	public void setAfterEnd(java.lang.Object afterEnd) {
-		_afterEnd = afterEnd;
-
-		setScopedAttribute("afterEnd", afterEnd);
-	}
-
-	public void setAfterFailure(java.lang.Object afterFailure) {
-		_afterFailure = afterFailure;
-
-		setScopedAttribute("afterFailure", afterFailure);
-	}
-
-	public void setAfterStart(java.lang.Object afterStart) {
-		_afterStart = afterStart;
-
-		setScopedAttribute("afterStart", afterStart);
-	}
-
-	public void setAfterSuccess(java.lang.Object afterSuccess) {
-		_afterSuccess = afterSuccess;
-
-		setScopedAttribute("afterSuccess", afterSuccess);
-	}
-
-	public void setAfterXdrReady(java.lang.Object afterXdrReady) {
-		_afterXdrReady = afterXdrReady;
-
-		setScopedAttribute("afterXdrReady", afterXdrReady);
-	}
-
 	public void setAfterMethodChange(java.lang.Object afterMethodChange) {
 		_afterMethodChange = afterMethodChange;
 
@@ -738,42 +654,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnComplete(java.lang.Object onComplete) {
-		_onComplete = onComplete;
-
-		setScopedAttribute("onComplete", onComplete);
-	}
-
-	public void setOnEnd(java.lang.Object onEnd) {
-		_onEnd = onEnd;
-
-		setScopedAttribute("onEnd", onEnd);
-	}
-
-	public void setOnFailure(java.lang.Object onFailure) {
-		_onFailure = onFailure;
-
-		setScopedAttribute("onFailure", onFailure);
-	}
-
-	public void setOnStart(java.lang.Object onStart) {
-		_onStart = onStart;
-
-		setScopedAttribute("onStart", onStart);
-	}
-
-	public void setOnSuccess(java.lang.Object onSuccess) {
-		_onSuccess = onSuccess;
-
-		setScopedAttribute("onSuccess", onSuccess);
-	}
-
-	public void setOnXdrReady(java.lang.Object onXdrReady) {
-		_onXdrReady = onXdrReady;
-
-		setScopedAttribute("onXdrReady", onXdrReady);
-	}
-
 	public void setOnMethodChange(java.lang.Object onMethodChange) {
 		_onMethodChange = onMethodChange;
 
@@ -860,12 +740,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_afterHostChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterComplete = null;
-		_afterEnd = null;
-		_afterFailure = null;
-		_afterStart = null;
-		_afterSuccess = null;
-		_afterXdrReady = null;
 		_afterMethodChange = null;
 		_afterResponseDataChange = null;
 		_afterSelectorChange = null;
@@ -889,12 +763,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		_onHostChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onComplete = null;
-		_onEnd = null;
-		_onFailure = null;
-		_onStart = null;
-		_onSuccess = null;
-		_onXdrReady = null;
 		_onMethodChange = null;
 		_onResponseDataChange = null;
 		_onSelectorChange = null;
@@ -948,12 +816,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterHostChange", _afterHostChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterComplete", _afterComplete);
-		setNamespacedAttribute(request, "afterEnd", _afterEnd);
-		setNamespacedAttribute(request, "afterFailure", _afterFailure);
-		setNamespacedAttribute(request, "afterStart", _afterStart);
-		setNamespacedAttribute(request, "afterSuccess", _afterSuccess);
-		setNamespacedAttribute(request, "afterXdrReady", _afterXdrReady);
 		setNamespacedAttribute(request, "afterMethodChange", _afterMethodChange);
 		setNamespacedAttribute(request, "afterResponseDataChange", _afterResponseDataChange);
 		setNamespacedAttribute(request, "afterSelectorChange", _afterSelectorChange);
@@ -977,12 +839,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onHostChange", _onHostChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onComplete", _onComplete);
-		setNamespacedAttribute(request, "onEnd", _onEnd);
-		setNamespacedAttribute(request, "onFailure", _onFailure);
-		setNamespacedAttribute(request, "onStart", _onStart);
-		setNamespacedAttribute(request, "onSuccess", _onSuccess);
-		setNamespacedAttribute(request, "onXdrReady", _onXdrReady);
 		setNamespacedAttribute(request, "onMethodChange", _onMethodChange);
 		setNamespacedAttribute(request, "onResponseDataChange", _onResponseDataChange);
 		setNamespacedAttribute(request, "onSelectorChange", _onSelectorChange);
@@ -1034,12 +890,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterHostChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterComplete = null;
-	private java.lang.Object _afterEnd = null;
-	private java.lang.Object _afterFailure = null;
-	private java.lang.Object _afterStart = null;
-	private java.lang.Object _afterSuccess = null;
-	private java.lang.Object _afterXdrReady = null;
 	private java.lang.Object _afterMethodChange = null;
 	private java.lang.Object _afterResponseDataChange = null;
 	private java.lang.Object _afterSelectorChange = null;
@@ -1063,12 +913,6 @@ public class BaseIORequestTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onHostChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onComplete = null;
-	private java.lang.Object _onEnd = null;
-	private java.lang.Object _onFailure = null;
-	private java.lang.Object _onStart = null;
-	private java.lang.Object _onSuccess = null;
-	private java.lang.Object _onXdrReady = null;
 	private java.lang.Object _onMethodChange = null;
 	private java.lang.Object _onResponseDataChange = null;
 	private java.lang.Object _onSelectorChange = null;

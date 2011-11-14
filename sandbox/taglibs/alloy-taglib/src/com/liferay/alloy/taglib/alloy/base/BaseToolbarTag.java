@@ -96,10 +96,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public boolean getMultiple() {
 		return _multiple;
 	}
@@ -218,10 +214,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
-	}
-
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterMultipleChange() {
@@ -354,10 +346,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
-	}
-
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
 	}
 
 	public java.lang.Object getOnMultipleChange() {
@@ -510,12 +498,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
-	}
-
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
 	}
 
 	public void setMultiple(boolean multiple) {
@@ -696,12 +678,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
-	}
-
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterMultipleChange(java.lang.Object afterMultipleChange) {
@@ -902,12 +878,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnMultipleChange(java.lang.Object onMultipleChange) {
 		_onMultipleChange = onMultipleChange;
 
@@ -1010,7 +980,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_hoverState = false;
 		_toolbarId = null;
 		_initialized = false;
-		_locale = "en";
 		_multiple = false;
 		_orientation = "horizontal";
 		_render = null;
@@ -1041,7 +1010,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterMultipleChange = null;
 		_afterOrientationChange = null;
 		_afterRemoveChild = null;
@@ -1075,7 +1043,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onMultipleChange = null;
 		_onOrientationChange = null;
 		_onRemoveChild = null;
@@ -1115,7 +1082,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "hoverState", _hoverState);
 		setNamespacedAttribute(request, "toolbarId", _toolbarId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "multiple", _multiple);
 		setNamespacedAttribute(request, "orientation", _orientation);
 		setNamespacedAttribute(request, "render", _render);
@@ -1146,7 +1112,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMultipleChange", _afterMultipleChange);
 		setNamespacedAttribute(request, "afterOrientationChange", _afterOrientationChange);
 		setNamespacedAttribute(request, "afterRemoveChild", _afterRemoveChild);
@@ -1180,7 +1145,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMultipleChange", _onMultipleChange);
 		setNamespacedAttribute(request, "onOrientationChange", _onOrientationChange);
 		setNamespacedAttribute(request, "onRemoveChild", _onRemoveChild);
@@ -1218,7 +1182,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _hoverState = false;
 	private java.lang.String _toolbarId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private boolean _multiple = false;
 	private java.lang.String _orientation = "horizontal";
 	private java.lang.Object _render = null;
@@ -1249,7 +1212,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMultipleChange = null;
 	private java.lang.Object _afterOrientationChange = null;
 	private java.lang.Object _afterRemoveChild = null;
@@ -1283,7 +1245,6 @@ public class BaseToolbarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMultipleChange = null;
 	private java.lang.Object _onOrientationChange = null;
 	private java.lang.Object _onRemoveChild = null;

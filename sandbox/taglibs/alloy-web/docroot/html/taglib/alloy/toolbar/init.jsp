@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.lang.Object activeDescendant = (java.lang.Object)request.getAttribute("alloy:toolbar:activeDescendant");
@@ -52,7 +52,6 @@ java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getA
 boolean hoverState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:hoverState")), false);
 java.lang.String toolbarId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:toolbarId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:locale"), "en");
 boolean multiple = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:toolbar:multiple")), false);
 java.lang.String orientation = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:toolbar:orientation"), "horizontal");
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:toolbar:render");
@@ -82,7 +81,6 @@ java.lang.Object afterHoverStateChange = (java.lang.Object)request.getAttribute(
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:toolbar:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterLocaleChange");
 java.lang.Object afterMultipleChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterMultipleChange");
 java.lang.Object afterOrientationChange = (java.lang.Object)request.getAttribute("alloy:toolbar:afterOrientationChange");
 java.lang.Object afterRemoveChild = (java.lang.Object)request.getAttribute("alloy:toolbar:afterRemoveChild");
@@ -116,7 +114,6 @@ java.lang.Object onHoverStateChange = (java.lang.Object)request.getAttribute("al
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:toolbar:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onLocaleChange");
 java.lang.Object onMultipleChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onMultipleChange");
 java.lang.Object onOrientationChange = (java.lang.Object)request.getAttribute("alloy:toolbar:onOrientationChange");
 java.lang.Object onRemoveChild = (java.lang.Object)request.getAttribute("alloy:toolbar:onRemoveChild");
@@ -148,7 +145,6 @@ _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "hoverState", hoverState);
 _updateOptions(_options, "toolbarId", toolbarId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "multiple", multiple);
 _updateOptions(_options, "orientation", orientation);
 _updateOptions(_options, "render", render);
@@ -179,7 +175,6 @@ _updateOptions(_options, "afterHoverStateChange", afterHoverStateChange);
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterMultipleChange", afterMultipleChange);
 _updateOptions(_options, "afterOrientationChange", afterOrientationChange);
 _updateOptions(_options, "afterRemoveChild", afterRemoveChild);
@@ -213,7 +208,6 @@ _updateOptions(_options, "onHoverStateChange", onHoverStateChange);
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onMultipleChange", onMultipleChange);
 _updateOptions(_options, "onOrientationChange", onOrientationChange);
 _updateOptions(_options, "onRemoveChild", onRemoveChild);

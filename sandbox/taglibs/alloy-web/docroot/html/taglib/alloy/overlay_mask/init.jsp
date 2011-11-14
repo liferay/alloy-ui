@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:align")));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignOn")));
 java.util.ArrayList alignPoints = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-mask:alignPoints"), "[ 'tl', 'tl' ]"));
 java.lang.String background = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:background"));
 java.lang.Object overlaymaskBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-mask:overlaymaskBodyContent");
@@ -55,7 +56,6 @@ java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:overlay-
 java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:hideClass"), "aui-helper-hidden");
 java.lang.String overlaymaskId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:overlaymaskId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-mask:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-mask:locale"), "en");
 java.lang.Number opacity = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:opacity")), 0.5);
 boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-mask:preventOverlap")), false);
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:overlay-mask:render");
@@ -72,6 +72,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-mask:zIndex")), 1000);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterAlignOnChange");
 java.lang.Object afterAlignPointsChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterAlignPointsChange");
 java.lang.Object afterBackgroundChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterBackgroundChange");
 java.lang.Object afterBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterBodyContentChange");
@@ -92,7 +93,6 @@ java.lang.Object afterHideClassChange = (java.lang.Object)request.getAttribute("
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterLocaleChange");
 java.lang.Object afterOpacityChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterOpacityChange");
 java.lang.Object afterPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterPreventOverlapChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterRenderChange");
@@ -112,6 +112,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:o
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onAlignOnChange");
 java.lang.Object onAlignPointsChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onAlignPointsChange");
 java.lang.Object onBackgroundChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onBackgroundChange");
 java.lang.Object onBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onBodyContentChange");
@@ -132,7 +133,6 @@ java.lang.Object onHideClassChange = (java.lang.Object)request.getAttribute("all
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onLocaleChange");
 java.lang.Object onOpacityChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onOpacityChange");
 java.lang.Object onPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onPreventOverlapChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onRenderChange");
@@ -153,6 +153,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:overl
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-mask:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "alignPoints", alignPoints);
 _updateOptions(_options, "background", background);
 _updateOptions(_options, "overlaymaskBodyContent", overlaymaskBodyContent);
@@ -171,7 +172,6 @@ _updateOptions(_options, "height", height);
 _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "overlaymaskId", overlaymaskId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "opacity", opacity);
 _updateOptions(_options, "preventOverlap", preventOverlap);
 _updateOptions(_options, "render", render);
@@ -189,6 +189,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterAlignPointsChange", afterAlignPointsChange);
 _updateOptions(_options, "afterBackgroundChange", afterBackgroundChange);
 _updateOptions(_options, "afterBodyContentChange", afterBodyContentChange);
@@ -209,7 +210,6 @@ _updateOptions(_options, "afterHideClassChange", afterHideClassChange);
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterOpacityChange", afterOpacityChange);
 _updateOptions(_options, "afterPreventOverlapChange", afterPreventOverlapChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
@@ -229,6 +229,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onAlignPointsChange", onAlignPointsChange);
 _updateOptions(_options, "onBackgroundChange", onBackgroundChange);
 _updateOptions(_options, "onBodyContentChange", onBodyContentChange);
@@ -249,7 +250,6 @@ _updateOptions(_options, "onHideClassChange", onHideClassChange);
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onOpacityChange", onOpacityChange);
 _updateOptions(_options, "onPreventOverlapChange", onPreventOverlapChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);

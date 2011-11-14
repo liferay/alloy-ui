@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.lang.String cancelButton = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:cancelButton"));
@@ -53,7 +53,6 @@ java.util.ArrayList icons = _toArrayList(GetterUtil.getObject((java.lang.Object)
 java.lang.String editableId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:editableId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:editable:initialized")), false);
 java.lang.String inputType = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:inputType"), "text");
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:locale"), "en");
 java.lang.Object node = (java.lang.Object)request.getAttribute("alloy:editable:node");
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:editable:render");
 java.lang.String renderTo = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:renderTo"));
@@ -84,7 +83,6 @@ java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:e
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:editable:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:editable:afterInitializedChange");
 java.lang.Object afterInputTypeChange = (java.lang.Object)request.getAttribute("alloy:editable:afterInputTypeChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:editable:afterLocaleChange");
 java.lang.Object afterNodeChange = (java.lang.Object)request.getAttribute("alloy:editable:afterNodeChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:editable:afterRenderChange");
 java.lang.Object afterRenderToChange = (java.lang.Object)request.getAttribute("alloy:editable:afterRenderToChange");
@@ -121,7 +119,6 @@ java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:edit
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:editable:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:editable:onInitializedChange");
 java.lang.Object onInputTypeChange = (java.lang.Object)request.getAttribute("alloy:editable:onInputTypeChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:editable:onLocaleChange");
 java.lang.Object onNodeChange = (java.lang.Object)request.getAttribute("alloy:editable:onNodeChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:editable:onRenderChange");
 java.lang.Object onRenderToChange = (java.lang.Object)request.getAttribute("alloy:editable:onRenderToChange");
@@ -156,7 +153,6 @@ _updateOptions(_options, "icons", icons);
 _updateOptions(_options, "editableId", editableId);
 _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "inputType", inputType);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "node", node);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "renderTo", renderTo);
@@ -188,7 +184,6 @@ _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
 _updateOptions(_options, "afterInputTypeChange", afterInputTypeChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterNodeChange", afterNodeChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderToChange", afterRenderToChange);
@@ -225,7 +220,6 @@ _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 _updateOptions(_options, "onInputTypeChange", onInputTypeChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onNodeChange", onNodeChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderToChange", onRenderToChange);

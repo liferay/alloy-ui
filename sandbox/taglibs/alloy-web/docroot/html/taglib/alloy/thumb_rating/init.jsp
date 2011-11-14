@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 boolean canReset = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:thumb-rating:canReset")), true);
@@ -53,7 +53,6 @@ boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute(
 java.lang.String inputName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:inputName"));
 java.lang.String label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:label"));
 java.lang.String labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:labelNode"));
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:thumb-rating:locale"), "en");
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:thumb-rating:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:thumb-rating:rendered")), false);
 java.lang.Number selectedIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:thumb-rating:selectedIndex")), -1);
@@ -88,7 +87,6 @@ java.lang.Object afterItemOut = (java.lang.Object)request.getAttribute("alloy:th
 java.lang.Object afterItemSelect = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterItemSelect");
 java.lang.Object afterLabelChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterLabelChange");
 java.lang.Object afterLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterLabelNodeChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterLocaleChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterRenderChange");
 java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterRenderedChange");
 java.lang.Object afterSelectedIndexChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:afterSelectedIndexChange");
@@ -126,7 +124,6 @@ java.lang.Object onItemOut = (java.lang.Object)request.getAttribute("alloy:thumb
 java.lang.Object onItemSelect = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onItemSelect");
 java.lang.Object onLabelChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onLabelChange");
 java.lang.Object onLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onLabelNodeChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onLocaleChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onRenderChange");
 java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onRenderedChange");
 java.lang.Object onSelectedIndexChange = (java.lang.Object)request.getAttribute("alloy:thumb-rating:onSelectedIndexChange");
@@ -160,7 +157,6 @@ _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "inputName", inputName);
 _updateOptions(_options, "label", label);
 _updateOptions(_options, "labelNode", labelNode);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "rendered", rendered);
 _updateOptions(_options, "selectedIndex", selectedIndex);
@@ -196,7 +192,6 @@ _updateOptions(_options, "afterItemOut", afterItemOut);
 _updateOptions(_options, "afterItemSelect", afterItemSelect);
 _updateOptions(_options, "afterLabelChange", afterLabelChange);
 _updateOptions(_options, "afterLabelNodeChange", afterLabelNodeChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderedChange", afterRenderedChange);
 _updateOptions(_options, "afterSelectedIndexChange", afterSelectedIndexChange);
@@ -234,7 +229,6 @@ _updateOptions(_options, "onItemOut", onItemOut);
 _updateOptions(_options, "onItemSelect", onItemSelect);
 _updateOptions(_options, "onLabelChange", onLabelChange);
 _updateOptions(_options, "onLabelNodeChange", onLabelNodeChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderedChange", onRenderedChange);
 _updateOptions(_options, "onSelectedIndexChange", onSelectedIndexChange);

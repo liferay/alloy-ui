@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 boolean activeState = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:activeState")), false);
@@ -57,7 +57,6 @@ java.lang.Number index = GetterUtil.getNumber(String.valueOf(request.getAttribut
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:initialized")), false);
 java.lang.String label = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:label"));
 java.lang.String labelNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:labelNode"));
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:locale"), "en");
 java.lang.Object buttonitemParent = (java.lang.Object)request.getAttribute("alloy:button-item:buttonitemParent");
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:button-item:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:rendered")), false);
@@ -66,6 +65,7 @@ java.lang.Number selected = GetterUtil.getNumber(String.valueOf(request.getAttri
 java.util.HashMap strings = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:button-item:strings")));
 java.lang.Number tabIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:button-item:tabIndex")), 0);
 java.lang.String title = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:title"));
+java.lang.String type = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:button-item:type"), "button");
 boolean useARIA = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:useARIA")), true);
 boolean visible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:button-item:visible")), true);
 java.lang.Object width = (java.lang.Object)request.getAttribute("alloy:button-item:width");
@@ -92,7 +92,6 @@ java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:butto
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterInitializedChange");
 java.lang.Object afterLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelChange");
 java.lang.Object afterLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLabelNodeChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterLocaleChange");
 java.lang.Object afterParentChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterParentChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderChange");
 java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterRenderedChange");
@@ -102,6 +101,7 @@ java.lang.Object afterSrcNodeChange = (java.lang.Object)request.getAttribute("al
 java.lang.Object afterStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterStringsChange");
 java.lang.Object afterTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTabIndexChange");
 java.lang.Object afterTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTitleChange");
+java.lang.Object afterTypeChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterTypeChange");
 java.lang.Object afterUseARIAChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterUseARIAChange");
 java.lang.Object afterVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:afterVisibleChange");
 java.lang.Object afterContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:afterContentUpdate");
@@ -130,7 +130,6 @@ java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:button-i
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onInitializedChange");
 java.lang.Object onLabelChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelChange");
 java.lang.Object onLabelNodeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLabelNodeChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onLocaleChange");
 java.lang.Object onParentChange = (java.lang.Object)request.getAttribute("alloy:button-item:onParentChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderChange");
 java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:button-item:onRenderedChange");
@@ -140,6 +139,7 @@ java.lang.Object onSrcNodeChange = (java.lang.Object)request.getAttribute("alloy
 java.lang.Object onStringsChange = (java.lang.Object)request.getAttribute("alloy:button-item:onStringsChange");
 java.lang.Object onTabIndexChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTabIndexChange");
 java.lang.Object onTitleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTitleChange");
+java.lang.Object onTypeChange = (java.lang.Object)request.getAttribute("alloy:button-item:onTypeChange");
 java.lang.Object onUseARIAChange = (java.lang.Object)request.getAttribute("alloy:button-item:onUseARIAChange");
 java.lang.Object onVisibleChange = (java.lang.Object)request.getAttribute("alloy:button-item:onVisibleChange");
 java.lang.Object onContentUpdate = (java.lang.Object)request.getAttribute("alloy:button-item:onContentUpdate");
@@ -167,7 +167,6 @@ _updateOptions(_options, "index", index);
 _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "label", label);
 _updateOptions(_options, "labelNode", labelNode);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "buttonitemParent", buttonitemParent);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "rendered", rendered);
@@ -177,6 +176,7 @@ _updateOptions(_options, "srcNode", srcNode);
 _updateOptions(_options, "strings", strings);
 _updateOptions(_options, "tabIndex", tabIndex);
 _updateOptions(_options, "title", title);
+_updateOptions(_options, "type", type);
 _updateOptions(_options, "useARIA", useARIA);
 _updateOptions(_options, "visible", visible);
 _updateOptions(_options, "width", width);
@@ -203,7 +203,6 @@ _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
 _updateOptions(_options, "afterLabelChange", afterLabelChange);
 _updateOptions(_options, "afterLabelNodeChange", afterLabelNodeChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterParentChange", afterParentChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderedChange", afterRenderedChange);
@@ -213,6 +212,7 @@ _updateOptions(_options, "afterSrcNodeChange", afterSrcNodeChange);
 _updateOptions(_options, "afterStringsChange", afterStringsChange);
 _updateOptions(_options, "afterTabIndexChange", afterTabIndexChange);
 _updateOptions(_options, "afterTitleChange", afterTitleChange);
+_updateOptions(_options, "afterTypeChange", afterTypeChange);
 _updateOptions(_options, "afterUseARIAChange", afterUseARIAChange);
 _updateOptions(_options, "afterVisibleChange", afterVisibleChange);
 _updateOptions(_options, "afterContentUpdate", afterContentUpdate);
@@ -241,7 +241,6 @@ _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
 _updateOptions(_options, "onLabelChange", onLabelChange);
 _updateOptions(_options, "onLabelNodeChange", onLabelNodeChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onParentChange", onParentChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderedChange", onRenderedChange);
@@ -251,6 +250,7 @@ _updateOptions(_options, "onSrcNodeChange", onSrcNodeChange);
 _updateOptions(_options, "onStringsChange", onStringsChange);
 _updateOptions(_options, "onTabIndexChange", onTabIndexChange);
 _updateOptions(_options, "onTitleChange", onTitleChange);
+_updateOptions(_options, "onTypeChange", onTypeChange);
 _updateOptions(_options, "onUseARIAChange", onUseARIAChange);
 _updateOptions(_options, "onVisibleChange", onVisibleChange);
 _updateOptions(_options, "onContentUpdate", onContentUpdate);

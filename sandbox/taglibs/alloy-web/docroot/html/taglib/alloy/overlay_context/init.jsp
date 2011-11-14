@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:align"), "{ node: null, points: [ TL, BL ] }"));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-context:alignOn")));
 java.lang.Object overlaycontextBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-context:overlaycontextBodyContent");
 boolean cancellableHide = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context:cancellableHide")), true);
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:overlay-context:centered");
@@ -58,7 +59,6 @@ java.lang.String hideOn = GetterUtil.getString((java.lang.String)request.getAttr
 boolean hideOnDocumentClick = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context:hideOnDocumentClick")), true);
 java.lang.String overlaycontextId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context:overlaycontextId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-context:locale"), "en");
 boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context:preventOverlap")), false);
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:overlay-context:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-context:rendered")), false);
@@ -76,6 +76,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-context:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterAlignOnChange");
 java.lang.Object afterBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterBodyContentChange");
 java.lang.Object afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterBoundingBoxChange");
 java.lang.Object afterCancellableHideChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterCancellableHideChange");
@@ -99,7 +100,6 @@ java.lang.Object afterHideOnDocumentClickChange = (java.lang.Object)request.getA
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterLocaleChange");
 java.lang.Object afterPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterPreventOverlapChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterRenderChange");
 java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterRenderedChange");
@@ -120,6 +120,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:o
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onAlignOnChange");
 java.lang.Object onBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onBodyContentChange");
 java.lang.Object onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onBoundingBoxChange");
 java.lang.Object onCancellableHideChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onCancellableHideChange");
@@ -143,7 +144,6 @@ java.lang.Object onHideOnDocumentClickChange = (java.lang.Object)request.getAttr
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:overlay-context:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onLocaleChange");
 java.lang.Object onPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onPreventOverlapChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onRenderChange");
 java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onRenderedChange");
@@ -165,6 +165,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:overl
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-context:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "overlaycontextBodyContent", overlaycontextBodyContent);
 _updateOptions(_options, "boundingBox", boundingBox);
 _updateOptions(_options, "cancellableHide", cancellableHide);
@@ -186,7 +187,6 @@ _updateOptions(_options, "hideOn", hideOn);
 _updateOptions(_options, "hideOnDocumentClick", hideOnDocumentClick);
 _updateOptions(_options, "overlaycontextId", overlaycontextId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "preventOverlap", preventOverlap);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "rendered", rendered);
@@ -205,6 +205,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterBodyContentChange", afterBodyContentChange);
 _updateOptions(_options, "afterBoundingBoxChange", afterBoundingBoxChange);
 _updateOptions(_options, "afterCancellableHideChange", afterCancellableHideChange);
@@ -228,7 +229,6 @@ _updateOptions(_options, "afterHideOnDocumentClickChange", afterHideOnDocumentCl
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterPreventOverlapChange", afterPreventOverlapChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderedChange", afterRenderedChange);
@@ -249,6 +249,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onBodyContentChange", onBodyContentChange);
 _updateOptions(_options, "onBoundingBoxChange", onBoundingBoxChange);
 _updateOptions(_options, "onCancellableHideChange", onCancellableHideChange);
@@ -272,7 +273,6 @@ _updateOptions(_options, "onHideOnDocumentClickChange", onHideOnDocumentClickCha
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onPreventOverlapChange", onPreventOverlapChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderedChange", onRenderedChange);

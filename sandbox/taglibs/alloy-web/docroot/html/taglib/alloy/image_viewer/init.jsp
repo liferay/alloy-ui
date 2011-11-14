@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:align")));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:image-viewer:alignOn")));
 boolean anim = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:anim")), true);
 java.lang.Object arrowLeftEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:arrowLeftEl");
 java.lang.Object arrowRightEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:arrowRightEl");
@@ -69,7 +70,6 @@ java.lang.Object links = (java.lang.Object)request.getAttribute("alloy:image-vie
 java.lang.Object loader = (java.lang.Object)request.getAttribute("alloy:image-viewer:loader");
 boolean loading = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:image-viewer:loading")), false);
 java.lang.Object loadingEl = (java.lang.Object)request.getAttribute("alloy:image-viewer:loadingEl");
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:image-viewer:locale"), "en");
 java.lang.Number maxHeight = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:maxHeight")), 2147483647);
 java.lang.Number maxWidth = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:maxWidth")), 2147483647);
 java.lang.Object modal = (java.lang.Object)request.getAttribute("alloy:image-viewer:modal");
@@ -91,6 +91,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:image-viewer:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterAlignOnChange");
 java.lang.Object afterAnim = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterAnim");
 java.lang.Object afterAnimChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterAnimChange");
 java.lang.Object afterArrowLeftElChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterArrowLeftElChange");
@@ -127,7 +128,6 @@ java.lang.Object afterLoad = (java.lang.Object)request.getAttribute("alloy:image
 java.lang.Object afterLoaderChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterLoaderChange");
 java.lang.Object afterLoadingChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterLoadingChange");
 java.lang.Object afterLoadingElChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterLoadingElChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterLocaleChange");
 java.lang.Object afterMaxHeightChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterMaxHeightChange");
 java.lang.Object afterMaxWidthChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterMaxWidthChange");
 java.lang.Object afterModalChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterModalChange");
@@ -153,6 +153,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:i
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onAlignOnChange");
 java.lang.Object onAnim = (java.lang.Object)request.getAttribute("alloy:image-viewer:onAnim");
 java.lang.Object onAnimChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onAnimChange");
 java.lang.Object onArrowLeftElChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onArrowLeftElChange");
@@ -189,7 +190,6 @@ java.lang.Object onLoad = (java.lang.Object)request.getAttribute("alloy:image-vi
 java.lang.Object onLoaderChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onLoaderChange");
 java.lang.Object onLoadingChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onLoadingChange");
 java.lang.Object onLoadingElChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onLoadingElChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onLocaleChange");
 java.lang.Object onMaxHeightChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onMaxHeightChange");
 java.lang.Object onMaxWidthChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onMaxWidthChange");
 java.lang.Object onModalChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onModalChange");
@@ -216,6 +216,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:image
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:image-viewer:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "anim", anim);
 _updateOptions(_options, "arrowLeftEl", arrowLeftEl);
 _updateOptions(_options, "arrowRightEl", arrowRightEl);
@@ -248,7 +249,6 @@ _updateOptions(_options, "links", links);
 _updateOptions(_options, "loader", loader);
 _updateOptions(_options, "loading", loading);
 _updateOptions(_options, "loadingEl", loadingEl);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "maxHeight", maxHeight);
 _updateOptions(_options, "maxWidth", maxWidth);
 _updateOptions(_options, "modal", modal);
@@ -271,6 +271,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterAnim", afterAnim);
 _updateOptions(_options, "afterAnimChange", afterAnimChange);
 _updateOptions(_options, "afterArrowLeftElChange", afterArrowLeftElChange);
@@ -307,7 +308,6 @@ _updateOptions(_options, "afterLoad", afterLoad);
 _updateOptions(_options, "afterLoaderChange", afterLoaderChange);
 _updateOptions(_options, "afterLoadingChange", afterLoadingChange);
 _updateOptions(_options, "afterLoadingElChange", afterLoadingElChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterMaxHeightChange", afterMaxHeightChange);
 _updateOptions(_options, "afterMaxWidthChange", afterMaxWidthChange);
 _updateOptions(_options, "afterModalChange", afterModalChange);
@@ -333,6 +333,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onAnim", onAnim);
 _updateOptions(_options, "onAnimChange", onAnimChange);
 _updateOptions(_options, "onArrowLeftElChange", onArrowLeftElChange);
@@ -369,7 +370,6 @@ _updateOptions(_options, "onLoad", onLoad);
 _updateOptions(_options, "onLoaderChange", onLoaderChange);
 _updateOptions(_options, "onLoadingChange", onLoadingChange);
 _updateOptions(_options, "onLoadingElChange", onLoadingElChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onMaxHeightChange", onMaxHeightChange);
 _updateOptions(_options, "onMaxWidthChange", onMaxWidthChange);
 _updateOptions(_options, "onModalChange", onModalChange);

@@ -36,6 +36,10 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _align;
 	}
 
+	public java.lang.Object getAlignOn() {
+		return _alignOn;
+	}
+
 	public java.lang.Object getAnim() {
 		return _anim;
 	}
@@ -128,10 +132,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _initialized;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public boolean getPreventOverlap() {
 		return _preventOverlap;
 	}
@@ -214,6 +214,10 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterAlignChange() {
 		return _afterAlignChange;
+	}
+
+	public java.lang.Object getAfterAlignOnChange() {
+		return _afterAlignOnChange;
 	}
 
 	public java.lang.Object getAfterAnimChange() {
@@ -316,10 +320,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterInitializedChange;
 	}
 
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
-	}
-
 	public java.lang.Object getAfterPreventOverlapChange() {
 		return _afterPreventOverlapChange;
 	}
@@ -410,6 +410,10 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnAlignChange() {
 		return _onAlignChange;
+	}
+
+	public java.lang.Object getOnAlignOnChange() {
+		return _onAlignOnChange;
 	}
 
 	public java.lang.Object getOnAnimChange() {
@@ -512,10 +516,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		return _onInitializedChange;
 	}
 
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
-	}
-
 	public java.lang.Object getOnPreventOverlapChange() {
 		return _onPreventOverlapChange;
 	}
@@ -608,6 +608,12 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_align = align;
 
 		setScopedAttribute("align", align);
+	}
+
+	public void setAlignOn(java.lang.Object alignOn) {
+		_alignOn = alignOn;
+
+		setScopedAttribute("alignOn", alignOn);
 	}
 
 	public void setAnim(java.lang.Object anim) {
@@ -748,12 +754,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("initialized", initialized);
 	}
 
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
-	}
-
 	public void setPreventOverlap(boolean preventOverlap) {
 		_preventOverlap = preventOverlap;
 
@@ -878,6 +878,12 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_afterAlignChange = afterAlignChange;
 
 		setScopedAttribute("afterAlignChange", afterAlignChange);
+	}
+
+	public void setAfterAlignOnChange(java.lang.Object afterAlignOnChange) {
+		_afterAlignOnChange = afterAlignOnChange;
+
+		setScopedAttribute("afterAlignOnChange", afterAlignOnChange);
 	}
 
 	public void setAfterAnimChange(java.lang.Object afterAnimChange) {
@@ -1030,12 +1036,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
 	}
 
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
-	}
-
 	public void setAfterPreventOverlapChange(java.lang.Object afterPreventOverlapChange) {
 		_afterPreventOverlapChange = afterPreventOverlapChange;
 
@@ -1172,6 +1172,12 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_onAlignChange = onAlignChange;
 
 		setScopedAttribute("onAlignChange", onAlignChange);
+	}
+
+	public void setOnAlignOnChange(java.lang.Object onAlignOnChange) {
+		_onAlignOnChange = onAlignOnChange;
+
+		setScopedAttribute("onAlignOnChange", onAlignOnChange);
 	}
 
 	public void setOnAnimChange(java.lang.Object onAnimChange) {
@@ -1324,12 +1330,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onInitializedChange", onInitializedChange);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnPreventOverlapChange(java.lang.Object onPreventOverlapChange) {
 		_onPreventOverlapChange = onPreventOverlapChange;
 
@@ -1465,6 +1465,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void cleanUp() {
 		_align = null;
+		_alignOn = null;
 		_anim = null;
 		_arrow = null;
 		_tooltipBodyContent = null;
@@ -1488,7 +1489,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_hideOnDocumentClick = true;
 		_tooltipId = null;
 		_initialized = false;
-		_locale = "en";
 		_preventOverlap = false;
 		_render = null;
 		_rendered = false;
@@ -1510,6 +1510,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_y = 0;
 		_zIndex = 0;
 		_afterAlignChange = null;
+		_afterAlignOnChange = null;
 		_afterAnimChange = null;
 		_afterArrowChange = null;
 		_afterBodyContentChange = null;
@@ -1535,7 +1536,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterPreventOverlapChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
@@ -1559,6 +1559,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_afterYChange = null;
 		_afterZIndexChange = null;
 		_onAlignChange = null;
+		_onAlignOnChange = null;
 		_onAnimChange = null;
 		_onArrowChange = null;
 		_onBodyContentChange = null;
@@ -1584,7 +1585,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onPreventOverlapChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
@@ -1617,6 +1617,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		setNamespacedAttribute(request, "align", _align);
+		setNamespacedAttribute(request, "alignOn", _alignOn);
 		setNamespacedAttribute(request, "anim", _anim);
 		setNamespacedAttribute(request, "arrow", _arrow);
 		setNamespacedAttribute(request, "tooltipBodyContent", _tooltipBodyContent);
@@ -1640,7 +1641,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "hideOnDocumentClick", _hideOnDocumentClick);
 		setNamespacedAttribute(request, "tooltipId", _tooltipId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "preventOverlap", _preventOverlap);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
@@ -1662,6 +1662,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "y", _y);
 		setNamespacedAttribute(request, "zIndex", _zIndex);
 		setNamespacedAttribute(request, "afterAlignChange", _afterAlignChange);
+		setNamespacedAttribute(request, "afterAlignOnChange", _afterAlignOnChange);
 		setNamespacedAttribute(request, "afterAnimChange", _afterAnimChange);
 		setNamespacedAttribute(request, "afterArrowChange", _afterArrowChange);
 		setNamespacedAttribute(request, "afterBodyContentChange", _afterBodyContentChange);
@@ -1687,7 +1688,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterPreventOverlapChange", _afterPreventOverlapChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
@@ -1711,6 +1711,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterYChange", _afterYChange);
 		setNamespacedAttribute(request, "afterZIndexChange", _afterZIndexChange);
 		setNamespacedAttribute(request, "onAlignChange", _onAlignChange);
+		setNamespacedAttribute(request, "onAlignOnChange", _onAlignOnChange);
 		setNamespacedAttribute(request, "onAnimChange", _onAnimChange);
 		setNamespacedAttribute(request, "onArrowChange", _onArrowChange);
 		setNamespacedAttribute(request, "onBodyContentChange", _onBodyContentChange);
@@ -1736,7 +1737,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onPreventOverlapChange", _onPreventOverlapChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
@@ -1767,6 +1767,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 		"/html/taglib/alloy/tooltip/page.jsp";
 
 	private java.lang.Object _align = null;
+	private java.lang.Object _alignOn = null;
 	private java.lang.Object _anim = null;
 	private java.lang.String _arrow = null;
 	private java.lang.Object _tooltipBodyContent = null;
@@ -1790,7 +1791,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _hideOnDocumentClick = true;
 	private java.lang.String _tooltipId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private boolean _preventOverlap = false;
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
@@ -1812,6 +1812,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _y = 0;
 	private java.lang.Object _zIndex = 0;
 	private java.lang.Object _afterAlignChange = null;
+	private java.lang.Object _afterAlignOnChange = null;
 	private java.lang.Object _afterAnimChange = null;
 	private java.lang.Object _afterArrowChange = null;
 	private java.lang.Object _afterBodyContentChange = null;
@@ -1837,7 +1838,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterPreventOverlapChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
@@ -1861,6 +1861,7 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterYChange = null;
 	private java.lang.Object _afterZIndexChange = null;
 	private java.lang.Object _onAlignChange = null;
+	private java.lang.Object _onAlignOnChange = null;
 	private java.lang.Object _onAnimChange = null;
 	private java.lang.Object _onArrowChange = null;
 	private java.lang.Object _onBodyContentChange = null;
@@ -1886,7 +1887,6 @@ public class BaseTooltipTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onPreventOverlapChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;

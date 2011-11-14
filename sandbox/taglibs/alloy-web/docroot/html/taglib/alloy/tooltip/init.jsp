@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:align"), "{ node: null, points: [ BL, TR ] }"));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:alignOn")));
 java.util.HashMap anim = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:anim"), "{ show: false }"));
 java.lang.String arrow = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:arrow"));
 java.lang.Object tooltipBodyContent = (java.lang.Object)request.getAttribute("alloy:tooltip:tooltipBodyContent");
@@ -60,7 +61,6 @@ java.lang.String hideOn = GetterUtil.getString((java.lang.String)request.getAttr
 boolean hideOnDocumentClick = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:hideOnDocumentClick")), true);
 java.lang.String tooltipId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:tooltipId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:tooltip:locale"), "en");
 boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:preventOverlap")), false);
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:tooltip:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:tooltip:rendered")), false);
@@ -81,6 +81,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:tooltip:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterAlignOnChange");
 java.lang.Object afterAnimChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterAnimChange");
 java.lang.Object afterArrowChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterArrowChange");
 java.lang.Object afterBodyContentChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterBodyContentChange");
@@ -106,7 +107,6 @@ java.lang.Object afterHideOnDocumentClickChange = (java.lang.Object)request.getA
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:tooltip:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterLocaleChange");
 java.lang.Object afterPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterPreventOverlapChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterRenderChange");
 java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterRenderedChange");
@@ -130,6 +130,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:t
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:tooltip:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onAlignOnChange");
 java.lang.Object onAnimChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onAnimChange");
 java.lang.Object onArrowChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onArrowChange");
 java.lang.Object onBodyContentChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onBodyContentChange");
@@ -155,7 +156,6 @@ java.lang.Object onHideOnDocumentClickChange = (java.lang.Object)request.getAttr
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:tooltip:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onLocaleChange");
 java.lang.Object onPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onPreventOverlapChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onRenderChange");
 java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onRenderedChange");
@@ -180,6 +180,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:toolt
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:tooltip:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "anim", anim);
 _updateOptions(_options, "arrow", arrow);
 _updateOptions(_options, "tooltipBodyContent", tooltipBodyContent);
@@ -203,7 +204,6 @@ _updateOptions(_options, "hideOn", hideOn);
 _updateOptions(_options, "hideOnDocumentClick", hideOnDocumentClick);
 _updateOptions(_options, "tooltipId", tooltipId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "preventOverlap", preventOverlap);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "rendered", rendered);
@@ -225,6 +225,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterAnimChange", afterAnimChange);
 _updateOptions(_options, "afterArrowChange", afterArrowChange);
 _updateOptions(_options, "afterBodyContentChange", afterBodyContentChange);
@@ -250,7 +251,6 @@ _updateOptions(_options, "afterHideOnDocumentClickChange", afterHideOnDocumentCl
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterPreventOverlapChange", afterPreventOverlapChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderedChange", afterRenderedChange);
@@ -274,6 +274,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onAnimChange", onAnimChange);
 _updateOptions(_options, "onArrowChange", onArrowChange);
 _updateOptions(_options, "onBodyContentChange", onBodyContentChange);
@@ -299,7 +300,6 @@ _updateOptions(_options, "onHideOnDocumentClickChange", onHideOnDocumentClickCha
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onPreventOverlapChange", onPreventOverlapChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderedChange", onRenderedChange);

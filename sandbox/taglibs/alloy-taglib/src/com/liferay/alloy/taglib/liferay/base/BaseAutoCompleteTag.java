@@ -112,10 +112,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _input;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public java.lang.Object getMatchKey() {
 		return _matchKey;
 	}
@@ -330,10 +326,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterItemSelect() {
 		return _afterItemSelect;
-	}
-
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterMatchKeyChange() {
@@ -588,10 +580,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		return _onItemSelect;
 	}
 
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
-	}
-
 	public java.lang.Object getOnMatchKeyChange() {
 		return _onMatchKeyChange;
 	}
@@ -834,12 +822,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_input = input;
 
 		setScopedAttribute("input", input);
-	}
-
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
 	}
 
 	public void setMatchKey(java.lang.Object matchKey) {
@@ -1164,12 +1146,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_afterItemSelect = afterItemSelect;
 
 		setScopedAttribute("afterItemSelect", afterItemSelect);
-	}
-
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterMatchKeyChange(java.lang.Object afterMatchKeyChange) {
@@ -1550,12 +1526,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onItemSelect", onItemSelect);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnMatchKeyChange(java.lang.Object onMatchKeyChange) {
 		_onMatchKeyChange = onMatchKeyChange;
 
@@ -1764,7 +1734,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_autocompleteId = null;
 		_initialized = false;
 		_input = null;
-		_locale = "en";
 		_matchKey = null;
 		_maxResultsDisplayed = 10;
 		_minQueryLength = 1;
@@ -1819,7 +1788,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_afterItemMouseOut = null;
 		_afterItemMouseOver = null;
 		_afterItemSelect = null;
-		_afterLocaleChange = null;
 		_afterMatchKeyChange = null;
 		_afterMaxResultsDisplayedChange = null;
 		_afterMinQueryLengthChange = null;
@@ -1883,7 +1851,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		_onItemMouseOut = null;
 		_onItemMouseOver = null;
 		_onItemSelect = null;
-		_onLocaleChange = null;
 		_onMatchKeyChange = null;
 		_onMaxResultsDisplayedChange = null;
 		_onMinQueryLengthChange = null;
@@ -1944,7 +1911,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "autocompleteId", _autocompleteId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "input", _input);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "matchKey", _matchKey);
 		setNamespacedAttribute(request, "maxResultsDisplayed", _maxResultsDisplayed);
 		setNamespacedAttribute(request, "minQueryLength", _minQueryLength);
@@ -1999,7 +1965,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterItemMouseOut", _afterItemMouseOut);
 		setNamespacedAttribute(request, "afterItemMouseOver", _afterItemMouseOver);
 		setNamespacedAttribute(request, "afterItemSelect", _afterItemSelect);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMatchKeyChange", _afterMatchKeyChange);
 		setNamespacedAttribute(request, "afterMaxResultsDisplayedChange", _afterMaxResultsDisplayedChange);
 		setNamespacedAttribute(request, "afterMinQueryLengthChange", _afterMinQueryLengthChange);
@@ -2063,7 +2028,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onItemMouseOut", _onItemMouseOut);
 		setNamespacedAttribute(request, "onItemMouseOver", _onItemMouseOver);
 		setNamespacedAttribute(request, "onItemSelect", _onItemSelect);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMatchKeyChange", _onMatchKeyChange);
 		setNamespacedAttribute(request, "onMaxResultsDisplayedChange", _onMaxResultsDisplayedChange);
 		setNamespacedAttribute(request, "onMinQueryLengthChange", _onMinQueryLengthChange);
@@ -2122,7 +2086,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _autocompleteId = null;
 	private boolean _initialized = false;
 	private java.lang.String _input = null;
-	private java.lang.String _locale = "en";
 	private java.lang.Object _matchKey = null;
 	private java.lang.Object _maxResultsDisplayed = 10;
 	private java.lang.Object _minQueryLength = 1;
@@ -2177,7 +2140,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterItemMouseOut = null;
 	private java.lang.Object _afterItemMouseOver = null;
 	private java.lang.Object _afterItemSelect = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMatchKeyChange = null;
 	private java.lang.Object _afterMaxResultsDisplayedChange = null;
 	private java.lang.Object _afterMinQueryLengthChange = null;
@@ -2241,7 +2203,6 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onItemMouseOut = null;
 	private java.lang.Object _onItemMouseOver = null;
 	private java.lang.Object _onItemSelect = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMatchKeyChange = null;
 	private java.lang.Object _onMaxResultsDisplayedChange = null;
 	private java.lang.Object _onMinQueryLengthChange = null;

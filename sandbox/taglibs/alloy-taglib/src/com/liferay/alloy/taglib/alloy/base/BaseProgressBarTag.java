@@ -76,10 +76,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		return _label;
 	}
 
-	public java.lang.String getLocale() {
-		return _locale;
-	}
-
 	public int getMax() {
 		return _max;
 	}
@@ -194,10 +190,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterLabelChange() {
 		return _afterLabelChange;
-	}
-
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterMaxChange() {
@@ -322,10 +314,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnLabelChange() {
 		return _onLabelChange;
-	}
-
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
 	}
 
 	public java.lang.Object getOnMaxChange() {
@@ -464,12 +452,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_label = label;
 
 		setScopedAttribute("label", label);
-	}
-
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
 	}
 
 	public void setMax(int max) {
@@ -644,12 +626,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterLabelChange = afterLabelChange;
 
 		setScopedAttribute("afterLabelChange", afterLabelChange);
-	}
-
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterMaxChange(java.lang.Object afterMaxChange) {
@@ -838,12 +814,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onLabelChange", onLabelChange);
 	}
 
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
-	}
-
 	public void setOnMaxChange(java.lang.Object onMaxChange) {
 		_onMaxChange = onMaxChange;
 
@@ -965,7 +935,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_progressbarId = null;
 		_initialized = false;
 		_label = null;
-		_locale = "en";
 		_max = 100;
 		_min = 0;
 		_orientation = "horizontal";
@@ -995,7 +964,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInit = null;
 		_afterInitializedChange = null;
 		_afterLabelChange = null;
-		_afterLocaleChange = null;
 		_afterMaxChange = null;
 		_afterMinChange = null;
 		_afterOrientationChange = null;
@@ -1027,7 +995,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		_onInit = null;
 		_onInitializedChange = null;
 		_onLabelChange = null;
-		_onLocaleChange = null;
 		_onMaxChange = null;
 		_onMinChange = null;
 		_onOrientationChange = null;
@@ -1066,7 +1033,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "progressbarId", _progressbarId);
 		setNamespacedAttribute(request, "initialized", _initialized);
 		setNamespacedAttribute(request, "label", _label);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "max", _max);
 		setNamespacedAttribute(request, "min", _min);
 		setNamespacedAttribute(request, "orientation", _orientation);
@@ -1096,7 +1062,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
 		setNamespacedAttribute(request, "afterLabelChange", _afterLabelChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterMaxChange", _afterMaxChange);
 		setNamespacedAttribute(request, "afterMinChange", _afterMinChange);
 		setNamespacedAttribute(request, "afterOrientationChange", _afterOrientationChange);
@@ -1128,7 +1093,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
 		setNamespacedAttribute(request, "onLabelChange", _onLabelChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onMaxChange", _onMaxChange);
 		setNamespacedAttribute(request, "onMinChange", _onMinChange);
 		setNamespacedAttribute(request, "onOrientationChange", _onOrientationChange);
@@ -1165,7 +1129,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _progressbarId = null;
 	private boolean _initialized = false;
 	private java.lang.String _label = null;
-	private java.lang.String _locale = "en";
 	private int _max = 100;
 	private int _min = 0;
 	private java.lang.String _orientation = "horizontal";
@@ -1195,7 +1158,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
 	private java.lang.Object _afterLabelChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterMaxChange = null;
 	private java.lang.Object _afterMinChange = null;
 	private java.lang.Object _afterOrientationChange = null;
@@ -1227,7 +1189,6 @@ public class BaseProgressBarTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
 	private java.lang.Object _onLabelChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onMaxChange = null;
 	private java.lang.Object _onMinChange = null;
 	private java.lang.Object _onOrientationChange = null;

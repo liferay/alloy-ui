@@ -52,10 +52,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _contentBox;
 	}
 
-	public java.lang.String getCssClass() {
-		return _cssClass;
-	}
-
 	public boolean getDestroyed() {
 		return _destroyed;
 	}
@@ -84,10 +80,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _height;
 	}
 
-	public java.lang.String getHideClass() {
-		return _hideClass;
-	}
-
 	public java.lang.Object getIcons() {
 		return _icons;
 	}
@@ -98,10 +90,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public boolean getInitialized() {
 		return _initialized;
-	}
-
-	public java.lang.String getLocale() {
-		return _locale;
 	}
 
 	public java.lang.Object getRender() {
@@ -160,10 +148,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterContentBoxChange;
 	}
 
-	public java.lang.Object getAfterCssClassChange() {
-		return _afterCssClassChange;
-	}
-
 	public java.lang.Object getAfterDestroy() {
 		return _afterDestroy;
 	}
@@ -196,10 +180,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _afterHeightChange;
 	}
 
-	public java.lang.Object getAfterHideClassChange() {
-		return _afterHideClassChange;
-	}
-
 	public java.lang.Object getAfterIconsChange() {
 		return _afterIconsChange;
 	}
@@ -214,10 +194,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getAfterInitializedChange() {
 		return _afterInitializedChange;
-	}
-
-	public java.lang.Object getAfterLocaleChange() {
-		return _afterLocaleChange;
 	}
 
 	public java.lang.Object getAfterRenderChange() {
@@ -284,10 +260,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _onContentBoxChange;
 	}
 
-	public java.lang.Object getOnCssClassChange() {
-		return _onCssClassChange;
-	}
-
 	public java.lang.Object getOnDestroy() {
 		return _onDestroy;
 	}
@@ -320,10 +292,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		return _onHeightChange;
 	}
 
-	public java.lang.Object getOnHideClassChange() {
-		return _onHideClassChange;
-	}
-
 	public java.lang.Object getOnIconsChange() {
 		return _onIconsChange;
 	}
@@ -338,10 +306,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 
 	public java.lang.Object getOnInitializedChange() {
 		return _onInitializedChange;
-	}
-
-	public java.lang.Object getOnLocaleChange() {
-		return _onLocaleChange;
 	}
 
 	public java.lang.Object getOnRenderChange() {
@@ -418,12 +382,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("contentBox", contentBox);
 	}
 
-	public void setCssClass(java.lang.String cssClass) {
-		_cssClass = cssClass;
-
-		setScopedAttribute("cssClass", cssClass);
-	}
-
 	public void setDestroyed(boolean destroyed) {
 		_destroyed = destroyed;
 
@@ -466,12 +424,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("height", height);
 	}
 
-	public void setHideClass(java.lang.String hideClass) {
-		_hideClass = hideClass;
-
-		setScopedAttribute("hideClass", hideClass);
-	}
-
 	public void setIcons(java.lang.Object icons) {
 		_icons = icons;
 
@@ -488,12 +440,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_initialized = initialized;
 
 		setScopedAttribute("initialized", initialized);
-	}
-
-	public void setLocale(java.lang.String locale) {
-		_locale = locale;
-
-		setScopedAttribute("locale", locale);
 	}
 
 	public void setRender(java.lang.Object render) {
@@ -580,12 +526,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterContentBoxChange", afterContentBoxChange);
 	}
 
-	public void setAfterCssClassChange(java.lang.Object afterCssClassChange) {
-		_afterCssClassChange = afterCssClassChange;
-
-		setScopedAttribute("afterCssClassChange", afterCssClassChange);
-	}
-
 	public void setAfterDestroy(java.lang.Object afterDestroy) {
 		_afterDestroy = afterDestroy;
 
@@ -634,12 +574,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("afterHeightChange", afterHeightChange);
 	}
 
-	public void setAfterHideClassChange(java.lang.Object afterHideClassChange) {
-		_afterHideClassChange = afterHideClassChange;
-
-		setScopedAttribute("afterHideClassChange", afterHideClassChange);
-	}
-
 	public void setAfterIconsChange(java.lang.Object afterIconsChange) {
 		_afterIconsChange = afterIconsChange;
 
@@ -662,12 +596,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_afterInitializedChange = afterInitializedChange;
 
 		setScopedAttribute("afterInitializedChange", afterInitializedChange);
-	}
-
-	public void setAfterLocaleChange(java.lang.Object afterLocaleChange) {
-		_afterLocaleChange = afterLocaleChange;
-
-		setScopedAttribute("afterLocaleChange", afterLocaleChange);
 	}
 
 	public void setAfterRenderChange(java.lang.Object afterRenderChange) {
@@ -766,12 +694,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onContentBoxChange", onContentBoxChange);
 	}
 
-	public void setOnCssClassChange(java.lang.Object onCssClassChange) {
-		_onCssClassChange = onCssClassChange;
-
-		setScopedAttribute("onCssClassChange", onCssClassChange);
-	}
-
 	public void setOnDestroy(java.lang.Object onDestroy) {
 		_onDestroy = onDestroy;
 
@@ -820,12 +742,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("onHeightChange", onHeightChange);
 	}
 
-	public void setOnHideClassChange(java.lang.Object onHideClassChange) {
-		_onHideClassChange = onHideClassChange;
-
-		setScopedAttribute("onHideClassChange", onHideClassChange);
-	}
-
 	public void setOnIconsChange(java.lang.Object onIconsChange) {
 		_onIconsChange = onIconsChange;
 
@@ -848,12 +764,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onInitializedChange = onInitializedChange;
 
 		setScopedAttribute("onInitializedChange", onInitializedChange);
-	}
-
-	public void setOnLocaleChange(java.lang.Object onLocaleChange) {
-		_onLocaleChange = onLocaleChange;
-
-		setScopedAttribute("onLocaleChange", onLocaleChange);
 	}
 
 	public void setOnRenderChange(java.lang.Object onRenderChange) {
@@ -929,7 +839,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_collapsed = false;
 		_collapsible = false;
 		_contentBox = null;
-		_cssClass = null;
 		_destroyed = false;
 		_disabled = false;
 		_fillHeight = null;
@@ -937,11 +846,9 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_footerContent = null;
 		_headerContent = null;
 		_height = null;
-		_hideClass = "aui-helper-hidden";
 		_icons = null;
 		_panelId = null;
 		_initialized = false;
-		_locale = "en";
 		_render = null;
 		_rendered = false;
 		_srcNode = null;
@@ -956,7 +863,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_afterCollapsedChange = null;
 		_afterCollapsibleChange = null;
 		_afterContentBoxChange = null;
-		_afterCssClassChange = null;
 		_afterDestroy = null;
 		_afterDestroyedChange = null;
 		_afterDisabledChange = null;
@@ -965,12 +871,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_afterFooterContentChange = null;
 		_afterHeaderContentChange = null;
 		_afterHeightChange = null;
-		_afterHideClassChange = null;
 		_afterIconsChange = null;
 		_afterIdChange = null;
 		_afterInit = null;
 		_afterInitializedChange = null;
-		_afterLocaleChange = null;
 		_afterRenderChange = null;
 		_afterRenderedChange = null;
 		_afterSrcNodeChange = null;
@@ -987,7 +891,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onCollapsedChange = null;
 		_onCollapsibleChange = null;
 		_onContentBoxChange = null;
-		_onCssClassChange = null;
 		_onDestroy = null;
 		_onDestroyedChange = null;
 		_onDisabledChange = null;
@@ -996,12 +899,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		_onFooterContentChange = null;
 		_onHeaderContentChange = null;
 		_onHeightChange = null;
-		_onHideClassChange = null;
 		_onIconsChange = null;
 		_onIdChange = null;
 		_onInit = null;
 		_onInitializedChange = null;
-		_onLocaleChange = null;
 		_onRenderChange = null;
 		_onRenderedChange = null;
 		_onSrcNodeChange = null;
@@ -1027,7 +928,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "collapsed", _collapsed);
 		setNamespacedAttribute(request, "collapsible", _collapsible);
 		setNamespacedAttribute(request, "contentBox", _contentBox);
-		setNamespacedAttribute(request, "cssClass", _cssClass);
 		setNamespacedAttribute(request, "destroyed", _destroyed);
 		setNamespacedAttribute(request, "disabled", _disabled);
 		setNamespacedAttribute(request, "fillHeight", _fillHeight);
@@ -1035,11 +935,9 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "footerContent", _footerContent);
 		setNamespacedAttribute(request, "headerContent", _headerContent);
 		setNamespacedAttribute(request, "height", _height);
-		setNamespacedAttribute(request, "hideClass", _hideClass);
 		setNamespacedAttribute(request, "icons", _icons);
 		setNamespacedAttribute(request, "panelId", _panelId);
 		setNamespacedAttribute(request, "initialized", _initialized);
-		setNamespacedAttribute(request, "locale", _locale);
 		setNamespacedAttribute(request, "render", _render);
 		setNamespacedAttribute(request, "rendered", _rendered);
 		setNamespacedAttribute(request, "srcNode", _srcNode);
@@ -1054,7 +952,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterCollapsedChange", _afterCollapsedChange);
 		setNamespacedAttribute(request, "afterCollapsibleChange", _afterCollapsibleChange);
 		setNamespacedAttribute(request, "afterContentBoxChange", _afterContentBoxChange);
-		setNamespacedAttribute(request, "afterCssClassChange", _afterCssClassChange);
 		setNamespacedAttribute(request, "afterDestroy", _afterDestroy);
 		setNamespacedAttribute(request, "afterDestroyedChange", _afterDestroyedChange);
 		setNamespacedAttribute(request, "afterDisabledChange", _afterDisabledChange);
@@ -1063,12 +960,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "afterFooterContentChange", _afterFooterContentChange);
 		setNamespacedAttribute(request, "afterHeaderContentChange", _afterHeaderContentChange);
 		setNamespacedAttribute(request, "afterHeightChange", _afterHeightChange);
-		setNamespacedAttribute(request, "afterHideClassChange", _afterHideClassChange);
 		setNamespacedAttribute(request, "afterIconsChange", _afterIconsChange);
 		setNamespacedAttribute(request, "afterIdChange", _afterIdChange);
 		setNamespacedAttribute(request, "afterInit", _afterInit);
 		setNamespacedAttribute(request, "afterInitializedChange", _afterInitializedChange);
-		setNamespacedAttribute(request, "afterLocaleChange", _afterLocaleChange);
 		setNamespacedAttribute(request, "afterRenderChange", _afterRenderChange);
 		setNamespacedAttribute(request, "afterRenderedChange", _afterRenderedChange);
 		setNamespacedAttribute(request, "afterSrcNodeChange", _afterSrcNodeChange);
@@ -1085,7 +980,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onCollapsedChange", _onCollapsedChange);
 		setNamespacedAttribute(request, "onCollapsibleChange", _onCollapsibleChange);
 		setNamespacedAttribute(request, "onContentBoxChange", _onContentBoxChange);
-		setNamespacedAttribute(request, "onCssClassChange", _onCssClassChange);
 		setNamespacedAttribute(request, "onDestroy", _onDestroy);
 		setNamespacedAttribute(request, "onDestroyedChange", _onDestroyedChange);
 		setNamespacedAttribute(request, "onDisabledChange", _onDisabledChange);
@@ -1094,12 +988,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "onFooterContentChange", _onFooterContentChange);
 		setNamespacedAttribute(request, "onHeaderContentChange", _onHeaderContentChange);
 		setNamespacedAttribute(request, "onHeightChange", _onHeightChange);
-		setNamespacedAttribute(request, "onHideClassChange", _onHideClassChange);
 		setNamespacedAttribute(request, "onIconsChange", _onIconsChange);
 		setNamespacedAttribute(request, "onIdChange", _onIdChange);
 		setNamespacedAttribute(request, "onInit", _onInit);
 		setNamespacedAttribute(request, "onInitializedChange", _onInitializedChange);
-		setNamespacedAttribute(request, "onLocaleChange", _onLocaleChange);
 		setNamespacedAttribute(request, "onRenderChange", _onRenderChange);
 		setNamespacedAttribute(request, "onRenderedChange", _onRenderedChange);
 		setNamespacedAttribute(request, "onSrcNodeChange", _onSrcNodeChange);
@@ -1123,7 +1015,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private boolean _collapsed = false;
 	private boolean _collapsible = false;
 	private java.lang.String _contentBox = null;
-	private java.lang.String _cssClass = null;
 	private boolean _destroyed = false;
 	private boolean _disabled = false;
 	private java.lang.Object _fillHeight = null;
@@ -1131,11 +1022,9 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _footerContent = null;
 	private java.lang.Object _headerContent = null;
 	private java.lang.Object _height = null;
-	private java.lang.String _hideClass = "aui-helper-hidden";
 	private java.lang.Object _icons = null;
 	private java.lang.String _panelId = null;
 	private boolean _initialized = false;
-	private java.lang.String _locale = "en";
 	private java.lang.Object _render = null;
 	private boolean _rendered = false;
 	private java.lang.String _srcNode = null;
@@ -1150,7 +1039,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterCollapsedChange = null;
 	private java.lang.Object _afterCollapsibleChange = null;
 	private java.lang.Object _afterContentBoxChange = null;
-	private java.lang.Object _afterCssClassChange = null;
 	private java.lang.Object _afterDestroy = null;
 	private java.lang.Object _afterDestroyedChange = null;
 	private java.lang.Object _afterDisabledChange = null;
@@ -1159,12 +1047,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _afterFooterContentChange = null;
 	private java.lang.Object _afterHeaderContentChange = null;
 	private java.lang.Object _afterHeightChange = null;
-	private java.lang.Object _afterHideClassChange = null;
 	private java.lang.Object _afterIconsChange = null;
 	private java.lang.Object _afterIdChange = null;
 	private java.lang.Object _afterInit = null;
 	private java.lang.Object _afterInitializedChange = null;
-	private java.lang.Object _afterLocaleChange = null;
 	private java.lang.Object _afterRenderChange = null;
 	private java.lang.Object _afterRenderedChange = null;
 	private java.lang.Object _afterSrcNodeChange = null;
@@ -1181,7 +1067,6 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onCollapsedChange = null;
 	private java.lang.Object _onCollapsibleChange = null;
 	private java.lang.Object _onContentBoxChange = null;
-	private java.lang.Object _onCssClassChange = null;
 	private java.lang.Object _onDestroy = null;
 	private java.lang.Object _onDestroyedChange = null;
 	private java.lang.Object _onDisabledChange = null;
@@ -1190,12 +1075,10 @@ public class BasePanelTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.Object _onFooterContentChange = null;
 	private java.lang.Object _onHeaderContentChange = null;
 	private java.lang.Object _onHeightChange = null;
-	private java.lang.Object _onHideClassChange = null;
 	private java.lang.Object _onIconsChange = null;
 	private java.lang.Object _onIdChange = null;
 	private java.lang.Object _onInit = null;
 	private java.lang.Object _onInitializedChange = null;
-	private java.lang.Object _onLocaleChange = null;
 	private java.lang.Object _onRenderChange = null;
 	private java.lang.Object _onRenderedChange = null;
 	private java.lang.Object _onSrcNodeChange = null;

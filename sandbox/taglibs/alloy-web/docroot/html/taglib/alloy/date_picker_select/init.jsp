@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.ArrayList appendOrder = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:date-picker-select:appendOrder"), "[ 'm', 'd', 'y' ]"));
@@ -52,9 +52,11 @@ java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:date-pic
 java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:hideClass"), "aui-helper-hidden");
 java.lang.String datepickerselectId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:datepickerselectId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:locale"), "en");
 java.lang.String monthNode = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:monthNode"));
 java.lang.String monthNodeName = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:date-picker-select:monthNodeName"), "month");
+boolean nullableDay = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:nullableDay")), false);
+boolean nullableMonth = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:nullableMonth")), false);
+boolean nullableYear = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:nullableYear")), false);
 boolean populateDay = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:populateDay")), true);
 boolean populateMonth = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:populateMonth")), true);
 boolean populateYear = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:date-picker-select:populateYear")), true);
@@ -90,9 +92,11 @@ java.lang.Object afterHideClassChange = (java.lang.Object)request.getAttribute("
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterLocaleChange");
 java.lang.Object afterMonthNodeChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterMonthNodeChange");
 java.lang.Object afterMonthNodeNameChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterMonthNodeNameChange");
+java.lang.Object afterNullableDayChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterNullableDayChange");
+java.lang.Object afterNullableMonthChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterNullableMonthChange");
+java.lang.Object afterNullableYearChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterNullableYearChange");
 java.lang.Object afterPopulateDayChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterPopulateDayChange");
 java.lang.Object afterPopulateMonthChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterPopulateMonthChange");
 java.lang.Object afterPopulateYearChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:afterPopulateYearChange");
@@ -131,9 +135,11 @@ java.lang.Object onHideClassChange = (java.lang.Object)request.getAttribute("all
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onLocaleChange");
 java.lang.Object onMonthNodeChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onMonthNodeChange");
 java.lang.Object onMonthNodeNameChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onMonthNodeNameChange");
+java.lang.Object onNullableDayChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onNullableDayChange");
+java.lang.Object onNullableMonthChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onNullableMonthChange");
+java.lang.Object onNullableYearChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onNullableYearChange");
 java.lang.Object onPopulateDayChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onPopulateDayChange");
 java.lang.Object onPopulateMonthChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onPopulateMonthChange");
 java.lang.Object onPopulateYearChange = (java.lang.Object)request.getAttribute("alloy:date-picker-select:onPopulateYearChange");
@@ -171,9 +177,11 @@ _updateOptions(_options, "height", height);
 _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "datepickerselectId", datepickerselectId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "monthNode", monthNode);
 _updateOptions(_options, "monthNodeName", monthNodeName);
+_updateOptions(_options, "nullableDay", nullableDay);
+_updateOptions(_options, "nullableMonth", nullableMonth);
+_updateOptions(_options, "nullableYear", nullableYear);
 _updateOptions(_options, "populateDay", populateDay);
 _updateOptions(_options, "populateMonth", populateMonth);
 _updateOptions(_options, "populateYear", populateYear);
@@ -210,9 +218,11 @@ _updateOptions(_options, "afterHideClassChange", afterHideClassChange);
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterMonthNodeChange", afterMonthNodeChange);
 _updateOptions(_options, "afterMonthNodeNameChange", afterMonthNodeNameChange);
+_updateOptions(_options, "afterNullableDayChange", afterNullableDayChange);
+_updateOptions(_options, "afterNullableMonthChange", afterNullableMonthChange);
+_updateOptions(_options, "afterNullableYearChange", afterNullableYearChange);
 _updateOptions(_options, "afterPopulateDayChange", afterPopulateDayChange);
 _updateOptions(_options, "afterPopulateMonthChange", afterPopulateMonthChange);
 _updateOptions(_options, "afterPopulateYearChange", afterPopulateYearChange);
@@ -251,9 +261,11 @@ _updateOptions(_options, "onHideClassChange", onHideClassChange);
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onMonthNodeChange", onMonthNodeChange);
 _updateOptions(_options, "onMonthNodeNameChange", onMonthNodeNameChange);
+_updateOptions(_options, "onNullableDayChange", onNullableDayChange);
+_updateOptions(_options, "onNullableMonthChange", onNullableMonthChange);
+_updateOptions(_options, "onNullableYearChange", onNullableYearChange);
 _updateOptions(_options, "onPopulateDayChange", onPopulateDayChange);
 _updateOptions(_options, "onPopulateMonthChange", onPopulateMonthChange);
 _updateOptions(_options, "onPopulateYearChange", onPopulateYearChange);

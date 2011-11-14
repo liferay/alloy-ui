@@ -35,10 +35,11 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:align")));
+java.util.ArrayList alignOn = _toArrayList(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:overlay-base:alignOn")));
 java.lang.Object overlaybaseBodyContent = (java.lang.Object)request.getAttribute("alloy:overlay-base:overlaybaseBodyContent");
 java.lang.Object centered = (java.lang.Object)request.getAttribute("alloy:overlay-base:centered");
 java.lang.Object constrain = (java.lang.Object)request.getAttribute("alloy:overlay-base:constrain");
@@ -53,7 +54,6 @@ java.lang.Object height = (java.lang.Object)request.getAttribute("alloy:overlay-
 java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-base:hideClass"), "aui-helper-hidden");
 java.lang.String overlaybaseId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-base:overlaybaseId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:initialized")), false);
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:overlay-base:locale"), "en");
 boolean preventOverlap = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:preventOverlap")), false);
 java.lang.Object render = (java.lang.Object)request.getAttribute("alloy:overlay-base:render");
 boolean rendered = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:overlay-base:rendered")), false);
@@ -68,6 +68,7 @@ java.util.ArrayList xy = _toArrayList(GetterUtil.getObject((java.lang.Object)req
 java.lang.Number y = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:y")), 0);
 java.lang.Number zIndex = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:overlay-base:zIndex")), 0);
 java.lang.Object afterAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterAlignChange");
+java.lang.Object afterAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterAlignOnChange");
 java.lang.Object afterBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterBodyContentChange");
 java.lang.Object afterBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterBoundingBoxChange");
 java.lang.Object afterCenteredChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterCenteredChange");
@@ -86,7 +87,6 @@ java.lang.Object afterHideClassChange = (java.lang.Object)request.getAttribute("
 java.lang.Object afterIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterIdChange");
 java.lang.Object afterInit = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterInit");
 java.lang.Object afterInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterInitializedChange");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterLocaleChange");
 java.lang.Object afterPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterPreventOverlapChange");
 java.lang.Object afterRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterRenderChange");
 java.lang.Object afterRenderedChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterRenderedChange");
@@ -104,6 +104,7 @@ java.lang.Object afterXyChange = (java.lang.Object)request.getAttribute("alloy:o
 java.lang.Object afterYChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterYChange");
 java.lang.Object afterZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:afterZIndexChange");
 java.lang.Object onAlignChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onAlignChange");
+java.lang.Object onAlignOnChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onAlignOnChange");
 java.lang.Object onBodyContentChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onBodyContentChange");
 java.lang.Object onBoundingBoxChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onBoundingBoxChange");
 java.lang.Object onCenteredChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onCenteredChange");
@@ -122,7 +123,6 @@ java.lang.Object onHideClassChange = (java.lang.Object)request.getAttribute("all
 java.lang.Object onIdChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onIdChange");
 java.lang.Object onInit = (java.lang.Object)request.getAttribute("alloy:overlay-base:onInit");
 java.lang.Object onInitializedChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onInitializedChange");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onLocaleChange");
 java.lang.Object onPreventOverlapChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onPreventOverlapChange");
 java.lang.Object onRenderChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onRenderChange");
 java.lang.Object onRenderedChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onRenderedChange");
@@ -141,6 +141,7 @@ java.lang.Object onYChange = (java.lang.Object)request.getAttribute("alloy:overl
 java.lang.Object onZIndexChange = (java.lang.Object)request.getAttribute("alloy:overlay-base:onZIndexChange");
 
 _updateOptions(_options, "align", align);
+_updateOptions(_options, "alignOn", alignOn);
 _updateOptions(_options, "overlaybaseBodyContent", overlaybaseBodyContent);
 _updateOptions(_options, "boundingBox", boundingBox);
 _updateOptions(_options, "centered", centered);
@@ -157,7 +158,6 @@ _updateOptions(_options, "height", height);
 _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "overlaybaseId", overlaybaseId);
 _updateOptions(_options, "initialized", initialized);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "preventOverlap", preventOverlap);
 _updateOptions(_options, "render", render);
 _updateOptions(_options, "rendered", rendered);
@@ -173,6 +173,7 @@ _updateOptions(_options, "xy", xy);
 _updateOptions(_options, "y", y);
 _updateOptions(_options, "zIndex", zIndex);
 _updateOptions(_options, "afterAlignChange", afterAlignChange);
+_updateOptions(_options, "afterAlignOnChange", afterAlignOnChange);
 _updateOptions(_options, "afterBodyContentChange", afterBodyContentChange);
 _updateOptions(_options, "afterBoundingBoxChange", afterBoundingBoxChange);
 _updateOptions(_options, "afterCenteredChange", afterCenteredChange);
@@ -191,7 +192,6 @@ _updateOptions(_options, "afterHideClassChange", afterHideClassChange);
 _updateOptions(_options, "afterIdChange", afterIdChange);
 _updateOptions(_options, "afterInit", afterInit);
 _updateOptions(_options, "afterInitializedChange", afterInitializedChange);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterPreventOverlapChange", afterPreventOverlapChange);
 _updateOptions(_options, "afterRenderChange", afterRenderChange);
 _updateOptions(_options, "afterRenderedChange", afterRenderedChange);
@@ -209,6 +209,7 @@ _updateOptions(_options, "afterXyChange", afterXyChange);
 _updateOptions(_options, "afterYChange", afterYChange);
 _updateOptions(_options, "afterZIndexChange", afterZIndexChange);
 _updateOptions(_options, "onAlignChange", onAlignChange);
+_updateOptions(_options, "onAlignOnChange", onAlignOnChange);
 _updateOptions(_options, "onBodyContentChange", onBodyContentChange);
 _updateOptions(_options, "onBoundingBoxChange", onBoundingBoxChange);
 _updateOptions(_options, "onCenteredChange", onCenteredChange);
@@ -227,7 +228,6 @@ _updateOptions(_options, "onHideClassChange", onHideClassChange);
 _updateOptions(_options, "onIdChange", onIdChange);
 _updateOptions(_options, "onInit", onInit);
 _updateOptions(_options, "onInitializedChange", onInitializedChange);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onPreventOverlapChange", onPreventOverlapChange);
 _updateOptions(_options, "onRenderChange", onRenderChange);
 _updateOptions(_options, "onRenderedChange", onRenderedChange);

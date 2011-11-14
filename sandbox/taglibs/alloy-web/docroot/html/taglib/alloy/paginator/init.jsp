@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 boolean alwaysVisible = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:paginator:alwaysVisible")), true);

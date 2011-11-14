@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/alloy/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
 
 <%
 boolean alwaysShowContainer = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:auto-complete:alwaysShowContainer")), false);
@@ -55,7 +55,6 @@ java.lang.String hideClass = GetterUtil.getString((java.lang.String)request.getA
 java.lang.String autocompleteId = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:autocompleteId"));
 boolean initialized = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:auto-complete:initialized")), false);
 java.lang.String input = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:input"));
-java.lang.String locale = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:locale"), "en");
 java.lang.Object matchKey = (java.lang.Object)request.getAttribute("alloy:auto-complete:matchKey");
 java.lang.Number maxResultsDisplayed = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:auto-complete:maxResultsDisplayed")), 10);
 java.lang.Number minQueryLength = GetterUtil.getNumber(String.valueOf(request.getAttribute("alloy:auto-complete:minQueryLength")), 1);
@@ -109,7 +108,6 @@ java.lang.Object afterItemArrowTo = (java.lang.Object)request.getAttribute("allo
 java.lang.Object afterItemMouseOut = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterItemMouseOut");
 java.lang.Object afterItemMouseOver = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterItemMouseOver");
 java.lang.Object afterItemSelect = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterItemSelect");
-java.lang.Object afterLocaleChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterLocaleChange");
 java.lang.Object afterMatchKeyChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterMatchKeyChange");
 java.lang.Object afterMaxResultsDisplayedChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterMaxResultsDisplayedChange");
 java.lang.Object afterMinQueryLengthChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:afterMinQueryLengthChange");
@@ -173,7 +171,6 @@ java.lang.Object onItemArrowTo = (java.lang.Object)request.getAttribute("alloy:a
 java.lang.Object onItemMouseOut = (java.lang.Object)request.getAttribute("alloy:auto-complete:onItemMouseOut");
 java.lang.Object onItemMouseOver = (java.lang.Object)request.getAttribute("alloy:auto-complete:onItemMouseOver");
 java.lang.Object onItemSelect = (java.lang.Object)request.getAttribute("alloy:auto-complete:onItemSelect");
-java.lang.Object onLocaleChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:onLocaleChange");
 java.lang.Object onMatchKeyChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:onMatchKeyChange");
 java.lang.Object onMaxResultsDisplayedChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:onMaxResultsDisplayedChange");
 java.lang.Object onMinQueryLengthChange = (java.lang.Object)request.getAttribute("alloy:auto-complete:onMinQueryLengthChange");
@@ -225,7 +222,6 @@ _updateOptions(_options, "hideClass", hideClass);
 _updateOptions(_options, "autocompleteId", autocompleteId);
 _updateOptions(_options, "initialized", initialized);
 _updateOptions(_options, "input", input);
-_updateOptions(_options, "locale", locale);
 _updateOptions(_options, "matchKey", matchKey);
 _updateOptions(_options, "maxResultsDisplayed", maxResultsDisplayed);
 _updateOptions(_options, "minQueryLength", minQueryLength);
@@ -280,7 +276,6 @@ _updateOptions(_options, "afterItemArrowTo", afterItemArrowTo);
 _updateOptions(_options, "afterItemMouseOut", afterItemMouseOut);
 _updateOptions(_options, "afterItemMouseOver", afterItemMouseOver);
 _updateOptions(_options, "afterItemSelect", afterItemSelect);
-_updateOptions(_options, "afterLocaleChange", afterLocaleChange);
 _updateOptions(_options, "afterMatchKeyChange", afterMatchKeyChange);
 _updateOptions(_options, "afterMaxResultsDisplayedChange", afterMaxResultsDisplayedChange);
 _updateOptions(_options, "afterMinQueryLengthChange", afterMinQueryLengthChange);
@@ -344,7 +339,6 @@ _updateOptions(_options, "onItemArrowTo", onItemArrowTo);
 _updateOptions(_options, "onItemMouseOut", onItemMouseOut);
 _updateOptions(_options, "onItemMouseOver", onItemMouseOver);
 _updateOptions(_options, "onItemSelect", onItemSelect);
-_updateOptions(_options, "onLocaleChange", onLocaleChange);
 _updateOptions(_options, "onMatchKeyChange", onMatchKeyChange);
 _updateOptions(_options, "onMaxResultsDisplayedChange", onMaxResultsDisplayedChange);
 _updateOptions(_options, "onMinQueryLengthChange", onMinQueryLengthChange);
