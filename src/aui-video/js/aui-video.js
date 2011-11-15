@@ -9,8 +9,8 @@ var Lang = A.Lang,
 
 	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf',
 
-	TPL_SOURCE_MP4 = '<source type="video/mp4;" />',
-	TPL_SOURCE_OGV = '<source type=\'video/ogg; codecs="theora, vorbis"\' />',
+	DOC = A.config.doc,
+
 	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
@@ -180,7 +180,9 @@ var Video = A.Component.create(
 						var sourceOgv = instance._sourceOgv;
 
 						if (!sourceOgv) {
-							sourceOgv = A.Node.create(TPL_SOURCE_OGV);
+							sourceOgv = new A.Node(DOC.createElement('source'));
+
+							sourceOgv.attr('type', 'video/ogg; codecs="theora, vorbis"');
 
 							video.append(sourceOgv);
 
@@ -229,7 +231,9 @@ var Video = A.Component.create(
 				{
 					if (video || !ogvUrl) {
 						if (!sourceMp4) {
-							sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
+							sourceMp4 = new A.Node(DOC.createElement('source'));
+
+							sourceMp4.attr('type', 'video/mp4;');
 
 							video.append(sourceMp4);
 
