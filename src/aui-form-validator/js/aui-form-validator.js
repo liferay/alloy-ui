@@ -67,8 +67,8 @@ var L = A.Lang,
 	CSS_MESSAGE = getCN(FORM_VALIDATOR, MESSAGE),
 	CSS_STACK_ERROR = getCN(FORM_VALIDATOR, STACK, ERROR),
 
-	TPL_MESSAGE = '<div class="'+CSS_MESSAGE+'" role="alert"></div>',
-	TPL_STACK_ERROR = '<label class="'+CSS_STACK_ERROR+'"></label>',
+	TPL_MESSAGE = '<div class="' + CSS_MESSAGE + '" role="alert"></div>',
+	TPL_STACK_ERROR = '<label class="' + CSS_STACK_ERROR + '"></label>',
 
 	UI_ATTRS = [ EXTRACT_RULES, VALIDATE_ON_BLUR, VALIDATE_ON_INPUT ];
 
