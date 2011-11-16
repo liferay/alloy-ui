@@ -5,56 +5,56 @@
  */
 
 var Lang = A.Lang,
-isArray = Lang.isArray,
-isString = Lang.isString,
-isNull = Lang.isNull,
-isFunction = Lang.isFunction,
+	isArray = Lang.isArray,
+	isString = Lang.isString,
+	isNull = Lang.isNull,
+	isFunction = Lang.isFunction,
 
-getClassName = A.getClassName,
+	getClassName = A.getClassName,
 
-KeyMap = A.Event.KeyMap,
+	KeyMap = A.Event.KeyMap,
 
-ALERT = 'alert',
-CONTENT = 'content',
-HELPER = 'helper',
-HIDDEN = 'hidden',
-ICON = 'icon',
-ITEM = 'item',
-LIST = 'list',
-LOADING = 'loading',
-NAME = 'autocomplete',
-RESET = 'reset',
-RESULTS = 'results',
-SELECTED = 'selected',
+	ALERT = 'alert',
+	CONTENT = 'content',
+	HELPER = 'helper',
+	HIDDEN = 'hidden',
+	ICON = 'icon',
+	ITEM = 'item',
+	LIST = 'list',
+	LOADING = 'loading',
+	NAME = 'autocomplete',
+	RESET = 'reset',
+	RESULTS = 'results',
+	SELECTED = 'selected',
 
-ICON_DEFAULT = 'circle-triangle-b',
-ICON_ERROR = ALERT,
-ICON_LOADING = LOADING,
+	ICON_DEFAULT = 'circle-triangle-b',
+	ICON_ERROR = ALERT,
+	ICON_LOADING = LOADING,
 
-CSS_HIGLIGHT = getClassName(NAME, SELECTED),
-CSS_HIDDEN = getClassName(HELPER, HIDDEN),
-CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
-CSS_RESULTS_LIST = getClassName(HELPER, RESET),
-CSS_RESULTS_OVERLAY = getClassName(NAME, RESULTS),
-CSS_RESULTS_OVERLAY_CONTENT = getClassName(NAME, RESULTS, CONTENT),
+	CSS_HIGLIGHT = getClassName(NAME, SELECTED),
+	CSS_HIDDEN = getClassName(HELPER, HIDDEN),
+	CSS_LIST_ITEM = getClassName(NAME, LIST, ITEM),
+	CSS_RESULTS_LIST = getClassName(HELPER, RESET),
+	CSS_RESULTS_OVERLAY = getClassName(NAME, RESULTS),
+	CSS_RESULTS_OVERLAY_CONTENT = getClassName(NAME, RESULTS, CONTENT),
 
-BACKSPACE = 'BACKSPACE',
-TAB = 'TAB',
-ENTER = 'ENTER',
-ALT = 'ALT',
-ESC = 'ESC',
-UP = 'UP',
-DOWN = 'DOWN',
-RIGHT = 'RIGHT',
-WIN_IME = 'WIN_IME',
+	BACKSPACE = 'BACKSPACE',
+	TAB = 'TAB',
+	ENTER = 'ENTER',
+	ALT = 'ALT',
+	ESC = 'ESC',
+	UP = 'UP',
+	DOWN = 'DOWN',
+	RIGHT = 'RIGHT',
+	WIN_IME = 'WIN_IME',
 
-OVERLAY_ALIGN = {
-	node: null,
-	points: ['tl', 'bl']
-},
+	OVERLAY_ALIGN = {
+		node: null,
+		points: ['tl', 'bl']
+	},
 
-BOUNDING_BOX = 'boundingBox',
-CONTENT_BOX = 'contentBox';
+	BOUNDING_BOX = 'boundingBox',
+	CONTENT_BOX = 'contentBox';
 
 /**
  * <p><img src="assets/images/aui-autocomplete/main.png"/></p>
@@ -1776,7 +1776,7 @@ var AutoComplete = A.Component.create(
 
 				contentBox.addClass(CSS_RESULTS_OVERLAY_CONTENT);
 
-				overlay.render(document.body);
+				overlay.render();
 
 				overlay.addTarget(instance);
 
