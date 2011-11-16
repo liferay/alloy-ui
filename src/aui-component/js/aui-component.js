@@ -15,7 +15,7 @@ var Lang = A.Lang,
 	NAME = 'component',
 
 	CSS_HELPER_HIDDEN = getClassName('helper', 'hidden'),
-	CONSTRUCTOR_OBJECT = Object.prototype.constructor;
+	CONSTRUCTOR_OBJECT = A.config.win.Object.prototype.constructor;
 
 /**
  * A base class for Component, providing:
@@ -348,7 +348,7 @@ Component.create = function(config) {
 
 	var component = config.constructor;
 
-	if (!component || component == CONSTRUCTOR_OBJECT){
+	if (!A.Object.owns(config, 'constructor')){
 		component = function(){
 			component.superclass.constructor.apply(this, arguments);
 		};

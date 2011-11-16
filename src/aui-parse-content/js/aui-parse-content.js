@@ -14,6 +14,8 @@
 var L = A.Lang,
 	isString = L.isString,
 
+	DOC = A.config.doc,
+
 	APPEND = 'append',
 	DOCUMENT_ELEMENT = 'documentElement',
 	FIRST_CHILD = 'firstChild',
@@ -118,7 +120,7 @@ var ParseContent = A.Component.create(
 				var head = doc.one(HEAD) || doc.get(DOCUMENT_ELEMENT);
 
 				// NOTE: A.Node.create('<script></script>') doesn't work correctly on Opera
-				var newScript = document.createElement(SCRIPT);
+				var newScript = DOC.createElement(SCRIPT);
 
 				newScript.type = 'text/javascript';
 

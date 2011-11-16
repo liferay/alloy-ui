@@ -15,6 +15,8 @@ var Lang = A.Lang,
 
 	WidgetStdMod = A.WidgetStdMod,
 
+	DOC = A.config.doc,
+
 	BOUNDING_BOX = 'boundingBox',
 	COLLAPSE = 'collapse',
 	COLLAPSED = 'collapsed',
@@ -45,7 +47,7 @@ var Lang = A.Lang,
 		header: 'hd'
 	},
 
-	NODE_BLANK_TEXT = document.createTextNode(''),
+	NODE_BLANK_TEXT = DOC.createTextNode(''),
 
 	TPL_HEADER_TEXT = '<span class="' + CSS_PANEL_HD_TEXT + '"></span>';
 
