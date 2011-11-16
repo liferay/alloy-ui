@@ -67,6 +67,16 @@ var Video = A.Component.create(
 				);
 			},
 
+			_createSource: function(type) {
+				var instance = this;
+
+				var sourceNode = new A.Node(DOC.createElement('source'));
+
+				sourceNode.attr('type', type);
+
+				return sourceNode;
+			},
+
 			_renderSwf: function () {
 				var instance = this;
 
@@ -181,9 +191,7 @@ var Video = A.Component.create(
 						var sourceOgv = instance._sourceOgv;
 
 						if (!sourceOgv) {
-							sourceOgv = new A.Node(DOC.createElement('source'));
-
-							sourceOgv.attr('type', 'video/ogg; codecs="theora, vorbis"');
+							sourceOgv = instance._createSource('video/ogg; codecs="theora, vorbis"');
 
 							video.append(sourceOgv);
 
@@ -232,9 +240,7 @@ var Video = A.Component.create(
 				{
 					if (video || !ogvUrl) {
 						if (!sourceMp4) {
-							sourceMp4 = new A.Node(DOC.createElement('source'));
-
-							sourceMp4.attr('type', 'video/mp4;');
+							sourceMp4 = instance._createSource('video/mp4;');
 
 							video.append(sourceMp4);
 
@@ -259,4 +265,4 @@ var Video = A.Component.create(
 
 A.Video = Video;
 
-}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','querystring-stringify-simple']});
