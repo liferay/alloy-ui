@@ -3,6 +3,8 @@ var Lang = A.Lang,
 
 	getClassName = A.getClassName,
 
+	DOC = A.config.doc,
+
 	NAME = 'chart',
 
 	CSS_CHART = getClassName(NAME),
@@ -127,7 +129,7 @@ var Chart = A.Component.create(
 						allowScriptAccess: 'always'
 					},
 					flashVars: {
-						allowedDomain: document.location.hostname
+						allowedDomain: DOC.location.hostname
 					},
 					backgroundColor: contentBox.getStyle('backgroundColor'),
 					url: instance.get('swfURL'),
@@ -1118,4 +1120,4 @@ A.extend(
 
 A.Chart.StackedColumnSeries = StackedColumnSeries;
 
-}, '@VERSION@' ,{requires:['datasource','aui-swf','json'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['datasource','aui-swf','json']});

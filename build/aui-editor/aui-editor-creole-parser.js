@@ -26,6 +26,8 @@ AUI.add('aui-editor-creole-parser', function(A) {
  * DEALINGS IN THE SOFTWARE.
  */
 
+var DOC = A.config.doc;
+
 if (!Parse) { var Parse = {}; }
 if (!Parse.Simple) { Parse.Simple = {}; }
 
@@ -89,7 +91,7 @@ Parse.Simple.Base.Rule.prototype = {
 
         var target;
         if (this.tag) {
-            target = document.createElement(this.tag);
+            target = DOC.createElement(this.tag);
             node.appendChild(target);
         }
         else { target = node; }
@@ -168,7 +170,7 @@ Parse.Simple.Base.Rule.prototype = {
                 // workaround for bad IE
                 data = data.replace(/\n/g, ' \r');
             }
-            node.appendChild(document.createTextNode(data));
+            node.appendChild(DOC.createTextNode(data));
         }
     }
 };
@@ -245,7 +247,7 @@ Parse.Simple.Creole = function(options) {
 
         img: { regex: rx.img,
             build: function(node, r, options) {
-                var img = document.createElement('img');
+                var img = DOC.createElement('img');
                 img.src = r[1];
                 img.alt = r[2] === undefined
                     ? (options && options.defaultImageText ? options.defaultImageText : '')
@@ -255,10 +257,10 @@ Parse.Simple.Creole = function(options) {
 
         namedUri: { regex: '\\[\\[(' + rx.uri + ')\\|(' + rx.linkText + ')\\]\\]',
             build: function(node, r, options) {
-                var link = document.createElement('a');
+                var link = DOC.createElement('a');
                 link.href = r[1];
                 if (options && options.isPlainUri) {
-                    link.appendChild(document.createTextNode(r[2]));
+                    link.appendChild(DOC.createTextNode(r[2]));
                 }
                 else {
                     this.apply(link, r[2], options);
@@ -268,7 +270,7 @@ Parse.Simple.Creole = function(options) {
 
         namedLink: { regex: '\\[\\[(' + rx.link + ')\\|(' + rx.linkText + ')\\]\\]',
             build: function(node, r, options) {
-                var link = document.createElement('a');
+                var link = DOC.createElement('a');
 
                 link.href = options && options.linkFormat
                     ? formatLink(r[1].replace(/~(.)/g, '$1'), options.linkFormat)
@@ -303,7 +305,7 @@ Parse.Simple.Creole = function(options) {
     };
     g.namedInterwikiLink = { regex: '\\[\\[(' + rx.interwikiLink + ')\\|(' + rx.linkText + ')\\]\\]',
         build: function(node, r, options) {
-                var link = document.createElement('a');
+                var link = DOC.createElement('a');
 
                 var m, f;
                 if (options && options.interwiki) {

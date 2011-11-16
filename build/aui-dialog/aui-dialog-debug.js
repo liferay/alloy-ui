@@ -18,6 +18,8 @@ var L = A.Lang,
 		return parseInt(val, 10) || 0;
 	},
 
+	DOC = A.config.doc,
+
 	BLANK = '',
 	BOUNDING_BOX = 'boundingBox',
 	BUTTON = 'button',
@@ -60,7 +62,7 @@ var L = A.Lang,
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
 
-	NODE_BLANK_TEXT = document.createTextNode('');
+	NODE_BLANK_TEXT = DOC.createTextNode('');
 
 /**
  * <p><img src="assets/images/aui-dialog/main.png"/></p>
@@ -927,4 +929,4 @@ A.mix(
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});

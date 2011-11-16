@@ -17,6 +17,8 @@ var Lang = A.Lang,
 		return A.Node.create(SELECT_TPL);
 	},
 
+	DOC = A.config.doc,
+
 	APPEND_ORDER = 'appendOrder',
 	BLANK = '',
 	BODY = 'body',
@@ -741,7 +743,7 @@ var DatePickerSelect = A.Component.create(
 					// this textNode is to prevent layout shifting only
 					// simulate the default browser space between inputs/selects on re-append
 					var textNode = A.one(
-						document.createTextNode(SPACE)
+						DOC.createTextNode(SPACE)
 					);
 
 					selectWrapper.append(orderedFields[0]);
@@ -877,4 +879,4 @@ var DatePickerSelect = A.Component.create(
 
 A.DatePickerSelect = DatePickerSelect;
 
-}, '@VERSION@' ,{requires:['aui-datepicker-base','aui-button-item'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datepicker-base','aui-button-item']});

@@ -14,6 +14,8 @@ var L = A.Lang,
 
 	NodeFx = A.Plugin.NodeFX,
 
+	DOC = A.config.doc,
+
 	ANIM = 'anim',
 	ARROW = 'arrow',
 	ARROW_LEFT_EL = 'arrowLeftEl',
@@ -109,7 +111,7 @@ var L = A.Lang,
 		width: AUTO
 	},
 
-	NODE_BLANK_TEXT = document.createTextNode(''),
+	NODE_BLANK_TEXT = DOC.createTextNode(''),
 
 	INFO_LABEL_TEMPLATE = 'Image {current} of {total}',
 
@@ -503,7 +505,7 @@ var ImageViewer = A.Component.create(
 			loader: {
 				readOnly: true,
 				valueFn: function() {
-					return A.Node.create(TPL_LOADER).appendTo(document.body);
+					return A.Node.create(TPL_LOADER).appendTo(DOC.body);
 				}
 			},
 
@@ -1016,7 +1018,9 @@ var ImageViewer = A.Component.create(
 			 */
 			_renderFooter: function() {
 				var instance = this;
+
 				var boundingBox = instance.get(BOUNDING_BOX);
+
 				var docFrag = boundingBox.get(OWNER_DOCUMENT).invoke(CREATE_DOCUMENT_FRAGMENT);
 
 				docFrag.append(
@@ -1429,4 +1433,4 @@ A.ImageViewer = ImageViewer;
  */
 A.ImageViewerMask = new A.OverlayMask().render();
 
-}, '@VERSION@' ,{requires:['anim','aui-overlay-mask'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['anim','aui-overlay-mask']});

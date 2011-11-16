@@ -261,4 +261,4 @@ A.DatepickerManager = new A.OverlayManager({
 	zIndexBase: 1000
 });
 
-}, '@VERSION@' ,{requires:['aui-calendar','aui-overlay-context'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-overlay-context']});

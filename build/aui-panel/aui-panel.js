@@ -16,6 +16,8 @@ var Lang = A.Lang,
 
 	WidgetStdMod = A.WidgetStdMod,
 
+	DOC = A.config.doc,
+
 	BOUNDING_BOX = 'boundingBox',
 	COLLAPSE = 'collapse',
 	COLLAPSED = 'collapsed',
@@ -46,7 +48,7 @@ var Lang = A.Lang,
 		header: 'hd'
 	},
 
-	NODE_BLANK_TEXT = document.createTextNode(''),
+	NODE_BLANK_TEXT = DOC.createTextNode(''),
 
 	TPL_HEADER_TEXT = '<span class="' + CSS_PANEL_HD_TEXT + '"></span>';
 
@@ -582,4 +584,4 @@ Panel.prototype = {
 
 A.Panel = A.Component.build(PANEL, A.Component, [A.WidgetStdMod, Panel]);
 
-}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria']});
