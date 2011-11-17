@@ -249,23 +249,19 @@ public class TagBuilder {
 				componentsDoc = _mergeXMLAttributes(extDoc, parentDoc);
 			}
 
-			Element extRootAuthors = extRoot.element(_AUTHORS);
+			Element authors = extRoot.element(_AUTHORS);
 
-			List<Element> extComponents = extRoot.elements("component");
+			List<Element> components = extRoot.elements("component");
 
-			for (Element extComponent : extComponents) {
-				Element extComoponentCopy = extComponent.createCopy();
+			for (Element component : components) {
+				Element comoponentCopy = component.createCopy();
+				Element componentAuthors = comoponentCopy.element("authors");
 
-				Element extComponentAuthors =
-					extComoponentCopy.element("authors");
-
-				if ((extRootAuthors != null) &&
-					(extComponentAuthors == null)) {
-
-					extComoponentCopy.add(extRootAuthors.createCopy());
+				if ((authors != null) && (componentAuthors == null)) {
+					comoponentCopy.add(authors.createCopy());
 				}
 
-				root.add(extComoponentCopy);
+				root.add(comoponentCopy);
 			}
 		}
 
@@ -709,7 +705,6 @@ public class TagBuilder {
 	private static final String _DEFAULT_TAGLIB_URI = "http://alloy.liferay.com/tld/alloy";
 	private static final String _DEFAULT_TAGLIB_VERSION = "1.0";
 	private static final String _DEFAULT_TYPE = "java.lang.Object";
-	private static final String _END_PAGE = "/end.jsp";
 	private static final String _EVENT = "event";
 	private static final String _EVENTS = "events";
 	private static final String _INIT_EXT_PAGE = "/init-ext.jspf";
