@@ -274,7 +274,7 @@ public class TagBuilder {
 		return _getComponents(doc);
 	}
 
-	private List<Attribute> _getAttributes(Element componentNode) {
+	private List<Attribute> getAttributes(Element componentNode) {
 		return _getAttributes(componentNode, "attributes", "attribute");
 	}
 
@@ -326,7 +326,7 @@ public class TagBuilder {
 		return attributes;
 	}
 
-	private String[] _getAuthorList(Element element) {
+	private String[] getAuthorList(Element element) {
 		List<String> authors = new ArrayList<String>();
 
 		if (element != null) {
@@ -362,8 +362,9 @@ public class TagBuilder {
 	}
 
 	private List<Component> _getComponents(Document doc) throws Exception {
-		List<Component> components = new ArrayList<Component>();
 		Element root = doc.getRootElement();
+
+		List<Component> components = new ArrayList<Component>();
 
 		String defaultPackage = root.attributeValue("short-name");
 		List<Element> allComponentNodes = root.elements("component");
@@ -395,13 +396,22 @@ public class TagBuilder {
 			boolean writeJSP = GetterUtil.getBoolean(
 				node.attributeValue("writeJSP"), true);
 
-			Component component = new Component(
-				componentPackage, name, alloyComponent, module, bodyContent,
-				_getAttributes(node), _getPrefixedEvents(node),
-				_getAuthorList(node));
+			String[] authors = getAuthorList(node);
+			List<Attribute> attributes = getAttributes(node);
+			List<Attribute> events = getPrefixedEvents(node);
 
+			Component component = new Component();
+
+			component.setAlloyComponent(alloyComponent);
+			component.setAttributes(attributes);
+			component.setAuthors(authors);
+			component.setBodyContent(bodyContent);
 			component.setClassName(className);
 			component.setDynamicAttributes(dynamicAttributes);
+			component.setEvents(events);
+			component.setModule(module);
+			component.setName(name);
+			component.setPackage(componentPackage);
 			component.setParentClass(parentClass);
 			component.setWriteJSP(writeJSP);
 
@@ -485,7 +495,7 @@ public class TagBuilder {
 		return sb.toString();
 	}
 
-	private List<Attribute> _getPrefixedEvents(Element componentNode) {
+	private List<Attribute> getPrefixedEvents(Element componentNode) {
 		List<Attribute> afterEvents = _getAttributes(
 			componentNode, "events", "event");
 
