@@ -105,7 +105,7 @@
 <div id="wrapper">
 	<h1>Alloy - Delegated change event demo</h1>
 
-	<input id="Xcheckbox2" name="Xcheckbox2" type="checkbox" value="1" /><input id="Xradio2" name="Xradio1" type="radio" value="2" /><input id="Xradio1" name="Xradio1" type="radio" value="1" />
+	<a href="javascript:;" id="refreshAttach">Detach existing delegate change events and attach a new one</a>
 
 	<div id="demo">
 		<form class="aui-layout-content aui-form" id="myForm" action="">
@@ -613,10 +613,29 @@ AUI().ready(
 	function(A) {
 		new A.Console().render();
 
+		var loop = function(node, cssClass) {
+			var regex = new RegExp('(?:^|\\s+)' + cssClass + '(?:\\s+|$)');
+			while (node) {
+				if (regex.test(node.className)) {
+					return node;
+				}
+				node = node.parentNode;
+			}
+			return null;
+		};
+
+		document.body.addEventListener('change', function(event) {
+			if (event.target.nodeName == 'INPUT' && event.target.type == 'checkbox' && loop(event.target, 'aui-field')) {
+				console.log('delegated event', event.target, event.currentTarget);
+			}
+		}, false);
+
 		A.getBody().delegate(
 			'change',
 			function(event) {
-				A.log('THIS WAS A DELEGATED CHANGE: ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
+				event.stopPropagation();
+				console.log(event.target, event.currentTarget);
+				A.log('Delegate Change Event #1: ' + event.target.guid() + ' - ' + event.currentTarget.guid() + ' - ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
 			},
 			'.aui-field'
 		);
@@ -624,33 +643,34 @@ AUI().ready(
 		A.getBody().delegate(
 			'change',
 			function(event) {
-				A.log('--2 this was a delegated change: ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
+				event.stopPropagation();
+				console.log(event.target, event.currentTarget);
+				A.log('Delegate Change Event #2: ' + event.target.guid() + ' - ' + event.currentTarget.guid() + ' - ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
 			},
 			'.aui-field'
 		);
 
-		A.getBody().delegate(
+		A.one('#refreshAttach').on(
 			'click',
 			function(event) {
-				A.log('valid H1 delegate click');
+				A.log('Refreshing attached change events.');
 
 				A.getBody().detach('change');
 
 				A.getBody().delegate(
 					'change',
 					function(event) {
-						A.log('delegated event');
+						A.log('Delegate Change Event #3, the other two should not fire');
 					},
 					'.aui-field'
 				);
-			},
-			'h1'
+			}
 		);
 
 		A.getBody().delegate(
 			'submit',
 			function(event) {
-				A.log('--delegated SUBMIT--');
+				A.log('Delegate Submit Event');
 			},
 			'form'
 		);
@@ -660,7 +680,7 @@ AUI().ready(
 			function(event) {
 				event.preventDefault();
 
-				A.log('!regular submit!');
+				A.log('Regular Submit Event');
 			}
 		);
 
@@ -674,21 +694,21 @@ AUI().ready(
 		A.one('#textareaField').on(
 			'change',
 			function() {
-				A.log('change event to single textarea');
+				A.log('Direct Change event to a single textarea');
 			}
 		);
 
 		A.one('#textField').on(
 			'change',
 			function(event) {
-				A.log('change event to single text field');
+				A.log('Direct Change event to a single text field');
 			}
 		);
 
 		A.one('#menuField').on(
 			'change',
 			function(event) {
-				A.log('change event to single select');
+				A.log('Direct Change event to a single select');
 			}
 		);
 	}
