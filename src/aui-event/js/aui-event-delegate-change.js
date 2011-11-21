@@ -80,7 +80,7 @@ A.Event.define(
 						function(handle, event, events) {
 							handle.detach();
 						}
-					)
+					);
 				}
 			);
 
