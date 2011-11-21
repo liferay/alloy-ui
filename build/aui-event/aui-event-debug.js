@@ -431,7 +431,7 @@ A.Event.define(
 						function(handle, event, events) {
 							handle.detach();
 						}
-					)
+					);
 				}
 			);
 
@@ -474,5 +474,5 @@ A.Event.define(
 }, '@VERSION@' ,{requires:['aui-base']});
 
 
-AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, plugins:{'aui-event-delegate-change': {condition: {trigger: 'aui-event-base', test: function(A){var eventName = 'onchange'; var result = false; var div = A.config.doc.createElement('div'); if (div.attachEvent) { if (!(eventName in div)) { div.setAttribute(eventName, 'return;'); result = !(typeof div[eventName] == 'function');}}return result;}}}}, use:['aui-event-base','aui-event-input']});
+AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-base','aui-event-input'], plugins:{'aui-event-delegate-change': {condition: {trigger: 'event-base-ie', ua: 'ie'}}}});
 
