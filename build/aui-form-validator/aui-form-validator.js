@@ -2,14 +2,16 @@ AUI.add('aui-form-validator', function(A) {
 // API inspired on the amazing jQuery Form Validation - http://jquery.bassistance.de/validate/
 
 var Lang = A.Lang,
-	O = A.Object,
+	AObject = A.Object,
 	isBoolean = Lang.isBoolean,
 	isDate = Lang.isDate,
-	isEmpty = O.isEmpty,
+	isEmpty = AObject.isEmpty,
 	isFunction = Lang.isFunction,
 	isObject = Lang.isObject,
 	isString = Lang.isString,
 	trim = Lang.trim,
+
+	getRegExp = A.DOM._getRegExp,
 
 	DASH = '-',
 	DOT = '.',
@@ -118,7 +120,7 @@ YUI.AUI.defaults.FormValidator = {
 				// convert syntax (jpg, png) or (jpg png) to regex syntax (jpg|png)
 				var extensions = ruleValue.split(/,\s*|\b\s*/).join(PIPE);
 
-				regex = new RegExp('[.](' + extensions + ')$', 'i');
+				regex = getRegExp('[.](' + extensions + ')$', 'i');
 			}
 
 			return regex && regex.test(val);
@@ -579,9 +581,12 @@ var FormValidator = A.Component.create({
 
 			// create publish function for kweight optimization
 			var publish = function(name, fn) {
-				instance.publish(name, {
-		            defaultFn: fn
-		        });
+				instance.publish(
+					name, 
+					{
+						defaultFn: fn
+					}
+				);
 			};
 
 			publish(
@@ -749,15 +754,16 @@ var FormValidator = A.Component.create({
 
 				var defaultRules = YUI.AUI.defaults.FormValidator.RULES;
 
-				var defaultRulesKeys = A.Object.keys(defaultRules);
+				var defaultRulesKeys = AObject.keys(defaultRules);
+
 				var defaultRulesJoin = defaultRulesKeys.join('|');
 
-				var regex = new RegExp("aui-field-"+ defaultRulesJoin, "g");
+				var regex = getRegExp('aui-field-' + defaultRulesJoin, 'g');
 
 				var formEl = form.getDOM();
 				var inputs = formEl.elements;
 
-				for (var i = 0; i < inputs.length; i++) {
+				for (var i = 0, length = inputs.length; i < length; i++) {
 					var el = inputs[i];
 
 					var className = el.className;
@@ -770,7 +776,7 @@ var FormValidator = A.Component.create({
 							rules[fieldName] = {};
 						}
 
-						for (var j = 0; j < ruleNameMatch.length; j ++) {
+						for (var j = 0, ruleNameLength = ruleNameMatch.length; j < ruleNameLength; j ++) {
 							var rule = ruleNameMatch[j];
 
 							if (!(rules[fieldName][rule] in ruleNameMatch)) {
