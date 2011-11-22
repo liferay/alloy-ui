@@ -258,4 +258,4 @@ var CharCounter = A.Component.create(
 
 A.CharCounter = CharCounter;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input'], skinnable:false});

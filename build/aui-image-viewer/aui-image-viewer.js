@@ -2551,5 +2551,5 @@ A.MediaViewer = A.ImageViewer;
 }, '@VERSION@' ,{requires:['aui-image-viewer-base'], skinnable:false});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin']});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin'], skinnable:true});
 

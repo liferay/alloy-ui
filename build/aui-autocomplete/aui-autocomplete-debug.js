@@ -2052,4 +2052,4 @@ var AutoComplete = A.Component.create(
 
 A.AutoComplete = AutoComplete;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']});
+}, '@VERSION@' ,{requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true});

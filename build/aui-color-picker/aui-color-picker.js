@@ -843,7 +843,7 @@ var ColorPicker = A.Component.create(
 
 A.ColorPicker = ColorPicker;
 
-}, '@VERSION@' ,{requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel']});
 AUI.add('aui-color-picker-grid-plugin', function(A) {
 var Lang = A.Lang,
 	isString = Lang.isString,
@@ -1038,7 +1038,7 @@ var ColorPickerGrid = A.Component.create(
 
 A.Plugin.ColorPickerGrid = ColorPickerGrid;
 
-}, '@VERSION@' ,{requires:['aui-color-picker','plugin'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-color-picker','plugin']});
 
 
 AUI.add('aui-color-picker', function(A){}, '@VERSION@' ,{use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true});

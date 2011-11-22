@@ -173,4 +173,4 @@ var PropertyList = A.Component.create({
 
 A.PropertyList = PropertyList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable']});
+}, '@VERSION@' ,{requires:['aui-datatable'], skinnable:true});

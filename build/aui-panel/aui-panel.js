@@ -584,4 +584,4 @@ Panel.prototype = {
 
 A.Panel = A.Component.build(PANEL, A.Component, [A.WidgetStdMod, Panel]);
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria']});
+}, '@VERSION@' ,{requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria'], skinnable:true});

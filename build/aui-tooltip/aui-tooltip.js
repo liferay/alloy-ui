@@ -115,6 +115,15 @@ var Tooltip = A.Component.create(
 			},
 
 			/**
+			 * Prevents display:none from being applied to the tooltip when it is hidden because we
+			 * cannot properly align a hidden tooltip with display:none since we can't accurately
+			 * get its computed x and y position.
+			 */
+			hideClass: {
+				value: false
+			},
+
+			/**
 			 * See <a href="OverlayContext.html#config_hideDelay">OverlayContext hideDelay</a>.
 			 *
 			 * @attribute hideDelay

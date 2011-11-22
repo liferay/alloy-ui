@@ -369,5 +369,5 @@ Text.Unicode = Unicode;
 }, '@VERSION@' ,{requires:['aui-text-data-unicode'], skinnable:false});
 
 
-AUI.add('aui-text', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-text-data-unicode', 'aui-text-unicode']});
+AUI.add('aui-text', function(A){}, '@VERSION@' ,{use:['aui-text-data-unicode', 'aui-text-unicode'], skinnable:false});
 

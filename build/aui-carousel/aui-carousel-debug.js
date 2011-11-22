@@ -29,9 +29,16 @@ var Lang = A.Lang,
 	SELECTOR_MENU_PLAY_OR_PAUSE = [SELECTOR_MENU_PLAY, SELECTOR_MENU_PAUSE].join(),
 	SELECTOR_MENU_PREV = DOT + CSS_MENU_PREV,
 
-	TPL_MENU_NEXT = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_NEXT, '"></a></li>'].join(STR_BLANK),
-	TPL_MENU_PLAY = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PLAY, '"></a></li>'].join(STR_BLANK),
-	TPL_MENU_PREV = ['<li><a class="', CSS_MENU_ITEM, CSS_MENU_PREV, '"></a></li>'].join(STR_BLANK),
+	TPL_MENU = new A.Template(
+		'<menu>',
+		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PLAY, '"></a></li>',
+		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PREV, '"></a></li>',
+		'<tpl for="items">',
+			'<li><a class="', CSS_MENU_ITEM, ' {[ $i == parent.activeIndex ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">{$index}</a></li>',
+		'</tpl>',
+		'<li><a class="', CSS_MENU_NEXT, '"></a></li>',
+		'</menu>'
+	),
 
 	UI_SRC = A.Widget.UI_SRC;
 
@@ -336,51 +343,14 @@ var Carousel = A.Component.create(
 			_renderMenu: function() {
 				var instance = this;
 
-				var tpl = new A.Template(
-					'<menu>',
-					'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PLAY, '"></a></li>',
-					'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_PREV, '"></a></li>',
-					'<tpl for=".">',
-						'<li><a class="', CSS_MENU_ITEM, ' {[ $i == ', instance.get('activeIndex'),' ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">$index</a></li>',
-					'</tpl>',
-					'<li><a class="', CSS_MENU_NEXT, '"></a></li>',
-					'</menu>'
+				var menu = TPL_MENU.render(
+					{
+						items: instance.nodeSelection.getDOM(),
+						activeIndex: instance.get('activeIndex')
+					}
 				);
 
-				var menu = tpl.render(instance.nodeSelection);
-console.log(menu);
 				instance.get('contentBox').appendChild(menu);
-
-/*
-				var activeIndex = instance.get('activeIndex');
-
-				var buffer = [TPL_MENU_PLAY, TPL_MENU_PREV];
-
-				var cssMenu;
-
-				var nodeSelectionSize = instance.nodeSelection.size();
-
-				var strBuffer = '';
-
-				var i = 0;
-
-				while (i < nodeSelectionSize) {
-					if (i == activeIndex) {
-						cssMenu = CSS_MENU_ITEM_ACTIVE;
-					}
-					else {
-						cssMenu = CSS_MENU_ITEM_DEFAULT;
-					}
-
-					buffer.push('<li><a class="', cssMenu, '">', i++, '</a></li>');
-				}
-
-				buffer.push(TPL_MENU_NEXT);
-
-				var menu = A.Node.create('<menu>' + buffer.join('') + '</menu>');
-
-				instance.get('contentBox').appendChild(menu);
-*/
 
 				return menu;
 			},
