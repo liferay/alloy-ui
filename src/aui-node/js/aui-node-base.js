@@ -669,9 +669,26 @@ A.mix(NODE_PROTO, {
 	radioClass: function(cssClass) {
 		var instance = this;
 
-		instance.siblings().removeClass(cssClass);
+		var siblings = instance.siblings();
 
-		instance.addClass(cssClass);
+		if (isString(cssClass)) {
+			siblings.removeClass(cssClass);
+
+			instance.addClass(cssClass);
+		}
+		else if (isArray(cssClass)) {
+			var siblingNodes = siblings.getDOM();
+
+			var regex = getRegExp('(?:^|\\s+)(?:' + cssClass.join('|') + ')(?=\\s+|$)', 'g');
+			var node;
+
+			for (var i = siblingNodes.length - 1; i >= 0; i--) {
+				node = siblingNodes[i];
+				node.className = node.className.replace(regex, '');
+			}
+
+			instance.addClass(cssClass.join(' '));
+		}
 
 		return instance;
 	},
