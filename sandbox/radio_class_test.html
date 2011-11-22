@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>untitled</title>
+	<script src="../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<style>
+		.node {
+			background: #ccc;
+		}
+		.first {
+			border: 1px solid #f00;
+		}
+		.second {
+			background: green;
+		}
+		.third {
+			font-weight: bold;
+		}
+		.fourth {
+			font-style: italic;
+		}
+	</style>
+</head>
+
+<body>
+	
+
+	<ul>
+		<li class="node first">First</li>
+		<li class="node second">Second</li>
+		<li class="node third">Third</li>
+		<li class="node fourth">Fourth</li>
+	</ul>
+
+	<script type="text/javascript">
+		AUI().use(
+			'aui-node',
+			function(A) {
+
+				A.one('ul').delegate(
+					'click',
+					function(event) {
+						event.currentTarget.radioClass(['first', 'second', 'third', 'fourth']);
+						event.currentTarget.previous() && event.currentTarget.previous().addClass('first')
+					},
+					'li'
+				);
+			}
+		);
+	</script>
+</body>
+</html>
