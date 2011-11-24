@@ -123,9 +123,16 @@ public class XMLBuilder {
 			List<Attribute> events = new ArrayList<Attribute>(
 				getComponentEvents(className));
 
-			Component component = new Component(
-				namespace, name, true, module, bodyContent, attributes, events,
-				null);
+			Component component = new Component();
+
+			component.setAlloyComponent(true);
+			component.setAttributes(attributes);
+			component.setAuthors(null);
+			component.setBodyContent(bodyContent);
+			component.setEvents(events);
+			component.setModule(module);
+			component.setName(name);
+			component.setPackage(namespace);
 
 			if (!isExcludedComponent(component)) {
 				components.add(component);

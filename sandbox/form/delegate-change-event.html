@@ -613,28 +613,10 @@ AUI().ready(
 	function(A) {
 		new A.Console().render();
 
-		var loop = function(node, cssClass) {
-			var regex = new RegExp('(?:^|\\s+)' + cssClass + '(?:\\s+|$)');
-			while (node) {
-				if (regex.test(node.className)) {
-					return node;
-				}
-				node = node.parentNode;
-			}
-			return null;
-		};
-
-		document.body.addEventListener('change', function(event) {
-			if (event.target.nodeName == 'INPUT' && event.target.type == 'checkbox' && loop(event.target, 'aui-field')) {
-				console.log('delegated event', event.target, event.currentTarget);
-			}
-		}, false);
-
 		A.getBody().delegate(
 			'change',
 			function(event) {
 				event.stopPropagation();
-				console.log(event.target, event.currentTarget);
 				A.log('Delegate Change Event #1: ' + event.target.guid() + ' - ' + event.currentTarget.guid() + ' - ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
 			},
 			'.aui-field'
@@ -644,7 +626,6 @@ AUI().ready(
 			'change',
 			function(event) {
 				event.stopPropagation();
-				console.log(event.target, event.currentTarget);
 				A.log('Delegate Change Event #2: ' + event.target.guid() + ' - ' + event.currentTarget.guid() + ' - ' + event.target.val() + '---' + String(A.Lang.now()).slice(-4));
 			},
 			'.aui-field'

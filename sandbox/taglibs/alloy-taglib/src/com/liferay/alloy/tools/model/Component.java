@@ -11,21 +11,6 @@ import java.util.List;
 
 public class Component extends BaseModel {
 
-	public Component(
-		String componentPackage, String name, boolean alloyComponent,
-		String module, boolean bodyContent, List<Attribute> attributes,
-		List<Attribute> events, String[] authors) {
-
-		setAlloyComponent(alloyComponent);
-		setEvents(events);
-		setAttributes(attributes);
-		setBodyContent(bodyContent);
-		setModule(module);
-		setPackage(componentPackage);
-		setName(name);
-		setAuthors(authors);
-	}
-
 	public String getAttributeNamespace() {
 		StringBuilder sb = new StringBuilder();
 

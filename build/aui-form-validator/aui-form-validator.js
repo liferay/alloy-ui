@@ -1,15 +1,17 @@
 AUI.add('aui-form-validator', function(A) {
 // API inspired on the amazing jQuery Form Validation - http://jquery.bassistance.de/validate/
 
-var L = A.Lang,
-	O = A.Object,
-	isBoolean = L.isBoolean,
-	isDate = L.isDate,
-	isEmpty = O.isEmpty,
-	isFunction = L.isFunction,
-	isObject = L.isObject,
-	isString = L.isString,
-	trim = L.trim,
+var Lang = A.Lang,
+	AObject = A.Object,
+	isBoolean = Lang.isBoolean,
+	isDate = Lang.isDate,
+	isEmpty = AObject.isEmpty,
+	isFunction = Lang.isFunction,
+	isObject = Lang.isObject,
+	isString = Lang.isString,
+	trim = Lang.trim,
+
+	getRegExp = A.DOM._getRegExp,
 
 	DASH = '-',
 	DOT = '.',
@@ -118,7 +120,7 @@ YUI.AUI.defaults.FormValidator = {
 				// convert syntax (jpg, png) or (jpg png) to regex syntax (jpg|png)
 				var extensions = ruleValue.split(/,\s*|\b\s*/).join(PIPE);
 
-				regex = new RegExp('[.](' + extensions + ')$', 'i');
+				regex = getRegExp('[.](' + extensions + ')$', 'i');
 			}
 
 			return regex && regex.test(val);
@@ -422,7 +424,7 @@ var FormValidator = A.Component.create({
 
 			var message = (fieldStrings[rule] || strings[rule] || strings.DEFAULT);
 
-			return L.sub(message, substituteRulesMap);
+			return Lang.sub(message, substituteRulesMap);
 		},
 
 		hasErrors: function() {
@@ -579,9 +581,12 @@ var FormValidator = A.Component.create({
 
 			// create publish function for kweight optimization
 			var publish = function(name, fn) {
-				instance.publish(name, {
-		            defaultFn: fn
-		        });
+				instance.publish(
+					name, 
+					{
+						defaultFn: fn
+					}
+				);
 			};
 
 			publish(
@@ -747,28 +752,39 @@ var FormValidator = A.Component.create({
 				var rules = instance.get(RULES);
 				var extractCssPrefix = instance.get(EXTRACT_CSS_PREFIX);
 
-				A.each(
-					YUI.AUI.defaults.FormValidator.RULES,
-					function(ruleValue, ruleName) {
-						var query = [DOT, extractCssPrefix, ruleName].join(EMPTY_STRING);
+				var defaultRules = YUI.AUI.defaults.FormValidator.RULES;
 
-						form.all(query).each(
-							function(node) {
-								if (node.get(TYPE)) {
-									var fieldName = node.get(NAME);
+				var defaultRulesKeys = AObject.keys(defaultRules);
 
-									if (!rules[fieldName]) {
-										rules[fieldName] = {};
-									}
+				var defaultRulesJoin = defaultRulesKeys.join('|');
 
-									if (!(ruleName in rules[fieldName])) {
-										rules[fieldName][ruleName] = true;
-									}
-								}
+				var regex = getRegExp('aui-field-' + defaultRulesJoin, 'g');
+
+				var formEl = form.getDOM();
+				var inputs = formEl.elements;
+
+				for (var i = 0, length = inputs.length; i < length; i++) {
+					var el = inputs[i];
+
+					var className = el.className;
+					var fieldName = el.name;
+
+					var ruleNameMatch = className.match(regex);
+
+					if (ruleNameMatch) {
+						if (!rules[fieldName]) {
+							rules[fieldName] = {};
+						}
+
+						for (var j = 0, ruleNameLength = ruleNameMatch.length; j < ruleNameLength; j ++) {
+							var rule = ruleNameMatch[j];
+
+							if (!(rules[fieldName][rule] in ruleNameMatch)) {
+								rules[fieldName][rule] = true;
 							}
-						);
+						}
 					}
-				);
+				}
 			}
 		},
 
