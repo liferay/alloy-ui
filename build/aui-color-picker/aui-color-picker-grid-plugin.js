@@ -192,4 +192,4 @@ var ColorPickerGrid = A.Component.create(
 
 A.Plugin.ColorPickerGrid = ColorPickerGrid;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-color-picker','plugin']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-color-picker-base','plugin']});

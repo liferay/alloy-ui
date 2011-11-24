@@ -1038,8 +1038,8 @@ var ColorPickerGrid = A.Component.create(
 
 A.Plugin.ColorPickerGrid = ColorPickerGrid;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-color-picker','plugin']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-color-picker-base','plugin']});
 
 
-AUI.add('aui-color-picker', function(A){}, '@VERSION@' ,{use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true});
+AUI.add('aui-color-picker', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']});
 
