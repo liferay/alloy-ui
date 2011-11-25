@@ -1960,4 +1960,4 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
+}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true});
