@@ -67,6 +67,7 @@ var Lang = A.Lang,
 	TAB_VIEW = 'tabView',
 	TABS = 'tabs',
 	TABVIEW = 'tabview',
+	TITLE = 'title',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
 
@@ -244,6 +245,7 @@ var AvailableField = A.Component.create({
 		_uiSetLabel: function(val) {
 			var instance = this;
 
+			instance.get(NODE).attr(TITLE, val);
 			instance.labelNode.setContent(val);
 		}
 	}
@@ -790,4 +792,4 @@ var DiagramBuilderBase = A.Component.create(
 
 A.DiagramBuilderBase = DiagramBuilderBase;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']});
+}, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});

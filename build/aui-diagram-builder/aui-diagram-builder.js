@@ -67,6 +67,7 @@ var Lang = A.Lang,
 	TAB_VIEW = 'tabView',
 	TABS = 'tabs',
 	TABVIEW = 'tabview',
+	TITLE = 'title',
 	TOOLBAR = 'toolbar',
 	TOOLBAR_CONTAINER = 'toolbarContainer',
 
@@ -244,6 +245,7 @@ var AvailableField = A.Component.create({
 		_uiSetLabel: function(val) {
 			var instance = this;
 
+			instance.get(NODE).attr(TITLE, val);
 			instance.labelNode.setContent(val);
 		}
 	}
@@ -790,7 +792,7 @@ var DiagramBuilderBase = A.Component.create(
 
 A.DiagramBuilderBase = DiagramBuilderBase;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']});
+}, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -2796,7 +2798,7 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});
+}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3427,7 +3429,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 });
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd']});
+}, '@VERSION@' ,{requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
 
 
 AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true});

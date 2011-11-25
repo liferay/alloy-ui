@@ -29,6 +29,12 @@
 	margin: 3px;
 }
 
+.aui-diagram-builder-field-label {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;	
+}
+
 .aui-diagram-builder .aui-diagram-builder-field-icon-text {
 	background-position: -48px -80px;
 }
