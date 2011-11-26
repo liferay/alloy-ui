@@ -19,9 +19,9 @@
 <%@ include file="/html/taglib/taglib-init.jsp" %>
 
 <%
-Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:auto-complete:dynamicAttributes");
-Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:auto-complete:scopedAttributes");
-CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:auto-complete:customAttributes");
+Map<String, Object> dynamicAttributes = (Map<String, Object>)request.getAttribute("alloy:test-ext:dynamicAttributes");
+Map<String, Object> scopedAttributes = (Map<String, Object>)request.getAttribute("alloy:test-ext:scopedAttributes");
+CustomAttributes customAttributes = (CustomAttributes)request.getAttribute("alloy:test-ext:customAttributes");
 
 Map<String, Object> _options = new HashMap<String, Object>();
 
@@ -33,13 +33,13 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 	_options.putAll(dynamicAttributes);
 }
 
-java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:auto-complete:test"));
+java.lang.String test = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:test-ext:test"));
 
 _updateOptions(_options, "test", test);
 %>
 
-<%@ include file="/html/taglib/alloy/auto_complete/init-ext.jspf" %>
+<%@ include file="/html/taglib/alloy/test_ext/init-ext.jspf" %>
 
 <%!
-private static final String _NAMESPACE = "alloy:auto-complete:";
+private static final String _NAMESPACE = "alloy:test-ext:";
 %>

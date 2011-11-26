@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglibs short-name="liferay" extends="alloy" uri="http://test.liferay.com/tld/liferay">
+	<component name="Test">
+		<attributes>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
+				<name>attrBooleanPrimitive</name>
+				<inputType>boolean</inputType>
+				<outputType>boolean</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
+				<name>attrBoolean</name>
+				<inputType>java.lang.Boolean</inputType>
+				<outputType>java.lang.Boolean</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
+				<name>attrIntPrimitive</name>
+				<inputType>int</inputType>
+				<outputType>int</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
+				<name>attrInteger</name>
+				<inputType>java.lang.Integer</inputType>
+				<outputType>java.lang.Integer</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+	</component>
+	<component name="AutoComplete" alloyComponent="true">
+		<attributes>
+			<attribute>
+				<name>alwaysShowContainer</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+		<events></events>
+	</component>
+	<component name="NoJSP" bodyContent="true" parentClass="com.liferay.portal.kernel.servlet.taglib.TagSupport" writeJSP="false">
+		<attributes>
+			<attribute>
+				<name>test</name>
+				<inputType>java.lang.String</inputType>
+				<outputType>java.lang.String</outputType>
+				<defaultType>VALUE</defaultType>
+			</attribute>
+		</attributes>
+		<events></events>
+	</component>
+</taglibs>

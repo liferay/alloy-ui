@@ -9,7 +9,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.kernel.xml.Node;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
+import com.liferay.portal.kernel.xml.XPath;
 import com.liferay.portal.util.FileImpl;
 import com.liferay.portal.xml.SAXReaderImpl;
 
@@ -399,57 +401,72 @@ public class TagBuilder {
 		return context;
 	}
 
-	protected Document mergeTlds(Document doc1, Document doc2) {
-		Document doc = SAXReaderUtil.createDocument();
+	protected Document mergeTlds(Document sourceDoc, Document targetDoc) {
+		Element targetRoot = targetDoc.getRootElement();
 
-		doc.setRootElement(doc1.getRootElement().createCopy());
+		XPath xpathTags = SAXReaderUtil.createXPath(
+			"//tld:tag", _TLD_XPATH_PREFIX, _TLD_XPATH_URI);
 
-		List<Element> tags1 = doc1.getRootElement().elements("tag");
-		List<Element> tags2 = doc2.getRootElement().elements("tag");
+		List<Node> sources = xpathTags.selectNodes(sourceDoc);
 
-		Map<String, Element> tags1Index = new HashMap<String, Element>();
-		Map<String, Map<String, Element>> tags1AttributesIndex =
-			new HashMap<String, Map<String, Element>>();
+		for (Node source : sources) {
+			Element sourceElement = (Element)source;
 
-		for (Element tag1 : tags1) {
-			String tag1Name = tag1.elementText("name");
+			String sourceName = sourceElement.elementText("name");
 
-			tags1Index.put(tag1Name, tag1);
+			String xpathTagValue = "//tld:tag[tld:name='" + sourceName + "']";
 
-			Map<String, Element> tag1AttributesIndex =
-				new HashMap<String, Element>();
+			XPath xpathTag = SAXReaderUtil.createXPath(
+				xpathTagValue, _TLD_XPATH_PREFIX, _TLD_XPATH_URI);
 
-			for (Element attr1 : tag1.elements("attribute")) {
-				tag1AttributesIndex.put(attr1.elementText("name"), attr1);
-			}
+			List<Node> targets = xpathTag.selectNodes(targetDoc);
 
-			tags1AttributesIndex.put(tag1Name, tag1AttributesIndex);
-		}
+			if (targets.size() > 0) {
+				Element targetElement = (Element)targets.get(0);
 
-		for (Element tag2 : tags2) {
-			String tag2Name = tag2.elementText("name");
+				XPath xpathAttributes = SAXReaderUtil.createXPath(
+					xpathTagValue + "//tld:attribute", _TLD_XPATH_PREFIX,
+					_TLD_XPATH_URI);
 
-			Map<String, Element> tag1AttributesIndex =
-				tags1AttributesIndex.get(tag2Name);
+				List<Node> sourceAttributes = xpathAttributes.selectNodes(
+					source);
 
-			if (tags1Index.containsKey(tag2Name)) {
-				for (Element attr2 : tag2.elements("attribute")) {
-					String attr2Name = attr2.attributeValue("name");
+				for (Node sourceAttribute : sourceAttributes) {
+					Element sourceAttributeElement = (Element)sourceAttribute;
 
-					if (tag1AttributesIndex.containsKey(attr2Name)) {
-						Element attr1 = tag1AttributesIndex.get(attr2Name);
+					String attributeName =
+						sourceAttributeElement.elementText("name");
 
-						tag2.remove(attr1);
-						tag2.add(attr2);
+					String xpathAttributeValue = "//tld:attribute[tld:name='" +
+							attributeName + "']";
+
+					XPath xpathAttribute = SAXReaderUtil.createXPath(
+						xpathTagValue + xpathAttributeValue, _TLD_XPATH_PREFIX,
+						_TLD_XPATH_URI);
+
+					Node targetAttribute =
+						xpathAttribute.selectSingleNode(targetElement);
+
+					if (targetAttribute != null) {
+						targetAttribute.detach();
 					}
+
+					targetElement.add(sourceAttributeElement.createCopy());
+				}
+
+				Element dynamicAttrElement =
+					targetElement.element("dynamic-attributes");
+
+				if (dynamicAttrElement != null) {
+					targetElement.add(dynamicAttrElement.detach());
 				}
 			}
 			else {
-				doc.getRootElement().add(tag2.createCopy());
+				targetRoot.add(sourceElement.createCopy());
 			}
 		}
 
-		return doc;
+		return targetDoc;
 	}
 
 	protected Document mergeXMLAttributes(Document doc1, Document doc2) {
@@ -654,6 +671,7 @@ public class TagBuilder {
 
 		for (Document doc : _componentsExtDoc) {
 			Element root = doc.getRootElement();
+
 			String shortName = GetterUtil.getString(
 				root.attributeValue("short-name"), _DEFAULT_TAGLIB_SHORT_NAME);
 			String uri = GetterUtil.getString(
@@ -667,20 +685,22 @@ public class TagBuilder {
 			context.put("version", version);
 			context.put("components", getComponents(doc));
 
-			String content = processTemplate(_tplTld, context);
-
 			String tldFilePath = _tldDir.concat(
 				shortName).concat(_TLD_EXTENSION);
 
 			File tldFile = new File(tldFilePath);
 
-			Document outputDoc = SAXReaderUtil.read(content);
+			String content = processTemplate(_tplTld, context);
+
+			Document source = SAXReaderUtil.read(content);
 
 			if (tldFile.exists()) {
-				outputDoc = mergeTlds(SAXReaderUtil.read(tldFile), outputDoc);
+				Document target = SAXReaderUtil.read(tldFile);
+
+				source = mergeTlds(source, target);
 			}
 
-			writeFile(tldFile, outputDoc.formattedString());
+			writeFile(tldFile, source.formattedString());
 		}
 	}
 
@@ -711,6 +731,8 @@ public class TagBuilder {
 	private static final String _PAGE = "/page.jsp";
 	private static final String _START_PAGE = "/start.jsp";
 	private static final String _TLD_EXTENSION = ".tld";
+	private static final String _TLD_XPATH_PREFIX = "tld";
+	private static final String _TLD_XPATH_URI = "http://java.sun.com/xml/ns/j2ee";
 
 	private List<Document> _componentsExtDoc;
 	private List<String> _componentsXML;

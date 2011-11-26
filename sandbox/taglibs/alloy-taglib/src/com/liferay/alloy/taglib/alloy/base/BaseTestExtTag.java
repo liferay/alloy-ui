@@ -23,7 +23,7 @@ import javax.servlet.jsp.JspException;
  * @author Nathan Cavanaugh
  * @generated
  */
-public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
+public class BaseTestExtTag extends com.liferay.taglib.util.IncludeTag {
 
 	@Override
 	public int doStartTag() throws JspException {
@@ -57,10 +57,10 @@ public class BaseAutoCompleteTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "test", _test);
 	}
 
-	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:auto-complete:";
+	protected static final String _ATTRIBUTE_NAMESPACE = "alloy:test-ext:";
 
 	private static final String _PAGE =
-		"/html/taglib/alloy/auto_complete/page.jsp";
+		"/html/taglib/alloy/test_ext/page.jsp";
 
 	private java.lang.String _test = null;
 
