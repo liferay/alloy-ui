@@ -307,7 +307,7 @@ var FormValidator = A.Component.create({
 			instance.inputHandlers = [];
 			instance.stackErrorContainers = {};
 
-			instance._setARIARoles();
+			instance.after('render', instance._setARIARoles);
 		},
 
 		bindUI: function() {
@@ -384,7 +384,7 @@ var FormValidator = A.Component.create({
 			var instance = this;
 
 			if (isString(field)) {
-				field = instance.getElementsByName(field).item(0);
+				field = instance.get(CONTENT_BOX).one('[name="' + field + '"]');
 			}
 
 			return field;
@@ -860,4 +860,4 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input','selector-css3']});
