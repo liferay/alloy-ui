@@ -6,10 +6,11 @@
  * @module aui-dialog
  */
 
-var L = A.Lang,
-	isBoolean = L.isBoolean,
-	isArray = L.isArray,
-	isObject = L.isObject,
+var Lang = A.Lang,
+	AObject = A.Object,
+	isBoolean = Lang.isBoolean,
+	isArray = Lang.isArray,
+	isObject = Lang.isObject,
 
 	WidgetStdMod = A.WidgetStdMod,
 
@@ -267,7 +268,6 @@ A.mix(
 			 */
 			modal: {
 				lazyAdd: false,
-				setter: '_setModal',
 				validator: isBoolean,
 				value: false
 			},
@@ -400,12 +400,14 @@ Dialog.prototype = {
 			}
 		);
 
-		instance.after('constrain2viewChange', instance._afterConstrain2viewChange, instance);
-		instance.after('draggableChange', instance._afterDraggableChange, instance);
-		instance.after('dragInstanceChange', instance._afterDragInstanceChange, instance);
+		instance.addTarget(A.DialogManager);
+
+		instance.after('constrain2viewChange', instance._afterConstrain2viewChange);
+		instance.after('draggableChange', instance._afterDraggableChange);
+		instance.after('dragInstanceChange', instance._afterDragInstanceChange);
 		instance.after('render', instance._afterRenderer);
-		instance.after('resizableChange', instance._afterResizableChange, instance);
-		instance.after('resizableInstanceChange', instance._afterResizableInstanceChange, instance);
+		instance.after('resizableChange', instance._afterResizableChange);
+		instance.after('resizableInstanceChange', instance._afterResizableInstanceChange);
 	},
 
 	/**
@@ -418,8 +420,6 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance._bindLazyComponents();
-
-		instance.on('visibleChange', instance._afterSetVisible);
 	},
 
 	/**
@@ -536,10 +536,6 @@ Dialog.prototype = {
 		else {
 			instance.hide();
 		}
-
-		if (instance.get(MODAL)) {
-			A.DialogMask.hide();
-		}
 	},
 
 	/**
@@ -627,27 +623,6 @@ Dialog.prototype = {
 		}
 
 		return val;
-	},
-
-	/**
-	 * Setter for the <a href="Dialog.html#config_modal">modal</a> attribute.
-	 *
-	 * @method _setModal
-	 * @param {boolean} value
-	 * @protected
-	 * @return {boolean}
-	 */
-	_setModal: function(value) {
-		var instance = this;
-
-		if (value) {
-			A.DialogMask.show();
-		}
-		else {
-			A.DialogMask.hide();
-		}
-
-		return value;
 	},
 
 	/**
@@ -812,27 +787,6 @@ Dialog.prototype = {
 		}
 	},
 
-	/**
-	 * Fires after the value of the
-     * <a href="Overlay.html#config_visible">visible</a> attribute change.
-	 *
-	 * @method _afterSetVisible
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterSetVisible: function(event) {
-		var instance = this;
-
-		if (instance.get(MODAL)) {
-			if (event.newVal) {
-				A.DialogMask.show();
-			}
-			else {
-				A.DialogMask.hide();
-			}
-		}
-	},
-
 	_uiHandles: []
 };
 
@@ -854,14 +808,43 @@ A.Dialog = A.Component.create(
  * @extends OverlayManager
  * @static
  */
-A.DialogManager = new A.OverlayManager(
+
+var DialogManager = new A.OverlayManager(
 	{
 		zIndexBase: 1000
 	}
 );
 
+var MODALS = {};
+
+DialogManager._MODALS = MODALS;
+
+DialogManager.after(
+	['dialog:destroy', 'dialog:modalChange', 'dialog:render', 'dialog:visibleChange'],
+	function(event) {
+		var dialog = event.target;
+
+		if (dialog) {
+			var id = dialog.get('id');
+
+			if (event.type !== 'dialog:destroy' && dialog.get('visible') && dialog.get('modal')) {
+				MODALS[id] = true;
+
+				A.DialogMask.show();
+			}
+			else {
+				delete MODALS[id];
+
+				if (AObject.isEmpty(MODALS)) {
+					A.DialogMask.hide();
+				}
+			}
+		}
+	}
+);
+
 A.mix(
-	A.DialogManager,
+	DialogManager,
 	{
 		/**
 		 * Find the <a href="Widget.html">Widget</a> instance based on a child
@@ -892,7 +875,7 @@ A.mix(
 		 * @return {Dialog}
 		 */
 		closeByChild: function(child) {
-			return A.DialogManager.findByChild(child).close();
+			return DialogManager.findByChild(child).close();
 		},
 
 		/**
@@ -909,7 +892,7 @@ A.mix(
 		 * @param {Node | String} child Child node of the Dialog.
 		 */
 		refreshByChild: function(child) {
-			var dialog = A.DialogManager.findByChild(child);
+			var dialog = DialogManager.findByChild(child);
 
 			if (dialog && dialog.io) {
 				dialog.io.start();
@@ -917,6 +900,8 @@ A.mix(
 		}
 	}
 );
+
+A.DialogManager = DialogManager;
 
 /**
  * A base class for DialogMask - Controls the <a
