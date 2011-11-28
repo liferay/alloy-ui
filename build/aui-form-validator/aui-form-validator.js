@@ -20,6 +20,7 @@ var Lang = A.Lang,
 	INVALID_DATE = 'Invalid Date',
 	PIPE = '|',
 
+	ARIA_REQUIRED = 'aria-required',
 	BLUR_HANDLERS = 'blurHandlers',
 	CHECKBOX = 'checkbox',
 	CONTAINER = 'container',
@@ -305,6 +306,8 @@ var FormValidator = A.Component.create({
 			instance.errors = {};
 			instance.inputHandlers = [];
 			instance.stackErrorContainers = {};
+
+			instance._setARIARoles();
 		},
 
 		bindUI: function() {
@@ -316,6 +319,7 @@ var FormValidator = A.Component.create({
 
 		addFieldError: function(field, ruleName) {
 			var instance = this;
+
 			var errors = instance.errors;
 			var name = field.get(NAME);
 
@@ -347,6 +351,7 @@ var FormValidator = A.Component.create({
 
 		findFieldContainer: function(field) {
 			var instance = this;
+
 			var fieldContainer = instance.get(FIELD_CONTAINER);
 
 			if (fieldContainer) {
@@ -356,6 +361,7 @@ var FormValidator = A.Component.create({
 
 		focusInvalidField: function() {
 			var instance = this;
+
 			var contentBox = instance.get(CONTENT_BOX);
 			var field = contentBox.one(DOT+CSS_ERROR);
 
@@ -392,6 +398,7 @@ var FormValidator = A.Component.create({
 
 		getFieldStackErrorContainer: function(field) {
 			var instance = this;
+
 			var name = field.get(NAME);
 			var stackContainers = instance.stackErrorContainers;
 
@@ -404,6 +411,7 @@ var FormValidator = A.Component.create({
 
 		getFieldErrorMessage: function(field, rule) {
 			var instance = this;
+
 			var fieldName = field.get(NAME);
 			var fieldStrings = instance.get(FIELD_STRINGS)[fieldName] || {};
 			var fieldRules = instance.get(RULES)[fieldName];
@@ -435,6 +443,7 @@ var FormValidator = A.Component.create({
 
 		highlight: function(field, valid) {
 			var instance = this;
+
 			var fieldContainer = instance.findFieldContainer(field);
 
 			instance._highlightHelper(
@@ -500,6 +509,7 @@ var FormValidator = A.Component.create({
 
 		resetField: function(field) {
 			var instance = this;
+
 			var stackContainer = instance.getFieldStackErrorContainer(field);
 
 			stackContainer.remove();
@@ -511,6 +521,7 @@ var FormValidator = A.Component.create({
 
 		resetFieldCss: function(field) {
 			var instance = this;
+
 			var fieldContainer = instance.findFieldContainer(field);
 
 			var removeClasses = function(elem, classAttrs) {
@@ -529,6 +540,7 @@ var FormValidator = A.Component.create({
 
 		validatable: function(field) {
 			var instance = this;
+
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
 			var required = instance.normalizeRuleValue(fieldRules.required);
@@ -551,6 +563,7 @@ var FormValidator = A.Component.create({
 
 		validateField: function(field) {
 			var instance = this;
+
 			var fieldNode = instance.getField(field);
 
 			if (fieldNode) {
@@ -568,8 +581,28 @@ var FormValidator = A.Component.create({
 			}
 		},
 
+		// helper method for k-weight optimizations
+		_bindValidateHelper: function(bind, evType, fn, handler) {
+			var instance = this;
+
+			instance._unbindHandlers(handler);
+
+			if (bind) {
+				instance.eachRule(
+					function(rule, fieldName) {
+						var field = instance.getElementsByName(fieldName);
+
+						instance[handler].push(
+							field.on(evType, A.bind(fn, instance))
+						);
+					}
+				);
+			}
+		},
+
 		_bindValidation: function() {
 			var instance = this;
+
 			var form = instance.get(CONTENT_BOX);
 
 			form.on(EV_RESET, A.bind(instance._onFormReset, instance));
@@ -582,7 +615,7 @@ var FormValidator = A.Component.create({
 			// create publish function for kweight optimization
 			var publish = function(name, fn) {
 				instance.publish(
-					name, 
+					name,
 					{
 						defaultFn: fn
 					}
@@ -607,6 +640,7 @@ var FormValidator = A.Component.create({
 
 		_defErrorFieldFn: function(event) {
 			var instance = this;
+
 			var validator = event.validator;
 			var field = validator.field;
 
@@ -627,6 +661,7 @@ var FormValidator = A.Component.create({
 
 		_defValidFieldFn: function(event) {
 			var instance = this;
+
 			var field = event.validator.field;
 
 			instance.unhighlight(field);
@@ -634,6 +669,7 @@ var FormValidator = A.Component.create({
 
 		_defValidateFieldFn: function(event) {
 			var instance = this;
+
 			var field = event.validator.field;
 			var fieldRules = instance.get(RULES)[field.get(NAME)];
 
@@ -685,6 +721,7 @@ var FormValidator = A.Component.create({
 
 		_onBlurField: function(event) {
 			var instance = this;
+
 			var fieldName = event.currentTarget.get(NAME);
 
 			instance.validateField(fieldName);
@@ -725,23 +762,20 @@ var FormValidator = A.Component.create({
 			instance.resetAllFields();
 		},
 
-		// helper method for k-weight optimizations
-		_bindValidateHelper: function(bind, evType, fn, handler) {
+		_setARIARoles: function() {
 			var instance = this;
 
-			instance._unbindHandlers(handler);
+			instance.eachRule(
+				function(rule, fieldName) {
+					if (rule.required) {
+						var field = instance.getField(fieldName);
 
-			if (bind) {
-				instance.eachRule(
-					function(rule, fieldName) {
-						var field = instance.getElementsByName(fieldName);
-
-						instance[handler].push(
-							field.on(evType, A.bind(fn, instance))
-						);
+						if (!field.attr(ARIA_REQUIRED)) {
+							field.attr(ARIA_REQUIRED, true);
+						}
 					}
-				);
-			}
+				}
+			);
 		},
 
 		_uiSetExtractRules: function(val) {
@@ -826,4 +860,4 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input','selector-css3']});
+}, '@VERSION@' ,{requires:['aui-base','aui-event-input','selector-css3'], skinnable:false});
