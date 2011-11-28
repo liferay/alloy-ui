@@ -7,14 +7,17 @@ AUI.add('aui-dialog', function(A) {
  * @module aui-dialog
  */
 
-var L = A.Lang,
-	isBoolean = L.isBoolean,
-	isArray = L.isArray,
-	isObject = L.isObject,
+var Lang = A.Lang,
+	AObject = A.Object,
+	isBoolean = Lang.isBoolean,
+	isArray = Lang.isArray,
+	isObject = Lang.isObject,
 
 	toNumber = function(val) {
 		return parseInt(val, 10) || 0;
 	},
+
+	DOC = A.config.doc,
 
 	BLANK = '',
 	BODY_CONTENT = 'bodyContent',
@@ -60,7 +63,7 @@ var L = A.Lang,
 	CSS_ICON_LOADING = getCN(ICON, LOADING),
 	CSS_PREFIX = getCN(DD),
 
-	NODE_BLANK_TEXT = document.createTextNode(''),
+	NODE_BLANK_TEXT = DOC.createTextNode(''),
 
 	TPL_BUTTON = '<button class="' + CSS_DIALOG_BUTTON + '"></button>',
 	TPL_BUTTON_CONTAINER = '<div class="' + CSS_DIALOG_BUTTON_CONTAINER + '"></div>';
@@ -246,9 +249,6 @@ A.mix(
 			 * @type boolean
 			 */
 			modal: {
-				setter: function(v) {
-					return this._setModal(v);
-				},
 				lazyAdd: false,
 				value: false,
 				validator: isBoolean
@@ -333,6 +333,8 @@ Dialog.prototype = {
 			instance.set(ICONS, icons);
 		}
 
+		instance.addTarget(A.DialogManager);
+
 		instance.after('render', instance._afterRenderer);
 	},
 
@@ -348,8 +350,6 @@ Dialog.prototype = {
 		instance._bindLazyComponents();
 
 		instance.publish('close', { defaultFn: instance._close });
-
-		instance.on('visibleChange', instance._afterSetVisible);
 	},
 
 	/**
@@ -455,10 +455,6 @@ Dialog.prototype = {
 		}
 		else {
 			instance.hide();
-		}
-
-		if (instance.get(MODAL)) {
-			A.DialogMask.hide();
 		}
 	},
 
@@ -612,27 +608,6 @@ Dialog.prototype = {
 	},
 
 	/**
-	 * Setter for the <a href="Dialog.html#config_modal">modal</a> attribute.
-	 *
-	 * @method _setModal
-	 * @param {boolean} value
-	 * @protected
-	 * @return {boolean}
-	 */
-	_setModal: function(value) {
-		var instance = this;
-
-		if (value) {
-			A.DialogMask.show();
-		}
-		else {
-			A.DialogMask.hide();
-		}
-
-		return value;
-	},
-
-	/**
 	 * Setter for the <a href="Dialog.html#config_resizable">resizable</a>
      * attribute.
 	 *
@@ -656,8 +631,8 @@ Dialog.prototype = {
 				var type = event.type;
 				var info = event.info;
 
-				if ((type == EV_RESIZE_END) ||
-					((type == EV_RESIZE) && !event.currentTarget.get(PROXY))) {
+				if ((type === EV_RESIZE_END) ||
+					((type === EV_RESIZE) && !event.currentTarget.get(PROXY))) {
 						instance.set(HEIGHT, info.offsetHeight);
 						instance.set(WIDTH, info.offsetWidth);
 				}
@@ -713,26 +688,7 @@ Dialog.prototype = {
 		return value;
 	},
 
-	/**
-	 * Fires after the value of the
-     * <a href="Overlay.html#config_visible">visible</a> attribute change.
-	 *
-	 * @method _afterSetVisible
-	 * @param {EventFacade} event
-	 * @protected
-	 */
-	_afterSetVisible: function(event) {
-		var instance = this;
-
-		if (instance.get(MODAL)) {
-			if (event.newVal) {
-				A.DialogMask.show();
-			}
-			else {
-				A.DialogMask.hide();
-			}
-		}
-	}
+	_uiHandles: []
 };
 
 A.Dialog = A.Base.build(DIALOG, A.Panel, [Dialog, A.WidgetPosition, A.WidgetStack, A.WidgetPositionAlign, A.WidgetPositionConstrain]);
@@ -747,14 +703,43 @@ A.Dialog = A.Base.build(DIALOG, A.Panel, [Dialog, A.WidgetPosition, A.WidgetStac
  * @extends OverlayManager
  * @static
  */
-A.DialogManager = new A.OverlayManager(
+
+var DialogManager = new A.OverlayManager(
 	{
 		zIndexBase: 1000
 	}
 );
 
+var MODALS = {};
+
+DialogManager._MODALS = MODALS;
+
+DialogManager.after(
+	['dialog:destroy', 'dialog:modalChange', 'dialog:render', 'dialog:visibleChange'],
+	function(event) {
+		var dialog = event.target;
+
+		if (dialog) {
+			var id = dialog.get('id');
+
+			if (event.type !== 'dialog:destroy' && dialog.get('visible') && dialog.get('modal')) {
+				MODALS[id] = true;
+
+				A.DialogMask.show();
+			}
+			else {
+				delete MODALS[id];
+
+				if (AObject.isEmpty(MODALS)) {
+					A.DialogMask.hide();
+				}
+			}
+		}
+	}
+);
+
 A.mix(
-	A.DialogManager,
+	DialogManager,
 	{
 		/**
 		 * Find the <a href="Widget.html">Widget</a> instance based on a child
@@ -785,7 +770,7 @@ A.mix(
 		 * @return {Dialog}
 		 */
 		closeByChild: function(child) {
-			return A.DialogManager.findByChild(child).close();
+			return DialogManager.findByChild(child).close();
 		},
 
 		/**
@@ -802,7 +787,7 @@ A.mix(
 		 * @param {Node | String} child Child node of the Dialog.
 		 */
 		refreshByChild: function(child) {
-			var dialog = A.DialogManager.findByChild(child);
+			var dialog = DialogManager.findByChild(child);
 
 			if (dialog && dialog.io) {
 				dialog.io.start();
@@ -810,6 +795,8 @@ A.mix(
 		}
 	}
 );
+
+A.DialogManager = DialogManager;
 
 /**
  * A base class for DialogMask - Controls the <a
