@@ -269,7 +269,6 @@ A.mix(
 			 */
 			modal: {
 				lazyAdd: false,
-				setter: '_setModal',
 				validator: isBoolean,
 				value: false
 			},
@@ -422,8 +421,6 @@ Dialog.prototype = {
 		var instance = this;
 
 		instance._bindLazyComponents();
-
-		instance.on('visibleChange', instance._afterSetVisible);
 	},
 
 	/**
