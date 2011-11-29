@@ -769,7 +769,7 @@ var FormValidator = A.Component.create({
 					if (rule.required) {
 						var field = instance.getField(fieldName);
 
-						if (!field.attr(ARIA_REQUIRED)) {
+						if (field && !field.attr(ARIA_REQUIRED)) {
 							field.attr(ARIA_REQUIRED, true);
 						}
 					}
