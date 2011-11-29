@@ -146,7 +146,7 @@ public class TypeUtil {
 					String[] genericsTypes = StringUtil.split(genericsType);
 
 					for (int i = 0; i < genericsTypes.length; i++) {
-						String curType = genericsTypes[i];
+						String curType = genericsTypes[i].trim();
 
 						if (!curType.equals(StringPool.QUESTION)) {
 							Class.forName(curType);
