@@ -172,7 +172,7 @@ var Video = A.Component.create(
 			_uiSetOgvUrl: function (val) {
 				var instance = this;
 
-				if (UA.gecko) {
+				if (UA.gecko || UA.opera) {
 					var video = instance._video;
 
 					var usingVideo = instance._usingVideo();
