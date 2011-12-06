@@ -502,7 +502,12 @@ var DiagramBuilder = A.Component.create({
 
 			instance.connector.hide();
 			instance.get(SUGGEST_CONNECTOR_OVERLAY).hide();
-			instance.fieldsDrag.dd.set(LOCK, false);
+
+			try {
+				instance.fieldsDrag.dd.set(LOCK, false);
+			}
+			catch(e) {
+			}
 		},
 
 		isAbleToConnect: function() {
@@ -539,7 +544,11 @@ var DiagramBuilder = A.Component.create({
 			instance.get(SUGGEST_CONNECTOR_OVERLAY).set(XY, xy || instance.connector.get(P2))
 				.show().get(BOUNDING_BOX).addClass(CSS_DIAGRAM_SUGGEST_CONNECTOR);
 
-			instance.fieldsDrag.dd.set(LOCK, true);
+			try {
+				instance.fieldsDrag.dd.set(LOCK, true);
+			}
+			catch(e) {
+			}
 		},
 
 		stopEditing: function() {
