@@ -384,6 +384,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 		}
 
 		instance.set(SELECTED, !selected);
+
+		event.halt();
 	},
 
 	_onShapeMouseEnter: function(event) {
