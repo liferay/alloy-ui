@@ -33,7 +33,6 @@ var Lang = A.Lang,
 		return x === 0 ? 0 : (x < 0 ? -1 : 1);
 	},
 
-	ANCHOR = 'anchor',
 	ARROW_POINTS = 'arrowPoints',
 	BOUNDING_BOX = 'boundingBox',
 	BUILDER = 'builder',
@@ -252,8 +251,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
 
 	getPropertyModel: function() {
 		var instance = this;
-		var anchor = instance.get(ANCHOR);
-		var strings = anchor ? anchor.get(DIAGRAM_NODE).getStrings() : {};
+		var strings = instance.getStrings();
 
 		return [
 			{
@@ -270,6 +268,10 @@ A.Connector = A.Base.create('line', A.Base, [], {
 				name: strings[NAME]
 			}
 		];
+	},
+
+	getStrings: function() {
+		return A.Connector.STRINGS;
 	},
 
 	hide: function() {
@@ -626,5 +628,9 @@ A.Connector = A.Base.create('line', A.Base, [], {
 			validator: isBoolean,
 			value: true
 		}
+	},
+
+	STRINGS: {
+		name: 'Name'
 	}
 });
