@@ -107,11 +107,6 @@
 	vertical-align: middle;
 }
 
-.aui-choice-label,
-.aui-field-input-choice {
-	float: left;
-}
-
 .aui-field-row {
 	display: block;
 	clear: both;
