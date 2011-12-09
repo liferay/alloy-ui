@@ -1766,7 +1766,8 @@ var AutoComplete = A.Component.create(
 						align: overlayAlign,
 						bodyContent: '<ul></ul>',
 						visible: false,
-						width: instance.inputNode.get('offsetWidth')
+						width: instance.inputNode.get('offsetWidth'),
+						zIndex: 1
 					}
 				);
 
