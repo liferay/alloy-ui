@@ -1607,4 +1607,36 @@ A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
 
+// This method is a temporary fix to work around
+// http://yuilibrary.com/projects/yui3/ticket/2531537 and can be removed when
+// that bug is fixed by the YUI team
+NODELIST_PROTO.hide = function() {
+	var instance = this;
+	var originalArguments = arguments;
+
+	instance.each(
+		function (item) {
+			item.hide.apply(item, originalArguments);
+		}
+	);
+
+	return instance;
+};
+
+// This method is a temporary fix to work around
+// http://yuilibrary.com/projects/yui3/ticket/2531537 and can be removed when
+// that bug is fixed by the YUI team
+NODELIST_PROTO.show = function() {
+	var instance = this;
+	var originalArguments = arguments;
+
+	instance.each(
+		function (item) {
+			item.show.apply(item, originalArguments);
+		}
+	);
+
+	return instance;
+};
+
 }, '@VERSION@' ,{requires:['aui-base-lang','node','aui-classnamemanager']});

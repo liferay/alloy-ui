@@ -1607,6 +1607,38 @@ A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
 
+// This method is a temporary fix to work around
+// http://yuilibrary.com/projects/yui3/ticket/2531537 and can be removed when
+// that bug is fixed by the YUI team
+NODELIST_PROTO.hide = function() {
+	var instance = this;
+	var originalArguments = arguments;
+
+	instance.each(
+		function (item) {
+			item.hide.apply(item, originalArguments);
+		}
+	);
+
+	return instance;
+};
+
+// This method is a temporary fix to work around
+// http://yuilibrary.com/projects/yui3/ticket/2531537 and can be removed when
+// that bug is fixed by the YUI team
+NODELIST_PROTO.show = function() {
+	var instance = this;
+	var originalArguments = arguments;
+
+	instance.each(
+		function (item) {
+			item.show.apply(item, originalArguments);
+		}
+	);
+
+	return instance;
+};
+
 }, '@VERSION@' ,{requires:['aui-base-lang','node','aui-classnamemanager']});
 AUI.add('aui-node-html5', function(A) {
 /**
@@ -2109,5 +2141,5 @@ PrintFix();
 }, '@VERSION@' ,{requires:['aui-node-html5']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print'], skinnable:false});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']});
 
