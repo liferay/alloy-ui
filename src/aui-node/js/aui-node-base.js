@@ -1605,3 +1605,19 @@ A.allNS = function(ns, selector) {
 A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
+
+// Patch for http://yuilibrary.com/projects/yui3/ticket/2531537
+
+var addMethod = NodeList.addMethod;
+
+AArray.each(
+	['hide', 'show'],
+	function(item, index, collection) {
+		addMethod(
+			item,
+			function() {
+				return this[item].apply(this, arguments);
+			}
+		);
+	}
+);

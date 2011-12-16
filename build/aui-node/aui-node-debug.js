@@ -1607,6 +1607,22 @@ A.byIdNS = function(ns, id) {
 	return A.one(prefixSelector(ns, id));
 };
 
+// Patch for http://yuilibrary.com/projects/yui3/ticket/2531537
+
+var addMethod = NodeList.addMethod;
+
+AArray.each(
+	['hide', 'show'],
+	function(item, index, collection) {
+		addMethod(
+			item,
+			function() {
+				return this[item].apply(this, arguments);
+			}
+		);
+	}
+);
+
 }, '@VERSION@' ,{requires:['aui-base-lang','node','aui-classnamemanager']});
 AUI.add('aui-node-html5', function(A) {
 /**
@@ -2109,5 +2125,5 @@ PrintFix();
 }, '@VERSION@' ,{requires:['aui-node-html5']});
 
 
-AUI.add('aui-node', function(A){}, '@VERSION@' ,{use:['aui-node-base','aui-node-html5','aui-node-html5-print'], skinnable:false});
+AUI.add('aui-node', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']});
 
