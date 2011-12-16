@@ -188,7 +188,7 @@ var TreeData = A.Component.create(
 						// when moved update the oldParent children
 						var children = oldParent.get(CHILDREN);
 
-						A.Array.removeItem(children, instance);
+						A.Array.removeItem(children, node);
 
 						oldParent.set(CHILDREN, children);
 					}
@@ -216,7 +216,7 @@ var TreeData = A.Component.create(
 					ownerTree.registerNode(node);
 				}
 
-				if (oldOwnerTree !== ownerTree) {
+				if (oldOwnerTree != ownerTree) {
 					// when change the OWNER_TREE update the children references also
 					node.eachChildren(function(child) {
 						instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
@@ -3601,5 +3601,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
 
