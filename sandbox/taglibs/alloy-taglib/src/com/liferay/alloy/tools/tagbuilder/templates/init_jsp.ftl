@@ -42,7 +42,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 <#if component.isAlloyComponent()>
 %>
 
-<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jspf" %>
 
 <%
 </#if>
