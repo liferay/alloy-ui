@@ -105,7 +105,10 @@ var SWF = A.Component.create(
 				value: {}
 			},
 			flashVars: {
-				value: {}
+				value: {},
+				setter: function(v) {
+					return this._setFlashVars(v);
+				}
 			},
 			render: {
 				value: true
@@ -250,6 +253,25 @@ var SWF = A.Component.create(
 				if (eventType != 'log') {
 					instance.fire(eventType, event);
 				}
+			},
+
+			_setFlashVars: function(value) {
+				var instance = this;
+
+				if (typeof value == 'object') {
+					return value;
+				}
+
+				var flashVarsObj = {};
+				var splitFlashVars = value.split(';');
+
+				for (var i=0; i < splitFlashVars.length; i++) {
+					var splitVar = splitFlashVars[i].split('=');
+
+					flashVarsObj[splitVar[0]] = splitVar[1];
+				}
+
+				return flashVarsObj;
 			}
 		}
 	}
