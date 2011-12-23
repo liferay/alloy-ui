@@ -350,6 +350,8 @@ if (A.Node) {
 }, '@VERSION@' ,{requires:['aui-base']});
 AUI.add('aui-event-delegate-change', function(A) {
 var AObject = A.Object,
+	Node = A.Node,
+	Selector = A.Selector,
 
 	EVENT_BEFOREACTIVATE = 'beforeactivate',
 	EVENT_CHANGE = 'change';
@@ -381,7 +383,7 @@ A.Event.define(
 			instance._attachEvent(node, subscription, notifier);
 		},
 
-		_attachEvent: function(node, subscription, notifier, delegateNode) {
+		_attachEvent: function(node, subscription, notifier, delegateNode, filter) {
 			var instance = this;
 
 			var type = instance._getEventName(node);
@@ -393,10 +395,20 @@ A.Event.define(
 
 				if (delegateNode) {
 					fireFn = function(event) {
-						event.currentTarget = node;
-						event.container = delegateNode;
+						var tmpNode = node;
 
-						notifier.fire(event);
+						do {
+							if (tmpNode) {
+								if (Selector.test(Node.getDOMNode(tmpNode), filter)) {
+									event.currentTarget = tmpNode;
+									event.container = delegateNode;
+
+									notifier.fire(event);
+								}
+
+								tmpNode = tmpNode.get('parentNode');
+							}
+						} while(tmpNode && tmpNode !== delegateNode && !event.stopped);
 					};
 				}
 
@@ -414,7 +426,7 @@ A.Event.define(
 				function(event) {
 					var activeElement = event.target;
 
-					instance._attachEvent(activeElement, subscription, notifier, node);
+					instance._attachEvent(activeElement, subscription, notifier, node, filter);
 				},
 				filter
 			);
@@ -472,5 +484,5 @@ A.Event.define(
 }, '@VERSION@' ,{requires:['aui-base']});
 
 
-AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-base','aui-event-input'], plugins:{'aui-event-delegate-change': {condition: {trigger: 'event-base-ie', ua: 'ie'}}}});
+AUI.add('aui-event', function(A){}, '@VERSION@' ,{use:['aui-event-base','aui-event-input'], skinnable:false, plugins:{'aui-event-delegate-change': {condition: {trigger: 'event-base-ie', ua: 'ie'}}}});
 
