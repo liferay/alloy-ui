@@ -1521,4 +1521,4 @@ Y.Console = Y.extend(Console, Y.Widget,
 });
 
 
-}, '3.4.0' ,{lang:['en', 'es' ], requires:['substitute','widget','yui-log']});
+}, '3.4.0' ,{lang:['en', 'es', 'ja'], requires:['substitute','widget','yui-log']});

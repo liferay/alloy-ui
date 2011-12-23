@@ -3290,7 +3290,7 @@ ELEMENT_PROTOTYPE.blur = function(size) {
 	}
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base']});
+}, '@VERSION@' ,{requires:['aui-drawing-base'], condition: {name: 'aui-drawing-svg', trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}});
 AUI.add('aui-drawing-vml', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -4762,7 +4762,7 @@ DRAWING_PROTOTYPE._uiSetHeight = function(value) {
 	canvasStyle.clip = 'rect(0 ' + width  + ' ' + value + ' 0)';
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base']});
+}, '@VERSION@' ,{requires:['aui-drawing-base'], condition: {name: 'aui-drawing-vml', trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}});
 AUI.add('aui-drawing-animate', function(A) {
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
@@ -5911,8 +5911,8 @@ A.Drawing.prototype.safari = function() {
 	);
 };
 
-}, '@VERSION@' ,{requires:['aui-drawing-base']});
+}, '@VERSION@' ,{requires:['aui-drawing-base'], condition: {name: 'aui-drawing-safari', trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}});
 
 
-AUI.add('aui-drawing', function(A){}, '@VERSION@' ,{use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}});
+AUI.add('aui-drawing', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts']});
 

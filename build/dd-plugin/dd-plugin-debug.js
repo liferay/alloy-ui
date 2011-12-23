@@ -8,6 +8,7 @@ build: nightly
 YUI.add('dd-plugin', function(Y) {
 
 
+
        /**
         * Simple Drag plugin that can be attached to a Node or Widget via the plug method.
         * @module dd
@@ -160,4 +161,4 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '3.4.0' ,{optional:['dd-constrain', 'dd-proxy'], skinnable:false, requires:['dd-drag']});
+}, '3.4.0' ,{optional:['dd-constrain', 'dd-proxy'], requires:['dd-drag'], skinnable:false});

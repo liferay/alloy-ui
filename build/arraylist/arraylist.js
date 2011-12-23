@@ -216,4 +216,4 @@ Y.mix( ArrayList, {
 Y.ArrayList = ArrayList;
 
 
-}, '3.4.0' );
+}, '3.4.0' ,{requires:['yui-base']});
