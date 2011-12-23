@@ -263,9 +263,10 @@ var SWF = A.Component.create(
 				}
 
 				var flashVarsObj = {};
-				var splitFlashVars = value.split(';');
+				var splitFlashVars = value.split('&');
+				var i, length = splitFlashVars.length;
 
-				for (var i=0; i < splitFlashVars.length; i++) {
+				for (i = 0; i < length; i++) {
 					var splitVar = splitFlashVars[i].split('=');
 
 					flashVarsObj[splitVar[0]] = splitVar[1];
