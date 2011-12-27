@@ -140,6 +140,11 @@ YUI.add('frame', function(Y) {
         */
         _onDomEvent: function(e) {
             var xy, node;
+            
+            if (!Y.Node.getDOMNode(this._iframe)) {
+                //The iframe is null for some reason, bail on sending events.
+                return;
+            }
 
             e.frameX = e.frameY = 0;
 
@@ -590,6 +595,7 @@ YUI.add('frame', function(Y) {
                     fn = Y.bind(function() {
                         config = this._resolveWinDoc(config);
                         inst = YUI(config);
+                        inst.host = this.get('host'); //Cross reference to Editor
 
                         try {
                             inst.use('node-base', cb);

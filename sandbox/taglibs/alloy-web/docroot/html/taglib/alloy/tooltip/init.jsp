@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jspf" %>
 
 <%
 java.util.HashMap align = _toHashMap(GetterUtil.getObject((java.lang.Object)request.getAttribute("alloy:tooltip:align"), "{ node: null, points: [ BL, TR ] }"));

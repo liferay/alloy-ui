@@ -5,11 +5,6 @@ http://developer.yahoo.com/yui/license.html
 version: 3.4.0
 build: nightly
 */
-.yui3-skin-night{    
-	background-color:#000;
-	color:#fff;
-}
-
 /* Horizontal Slider */
 
 /* Use thumbUrl /build/slider-base/assets/skins/night/thumb-x.png */

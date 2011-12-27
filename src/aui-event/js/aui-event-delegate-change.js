@@ -35,30 +35,28 @@ A.Event.define(
 
 			var type = instance._getEventName(node);
 
-			var handles = instance._prepareHandels(subscription, node);
+			var handles = instance._prepareHandles(subscription, node);
 
 			if (!AObject.owns(handles, type)) {
-				handles[type] = A.Event._attach(
-					[
-						type,
-						function(event) {
-							if (delegateNode) {
-								event.currentTarget = delegateNode;
-							}
+				var fireFn = notifier.fire;
 
-							notifier.fire(event);
-						},
-						node,
-						notifier
-					]
-				);
+				if (delegateNode) {
+					fireFn = function(event) {
+						event.currentTarget = node;
+						event.container = delegateNode;
+
+						notifier.fire(event);
+					};
+				}
+
+				handles[type] = A.Event._attach([type, fireFn, node, notifier]);
 			}
 		},
 
 		_attachEvents: function(node, subscription, notifier, filter) {
 			var instance = this;
 
-			var handles = instance._prepareHandels(subscription, node);
+			var handles = instance._prepareHandles(subscription, node);
 
 			handles[EVENT_BEFOREACTIVATE] = node.delegate(
 				EVENT_BEFOREACTIVATE,
@@ -103,7 +101,7 @@ A.Event.define(
 			}
 		),
 
-		_prepareHandels: function(subscription, node) {
+		_prepareHandles: function(subscription, node) {
 			if (!AObject.owns(subscription, '_handles')) {
 				subscription._handles = {};
 			}

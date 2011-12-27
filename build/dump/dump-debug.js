@@ -109,4 +109,4 @@ YUI.add('dump', function(Y) {
 
 
 
-}, '3.4.0' );
+}, '3.4.0' ,{requires:['yui-base']});

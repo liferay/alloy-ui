@@ -12,4 +12,4 @@
 final String ALLOY_BASE_PATH = "http://alloy.liferay.com/deploy/build/"; 
 %>
 
-<%@ include file="/html/demos/init-alloy.jsp" %>
+<%@ include file="/html/demos/init-alloy.jspf" %>

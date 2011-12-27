@@ -140,6 +140,11 @@ YUI.add('frame', function(Y) {
         */
         _onDomEvent: function(e) {
             var xy, node;
+            
+            if (!Y.Node.getDOMNode(this._iframe)) {
+                //The iframe is null for some reason, bail on sending events.
+                return;
+            }
 
             e.frameX = e.frameY = 0;
 
@@ -590,6 +595,7 @@ YUI.add('frame', function(Y) {
                     fn = Y.bind(function() {
                         config = this._resolveWinDoc(config);
                         inst = YUI(config);
+                        inst.host = this.get('host'); //Cross reference to Editor
 
                         try {
                             inst.use('node-base', cb);
@@ -2385,6 +2391,7 @@ YUI.add('exec-command', function(Y) {
                     var inst = this.getInstance(), html,
                         DIR = 'dir', cls = 'yui3-touched',
                         dir, range, div, elm, n, str, s, par, list, lis,
+                        useP = (inst.host.editorPara ? true : false),
                         sel = new inst.Selection();
 
                     cmd = 'insert' + ((tag === 'ul') ? 'un' : '') + 'orderedlist';
@@ -2404,7 +2411,11 @@ YUI.add('exec-command', function(Y) {
 
                             str = '<div>';
                             lis.each(function(l) {
-                                str += l.get('innerHTML') + '<br>';
+                                if (useP) {
+                                    str += '<p>' + l.get('innerHTML') + '</p>';
+                                } else {
+                                    str += l.get('innerHTML') + '<br>';
+                                }
                             });
                             str += '</div>';
                             s = inst.Node.create(str);
@@ -2412,9 +2423,17 @@ YUI.add('exec-command', function(Y) {
                                 n = n.get('parentNode');
                             }
                             if (n && n.hasAttribute(DIR)) {
-                                s.setAttribute(DIR, n.getAttribute(DIR));
+                                if (useP) {
+                                    s.all('p').setAttribute(DIR, n.getAttribute(DIR));
+                                } else {
+                                    s.setAttribute(DIR, n.getAttribute(DIR));
+                                }
                             }
-                            n.replace(s);
+                            if (useP) {
+                                n.replace(s.get('innerHTML'));
+                            } else {
+                                n.replace(s);
+                            }
                             if (range.moveToElementText) {
                                 range.moveToElementText(s._node);
                             }
@@ -2495,18 +2514,51 @@ YUI.add('exec-command', function(Y) {
                         } else {
                             par = sel.anchorNode.ancestor(inst.Selection.BLOCKS);
                         }
+                        if (!par) { //No parent, find the first block under the anchorNode
+                            par = sel.anchorNode.one(inst.Selection.BLOCKS);
+                        }
+
                         if (par && par.hasAttribute(DIR)) {
                             dir = par.getAttribute(DIR);
                         }
-                        this._command(cmd, null);
-                        list = inst.all(tag);
-                        if (dir) {
-                            list.each(function(n) {
-                                if (!n.hasClass(cls)) {
-                                    n.setAttribute(DIR, dir);
+                        if (par && par.test(tag)) {
+                            html = inst.Node.create('<div/>');
+                            elm = par.all('li');
+                            elm.each(function(h) {
+                                if (useP) {
+                                    html.append('<p>' + h.get('innerHTML') + '</p>');
+                                } else {
+                                    html.append(h.get('innerHTML') + '<br>');
                                 }
                             });
+                            if (dir) {
+                                if (useP) {
+                                    html.all('p').setAttribute(DIR, dir);
+                                } else {
+                                    html.setAttribute(DIR, dir);
+                                }
+                            }
+                            if (useP) {
+                                par.replace(html.get('innerHTML'));
+                            } else {
+                                par.replace(html);
+                            }
+                            sel.selectNode(html.get('firstChild'));
+                        } else {
+                            this._command(cmd, null);
                         }
+                        list = inst.all(tag);
+                        if (dir) {
+                            if (list.size()) {
+                                //Changed to a List
+                                list.each(function(n) {
+                                    if (!n.hasClass(cls)) {
+                                        n.setAttribute(DIR, dir);
+                                    }
+                                });
+                            }
+                        }
+
                         list.removeClass(cls);
                     }
                 },
@@ -2803,14 +2855,10 @@ YUI.add('editor-base', function(Y) {
      *      });
      *      editor.render('#demo');
      *
-     * @main editor
-     */     
-    /**
-     * Base class for Editor. Handles the business logic of Editor, no GUI involved only utility methods and events.
      * @class EditorBase
-     * @for EditorBase
      * @extends Base
      * @module editor
+     * @main editor
      * @submodule editor-base
      * @constructor
      */
@@ -2925,7 +2973,10 @@ YUI.add('editor-base', function(Y) {
                         n = lc;
                     }
                 }
-                
+            }
+            if (!n) {
+                //Fallback to make sure a node is attached to the event
+                n = inst.one(BODY);
             }
             return n;
         },
@@ -2977,6 +3028,12 @@ YUI.add('editor-base', function(Y) {
                             this.execCommand('inserthtml', EditorBase.TABKEY);
                         }
                     }
+                    break;
+                case 'backspace-up':
+                    // Fixes #2531090 - Joins text node strings so they become one for bidi
+                    if (Y.UA.webkit && e.changedNode) {
+			            e.changedNode.set('innerHTML', e.changedNode.get('innerHTML'));
+		            }
                     break;
             }
             if (Y.UA.webkit && e.commands && (e.commands.indent || e.commands.outdent)) {
@@ -4084,11 +4141,12 @@ YUI.add('editor-bidi', function(Y) {
         }
 
         inst.Selection.filterBlocks();
-        if (sel.anchorNode.test(BODY)) {
-            return;
-        }
+
         if (sel.isCollapsed) { // No selection
             block = EditorBidi.blockParent(sel.anchorNode);
+            if (!block) {
+                block = inst.one('body').one(inst.Selection.BLOCKS);
+            }
             //Remove text-align attribute if it exists
             block = EditorBidi.removeTextAlign(block);
             if (!direction) {
@@ -4254,6 +4312,24 @@ YUI.add('editor-para', function(Y) {
                         if (e.changedEvent.shiftKey) {
                             host.execCommand('insertbr');
                             e.changedEvent.preventDefault();
+                        }
+                    }
+                    if (e.changedNode.test('li') && !Y.UA.ie) {
+                        html = inst.Selection.getText(e.changedNode);
+                        if (html === '') {
+                            par = e.changedNode.ancestor('ol,ul');
+                            var dir = par.getAttribute('dir');
+                            if (dir !== '') {
+                                dir = ' dir = "' + dir + '"';
+                            }
+                            par = e.changedNode.ancestor(inst.Selection.BLOCKS);
+                            d = inst.Node.create('<p' + dir + '>' + inst.Selection.CURSOR + '</p>');
+                            par.insert(d, 'after');
+                            e.changedNode.remove();
+                            e.changedEvent.halt();
+
+                            sel = new inst.Selection();
+                            sel.selectNode(d, true, false);
                         }
                     }
                     //TODO Move this to a GECKO MODULE - Can't for the moment, requires no change to metadata (YMAIL)
@@ -4628,5 +4704,5 @@ YUI.add('editor-br', function(Y) {
 }, '3.4.0' ,{skinnable:false, requires:['editor-base']});
 
 
-YUI.add('editor', function(Y){}, '3.4.0' ,{use:['frame', 'selection', 'exec-command', 'editor-base', 'editor-para', 'editor-br', 'editor-bidi', 'editor-tab', 'createlink-base'], skinnable:false});
+YUI.add('editor', function(Y){}, '3.4.0' ,{skinnable:false, use:['frame', 'selection', 'exec-command', 'editor-base', 'editor-para', 'editor-br', 'editor-bidi', 'editor-tab', 'createlink-base']});
 

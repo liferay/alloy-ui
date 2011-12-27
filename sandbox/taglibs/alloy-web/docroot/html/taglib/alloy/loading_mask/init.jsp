@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jspf" %>
 
 <%
 boolean destroyed = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:loading-mask:destroyed")), false);

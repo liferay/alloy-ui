@@ -199,6 +199,7 @@ properties.
                 loader = new Y.Loader(Y.config);
                 Y.Env._loader = loader;
             }
+            YUI.Env.core = Y.Array.dedupe([].concat(YUI.Env.core, [ 'loader-base', 'loader-rollup', 'loader-yui3' ]));
 
             return loader;
         },
@@ -305,6 +306,7 @@ proto = {
 
         if (!Env) {
             Y.Env = {
+                core: ['get','features','intl-base','yui-log','yui-later','loader-base', 'loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
                 base: BASE,
@@ -464,7 +466,8 @@ proto = {
         var i, Y = this,
             core = [],
             mods = YUI.Env.mods,
-            extras = Y.config.core || ['get','features','intl-base','yui-log','yui-later','loader-base', 'loader-rollup', 'loader-yui3'];
+            //extras = Y.config.core || ['get','features','intl-base','yui-log','yui-later','loader-base', 'loader-rollup', 'loader-yui3'];
+            extras = Y.config.core || [].concat(YUI.Env.core); //Clone it..
 
         for (i = 0; i < extras.length; i++) {
             if (mods[extras[i]]) {
@@ -474,6 +477,10 @@ proto = {
 
         Y._attach(['yui-base']);
         Y._attach(core);
+
+        if (Y.Loader) {
+            getLoader(Y);
+        }
 
     },
 
@@ -577,6 +584,8 @@ with any configuration info required for the module.
     /**
      * Executes the function associated with each required
      * module, binding the module to the YUI instance.
+     * @param {Array} r The array of modules to attach
+     * @param {Boolean} [moot=false] Don't throw a warning if the module is not attached
      * @method _attach
      * @private
      */
@@ -585,41 +594,58 @@ with any configuration info required for the module.
             mods = YUI.Env.mods,
             aliases = YUI.Env.aliases,
             Y = this, j,
+            loader = Y.Env._loader,
             done = Y.Env._attached,
-            len = r.length, loader;
+            len = r.length, loader,
+            c = [];
 
-        //console.info('attaching: ' + r, 'info', 'yui');
+        //Check for conditional modules (in a second+ instance) and add their requirements
+        //TODO I hate this entire method, it needs to be fixed ASAP (3.5.0) ^davglass
+        for (i = 0; i < len; i++) {
+            name = r[i];
+            mod = mods[name];
+            c.push(name);
+            if (loader && loader.conditions[name]) {
+                Y.Object.each(loader.conditions[name], function(def) {
+                    var go = def && ((def.ua && Y.UA[def.ua]) || (def.test && def.test(Y)));
+                    if (go) {
+                        c.push(def.name);
+                    }
+                });
+            }
+        }
+        r = c;
+        len = r.length;
 
         for (i = 0; i < len; i++) {
             if (!done[r[i]]) {
                 name = r[i];
                 mod = mods[name];
+
                 if (aliases && aliases[name]) {
                     Y._attach(aliases[name]);
                     continue;
                 }
                 if (!mod) {
-                    loader = Y.Env._loader;
                     if (loader && loader.moduleInfo[name]) {
                         mod = loader.moduleInfo[name];
-                        if (mod.use) {
-                            moot = true;
-                        }
+                        moot = true;
                     }
 
 
                     //if (!loader || !loader.moduleInfo[name]) {
                     //if ((!loader || !loader.moduleInfo[name]) && !moot) {
                     if (!moot) {
-                        if (name.indexOf('skin-') === -1) {
+                        if ((name.indexOf('skin-') === -1) && (name.indexOf('css') === -1)) {
                             Y.Env._missed.push(name);
+                            Y.Env._missed = Y.Array.dedupe(Y.Env._missed);
                             Y.message('NOT loaded: ' + name, 'warn', 'yui');
                         }
                     }
                 } else {
                     done[name] = true;
                     //Don't like this, but in case a mod was asked for once, then we fetch it
-                    //We need to remove it from the missed list
+                    //We need to remove it from the missed list ^davglass
                     for (j = 0; j < Y.Env._missed.length; j++) {
                         if (Y.Env._missed[j] === name) {
                             Y.message('Found: ' + name + ' (was reported as missing earlier)', 'warn', 'yui');
@@ -745,22 +771,6 @@ with any configuration info required for the module.
         }
         if (Y.Lang.isArray(args[0])) {
             args = args[0];
-        }
-
-        if (Y.config.cacheUse) {
-            while ((name = args[i++])) {
-                if (!Env._attached[name]) {
-                    provisioned = false;
-                    break;
-                }
-            }
-
-            if (provisioned) {
-                if (args.length) {
-                }
-                Y._notify(callback, ALREADY_DONE, args);
-                return Y;
-            }
         }
 
         if (Y.config.cacheUse) {
@@ -967,6 +977,7 @@ with any configuration info required for the module.
             len = missing.length;
         }
 
+
         // dynamic load
         if (boot && len && Y.Loader) {
             Y._loading = true;
@@ -1055,13 +1066,13 @@ with any configuration info required for the module.
 
 
     /**
-    Adds a namespace object onto the YUI global if called statically:
+    Adds a namespace object onto the YUI global if called statically.
 
         // creates YUI.your.namespace.here as nested objects
         YUI.namespace("your.namespace.here");
 
-    If called as an instance method on the YUI instance, it creates the
-    namespace on the instance:
+    If called as a method on a YUI <em>instance</em>, it creates the
+    namespace on the instance.
 
          // creates Y.property.package
          Y.namespace("property.package");
@@ -1074,15 +1085,14 @@ with any configuration info required for the module.
     If the first token in the namespace string is "YAHOO", the token is
     discarded.
 
-    Be careful when naming packages. Reserved words may work in some browsers
-    and not others. For instance, the following will fail in some browsers:
+    Be careful with namespace tokens. Reserved words may work in some browsers
+    and not others. For instance, the following will fail in some browsers
+    because the supported version of JavaScript reserves the word "long":
     
          Y.namespace("really.long.nested.namespace");
     
-    This fails because `long` is a future reserved word in ECMAScript
-    
     @method namespace
-    @param  {String[]} namespace* 1-n namespaces to create.
+    @param  {String} namespace* namespaces to create.
     @return {Object}  A reference to the last namespace object created.
     **/
     namespace: function() {
@@ -2068,14 +2078,9 @@ L.now = Date.now || function () {
     return new Date().getTime();
 };
 /**
- * The YUI module contains the components required for building the YUI seed
- * file. This includes the script loading mechanism, a simple queue, and the
- * core utilities for the library.
- *
- * @module yui
- * @main yui
- * @submodule yui-base
- */
+@module yui
+@submodule yui-base
+*/
 
 var Lang   = Y.Lang,
     Native = Array.prototype,
@@ -2134,43 +2139,6 @@ function YArray(thing, startIndex, force) {
 }
 
 Y.Array = YArray;
-
-/**
-Evaluates _obj_ to determine if it's an array, an array-like collection, or
-something else. This is useful when working with the function `arguments`
-collection and `HTMLElement` collections.
-
-Note: This implementation doesn't consider elements that are also
-collections, such as `<form>` and `<select>`, to be array-like.
-
-@method test
-@param {Object} obj Object to test.
-@return {Number} A number indicating the results of the test:
-
-  * 0: Neither an array nor an array-like collection.
-  * 1: Real array.
-  * 2: Array-like collection.
-
-@static
-**/
-YArray.test = function (obj) {
-    var result = 0;
-
-    if (Lang.isArray(obj)) {
-        result = 1;
-    } else if (Lang.isObject(obj)) {
-        try {
-            // indexed, but no tagName (element) or alert (window),
-            // or functions without apply/call (Safari
-            // HTMLElementCollection bug).
-            if ('length' in obj && !obj.tagName && !obj.alert && !obj.apply) {
-                result = 2;
-            }
-        } catch (ex) {}
-    }
-
-    return result;
-};
 
 /**
 Dedupes an array of strings, returning an array that's guaranteed to contain
@@ -2287,7 +2255,7 @@ YArray.indexOf = Native.indexOf ? function (array, value) {
     return Native.indexOf.call(array, value);
 } : function (array, value) {
     for (var i = 0, len = array.length; i < len; ++i) {
-        if (array[i] === value) {
+        if (i in array && array[i] === value) {
             return i;
         }
     }
@@ -2344,6 +2312,43 @@ YArray.some = Native.some ? function (array, fn, thisObj) {
     }
 
     return false;
+};
+
+/**
+Evaluates _obj_ to determine if it's an array, an array-like collection, or
+something else. This is useful when working with the function `arguments`
+collection and `HTMLElement` collections.
+
+Note: This implementation doesn't consider elements that are also
+collections, such as `<form>` and `<select>`, to be array-like.
+
+@method test
+@param {Object} obj Object to test.
+@return {Number} A number indicating the results of the test:
+
+  * 0: Neither an array nor an array-like collection.
+  * 1: Real array.
+  * 2: Array-like collection.
+
+@static
+**/
+YArray.test = function (obj) {
+    var result = 0;
+
+    if (Lang.isArray(obj)) {
+        result = 1;
+    } else if (Lang.isObject(obj)) {
+        try {
+            // indexed, but no tagName (element) or alert (window),
+            // or functions without apply/call (Safari
+            // HTMLElementCollection bug).
+            if ('length' in obj && !obj.tagName && !obj.alert && !obj.apply) {
+                result = 2;
+            }
+        } catch (ex) {}
+    }
+
+    return result;
 };
 /**
  * The YUI module contains the components required for building the YUI
@@ -2476,7 +2481,7 @@ Y.cached = function (source, cache, refetch) {
     return function (arg) {
         var key = arguments.length > 1 ?
                 Array.prototype.join.call(arguments, CACHED_DELIMITER) :
-                arg.toString();
+                String(arg);
 
         if (!(key in cache) || (refetch && cache[key] == refetch)) {
             cache[key] = source.apply(source, arguments);
@@ -2512,9 +2517,11 @@ Y.merge = function () {
 };
 
 /**
-Mixes _supplier_'s properties into _receiver_. Properties will not be
-overwritten or merged unless the _overwrite_ or _merge_ parameters are `true`,
-respectively.
+Mixes _supplier_'s properties into _receiver_.
+
+Properties on _receiver_ or _receiver_'s prototype will not be overwritten or
+shadowed unless the _overwrite_ parameter is `true`, and will not be merged
+unless the _merge_ parameter is `true`.
 
 In the default mode (0), only properties the supplier owns are copied (prototype
 properties are not copied). The following copying modes are available:
@@ -2535,7 +2542,7 @@ properties are not copied). The following copying modes are available:
 @param {String[]} [whitelist] An array of property names to copy. If
   specified, only the whitelisted properties will be copied, and all others
   will be ignored.
-@param {Int} [mode=0] Mix mode to use. See above for available modes.
+@param {Number} [mode=0] Mix mode to use. See above for available modes.
 @param {Boolean} [merge=false] If `true`, objects and arrays that already
   exist on the receiver will have the corresponding object/array from the
   supplier merged into them, rather than being skipped or overwritten. When
@@ -2578,8 +2585,8 @@ Y.mix = function(receiver, supplier, overwrite, whitelist, mode, merge) {
         to   = receiver;
     }
 
-    // If `overwrite` is truthy and `merge` is falsy, then we can skip a call
-    // to `hasOwnProperty` on each iteration and save some time.
+    // If `overwrite` is truthy and `merge` is falsy, then we can skip a
+    // property existence check on each iteration and save some time.
     alwaysOverwrite = overwrite && !merge;
 
     if (whitelist) {
@@ -2595,7 +2602,10 @@ Y.mix = function(receiver, supplier, overwrite, whitelist, mode, merge) {
                 continue;
             }
 
-            exists = alwaysOverwrite ? false : hasOwn.call(to, key);
+            // The `key in to` check here is (sadly) intentional for backwards
+            // compatibility reasons. It prevents undesired shadowing of
+            // prototype members on `to`.
+            exists = alwaysOverwrite ? false : key in to;
 
             if (merge && exists && isObject(to[key], true)
                     && isObject(from[key], true)) {
@@ -2626,7 +2636,10 @@ Y.mix = function(receiver, supplier, overwrite, whitelist, mode, merge) {
                 continue;
             }
 
-            exists = alwaysOverwrite ? false : hasOwn.call(to, key);
+            // The `key in to` check here is (sadly) intentional for backwards
+            // compatibility reasons. It prevents undesired shadowing of
+            // prototype members on `to`.
+            exists = alwaysOverwrite ? false : key in to;
 
             if (merge && exists && isObject(to[key], true)
                     && isObject(from[key], true)) {
@@ -2729,11 +2742,22 @@ forceEnum = O._forceEnum = [
  *   - <http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation>
  *
  * @property _hasEnumBug
- * @type {Boolean}
+ * @type Boolean
  * @protected
  * @static
  */
 hasEnumBug = O._hasEnumBug = !{valueOf: 0}.propertyIsEnumerable('valueOf'),
+
+/**
+ * `true` if this browser incorrectly considers the `prototype` property of
+ * functions to be enumerable. Currently known to affect Opera 11.50.
+ *
+ * @property _hasProtoEnumBug
+ * @type Boolean
+ * @protected
+ * @static
+ */
+hasProtoEnumBug = O._hasProtoEnumBug = (function () {}).propertyIsEnumerable('prototype'),
 
 /**
  * Returns `true` if _key_ exists on _obj_, `false` if _key_ doesn't exist or
@@ -2790,9 +2814,17 @@ O.keys = (!unsafeNatives && Object.keys) || function (obj) {
     var keys = [],
         i, key, len;
 
-    for (key in obj) {
-        if (owns(obj, key)) {
-            keys.push(key);
+    if (hasProtoEnumBug && typeof obj === 'function') {
+        for (key in obj) {
+            if (owns(obj, key) && key !== 'prototype') {
+                keys.push(key);
+            }
+        }
+    } else {
+        for (key in obj) {
+            if (owns(obj, key)) {
+                keys.push(key);
+            }
         }
     }
 
@@ -2848,7 +2880,11 @@ O.values = function (obj) {
  * @static
  */
 O.size = function (obj) {
-    return O.keys(obj).length;
+    try {
+        return O.keys(obj).length;
+    } catch (ex) {
+        return 0; // Legacy behavior for non-objects.
+    }
 };
 
 /**
@@ -3230,6 +3266,15 @@ YUI.Env.parseUA = function(subUA) {
 
     m;
 
+    /**
+    * The User Agent string that was parsed
+    * @property userAgent
+    * @type String
+    * @static
+    */
+    o.userAgent = ua;
+
+
     o.secure = href && (href.toLowerCase().indexOf('https') === 0);
 
     if (ua) {
@@ -3337,7 +3382,10 @@ YUI.Env.parseUA = function(subUA) {
         }
     }
 
-    YUI.Env.UA = o;
+    //It was a parsed UA, do not assign the global value.
+    if (!subUA) {
+        YUI.Env.UA = o;
+    }
 
     return o;
 };
@@ -4250,15 +4298,56 @@ YUI.add('features', function(Y) {
 
 var feature_tests = {};
 
+/**
+Contains the core of YUI's feature test architecture.
+@module features
+*/
+
+/**
+* Feature detection
+* @class Features
+* @static
+*/
+
 Y.mix(Y.namespace('Features'), {
-
+    
+    /**
+    * Object hash of all registered feature tests
+    * @property tests
+    * @type Object
+    */
     tests: feature_tests,
-
+    
+    /**
+    * Add a test to the system
+    * 
+    *   ```
+    *   Y.Features.add("load", "1", {});
+    *   ```
+    * 
+    * @method add
+    * @param {String} cat The category, right now only 'load' is supported
+    * @param {String} name The number sequence of the test, how it's reported in the URL or config: 1, 2, 3
+    * @param {Object} o Object containing test properties
+    * @param {String} o.name The name of the test
+    * @param {Function} o.test The test function to execute, the only argument to the function is the `Y` instance
+    * @param {String} o.trigger The module that triggers this test.
+    */
     add: function(cat, name, o) {
         feature_tests[cat] = feature_tests[cat] || {};
         feature_tests[cat][name] = o;
     },
-
+    /**
+    * Execute all tests of a given category and return the serialized results
+    *
+    *   ```
+    *   caps=1:1;2:1;3:0
+    *   ```
+    * @method all
+    * @param {String} cat The category to execute
+    * @param {Array} args The arguments to pass to the test function
+    * @return {String} A semi-colon separated string of tests and their success/failure: 1:1;2:1;3:0
+    */
     all: function(cat, args) {
         var cat_o = feature_tests[cat],
             // results = {};
@@ -4271,7 +4360,19 @@ Y.mix(Y.namespace('Features'), {
 
         return (result.length) ? result.join(';') : '';
     },
-
+    /**
+    * Run a sepecific test and return a Boolean response.
+    *
+    *   ```
+    *   Y.Features.test("load", "1");
+    *   ```
+    *
+    * @method test
+    * @param {String} cat The category of the test to run
+    * @param {String} name The name of the test to run
+    * @param {Array} args The arguments to pass to the test function
+    * @return {Boolean} True or false if the test passed/failed.
+    */
     test: function(cat, name, args) {
         args = args || [];
         var result, ua, test,
@@ -4722,7 +4823,8 @@ var NO_ARGS = [];
  */
 Y.later = function(when, o, fn, data, periodic) {
     when = when || 0;
-    data = (!Y.Lang.isUndefined(data)) ? Y.Array(data) : data;
+    data = (!Y.Lang.isUndefined(data)) ? Y.Array(data) : NO_ARGS;
+    o = o || Y.config.win || Y;
 
     var cancelled = false,
         method = (o && Y.Lang.isString(fn)) ? o[fn] : fn,
@@ -4775,7 +4877,7 @@ if (!YUI.Env[Y.version]) {
             BUILD = '/build/',
             ROOT = VERSION + BUILD,
             CDN_BASE = Y.Env.base,
-            GALLERY_VERSION = 'gallery-2011.08.04-15-16',
+            GALLERY_VERSION = 'gallery-2011.09.14-20-40',
             TNT = '2in3',
             TNT_VERSION = '4',
             YUI2_VERSION = '2.9.0',
@@ -4885,8 +4987,6 @@ var NOT_FOUND = {},
     ON_PAGE = GLOBAL_ENV.mods,
     modulekey,
     cache,
-	explode_done = {},
-    get_module = {},
     _path = function(dir, file, type, nomin) {
                         var path = dir + '/' + file;
                         if (!nomin) {
@@ -4896,6 +4996,10 @@ var NOT_FOUND = {},
 
                         return path;
                     };
+
+if (YUI.Env.aliases) {
+    YUI.Env.aliases = {}; //Don't need aliases if Loader is present
+}
 
 /**
  * The component metadata is stored in Y.Env.meta.
@@ -5748,8 +5852,12 @@ Y.Loader.prototype = {
      */
     addModule: function(o, name) {
         name = name || o.name;
-
-        if (this.moduleInfo[name]) {
+        
+        //Only merge this data if the temp flag is set
+        //from an earlier pass from a pattern or else
+        //an override module (YUI_config) can not be used to
+        //replace a default module.
+        if (this.moduleInfo[name] && this.moduleInfo[name].temp) {
             //This catches temp modules loaded via a pattern
             // The module will be added twice, once from the pattern and
             // Once from the actual add call, this ensures that properties
@@ -6052,18 +6160,15 @@ Y.Loader.prototype = {
             return NO_REQUIREMENTS;
         }
 
-		if (get_module[mod.name]) {
-            return get_module[mod.name];
-        }
-
-        var i, m, j, add, packName, lang,
+        var i, m, j, add, packName, lang, testresults = this.testresults,
             name = mod.name, cond, go,
             adddef = ON_PAGE[name] && ON_PAGE[name].details,
-            d,
+            d, k, m1,
             r, old_mod,
-            o, skinmod, skindef,
+            o, skinmod, skindef, skinpar, skinname,
             intl = mod.lang || mod.intl,
             info = this.moduleInfo,
+            ftests = Y.Features && Y.Features.tests.load,
             hash;
 
         // console.log(name);
@@ -6087,12 +6192,19 @@ Y.Loader.prototype = {
 
         d = [];
         hash = {};
-
-        r = mod.requires;
-        o = mod.optional;
+        
+        r = this.filterRequires(mod.requires);
+        if (mod.lang) {
+            //If a module has a lang attribute, auto add the intl requirement.
+            d.unshift('intl');
+            r.unshift('intl');
+            intl = true;
+        }
+        o = this.filterRequires(mod.optional);
 
 
         mod._parsed = true;
+        mod.langCache = this.lang;
 
         for (i = 0; i < r.length; i++) {
             if (!hash[r[i]]) {
@@ -6111,7 +6223,7 @@ Y.Loader.prototype = {
         }
 
         // get the requirements from superseded modules, if any
-        r = mod.supersedes;
+        r = this.filterRequires(mod.supersedes);
         if (r) {
             for (i = 0; i < r.length; i++) {
                 if (!hash[r[i]]) {
@@ -6159,32 +6271,52 @@ Y.Loader.prototype = {
         cond = this.conditions[name];
 
         if (cond) {
-            oeach(cond, function(def, condmod) {
-
-                if (!hash[condmod]) {
-                    go = def && ((def.ua && Y.UA[def.ua]) ||
-                                 (def.test && def.test(Y, r)));
-                    if (go) {
-                        hash[condmod] = true;
-                        d.push(condmod);
-                        m = this.getModule(condmod);
-                        if (m) {
-                            add = this.getRequires(m);
-                            for (j = 0; j < add.length; j++) {
-                                d.push(add[j]);
+            if (testresults && ftests) {
+                oeach(testresults, function(result, id) {
+                    var condmod = ftests[id].name;
+                    if (!hash[condmod] && ftests[id].trigger == name) {
+                        if (result && ftests[id]) {
+                            hash[condmod] = true;
+                            d.push(condmod);
+                        }
+                    }
+                });
+            } else {
+                oeach(cond, function(def, condmod) {
+                    if (!hash[condmod]) {
+                        go = def && ((def.ua && Y.UA[def.ua]) ||
+                                     (def.test && def.test(Y, r)));
+                        if (go) {
+                            hash[condmod] = true;
+                            d.push(condmod);
+                            m = this.getModule(condmod);
+                            if (m) {
+                                add = this.getRequires(m);
+                                for (j = 0; j < add.length; j++) {
+                                    d.push(add[j]);
+                                }
                             }
                         }
                     }
-                }
-            }, this);
+                }, this);
+            }
         }
 
         // Create skin modules
         if (mod.skinnable) {
             skindef = this.skin.overrides;
-            if (skindef && skindef[name]) {
-                for (i = 0; i < skindef[name].length; i++) {
-                    skinmod = this._addSkin(skindef[name][i], name);
+            oeach(YUI.Env.aliases, function(o, n) {
+                if (Y.Array.indexOf(o, name) > -1) {
+                    skinpar = n;
+                }
+            });
+            if (skindef && (skindef[name] || (skinpar && skindef[skinpar]))) {
+                skinname = name;
+                if (skindef[skinpar]) {
+                    skinname = skinpar;
+                }
+                for (i = 0; i < skindef[skinname].length; i++) {
+                    skinmod = this._addSkin(skindef[skinname][i], name);
                     d.push(skinmod);
                 }
             } else {
@@ -6199,21 +6331,17 @@ Y.Loader.prototype = {
 
             if (mod.lang && !mod.langPack && Y.Intl) {
                 lang = Y.Intl.lookupBestLang(this.lang || ROOT_LANG, mod.lang);
-                mod.langCache = this.lang;
                 packName = this.getLangPackName(lang, name);
                 if (packName) {
                     d.unshift(packName);
                 }
             }
-
             d.unshift(INTL);
         }
 
         mod.expanded_map = YArray.hash(d);
 
         mod.expanded = YObject.keys(mod.expanded_map);
-
-        get_module[mod.name] = mod;
 
         return mod.expanded;
     },
@@ -6399,15 +6527,18 @@ Y.Loader.prototype = {
      * @private
      */
     _explode: function() {
-        var r = this.required, m, reqs,
+        var r = this.required, m, reqs, done = {},
             self = this;
 
         // the setup phase is over, all modules have been created
         self.dirty = false;
 
+        self._explodeRollups();
+        r = self.required;
+        
         oeach(r, function(v, name) {
-            if (!explode_done[name]) {
-                explode_done[name] = true;
+            if (!done[name]) {
+                done[name] = true;
                 m = self.getModule(name);
                 if (m) {
                     var expound = m.expound;
@@ -6419,13 +6550,7 @@ Y.Loader.prototype = {
                     }
 
                     reqs = self.getRequires(m);
-
-                    var len = reqs.length, i;
-                    for (i = 0; i < len; i++) {
-                        if (!r[reqs[i]]) {
-                            r[reqs[i]] = true;
-                        }
-                    }
+                    Y.mix(r, YArray.hash(reqs));
                 }
             }
         });
@@ -6888,7 +7013,7 @@ Y.Loader.prototype = {
                         if (m && (m.type === type) && (m.combine || !m.ext)) {
 
                             frag = ((L.isValue(m.root)) ? m.root : self.root) + m.path;
-
+                            frag = self._filter(frag, m.name);
                             if ((url !== j) && (i <= (len - 1)) &&
                             ((frag.length + url.length) > self.maxURLLength)) {
                                 //Hack until this is rewritten to use an array and not string concat:
@@ -7071,7 +7196,12 @@ Y.Loader.prototype = {
     _filter: function(u, name) {
         var f = this.filter,
             hasFilter = name && (name in this.filters),
-            modFilter = hasFilter && this.filters[name];
+            modFilter = hasFilter && this.filters[name],
+	    groupName = this.moduleInfo[name] ? this.moduleInfo[name].group:null;		
+	    if (groupName && this.groups[groupName].filter) {		
+	 	   modFilter = this.groups[groupName].filter;
+		   hasFilter = true;		
+	     };
 
         if (u) {
             if (hasFilter) {
@@ -7361,9 +7491,21 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "view"
         ]
     }, 
-    "array-extras": {}, 
-    "array-invoke": {}, 
-    "arraylist": {}, 
+    "array-extras": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
+    "array-invoke": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
+    "arraylist": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "arraylist-add": {
         "requires": [
             "arraylist"
@@ -7558,6 +7700,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "calendar": {
         "lang": [
             "en", 
+            "ja", 
             "ru"
         ], 
         "requires": [
@@ -7569,6 +7712,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "calendar-base": {
         "lang": [
             "en", 
+            "ja", 
             "ru"
         ], 
         "requires": [
@@ -7583,7 +7727,10 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "calendarnavigator": {
         "requires": [
             "plugin", 
-            "classnamemanager"
+            "classnamemanager", 
+            "datatype-date", 
+            "node", 
+            "substitute"
         ], 
         "skinnable": true
     }, 
@@ -7622,7 +7769,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "console": {
         "lang": [
             "en", 
-            "es"
+            "es", 
+            "ja"
         ], 
         "requires": [
             "yui-log", 
@@ -7837,8 +7985,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "datatable-scroll": {
         "requires": [
             "datatable-base", 
-            "plugin", 
-            "stylesheet"
+            "plugin"
         ]
     }, 
     "datatable-sort": {
@@ -8154,7 +8301,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "dom-style"
         ]
     }, 
-    "dump": {}, 
+    "dump": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "editor": {
         "use": [
             "frame", 
@@ -8202,7 +8353,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "editor-base"
         ]
     }, 
-    "escape": {}, 
+    "escape": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "event": {
         "after": [
             "node-base"
@@ -8317,7 +8472,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     }, 
     "event-resize": {
         "requires": [
-            "node-base"
+            "node-base", 
+            "event-synthetic"
         ]
     }, 
     "event-simulate": {
@@ -8461,6 +8617,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "highlight-base": {
         "requires": [
             "array-extras", 
+            "classnamemanager", 
             "escape", 
             "text-wordbreak"
         ]
@@ -8568,7 +8725,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "io-xdr": {
         "requires": [
             "io-base", 
-            "datatype-xml"
+            "datatype-xml-parse"
         ]
     }, 
     "json": {
@@ -8577,8 +8734,16 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "json-stringify"
         ]
     }, 
-    "json-parse": {}, 
-    "json-stringify": {}, 
+    "json-parse": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
+    "json-stringify": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "jsonp": {
         "requires": [
             "get", 
@@ -8928,7 +9093,8 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     }, 
     "scrollview-list": {
         "requires": [
-            "plugin"
+            "plugin", 
+            "classnamemanager"
         ], 
         "skinnable": true
     }, 
@@ -9021,10 +9187,17 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "sortable"
         ]
     }, 
-    "stylesheet": {}, 
+    "stylesheet": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "substitute": {
         "optional": [
             "dump"
+        ], 
+        "requires": [
+            "yui-base"
         ]
     }, 
     "swf": {
@@ -9035,7 +9208,11 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "escape"
         ]
     }, 
-    "swfdetect": {}, 
+    "swfdetect": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "tabview": {
         "requires": [
             "widget", 
@@ -9080,8 +9257,16 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "text-data-accentfold"
         ]
     }, 
-    "text-data-accentfold": {}, 
-    "text-data-wordbreak": {}, 
+    "text-data-accentfold": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
+    "text-data-wordbreak": {
+        "requires": [
+            "yui-base"
+        ]
+    }, 
     "text-wordbreak": {
         "requires": [
             "array-extras", 
@@ -9176,9 +9361,10 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "widget-buttons": {
         "requires": [
             "widget", 
-            "base-build"
+            "base-build", 
+            "widget-stdmod"
         ], 
-        "skinnable": false
+        "skinnable": true
     }, 
     "widget-child": {
         "requires": [
@@ -9277,7 +9463,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
         ]
     }
 };
-YUI.Env[Y.version].md5 = '516f2598fb0cef4337e32df3a89e5124';
+YUI.Env[Y.version].md5 = '105ebffae27a0e3d7331f8cf5c0bb282';
 
 
 }, '3.4.0' ,{requires:['loader-base']});
@@ -9299,46 +9485,52 @@ YUI.add('yui', function(Y){}, '3.4.0' ,{use:['yui-base','get','features','intl-b
             alloy: {
 				combine: false,
                 modules: {
-						'aui-ace-editor': {submodules: {'aui-ace-editor-theme-textmate': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-groovy': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-twilight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-vim': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-clojure': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore_soft': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scala': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-csharp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-pastel_on_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-crimson_editor': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-cobalt': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-eclipse': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds_midnight': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scss': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-clouds': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-c_cpp': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-kr_theme': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-scad': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-perl': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-textile': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-json': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_light': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-mono_industrial': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-merbivore': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-svg': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-java': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-vibrant_ink': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-dawn': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-python': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-keybinding-emacs': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-javascript': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-monokai': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ruby': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-worker-css': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-coffee': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-html': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-idle_fingers': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-ocaml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-theme-solarized_dark': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-php': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-mode-xml': {skinnable:false, requires:['aui-ace-editor-base']}, 'aui-ace-editor-base': {skinnable:false, requires:['aui-component', 'aui-node']} }, skinnable:false, use:['aui-ace-editor-base','aui-ace-editor-mode-xml','aui-ace-editor-mode-php','aui-ace-editor-theme-solarized_dark','aui-ace-editor-mode-ocaml','aui-ace-editor-theme-idle_fingers','aui-ace-editor-mode-html','aui-ace-editor-mode-coffee','aui-ace-editor-worker-css','aui-ace-editor-mode-ruby','aui-ace-editor-theme-monokai','aui-ace-editor-mode-javascript','aui-ace-editor-keybinding-emacs','aui-ace-editor-mode-python','aui-ace-editor-theme-dawn','aui-ace-editor-theme-vibrant_ink','aui-ace-editor-mode-java','aui-ace-editor-mode-svg','aui-ace-editor-theme-merbivore','aui-ace-editor-theme-mono_industrial','aui-ace-editor-theme-solarized_light','aui-ace-editor-mode-json','aui-ace-editor-mode-textile','aui-ace-editor-mode-perl','aui-ace-editor-mode-scad','aui-ace-editor-theme-kr_theme','aui-ace-editor-mode-c_cpp','aui-ace-editor-theme-clouds','aui-ace-editor-mode-scss','aui-ace-editor-worker-coffee','aui-ace-editor-theme-clouds_midnight','aui-ace-editor-theme-eclipse','aui-ace-editor-theme-cobalt','aui-ace-editor-theme-crimson_editor','aui-ace-editor-worker-javascript','aui-ace-editor-theme-pastel_on_dark','aui-ace-editor-mode-css','aui-ace-editor-mode-csharp','aui-ace-editor-mode-scala','aui-ace-editor-theme-merbivore_soft','aui-ace-editor-mode-clojure','aui-ace-editor-keybinding-vim','aui-ace-editor-theme-twilight','aui-ace-editor-mode-groovy','aui-ace-editor-theme-textmate']},
+						'aui-ace-editor': {submodules: {'aui-ace-editor-theme-textmate': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-groovy': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-twilight': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-keybinding-vim': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-clojure': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-merbivore_soft': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-scala': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-csharp': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-css': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-pastel_on_dark': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-worker-javascript': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-crimson_editor': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-cobalt': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-eclipse': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-clouds_midnight': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-worker-coffee': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-scss': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-clouds': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-c_cpp': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-kr_theme': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-scad': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-perl': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-textile': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-json': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-solarized_light': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-mono_industrial': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-merbivore': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-svg': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-java': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-vibrant_ink': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-dawn': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-python': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-keybinding-emacs': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-javascript': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-monokai': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-ruby': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-worker-css': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-coffee': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-html': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-idle_fingers': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-ocaml': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-theme-solarized_dark': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-php': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-mode-xml': {requires:['aui-ace-editor-base'], skinnable:false}, 'aui-ace-editor-base': {requires:['aui-component', 'aui-node'], skinnable:false} }, skinnable:false, use:['aui-ace-editor-base','aui-ace-editor-mode-xml','aui-ace-editor-mode-php','aui-ace-editor-theme-solarized_dark','aui-ace-editor-mode-ocaml','aui-ace-editor-theme-idle_fingers','aui-ace-editor-mode-html','aui-ace-editor-mode-coffee','aui-ace-editor-worker-css','aui-ace-editor-mode-ruby','aui-ace-editor-theme-monokai','aui-ace-editor-mode-javascript','aui-ace-editor-keybinding-emacs','aui-ace-editor-mode-python','aui-ace-editor-theme-dawn','aui-ace-editor-theme-vibrant_ink','aui-ace-editor-mode-java','aui-ace-editor-mode-svg','aui-ace-editor-theme-merbivore','aui-ace-editor-theme-mono_industrial','aui-ace-editor-theme-solarized_light','aui-ace-editor-mode-json','aui-ace-editor-mode-textile','aui-ace-editor-mode-perl','aui-ace-editor-mode-scad','aui-ace-editor-theme-kr_theme','aui-ace-editor-mode-c_cpp','aui-ace-editor-theme-clouds','aui-ace-editor-mode-scss','aui-ace-editor-worker-coffee','aui-ace-editor-theme-clouds_midnight','aui-ace-editor-theme-eclipse','aui-ace-editor-theme-cobalt','aui-ace-editor-theme-crimson_editor','aui-ace-editor-worker-javascript','aui-ace-editor-theme-pastel_on_dark','aui-ace-editor-mode-css','aui-ace-editor-mode-csharp','aui-ace-editor-mode-scala','aui-ace-editor-theme-merbivore_soft','aui-ace-editor-mode-clojure','aui-ace-editor-keybinding-vim','aui-ace-editor-theme-twilight','aui-ace-editor-mode-groovy','aui-ace-editor-theme-textmate']},
 						'aui-aria': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-arraysort': {skinnable:false, requires:['arraysort']},
 						'aui-autocomplete': {skinnable:true, requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox']},
-						'aui-base': {submodules: {'aui-base-lang': {skinnable:false}, 'aui-base-core': {requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false} }, use:['aui-base-core','aui-base-lang'], skinnable:false},
+						'aui-base': {submodules: {'aui-base-lang': {skinnable:false}, 'aui-base-core': {skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']} }, use:['aui-base-core','aui-base-lang'], skinnable:false},
 						'aui-button-item': {skinnable:true, requires:['aui-base','aui-state-interaction','widget-child']},
 						'aui-calendar': {skinnable:true, requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale']},
 						'aui-carousel': {skinnable:true, requires:['aui-base','aui-template','anim']},
 						'aui-char-counter': {skinnable:false, requires:['aui-base','aui-event-input']},
 						'aui-chart': {skinnable:false, requires:['datasource','aui-swf','json']},
-						'aui-classnamemanager': {skinnable:false, condition: {trigger: 'classnamemanager', test: function(){return true;}}, requires:['classnamemanager']},
-						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {skinnable:true, requires:['aui-color-picker-base','plugin']}, 'aui-color-picker-base': {skinnable:true, requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel']} }, skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']},
+						'aui-classnamemanager': {condition: {name: 'aui-classnamemanager', trigger: 'classnamemanager', test: function(){return true;}}, requires:['classnamemanager'], skinnable:false},
+						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {requires:['aui-color-picker-base','plugin'], skinnable:true}, 'aui-color-picker-base': {requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel'], skinnable:true} }, use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true},
 						'aui-color-util': {skinnable:false},
-						'aui-component': {skinnable:false, requires:['widget','aui-classnamemanager']},
+						'aui-component': {skinnable:false, requires:['aui-classnamemanager','widget']},
 						'aui-data-browser': {skinnable:true, requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel']},
 						'aui-data-set': {skinnable:false, requires:['oop','collection','base']},
-						'aui-datasource-control': {submodules: {'aui-input-text-control': {requires:['aui-base','aui-datasource-control-base','aui-form-combobox']}, 'aui-datasource-control-base': {requires:['aui-base','datasource','dataschema']} }, skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']},
-						'aui-datatable': {submodules: {'aui-datatable-selection': {skinnable:true, requires:['aui-datatable-base']}, 'aui-datatable-edit': {skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']}, 'aui-datatable-events': {requires:['aui-datatable-base']}, 'aui-datatable-base': {requires:['aui-base','datatable','plugin']} }, skinnable:false, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']},
+						'aui-datasource-control': {submodules: {'aui-input-text-control': {requires:['aui-base','aui-datasource-control-base','aui-form-combobox']}, 'aui-datasource-control-base': {requires:['aui-base','datasource','dataschema']} }, use:['aui-datasource-control-base','aui-input-text-control'], skinnable:true},
+						'aui-datatable': {submodules: {'aui-datatable-selection': {requires:['aui-datatable-base'], skinnable:true}, 'aui-datatable-edit': {requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true}, 'aui-datatable-events': {requires:['aui-datatable-base']}, 'aui-datatable-base': {requires:['aui-base','datatable','plugin']} }, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection'], skinnable:false},
 						'aui-datatype': {skinnable:false, requires:['aui-base']},
-						'aui-datepicker': {submodules: {'aui-datepicker-select': {skinnable:true, requires:['aui-datepicker-base','aui-button-item']}, 'aui-datepicker-base': {skinnable:true, requires:['aui-calendar','aui-overlay-context']} }, skinnable:true, use:['aui-datepicker-base','aui-datepicker-select']},
+						'aui-datepicker': {submodules: {'aui-datepicker-select': {requires:['aui-datepicker-base','aui-button-item'], skinnable:true}, 'aui-datepicker-base': {requires:['aui-calendar','aui-overlay-context'], skinnable:true} }, use:['aui-datepicker-base','aui-datepicker-select'], skinnable:true},
 						'aui-debounce': {skinnable:false},
 						'aui-delayed-task': {skinnable:false},
-						'aui-diagram-builder': {submodules: {'aui-diagram-builder-connector': {skinnable:true, requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd']}, 'aui-diagram-builder-impl': {skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']}, 'aui-diagram-builder-base': {skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']} }, skinnable:true, use:['aui-diagram-builder-base','aui-diagram-builder-impl']},
+						'aui-diagram-builder': {submodules: {'aui-diagram-builder-connector': {requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true}, 'aui-diagram-builder-impl': {requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true}, 'aui-diagram-builder-base': {requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true} }, use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true},
 						'aui-dialog-iframe': {skinnable:true, requires:['aui-base','aui-loading-mask','aui-resize-iframe','plugin']},
 						'aui-dialog': {skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']},
-						'aui-drawing': {submodules: {'aui-drawing-safari': {requires:['aui-drawing-base']}, 'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-vml': {requires:['aui-drawing-base']}, 'aui-drawing-svg': {requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false, plugins:{'aui-drawing-vml': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}},'aui-drawing-svg': {condition: {trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}}, 'aui-drawing-safari': {condition: {trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}}}},
+						'aui-drawing': {submodules: {'aui-drawing-safari': {condition: {name: 'aui-drawing-safari', trigger: 'aui-drawing-base',test: function(A){var UA = A.UA; return UA.safari && (UA.version.major < 4 || (UA.iphone || UA.ipad));}}, requires:['aui-drawing-base']}, 'aui-drawing-fonts': {requires:['aui-drawing-base']}, 'aui-drawing-drag': {requires:['aui-drawing-base','event-gestures']}, 'aui-drawing-animate': {requires:['aui-drawing-base']}, 'aui-drawing-vml': {condition: {name: 'aui-drawing-vml', trigger: 'aui-drawing-base',test: function(A){return A.UA.vml;}}, requires:['aui-drawing-base']}, 'aui-drawing-svg': {condition: {name: 'aui-drawing-svg', trigger: 'aui-drawing-base',test: function(A){return A.UA.svg;}}, requires:['aui-drawing-base']}, 'aui-drawing-base': {requires:['aui-base','aui-color-util','substitute']} }, use:['aui-drawing-base', 'aui-drawing-animate', 'aui-drawing-drag', 'aui-drawing-fonts'], skinnable:false},
 						'aui-editable': {skinnable:true, requires:['aui-base','aui-form-combobox']},
-						'aui-editor': {submodules: {'aui-editor-creole-plugin': {requires:['aui-base','editor-base','aui-editor-html-creole','aui-editor-creole-parser']}, 'aui-editor-html-creole': {requires:['aui-editor-base']}, 'aui-editor-creole-parser': {requires:['aui-base']}, 'aui-editor-bbcode-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-toolbar-plugin': {requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']}, 'aui-editor-menu-plugin': {requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']}, 'aui-editor-tools-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-base': {requires:['aui-base','editor-base','aui-editor-toolbar-plugin']} }, skinnable:true, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin']},
-						'aui-event': {submodules: {'aui-event-delegate-change': {requires:['aui-base']}, 'aui-event-input': {requires:['aui-base']}, 'aui-event-base': {requires:['event']} }, use:['aui-event-base','aui-event-input'], skinnable:false, plugins:{'aui-event-delegate-change': {condition: {trigger: 'event-base-ie', ua: 'ie'}}}},
-						'aui-form-builder': {submodules: {'aui-form-builder-field': {skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']}, 'aui-form-builder-base': {skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs']} }, skinnable:true, use:['aui-form-builder-base','aui-form-builder-field']},
+						'aui-editor': {submodules: {'aui-editor-creole-plugin': {requires:['aui-base','editor-base','aui-editor-html-creole','aui-editor-creole-parser']}, 'aui-editor-html-creole': {requires:['aui-editor-base']}, 'aui-editor-creole-parser': {requires:['aui-base']}, 'aui-editor-bbcode-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-toolbar-plugin': {requires:['aui-base','aui-button-item','aui-color-picker','aui-editor-menu-plugin','aui-editor-tools-plugin','aui-form-select','aui-overlay-context-panel','aui-panel','aui-toolbar','createlink-base','editor-lists','editor-base','plugin']}, 'aui-editor-menu-plugin': {requires:['aui-base','editor-base','aui-overlay-context','aui-panel','aui-editor-tools-plugin']}, 'aui-editor-tools-plugin': {requires:['aui-base','editor-base']}, 'aui-editor-base': {requires:['aui-base','editor-base','aui-editor-toolbar-plugin']} }, use:['aui-editor-base','aui-editor-tools-plugin','aui-editor-menu-plugin','aui-editor-toolbar-plugin','aui-editor-bbcode-plugin','aui-editor-creole-parser','aui-editor-creole-plugin'], skinnable:true},
+						'aui-event': {
+                            submodules: {
+                                'aui-event-delegate-change': {condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}, requires:['aui-node-base','aui-event-base']},
+                                'aui-event-input': {requires:['aui-base']},
+                            'aui-event-base': {requires:['event']} },
+                            use:['aui-event-base','aui-event-input'], skinnable:false
+                        },
+						'aui-form-builder': {submodules: {'aui-form-builder-field': {requires:['aui-datatype','aui-panel','aui-tooltip'], skinnable:true}, 'aui-form-builder-base': {requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs'], skinnable:true} }, use:['aui-form-builder-base','aui-form-builder-field'], skinnable:true},
 						'aui-form-validator': {skinnable:false, requires:['aui-base','aui-event-input','selector-css3']},
-						'aui-form': {submodules: {'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {skinnable:true, requires:['aui-form-textfield']}, 'aui-form-select': {requires:['aui-form-field']}, 'aui-form-field': {requires:['aui-base','aui-component']}, 'aui-form-combobox': {skinnable:true, requires:['aui-form-textarea','aui-toolbar']}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse','io-form']} }, skinnable:false, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield']},
-						'aui-image-viewer': {submodules: {'aui-media-viewer-plugin': {skinnable:false, requires:['aui-image-viewer-base']}, 'aui-image-viewer-gallery': {skinnable:true, requires:['aui-image-viewer-base','aui-paginator','aui-toolbar']}, 'aui-image-viewer-base': {skinnable:true, requires:['anim','aui-overlay-mask']} }, skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin']},
-						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io-base','json','plugin','querystring-stringify']} }, skinnable:false, use:['aui-io-request','aui-io-plugin']},
+						'aui-form': {submodules: {'aui-form-textfield': {requires:['aui-form-field']}, 'aui-form-textarea': {requires:['aui-form-textfield'], skinnable:true}, 'aui-form-select': {requires:['aui-form-field']}, 'aui-form-field': {requires:['aui-base','aui-component']}, 'aui-form-combobox': {requires:['aui-form-textarea','aui-toolbar'], skinnable:true}, 'aui-form-base': {requires:['aui-base','aui-data-set','aui-form-field','querystring-parse','io-form']} }, use:['aui-form-base','aui-form-combobox','aui-form-field','aui-form-select','aui-form-textarea','aui-form-textfield'], skinnable:false},
+						'aui-image-viewer': {submodules: {'aui-media-viewer-plugin': {requires:['aui-image-viewer-base'], skinnable:false}, 'aui-image-viewer-gallery': {requires:['aui-image-viewer-base','aui-paginator','aui-toolbar'], skinnable:true}, 'aui-image-viewer-base': {requires:['anim','aui-overlay-mask'], skinnable:true} }, use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin'], skinnable:true},
+						'aui-io': {submodules: {'aui-io-plugin': {requires:['aui-overlay-base','aui-parse-content','aui-io-request','aui-loading-mask']}, 'aui-io-request': {requires:['aui-base','io-base','json','plugin','querystring-stringify']} }, use:['aui-io-request','aui-io-plugin'], skinnable:false},
 						'aui-live-search': {skinnable:false, requires:['aui-base']},
 						'aui-loading-mask': {skinnable:true, requires:['aui-overlay-mask','plugin']},
 						'aui-messaging': {skinnable:false, requires:['aui-base','aui-task-manager','querystring']},
 						'aui-nested-list': {skinnable:false, requires:['aui-base','dd-drag','dd-drop','dd-proxy']},
-						'aui-node': {submodules: {'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base-lang','node','aui-classnamemanager']} }, skinnable:false, use:['aui-node-base','aui-node-html5','aui-node-html5-print']},
-						'aui-overlay': {submodules: {'aui-overlay-mask': {skinnable:true, requires:['aui-base','aui-overlay-base','event-resize']}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {skinnable:true, requires:['aui-overlay-context','anim']}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task','aui-aria']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, skinnable:true, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask']},
+						'aui-node': {submodules: {'aui-node-html5-print': {requires:['aui-node-html5']}, 'aui-node-html5': {requires:['collection','aui-base']}, 'aui-node-base': {requires:['aui-base-lang','aui-classnamemanager','node']} }, use:['aui-node-base','aui-node-html5','aui-node-html5-print'], skinnable:false},
+						'aui-overlay': {submodules: {'aui-overlay-mask': {requires:['aui-base','aui-overlay-base','event-resize'], skinnable:true}, 'aui-overlay-manager': {requires:['aui-base','aui-overlay-base','overlay','plugin']}, 'aui-overlay-context-panel': {requires:['aui-overlay-context','anim'], skinnable:true}, 'aui-overlay-context': {requires:['aui-overlay-manager','aui-delayed-task','aui-aria']}, 'aui-overlay-base': {requires:['aui-component','widget-position','widget-stack','widget-position-align','widget-position-constrain','widget-stdmod']} }, use:['aui-overlay-base','aui-overlay-context','aui-overlay-context-panel','aui-overlay-manager','aui-overlay-mask'], skinnable:true},
 						'aui-paginator': {skinnable:true, requires:['aui-base']},
 						'aui-panel': {skinnable:true, requires:['aui-component','widget-stdmod','aui-toolbar','aui-aria']},
 						'aui-parse-content': {skinnable:false, requires:['async-queue','aui-base','plugin']},
@@ -9347,26 +9539,26 @@ YUI.add('yui', function(Y){}, '3.4.0' ,{use:['yui-base','get','features','intl-b
 						'aui-property-list': {skinnable:true, requires:['aui-datatable']},
 						'aui-rating': {skinnable:true, requires:['aui-base']},
 						'aui-resize-iframe': {skinnable:true, requires:['aui-base','aui-task-manager','plugin']},
-						'aui-resize': {submodules: {'aui-resize-constrain': {skinnable:false, requires:['aui-resize-base','dd-constrain','plugin']}, 'aui-resize-base': {skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop']} }, skinnable:true, use:['aui-resize-base','aui-resize-constrain']},
-						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {skinnable:true, requires:['aui-scheduler-event']}, 'aui-scheduler-event': {skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel']}, 'aui-scheduler-view': {skinnable:true, requires:['aui-scheduler-event','aui-calendar','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain']}, 'aui-scheduler-base': {skinnable:true, requires:['aui-scheduler-view','datasource']} }, skinnable:true, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar']},
+						'aui-resize': {submodules: {'aui-resize-constrain': {requires:['aui-resize-base','dd-constrain','plugin'], skinnable:false}, 'aui-resize-base': {requires:['aui-base','dd-drag','dd-delegate','dd-drop'], skinnable:true} }, use:['aui-resize-base','aui-resize-constrain'], skinnable:true},
+						'aui-scheduler': {submodules: {'aui-scheduler-calendar': {requires:['aui-scheduler-event'], skinnable:true}, 'aui-scheduler-event': {requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel'], skinnable:true}, 'aui-scheduler-view': {requires:['aui-scheduler-event','aui-calendar','aui-button-item','dd-drag','dd-delegate','dd-drop','dd-constrain'], skinnable:true}, 'aui-scheduler-base': {requires:['aui-scheduler-view','datasource'], skinnable:true} }, use:['aui-scheduler-base','aui-scheduler-view','aui-scheduler-event','aui-scheduler-calendar'], skinnable:true},
 						'aui-scroller': {skinnable:true, requires:['aui-base','aui-simple-anim']},
 						'aui-selector': {skinnable:false, requires:['selector-css3']},
 						'aui-simple-anim': {skinnable:false, requires:['aui-base']},
 						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
 						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base'], type: 'css'},
+						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
 						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
-						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {skinnable:true, requires:['aui-component','aui-state-interaction']} }, skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']},
+						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction'], skinnable:true} }, use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true},
 						'aui-task-manager': {skinnable:false, requires:['aui-base']},
 						'aui-template': {skinnable:false, requires:['aui-base']},
-						'aui-text': {submodules: {'aui-text-unicode': {skinnable:false, requires:['aui-text-data-unicode']}, 'aui-text-data-unicode': {skinnable:false, requires:['text']} }, skinnable:false, use:['aui-text-data-unicode', 'aui-text-unicode']},
+						'aui-text': {submodules: {'aui-text-unicode': {requires:['aui-text-data-unicode'], skinnable:false}, 'aui-text-data-unicode': {requires:['text'], skinnable:false} }, use:['aui-text-data-unicode', 'aui-text-unicode'], skinnable:false},
 						'aui-textboxlist': {skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']},
 						'aui-toolbar': {skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','widget-parent']},
 						'aui-tooltip': {skinnable:true, requires:['aui-overlay-context-panel']},
-						'aui-tpl-snippets': {submodules: {'aui-tpl-snippets-checkbox': {skinnable:false, requires:['aui-tpl-snippets-base']}, 'aui-tpl-snippets-textarea': {skinnable:false, requires:['aui-tpl-snippets-base']}, 'aui-tpl-snippets-input': {skinnable:false, requires:['aui-tpl-snippets-base']}, 'aui-tpl-snippets-select': {skinnable:false, requires:['aui-tpl-snippets-base']}, 'aui-tpl-snippets-base': {skinnable:false, requires:['aui-template']} }, skinnable:false, use:['aui-tpl-snippets-base','aui-tpl-snippets-select','aui-tpl-snippets-input','aui-tpl-snippets-textarea','aui-tpl-snippets-checkbox']},
-						'aui-tree': {submodules: {'aui-tree-view': {skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']}, 'aui-tree-node': {skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']}, 'aui-tree-data': {skinnable:false, requires:['aui-base']} }, skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']},
+						'aui-tpl-snippets': {submodules: {'aui-tpl-snippets-checkbox': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-textarea': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-input': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-select': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-base': {requires:['aui-template'], skinnable:false} }, use:['aui-tpl-snippets-base','aui-tpl-snippets-select','aui-tpl-snippets-input','aui-tpl-snippets-textarea','aui-tpl-snippets-checkbox'], skinnable:false},
+						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true},
 						'aui-video': {skinnable:true, requires:['aui-base','querystring-stringify-simple']},
 						'aui-viewport': {skinnable:false, requires:['aui-base']}
 				}

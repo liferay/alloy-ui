@@ -61,7 +61,7 @@ Y.mix(DataTableDataSource, {
         /**
         * @attribute datasource
         * @description Pointer to DataSource instance.
-        * @type Y.DataSource
+        * @type {DataSource}
         */
         datasource: {
             setter: "_setDataSource"
@@ -93,7 +93,7 @@ Y.extend(DataTableDataSource, Y.Plugin.Base, {
     * @method _setDataSource
     * @description Creates new DataSource instance if one is not provided.
     * @param ds {Object | Y.DataSource}
-    * @return Y.DataSource
+    * @return {DataSource}
     * @private
     */
     _setDataSource: function(ds) {

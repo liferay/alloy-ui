@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jspf" %>
 
 <%
 java.lang.String cancelButton = GetterUtil.getString((java.lang.String)request.getAttribute("alloy:editable:cancelButton"));

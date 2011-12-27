@@ -35,7 +35,7 @@ if ((dynamicAttributes != null) && !dynamicAttributes.isEmpty()) {
 
 %>
 
-<%@ include file="/html/taglib/aui/init-alloy.jsp" %>
+<%@ include file="/html/taglib/aui/init-alloy.jspf" %>
 
 <%
 boolean active = GetterUtil.getBoolean(String.valueOf(request.getAttribute("alloy:io-request:active")), false);

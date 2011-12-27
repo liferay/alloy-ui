@@ -1623,7 +1623,7 @@ AArray.each(
 	}
 );
 
-}, '@VERSION@' ,{requires:['aui-base-lang','node','aui-classnamemanager']});
+}, '@VERSION@' ,{requires:['aui-base-lang','aui-classnamemanager','node']});
 AUI.add('aui-node-html5', function(A) {
 /**
  * aui-node-html5 provides support for HTML shiv natively on the Alloy dom
