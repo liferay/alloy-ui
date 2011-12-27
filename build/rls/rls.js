@@ -158,7 +158,7 @@ Y._rls = function(what) {
             tests: 1 // required in the template
         },
         // The rls base path
-        rls_base = config.rls_base || 'http://l.yimg.com/py/load?httpcache=rls-seed&gzip=1&',
+        rls_base = config.rls_base || 'http://loader.yahooapis.com/v1/load?',
 
         // the template
         rls_tmpl = config.rls_tmpl || function() {
@@ -350,9 +350,12 @@ if (!YUI.$rls) {
             Y = rls_active.inst;
         if (Y) {
             if (req.error) {
+                if (!req.missing) {
+                    req.missing = [];
+                }
                 Y.rls_failure({
                     message: req.error,
-                    data: req.modules
+                    data: [].concat(req.modules, req.missing)
                 });
             }
             if (YUI.Env && YUI.Env.rls_disabled) {

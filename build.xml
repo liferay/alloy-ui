@@ -268,8 +268,6 @@
 			/>
 		</subant>
 
-		<antcall target="patch-yui" />
-
 		<antcall target="export-yui" />
 
 		<antcall target="copyright-yui" />
@@ -288,8 +286,6 @@
 
 	<target name="init-yui">
 		<echo>Initializing YUI Library.</echo>
-
-		<antcall target="patch-yui" />
 
 		<antcall target="export-yui" />
 
@@ -324,23 +320,6 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
-	</target>
-
-	<target name="patch-yui">
-		<echo>Adding patches to [${project.dir}/lib/yui3/build]</echo>
-
-		<if>
-			<available file="${project.dir}/lib/patches/yui3" />
-			<then>
-				<copy todir="${project.dir}/lib/yui3" overwrite="true">
-					<fileset dir="${project.dir}/lib/patches/yui3" includes="**/*.*" />
-				</copy>
-			</then>
-		</if>
-
-		<!-- Patch for AUI- -->
-		<!-- /End Patch -->
-		<!-- Rebuilding YUI modules -->
 	</target>
 
 	<target name="create-release">

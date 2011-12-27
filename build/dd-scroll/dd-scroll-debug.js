@@ -430,4 +430,5 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.4.0' ,{optional:['dd-proxy'], skinnable:false, requires:['dd-drag']});
+
+}, '3.4.0' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});

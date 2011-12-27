@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.4.0
 build: nightly
 */
-YUI.add("event-resize",function(a){(function(){var c,b,e="window:resize",d=function(f){if(a.UA.gecko){a.fire(e,f);}else{if(b){b.cancel();}b=a.later(a.config.windowResizeDelay||40,a,function(){a.fire(e,f);});}};a.Env.evt.plugins.windowresize={on:function(h,g){if(!c){c=a.Event._attach(["resize",d]);}var f=a.Array(arguments,0,true);f[0]=e;return a.on.apply(a,f);}};})();},"3.4.0",{requires:["node-base"]});
+YUI.add("event-resize",function(a){a.Event.define("windowresize",{on:(a.UA.gecko&&a.UA.gecko<1.91)?function(d,b,c){b._handle=a.Event.attach("resize",function(f){c.fire(f);});}:function(e,c,d){var b=a.config.windowResizeDelay||100;c._handle=a.Event.attach("resize",function(f){if(c._timer){c._timer.cancel();}c._timer=a.later(b,a,function(){d.fire(f);});});},detach:function(c,b){if(b._timer){b._timer.cancel();}b._handle.detach();}});},"3.4.0",{requires:["event-synthetic"]});

@@ -212,4 +212,4 @@ var ResizePlugin = function(config) {
         Y.Plugin.Resize = ResizePlugin;
 
 
-}, '3.4.0' ,{skinnable:false, optional:['resize-constrain'], requires:['resize-base', 'plugin']});
+}, '3.4.0' ,{skinnable:false, requires:['resize-base', 'plugin'], optional:['resize-constrain']});
