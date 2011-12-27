@@ -3,8 +3,10 @@ ASort = A.ArraySort;
 A.mix(
 	ASort,
 	{
-		compareIgnoreWhiteSpace: function(a, b, desc) {
+		compareIgnoreWhiteSpace: function(a, b, desc, compareFn) {
 			var sort;
+
+			compareFn = compareFn || ASort.compare;
 
 			if ((a === '') && (b === '')) {
 				sort = 0;
@@ -16,7 +18,7 @@ A.mix(
 				sort = -1;
 			}
 			else {
-				sort = ASort.compare(a, b, desc);
+				sort = compareFn.apply(this, arguments);
 			}
 
 			return sort;
