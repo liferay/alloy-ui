@@ -72,7 +72,7 @@ var L = A.Lang,
 
 	getCN = A.getClassName,
 
-	uaIE = A.UA.ie,
+	IE = A.UA.ie,
 
 	CSS_PAGINATOR = getCN(PAGINATOR),
 	CSS_PAGINATOR_CONTAINER = getCN(PAGINATOR, CONTAINER),
@@ -983,18 +983,16 @@ var Paginator = A.Component.create(
 							instance.get(PAGE_LINK_TEMPLATE)
 						);
 					}
-					
-					var getRowsPerPageHTML = function(data) {
-						if (uaIE >= 9) {
-							data = data.replace(/selected=""/gi, '');
-						}
-
-						return data;
-					};
 
 					var outer = function(key) {
 						return instance.get(key).outerHTML();
 					};
+
+					var rowsPerPageSelect = outer(ROWS_PER_PAGE_EL);
+
+					if (IE >= 9) {
+						rowsPerPageSelect = rowsPerPageSelect.replace(/selected=""/gi, '');
+					}
 
 					// substitute the {keys} on the templates with the real outerHTML templates
 					instance.templatesCache = L.sub(v,
@@ -1005,7 +1003,7 @@ var Paginator = A.Component.create(
 							NextPageLink: outer(NEXT_PAGE_LINK),
 							PageLinks: pageContainer.outerHTML(),
 							PrevPageLink: outer(PREV_PAGE_LINK),
-							RowsPerPageSelect: getRowsPerPageHTML(outer(ROWS_PER_PAGE_EL)),
+							RowsPerPageSelect: rowsPerPageSelect,
 							Total: outer(TOTAL_EL)
 						}
 					);
