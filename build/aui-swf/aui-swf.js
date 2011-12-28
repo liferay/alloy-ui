@@ -106,6 +106,7 @@ var SWF = A.Component.create(
 				value: {}
 			},
 			flashVars: {
+				setter: '_setFlashVars',
 				value: {}
 			},
 			render: {
@@ -175,7 +176,7 @@ var SWF = A.Component.create(
 				);
 
 				var flashVarString = A.QueryString.stringify(flashVars);
-
+console.log(flashVarString);
 				var tplObj = '<object ';
 
 				if ((properFlashVersion || shouldExpressInstall) && flashURL) {
@@ -251,6 +252,16 @@ var SWF = A.Component.create(
 				if (eventType != 'log') {
 					instance.fire(eventType, event);
 				}
+			},
+
+			_setFlashVars: function(value) {
+				var instance = this;
+
+				if (Lang.isString(value)) {
+					value = A.QueryString.parse(value);
+				}
+
+				return value;
 			}
 		}
 	}
@@ -258,4 +269,4 @@ var SWF = A.Component.create(
 
 A.SWF = SWF;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base','querystring-stringify-simple']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','querystring-parse-simple','querystring-stringify-simple']});

@@ -70,7 +70,7 @@
 						'aui-skin-classic': {type: 'css', requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
-						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
+						'aui-swf': {skinnable:false, requires:['aui-base','querystring-parse-simple','querystring-stringify-simple']},
 						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction'], skinnable:true} }, use:['aui-tabs-base','aui-tabs-menu-plugin'], skinnable:true},
 						'aui-task-manager': {skinnable:false, requires:['aui-base']},
 						'aui-template': {skinnable:false, requires:['aui-base']},
