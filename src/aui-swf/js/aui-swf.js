@@ -105,6 +105,7 @@ var SWF = A.Component.create(
 				value: {}
 			},
 			flashVars: {
+				setter: '_setFlashVars',
 				value: {}
 			},
 			render: {
@@ -250,6 +251,16 @@ var SWF = A.Component.create(
 				if (eventType != 'log') {
 					instance.fire(eventType, event);
 				}
+			},
+
+			_setFlashVars: function(value) {
+				var instance = this;
+
+				if (Lang.isString(value)) {
+					value = A.QueryString.parse(value);
+				}
+
+				return value;
 			}
 		}
 	}
