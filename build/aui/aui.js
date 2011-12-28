@@ -4083,7 +4083,7 @@ YUI.add('yui', function(Y){}, '3.2.0' ,{use:['yui-base','get','features','rls','
 						'aui-skin-classic': {requires:['aui-skin-base'], type: 'css', path: 'aui-skin-classic/css/aui-skin-classic.css'},
 						'aui-sortable': {skinnable:true, requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy']},
 						'aui-state-interaction': {skinnable:false, requires:['aui-base','plugin']},
-						'aui-swf': {skinnable:false, requires:['aui-base','querystring-stringify-simple']},
+						'aui-swf': {skinnable:false, requires:['aui-base','querystring-parse-simple','querystring-stringify-simple']},
 						'aui-tabs': {submodules: {'aui-tabs-menu-plugin': {requires:['aui-component','aui-state-interaction','aui-tabs-base','aui-overlay-context','plugin']}, 'aui-tabs-base': {requires:['aui-component','aui-state-interaction']} }, skinnable:true, use:['aui-tabs-base','aui-tabs-menu-plugin']},
 						'aui-task-manager': {skinnable:false, requires:['aui-base']},
 						'aui-textboxlist': {skinnable:true, requires:['anim-node-plugin','aui-autocomplete','node-focusmanager']},
