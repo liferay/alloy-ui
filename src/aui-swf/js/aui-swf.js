@@ -175,7 +175,7 @@ var SWF = A.Component.create(
 				);
 
 				var flashVarString = A.QueryString.stringify(flashVars);
-console.log(flashVarString);
+
 				var tplObj = '<object ';
 
 				if ((properFlashVersion || shouldExpressInstall) && flashURL) {
