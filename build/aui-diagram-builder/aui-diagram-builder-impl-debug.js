@@ -118,6 +118,10 @@ var Lang = A.Lang,
 		return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
 	},
 
+	constrain = function(num, min, max) {
+		return Math.min(Math.max(num, min), max);
+	},
+
 	pythagoreanDistance = function(p1, p2) {
 		var dx = p2[0]-p1[0], dy = p2[1]-p1[1];
 
@@ -1439,22 +1443,9 @@ var DiagramNode = A.Component.create({
 
 		_constrainMouseXY: function(mouseXY, region) {
 			var instance = this;
-			
-			if (mouseXY[0] <= region.left) {
-				mouseXY[0] = region.left;
-			}
 
-			if (mouseXY[0] >= region.right) {
-				mouseXY[0] = region.right;
-			}
-
-			if (mouseXY[1] >= region.bottom) {
-				mouseXY[1] = region.bottom;
-			}
-
-			if (mouseXY[1] <= region.top) {
-				mouseXY[1] = region.top;
-			}
+			mouseXY[0] = constrain(mouseXY[0], region.left, region.right);
+			mouseXY[1] = constrain(mouseXY[1], region.top, region.bottom);
 		},
 
 		_createDataSet: function() {
@@ -2038,4 +2029,4 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});

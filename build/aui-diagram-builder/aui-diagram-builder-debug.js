@@ -792,7 +792,7 @@ var DiagramBuilderBase = A.Component.create(
 
 A.DiagramBuilderBase = DiagramBuilderBase;
 
-}, '@VERSION@' ,{requires:['aui-tabs','aui-property-list','collection','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-tabs','aui-property-list','collection','dd']});
 AUI.add('aui-diagram-builder-impl', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -911,6 +911,10 @@ var Lang = A.Lang,
 		var dnXY = isArray(diagramNode) ? diagramNode : diagramNode.get(BOUNDING_BOX).getXY();
 
 		return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
+	},
+
+	constrain = function(num, min, max) {
+		return Math.min(Math.max(num, min), max);
 	},
 
 	pythagoreanDistance = function(p1, p2) {
@@ -2234,22 +2238,9 @@ var DiagramNode = A.Component.create({
 
 		_constrainMouseXY: function(mouseXY, region) {
 			var instance = this;
-			
-			if (mouseXY[0] <= region.left) {
-				mouseXY[0] = region.left;
-			}
 
-			if (mouseXY[0] >= region.right) {
-				mouseXY[0] = region.right;
-			}
-
-			if (mouseXY[1] >= region.bottom) {
-				mouseXY[1] = region.bottom;
-			}
-
-			if (mouseXY[1] <= region.top) {
-				mouseXY[1] = region.top;
-			}
+			mouseXY[0] = constrain(mouseXY[0], region.left, region.right);
+			mouseXY[1] = constrain(mouseXY[1], region.top, region.bottom);
 		},
 
 		_createDataSet: function() {
@@ -2833,7 +2824,7 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});
 AUI.add('aui-diagram-builder-connector', function(A) {
 var Lang = A.Lang,
 	isArray = Lang.isArray,
@@ -3472,8 +3463,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
 	}
 });
 
-}, '@VERSION@' ,{requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-template','arraylist-add','arraylist-filter','json','graphics','dd']});
 
 
-AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{use:['aui-diagram-builder-base','aui-diagram-builder-impl'], skinnable:true});
+AUI.add('aui-diagram-builder', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-diagram-builder-base','aui-diagram-builder-impl']});
 
