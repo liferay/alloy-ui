@@ -234,4 +234,4 @@ if ( Native ) {
 Y.JSON.useNativeParse = useNative;
 
 
-}, '3.4.0' );
+}, '3.4.0' ,{requires:['yui-base']});

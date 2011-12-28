@@ -218,4 +218,4 @@ Y.extend(CalendarNavigator, Y.Plugin.Base, {
 Y.namespace("Plugin").CalendarNavigator = CalendarNavigator;
 
 
-}, '3.4.0' ,{requires:['plugin', 'classnamemanager']});
+}, '3.4.0' ,{requires:['plugin', 'classnamemanager', 'datatype-date', 'node', 'substitute']});

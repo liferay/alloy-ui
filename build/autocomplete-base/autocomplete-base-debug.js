@@ -12,6 +12,7 @@ YUI.add('autocomplete-base', function(Y) {
  * textareas.
  *
  * @module autocomplete
+ * @main autocomplete
  * @since 3.3.0
  */
 
@@ -1639,4 +1640,4 @@ AutoCompleteBase.prototype = {
 Y.AutoCompleteBase = AutoCompleteBase;
 
 
-}, '3.4.0' ,{requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base'], optional:['autocomplete-sources']});
+}, '3.4.0' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});
