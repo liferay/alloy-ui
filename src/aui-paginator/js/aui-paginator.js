@@ -72,6 +72,8 @@ var L = A.Lang,
 
 	getCN = A.getClassName,
 
+	IE = A.UA.ie,
+
 	CSS_PAGINATOR = getCN(PAGINATOR),
 	CSS_PAGINATOR_CONTAINER = getCN(PAGINATOR, CONTAINER),
 	CSS_PAGINATOR_CONTENT = getCN(PAGINATOR, CONTENT),
@@ -967,15 +969,12 @@ var Paginator = A.Component.create(
 			_getTemplate: function(v) {
 				var instance = this;
 
-				var outer = function(key) {
-					return instance.get(key).outerHTML();
-				};
-
 				// if template is not cached...
 				if (!instance.templatesCache) {
 					var page = 0;
-					var totalPages = instance.get(TOTAL_PAGES);
+
 					var maxPageLinks = instance.get(MAX_PAGE_LINKS);
+
 					var pageContainer = instance.get(PAGE_CONTAINER_TEMPLATE);
 
 					// crate the anchor to be the page links
@@ -983,6 +982,16 @@ var Paginator = A.Component.create(
 						pageContainer.append(
 							instance.get(PAGE_LINK_TEMPLATE)
 						);
+					}
+
+					var outer = function(key) {
+						return instance.get(key).outerHTML();
+					};
+
+					var rowsPerPageSelect = outer(ROWS_PER_PAGE_EL);
+
+					if (IE >= 9) {
+						rowsPerPageSelect = rowsPerPageSelect.replace(/selected=""/gi, '');
 					}
 
 					// substitute the {keys} on the templates with the real outerHTML templates
@@ -994,7 +1003,7 @@ var Paginator = A.Component.create(
 							NextPageLink: outer(NEXT_PAGE_LINK),
 							PageLinks: pageContainer.outerHTML(),
 							PrevPageLink: outer(PREV_PAGE_LINK),
-							RowsPerPageSelect: outer(ROWS_PER_PAGE_EL),
+							RowsPerPageSelect: rowsPerPageSelect,
 							Total: outer(TOTAL_EL)
 						}
 					);
