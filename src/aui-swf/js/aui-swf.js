@@ -105,10 +105,8 @@ var SWF = A.Component.create(
 				value: {}
 			},
 			flashVars: {
-				value: {},
-				setter: function(v) {
-					return this._setFlashVars(v);
-				}
+				setter: '_setFlashVars',
+				value: {}
 			},
 			render: {
 				value: true
@@ -177,7 +175,7 @@ var SWF = A.Component.create(
 				);
 
 				var flashVarString = A.QueryString.stringify(flashVars);
-
+console.log(flashVarString);
 				var tplObj = '<object ';
 
 				if ((properFlashVersion || shouldExpressInstall) && flashURL) {
@@ -258,21 +256,11 @@ var SWF = A.Component.create(
 			_setFlashVars: function(value) {
 				var instance = this;
 
-				if (typeof value == 'object') {
-					return value;
+				if (Lang.isString(value)) {
+					value = A.QueryString.parse(value);
 				}
 
-				var flashVarsObj = {};
-				var splitFlashVars = value.split('&');
-				var i, length = splitFlashVars.length;
-
-				for (i = 0; i < length; i++) {
-					var splitVar = splitFlashVars[i].split('=');
-
-					flashVarsObj[splitVar[0]] = splitVar[1];
-				}
-
-				return flashVarsObj;
+				return value;
 			}
 		}
 	}
