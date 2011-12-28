@@ -70,6 +70,7 @@ var Lang = A.Lang,
 	RADIUS = 'radius',
 	RECORDS = 'records',
 	RECORDSET = 'recordset',
+	REGION = 'region',
 	RENDERED = 'rendered',
 	REQUIRED = 'required',
 	SELECTED = 'selected',
@@ -1182,6 +1183,8 @@ var DiagramNode = A.Component.create({
 			var builder = instance.get(BUILDER);
 			var mouseXY = event.mouseXY;
 
+			instance._constrainMouseXY(mouseXY, instance._canvasRegion);
+
 			builder.connector.set(P2, mouseXY);
 
 			if (builder.publishedTarget) {
@@ -1229,6 +1232,9 @@ var DiagramNode = A.Component.create({
 		connectStart: function(event) {
 			var instance = this;
 			var builder = instance.get(BUILDER);
+			var canvas = builder.get(CANVAS);
+
+			instance._canvasRegion = canvas.get(REGION);
 
 			builder.connector.show().set(P1, event.startXY);
 
@@ -1429,6 +1435,26 @@ var DiagramNode = A.Component.create({
 				mouseenter: A.bind(instance._onBoundaryMouseEnter, instance),
 				mouseleave: A.bind(instance._onBoundaryMouseLeave, instance)
 			});
+		},
+
+		_constrainMouseXY: function(mouseXY, region) {
+			var instance = this;
+			
+			if (mouseXY[0] <= region.left) {
+				mouseXY[0] = region.left;
+			}
+
+			if (mouseXY[0] >= region.right) {
+				mouseXY[0] = region.right;
+			}
+
+			if (mouseXY[1] >= region.bottom) {
+				mouseXY[1] = region.bottom;
+			}
+
+			if (mouseXY[1] <= region.top) {
+				mouseXY[1] = region.top;
+			}
 		},
 
 		_createDataSet: function() {
@@ -2012,4 +2038,4 @@ A.DiagramNodeTask = A.Component.create({
 
 A.DiagramBuilder.types[TASK] = A.DiagramNodeTask;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay']});
+}, '@VERSION@' ,{requires:['aui-data-set','aui-diagram-builder-base','aui-diagram-builder-connector','overlay'], skinnable:true});
