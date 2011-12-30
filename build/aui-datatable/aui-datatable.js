@@ -22,9 +22,6 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 	initializer: function() {
 		var instance = this;
 
-		instance._bindRecordsetRecordChange();
-
-		instance.after(RECORDSET_CHANGE, instance._afterRecordsetChangeExt);
 		instance.after(instance._uiSetRecordsetExt, instance, '_uiSetRecordset');
 	},
 
@@ -46,24 +43,6 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 		return A.one(_HASH+record.get(ID));
 	},
 
-	_afterRecordsetChangeExt: function(event) {
-		var instance = this;
-
-		instance._bindRecordsetRecordChange();
-	},
-
-	_afterRecordsetRecordChange: function(event) {
-	    var instance = this;
-
-		instance._uiSetRecordset(instance.get(RECORDSET));
-	},
-
-	_bindRecordsetRecordChange: function(event){
-		var instance = this;
-
-		instance.get(RECORDSET).after(CHANGE, A.bind(instance._afterRecordsetRecordChange, instance));
-	},
-
 	_fixPluginsUI: function() {
 		var instance = this;
 		var sort = instance.sort;
@@ -71,10 +50,6 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 
 		if (sort && scroll) {
 			scroll.syncUI();
-
-			// Workaround: Invoke _syncWidths twice from DataTableScroll, otherwise it's misscalculating the paddings for the sortable columns.
-			// TODO: Fix this on DataTable DataTableScroll
-			scroll._syncWidths();
 		}
 	},
 
@@ -179,22 +154,7 @@ A.Plugin.RecordsetSort.prototype._defSortFn = function(event) {
     instance.set('lastSortProperties', event);
 };
 
-// A.Plugin.DataTableScroll _syncWidths YUI implementation breaks when recordset is empty.
-A.Plugin.DataTableScroll = A.Base.create("dataTableScroll", A.Plugin.DataTableScroll, [], {
-	_syncWidths: function() {
-		try {
-			A.Plugin.DataTableScroll.superclass._syncWidths.apply(this, arguments);
-		}
-		catch(e) {
-		}
-	}
-},
-{
-    NS: "scroll",
-    NAME: "dataTableScroll"
-});
-
-}, '@VERSION@' ,{requires:['aui-base','datatable','plugin']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','datatable','plugin']});
 AUI.add('aui-datatable-events', function(A) {
 // TODO - optimize code
 
@@ -1874,7 +1834,7 @@ var DateCellEditor = A.Component.create({
 
 A.DateCellEditor = DateCellEditor;
 
-}, '@VERSION@' ,{requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-calendar','aui-datatable-events','aui-toolbar','aui-form-validator','overlay','sortable']});
 AUI.add('aui-datatable-selection', function(A) {
 // TODO - add support for row/column selection
 
@@ -2300,8 +2260,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 
 A.namespace("Plugin").DataTableSelection = DataTableSelection;
 
-}, '@VERSION@' ,{requires:['aui-datatable-base'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-base']});
 
 
-AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection'], skinnable:false});
+AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']});
 
