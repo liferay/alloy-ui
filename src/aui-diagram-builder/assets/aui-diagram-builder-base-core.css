@@ -25,8 +25,8 @@
 }
 
 .aui-diagram-builder-field-icon {
-	display: inline-block;
-	margin: 3px;
+	display: block;
+	margin: 3px auto;
 }
 
 .aui-diagram-builder-field-label {
