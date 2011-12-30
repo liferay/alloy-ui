@@ -913,10 +913,6 @@ var Lang = A.Lang,
 		return [ dnXY[0] + offsetXY[0], dnXY[1] + offsetXY[1] ];
 	},
 
-	constrain = function(num, min, max) {
-		return Math.min(Math.max(num, min), max);
-	},
-
 	pythagoreanDistance = function(p1, p2) {
 		var dx = p2[0]-p1[0], dy = p2[1]-p1[1];
 
@@ -1982,8 +1978,6 @@ var DiagramNode = A.Component.create({
 			var builder = instance.get(BUILDER);
 			var mouseXY = event.mouseXY;
 
-			instance._constrainMouseXY(mouseXY, instance._canvasRegion);
-
 			builder.connector.set(P2, mouseXY);
 
 			if (builder.publishedTarget) {
@@ -2032,8 +2026,6 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 			var builder = instance.get(BUILDER);
 			var canvas = builder.get(CANVAS);
-
-			instance._canvasRegion = canvas.get(REGION);
 
 			builder.connector.show().set(P1, event.startXY);
 
@@ -2236,13 +2228,6 @@ var DiagramNode = A.Component.create({
 			});
 		},
 
-		_constrainMouseXY: function(mouseXY, region) {
-			var instance = this;
-
-			mouseXY[0] = constrain(mouseXY[0], region.left, region.right);
-			mouseXY[1] = constrain(mouseXY[1], region.top, region.bottom);
-		},
-
 		_createDataSet: function() {
 			var instance = this;
 
@@ -2323,8 +2308,9 @@ var DiagramNode = A.Component.create({
 
 		_onBoundaryDrag: function(event) {
 			var instance = this;
+			var dd = instance.boundaryDragDelegate.dd;
 
-			instance._handleConnectMove(instance.boundaryDragDelegate.dd.mouseXY);
+			instance._handleConnectMove(dd.con._checkRegion(dd.mouseXY));
 		},
 
 		_onBoundaryDragEnd: function(event) {
