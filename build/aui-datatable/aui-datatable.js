@@ -2263,5 +2263,5 @@ A.namespace("Plugin").DataTableSelection = DataTableSelection;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-datatable-base']});
 
 
-AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']});
+AUI.add('aui-datatable', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-datatable-base','aui-datatable-events','aui-datatable-edit','aui-datatable-selection']});
 

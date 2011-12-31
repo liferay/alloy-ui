@@ -349,6 +349,11 @@ var FormBuilder = A.Component.create({
 
 				instance.tabView.selectTab(A.FormBuilder.SETTINGS_TAB);
 
+				// The current YUI DataTable version has issues with plugins
+				// event order when sort and scroll are plugged, to prevent
+				// misalignment between columns and headers set the record set
+				// twice, the first time set to an empty recordset then the desired value.
+				instance.propertyList.set(RECORDSET, [{}]);
 				instance.propertyList.set(RECORDSET, instance.getFieldProperties(field));
 
 				field.get(BOUNDING_BOX).addClass(CSS_FORM_BUILDER_FIELD_EDITING);
@@ -771,4 +776,4 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs']});
