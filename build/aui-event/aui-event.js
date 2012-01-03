@@ -395,22 +395,27 @@ A.Event.define(
 
 				if (delegateNode) {
 					fireFn = function(event) {
-						if (node) {
-							var tmpEl = node.getDOM();
-							var delegateEl = delegateNode.getDOM();
+						var delegateEl = delegateNode.getDOM();
 
-							do {
-								if (tmpEl && Selector.test(tmpEl, filter)) {
-									event.currentTarget = A.one(tmpEl);
-									event.container = delegateNode;
+						var result = true;
 
-									notifier.fire(event);
-								}
+						var tmpEl = node.getDOM();
 
-								tmpEl = tmpEl.parentNode;
+						var tmpEvent = A.clone(event);
+
+						do {
+							if (tmpEl && Selector.test(tmpEl, filter)) {
+								tmpEvent.currentTarget = A.one(tmpEl);
+								tmpEvent.container = delegateNode;
+
+								result = notifier.fire(tmpEvent);
 							}
-							while(tmpEl && tmpEl !== delegateEl && event.stopped !== 2);
+
+							tmpEl = tmpEl.parentNode;
 						}
+						while(result !== false && !tmpEvent.stopped && tmpEl && tmpEl !== delegateEl);
+
+						return ((result !== false) && (tmpEvent.stopped !== 2));
 					};
 				}
 
@@ -486,5 +491,5 @@ A.Event.define(
 }, '@VERSION@' ,{requires:['aui-node-base','aui-event-base'], condition: {name: 'aui-event-delegate-change', trigger: 'event-base-ie', ua: 'ie'}});
 
 
-AUI.add('aui-event', function(A){}, '@VERSION@' ,{skinnable:false, use:['aui-event-base','aui-event-input']});
+AUI.add('aui-event', function(A){}, '@VERSION@' ,{use:['aui-event-base','aui-event-input'], skinnable:false});
 
