@@ -66,7 +66,7 @@ var OptionsEditor = A.Component.create({
 	ATTRS: {
 		editable: {
 			setter: function() {
-				return false;	
+				return false;
 			}
 		}
 	},
@@ -122,8 +122,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 		optionTemplate: {
 			value: '<option value="{value}">{label}</option>'
-		}
+		},
 
+		predefinedValue: {
+			setter: AArray
+		}
 	},
 
 	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, NAME, OPTIONS, PREDEFINED_VALUE, SHOW_LABEL],
@@ -161,15 +164,11 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 								formatter: function(o) {
 									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
 
-									var labels = [];
 									var values = AArray(o.record.get(DATA).value);
 
-									AArray.each(
-										values,
-										function(item, index, collection) {
-											labels.push(editorOptions[item]);
-										}
-									);
+									var labels = A.Array.map(values, function (val) {
+										return editorOptions[val];
+									});
 
 									return labels.join(_COMMA+_SPACE);
 								}
@@ -256,7 +255,9 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 				}
 			);
 
-			instance.get(TEMPLATE_NODE).setContent(buffer.join(_EMPTY_STR));
+			instance.optionNodes = A.NodeList.create(buffer.join(_EMPTY_STR));
+
+			instance.get(TEMPLATE_NODE).setContent(instance.optionNodes);
 
 			instance._uiSetPredefinedValue(
 				instance.get(PREDEFINED_VALUE)
@@ -266,18 +267,18 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		_uiSetPredefinedValue: function(val) {
 			var instance = this;
 
-			var templateNode = instance.get(TEMPLATE_NODE);
-			var optionNodes = templateNode.all('option');
+			var optionNodes = instance.optionNodes;
+
+			if (!optionNodes) {
+				return;
+			}
 
 			optionNodes.set(SELECTED, false);
 
-			AArray.each(
-				AArray(val),
-				function(item, index, collection) {
-					optionNodes.filter('[value="' + item + '"]').set(SELECTED, true);
-				}
-			);
-		},
+			AArray.each(val, function(item) {
+				optionNodes.filter('[value="' + item + '"]').set(SELECTED, true);
+			});
+		}
 	}
 
 });
