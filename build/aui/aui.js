@@ -10067,8 +10067,12 @@ A.fn = function(fn, context, args) {
 AUI.add('aui-base-lang', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
+	AObject = A.Object,
+	isArray = Lang.isArray,
 	isNumber = Lang.isNumber,
 	isUndefined = Lang.isUndefined,
+
+	owns = AObject.owns,
 
 	LString = A.namespace('Lang.String'),
 
@@ -10451,6 +10455,39 @@ A.mix(
 		}
 	}
 );
+
+/**
+ * Maps an object to an array, using the
+ * return value of fn as the values for the new array.
+ */
+
+AObject.map = function(obj, fn, context) {
+	var map = [];
+
+	for (var i in obj) {
+		if (owns(obj, i)) {
+			map[map.length] = fn.call(context, obj[i], i, obj);
+		}
+	}
+
+	return map;
+};
+
+/**
+ * Maps an array or object to a resulting array, using the
+ * return value of fn as the values for the new array.
+ * Like A.each, this function can accept an object or an array.
+ */
+
+A.map = function(obj, fn, context) {
+	var module = AObject;
+
+	if (isArray(obj)) {
+		module = AArray;
+	}
+
+	return module.map.apply(this, arguments);
+};
 
 }, '@VERSION@' ,{skinnable:false});
 
