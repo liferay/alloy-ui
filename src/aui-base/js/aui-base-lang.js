@@ -61,8 +61,8 @@ var Lang = A.Lang,
 		}
 	}
 
-	var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
-		REGEX_HTML_UNESCAPE = /&([^;]+);/g;
+var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
+	REGEX_HTML_UNESCAPE = /&([^;]+);/g;
 
 A.mix(
 	LString,
@@ -93,8 +93,8 @@ A.mix(
 			}
 		),
 
-		contains: function(s, ss) {
-		  return s.indexOf(ss) != -1;
+		contains: function(str, searchString) {
+			return str.indexOf(searchString) != -1;
 		},
 
 		defaultValue: function(str, defaultValue) {
@@ -168,18 +168,18 @@ A.mix(
 			return str;
 		},
 
-		remove: function(s, substitute, all) {
+		remove: function(str, substitute, all) {
 			var re = new RegExp(LString.escapeRegEx(substitute), all ? STR_G : STR_BLANK);
 
-			return s.replace(re, STR_BLANK);
+			return str.replace(re, STR_BLANK);
 		},
 
-		removeAll: function(s, substitute) {
-			return LString.remove(s, substitute, true);
+		removeAll: function(str, substitute) {
+			return LString.remove(str, substitute, true);
 		},
 
-		repeat: function(string, length) {
-			return new Array(length + 1).join(string);
+		repeat: function(str, length) {
+			return new Array(length + 1).join(str);
 		},
 
 		round: function(value, precision) {
@@ -194,7 +194,7 @@ A.mix(
 		},
 
 		startsWith: function(str, prefix) {
-			return (str.lastIndexOf(prefix, 0) == 0);
+			return (str.lastIndexOf(prefix, 0) === 0);
 		},
 
 		stripScripts: function(str) {
@@ -337,11 +337,11 @@ A.mix(
 A.mix(
 	AArray,
 	{
-		/** 
+		/**
 		 * Sorts an object array keeping the order of equal items. ECMA script
 		 * standard does not specify the behaviour when the compare function
 		 * returns the value 0;
- 		 */
+		 */
 		stableSort: function(array, sorter) {
 			var i, len = array.length;
 
