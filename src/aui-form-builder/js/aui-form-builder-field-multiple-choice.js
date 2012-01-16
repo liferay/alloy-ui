@@ -66,7 +66,7 @@ var OptionsEditor = A.Component.create({
 	ATTRS: {
 		editable: {
 			setter: function() {
-				return false;	
+				return false;
 			}
 		}
 	},
@@ -121,12 +121,15 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 		},
 
 		optionTemplate: {
-			value: '<option {selected} value="{value}">{label}</option>'
-		}
+			value: '<option value="{value}">{label}</option>'
+		},
 
+		predefinedValue: {
+			setter: AArray
+		}
 	},
 
-	UI_ATTRS: [ACCEPT_CHILDREN, PREDEFINED_VALUE, LABEL, NAME, OPTIONS, SHOW_LABEL],
+	UI_ATTRS: [ACCEPT_CHILDREN, LABEL, NAME, OPTIONS, PREDEFINED_VALUE, SHOW_LABEL],
 
 	CSS_PREFIX: CSS_FORM_BUILDER_FIELD,
 
@@ -138,7 +141,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			var instance = this;
 			var options = instance.get(OPTIONS);
 
-			instance.predefinedValueEditor = new A.RadioCellEditor({
+			instance.predefinedValueEditor = new A.DropDownCellEditor({
 				options: getEditorOptions(options)
 			});
 		},
@@ -161,13 +164,13 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 								formatter: function(o) {
 									var editorOptions = instance.predefinedValueEditor.get(OPTIONS);
 
-									var value = editorOptions[o.record.get(DATA).value];
+									var values = AArray(o.record.get(DATA).value);
 
-									if (!isString(value)) {
-										value = _EMPTY_STR;
-									}
+									var labels = A.Array.map(values, function (val) {
+										return editorOptions[val];
+									});
 
-									return value;
+									return labels.join(_COMMA+_SPACE);
 								}
 							}
 						);
@@ -234,7 +237,6 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 
 		_uiSetOptions: function(val) {
 			var instance = this;
-			var predefinedValue = instance.get(PREDEFINED_VALUE);
 
 			var buffer = [];
 
@@ -246,7 +248,6 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 							instance.get(OPTION_TEMPLATE),
 							{
 								label: item.label,
-								selected: item.value === predefinedValue ? 'selected="selected"' : _EMPTY_STR,
 								value: item.value
 							}
 						)
@@ -254,7 +255,29 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 				}
 			);
 
-			instance.get(TEMPLATE_NODE).setContent(buffer.join(_EMPTY_STR));
+			instance.optionNodes = A.NodeList.create(buffer.join(_EMPTY_STR));
+
+			instance.get(TEMPLATE_NODE).setContent(instance.optionNodes);
+
+			instance._uiSetPredefinedValue(
+				instance.get(PREDEFINED_VALUE)
+			);
+		},
+
+		_uiSetPredefinedValue: function(val) {
+			var instance = this;
+
+			var optionNodes = instance.optionNodes;
+
+			if (!optionNodes) {
+				return;
+			}
+
+			optionNodes.set(SELECTED, false);
+
+			AArray.each(val, function(item) {
+				optionNodes.filter('[value="' + item + '"]').set(SELECTED, true);
+			});
 		}
 	}
 
