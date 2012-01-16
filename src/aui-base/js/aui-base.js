@@ -9,10 +9,10 @@ A.mix(
 	AArray,
 	{
 		remove: function(a, from, to) {
-		  var rest = a.slice((to || from) + 1 || a.length);
-		  a.length = (from < 0) ? (a.length + from) : from;
+			var rest = a.slice((to || from) + 1 || a.length);
+			a.length = (from < 0) ? (a.length + from) : from;
 
-		  return a.push.apply(a, rest);
+			return a.push.apply(a, rest);
 		},
 
 		removeItem: function(a, item) {
@@ -25,6 +25,7 @@ A.mix(
 
 A.fn = function(fn, context, args) {
 	var wrappedFn;
+	var dynamicLookup;
 
 	// Explicitly set function arguments
 	if (!isNumber(fn)) {
@@ -34,7 +35,7 @@ A.fn = function(fn, context, args) {
 			xargs = AArray(xargs, 2, true);
 		}
 
-		var dynamicLookup = (isString(fn) && context);
+		dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
 			var method = (!dynamicLookup) ? fn : context[fn];
@@ -49,7 +50,7 @@ A.fn = function(fn, context, args) {
 		fn = context;
 		context = args;
 
-		var dynamicLookup = (isString(fn) && context);
+		dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
 			var method = (!dynamicLookup) ? fn : context[fn];

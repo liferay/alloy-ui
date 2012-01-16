@@ -22,7 +22,7 @@
 						'aui-carousel': {requires:['aui-base','aui-template','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
-						'aui-classnamemanager': {requires:['classnamemanager'], skinnable:false, condition: {name: 'aui-classnamemanager', trigger: 'classnamemanager', test: function(){return true;}}},
+						'aui-classnamemanager': {requires:['classnamemanager'], condition: {name: 'aui-classnamemanager', trigger: 'classnamemanager', test: function(){return true;}}, skinnable:false},
 						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {skinnable:true, requires:['aui-color-picker-base','plugin']}, 'aui-color-picker-base': {skinnable:true, requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel']} }, use:['aui-color-picker-base','aui-color-picker-grid-plugin'], skinnable:true},
 						'aui-color-util': {skinnable:false},
 						'aui-component': {requires:['aui-classnamemanager','widget'], skinnable:false},
@@ -65,9 +65,9 @@
 						'aui-scroller': {requires:['aui-base','aui-simple-anim'], skinnable:true},
 						'aui-selector': {requires:['selector-css3'], skinnable:false},
 						'aui-simple-anim': {requires:['aui-base'], skinnable:false},
-						'aui-skin-base': {type: 'css', path: 'aui-skin-base/css/aui-skin-base.css'},
-						'aui-skin-classic-all': {type: 'css', path: 'aui-skin-classic/css/aui-skin-classic-all.css'},
-						'aui-skin-classic': {requires:['aui-skin-base'], path: 'aui-skin-classic/css/aui-skin-classic.css', type: 'css'},
+						'aui-skin-base': {path: 'aui-skin-base/css/aui-skin-base.css', type: 'css'},
+						'aui-skin-classic-all': {path: 'aui-skin-classic/css/aui-skin-classic-all.css', type: 'css'},
+						'aui-skin-classic': {path: 'aui-skin-classic/css/aui-skin-classic.css', requires:['aui-skin-base'], type: 'css'},
 						'aui-sortable': {requires:['aui-base','dd-constrain','dd-drag','dd-drop','dd-proxy'], skinnable:true},
 						'aui-state-interaction': {requires:['aui-base','plugin'], skinnable:false},
 						'aui-swf': {requires:['aui-base','querystring-parse-simple','querystring-stringify-simple'], skinnable:false},
@@ -527,10 +527,10 @@ A.mix(
 	AArray,
 	{
 		remove: function(a, from, to) {
-		  var rest = a.slice((to || from) + 1 || a.length);
-		  a.length = (from < 0) ? (a.length + from) : from;
+			var rest = a.slice((to || from) + 1 || a.length);
+			a.length = (from < 0) ? (a.length + from) : from;
 
-		  return a.push.apply(a, rest);
+			return a.push.apply(a, rest);
 		},
 
 		removeItem: function(a, item) {
@@ -543,6 +543,7 @@ A.mix(
 
 A.fn = function(fn, context, args) {
 	var wrappedFn;
+	var dynamicLookup;
 
 	// Explicitly set function arguments
 	if (!isNumber(fn)) {
@@ -552,7 +553,7 @@ A.fn = function(fn, context, args) {
 			xargs = AArray(xargs, 2, true);
 		}
 
-		var dynamicLookup = (isString(fn) && context);
+		dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
 			var method = (!dynamicLookup) ? fn : context[fn];
@@ -567,7 +568,7 @@ A.fn = function(fn, context, args) {
 		fn = context;
 		context = args;
 
-		var dynamicLookup = (isString(fn) && context);
+		dynamicLookup = (isString(fn) && context);
 
 		wrappedFn = function() {
 			var method = (!dynamicLookup) ? fn : context[fn];
@@ -654,8 +655,8 @@ var Lang = A.Lang,
 		}
 	}
 
-	var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
-		REGEX_HTML_UNESCAPE = /&([^;]+);/g;
+var REGEX_HTML_ESCAPE = new RegExp('[' + htmlUnescapedValues.join(STR_BLANK) + ']', 'g'),
+	REGEX_HTML_UNESCAPE = /&([^;]+);/g;
 
 A.mix(
 	LString,
@@ -686,8 +687,8 @@ A.mix(
 			}
 		),
 
-		contains: function(s, ss) {
-		  return s.indexOf(ss) != -1;
+		contains: function(str, searchString) {
+			return str.indexOf(searchString) != -1;
 		},
 
 		defaultValue: function(str, defaultValue) {
@@ -761,18 +762,18 @@ A.mix(
 			return str;
 		},
 
-		remove: function(s, substitute, all) {
+		remove: function(str, substitute, all) {
 			var re = new RegExp(LString.escapeRegEx(substitute), all ? STR_G : STR_BLANK);
 
-			return s.replace(re, STR_BLANK);
+			return str.replace(re, STR_BLANK);
 		},
 
-		removeAll: function(s, substitute) {
-			return LString.remove(s, substitute, true);
+		removeAll: function(str, substitute) {
+			return LString.remove(str, substitute, true);
 		},
 
-		repeat: function(string, length) {
-			return new Array(length + 1).join(string);
+		repeat: function(str, length) {
+			return new Array(length + 1).join(str);
 		},
 
 		round: function(value, precision) {
@@ -787,7 +788,7 @@ A.mix(
 		},
 
 		startsWith: function(str, prefix) {
-			return (str.lastIndexOf(prefix, 0) == 0);
+			return (str.lastIndexOf(prefix, 0) === 0);
 		},
 
 		stripScripts: function(str) {
@@ -930,11 +931,11 @@ A.mix(
 A.mix(
 	AArray,
 	{
-		/** 
+		/**
 		 * Sorts an object array keeping the order of equal items. ECMA script
 		 * standard does not specify the behaviour when the compare function
 		 * returns the value 0;
- 		 */
+		 */
 		stableSort: function(array, sorter) {
 			var i, len = array.length;
 
