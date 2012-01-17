@@ -381,8 +381,6 @@ var LiveSearch = A.Component.create(
 			_afterSearchValueChange: function(event) {
 				var instance = this;
 
-				instance.fire('search');
-
 				if (event.SRC == UI_SRC) {
 					instance.get(INPUT).val(event.newVal);
 				}
