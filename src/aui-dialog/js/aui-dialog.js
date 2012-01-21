@@ -785,9 +785,7 @@ Dialog.prototype = {
 		if (event.prevVal) {
 			event.prevVal.destroy();
 		}
-	},
-
-	_uiHandles: []
+	}
 };
 
 A.Dialog = A.Component.create(
