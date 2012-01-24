@@ -103,9 +103,9 @@
 
 <body class="yui3-skin-sam">
 <div id="wrapper">
-	<h1>Alloy - Delegated change event demo</h1>
+	<h1>Alloy - Delegated submit event demo</h1>
 
-	<a href="javascript:;" id="refreshAttach">Detach existing delegate change events and attach a new one</a>
+	<a href="javascript:;" id="refreshAttach">Detach existing delegate submit events and attach a new one</a>
 
 	<div id="demo">
 		<form class="aui-layout-content aui-form" id="myForm" action="javascript:alert('success!');">
@@ -620,7 +620,7 @@ AUI().ready(
 				A.log('Regular Submit Event #1: current target: ' + event.currentTarget + ' target: ' + event.target);
 			}
 		);
-			
+
 		A.one('form').on(
 			'submit',
 			function(event) {
@@ -653,7 +653,7 @@ AUI().ready(
 		A.one('#refreshAttach').on(
 			'click',
 			function(event) {
-				A.log('Refreshing attached change events.');
+				A.log('Refreshing attached submit events.');
 
 				A.getBody().detach('submit');
 
