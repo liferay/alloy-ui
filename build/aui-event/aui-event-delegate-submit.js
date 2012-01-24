@@ -42,6 +42,10 @@ A.Event.define(
 												tmpEvent.container = node;
 
 												result = notifier.fire(tmpEvent);
+
+												if (tmpEvent.prevented) {
+													event.preventDefault(tmpEvent._event.returnValue);
+												}
 											}
 
 											tmpEl = tmpEl.parentNode;
