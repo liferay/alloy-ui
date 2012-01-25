@@ -12,7 +12,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 
-	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
+	TPL_VIDEO = '<video id="{0}" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 var Video = A.Component.create(
