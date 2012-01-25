@@ -13,19 +13,19 @@ A.Event.define(
 			var instance = this;
 
 			var clickHandles = instance._prepareHandles(subscription, node);
-			
+
 			if (!AObject.owns(clickHandles, EVENT_CLICK)) {
 				clickHandles[EVENT_CLICK] = node.delegate(
 					EVENT_CLICK,
 					function(event) {
 						var activeElement = event.target;
-						
+
 						if (instance._getNodeName(activeElement, 'input') || instance._getNodeName(activeElement, 'button')) {
 							var form = activeElement.get('form');
 
 							if (form) {
 								var formHandles = instance._prepareHandles(subscription, form);
-								
+
 								if (!AObject.owns(formHandles, EVENT_SUBMIT)) {
 									var fireFn = function(event) {
 										var delegateEl = node.getDOM();
@@ -45,6 +45,17 @@ A.Event.define(
 
 												if (tmpEvent.prevented) {
 													event.preventDefault(tmpEvent._event.returnValue);
+												}
+
+												var stopped = tmpEvent.stopped;
+
+												if (stopped) {
+													if (stopped === 1) {
+														event.stopPropagation();
+													}
+													else if (stopped === 2) {
+														event.stopImmediatePropagation();
+													}
 												}
 											}
 
@@ -79,7 +90,7 @@ A.Event.define(
 
 		on: function (node, subscription, notifier) {
 			var instance = this;
-			
+
 			var submitHandles = instance._prepareHandles(subscription, node);
 
 			submitHandles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, notifier.fire, node, notifier]);
@@ -100,7 +111,7 @@ A.Event.define(
 
 			delete subscription._handles;
 		},
-		
+
 		_getNodeName: function(elem, name) {
 			var nodeName = elem.get('nodeName');
 
