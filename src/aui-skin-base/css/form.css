@@ -175,7 +175,8 @@
 }
 /* close commented backslash hack */
 
-.aui-field-label {
+.aui-field-label,
+.aui-field-label-inline-label {
 	font-weight: bold;
 }
 
