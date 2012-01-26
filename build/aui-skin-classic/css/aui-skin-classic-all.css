@@ -715,8 +715,8 @@ body {
 	vertical-align: middle;
 }
 
-.aui-choice-label,
-.aui-field-input-choice {
+.aui-field-label-right .aui-choice-label,
+.aui-field-label-right .aui-field-input-choice {
 	float: left;
 }
 
@@ -783,7 +783,8 @@ body {
 }
 /* close commented backslash hack */
 
-.aui-field-label {
+.aui-field-label,
+.aui-field-label-inline-label {
 	font-weight: bold;
 }
 
