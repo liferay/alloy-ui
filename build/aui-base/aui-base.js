@@ -25,7 +25,7 @@
 						'aui-classnamemanager': {skinnable:false, requires:['classnamemanager'], condition: {name: 'aui-classnamemanager', trigger: 'classnamemanager', test: function(){return true;}}},
 						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {skinnable:true, requires:['aui-color-picker-base','plugin']}, 'aui-color-picker-base': {skinnable:true, requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel']} }, skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']},
 						'aui-color-util': {skinnable:false},
-						'aui-component': {requires:['aui-classnamemanager','widget'], skinnable:false},
+						'aui-component': {requires:['aui-classnamemanager','base-build','widget'], skinnable:false},
 						'aui-data-browser': {requires:['aui-base','aui-datasource-control-base','aui-input-text-control','aui-tree','aui-panel'], skinnable:true},
 						'aui-data-set': {requires:['oop','collection','base'], skinnable:false},
 						'aui-datasource-control': {submodules: {'aui-input-text-control': {requires:['aui-base','aui-datasource-control-base','aui-form-combobox']}, 'aui-datasource-control-base': {requires:['aui-base','datasource','dataschema']} }, skinnable:true, use:['aui-datasource-control-base','aui-input-text-control']},
