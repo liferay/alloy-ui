@@ -809,7 +809,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -2304,10 +2304,12 @@ var TreeNodeCheck = A.Component.create(
 			 *
 			 * @method check
 			 */
-			check: function() {
+			check: function(originalTarget) {
 				var instance = this;
 
-				instance.set(CHECKED, true);
+				instance.set(CHECKED, true, {
+					originalTarget: originalTarget
+				});
 			},
 
 			/**
@@ -2315,10 +2317,12 @@ var TreeNodeCheck = A.Component.create(
 			 *
 			 * @method uncheck
 			 */
-			uncheck: function() {
+			uncheck: function(originalTarget) {
 				var instance = this;
 
-				instance.set(CHECKED, false);
+				instance.set(CHECKED, false, {
+					originalTarget: originalTarget
+				});
 			},
 
 			/**
@@ -2418,14 +2422,16 @@ var TreeNodeTask = A.Component.create(
 			/*
 			* Methods
 			*/
-			check: function() {
+			check: function(originalTarget) {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
+
+				originalTarget = originalTarget || instance;
 
 				if (!instance.isLeaf()) {
 					instance.eachChildren(function(child) {
 						if (isTreeNodeTask(child)) {
-							child.check();
+							child.check(originalTarget);
 						}
 					});
 				}
@@ -2441,17 +2447,19 @@ var TreeNodeTask = A.Component.create(
 				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
 				// invoke default check logic
-				A.TreeNodeTask.superclass.check.apply(this, arguments);
+				A.TreeNodeTask.superclass.check.apply(this, [originalTarget]);
 			},
 
-			uncheck: function() {
+			uncheck: function(originalTarget) {
 				var instance = this;
 				var contentBox = instance.get(CONTENT_BOX);
+
+				originalTarget = originalTarget || instance;
 
 				if (!instance.isLeaf()) {
 					instance.eachChildren(function(child) {
 						if (child instanceof A.TreeNodeCheck) {
-							child.uncheck();
+							child.uncheck(originalTarget);
 						}
 					});
 				}
@@ -2467,7 +2475,7 @@ var TreeNodeTask = A.Component.create(
 				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
 				// invoke default uncheck logic
-				A.TreeNodeTask.superclass.uncheck.apply(this, arguments);
+				A.TreeNodeTask.superclass.uncheck.apply(this, [originalTarget]);
 			}
 		}
 	}
@@ -2616,7 +2624,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3601,5 +3609,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
 
