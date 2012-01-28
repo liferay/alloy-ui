@@ -304,6 +304,18 @@
 				dest="${project.dir}/build/${build.aui.prefix}aui-base/${build.aui.prefix}aui-base-min.js"
 				src="${aui.base.component.dir}/${build.aui.prefix}aui-base.js"
 			/>
+
+			<copy
+				file="@{defaultsfile}"
+				tofile="${aui.base.component.dir}/${build.aui.prefix}${build.aui.prefix}aui-base-meta.js"
+				overwrite="true"
+			/>
+
+			<yuicompress
+				args="${yuicompressor.js.args.internal}"
+				dest="${project.dir}/build/${build.aui.prefix}aui-base/${build.aui.prefix}aui-base-meta-min.js"
+				src="${aui.base.component.dir}/${build.aui.prefix}aui-base-meta.js"
+			/>
 		</sequential>
 	</macrodef>
 
