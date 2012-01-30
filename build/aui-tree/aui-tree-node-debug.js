@@ -1656,7 +1656,7 @@ var TreeNodeTask = A.Component.create(
 				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
 				// invoke default check logic
-				A.TreeNodeTask.superclass.check.apply(this, [originalTarget]);
+				A.TreeNodeTask.superclass.check.call(this, originalTarget);
 			},
 
 			uncheck: function(originalTarget) {
@@ -1684,7 +1684,7 @@ var TreeNodeTask = A.Component.create(
 				contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
 				// invoke default uncheck logic
-				A.TreeNodeTask.superclass.uncheck.apply(this, [originalTarget]);
+				A.TreeNodeTask.superclass.uncheck.call(this, originalTarget);
 			}
 		}
 	}
