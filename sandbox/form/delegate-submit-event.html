@@ -130,6 +130,8 @@ AUI().ready(
 		var stopPropagation = A.one('#stopPropagation');
 		var stopImmediatePropagation = A.one('#stopImmediatePropagation');
 
+		var formListenersAttached = false;
+
 		var getListener = function(msg, el, firingEl) {
 			var node = A.one(el);
 			var firingNode = A.one(firingEl);
@@ -176,6 +178,21 @@ AUI().ready(
 				if (msg) {
 					A.log(sub(msg, event));
 				}
+
+				if (!formListenersAttached && el === body) {
+					eventHandles.push(
+						form.on(
+							'submit',
+							getListener('Regular Submit Event #1: currentTarget: {currentTarget}, target: {target}', form)
+						),
+						form.on(
+							'submit',
+							getListener('Regular Submit Event #2: currentTarget: {currentTarget}, target: {target}', form)
+						)
+					);
+
+					formListenersAttached = true;
+				}
 			};
 		};
 
@@ -187,13 +204,15 @@ AUI().ready(
 			var handles = [];
 
 			handles.push(
-				form.on(
+				body.delegate(
 					'submit',
-					getListener('Regular Submit Event #1: currentTarget: {currentTarget}, target: {target}', form)
+					getListener('Delegate Submit Event #3: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
+					'#demo'
 				),
-				form.on(
+				body.delegate(
 					'submit',
-					getListener('Regular Submit Event #2: currentTarget: {currentTarget}, target: {target}', form)
+					getListener('Delegate Submit Event #4: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
+					'#demo'
 				),
 				wrapper.delegate(
 					'submit',
@@ -204,20 +223,10 @@ AUI().ready(
 					'submit',
 					getListener('Delegate Submit Event #2: currentTarget: {currentTarget}, target: {target}, container: {container}', wrapper, form),
 					'form'
-				),
-				body.delegate(
-					'submit',
-					getListener('Delegate Submit Event #3: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
-					'#demo'
-				),
-				body.delegate(
-					'submit',
-					getListener('Delegate Submit Event #4: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
-					'#demo'
 				)
 			);
 
-			return new A.EventHandle(handles);
+			return handles;
 		};
 
 		var eventHandles = attachListeners();
@@ -225,7 +234,7 @@ AUI().ready(
 		form.on(
 			'reset',
 			function(event) {
-				eventHandles.detach();
+				A.Array.invoke(eventHandles, 'detach');
 
 				eventHandles = attachListeners();
 			}
