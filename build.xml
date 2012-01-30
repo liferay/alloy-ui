@@ -228,7 +228,7 @@
 
 				<replaceregexp match="component\.cssfiles=(.*)$" replace="component.cssfiles=custom.css" flags="g" byline="true">
 					<fileset dir="@{dir}/" includes="build.properties"/>
-		        </replaceregexp>
+				</replaceregexp>
 
 				<!-- Process the build.all-css files -->
 
@@ -281,7 +281,7 @@
 
 	<target name="clean-release">
 		<delete dir="${release.temp.dir}" />
-		<delete file="${project.dir}/${release.name}-${release.version}.zip" />
+		<delete file="${project.dir}/${release.file.name}" />
 	</target>
 
 	<target name="init-yui">
@@ -327,11 +327,22 @@
 
 		<replaceregexp match="@VERSION@" replace="${release.version}" flags="g" byline="true">
 			<fileset dir="${release.temp.dir}/build/" includes="**/aui-*.js"/>
-        </replaceregexp>
+		</replaceregexp>
 
 		<echo>Creating Zip file ${release.name}.zip</echo>
 
-		<zip basedir="${release.temp.dir}" destfile="${project.dir}/${release.name}-${release.version}.zip" />
+		<!-- I would just use "git archive" for this, but I couldn't find a decent way to add the version numbers
+			to the build files (also git archive will only export a commit, not the current working tree state,
+			which is something we use to test a change inside of Liferay) -->
+
+		<exec executable="git" dir="${project.dir}" outputproperty="release.comment" failifexecutionfails="false">
+			<arg value="log" />
+			<arg value="-1" />
+			<arg value="--format=SHA: %h on %cD" />
+			<arg value="HEAD" />
+		</exec>
+
+		<zip basedir="${release.temp.dir}" comment="${release.comment}" destfile="${project.dir}/${release.file.name}" />
 
 		<delete dir="${release.temp.dir}" />
 	</target>
