@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css" media="screen">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			margin: 20px auto;
+			width: 960px;
+		}
+
+		.listening {
+			padding: 3px;
+			border: 1px solid #900;
+		}
+
+		.fired-from {
+			color: #333;
+			background-color: #abdd8d;
+		}
+
+		.fired-count-num {
+			background-color: #ddc71e;
+		}
+
+		.listener-status {
+			display: block;
+			font-size: 0.8em;
+			color: #555;
+		}
+
+		.fired-status {
+			display: block;
+			font-weight: bold;
+			color: #222;
+			font-size: 1.3em;
+		}
+
+		/* ---------- Custom form css ---------- */
+		.aui-field-choice .aui-field-content {
+			padding: 0 0 10px;
+			border-bottom-width: 0;
+		}
+	</style>
+</head>
+
+<body class="yui3-skin-sam">
+<div id="wrapper">
+	<h1>Alloy - Delegated submit event demo</h1>
+
+	<div id="demo">
+		<form class="aui-form" id="myForm" action="javascript:alert('success!');">
+			<span class="aui-field aui-field-nested aui-field-last">
+				<span class="aui-field-content">
+					<span class="aui-field-group">
+						<span class="aui-field-group-content">
+							<span class="aui-field aui-field-choice aui-field-checkbox aui-field-checked">
+								<span class="aui-field-content">
+									<input checked class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="preventDefault" name="preventDefault" type="checkbox" value="1" />
+
+									<label class="aui-choice-label" for="preventDefault">
+										preventDefault
+									</label>
+								</span>
+							</span>
+
+							<span class="aui-field aui-field-choice aui-field-checkbox">
+								<span class="aui-field-content">
+									<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="stopPropagation" name="stopPropagation" type="checkbox" value="1" />
+									<label class="aui-choice-label" for="stopPropagation">
+										stopPropagation
+									</label>
+								</span>
+							</span>
+
+							<span class="aui-field aui-field-choice aui-field-checkbox">
+								<span class="aui-field-content">
+									<input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" id="stopImmediatePropagation" name="stopImmediatePropagation" type="checkbox" value="1" />
+									<label class="aui-choice-label" for="stopImmediatePropagation">
+										stopImmediatePropagation
+									</label>
+								</span>
+							</span>
+						</span>
+					</span>
+				</span>
+			</span>
+
+			<span class="aui-button-row aui-helper-clearfix">
+				<span class="aui-button aui-button-submit aui-state-positive aui-priority-primary">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-submit" type="submit" value="Submit" />
+					</span>
+				</span>
+
+				<span class="aui-button aui-button-reset aui-priority-secondary">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-reset" type="reset" value="Reset" />
+					</span>
+				</span>
+
+				<span class="aui-button aui-button-cancel aui-state-negative">
+					<span class="aui-button-content">
+						<input class="aui-button-input aui-button-input-cancel" type="button" value="Cancel" />
+					</span>
+				</span>
+			</span>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready(
+	'aui-form-base',
+	'console',
+	function(A) {
+		var Lang = A.Lang;
+		var sub = Lang.sub;
+		new A.Console().render();
+
+		var preventDefault = A.one('#preventDefault');
+		var stopPropagation = A.one('#stopPropagation');
+		var stopImmediatePropagation = A.one('#stopImmediatePropagation');
+
+		var formListenersAttached = false;
+
+		var getListener = function(msg, el, firingEl) {
+			var node = A.one(el);
+			var firingNode = A.one(firingEl);
+
+			var guid = node.guid();
+			var noteId = 'listenerStatus' + guid;
+
+			var note = node.one('#' + noteId);
+
+			if (!note) {
+				node.addClass('listening');
+				note = A.Node.create('<p class="listener-status" id="' + noteId + '"><span class="listener-count"><span class="listener-count-num">0</span> listener(s) added to ' + node + '</span><span class="fired-status">Listener fired <span class="fired-count-num">0</span> time(s)</span>' + (firingNode ? '<span class="fired-from">Fired from ' + firingNode + '</span>' : '') + '</p>');
+			}
+
+			var listenerCountNum = note.one('.listener-count-num');
+
+			var listenerCount = (parseInt(listenerCountNum.text(), 10) || 0) + 1;
+
+			listenerCountNum.text(listenerCount);
+
+			var firedStatus = note.one('.fired-status');
+			var firedCountNum = firedStatus.one('.fired-count-num');
+
+			node.prepend(note);
+
+			return function(event) {
+
+				if (preventDefault.attr('checked')) {
+					event.preventDefault();
+				}
+
+				if (stopPropagation.attr('checked')) {
+					event.stopPropagation();
+				}
+
+				if (stopImmediatePropagation.attr('checked')) {
+					event.stopImmediatePropagation();
+				}
+
+				var firedCount = (parseInt(firedCountNum.text(), 10) || 0) + 1;
+
+				firedCountNum.text(firedCount);
+
+				if (msg) {
+					A.log(sub(msg, event));
+				}
+
+				if (!formListenersAttached && el === body) {
+					eventHandles.push(
+						form.on(
+							'submit',
+							getListener('Regular Submit Event #1: currentTarget: {currentTarget}, target: {target}', form)
+						),
+						form.on(
+							'submit',
+							getListener('Regular Submit Event #2: currentTarget: {currentTarget}, target: {target}', form)
+						)
+					);
+
+					formListenersAttached = true;
+				}
+			};
+		};
+
+		var form = A.one('form');
+		var wrapper = A.one('#wrapper');
+		var body = A.getBody();
+
+		var attachListeners = function() {
+			var handles = [];
+
+			handles.push(
+				body.delegate(
+					'submit',
+					getListener('Delegate Submit Event #3: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
+					'#demo'
+				),
+				body.delegate(
+					'submit',
+					getListener('Delegate Submit Event #4: currentTarget: {currentTarget}, target: {target}, container: {container}', body, '#demo'),
+					'#demo'
+				),
+				wrapper.delegate(
+					'submit',
+					getListener('Delegate Submit Event #1: currentTarget: {currentTarget}, target: {target}, container: {container}', wrapper, form),
+					'form'
+				),
+				wrapper.delegate(
+					'submit',
+					getListener('Delegate Submit Event #2: currentTarget: {currentTarget}, target: {target}, container: {container}', wrapper, form),
+					'form'
+				)
+			);
+
+			return handles;
+		};
+
+		var eventHandles = attachListeners();
+
+		form.on(
+			'reset',
+			function(event) {
+				A.Array.invoke(eventHandles, 'detach');
+
+				eventHandles = attachListeners();
+			}
+		);
+	}
+);
+</script>
+
+</body>
+</html>
