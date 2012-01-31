@@ -24,50 +24,7 @@ A.Event.define(
 							var form = activeElement.get('form');
 
 							if (form) {
-								var formHandles = instance._prepareHandles(subscription, form);
-
-								if (!AObject.owns(formHandles, EVENT_SUBMIT)) {
-									var fireFn = function(event) {
-										var delegateEl = node.getDOM();
-
-										var result = true;
-
-										var tmpEl = form.getDOM();
-
-										var tmpEvent = A.clone(event);
-
-										do {
-											if (tmpEl && Selector.test(tmpEl, filter)) {
-												tmpEvent.currentTarget = A.one(tmpEl);
-												tmpEvent.container = node;
-
-												result = notifier.fire(tmpEvent);
-
-												if (tmpEvent.prevented) {
-													event.preventDefault(tmpEvent._event.returnValue);
-												}
-
-												var stopped = tmpEvent.stopped;
-
-												if (stopped) {
-													if (stopped === 1) {
-														event.stopPropagation();
-													}
-													else if (stopped === 2) {
-														event.stopImmediatePropagation();
-													}
-												}
-											}
-
-											tmpEl = tmpEl.parentNode;
-										}
-										while (result !== false && !tmpEvent.stopped && tmpEl && tmpEl !== delegateEl);
-
-										return ((result !== false) && (tmpEvent.stopped !== 2));
-									};
-
-									formHandles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier]);
-								}
+								instance._attachEvent(form, node, subscription, notifier, filter);
 							}
 						}
 					},
@@ -91,9 +48,56 @@ A.Event.define(
 		on: function (node, subscription, notifier) {
 			var instance = this;
 
-			var submitHandles = instance._prepareHandles(subscription, node);
+			instance._attachEvent(node, node, subscription, notifier);
+		},
 
-			submitHandles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, notifier.fire, node, notifier]);
+		_attachEvent: function(form, node, subscription, notifier, filter) {
+			var instance = this;
+
+			var fireFn = function(event) {
+				var result = true;
+
+				if (filter) {
+					if (!event.stopped || !instance._hasParent(event._stoppedOnNode, node)) {
+						var delegateEl = node.getDOM();
+
+						var tmpEl = form.getDOM();
+
+						do {
+							if (tmpEl && Selector.test(tmpEl, filter)) {
+								event.currentTarget = A.one(tmpEl);
+								event.container = node;
+
+								result = notifier.fire(event);
+
+								if (event.stopped && !event._stoppedOnNode) {
+									event._stoppedOnNode = node;
+								}
+							}
+
+							tmpEl = tmpEl.parentNode;
+						}
+						while (result !== false && !event.stopped && tmpEl && tmpEl !== delegateEl);
+
+						result = ((result !== false) && (event.stopped !== 2));
+					}					
+				}
+				else {
+					result = notifier.fire(event);
+
+					if (event.stopped && !event._stoppedOnNode) {
+						event._stoppedOnNode = node;
+					}
+				}
+
+				return result;
+			};
+
+			var handles = instance._prepareHandles(subscription, form);
+
+			if (!AObject.owns(handles, EVENT_SUBMIT)) {
+				handles[EVENT_SUBMIT] = A.Event._attach([EVENT_SUBMIT, fireFn, form, notifier, filter ? 'submit_delegate' : 'submit_on']);
+			}
 		},
 
 		_detachEvents: function(node, subscription, notifier) {
@@ -118,6 +122,15 @@ A.Event.define(
 			return nodeName && nodeName.toLowerCase() === name.toLowerCase();
 		},
 
+		_hasParent: function(node, testParentNode) {
+			return node.ancestor(
+				function(testNode) {
+					return testNode === testParentNode;
+				},
+				false
+			);
+		},
+
 		_prepareHandles: function(subscription, node) {
 			if (!AObject.owns(subscription, '_handles')) {
 				subscription._handles = {};
@@ -134,5 +147,44 @@ A.Event.define(
 	},
 	true
 );
+
+var originalOn = A.CustomEvent.prototype._on;
+
+A.CustomEvent.prototype._on = function(fn, context, args, when) {
+	var instance = this;
+
+	var eventHandle = originalOn.apply(instance, arguments);
+
+	if (args && args[0] === 'submit_on' && instance.subCount > 1) {
+		var subscribers = instance.subscribers;
+
+		var lastSubscriber = subscribers[eventHandle.sub.id];
+
+		var orderedSubscribers = {};
+
+		var replace = false;
+
+		AObject.each(
+			subscribers,
+			function(subscriber, index) {
+				if (!replace && subscriber.args && subscriber.args[0] === 'submit_delegate') {
+					 orderedSubscribers[lastSubscriber.id] = lastSubscriber;
+
+					replace = true;
+				}
+
+				if (subscriber !== lastSubscriber) {
+					 orderedSubscribers[subscriber.id] = subscriber;
+				}
+			}
+		);
+
+		if (replace) {
+			instance.subscribers =  orderedSubscribers;
+		}
+	}
+
+	return eventHandle;
+};
 
 }, '@VERSION@' ,{requires:['aui-node-base','aui-event-base'], condition: {name: 'aui-event-delegate-submit', trigger: 'event-base-ie', ua: 'ie'}});
