@@ -135,6 +135,8 @@ var Carousel = A.Component.create(
 			},
 
 			next: function() {
+				var instance = this;
+
 				instance._updateIndexNext();
 			},
 
@@ -466,7 +468,9 @@ var Carousel = A.Component.create(
 					newIndex = 0;
 				}
 
-				options.src = UI_SRC;
+				if (options) {
+					options.src = UI_SRC;
+				}
 
 				instance.set('activeIndex', newIndex, options);
 			},
@@ -482,7 +486,9 @@ var Carousel = A.Component.create(
 					newIndex = instance.nodeSelection.size() - 1;
 				}
 
-				options.src = UI_SRC;
+				if (options) {
+					options.src = UI_SRC;
+				}
 
 				instance.set('activeIndex', newIndex, options);
 			},
