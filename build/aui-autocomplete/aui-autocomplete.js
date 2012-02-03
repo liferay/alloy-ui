@@ -905,7 +905,7 @@ var AutoComplete = A.Component.create(
 				}
 
 				instance.set('dataSource', dataSource);
-				instance.set('dataSource', dataSourceType);
+				instance.set('dataSourceType', dataSourceType);
 
 				instance.dataSource = dataSource;
 
