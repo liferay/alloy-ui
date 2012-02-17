@@ -1,6 +1,7 @@
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isObject = Lang.isObject,
+	isUndefined = Lang.isUndefined,
 
 	isNode = function(v) {
 		return (v instanceof A.Node);
@@ -25,7 +26,6 @@ var Lang = A.Lang,
 	GET_BOUNDING_CLIENT_RECT = 'getBoundingClientRect',
 	HEADER = 'header',
 	HELPER = 'helper',
-	ITEM = 'item',
 	KEYDOWN = 'keydown',
 	LEFT = 'left',
 	LINEAR = 'linear',
@@ -42,25 +42,24 @@ var Lang = A.Lang,
 	UP = 'up',
 	WRAPPER = 'wrapper',
 	ZIPPY = 'zippy',
-	ZIPPY_ITEM = 'zippy-item',
 
 	getCN = A.getClassName,
 
-	CSS_ZIPPY_ITEM_COLLAPSED = getCN(ZIPPY, ITEM, COLLAPSED),
-	CSS_ZIPPY_ITEM_CONTENT = getCN(ZIPPY, ITEM, CONTENT),
-	CSS_ZIPPY_ITEM_CONTENT_WRAPPER = getCN(ZIPPY, ITEM, CONTENT, WRAPPER),
-	CSS_ZIPPY_ITEM_EXPANDED = getCN(ZIPPY, ITEM, EXPANDED),
-	CSS_ZIPPY_ITEM_HEADER = getCN(ZIPPY, ITEM, HEADER),
+	CSS_ZIPPY_COLLAPSED = getCN(ZIPPY, COLLAPSED),
+	CSS_ZIPPY_CONTENT = getCN(ZIPPY, CONTENT),
+	CSS_ZIPPY_CONTENT_WRAPPER = getCN(ZIPPY, CONTENT, WRAPPER),
+	CSS_ZIPPY_EXPANDED = getCN(ZIPPY, EXPANDED),
+	CSS_ZIPPY_HEADER = getCN(ZIPPY, HEADER),
 
-	CSS_ZIPPY_ITEM_STATE = {
-		'false': CSS_ZIPPY_ITEM_COLLAPSED,
-		'true': CSS_ZIPPY_ITEM_EXPANDED
+	CSS_ZIPPY_STATE = {
+		'false': CSS_ZIPPY_COLLAPSED,
+		'true': CSS_ZIPPY_EXPANDED
 	},
 
-	TPL_CONTENT_WRAPPER = '<div class="' + CSS_ZIPPY_ITEM_CONTENT_WRAPPER + '"></div>';
+	TPL_CONTENT_WRAPPER = '<div class="' + CSS_ZIPPY_CONTENT_WRAPPER + '"></div>';
 
-var ZippyItem = A.Component.create({
-	NAME: ZIPPY_ITEM,
+var Zippy = A.Component.create({
+	NAME: ZIPPY,
 
 	ATTRS: {
 
@@ -103,19 +102,19 @@ var ZippyItem = A.Component.create({
 
 	headerEventHandler: function(event, instance) {
 		if (event.type === CLICK || event.isKey(ENTER) || event.isKey(SPACE)) {
-			instance.toggle();
-
 			event.preventDefault();
+
+			return instance.toggle();
 		}
 		else if (event.isKey(DOWN) || event.isKey(RIGHT) || event.isKey(NUM_PLUS)) {
-			instance.expand();
-
 			event.preventDefault();
+
+			return instance.expand();
 		}
 		else if (event.isKey(UP) || event.isKey(LEFT) || event.isKey(ESC) || event.isKey(NUM_MINUS)) {
-			instance.collapse();
-
 			event.preventDefault();
+
+			return instance.collapse();
 		}
 	},
 
@@ -135,56 +134,42 @@ var ZippyItem = A.Component.create({
 			var instance = this;
 			var header = instance.get(HEADER);
 
+			header.setData(ZIPPY, instance);
+
 			instance.on(EXPANDED_CHANGE, A.bind(instance._onExpandedChange, instance));
 
 			if (instance.get(BIND_DOM_EVENTS)) {
-				header.on([CLICK, KEYDOWN], A.rbind(ZippyItem.headerEventHandler, null, instance));
+				header.on([CLICK, KEYDOWN], A.rbind(Zippy.headerEventHandler, null, instance));
 			}
 		},
 
 		syncUI: function() {
 			var instance = this;
 
-			instance.get(CONTENT).addClass(CSS_ZIPPY_ITEM_CONTENT);
-			instance.get(HEADER).addClass(CSS_ZIPPY_ITEM_HEADER);
+			instance.get(CONTENT).addClass(CSS_ZIPPY_CONTENT);
+			instance.get(HEADER).addClass(CSS_ZIPPY_HEADER);
+		},
+
+		animate: function(config, fn) {
+			var instance = this;
+
+			instance._uiSetExpanded(true);
+
+			var transition = A.merge(config, instance.get(TRANSITION));
+
+			instance.get(CONTENT).transition(transition, A.bind(fn, instance));
 		},
 
 		collapse: function() {
 			var instance = this;
 
-			if (instance.get(ANIMATED)) {
-				instance._animate(
-					{
-						marginTop: instance.getContentHeight() * -1 + PIXEL,
-						opacity: 0
-					},
-					function() {
-						instance.set(EXPANDED, false);
-					}
-				);
-			}
-			else {
-				instance.set(EXPANDED, false);
-			}
+			return instance.toggle(false);
 		},
 
 		expand: function() {
 			var instance = this;
-
-			if (instance.get(ANIMATED)) {
-				instance._animate(
-					{
-						marginTop: 0,
-						opacity: 1
-					},
-					function() {
-						instance.set(EXPANDED, true);
-					}
-				);
-			}
-			else {
-				instance.set(EXPANDED, true);
-			}
+			
+			return instance.toggle(true);
 		},
 
 		getContentHeight: function() {
@@ -214,24 +199,28 @@ var ZippyItem = A.Component.create({
 			return height;
 		},
 
-		toggle: function() {
+		toggle: function(expanded) {
 			var instance = this;
 
-			if (instance.get(EXPANDED)) {
-				instance.collapse();
+			if (isUndefined(expanded)) {
+				expanded = !instance.get(EXPANDED);
+			}
+
+			if (instance.get(ANIMATED)) {
+				instance.animate(
+					{
+						marginTop: expanded ? 0 : instance.getContentHeight() * -1 + PIXEL
+					},
+					function() {
+						instance.set(EXPANDED, expanded);
+					}
+				);
 			}
 			else {
-				instance.expand();
+				instance.set(EXPANDED, expanded);
 			}
-		},
 
-		_animate: function(config, fn) {
-			var instance = this;
-			var transition = A.merge(config, instance.get(TRANSITION));
-
-			instance._uiSetExpanded(true);
-
-			instance.get(CONTENT).transition(transition, A.bind(fn, instance));
+			return expanded;
 		},
 
 		_onExpandedChange: function(event) {
@@ -251,10 +240,10 @@ var ZippyItem = A.Component.create({
 		_uiSetExpanded: function(val) {
 			var instance = this;
 
-			instance.get(CONTENT).replaceClass(CSS_ZIPPY_ITEM_STATE[!val], CSS_ZIPPY_ITEM_STATE[val]);
+			instance.get(CONTENT).replaceClass(CSS_ZIPPY_STATE[!val], CSS_ZIPPY_STATE[val]);
 		}
 
 	}
 });
 
-A.ZippyItem = ZippyItem;
+A.Zippy = Zippy;

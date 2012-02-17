@@ -24,6 +24,12 @@
 		padding: 10px;
 	}
 
+	#add {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+	}
+
 </style>
 
 <body>
@@ -31,7 +37,7 @@
 <div id="wrapper">
 	<h1>Alloy - Zippy</h1>
 
-	<h2>- Zippy Item</h2>
+	<h2>- Zippy</h2>
 
 	<a class="header" href="javascript:;">Header</a>
 		<div class="content">
@@ -71,7 +77,7 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
 
-		<h2>- Zippy</h2>
+		<h2>- Zippy Delegate</h2>
 
 		<div id="container">
 			<a class="header" href="javascript:;">Header 1</a>
@@ -167,16 +173,18 @@
 		</div>
 </div>
 
+<button id="add">Add more</button>
+
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-zippy', function(A) {
 
 	var content = A.one('.content');
 
-	// console.time('zippy');
+	console.time('zippy');
 
-	var zippyItem = new A.ZippyItem({
-		animated: true,
+	var zippy = new A.Zippy({
+		animated: false,
 
 		content: content,
 		header: '.header',
@@ -203,12 +211,16 @@ AUI().ready('aui-zippy', function(A) {
 		}
 	});
 
-	// console.timeEnd('zippy');
+	console.timeEnd('zippy');
 
-	// console.time('zippy-delegate');
+	console.time('zippy-delegate');
 
-	var zippy = new A.Zippy({
+	var container = A.one('#container');
+
+	var zippyDelegate = new A.ZippyDelegate({
 		animated: true,
+
+		closeAllOnExpand: true,
 
 		container: '#container',
 
@@ -228,13 +240,18 @@ AUI().ready('aui-zippy', function(A) {
 		},
 
 		on: {
-			'zippy-item:expandedChange': function() {
+			'zippy:expandedChange': function() {
 				// console.log('expandedChange');
 			}
 		}
 	});
 
-	// console.timeEnd('zippy-delegate');
+	console.timeEnd('zippy-delegate');
+
+	A.one('#add').on('click', function() {
+		container.append('<a class="header" href="javascript:;">One more Header</a>');
+		container.append('<div class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</div>');
+	});
 
 });
 
