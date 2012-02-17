@@ -83,7 +83,7 @@
 						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true},
 						'aui-video': {skinnable:true, requires:['aui-base','querystring-stringify-simple']},
 						'aui-viewport': {skinnable:false, requires:['aui-base']},
-						'aui-zippy': {submodules: {'aui-zippy-delegate': {requires:['aui-zippy-item'], skinnable:false}, 'aui-zippy-item': {requires:['aui-base','transition'], skinnable:true} }, use:['aui-zippy-item','aui-zippy-delegate'], skinnable:true}
+						'aui-zippy': {submodules: {'aui-zippy-delegate': {requires:['aui-zippy-base'], skinnable:false}, 'aui-zippy-base': {requires:['aui-base','transition'], skinnable:true} }, use:['aui-zippy-base','aui-zippy-delegate'], skinnable:true}
 				}
 		    }
 		}
