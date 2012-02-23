@@ -1,36 +1,34 @@
-var	CSS_SVM_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, CONTAINER),
+var	CSS_ICON = getCN(ICON),
+	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
+	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
+	CSS_SVM_COLGRID = getCN(SCHEDULER_VIEW, MONTH, COLGRID),
+	CSS_SVM_COLGRID_FIRST = getCN(SCHEDULER_VIEW, MONTH, COLGRID, FIRST),
+	CSS_SVM_COLGRID_TODAY = getCN(SCHEDULER_VIEW, MONTH, COLGRID, TODAY),
+	CSS_SVM_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, CONTAINER),
 	CSS_SVM_HEADER_COL = getCN(SCHEDULER_VIEW, MONTH, HEADER, COL),
 	CSS_SVM_HEADER_DAY = getCN(SCHEDULER_VIEW, MONTH, HEADER, DAY),
 	CSS_SVM_HEADER_TABLE = getCN(SCHEDULER_VIEW, MONTH, HEADER, TABLE),
 	CSS_SVM_ROW = getCN(SCHEDULER_VIEW, MONTH, ROW),
 	CSS_SVM_ROW_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, ROW, CONTAINER),
-
-	CSS_ICON = getCN(ICON),
-	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
-	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
-	CSS_SVM_COLGRID = getCN(SCHEDULER_VIEW, MONTH, COLGRID),
-	CSS_SVM_COLGRID_TODAY = getCN(SCHEDULER_VIEW, MONTH, COLGRID, TODAY),
-	CSS_SVM_COLGRID_FIRST = getCN(SCHEDULER_VIEW, MONTH, COLGRID, FIRST),
+	CSS_SVM_TABLE_COLDAY_HEADER = getCN(SCHEDULER_VIEW, TABLE, COLMONTH, HEADER),
 	CSS_SVM_TABLE_DATA = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA),
-	CSS_SVM_TABLE_DATA_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, FIRST),
 	CSS_SVM_TABLE_DATA_COL = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL),
 	CSS_SVM_TABLE_DATA_COL_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, FIRST),
 	CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, NOMONTH),
 	CSS_SVM_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE),
-	CSS_SVM_TABLE_DATA_COL_TITLE_TODAY = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, TODAY),
+	CSS_SVM_TABLE_DATA_COL_TITLE_DOWN = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, DOWN),
 	CSS_SVM_TABLE_DATA_COL_TITLE_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, FIRST),
 	CSS_SVM_TABLE_DATA_COL_TITLE_NEXT = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, NEXT),
-	CSS_SVM_TABLE_DATA_COL_TITLE_DOWN = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, DOWN),
+	CSS_SVM_TABLE_DATA_COL_TITLE_TODAY = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, TODAY),
 	CSS_SVM_TABLE_DATA_EVENT = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, EVENT),
 	CSS_SVM_TABLE_DATA_EVENT_LEFT = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, EVENT, LEFT),
-	CSS_SVM_TABLE_DATA_EVENT_RIGHT = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, EVENT, RIGHT),
 	CSS_SVM_TABLE_DATA_EVENT_REPEATED = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, EVENT, REPEATED),
+	CSS_SVM_TABLE_DATA_EVENT_RIGHT = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, EVENT, RIGHT),
+	CSS_SVM_TABLE_DATA_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, FIRST),
 	CSS_SVM_TABLE_GRID = getCN(SCHEDULER_VIEW, MONTH, TABLE, GRID),
 	CSS_SVM_TABLE_GRID_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, GRID, FIRST),
 
-	CSS_SVM_TABLE_COLDAY_HEADER = getCN(SCHEDULER_VIEW, TABLE, COLMONTH, HEADER),
-
-	TPL_SVM_HEADER_TABLE = '<table class="' + CSS_SVM_HEADER_TABLE + '">' +
+	TPL_SVM_HEADER_TABLE = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVM_HEADER_TABLE + '">' +
 								'<tbody>' +
 									'<tr class="' + CSS_SVM_HEADER_COL + '"></tr>' +
 								'</tbody>' +
@@ -50,21 +48,21 @@ var	CSS_SVM_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, CONTAINER),
 						'</div>',
 
 	TPL_SVM_TABLE_GRID = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVM_TABLE_GRID + '">' +
-						    '<tbody>' +
-						        '<tr>' +
-						            '<td class="' + [ CSS_SVM_COLGRID, CSS_SVM_COLGRID_FIRST ].join(SPACE) + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						            '<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
-						        '</tr>' +
-						    '</tbody>' +
+							'<tbody>' +
+								'<tr>' +
+									'<td class="' + [ CSS_SVM_COLGRID, CSS_SVM_COLGRID_FIRST ].join(SPACE) + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
+								'</tr>' +
+							'</tbody>' +
 						'</table>',
 
 	TPL_SVM_TABLE_DATA = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVM_TABLE_DATA + '">' +
-						    	'<tbody></tbody>' +
+								'<tbody></tbody>' +
 							'</table>',
 
 	TPL_SVM_TABLE_DATA_ROW = '<tr></tr>',
@@ -72,7 +70,6 @@ var	CSS_SVM_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, CONTAINER),
 
 	TPL_SVM_EV_ICON_LEFT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_LEFT ].join(SPACE) + '"></span>',
 	TPL_SVM_EV_ICON_RIGHT = '<span class="' + [ CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT ].join(SPACE) + '"></span>';
-
 
 var SchedulerMonthView = A.Component.create({
 	NAME: SCHEDULER_VIEW_MONTH,
@@ -137,7 +134,6 @@ var SchedulerMonthView = A.Component.create({
 
 		initializer: function() {
 			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
 
 			instance.evtDateStack = {};
 			instance.evtDataTableStack = {};
@@ -161,7 +157,7 @@ var SchedulerMonthView = A.Component.create({
 				var tableGridNode = instance.tableGridNode.item(index);
 
 				rowNode.append(
-					tableGridNode.toggleClass(CSS_SVM_TABLE_GRID_FIRST, (index == 0))
+					tableGridNode.toggleClass(CSS_SVM_TABLE_GRID_FIRST, (index === 0))
 				);
 			});
 		},
@@ -192,7 +188,7 @@ var SchedulerMonthView = A.Component.create({
 						.addClass(CSS_SVM_TABLE_DATA_COL_TITLE)
 						.toggleClass(
 							CSS_SVM_TABLE_DATA_COL_TITLE_FIRST,
-							(index == 0)
+							(index === 0)
 						)
 						.toggleClass(
 							CSS_SVM_TABLE_DATA_COL_TITLE_TODAY,
@@ -218,8 +214,9 @@ var SchedulerMonthView = A.Component.create({
 
 				tBody.append(firstRowNode);
 
-				// creating data rows
-				for (var r = 0; r < displayRows; r++) {
+				var r;
+
+				for (r = 0; r < displayRows; r++) {
 					var renderIndex = 0;
 					var rowNode = A.Node.create(TPL_SVM_TABLE_DATA_ROW);
 
@@ -288,9 +285,9 @@ var SchedulerMonthView = A.Component.create({
 		loopDates: function(startDate, endDate, fn, incrementBy, factor) {
 			var instance = this;
 			var curDate = DateMath.clone(startDate);
-			var endDateMs = endDate.getTime();
+			var endDateMs = endDate.getTime(), index;
 
-			for (var index = 0; curDate.getTime() <= endDateMs; index++) {
+			for (index = 0; curDate.getTime() <= endDateMs; index++) {
 				fn.apply(instance, [curDate, index]);
 
 				curDate = DateMath.add(curDate, (incrementBy || DateMath.DAY), (factor || 1));
@@ -309,7 +306,7 @@ var SchedulerMonthView = A.Component.create({
 				var rowEndDate = DateMath.add(rowStartDate, DateMath.DAY, WEEK_LENGTH - 1);
 				var tableNode = instance.buildEventsTable(rowStartDate, rowEndDate);
 
-				if (index == 0) {
+				if (index === 0) {
 					tableNode.addClass(CSS_SVM_TABLE_DATA_FIRST);
 				}
 
@@ -333,7 +330,6 @@ var SchedulerMonthView = A.Component.create({
 
 			if (DateMath.isSameMonth(today, scheduler.get(CURRENT_DATE))) {
 				var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
-				var today = instance.getToday();
 				var monthStartDate = instance._findCurrentMonthStart();
 				var firstWeekDay = instance._findFirstDayOfWeek(today);
 

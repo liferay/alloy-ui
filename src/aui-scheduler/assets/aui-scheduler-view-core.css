@@ -6,6 +6,8 @@
 }
 
 .aui-scheduler-view-table {
+	border: 0;
+	clear: both;
 	table-layout: fixed;
 	width: 100%;
 }
@@ -13,6 +15,7 @@
 .aui-scheduler-view-table-col {
 	vertical-align: top;
 	border-left: 1px solid #ddd;
+	padding: 0;
 }
 
 .aui-scheduler-view-table-col-shim {
@@ -27,6 +30,7 @@
 
 .aui-scheduler-view-table-coltime {
 	background-color: #E3E9FF;
+	border-left: 0;
 	border-right: 1px solid #BBCCFF;
 	color: #AAADBC;
 	text-align: right;
@@ -58,6 +62,10 @@
 
 .aui-scheduler-view-colgrid {
 	background: #ddd;
+}
+
+.aui-scheduler-view-colgrid td {
+	padding: 0 0 0 1px;
 }
 
 .aui-scheduler-view-grid {
