@@ -215,50 +215,53 @@ var Zippy = A.Component.create({
 			return height;
 		},
 
-		toggle: function(expanded) {
+		toggle: function(expand) {
 			var instance = this;
 
-			if (isUndefined(expanded)) {
-				expanded = !instance.get(EXPANDED);
+			if (isUndefined(expand)) {
+				expand = !instance.get(EXPANDED);
 			}
 
 			if (instance.get(ANIMATED)) {
 				if (instance.get(ANIMATING)) {
-					return expanded;
+					return expand;
 				}
 
 				var content = instance.get(CONTENT);
 
-				if (isUndefined(instance[GUTTER])) {
-					instance[GUTTER] = toNumber(content.getStyle(MARGIN_TOP));
-
-					content.wrap(TPL_CONTENT_WRAPPER);
-				}
-
 				var height = instance.getContentHeight();
+				var gutter = toNumber(content.getStyle(MARGIN_TOP));
 
-				if (expanded) {
-					content.setStyle(MARGIN_TOP, -(height + instance[GUTTER]));
+				if (!instance.wrapped) {
+					content.wrap(TPL_CONTENT_WRAPPER);
+
+					if (expand) {
+						gutter = -(height + gutter);
+							
+						content.setStyle(MARGIN_TOP, gutter);
+					}
+
+					instance.wrapped = true;
 				}
 
 				instance.set(ANIMATING, true);
 
 				instance.animate(
 					{
-						marginTop: (expanded ? instance[GUTTER] : -(height + instance[GUTTER])) + PIXEL
+						marginTop: -(height + gutter) + PIXEL
 					},
 					function() {
 						instance.set(ANIMATING, false);
 
-						instance.set(EXPANDED, expanded);
+						instance.set(EXPANDED, expand);
 					}
 				);
 			}
 			else {
-				instance.set(EXPANDED, expanded);
+				instance.set(EXPANDED, expand);
 			}
 
-			return expanded;
+			return expand;
 		},
 
 		_onExpandedChange: function(event) {
