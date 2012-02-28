@@ -20,6 +20,8 @@ var Lang = A.Lang,
 	CLOSE_ALL_ON_EXPAND = 'closeAllOnExpand',
 	CONTAINER = 'container',
 	CONTENT = 'content',
+	CUBIC_BEZIER = 'cubic-bezier',
+	EXPANDED = 'expanded',
 	FIRST_CHILD = 'firstChild',
 	HEADER = 'header',
 	KEYDOWN = 'keydown',
@@ -27,6 +29,7 @@ var Lang = A.Lang,
 	TRANSITION = 'transition',
 	WRAPPER = 'wrapper',
 	ZIPPY = 'zippy',
+	ZIPPY_ANIMATING_CHANGE = 'zippy:animatingChange',
 	ZIPPY_DELEGATE = 'zippy-delegate',
 
 	getCN = A.getClassName,
@@ -46,7 +49,7 @@ var ZippyDelegate = A.Component.create({
 
 		closeAllOnExpand: {
 			validator: isBoolean,
-			value: true
+			value: false
 		},
 
 		container: {
@@ -58,6 +61,11 @@ var ZippyDelegate = A.Component.create({
 			validator: isString
 		},
 
+		expanded: {
+			validator: isBoolean,
+			value: true
+		},
+
 		header: {
 			validator: isString
 		},
@@ -65,8 +73,8 @@ var ZippyDelegate = A.Component.create({
 		transition: {
 			validator: isObject,
 			value: {
-				duration: 2,
-			    easing: LINEAR
+				duration: 0.4,
+			    easing: CUBIC_BEZIER
 			}
 		}
 
@@ -104,6 +112,8 @@ var ZippyDelegate = A.Component.create({
 			var container = instance.get(CONTAINER);
 			var header = instance.get(HEADER);
 
+			instance.on(ZIPPY_ANIMATING_CHANGE, A.bind(instance._onAnimatingChange, instance));
+
 			container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
 		},
 
@@ -126,15 +136,19 @@ var ZippyDelegate = A.Component.create({
 
 		headerEventHandler: function(event) {
 			var instance = this;
-			var target = event.target;
 
+			if (instance.animating) {
+				return false;
+			}
+
+			var target = event.currentTarget;
 			var zippy = target.getData(ZIPPY) || instance._create(target);
 
 			if (Zippy.headerEventHandler(event, zippy) && instance.get(CLOSE_ALL_ON_EXPAND)) {
 				AArray.each(
 					instance.items,
 					function(item, index, collection) {
-						if (item !== zippy) {
+						if (item !== zippy && item.get(EXPANDED)) {
 							item.collapse();
 						}
 					}
@@ -150,11 +164,18 @@ var ZippyDelegate = A.Component.create({
 				bindDOMEvents: false,
 				bubbleTargets: [ instance ],
 				content: instance.findContentNode(header),
+				expanded: instance.get(EXPANDED),
 				header: header,
 				transition: instance.get(TRANSITION)
 			});
 
 			return zippy;
+		},
+
+		_onAnimatingChange: function(event) {
+			var instance = this;
+
+			instance.animating = event.newVal;
 		}
 
 	}
