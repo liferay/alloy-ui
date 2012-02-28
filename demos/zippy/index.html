@@ -15,7 +15,7 @@
 		padding: 10px;
 	}
 
-	#container {
+	#container1, #container2 {
 		width: 200px;
 	}
 
@@ -106,7 +106,7 @@
 
 	<h2>- Zippy Delegate</h2>
 
-	<div id="container">
+	<div id="container1">
 		<h2 class="header aui-zippy-header-collapsed">
 			<span class="arrow"></span>
 			Mini calendar
@@ -130,23 +130,11 @@
 		<div class="content aui-zippy-content-collapsed">
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
+	</div>
 
-		<h2 class="header aui-zippy-header-collapsed">
-			<span class="arrow"></span>
-			Header
-		</h2>
-		<div class="content aui-zippy-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
+	<h2>- Animated Zippy Delegate</h2>
 
-		<h2 class="header aui-zippy-header-collapsed">
-			<span class="arrow"></span>
-			Header
-		</h2>
-		<div class="content aui-zippy-content-collapsed">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-		</div>
-
+	<div id="container2">
 		<h2 class="header aui-zippy-header-collapsed">
 			<span class="arrow"></span>
 			Header
@@ -196,7 +184,7 @@ AUI().use('node-load', 'aui-zippy', function(A) {
 		expanded: false,
 		transition: {
 			duration: .6,
-			easing: 'linear',
+			easing: 'cubic-bezier',
 			on: {
 				end: function() {
 					content.load('assets/content.html');
@@ -209,19 +197,27 @@ AUI().use('node-load', 'aui-zippy', function(A) {
 
 	console.time('zippy-delegate');
 
-	var zippyDelegate = new A.ZippyDelegate({
-		animated: true,
-		container: '#container',
-		closeAllOnExpand: true,
+	var zippyDelegate1 = new A.ZippyDelegate({
+		container: '#container1',
 		content: '.content',
 		header: '.header',
 		expanded: false,
 		transition: {
 			duration: .4,
+			easing: 'cubic-bezier'
 		}
 	});
 
 	console.timeEnd('zippy-delegate');
+
+	var zippyDelegate2 = new A.ZippyDelegate({
+		animated: true,
+		closeAllOnExpand: true,
+		container: '#container2',
+		content: '.content',
+		header: '.header',
+		expanded: false
+	});
 });
 
 </script>
