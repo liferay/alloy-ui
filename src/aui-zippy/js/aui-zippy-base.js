@@ -3,8 +3,8 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isUndefined = Lang.isUndefined,
 
-	isNode = function(v) {
-		return (v instanceof A.Node);
+	toNumber = function(val) {
+		return parseInt(val, 10) || 0;
 	},
 
 	DASH = '-',
@@ -14,16 +14,19 @@ var Lang = A.Lang,
 	SPACE = ' ',
 
 	ANIMATED = 'animated',
+	ANIMATING = 'animating',
 	BIND_DOM_EVENTS = 'bindDOMEvents',
 	CLICK = 'click',
 	COLLAPSED = 'collapsed',
 	CONTENT = 'content',
+	CUBIC_BEZIER = 'cubic-bezier',
 	DOWN = 'down',
 	ENTER = 'enter',
 	ESC = 'esc',
 	EXPANDED = 'expanded',
 	EXPANDED_CHANGE = 'expandedChange',
 	GET_BOUNDING_CLIENT_RECT = 'getBoundingClientRect',
+	GUTTER = 'gutter',
 	HEADER = 'header',
 	HELPER = 'helper',
 	KEYDOWN = 'keydown',
@@ -33,6 +36,7 @@ var Lang = A.Lang,
 	MINUS = 'minus',
 	NUM_MINUS = 'num_minus',
 	NUM_PLUS = 'num_plus',
+	PARENT_NODE = 'parentNode',
 	PLUS = 'plus',
 	RIGHT = 'right',
 	SPACE = 'space',
@@ -45,15 +49,22 @@ var Lang = A.Lang,
 
 	getCN = A.getClassName,
 
-	CSS_ZIPPY_COLLAPSED = getCN(ZIPPY, COLLAPSED),
 	CSS_ZIPPY_CONTENT = getCN(ZIPPY, CONTENT),
+	CSS_ZIPPY_CONTENT_COLLAPSED = getCN(ZIPPY, CONTENT, COLLAPSED),
+	CSS_ZIPPY_CONTENT_EXPANDED = getCN(ZIPPY, CONTENT, EXPANDED),
 	CSS_ZIPPY_CONTENT_WRAPPER = getCN(ZIPPY, CONTENT, WRAPPER),
-	CSS_ZIPPY_EXPANDED = getCN(ZIPPY, EXPANDED),
 	CSS_ZIPPY_HEADER = getCN(ZIPPY, HEADER),
+	CSS_ZIPPY_HEADER_COLLAPSED = getCN(ZIPPY, HEADER, COLLAPSED),
+	CSS_ZIPPY_HEADER_EXPANDED = getCN(ZIPPY, HEADER, EXPANDED),
 
-	CSS_ZIPPY_STATE = {
-		'false': CSS_ZIPPY_COLLAPSED,
-		'true': CSS_ZIPPY_EXPANDED
+	CSS_ZIPPY_CONTENT_STATE = {
+		'false': CSS_ZIPPY_CONTENT_COLLAPSED,
+		'true': CSS_ZIPPY_CONTENT_EXPANDED
+	},
+
+	CSS_ZIPPY_HEADER_STATE = {
+		'false': CSS_ZIPPY_HEADER_COLLAPSED,
+		'true': CSS_ZIPPY_HEADER_EXPANDED
 	},
 
 	TPL_CONTENT_WRAPPER = '<div class="' + CSS_ZIPPY_CONTENT_WRAPPER + '"></div>';
@@ -67,6 +78,11 @@ var Zippy = A.Component.create({
 			validator: isBoolean,
 			value: false,
 			writeOnce: true
+		},
+
+		animating: {
+			validator: isBoolean,
+			value: false
 		},
 
 		bindDOMEvents: {
@@ -91,8 +107,8 @@ var Zippy = A.Component.create({
 		transition: {
 			validator: isObject,
 			value: {
-				duration: 0.1,
-			    easing: LINEAR
+				duration: 0.4,
+			    easing: CUBIC_BEZIER
 			}
 		}
 
@@ -126,7 +142,6 @@ var Zippy = A.Component.create({
 			instance.bindUI();
 			instance.syncUI();
 
-			instance._uiSetAnimated(instance.get(ANIMATED));
 			instance._uiSetExpanded(instance.get(EXPANDED));
 		},
 
@@ -207,11 +222,33 @@ var Zippy = A.Component.create({
 			}
 
 			if (instance.get(ANIMATED)) {
+				if (instance.get(ANIMATING)) {
+					return expanded;
+				}
+
+				var content = instance.get(CONTENT);
+
+				if (isUndefined(instance[GUTTER])) {
+					instance[GUTTER] = toNumber(content.getStyle(MARGIN_TOP));
+
+					content.wrap(TPL_CONTENT_WRAPPER);
+				}
+
+				var height = instance.getContentHeight();
+
+				if (expanded) {
+					content.setStyle(MARGIN_TOP, -(height + instance[GUTTER]));
+				}
+
+				instance.set(ANIMATING, true);
+
 				instance.animate(
 					{
-						marginTop: expanded ? 0 : instance.getContentHeight() * -1 + PIXEL
+						marginTop: (expanded ? instance[GUTTER] : -(height + instance[GUTTER])) + PIXEL
 					},
 					function() {
+						instance.set(ANIMATING, false);
+
 						instance.set(EXPANDED, expanded);
 					}
 				);
@@ -229,18 +266,11 @@ var Zippy = A.Component.create({
 			instance._uiSetExpanded(event.newVal);
 		},
 
-		_uiSetAnimated: function(val) {
-			var instance = this;
-
-			if (val) {
-				instance.get(CONTENT).wrap(TPL_CONTENT_WRAPPER);
-			}
-		},
-
 		_uiSetExpanded: function(val) {
 			var instance = this;
 
-			instance.get(CONTENT).replaceClass(CSS_ZIPPY_STATE[!val], CSS_ZIPPY_STATE[val]);
+			instance.get(CONTENT).replaceClass(CSS_ZIPPY_CONTENT_STATE[!val], CSS_ZIPPY_CONTENT_STATE[val]);
+			instance.get(HEADER).replaceClass(CSS_ZIPPY_HEADER_STATE[!val], CSS_ZIPPY_HEADER_STATE[val]);
 		}
 
 	}

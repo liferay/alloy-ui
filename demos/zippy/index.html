@@ -4,30 +4,89 @@
 <head>
 	<script src="../../build/aui/aui.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="http://yui.yahooapis.com/3.5.0pr2/build/cssbutton/cssbutton.css" />
 </head>
 
 <style type="text/css" media="screen">
 
 	#wrapper {
+		font: small/normal Arial,sans-serif;
 		overflow: hidden;
 		padding: 10px;
 	}
 
-	a.header {
+	#container {
+		width: 200px;
+	}
+
+	h2.header {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		color: #222;
+		cursor: pointer;
 		display: block;
-		font-size: 16px;
-		padding: 5px;
+		font-size: 13px;
+		font-weight: normal;
+		line-height: 30px;
+		margin: 0;
+		padding: 2px 0;
 	}
 
-	div.content {
+	.content {
+		margin-left: 8px;
+	}
+
+	.arrow {
+		background: url(../../build/aui-skin-classic/images/icon_sprite.png) -34px -18px;
+		display: inline-block;
+		height: 12px;
+		vertical-align: middle;
+		width: 12px;
+	}
+
+	.aui-zippy-header-expanded .arrow {
+		background-position: -66px -18px;	
+	}
+
+	.header:hover {
+		background-color: #EEE;
+	}
+
+	.img-border {
+		background: url(http://s.ytimg.com/yt/imgbin/www-refreshbg-vflC3wnbM.png);
+		border-radius: 3px;
 		padding: 10px;
+		width: 240px;
 	}
 
-	#add {
-		position: fixed;
-		top: 20px;
-		right: 20px;
+	.img-border img {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.img-border p {
+		margin: 0;
+	}
+
+	.img-border .content {
+		-moz-border-radius: 3px;
+		-moz-box-shadow: 0 1px 1px #ccc;
+		-ms-box-shadow: 0 1px 1px #ccc;
+		-webkit-border-radius: 3px;
+		-webkit-box-shadow: 0 1px 1px #ccc;
+		background: white;
+		border-radius: 3px;
+		border: 1px solid #CCC;
+		box-shadow: 0 1px 1px #ccc;
+		margin-top: 10px;
+		margin-left: 0px;
+		padding: 10px;
+		text-align: justify;
+	}
+
+	.img-border .aui-loadingmask-message-content {
+		background-color: transparent;
+		border: none;
 	}
 
 </style>
@@ -39,174 +98,109 @@
 
 	<h2>- Zippy</h2>
 
-	<a class="header" href="javascript:;">Header</a>
-		<div class="content">
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<div class="img-border">
+		<img src="http://farm7.staticflickr.com/6212/6236693303_c3e0409dae_m.jpg" />
+		<button class="header yui3-button yui3-button-active yui3-button-selected">Read more</button>
+		<div class="content aui-zippy-content-collapsed">Loading...</div>
+	</div>
 
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	<h2>- Zippy Delegate</h2>
 
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	<div id="container">
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Mini calendar
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		</div>
+		
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			My calendars
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
 
-		<h2>- Zippy Delegate</h2>
-
-		<div id="container">
-			<a class="header" href="javascript:;">Header 1</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 2</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 3</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 4</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 5</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 6</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 7</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 8</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 9</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
-			<a class="header" href="javascript:;">Header 10</a>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</div>
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Other calendars
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-zippy-header-collapsed">
+			<span class="arrow"></span>
+			Header
+		</h2>
+		<div class="content aui-zippy-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+	</div>
 </div>
-
-<button id="add">Add more</button>
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().ready('aui-zippy', function(A) {
-
+AUI().use('node-load', 'aui-zippy', function(A) {
 	var content = A.one('.content');
+	var header = A.one('.header');
 
 	console.time('zippy');
 
 	var zippy = new A.Zippy({
-		animated: false,
-
+		animated: true,
 		content: content,
-		header: '.header',
-
+		header: header,
+		expanded: false,
 		transition: {
-			// marginTop: 0,
-			// opacity: 1,
-
+			duration: .6,
+			easing: 'linear',
 			on: {
-				start: function() {
-					// console.log('transitionStart');
-				},
-
 				end: function() {
-					// console.log('transitionEnd');
+					content.load('assets/content.html');
 				}
-			}
-		},
-
-		on: {
-			expandedChange: function() {
-				// console.log('expandedChange');
 			}
 		}
 	});
@@ -215,44 +209,19 @@ AUI().ready('aui-zippy', function(A) {
 
 	console.time('zippy-delegate');
 
-	var container = A.one('#container');
-
 	var zippyDelegate = new A.ZippyDelegate({
 		animated: true,
-
-		closeAllOnExpand: true,
-
 		container: '#container',
-
+		closeAllOnExpand: true,
 		content: '.content',
 		header: '.header',
-
+		expanded: false,
 		transition: {
-			on: {
-				start: function() {
-					// console.log('transitionStart');
-				},
-
-				end: function() {
-					// console.log('transitionEnd');
-				}
-			}
-		},
-
-		on: {
-			'zippy:expandedChange': function() {
-				// console.log('expandedChange');
-			}
+			duration: .4,
 		}
 	});
 
 	console.timeEnd('zippy-delegate');
-
-	A.one('#add').on('click', function() {
-		container.append('<a class="header" href="javascript:;">One more Header</a>');
-		container.append('<div class="content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</div>');
-	});
-
 });
 
 </script>
