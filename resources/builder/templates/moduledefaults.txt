@@ -1,5 +1,5 @@
 ;(function() {
-	YUI.AUI_config = {
+	var AUI_config = {
 		filter: 'raw',
 
 		io: {
@@ -16,5 +16,13 @@
 				}
 		    }
 		}
+	};
+
+	if (typeof YUI != 'undefined') {
+		YUI.AUI_config = AUI_config;
 	}
+	
+	if (typeof exports == 'object') {
+        exports.AUI_config = AUI_config;
+    }
 })();

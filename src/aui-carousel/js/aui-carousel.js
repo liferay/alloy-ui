@@ -35,7 +35,7 @@ var Lang = A.Lang,
 		'<tpl for="items">',
 			'<li><a class="', CSS_MENU_ITEM, ' {[ $i == parent.activeIndex ? "', CSS_MENU_ITEM_ACTIVE, '" : "', CSS_MENU_ITEM_DEFAULT,'" ]}">{$index}</a></li>',
 		'</tpl>',
-		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_NEXT, '">',
+		'<li><a class="', CSS_MENU_ITEM, ' ', CSS_MENU_NEXT, '"></a></li>',
 		'</menu>'
 	),
 
