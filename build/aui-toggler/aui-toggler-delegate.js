@@ -1,4 +1,4 @@
-AUI.add('aui-zippy-delegate', function(A) {
+AUI.add('aui-toggler-delegate', function(A) {
 var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isObject = Lang.isObject,
@@ -8,7 +8,7 @@ var Lang = A.Lang,
 
 	DOC = A.config.doc,
 
-	Zippy = A.Zippy,
+	Toggler = A.Toggler,
 
 	DASH = '-',
 	DOT = '.',
@@ -26,18 +26,18 @@ var Lang = A.Lang,
 	HEADER = 'header',
 	KEYDOWN = 'keydown',
 	LINEAR = 'linear',
+	TOGGLER = 'toggler',
+	TOGGLER_ANIMATING_CHANGE = 'toggler:animatingChange',
+	TOGGLER_DELEGATE = 'toggler-delegate',
 	TRANSITION = 'transition',
 	WRAPPER = 'wrapper',
-	ZIPPY = 'zippy',
-	ZIPPY_ANIMATING_CHANGE = 'zippy:animatingChange',
-	ZIPPY_DELEGATE = 'zippy-delegate',
 
 	getCN = A.getClassName,
 
-	CSS_ZIPPY_CONTENT_WRAPPER = getCN(ZIPPY, CONTENT, WRAPPER);
+	CSS_TOGGLER_CONTENT_WRAPPER = getCN(TOGGLER, CONTENT, WRAPPER);
 
-var ZippyDelegate = A.Component.create({
-	NAME: ZIPPY_DELEGATE,
+var TogglerDelegate = A.Component.create({
+	NAME: TOGGLER_DELEGATE,
 
 	ATTRS: {
 
@@ -112,7 +112,7 @@ var ZippyDelegate = A.Component.create({
 			var container = instance.get(CONTAINER);
 			var header = instance.get(HEADER);
 
-			instance.on(ZIPPY_ANIMATING_CHANGE, A.bind(instance._onAnimatingChange, instance));
+			instance.on(TOGGLER_ANIMATING_CHANGE, A.bind(instance._onAnimatingChange, instance));
 
 			container.delegate([CLICK, KEYDOWN], A.bind(instance.headerEventHandler, instance), header);
 		},
@@ -124,8 +124,8 @@ var ZippyDelegate = A.Component.create({
 			var contentNode = header.next(content) || header.one(content);
 
 			if (!contentNode) {
-				var wrapper = header.next(DOT + CSS_ZIPPY_CONTENT_WRAPPER); 
-				
+				var wrapper = header.next(DOT + CSS_TOGGLER_CONTENT_WRAPPER); 
+
 				if (wrapper) {
 					contentNode = wrapper.get(FIRST_CHILD);
 				}
@@ -142,13 +142,13 @@ var ZippyDelegate = A.Component.create({
 			}
 
 			var target = event.currentTarget;
-			var zippy = target.getData(ZIPPY) || instance._create(target);
+			var toggler = target.getData(TOGGLER) || instance._create(target);
 
-			if (Zippy.headerEventHandler(event, zippy) && instance.get(CLOSE_ALL_ON_EXPAND)) {
+			if (Toggler.headerEventHandler(event, toggler) && instance.get(CLOSE_ALL_ON_EXPAND)) {
 				AArray.each(
 					instance.items,
 					function(item, index, collection) {
-						if (item !== zippy && item.get(EXPANDED)) {
+						if (item !== toggler && item.get(EXPANDED)) {
 							item.collapse();
 						}
 					}
@@ -159,7 +159,7 @@ var ZippyDelegate = A.Component.create({
 		_create: function(header) {
 			var instance = this;
 
-			var zippy = new Zippy({
+			var toggler = new Toggler({
 				animated: instance.get(ANIMATED),
 				bindDOMEvents: false,
 				bubbleTargets: [ instance ],
@@ -169,7 +169,7 @@ var ZippyDelegate = A.Component.create({
 				transition: instance.get(TRANSITION)
 			});
 
-			return zippy;
+			return toggler;
 		},
 
 		_onAnimatingChange: function(event) {
@@ -181,6 +181,6 @@ var ZippyDelegate = A.Component.create({
 	}
 });
 
-A.ZippyDelegate = ZippyDelegate;
+A.TogglerDelegate = TogglerDelegate;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-zippy-base']});
+}, '@VERSION@' ,{requires:['aui-toggler-base'], skinnable:false});
