@@ -40,37 +40,37 @@ var Lang = A.Lang,
 	PLUS = 'plus',
 	RIGHT = 'right',
 	SPACE = 'space',
+	TOGGLER = 'toggler',
 	TRANSITION = 'transition',
 	TRANSITION_END = 'transitionEnd',
 	TRANSITION_START = 'transitionStart',
 	UP = 'up',
 	WRAPPER = 'wrapper',
-	ZIPPY = 'zippy',
 
 	getCN = A.getClassName,
 
-	CSS_ZIPPY_CONTENT = getCN(ZIPPY, CONTENT),
-	CSS_ZIPPY_CONTENT_COLLAPSED = getCN(ZIPPY, CONTENT, COLLAPSED),
-	CSS_ZIPPY_CONTENT_EXPANDED = getCN(ZIPPY, CONTENT, EXPANDED),
-	CSS_ZIPPY_CONTENT_WRAPPER = getCN(ZIPPY, CONTENT, WRAPPER),
-	CSS_ZIPPY_HEADER = getCN(ZIPPY, HEADER),
-	CSS_ZIPPY_HEADER_COLLAPSED = getCN(ZIPPY, HEADER, COLLAPSED),
-	CSS_ZIPPY_HEADER_EXPANDED = getCN(ZIPPY, HEADER, EXPANDED),
+	CSS_TOGGLER_CONTENT = getCN(TOGGLER, CONTENT),
+	CSS_TOGGLER_CONTENT_COLLAPSED = getCN(TOGGLER, CONTENT, COLLAPSED),
+	CSS_TOGGLER_CONTENT_EXPANDED = getCN(TOGGLER, CONTENT, EXPANDED),
+	CSS_TOGGLER_CONTENT_WRAPPER = getCN(TOGGLER, CONTENT, WRAPPER),
+	CSS_TOGGLER_HEADER = getCN(TOGGLER, HEADER),
+	CSS_TOGGLER_HEADER_COLLAPSED = getCN(TOGGLER, HEADER, COLLAPSED),
+	CSS_TOGGLER_HEADER_EXPANDED = getCN(TOGGLER, HEADER, EXPANDED),
 
-	CSS_ZIPPY_CONTENT_STATE = {
-		'false': CSS_ZIPPY_CONTENT_COLLAPSED,
-		'true': CSS_ZIPPY_CONTENT_EXPANDED
+	CSS_TOGGLER_CONTENT_STATE = {
+		'false': CSS_TOGGLER_CONTENT_COLLAPSED,
+		'true': CSS_TOGGLER_CONTENT_EXPANDED
 	},
 
-	CSS_ZIPPY_HEADER_STATE = {
-		'false': CSS_ZIPPY_HEADER_COLLAPSED,
-		'true': CSS_ZIPPY_HEADER_EXPANDED
+	CSS_TOGGLER_HEADER_STATE = {
+		'false': CSS_TOGGLER_HEADER_COLLAPSED,
+		'true': CSS_TOGGLER_HEADER_EXPANDED
 	},
 
-	TPL_CONTENT_WRAPPER = '<div class="' + CSS_ZIPPY_CONTENT_WRAPPER + '"></div>';
+	TPL_CONTENT_WRAPPER = '<div class="' + CSS_TOGGLER_CONTENT_WRAPPER + '"></div>';
 
-var Zippy = A.Component.create({
-	NAME: ZIPPY,
+var Toggler = A.Component.create({
+	NAME: TOGGLER,
 
 	ATTRS: {
 
@@ -149,20 +149,20 @@ var Zippy = A.Component.create({
 			var instance = this;
 			var header = instance.get(HEADER);
 
-			header.setData(ZIPPY, instance);
+			header.setData(TOGGLER, instance);
 
 			instance.on(EXPANDED_CHANGE, A.bind(instance._onExpandedChange, instance));
 
 			if (instance.get(BIND_DOM_EVENTS)) {
-				header.on([CLICK, KEYDOWN], A.rbind(Zippy.headerEventHandler, null, instance));
+				header.on([CLICK, KEYDOWN], A.rbind(Toggler.headerEventHandler, null, instance));
 			}
 		},
 
 		syncUI: function() {
 			var instance = this;
 
-			instance.get(CONTENT).addClass(CSS_ZIPPY_CONTENT);
-			instance.get(HEADER).addClass(CSS_ZIPPY_HEADER);
+			instance.get(CONTENT).addClass(CSS_TOGGLER_CONTENT);
+			instance.get(HEADER).addClass(CSS_TOGGLER_HEADER);
 		},
 
 		animate: function(config, fn) {
@@ -183,7 +183,7 @@ var Zippy = A.Component.create({
 
 		expand: function() {
 			var instance = this;
-			
+
 			return instance.toggle(true);
 		},
 
@@ -236,7 +236,7 @@ var Zippy = A.Component.create({
 
 					if (expand) {
 						gutter = -(height + gutter);
-							
+
 						content.setStyle(MARGIN_TOP, gutter);
 					}
 
@@ -272,11 +272,11 @@ var Zippy = A.Component.create({
 		_uiSetExpanded: function(val) {
 			var instance = this;
 
-			instance.get(CONTENT).replaceClass(CSS_ZIPPY_CONTENT_STATE[!val], CSS_ZIPPY_CONTENT_STATE[val]);
-			instance.get(HEADER).replaceClass(CSS_ZIPPY_HEADER_STATE[!val], CSS_ZIPPY_HEADER_STATE[val]);
+			instance.get(CONTENT).replaceClass(CSS_TOGGLER_CONTENT_STATE[!val], CSS_TOGGLER_CONTENT_STATE[val]);
+			instance.get(HEADER).replaceClass(CSS_TOGGLER_HEADER_STATE[!val], CSS_TOGGLER_HEADER_STATE[val]);
 		}
 
 	}
 });
 
-A.Zippy = Zippy;
+A.Toggler = Toggler;
