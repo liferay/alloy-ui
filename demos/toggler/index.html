@@ -36,6 +36,10 @@
 		margin-left: 8px;
 	}
 
+	.text {
+		vertical-align: middle;
+	}
+
 	.arrow {
 		background: url(../../build/aui-skin-classic/images/icon_sprite.png) -34px -18px;
 		display: inline-block;
@@ -44,8 +48,8 @@
 		width: 12px;
 	}
 
-	.aui-zippy-header-expanded .arrow {
-		background-position: -66px -18px;	
+	.aui-toggler-header-expanded .arrow {
+		background-position: -66px -18px;
 	}
 
 	.header:hover {
@@ -94,76 +98,76 @@
 <body>
 
 <div id="wrapper">
-	<h1>Alloy - Zippy</h1>
+	<h1>Alloy - Toggler</h1>
 
-	<h2>- Zippy</h2>
+	<h2>- Toggler</h2>
 
 	<div class="img-border">
 		<img src="http://farm7.staticflickr.com/6212/6236693303_c3e0409dae_m.jpg" />
 		<button class="header yui3-button yui3-button-active yui3-button-selected">Read more</button>
-		<div class="content aui-zippy-content-collapsed">Loading...</div>
+		<div class="content aui-toggler-content-collapsed">Loading...</div>
 	</div>
 
-	<h2>- Zippy Delegate</h2>
+	<h2>- Toggler Delegate</h2>
 
 	<div id="container1">
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Mini calendar
+			<span class="text">Mini calendar</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</div>
-		
-		<h2 class="header aui-zippy-header-collapsed">
-			<span class="arrow"></span>
-			My calendars
-		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
 
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Other calendars
+			<span class="text">My calendars</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Other calendars</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</div>
 	</div>
 
-	<h2>- Animated Zippy Delegate</h2>
+	<h2>- Animated Toggler Delegate</h2>
 
 	<div id="container2">
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Header
+			<span class="text">Header</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
 			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 		</div>
 
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Header
+			<span class="text">Header</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
 			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 		</div>
 
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Header
+			<span class="text">Header</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
 			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 		</div>
 
-		<h2 class="header aui-zippy-header-collapsed">
+		<h2 class="header aui-toggler-header-collapsed">
 			<span class="arrow"></span>
-			Header
+			<span class="text">Header</span>
 		</h2>
-		<div class="content aui-zippy-content-collapsed">
+		<div class="content aui-toggler-content-collapsed">
 			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 		</div>
 	</div>
@@ -171,13 +175,13 @@
 
 <script type="text/javascript" charset="utf-8">
 
-AUI().use('node-load', 'aui-zippy', function(A) {
+AUI().use('node-load', 'aui-toggler', function(A) {
 	var content = A.one('.content');
 	var header = A.one('.header');
 
-	console.time('zippy');
+	console.time('toggler');
 
-	var zippy = new A.Zippy({
+	var toggler = new A.Toggler({
 		animated: true,
 		content: content,
 		header: header,
@@ -193,11 +197,11 @@ AUI().use('node-load', 'aui-zippy', function(A) {
 		}
 	});
 
-	console.timeEnd('zippy');
+	console.timeEnd('toggler');
 
-	console.time('zippy-delegate');
+	console.time('toggler-delegate');
 
-	var zippyDelegate1 = new A.ZippyDelegate({
+	var togglerDelegate1 = new A.TogglerDelegate({
 		container: '#container1',
 		content: '.content',
 		header: '.header',
@@ -208,9 +212,9 @@ AUI().use('node-load', 'aui-zippy', function(A) {
 		}
 	});
 
-	console.timeEnd('zippy-delegate');
+	console.timeEnd('toggler-delegate');
 
-	var zippyDelegate2 = new A.ZippyDelegate({
+	var togglerDelegate2 = new A.TogglerDelegate({
 		animated: true,
 		closeAllOnExpand: true,
 		container: '#container2',
