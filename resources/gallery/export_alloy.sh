@@ -1,4 +1,4 @@
-#!/bin/bash -x ;-x for debugging
+#!/bin/bash -x
 
 curScript=`perl -e "use Cwd qw(realpath);print realpath('$0');"`
 curDir=`dirname $curScript`
