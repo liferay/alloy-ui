@@ -1,4 +1,6 @@
-#!/bin/bash -x
+#!/bin/bash
+
+START=$(date +%s)
 
 curScript=`perl -e "use Cwd qw(realpath);print realpath('$0');"`
 curDir=`dirname $curScript`
@@ -21,39 +23,42 @@ srcDir=${toDir}/src
 demosDir=${toDir}/demos
 buildDir=${toDir}/build
 resourcesDir=${toDir}/resources
+libDir=${toDir}/lib
 
 rm -rf $toDir
-cp -R $fromDir $toDir
+mkdir $toDir
+cp -R $fromDir/src $fromDir/demos $fromDir/build $fromDir/resources $fromDir/lib $fromDir/*.*  $toDir
 
-find $toDir -type d -name ".svn" | xargs rm -rf
+ignoredComponets="ace-editor classnamemanager data-browser drawing editor"
+
+for ic in $ignoredComponets; do
+	[[ -d "$srcDir/aui-$ic" ]] && rm -rf "$srcDir/aui-$ic"
+	[[ -d "$demosDir/$ic" ]] && rm -rf "$demosDir/$ic"
+done
+
+rm -rf $srcDir/aui-ace-editor $srcDir/aui-classnamemanager $srcDir/aui-data-browser $srcDir/drawing $srcDir/aui-editor 
+
+rm -rf $libDir/ace $libDir/patches $libDir/patches $libDir/yui-combo $libDir/yui-yuidoc
 
 perl -pi -e "s/^(build\.aui\.prefix=)/\$1gallery-/g;" ${toDir}/build.properties
 
 perl -pi -e "s/window\.AUI = AUI;//g;" ${srcDir}/aui-base/js/aui-core.js
 
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's/<script src="\.\.\/\.\.\/build\/aui\/aui\.js" type="text\/javascript"><\/script>/<script src="..\/..\/build\/yui\/yui.js" type="text\/javascript"><\/script><script src="..\/..\/build\/gallery-aui\/defaults.js" type="text\/javascript"><\/script><script src="..\/..\/build\/aui-base\/aui-base.js" type="text\/javascript"><\/script>/g;'
+find $demosDir/* -type f -name "*.html" | xargs perl -pi -e 's#<script src="\.\./\.\./build/aui/aui\.js" type="text/javascript"></script>#<script src="../../build/yui/yui.js" type="text/javascript"></script><script src="../../build/gallery-aui/defaults.js" type="text/javascript"></script><script src="../../build/aui-base/aui-base.js" type="text/javascript"></script>#g;'
 
-perl -pi -e 's/\${project\.dir}\/resources\/temp\/defaults\.js/\${project.dir}\/build\/gallery-aui\/defaults.js/' ${resourcesDir}/builder/macrolib.xml
+perl -pi -e 's#\${project\.dir}/resources/temp/defaults\.js#\${project.dir}/build/gallery-aui/defaults.js#;' ${resourcesDir}/builder/macrolib.xml
 
-perl -pi -e 's/(,widget-css)/$1,aui-skin-base/g;' ${srcDir}/aui-base/build.properties
-perl -pi -e "s/^(component\.prependfiles).*$//" ${srcDir}/aui-base/build.properties
-perl -pi -e "s/^(component\.jsfiles=).*$/\$1aui-base.js,aui-core.js/" ${srcDir}/aui-base/build.properties
+perl -pi -e 's/(,widget-css)/$1,aui-skin-base/g;' -e "s/^(component\.prependfiles).*$//;" -e "s/^(component\.jsfiles=).*$/\$1aui-base.js,aui-core.js/;" ${srcDir}/aui-base/build.properties
 
 perl -pi -e 's/template="\$\{project\.dir\}\/resources\/builder\/templates\//template="\${project.dir}\/lib\/builder\/componentbuild\/files\//g;' $resourcesDir/builder/macrolib.xml
 
 find $srcDir/* -type f \( -name "build*.xml" -or -name "build*.properties" \) | xargs perl -pi -e 's/aui-/gallery-aui-/g;'
-find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\.aui-/.yui3-/g;'
-find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\/aui-/\/gallery-aui-/g;'
+find $srcDir/* -type f -name "*.css" | xargs perl -pi -e 's/\.aui-/.yui3-/g;' -e 's/\/aui-/\/gallery-aui-/g;'
 
 #replace all 'aui that is not like addClass('aui- or 'aui-helper or 'aui-state with 'gallery-aui
 find $srcDir/* -type f -name "*.js" | xargs perl -pi -e "s/(?<!\()(')aui-(?!helper|state)/\$1gallery-aui-/g;"
 
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/(\/|')aui-/\$1gallery-aui-/g;"
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/([^gallery-])aui-/\$1yui3-/g;"
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/\.ready\(/.use(/g;"
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/\.use\(/.use('gallery-aui-skin-classic',/g;"
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/AUI\(\)/YUI(YUI.AUI_config)/g;"
-find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/AUI\(/YUI(/g;"
+find $demosDir/* -type f -name "*.html" | xargs perl -pi -e "s/(\/|')aui-/\$1gallery-aui-/g;" -e "s/([^gallery-])aui-/\$1yui3-/g;" -e "s/\.ready\(/.use(/g;" -e "s/\.use\(/.use('gallery-aui-skin-classic',/g;" -e "s/AUI\(\)/window.A=YUI(YUI.AUI_config)/g;" -e "s/AUI\(/YUI(/g;"
 
 for f in `find $srcDir -name 'aui-*' -or -name 'build.aui-*'` ;
 do
@@ -70,7 +75,8 @@ skinJpgPath=${skinDir}/*.jpg
 imagePattern="png\|gif\|jpg"
 
 #flatten rollups
-for f in `find $srcDir -name 'build.gallery-aui-*.properties'` ;
+rollups=`find $srcDir -name 'build.gallery-aui-*.properties'`
+for f in $rollups;
 do
 	newName=${f}
 	baseName=`basename $newName`
@@ -79,9 +85,10 @@ do
 
 	moduleName=${baseName#build.}
 	moduleName=${moduleName%.properties}
-	
+
 	oldModuleDir=$oldDirName
 	newModuleDir=$srcDir/$moduleName
+
 	mkdir -p $newModuleDir/js
 
 	mv $oldModuleDir/build.$moduleName.properties $newModuleDir/build.properties
@@ -112,29 +119,43 @@ do
 	perl -pi -e "s/build\.${moduleName}\.properties/build.properties/g;" $newModuleDir/build.xml
 	
 	touch $oldModuleDir/js/${baseModuleName}.js
-	perl -pi -e 's/^(srcdir|global\.|component\.rollup)/#$1/g;' $oldModuleDir/build.properties
-	perl -pi -e "s/^(component=)/component.jsfiles=${baseModuleName}.js\n\$1/g;" $oldModuleDir/build.properties
-	perl -pi -e "s/^component.use=/component.requires=/g;" $oldModuleDir/build.properties
+
+	perl -pi -e 's/^(srcdir|global\.|component\.rollup)/#$1/g;' -e "s/^(component=)/component.jsfiles=${baseModuleName}.js\n\$1/g;" -e "s/^component.use=/component.requires=/g;" -e "s/^component\.skinnable=true/component.skinnable=false/g;" $oldModuleDir/build.properties
 
 	if [ "$baseModuleName" = "gallery-aui-scheduler" ]; then
 		mv $oldModuleDir/js/$moduleName*.js $newModuleDir/js/
+	fi
+
+	if [ "$moduleName" = "gallery-aui-form-builder-field" ]; then
+		mv $oldModuleDir/js/$moduleName*.js $newModuleDir/js/
+	fi
+
+	if [[ "$moduleName" == "gallery-aui-base-core" ]]; then
+		mv $oldModuleDir/js/gallery-aui-base.js $newModuleDir/js/
+		mv $oldModuleDir/js/gallery-aui-core.js $newModuleDir/js/
+		touch $oldModuleDir/js/${baseModuleName}.js
 	fi
 done
 
 #manual cleanup
 #change node requires rollup to not require html5/fx by default (they can "use" those modules).
-perl -pi -e "s/^component.requires=gallery-aui-node-base,/component.use=/g;" ${srcDir}/gallery-aui-node/build.properties
-perl -pi -e "s/^(component.use=)/component.requires=gallery-aui-node-base\n\$1/g;" ${srcDir}/gallery-aui-node/build.properties
-#change aui-base to only include gallery-aui-node-base 
-perl -pi -e "s/^component.requires=gallery-aui-node/component.requires=gallery-aui-node-base/g;" ${srcDir}/gallery-aui-base/build.properties
+perl -pi -e "s/^(component.requires=gallery-aui-node-base),/\$1/g;" ${srcDir}/gallery-aui-node/build.properties
 
-find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/lint.skip=true\n\$1/"
-find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/yui.variable=A\n\$1/"
+#change aui-base to only include gallery-aui-node-base 
+perl -pi -e "s/^component.requires=gallery-aui-node/component.requires=gallery-aui-node-base/g;" ${srcDir}/gallery-aui-base-core/build.properties
+
+find ${srcDir} -type f -name "*.js" | xargs perl -pi -e "s/A\.getClassName/A.ClassNameManager.getClassName/"
+grep -Rl "gallery-aui-classnamemanager" $srcDir | xargs perl -pi -e 's#gallery-aui-classnamemanager#classnamemanager#g'
+
+addedProperties="lint.skip=true\nyui.variable=A\n"
 
 #Uncomment the following lines to move the builder to it's default location
 #above the project directory
 find ${toDir} -type f -name "build.xml" | xargs perl -pi -e 's/<import file="\.\.\/\.\.\/resources\/builder\/bootstrap\.xml" \/>/<import file="\${builddir}\/3.x\/bootstrap.xml" \/>/g;'
-find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/builddir=..\/..\/..\/builder\/componentbuild\n\$1/"
+addedProperties="${addedProperties}builddir=..\/..\/..\/builder\/componentbuild\n"
+
+
+find ${toDir} -type f -name "build.properties" | xargs perl -pi -e "s/^(component=)/$addedProperties\$1/"
 
 if [[ ! -d ${parentDir}/builder ]]; then
 	cp -R ${toDir}/lib/builder ${parentDir}/builder
@@ -142,4 +163,14 @@ fi
 
 cd $toDir
 
+SCRIPT_END=$(date +%s)
+
 ant build-gallery
+
+
+TOTAL_END=$(date +%s)
+
+SCRIPT_DIFF=$(( $SCRIPT_END - $START ))
+TOTAL_DIFF=$(( $TOTAL_END - $START ))
+
+echo "Script ran in $SCRIPT_DIFF seconds, and the entire thing, including ant, took $TOTAL_DIFF seconds"
