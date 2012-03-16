@@ -17,13 +17,13 @@
 						'aui-arraysort': {requires:['arraysort'], skinnable:false},
 						'aui-audio': {requires:['aui-base','querystring-stringify-simple'], skinnable:true},
 						'aui-autocomplete': {requires:['aui-base','aui-overlay-base','datasource','dataschema','aui-form-combobox'], skinnable:true},
-						'aui-base': {submodules: {'aui-base-lang': {skinnable:false}, 'aui-base-core': {requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false} }, use:['aui-base-core','aui-base-lang'], skinnable:false},
+						'aui-base': {submodules: {'aui-base-lang': {skinnable:false}, 'aui-base-core': {requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false} }, use:['aui-base-core','aui-base-lang'], skinnable:false},
 						'aui-button-item': {requires:['aui-base','aui-state-interaction','widget-child'], skinnable:true},
 						'aui-calendar': {requires:['aui-base','aui-datatype','widget-stdmod','datatype-date','widget-locale'], skinnable:true},
 						'aui-carousel': {requires:['aui-base','aui-template','anim'], skinnable:true},
 						'aui-char-counter': {requires:['aui-base','aui-event-input'], skinnable:false},
 						'aui-chart': {requires:['datasource','aui-swf','json'], skinnable:false},
-						'aui-classnamemanager': {skinnable:false, condition: {name: 'aui-classnamemanager', trigger: 'classnamemanager', test: function(){return true;}}, requires:['classnamemanager']},
+						'aui-classnamemanager': {requires:['classnamemanager'], skinnable:false},
 						'aui-color-picker': {submodules: {'aui-color-picker-grid-plugin': {requires:['aui-color-picker-base','plugin'], skinnable:true}, 'aui-color-picker-base': {requires:['aui-overlay-context','dd-drag','slider','aui-button-item','aui-color-util','aui-form-base','aui-panel'], skinnable:true} }, skinnable:true, use:['aui-color-picker-base','aui-color-picker-grid-plugin']},
 						'aui-color-util': {skinnable:false},
 						'aui-component': {requires:['aui-classnamemanager','base-build','widget'], skinnable:false},
@@ -599,7 +599,7 @@ A.fn = function(fn, context, args) {
 	return wrappedFn;
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
 AUI.add('aui-base-lang', function(A) {
 var Lang = A.Lang,
 	AArray = A.Array,
