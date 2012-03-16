@@ -615,15 +615,12 @@ body {
 }
 
 .aui-field-labels-top {
-	
 }
 
 .aui-field-labels-left {
-	
 }
 
 .aui-field-labels-right {
-	
 }
 
 .aui-field-labels-inline .aui-field-label,
@@ -713,11 +710,6 @@ body {
 	display: inline-block;
 	margin: 0 0.4em 0 0;
 	vertical-align: middle;
-}
-
-.aui-field-label-right .aui-choice-label,
-.aui-field-label-right .aui-field-input-choice {
-	float: left;
 }
 
 .aui-field-row {
