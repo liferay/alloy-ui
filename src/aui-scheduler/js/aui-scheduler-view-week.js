@@ -34,7 +34,6 @@ var SchedulerWeekView = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 			var currentDate = scheduler.get(CURRENT_DATE);
-
 			var firstDayOfWeekDate = instance._firstDayOfWeek(currentDate);
 
 			return DateMath.add(firstDayOfWeekDate, DateMath.WEEK, 1);

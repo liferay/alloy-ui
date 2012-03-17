@@ -20,7 +20,11 @@ var ACTIVE_VIEW = 'activeView',
 	LABEL = 'label',
 	LAYOUT = 'layout',
 	MENU = 'menu',
+	OVERLAY_BUTTON_ROW_NODE = 'overlayButtonRowNode',
 	OVERLAY_CONTEXT_PANEL = 'overlayContextPanel',
+	OVERLAY_DESC_NODE = 'overlayDescNode',
+	OVERLAY_SELECT_NODE = 'overlaySelectNode',
+	OVERLAY_WHEN_NODE = 'overlayWhenNode',
 	PENCIL = 'pencil',
 	REPEAT = 'repeat',
 	ROW = 'row',
@@ -29,13 +33,13 @@ var ACTIVE_VIEW = 'activeView',
 	STRINGS = 'strings',
 	TC = 'tc',
 	TEXT = 'text',
-	WHEN = 'when',
 	TRIGGER = 'trigger',
+	WHEN = 'when',
 
-	AUI_SCHEDULER_EVENT_RECORDER_WHEN = 'auiSchedulerEventRecorderWhen',
+	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
 	AUI_SCHEDULER_EVENT_RECORDER_DESC = 'auiSchedulerEventRecorderDesc',
 	AUI_SCHEDULER_EVENT_RECORDER_SELECT = 'auiSchedulerEventRecorderSelect',
-	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
+	AUI_SCHEDULER_EVENT_RECORDER_WHEN = 'auiSchedulerEventRecorderWhen',
 
 	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
 	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
@@ -44,32 +48,32 @@ var ACTIVE_VIEW = 'activeView',
 	DASH = '-',
 	POUND = '#',
 
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER_EVENT, RECORDER, OVERLAY),
-	CSS_SCHEDULER_EVENT_RECORDER_FORM = getCN(SCHEDULER_EVENT, RECORDER, FORM),
-	CSS_FORM = getCN(FORM),
-	CSS_LAYOUT_CONTENT = getCN(LAYOUT, CONTENT),
-	CSS_FIELDSET = getCN(LAYOUT, FIELDSET),
-	CSS_FIELDSET_BD = getCN(LAYOUT, FIELDSET, BD),
-	CSS_FIELDSET_CONTENT = getCN(LAYOUT, FIELDSET, CONTENT),
-	CSS_W100 = getCN(LAYOUT, 'w100'),
+	CSS_BUTTON_ROW = getCN(BUTTON, ROW),
 	CSS_COLUMN = getCN(COLUMN),
 	CSS_COLUMN_CONTENT = getCN(COLUMN, CONTENT),
 	CSS_FIELD = getCN(FIELD),
-	CSS_FIELD_MENU = getCN(FIELD, MENU),
-	CSS_FIELD_SELECT = getCN(FIELD, SELECT),
 	CSS_FIELD_CONTENT = getCN(FIELD, CONTENT),
-	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
-	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
-	CSS_BUTTON_ROW = getCN(BUTTON, ROW),
 	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
 	CSS_FIELD_INPUT_SELECT = getCN(FIELD, INPUT, SELECT),
 	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN = getCN(SCHEDULER_EVENT, RECORDER, LABEL, WHEN),
+	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
+	CSS_FIELD_MENU = getCN(FIELD, MENU),
+	CSS_FIELD_SELECT = getCN(FIELD, SELECT),
+	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
+	CSS_FIELDSET = getCN(LAYOUT, FIELDSET),
+	CSS_FIELDSET_BD = getCN(LAYOUT, FIELDSET, BD),
+	CSS_FIELDSET_CONTENT = getCN(LAYOUT, FIELDSET, CONTENT),
+	CSS_FORM = getCN(FORM),
+	CSS_LAYOUT_CONTENT = getCN(LAYOUT, CONTENT),
 	CSS_SCHEDULER_EVENT_RECORDER_DESC = getCN(SCHEDULER_EVENT, RECORDER, DESC),
+	CSS_SCHEDULER_EVENT_RECORDER_FORM = getCN(SCHEDULER_EVENT, RECORDER, FORM),
+	CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN = getCN(SCHEDULER_EVENT, RECORDER, LABEL, WHEN),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER_EVENT, RECORDER, OVERLAY),
+	CSS_W100 = getCN(LAYOUT, 'w100'),
 
+	CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = getCN(SCHEDULER_EVENT, RECORDER, BUTTON, ROW),
 	CSS_SCHEDULER_EVENT_RECORDER_FIELD_HINT = getCN(SCHEDULER_EVENT, RECORDER, FIELD, HINT),
 	CSS_SCHEDULER_EVENT_RECORDER_REPEAT = getCN(SCHEDULER_EVENT, RECORDER, REPEAT),
-	CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = getCN(SCHEDULER_EVENT, RECORDER, BUTTON, ROW),
 
 	TPL_OPTION = '<option></option>',
 
@@ -132,14 +136,14 @@ var SchedulerEventRecorder = A.Component.create({
 			setter: function(val) {
 				return A.merge(
 					{
-						save: 'Save',
+						'description-hint': 'e.g., Dinner at Brian\'s',
+						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
 						repeat: 'Repeat',
-						when: 'When',
-						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat'
+						save: 'Save',
+						when: 'When'
 					},
 					val || {}
 				);
@@ -181,9 +185,9 @@ var SchedulerEventRecorder = A.Component.create({
 			instance._createEvents();
 
 			instance.after('schedulerChange', instance._afterSchedulerChange);
-			instance.on('startDateChange', instance._onStartDateChange);
 
 			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
+			instance.get(PADDING_NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
 		},
 
 		showOverlay: function() {
@@ -196,9 +200,9 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.overlay.render().show();
 		},
 
-		getEventCopy: function(evt) {
+		getEventCopy: function() {
 			var instance = this;
-			var content = instance.overlayDescNode.val();
+			var content = instance[OVERLAY_DESC_NODE].val();
 			var newEvt = instance.get(EVENT);
 
 			if (!newEvt) {
@@ -214,7 +218,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			newEvt.set(
 				REPEAT,
-				instance.overlaySelectNode.val()
+				instance[OVERLAY_SELECT_NODE].val()
 			);
 
 			if (content) {
@@ -248,11 +252,11 @@ var SchedulerEventRecorder = A.Component.create({
 				content = evt.get(CONTENT);
 			}
 
-			instance.overlaySelectNode.val(repeat);
-			instance.overlayWhenNode.setContent(instance._getWhenFormattedDt());
+			instance[OVERLAY_SELECT_NODE].val(repeat);
+			instance[OVERLAY_WHEN_NODE].setContent(instance._getWhenFormattedDt());
 
 			setTimeout(function() {
-				instance.overlayDescNode.val(content).selectText();
+				instance[OVERLAY_DESC_NODE].val(content).selectText();
 			}, 0);
 		},
 
@@ -264,23 +268,23 @@ var SchedulerEventRecorder = A.Component.create({
 			schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), DOT+CSS_SCHEDULER_EVENT);
 		},
 
-	    /**
-	     * Create the custom events used on the Resize.
-	     *
-	     * @method _createEvents
-	     * @private
-	     */
+		/**
+		 * Create the custom events used on the Resize.
+		 *
+		 * @method _createEvents
+		 * @private
+		 */
 		_createEvents: function() {
 			var instance = this;
 
 			// create publish function for kweight optimization
 			var publish = function(name, fn) {
 				instance.publish(name, {
-		            defaultFn: fn,
-		            queuable: false,
-		            emitFacade: true,
-		            bubbles: true
-		        });
+					defaultFn: fn,
+					queuable: false,
+					emitFacade: true,
+					bubbles: true
+				});
 			};
 
 			publish(
@@ -311,15 +315,15 @@ var SchedulerEventRecorder = A.Component.create({
 			var oBoundingBox = overlay.get(BOUNDING_BOX);
 			var oBodyContent = overlay.get(BODY_CONTENT);
 
-			instance.overlayButtonRowNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW);
-			instance.overlayDescNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_DESC);
-			instance.overlaySelectNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_SELECT);
-			instance.overlayWhenNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_WHEN);
+			instance[OVERLAY_BUTTON_ROW_NODE] = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW);
+			instance[OVERLAY_DESC_NODE] = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_DESC);
+			instance[OVERLAY_SELECT_NODE] = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_SELECT);
+			instance[OVERLAY_WHEN_NODE] = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_WHEN);
 
 			instance.overlaySaveBtn = new A.ButtonItem({
 				label: strings.save,
 				icon: DISK,
-				render: instance.overlayButtonRowNode,
+				render: instance[OVERLAY_BUTTON_ROW_NODE],
 				handler: {
 					fn: instance._handleSaveEvent,
 					context: instance
@@ -329,7 +333,7 @@ var SchedulerEventRecorder = A.Component.create({
 			instance.overlayEditBtn = new A.ButtonItem({
 				label: strings.edit,
 				icon: PENCIL,
-				render: instance.overlayButtonRowNode,
+				render: instance[OVERLAY_BUTTON_ROW_NODE],
 				handler: {
 					fn: instance._handleEditEvent,
 					context: instance
@@ -338,7 +342,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance.overlayCancelBtn = new A.ButtonItem({
 				label: strings.cancel,
-				render: instance.overlayButtonRowNode,
+				render: instance[OVERLAY_BUTTON_ROW_NODE],
 				handler: {
 					fn: instance._handleCancelEvent,
 					context: instance
@@ -346,7 +350,7 @@ var SchedulerEventRecorder = A.Component.create({
 			});
 
 			A.each(A.SchedulerEventRepeat, function(repeat, key) {
-				instance.overlaySelectNode.append(
+				instance[OVERLAY_SELECT_NODE].append(
 					A.Node.create(TPL_OPTION).val(repeat.value || key).setContent(repeat.description)
 				);
 			});
@@ -365,11 +369,10 @@ var SchedulerEventRecorder = A.Component.create({
 
 		_defEditEventFn: function(event) {
 			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
 
 			instance.hideOverlay();
 
-			scheduler.syncEventsUI();
+			instance.get(SCHEDULER).syncEventsUI();
 		},
 
 		_defSaveEventFn: function(event) {
@@ -434,7 +437,7 @@ var SchedulerEventRecorder = A.Component.create({
 				}
 
 				instance.set(EVENT, evt);
-				instance.overlay.set(TRIGGER, evt.get(NODE));
+				instance.overlay.set(TRIGGER, event.currentTarget);
 				instance.get(NODE).remove();
 				instance.showOverlay();
 			}
@@ -445,7 +448,6 @@ var SchedulerEventRecorder = A.Component.create({
 			var node = instance.get(NODE);
 
 			if (instance.overlay) {
-				// restore values
 				instance.set(EVENT, null);
 				instance.overlay.set(TRIGGER, node);
 			}
@@ -468,16 +470,6 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 
 			instance.loadFormValues();
-		},
-
-		_onStartDateChange: function(event) {
-			var instance = this;
-			var duration = instance.get(DURATION);
-
-			instance.set(
-				END_DATE,
-				DateMath.add(event.newVal, DateMath.MINUTES, duration)
-			);
 		},
 
 		_onSubmitForm: function(event) {
