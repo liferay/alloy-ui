@@ -432,7 +432,7 @@ A.mix(A.DataType.DateMath, {
 	* @return {Number}	The number of days
 	*/
 	getDayOffset : function(d1, d2) {
-		return this._absCeil(this.getOffset(d1, d2, this.ONE_DAY_MS));
+		return this._absFloor(this.getOffset(d1, d2, this.ONE_DAY_MS));
 	},
 
 	/**
@@ -476,16 +476,6 @@ A.mix(A.DataType.DateMath, {
 
     _absFloor : function(n) {
 		var abs = Math.floor(Math.abs(n));
-
-		if (n < 0) {
-			abs *= -1;
-		}
-
-        return abs;
-    },
-
-    _absCeil : function(n) {
-		var abs = Math.ceil(Math.abs(n));
 
 		if (n < 0) {
 			abs *= -1;
@@ -603,6 +593,30 @@ A.mix(A.DataType.DateMath, {
 	},
 
 	/**
+	 * Chechs if the {date2} is the next day.
+	 *
+	 * @method isNextDay
+	 * @param {Date} date1 Date
+	 * @param {Date} date2 Date
+	 * @return boolean
+	 */
+	isNextDay: function(date1, date2) {
+		return this.getDayOffset(this.safeClearTime(date2), this.safeClearTime(date1)) === 1;
+	},
+
+	/**
+	 * Chechs if the {date2} is the next day at 00:00:00.
+	 *
+	 * @method isNextDayBoundary
+	 * @param {Date} date1 Date
+	 * @param {Date} date2 Date
+	 * @return boolean
+	 */
+	isDayBoundary: function(date1, date2) {
+		return this.isNextDay(date1, date2) && (date2.getHours() === 0) && (date2.getMinutes() === 0) && (date2.getSeconds() === 0);
+	},
+
+	/**
 	 * Chechs if the passed date is between two days.
 	 *
 	 * @method isDayOverlap
@@ -712,6 +726,17 @@ A.mix(A.DataType.DateMath, {
 	*/
 	safeClearTime : function(date) {
 		return this.clearTime(this.clone(date));
+	},
+
+	/**
+	* Set the time fields from a given date to midnight.
+	* @method toMidnight
+	* @param {Date}	date	The JavaScript Date for which the time fields will be set to midnight
+	* @return {Date}		The JavaScript Date set to midnight
+	*/
+	toMidnight: function(date) {
+		date.setHours(0,0,0,0);
+		return date;
 	},
 
 	/**
