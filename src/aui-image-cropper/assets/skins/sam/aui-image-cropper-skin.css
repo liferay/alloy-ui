@@ -1,0 +1,10 @@
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-t,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tr,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-r,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-br,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-b,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-bl,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-l,
+.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tl {
+	background: url(resize-handle.png) no-repeat 0 0;
+}
