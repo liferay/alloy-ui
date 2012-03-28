@@ -12,9 +12,20 @@
 		font-size: 12px;
 	}
 
+	.aui-field {
+		margin-bottom: 2em;
+	}
+
 	#wrapper {
 		padding: 10px;
 		width: 500px;
+	}
+
+	.aui-field-input-text {
+		padding: 5px;
+		display: inline-block;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
 	}
 
 	.aui-field-input-textarea {
@@ -32,7 +43,7 @@
 		margin-top: -1px;
 	}
 
-	.aui-field-textarea {
+	.aui-field-text, .aui-field-textarea {
 		line-height: 1;
 	}
 
@@ -41,6 +52,15 @@
 		padding: 3px 10px;
 		border-radius: 8px;
 		border: 1px solid #AAA;
+	}
+
+	.aui-field-text .aui-text-button {
+		display: inline-block;
+		margin-left: -4px;
+		padding-top: 4px;
+		border-bottom-left-radius: 0;
+		border-top-left-radius: 0;
+		vertical-align: top;
 	}
 
 	.aui-input-localize {
@@ -122,6 +142,17 @@
 <div id="wrapper">
 	<h1>Alloy Base File</h1>
 	<div id="demo">
+		<div class="aui-field aui-field-text">
+			<div class="aui-field-content">
+				<label class="aui-field-label" for="textareaField">Title</label>
+				<input class="aui-field-input aui-field-input-text" id="textField" data-langId="en_US" />
+				<span class="aui-text-button aui-input-localize">
+					<span class="aui-locale-count">1</span>
+					<img class="aui-selected-locale" src="images/language/en_US.png" title="English (United States)" />
+				</span>
+			</div>
+		</div>
+
 		<div class="aui-field aui-field-text aui-field-textarea">
 			<div class="aui-field-content">
 				<label class="aui-field-label" for="textareaField">Description</label>
@@ -138,9 +169,9 @@
 </div>
 
 <script id="selectorTemplate" type="text/html">
-	<ul class="aui-input-localize-selector" id="_167_languageId0">
-		<tpl for=".">
-			<li class="aui-input-localize-item" id="localizeItem{id}" title="{name}" data-langId="{id}">
+	<ul class="aui-input-localize-selector" id="{ns}languageId">
+		<tpl for="languages">
+			<li class="aui-input-localize-item" id="localizeItem{[parent.ns]}{id}" title="{name}" data-langId="{id}">
 				<a href="javascript:;"><img class="aui-locale" src="images/language/{id}.png" /></a>
 				<a href="javascript:;">{name}</a>
 			</li>
@@ -197,7 +228,7 @@ AUI().use(
 			{id: 'vi_VN', name: 'Vietnamese (Vietnam)'}
 		];
 
-		var selectorNode = A.Template.from('#selectorTemplate').render(languages);
+		var selectorTemplate = A.Template.from('#selectorTemplate');
 
 /*
 		selectorNode.hide();
@@ -219,105 +250,116 @@ AUI().use(
 		localizer.hover(show, hide);
 */
 
-		var localizer = A.one('.aui-input-localize');
+		A.all('.aui-field').each(
+			function(item, index, collection) {
+				var selectorNode = selectorTemplate.render({
+					ns: index,
+					languages: languages
+				});
 
-		var overlay = new A.Overlay(
-			{
-				trigger: localizer,
-				bodyContent: selectorNode,
-				align: {
-					node: localizer,
-					points: ['tr', 'br']
-				},
-				visible: false
+				var localizer = item.one('.aui-input-localize');
+
+				var overlay = new A.Overlay(
+					{
+						trigger: localizer,
+						bodyContent: selectorNode,
+						align: {
+							node: localizer,
+							points: ['tr', 'br']
+						},
+						visible: false
+					}
+				).render();
+
+				var show = A.debounce(function(event) {
+					hide.cancel();
+					overlay.show();
+				}, 0);
+
+				var hide = A.debounce(function(event) {
+					show.cancel();
+					overlay.hide();
+				}, 500);
+
+				var hoverConfig = {
+					mouseenter: show,
+					mouseleave: hide
+				};
+
+				localizer.on(hoverConfig);
+				overlay.on(hoverConfig);
+
+				var count = item.one('.aui-locale-count');
+
+				var textarea = item.one('.aui-field-input');
+
+				var selectedLocaleImage = item.one('.aui-selected-locale');
+
+				var MAP_SELECTED_LANGS = {};
+				var MAP_PREV_LANGS = {};
+
+				selectorNode.delegate('click', function(event) {
+					var prevVal = textarea.val();
+					var prevLangId = textarea.attr('data-langId');
+
+					var prevSelectedLang = MAP_SELECTED_LANGS[prevLangId];
+
+					if (!prevVal) {
+						if (prevSelectedLang) {
+							prevSelectedLang.remove();
+
+							delete MAP_SELECTED_LANGS[prevLangId];
+
+							MAP_PREV_LANGS[prevLangId] = prevSelectedLang;
+						}
+					}
+					else {
+						var hiddenInput = MAP_SELECTED_LANGS[prevLangId];
+
+						if (!hiddenInput) {
+							hiddenInput = MAP_PREV_LANGS[prevLangId] || A.Node.create('<input id="' + prevLangId + '" type="hidden" />');
+
+							textarea.placeBefore(hiddenInput);
+
+							MAP_SELECTED_LANGS[prevLangId] = hiddenInput;
+						}
+
+						hiddenInput.val(prevVal);
+					}
+
+					A.one('#localizeItem' + index + prevLangId).toggleClass('aui-input-localize-value', !!prevVal);
+
+					var currentTarget = event.currentTarget;
+
+					var langId = currentTarget.attr('data-langId');
+					var currentValue = '';
+
+					var currentHiddenInput = item.one('#' + langId);
+
+					if (currentHiddenInput) {
+						currentValue = currentHiddenInput.val();
+					}
+
+					textarea.val(currentValue);
+					textarea.attr('data-langId', langId);
+
+					var selectedLocaleImageSrc = selectedLocaleImage.attr('src');
+
+					selectedLocaleImageSrc = selectedLocaleImageSrc.replace(/\/[A-Za-z_]+.png$/, '/' + langId + '.png');
+
+					selectedLocaleImage.attr('src', selectedLocaleImageSrc);
+					selectedLocaleImage.attr('title', currentTarget.attr('title'));
+
+					count.text(Math.max(A.Object.size(MAP_SELECTED_LANGS), 1));
+
+					currentTarget.radioClass('aui-input-localize-item-selected');
+
+					textarea.focus();
+				}, 'li');
 			}
-		).render();
+		);
 
-		var show = A.debounce(function(event) {
-			hide.cancel();
-			overlay.show();
-		}, 0);
-
-		var hide = A.debounce(function(event) {
-			show.cancel();
-			overlay.hide();
-		}, 500);
-
-		var hoverConfig = {
-			mouseenter: show,
-			mouseleave: hide
-		};
-
-		localizer.on(hoverConfig);
-		overlay.on(hoverConfig);
-
-		var count = A.one('.aui-locale-count');
-
-		var textarea = A.one('.aui-field-input-textarea');
-
-		var selectedLocaleImage = A.one('.aui-selected-locale');
-
-		var MAP_SELECTED_LANGS = {};
-		var MAP_PREV_LANGS = {};
-
-		selectorNode.delegate('click', function(event) {
-			var prevVal = textarea.val();
-			var prevLangId = textarea.attr('data-langId');
-
-			var prevSelectedLang = MAP_SELECTED_LANGS[prevLangId];
-
-			if (!prevVal) {
-				if (prevSelectedLang) {
-					prevSelectedLang.remove();
-
-					delete MAP_SELECTED_LANGS[prevLangId];
-
-					MAP_PREV_LANGS[prevLangId] = prevSelectedLang;
-				}
-			}
-			else {
-				var hiddenInput = MAP_SELECTED_LANGS[prevLangId];
-
-				if (!hiddenInput) {
-					hiddenInput = MAP_PREV_LANGS[prevLangId] || A.Node.create('<input id="' + prevLangId + '" type="hidden" />');
-
-					textarea.placeBefore(hiddenInput);
-
-					MAP_SELECTED_LANGS[prevLangId] = hiddenInput;
-				}
-
-				hiddenInput.val(prevVal);
-			}
-
-			A.one('#localizeItem' + prevLangId).toggleClass('aui-input-localize-value', !!prevVal);
-
-			var currentTarget = event.currentTarget;
-
-			var langId = currentTarget.attr('data-langId');
-			var currentValue = '';
-
-			var currentHiddenInput = A.one('#' + langId);
-
-			if (currentHiddenInput) {
-				currentValue = currentHiddenInput.val();
-			}
-
-			textarea.val(currentValue);
-			textarea.attr('data-langId', langId);
-
-			var selectedLocaleImageSrc = selectedLocaleImage.attr('src');
-
-			selectedLocaleImageSrc = selectedLocaleImageSrc.replace(/\/[A-Za-z_]+.png$/, '/' + langId + '.png');
-
-			selectedLocaleImage.attr('src', selectedLocaleImageSrc);
-			selectedLocaleImage.attr('title', currentTarget.attr('title'));
-
-			count.text(Math.max(A.Object.size(MAP_SELECTED_LANGS), 1));
-
-			currentTarget.radioClass('aui-input-localize-item-selected');
-
-			textarea.focus();
-		}, 'li');
+		
 	}
 );
 </script>
