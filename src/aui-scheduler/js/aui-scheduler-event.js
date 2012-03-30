@@ -45,6 +45,7 @@ var Lang = A.Lang,
 	ID = 'id',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
+	NEVER = 'never',
 	NODE = 'node',
 	OVERLAY = 'overlay',
 	PARENT_EVENT = 'parentEvent',
@@ -696,9 +697,10 @@ var SchedulerEvent = A.Component.create({
 
 		_uiSetRepeat: function(val) {
 			var instance = this;
+			var value = !!val && val !== A.SchedulerEventRepeat[NEVER];
 
-			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, !!val);
-			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, !!val);
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
+			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
 		},
 
 		_uiSetVisible: function(val) {

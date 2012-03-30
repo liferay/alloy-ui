@@ -1,4 +1,12 @@
 A.SchedulerEventRepeat = {
+	never: {
+		description: 'Never repeat',
+		validate: function(evt, date) {
+			return false;
+		},
+		value: 'never'
+	},
+
 	daily: {
 		description: 'Every day',
 		validate: function(evt, date) {

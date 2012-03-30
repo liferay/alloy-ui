@@ -198,27 +198,77 @@
     top: 0;
 }
 
+.aui-scheduler-event-recorder-overlay {
+    -moz-border-radius: 6px;
+    -moz-box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    background: #FFFFFF;
+    border-radius: 6px;
+    border: 1px solid #BBB;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    font-size: 13px;
+    line-height: 15px;
+    padding: 10px 20px 20px 20px;
+}
+
+.aui-scheduler-event-recorder-overlay-arrow {
+    border-color: transparent #F7F7F7 transparent transparent;
+    border-style: solid;
+    border-width: 12px;
+    font-size: 0;
+    left: -22px;
+    line-height: 0;
+    position: absolute;
+    top: 24px;
+    width: 0;
+}
+
+.aui-scheduler-event-recorder-overlay-arrow-shadow {
+    border-color: transparent #CCC transparent transparent;
+    left: -24px;
+}
+
+.aui-scheduler-event-recorder-overlay-header {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    background-color: #F7F7F7;
+    border-color: #DEDEDE;
+    border-radius: 4px 4px 0 0;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    box-shadow: none;
+    margin: -10px -20px 0 -20px;
+    padding: 10px 20px;
+}
+
+.aui-scheduler-event-recorder-overlay-content {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    margin: 10px 0;
+    width: 255px;
+}
+
+.aui-scheduler-event-recorder-overlay-delete {
+    bottom: 25px;
+    position: absolute;
+    right: 20px;
+}
+
+.aui-scheduler-event-recorder-overlay-repeat {
+    margin: 10px 0 15px;
+}
+
+.aui-scheduler-event-recorder-overlay-body {
+    margin-top: 15px;
+}
+
 .aui-scheduler-event.aui-scheduler-event-recorder {
     width: 99.88%;
     position: relative;
     opacity: .7;
     filter: alpha(opacity=70);
-}
-
-.aui-scheduler-event-recorder-form .aui-scheduler-event-recorder-field-hint {
-    color: #777777;
-    font-size: 0.9em;
-}
-
-.aui-scheduler-event-recorder-form .aui-scheduler-event-recorder-button-row {
-    margin-top: 10px;
-    text-align: center;
-}
-
-.aui-scheduler-event-recorder-form .aui-field-content {
-    display: block;
-    clear: both;
-    padding: 7px 0;
 }
 
 .aui-scheduler-event-recorder-form .aui-fieldset-legend { padding-bottom: 1em }
