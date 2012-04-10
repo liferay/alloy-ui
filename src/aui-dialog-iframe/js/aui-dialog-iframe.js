@@ -160,6 +160,8 @@ var DialogIframePlugin = A.Component.create(
 				}
 
 				instance._bodyNode.loadingmask.hide();
+
+				instance._host._syncUIPosAlign();
 			},
 
 			_plugIframe: function() {
