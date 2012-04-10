@@ -156,6 +156,8 @@ ResizeIframe = A.Component.create(
 				var instance = this;
 
 				if (!instance._intervalId) {
+					instance._onResize();
+
 					instance._intervalId = A.setInterval(instance._onResize, 100, instance);
 				}
 			},
