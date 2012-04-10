@@ -310,6 +310,11 @@ body {
 	zoom: 1;
 }
 
+.aui-w1-20,
+.aui-w5 {
+	width: 5%;
+}
+
 .aui-w1-16 {
 	width: 6.25%;
 }
