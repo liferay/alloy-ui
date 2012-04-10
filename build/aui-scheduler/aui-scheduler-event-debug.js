@@ -10,9 +10,9 @@ var Lang = A.Lang,
 	ColorUtil = A.ColorUtil,
 	DateMath = A.DataType.DateMath,
 
-    _toInitialCap = A.cached(function(str) {
-        return str.substring(0, 1).toUpperCase() + str.substring(1);
-    }),
+	_toInitialCap = A.cached(function(str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1);
+	}),
 
 	DASH = '-',
 	NDASH = '&ndash;',
@@ -24,6 +24,8 @@ var Lang = A.Lang,
 	_PROPAGATE_SET = '_propagateSet',
 
 	ACTIVE_VIEW = 'activeView',
+	BORDER_COLOR = 'borderColor',
+	BORDER_COLOR_RGB = 'borderColorRGB',
 	BORDER_STYLE = 'borderStyle',
 	BORDER_WIDTH = 'borderWidth',
 	CHANGE = 'Change',
@@ -35,21 +37,24 @@ var Lang = A.Lang,
 	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
+	EVENT_STACK = 'eventStack',
 	EVENTS = 'events',
 	HIDDEN = 'hidden',
+	HSB_COLOR = 'hsbColor',
 	ICON = 'icon',
 	ICONS = 'icons',
 	ID = 'id',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
+	NEVER = 'never',
 	NODE = 'node',
 	OVERLAY = 'overlay',
 	PARENT_EVENT = 'parentEvent',
 	RECORDER = 'recorder',
 	REPEAT = 'repeat',
 	REPEATED = 'repeated',
-	REPEATER = 'repeater',
 	REPEATED_EVENTS = 'repeatedEvents',
+	REPEATER = 'repeater',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
@@ -59,6 +64,9 @@ var Lang = A.Lang,
 	TITLE_DATE_FORMAT = 'titleDateFormat',
 	TITLE_NODE = 'titleNode',
 	VISIBLE = 'visible',
+	PADDING_NODE = 'paddingNode',
+	PADDING_CONTENT_NODE = 'paddingContentNode',
+	PADDING_TITLE_NODE = 'paddingTitleNode',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
@@ -74,7 +82,7 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_EVENT_REPEATED = getCN(SCHEDULER_EVENT, REPEATED),
 	CSS_SCHEDULER_EVENT_REPEATER = getCN(SCHEDULER_EVENT, REPEATER),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER_EVENT, TITLE),
-	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS);
+	CSS_SCHEDULER_EVENT_ICONS = getCN(SCHEDULER_EVENT, ICONS),
 	CSS_SCHEDULER_EVENT_ICON_DISABLED = getCN(SCHEDULER_EVENT, ICON, DISABLED),
 	CSS_SCHEDULER_EVENT_ICON_REPEATED = getCN(SCHEDULER_EVENT, ICON, REPEATED),
 	CSS_SCHEDULER_EVENT_ICON_REPEATER = getCN(SCHEDULER_EVENT, ICON, REPEATER);
@@ -131,10 +139,6 @@ var SchedulerEvent = A.Component.create({
 			validator: isDate
 		},
 
-		columnNode: {
-			setter: A.one
-		},
-
 		disabled: {
 			value: false,
 			validator: isBoolean
@@ -142,9 +146,18 @@ var SchedulerEvent = A.Component.create({
 
 		node: {
 			valueFn: function() {
-				return A.Node.create(this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
+				return A.Node.create(
+					this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
 			},
 			setter: A.one
+		},
+
+		paddingNode: {
+			readOnly: true,
+			valueFn: function() {
+				return A.Node.create(
+					this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
+			}
 		},
 
 		parentEvent: {
@@ -192,9 +205,9 @@ var SchedulerEvent = A.Component.create({
 		initializer: function() {
 			var instance = this;
 			var node = instance.get(NODE);
+			var paddingNode = instance.get(PADDING_NODE);
 
-			instance.eventStack = {};
-			instance.nodeStack = {};
+			instance[EVENT_STACK] = {};
 
 			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
 				instance.after(attrName+CHANGE, instance._propagateAttrChange);
@@ -202,8 +215,10 @@ var SchedulerEvent = A.Component.create({
 
 			instance._bindUIAttrs();
 
-			instance.contentNode = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
-			instance.titleNode = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
+			instance[CONTENT_NODE] = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
+			instance[TITLE_NODE] = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
+			instance[PADDING_CONTENT_NODE] = paddingNode.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
+			instance[PADDING_TITLE_NODE] = paddingNode.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
 
 			instance.syncNodeUI(true);
 		},
@@ -215,9 +230,8 @@ var SchedulerEvent = A.Component.create({
 				evt.destroy();
 			});
 
-			instance.eventStack = {};
-
-			// remove and purge DOM node
+			instance[EVENT_STACK] = {};
+			instance.get(PADDING_NODE).remove(true);
 			instance.get(NODE).remove(true);
 		},
 
@@ -234,7 +248,7 @@ var SchedulerEvent = A.Component.create({
 			instance.copyDates(evt);
 
 			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
-				if ( !(attrName in (dontCopyMap || {})) ) {
+				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
 					if (!isObject(value)) {
@@ -247,31 +261,35 @@ var SchedulerEvent = A.Component.create({
 		getBorderColor: function() {
 			var instance = this;
 
-			return instance.borderColorRGB.hex;
+			return instance[BORDER_COLOR_RGB].hex;
 		},
 
 		getDaysDuration: function() {
 			var instance = this;
 
-			return DateMath.getDayOffset(instance.get(END_DATE), instance.get(START_DATE));
+			return DateMath.getDayOffset(
+				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
 		getHoursDuration: function() {
 			var instance = this;
 
-			return DateMath.getHoursOffset(instance.get(END_DATE), instance.get(START_DATE));
+			return DateMath.getHoursOffset(
+				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
 		getMinutesDuration: function() {
 			var instance = this;
 
-			return DateMath.getMinutesOffset(instance.get(END_DATE), instance.get(START_DATE));
+			return DateMath.getMinutesOffset(
+				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
 		getSecondsDuration: function() {
 			var instance = this;
 
-			return DateMath.getSecondsOffset(instance.get(END_DATE), instance.get(START_DATE));
+			return DateMath.getSecondsOffset(
+				instance.get(END_DATE), instance.get(START_DATE));
 		},
 
 		sameEndDate: function(evt) {
@@ -283,7 +301,8 @@ var SchedulerEvent = A.Component.create({
 		sameStartDate: function(evt) {
 			var instance = this;
 
-			return DateMath.compare(instance.get(START_DATE), evt.get(START_DATE));
+			return DateMath.compare(
+				instance.get(START_DATE), evt.get(START_DATE));
 		},
 
 		isAfter: function(evt) {
@@ -306,28 +325,26 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 			var uid = instance.uidByDate(date);
 
-			if (!instance.eventStack[uid]) {
-				var repeatedStartDate = DateMath.clone(date);
-				var repeatedEndDate = DateMath.clone(date);
+			if (!instance[EVENT_STACK][uid]) {
+				var startDate = DateMath.clone(date);
+				var endDate = DateMath.clone(date);
 
-				DateMath.copyHours(repeatedStartDate, instance.get(START_DATE));
-				DateMath.copyHours(repeatedEndDate, instance.get(END_DATE));
+				DateMath.copyHours(startDate, instance.get(START_DATE));
+				DateMath.copyHours(endDate, instance.get(END_DATE));
 
-				// copying base attrs
 				var newEvt = new A.SchedulerEvent({
-					endDate: repeatedEndDate,
+					endDate: endDate,
 					parentEvent: instance,
 					scheduler: instance.get(SCHEDULER),
-					startDate: repeatedStartDate
+					startDate: startDate
 				});
 
-				// copying propagatable attrs
 				newEvt.copyPropagateAttrValues(instance);
 
-				instance.eventStack[uid] = newEvt;
+				instance[EVENT_STACK][uid] = newEvt;
 			}
 
-			return instance.eventStack[uid];
+			return instance[EVENT_STACK][uid];
 		},
 
 		intersects: function(evt) {
@@ -336,7 +353,8 @@ var SchedulerEvent = A.Component.create({
 			var startDate = instance.get(START_DATE);
 			var evtStartDate = evt.get(START_DATE);
 
-			return (instance.sameStartDate(evt) || DateMath.between(evtStartDate, startDate, endDate));
+			return (instance.sameStartDate(evt) ||
+					DateMath.between(evtStartDate, startDate, endDate));
 		},
 
 		intersectHours: function(evt) {
@@ -347,13 +365,22 @@ var SchedulerEvent = A.Component.create({
 
 			DateMath.copyHours(evtModifiedStartDate, evt.get(START_DATE));
 
-			return (DateMath.compare(startDate, evtModifiedStartDate) || DateMath.between(evtModifiedStartDate, startDate, endDate));
+			return (DateMath.compare(startDate, evtModifiedStartDate) ||
+					DateMath.between(evtModifiedStartDate, startDate, endDate));
+		},
+
+		isDayBoundaryEvent: function() {
+			var instance = this;
+
+			return DateMath.isDayBoundary(
+				instance.get(START_DATE), instance.get(END_DATE));
 		},
 
 		isDayOverlapEvent: function() {
 			var instance = this;
 
-			return DateMath.isDayOverlap(instance.get(START_DATE), instance.get(END_DATE));
+			return DateMath.isDayOverlap(
+				instance.get(START_DATE), instance.get(END_DATE));
 		},
 
 		isRepeatableDate: function(date) {
@@ -375,10 +402,19 @@ var SchedulerEvent = A.Component.create({
 			return DateMath.safeClearTime(instance.get(START_DATE));
 		},
 
+		move: function(date) {
+			var instance = this;
+			var duration = instance.getMinutesDuration();
+
+			instance.set(START_DATE, date);
+			instance.set(END_DATE, DateMath.add(DateMath.clone(date), DateMath.MINUTES, duration));
+		},
+
 		uidByDate: function(date) {
 			var instance = this;
 
-			date = isDate(date) ?  DateMath.safeClearTime(date) : instance.getClearStartDate();
+			date = isDate(date) ?
+					DateMath.safeClearTime(date) : instance.getClearStartDate();
 
 			return [SCHEDULER_EVENT, date.getTime()].join(UNDERLINE);
 		},
@@ -387,19 +423,20 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance._setContent(CONTENT_NODE, content, propagate);
+			instance._setContent(PADDING_CONTENT_NODE, content, propagate);
 		},
 
 		setTitle: function(content, propagate) {
 			var instance = this;
 
 			instance._setContent(TITLE_NODE, content, propagate);
+			instance._setContent(PADDING_TITLE_NODE, content, propagate);
 		},
 
 		syncNodeUI: function(propagate) {
 			var instance = this;
 
 			instance._syncUIAttrs();
-
 			instance.syncNodeColorUI(propagate);
 			instance.syncNodeTitleUI(propagate);
 			instance.syncNodeContentUI(propagate);
@@ -408,28 +445,24 @@ var SchedulerEvent = A.Component.create({
 		syncNodeColorUI: function(propagate) {
 			var instance = this;
 			var node = instance.get(NODE);
+			var paddingNode = instance.get(PADDING_NODE);
 			var borderColor = instance.getBorderColor();
 
-			// update original event node
-			if (node) {
-				node.setStyles({
+			if (node && paddingNode) {
+				var styles = {
 					borderWidth: instance.get(BORDER_WIDTH),
 					borderColor: borderColor,
 					backgroundColor: instance.get(COLOR),
 					borderStyle: instance.get(BORDER_STYLE)
-				});
+				};
+
+				node.setStyles(styles);
+				paddingNode.setStyles(styles);
 			}
 
-			if (instance.titleNode) {
-				instance.titleNode.setStyles({
-					backgroundColor: borderColor
-				});
-			}
-
-			// update repeated nodes
 			if (propagate) {
 				instance.eachRepeatedEvent(function(evt, uid) {
-					evt.syncNodeColorUI()
+					evt.syncNodeColorUI();
 				});
 			}
 		},
@@ -442,16 +475,31 @@ var SchedulerEvent = A.Component.create({
 
 		syncNodeTitleUI: function(propagate) {
 			var instance = this;
-			var sDateFormatted = instance._formatDate(instance.get(START_DATE));
-			var eDateFormatted = instance._formatDate(instance.get(END_DATE));
+			var sDate = instance._formatDate(instance.get(START_DATE));
+			var eDate = instance._formatDate(instance.get(END_DATE));
 
-			instance.setTitle([sDateFormatted, eDateFormatted].join(SPACE+NDASH+SPACE), propagate);
+			instance.setTitle([sDate, eDate].join(SPACE+NDASH+SPACE), propagate);
+		},
+
+		split: function() {
+			var instance = this,
+				s1 = DateMath.clone(instance.get(START_DATE)),
+				e1 = DateMath.clone(instance.get(END_DATE));
+
+			if (instance.isDayOverlapEvent() && !instance.isDayBoundaryEvent()) {
+				var s2 = DateMath.clone(s1);
+				s2.setHours(24,0,0,0);
+
+				return [ [ s1, DateMath.toMidnight(DateMath.clone(s1)) ], [ s2, DateMath.clone(e1) ] ];
+			}
+
+			return [ [ s1, e1 ] ];
 		},
 
 		eachRepeatedEvent: function(fn) {
 			var instance = this;
 
-			A.each(instance.eventStack, fn, instance);
+			A.each(instance[EVENT_STACK], fn, instance);
 		},
 
 		unlink: function() {
@@ -460,15 +508,13 @@ var SchedulerEvent = A.Component.create({
 			if (instance.get(PARENT_EVENT)) {
 				instance.set(PARENT_EVENT, null);
 			}
-			// if node is a parent event
 			else {
 				instance.eachRepeatedEvent(function(evt, uid) {
 					evt.unlink();
 				});
 			}
 
-			// clean all child events
-			instance.eventStack = {};
+			instance[EVENT_STACK] = {};
 
 			instance.syncNodeUI();
 		},
@@ -500,10 +546,12 @@ var SchedulerEvent = A.Component.create({
 		_bindUIAttrs: function() {
 			var instance = this;
 
-			instance.after('disabledChange', instance._afterDisabledChange);
-			instance.after('visibleChange', instance._afterVisibleChange);
-			instance.after('parentEventChange', instance._afterParentEventChange);
-			instance.after('repeatChange', instance._afterRepeatChange);
+			instance.after({
+				disabledChange: instance._afterDisabledChange,
+				visibleChange: instance._afterVisibleChange,
+				parentEventChange: instance._afterParentEventChange,
+				repeatChange: instance._afterRepeatChange
+			});
 
 			instance._syncUIAttrs();
 		},
@@ -546,12 +594,11 @@ var SchedulerEvent = A.Component.create({
 		_setColor: function(val) {
 			var instance = this;
 
-			// finding the respective nice color to the border
-			instance.hsbColor = ColorUtil.rgb2hsb(ColorUtil.getRGB(val));
-			instance.borderColor = A.clone(instance.hsbColor);
-			instance.borderColor.b *= instance.get(COLOR_BRIGHTNESS_FACTOR);
-			instance.borderColor.s *= instance.get(COLOR_SATURATION_FACTOR);
-			instance.borderColorRGB = ColorUtil.hsb2rgb(instance.borderColor);
+			instance[HSB_COLOR] = ColorUtil.rgb2hsb(ColorUtil.getRGB(val));
+			instance[BORDER_COLOR] = A.clone(instance[HSB_COLOR]);
+			instance[BORDER_COLOR].b *= instance.get(COLOR_BRIGHTNESS_FACTOR);
+			instance[BORDER_COLOR].s *= instance.get(COLOR_SATURATION_FACTOR);
+			instance[BORDER_COLOR_RGB] = ColorUtil.hsb2rgb(instance[BORDER_COLOR]);
 
 			return val;
 		},
@@ -560,12 +607,10 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 			var node = instance[nodeRefName];
 
-			// update original event node
 			if (node) {
 				node.setContent(content);
 			}
 
-			// update repeated nodes
 			if (propagate) {
 				instance.eachRepeatedEvent(function(evt, uid) {
 					evt[nodeRefName].setContent(content);
@@ -602,15 +647,12 @@ var SchedulerEvent = A.Component.create({
 			instance._uiSetDisabled(
 				instance.get(DISABLED)
 			);
-
 			instance._uiSetVisible(
 				instance.get(VISIBLE)
 			);
-
 			instance._uiSetParentEvent(
 				instance.get(PARENT_EVENT)
 			);
-
 			instance._uiSetRepeat(
 				instance.get(REPEAT)
 			);
@@ -622,7 +664,10 @@ var SchedulerEvent = A.Component.create({
 
 			format = format || instance.get(TITLE_DATE_FORMAT);
 
-			return A.DataType.Date.format(date, { format: format, locale: locale });
+			return A.DataType.Date.format(date, {
+				format: format,
+				locale: locale
+			});
 		},
 
 		_getTitleDateFormat: function(val) {
@@ -640,40 +685,44 @@ var SchedulerEvent = A.Component.create({
 		_uiSetDisabled: function(val) {
 			var instance = this;
 
-			instance.get(NODE).toggleClass(
-				CSS_SCHEDULER_EVENT_DISABLED,
-				!!val
-			);
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
+			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
 		},
 
 		_uiSetParentEvent: function(val) {
 			var instance = this;
 
-			instance.get(NODE).toggleClass(
-				CSS_SCHEDULER_EVENT_REPEATED,
-				!!val
-			);
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
+			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
 		},
 
 		_uiSetRepeat: function(val) {
 			var instance = this;
+			var value = !!val && val !== A.SchedulerEventRepeat[NEVER];
 
-			instance.get(NODE).toggleClass(
-				CSS_SCHEDULER_EVENT_REPEATER,
-				!!val
-			);
+			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
+			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
 		},
 
 		_uiSetVisible: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_HIDDEN, !val);
+			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_HIDDEN, !val);
 		}
 	}
 });
 
 A.SchedulerEvent = SchedulerEvent;
 A.SchedulerEventRepeat = {
+	never: {
+		description: 'Never repeat',
+		validate: function(evt, date) {
+			return false;
+		},
+		value: 'never'
+	},
+
 	daily: {
 		description: 'Every day',
 		validate: function(evt, date) {
@@ -740,121 +789,110 @@ A.SchedulerEventRepeat = {
 	}
 
 };
-var ACTIVE_VIEW = 'activeView',
-	BC = 'bc',
-	BD = 'bd',
+var L = A.Lang,
+	isArray = L.isArray,
+	isObject = L.isObject,
+
+	ACTIVE_VIEW = 'activeView',
+	ARROW = 'arrow',
+	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
-	BUTTON = 'button',
-	COLUMN = 'column',
+	CANCEL = 'cancel',
+	CLICK = 'click',
 	CONTENT = 'content',
+	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
-	DBLCLICK = 'dblclick',
-	DESC = 'desc',
-	DISK = 'disk',
+	DELETE = 'delete',
+	DESCRIPTION = 'description',
+	EDIT = 'edit',
 	EVENT = 'event',
-	FIELD = 'field',
-	FIELDSET = 'fieldset',
+	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
-	HINT = 'hint',
-	INPUT = 'input',
+	HEADER = 'header',
+	HIDE = 'hide',
 	ISO_TIME = 'isoTime',
-	LABEL = 'label',
-	LAYOUT = 'layout',
-	MENU = 'menu',
-	OVERLAY_CONTEXT_PANEL = 'overlayContextPanel',
-	PENCIL = 'pencil',
+	NODE = 'node',
+	OVERLAY = 'overlay',
+	OVERLAY_OFFSET = 'overlayOffset',
+	RECORDER = 'recorder',
+	RENDERED = 'rendered',
 	REPEAT = 'repeat',
-	ROW = 'row',
+	SAVE = 'save',
 	SCHEDULER = 'scheduler',
-	SELECT = 'select',
+	SCHEDULER_CHANGE = 'schedulerChange',
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
+	SHADOW = 'shadow',
+	SHOW = 'show',
+	START_DATE_CHANGE = 'startDateChange',
 	STRINGS = 'strings',
-	TC = 'tc',
-	TEXT = 'text',
+	TEMPLATE = 'template',
+	TITLE = 'title',
+	TL = 'tl',
+	TOOLBAR = 'toolbar',
+	SUBMIT = 'submit',
+	VALUE = 'value',
+	VISIBLE_CHANGE = 'visibleChange',
 	WHEN = 'when',
-	TRIGGER = 'trigger',
-
-	AUI_SCHEDULER_EVENT_RECORDER_WHEN = 'auiSchedulerEventRecorderWhen',
-	AUI_SCHEDULER_EVENT_RECORDER_DESC = 'auiSchedulerEventRecorderDesc',
-	AUI_SCHEDULER_EVENT_RECORDER_SELECT = 'auiSchedulerEventRecorderSelect',
-	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
+	X = 'x',
+	Y = 'y',
 
 	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
+	EV_SCHEDULER_EVENT_RECORDER_DELETE = 'delete',
 	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
 	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'save',
 
-	DASH = '-',
-	POUND = '#',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_POUND = '#',
 
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER_EVENT, RECORDER, OVERLAY),
-	CSS_SCHEDULER_EVENT_RECORDER_FORM = getCN(SCHEDULER_EVENT, RECORDER, FORM),
-	CSS_FORM = getCN(FORM),
-	CSS_LAYOUT_CONTENT = getCN(LAYOUT, CONTENT),
-	CSS_FIELDSET = getCN(LAYOUT, FIELDSET),
-	CSS_FIELDSET_BD = getCN(LAYOUT, FIELDSET, BD),
-	CSS_FIELDSET_CONTENT = getCN(LAYOUT, FIELDSET, CONTENT),
-	CSS_W100 = getCN(LAYOUT, 'w100'),
-	CSS_COLUMN = getCN(COLUMN),
-	CSS_COLUMN_CONTENT = getCN(COLUMN, CONTENT),
-	CSS_FIELD = getCN(FIELD),
-	CSS_FIELD_MENU = getCN(FIELD, MENU),
-	CSS_FIELD_SELECT = getCN(FIELD, SELECT),
-	CSS_FIELD_CONTENT = getCN(FIELD, CONTENT),
-	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
-	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
-	CSS_BUTTON_ROW = getCN(BUTTON, ROW),
-	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
-	CSS_FIELD_INPUT_SELECT = getCN(FIELD, INPUT, SELECT),
-	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN = getCN(SCHEDULER_EVENT, RECORDER, LABEL, WHEN),
-	CSS_SCHEDULER_EVENT_RECORDER_DESC = getCN(SCHEDULER_EVENT, RECORDER, DESC),
+	_serialize = A.IO.prototype._serialize,
 
-	CSS_SCHEDULER_EVENT_RECORDER_FIELD_HINT = getCN(SCHEDULER_EVENT, RECORDER, FIELD, HINT),
-	CSS_SCHEDULER_EVENT_RECORDER_REPEAT = getCN(SCHEDULER_EVENT, RECORDER, REPEAT),
-	CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = getCN(SCHEDULER_EVENT, RECORDER, BUTTON, ROW),
+	getCN = A.getClassName,
 
-	TPL_OPTION = '<option></option>',
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER, EVENT),
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER, EVENT, RECORDER),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DELETE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DELETE),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER, EVENT, TITLE),
 
-	TPL_EVT_REC_OVERLAY = '<form id="auiSchedulerEventRecorderForm" class="' + [ CSS_SCHEDULER_EVENT_RECORDER_FORM, CSS_LAYOUT_CONTENT, CSS_FORM ].join(SPACE) + '">' +
-							'<div class="' + [ CSS_FIELDSET, CSS_W100, CSS_COLUMN ].join(SPACE) + '">' +
-								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'aui-fieldset-content aui-column-content">' +
+	TPL_OVERLAY_BODY_CONTENT = new A.Template(
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
+		'<input type="hidden" name="startDate" value="{startDate}" />',
+		'<input type="hidden" name="endDate" value="{endDate}" />',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER, '">',
+			'<input class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT, '" name="content" value="{content}" />',
+		'</div>',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
+			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
+			'<select class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT, '" name="repeat">',
+				'<tpl for="eventRepeat">',
+					'<option {[ (parent.repeat && parent.repeat.value) == parent.eventRepeat[$i].value ? \'selected="selected"\' : "" ]} value="{value}">{description}</option>',
+				'</tpl>',
+			'</select>',
+		'</div>'
+	),
 
-									'<div class="' + CSS_FIELDSET_BD + '">' +
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +
-											'<span class="' + CSS_FIELD_CONTENT + '">' +
-												'<label class="' + CSS_FIELD_LABEL + '">{when}:</label>' +
-												'<span id="auiSchedulerEventRecorderWhen" class="' + CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN + '"></span>' +
-											'</span>' +
-										'</span>' +
-
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +
-											'<span class="' + CSS_FIELD_CONTENT + '">' +
-												'<label class="' + CSS_FIELD_LABEL + '" for="auiSchedulerEventRecorderDesc">{description}</label>' +
-												'<input id="auiSchedulerEventRecorderDesc" class="' + [ CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT, CSS_SCHEDULER_EVENT_RECORDER_DESC ].join(SPACE) + '" size="30" type="text" />' +
-												'<div class="' + CSS_SCHEDULER_EVENT_RECORDER_FIELD_HINT + '">' +
-													'<span>{description-hint}</span>' +
-												'</div>' +
-											'</span>' +
-										'</span>' +
-
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_MENU, CSS_FIELD_SELECT ].join(SPACE) + '">' +
-											'<label class="' + CSS_FIELD_LABEL + '" for="auiSchedulerEventRecorderSelect">{repeat}:</label>' +
-											'<select id="auiSchedulerEventRecorderSelect" class="' + [ CSS_FIELD_INPUT, CSS_FIELD_INPUT_SELECT, CSS_SCHEDULER_EVENT_RECORDER_REPEAT ].join(SPACE) + '">' +
-												'<option selected="selected" value="">{no-repeat}</option>' +
-											'</select>' +
-										'</span>' +
-										'<div id="auiSchedulerEventRecorderButtonRow" class="' + [ CSS_FIELD, CSS_BUTTON_ROW, CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW ].join(SPACE) + '"></div>' +
-									'</div>' +
-								'</div>' +
-							'</div>' +
-						'</form>';
+	TPL_OVERLAY_DELETE = '<a class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DELETE + '" href="javascript:;">{delete}</a>',
+	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
 
 var SchedulerEventRecorder = A.Component.create({
 	NAME: SCHEDULER_EVENT_RECORDER,
 
 	ATTRS: {
 		content: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -862,8 +900,8 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		dateFormat: {
-			value: '%a, %B %d,',
-			validator: isString
+			validator: isString,
+			value: '%a, %B %d,'
 		},
 
 		event: {
@@ -874,14 +912,15 @@ var SchedulerEventRecorder = A.Component.create({
 			setter: function(val) {
 				return A.merge(
 					{
-						save: 'Save',
+						'delete': 'Delete',
+						'description-hint': 'e.g., Dinner at Brian\'s',
+						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
 						repeat: 'Repeat',
-						when: 'When',
-						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat'
+						save: 'Save',
+						when: 'When'
 					},
 					val || {}
 				);
@@ -889,113 +928,82 @@ var SchedulerEventRecorder = A.Component.create({
 			validator: isObject
 		},
 
-		overlayContextPanel: {
-			value: {},
+		overlay: {
+			validator: isObject,
+			value: {
+				align: {
+					points: [ TL, TL ]
+				},
+				visible: false,
+				width: 260,
+				zIndex: 500
+			}
+		},
+
+		// See #2530972
+		overlayOffset: {
+			value: [95, -31],
+			validator: isArray
+		},
+
+		template: {
+			value: TPL_OVERLAY_BODY_CONTENT
+		},
+
+		toolbar: {
 			setter: function(val) {
 				var instance = this;
+				var strings = instance.get(STRINGS);
 
-				var bodyContent = A.Node.create(
-					A.Lang.sub(TPL_EVT_REC_OVERLAY, instance.get(STRINGS))
-				);
-
-				return A.merge(
-					{
-						align: { points: [ BC, TC ] },
-						anim: false,
-						bodyContent: bodyContent,
-						hideOn: DBLCLICK,
-						trigger: instance.get(NODE),
-						visible: false,
-						zIndex: 9999
-					},
-					val || {}
-				);
-			}
+				return A.merge({
+					children: [
+						{
+							handler: A.bind(instance._handleSaveEvent, instance),
+							label: strings[SAVE]
+						},
+						{
+							handler: A.bind(instance._handleCancelEvent, instance),
+							label: strings[CANCEL]
+						}
+					]
+				}, val || {});
+			},
+			validator: isObject,
+			value: {}
 		}
+
 	},
 
 	EXTENDS: A.SchedulerEvent,
 
 	prototype: {
+
 		initializer: function() {
 			var instance = this;
 
-			instance._createEvents();
-
-			instance.after('schedulerChange', instance._afterSchedulerChange);
-			instance.on('startDateChange', instance._onStartDateChange);
-
 			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
-		},
 
-		showOverlay: function() {
-			var instance = this;
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_CANCEL, {
+				defaultFn: instance._defCancelEventFn
+			});
 
-			if (!instance.overlay) {
-				instance._initOverlay();
-			}
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+				defaultFn: instance._defDeleteEventFn
+			});
 
-			instance.overlay.render().show();
-		},
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
+				defaultFn: instance._defEditEventFn
+			});
 
-		getEventCopy: function(evt) {
-			var instance = this;
-			var content = instance.overlayDescNode.val();
-			var newEvt = instance.get(EVENT);
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+				defaultFn: instance._defSaveEventFn
+			});
 
-			if (!newEvt) {
-				newEvt = new A.SchedulerEvent({
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
+			instance.after(SCHEDULER_CHANGE, instance._afterSchedulerChange);
+			instance.on(START_DATE_CHANGE, instance._onStartDateChange);
 
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			newEvt.set(
-				REPEAT,
-				instance.overlaySelectNode.val()
-			);
-
-			if (content) {
-				newEvt.set(CONTENT, content);
-			}
-
-			return newEvt;
-		},
-
-		hideOverlay: function() {
-			var instance = this;
-
-			if (instance.overlay) {
-				instance.overlay.hide();
-			}
-		},
-
-		loadFormValues: function() {
-			var instance = this;
-			var repeat = EMPTY_STR;
-			var content = EMPTY_STR;
-			var evt = instance.get(EVENT);
-
-			if (evt) {
-				var evtRepeat = evt.get(REPEAT);
-
-				if (evtRepeat) {
-					repeat = evtRepeat.value;
-				}
-
-				content = evt.get(CONTENT);
-			}
-
-			instance.overlaySelectNode.val(repeat);
-			instance.overlayWhenNode.setContent(instance._getWhenFormattedDt());
-
-			setTimeout(function() {
-				instance.overlayDescNode.val(content).selectText();
-			}, 0);
+			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
+			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
 		},
 
 		_afterSchedulerChange: function(event) {
@@ -1003,106 +1011,26 @@ var SchedulerEventRecorder = A.Component.create({
 			var scheduler = event.newVal;
 			var schedulerBB = scheduler.get(BOUNDING_BOX);
 
-			schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), DOT+CSS_SCHEDULER_EVENT);
-		},
-
-	    /**
-	     * Create the custom events used on the Resize.
-	     *
-	     * @method _createEvents
-	     * @private
-	     */
-		_createEvents: function() {
-			var instance = this;
-
-			// create publish function for kweight optimization
-			var publish = function(name, fn) {
-				instance.publish(name, {
-		            defaultFn: fn,
-		            queuable: false,
-		            emitFacade: true,
-		            bubbles: true
-		        });
-			};
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				this._defSaveEventFn
-			);
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_EDIT,
-				this._defEditEventFn
-			);
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_CANCEL,
-				this._defCancelEventFn
-			);
-		},
-
-		_initOverlay: function() {
-			var instance = this;
-			var strings = instance.get(STRINGS);
-
-			instance.overlay = new A.OverlayContextPanel(
-				instance.get(OVERLAY_CONTEXT_PANEL)
-			);
-
-			var overlay = instance.overlay;
-			var oBoundingBox = overlay.get(BOUNDING_BOX);
-			var oBodyContent = overlay.get(BODY_CONTENT);
-
-			instance.overlayButtonRowNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW);
-			instance.overlayDescNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_DESC);
-			instance.overlaySelectNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_SELECT);
-			instance.overlayWhenNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_WHEN);
-
-			instance.overlaySaveBtn = new A.ButtonItem({
-				label: strings.save,
-				icon: DISK,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleSaveEvent,
-					context: instance
-				}
-			});
-
-			instance.overlayEditBtn = new A.ButtonItem({
-				label: strings.edit,
-				icon: PENCIL,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleEditEvent,
-					context: instance
-				}
-			});
-
-			instance.overlayCancelBtn = new A.ButtonItem({
-				label: strings.cancel,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleCancelEvent,
-					context: instance
-				}
-			});
-
-			A.each(A.SchedulerEventRepeat, function(repeat, key) {
-				instance.overlaySelectNode.append(
-					A.Node.create(TPL_OPTION).val(repeat.value || key).setContent(repeat.description)
-				);
-			});
-
-			overlay.on('hide', A.bind(instance._onOverlayHide, instance));
-			overlay.on('show', A.bind(instance._onOverlayShow, instance));
-			oBodyContent.on('submit', A.bind(instance._onSubmitForm, instance));
-			oBoundingBox.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
+			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
 
 		_defCancelEventFn: function(event) {
 			var instance = this;
 
+			instance.get(NODE).remove();
+
 			instance.hideOverlay();
+		},
+
+		_defDeleteEventFn: function(event) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+
+			scheduler.removeEvent(instance.get(EVENT));
+
+			instance.hideOverlay();
+
+			scheduler.syncEventsUI();
 		},
 
 		_defEditEventFn: function(event) {
@@ -1125,39 +1053,6 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
-		_getWhenFormattedDt: function() {
-			var instance = this;
-			var dateFormat = instance.get(DATE_FORMAT);
-			var evt = (instance.get(EVENT) || instance);
-
-			var endDate = evt.get(END_DATE);
-			var scheduler = evt.get(SCHEDULER);
-			var startDate = evt.get(START_DATE);
-			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
-
-			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
-		},
-
-		_handleEditEvent: function(event) {
-			var instance = this;
-
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
-				newSchedulerEvent: instance.getEventCopy()
-			});
-
-			event.preventDefault();
-		},
-
-		_handleSaveEvent: function(event) {
-			var instance = this;
-
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
-				newSchedulerEvent: instance.getEventCopy()
-			});
-
-			event.preventDefault();
-		},
-
 		_handleCancelEvent: function(event) {
 			var instance = this;
 
@@ -1166,50 +1061,62 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		_handleSaveEvent: function(event) {
+			var instance = this;
+
+			instance.fire(
+				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
+				{
+					newSchedulerEvent: instance.getEventCopy()
+				}
+			);
+
+			event.preventDefault();
+		},
+
+		_onClickDelete: function() {
+			var instance = this;
+
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE);
+		},
+
 		_onClickSchedulerEvent: function(event) {
 			var instance = this;
 			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
 
 			if (evt) {
-				if (!instance.overlay) {
-					instance._initOverlay();
-				}
-
 				instance.set(EVENT, evt);
-				instance.overlay.set(TRIGGER, evt.get(NODE));
-				instance.get(NODE).remove();
 				instance.showOverlay();
+
+				instance.get(NODE).remove();
 			}
 		},
 
-		_onOverlayHide: function(event) {
+		_onOverlayVisibleChange: function(event) {
 			var instance = this;
-			var node = instance.get(NODE);
 
-			if (instance.overlay) {
-				// restore values
-				instance.set(EVENT, null);
-				instance.overlay.set(TRIGGER, node);
-			}
+			if (event.newVal) {
+				instance.populateForm();
 
-			node.remove();
-		},
+				if (!instance.get(EVENT)) {
+					var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+					var contentNode = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
 
-		_onOverlayShow: function(event) {
-			var instance = this;
-			var overlayEditBtn = instance.overlayEditBtn;
-			var overlaySaveBtn = instance.overlaySaveBtn;
+					setTimeout(function() {
+						contentNode.selectText();
+					}, 0);
 
-			if (instance.get(EVENT)) {
-				overlayEditBtn.show();
-				overlaySaveBtn.hide();
+					instance.deleteNode.hide();
+				}
+				else {
+					instance.deleteNode.show();
+				}
 			}
 			else {
-				overlayEditBtn.hide();
-				overlaySaveBtn.show();
-			}
+				instance.set(EVENT, null);
 
-			instance.loadFormValues();
+				instance.get(NODE).remove();
+			}
 		},
 
 		_onStartDateChange: function(event) {
@@ -1225,16 +1132,143 @@ var SchedulerEventRecorder = A.Component.create({
 		_onSubmitForm: function(event) {
 			var instance = this;
 
-			if (instance.get(EVENT)) {
-				instance._handleEditEvent(event);
+			instance._handleSaveEvent(event);
+		},
+
+		_renderOverlay: function() {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			instance[OVERLAY].render();
+			instance[TOOLBAR].render();
+
+			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
+
+			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
+			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
+
+			instance.deleteNode = A.Node.create(
+				L.sub(TPL_OVERLAY_DELETE, {
+					'delete': strings[DELETE]
+				})
+			);
+
+			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
+
+			overlayBB.append(instance.deleteNode);
+
+			instance.deleteNode.on(CLICK, A.bind(instance._onClickDelete, instance));
+			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
+
+			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
+		},
+
+		getEventCopy: function() {
+			var instance = this;
+			var newEvt = instance.get(EVENT);
+
+			if (!newEvt) {
+				newEvt = new A.SchedulerEvent({
+					endDate: instance.get(END_DATE),
+					scheduler: instance.get(SCHEDULER),
+					startDate: instance.get(START_DATE)
+				});
+
+				// copying propagatable attrs
+				newEvt.copyPropagateAttrValues(instance, { content: true });
 			}
-			else {
-				instance._handleSaveEvent(event);
+
+			var values = instance.serializeForm();
+
+			newEvt.set(CONTENT, values[CONTENT]);
+			newEvt.set(REPEAT, values[REPEAT]);
+
+			return newEvt;
+		},
+
+		getFormattedDate: function() {
+			var instance = this;
+			var dateFormat = instance.get(DATE_FORMAT);
+			var evt = (instance.get(EVENT) || instance);
+
+			var endDate = evt.get(END_DATE);
+			var scheduler = evt.get(SCHEDULER);
+			var startDate = evt.get(START_DATE);
+			var fmtHourFn = (scheduler.get(ACTIVE_VIEW).get(ISO_TIME) ? DateMath.toIsoTimeString : DateMath.toUsTimeString);
+
+			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
+		},
+
+		hideOverlay: function() {
+			var instance = this;
+
+			instance[OVERLAY].hide();
+		},
+
+		populateForm: function() {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			if (!instance.eventRepeatArray) {
+				instance.eventRepeatArray = [];
+
+				A.each(A.SchedulerEventRepeat, function(item) {
+					instance.eventRepeatArray.push({
+						description: item[DESCRIPTION],
+						value: item[VALUE]
+					});
+				});
 			}
+
+			var evt = (instance.get(EVENT) || instance);
+
+			instance.formNode.setContent(
+				instance.get(TEMPLATE).parse(
+					{
+						content: evt.get(CONTENT) || strings['description-hint'],
+						date: instance.getFormattedDate(),
+						endDate: evt.get(END_DATE),
+						eventRepeat: instance.eventRepeatArray,
+						repeat: evt.get(REPEAT),
+						startDate: evt.get(START_DATE)
+					}
+				)
+			);
+		},
+
+		serializeForm: function() {
+			var instance = this;
+
+			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
+		},
+
+		showOverlay: function(node, offset) {
+			var instance = this;
+
+			if (!instance[OVERLAY].get(RENDERED)) {
+				instance._renderOverlay();
+			}
+
+			instance[OVERLAY].show();
+
+			if (!node) {
+				var eventNode = (instance.get(EVENT) || instance).get(NODE);
+
+				node = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
+			}
+
+			instance[OVERLAY].set('align.node', node);
+
+			// Since #2530972 is not yet done, manually putting an offset to the alignment
+			offset = offset || instance.get(OVERLAY_OFFSET);
+
+			instance[OVERLAY].move(instance[OVERLAY].get(X) + offset[0], instance[OVERLAY].get(Y) + offset[1]);
 		}
+
 	}
 });
 
 A.SchedulerEventRecorder = SchedulerEventRecorder;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-overlay-context-panel']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-color-util','aui-datatype','aui-template','aui-toolbar','io-form','querystring','overlay']});

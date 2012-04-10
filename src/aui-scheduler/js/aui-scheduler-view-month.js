@@ -1,4 +1,4 @@
-var	CSS_ICON = getCN(ICON),
+var CSS_ICON = getCN(ICON),
 	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
 	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
 	CSS_SVM_COLGRID = getCN(SCHEDULER_VIEW, MONTH, COLGRID),
@@ -10,10 +10,8 @@ var	CSS_ICON = getCN(ICON),
 	CSS_SVM_HEADER_TABLE = getCN(SCHEDULER_VIEW, MONTH, HEADER, TABLE),
 	CSS_SVM_ROW = getCN(SCHEDULER_VIEW, MONTH, ROW),
 	CSS_SVM_ROW_CONTAINER = getCN(SCHEDULER_VIEW, MONTH, ROW, CONTAINER),
-	CSS_SVM_TABLE_COLDAY_HEADER = getCN(SCHEDULER_VIEW, TABLE, COLMONTH, HEADER),
 	CSS_SVM_TABLE_DATA = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA),
 	CSS_SVM_TABLE_DATA_COL = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL),
-	CSS_SVM_TABLE_DATA_COL_FIRST = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, FIRST),
 	CSS_SVM_TABLE_DATA_COL_NOMONTH = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, NOMONTH),
 	CSS_SVM_TABLE_DATA_COL_TITLE = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE),
 	CSS_SVM_TABLE_DATA_COL_TITLE_DOWN = getCN(SCHEDULER_VIEW, MONTH, TABLE, DATA, COL, TITLE, DOWN),
@@ -138,23 +136,23 @@ var SchedulerMonthView = A.Component.create({
 			instance.evtDateStack = {};
 			instance.evtDataTableStack = {};
 
-			instance.colHeaderDaysNode = instance.get(COL_HEADER_DAYS_NODE);
-			instance.headerTableNode = instance.get(HEADER_TABLE_NODE);
-			instance.monthContainerNode = instance.get(MONTH_CONTAINER_NODE);
-			instance.tableGridNode = instance.get(TABLE_GRID_NODE);
+			instance[COL_HEADER_DAYS_NODE] = instance.get(COL_HEADER_DAYS_NODE);
+			instance[HEADER_TABLE_NODE] = instance.get(HEADER_TABLE_NODE);
+			instance[MONTH_CONTAINER_NODE] = instance.get(MONTH_CONTAINER_NODE);
+			instance[TABLE_GRID_NODE] = instance.get(TABLE_GRID_NODE);
 
-			instance.dayHeaderColNode = instance.headerTableNode.one(DOT+CSS_SVM_HEADER_COL);
-			instance.monthRows = instance.monthContainerNode.all(DOT+CSS_SVM_ROW);
-			instance.tableGridCols = instance.tableGridNode.all(TD);
+			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(DOT+CSS_SVM_HEADER_COL);
+			instance[COLUMN_TABLE_GRID] = instance[TABLE_GRID_NODE].all(TD);
+			instance[MONTH_ROWS] = instance[MONTH_CONTAINER_NODE].all(DOT+CSS_SVM_ROW);
 		},
 
 		renderUI: function() {
 			var instance = this;
 
-			instance.colHeaderDaysNode.appendTo(instance.dayHeaderColNode);
+			instance.colHeaderDaysNode.appendTo(instance[COLUMN_DAY_HEADER]);
 
-			instance.monthRows.each(function(rowNode, index) {
-				var tableGridNode = instance.tableGridNode.item(index);
+			instance[MONTH_ROWS].each(function(rowNode, index) {
+				var tableGridNode = instance[TABLE_GRID_NODE].item(index);
 
 				rowNode.append(
 					tableGridNode.toggleClass(CSS_SVM_TABLE_GRID_FIRST, (index === 0))
@@ -301,7 +299,7 @@ var SchedulerMonthView = A.Component.create({
 
 			instance.bodyNode.all(DOT+CSS_SVM_TABLE_DATA).remove();
 
-			instance.monthRows.each(function(rowNode, index) {
+			instance[MONTH_ROWS].each(function(rowNode, index) {
 				var rowStartDate = DateMath.add(startDateRef, DateMath.WEEK, index);
 				var rowEndDate = DateMath.add(rowStartDate, DateMath.DAY, WEEK_LENGTH - 1);
 				var tableNode = instance.buildEventsTable(rowStartDate, rowEndDate);
@@ -317,8 +315,11 @@ var SchedulerMonthView = A.Component.create({
 		syncStdContent: function() {
 			var instance = this;
 
-			instance.setStdModContent(WidgetStdMod.BODY, instance.monthContainerNode.getDOM());
-			instance.setStdModContent(WidgetStdMod.HEADER, instance.headerTableNode.getDOM());
+			instance.setStdModContent(
+				WidgetStdMod.BODY, instance[MONTH_CONTAINER_NODE].getDOM());
+
+			instance.setStdModContent(
+				WidgetStdMod.HEADER, instance.headerTableNode.getDOM());
 		},
 
 		syncGridUI: function() {
@@ -326,7 +327,7 @@ var SchedulerMonthView = A.Component.create({
 			var today = instance.getToday();
 			var scheduler = instance.get(SCHEDULER);
 
-			instance.tableGridCols.removeClass(CSS_SVM_COLGRID_TODAY);
+			instance[COLUMN_TABLE_GRID].removeClass(CSS_SVM_COLGRID_TODAY);
 
 			if (DateMath.isSameMonth(today, scheduler.get(CURRENT_DATE))) {
 				var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
@@ -335,7 +336,7 @@ var SchedulerMonthView = A.Component.create({
 
 				var rowIndex = DateMath.getWeekNumber(today, firstDayOfWeek) - DateMath.getWeekNumber(monthStartDate, firstDayOfWeek);
 				var colIndex = (today.getDate() - firstWeekDay.getDate());
-				var todayCel = instance.tableGridNode.item(rowIndex).all(TD).item(colIndex);
+				var todayCel = instance[TABLE_GRID_NODE].item(rowIndex).all(TD).item(colIndex);
 
 				if (todayCel) {
 					todayCel.addClass(CSS_SVM_COLGRID_TODAY);
