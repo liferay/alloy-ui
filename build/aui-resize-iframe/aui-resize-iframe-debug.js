@@ -156,6 +156,8 @@ ResizeIframe = A.Component.create(
 				var instance = this;
 
 				if (!instance._intervalId) {
+					instance._onResize();
+
 					instance._intervalId = A.setInterval(instance._onResize, 100, instance);
 				}
 			},
@@ -310,4 +312,4 @@ A.mix(
 
 A.Plugin.ResizeIframe = ResizeIframe;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-task-manager','plugin'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-task-manager','plugin']});

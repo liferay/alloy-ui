@@ -95,7 +95,7 @@ var DialogIframePlugin = A.Component.create(
 
 			_afterRenderUI: function() {
 				var instance = this;
-				
+
 				instance._plugIframe();
 
 				instance._bindEvents();
