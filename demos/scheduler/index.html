@@ -26,7 +26,7 @@
 <div id="wrapper">
 	<h1>Alloy - Scheduler Demo</h1>
 
-		<div id="scheduler1" class="aui-scheduler-base">
+<!-- 		<div id="scheduler1" class="aui-scheduler-base">
 			<div id="content" class="aui-scheduler-base-content">
 				<div class="yui3-widget-hd">
 					<div class="aui-scheduler-base-hd aui-helper-clearfix">
@@ -50,7 +50,7 @@
 									<tbody>
 										<tr class="aui-scheduler-view-day-header-col">
 											<td class="aui-scheduler-view-day-header-day aui-scheduler-view-day-header-day-first"></td>
-											<th class="aui-scheduler-view-day-header-day"><a href="#">&nbsp;</a></th>
+											<th class="aui-scheduler-view-day-header-day" data-colnumber="0"><a href="#">&nbsp;</a></th>
 										</tr>
 									</tbody>
 								</table>
@@ -192,10 +192,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<br/>
 		<br/>
+
+		<div id="scheduler2"></div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
@@ -208,68 +210,84 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 		content: 'Testing event 1 - overlap'
 	});
 
-	window.evt2 = new A.SchedulerEvent({
-		startDate: new Date(),
-		content: 'Testing event 2'
-	});
-
 	var eduardoCalendar = new A.SchedulerCalendar({
 		events: [
 			{
 				content: 'eduardo 1',
-				startDate: new Date(2010, 10, 27)
+				startDate: new Date(2010, 9, 16)
 			},
 			{
-				startDate: new Date(2010, 10, 27, 12),
+				startDate: new Date(2010, 9, 16, 12),
 				content: 'eduardo 2'
 			}
 		]
 	});
 
+	eduardoCalendar.addEvents([
+		{
+			startDate: new Date(2010, 9, 17, 12),
+			content: 'eduardo added via addEvents'
+		}
+	]);
+
 	var johnCalendar = new A.SchedulerCalendar({
 		events: [
 			{
 				content: 'john 1',
-				startDate: new Date(2010, 10, 27)
+				startDate: new Date(2010, 9, 15, 9),
+				endDate: new Date(2010, 9, 15, 15)
 			}
 		]
 	});
 
-	eduardoCalendar.addEvents([
-		{ content: 'new event' }
-	]);
-
 	var events1 = [
 		eduardoCalendar,
-		window.evt2,
+		johnCalendar,
+
+		new A.SchedulerEvent({
+			startDate: new Date(),
+			content: 'Event from A.SchedulerEvent'
+		}),
 
 		{
 			startDate: new Date(2010, 9, 12, 6),
 			endDate: new Date(2010, 9, 12, 7),
-			content: 'Wake up',
+			content: 'Simple JSON event',
 			// repeat: 'tuesThurs',
 			// repeat: 'dayly',
 			// repeat: A.SchedulerEventRepeat.dayly,
 		},
 
 		{
-			startDate: new Date(2010, 9, 12, 7),
-			endDate: new Date(2010, 9, 12, 9),
-			content: 'Go to the gym'
+			startDate: new Date(2010, 9, 12, 20),
+			endDate: new Date(2010, 9, 13, 0),
+			content: 'Day boundary event'
 		},
 
 		{
-			startDate: new Date(2010, 9, 5, 7),
-			endDate: new Date(2010, 9, 19, 9),
-			content: 'Build scheduler component'
+			startDate: new Date(2010, 9, 12, 21),
+			endDate: new Date(2010, 9, 13, 15),
+			content: 'Overlap event'
 		},
 
-		// new A.SchedulerCalendar({
-		// 	events: [
-		// 		{ startDate: new Date(), content: 'testing agenda event 1' },
-		// 		{ startDate: new Date(), content: 'testing agenda event 2' }
-		// 	]
-		// })
+		{
+			startDate: new Date(2010, 9, 12, 7),
+			endDate: new Date(2010, 9, 12, 9),
+			content: 'Simple JSON event'
+		},
+
+		{
+			startDate: new Date(2010, 9, 5, 0),
+			endDate: new Date(2010, 9, 6, 1),
+			content: 'Bigger than 24hrs event'
+		},
+
+		new A.SchedulerCalendar({
+			events: [
+				{ startDate: new Date(2010, 9, 11, 7), endDate: new Date(2010, 9, 11, 11), content: 'Calendar event 1' },
+				{ startDate: new Date(2010, 9, 11, 14), content: 'Calendar event 2' }
+			]
+		})
 	];
 
 	var view11 = new A.SchedulerDayView({
@@ -288,13 +306,15 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 		srcNode: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-month-content'
 	});
 
-	window.eventRecorder = new A.SchedulerEventRecorder({});
+	window.eventRecorder = new A.SchedulerEventRecorder({
+		duration: 30
+	});
 
 	window.schedulerBase1 = new A.Scheduler({
-		boundingBox: '#scheduler1',
-		srcNode: '#content',
+		boundingBox: '#scheduler2',
+		// srcNode: '#content',
 		firstDayOfWeek: 1,
-		views: [view11, view12, view13],
+		views: [view12, view11, view13],
 		events: events1,
 		eventRecorder: eventRecorder,
 		currentDate: new Date(2010, 9, 12)

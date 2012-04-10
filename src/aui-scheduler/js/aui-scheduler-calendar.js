@@ -7,10 +7,10 @@ var Lang = A.Lang,
 		return (val instanceof A.SchedulerEvent);
 	},
 
-	SCHEDULER_CALENDAR = 'scheduler-calendar',
 	COLOR = 'color',
 	EVENTS = 'events',
 	PALLETE = 'pallete',
+	SCHEDULER_CALENDAR = 'scheduler-calendar',
 	VISIBLE = 'visible';
 
 var SchedulerCalendar = A.Component.create({
@@ -52,6 +52,7 @@ var SchedulerCalendar = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
+			instance.after('colorChange', instance._afterColorChange);
 			instance.after('eventsChange', instance._afterEventsChange);
 			instance.on('visibleChange', instance._onVisibleChange);
 
@@ -67,9 +68,15 @@ var SchedulerCalendar = A.Component.create({
 		syncEventsColor: function(events) {
 			var instance = this;
 
-			A.Array.each(events || instance.get(EVENTS), function(evt, i) {
+			A.Array.each(events || instance.get(EVENTS), function(evt) {
 				evt.set(COLOR, instance.get(COLOR));
 			});
+		},
+
+		_afterColorChange: function(event) {
+			var instance = this;
+
+			instance.syncEventsColor(instance.get(EVENTS));
 		},
 
 		_afterEventsChange: function(event) {
@@ -93,7 +100,7 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetVisible: function(val) {
 			var instance = this;
 
-			instance.eachEvent(function(evt, i) {
+			instance.eachEvent(function(evt) {
 				evt.set(VISIBLE, val);
 			});
 		}

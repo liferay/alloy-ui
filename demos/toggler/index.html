@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="http://yui.yahooapis.com/3.5.0pr2/build/cssbutton/cssbutton.css" />
+</head>
+
+<style type="text/css" media="screen">
+
+	#wrapper {
+		font: small/normal Arial,sans-serif;
+		overflow: hidden;
+		padding: 10px;
+	}
+
+	#container1, #container2 {
+		width: 200px;
+	}
+
+	h2.header {
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		color: #222;
+		cursor: pointer;
+		display: block;
+		font-size: 13px;
+		font-weight: normal;
+		line-height: 30px;
+		margin: 0;
+		padding: 2px 0;
+	}
+
+	.content {
+		margin-left: 8px;
+	}
+
+	.text {
+		vertical-align: middle;
+	}
+
+	.arrow {
+		background: url(../../build/aui-skin-classic/images/icon_sprite.png) -34px -18px;
+		display: inline-block;
+		height: 12px;
+		vertical-align: middle;
+		width: 12px;
+	}
+
+	.aui-toggler-header-expanded .arrow {
+		background-position: -66px -18px;
+	}
+
+	.header:hover {
+		background-color: #EEE;
+	}
+
+	.img-border {
+		background: url(http://s.ytimg.com/yt/imgbin/www-refreshbg-vflC3wnbM.png);
+		border-radius: 3px;
+		padding: 10px;
+		width: 240px;
+	}
+
+	.img-border img {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.img-border p {
+		margin: 0;
+	}
+
+	.img-border .content {
+		-moz-border-radius: 3px;
+		-moz-box-shadow: 0 1px 1px #ccc;
+		-ms-box-shadow: 0 1px 1px #ccc;
+		-webkit-border-radius: 3px;
+		-webkit-box-shadow: 0 1px 1px #ccc;
+		background: white;
+		border-radius: 3px;
+		border: 1px solid #CCC;
+		box-shadow: 0 1px 1px #ccc;
+		margin-top: 10px;
+		margin-left: 0px;
+		padding: 10px;
+		text-align: justify;
+	}
+
+	.img-border .aui-loadingmask-message-content {
+		background-color: transparent;
+		border: none;
+	}
+
+</style>
+
+<body>
+
+<div id="wrapper">
+	<h1>Alloy - Toggler</h1>
+
+	<h2>- Toggler</h2>
+
+	<div class="img-border">
+		<img src="http://farm7.staticflickr.com/6212/6236693303_c3e0409dae_m.jpg" />
+		<button class="header yui3-button yui3-button-active yui3-button-selected">Read more</button>
+		<div class="content aui-toggler-content-collapsed">Loading...</div>
+	</div>
+
+	<h2>- Toggler Delegate</h2>
+
+	<div id="container1">
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Mini calendar</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">My calendars</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Other calendars</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+	</div>
+
+	<h2>- Animated Toggler Delegate</h2>
+
+	<div id="container2">
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Header</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Header</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Header</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+
+		<h2 class="header aui-toggler-header-collapsed">
+			<span class="arrow"></span>
+			<span class="text">Header</span>
+		</h2>
+		<div class="content aui-toggler-content-collapsed">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().use('node-load', 'aui-toggler', function(A) {
+	var content = A.one('.content');
+	var header = A.one('.header');
+
+	console.time('toggler');
+
+	var toggler = new A.Toggler({
+		animated: true,
+		content: content,
+		header: header,
+		expanded: false,
+		transition: {
+			duration: .6,
+			easing: 'cubic-bezier',
+			on: {
+				end: function() {
+					content.load('assets/content.html');
+				}
+			}
+		}
+	});
+
+	console.timeEnd('toggler');
+
+	console.time('toggler-delegate');
+
+	var togglerDelegate1 = new A.TogglerDelegate({
+		container: '#container1',
+		content: '.content',
+		header: '.header',
+		expanded: false,
+		transition: {
+			duration: .4,
+			easing: 'cubic-bezier'
+		}
+	});
+
+	console.timeEnd('toggler-delegate');
+
+	var togglerDelegate2 = new A.TogglerDelegate({
+		animated: true,
+		closeAllOnExpand: true,
+		container: '#container2',
+		content: '.content',
+		header: '.header',
+		expanded: false
+	});
+});
+
+</script>
+
+</body>
+</html>
