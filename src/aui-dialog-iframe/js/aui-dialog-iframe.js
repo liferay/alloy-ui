@@ -160,10 +160,6 @@ var DialogIframePlugin = A.Component.create(
 				}
 
 				instance._bodyNode.loadingmask.hide();
-
-				// AUI-632: Resize immediately so we can center the dialog with the new size
-				instance.node.resizeiframe._onResize();
-				instance._host._syncUIPosAlign();
 			},
 
 			_plugIframe: function() {
