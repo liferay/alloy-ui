@@ -127,7 +127,7 @@ controller.checkVisibility = function (tab) {
 
     if (!tab) { return; }
 
-    var panelNode = tab.get('tabView').get('contentNode'),
+    var panelNode = tab.get('panelNode'),
         visibleItems;
 
     // If no items are visible in the tab panel due to the current visibility
@@ -192,12 +192,10 @@ controller.initClassTabView = function () {
     }
 
     classTabView = new Y.TabView({
-        contentBox: '#classdocs',
-        contentNode: '#api-class-tabview-panel',
-        listNode: '#api-class-tabview-list',
+        srcNode: '#classdocs',
 
         on: {
-            activeTabChange: controller.onTabSelectionChange
+            selectionChange: controller.onTabSelectionChange
         }
     });
 

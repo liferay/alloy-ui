@@ -33,15 +33,14 @@ var Lang= A.Lang,
 	}),
 
 	tabview = APIList.tabview = new A.TabView({
-		contentBox: tabviewNode,
-		contentNode: '#api-tabview-panel',
-		listNode: '#api-tabview-list',
-		render: true,
+        srcNode  : tabviewNode,
+        panelNode: '#api-tabview-panel',
+        render   : true,
 
-		on: {
-			activeTabChange: onTabSelectionChange
-		}
-	}),
+        on: {
+            selectionChange: onTabSelectionChange
+        }
+    }),
 
 	focusManager = APIList.focusManager = tabviewNode.plug(A.Plugin.NodeFocusManager, {
 		circular: true,
@@ -71,7 +70,7 @@ A.before(function (e, activeDescendant) {
 }, focusManager, '_focusNext', focusManager);
 
 // Create a mapping of tabs in the tabview so we can refer to them easily later.
-AArray.each(tabview.get('items'),function (tab, index) {
+tabview.each(function (tab, index) {
 	var name = tab.get('label').toLowerCase();
 
 	tabs[name] = {
@@ -111,15 +110,28 @@ function getFilterResultNode() {
 function onFilterResults(e) {
 	var frag= A.one(A.config.doc.createDocumentFragment()),
 		resultNode= getFilterResultNode(),
-		typePlural= filter.get('queryType'),
+		queryType = filter.get('queryType'),
+		typePlural= queryType,
 		typeSingular = typePlural === 'classes' ? 'class' : 'module';
+
+		var meta = A.YUIDoc.meta;
+		var docData = meta.DOC_DATA;
+
+		var metaClasses = docData.classes;
+		var metaModules = docData.modules;
 
 	if (e.results.length) {
 		AArray.each(e.results, function (result) {
+			var name = result.text;
+
+			if (queryType == 'everything') {
+				typePlural = metaClasses[name] ? 'classes' : 'modules';
+			}
+
 			frag.append(Lang.sub(LIST_ITEM_TEMPLATE, {
 				rootPath : APIList.rootPath,
 				displayName : filter.getDisplayName(result.highlighted),
-				name: result.text,
+				name: name,
 				typePlural: typePlural,
 				typeSingular: typeSingular
 			}));
@@ -228,14 +240,14 @@ function onTabSwitchKey(e) {
 	switch (e.keyCode) {
 	case 37: // left arrow
 		if (currentTabIndex > 0) {
-			tabview.selectTab(currentTabIndex - 1);
+			tabview.selectChild(currentTabIndex - 1);
 			inputNode.focus();
 		}
 		break;
 
 	case 39: // right arrow
 		if (currentTabIndex < (A.Object.size(tabs) - 2)) {
-			tabview.selectTab(currentTabIndex + 1);
+			tabview.selectChild(currentTabIndex + 1);
 			inputNode.focus();
 		}
 		break;
@@ -243,5 +255,5 @@ function onTabSwitchKey(e) {
 }
 
 }, '3.4.0', {requires: [
-	'api-filter', 'api-search', 'event-key', 'node-focusmanager', 'aui-tabs'
+	'api-filter', 'api-search', 'event-key', 'node-focusmanager', 'tabview'
 ]});

@@ -35,6 +35,7 @@ body {
 a {
     color: #5B677D;
     text-decoration: none;
+    border-bottom: 1px dotted;
 }
 
 .hidden {
@@ -43,7 +44,7 @@ a {
 
 a:hover {
     color: #06C;
-    text-decoration: underline;
+    border-bottom-width: 0;
 }
 
 .aui-tab a {
@@ -415,7 +416,7 @@ specific tabview, see the other sections below.
     _visibility: visible;
 }
 
-.apidocs .tabview.aui-tabview-content { visibility: visible; }
+.apidocs .tabview.yui3-tabview-content { visibility: visible; }
 .apidocs .tabview .aui-tabview-panel { background: #fff; }
 
 .apidocs .aui-tab-label {
@@ -424,6 +425,109 @@ specific tabview, see the other sections below.
 
 .apidocs .aui-tabview-list, .apidocs .aui-tabview-list-content {
     margin-bottom: 0;
+}
+
+html .yui3-skin-sam .yui3-tabview-list {
+    border: 1px solid #C9C9C9;
+}
+.yui3-skin-sam .yui3-tabview-list .yui3-tab {
+    margin: 0;
+    padding: 0;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label {
+    border-color: #4B4B4B #4D4D4D;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-label {
+    border-style: solid;
+    border-width: 0 1px;
+    border-color: #F3F4F5 #B2B2B2 #DBDCDC #F5F5F7;
+    background: none;
+}
+
+.yui3-skin-sam .aui-tabview-list, .yui3-skin-sam .aui-tabview-list-content {
+    background: #dbdcdc url(tabs_bg.png) repeat 0 0;
+    padding: 0 4px;
+    border: 1px solid #c9c9c9;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected {
+    border-width: 0;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label {
+    -moz-box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
+    -webkit-box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
+    box-shadow: 0px 0px 15px #575757 inset, 0px 0px 5px #222 inset;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab:first-child {
+    border-left-color: #b1b1b1;
+    border-left-width: 1px;
+}
+
+.yui3-skin-sam .yui3-tabview-list .aui-tab:last-child {
+    border-right-color: #f0f1f2;
+    border-right-width: 1px;
+}
+
+.yui3-skin-sam .yui3-tab-content {
+    border: 1px solid;
+    border-color: #f3f4f5 #b2b2b2 #dbdcdc #f5f5f7;
+    padding: 0;
+}
+
+.yui3-skin-sam .yui3-tab-label {
+    display: inline-block;
+    padding: 5px 10px 4px;
+    color: #1f1e1e;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-shadow: #fff 1px 1px 0px;
+}
+
+.yui3-skin-sam .yui3-tab-label:hover, .yui3-skin-sam .yui3-tab-label a:hover {
+    color: #06c;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label {
+    color: #fff;
+    text-shadow: #3a3a3a -1px -1px 0px;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-label, .yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label {
+    padding: 5px 10px 4px;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-label,
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-label:focus,
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-label:hover {
+    background: none;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label, .yui3-skin-sam .yui3-tabview-list .yui3-tab-selected,
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label:focus,
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label:hover {
+    background: #878787 url(tabs_active_bg.png);
+    border-color: #4b4b4b #4d4d4d;
+}
+
+.yui3-skin-sam .yui3-tabview-list .yui3-tab-selected .yui3-tab-label {
+    text-shadow: #222 -1px -1px 0px;
+}
+
+.yui3-skin-sam .yui3-tabview .yui3-tabview-panel {
+    border-width: 0;
+    background: none;
+}
+
+.yui3-tabview-list:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
 }
 
 /* -- Generic Content Styles ------------------------------------------------ */
@@ -830,4 +934,3 @@ kbd .cmd { font-family: Monaco, Helvetica; }
 .api-list-item .yui3-highlight {
     font-weight: bold;
 }
-

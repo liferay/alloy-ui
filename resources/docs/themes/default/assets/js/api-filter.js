@@ -38,6 +38,11 @@ A.APIFilter = A.Base.create('apiFilter', A.Base, [A.AutoCompleteBase], {
 
 					var everything = [].concat(meta.modules, meta.classes);
 
+					meta.DOC_DATA = {
+						classes: A.Array.hash(meta.classes),
+						modules: A.Array.hash(meta.modules)
+					};
+
 					everything.sort(function(x,y){
 						var a = String(x).toUpperCase();
 						var b = String(y).toUpperCase();
