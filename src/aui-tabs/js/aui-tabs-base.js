@@ -402,6 +402,8 @@ var TabView = A.Component.create(
 
 				tab.render(listNode);
 
+				tab.set('tabView', instance);
+
 				if (before) {
 					listNode.insert(tab.get(BOUNDING_BOX), before.get(BOUNDING_BOX));
 				}
@@ -420,8 +422,6 @@ var TabView = A.Component.create(
 				if (tab.get('active')) {
 					instance.set('activeTab', tab);
 				}
-
-				tab.set('tabView', instance);
 			},
 
 			deselectTab: function(index){
