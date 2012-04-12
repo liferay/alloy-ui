@@ -210,8 +210,10 @@ function onTabSelectionChange(e) {
 		search.set('minQueryLength', -1);
 
 		// Only send a request if this isn't the initially-selected tab.
-		if (e.prevVal) {
-			filter.sendRequest(filter.get('value'));
+		var inputVal = A.Lang.trim(filter.get('value'));
+
+		if (e.prevVal && inputVal) {
+			filter.sendRequest(inputVal);
 		}
 		break;
 

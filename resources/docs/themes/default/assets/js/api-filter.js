@@ -1,5 +1,5 @@
 AUI.add('api-filter', function (A) {
-window.A = A;
+
 A.APIFilter = A.Base.create('apiFilter', A.Base, [A.AutoCompleteBase], {
 	// -- Initializer ----------------------------------------------------------
 	initializer: function () {
@@ -36,26 +36,28 @@ A.APIFilter = A.Base.create('apiFilter', A.Base, [A.AutoCompleteBase], {
 
 					var meta = A.YUIDoc.meta;
 
-					var everything = [].concat(meta.modules, meta.classes);
+					if (!meta.everything) {
+						var everything = [].concat(meta.modules, meta.classes);
 
-					meta.DOC_DATA = {
-						classes: A.Array.hash(meta.classes),
-						modules: A.Array.hash(meta.modules)
-					};
+						meta.DOC_DATA = {
+							classes: A.Array.hash(meta.classes),
+							modules: A.Array.hash(meta.modules)
+						};
 
-					everything.sort(function(x,y){
-						var a = String(x).toUpperCase();
-						var b = String(y).toUpperCase();
-						if (a > b) {
-							return 1;
-						}
-						if (a < b) {
-							return -1;
-						}
-						return 0;
-	});
+						everything.sort(function(x,y){
+							var a = String(x).toUpperCase();
+							var b = String(y).toUpperCase();
+							if (a > b) {
+								return 1;
+							}
+							if (a < b) {
+								return -1;
+							}
+							return 0;
+						});
 
-					meta.everything = everything;
+						meta.everything = everything;
+					}
 
 					var data = A.YUIDoc.meta[queryType];
 					var out = [];
