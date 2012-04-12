@@ -387,74 +387,50 @@
 		</replaceregexp>
 	</target>
 
-
 	<!--
 		YUI Docs ant tasks
 	-->
-	<property name="project.name" value="Alloy UI" />
-	<property name="project.url" value="http://alloy.liferay.com/deploy/api" />
-	<property name="project.docs.dir" value="${project.dir}/resources/docs" />
-	<property name="yui.version" location="3.0.0" />
 
-	<property name="yuidoc.output.dir" location="${project.dir}/_api" />
-	<property name="yuidoc.home" location="${project.dir}/lib/yui-yuidoc" />
-	<property name="yuidoc.exec" location="${yuidoc.home}/bin/yuidoc.py" />
-	<property name="yuidoc.tmpdir" location="${project.docs.dir}/temp" />
-	<property name="yuidoc.parsein.dir" location="${project.dir}/build" />
-	<property name="yuidoc.template.dir" location="${project.docs.dir}/template" />
+	<target name="build-doc">
+		<var name="yuidocjs.dir" value="${project.dir}/lib/yuidocjs"/>
 
-	<target name="build-doc" depends="clean-doc">
-		<echo>Deleting old API files</echo>
-		<delete>
-			<fileset dir="${project.dir}/api" includes="**/*" />
-		</delete>
+		<if>
+			<not>
+				<available file="${yuidocjs.dir}" />
+			</not>
+			<then>
+				<exec executable="git" dir="${project.dir}">
+					<arg value="submodule" />
+					<arg value="update" />
+					<arg value="--init" />
+				</exec>
+			</then>
+		</if>
 
-		<mkdir dir="${yuidoc.tmpdir}" />
-		<mkdir dir="${yuidoc.tmpdir}/parsertmp" />
+		<if>
+			<not>
+				<available file="${yuidocjs.dir}/node_modules" />
+			</not>
+			<then>
+				<trycatch>
+				  <try>
+				    <exec executable="npm" dir="${yuidocjs.dir}">
+				    	<arg value="install" />
+				    	<arg value="." />
+				    </exec>
+				  </try>
 
-		<echo>Generating ${project.name} Documentation</echo>
-		<var name="yuidoc.modules.list" value=""/>
-		<for param="dir">
-			<path>
-				<dirset
-					dir="${project.dir}/build"
-					includes="*"
-				/>
-			</path>
-			<sequential>
-				<var name="yuidoc.modules.list" value="@{dir} ${yuidoc.modules.list}"/>
-			</sequential>
-		</for>
-		<exec executable="${yuidoc.exec}">
-			<arg line="${yuidoc.modules.list}"/>
-			<arg value="-p"/>
-			<arg value="${yuidoc.tmpdir}/parsertmp"/>
-			<arg value="-o" />
-			<arg value="${yuidoc.output.dir}" />
-			<arg value="-t" />
-			<arg value="${yuidoc.template.dir}" />
-			<arg value="-m" />
-			<arg value="${project.name}" />
-			<arg value="-Y" />
-			<arg value="${yui.version}" />
-			<arg value="-v" />
-			<arg value="${release.version}" />
-			<arg value="-u" />
-			<arg value="${project.url}" />
+				  <catch>
+				  	<echo>Please install NPM and Node.js</echo>
+				    <fail>YUIDocJS Requires NPM and Node.js to be installed</fail>
+				  </catch>
+				</trycatch>
+			</then>
+		</if>
+
+		<exec executable="${yuidocjs.dir}/lib/cli.js" dir="${project.dir}">
+			<arg value="-c" />
+			<arg value="${project.dir}/resources/docs/config.json" />
 		</exec>
-
-		<copy todir="${project.dir}/api" overwrite="true">
-			<fileset dir="${project.dir}/_api" includes="**/*" />
-		</copy>
-
-		<echo>Removing Temp Built Files from ${yuidoc.tmpdir}</echo>
-		<delete dir="${yuidoc.tmpdir}" />
-		<delete dir="${project.dir}/_api" />
-	</target>
-
-	<target name="clean-doc" description="Clean out build">
-		<echo>Removing Documentation Built Files</echo>
-		<delete dir="${yuidoc.tmpdir}" />
-		<delete dir="${project.dir}/_api" />
 	</target>
 </project>
