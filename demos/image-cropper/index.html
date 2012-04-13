@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css">
+		body {
+			padding: 1em;
+		}
+
+		#status table {
+			padding-left: 3em;
+		}
+
+		#status tr > td:first-child {
+			font-weight: bold;
+			text-align: right;
+		}
+
+		#image {
+			width: 500px;
+		}
+
+		.image-cropper {
+			margin: 0.5em auto 0;
+			width: 1020px;
+		}
+
+		.cropped-image {
+			background: url(assets/lfr-soccer-1.jpg) no-repeat;
+		}
+
+		.cropped-output {
+			position: relative;
+		}
+
+		.status {
+			position: absolute;
+			background-color: #FFF;
+			border: 1px solid #999;
+			top: 0;
+			right: 0;
+			padding: 5px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var imageCropper;
+
+		AUI().ready('aui-image-cropper', function(A) {
+			var imageNode = A.one('#image');
+			var cropLinkNode = A.one('#cropLink');
+			var statusNode = A.one('#status');
+
+			imageCropper = new A.ImageCropper({
+				srcNode: imageNode,
+				// cropHeight: 100,
+				// cropWidth: 100,
+				// minWidth: 50,
+				// minHeight: 50,
+				// movable: true,
+				// preserveRatio: true,
+				// resizeable: true,
+				x: 100,
+				y: 100
+			}).render();
+
+			var croppedImage = A.one('#croppedImage');
+			var croppedStatus = A.one('#croppedStatus');
+
+			var statusTPL = '<p>Image will be cropped to: </p><b>x</b>: {x}<br /><b>y</b>: {y}<br /><b>height</b>: {height}<br /><b>width</b>: {width}<br />';
+
+			cropLinkNode.on('click', function (event) {
+				var cropRegion = imageCropper.getCropRegion();
+
+				croppedImage.setStyles(
+					{
+						'backgroundPosition': '-' + cropRegion.x + 'px -' + cropRegion.y + 'px',
+						height: cropRegion.height,
+						width: cropRegion.width
+					}
+				);
+
+				croppedImage.show();
+
+				statusNode.html(A.Lang.sub(statusTPL, cropRegion));
+				statusNode.show();
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Alloy - ImageCropper</h1>
+
+	<button id="cropLink">Crop Image</button>
+
+	<div class="aui-layout image-cropper">
+		<div class="aui-column aui-w50">
+			<div class="aui-column-content">
+				<img id="image" src="assets/lfr-soccer-1.jpg" />
+			</div>
+		</div>
+		<div class="aui-column aui-w50">
+			<div class="aui-column-content cropped-output">
+				<div class="cropped-image aui-helper-hidden" id="croppedImage"></div>
+				<div class="status aui-helper-hidden" id="status"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
