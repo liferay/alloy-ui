@@ -1,4 +1,4 @@
-YUI().use('node', function(Y) {
+AUI().use('node', function(Y) {
     var code = Y.all('.prettyprint.linenums');
     if (code.size()) {
         code.each(function(c) {
