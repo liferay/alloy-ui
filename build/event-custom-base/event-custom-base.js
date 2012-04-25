@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('event-custom-base', function(Y) {
@@ -1834,12 +1834,6 @@ ET.prototype = {
             edata    = this._yuievt,
             pre      = edata.config.prefix;
 
-        type = (pre) ? _getType(type, pre) : type;
-
-        this._monitor('publish', type, {
-            args: arguments
-        });
-
         if (L.isObject(type)) {
             ret = {};
             Y.each(type, function(v, k) {
@@ -1848,6 +1842,12 @@ ET.prototype = {
 
             return ret;
         }
+
+        type = (pre) ? _getType(type, pre) : type;
+
+        this._monitor('publish', type, {
+            args: arguments
+        });
 
         events = edata.events;
         ce = events[type];
@@ -2204,4 +2204,4 @@ for that signature.
 **/
 
 
-}, '3.4.0' ,{requires:['oop']});
+}, '3.5.0' ,{requires:['oop']});

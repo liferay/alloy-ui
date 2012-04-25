@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('pluginhost-base', function(Y) {
@@ -144,7 +144,7 @@ YUI.add('pluginhost-base', function(Y) {
          *
          * @method hasPlugin
          * @param {String} ns The plugin's namespace
-         * @return {boolean} returns true, if the plugin has been plugged into this host, false otherwise.
+         * @return {Plugin} Returns a truthy value (the plugin instance) if present, or undefined if not.
          */
         hasPlugin : function(ns) {
             return (this._plugins[ns] && this[ns]);
@@ -181,4 +181,4 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.5.0' ,{requires:['yui-base']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('yql', function(Y) {
@@ -69,7 +69,7 @@ YUI.add('yql', function(Y) {
         * @method send
         * @description The method that executes the YQL Request.
         * @chainable
-        * @returns {YQLRequest}
+        * @return {YQLRequest}
         */
         send: function() {
             var qs = [], url = ((this._opts && this._opts.proto) ? this._opts.proto : Y.YQLRequest.PROTO);
@@ -142,4 +142,4 @@ YUI.add('yql', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['jsonp', 'jsonp-url']});
+}, '3.5.0' ,{requires:['jsonp', 'jsonp-url']});

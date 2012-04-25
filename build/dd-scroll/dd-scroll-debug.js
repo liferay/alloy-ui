@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('dd-scroll', function(Y) {
@@ -317,14 +317,6 @@ YUI.add('dd-scroll', function(Y) {
         end: function(xy) {
             this._dimCache = null;
             this._cancelScroll();
-        },
-        /**
-        * @method toString
-        * @description General toString method for logging
-        * @return String name for the object
-        */
-        toString: function() {
-            return S.NAME + ' #' + this.get('node').get('id');
         }
     });
 
@@ -431,4 +423,4 @@ YUI.add('dd-scroll', function(Y) {
 
 
 
-}, '3.4.0' ,{optional:['dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.5.0' ,{skinnable:false, optional:['dd-proxy'], requires:['dd-drag']});

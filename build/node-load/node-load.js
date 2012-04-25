@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('node-load', function(Y) {
@@ -69,4 +69,4 @@ Y.Node.prototype.load = function(url, selector, callback) {
 }
 
 
-}, '3.4.0' ,{requires:['node-base', 'io-base']});
+}, '3.5.0' ,{requires:['node-base', 'io-base']});

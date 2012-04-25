@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('resize-base', function(Y) {
@@ -1637,4 +1637,4 @@ Y.each(Y.Resize.prototype.ALL_HANDLES, function(handle, i) {
 });
 
 
-}, '3.4.0' ,{requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop'], skinnable:true});
+}, '3.5.0' ,{requires:['base', 'widget', 'substitute', 'event', 'oop', 'dd-drag', 'dd-delegate', 'dd-drop'], skinnable:true});

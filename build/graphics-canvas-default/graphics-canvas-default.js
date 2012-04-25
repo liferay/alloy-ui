@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('graphics-canvas-default', function(Y) {
@@ -16,4 +16,4 @@ Y.Path = Y.CanvasPath;
 Y.Drawing = Y.CanvasDrawing;
 
 
-}, '3.4.0' ,{skinnable:false});
+}, '3.5.0' ,{skinnable:false});
