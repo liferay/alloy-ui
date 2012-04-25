@@ -29,3 +29,31 @@ Module creation
 		# cd trunk/resources/create-module/
 		# ./create.sh aui-module-name
 	More information, see trunk/resources/create-module/README.txt.
+
+
+Version Updates
+
+    To update your current branch
+       Navigate to the alloy directory
+       # git submodule update --init
+       # cd lib/yui3
+       # git fetch https://github.com/yui/yui3.git
+       open a web browser at https://github.com/yui/yui3/tags
+       Copy the <SHA> from the upgrade tag you wish to upgrade to
+       # git reset --hard PASTE-SHA-HERE
+       # git add lib/yui3
+       # git commit -m "yui upgrade x.x.x"
+   
+   Update the YUI3 version property
+       go up to the main alloy directory
+       update the yui3.version property in build.properties
+
+   Rebuild Modules
+   		from alloy main directory
+       	# ant init-yui && ant build-modules
+
+   Release Alloy and copy into Liferay
+
+   Rebuild Liferay and restart your app server
+
+   If any dependencies were added/removed, add/modify them in the YUI3 Modules section of portal.properties
