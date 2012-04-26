@@ -556,7 +556,7 @@ var SchedulerDayView = A.Component.create({
 			if (!instance[EVENT_PLACEHOLDER]) {
 				var scheduler = instance.get(SCHEDULER);
 
-				instance[EVENT_PLACEHOLDER] = new A.SchedulerEvent({
+				instance[EVENT_PLACEHOLDER] = new (instance.get(EVENT_CLASS))({
 					scheduler: scheduler
 				});
 
