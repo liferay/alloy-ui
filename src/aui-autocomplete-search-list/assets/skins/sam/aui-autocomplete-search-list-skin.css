@@ -1,0 +1,22 @@
+.yui3-skin-sam .aui-autocomplete-search-list label {
+	border-bottom: 1px solid #CCC;
+}
+
+.yui3-skin-sam .aui-autocomplete-search-list .no-matches-message {
+	 display: block;
+	 color: #999;
+}
+
+.yui3-skin-sam .aui-autocomplete-search-list-ac-container {	
+	background-color: #D3DADD;
+	border-bottom: 1px solid #AEB8BC;
+}
+
+.yui3-skin-sam .aui-autocomplete-search-list-ac-container .aui-field-input {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+}
