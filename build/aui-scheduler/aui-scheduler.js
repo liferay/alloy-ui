@@ -3774,8 +3774,14 @@ var SchedulerCalendar = A.Component.create({
 
 		_onEventsChange: function(event) {
 			var instance = this;
+			var value = event.newVal;
+			var visible = instance.get(VISIBLE);
 
-			instance._uiSetEvents(event.newVal);
+			A.Array.each(value, function(event) {
+				event.set(VISIBLE, visible);
+			});
+
+			instance._uiSetEvents(value);
 		},
 
 		_onVisibleChange: function(event) {
