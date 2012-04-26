@@ -250,10 +250,9 @@
     width: 255px;
 }
 
-.aui-scheduler-event-recorder-overlay-delete {
-    bottom: 25px;
-    position: absolute;
-    right: 20px;
+.aui-scheduler-event-recorder-overlay-link {
+    line-height: 25px;
+    margin-left: 5px;
 }
 
 .aui-scheduler-event-recorder-overlay-repeat {

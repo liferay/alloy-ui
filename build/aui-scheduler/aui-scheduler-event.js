@@ -37,6 +37,7 @@ var Lang = A.Lang,
 	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
+	EVENT_CLASS = 'eventClass',
 	EVENT_STACK = 'eventStack',
 	EVENTS = 'events',
 	HIDDEN = 'hidden',
@@ -129,14 +130,20 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		endDate: {
+			setter: '_setDate',
 			valueFn: function() {
 				var date = DateMath.clone(this.get(START_DATE));
 
 				date.setHours(date.getHours() + 1);
 
 				return date;
-			},
-			validator: isDate
+			}
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		disabled: {
@@ -164,6 +171,7 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		repeat: {
+			value: EMPTY_STR,
 			setter: '_setRepeat'
 		},
 
@@ -173,10 +181,10 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		startDate: {
+			setter: '_setDate',
 			valueFn: function() {
 				return new Date();
-			},
-			validator: isDate
+			}
 		},
 
 		visible: {
@@ -209,7 +217,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance[EVENT_STACK] = {};
 
-			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				instance.after(attrName+CHANGE, instance._propagateAttrChange);
 			});
 
@@ -247,7 +255,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance.copyDates(evt);
 
-			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
@@ -332,7 +340,7 @@ var SchedulerEvent = A.Component.create({
 				DateMath.copyHours(startDate, instance.get(START_DATE));
 				DateMath.copyHours(endDate, instance.get(END_DATE));
 
-				var newEvt = new A.SchedulerEvent({
+				var newEvt = new instance.get(EVENT_CLASS)({
 					endDate: endDate,
 					parentEvent: instance,
 					scheduler: instance.get(SCHEDULER),
@@ -618,6 +626,16 @@ var SchedulerEvent = A.Component.create({
 			}
 		},
 
+		_setDate: function(val) {
+			var instance = this;
+
+			if (isNumber(val)) {
+				val = new Date(val);
+			}
+
+			return val;
+		},
+
 		_setRepeat: function(val) {
 			var instance = this;
 
@@ -807,11 +825,13 @@ var L = A.Lang,
 	DESCRIPTION = 'description',
 	EDIT = 'edit',
 	EVENT = 'event',
+	EVENT_CLASS = 'eventClass',
 	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
 	HEADER = 'header',
 	HIDE = 'hide',
 	ISO_TIME = 'isoTime',
+	LINK = 'link',
 	NODE = 'node',
 	OVERLAY = 'overlay',
 	OVERLAY_OFFSET = 'overlayOffset',
@@ -860,9 +880,9 @@ var L = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DELETE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DELETE),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_LINK = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, LINK),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER, EVENT, TITLE),
 
@@ -884,7 +904,7 @@ var L = A.Lang,
 		'</div>'
 	),
 
-	TPL_OVERLAY_DELETE = '<a class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DELETE + '" href="javascript:;">{delete}</a>',
+	TPL_OVERLAY_DELETE = '<a class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_LINK + '" href="javascript:;">{delete}</a>',
 	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
 
 var SchedulerEventRecorder = A.Component.create({
@@ -905,6 +925,12 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		event: {
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		strings: {
@@ -935,7 +961,7 @@ var SchedulerEventRecorder = A.Component.create({
 					points: [ TL, TL ]
 				},
 				visible: false,
-				width: 260,
+				width: 300,
 				zIndex: 500
 			}
 		},
@@ -1000,7 +1026,6 @@ var SchedulerEventRecorder = A.Component.create({
 			});
 
 			instance.after(SCHEDULER_CHANGE, instance._afterSchedulerChange);
-			instance.on(START_DATE_CHANGE, instance._onStartDateChange);
 
 			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
 			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
@@ -1077,7 +1102,9 @@ var SchedulerEventRecorder = A.Component.create({
 		_onClickDelete: function() {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE);
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+				schedulerEvent: instance.get(EVENT)
+			});
 		},
 
 		_onClickSchedulerEvent: function(event) {
@@ -1086,7 +1113,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (evt) {
 				instance.set(EVENT, evt);
-				instance.showOverlay();
+				instance.showOverlay(event.currentTarget);
 
 				instance.get(NODE).remove();
 			}
@@ -1119,16 +1146,6 @@ var SchedulerEventRecorder = A.Component.create({
 			}
 		},
 
-		_onStartDateChange: function(event) {
-			var instance = this;
-			var duration = instance.get(DURATION);
-
-			instance.set(
-				END_DATE,
-				DateMath.add(event.newVal, DateMath.MINUTES, duration)
-			);
-		},
-
 		_onSubmitForm: function(event) {
 			var instance = this;
 
@@ -1154,14 +1171,14 @@ var SchedulerEventRecorder = A.Component.create({
 				})
 			);
 
+			instance[OVERLAY].footerNode.append(instance.deleteNode);
+
 			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
 
-			overlayBB.append(instance.deleteNode);
+			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
 
 			instance.deleteNode.on(CLICK, A.bind(instance._onClickDelete, instance));
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
-
-			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
 		},
 
 		getEventCopy: function() {
@@ -1169,7 +1186,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var newEvt = instance.get(EVENT);
 
 			if (!newEvt) {
-				newEvt = new A.SchedulerEvent({
+				newEvt = new (instance.get(EVENT_CLASS))({
 					endDate: instance.get(END_DATE),
 					scheduler: instance.get(SCHEDULER),
 					startDate: instance.get(START_DATE)
@@ -1200,6 +1217,22 @@ var SchedulerEventRecorder = A.Component.create({
 			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
 		},
 
+		getTemplateData: function() {
+			var instance = this;
+
+			var strings = instance.get(STRINGS);
+			var evt = (instance.get(EVENT) || instance);
+
+			return {
+				content: evt.get(CONTENT) || strings['description-hint'],
+				date: instance.getFormattedDate(),
+				endDate: evt.get(END_DATE).getTime(),
+				eventRepeat: instance.eventRepeatArray,
+				repeat: evt.get(REPEAT),
+				startDate: evt.get(START_DATE).getTime()
+			};
+		},
+
 		hideOverlay: function() {
 			var instance = this;
 
@@ -1208,7 +1241,6 @@ var SchedulerEventRecorder = A.Component.create({
 
 		populateForm: function() {
 			var instance = this;
-			var strings = instance.get(STRINGS);
 
 			if (!instance.eventRepeatArray) {
 				instance.eventRepeatArray = [];
@@ -1224,16 +1256,7 @@ var SchedulerEventRecorder = A.Component.create({
 			var evt = (instance.get(EVENT) || instance);
 
 			instance.formNode.setContent(
-				instance.get(TEMPLATE).parse(
-					{
-						content: evt.get(CONTENT) || strings['description-hint'],
-						date: instance.getFormattedDate(),
-						endDate: evt.get(END_DATE),
-						eventRepeat: instance.eventRepeatArray,
-						repeat: evt.get(REPEAT),
-						startDate: evt.get(START_DATE)
-					}
-				)
+				instance.get(TEMPLATE).parse(instance.getTemplateData())
 			);
 		},
 

@@ -57,6 +57,7 @@ var Lang = A.Lang,
 	DURATION = 'duration',
 	END_DATE = 'endDate',
 	EVENT = 'event',
+	EVENT_CLASS = 'eventClass',
 	EVENT_PLACEHOLDER = 'eventPlaceholder',
 	EVENT_RECORDER = 'eventRecorder',
 	EVENT_WIDTH = 'eventWidth',
@@ -140,6 +141,12 @@ var SchedulerView = A.Component.create({
 	ATTRS: {
 		bodyContent: {
 			value: EMPTY_STR
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		height: {
@@ -865,7 +872,7 @@ var SchedulerDayView = A.Component.create({
 			if (!instance[EVENT_PLACEHOLDER]) {
 				var scheduler = instance.get(SCHEDULER);
 
-				instance[EVENT_PLACEHOLDER] = new A.SchedulerEvent({
+				instance[EVENT_PLACEHOLDER] = new (instance.get(EVENT_CLASS))({
 					scheduler: scheduler
 				});
 
