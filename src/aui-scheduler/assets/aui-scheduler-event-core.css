@@ -12,6 +12,7 @@
 }
 
 .aui-scheduler-event-title {
+    display: inline;
     font: bold 10px Verdana,sans-serif;
     overflow: hidden;
     padding: 2px;
