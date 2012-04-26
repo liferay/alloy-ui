@@ -3222,6 +3222,8 @@ var L = A.Lang,
 	ISO_TIME = 'isoTime',
 	LINK = 'link',
 	NODE = 'node',
+	OFFSET_HEIGHT = 'offsetHeight',
+	OFFSET_WIDTH = 'offsetWidth',
 	OVERLAY = 'overlay',
 	OVERLAY_OFFSET = 'overlayOffset',
 	RECORDER = 'recorder',
@@ -3357,7 +3359,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 		// See #2530972
 		overlayOffset: {
-			value: [95, -31],
+			value: [15, -38],
 			validator: isArray
 		},
 
@@ -3502,7 +3504,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (evt) {
 				instance.set(EVENT, evt);
-				instance.showOverlay(event.currentTarget);
+				instance.showOverlay([event.pageX, event.pageY]);
 
 				instance.get(NODE).remove();
 			}
@@ -3642,8 +3644,6 @@ var SchedulerEventRecorder = A.Component.create({
 				});
 			}
 
-			var evt = (instance.get(EVENT) || instance);
-
 			instance.formNode.setContent(
 				instance.get(TEMPLATE).parse(instance.getTemplateData())
 			);
@@ -3655,8 +3655,9 @@ var SchedulerEventRecorder = A.Component.create({
 			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
 		},
 
-		showOverlay: function(node, offset) {
+		showOverlay: function(xy, offset) {
 			var instance = this;
+			var defaultOffset = instance.get(OVERLAY_OFFSET);
 
 			if (!instance[OVERLAY].get(RENDERED)) {
 				instance._renderOverlay();
@@ -3664,18 +3665,22 @@ var SchedulerEventRecorder = A.Component.create({
 
 			instance[OVERLAY].show();
 
-			if (!node) {
+			if (!xy) {
 				var eventNode = (instance.get(EVENT) || instance).get(NODE);
+				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
 
-				node = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
+				offset = [defaultOffset[0] + titleNode.get(OFFSET_WIDTH), defaultOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
+
+				xy = titleNode.getXY();
 			}
 
-			instance[OVERLAY].set('align.node', node);
-
 			// Since #2530972 is not yet done, manually putting an offset to the alignment
-			offset = offset || instance.get(OVERLAY_OFFSET);
+			offset = offset || defaultOffset;
 
-			instance[OVERLAY].move(instance[OVERLAY].get(X) + offset[0], instance[OVERLAY].get(Y) + offset[1]);
+			xy[0] += offset[0];
+			xy[1] += offset[1];
+
+			instance[OVERLAY].set('xy', xy);
 		}
 
 	}
