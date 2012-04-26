@@ -56,6 +56,7 @@ var Lang = A.Lang,
 	DURATION = 'duration',
 	END_DATE = 'endDate',
 	EVENT = 'event',
+	EVENT_CLASS = 'eventClass',
 	EVENT_PLACEHOLDER = 'eventPlaceholder',
 	EVENT_RECORDER = 'eventRecorder',
 	EVENT_WIDTH = 'eventWidth',
@@ -139,6 +140,12 @@ var SchedulerView = A.Component.create({
 	ATTRS: {
 		bodyContent: {
 			value: EMPTY_STR
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		height: {

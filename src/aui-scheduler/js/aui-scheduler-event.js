@@ -36,6 +36,7 @@ var Lang = A.Lang,
 	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
+	EVENT_CLASS = 'eventClass',
 	EVENT_STACK = 'eventStack',
 	EVENTS = 'events',
 	HIDDEN = 'hidden',
@@ -128,14 +129,20 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		endDate: {
+			setter: '_setDate',
 			valueFn: function() {
 				var date = DateMath.clone(this.get(START_DATE));
 
 				date.setHours(date.getHours() + 1);
 
 				return date;
-			},
-			validator: isDate
+			}
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		disabled: {
@@ -163,6 +170,7 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		repeat: {
+			value: EMPTY_STR,
 			setter: '_setRepeat'
 		},
 
@@ -172,10 +180,10 @@ var SchedulerEvent = A.Component.create({
 		},
 
 		startDate: {
+			setter: '_setDate',
 			valueFn: function() {
 				return new Date();
-			},
-			validator: isDate
+			}
 		},
 
 		visible: {
@@ -208,7 +216,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance[EVENT_STACK] = {};
 
-			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				instance.after(attrName+CHANGE, instance._propagateAttrChange);
 			});
 
@@ -246,7 +254,7 @@ var SchedulerEvent = A.Component.create({
 
 			instance.copyDates(evt);
 
-			A.Array.each(A.SchedulerEvent.PROPAGATE_ATTRS, function(attrName) {
+			A.Array.each(instance.get(EVENT_CLASS).PROPAGATE_ATTRS, function(attrName) {
 				if ( !((dontCopyMap || {}).hasOwnProperty(attrName)) ) {
 					var value = evt.get(attrName);
 
@@ -331,7 +339,7 @@ var SchedulerEvent = A.Component.create({
 				DateMath.copyHours(startDate, instance.get(START_DATE));
 				DateMath.copyHours(endDate, instance.get(END_DATE));
 
-				var newEvt = new A.SchedulerEvent({
+				var newEvt = new instance.get(EVENT_CLASS)({
 					endDate: endDate,
 					parentEvent: instance,
 					scheduler: instance.get(SCHEDULER),
@@ -615,6 +623,16 @@ var SchedulerEvent = A.Component.create({
 					evt[nodeRefName].setContent(content);
 				});
 			}
+		},
+
+		_setDate: function(val) {
+			var instance = this;
+
+			if (isNumber(val)) {
+				val = new Date(val);
+			}
+
+			return val;
 		},
 
 		_setRepeat: function(val) {
