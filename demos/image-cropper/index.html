@@ -31,10 +31,14 @@
 
 		.cropped-image {
 			background: url(assets/lfr-soccer-1.jpg) no-repeat;
+			display: inline-block;
+			border: 10px solid #111;
+			position: relative;
 		}
 
 		.cropped-output {
 			position: relative;
+			text-align: center;
 		}
 
 		.status {
@@ -45,6 +49,35 @@
 			right: 0;
 			padding: 5px;
 		}
+
+		.x, .y, .width, .height {
+			position: absolute;
+			background: #fff;
+			border: 1px solid #ccc;
+			padding: 3px;
+			border-radius: 4px;
+			white-space: nowrap;
+		}
+
+		.x {
+			bottom: 100%;
+			right: 100%;
+		}
+
+		.y {
+			right: 100%;
+			top: 100%;
+		}
+
+		.width {
+			bottom: 100%;
+			left: 100%;
+		}
+
+		.height {
+			top: 100%;
+			left: 100%;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -53,7 +86,6 @@
 		AUI().ready('aui-image-cropper', function(A) {
 			var imageNode = A.one('#image');
 			var cropLinkNode = A.one('#cropLink');
-			var statusNode = A.one('#status');
 
 			imageCropper = new A.ImageCropper({
 				srcNode: imageNode,
@@ -68,26 +100,40 @@
 				y: 100
 			}).render();
 
-			var croppedImage = A.one('#croppedImage');
-			var croppedStatus = A.one('#croppedStatus');
+			var statusTPL = '<b class="x">x: {x}</b><b class="y">y: {y}</b><b class="height">height: {height}</b><b class="width">width: {width}</b>';
 
-			var statusTPL = '<p>Image will be cropped to: </p><b>x</b>: {x}<br /><b>y</b>: {y}<br /><b>height</b>: {height}<br /><b>width</b>: {width}<br />';
-
-			cropLinkNode.on('click', function (event) {
-				var cropRegion = imageCropper.getCropRegion();
+			var updateImage = function() {
+				var cropRegion = imageCropper.get('region');
 
 				croppedImage.setStyles(
 					{
-						'backgroundPosition': '-' + cropRegion.x + 'px -' + cropRegion.y + 'px',
+						'backgroundPosition': (-cropRegion.x) + 'px ' + (-cropRegion.y) + 'px',
 						height: cropRegion.height,
 						width: cropRegion.width
 					}
 				);
 
-				croppedImage.show();
+				croppedImage.html(A.Lang.sub(statusTPL, cropRegion));
+			};
 
-				statusNode.html(A.Lang.sub(statusTPL, cropRegion));
-				statusNode.show();
+			imageCropper.after('crop', function(event) {
+				updateImage();
+			});
+
+			var croppedImage = A.one('#croppedImage');
+			var croppedStatus = A.one('#croppedStatus');
+
+			croppedImage.show();
+
+			updateImage();
+
+			cropLinkNode.on('click', function (event) {
+				imageCropper.setAttrs({
+					x: 45,
+					y: 5,
+					cropWidth: 390,
+					cropHeight: 125
+				});
 			});
 		});
 	</script>
@@ -95,7 +141,7 @@
 <body>
 	<h1>Alloy - ImageCropper</h1>
 
-	<button id="cropLink">Crop Image</button>
+	<button id="cropLink">Crop Image to x: 45, y: 5, width: 390, height: 125</button>
 
 	<div class="aui-layout image-cropper">
 		<div class="aui-column aui-w50">
