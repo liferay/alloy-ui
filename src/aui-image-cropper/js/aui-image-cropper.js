@@ -2,16 +2,18 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
 
+	getClassName = A.ClassNameManager.getClassName,
+
 	parseNumber = function(num) {
 		return parseInt(num, 10) || 0;
 	},
 
 	NAME = 'image-cropper',
 
-	CSS_CROP = A.getClassName(NAME, 'crop'),
-	CSS_CROP_OUTLINE = A.getClassName(NAME, 'crop', 'outline'),
-	CSS_OVERLAY = A.getClassName(NAME, 'overlay');
-	CSS_OVERLAY_HOVER = A.getClassName(NAME, 'crop', 'hover');
+	CSS_CROP = getClassName(NAME, 'crop'),
+	CSS_CROP_OUTLINE = getClassName(NAME, 'crop', 'outline'),
+	CSS_OVERLAY = getClassName(NAME, 'overlay');
+	CSS_OVERLAY_HOVER = getClassName(NAME, 'crop', 'hover');
 
 var ImageCropper = A.Component.create(
 	{

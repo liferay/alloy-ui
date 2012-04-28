@@ -38,83 +38,83 @@
 	background-color: #FFF;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner {
 	width: 10px;
 	height: 10px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-t {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-t {
 	top: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-tr {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-tr {
 	right: -5px;
 	top: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-r {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-r {
 	right: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-br {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-br {
 	bottom: -5px;
 	right: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-b {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-b {
 	bottom: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-bl {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-bl {
 	bottom: -5px;
 	left: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-l {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-l {
 	left: -4px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-tl {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-tl {
 	left: -5px;
 	top: -5px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-t {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-t {
 	margin-left: -5px;
 	top: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tr {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-tr {
 	right: 0;
 	top: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-r {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-r {
 	margin-top: -5px;
 	right: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-br {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-br {
 	bottom: 0;
 	right: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-b {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-b {
 	margin-left: -5px;
 	bottom: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-bl {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-bl {
 	bottom: 0;
 	left: 0;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-l {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-l {
 	margin-top: -5px;
 	left: -2px;
 }
 
-.aui-image-cropper .aui-image-cropper-crop .yui3-resize-handle-inner-tl {
+.aui-image-cropper .aui-image-cropper-crop .aui-resize-handle-inner-tl {
 	left: 0;
 	top: 0;
 }
