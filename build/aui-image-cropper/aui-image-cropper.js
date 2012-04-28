@@ -3,6 +3,10 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
 
+	parseNumber = function(num) {
+		return parseInt(num, 10) || 0;
+	},
+
 	NAME = 'image-cropper',
 
 	CSS_CROP = A.getClassName(NAME, 'crop'),
@@ -41,6 +45,11 @@ var ImageCropper = A.Component.create(
 			preserveRatio: {
 				value: false,
 				validator: isBoolean
+			},
+
+			region: {
+				getter: '_getCropRegion',
+				value: {}
 			},
 
 			resizable: {
@@ -84,10 +93,7 @@ var ImageCropper = A.Component.create(
 
 				instance.overlay = A.Node.create('<div class="' + CSS_OVERLAY + '"></div>');
 
-				A.all([
-					instance.cropNode,
-					instance.overlay
-				]).appendTo(boundingBox);
+				A.all([instance.cropNode, instance.overlay]).appendTo(boundingBox);
 
 				instance._boundingBox = boundingBox;
 
@@ -98,11 +104,27 @@ var ImageCropper = A.Component.create(
 			bindUI: function() {
 				var instance = this;
 
-				instance.drag.addTarget(instance);
-				instance.resize.addTarget(instance);
+				instance._fireCropEventTask = A.debounce(instance._fireCropEvent, 10, instance);
 
-				instance.after('drag:drag', instance._afterMove);
-				instance.after('resize:resize', instance._afterResize);
+				instance.publish(
+					'crop',
+					{
+						defaultFn: instance._defCropFn
+					}
+				);
+
+				instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
+
+				instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
+
+				instance.after(
+					['xChange', 'yChange', 'cropWidthChange', 'cropHeightChange'],
+					function(event) {
+						instance._fireCropEventTask(event);
+
+						instance._syncCropNodeUI();
+					}
+				);
 
 				instance.cropNode.hover(
 					A.bind(instance._hoverOverlay, instance),
@@ -115,7 +137,8 @@ var ImageCropper = A.Component.create(
 
 				instance._uiSetPreserveRatio(instance.get('preserveRatio'));
 
-				instance.afterImageChange();
+				instance._syncImageUI();
+				instance._syncCropNodeUI();
 			},
 
 			destructor: function() {
@@ -125,61 +148,29 @@ var ImageCropper = A.Component.create(
 				instance._destroyResize();
 			},
 
-			afterImageChange: function() {
+			_constrainValues: function() {
 				var instance = this;
 
 				var imageNode = instance.get('srcNode');
-				var overlayNode = instance.overlay;
 
-				instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
+				var cropHeight = instance.get('cropHeight');
+				var cropWidth = instance.get('cropWidth');
 
-				overlayNode.setXY(imageNode.getXY());
-				overlayNode.width(imageNode.width());
-				overlayNode.height(imageNode.height());
-
-				instance.constrainValues();
-				instance._afterMove();
-
-				if (instance.drag) {
-					instance.drag.con.set('constrain', instance._getConstraintRegion());
-				}
-
-				if (instance.resize) {
-					instance.resize.con.set('constrain', instance._getConstraintRegion());
-				}
-			},
-
-			constrainValues: function() {
-				var instance = this;
-
-				var imageNode = instance.get('srcNode');
+				var x = instance.get('x');
+				var y = instance.get('y');
 
 				var imageWidth = imageNode.width();
 				var imageHeight = imageNode.height();
 
-				var originalX = instance.get('x');
-				var originalY = instance.get('y');
-				var originalCropHeight = instance.get('cropHeight');
-				var originalCropWidth = instance.get('cropWidth');
-
-				var y = originalY;
-				var x = originalX;
-				var cropHeight = originalCropHeight;
-				var cropWidth = originalCropWidth;
-
 				// Find valid y
 
-				if (y < 0) {
-					y = 0
-				}
+				y = Math.max(y, 0);
 
 				if (y + cropHeight > imageHeight) {
 					y = Math.max(imageHeight - cropHeight, 0);
 				}
 
-				if (y != originalY) {
-					instance.set('y', y);
-				}
+				instance.set('y', y);
 
 				// Find valid cropHeight
 
@@ -187,23 +178,17 @@ var ImageCropper = A.Component.create(
 					cropHeight = Math.max(imageHeight - y, 0);
 				}
 
-				if (cropHeight != originalCropHeight) {
-					instance.set('cropHeight', cropHeight);
-				}
+				instance.set('cropHeight', cropHeight);
 
 				// Find valid x
 
-				if (x < 0) {
-					x = 0
-				}
+				x = Math.max(x, 0);
 
 				if (x + cropWidth > imageWidth) {
 					x = Math.max(imageWidth - cropWidth, 0);
 				}
 
-				if (x != originalX) {
-					instance.set('x', x);
-				}
+				instance.set('x', x);
 
 				// Find valid cropWidth
 
@@ -211,52 +196,20 @@ var ImageCropper = A.Component.create(
 					cropWidth = Math.max(imageWidth - x, 0);
 				}
 
-				if (cropWidth != originalCropWidth) {
-					instance.set('cropWidth', cropWidth);
+				instance.set('cropWidth', cropWidth);
+			},
+
+			_defCropFn: function(event) {
+				var instance = this;
+
+				var cropType = event.cropType;
+
+				if (cropType == 'drag:drag') {
+					instance._syncXY();
 				}
-			},
-
-			getCropRegion: function() {
-				var instance = this;
-
-				return {
-					x: instance.get('x'),
-					y: instance.get('y'),
-					width: instance.get('cropWidth'),
-					height: instance.get('cropHeight')
-				};
-			},
-
-			_afterMove: function(event) {
-				var instance = this;
-
-				var imageNode = instance.get('srcNode');
-				var cropNode = instance.cropNode;
-
-				var imageXY = imageNode.getXY();
-				var imageX = imageXY[0];
-				var imageY = imageXY[1];
-
-				var cropXY = cropNode.getXY();
-				var cropX = cropXY[0];
-				var cropY = cropXY[1];
-
-				var offsetX = cropX - imageX + cropNode.getBorderWidth('l');
-				var offsetY = cropY - imageY + cropNode.getBorderWidth('t');
-
-				cropNode.setStyle('backgroundPosition', (-offsetX) + 'px ' + (-offsetY) + 'px');
-
-				instance.set('x', offsetX);
-				instance.set('y', offsetY);
-			},
-
-			_afterResize: function(event) {
-				var instance = this;
-
-				var cropNode = instance.cropNode;
-
-				instance.set('cropHeight', cropNode.height());
-				instance.set('cropWidth', cropNode.width());
+				else if (cropType == 'resize:resize') {
+					instance._syncCropSize();
+				}
 			},
 
 			_destroyDrag: function(object) {
@@ -264,6 +217,7 @@ var ImageCropper = A.Component.create(
 
 				if (instance.drag) {
 					instance.drag.destroy();
+
 					delete instance.drag;
 				}
 			},
@@ -273,25 +227,55 @@ var ImageCropper = A.Component.create(
 
 				if (instance.resize) {
 					instance.resize.destroy();
+
 					delete instance.resize;
 				}
 			},
 
-			_getConstraintRegion: function() {
+			_fireCropEvent: function(event) {
 				var instance = this;
 
-				var imageNode = instance.get('srcNode');
-				var cropNode = instance.cropNode;
+				instance.fire('crop', {cropType: event.type});
+			},
 
-				var imageXY = imageNode.getXY();
-				var imageX = imageXY[0];
-				var imageY = imageXY[1];
+			_getConstraintRegion: function(force) {
+				var instance = this;
+
+				var region = !force ? instance._origRegion : null;
+
+				if (!region) {
+					var imageNode = instance.get('srcNode');
+
+					var cropNode = instance.cropNode;
+
+					var imageXY = imageNode.getXY();
+
+					var imageX = imageXY[0];
+					var imageY = imageXY[1];
+
+					region = {
+						bottom: imageY + imageNode.height() + cropNode.getBorderWidth('b'),
+						left: imageX - cropNode.getBorderWidth('l'),
+						right: imageX + imageNode.width() + cropNode.getBorderWidth('r'),
+						top: imageY - cropNode.getBorderWidth('t')
+					};
+
+					if (!instance._origRegion) {
+						instance._origRegion = region;
+					}
+				}
+
+				return region;
+			},
+
+			_getCropRegion: function() {
+				var instance = this;
 
 				return {
-					top: imageY - cropNode.getBorderWidth('t'),
-					right: imageX + imageNode.width() + cropNode.getBorderWidth('r'),
-					bottom: imageY + imageNode.height() + cropNode.getBorderWidth('b'),
-					left: imageX - cropNode.getBorderWidth('l')
+					height: instance.get('cropHeight'),
+					width: instance.get('cropWidth'),
+					x: instance.get('x'),
+					y: instance.get('y')
 				};
 			},
 
@@ -322,7 +306,7 @@ var ImageCropper = A.Component.create(
 			_renderDrag: function() {
 				var instance = this;
 
-				instance.drag = new A.DD.Drag(
+				var drag = new A.DD.Drag(
 					{
 						node: instance.cropNode
 					}
@@ -332,12 +316,16 @@ var ImageCropper = A.Component.create(
 						constrain: instance._getConstraintRegion()
 					}
 				);
+
+				drag.addTarget(instance);
+
+				instance.drag = drag;
 			},
 
 			_renderResize: function() {
 				var instance = this;
 
-				instance.resize = new A.Resize(
+				var resize = new A.Resize(
 					{
 						node: instance.cropNode
 					}
@@ -350,6 +338,88 @@ var ImageCropper = A.Component.create(
 						minWidth: instance.get('minWidth')
 					}
 				);
+
+				resize.addTarget(instance);
+
+				instance.resize = resize;
+			},
+
+			_syncCropNodeUI: function() {
+				var instance = this;
+
+				instance.cropNode.setStyle('backgroundPosition', (-instance.get('x')) + 'px ' + (-instance.get('y')) + 'px');
+			},
+
+			_syncCropSize: function(event) {
+				var instance = this;
+
+				var cropNode = instance.cropNode;
+
+				instance.set('cropHeight', cropNode.height());
+				instance.set('cropWidth', cropNode.width());
+			},
+
+			_syncImageUI: function() {
+				var instance = this;
+
+				var imageNode = instance.get('srcNode');
+				var overlayNode = instance.overlay;
+
+				instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
+
+				instance._constrainValues();
+				instance._syncXY();
+
+				var origRegion = instance._getConstraintRegion();
+
+				var drag = instance.drag;
+				var resize = instance.resize;
+
+				if (drag) {
+					drag.con.set('constrain', origRegion);
+				}
+
+				if (resize) {
+					resize.con.set('constrain', origRegion);
+				}
+			},
+
+			_syncRegion: function(event) {
+				var instance = this;
+
+				var region = instance._getConstraintRegion(true);
+
+				var origRegion = instance._origRegion;
+
+				if (
+					region.bottom != origRegion.bottom ||
+					region.left != origRegion.left ||
+					region.right != origRegion.right ||
+					region.top != origRegion.top
+				) {
+
+					var drag = instance.drag;
+					var resize = instance.resize;
+
+					if (drag) {
+						drag.con.set('constrain', region);
+					}
+
+					if (resize) {
+						resize.con.set('constrain', region);
+					}
+
+					instance._origRegion = region;
+				}
+			},
+
+			_syncXY: function(event) {
+				var instance = this;
+
+				var cropNode = instance.cropNode;
+
+				instance.set('x', parseNumber(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
+				instance.set('y', parseNumber(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
 			},
 
 			_uiSetCropHeight: function(value) {
@@ -404,20 +474,17 @@ var ImageCropper = A.Component.create(
 				var instance = this;
 
 				if (value) {
-					if (instance.stopResize) {
-						instance.stopResize.detach();
+					if (instance._stopResizeHandle) {
+						instance._stopResizeHandle.detach();
 					}
 				}
-				else {
-					if (!instance.stopResize) {
-						instance.stopResize = instance.resize.on(
-							'resize:resize',
-							function (event) {
-								event.preventDefault();
-								event.stopPropagation();
-							}
-						);
-					}
+				else if (!instance._stopResizeHandle) {
+					instance._stopResizeHandle = instance.resize.on(
+						'resize:resize',
+						function (event) {
+							event.halt();
+						}
+					);
 				}
 			},
 
@@ -427,7 +494,7 @@ var ImageCropper = A.Component.create(
 				var imageNode = instance.get('srcNode');
 				var cropNode = instance.cropNode;
 
-				cropNode.setX(imageNode.getX() + value - cropNode.getBorderWidth('l'));
+				cropNode.setStyle('left', value - cropNode.getBorderWidth('l'));
 			},
 
 			_uiSetY: function(value) {
@@ -436,7 +503,7 @@ var ImageCropper = A.Component.create(
 				var imageNode = instance.get('srcNode');
 				var cropNode = instance.cropNode;
 
-				cropNode.setY(imageNode.getY() + value - cropNode.getBorderWidth('t'));
+				cropNode.setStyle('top', value - cropNode.getBorderWidth('t'));
 			},
 
 			_unHoverOverlay: function() {
@@ -452,4 +519,4 @@ var ImageCropper = A.Component.create(
 
 A.ImageCropper = ImageCropper;
 
-}, '@VERSION@' ,{requires:['widget','aui-base','resize','dd-constrain'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['widget','aui-base','resize','dd-constrain']});

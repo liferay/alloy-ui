@@ -1,8 +1,13 @@
+.aui-image-cropper {
+	line-height: 0;
+	position: relative;
+}
+
 .aui-image-cropper .aui-image-cropper-crop {
+	background-repeat: no-repeat;
+	border: 1px solid #000;
 	position: absolute;
 	z-index: 10;
-	border: 1px solid #000;
-	background-repeat: no-repeat;
 }
 
 .aui-image-cropper .aui-image-cropper-crop:hover {
@@ -11,10 +16,12 @@
 
 .aui-image-cropper-overlay {
 	background-color: transparent;
+	height: 100%;
+	left: 0;
 	opacity: 0.4;
 	position: absolute;
 	top: 0;
-	left: 0;
+	width: 100%;
 	z-index: 9;
 }
 
@@ -24,6 +31,7 @@
 	border: 1px dashed #FFF;
 	margin-left: -1px;
 	margin-top: -1px;
+	outline: 3px solid rgba(255, 255, 255, 0.5);
 }
 
 .aui-image-cropper-crop-hover .aui-image-cropper-overlay {
