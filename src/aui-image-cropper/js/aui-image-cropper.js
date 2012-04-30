@@ -112,6 +112,8 @@ var ImageCropper = A.Component.create(
 					}
 				);
 
+				instance.after('disabledChange', instance._afterDisabledChange);
+
 				instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
 
 				instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
@@ -125,10 +127,7 @@ var ImageCropper = A.Component.create(
 					}
 				);
 
-				instance.cropNode.hover(
-					A.bind(instance._hoverOverlay, instance),
-					A.bind(instance._unHoverOverlay, instance)
-				);
+				instance._createHover();
 			},
 
 			syncUI: function() {
@@ -136,7 +135,7 @@ var ImageCropper = A.Component.create(
 
 				instance._uiSetPreserveRatio(instance.get('preserveRatio'));
 
-				instance._syncImageUI();
+				instance.syncImageUI();
 				instance._syncCropNodeUI();
 			},
 
@@ -145,6 +144,46 @@ var ImageCropper = A.Component.create(
 
 				instance._destroyDrag();
 				instance._destroyResize();
+			},
+
+			syncImageUI: function() {
+				var instance = this;
+
+				var imageNode = instance.get('srcNode');
+				var overlayNode = instance.overlay;
+
+				instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
+
+				instance._constrainValues();
+				instance._syncXY();
+
+				var origRegion = instance._getConstraintRegion();
+
+				var drag = instance.drag;
+				var resize = instance.resize;
+
+				if (drag) {
+					drag.con.set('constrain', origRegion);
+				}
+
+				if (resize) {
+					resize.con.set('constrain', origRegion);
+				}
+			},
+
+			_afterDisabledChange: function(event) {
+				var instance = this;
+
+				var enabled = !event.newVal;
+
+				instance.cropNode.toggle(enabled);
+
+				if (enabled) {
+					instance._createHover();
+				}
+				else {
+					instance._destroyHover();
+				}
 			},
 
 			_constrainValues: function() {
@@ -198,6 +237,17 @@ var ImageCropper = A.Component.create(
 				instance.set('cropWidth', cropWidth);
 			},
 
+			_createHover: function() {
+				var instance = this;
+
+				instance._destroyHover();
+
+				instance._hoverHandles = instance.cropNode.hover(
+					A.bind(instance._hoverOverlay, instance),
+					A.bind(instance._unHoverOverlay, instance)
+				);
+			},
+
 			_defCropFn: function(event) {
 				var instance = this;
 
@@ -218,6 +268,16 @@ var ImageCropper = A.Component.create(
 					instance.drag.destroy();
 
 					delete instance.drag;
+				}
+			},
+
+			_destroyHover: function() {
+				var instance = this;
+
+				if (instance._hoverHandles) {
+					instance._hoverHandles.detach();
+
+					instance._hoverHandles = null;
 				}
 			},
 
@@ -356,31 +416,6 @@ var ImageCropper = A.Component.create(
 
 				instance.set('cropHeight', cropNode.height());
 				instance.set('cropWidth', cropNode.width());
-			},
-
-			_syncImageUI: function() {
-				var instance = this;
-
-				var imageNode = instance.get('srcNode');
-				var overlayNode = instance.overlay;
-
-				instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
-
-				instance._constrainValues();
-				instance._syncXY();
-
-				var origRegion = instance._getConstraintRegion();
-
-				var drag = instance.drag;
-				var resize = instance.resize;
-
-				if (drag) {
-					drag.con.set('constrain', origRegion);
-				}
-
-				if (resize) {
-					resize.con.set('constrain', origRegion);
-				}
 			},
 
 			_syncRegion: function(event) {
