@@ -524,8 +524,12 @@ A.mix(NODE_PROTO, {
 		hoverOptions.overTask = A.debounce(instance._hoverOverTaskFn, null, instance);
 		hoverOptions.outTask = A.debounce(instance._hoverOutTaskFn, null, instance);
 
-		instance.on(hoverOptions.overEventType, instance._hoverOverHandler, instance);
-		instance.on(hoverOptions.outEventType, instance._hoverOutHandler, instance);
+		return new A.EventHandle(
+			[
+				instance.on(hoverOptions.overEventType, instance._hoverOverHandler, instance),
+				instance.on(hoverOptions.outEventType, instance._hoverOutHandler, instance)
+			]
+		);
 	},
 
 	/**
