@@ -112,8 +112,6 @@ var ImageCropper = A.Component.create(
 					}
 				);
 
-				instance.after('disabledChange', instance._afterDisabledChange);
-
 				instance.on(['drag:start', 'resize:start'], A.debounce(instance._syncRegion, 25));
 
 				instance.after(['drag:drag', 'resize:resize'], instance._fireCropEvent, instance);
@@ -168,21 +166,6 @@ var ImageCropper = A.Component.create(
 
 				if (resize) {
 					resize.con.set('constrain', origRegion);
-				}
-			},
-
-			_afterDisabledChange: function(event) {
-				var instance = this;
-
-				var enabled = !event.newVal;
-
-				instance.cropNode.toggle(enabled);
-
-				if (enabled) {
-					instance._createHover();
-				}
-				else {
-					instance._destroyHover();
 				}
 			},
 
@@ -468,6 +451,23 @@ var ImageCropper = A.Component.create(
 				var instance = this;
 
 				instance.cropNode.width(value);
+			},
+
+			_uiSetDisabled: function(value) {
+				var instance = this;
+
+				ImageCropper.superclass._uiSetDisabled.apply(instance, arguments);
+
+				var enabled = !value;
+
+				instance.cropNode.toggle(enabled);
+
+				if (enabled) {
+					instance._createHover();
+				}
+				else {
+					instance._destroyHover();
+				}
 			},
 
 			_uiSetMinHeight: function(value) {
