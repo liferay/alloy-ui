@@ -243,9 +243,11 @@ var ImageCropper = A.Component.create(
 
 				instance._destroyHover();
 
-				instance._hoverHandles = instance.cropNode.hover(
-					A.bind(instance._hoverOverlay, instance),
-					A.bind(instance._unHoverOverlay, instance)
+				instance._hoverHandles = instance.cropNode.on(
+					'hover',
+					instance._hoverOverlay,
+					instance._unHoverOverlay,
+					instance
 				);
 			},
 
