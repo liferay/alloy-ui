@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+
+	<style type="text/css">
+		body {
+			padding: 1em;
+		}
+
+		#status table {
+			padding-left: 3em;
+		}
+
+		#status tr > td:first-child {
+			font-weight: bold;
+			text-align: right;
+		}
+
+		#image {
+			width: 500px;
+		}
+
+		.image-cropper {
+			margin: 0.5em auto 0;
+			width: 1020px;
+		}
+
+		.cropped-image {
+			background: url(assets/lfr-soccer-1.jpg) no-repeat;
+			display: inline-block;
+			border: 10px solid #111;
+			position: relative;
+		}
+
+		.cropped-output {
+			position: relative;
+			text-align: center;
+		}
+
+		.status {
+			position: absolute;
+			background-color: #FFF;
+			border: 1px solid #999;
+			top: 0;
+			right: 0;
+			padding: 5px;
+		}
+
+		.x, .y, .width, .height {
+			position: absolute;
+			background: #fff;
+			border: 1px solid #ccc;
+			padding: 3px;
+			border-radius: 4px;
+			white-space: nowrap;
+		}
+
+		.x {
+			bottom: 100%;
+			right: 100%;
+		}
+
+		.y {
+			right: 100%;
+			top: 100%;
+		}
+
+		.width {
+			bottom: 100%;
+			left: 100%;
+		}
+
+		.height {
+			top: 100%;
+			left: 100%;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var imageCropper;
+
+		AUI().ready('aui-image-cropper', function(A) {
+			var imageNode = A.one('#image');
+			var cropLinkNode = A.one('#cropLink');
+
+			imageCropper = new A.ImageCropper({
+				srcNode: imageNode,
+				// cropHeight: 100,
+				// cropWidth: 100,
+				// minWidth: 50,
+				// minHeight: 50,
+				// movable: true,
+				// preserveRatio: true,
+				// resizeable: true,
+				x: 100,
+				y: 100
+			}).render();
+
+			var statusTPL = '<b class="x">x: {x}</b><b class="y">y: {y}</b><b class="height">height: {height}</b><b class="width">width: {width}</b>';
+
+			var updateImage = function() {
+				var cropRegion = imageCropper.get('region');
+
+				croppedImage.setStyles(
+					{
+						'backgroundPosition': (-cropRegion.x) + 'px ' + (-cropRegion.y) + 'px',
+						height: cropRegion.height,
+						width: cropRegion.width
+					}
+				);
+
+				croppedImage.html(A.Lang.sub(statusTPL, cropRegion));
+			};
+
+			imageCropper.after('crop', function(event) {
+				updateImage();
+			});
+
+			var croppedImage = A.one('#croppedImage');
+			var croppedStatus = A.one('#croppedStatus');
+
+			croppedImage.show();
+
+			updateImage();
+
+			cropLinkNode.on('click', function (event) {
+				imageCropper.setAttrs({
+					x: 45,
+					y: 5,
+					cropWidth: 390,
+					cropHeight: 125
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Alloy - ImageCropper</h1>
+
+	<button id="cropLink">Crop Image to x: 45, y: 5, width: 390, height: 125</button>
+
+	<div class="aui-layout image-cropper">
+		<div class="aui-column aui-w50">
+			<div class="aui-column-content">
+				<img id="image" src="assets/lfr-soccer-1.jpg" />
+			</div>
+		</div>
+		<div class="aui-column aui-w50">
+			<div class="aui-column-content cropped-output">
+				<div class="cropped-image aui-helper-hidden" id="croppedImage"></div>
+				<div class="status aui-helper-hidden" id="status"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

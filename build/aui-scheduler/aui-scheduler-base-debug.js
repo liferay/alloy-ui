@@ -4,6 +4,7 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isDate = Lang.isDate,
 	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
@@ -40,6 +41,7 @@ var Lang = A.Lang,
 	CURRENT_DATE_NODE = 'currentDateNode',
 	DATE = 'date',
 	END_DATE = 'endDate',
+	EVENT_CLASS = 'eventClass',
 	EVENTS = 'events',
 	HD = 'hd',
 	HEADER = 'header',
@@ -97,6 +99,12 @@ var Lang = A.Lang,
 var SchedulerEventSupport = function() {};
 
 SchedulerEventSupport.ATTRS = {
+	eventClass: {
+		valueFn: function() {
+			return A.SchedulerEvent;
+		}
+	},
+
 	events: {
 		value: [],
 		setter: '_setEvents',
@@ -137,9 +145,11 @@ A.mix(SchedulerEventSupport.prototype, {
 		var instance = this;
 		var events = instance.get(EVENTS);
 
-		A.Array.removeItem(events, evt);
+		if (events.length) {
+			A.Array.removeItem(events, evt);
 
-		instance.set(EVENTS, events);
+			instance.set(EVENTS, events);
+		}
 	},
 
 	removeEvents: function(events) {
@@ -162,19 +172,24 @@ A.mix(SchedulerEventSupport.prototype, {
 				output.push(evt);
 			}
 			else if (isSchedulerCalendar(evt)) {
+				if (isScheduler(instance)) {
+					evt.set(SCHEDULER, instance);
+				}
+
 				// get events from the calendar
 				output = output.concat(
 					instance._normalizeEvents(evt.get(EVENTS))
 				);
 			}
 			else {
-				evt = new A.SchedulerEvent(evt);
+				evt = new (instance.get(EVENT_CLASS))(evt);
 
 				output.push(evt);
 			}
 
 			if (isScheduler(instance)) {
 				evt.set(SCHEDULER, instance);
+				evt.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 			}
 		});
 
@@ -597,6 +612,7 @@ var SchedulerBase = A.Component.create({
 
 			if (val) {
 				val.set(SCHEDULER, instance);
+				val.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 			}
 		},
 
@@ -607,6 +623,7 @@ var SchedulerBase = A.Component.create({
 			A.Array.each(val, function(view) {
 				if (isSchedulerView(view) && !view.get(RENDERED)) {
 					view.set(SCHEDULER, instance);
+					view.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 
 					views.push(view);
 

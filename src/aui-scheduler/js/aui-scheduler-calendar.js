@@ -10,6 +10,7 @@ var Lang = A.Lang,
 	COLOR = 'color',
 	EVENTS = 'events',
 	PALLETE = 'pallete',
+	SCHEDULER = 'scheduler',
 	SCHEDULER_CALENDAR = 'scheduler-calendar',
 	VISIBLE = 'visible';
 
@@ -38,6 +39,11 @@ var SchedulerCalendar = A.Component.create({
 			validator: isArray
 		},
 
+		scheduler: {
+			lazyAdd: false,
+			setter: '_setScheduler'
+		},
+
 		visible: {
 			value: true,
 			validator: isBoolean
@@ -53,7 +59,7 @@ var SchedulerCalendar = A.Component.create({
 			var instance = this;
 
 			instance.after('colorChange', instance._afterColorChange);
-			instance.after('eventsChange', instance._afterEventsChange);
+			instance.on('eventsChange', instance._onEventsChange);
 			instance.on('visibleChange', instance._onVisibleChange);
 
 			instance._uiSetVisible(
@@ -79,10 +85,16 @@ var SchedulerCalendar = A.Component.create({
 			instance.syncEventsColor(instance.get(EVENTS));
 		},
 
-		_afterEventsChange: function(event) {
+		_onEventsChange: function(event) {
 			var instance = this;
+			var value = event.newVal;
+			var visible = instance.get(VISIBLE);
 
-			instance._uiSetEvents(event.newVal);
+			A.Array.each(value, function(event) {
+				event.set(VISIBLE, visible);
+			});
+
+			instance._uiSetEvents(value);
 		},
 
 		_onVisibleChange: function(event) {
@@ -91,10 +103,30 @@ var SchedulerCalendar = A.Component.create({
 			instance._uiSetVisible(event.newVal);
 		},
 
+		_setScheduler: function(val) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+
+			if (scheduler) {
+				instance.removeTarget(scheduler);
+			}
+
+			instance.addTarget(val);
+
+			return val;
+		},
+
 		_uiSetEvents: function(val) {
 			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
 
 			instance.syncEventsColor(val);
+
+			if (scheduler) {
+				scheduler.removeEvents(instance);
+				scheduler.addEvents(val);
+				scheduler.syncEventsUI();
+			}
 		},
 
 		_uiSetVisible: function(val) {
