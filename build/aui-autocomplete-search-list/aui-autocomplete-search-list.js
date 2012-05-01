@@ -1,20 +1,24 @@
 AUI.add('aui-autocomplete-search-list', function(A) {
-var NAME = 'AutocompleteSearchList',
+var arrayIndexOf = A.Array.indexOf,
+
+	NAME = 'AutocompleteSearchList',
+
+	DOC = A.config.doc,
 
 	ADD = 'add',
 	BLANK = "''",
-	SEARCH = "'Search'",
 	CHECKED = 'checked',
 	CLICK = 'click',
 	COMMA_SPACE = ', ',
-	DEMO = 'demo',
-	DOC = A.config.doc,
+	INPUT_SELECTOR = 'inputSelector',
 	PHRASE_MATCH = 'phraseMatch',
 	REMOVE = 'remove',
 	RENDER = 'render',
+	TAG_SELECTOR = 'tagsSelector',
+	TEMPLATE = 'template',
+	SEARCH = "'Search'",
 	SEARCH_INITIALLY = 'searchInitially',
 	STR_BLANK = '',
-	VALUE = 'value',
 
 	TPL_AC_SEARCH_LIST = '<div class="aui-autocomplete-search-list" />',
 	TPL_AC_CONTAINER = '<span class="aui-field-content aui-autocomplete-search-list-ac-container">',
@@ -38,51 +42,36 @@ A.mix(AutocompleteSearchList, {
 			entries: {
 				value: null
 			},
-
 			entriesNode: {
 				value: null
 			},
-
 			initialResult: {
 				value: null
 			},
-
 			inputNode: {
 				value: '#ac-input'
 			},
-
 			inputSelector: {
 				value: null
 			},
-
 			minQueryLength: {
 				value: 0
 			},
-
-			mode: {
-				value: null
-			},
-
 			noResultsMessage: {
 				value: null
 			},
-
 			resultFilters: {
 				value: PHRASE_MATCH
 			},
-
 			searchInitially: {
 				value: true
 			},
-
 			source: {
 				value: null
 			},
-
 			tagsSelector: {
 				value: null
 			},
-
 			template: {
 				valueFn: function() {
 					var instance = this;
@@ -92,7 +81,6 @@ A.mix(AutocompleteSearchList, {
 					switch (templateType) {
 						case 'asset-tags-selector':
 						default:
-
 							return A.AutocompleteSearchList.TPL || new A.Template(
 								'<fieldset class="{[(!values.results || !values.results.length) ? "', CSS_NO_MATCHES, '" : "', STR_BLANK ,'" ]}">',
 									'<tpl for="results">',
@@ -100,13 +88,11 @@ A.mix(AutocompleteSearchList, {
 									'</tpl>',
 									'<div class="lfr-tag-message">{noResultsMessage}</div>',
 								'</fieldset>'
-							 );
-
+							);
 						break;
 					}
 				}
 			},
-
 			templateType: {
 				value: 'asset-tags-selector'
 			}
@@ -116,9 +102,8 @@ A.mix(AutocompleteSearchList, {
 			initializer: function(config) {
 				var instance = this;
 
-				var inputSelector = instance.get('inputSelector');
-
-				var tagsSelector = instance.get('tagsSelector');
+				var inputSelector = instance.get(INPUT_SELECTOR);
+				var tagsSelector = instance.get(TAG_SELECTOR);
 
 				if (tagsSelector) {
 					instance.tagsSelector = tagsSelector;
@@ -128,8 +113,7 @@ A.mix(AutocompleteSearchList, {
 
 				this.afterHostEvent(
 					RENDER,
-					function()
-					{
+					function() {
 						instance._createNodes(config.host.bodyNode);
 
 						instance.bindUI();
@@ -137,7 +121,7 @@ A.mix(AutocompleteSearchList, {
 						if (instance.get(SEARCH_INITIALLY)) {
 							instance._initialSearch();
 						}
-						
+
 						if (tagsSelector || inputSelector) {
 							var onCheckboxClick = A.bind(instance._onCheckboxClick, instance);
 
@@ -152,8 +136,7 @@ A.mix(AutocompleteSearchList, {
 
 				instance.before(
 					'results',
-					function(event)
-					{
+					function(event) {
 						var result_data = instance._formatEventResults(event);
 
 						instance._renderResults(result_data);
@@ -191,9 +174,9 @@ A.mix(AutocompleteSearchList, {
 
 				bodyNode.append(inputNode);
 				bodyNode.append(entriesNode);
-				
-				instance.inputNode = inputNode;
+
 				instance.entriesNode = entriesNode;
+				instance.inputNode = inputNode;
 			},
 
 			_formatInitialSearch: function() {
@@ -203,10 +186,9 @@ A.mix(AutocompleteSearchList, {
 
 				A.Array.map(
 					initialResult,
-					function(item, index, collection)
-					{
-						item.text = item.name;
+					function(item, index, collection) {
 						item.checked = item.assetCount;
+						item.text = item.name;
 					}
 				);
 
@@ -222,17 +204,15 @@ A.mix(AutocompleteSearchList, {
 
 				var formattedResults = A.Array.map(
 					event.results, 
-					function(item, index, collection)
-					{
+					function(item, index, collection) {
 						var entries = instance.entries;
 
 						if (entries) {
-
 							if (instance.tagsSelector) {
 								item.raw.checked = entries.indexOfKey(item.text) > -1 ? TPL_CHECKED : STR_BLANK;
 							}
 							else {
-								item.raw.checked = entries.indexOf(item.text) > -1 ? TPL_CHECKED : STR_BLANK;
+								item.raw.checked = arrayIndexOf(entries, item.text) > -1 ? TPL_CHECKED : STR_BLANK;
 							}
 						}
 
@@ -252,9 +232,8 @@ A.mix(AutocompleteSearchList, {
 
 				A.Array.map(
 					data,
-					function(item, index, collection)
-					{
-						item.checked = !!(keys.indexOf(item.text) + 1);
+					function(item, index, collection) {
+						item.checked = !!(arrayIndexOf(keys, item.text) + 1);
 					}
 				);
 
@@ -277,29 +256,26 @@ A.mix(AutocompleteSearchList, {
 			_onCheckboxClick: function(event) {
 				var instance = this;
 
+				var inputSelector = instance.get(INPUT_SELECTOR);
+				var tagsSelector = instance.get(TAG_SELECTOR);
+
 				var checkbox = event.currentTarget;
+
 				var checked = checkbox.get(CHECKED);
+
 				var checkboxValue = checkbox.val();
 
-				var tagsSelector = instance.get('tagsSelector');
-				
 				if (tagsSelector) {
 					var action = checked ? ADD : REMOVE;
 
 					instance.tagsSelector[action](checkboxValue);
 				}
-				else if (instance.get('inputSelector')) {
-					var inputSelector = instance.get('inputSelector');
-
+				else if (inputSelector) {
 					var inputSelectorNode = A.one(inputSelector);
-					
+
 					var nodeValue = inputSelectorNode.val();
 
-					var entries = instance.entries;
-
-					if (!entries) {
-						entries = [];
-					}
+					var entries = instance.entries || [];
 
 					if (checked) {
 						nodeValue = nodeValue ? nodeValue + COMMA_SPACE + checkboxValue : checkboxValue;
@@ -307,22 +283,22 @@ A.mix(AutocompleteSearchList, {
 						entries.push(checkboxValue);
 					}
 					else {
-						var re = new RegExp(COMMA_SPACE + checkboxValue);
-						nodeValue = nodeValue.replace(re, STR_BLANK);
+						var regEx = new RegExp(COMMA_SPACE + checkboxValue);
+						nodeValue = nodeValue.replace(regEx, STR_BLANK);
 
-						re = new RegExp(checkboxValue);
-						nodeValue = nodeValue.replace(re, STR_BLANK);
+						regEx = new RegExp(checkboxValue);
+						nodeValue = nodeValue.replace(regEx, STR_BLANK);
 
-						if (nodeValue.indexOf(COMMA_SPACE) === 0) {
+						if (nodeValue.indexOf(COMMA_SPACE) == 0) {
 							nodeValue = nodeValue.substring(2);
 						}
 
-						var index = entries.indexOf(checkboxValue);
+						var index = arrayIndexOf(entries, checkboxValue);
 
 						var updatedEntries = entries.splice(index, 1);
 					}
 
-					inputSelectorNode.set(VALUE, nodeValue);
+					inputSelectorNode.val(nodeValue);
 
 					instance.entries = entries;
 				}
@@ -331,9 +307,9 @@ A.mix(AutocompleteSearchList, {
 			_renderResults: function(data) {
 				var instance = this;
 
-				data.noResultsMessage = instance.get('noResultsMessage');
+				var template = instance.get(TEMPLATE);
 
-				template = instance.get('template');
+				data.noResultsMessage = instance.get('noResultsMessage');
 
 				template.render(data, instance.entriesNode);
 			},
@@ -342,21 +318,22 @@ A.mix(AutocompleteSearchList, {
 				var instance = this;
 
 				var initialResult = instance.initialResult;
+				var values = instance.entries.values;
 
 				var name = event.attrName;
 
-				var values = instance.entries.values;
+				var valuesLength = values.length - 1;
 
-				var lastEntry = values[values.length - 1];
+				var lastEntry = values[valuesLength];
 
-				var test = A.Array.map(
+				var items = A.Array.map(
 					initialResult,
 					function(item, index, collection) {
 						return item.text;
 					}
 				);
 
-				if (test.indexOf(name) < 0) {
+				if (arrayIndexOf(items, name) < 0) {
 					lastEntry.assetCount = 1;
 					lastEntry.checked = true;
 					lastEntry.entry = event.item.entry;
@@ -364,9 +341,7 @@ A.mix(AutocompleteSearchList, {
 					lastEntry.text = name;
 					lastEntry.value = name;
 
-					initialResult.push(lastEntry);	
-
-					// instance.set('initialResult', initialResult);
+					initialResult.push(lastEntry);
 				}
 
 				instance.refreshEntries(null);
@@ -380,4 +355,4 @@ A.AutocompleteSearchList = A.Component.build(NAME, A.Plugin.Base, [A.AutoComplet
 
 A.AutocompleteSearchList.NS = NAME;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base', 'aui-template', 'autocomplete', 'autocomplete-highlighters', 'autocomplete-filters', 'plugin']});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-template','autocomplete','autocomplete-highlighters','autocomplete-filters','plugin']});

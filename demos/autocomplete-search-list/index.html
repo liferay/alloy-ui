@@ -7,10 +7,13 @@
 	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
 
 	<style type="text/css" media="screen">
-	
 		body {
 			font-size: 12px;
 			margin: 10px;
+		}
+
+		#demo {
+			margin: 10px 0;
 		}
 
 		#wrapper {
@@ -18,119 +21,113 @@
 		}
 
 		#tags-selected {
-			width: 400px;
-			height: 20px;
 			border-radius: 0px 0px 0px 0px;
+			height: 20px;
+			width: 400px;
 		}
-
 	</style>
-
 </head>
 
 <body class ="yui3-skin-sam">
 
-	<div id="wrapper">
-		<h1>Alloy - AutocompleteSearchList - Tags Selector Demo</h1>
+<div id="wrapper">
+	<h1>Alloy - AutocompleteSearchList - Tags Selector Demo</h1>
 
-		<div id="tags-div" style="width: 719px;">
-			<input id="tags-selected" class="aui-field-input aui-field-input-text" type="text"/> <br />
-		</div>
-		<p />
-		<div id="demo"> </div>
+	<div id="tags-div" style="width: 719px;">
+		<input id="tags-selected" class="aui-field-input aui-field-input-text" type="text"/>
 	</div>
 
-	<script type="text/javascript" charset="utf-8">
+	<div id="demo"></div>
+</div>
 
-	AUI().ready('aui-template', 'aui-autocomplete-search-list', 'autocomplete-base', 'aui-aria', 'aui-dialog', 'aui-overlay-manager', 'dd-constrain', function(A) {
+<script type="text/javascript" charset="utf-8">
+AUI().ready('aui-aria', 'aui-autocomplete-search-list', 'aui-dialog', 'aui-overlay-manager', 'aui-template', 'autocomplete-base', 'dd-constrain', function(A) {
+	var CSS_NO_MATCHES = 'no-matches';
+	var NO_RESULTS_MESSAGE = 'No results found.'
+	var STR_BLANK = '';
 
-		var CSS_NO_MATCHES = 'no-matches';
-		var NO_RESULTS_MESSAGE = 'No results found.'
-		var STR_BLANK = '';
-		var TPL_FIELD = '<span class="myTestClass aui-field aui-field-choice aui-field-checkbox aui-field-checked">';
-		var TPL_FIELD_CONTENT = '<span class="aui-field-content">';
-		var TPL_FIELDSET = '<fieldset class="{[ !values.results || !values.results.length ? "no-matches" : "" ]}" >';
-		var TPL_FOR_RESULTS = '<tpl for="results">';
-		var TPL_LABEL_INPUT = '<label title="{name}"><input class="aui-field-input aui-field-input-choice aui-field-input-checkbox" type="checkbox" value="{name}" {[values.checked ? "checked" : ""]} >{name}</label>';
+	var template = new A.Template(
+		'<fieldset class="{[(!values.results || !values.results.length) ? "', CSS_NO_MATCHES, '" : "', STR_BLANK ,'" ]}">',
+			'<tpl for="results">',
+				'<label title="{text}"><input {[values.checked ? "checked" : ""]} type="checkbox" value="{text}" />{text}</label>',
+			'</tpl>',
+			'<div class="no-matches-message">{[(!values.results || !values.results.length) ? "', NO_RESULTS_MESSAGE ,'" : ""]}</div>',
+		'</fieldset>'
+	);
 
-		var template = new A.Template(
-				'<fieldset class="{[(!values.results || !values.results.length) ? "', CSS_NO_MATCHES, '" : "', STR_BLANK ,'" ]}">',
-					'<tpl for="results">',
-						'<label title="{text}"><input {[values.checked ? "checked" : ""]} type="checkbox" value="{text}" />{text}</label>',
-					'</tpl>',
+	var toolItemConfig = {
+		activeState: null,
+		render: '#demo'
+	};
 
-					'<div class="no-matches-message">{[(!values.results || !values.results.length) ? "', NO_RESULTS_MESSAGE ,'" : ""]}</div>',
-				'</fieldset>'
-			);
+	var buttonItems = ['add', 'select', 'suggest'];
 
-		var toolItemConfig = {
-			render: '#demo',
-			activeState: null
-		};
+	var i = buttonItems.length;
 
-		var buttonItems = ['add', 'select', 'suggest'];
+	for (var i = 0; i < buttonItems.length; i++) {
+		var buttonText = buttonItems[i];
 
-		var i = buttonItems.length;
+		toolItemConfig.label = buttonText;
+		toolItemConfig.id = buttonText;
+		toolItemConfig.title = buttonText;
 
-		while(i--){
-			toolItemConfig.label = buttonItems[i];
-			toolItemConfig.title = buttonItems[i];
-			toolItemConfig.id = buttonItems[i];
+		new A.ButtonItem(toolItemConfig);
+	}
 
-			new A.ButtonItem(toolItemConfig);
+	var source = [
+		{
+			text: "Tag 1"
+		},
+		{
+			text: "Tag 2"
+		},
+		{
+			text: "Tag 3"
 		}
+	];
 
-		var testSource = [
-			{
-				assetCount: 0, checked: false, companyId: 1, createDate: 1330542975270, groupId: 19, modifiedDate: 1330542975270, text: "how to", tagId: 11834, userId: 2, userName: "Joe Bloggs"
-			},
+	var popup;
 
-			{
-				assetCount: 0, checked: false, companyId: 1, createDate: 1330542874231, groupId: 19, modifiedDate: 1330542874231, text: "owner_only", tagId: 11825, userId: 2, userName: "Joe Bloggs",
-			},
+	var select = A.one('#select');
 
-			{
-				assetCount: 0, checked: false, companyId: 1, createDate: 1330542938833, groupId: 19, modifiedDate: 1330542938833, text: "ui team", tagId: 11830, userId: 2, userName: "Joe Bloggs"
-			}
-		];
+	select.on(
+		'click',
+		function() {
+			if (!popup) {
+				popup = new A.Dialog(
+					{
+						constrain2view: true,
+						draggable: true,
+						height: 300,
+						title: 'Autocomplete Search List',
+						width: 265,
+						xy: [200, 50]
+					}
+				);
 
-		var popup;
+				popup.plug(
+					A.AutocompleteSearchList,
+					{
+						inputSelector: '#tags-selected',
+						noResultsMessage: NO_RESULTS_MESSAGE,
+						resultHighlighter: 'phraseMatch',
+						resultTextLocator: 'text',
+						template: template,
+						// templateType: 'asset-tags-selector',
+						searchInitially: true,
+						source: source
+					}
+				);
 
-		A.one('#select').on('click', function() {
-			if (!popup){
-				popup = new A.Dialog({
-					title: 'Autocomplete Search List',
-					constrain2view: true,
-					draggable: true,
-					height: 300,
-					width: 265,
-					xy: [200, 50]
-				});
-				popup.plug(A.AutocompleteSearchList, {
-
-					noResultsMessage: NO_RESULTS_MESSAGE,
-					mode: 'demo',
-					source: testSource,
-					searchInitially: true,
-					resultHighlighter: 'phraseMatch',
-					// templateType: 'asset-tags-selector',
-					template: template,
-					inputSelector: '#tags-selected',
-					resultTextLocator: 'text'
-
-				});
 				popup.render();
 			}
-			else
-			{
+			else {
 				popup.show();
 			}
-		});
-
-	});
-
-	</script>
-
-
+		}
+	);
+});
+</script>
 
 </body>
 </html>
