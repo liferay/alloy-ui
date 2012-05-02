@@ -702,6 +702,7 @@ A.mix(A.DataType.DateMath, {
 		var start = this.findMonthStart(date);
 		var nextMonth = this.add(start, this.MONTH, 1);
 		var end = this.subtract(nextMonth, this.DAY, 1);
+		end.setHours(23,59,59,999);
 		return end;
 	},
 
