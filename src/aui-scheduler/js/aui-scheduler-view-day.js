@@ -301,8 +301,15 @@ var SchedulerDayView = A.Component.create({
 
 		plotEvent: function(evt) {
 			var instance = this;
-			var node = evt.get(NODE);
-			var paddingNode = evt.get(PADDING_NODE);
+
+			var nodeList = evt.get(NODE);
+
+			if (nodeList.size() < 2) {
+				evt.addPaddingNode();
+			}
+
+			var node = evt.get(NODE).item(0);
+			var paddingNode = evt.get(NODE).item(1);
 			var endShim = instance.getColumnShimByDate(evt.get(END_DATE));
 			var startShim = instance.getColumnShimByDate(evt.get(START_DATE));
 
@@ -405,7 +412,7 @@ var SchedulerDayView = A.Component.create({
 				var distributionRate = (eventWidth/total);
 
 				A.Array.each(intercessors, function(evt, j) {
-					var evtNode = evt.get(NODE);
+					var evtNode = evt.get(NODE).item(0);
 					var left = distributionRate*j;
 					var width = distributionRate*1.7;
 
@@ -438,9 +445,9 @@ var SchedulerDayView = A.Component.create({
 			var minutesOffset = DateMath.getMinutesOffset(
 				instance.limitDate(endDate, maxVisibleDate), startDate);
 
-			evt.get(NODE).set(OFFSET_HEIGHT, instance.calculateEventHeight(minutesOffset));
+			evt.get(NODE).item(0).set(OFFSET_HEIGHT, instance.calculateEventHeight(minutesOffset));
 
-			var paddingNode = evt.get(PADDING_NODE);
+			var paddingNode = evt.get(NODE).item(1);
 
 			if (paddingNode.inDoc()) {
 				var paddingMinutesOffset = DateMath.getMinutesOffset(
@@ -453,10 +460,9 @@ var SchedulerDayView = A.Component.create({
 		syncEventTopUI: function(evt) {
 			var instance = this;
 
-			evt.get(PADDING_NODE).setStyle(TOP, 0);
-
-			evt.get(NODE).setStyle(
-				TOP, instance.calculateTop(evt.get(START_DATE)) + PX);
+			evt.get(NODE).item(0).setStyle(TOP,
+				instance.calculateTop(evt.get(START_DATE)) + PX);
+			evt.get(NODE).item(1).setStyle(TOP, 0);
 		},
 
 		calculateYDelta: function(startXY, xy) {
@@ -562,8 +568,6 @@ var SchedulerDayView = A.Component.create({
 
 				instance[EVENT_PLACEHOLDER].removeTarget(scheduler);
 				instance[EVENT_PLACEHOLDER].get(NODE).addClass(
-					CSS_SCHEDULER_EVENT_PROXY).hide();
-				instance[EVENT_PLACEHOLDER].get(PADDING_NODE).addClass(
 					CSS_SCHEDULER_EVENT_PROXY).hide();
 			}
 
