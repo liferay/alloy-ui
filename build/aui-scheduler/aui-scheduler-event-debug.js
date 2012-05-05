@@ -33,7 +33,6 @@ var Lang = A.Lang,
 	COLOR_BRIGHTNESS_FACTOR = 'colorBrightnessFactor',
 	COLOR_SATURATION_FACTOR = 'colorSaturationFactor',
 	CONTENT = 'content',
-	CONTENT_NODE = 'contentNode',
 	DISABLED = 'disabled',
 	DURATION = 'duration',
 	END_DATE = 'endDate',
@@ -63,11 +62,7 @@ var Lang = A.Lang,
 	TEMPLATE = 'template',
 	TITLE = 'title',
 	TITLE_DATE_FORMAT = 'titleDateFormat',
-	TITLE_NODE = 'titleNode',
 	VISIBLE = 'visible',
-	PADDING_NODE = 'paddingNode',
-	PADDING_CONTENT_NODE = 'paddingContentNode',
-	PADDING_TITLE_NODE = 'paddingTitleNode',
 
 	TITLE_DT_FORMAT_ISO = '%H:%M',
 	TITLE_DT_FORMAT_US = '%I:%M',
@@ -153,17 +148,7 @@ var SchedulerEvent = A.Component.create({
 
 		node: {
 			valueFn: function() {
-				return A.Node.create(
-					this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
-			},
-			setter: A.one
-		},
-
-		paddingNode: {
-			readOnly: true,
-			valueFn: function() {
-				return A.Node.create(
-					this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this);
+				return A.NodeList.create(A.Node.create(this.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, this));
 			}
 		},
 
@@ -213,7 +198,6 @@ var SchedulerEvent = A.Component.create({
 		initializer: function() {
 			var instance = this;
 			var node = instance.get(NODE);
-			var paddingNode = instance.get(PADDING_NODE);
 
 			instance[EVENT_STACK] = {};
 
@@ -222,11 +206,6 @@ var SchedulerEvent = A.Component.create({
 			});
 
 			instance._bindUIAttrs();
-
-			instance[CONTENT_NODE] = node.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
-			instance[TITLE_NODE] = node.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
-			instance[PADDING_CONTENT_NODE] = paddingNode.one(DOT+CSS_SCHEDULER_EVENT_CONTENT);
-			instance[PADDING_TITLE_NODE] = paddingNode.one(DOT+CSS_SCHEDULER_EVENT_TITLE);
 
 			instance.syncNodeUI(true);
 		},
@@ -239,8 +218,15 @@ var SchedulerEvent = A.Component.create({
 			});
 
 			instance[EVENT_STACK] = {};
-			instance.get(PADDING_NODE).remove(true);
 			instance.get(NODE).remove(true);
+		},
+
+		addPaddingNode: function() {
+			var instance = this;
+
+			instance.get(NODE).push(A.Node.create(instance.EVENT_NODE_TEMPLATE).setData(SCHEDULER_EVENT, instance));
+
+			instance.syncNodeUI();
 		},
 
 		copyDates: function(evt) {
@@ -430,15 +416,33 @@ var SchedulerEvent = A.Component.create({
 		setContent: function(content, propagate) {
 			var instance = this;
 
-			instance._setContent(CONTENT_NODE, content, propagate);
-			instance._setContent(PADDING_CONTENT_NODE, content, propagate);
+			instance.get(NODE).each(function(node) {
+				var contentNode = node.one(_DOT+CSS_SCHEDULER_EVENT_CONTENT);
+
+				contentNode.setContent(content);
+			});
+
+			if (propagate) {
+				instance.eachRepeatedEvent(function(evt, uid) {
+					evt.setContent(content);
+				});
+			}
 		},
 
 		setTitle: function(content, propagate) {
 			var instance = this;
 
-			instance._setContent(TITLE_NODE, content, propagate);
-			instance._setContent(PADDING_TITLE_NODE, content, propagate);
+			instance.get(NODE).each(function(node) {
+				var titleNode = node.one(_DOT+CSS_SCHEDULER_EVENT_TITLE);
+
+				titleNode.setContent(content);
+			});
+
+			if (propagate) {
+				instance.eachRepeatedEvent(function(evt, uid) {
+					evt.setTitle(content);
+				});
+			}
 		},
 
 		syncNodeUI: function(propagate) {
@@ -453,10 +457,9 @@ var SchedulerEvent = A.Component.create({
 		syncNodeColorUI: function(propagate) {
 			var instance = this;
 			var node = instance.get(NODE);
-			var paddingNode = instance.get(PADDING_NODE);
 			var borderColor = instance.getBorderColor();
 
-			if (node && paddingNode) {
+			if (node) {
 				var styles = {
 					borderWidth: instance.get(BORDER_WIDTH),
 					borderColor: borderColor,
@@ -465,7 +468,6 @@ var SchedulerEvent = A.Component.create({
 				};
 
 				node.setStyles(styles);
-				paddingNode.setStyles(styles);
 			}
 
 			if (propagate) {
@@ -611,21 +613,6 @@ var SchedulerEvent = A.Component.create({
 			return val;
 		},
 
-		_setContent: function(nodeRefName, content, propagate) {
-			var instance = this;
-			var node = instance[nodeRefName];
-
-			if (node) {
-				node.setContent(content);
-			}
-
-			if (propagate) {
-				instance.eachRepeatedEvent(function(evt, uid) {
-					evt[nodeRefName].setContent(content);
-				});
-			}
-		},
-
 		_setDate: function(val) {
 			var instance = this;
 
@@ -704,14 +691,12 @@ var SchedulerEvent = A.Component.create({
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
-			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_DISABLED, !!val);
 		},
 
 		_uiSetParentEvent: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
-			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATED, !!val);
 		},
 
 		_uiSetRepeat: function(val) {
@@ -719,14 +704,12 @@ var SchedulerEvent = A.Component.create({
 			var value = !!val && val !== A.SchedulerEventRepeat[NEVER];
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
-			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_REPEATER, value);
 		},
 
 		_uiSetVisible: function(val) {
 			var instance = this;
 
 			instance.get(NODE).toggleClass(CSS_SCHEDULER_EVENT_HIDDEN, !val);
-			instance.get(PADDING_NODE).toggleClass(CSS_SCHEDULER_EVENT_HIDDEN, !val);
 		}
 	}
 });

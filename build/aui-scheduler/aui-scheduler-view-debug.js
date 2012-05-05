@@ -617,8 +617,15 @@ var SchedulerDayView = A.Component.create({
 
 		plotEvent: function(evt) {
 			var instance = this;
-			var node = evt.get(NODE);
-			var paddingNode = evt.get(PADDING_NODE);
+
+			var nodeList = evt.get(NODE);
+
+			if (nodeList.size() < 2) {
+				evt.addPaddingNode();
+			}
+
+			var node = evt.get(NODE).item(0);
+			var paddingNode = evt.get(NODE).item(1);
 			var endShim = instance.getColumnShimByDate(evt.get(END_DATE));
 			var startShim = instance.getColumnShimByDate(evt.get(START_DATE));
 
@@ -721,7 +728,7 @@ var SchedulerDayView = A.Component.create({
 				var distributionRate = (eventWidth/total);
 
 				A.Array.each(intercessors, function(evt, j) {
-					var evtNode = evt.get(NODE);
+					var evtNode = evt.get(NODE).item(0);
 					var left = distributionRate*j;
 					var width = distributionRate*1.7;
 
@@ -754,9 +761,9 @@ var SchedulerDayView = A.Component.create({
 			var minutesOffset = DateMath.getMinutesOffset(
 				instance.limitDate(endDate, maxVisibleDate), startDate);
 
-			evt.get(NODE).set(OFFSET_HEIGHT, instance.calculateEventHeight(minutesOffset));
+			evt.get(NODE).item(0).set(OFFSET_HEIGHT, instance.calculateEventHeight(minutesOffset));
 
-			var paddingNode = evt.get(PADDING_NODE);
+			var paddingNode = evt.get(NODE).item(1);
 
 			if (paddingNode.inDoc()) {
 				var paddingMinutesOffset = DateMath.getMinutesOffset(
@@ -769,10 +776,9 @@ var SchedulerDayView = A.Component.create({
 		syncEventTopUI: function(evt) {
 			var instance = this;
 
-			evt.get(PADDING_NODE).setStyle(TOP, 0);
-
-			evt.get(NODE).setStyle(
-				TOP, instance.calculateTop(evt.get(START_DATE)) + PX);
+			evt.get(NODE).item(0).setStyle(TOP,
+				instance.calculateTop(evt.get(START_DATE)) + PX);
+			evt.get(NODE).item(1).setStyle(TOP, 0);
 		},
 
 		calculateYDelta: function(startXY, xy) {
@@ -878,8 +884,6 @@ var SchedulerDayView = A.Component.create({
 
 				instance[EVENT_PLACEHOLDER].removeTarget(scheduler);
 				instance[EVENT_PLACEHOLDER].get(NODE).addClass(
-					CSS_SCHEDULER_EVENT_PROXY).hide();
-				instance[EVENT_PLACEHOLDER].get(PADDING_NODE).addClass(
 					CSS_SCHEDULER_EVENT_PROXY).hide();
 			}
 
@@ -1366,7 +1370,7 @@ var SchedulerMonthView = A.Component.create({
 
 		buildEventsTable: function(rowStartDate, rowEndDate) {
 			var instance = this;
-			var displayRows = 5;
+			var displayRows = 4;
 			var monthEndDate = DateMath.clearTime(instance._findCurrentMonthEnd());
 			var monthStartDate = DateMath.clearTime(instance._findCurrentMonthStart());
 
@@ -1428,25 +1432,48 @@ var SchedulerMonthView = A.Component.create({
 							var evtColNode = A.Node.create(TPL_SVM_TABLE_DATA_COL);
 
 							if (evt) {
-								var evtNode = evtColNode.one(DIV);
-								var splitInfo = instance._getEvtSplitInfo(evt, rowStartDate, rowEndDate);
+								var startDate = evt.get(START_DATE);
 
-								evtColNode.attr(COLSPAN, splitInfo.colspan);
-								evtNode.addClass(CSS_SVM_TABLE_DATA_EVENT).setContent( instance._getEvtLabel(evt) );
+								if (!(DateMath.before(startDate, rowStartDate) && DateMath.getDayOffset(celDate, rowStartDate) > 0)) {
+									var evtNodeList = evt.get(NODE);
+									var paddingIndex = Math.floor(DateMath.getDayOffset(celDate, DateMath.getFirstDayOfWeek(startDate)) / WEEK_LENGTH);
 
-								if (splitInfo.left) {
-									evtNode.addClass(CSS_SVM_TABLE_DATA_EVENT_LEFT).prepend(TPL_SVM_EV_ICON_LEFT);
+									if (evtNodeList.size() < paddingIndex + 1) {
+										evt.addPaddingNode();
+									}
+
+									var evtNode = evtNodeList.item(paddingIndex);
+
+									evtNode.setStyles({
+										height: 'auto',
+										left: 0,
+										top: 0,
+										width: 'auto'
+									});
+
+									var evtNodeContainer = evtColNode.one(DIV);
+
+									evtNode.appendTo(evtNodeContainer);
+
+									var splitInfo = instance._getEvtSplitInfo(evt, celDate, rowStartDate, rowEndDate);
+
+									evtColNode.attr(COLSPAN, splitInfo.colspan);
+									evtNodeContainer.addClass(CSS_SVM_TABLE_DATA_EVENT);
+
+									if (splitInfo.left) {
+										evtNodeContainer.addClass(CSS_SVM_TABLE_DATA_EVENT_LEFT).prepend(TPL_SVM_EV_ICON_LEFT);
+									}
+
+									if (splitInfo.right) {
+										evtNodeContainer.addClass(CSS_SVM_TABLE_DATA_EVENT_RIGHT).append(TPL_SVM_EV_ICON_RIGHT);
+									}
+
+									if (evt.get(PARENT_EVENT)) {
+										evtNodeContainer.addClass(CSS_SVM_TABLE_DATA_EVENT_REPEATED);
+									}
+
+									renderIndex += splitInfo.colspan;
 								}
-
-								if (splitInfo.right) {
-									evtNode.addClass(CSS_SVM_TABLE_DATA_EVENT_RIGHT).append(TPL_SVM_EV_ICON_RIGHT);
-								}
-
-								if (evt.get(PARENT_EVENT)) {
-									evtNode.addClass(CSS_SVM_TABLE_DATA_EVENT_REPEATED);
-								}
-
-								renderIndex += splitInfo.colspan;
 							}
 							else {
 								renderIndex++;
@@ -1500,6 +1527,8 @@ var SchedulerMonthView = A.Component.create({
 			var instance = this;
 			var monthStartDate = instance._findCurrentMonthStart();
 			var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(monthStartDate));
+
+			instance.flushViewCache();
 
 			instance.bodyNode.all(DOT+CSS_SVM_TABLE_DATA).remove();
 
@@ -1624,35 +1653,19 @@ var SchedulerMonthView = A.Component.create({
 			return [ startDate.getHours(), DASH, endDate.getHours(), SPACE, evt.get(CONTENT) ].join(EMPTY_STR);
 		},
 
-		_getEvtSplitInfo: function(evt, rowStartDate, rowEndDate) {
+		_getEvtSplitInfo: function(evt, celDate, rowStartDate, rowEndDate) {
 			var instance = this;
 			var startDate = evt.getClearStartDate();
 			var endDate = evt.getClearEndDate();
-			var duration = evt.getDaysDuration();
-			var info = {};
-			var colspan = 1;
 
-			if (DateMath.after(startDate, rowStartDate)) {
-				colspan = Math.min(duration, Math.abs(DateMath.getDayOffset(rowEndDate, startDate)) + 1);
+			var firstWeekDay = DateMath.getFirstDayOfWeek(celDate);
+			var maxColspan = rowEndDate.getDate() - celDate.getDate();
 
-				if (colspan > 1) {
-					info.right = true;
-				}
-			}
-			else {
-				colspan = Math.abs(DateMath.getDayOffset(endDate, rowStartDate) + 1);
-
-				if (colspan > 1) {
-					info.left = true;
-				}
-			}
-
-			info.colspan = Math.min(colspan, WEEK_LENGTH);
-
-			if (colspan >= WEEK_LENGTH) {
-				info.right = true;
-				info.left = true;
-			}
+			var info = {
+				colspan: Math.min(DateMath.getDayOffset(endDate, celDate), maxColspan) + 1,
+				left: DateMath.before(startDate, rowStartDate),
+				right: DateMath.after(endDate, rowEndDate)
+			};
 
 			return info;
 		},
