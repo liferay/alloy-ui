@@ -91,6 +91,23 @@
 
 .aui-scheduler-view-day-content .yui3-widget-bd { height: 600px }
 
+.aui-scheduler-view-day-handler-container {
+    bottom: 0;
+    display: block;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.aui-scheduler-view-day-handler {
+    bottom: -4px;
+    cursor: s-resize;
+    left: 50%;
+    margin-left: -8px;
+    position: absolute;
+}
+
 .aui-scheduler-view-day-header-day-first { width: 60px }
 
 .aui-scheduler-view-day-header-day-pad-right { width: 15px }
