@@ -137,6 +137,16 @@
     color: #aaa;
 }
 
+.aui-scheduler-view-month-table-data-col .aui-scheduler-event {
+    height: auto;
+    position: relative;
+    width: auto;
+}
+
+.aui-scheduler-view-month-table-data-col .aui-scheduler-event-content {
+    display: inline;
+}
+
 .aui-scheduler-view-month-table-data-first .aui-scheduler-view-month-table-data-col-title { border-top: 0 }
 
 .aui-scheduler-view-month-table-data-col-title {
@@ -167,19 +177,25 @@
     border: 1px solid #FAD163;
 }
 
-.aui-scheduler-view-month-table-data-event.aui-scheduler-view-month-table-data-event-right { padding-right: 16px }
-
-.aui-scheduler-view-month-table-data-event.aui-scheduler-view-month-table-data-event-left { padding-left: 16px }
-
 .aui-scheduler-view-month-table-data-event {
-    background-color: #D96666;
     color: #1D1D1D;
     cursor: pointer;
     margin-bottom: 1px;
-    overflow: hidden;
-    padding: 1px 1px 1px 3px;
+    padding: 0px 1px 0px 3px;
     position: relative;
     white-space: nowrap;
+}
+
+.aui-scheduler-view-month-table-data-event .aui-icon {
+    z-index: 500;
+}
+
+.aui-scheduler-view-month-table-data-event.aui-scheduler-view-month-table-data-event-left .aui-scheduler-event {
+    padding-left: 12px;
+}
+
+.aui-scheduler-view-month-table-data-event .aui-scheduler-event-content {
+    font-size: 11px;
 }
 
 .aui-scheduler-view-month-table-data-event-repeated {
