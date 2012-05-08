@@ -721,6 +721,7 @@ var Lang = A.Lang,
 	ACTIVE_COLUMN = 'activeColumn',
 	ACTIVE_VIEW = 'activeView',
 	BOUNDING_BOX = 'boundingBox',
+	CANCEL = 'cancel',
 	COL = 'col',
 	COL_DAYS_NODE = 'colDaysNode',
 	COL_HEADER_DAYS_NODE = 'colHeaderDaysNode',
@@ -768,6 +769,7 @@ var Lang = A.Lang,
 	HOUR_HEIGHT = 'hourHeight',
 	ICON = 'icon',
 	ISO_TIME = 'isoTime',
+	LASSO = 'lasso',
 	LEFT = 'left',
 	LOCALE = 'locale',
 	MARKER = 'marker',
@@ -778,11 +780,15 @@ var Lang = A.Lang,
 	MONTH = 'month',
 	MONTH_CONTAINER_NODE = 'monthContainerNode',
 	MONTH_ROWS = 'monthRows',
+	MOUSEDOWN = 'mousedown',
+	MOUSEMOVE = 'mousemove',
+	MOUSEUP = 'mouseup',
 	NEXT = 'next',
 	NODE = 'node',
 	NOMONTH = 'nomonth',
 	NOSCROLL = 'noscroll',
 	OFFSET_HEIGHT = 'offsetHeight',
+	OFFSET_WIDTH = 'offsetWidth',
 	PAD = 'pad',
 	PADDING_NODE = 'paddingNode',
 	PARENT_EVENT = 'parentEvent',
@@ -794,6 +800,7 @@ var Lang = A.Lang,
 	REPEATED = 'repeated',
 	RIGHT = 'right',
 	ROW = 'row',
+	SAVE = 'save',
 	SCHEDULER = 'scheduler',
 	SCHEDULER_EVENT = 'scheduler-event',
 	SCROLLABLE = 'scrollable',
@@ -817,6 +824,7 @@ var Lang = A.Lang,
 	DATA_COLNUMBER = 'data-colnumber',
 
 	ANCHOR = 'a',
+	COMMA = ',',
 	DASH = '-',
 	DOT = '.',
 	EMPTY_STR = '',
@@ -1901,16 +1909,7 @@ var SchedulerWeekView = A.Component.create({
 });
 
 A.SchedulerWeekView = SchedulerWeekView;
-var CANCEL = 'cancel',
-	LASSO = 'lasso',
-	MOUSEDOWN = 'mousedown',
-	MOUSEMOVE = 'mousemove',
-	MOUSEUP = 'mouseup',
-	OFFSET_HEIGHT = 'offsetHeight',
-	OFFSET_WIDTH = 'offsetWidth',
-	SAVE = 'save',
-
-	CSS_ICON = getCN(ICON),
+var CSS_ICON = getCN(ICON),
 	CSS_ICON_ARROWSTOP_LEFT = getCN(ICON, 'arrowstop-1-l'),
 	CSS_ICON_ARROWSTOP_RIGHT = getCN(ICON, 'arrowstop-1-r'),
 	CSS_SVM_COLGRID = getCN(SCHEDULER_VIEW, MONTH, COLGRID),
@@ -1963,7 +1962,7 @@ var CANCEL = 'cancel',
 	TPL_SVM_TABLE_GRID = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVM_TABLE_GRID + '">' +
 							'<tbody>' +
 								'<tr>' +
-									'<td class="' + [ CSS_SVM_COLGRID, CSS_SVM_COLGRID_FIRST ].join(SPACE) + '">&nbsp;</div></td>' +
+									'<td class="' + [ CSS_SVM_COLGRID, CSS_SVM_COLGRID_FIRST ].join(SPACE) + '">&nbsp;</td>' +
 									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
 									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
 									'<td class="' + CSS_SVM_COLGRID + '">&nbsp;</td>' +
@@ -2063,15 +2062,18 @@ var SchedulerMonthView = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var recorder = scheduler.get(EVENT_RECORDER);
+			var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
 
-			recorder.on(CANCEL,  A.bind(instance._removeLasso, instance));
-			recorder.on(SAVE,  A.bind(instance._removeLasso, instance));
+			recorder.on({
+				cancel: A.bind(instance.removeLasso, instance),
+				save: A.bind(instance.removeLasso, instance)
+			});
 
-			instance[MONTH_CONTAINER_NODE].on(MOUSEDOWN, A.bind(instance._onMouseDownGrid, instance));
-			instance[MONTH_CONTAINER_NODE].on(MOUSEMOVE, A.bind(instance._onMouseMoveGrid, instance));
-			instance[MONTH_CONTAINER_NODE].on(MOUSEUP, A.bind(instance._onMouseUpGrid, instance));
+			instance[MONTH_CONTAINER_NODE].on({
+				mousedown: A.bind(instance._onMouseDownGrid, instance),
+				mousemove: A.bind(instance._onMouseMoveGrid, instance),
+				mouseup: A.bind(instance._onMouseUpGrid, instance)
+			});
 		},
 
 		renderUI: function() {
@@ -2291,6 +2293,65 @@ var SchedulerMonthView = A.Component.create({
 			});
 		},
 
+		removeLasso: function() {
+			var instance = this;
+
+			if (instance.lasso) {
+				instance.lasso.remove();
+			}
+		},
+
+		renderLasso: function(startPos, endPos) {
+			var instance = this;
+
+			var minPos = startPos;
+			var maxPos = endPos;
+
+			if (startPos[1] > endPos[1]) {
+				minPos = endPos;
+				maxPos = startPos;
+			}
+
+			var imin = minPos[0], jmin = minPos[1],
+				imax = maxPos[0], jmax = maxPos[1];
+
+			instance.removeLasso();
+
+			instance.lasso = A.NodeList.create();
+
+			for (var j = jmin; j <= jmax; j++) {
+				var h = instance.gridCellHeight,
+					w = instance.gridCellWidth,
+					x = 0,
+					y = (h * j);
+
+				if (j === jmin) {
+					if (jmin === jmax) {
+						x += Math.min(imin, imax) * w;
+						w *= Math.abs(imax - imin) + 1;
+					}
+					else {
+						x += imin * w;
+						w *= WEEK_LENGTH - imin;
+					}
+				}
+				else if (j === jmax) {
+					w *= imax + 1;
+				}
+				else {
+					w *= WEEK_LENGTH;
+				}
+
+				var lassoNode = A.Node.create(TPL_SVM_LASSO);
+
+				instance.lasso.push(lassoNode);
+
+				instance[MONTH_CONTAINER_NODE].append(lassoNode);
+				lassoNode.sizeTo(w, h);
+				lassoNode.setXY(instance._offsetXY([x, y], 1));
+			}
+		},
+
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -2338,7 +2399,7 @@ var SchedulerMonthView = A.Component.create({
 				WidgetStdMod.BODY, instance[MONTH_CONTAINER_NODE].getDOM());
 
 			instance.setStdModContent(
-				WidgetStdMod.HEADER, instance.headerTableNode.getDOM());
+				WidgetStdMod.HEADER, instance[HEADER_TABLE_NODE].getDOM());
 		},
 
 		_findCurrentMonthEnd: function() {
@@ -2390,45 +2451,44 @@ var SchedulerMonthView = A.Component.create({
 			return info;
 		},
 
-		_getCoordsColumn: function(ij) {
-			var instance = this;
-
-			return ij[1] * WEEK_LENGTH + ij[0];
-		},
-
-		_getCoordsDate: function(ij) {
+		_getPositionDate: function(position) {
 			var instance = this;
 			var monthStartDate = instance._findCurrentMonthStart();
 			var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(monthStartDate));
 
-			return DateMath.add(startDateRef, DateMath.DAY, instance._getCoordsColumn(ij));
+			return DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
 		},
 
-		_normalizeXY: function(xy) {
+		_getCellIndex: function(position) {
 			var instance = this;
 
+			return position[1] * WEEK_LENGTH + position[0];
+		},
+
+		_offsetXY: function(xy, sign) {
+			var instance = this;
 			var offsetXY = instance[MONTH_CONTAINER_NODE].getXY();
 
-			return [xy[0] - offsetXY[0], xy[1] - offsetXY[1]];
+			return [ xy[0] + offsetXY[0]*sign, xy[1] + offsetXY[1]*sign ];
 		},
 
 		_onMouseDownGrid: function(event) {
 			var instance = this;
 			var target = event.target;
 
-			if (target.test([DOT+CSS_SVM_COLGRID, DOT+CSS_SVM_TABLE_DATA_COL].join())) {
+			if (target.test([DOT+CSS_SVM_COLGRID, DOT+CSS_SVM_TABLE_DATA_COL].join(COMMA))) {
 				instance._recording = true;
 
-				var gridSample = instance[TABLE_GRID_NODE].item(0).all(TD).item(0);
+				var cell = instance[TABLE_GRID_NODE].item(0).all(TD).item(0);
 
-				instance.gridCellHeight = gridSample.get(OFFSET_HEIGHT);
-				instance.gridCellWidth = gridSample.get(OFFSET_WIDTH);
+				instance.gridCellHeight = instance[MONTH_CONTAINER_NODE].get(OFFSET_HEIGHT)/6;
+				instance.gridCellWidth = instance[MONTH_CONTAINER_NODE].get(OFFSET_WIDTH)/WEEK_LENGTH;
 
-				var eventXY = instance._normalizeXY([event.pageX, event.pageY]);
+				var eventXY = instance._offsetXY([event.pageX, event.pageY], -1);
 
-				instance.lassoStartCoordinates = instance.lastCoords = instance._toCoordinates(eventXY);
+				instance.lassoStartPosition = instance.lassoLastPosition = instance._findPosition(eventXY);
 
-				instance._renderLasso(instance.lassoStartCoordinates, instance.lastCoords);
+				instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
 
 				instance[MONTH_CONTAINER_NODE].unselectable();
 			}
@@ -2438,29 +2498,28 @@ var SchedulerMonthView = A.Component.create({
 			var instance = this;
 			var target = event.currentTarget;
 
-			var eventXY = instance._normalizeXY([event.pageX, event.pageY]);
+			var eventXY = instance._offsetXY([event.pageX, event.pageY], -1);
+			var lassoLastPosition = instance.lassoLastPosition || instance.lassoStartPosition;
+			var position = instance._findPosition(eventXY);
+			var changed = lassoLastPosition &&
+							((position[0] !== lassoLastPosition[0]) ||
+								(position[1] !== lassoLastPosition[1]));
 
-			var lastCoords = instance.lastCoords || instance.lassoStartCoordinates;
-			var coords = instance._toCoordinates(eventXY);
+			if (changed && instance._recording) {
+				instance.lassoLastPosition = position;
 
-			var changed = lastCoords && ((coords[0] != lastCoords[0]) || (coords[1] != lastCoords[1]));
-
-			if (instance._recording && changed) {
-				instance.lastCoords = coords;
-
-				instance._renderLasso(instance.lassoStartCoordinates, coords);
+				instance.renderLasso(instance.lassoStartPosition, position);
 			}
 		},
 
 		_onMouseUpGrid: function(event) {
 			var instance = this;
-			var target = event.currentTarget;
 			var scheduler = instance.get(SCHEDULER);
 			var recorder = scheduler.get(EVENT_RECORDER);
 
-			if (instance._recording && recorder && !scheduler.get(DISABLED)) {
-				var startDate = instance._getCoordsDate(instance.lassoStartCoordinates);
-				var endDate = instance._getCoordsDate(instance.lastCoords);
+			if (recorder && instance._recording && !scheduler.get(DISABLED)) {
+				var startDate = instance._getPositionDate(instance.lassoStartPosition);
+				var endDate = instance._getPositionDate(instance.lassoLastPosition);
 
 				recorder.set(START_DATE, Math.min(startDate, endDate));
 				recorder.set(END_DATE, Math.max(startDate, endDate));
@@ -2471,68 +2530,7 @@ var SchedulerMonthView = A.Component.create({
 			}
 		},
 
-		_removeLasso: function() {
-			var instance = this;
-
-			if (instance.lasso) {
-				instance.lasso.remove();
-			}
-		},
-
-		_renderLasso: function(coordA, coordB) {
-			var instance = this;
-
-			var minCoord = coordA;
-			var maxCoord = coordB;
-
-			if (coordA[1] > coordB[1]) {
-				minCoord = coordB;
-				maxCoord = coordA;
-			}
-
-			instance.lasso = (instance.lasso || A.NodeList.create()).remove();
-
-			var offsetXY = instance[MONTH_CONTAINER_NODE].getXY();
-
-			for (var i = minCoord[1]; i < maxCoord[1] + 1; i++) {
-				var height = instance.gridCellHeight,
-					width = instance.gridCellWidth,
-					x = offsetXY[0],
-					y = offsetXY[1] + (height * i);
-
-				if (i == minCoord[1]) {
-					if (minCoord[1] == maxCoord[1]) {
-						x += width * Math.min(minCoord[0], maxCoord[0]);
-
-						width *= Math.abs(maxCoord[0] - minCoord[0]) + 1;
-					}
-					else {
-						x += width * minCoord[0];
-
-						width *= WEEK_LENGTH - minCoord[0];
-					}
-				}
-				else if (i == maxCoord[1]) {
-					width *= maxCoord[0] + 1;
-				}
-				else {
-					width *= WEEK_LENGTH;
-				}
-
-				var lassoNode = A.Node.create(TPL_SVM_LASSO);
-
-				instance[MONTH_CONTAINER_NODE].append(lassoNode);
-
-				lassoNode.set(OFFSET_HEIGHT, height);
-				lassoNode.set(OFFSET_WIDTH, width);
-
-				lassoNode.setXY([x, y]);
-
-				instance.lasso.push(lassoNode);
-			}
-		},
-
-		_toCoordinates: function(xy) {
+		_findPosition: function(xy) {
 			var instance = this;
 
 			var i = Math.floor(xy[0] / instance.gridCellWidth);
