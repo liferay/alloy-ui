@@ -108,3 +108,9 @@
 .aui-scheduler-view-day-header-day { text-align: center }
 
 .aui-scheduler-view-day { background: #fff }
+.aui-scheduler-view-month-lasso {
+    background: #000;
+    filter: alpha(opacity=4);
+    opacity: 0.04;
+    position: absolute;
+}
