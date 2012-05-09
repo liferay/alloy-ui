@@ -11,8 +11,10 @@ var Lang = A.Lang,
     }),
 
 	CELL = 'cell',
-	COLUMNSET = 'columnset',
-	COLUMNSET_CHANGE = 'columnsetChange',
+	COLUMNS = 'columns',
+	COLUMNS_CHANGE = 'columnsChange',
+	DATA = 'data',
+	DATA_CHANGE = 'dataChange',
 	DATATABLE = 'datatable',
 	DOWN = 'down',
 	ESC = 'esc',
@@ -24,8 +26,6 @@ var Lang = A.Lang,
 	MOUSEDOWN = 'mousedown',
 	MOUSE_EVENT = 'mouseEvent',
 	MULTIPLE = 'multiple',
-	RECORDSET = 'recordset',
-	RECORDSET_CHANGE = 'recordsetChange',
 	RETURN = 'return',
 	RIGHT = 'right',
 	ROW = 'row',
@@ -62,8 +62,8 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		});
 
 		instance.afterHostEvent(instance.get(MOUSE_EVENT), instance._afterMouseEvent);
-		instance.afterHostEvent(COLUMNSET_CHANGE, instance._afterHostColumnsetChange);
-		instance.afterHostEvent(RECORDSET_CHANGE, instance._afterHostRecordsetChange);
+		instance.afterHostEvent(COLUMNS_CHANGE, instance._afterHostColumnsChange);
+		instance.afterHostEvent(DATA_CHANGE, instance._afterHostDataChange);
 		instance.handlerKeyDown = A.getDoc().on(KEYDOWN, A.bind(instance._afterKeyEvent, instance));
 	},
 
@@ -80,14 +80,14 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		var instance = this;
 		var host = instance.get(HOST);
 
-		return host.get(COLUMNSET).getColumn(instance.activeColumnIndex);
+		return host.get(COLUMNS).getColumn(instance.activeColumnIndex);
 	},
 
 	getActiveRecord: function() {
 		var instance = this;
 		var host = instance.get(HOST);
 
-		return host.get(RECORDSET).getRecord(instance.activeRecordIndex);
+		return host.get(DATA).getRecord(instance.activeRecordIndex);
 	},
 
 	isCellSelected: function(cell) {
@@ -109,13 +109,13 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 	select: function(cell, row) {
 		var instance = this;
 		var host = instance.get(HOST);
-		var columnset = host.get(COLUMNSET);
-		var recordset = host.get(RECORDSET);
-		var column = columnset.getColumnByCell(cell);
-		var record = recordset.getRecordByRow(row || cell.ancestor(TR));
+		var columns = host.get(COLUMNS);
+		var data = host.get(DATA);
+		var column = columns.getColumnByCell(cell);
+		var record = data.getRecordByRow(row || cell.ancestor(TR));
 
-		instance.activeColumnIndex = columnset.getColumnIndex(column);
-		instance.activeRecordIndex = recordset.getRecordIndex(record);
+		instance.activeColumnIndex = columns.getColumnIndex(column);
+		instance.activeRecordIndex = data.getRecordIndex(record);
 
 		if (cell) {
 			instance.selectCell(cell);
@@ -220,13 +220,13 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		A.each(instance.selectedRowHash, A.bind(instance.unselectRow, instance));
 	},
 
-	_afterHostColumnsetChange: function(event) {
+	_afterHostColumnsChange: function(event) {
 		var instance = this;
 
 		instance._cleanUp();
 	},
 
-	_afterHostRecordsetChange: function(event) {
+	_afterHostDataChange: function(event) {
 		var instance = this;
 
 		instance._cleanUp();
@@ -330,11 +330,11 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		var host = instance.get(HOST);
 		var originalEvent = event.originalEvent;
 
-		var columnset = host.get(COLUMNSET);
+		var columns = host.get(COLUMNS);
 		var columnIndex = event.column.keyIndex;
 
-		var recordset = host.get(RECORDSET);
-		var recordIndex = recordset.getRecordIndex(event.record);
+		var data = host.get(DATA);
+		var recordIndex = data.getRecordIndex(event.record);
 
 		var ctrlKey = originalEvent.ctrlKey || originalEvent.metaKey;
 		var shiftKey = originalEvent.shiftKey;
@@ -353,7 +353,7 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 				(!shiftKey && originalEvent.isKey(TAB))) {
 
 			if (ctrlKey) {
-				columnIndex = columnset.getLength() - 1;
+				columnIndex = columns.getLength() - 1;
 			}
 			else {
 				columnIndex++;
@@ -361,7 +361,7 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		}
 		else if (originalEvent.isKey(DOWN)) {
 			if (ctrlKey) {
-				recordIndex = recordset.getLength() - 1;
+				recordIndex = data.getLength() - 1;
 			}
 			else {
 				recordIndex++;
@@ -377,12 +377,12 @@ var DataTableSelection = A.Base.create("dataTableSelection", A.Plugin.Base, [], 
 		}
 
 		// Fixing indexes range
-		columnIndex = Math.max(Math.min(columnIndex, columnset.getLength() - 1), 0);
-		recordIndex = Math.max(Math.min(recordIndex, recordset.getLength() - 1), 0);
+		columnIndex = Math.max(Math.min(columnIndex, columns.getLength() - 1), 0);
+		recordIndex = Math.max(Math.min(recordIndex, data.getLength() - 1), 0);
 
 		if (host.events) {
-			var newColumn = columnset.getColumn(columnIndex);
-			var newRecord = recordset.getRecord(recordIndex);
+			var newColumn = columns.getColumn(columnIndex);
+			var newRecord = data.getRecord(recordIndex);
 
 			// Update event with the new payload information for the next "cell" calculated by the "events" module.
 			host.events.updateEventPayload(
