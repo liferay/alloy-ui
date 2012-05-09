@@ -29,7 +29,7 @@ var Lang = A.Lang,
 	CHECKBOX_CELL_EDITOR = 'checkboxCellEditor',
 	CHECKED = 'checked',
 	CLICK = 'click',
-	COLUMNSET = 'columnset',
+	COLUMNS = 'columns',
 	CONTENT_BOX = 'contentBox',
 	DATA = 'data',
 	DATATABLE = 'datatable',
@@ -71,7 +71,6 @@ var Lang = A.Lang,
 	PENCIL = 'pencil',
 	RADIO_CELL_EDITOR = 'radioCellEditor',
 	RECORDS = 'records',
-	RECORDSET = 'recordset',
 	REMOVE = 'remove',
 	RENDERED = 'rendered',
 	RETURN = 'return',
@@ -122,7 +121,7 @@ var Lang = A.Lang,
 	TPL_BR = '<br/>';
 
 /**
- * An extension for A.DataTable.Base to support Cell Editing:
+ * An extension for A.DataTable to support Cell Editing:
  *
  * Check the list of <a href="CellEditorSupport.html#configattributes">Configuration Attributes</a> available for
  * CellEditorSupport.
@@ -176,10 +175,10 @@ A.mix(CellEditorSupport.prototype, {
 
 	syncEditableColumnsUI: function() {
 		var instance = this;
-		var columnset = instance.get(COLUMNSET);
-		var recordset = instance.get(RECORDSET);
+		var columns = instance.get(COLUMNS);
+		var data = instance.get(DATA);
 
-		A.each(columnset.idHash, function(column) {
+		A.each(columns.idHash, function(column) {
 			var editor = column.get(EDITOR);
 
 			if (isBaseEditor(editor)) {
@@ -187,12 +186,12 @@ A.mix(CellEditorSupport.prototype, {
 			}
 		});
 
-		A.each(recordset.get(RECORDS), function(record) {
+		A.each(data.get(RECORDS), function(record) {
 			var editor = record.get(DATA).editor;
 			var isBaseEditorInstance = isBaseEditor(editor);
 
 			A.all(_HASH + record.get("id") + '>td').each(function(td, index) {
-				var column = columnset.getColumn(index);
+				var column = columns.getColumn(index);
 
 				if (editor === false) {
 					td.removeClass(CSS_DATATABLE_EDITABLE);
@@ -220,13 +219,13 @@ A.mix(CellEditorSupport.prototype, {
 
 	_editCell: function(event) {
 		var instance = this;
-		var columnset = instance.get(COLUMNSET);
-		var recordset = instance.get(RECORDSET);
+		var columns = instance.get(COLUMNS);
+		var data = instance.get(DATA);
 		var column = event.column;
 		var record = event.record;
 
-		instance.activeColumnIndex = columnset.getColumnIndex(column);
-		instance.activeRecordIndex = recordset.getRecordIndex(record);
+		instance.activeColumnIndex = columns.getColumnIndex(column);
+		instance.activeRecordIndex = data.getRecordIndex(record);
 
 		var alignNode = event.alignNode || event.cell;
 		var editor = instance.getCellEditor(record, column);
@@ -279,14 +278,14 @@ A.mix(CellEditorSupport.prototype, {
 	_onEditorSave: function(event) {
 		var instance = this;
 		var editor = event.currentTarget;
-		var recordset = instance.get(RECORDSET);
+		var data = instance.get(DATA);
 
 		editor.set(VALUE, event.newVal);
 
 		var selection = instance.selection;
 
 		if (selection) {
-			recordset.updateRecordDataByKey(
+			data.updateRecordDataByKey(
 				selection.getActiveRecord(),
 				selection.getActiveColumn().get(KEY),
 				event.newVal
@@ -301,8 +300,8 @@ A.mix(CellEditorSupport.prototype, {
 
 A.DataTable.CellEditorSupport = CellEditorSupport;
 
-// Augment A.DataTable.Base with A.DataTable.CellEditorSupport
-A.DataTable.Base = A.Base.create('dataTable', A.DataTable.Base, [A.DataTable.CellEditorSupport]);
+// Augment A.DataTable with A.DataTable.CellEditorSupport
+A.DataTable = A.Base.create('dataTable', A.DataTable, [A.DataTable.CellEditorSupport]);
 
 /**
  * Abstract class BaseCellEditor.
