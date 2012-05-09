@@ -4,15 +4,14 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 
 	AUTO = 'auto',
-	COLUMNSET = 'columnset',
+	COLUMNS = 'columns',
 	DATA = 'data',
+	DATA_CHANGE = 'dataChange',
 	DBLCLICK = 'dblclick',
 	HEIGHT = 'height',
 	KEY = 'key',
 	NAME = 'name',
 	PROPERTY_NAME = 'propertyName',
-	RECORDSET = 'recordset',
-	RECORDSET_CHANGE = 'recordsetChange',
 	SCROLL = 'scroll',
 	SELECTION = 'selection',
 	SORT = 'sort',
@@ -27,7 +26,7 @@ var PropertyList = A.Component.create({
 	NAME: _NAME,
 
 	ATTRS: {
-		columnset: {
+		columns: {
 			valueFn: function() {
 				var instance = this;
 
@@ -60,12 +59,12 @@ var PropertyList = A.Component.create({
 			}
 		},
 
-		editEvent: {
-			value: DBLCLICK
+		data: {
+			value: [{ name: _EMPTY_STR, value: _EMPTY_STR }]
 		},
 
-		recordset: {
-			value: [{ name: _EMPTY_STR, value: _EMPTY_STR }]
+		editEvent: {
+			value: DBLCLICK
 		},
 
 		scroll: {
@@ -94,13 +93,13 @@ var PropertyList = A.Component.create({
 		}
 	},
 
-	EXTENDS: A.DataTable.Base,
+	EXTENDS: A.DataTable,
 
 	prototype: {
 		initializer: function() {
 			var instance = this;
 
-			instance.after(RECORDSET_CHANGE, instance._plugDependencies);
+			instance.after(DATA_CHANGE, instance._plugDependencies);
 			instance.after(instance._syncScrollWidth, instance, '_uiSetWidth');
 			instance.after(instance._syncScrollHeight, instance, '_uiSetHeight');
 
@@ -109,11 +108,11 @@ var PropertyList = A.Component.create({
 
 		_editCell: function(event) {
 			var instance = this;
-			var columnset = instance.get(COLUMNSET);
+			var columns = instance.get(COLUMNS);
 
 			if (event.column.get(KEY) === NAME) {
 				event.alignNode = event.cell.next(TD);
-				event.column = columnset.keyHash[VALUE];
+				event.column = columns.keyHash[VALUE];
 			}
 
 			return A.PropertyList.superclass._editCell.call(this, event);
@@ -136,11 +135,11 @@ var PropertyList = A.Component.create({
 
 		_plugDependencies: function() {
 			var instance = this;
-			var recordset = instance.get(RECORDSET);
+			var data = instance.get(DATA);
 
-			if (!recordset.hasPlugin(A.Plugin.RecordsetSort)) {
-				recordset.plug(A.Plugin.RecordsetSort, { dt: instance });
-		        recordset.sort.addTarget(instance);
+			if (!data.hasPlugin(A.Plugin.RecordsetSort)) {
+				data.plug(A.Plugin.RecordsetSort, { dt: instance });
+		        data.sort.addTarget(instance);
 			}
 
 			instance.plug(
@@ -148,11 +147,11 @@ var PropertyList = A.Component.create({
 				instance.get(SELECTION)
 			)
 			.plug(
-				A.Plugin.DataTableSort,
+				A.DataTableSort,
 				instance.get(SORT)
 			)
 			.plug(
-				A.Plugin.DataTableScroll,
+				A.DataTableScroll,
 				instance.get(SCROLL)
 			);
 		},
@@ -173,4 +172,4 @@ var PropertyList = A.Component.create({
 
 A.PropertyList = PropertyList;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatable']});
+}, '@VERSION@' ,{requires:['aui-datatable'], skinnable:true});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('event-simulate', function(Y) {
@@ -33,7 +33,8 @@ var L   = Y.Lang,
         mouseout:   1,
         mousedown:  1,
         mouseup:    1,
-        mousemove:  1
+        mousemove:  1,
+        contextmenu:1
     },
 
     //key events supported
@@ -142,7 +143,7 @@ function simulateKeyEvent(target /*:HTMLElement*/, type /*:String*/,
         cancelable = true; //all key events can be cancelled
     }
     if (!isObject(view)){
-        view = window; //view is typically window
+        view = Y.config.win; //view is typically window
     }
     if (!isBoolean(ctrlKey)){
         ctrlKey = false;
@@ -342,7 +343,7 @@ function simulateMouseEvent(target /*:HTMLElement*/, type /*:String*/,
         cancelable = (type != "mousemove"); //mousemove is the only one that can't be cancelled
     }
     if (!isObject(view)){
-        view = window; //view is typically window
+        view = Y.config.win; //view is typically window
     }
     if (!isNumber(detail)){
         detail = 1;  //number of mouse clicks must be at least one
@@ -539,7 +540,7 @@ function simulateUIEvent(target /*:HTMLElement*/, type /*:String*/,
         cancelable = (type == "submit"); //submit is the only one that can be cancelled
     }
     if (!isObject(view)){
-        view = window; //view is typically window
+        view = Y.config.win; //view is typically window
     }
     if (!isNumber(detail)){
         detail = 1;  //usually not used but defaulted to this
@@ -612,4 +613,4 @@ Y.Event.simulate = function(target, type, options){
 
 
 
-}, '3.4.0' ,{requires:['event-base']});
+}, '3.5.0' ,{requires:['event-base']});

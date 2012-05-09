@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('dd-ddm', function(Y) {
@@ -57,6 +57,9 @@ YUI.add('dd-ddm', function(Y) {
         * @description Activates the shim
         */
         _pg_activate: function() {
+            if (!this._pg) {
+                this._createPG();
+            }
             var ah = this.activeDrag.get('activeHandle'), cur = 'auto';
             if (ah) {
                 cur = ah.getStyle('cursor');
@@ -125,4 +128,4 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});
+}, '3.5.0' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});

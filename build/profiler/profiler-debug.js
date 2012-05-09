@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('profiler', function(Y) {
@@ -551,4 +551,4 @@ YUI.add('profiler', function(Y) {
     };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.5.0' ,{requires:['yui-base']});

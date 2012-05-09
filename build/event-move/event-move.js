@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('event-move', function(Y) {
@@ -16,7 +16,7 @@ YUI.add('event-move', function(Y) {
  * @submodule event-move
  */
 
-var EVENT = ("ontouchstart" in Y.config.win && !Y.UA.chrome) ? {
+var EVENT = ((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6)) ? {
         start: "touchstart",
         move: "touchmove",
         end: "touchend"
@@ -511,4 +511,4 @@ define(GESTURE_MOVE_END, {
 });
 
 
-}, '3.4.0' ,{requires:['node-base','event-touch','event-synthetic']});
+}, '3.5.0' ,{requires:['node-base','event-touch','event-synthetic']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('widget-modality', function(Y) {
@@ -61,19 +61,7 @@ var WIDGET       = 'widget',
      * @class WidgetModality
      * @param {Object} config User configuration object
      */
-    function WidgetModal(config) {
-        if (config && config.modal) {
-            Y.after(this._renderUIModal, this, RENDER_UI);
-            Y.after(this._syncUIModal, this, SYNC_UI);
-            Y.after(this._bindUIModal, this, BIND_UI);
-
-            if (this.get('rendered')) {
-                this._renderUIModal();
-                this._syncUIModal();
-                this._bindUIModal();
-            }
-        }
-    }
+    function WidgetModal(config) {}
 
     var MODAL           = 'modal',
         MASK            = 'mask',
@@ -206,10 +194,20 @@ var WIDGET       = 'widget',
 
     WidgetModal.prototype = {
 
+        initializer: function () {
+            Y.after(this._renderUIModal, this, RENDER_UI);
+            Y.after(this._syncUIModal, this, SYNC_UI);
+            Y.after(this._bindUIModal, this, BIND_UI);
+        },
+
+        destructor: function () {
+            // Hack to remove this thing from the STACK.
+            this._uiSetHostVisibleModal(false);
+        },
+
         // *** Instance Members *** //
 
-        _maskNode   : WidgetModal._GET_MASK(),
-        _uiHandlesModal  : null,
+        _uiHandlesModal: null,
 
 
         /**
@@ -252,12 +250,13 @@ var WIDGET       = 'widget',
             this.after(Z_INDEX+CHANGE, this._afterHostZIndexChangeModal);
             this.after("focusOnChange", this._afterFocusOnChange);
 
-            //realign the mask in the viewport if positionfixed is not supported.
-            //ios and android don't support it and the current feature test doesnt
-            //account for this, so we are doing UA sniffing here. This should be replaced
-            //with an updated featuretest later.
-            if (!supportsPosFixed || Y.UA.ios || Y.UA.android) {
-                Y.on('scroll', this._resyncMask);
+            // Re-align the mask in the viewport if `position: fixed;` is not
+            // supported. iOS < 5 and Android < 3 don't actually support it even
+            // though they both pass the feature test; the UA sniff is here to
+            // account for that. Ideally this should be replaced with a better
+            // feature test.
+            if (!supportsPosFixed || Y.UA.ios < 5 || Y.UA.android < 3) {
+                Y.one('win').on('scroll', this._resyncMask, this);
             }
         },
 
@@ -320,9 +319,9 @@ var WIDGET       = 'widget',
          * @param {boolean} Whether the widget is visible or not
          */
         _uiSetHostVisibleModal : function (visible) {
-            var stack       = WidgetModal.STACK,
-                maskNode    = this.get('maskNode'),
-                isModal     = this.get('modal'),
+            var stack    = WidgetModal.STACK,
+                maskNode = this.get('maskNode'),
+                isModal  = this.get('modal'),
                 topModal, index;
 
             if (visible) {
@@ -335,13 +334,11 @@ var WIDGET       = 'widget',
                 // push on top of stack
                 stack.unshift(this);
 
-                //this._attachUIHandlesModal();
                 this._repositionMask(this);
                 this._uiSetHostZIndexModal(this.get(Z_INDEX));
-                WidgetModal._GET_MASK().show();
 
                 if (isModal) {
-                    //this._attachUIHandlesModal();
+                    maskNode.show();
                     Y.later(1, this, '_attachUIHandlesModal');
                     this._focus();
                 }
@@ -507,9 +504,9 @@ var WIDGET       = 'widget',
          */
         _repositionMask: function(nextElem) {
 
-            var currentModal    = this.get('modal'),
-                nextModal       = nextElem.get('modal'),
-                maskNode        = this.get('maskNode'),
+            var currentModal = this.get('modal'),
+                nextModal    = nextElem.get('modal'),
+                maskNode     = this.get('maskNode'),
                 bb, bbParent;
 
             //if this is modal and host is not modal
@@ -541,12 +538,12 @@ var WIDGET       = 'widget',
          * @private
          */
         _resyncMask: function (e) {
-            var o = e.currentTarget,
-            offsetX = o.get('docScrollX'),
-            offsetY = o.get('docScrollY'),
-            w = o.get('innerWidth') || o.get('winWidth'),
-            h = o.get('innerHeight') || o.get('winHeight'),
-            mask = WidgetModal._GET_MASK();
+            var o       = e.currentTarget,
+                offsetX = o.get('docScrollX'),
+                offsetY = o.get('docScrollY'),
+                w       = o.get('innerWidth') || o.get('winWidth'),
+                h       = o.get('innerHeight') || o.get('winHeight'),
+                mask    = this.get('maskNode');
 
             mask.setStyles({
                 "top": offsetY + "px",
@@ -574,4 +571,4 @@ var WIDGET       = 'widget',
 
 
 
-}, '3.4.0' ,{requires:['widget','event-outside','base-build']});
+}, '3.5.0' ,{requires:['base-build', 'event-outside', 'widget'], skinnable:true});

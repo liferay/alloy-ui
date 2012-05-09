@@ -1,0 +1,18 @@
+.aui-autocomplete-search-list label{
+	cursor: pointer;
+	display: block;
+	padding: 2px;
+}
+
+.aui-autocomplete-search-list label input {
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.aui-autocomplete-search-list-ac-container {	
+	padding: 5px;
+}
+
+.aui-autocomplete-search-list-ac-container .aui-field-input {
+	width: 99%;
+}

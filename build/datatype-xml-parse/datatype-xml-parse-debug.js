@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('datatype-xml-parse', function(Y) {
@@ -43,12 +43,12 @@ Y.mix(Y.namespace("DataType.XML"), {
                 }
                 catch(e) {
                 }
-                    Y.log(ee.message + " (Could not parse data " + Y.dump(data) + " to type XML Document)", "warn", "datatype-xml");
+                    Y.log(ee.message + " (Could not parse data to type XML Document)", "warn", "datatype-xml");
             }
         }
         
         if( (LANG.isNull(xmlDoc)) || (LANG.isNull(xmlDoc.documentElement)) || (xmlDoc.documentElement.nodeName === "parsererror") ) {
-            Y.log("Could not parse data " + Y.dump(data) + " to type XML Document", "warn", "datatype-xml");
+            Y.log("Could not parse data to type XML Document", "warn", "datatype-xml");
         }
         
         return xmlDoc;
@@ -60,4 +60,4 @@ Y.namespace("Parsers").xml = Y.DataType.XML.parse;
 
 
 
-}, '3.4.0' );
+}, '3.5.0' );

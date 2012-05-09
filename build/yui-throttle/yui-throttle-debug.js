@@ -2,17 +2,28 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.5.0
 build: nightly
 */
 YUI.add('yui-throttle', function(Y) {
 
 /**
- * Throttles a call to a method based on the time between calls. This method is attached
- * to the `Y` object and is <a href="../classes/YUI.html#method_throttle">documented there</a>.
- * @module yui
- * @submodule yui-throttle
- */
+Throttles a call to a method based on the time between calls. This method is attached
+to the `Y` object and is <a href="../classes/YUI.html#method_throttle">documented there</a>.
+
+    var fn = Y.throttle(function() {
+        counter++;
+    });
+
+    for (i; i< 35000; i++) {
+        out++;
+        fn();
+    }
+
+
+@module yui
+@submodule yui-throttle
+*/
 
 /*! Based on work by Simon Willison: http://gist.github.com/292562 */
 /**
@@ -47,4 +58,4 @@ Y.throttle = function(fn, ms) {
 };
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.5.0' ,{requires:['yui-base']});

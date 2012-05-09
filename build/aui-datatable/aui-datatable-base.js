@@ -8,17 +8,16 @@ var Lang = A.Lang,
 
 	CHANGE = 'change',
 	CHILD_NODES = 'childNodes',
-	COLUMNSET = 'columnset',
+	COLUMNS = 'columns',
 	DATA = 'data',
+	DATA_CHANGE = 'dataChange',
 	HEADERS = 'headers',
 	ID = 'id',
-	RECORDSET = 'recordset',
-	RECORDSET_CHANGE = 'recordsetChange',
 
 	_HASH = '#',
 	_SPACE = ' ';
 
-A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
+A.DataTable = A.Base.create('datatable', A.DataTable, [], {
 	initializer: function() {
 		var instance = this;
 
@@ -33,8 +32,8 @@ A.DataTable.Base = A.Base.create('datatable', A.DataTable.Base, [], {
 
 	getColNode: function(cell) {
 		var instance = this;
-		var columnset = instance.get(COLUMNSET);
-		var index = columnset.getColumnIndex(columnset.getColumnByCell(cell));
+		var columns = instance.get(COLUMNS);
+		var index = columns.getColumnIndex(columns.getColumnByCell(cell));
 
 		return instance._colgroupNode.get(CHILD_NODES).item(index);
 	},
@@ -76,7 +75,7 @@ A.Column = A.Base.create('column', A.Column, [], {}, {
 	}
 });
 
-A.Columnset = A.Base.create('columnset', A.Columnset, [], {
+A.Columns = A.Base.create('columns', A.Columns, [], {
 	getColumn: function(i) {
 		var instance = this;
 
