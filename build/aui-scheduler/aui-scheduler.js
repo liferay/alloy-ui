@@ -2235,7 +2235,10 @@ var SchedulerMonthView = A.Component.create({
 							if (evt) {
 								var startDate = evt.get(START_DATE);
 
-								if (!(DateMath.before(startDate, rowStartDate) && DateMath.getDayOffset(celDate, rowStartDate) > 0)) {
+								var isEventStartDateDay = !DateMath.isDayOverlap(startDate, celDate);
+								var isEventDateContinuation = DateMath.after(celDate, startDate) && !DateMath.isDayOverlap(celDate, rowStartDate);
+
+								if (isEventStartDateDay || isEventDateContinuation) {
 									var evtNodeList = evt.get(NODE);
 									var paddingIndex = Math.floor(DateMath.getDayOffset(celDate, DateMath.getFirstDayOfWeek(startDate)) / WEEK_LENGTH);
 
@@ -2251,6 +2254,8 @@ var SchedulerMonthView = A.Component.create({
 										top: 0,
 										width: 'auto'
 									});
+
+									evt.syncNodeUI();
 
 									var evtNodeContainer = evtColNode.one(DIV);
 
