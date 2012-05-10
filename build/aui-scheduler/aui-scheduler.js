@@ -2509,7 +2509,7 @@ var SchedulerMonthView = A.Component.create({
 			var endDate = evt.getClearEndDate();
 
 			var firstWeekDay = DateMath.getFirstDayOfWeek(celDate);
-			var maxColspan = rowEndDate.getDate() - celDate.getDate();
+			var maxColspan = DateMath.getDayOffset(rowEndDate, celDate);
 
 			var info = {
 				colspan: Math.min(DateMath.getDayOffset(endDate, celDate), maxColspan) + 1,
@@ -2587,11 +2587,17 @@ var SchedulerMonthView = A.Component.create({
 			var recorder = scheduler.get(EVENT_RECORDER);
 
 			if (recorder && instance._recording && !scheduler.get(DISABLED)) {
-				var startDate = instance._getPositionDate(instance.lassoStartPosition);
-				var endDate = instance._getPositionDate(instance.lassoLastPosition);
+				var startPositionDate = instance._getPositionDate(instance.lassoStartPosition);
+				var endPositionDate = instance._getPositionDate(instance.lassoLastPosition);
 
-				recorder.set(START_DATE, Math.min(startDate, endDate));
-				recorder.set(END_DATE, Math.max(startDate, endDate));
+				var startDate = new Date(Math.min(startPositionDate, endPositionDate));
+				startDate.setHours(0, 0, 0);
+
+				var endDate = new Date(Math.max(startPositionDate, endPositionDate));
+				endDate.setHours(23, 59, 59);
+
+				recorder.set(START_DATE, startDate);
+				recorder.set(END_DATE, endDate);
 
 				recorder.showOverlay([event.pageX, event.pageY]);
 
