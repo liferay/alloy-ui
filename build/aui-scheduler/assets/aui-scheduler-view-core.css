@@ -91,8 +91,9 @@
 
 .aui-scheduler-view-day-content .yui3-widget-bd { height: 600px }
 
-.aui-scheduler-view-day-handler-container {
+.aui-scheduler-view-day-resizer {
     bottom: 0;
+    cursor: ns-resize;
     display: block;
     height: 6px;
     left: 0;
@@ -100,9 +101,8 @@
     width: 100%;
 }
 
-.aui-scheduler-view-day-handler {
+.aui-scheduler-view-day-resizer-icon {
     bottom: -4px;
-    cursor: s-resize;
     left: 50%;
     margin-left: -8px;
     position: absolute;
