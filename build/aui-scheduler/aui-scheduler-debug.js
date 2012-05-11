@@ -3531,7 +3531,6 @@ var L = A.Lang,
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_LINK = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, LINK),
 	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
 	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER, EVENT, TITLE),
 
@@ -3553,7 +3552,6 @@ var L = A.Lang,
 		'</div>'
 	),
 
-	TPL_OVERLAY_DELETE = '<a class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_LINK + '" href="javascript:;">{delete}</a>',
 	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
 
 var SchedulerEventRecorder = A.Component.create({
@@ -3639,6 +3637,10 @@ var SchedulerEventRecorder = A.Component.create({
 						{
 							handler: A.bind(instance._handleCancelEvent, instance),
 							label: strings[CANCEL]
+						},
+						{
+							handler: A.bind(instance._handleDeleteEvent, instance),
+							label: strings[DELETE]
 						}
 					]
 				}, val || {});
@@ -3646,7 +3648,6 @@ var SchedulerEventRecorder = A.Component.create({
 			validator: isObject,
 			value: {}
 		}
-
 	},
 
 	EXTENDS: A.SchedulerEvent,
@@ -3735,6 +3736,16 @@ var SchedulerEventRecorder = A.Component.create({
 			event.preventDefault();
 		},
 
+		_handleDeleteEvent: function(event) {
+			var instance = this;
+
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+				schedulerEvent: instance.get(EVENT)
+			});
+
+			event.preventDefault();
+		},
+
 		_handleSaveEvent: function(event) {
 			var instance = this;
 
@@ -3746,14 +3757,6 @@ var SchedulerEventRecorder = A.Component.create({
 			);
 
 			event.preventDefault();
-		},
-
-		_onClickDelete: function() {
-			var instance = this;
-
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
-				schedulerEvent: instance.get(EVENT)
-			});
 		},
 
 		_onClickSchedulerEvent: function(event) {
@@ -3781,11 +3784,6 @@ var SchedulerEventRecorder = A.Component.create({
 					setTimeout(function() {
 						contentNode.selectText();
 					}, 0);
-
-					instance.deleteNode.hide();
-				}
-				else {
-					instance.deleteNode.show();
 				}
 			}
 			else {
@@ -3814,19 +3812,10 @@ var SchedulerEventRecorder = A.Component.create({
 			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
 			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
 
-			instance.deleteNode = A.Node.create(
-				L.sub(TPL_OVERLAY_DELETE, {
-					'delete': strings[DELETE]
-				})
-			);
-
-			instance[OVERLAY].footerNode.append(instance.deleteNode);
-
 			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
 
 			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
 
-			instance.deleteNode.on(CLICK, A.bind(instance._onClickDelete, instance));
 			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
 		},
 
