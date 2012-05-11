@@ -264,12 +264,7 @@
     border: none;
     font-size: 20px;
     margin: 10px 0;
-    width: 255px;
-}
-
-.aui-scheduler-event-recorder-overlay-link {
-    line-height: 25px;
-    margin-left: 5px;
+    width: 100%;
 }
 
 .aui-scheduler-event-recorder-overlay-repeat {
