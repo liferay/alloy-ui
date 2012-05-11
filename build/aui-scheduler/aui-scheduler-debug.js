@@ -42,6 +42,7 @@ var Lang = A.Lang,
 	DATE = 'date',
 	END_DATE = 'endDate',
 	EVENT_CLASS = 'eventClass',
+	EVENT_RECORDER = 'eventRecorder',
 	EVENTS = 'events',
 	HD = 'hd',
 	HEADER = 'header',
@@ -498,6 +499,12 @@ var SchedulerBase = A.Component.create({
 				}
 
 				instance.renderView(activeView);
+
+				var eventRecorder = instance.get(EVENT_RECORDER);
+
+				if (eventRecorder) {
+					eventRecorder.hideOverlay();
+				}
 			}
 		},
 
