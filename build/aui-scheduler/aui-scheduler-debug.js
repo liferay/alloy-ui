@@ -1822,7 +1822,8 @@ var SchedulerDayView = A.Component.create({
 			if (recorder && !scheduler.get(DISABLED)) {
 				if (instance[CREATION_START_DATE]) {
 					instance.plotEvent(recorder);
-					recorder.showOverlay();
+
+					recorder.showOverlay([ event.pageX, event.pageY ]);
 				}
 			}
 
