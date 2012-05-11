@@ -1768,8 +1768,11 @@ var SchedulerDayView = A.Component.create({
 		_onMouseEnterEvent: function(event) {
 			var instance = this;
 			var target = event.currentTarget;
+			var evt = target.getData(SCHEDULER_EVENT);
 
-			instance[RESIZER_NODE].appendTo(target);
+			if (evt && !evt.get(DISABLED)) {
+				instance[RESIZER_NODE].appendTo(target);
+			}
 		},
 
 		_onMouseLeaveEvent: function(event) {
@@ -3950,6 +3953,7 @@ var Lang = A.Lang,
 	},
 
 	COLOR = 'color',
+	DISABLED = 'disabled',
 	EVENTS = 'events',
 	PALLETE = 'pallete',
 	SCHEDULER = 'scheduler',
@@ -3969,6 +3973,11 @@ var SchedulerCalendar = A.Component.create({
 				return pallete[randomIndex];
 			},
 			validator: isString
+		},
+
+		disabled: {
+			value: false,
+			validator: isBoolean
 		},
 
 		name: {
@@ -4001,48 +4010,57 @@ var SchedulerCalendar = A.Component.create({
 			var instance = this;
 
 			instance.after('colorChange', instance._afterColorChange);
-			instance.on('eventsChange', instance._onEventsChange);
-			instance.on('visibleChange', instance._onVisibleChange);
+			instance.after('disabledChange', instance._afterDisabledChange);
+			instance.after('eventsChange', instance._afterEventsChange);
+			instance.after('visibleChange', instance._afterVisibleChange);
 
-			instance._uiSetVisible(
-				instance.get(VISIBLE)
+			instance._uiSetColor(
+				instance.get(COLOR)
+			);
+
+			instance._uiSetDisabled(
+				instance.get(DISABLED)
 			);
 
 			instance._uiSetEvents(
 				instance.get(EVENTS)
 			);
-		},
 
-		syncEventsColor: function(events) {
-			var instance = this;
-
-			A.Array.each(events || instance.get(EVENTS), function(evt) {
-				evt.set(COLOR, instance.get(COLOR));
-			});
+			instance._uiSetVisible(
+				instance.get(VISIBLE)
+			);
 		},
 
 		_afterColorChange: function(event) {
 			var instance = this;
 
-			instance.syncEventsColor(instance.get(EVENTS));
+			instance._uiSetColor(event.newVal);
 		},
 
-		_onEventsChange: function(event) {
+		_afterDisabledChange: function(event) {
 			var instance = this;
-			var value = event.newVal;
-			var visible = instance.get(VISIBLE);
 
-			A.Array.each(value, function(event) {
-				event.set(VISIBLE, visible);
-			});
-
-			instance._uiSetEvents(value);
+			instance._uiSetDisabled(event.newVal);
 		},
 
-		_onVisibleChange: function(event) {
+		_afterEventsChange: function(event) {
+			var instance = this;
+
+			instance._uiSetEvents(event.newVal);
+		},
+
+		_afterVisibleChange: function(event) {
 			var instance = this;
 
 			instance._uiSetVisible(event.newVal);
+		},
+
+		_propagateAttr: function(attrName, attrValue) {
+			var instance = this;
+
+			instance.eachEvent(function(evt) {
+				evt.set(attrName, attrValue);
+			});
 		},
 
 		_setScheduler: function(val) {
@@ -4058,11 +4076,25 @@ var SchedulerCalendar = A.Component.create({
 			return val;
 		},
 
+		_uiSetColor: function(val) {
+			var instance = this;
+
+			instance._propagateAttr(COLOR, instance.get(COLOR));
+		},
+
+		_uiSetDisabled: function(val) {
+			var instance = this;
+
+			instance._propagateAttr(DISABLED, val);
+		},
+
 		_uiSetEvents: function(val) {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 
-			instance.syncEventsColor(val);
+			instance._propagateAttr(COLOR, instance.get(COLOR));
+			instance._propagateAttr(DISABLED, instance.get(DISABLED));
+			instance._propagateAttr(VISIBLE, instance.get(VISIBLE));
 
 			if (scheduler) {
 				scheduler.removeEvents(instance);
@@ -4074,9 +4106,7 @@ var SchedulerCalendar = A.Component.create({
 		_uiSetVisible: function(val) {
 			var instance = this;
 
-			instance.eachEvent(function(evt) {
-				evt.set(VISIBLE, val);
-			});
+			instance._propagateAttr(VISIBLE, val);
 		}
 	}
 });
