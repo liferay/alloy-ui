@@ -1073,8 +1073,11 @@ var SchedulerDayView = A.Component.create({
 		_onMouseEnterEvent: function(event) {
 			var instance = this;
 			var target = event.currentTarget;
+			var evt = target.getData(SCHEDULER_EVENT);
 
-			instance[RESIZER_NODE].appendTo(target);
+			if (evt && !evt.get(DISABLED)) {
+				instance[RESIZER_NODE].appendTo(target);
+			}
 		},
 
 		_onMouseLeaveEvent: function(event) {
