@@ -1,0 +1,19 @@
+{
+	"options": {
+		"linkNatives": "true",
+		"attributesEmit": "true",
+		"selleck": "true",
+		"ignorePaths": [ "simpleyui" ],
+		"paths": [ "lib/yui3/src", "src" ],
+		"outdir": "./api",
+		"port": 3000,
+		"themedir": "resources/docs/themes/default",
+		"cacheTemplates": false,
+		"nocode": false
+	},
+	"name": "AlloyUI",
+	"description": "AlloyUI JavaScript Framework",
+	"version": "1.5.0",
+	"yuiVersion": "3.4.0",
+	"url": "http://yuilibrary.com/"
+}

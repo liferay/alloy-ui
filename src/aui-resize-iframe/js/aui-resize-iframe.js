@@ -127,11 +127,13 @@ ResizeIframe = A.Component.create(
 				instance._iframeDoc = null;
 
 				var newHeight = instance._iframeHeight;
-				var iframeWin = instance._iframeEl.contentWindow;
 
 				var iframeDoc;
+				var iframeWin;
 
 				try {
+					iframeWin = instance._iframeEl.contentWindow;
+
 					iframeDoc = iframeWin.document;
 
 					instance._iframeDoc = iframeDoc;
@@ -139,12 +141,12 @@ ResizeIframe = A.Component.create(
 				catch (e) {
 				}
 
-				if (iframeDoc) {
+				if (iframeDoc && iframeWin) {
 					newHeight = ResizeIframe._getContentHeight(iframeWin, iframeDoc, instance._iframeHeight);
 
 					instance._uiSetHeight(newHeight);
 				}
-				else {
+				else if (!iframeDoc) {
 					instance._clearInterval();
 
 					instance._uiSetHeight(instance._defaultHeight);
@@ -155,6 +157,8 @@ ResizeIframe = A.Component.create(
 				var instance = this;
 
 				if (!instance._intervalId) {
+					instance._onResize();
+
 					instance._intervalId = A.setInterval(instance._onResize, 100, instance);
 				}
 			},

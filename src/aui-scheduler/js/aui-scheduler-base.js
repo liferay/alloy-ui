@@ -1,9 +1,9 @@
 var Lang = A.Lang,
 	isString = Lang.isString,
-	isObject = Lang.isObject,
 	isArray = Lang.isArray,
 	isDate = Lang.isDate,
 	isNumber = Lang.isNumber,
+	isObject = Lang.isObject,
 
 	isScheduler = function(val) {
 		return (val instanceof A.Scheduler);
@@ -24,7 +24,6 @@ var Lang = A.Lang,
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
 
-	DASH = '-',
 	DOT = '.',
 	EMPTY_STR = '',
 	SPACE = ' ',
@@ -33,7 +32,6 @@ var Lang = A.Lang,
 	DATA_VIEW_NAME = 'data-view-name',
 
 	ACTIVE_VIEW = 'activeView',
-	BOUNDING_BOX = 'boundingBox',
 	CLEARFIX = 'clearfix',
 	CONTROLS = 'controls',
 	CONTROLS_NODE = 'controlsNode',
@@ -41,42 +39,37 @@ var Lang = A.Lang,
 	CURRENT_DATE = 'currentDate',
 	CURRENT_DATE_NODE = 'currentDateNode',
 	DATE = 'date',
-	DATE_FORMAT = 'dateFormat',
-	DAY = 'day',
 	END_DATE = 'endDate',
+	EVENT_CLASS = 'eventClass',
+	EVENT_RECORDER = 'eventRecorder',
 	EVENTS = 'events',
-	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
 	HD = 'hd',
+	HEADER = 'header',
 	HEADER_NODE = 'headerNode',
 	HELPER = 'helper',
 	ICON = 'icon',
 	ICON_NEXT_NODE = 'iconNextNode',
 	ICON_PREV_NODE = 'iconPrevNode',
 	LOCALE = 'locale',
-	MONTH = 'month',
 	NAME = 'name',
 	NAV = 'nav',
 	NAV_NODE = 'navNode',
+	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
 	NEXT = 'next',
 	NEXT_DATE = 'nextDate',
 	PREV = 'prev',
 	PREV_DATE = 'prevDate',
 	RENDERED = 'rendered',
 	SCHEDULER = 'scheduler',
-	SRC_NODE = 'srcNode',
 	START_DATE = 'startDate',
 	STRINGS = 'strings',
-	TEMPLATE = 'template',
 	TODAY = 'today',
 	TODAY_NODE = 'todayNode',
 	TRIGGER_NODE = 'triggerNode',
 	VIEW = 'view',
+	VIEW_STACK = 'viewStack',
 	VIEWS = 'views',
 	VIEWS_NODE = 'viewsNode',
-	WEEK = 'week',
-	YEAR = 'year',
-	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
-	EVENT_RECORDER = 'eventRecorder',
 
 	getCN = A.getClassName,
 
@@ -90,14 +83,8 @@ var Lang = A.Lang,
 	CSS_SCHEDULER_NAV = getCN(SCHEDULER_BASE, NAV),
 	CSS_SCHEDULER_TODAY = getCN(SCHEDULER_BASE, TODAY),
 	CSS_SCHEDULER_VIEW = getCN(SCHEDULER_BASE, VIEW),
-	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 	CSS_SCHEDULER_VIEW_ = getCN(SCHEDULER_BASE, VIEW, EMPTY_STR),
-	CSS_SCHEDULER_VIEW_DAY = getCN(SCHEDULER_BASE, VIEW, DAY),
-	CSS_SCHEDULER_VIEW_MONTH = getCN(SCHEDULER_BASE, VIEW, MONTH),
-	CSS_SCHEDULER_VIEW_WEEK = getCN(SCHEDULER_BASE, VIEW, WEEK),
-	CSS_SCHEDULER_VIEW_YEAR = getCN(SCHEDULER_BASE, VIEW, YEAR),
-
-	CSS_SCHEDULER_VIEW_CONTENT_ = getCN(SCHEDULER, VIEW, EMPTY_STR),
+	CSS_SCHEDULER_VIEWS = getCN(SCHEDULER_BASE, VIEWS),
 
 	TPL_SCHEDULER_CONTROLS = '<div class="'+CSS_SCHEDULER_CONTROLS+'"></div>',
 	TPL_SCHEDULER_CURRENT_DATE = '<div class="'+CSS_SCHEDULER_CURRENT_DATE+'"></div>',
@@ -112,6 +99,12 @@ var Lang = A.Lang,
 var SchedulerEventSupport = function() {};
 
 SchedulerEventSupport.ATTRS = {
+	eventClass: {
+		valueFn: function() {
+			return A.SchedulerEvent;
+		}
+	},
+
 	events: {
 		value: [],
 		setter: '_setEvents',
@@ -152,9 +145,11 @@ A.mix(SchedulerEventSupport.prototype, {
 		var instance = this;
 		var events = instance.get(EVENTS);
 
-		A.Array.removeItem(events, evt);
+		if (events.length) {
+			A.Array.removeItem(events, evt);
 
-		instance.set(EVENTS, events);
+			instance.set(EVENTS, events);
+		}
 	},
 
 	removeEvents: function(events) {
@@ -172,24 +167,29 @@ A.mix(SchedulerEventSupport.prototype, {
 
 		events = A.Array(events);
 
-		A.Array.each(events, function(evt, i) {
+		A.Array.each(events, function(evt) {
 			if (isSchedulerEvent(evt)) {
 				output.push(evt);
 			}
 			else if (isSchedulerCalendar(evt)) {
+				if (isScheduler(instance)) {
+					evt.set(SCHEDULER, instance);
+				}
+
 				// get events from the calendar
 				output = output.concat(
 					instance._normalizeEvents(evt.get(EVENTS))
 				);
 			}
 			else {
-				evt = new A.SchedulerEvent(evt);
+				evt = new (instance.get(EVENT_CLASS))(evt);
 
 				output.push(evt);
 			}
 
 			if (isScheduler(instance)) {
 				evt.set(SCHEDULER, instance);
+				evt.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 			}
 		});
 
@@ -229,8 +229,8 @@ var SchedulerBase = A.Component.create({
 
 		/**
 		 * The default date format string which can be overriden for
-         * localization support. The format must be valid according to
-         * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+		 * localization support. The format must be valid according to
+		 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
 		 *
 		 * @attribute dateFormat
 		 * @default %A - %d %b %Y
@@ -350,20 +350,20 @@ var SchedulerBase = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.viewStack = {};
+			instance[VIEW_STACK] = {};
 
-			instance.controlsNode = instance.get(CONTROLS_NODE);
-			instance.currentDateNode = instance.get(CURRENT_DATE_NODE);
-			instance.iconNextNode = instance.get(ICON_NEXT_NODE);
-			instance.iconPrevNode = instance.get(ICON_PREV_NODE);
-			instance.navNode = instance.get(NAV_NODE);
-			instance.schedulerHeaderNode = instance.get(HEADER_NODE);
-			instance.todayNode = instance.get(TODAY_NODE);
-			instance.viewsNode = instance.get(VIEWS_NODE);
+			instance[CONTROLS_NODE] = instance.get(CONTROLS_NODE);
+			instance[CURRENT_DATE_NODE] = instance.get(CURRENT_DATE_NODE);
+			instance[HEADER] = instance.get(HEADER_NODE);
+			instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
+			instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
+			instance[NAV_NODE] = instance.get(NAV_NODE);
+			instance[TODAY_NODE] = instance.get(TODAY_NODE);
+			instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
 
 			instance.after({
-				render: instance._afterRender,
-				activeViewChange: instance._afterActiveViewChange
+				activeViewChange: instance._afterActiveViewChange,
+				render: instance._afterRender
 			});
 		},
 
@@ -382,8 +382,8 @@ var SchedulerBase = A.Component.create({
 		flushEvents: function() {
 			var instance = this;
 
-			A.Array.each(instance.get(EVENTS), function(evt, i) {
-				evt.eachRepeatedEvent(function(repeatedEvt, uid) {
+			A.Array.each(instance.get(EVENTS), function(evt) {
+				evt.eachRepeatedEvent(function(repeatedEvt) {
 					delete repeatedEvt._filtered;
 				});
 
@@ -391,13 +391,14 @@ var SchedulerBase = A.Component.create({
 			});
 		},
 
-		getEventsByDay: function(date) {
+		getEventsByDay: function(date, includeOverlap) {
 			var instance = this;
 
 			date = DateMath.safeClearTime(date);
 
 			return instance._getEvents(date, function(evt) {
-				return DateMath.compare(evt.getClearStartDate(), date);
+				return DateMath.compare(evt.getClearStartDate(), date) ||
+						(includeOverlap && DateMath.compare(evt.getClearEndDate(), date));
 			});
 		},
 
@@ -410,7 +411,9 @@ var SchedulerBase = A.Component.create({
 				var startDate = evt.getClearStartDate();
 				var endDate = evt.getClearEndDate();
 
-				return (DateMath.compare(date, startDate) || DateMath.compare(date, endDate) || DateMath.between(date, startDate, endDate));
+				return (DateMath.compare(date, startDate) ||
+						DateMath.compare(date, endDate) ||
+						DateMath.between(date, startDate, endDate));
 			});
 		},
 
@@ -424,7 +427,9 @@ var SchedulerBase = A.Component.create({
 				var startDate1 = evt1.get(START_DATE);
 				var startDate2 = evt2.get(START_DATE);
 
-				if (DateMath.after(startDate1, startDate2) || DateMath.compare(startDate1, startDate2) && DateMath.before(endDate1, endDate2)) {
+				if (DateMath.after(startDate1, startDate2) ||
+					(DateMath.compare(startDate1, startDate2) && DateMath.before(endDate1, endDate2))) {
+
 					return 1;
 				}
 				else {
@@ -436,7 +441,7 @@ var SchedulerBase = A.Component.create({
 		getViewByName: function(name) {
 			var instance = this;
 
-			return instance.viewStack[name];
+			return instance[VIEW_STACK][name];
 		},
 
 		getStrings: function() {
@@ -458,8 +463,6 @@ var SchedulerBase = A.Component.create({
 				view.show();
 
 				if (!view.get(RENDERED)) {
-					var viewName = view.get(NAME);
-
 					if (!instance.bodyNode) {
 						instance.setStdModContent(WidgetStdMod.BODY, EMPTY_STR);
 					}
@@ -495,6 +498,12 @@ var SchedulerBase = A.Component.create({
 				}
 
 				instance.renderView(activeView);
+
+				var eventRecorder = instance.get(EVENT_RECORDER);
+
+				if (eventRecorder) {
+					eventRecorder.hideOverlay();
+				}
 			}
 		},
 
@@ -509,10 +518,10 @@ var SchedulerBase = A.Component.create({
 		_bindDelegate: function() {
 			var instance = this;
 
-			instance.viewsNode.delegate('click', instance._onClickViewTrigger, DOT+CSS_SCHEDULER_VIEW, instance);
-			instance.controlsNode.delegate('click', instance._onClickPrevIcon, DOT+CSS_SCHEDULER_ICON_PREV, instance);
-			instance.controlsNode.delegate('click', instance._onClickNextIcon, DOT+CSS_SCHEDULER_ICON_NEXT, instance);
-			instance.controlsNode.delegate('click', instance._onClickToday, DOT+CSS_SCHEDULER_TODAY, instance);
+			instance[VIEWS_NODE].delegate('click', instance._onClickViewTrigger, DOT+CSS_SCHEDULER_VIEW, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickPrevIcon, DOT+CSS_SCHEDULER_ICON_PREV, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickNextIcon, DOT+CSS_SCHEDULER_ICON_NEXT, instance);
+			instance[CONTROLS_NODE].delegate('click', instance._onClickToday, DOT+CSS_SCHEDULER_TODAY, instance);
 		},
 
 		_createViewTriggerNode: function(view) {
@@ -538,22 +547,22 @@ var SchedulerBase = A.Component.create({
 		_getEvents: function(date, filterFn) {
 			var instance = this;
 			var events = instance.get(EVENTS);
-			var evtsByDate = [];
+			var results = [];
 
-			A.Array.each(events, function(evt, i) {
+			A.Array.each(events, function(evt) {
 				if (filterFn.apply(instance, [evt])) {
-					evtsByDate.push(evt);
+					results.push(evt);
 				}
 				else if (evt.isRepeatableDate(date)) {
 					var repeatedEvt = evt.repeatByDate(date);
 
-					evtsByDate.push(repeatedEvt);
+					results.push(repeatedEvt);
 				}
 			});
 
-			instance.sortEventsByDateAsc(evtsByDate);
+			instance.sortEventsByDateAsc(results);
 
-			return evtsByDate;
+			return results;
 		},
 
 		_onClickToday: function(event) {
@@ -591,11 +600,9 @@ var SchedulerBase = A.Component.create({
 
 		_onClickViewTrigger: function(event) {
 			var instance = this;
-			var currentTarget = event.currentTarget;
-			var viewName = currentTarget.attr(DATA_VIEW_NAME);
-			var view = instance.getViewByName(viewName);
+			var viewName = event.currentTarget.attr(DATA_VIEW_NAME);
 
-			instance.set(ACTIVE_VIEW, view);
+			instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
 
 			event.preventDefault();
 		},
@@ -611,6 +618,7 @@ var SchedulerBase = A.Component.create({
 
 			if (val) {
 				val.set(SCHEDULER, instance);
+				val.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 			}
 		},
 
@@ -621,10 +629,11 @@ var SchedulerBase = A.Component.create({
 			A.Array.each(val, function(view) {
 				if (isSchedulerView(view) && !view.get(RENDERED)) {
 					view.set(SCHEDULER, instance);
+					view.set(EVENT_CLASS, instance.get(EVENT_CLASS));
 
 					views.push(view);
 
-					instance.viewStack[view.get(NAME)] = view;
+					instance[VIEW_STACK][view.get(NAME)] = view;
 				}
 			});
 
@@ -645,33 +654,33 @@ var SchedulerBase = A.Component.create({
 			var instance = this;
 			var views = instance.get(VIEWS);
 
-			instance.navNode.append(instance.iconPrevNode);
-			instance.navNode.append(instance.iconNextNode);
+			instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
+			instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
 
-			instance.controlsNode.append(instance.todayNode);
-			instance.controlsNode.append(instance.navNode);
-			instance.controlsNode.append(instance.currentDateNode);
+			instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
+			instance[CONTROLS_NODE].append(instance[NAV_NODE]);
+			instance[CONTROLS_NODE].append(instance[CURRENT_DATE_NODE]);
 
 			A.Array.each(views, function(view) {
-				instance.viewsNode.append( instance._createViewTriggerNode(view) );
+				instance[VIEWS_NODE].append( instance._createViewTriggerNode(view) );
 			});
 
-			instance.schedulerHeaderNode.append(instance.controlsNode);
-			instance.schedulerHeaderNode.append(instance.viewsNode);
+			instance[HEADER].append(instance[CONTROLS_NODE]);
+			instance[HEADER].append(instance[VIEWS_NODE]);
+			instance[HEADER].addClass(CSS_HELPER_CLEARFIX);
 
-			instance.schedulerHeaderNode.addClass(CSS_HELPER_CLEARFIX);
-
-			instance.setStdModContent(WidgetStdMod.HEADER, instance.schedulerHeaderNode.getDOM());
+			instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
 		},
 
 		_uiSetCurrentDate: function(val) {
 			var instance = this;
-			var dateFormat = instance.get(NAVIGATION_DATE_FORMAT);
-			var locale = instance.get(LOCALE);
 
-			var formatted = A.DataType.Date.format(val, { format: dateFormat, locale: locale });
+			var formatted = A.DataType.Date.format(val, {
+				format: instance.get(NAVIGATION_DATE_FORMAT),
+				locale: instance.get(LOCALE)
+			});
 
-			instance.currentDateNode.html(formatted);
+			instance[CURRENT_DATE_NODE].html(formatted);
 
 			if (instance.get(RENDERED)) {
 				var activeView = instance.get(ACTIVE_VIEW);

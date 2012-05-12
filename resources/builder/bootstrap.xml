@@ -14,7 +14,7 @@
 				<available file="${project.dir}/lib/ace" type="dir" />
 			</not>
 			<not>
-				<available file="${project.dir}/lib/builder" type="dir" />
+				<available file="${builddir}" type="dir" />
 			</not>
 			<not>
 				<available file="${project.dir}/lib/yui3" type="dir" />

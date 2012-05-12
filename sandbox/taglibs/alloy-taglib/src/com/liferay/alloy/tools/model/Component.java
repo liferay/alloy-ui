@@ -1,6 +1,7 @@
 package com.liferay.alloy.tools.model;
 
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -114,7 +115,8 @@ public class Component extends BaseModel {
 
 				return clazz.isAssignableFrom(parentClass);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 		}
 
 		return false;
