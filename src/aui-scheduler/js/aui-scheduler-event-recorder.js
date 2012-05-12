@@ -1,118 +1,109 @@
-var ACTIVE_VIEW = 'activeView',
-	BC = 'bc',
-	BD = 'bd',
+var L = A.Lang,
+	isArray = L.isArray,
+	isObject = L.isObject,
+
+	ACTIVE_VIEW = 'activeView',
+	ARROW = 'arrow',
+	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
 	BOUNDING_BOX = 'boundingBox',
-	BUTTON = 'button',
-	COLUMN = 'column',
+	CANCEL = 'cancel',
+	CLICK = 'click',
 	CONTENT = 'content',
+	DATE = 'date',
 	DATE_FORMAT = 'dateFormat',
-	DBLCLICK = 'dblclick',
-	DESC = 'desc',
-	DISK = 'disk',
+	DELETE = 'delete',
+	DESCRIPTION = 'description',
+	EDIT = 'edit',
 	EVENT = 'event',
-	FIELD = 'field',
-	FIELDSET = 'fieldset',
+	EVENT_CLASS = 'eventClass',
+	FOOTER_CONTENT = 'footerContent',
 	FORM = 'form',
-	HINT = 'hint',
-	INPUT = 'input',
+	HEADER = 'header',
+	HIDE = 'hide',
 	ISO_TIME = 'isoTime',
-	LABEL = 'label',
-	LAYOUT = 'layout',
-	MENU = 'menu',
-	OVERLAY_CONTEXT_PANEL = 'overlayContextPanel',
-	PENCIL = 'pencil',
+	LINK = 'link',
+	NODE = 'node',
+	OFFSET_HEIGHT = 'offsetHeight',
+	OFFSET_WIDTH = 'offsetWidth',
+	OVERLAY = 'overlay',
+	OVERLAY_OFFSET = 'overlayOffset',
+	RECORDER = 'recorder',
+	RENDERED = 'rendered',
 	REPEAT = 'repeat',
-	ROW = 'row',
+	SAVE = 'save',
 	SCHEDULER = 'scheduler',
-	SELECT = 'select',
+	SCHEDULER_CHANGE = 'schedulerChange',
+	SCHEDULER_EVENT = 'scheduler-event',
+	SCHEDULER_EVENT_RECORDER = 'scheduler-event-recorder',
+	SHADOW = 'shadow',
+	SHOW = 'show',
+	START_DATE_CHANGE = 'startDateChange',
 	STRINGS = 'strings',
-	TC = 'tc',
-	TEXT = 'text',
+	TEMPLATE = 'template',
+	TITLE = 'title',
+	TL = 'tl',
+	TOOLBAR = 'toolbar',
+	SUBMIT = 'submit',
+	VALUE = 'value',
+	VISIBLE_CHANGE = 'visibleChange',
 	WHEN = 'when',
-	TRIGGER = 'trigger',
-
-	AUI_SCHEDULER_EVENT_RECORDER_WHEN = 'auiSchedulerEventRecorderWhen',
-	AUI_SCHEDULER_EVENT_RECORDER_DESC = 'auiSchedulerEventRecorderDesc',
-	AUI_SCHEDULER_EVENT_RECORDER_SELECT = 'auiSchedulerEventRecorderSelect',
-	AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = 'auiSchedulerEventRecorderButtonRow',
+	X = 'x',
+	Y = 'y',
 
 	EV_SCHEDULER_EVENT_RECORDER_CANCEL = 'cancel',
+	EV_SCHEDULER_EVENT_RECORDER_DELETE = 'delete',
 	EV_SCHEDULER_EVENT_RECORDER_EDIT = 'edit',
 	EV_SCHEDULER_EVENT_RECORDER_SAVE = 'save',
 
-	DASH = '-',
-	POUND = '#',
+	_DASH = '-',
+	_DOT = '.',
+	_EMPTY_STR = '',
+	_POUND = '#',
 
-	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER_EVENT, RECORDER, OVERLAY),
-	CSS_SCHEDULER_EVENT_RECORDER_FORM = getCN(SCHEDULER_EVENT, RECORDER, FORM),
-	CSS_FORM = getCN(FORM),
-	CSS_LAYOUT_CONTENT = getCN(LAYOUT, CONTENT),
-	CSS_FIELDSET = getCN(LAYOUT, FIELDSET),
-	CSS_FIELDSET_BD = getCN(LAYOUT, FIELDSET, BD),
-	CSS_FIELDSET_CONTENT = getCN(LAYOUT, FIELDSET, CONTENT),
-	CSS_W100 = getCN(LAYOUT, 'w100'),
-	CSS_COLUMN = getCN(COLUMN),
-	CSS_COLUMN_CONTENT = getCN(COLUMN, CONTENT),
-	CSS_FIELD = getCN(FIELD),
-	CSS_FIELD_MENU = getCN(FIELD, MENU),
-	CSS_FIELD_SELECT = getCN(FIELD, SELECT),
-	CSS_FIELD_CONTENT = getCN(FIELD, CONTENT),
-	CSS_FIELD_LABEL = getCN(FIELD, LABEL),
-	CSS_FIELD_TEXT = getCN(FIELD, TEXT),
-	CSS_BUTTON_ROW = getCN(BUTTON, ROW),
-	CSS_FIELD_INPUT = getCN(FIELD, INPUT),
-	CSS_FIELD_INPUT_SELECT = getCN(FIELD, INPUT, SELECT),
-	CSS_FIELD_INPUT_TEXT = getCN(FIELD, INPUT, TEXT),
-	CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN = getCN(SCHEDULER_EVENT, RECORDER, LABEL, WHEN),
-	CSS_SCHEDULER_EVENT_RECORDER_DESC = getCN(SCHEDULER_EVENT, RECORDER, DESC),
+	_serialize = A.IO.prototype._serialize,
 
-	CSS_SCHEDULER_EVENT_RECORDER_FIELD_HINT = getCN(SCHEDULER_EVENT, RECORDER, FIELD, HINT),
-	CSS_SCHEDULER_EVENT_RECORDER_REPEAT = getCN(SCHEDULER_EVENT, RECORDER, REPEAT),
-	CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW = getCN(SCHEDULER_EVENT, RECORDER, BUTTON, ROW),
+	getCN = A.getClassName,
 
-	TPL_OPTION = '<option></option>',
+	CSS_SCHEDULER_EVENT = getCN(SCHEDULER, EVENT),
+	CSS_SCHEDULER_EVENT_RECORDER = getCN(SCHEDULER, EVENT, RECORDER),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, ARROW, SHADOW),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, BODY),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, CONTENT),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, DATE),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, FORM),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, HEADER),
+	CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT = getCN(SCHEDULER, EVENT, RECORDER, OVERLAY, REPEAT),
+	CSS_SCHEDULER_EVENT_TITLE = getCN(SCHEDULER, EVENT, TITLE),
 
-	TPL_EVT_REC_OVERLAY = '<form id="auiSchedulerEventRecorderForm" class="' + [ CSS_SCHEDULER_EVENT_RECORDER_FORM, CSS_LAYOUT_CONTENT, CSS_FORM ].join(SPACE) + '">' +
-							'<div class="' + [ CSS_FIELDSET, CSS_W100, CSS_COLUMN ].join(SPACE) + '">' +
-								'<div class="' + [ CSS_FIELDSET_CONTENT, CSS_COLUMN_CONTENT ].join(SPACE) + 'aui-fieldset-content aui-column-content">' +
+	TPL_OVERLAY_BODY_CONTENT = new A.Template(
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW_SHADOW, ' ', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_ARROW, '"></div>',
+		'<input type="hidden" name="startDate" value="{startDate}" />',
+		'<input type="hidden" name="endDate" value="{endDate}" />',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_HEADER, '">',
+			'<input class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT, '" name="content" value="{content}" />',
+		'</div>',
+		'<div class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_BODY, '">',
+			'<label class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_DATE, '">{date}</label>',
+			'<select class="', CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_REPEAT, '" name="repeat">',
+				'<tpl for="eventRepeat">',
+					'<option {[ (parent.repeat && parent.repeat.value) == parent.eventRepeat[$i].value ? \'selected="selected"\' : "" ]} value="{value}">{description}</option>',
+				'</tpl>',
+			'</select>',
+		'</div>'
+	),
 
-									'<div class="' + CSS_FIELDSET_BD + '">' +
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +
-											'<span class="' + CSS_FIELD_CONTENT + '">' +
-												'<label class="' + CSS_FIELD_LABEL + '">{when}:</label>' +
-												'<span id="auiSchedulerEventRecorderWhen" class="' + CSS_SCHEDULER_EVENT_RECORDER_LABEL_WHEN + '"></span>' +
-											'</span>' +
-										'</span>' +
-
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_TEXT ].join(SPACE) + '">' +
-											'<span class="' + CSS_FIELD_CONTENT + '">' +
-												'<label class="' + CSS_FIELD_LABEL + '" for="auiSchedulerEventRecorderDesc">{description}</label>' +
-												'<input id="auiSchedulerEventRecorderDesc" class="' + [ CSS_FIELD_INPUT, CSS_FIELD_INPUT_TEXT, CSS_SCHEDULER_EVENT_RECORDER_DESC ].join(SPACE) + '" size="30" type="text" />' +
-												'<div class="' + CSS_SCHEDULER_EVENT_RECORDER_FIELD_HINT + '">' +
-													'<span>{description-hint}</span>' +
-												'</div>' +
-											'</span>' +
-										'</span>' +
-
-										'<span class="' + [ CSS_FIELD, CSS_FIELD_MENU, CSS_FIELD_SELECT ].join(SPACE) + '">' +
-											'<label class="' + CSS_FIELD_LABEL + '" for="auiSchedulerEventRecorderSelect">{repeat}:</label>' +
-											'<select id="auiSchedulerEventRecorderSelect" class="' + [ CSS_FIELD_INPUT, CSS_FIELD_INPUT_SELECT, CSS_SCHEDULER_EVENT_RECORDER_REPEAT ].join(SPACE) + '">' +
-												'<option selected="selected" value="">{no-repeat}</option>' +
-											'</select>' +
-										'</span>' +
-										'<div id="auiSchedulerEventRecorderButtonRow" class="' + [ CSS_FIELD, CSS_BUTTON_ROW, CSS_SCHEDULER_EVENT_RECORDER_BUTTON_ROW ].join(SPACE) + '"></div>' +
-									'</div>' +
-								'</div>' +
-							'</div>' +
-						'</form>';
+	TPL_OVERLAY_FORM = '<form class="' + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_FORM + '" id="schedulerEventRecorderForm"></form>';
 
 var SchedulerEventRecorder = A.Component.create({
 	NAME: SCHEDULER_EVENT_RECORDER,
 
 	ATTRS: {
 		content: {
-			value: EMPTY_STR
+			value: _EMPTY_STR
 		},
 
 		duration: {
@@ -120,11 +111,17 @@ var SchedulerEventRecorder = A.Component.create({
 		},
 
 		dateFormat: {
-			value: '%a, %B %d,',
-			validator: isString
+			validator: isString,
+			value: '%a, %B %d,'
 		},
 
 		event: {
+		},
+
+		eventClass: {
+			valueFn: function() {
+				return A.SchedulerEvent;
+			}
 		},
 
 		strings: {
@@ -132,14 +129,15 @@ var SchedulerEventRecorder = A.Component.create({
 			setter: function(val) {
 				return A.merge(
 					{
-						save: 'Save',
+						'delete': 'Delete',
+						'description-hint': 'e.g., Dinner at Brian\'s',
+						'no-repeat': 'No repeat',
 						cancel: 'Cancel',
 						description: 'Description',
 						edit: 'Edit',
 						repeat: 'Repeat',
-						when: 'When',
-						'description-hint': 'e.g., Dinner at Brian\'s',
-						'no-repeat': 'No repeat'
+						save: 'Save',
+						when: 'When'
 					},
 					val || {}
 				);
@@ -147,113 +145,84 @@ var SchedulerEventRecorder = A.Component.create({
 			validator: isObject
 		},
 
-		overlayContextPanel: {
-			value: {},
+		overlay: {
+			validator: isObject,
+			value: {
+				align: {
+					points: [ TL, TL ]
+				},
+				visible: false,
+				width: 300,
+				zIndex: 500
+			}
+		},
+
+		// See #2530972
+		overlayOffset: {
+			value: [15, -38],
+			validator: isArray
+		},
+
+		template: {
+			value: TPL_OVERLAY_BODY_CONTENT
+		},
+
+		toolbar: {
 			setter: function(val) {
 				var instance = this;
+				var strings = instance.get(STRINGS);
 
-				var bodyContent = A.Node.create(
-					A.Lang.sub(TPL_EVT_REC_OVERLAY, instance.get(STRINGS))
-				);
-
-				return A.merge(
-					{
-						align: { points: [ BC, TC ] },
-						anim: false,
-						bodyContent: bodyContent,
-						hideOn: DBLCLICK,
-						trigger: instance.get(NODE),
-						visible: false,
-						zIndex: 9999
-					},
-					val || {}
-				);
-			}
+				return A.merge({
+					children: [
+						{
+							handler: A.bind(instance._handleSaveEvent, instance),
+							label: strings[SAVE]
+						},
+						{
+							handler: A.bind(instance._handleCancelEvent, instance),
+							label: strings[CANCEL]
+						},
+						{
+							handler: A.bind(instance._handleDeleteEvent, instance),
+							label: strings[DELETE]
+						}
+					]
+				}, val || {});
+			},
+			validator: isObject,
+			value: {}
 		}
 	},
 
 	EXTENDS: A.SchedulerEvent,
 
 	prototype: {
+
 		initializer: function() {
 			var instance = this;
 
-			instance._createEvents();
-
-			instance.after('schedulerChange', instance._afterSchedulerChange);
-			instance.on('startDateChange', instance._onStartDateChange);
-
 			instance.get(NODE).addClass(CSS_SCHEDULER_EVENT_RECORDER);
-		},
 
-		showOverlay: function() {
-			var instance = this;
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_CANCEL, {
+				defaultFn: instance._defCancelEventFn
+			});
 
-			if (!instance.overlay) {
-				instance._initOverlay();
-			}
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+				defaultFn: instance._defDeleteEventFn
+			});
 
-			instance.overlay.render().show();
-		},
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
+				defaultFn: instance._defEditEventFn
+			});
 
-		getEventCopy: function(evt) {
-			var instance = this;
-			var content = instance.overlayDescNode.val();
-			var newEvt = instance.get(EVENT);
+			instance.publish(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
+				defaultFn: instance._defSaveEventFn
+			});
 
-			if (!newEvt) {
-				newEvt = new A.SchedulerEvent({
-					endDate: instance.get(END_DATE),
-					scheduler: instance.get(SCHEDULER),
-					startDate: instance.get(START_DATE)
-				});
+			instance.after(SCHEDULER_CHANGE, instance._afterSchedulerChange);
 
-				// copying propagatable attrs
-				newEvt.copyPropagateAttrValues(instance, { content: true });
-			}
-
-			newEvt.set(
-				REPEAT,
-				instance.overlaySelectNode.val()
-			);
-
-			if (content) {
-				newEvt.set(CONTENT, content);
-			}
-
-			return newEvt;
-		},
-
-		hideOverlay: function() {
-			var instance = this;
-
-			if (instance.overlay) {
-				instance.overlay.hide();
-			}
-		},
-
-		loadFormValues: function() {
-			var instance = this;
-			var repeat = EMPTY_STR;
-			var content = EMPTY_STR;
-			var evt = instance.get(EVENT);
-
-			if (evt) {
-				var evtRepeat = evt.get(REPEAT);
-
-				if (evtRepeat) {
-					repeat = evtRepeat.value;
-				}
-
-				content = evt.get(CONTENT);
-			}
-
-			instance.overlaySelectNode.val(repeat);
-			instance.overlayWhenNode.setContent(instance._getWhenFormattedDt());
-
-			setTimeout(function() {
-				instance.overlayDescNode.val(content).selectText();
-			}, 0);
+			instance[OVERLAY] = new A.Overlay(instance.get(OVERLAY));
+			instance[TOOLBAR] = new A.Toolbar(instance.get(TOOLBAR));
 		},
 
 		_afterSchedulerChange: function(event) {
@@ -261,106 +230,26 @@ var SchedulerEventRecorder = A.Component.create({
 			var scheduler = event.newVal;
 			var schedulerBB = scheduler.get(BOUNDING_BOX);
 
-			schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), DOT+CSS_SCHEDULER_EVENT);
-		},
-
-	    /**
-	     * Create the custom events used on the Resize.
-	     *
-	     * @method _createEvents
-	     * @private
-	     */
-		_createEvents: function() {
-			var instance = this;
-
-			// create publish function for kweight optimization
-			var publish = function(name, fn) {
-				instance.publish(name, {
-		            defaultFn: fn,
-		            queuable: false,
-		            emitFacade: true,
-		            bubbles: true
-		        });
-			};
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_SAVE,
-				this._defSaveEventFn
-			);
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_EDIT,
-				this._defEditEventFn
-			);
-
-			publish(
-				EV_SCHEDULER_EVENT_RECORDER_CANCEL,
-				this._defCancelEventFn
-			);
-		},
-
-		_initOverlay: function() {
-			var instance = this;
-			var strings = instance.get(STRINGS);
-
-			instance.overlay = new A.OverlayContextPanel(
-				instance.get(OVERLAY_CONTEXT_PANEL)
-			);
-
-			var overlay = instance.overlay;
-			var oBoundingBox = overlay.get(BOUNDING_BOX);
-			var oBodyContent = overlay.get(BODY_CONTENT);
-
-			instance.overlayButtonRowNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_BUTTON_ROW);
-			instance.overlayDescNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_DESC);
-			instance.overlaySelectNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_SELECT);
-			instance.overlayWhenNode = oBodyContent.one(POUND+AUI_SCHEDULER_EVENT_RECORDER_WHEN);
-
-			instance.overlaySaveBtn = new A.ButtonItem({
-				label: strings.save,
-				icon: DISK,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleSaveEvent,
-					context: instance
-				}
-			});
-
-			instance.overlayEditBtn = new A.ButtonItem({
-				label: strings.edit,
-				icon: PENCIL,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleEditEvent,
-					context: instance
-				}
-			});
-
-			instance.overlayCancelBtn = new A.ButtonItem({
-				label: strings.cancel,
-				render: instance.overlayButtonRowNode,
-				handler: {
-					fn: instance._handleCancelEvent,
-					context: instance
-				}
-			});
-
-			A.each(A.SchedulerEventRepeat, function(repeat, key) {
-				instance.overlaySelectNode.append(
-					A.Node.create(TPL_OPTION).val(repeat.value || key).setContent(repeat.description)
-				);
-			});
-
-			overlay.on('hide', A.bind(instance._onOverlayHide, instance));
-			overlay.on('show', A.bind(instance._onOverlayShow, instance));
-			oBodyContent.on('submit', A.bind(instance._onSubmitForm, instance));
-			oBoundingBox.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
+			schedulerBB.delegate(CLICK, A.bind(instance._onClickSchedulerEvent, instance), _DOT + CSS_SCHEDULER_EVENT);
 		},
 
 		_defCancelEventFn: function(event) {
 			var instance = this;
 
+			instance.get(NODE).remove();
+
 			instance.hideOverlay();
+		},
+
+		_defDeleteEventFn: function(event) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+
+			scheduler.removeEvent(instance.get(EVENT));
+
+			instance.hideOverlay();
+
+			scheduler.syncEventsUI();
 		},
 
 		_defEditEventFn: function(event) {
@@ -383,7 +272,121 @@ var SchedulerEventRecorder = A.Component.create({
 			scheduler.syncEventsUI();
 		},
 
-		_getWhenFormattedDt: function() {
+		_handleCancelEvent: function(event) {
+			var instance = this;
+
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_CANCEL);
+
+			event.preventDefault();
+		},
+
+		_handleDeleteEvent: function(event) {
+			var instance = this;
+
+			instance.fire(EV_SCHEDULER_EVENT_RECORDER_DELETE, {
+				schedulerEvent: instance.get(EVENT)
+			});
+
+			event.preventDefault();
+		},
+
+		_handleSaveEvent: function(event) {
+			var instance = this;
+
+			instance.fire(
+				instance.get(EVENT) ? EV_SCHEDULER_EVENT_RECORDER_EDIT : EV_SCHEDULER_EVENT_RECORDER_SAVE,
+				{
+					newSchedulerEvent: instance.getEventCopy()
+				}
+			);
+
+			event.preventDefault();
+		},
+
+		_onClickSchedulerEvent: function(event) {
+			var instance = this;
+			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
+
+			if (evt) {
+				instance.set(EVENT, evt);
+				instance.showOverlay([event.pageX, event.pageY]);
+
+				instance.get(NODE).remove();
+			}
+		},
+
+		_onOverlayVisibleChange: function(event) {
+			var instance = this;
+
+			if (event.newVal) {
+				instance.populateForm();
+
+				if (!instance.get(EVENT)) {
+					var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+					var contentNode = overlayBB.one(_DOT + CSS_SCHEDULER_EVENT_RECORDER_OVERLAY_CONTENT);
+
+					setTimeout(function() {
+						contentNode.selectText();
+					}, 0);
+				}
+			}
+			else {
+				instance.set(EVENT, null);
+
+				instance.get(NODE).remove();
+			}
+		},
+
+		_onSubmitForm: function(event) {
+			var instance = this;
+
+			instance._handleSaveEvent(event);
+		},
+
+		_renderOverlay: function() {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			instance[OVERLAY].render();
+			instance[TOOLBAR].render();
+
+			var overlayBB = instance[OVERLAY].get(BOUNDING_BOX);
+			overlayBB.addClass(CSS_SCHEDULER_EVENT_RECORDER_OVERLAY);
+
+			instance[OVERLAY].set(FOOTER_CONTENT, instance[TOOLBAR].get(BOUNDING_BOX));
+			instance[OVERLAY].on(VISIBLE_CHANGE, A.bind(instance._onOverlayVisibleChange, instance));
+
+			instance.formNode = A.Node.create(TPL_OVERLAY_FORM);
+
+			instance[OVERLAY].set(BODY_CONTENT, instance.formNode);
+
+			instance.formNode.on(SUBMIT, A.bind(instance._onSubmitForm, instance));
+		},
+
+		getEventCopy: function() {
+			var instance = this;
+			var newEvt = instance.get(EVENT);
+
+			if (!newEvt) {
+				newEvt = new (instance.get(EVENT_CLASS))({
+					endDate: instance.get(END_DATE),
+					scheduler: instance.get(SCHEDULER),
+					startDate: instance.get(START_DATE)
+				});
+
+				// copying propagatable attrs
+				newEvt.copyPropagateAttrValues(instance, { content: true });
+			}
+
+			var values = instance.serializeForm();
+
+			newEvt.set(CONTENT, values[CONTENT]);
+			newEvt.set(REPEAT, values[REPEAT]);
+
+			return newEvt;
+		},
+
+		getFormattedDate: function() {
 			var instance = this;
 			var dateFormat = instance.get(DATE_FORMAT);
 			var evt = (instance.get(EVENT) || instance);
@@ -396,100 +399,81 @@ var SchedulerEventRecorder = A.Component.create({
 			return [ evt._formatDate(startDate, dateFormat), fmtHourFn(startDate), DASH, fmtHourFn(endDate) ].join(SPACE);
 		},
 
-		_handleEditEvent: function(event) {
+		getTemplateData: function() {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_EDIT, {
-				newSchedulerEvent: instance.getEventCopy()
-			});
+			var strings = instance.get(STRINGS);
+			var evt = (instance.get(EVENT) || instance);
 
-			event.preventDefault();
+			return {
+				content: evt.get(CONTENT) || strings['description-hint'],
+				date: instance.getFormattedDate(),
+				endDate: evt.get(END_DATE).getTime(),
+				eventRepeat: instance.eventRepeatArray,
+				repeat: evt.get(REPEAT),
+				startDate: evt.get(START_DATE).getTime()
+			};
 		},
 
-		_handleSaveEvent: function(event) {
+		hideOverlay: function() {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_SAVE, {
-				newSchedulerEvent: instance.getEventCopy()
-			});
-
-			event.preventDefault();
+			instance[OVERLAY].hide();
 		},
 
-		_handleCancelEvent: function(event) {
+		populateForm: function() {
 			var instance = this;
 
-			instance.fire(EV_SCHEDULER_EVENT_RECORDER_CANCEL);
+			if (!instance.eventRepeatArray) {
+				instance.eventRepeatArray = [];
 
-			event.preventDefault();
-		},
-
-		_onClickSchedulerEvent: function(event) {
-			var instance = this;
-			var evt = event.currentTarget.getData(SCHEDULER_EVENT);
-
-			if (evt) {
-				if (!instance.overlay) {
-					instance._initOverlay();
-				}
-
-				instance.set(EVENT, evt);
-				instance.overlay.set(TRIGGER, evt.get(NODE));
-				instance.get(NODE).remove();
-				instance.showOverlay();
-			}
-		},
-
-		_onOverlayHide: function(event) {
-			var instance = this;
-			var node = instance.get(NODE);
-
-			if (instance.overlay) {
-				// restore values
-				instance.set(EVENT, null);
-				instance.overlay.set(TRIGGER, node);
+				A.each(A.SchedulerEventRepeat, function(item) {
+					instance.eventRepeatArray.push({
+						description: item[DESCRIPTION],
+						value: item[VALUE]
+					});
+				});
 			}
 
-			node.remove();
-		},
-
-		_onOverlayShow: function(event) {
-			var instance = this;
-			var overlayEditBtn = instance.overlayEditBtn;
-			var overlaySaveBtn = instance.overlaySaveBtn;
-
-			if (instance.get(EVENT)) {
-				overlayEditBtn.show();
-				overlaySaveBtn.hide();
-			}
-			else {
-				overlayEditBtn.hide();
-				overlaySaveBtn.show();
-			}
-
-			instance.loadFormValues();
-		},
-
-		_onStartDateChange: function(event) {
-			var instance = this;
-			var duration = instance.get(DURATION);
-
-			instance.set(
-				END_DATE,
-				DateMath.add(event.newVal, DateMath.MINUTES, duration)
+			instance.formNode.setContent(
+				instance.get(TEMPLATE).parse(instance.getTemplateData())
 			);
 		},
 
-		_onSubmitForm: function(event) {
+		serializeForm: function() {
 			var instance = this;
 
-			if (instance.get(EVENT)) {
-				instance._handleEditEvent(event);
+			return A.QueryString.parse(_serialize(instance.formNode.getDOM()));
+		},
+
+		showOverlay: function(xy, offset) {
+			var instance = this;
+			var defaultOffset = instance.get(OVERLAY_OFFSET);
+
+			if (!instance[OVERLAY].get(RENDERED)) {
+				instance._renderOverlay();
 			}
-			else {
-				instance._handleSaveEvent(event);
+
+			instance[OVERLAY].show();
+
+			if (!xy) {
+				var eventNode = (instance.get(EVENT) || instance).get(NODE);
+				var titleNode = eventNode.one(_DOT + CSS_SCHEDULER_EVENT_TITLE);
+
+				offset = [defaultOffset[0] + titleNode.get(OFFSET_WIDTH), defaultOffset[1] + titleNode.get(OFFSET_HEIGHT) / 2];
+
+				xy = titleNode.getXY();
 			}
+
+			// Since #2530972 is not yet done, manually putting an offset to the alignment
+			offset = offset || defaultOffset;
+
+			xy[0] += offset[0];
+			xy[1] += offset[1];
+
+			instance[OVERLAY].set('xy', xy);
 		}
+
 	}
 });
 

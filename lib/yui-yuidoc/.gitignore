@@ -1,6 +1,0 @@
-*.pyc
-build_tmp
-.DS_Store
-.git
-CVS/
-.svn

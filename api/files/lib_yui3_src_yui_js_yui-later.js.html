@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>lib&#x2F;yui3&#x2F;src&#x2F;yui&#x2F;js&#x2F;yui-later.js - AlloyUI</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0pr4&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/../../build/aui-skin-classic/css/aui-skin-classic-all-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <script src="..&#x2F;assets/../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><img src="..&#x2F;assets/css/logo_small.png"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <div class="version-details">
+                <span class="version-lib">AlloyUI 1.5.0</span>
+                <div class="yui-version">
+                    <span class="version-lib version-lib-yui">YUI 3.4.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+
+    <div id="api-tabview" class="tabview">
+        <ul class="aui-tabview-list aui-widget-hd tabs" id="api-tabview-list">
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-classes">Classes</a></li>
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-modules">Modules</a></li>
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-everything">Everything</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="aui-tabview-content aui-widget-bd" id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes aui-tabview-content-item">
+            
+                <li><a href="..&#x2F;classes/A.DataType.DateMath.html">A.DataType.DateMath</a></li>
+            
+                <li><a href="..&#x2F;classes/A.HTML5.html">A.HTML5</a></li>
+            
+                <li><a href="..&#x2F;classes/A.io.html">A.io</a></li>
+            
+                <li><a href="..&#x2F;classes/A.Node.html">A.Node</a></li>
+            
+                <li><a href="..&#x2F;classes/A.NodeList.html">A.NodeList</a></li>
+            
+                <li><a href="..&#x2F;classes/A.Plugin.IO.html">A.Plugin.IO</a></li>
+            
+                <li><a href="..&#x2F;classes/Anim.html">Anim</a></li>
+            
+                <li><a href="..&#x2F;classes/AreaSeries.html">AreaSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/AreaSplineSeries.html">AreaSplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Array.html">Array</a></li>
+            
+                <li><a href="..&#x2F;classes/ArrayAssert.html">ArrayAssert</a></li>
+            
+                <li><a href="..&#x2F;classes/ArrayList.html">ArrayList</a></li>
+            
+                <li><a href="..&#x2F;classes/ArraySort.html">ArraySort</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.html">Assert</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.ComparisonFailure.html">Assert.ComparisonFailure</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.Error.html">Assert.Error</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.ShouldError.html">Assert.ShouldError</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.ShouldFail.html">Assert.ShouldFail</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.UnexpectedError.html">Assert.UnexpectedError</a></li>
+            
+                <li><a href="..&#x2F;classes/Assert.UnexpectedValue.html">Assert.UnexpectedValue</a></li>
+            
+                <li><a href="..&#x2F;classes/AsyncQueue.html">AsyncQueue</a></li>
+            
+                <li><a href="..&#x2F;classes/Attribute.html">Attribute</a></li>
+            
+                <li><a href="..&#x2F;classes/AttributeLite.html">AttributeLite</a></li>
+            
+                <li><a href="..&#x2F;classes/AUI~event~input.html">AUI~event~input</a></li>
+            
+                <li><a href="..&#x2F;classes/AutoComplete.html">AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/AutoCompleteBase.html">AutoCompleteBase</a></li>
+            
+                <li><a href="..&#x2F;classes/AutoCompleteFilters.html">AutoCompleteFilters</a></li>
+            
+                <li><a href="..&#x2F;classes/AutoCompleteHighlighters.html">AutoCompleteHighlighters</a></li>
+            
+                <li><a href="..&#x2F;classes/AutoCompleteList.html">AutoCompleteList</a></li>
+            
+                <li><a href="..&#x2F;classes/Axis.html">Axis</a></li>
+            
+                <li><a href="..&#x2F;classes/AxisType.html">AxisType</a></li>
+            
+                <li><a href="..&#x2F;classes/BarSeries.html">BarSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Base.html">Base</a></li>
+            
+                <li><a href="..&#x2F;classes/BaseCellEditor.html">BaseCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/BaseGraphic.html">BaseGraphic</a></li>
+            
+                <li><a href="..&#x2F;classes/BaseOptionsCellEditor.html">BaseOptionsCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/BottomAxisLayout.html">BottomAxisLayout</a></li>
+            
+                <li><a href="..&#x2F;classes/ButtonItem.html">ButtonItem</a></li>
+            
+                <li><a href="..&#x2F;classes/Cache.html">Cache</a></li>
+            
+                <li><a href="..&#x2F;classes/CacheOffline.html">CacheOffline</a></li>
+            
+                <li><a href="..&#x2F;classes/Calendar.html">Calendar</a></li>
+            
+                <li><a href="..&#x2F;classes/CalendarBase.html">CalendarBase</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasCircle.html">CanvasCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasDrawing.html">CanvasDrawing</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasEllipse.html">CanvasEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasGraphic.html">CanvasGraphic</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasPath.html">CanvasPath</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasPieSlice.html">CanvasPieSlice</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasRect.html">CanvasRect</a></li>
+            
+                <li><a href="..&#x2F;classes/CanvasShape.html">CanvasShape</a></li>
+            
+                <li><a href="..&#x2F;classes/CartesianChart.html">CartesianChart</a></li>
+            
+                <li><a href="..&#x2F;classes/CartesianSeries.html">CartesianSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/CategoryAxis.html">CategoryAxis</a></li>
+            
+                <li><a href="..&#x2F;classes/CellEditorSupport.html">CellEditorSupport</a></li>
+            
+                <li><a href="..&#x2F;classes/CharCounter.html">CharCounter</a></li>
+            
+                <li><a href="..&#x2F;classes/Chart.html">Chart</a></li>
+            
+                <li><a href="..&#x2F;classes/ChartBase.html">ChartBase</a></li>
+            
+                <li><a href="..&#x2F;classes/CheckboxCellEditor.html">CheckboxCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/Circle.html">Circle</a></li>
+            
+                <li><a href="..&#x2F;classes/ClassNameManager.html">ClassNameManager</a></li>
+            
+                <li><a href="..&#x2F;classes/ClickableRail.html">ClickableRail</a></li>
+            
+                <li><a href="..&#x2F;classes/ColorPicker.html">ColorPicker</a></li>
+            
+                <li><a href="..&#x2F;classes/Column.html">Column</a></li>
+            
+                <li><a href="..&#x2F;classes/ColumnSeries.html">ColumnSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Columnset.html">Columnset</a></li>
+            
+                <li><a href="..&#x2F;classes/ComboSeries.html">ComboSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/ComboSplineSeries.html">ComboSplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Component.html">Component</a></li>
+            
+                <li><a href="..&#x2F;classes/config.html">config</a></li>
+            
+                <li><a href="..&#x2F;classes/Console.html">Console</a></li>
+            
+                <li><a href="..&#x2F;classes/Controller.html">Controller</a></li>
+            
+                <li><a href="..&#x2F;classes/Cookie.html">Cookie</a></li>
+            
+                <li><a href="..&#x2F;classes/Coverage.Format.html">Coverage.Format</a></li>
+            
+                <li><a href="..&#x2F;classes/CurveUtil.html">CurveUtil</a></li>
+            
+                <li><a href="..&#x2F;classes/CustomEvent.html">CustomEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSchema.Array.html">DataSchema.Array</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSchema.Base.html">DataSchema.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSchema.JSON.html">DataSchema.JSON</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSchema.Text.html">DataSchema.Text</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSchema.XML.html">DataSchema.XML</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSource.Function.html">DataSource.Function</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSource.Get.html">DataSource.Get</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSource.IO.html">DataSource.IO</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSource.Local.html">DataSource.Local</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceArraySchema.html">DataSourceArraySchema</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceCache.html">DataSourceCache</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceCacheExtension.html">DataSourceCacheExtension</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceJSONSchema.html">DataSourceJSONSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceTextSchema.html">DataSourceTextSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/DataSourceXMLSchema.html">DataSourceXMLSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/DataTable.Base.html">DataTable.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/DataTableDataSource.html">DataTableDataSource</a></li>
+            
+                <li><a href="..&#x2F;classes/DataTableScroll.html">DataTableScroll</a></li>
+            
+                <li><a href="..&#x2F;classes/DataTableSort.html">DataTableSort</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.Boolean.html">DataType.Boolean</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.Date.html">DataType.Date</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.Date.Locale.html">DataType.Date.Locale</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.Number.html">DataType.Number</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.String.html">DataType.String</a></li>
+            
+                <li><a href="..&#x2F;classes/DataType.XML.html">DataType.XML</a></li>
+            
+                <li><a href="..&#x2F;classes/DateAssert.html">DateAssert</a></li>
+            
+                <li><a href="..&#x2F;classes/DateCellEditor.html">DateCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/DatepickerManager.html">DatepickerManager</a></li>
+            
+                <li><a href="..&#x2F;classes/DatePickerSelect.html">DatePickerSelect</a></li>
+            
+                <li><a href="..&#x2F;classes/DD.DDM.html">DD.DDM</a></li>
+            
+                <li><a href="..&#x2F;classes/DD.Delegate.html">DD.Delegate</a></li>
+            
+                <li><a href="..&#x2F;classes/DD.Drag.html">DD.Drag</a></li>
+            
+                <li><a href="..&#x2F;classes/DD.Drop.html">DD.Drop</a></li>
+            
+                <li><a href="..&#x2F;classes/DD.Scroll.html">DD.Scroll</a></li>
+            
+                <li><a href="..&#x2F;classes/DelayedTask.html">DelayedTask</a></li>
+            
+                <li><a href="..&#x2F;classes/Dial.html">Dial</a></li>
+            
+                <li><a href="..&#x2F;classes/Dialog.html">Dialog</a></li>
+            
+                <li><a href="..&#x2F;classes/DialogManager.html">DialogManager</a></li>
+            
+                <li><a href="..&#x2F;classes/DialogMask.html">DialogMask</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.html">Do</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.AlterArgs.html">Do.AlterArgs</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.AlterReturn.html">Do.AlterReturn</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.Error.html">Do.Error</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.Halt.html">Do.Halt</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.Method.html">Do.Method</a></li>
+            
+                <li><a href="..&#x2F;classes/Do.Prevent.html">Do.Prevent</a></li>
+            
+                <li><a href="..&#x2F;classes/DOM.html">DOM</a></li>
+            
+                <li><a href="..&#x2F;classes/DOMEventFacade.html">DOMEventFacade</a></li>
+            
+                <li><a href="..&#x2F;classes/Drawing.html">Drawing</a></li>
+            
+                <li><a href="..&#x2F;classes/DropDownCellEditor.html">DropDownCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/Easing.html">Easing</a></li>
+            
+                <li><a href="..&#x2F;classes/Editable.html">Editable</a></li>
+            
+                <li><a href="..&#x2F;classes/EditorBase.html">EditorBase</a></li>
+            
+                <li><a href="..&#x2F;classes/Ellipse.html">Ellipse</a></li>
+            
+                <li><a href="..&#x2F;classes/Escape.html">Escape</a></li>
+            
+                <li><a href="..&#x2F;classes/Event.html">Event</a></li>
+            
+                <li><a href="..&#x2F;classes/EventFacade.html">EventFacade</a></li>
+            
+                <li><a href="..&#x2F;classes/EventHandle.html">EventHandle</a></li>
+            
+                <li><a href="..&#x2F;classes/EventTarget.html">EventTarget</a></li>
+            
+                <li><a href="..&#x2F;classes/ExecCommand.html">ExecCommand</a></li>
+            
+                <li><a href="..&#x2F;classes/Features.html">Features</a></li>
+            
+                <li><a href="..&#x2F;classes/Fills.html">Fills</a></li>
+            
+                <li><a href="..&#x2F;classes/Frame.html">Frame</a></li>
+            
+                <li><a href="..&#x2F;classes/Get.html">Get</a></li>
+            
+                <li><a href="..&#x2F;classes/Graph.html">Graph</a></li>
+            
+                <li><a href="..&#x2F;classes/Graphic.html">Graphic</a></li>
+            
+                <li><a href="..&#x2F;classes/Gridlines.html">Gridlines</a></li>
+            
+                <li><a href="..&#x2F;classes/Highlight.html">Highlight</a></li>
+            
+                <li><a href="..&#x2F;classes/Histogram.html">Histogram</a></li>
+            
+                <li><a href="..&#x2F;classes/HistoryBase.html">HistoryBase</a></li>
+            
+                <li><a href="..&#x2F;classes/HistoryHash.html">HistoryHash</a></li>
+            
+                <li><a href="..&#x2F;classes/HistoryHTML5.html">HistoryHTML5</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageGallery.html">ImageGallery</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageViewer.html">ImageViewer</a></li>
+            
+                <li><a href="..&#x2F;classes/ImageViewerMask.html">ImageViewerMask</a></li>
+            
+                <li><a href="..&#x2F;classes/ImgLoadGroup.html">ImgLoadGroup</a></li>
+            
+                <li><a href="..&#x2F;classes/ImgLoadImgObj.html">ImgLoadImgObj</a></li>
+            
+                <li><a href="..&#x2F;classes/Intl.html">Intl</a></li>
+            
+                <li><a href="..&#x2F;classes/IO.html">IO</a></li>
+            
+                <li><a href="..&#x2F;classes/IORequest.html">IORequest</a></li>
+            
+                <li><a href="..&#x2F;classes/json.html">json</a></li>
+            
+                <li><a href="..&#x2F;classes/JSONPRequest.html">JSONPRequest</a></li>
+            
+                <li><a href="..&#x2F;classes/Lang.html">Lang</a></li>
+            
+                <li><a href="..&#x2F;classes/LeftAxisLayout.html">LeftAxisLayout</a></li>
+            
+                <li><a href="..&#x2F;classes/Lines.html">Lines</a></li>
+            
+                <li><a href="..&#x2F;classes/LineSeries.html">LineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/LiveSearch.html">LiveSearch</a></li>
+            
+                <li><a href="..&#x2F;classes/Loader.html">Loader</a></li>
+            
+                <li><a href="..&#x2F;classes/LoadingMask.html">LoadingMask</a></li>
+            
+                <li><a href="..&#x2F;classes/MarkerSeries.html">MarkerSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Matrix.html">Matrix</a></li>
+            
+                <li><a href="..&#x2F;classes/Mock.html">Mock</a></li>
+            
+                <li><a href="..&#x2F;classes/Mock.Value.html">Mock.Value</a></li>
+            
+                <li><a href="..&#x2F;classes/Model.html">Model</a></li>
+            
+                <li><a href="..&#x2F;classes/ModelList.html">ModelList</a></li>
+            
+                <li><a href="..&#x2F;classes/NestedList.html">NestedList</a></li>
+            
+                <li><a href="..&#x2F;classes/Node.html">Node</a></li>
+            
+                <li><a href="..&#x2F;classes/NodeList.html">NodeList</a></li>
+            
+                <li><a href="..&#x2F;classes/NumericAxis.html">NumericAxis</a></li>
+            
+                <li><a href="..&#x2F;classes/Object.html">Object</a></li>
+            
+                <li><a href="..&#x2F;classes/ObjectAssert.html">ObjectAssert</a></li>
+            
+                <li><a href="..&#x2F;classes/Overlay.html">Overlay</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayBase.html">OverlayBase</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayContext.html">OverlayContext</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayContextManager.html">OverlayContextManager</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayContextPanel.html">OverlayContextPanel</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayContextPanelManager.html">OverlayContextPanelManager</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayManager.html">OverlayManager</a></li>
+            
+                <li><a href="..&#x2F;classes/OverlayMask.html">OverlayMask</a></li>
+            
+                <li><a href="..&#x2F;classes/Paginator.html">Paginator</a></li>
+            
+                <li><a href="..&#x2F;classes/Panel.html">Panel</a></li>
+            
+                <li><a href="..&#x2F;classes/ParseContent.html">ParseContent</a></li>
+            
+                <li><a href="..&#x2F;classes/Path.html">Path</a></li>
+            
+                <li><a href="..&#x2F;classes/PieChart.html">PieChart</a></li>
+            
+                <li><a href="..&#x2F;classes/PieSeries.html">PieSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/Plots.html">Plots</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Align.html">Plugin.Align</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.AutoComplete.html">Plugin.AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Base.html">Plugin.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Cache.html">Plugin.Cache</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.CalendarNavigator.html">Plugin.CalendarNavigator</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ConsoleFilters.html">Plugin.ConsoleFilters</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.CreateLinkBase.html">Plugin.CreateLinkBase</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.DDConstrained.html">Plugin.DDConstrained</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.DDNodeScroll.html">Plugin.DDNodeScroll</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.DDProxy.html">Plugin.DDProxy</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.DDWindowScroll.html">Plugin.DDWindowScroll</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Drag.html">Plugin.Drag</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Drop.html">Plugin.Drop</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.EditorBidi.html">Plugin.EditorBidi</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.EditorBR.html">Plugin.EditorBR</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.EditorLists.html">Plugin.EditorLists</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.EditorPara.html">Plugin.EditorPara</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.EditorTab.html">Plugin.EditorTab</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ExecCommand.html">Plugin.ExecCommand</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Flick.html">Plugin.Flick</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Host.html">Plugin.Host</a></li>
+            
+                <li><a href="..&#x2F;classes/plugin.NodeFocusManager.html">plugin.NodeFocusManager</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.NodeFX.html">Plugin.NodeFX</a></li>
+            
+                <li><a href="..&#x2F;classes/plugin.NodeMenuNav.html">plugin.NodeMenuNav</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Resize.html">Plugin.Resize</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ResizeConstrained.html">Plugin.ResizeConstrained</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ResizeProxy.html">Plugin.ResizeProxy</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ScrollViewList.html">Plugin.ScrollViewList</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ScrollViewPaginator.html">Plugin.ScrollViewPaginator</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.ScrollViewScrollbars.html">Plugin.ScrollViewScrollbars</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.Shim.html">Plugin.Shim</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.SortScroll.html">Plugin.SortScroll</a></li>
+            
+                <li><a href="..&#x2F;classes/Plugin.WidgetAnim.html">Plugin.WidgetAnim</a></li>
+            
+                <li><a href="..&#x2F;classes/Pollable.html">Pollable</a></li>
+            
+                <li><a href="..&#x2F;classes/PortalLayout.html">PortalLayout</a></li>
+            
+                <li><a href="..&#x2F;classes/Profiler.html">Profiler</a></li>
+            
+                <li><a href="..&#x2F;classes/ProgressBar.html">ProgressBar</a></li>
+            
+                <li><a href="..&#x2F;classes/querystring.html">querystring</a></li>
+            
+                <li><a href="..&#x2F;classes/Queue.html">Queue</a></li>
+            
+                <li><a href="..&#x2F;classes/RadioCellEditor.html">RadioCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/Rating.html">Rating</a></li>
+            
+                <li><a href="..&#x2F;classes/Record.html">Record</a></li>
+            
+                <li><a href="..&#x2F;classes/Recordset.html">Recordset</a></li>
+            
+                <li><a href="..&#x2F;classes/RecordsetFilter.html">RecordsetFilter</a></li>
+            
+                <li><a href="..&#x2F;classes/RecordsetIndexer.html">RecordsetIndexer</a></li>
+            
+                <li><a href="..&#x2F;classes/RecordsetSort.html">RecordsetSort</a></li>
+            
+                <li><a href="..&#x2F;classes/Rect.html">Rect</a></li>
+            
+                <li><a href="..&#x2F;classes/Renderer.html">Renderer</a></li>
+            
+                <li><a href="..&#x2F;classes/Resize.html">Resize</a></li>
+            
+                <li><a href="..&#x2F;classes/RightAxisLayout.html">RightAxisLayout</a></li>
+            
+                <li><a href="..&#x2F;classes/rls.html">rls</a></li>
+            
+                <li><a href="..&#x2F;classes/ScrollView.html">ScrollView</a></li>
+            
+                <li><a href="..&#x2F;classes/Selection.html">Selection</a></li>
+            
+                <li><a href="..&#x2F;classes/Selector.html">Selector</a></li>
+            
+                <li><a href="..&#x2F;classes/Shape.html">Shape</a></li>
+            
+                <li><a href="..&#x2F;classes/Slider.html">Slider</a></li>
+            
+                <li><a href="..&#x2F;classes/SliderBase.html">SliderBase</a></li>
+            
+                <li><a href="..&#x2F;classes/SliderValueRange.html">SliderValueRange</a></li>
+            
+                <li><a href="..&#x2F;classes/Sortable.html">Sortable</a></li>
+            
+                <li><a href="..&#x2F;classes/SplineSeries.html">SplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedAreaSeries.html">StackedAreaSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedAreaSplineSeries.html">StackedAreaSplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedAxis.html">StackedAxis</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedBarSeries.html">StackedBarSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedColumnSeries.html">StackedColumnSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedComboSeries.html">StackedComboSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedComboSplineSeries.html">StackedComboSplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedLineSeries.html">StackedLineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedMarkerSeries.html">StackedMarkerSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackedSplineSeries.html">StackedSplineSeries</a></li>
+            
+                <li><a href="..&#x2F;classes/StackingUtil.html">StackingUtil</a></li>
+            
+                <li><a href="..&#x2F;classes/State.html">State</a></li>
+            
+                <li><a href="..&#x2F;classes/StyleSheet.html">StyleSheet</a></li>
+            
+                <li><a href="..&#x2F;classes/Subscriber.html">Subscriber</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGCircle.html">SVGCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGDrawing.html">SVGDrawing</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGEllipse.html">SVGEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGGraphic.html">SVGGraphic</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGPath.html">SVGPath</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGPieSlice.html">SVGPieSlice</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGRect.html">SVGRect</a></li>
+            
+                <li><a href="..&#x2F;classes/SVGShape.html">SVGShape</a></li>
+            
+                <li><a href="..&#x2F;classes/SWF.html">SWF</a></li>
+            
+                <li><a href="..&#x2F;classes/SyntheticEvent.html">SyntheticEvent</a></li>
+            
+                <li><a href="..&#x2F;classes/SyntheticEvent.Notifier.html">SyntheticEvent.Notifier</a></li>
+            
+                <li><a href="..&#x2F;classes/SynthRegistry.html">SynthRegistry</a></li>
+            
+                <li><a href="..&#x2F;classes/Tab.html">Tab</a></li>
+            
+                <li><a href="..&#x2F;classes/TabView.html">TabView</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Case.html">Test.Case</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Format.html">Test.Format</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Manager.html">Test.Manager</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Reporter.html">Test.Reporter</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Runner.html">Test.Runner</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Suite.html">Test.Suite</a></li>
+            
+                <li><a href="..&#x2F;classes/Test.Wait.html">Test.Wait</a></li>
+            
+                <li><a href="..&#x2F;classes/Text.AccentFold.html">Text.AccentFold</a></li>
+            
+                <li><a href="..&#x2F;classes/Text.WordBreak.html">Text.WordBreak</a></li>
+            
+                <li><a href="..&#x2F;classes/TextAreaCellEditor.html">TextAreaCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/Textboxlist.html">Textboxlist</a></li>
+            
+                <li><a href="..&#x2F;classes/TextCellEditor.html">TextCellEditor</a></li>
+            
+                <li><a href="..&#x2F;classes/ThumbRating.html">ThumbRating</a></li>
+            
+                <li><a href="..&#x2F;classes/TimeAxis.html">TimeAxis</a></li>
+            
+                <li><a href="..&#x2F;classes/Toolbar.html">Toolbar</a></li>
+            
+                <li><a href="..&#x2F;classes/Tooltip.html">Tooltip</a></li>
+            
+                <li><a href="..&#x2F;classes/TopAxisLayout.html">TopAxisLayout</a></li>
+            
+                <li><a href="..&#x2F;classes/Transition.html">Transition</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeData.html">TreeData</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeNode.html">TreeNode</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeNodeCheck.html">TreeNodeCheck</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeNodeIO.html">TreeNodeIO</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeNodeRadio.html">TreeNodeRadio</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeNodeTask.html">TreeNodeTask</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeView.html">TreeView</a></li>
+            
+                <li><a href="..&#x2F;classes/TreeViewDD.html">TreeViewDD</a></li>
+            
+                <li><a href="..&#x2F;classes/UA.html">UA</a></li>
+            
+                <li><a href="..&#x2F;classes/Uploader.html">Uploader</a></li>
+            
+                <li><a href="..&#x2F;classes/ValueChange.html">ValueChange</a></li>
+            
+                <li><a href="..&#x2F;classes/View.html">View</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLCircle.html">VMLCircle</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLDrawing.html">VMLDrawing</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLEllipse.html">VMLEllipse</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLGraphic.html">VMLGraphic</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLPath.html">VMLPath</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLPieSlice.html">VMLPieSlice</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLRect.html">VMLRect</a></li>
+            
+                <li><a href="..&#x2F;classes/VMLShape.html">VMLShape</a></li>
+            
+                <li><a href="..&#x2F;classes/Widget.html">Widget</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetAutohide.html">WidgetAutohide</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetButtons.html">WidgetButtons</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetChild.html">WidgetChild</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetModality.html">WidgetModality</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetParent.html">WidgetParent</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetPosition.html">WidgetPosition</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetPositionAlign.html">WidgetPositionAlign</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetPositionConstrain.html">WidgetPositionConstrain</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetStack.html">WidgetStack</a></li>
+            
+                <li><a href="..&#x2F;classes/WidgetStdMod.html">WidgetStdMod</a></li>
+            
+                <li><a href="..&#x2F;classes/YQL.html">YQL</a></li>
+            
+                <li><a href="..&#x2F;classes/YQLRequest.html">YQLRequest</a></li>
+            
+                <li><a href="..&#x2F;classes/YUI.html">YUI</a></li>
+            
+                <li><a href="..&#x2F;classes/YUI~substitute.html">YUI~substitute</a></li>
+            
+            </ul>
+            <ul id="api-modules" class="apis modules aui-tabview-content-item">
+            
+                <li><a href="..&#x2F;modules/align-plugin.html">align-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/anim.html">anim</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-base.html">anim-base</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-color.html">anim-color</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-curve.html">anim-curve</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-easing.html">anim-easing</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-node-plugin.html">anim-node-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-scroll.html">anim-scroll</a></li>
+            
+                <li><a href="..&#x2F;modules/anim-xy.html">anim-xy</a></li>
+            
+                <li><a href="..&#x2F;modules/app.html">app</a></li>
+            
+                <li><a href="..&#x2F;modules/array-extras.html">array-extras</a></li>
+            
+                <li><a href="..&#x2F;modules/array-invoke.html">array-invoke</a></li>
+            
+                <li><a href="..&#x2F;modules/arraylist.html">arraylist</a></li>
+            
+                <li><a href="..&#x2F;modules/arraylist-add.html">arraylist-add</a></li>
+            
+                <li><a href="..&#x2F;modules/arraylist-filter.html">arraylist-filter</a></li>
+            
+                <li><a href="..&#x2F;modules/arraysort.html">arraysort</a></li>
+            
+                <li><a href="..&#x2F;modules/async-queue.html">async-queue</a></li>
+            
+                <li><a href="..&#x2F;modules/attribute.html">attribute</a></li>
+            
+                <li><a href="..&#x2F;modules/attribute-base.html">attribute-base</a></li>
+            
+                <li><a href="..&#x2F;modules/attribute-complex.html">attribute-complex</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-autocomplete.html">aui-autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-button-item.html">aui-button-item</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-calendar.html">aui-calendar</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-calendar-base.html">aui-calendar-base</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-calendar-datepicker-select.html">aui-calendar-datepicker-select</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-char-counter.html">aui-char-counter</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-color-picker.html">aui-color-picker</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-component.html">aui-component</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-datatype.html">aui-datatype</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-delayed-task.html">aui-delayed-task</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-dialog.html">aui-dialog</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-editable.html">aui-editable</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-event.html">aui-event</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-event-input.html">aui-event-input</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-image-viewer.html">aui-image-viewer</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-image-viewer-base.html">aui-image-viewer-base</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-image-viewer-gallery.html">aui-image-viewer-gallery</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-io.html">aui-io</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-io-plugin.html">aui-io-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-io-request.html">aui-io-request</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-live-search.html">aui-live-search</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-loading-mask.html">aui-loading-mask</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-media-viewer-plugin.html">aui-media-viewer-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-nested-list.html">aui-nested-list</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-node.html">aui-node</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-node-base.html">aui-node-base</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-node-html5.html">aui-node-html5</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay.html">aui-overlay</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay-base.html">aui-overlay-base</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay-context.html">aui-overlay-context</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay-context-panel.html">aui-overlay-context-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay-manager.html">aui-overlay-manager</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-overlay-mask.html">aui-overlay-mask</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-paginator.html">aui-paginator</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-panel.html">aui-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-parse-content.html">aui-parse-content</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-portal-layout.html">aui-portal-layout</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-progressbar.html">aui-progressbar</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-rating.html">aui-rating</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-resize.html">aui-resize</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-text.html">aui-text</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-textboxlist.html">aui-textboxlist</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-toolbar.html">aui-toolbar</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-tooltip.html">aui-tooltip</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-tree.html">aui-tree</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-tree-data.html">aui-tree-data</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-tree-node.html">aui-tree-node</a></li>
+            
+                <li><a href="..&#x2F;modules/aui-tree-view.html">aui-tree-view</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete.html">autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-base.html">autocomplete-base</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-filters.html">autocomplete-filters</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-filters-accentfold.html">autocomplete-filters-accentfold</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-highlighters.html">autocomplete-highlighters</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-highlighters-accentfold.html">autocomplete-highlighters-accentfold</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-list.html">autocomplete-list</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-list-keys.html">autocomplete-list-keys</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-plugin.html">autocomplete-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/autocomplete-sources.html">autocomplete-sources</a></li>
+            
+                <li><a href="..&#x2F;modules/base.html">base</a></li>
+            
+                <li><a href="..&#x2F;modules/base-base.html">base-base</a></li>
+            
+                <li><a href="..&#x2F;modules/base-build.html">base-build</a></li>
+            
+                <li><a href="..&#x2F;modules/base-pluginhost.html">base-pluginhost</a></li>
+            
+                <li><a href="..&#x2F;modules/cache.html">cache</a></li>
+            
+                <li><a href="..&#x2F;modules/cache-base.html">cache-base</a></li>
+            
+                <li><a href="..&#x2F;modules/cache-offline.html">cache-offline</a></li>
+            
+                <li><a href="..&#x2F;modules/cache-plugin.html">cache-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/calendar.html">calendar</a></li>
+            
+                <li><a href="..&#x2F;modules/calendar-base.html">calendar-base</a></li>
+            
+                <li><a href="..&#x2F;modules/calendarnavigator.html">calendarnavigator</a></li>
+            
+                <li><a href="..&#x2F;modules/charts.html">charts</a></li>
+            
+                <li><a href="..&#x2F;modules/classnamemanager.html">classnamemanager</a></li>
+            
+                <li><a href="..&#x2F;modules/clickable-rail.html">clickable-rail</a></li>
+            
+                <li><a href="..&#x2F;modules/collection.html">collection</a></li>
+            
+                <li><a href="..&#x2F;modules/console.html">console</a></li>
+            
+                <li><a href="..&#x2F;modules/console-filters.html">console-filters</a></li>
+            
+                <li><a href="..&#x2F;modules/controller.html">controller</a></li>
+            
+                <li><a href="..&#x2F;modules/cookie.html">cookie</a></li>
+            
+                <li><a href="..&#x2F;modules/createlink-base.html">createlink-base</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema.html">dataschema</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema-array.html">dataschema-array</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema-base.html">dataschema-base</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema-json.html">dataschema-json</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema-text.html">dataschema-text</a></li>
+            
+                <li><a href="..&#x2F;modules/dataschema-xml.html">dataschema-xml</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource.html">datasource</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-arrayschema.html">datasource-arrayschema</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-cache.html">datasource-cache</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-function.html">datasource-function</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-get.html">datasource-get</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-io.html">datasource-io</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-jsonschema.html">datasource-jsonschema</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-local.html">datasource-local</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-polling.html">datasource-polling</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-textschema.html">datasource-textschema</a></li>
+            
+                <li><a href="..&#x2F;modules/datasource-xmlschema.html">datasource-xmlschema</a></li>
+            
+                <li><a href="..&#x2F;modules/datatable.html">datatable</a></li>
+            
+                <li><a href="..&#x2F;modules/datatable-base.html">datatable-base</a></li>
+            
+                <li><a href="..&#x2F;modules/datatable-datasource.html">datatable-datasource</a></li>
+            
+                <li><a href="..&#x2F;modules/datatable-scroll.html">datatable-scroll</a></li>
+            
+                <li><a href="..&#x2F;modules/datatable-sort.html">datatable-sort</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype.html">datatype</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-date.html">datatype-date</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-date-format.html">datatype-date-format</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-date-math.html">datatype-date-math</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-date-parse.html">datatype-date-parse</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-number.html">datatype-number</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-number-format.html">datatype-number-format</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-number-parse.html">datatype-number-parse</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-xml.html">datatype-xml</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-xml-format.html">datatype-xml-format</a></li>
+            
+                <li><a href="..&#x2F;modules/datatype-xml-parse.html">datatype-xml-parse</a></li>
+            
+                <li><a href="..&#x2F;modules/dd.html">dd</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-constrain.html">dd-constrain</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-ddm.html">dd-ddm</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-ddm-base.html">dd-ddm-base</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-ddm-drop.html">dd-ddm-drop</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-delegate.html">dd-delegate</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-drag.html">dd-drag</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-drop.html">dd-drop</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-drop-plugin.html">dd-drop-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-plugin.html">dd-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-proxy.html">dd-proxy</a></li>
+            
+                <li><a href="..&#x2F;modules/dd-scroll.html">dd-scroll</a></li>
+            
+                <li><a href="..&#x2F;modules/dial.html">dial</a></li>
+            
+                <li><a href="..&#x2F;modules/dom.html">dom</a></li>
+            
+                <li><a href="..&#x2F;modules/dom-base.html">dom-base</a></li>
+            
+                <li><a href="..&#x2F;modules/dom-screen.html">dom-screen</a></li>
+            
+                <li><a href="..&#x2F;modules/dom-style.html">dom-style</a></li>
+            
+                <li><a href="..&#x2F;modules/dump.html">dump</a></li>
+            
+                <li><a href="..&#x2F;modules/editor.html">editor</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-base.html">editor-base</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-bidi.html">editor-bidi</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-br.html">editor-br</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-lists.html">editor-lists</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-para.html">editor-para</a></li>
+            
+                <li><a href="..&#x2F;modules/editor-tab.html">editor-tab</a></li>
+            
+                <li><a href="..&#x2F;modules/escape.html">escape</a></li>
+            
+                <li><a href="..&#x2F;modules/event.html">event</a></li>
+            
+                <li><a href="..&#x2F;modules/event-base.html">event-base</a></li>
+            
+                <li><a href="..&#x2F;modules/event-custom.html">event-custom</a></li>
+            
+                <li><a href="..&#x2F;modules/event-custom-base.html">event-custom-base</a></li>
+            
+                <li><a href="..&#x2F;modules/event-custom-complex.html">event-custom-complex</a></li>
+            
+                <li><a href="..&#x2F;modules/event-delegate.html">event-delegate</a></li>
+            
+                <li><a href="..&#x2F;modules/event-flick.html">event-flick</a></li>
+            
+                <li><a href="..&#x2F;modules/event-focus.html">event-focus</a></li>
+            
+                <li><a href="..&#x2F;modules/event-gestures.html">event-gestures</a></li>
+            
+                <li><a href="..&#x2F;modules/event-hover.html">event-hover</a></li>
+            
+                <li><a href="..&#x2F;modules/event-key.html">event-key</a></li>
+            
+                <li><a href="..&#x2F;modules/event-mouseenter.html">event-mouseenter</a></li>
+            
+                <li><a href="..&#x2F;modules/event-mousewheel.html">event-mousewheel</a></li>
+            
+                <li><a href="..&#x2F;modules/event-move.html">event-move</a></li>
+            
+                <li><a href="..&#x2F;modules/event-outside.html">event-outside</a></li>
+            
+                <li><a href="..&#x2F;modules/event-resize.html">event-resize</a></li>
+            
+                <li><a href="..&#x2F;modules/event-simulate.html">event-simulate</a></li>
+            
+                <li><a href="..&#x2F;modules/event-touch.html">event-touch</a></li>
+            
+                <li><a href="..&#x2F;modules/event-valuechange.html">event-valuechange</a></li>
+            
+                <li><a href="..&#x2F;modules/exec-command.html">exec-command</a></li>
+            
+                <li><a href="..&#x2F;modules/features.html">features</a></li>
+            
+                <li><a href="..&#x2F;modules/frame.html">frame</a></li>
+            
+                <li><a href="..&#x2F;modules/get.html">get</a></li>
+            
+                <li><a href="..&#x2F;modules/graphics.html">graphics</a></li>
+            
+                <li><a href="..&#x2F;modules/highlight.html">highlight</a></li>
+            
+                <li><a href="..&#x2F;modules/highlight-accentfold.html">highlight-accentfold</a></li>
+            
+                <li><a href="..&#x2F;modules/highlight-base.html">highlight-base</a></li>
+            
+                <li><a href="..&#x2F;modules/history.html">history</a></li>
+            
+                <li><a href="..&#x2F;modules/history-base.html">history-base</a></li>
+            
+                <li><a href="..&#x2F;modules/history-hash.html">history-hash</a></li>
+            
+                <li><a href="..&#x2F;modules/history-hash-ie.html">history-hash-ie</a></li>
+            
+                <li><a href="..&#x2F;modules/history-html5.html">history-html5</a></li>
+            
+                <li><a href="..&#x2F;modules/imageloader.html">imageloader</a></li>
+            
+                <li><a href="..&#x2F;modules/intl.html">intl</a></li>
+            
+                <li><a href="..&#x2F;modules/io.html">io</a></li>
+            
+                <li><a href="..&#x2F;modules/io-base.html">io-base</a></li>
+            
+                <li><a href="..&#x2F;modules/io-form.html">io-form</a></li>
+            
+                <li><a href="..&#x2F;modules/io-queue.html">io-queue</a></li>
+            
+                <li><a href="..&#x2F;modules/io-upload-iframe.html">io-upload-iframe</a></li>
+            
+                <li><a href="..&#x2F;modules/io-xdr.html">io-xdr</a></li>
+            
+                <li><a href="..&#x2F;modules/json.html">json</a></li>
+            
+                <li><a href="..&#x2F;modules/json-parse.html">json-parse</a></li>
+            
+                <li><a href="..&#x2F;modules/json-stringify.html">json-stringify</a></li>
+            
+                <li><a href="..&#x2F;modules/jsonp.html">jsonp</a></li>
+            
+                <li><a href="..&#x2F;modules/jsonp-url.html">jsonp-url</a></li>
+            
+                <li><a href="..&#x2F;modules/loader.html">loader</a></li>
+            
+                <li><a href="..&#x2F;modules/loader-base.html">loader-base</a></li>
+            
+                <li><a href="..&#x2F;modules/model.html">model</a></li>
+            
+                <li><a href="..&#x2F;modules/model-list.html">model-list</a></li>
+            
+                <li><a href="..&#x2F;modules/node.html">node</a></li>
+            
+                <li><a href="..&#x2F;modules/node-base.html">node-base</a></li>
+            
+                <li><a href="..&#x2F;modules/node-core.html">node-core</a></li>
+            
+                <li><a href="..&#x2F;modules/node-deprecated.html">node-deprecated</a></li>
+            
+                <li><a href="..&#x2F;modules/node-event-delegate.html">node-event-delegate</a></li>
+            
+                <li><a href="..&#x2F;modules/node-event-simulate.html">node-event-simulate</a></li>
+            
+                <li><a href="..&#x2F;modules/node-flick.html">node-flick</a></li>
+            
+                <li><a href="..&#x2F;modules/node-focusmanager.html">node-focusmanager</a></li>
+            
+                <li><a href="..&#x2F;modules/node-load.html">node-load</a></li>
+            
+                <li><a href="..&#x2F;modules/node-menunav.html">node-menunav</a></li>
+            
+                <li><a href="..&#x2F;modules/node-pluginhost.html">node-pluginhost</a></li>
+            
+                <li><a href="..&#x2F;modules/node-screen.html">node-screen</a></li>
+            
+                <li><a href="..&#x2F;modules/node-style.html">node-style</a></li>
+            
+                <li><a href="..&#x2F;modules/oop.html">oop</a></li>
+            
+                <li><a href="..&#x2F;modules/overlay.html">overlay</a></li>
+            
+                <li><a href="..&#x2F;modules/panel.html">panel</a></li>
+            
+                <li><a href="..&#x2F;modules/plugin.html">plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/pluginhost.html">pluginhost</a></li>
+            
+                <li><a href="..&#x2F;modules/pluginhost-base.html">pluginhost-base</a></li>
+            
+                <li><a href="..&#x2F;modules/pluginhost-config.html">pluginhost-config</a></li>
+            
+                <li><a href="..&#x2F;modules/profiler.html">profiler</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring.html">querystring</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring-parse.html">querystring-parse</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring-parse-simple.html">querystring-parse-simple</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring-stringify.html">querystring-stringify</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring-stringify-simple.html">querystring-stringify-simple</a></li>
+            
+                <li><a href="..&#x2F;modules/queue-promote.html">queue-promote</a></li>
+            
+                <li><a href="..&#x2F;modules/range-slider.html">range-slider</a></li>
+            
+                <li><a href="..&#x2F;modules/recordset.html">recordset</a></li>
+            
+                <li><a href="..&#x2F;modules/recordset-base.html">recordset-base</a></li>
+            
+                <li><a href="..&#x2F;modules/recordset-filter.html">recordset-filter</a></li>
+            
+                <li><a href="..&#x2F;modules/recordset-indexer.html">recordset-indexer</a></li>
+            
+                <li><a href="..&#x2F;modules/recordset-sort.html">recordset-sort</a></li>
+            
+                <li><a href="..&#x2F;modules/resize.html">resize</a></li>
+            
+                <li><a href="..&#x2F;modules/resize-contrain.html">resize-contrain</a></li>
+            
+                <li><a href="..&#x2F;modules/resize-plugin.html">resize-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/resize-proxy.html">resize-proxy</a></li>
+            
+                <li><a href="..&#x2F;modules/rls.html">rls</a></li>
+            
+                <li><a href="..&#x2F;modules/rollup.html">rollup</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview.html">scrollview</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview-base.html">scrollview-base</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview-base-ie.html">scrollview-base-ie</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview-list.html">scrollview-list</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview-paginator.html">scrollview-paginator</a></li>
+            
+                <li><a href="..&#x2F;modules/scrollview-scrollbars.html">scrollview-scrollbars</a></li>
+            
+                <li><a href="..&#x2F;modules/selection.html">selection</a></li>
+            
+                <li><a href="..&#x2F;modules/selector-css2.html">selector-css2</a></li>
+            
+                <li><a href="..&#x2F;modules/selector-css3.html">selector-css3</a></li>
+            
+                <li><a href="..&#x2F;modules/selector-native.html">selector-native</a></li>
+            
+                <li><a href="..&#x2F;modules/shim-plugin.html">shim-plugin</a></li>
+            
+                <li><a href="..&#x2F;modules/slider.html">slider</a></li>
+            
+                <li><a href="..&#x2F;modules/slider-base.html">slider-base</a></li>
+            
+                <li><a href="..&#x2F;modules/slider-value-range.html">slider-value-range</a></li>
+            
+                <li><a href="..&#x2F;modules/sortable.html">sortable</a></li>
+            
+                <li><a href="..&#x2F;modules/sortable-scroll.html">sortable-scroll</a></li>
+            
+                <li><a href="..&#x2F;modules/stylesheet.html">stylesheet</a></li>
+            
+                <li><a href="..&#x2F;modules/substitute.html">substitute</a></li>
+            
+                <li><a href="..&#x2F;modules/swf.html">swf</a></li>
+            
+                <li><a href="..&#x2F;modules/swfdetect.html">swfdetect</a></li>
+            
+                <li><a href="..&#x2F;modules/tabview.html">tabview</a></li>
+            
+                <li><a href="..&#x2F;modules/test.html">test</a></li>
+            
+                <li><a href="..&#x2F;modules/text.html">text</a></li>
+            
+                <li><a href="..&#x2F;modules/text-accentfold.html">text-accentfold</a></li>
+            
+                <li><a href="..&#x2F;modules/text-wordbreak.html">text-wordbreak</a></li>
+            
+                <li><a href="..&#x2F;modules/transition.html">transition</a></li>
+            
+                <li><a href="..&#x2F;modules/uploader.html">uploader</a></li>
+            
+                <li><a href="..&#x2F;modules/view.html">view</a></li>
+            
+                <li><a href="..&#x2F;modules/widget.html">widget</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-anim.html">widget-anim</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-autohide.html">widget-autohide</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-base.html">widget-base</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-base-ie.html">widget-base-ie</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-buttons.html">widget-buttons</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-child.html">widget-child</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-htmlparser.html">widget-htmlparser</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-locale.html">widget-locale</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-modality.html">widget-modality</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-parent.html">widget-parent</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-position.html">widget-position</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-position-align.html">widget-position-align</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-position-constrain.html">widget-position-constrain</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-skin.html">widget-skin</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-stack.html">widget-stack</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-stdmod.html">widget-stdmod</a></li>
+            
+                <li><a href="..&#x2F;modules/widget-uievents.html">widget-uievents</a></li>
+            
+                <li><a href="..&#x2F;modules/yql.html">yql</a></li>
+            
+                <li><a href="..&#x2F;modules/yui.html">yui</a></li>
+            
+                <li><a href="..&#x2F;modules/yui-base.html">yui-base</a></li>
+            
+                <li><a href="..&#x2F;modules/yui-later.html">yui-later</a></li>
+            
+                <li><a href="..&#x2F;modules/yui-log.html">yui-log</a></li>
+            
+                <li><a href="..&#x2F;modules/yui-throttle.html">yui-throttle</a></li>
+            
+                <li><a href="..&#x2F;modules/yui3.html">yui3</a></li>
+            
+            </ul>
+
+            <ul id="api-everything" class="apis everything aui-tabview-content-item">
+                <li class="message">Begin typing in the search box above to see results.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main" class="content">
+                    <h1 class="file-heading">File: lib&#x2F;yui3&#x2F;src&#x2F;yui&#x2F;js&#x2F;yui-later.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * Provides a setTimeout&#x2F;setInterval wrapper. This module is a &#x60;core&#x60; YUI module, &lt;a href=&quot;..&#x2F;classes&#x2F;YUI.html#method_later&quot;&gt;it&#x27;s documentation is located under the YUI class&lt;&#x2F;a&gt;.
+ *
+ * @module yui
+ * @submodule yui-later
+ *&#x2F;
+
+var NO_ARGS = [];
+
+&#x2F;**
+ * Executes the supplied function in the context of the supplied
+ * object &#x27;when&#x27; milliseconds later.  Executes the function a
+ * single time unless periodic is set to true.
+ * @for YUI
+ * @method later
+ * @param when {int} the number of milliseconds to wait until the fn
+ * is executed.
+ * @param o the context object.
+ * @param fn {Function|String} the function to execute or the name of
+ * the method in the &#x27;o&#x27; object to execute.
+ * @param data [Array] data that is provided to the function.  This
+ * accepts either a single item or an array.  If an array is provided,
+ * the function is executed with one parameter for each array item.
+ * If you need to pass a single array parameter, it needs to be wrapped
+ * in an array [myarray].
+ *
+ * Note: native methods in IE may not have the call and apply methods.
+ * In this case, it will work, but you are limited to four arguments.
+ *
+ * @param periodic {boolean} if true, executes continuously at supplied
+ * interval until canceled.
+ * @return {object} a timer object. Call the cancel() method on this
+ * object to stop the timer.
+ *&#x2F;
+Y.later = function(when, o, fn, data, periodic) {
+    when = when || 0;
+    data = (!Y.Lang.isUndefined(data)) ? Y.Array(data) : NO_ARGS;
+    o = o || Y.config.win || Y;
+
+    var cancelled = false,
+        method = (o &amp;&amp; Y.Lang.isString(fn)) ? o[fn] : fn,
+        wrapper = function() {
+            &#x2F;&#x2F; IE 8- may execute a setInterval callback one last time
+            &#x2F;&#x2F; after clearInterval was called, so in order to preserve
+            &#x2F;&#x2F; the cancel() === no more runny-run, we have to jump through
+            &#x2F;&#x2F; an extra hoop.
+            if (!cancelled) {
+                if (!method.apply) {
+                    method(data[0], data[1], data[2], data[3]);
+                } else {
+                    method.apply(o, data || NO_ARGS);
+                }
+            }
+        },
+        id = (periodic) ? setInterval(wrapper, when) : setTimeout(wrapper, when);
+
+    return {
+        id: id,
+        interval: periodic,
+        cancel: function() {
+            cancelled = true;
+            if (this.interval) {
+                clearInterval(id);
+            } else {
+                clearTimeout(id);
+            }
+        }
+    };
+};
+
+Y.Lang.later = Y.later;
+
+
+    </pre>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<!--script src="..&#x2F;assets/js/tabs.js"></script-->
+<script src="..&#x2F;assets/../api.js"></script>
+
+
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

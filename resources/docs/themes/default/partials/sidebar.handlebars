@@ -1,0 +1,32 @@
+<div id="api-list">
+    <h2 class="off-left">APIs</h2>
+
+    <div id="api-tabview" class="tabview">
+        <ul class="aui-tabview-list aui-widget-hd tabs" id="api-tabview-list">
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-classes">Classes</a></li>
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-modules">Modules</a></li>
+            <li class="aui-tab"><a class="aui-tab-label" href="#api-everything">Everything</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div class="aui-tabview-content aui-widget-bd" id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes aui-tabview-content-item">
+            {{#classes}}
+                <li><a href="{{../projectRoot}}classes/{{name}}.html">{{displayName}}</a></li>
+            {{/classes}}
+            </ul>
+            <ul id="api-modules" class="apis modules aui-tabview-content-item">
+            {{#allModules}}
+                <li><a href="{{../projectRoot}}modules/{{name}}.html">{{displayName}}</a></li>
+            {{/allModules}}
+            </ul>
+
+            <ul id="api-everything" class="apis everything aui-tabview-content-item">
+                <li class="message">Begin typing in the search box above to see results.</li>
+            </ul>
+        </div>
+    </div>
+</div>

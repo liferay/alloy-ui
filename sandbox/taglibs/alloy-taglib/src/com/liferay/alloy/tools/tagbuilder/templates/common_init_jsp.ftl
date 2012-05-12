@@ -21,7 +21,6 @@
 <%@ page import="com.liferay.portal.json.JSONFactoryImpl"%>
 <%@ page import="com.liferay.portal.kernel.servlet.taglib.aui.ScriptData"%>
 <%@ page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringBundler" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
