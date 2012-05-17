@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('event-mouseenter', function(Y) {
@@ -133,4 +133,4 @@ Y.Event.define("mouseleave", Y.merge(config, {
 }), true);
 
 
-}, '3.4.0' ,{requires:['event-synthetic']});
+}, '3.6.0pr1' ,{requires:['event-synthetic']});

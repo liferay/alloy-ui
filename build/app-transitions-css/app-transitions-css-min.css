@@ -1,0 +1,8 @@
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.6.0pr1
+build: nightly
+*/
+.yui3-app-transitioning .yui3-app-views,.yui3-app-views.yui3-app-transitioning{overflow-x:hidden;position:relative;white-space:nowrap}.yui3-app-transitioning .yui3-app-views>*,.yui3-app-views.yui3-app-transitioning>*{display:inline-block;width:100%;vertical-align:top;white-space:normal;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}#yui3-css-stamp.app-transitions-css{display:none}

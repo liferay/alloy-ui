@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('widget-parent', function(Y) {
@@ -524,7 +524,7 @@ Parent.prototype = {
             children = this._items;
 
         if (child.get("focused")) {
-            child.set("focused", false);
+            child.blur(); // focused is readOnly, so use the public i/f to unset it
         }
 
         if (child.get("selected")) {
@@ -873,4 +873,4 @@ Y.augment(Parent, Y.ArrayList);
 Y.WidgetParent = Parent;
 
 
-}, '3.4.0' ,{requires:['base-build', 'arraylist', 'widget']});
+}, '3.6.0pr1' ,{requires:['base-build', 'arraylist', 'widget']});

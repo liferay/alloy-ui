@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('substitute', function(Y) {
@@ -164,4 +164,4 @@ YUI.add('substitute', function(Y) {
 
 
 
-}, '3.4.0' ,{optional:['dump'], requires:['yui-base']});
+}, '3.6.0pr1' ,{optional:['dump'], requires:['yui-base']});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('attribute-complex', function(Y) {
@@ -96,7 +96,7 @@ YUI.add('attribute-complex', function(Y) {
                     valFn = this[valFn];
                 }
                 if (valFn) {
-                    val = valFn.call(this);
+                    val = valFn.call(this, attr);
                 }
             }
 
@@ -126,5 +126,8 @@ YUI.add('attribute-complex', function(Y) {
 
     Y.mix(Y.Attribute, Y.Attribute.Complex, true, null, 1);
 
+    // Consistency with the rest of the Attribute addons for now. 
+    Y.AttributeComplex = Y.Attribute.Complex;
 
-}, '3.4.0' ,{requires:['attribute-base']});
+
+}, '3.6.0pr1' ,{requires:['attribute-base']});

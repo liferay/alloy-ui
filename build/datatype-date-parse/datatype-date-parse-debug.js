@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('datatype-date-parse', function(Y) {
@@ -40,7 +40,7 @@ Y.mix(Y.namespace("DataType.Date"), {
             return date;
         }
         else {
-            Y.log("Could not convert data " + LANG.dump(date) + " to type Date", "warn", "date");
+            Y.log("Could not convert data to type Date", "warn", "date");
             return null;
         }
     }
@@ -50,4 +50,4 @@ Y.mix(Y.namespace("DataType.Date"), {
 Y.namespace("Parsers").date = Y.DataType.Date.parse;
 
 
-}, '3.4.0' );
+}, '3.6.0pr1' );

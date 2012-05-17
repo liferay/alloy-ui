@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('scrollview-base', function(Y) {
@@ -24,6 +24,8 @@ var getClassName = Y.ClassNameManager.getClassName,
 
     FLICK = EV_SCROLL_FLICK,
     DRAG = "drag",
+    
+    MOUSEWHEEL_ENABLED = true,
 
     UI = 'ui',
     
@@ -129,6 +131,8 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
 
         sv._bindDrag(sv.get(DRAG));
         sv._bindFlick(sv.get(FLICK));
+        // Note: You can find _bindMousewheel() inside syncUI(), becuase it depends on UI details
+
         sv._bindAttrs();
 
         // IE SELECT HACK. See if we can do this non-natively and in the gesture for a future release.
@@ -162,9 +166,10 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         // Without a _uiDimensionChange() call, the scrollview only 
         // scrolls partially due to the fact that styles added in the CSS
         // altered the height/width of the bounding box.
+        // TODO: Remove?
         if (!IE) {
             this.after('renderedChange', function(e) {
-                this._uiDimensionsChange();
+                //this._uiDimensionsChange();
             });
         }
     },
@@ -202,6 +207,26 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             cb.detach('flick|*');
         }
     },
+    
+    /**
+     * Bind (or unbind) mousewheel listeners.
+     * 
+     * @method _bindMousewheel
+     * @param mousewheel {Object|boolean} If truthy, the method binds listeners for mousewheel support. If false, the method unbinds mousewheel listeners.  
+     * @private
+     */
+    _bindMousewheel : function(mousewheel) {
+        var cb = this._cb;
+        
+        // Only enable for vertical scrollviews
+        if (this._scrollsVertical) {
+            if (mousewheel) {
+                Y.one(document).on("mousewheel", Y.bind(this._mousewheel, this));
+            } else {
+                cb.detach('mousewheel|*');
+            }
+        }
+    },
 
     /**
      * syncUI implementation.
@@ -213,6 +238,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
     syncUI: function() {
         this._cDisabled = this.get(DISABLED);
         this._uiDimensionsChange();
+        this._bindMousewheel(MOUSEWHEEL_ENABLED);
         this.scrollTo(this.get(SCROLL_X), this.get(SCROLL_Y));
     },
 
@@ -226,7 +252,17 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @param easing {String} An easing equation if duration is set
      */
     scrollTo: function(x, y, duration, easing) {
-
+        
+        // TODO: Figure out a better way to detect mousewheel events
+        if (easing === undefined) {
+            if ( y < this._minScrollY) {
+                y = this._minScrollY;
+            }
+            else if ( y > this._maxScrollY) {
+                y = this._maxScrollY;
+            }
+        }
+        
         if (!this._cDisabled) {
             var cb = this._cb,
                 xSet = (x !== null),
@@ -326,7 +362,7 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @type boolean
      * @protected
      */
-    _forceHWTransforms: Y.UA.webkit,
+    _forceHWTransforms: Y.UA.webkit ? true : false,
 
     /**
      * <p>Used to control whether or not ScrollView's internal
@@ -554,7 +590,6 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
         var duration = e.duration,
             easing = e.easing,
             val = e.newVal;
-
         if(e.src !== UI) {
             if (e.attrName == SCROLL_X) {
                 this._uiScrollTo(val, null, duration, easing);
@@ -610,7 +645,6 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * 
      */
     _uiScrollTo : function(x, y, duration, easing) {
-
         // TODO: This doesn't seem right. This is not UI logic. 
         duration = duration || this._snapToEdge ? 400 : 0;
         easing = easing || this._snapToEdge ? ScrollView.SNAP_EASING : null;
@@ -695,12 +729,14 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             sv._maxScrollY = scrollHeight - height;
             sv._minScrollY = 0;
             sv._scrollHeight = scrollHeight;
+            sv._height = height;
             bb.addClass(CLASS_NAMES.vertical);
         } else {
             sv._scrollsVertical = false;
             delete sv._maxScrollY;
             delete sv._minScrollY;
             delete sv._scrollHeight;
+            delete sv._height;
             bb.removeClass(CLASS_NAMES.vertical);
         }
 
@@ -709,12 +745,14 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
             sv._maxScrollX = scrollWidth - width;
             sv._minScrollX = 0;
             sv._scrollWidth = scrollWidth;
+            sv._width = width;            
             bb.addClass(CLASS_NAMES.horizontal);
         } else {
             sv._scrollsHorizontal = false;
             delete sv._maxScrollX;
             delete sv._minScrollX;
             delete sv._scrollWidth;
+            delete sv._width;
             bb.removeClass(CLASS_NAMES.horizontal);
         }
 
@@ -818,6 +856,31 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
     
             sv.fire(EV_SCROLL_FLICK);
         }
+    },
+
+    _mousewheel: function(e) {
+        var scrollY = this.get('scrollY'),
+            contentBox = this._cb,
+            scrollOffset = 10, // 10px
+            scrollToY = scrollY - (e.wheelDelta * scrollOffset);
+        
+        if (!contentBox.contains(e.target)){
+            return false;
+        }
+        
+        this.scrollTo(0, scrollToY);
+        
+        // if we have scrollbars plugin, update & set the flash timer on the scrollbar
+        if (this.scrollbars) {
+            // TODO: The scrollbars should handle this themselves
+            this.scrollbars._update();
+            this.scrollbars.flash();
+            // or just this
+            // this.scrollbars._hostDimensionsChange();
+        }
+
+        // prevent browser default behavior on mouse scroll
+        e.preventDefault();
     },
 
     /**
@@ -935,7 +998,6 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
      * @return {Number} The constrained value, if it exceeds min/max range
      */
     _setScroll : function(val, dim) {
-
         if (this._cDisabled) {
             val = Y.Attribute.INVALID_VALUE;
         } else {
@@ -1160,4 +1222,4 @@ Y.ScrollView = Y.extend(ScrollView, Y.Widget, {
 });
 
 
-}, '3.4.0' ,{requires:['widget', 'event-gestures', 'transition'], skinnable:true});
+}, '3.6.0pr1' ,{requires:['widget', 'event-gestures', 'event-mousewheel', 'transition'], skinnable:true});

@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
-YUI.add("lang/calendar_ja",function(a){a.Intl.add("calendar","ja",{weekdays:["月曜日","火曜日","水曜日","木曜日","金曜日","土曜日","日曜日"],short_weekdays:["月曜","火曜","水曜","木曜","金曜","土曜","日曜"],very_short_weekdays:["月","火","水","木","金","土","日"]});},"3.4.0");
+YUI.add("lang/calendar_ja",function(a){a.Intl.add("calendar","ja",{weekdays:["\u6708\u66DC\u65E5","\u706B\u66DC\u65E5","\u6C34\u66DC\u65E5","\u6728\u66DC\u65E5","\u91D1\u66DC\u65E5","\u571F\u66DC\u65E5","\u65E5\u66DC\u65E5"],short_weekdays:["\u6708\u66DC","\u706B\u66DC","\u6C34\u66DC","\u6728\u66DC","\u91D1\u66DC","\u571F\u66DC","\u65E5\u66DC"],very_short_weekdays:["\u6708","\u706B","\u6C34","\u6728","\u91D1","\u571F","\u65E5"]});},"3.6.0pr1");

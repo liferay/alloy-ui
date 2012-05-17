@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('scrollview-list', function(Y) {
@@ -134,4 +134,4 @@ Y.namespace("Plugin").ScrollViewList = Y.extend(ListPlugin, Y.Plugin.Base, {
 
 
 
-}, '3.4.0' ,{requires:['plugin', 'classnamemanager'], skinnable:true});
+}, '3.6.0pr1' ,{requires:['plugin', 'classnamemanager'], skinnable:true});

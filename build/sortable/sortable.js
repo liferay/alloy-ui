@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('sortable', function(Y) {
@@ -222,7 +222,7 @@ YUI.add('sortable', function(Y) {
             return this;
         },
         /**
-        * @method plug
+        * @method sync
         * @description Passthrough to the DD.Delegate syncTargets method.
         * @chainable
         */
@@ -306,7 +306,7 @@ YUI.add('sortable', function(Y) {
         * A custom callback to allow a user to extract some sort of id or any other data from the node to use in the "ordering list" and then that data should be returned from the callback.
         * @method getOrdering
         * @param Function callback 
-        * @returns Array
+        * @return Array
         */
         getOrdering: function(callback) {
             var ordering = [];
@@ -457,60 +457,50 @@ YUI.add('sortable', function(Y) {
 
     /**
     * @event copy
-    * @description A Sortable node was moved.
-    * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @description A Sortable node was moved with a copy.
+    * @param {Event.Facade} event An Event Facade object
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event move
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with a move.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event insert
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with an insert.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event swap
-    * @description A Sortable node was moved.
+    * @description A Sortable node was moved with a swap.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
-    *
-    *
+    */
+    /**
     * @event moved
     * @description A Sortable node was moved.
     * @param {Event.Facade} event An Event Facade object with the following specific property added:
-    * <dl>
-    * <dt>same</dt><dd>Moved to the same list.</dd>
-    * <dt>drag</dt><dd>The Drag Object</dd>
-    * <dt>drop</dt><dd>The Drop Object</dd>
-    * </dl>
+    * @param {Boolean} event.same Moved to the same list.
+    * @param {DD.Drag} event.drag The drag instance.
+    * @param {DD.Drop} event.drop The drop instance.
     * @type {Event.Custom}
     */
 
 
 
-}, '3.4.0' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});
+}, '3.6.0pr1' ,{requires:['dd-delegate', 'dd-drop-plugin', 'dd-proxy']});

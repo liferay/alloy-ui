@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('cache-base', function(Y) {
@@ -17,7 +17,7 @@ YUI.add('cache-base', function(Y) {
 
 /**
  * Provides the base class for the YUI Cache utility.
- * 
+ *
  * @submodule cache-base
  */
 var LANG = Y.Lang,
@@ -258,16 +258,21 @@ Y.extend(Cache, Y.Base, {
      */
     _defAddFn: function(e) {
         var entries = this._entries,
-            max = this.get("max"),
-            entry = e.entry;
+            entry   = e.entry,
+            max     = this.get("max"),
+            pos;
 
-        if(this.get("uniqueKeys") && (this.retrieve(e.entry.request))) {
-            entries.shift();
+        // If uniqueKeys is true and item exists with this key, then remove it.
+        if (this.get("uniqueKeys")) {
+            pos = this._position(e.entry.request);
+            if (LANG.isValue(pos)) {
+                entries.splice(pos, 1);
+            }
         }
 
-
-        // If the cache at or over capacity, make room by removing stalest element (index=0)
-        while(max && entries.length>=max) {
+        // If the cache at or over capacity, make room by removing stalest
+        // element(s) starting at index-0.
+        while (max && entries.length >= max) {
             entries.shift();
         }
 
@@ -286,16 +291,16 @@ Y.extend(Cache, Y.Base, {
         var entries = this._entries,
             details = e.details[0],
             pos;
-        
+
         //passed an item, flush only that
         if(details && LANG.isValue(details.request)) {
             pos = this._position(details.request);
-            
+
             if(LANG.isValue(pos)) {
                 entries.splice(pos,1);
-                
+
             }
-        } 
+        }
         //no item, flush everything
         else {
             this._entries = [];
@@ -320,7 +325,7 @@ Y.extend(Cache, Y.Base, {
         }
         return false;
     },
-    
+
     /**
      * Returns position of a request in the entries array, otherwise null.
      *
@@ -334,7 +339,7 @@ Y.extend(Cache, Y.Base, {
         var entries = this._entries,
             length = entries.length,
             i = length-1;
-        
+
         if((this.get("max") === null) || this.get("max") > 0) {
             // Loop through each cached entry starting from the newest
             for(; i >= 0; i--) {
@@ -344,7 +349,7 @@ Y.extend(Cache, Y.Base, {
                 }
             }
         }
-        
+
         return null;
     },
 
@@ -387,7 +392,7 @@ Y.extend(Cache, Y.Base, {
     flush: function(request) {
         this.fire("flush", { request: (LANG.isValue(request) ? request : null) });
     },
-    
+
     /**
      * Retrieves cached object for given request, if available, and refreshes
      * entry in the cache. Returns null if there is no cache match.
@@ -405,12 +410,12 @@ Y.extend(Cache, Y.Base, {
 
         if((length > 0) && ((this.get("max") === null) || (this.get("max") > 0))) {
             this.fire("request", {request: request});
-            
+
             pos = this._position(request);
-            
+
             if(LANG.isValue(pos)) {
                 entry = entries[pos];
-                
+
                 this.fire("retrieve", {entry: entry});
 
                 // Refresh the position of the cache hit
@@ -431,4 +436,4 @@ Y.extend(Cache, Y.Base, {
 Y.Cache = Cache;
 
 
-}, '3.4.0' ,{requires:['base']});
+}, '3.6.0pr1' ,{requires:['base']});

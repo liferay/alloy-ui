@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('dump', function(Y) {
@@ -109,4 +109,4 @@ YUI.add('dump', function(Y) {
 
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.6.0pr1' ,{requires:['yui-base']});

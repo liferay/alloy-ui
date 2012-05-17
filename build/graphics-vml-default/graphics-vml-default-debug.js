@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('graphics-vml-default', function(Y) {
@@ -16,4 +16,4 @@ Y.Path = Y.VMLPath;
 Y.Drawing = Y.VMLDrawing;
 
 
-}, '3.4.0' ,{skinnable:false});
+}, '3.6.0pr1' ,{skinnable:false});

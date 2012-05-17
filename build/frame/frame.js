@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('frame', function(Y) {
@@ -60,43 +60,47 @@ YUI.add('frame', function(Y) {
         * @return {Object} Hash table containing references to the new Document & Window
         */
         _create: function(cb) {
-            var win, doc, res, node;
+            var win, doc, res, node, html = '',
+                extra_css = ((this.get('extracss')) ? '<style id="extra_css">' + this.get('extracss') + '</style>' : '');
             
             this._iframe = Y.Node.create(Frame.HTML);
             this._iframe.setStyle('visibility', 'hidden');
             this._iframe.set('src', this.get('src'));
             this.get('container').append(this._iframe);
 
+            //if the src attr is different than the default, don't create the document
+            var create = (this.get('src') === Frame.ATTRS.src.value);
+
             this._iframe.set('height', '99%');
 
-            
-            var html = '',
-                extra_css = ((this.get('extracss')) ? '<style id="extra_css">' + this.get('extracss') + '</style>' : '');
+            if (create) {
+                html = Y.substitute(Frame.PAGE_HTML, {
+                    DIR: this.get('dir'),
+                    LANG: this.get('lang'),
+                    TITLE: this.get('title'),
+                    META: Frame.META,
+                    LINKED_CSS: this.get('linkedcss'),
+                    CONTENT: this.get('content'),
+                    BASE_HREF: this.get('basehref'),
+                    DEFAULT_CSS: Frame.DEFAULT_CSS,
+                    EXTRA_CSS: extra_css
+                });
+                if (Y.config.doc.compatMode != 'BackCompat') {
+                    
+                    //html = Frame.DOC_TYPE + "\n" + html;
+                    html = Frame.getDocType() + "\n" + html;
+                } else {
+                }
 
-            html = Y.substitute(Frame.PAGE_HTML, {
-                DIR: this.get('dir'),
-                LANG: this.get('lang'),
-                TITLE: this.get('title'),
-                META: Frame.META,
-                LINKED_CSS: this.get('linkedcss'),
-                CONTENT: this.get('content'),
-                BASE_HREF: this.get('basehref'),
-                DEFAULT_CSS: Frame.DEFAULT_CSS,
-                EXTRA_CSS: extra_css
-            });
-            if (Y.config.doc.compatMode != 'BackCompat') {
-                
-                //html = Frame.DOC_TYPE + "\n" + html;
-                html = Frame.getDocType() + "\n" + html;
-            } else {
             }
 
-
-
             res = this._resolveWinDoc();
-            res.doc.open();
-            res.doc.write(html);
-            res.doc.close();
+
+            if (html) {
+                res.doc.open();
+                res.doc.write(html);
+                res.doc.close();
+            }
 
             if (!res.doc.documentElement) {
                 var timer = Y.later(1, this, function() {
@@ -256,14 +260,14 @@ YUI.add('frame', function(Y) {
             inst.on('focus', Y.bind(this._onDomEvent, this), inst.config.win);
             inst.on('blur', Y.bind(this._onDomEvent, this), inst.config.win);
 
-            inst._use = inst.use;
+            inst.__use = inst.use;
             inst.use = Y.bind(this.use, this);
             this._iframe.setStyles({
                 visibility: 'inherit'
             });
             inst.one('body').setStyle('display', 'block');
             if (Y.UA.ie) {
-                this._fixIECursors();
+                //this._fixIECursors();
             }
         },
         /**
@@ -325,8 +329,8 @@ YUI.add('frame', function(Y) {
                 }
                 //TODO Circle around and deal with CSS loading...
                 args.push(Y.bind(function() {
-                    if (inst.Selection) {
-                        inst.Selection.DEFAULT_BLOCK_TAG = this.get('defaultblock');
+                    if (inst.EditorSelection) {
+                        inst.EditorSelection.DEFAULT_BLOCK_TAG = this.get('defaultblock');
                     }
                     //Moved to here so that the iframe is ready before allowing editing..
                     if (this.get('designMode')) {
@@ -534,7 +538,7 @@ YUI.add('frame', function(Y) {
 
                 });
             }
-            inst._use.apply(inst, args);
+            inst.__use.apply(inst, args);
         },
         /**
         * @method delegate
@@ -624,7 +628,7 @@ YUI.add('frame', function(Y) {
         */
         _handleFocus: function() {
             var inst = this.getInstance(),
-                sel = new inst.Selection();
+                sel = new inst.EditorSelection();
 
             if (sel.anchorNode) {
                 var n = sel.anchorNode, c;
@@ -674,7 +678,11 @@ YUI.add('frame', function(Y) {
             if (Y.UA.ie && Y.UA.ie < 9) {
                 try {
                     Y.one('win').focus();
-                    this.getInstance().one('win').focus();
+                    if (this.getInstance()) {
+                        if (this.getInstance().one('win')) {
+                            this.getInstance().one('win').focus();
+                        }
+                    }
                 } catch (ierr) {
                 }
                 if (fn === true) {
@@ -687,7 +695,11 @@ YUI.add('frame', function(Y) {
                 try {
                     Y.one('win').focus();
                     Y.later(100, this, function() {
-                        this.getInstance().one('win').focus();
+                        if (this.getInstance()) {
+                            if (this.getInstance().one('win')) {
+                                this.getInstance().one('win').focus();
+                            }
+                        }
                         if (fn === true) {
                             this._handleFocus();
                         }
@@ -713,7 +725,9 @@ YUI.add('frame', function(Y) {
             });
             if (Y.UA.gecko) {
                 try {
-                    this._instance.config.doc.designMode = 'on';
+                    if (this.getInstance()) {
+                        this.getInstance().config.doc.designMode = 'on';
+                    }
                 } catch (e) { }
                 this.focus();
             }           
@@ -792,7 +806,7 @@ YUI.add('frame', function(Y) {
         * @method getDocType
         * @description Parses document.doctype and generates a DocType to match the parent page, if supported.
         * For IE8, it grabs document.all[0].nodeValue and uses that. For IE < 8, it falls back to Frame.DOC_TYPE.
-        * @returns {String} The normalized DocType to apply to the iframe
+        * @return {String} The normalized DocType to apply to the iframe
         */
         getDocType: function() {
             var dt = Y.config.doc.doctype,
@@ -992,4 +1006,4 @@ YUI.add('frame', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});
+}, '3.6.0pr1' ,{skinnable:false, requires:['base', 'node', 'selector-css3', 'substitute', 'yui-throttle']});

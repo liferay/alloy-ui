@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('datatable-datasource', function(Y) {
@@ -16,7 +16,7 @@ YUI.add('datatable-datasource', function(Y) {
 
 /**
  * Adds DataSource integration to DataTable.
- * @class DataTableDataSource
+ * @class Plugin.DataTableDataSource
  * @extends Plugin.Base
  */
 function DataTableDataSource() {
@@ -177,14 +177,11 @@ Y.extend(DataTableDataSource, Y.Plugin.Base, {
     onDataReturnInitializeTable : function(e) {
         var records = (e.response && e.response.results) || [];
 
-        this.get("host").get("recordset").set("records", records);
+        this.get("host").set("data", records);
     }
 });
 
 Y.namespace("Plugin").DataTableDataSource = DataTableDataSource;
 
 
-
-
-
-}, '3.4.0' ,{requires:['datatable-base','plugin','datasource-local']});
+}, '3.6.0pr1' ,{requires:['datatable-base','plugin','datasource-local']});

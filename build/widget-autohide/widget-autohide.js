@@ -2,13 +2,13 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('widget-autohide', function(Y) {
 
 /**
- * A widget-level extension that provides ability to hide widget when 
+ * A widget-level extension that provides ability to hide widget when
  * certain events occur.
  *
  * @module widget-autohide
@@ -53,7 +53,7 @@ function WidgetAutohide(config) {
 }
 
 /**
-* Static property used to define the default attribute 
+* Static property used to define the default attribute
 * configuration introduced by WidgetAutohide.
 *
 * @property ATTRS
@@ -76,7 +76,8 @@ WidgetAutohide.ATTRS = {
      * escape key is pressed.</p>
      */
     hideOn: {
-        valueFn: function() {
+        validator: Y.Lang.isArray,
+        valueFn  : function() {
             return [
                 {
                     node: Y.one(DOCUMENT),
@@ -84,8 +85,7 @@ WidgetAutohide.ATTRS = {
                     keyCode: PRESS_ESCAPE
                 }
             ];
-        },
-        validator: Y.Lang.isArray
+        }
     }
 };
 
@@ -169,7 +169,7 @@ WidgetAutohide.prototype = {
 
                 //push all events on which the widget should be hidden
                 for (; i < hideOn.length; i++) {
-                    
+
                     o.node = hideOn[i].node;
                     o.ev = hideOn[i].eventName;
                     o.keyCode = hideOn[i].keyCode;
@@ -188,10 +188,10 @@ WidgetAutohide.prototype = {
                     else if (o.node && o.keyCode && o.ev) {
                         uiHandles.push(o.node.on(o.ev, hide, o.keyCode));
                     }
-                    
+
                     else {
                     }
-                    
+
                 }
 
             this._uiHandlesAutohide = uiHandles;
@@ -235,10 +235,9 @@ WidgetAutohide.prototype = {
                 this._attachUIHandlesAutohide();
             }
         }
-}
-
+};
 
 Y.WidgetAutohide = WidgetAutohide;
 
 
-}, '3.4.0' ,{requires:['base-build','widget','event-outside','event-key']});
+}, '3.6.0pr1' ,{requires:['base-build','widget','event-outside','event-key']});

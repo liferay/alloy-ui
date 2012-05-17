@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('anim-base', function(Y) {
@@ -126,14 +126,17 @@ YUI.add('anim-base', function(Y) {
      */
     Y.Anim.DEFAULT_SETTER = function(anim, att, from, to, elapsed, duration, fn, unit) {
         var node = anim._node,
+            domNode = node._node,
             val = fn(elapsed, NUM(from), NUM(to) - NUM(from), duration);
-
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            unit = unit || '';
-            node.setStyle(att, val + unit);
-        } else if (node._node.attributes[att]) {
-            node.setAttribute(att, val);
-        } else {
+        //make sure node instance
+        if (domNode && (domNode.style || domNode.attributes)) {
+            if (att in domNode.style || att in Y.DOM.CUSTOM_STYLES) {
+                unit = unit || '';
+                node.setStyle(att, val + unit);
+            } else if (domNode.attributes[att]) {
+                node.setAttribute(att, val);
+            }
+        } else if (node.set) {
             node.set(att, val);
         }
     };
@@ -146,13 +149,16 @@ YUI.add('anim-base', function(Y) {
      */
     Y.Anim.DEFAULT_GETTER = function(anim, att) {
         var node = anim._node,
+            domNode = node._node,
             val = '';
-
-        if (att in node._node.style || att in Y.DOM.CUSTOM_STYLES) {
-            val = node.getComputedStyle(att);
-        } else if (node._node.attributes[att]) {
-            val = node.getAttribute(att);
-        } else {
+        //make sure node instance
+        if (domNode && (domNode.style || domNode.attributes)) {
+            if (att in domNode.style || att in Y.DOM.CUSTOM_STYLES) {
+                val = node.getComputedStyle(att);
+            } else if (domNode.attributes[att]) {
+                val = node.getAttribute(att);
+            }
+        } else if (node.get) {
             val = node.get(att);
         }
 
@@ -673,4 +679,4 @@ YUI.add('anim-base', function(Y) {
     Y.extend(Y.Anim, Y.Base, proto);
 
 
-}, '3.4.0' ,{requires:['base-base', 'node-style']});
+}, '3.6.0pr1' ,{requires:['base-base', 'node-style']});

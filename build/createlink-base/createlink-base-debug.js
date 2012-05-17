@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('createlink-base', function(Y) {
@@ -63,7 +63,7 @@ YUI.add('createlink-base', function(Y) {
                 Y.log('Adding link: ' + url, 'info', 'createLinkBase');
 
                 this.get('host')._execCommand(cmd, url);
-                sel = new inst.Selection();
+                sel = new inst.EditorSelection();
                 out = sel.getSelected();
                 if (!sel.isCollapsed && out.size()) {
                     //We have a selection
@@ -89,4 +89,4 @@ YUI.add('createlink-base', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['editor-base']});
+}, '3.6.0pr1' ,{skinnable:false, requires:['editor-base']});

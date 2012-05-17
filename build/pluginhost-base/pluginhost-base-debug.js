@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('pluginhost-base', function(Y) {
@@ -87,7 +87,10 @@ YUI.add('pluginhost-base', function(Y) {
         
                     if (this.hasPlugin(ns)) {
                         // Update config
-                        this[ns].setAttrs(config);
+                        if (this[ns].setAttrs) {
+                            this[ns].setAttrs(config);
+                        }
+                        else { Y.log("Attempt to replug an already attached plugin, and we can't setAttrs, because it's not Attribute based: " + ns); }
                     } else {
                         // Create new instance
                         this[ns] = new Plugin(config);
@@ -123,7 +126,9 @@ YUI.add('pluginhost-base', function(Y) {
         
                 if (ns) {
                     if (this[ns]) {
-                        this[ns].destroy();
+                        if (this[ns].destroy) {
+                            this[ns].destroy();
+                        }
                         delete this[ns];
                     }
                     if (plugins[ns]) {
@@ -145,7 +150,7 @@ YUI.add('pluginhost-base', function(Y) {
          *
          * @method hasPlugin
          * @param {String} ns The plugin's namespace
-         * @return {boolean} returns true, if the plugin has been plugged into this host, false otherwise.
+         * @return {Plugin} Returns a truthy value (the plugin instance) if present, or undefined if not.
          */
         hasPlugin : function(ns) {
             return (this._plugins[ns] && this[ns]);
@@ -182,4 +187,4 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.4.0' ,{requires:['yui-base']});
+}, '3.6.0pr1' ,{requires:['yui-base']});

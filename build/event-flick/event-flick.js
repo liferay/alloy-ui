@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('event-flick', function(Y) {
@@ -26,7 +26,7 @@ YUI.add('event-flick', function(Y) {
  * @submodule event-flick
  */
 
-var EVENT = ("ontouchstart" in Y.config.win && !Y.UA.chrome) ? {
+var EVENT = ((Y.config.win && ("ontouchstart" in Y.config.win)) && !(Y.UA.chrome && Y.UA.chrome < 6)) ? {
         start: "touchstart",
         end: "touchend",
         move: "touchmove"
@@ -268,4 +268,4 @@ Y.Event.define('flick', {
 });
 
 
-}, '3.4.0' ,{requires:['node-base','event-touch','event-synthetic']});
+}, '3.6.0pr1' ,{requires:['node-base','event-touch','event-synthetic']});

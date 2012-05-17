@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.4.0
+version: 3.6.0pr1
 build: nightly
 */
 YUI.add('resize-proxy', function(Y) {
@@ -123,8 +123,8 @@ Y.extend(ResizeProxy, Y.Plugin.Base, {
 	},
 
     /**
-      * Render the <a href="ResizeProxy.html#config_proxyNode">proxyNode</a> element and
-      * make it sibling of the <a href="Resize.html#config_node">node</a>.
+      * Render the <a href="ResizeProxy.html#attr_proxyNode">proxyNode</a> element and
+      * make it sibling of the <a href="Resize.html#attr_node">node</a>.
       *
       * @method _renderProxy
       * @protected
@@ -170,4 +170,4 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeProxy = ResizeProxy;
 
 
-}, '3.4.0' ,{requires:['resize-base', 'plugin'], skinnable:false});
+}, '3.6.0pr1' ,{requires:['resize-base', 'plugin'], skinnable:false});
