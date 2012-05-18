@@ -346,7 +346,11 @@ var SchedulerTableView = A.Component.create({
 			var key = String(date.getTime());
 
 			if (!instance.evtDateStack[key]) {
-				instance.evtDateStack[key] = scheduler.getIntersectEvents(date);
+				var events = scheduler.getIntersectEvents(date);
+
+				instance.evtDateStack[key] = events.filter(
+					instance.get(FILTER_FN)
+				);
 			}
 
 			return instance.evtDateStack[key];
@@ -586,17 +590,19 @@ var SchedulerTableView = A.Component.create({
 			var instance = this;
 
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
-			var table = instance[TABLE_GRID_NODE].item(rowIndex);
+
+			var tableGridNode = instance[TABLE_GRID_NODE].item(rowIndex);
+			var firstRowNode = tableGridNode.one(TR);
 
 			for (var i = 0; i < Math.min(displayDaysInterval, WEEK_LENGTH); i++) {
 				var columnNode = A.Node.create(TPL_SVT_GRID_COLUMN);
 
-				table.append(columnNode);
+				firstRowNode.append(columnNode);
 
 				instance[COLUMN_TABLE_GRID].push(columnNode);
 			}
 
-			return table;
+			return tableGridNode;
 		},
 
 		_offsetXY: function(xy, sign) {

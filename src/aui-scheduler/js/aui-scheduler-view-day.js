@@ -1,5 +1,24 @@
 var sub = Lang.sub;
 
+var getScrollbarWidth = A.cached(function () {
+    var doc      = A.config.doc,
+        testNode = doc.createElement('div'),
+        body     = doc.getElementsByTagName('body')[0],
+        // 0.1 because cached doesn't support falsy refetch values
+        width    = 0.1;
+
+    if (body) {
+        testNode.style.cssText = "position:absolute;visibility:hidden;overflow:scroll;width:20px;";
+        testNode.appendChild(doc.createElement('p')).style.height = '1px';
+        body.insertBefore(testNode, body.firstChild);
+        width = testNode.offsetWidth - testNode.clientWidth;
+
+        body.removeChild(testNode);
+    }
+
+    return width;
+}, null, 0.1);
+
 var getNodeListHTMLParser = function(selector, sizeCondition) {
 		return function(srcNode) {
 			var nodes = srcNode.all(selector);
@@ -31,6 +50,7 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_PAD_RIGHT = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, PAD, RIGHT),
 	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, FIRST),
 	CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN(SCHEDULER_VIEW, DAY, HEADER, COL),
+	CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = getCN(SCHEDULER_VIEW, DAY, HEADER, VIEW, LABEL),
 
 	CSS_SCHEDULER_VIEW_DAY_TABLE_COL = getCN(SCHEDULER_VIEW, DAY, TABLE, COL),
 	CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM = getCN(SCHEDULER_VIEW, DAY, TABLE, COL, SHIM),
@@ -46,6 +66,8 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 	TPL_SCHEDULER_VIEW_DAY_MARKERCELL = '<div class="' + CSS_SCHEDULER_VIEW_DAY_MARKERCELL + '">' +
 											'<div class="' + CSS_SCHEDULER_VIEW_DAY_MARKER_DIVISION + '"></div>' +
 										'</div>',
+
+	TPL_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL = '<span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL + '">{label}</span>',
 
 	TPL_SCHEDULER_VIEW_DAY_TABLE = '<table cellspacing="0" cellpadding="0" class="' + CSS_SCHEDULER_VIEW_DAY_TABLE + '">' +
 										'<tbody>' +
@@ -113,6 +135,11 @@ var SchedulerDayView = A.Component.create({
 			validator: isObject
 		},
 
+		eventWidth: {
+			value: 95,
+			validator: isNumber
+		},
+
 		filterFn: {
 			value: function(evt) {
 				return (evt.getHoursDuration() <= 24 && !evt.get(ALL_DAY));
@@ -149,18 +176,19 @@ var SchedulerDayView = A.Component.create({
 			value: {}
 		},
 
-		name: {
-			value: DAY
-		},
-
 		hourHeight: {
 			value: 52,
 			validator: isNumber
 		},
 
-		eventWidth: {
-			value: 95,
-			validator: isNumber
+		name: {
+			value: DAY
+		},
+
+		strings: {
+			value: {
+				allDay: 'All day'
+			}
 		},
 
 		/*
@@ -169,6 +197,20 @@ var SchedulerDayView = A.Component.create({
 		headerTableNode: {
 			valueFn: function() {
 				return A.Node.create(TPL_SCHEDULER_VIEW_DAY_HEADER_TABLE);
+			}
+		},
+
+		headerViewLabelNode: {
+			valueFn: function() {
+				var instance = this;
+
+				var strings = instance.get(STRINGS);
+
+				return A.Node.create(
+					sub(TPL_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL, {
+						label: strings[ALL_DAY]
+					})
+				);
 			}
 		},
 
@@ -205,6 +247,7 @@ var SchedulerDayView = A.Component.create({
 		colDaysNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY, 1),
 		colHeaderDaysNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_DAY, 2),
 		headerTableNode: DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE,
+		headerViewLabelNode: DOT+CSS_SCHEDULER_VIEW_DAY_HEADER_VIEW_LABEL,
 		markercellsNode: getNodeListHTMLParser(DOT+CSS_SCHEDULER_VIEW_DAY_MARKERCELL, 24),
 		resizerNode: DOT+CSS_SCHEDULER_VIEW_DAY_RESIZER,
 		tableNode: DOT+CSS_SCHEDULER_VIEW_DAY_TABLE,
@@ -292,6 +335,7 @@ var SchedulerDayView = A.Component.create({
 
 			if (instance[HEADER_VIEW]) {
 				headerNodes.push(instance[HEADER_VIEW].get(BOUNDING_BOX));
+				headerNodes.push(instance.get(HEADER_VIEW_LABEL_NODE));
 			}
 
 			instance.setStdModContent(WidgetStdMod.HEADER, headerNodes);
@@ -434,15 +478,8 @@ var SchedulerDayView = A.Component.create({
 				instance.syncEventsIntersectionUI(plottedEvents);
 			});
 
-			if (instance[HEADER_VIEW]) {
-				instance[HEADER_VIEW].plotEvents();
-
-				var headerViewBB = instance[HEADER_VIEW].get(BOUNDING_BOX);
-				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
-
-				instance[HEADER_VIEW].set('height', headerViewData.get(OFFSET_HEIGHT));
-
-				instance._fillHeight();
+			if (instance.get(HEADER_VIEW)) {
+				instance.syncHeaderViewUI();
 			}
 		},
 
@@ -546,6 +583,24 @@ var SchedulerDayView = A.Component.create({
 			evt.get(NODE).item(0).setStyle(TOP,
 				instance.calculateTop(evt.get(START_DATE)) + PX);
 			evt.get(NODE).item(1).setStyle(TOP, 0);
+		},
+
+		syncHeaderViewUI: function() {
+			var instance = this;
+
+			if (instance.get(HEADER_VIEW)) {
+				instance[HEADER_VIEW].plotEvents();
+
+				var headerViewBB = instance[HEADER_VIEW].get(BOUNDING_BOX);
+
+				headerViewBB.setStyle(MARGIN_RIGHT, getScrollbarWidth());
+
+				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
+
+				instance[HEADER_VIEW].set(HEIGHT, headerViewData.get(OFFSET_HEIGHT));
+
+				instance._fillHeight();
+			}
 		},
 
 		calculateYDelta: function(startXY, xy) {
