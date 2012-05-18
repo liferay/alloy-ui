@@ -24,7 +24,7 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 	CSS_SCHEDULER_VIEW_DAY_MARKER_DIVISION = getCN(SCHEDULER_VIEW, MARKER, DIVISION),
 	CSS_SCHEDULER_VIEW_DAY_MARKERCELL = getCN(SCHEDULER_VIEW, MARKERCELL),
 	CSS_SCHEDULER_VIEW_DAY_MARKERS = getCN(SCHEDULER_VIEW, MARKERS),
-	CSS_SCHEDULER_VIEW_DAY_TABLE = getCN(SCHEDULER_VIEW, TABLE),
+	CSS_SCHEDULER_VIEW_DAY_TABLE = getCN(SCHEDULER_VIEW, DAY, TABLE),
 
 	CSS_SCHEDULER_VIEW_DAY_HEADER_TABLE = getCN(SCHEDULER_VIEW, DAY, HEADER, TABLE),
 	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY),
@@ -32,12 +32,12 @@ var getNodeListHTMLParser = function(selector, sizeCondition) {
 	CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = getCN(SCHEDULER_VIEW, DAY, HEADER, DAY, FIRST),
 	CSS_SCHEDULER_VIEW_DAY_HEADER_COL = getCN(SCHEDULER_VIEW, DAY, HEADER, COL),
 
-	CSS_SCHEDULER_VIEW_DAY_TABLE_COL = getCN(SCHEDULER_VIEW, TABLE, COL),
-	CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM = getCN(SCHEDULER_VIEW, TABLE, COL, SHIM),
-	CSS_SCHEDULER_VIEW_DAY_TABLE_COLBLANK = getCN(SCHEDULER_VIEW, TABLE, COLBLANK),
-	CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = getCN(SCHEDULER_VIEW, TABLE, COLDAY),
-	CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME = getCN(SCHEDULER_VIEW, TABLE, COLTIME),
-	CSS_SCHEDULER_VIEW_DAY_TABLE_TIME = getCN(SCHEDULER_VIEW, TABLE, TIME),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_COL = getCN(SCHEDULER_VIEW, DAY, TABLE, COL),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM = getCN(SCHEDULER_VIEW, DAY, TABLE, COL, SHIM),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_COLBLANK = getCN(SCHEDULER_VIEW, DAY, TABLE, COLBLANK),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = getCN(SCHEDULER_VIEW, DAY, TABLE, COLDAY),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME = getCN(SCHEDULER_VIEW, DAY, TABLE, COLTIME),
+	CSS_SCHEDULER_VIEW_DAY_TABLE_TIME = getCN(SCHEDULER_VIEW, DAY, TABLE, TIME),
 
 	TPL_SCHEDULER_VIEW_DAY_RESIZER = '<div class="' + CSS_SCHEDULER_VIEW_DAY_RESIZER + '">' +
 										'<div class="' + [CSS_ICON, CSS_ICON_GRIP_DOTTED_HORIZONTAL, CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(SPACE) + '"></div>' +
@@ -113,9 +113,40 @@ var SchedulerDayView = A.Component.create({
 			validator: isObject
 		},
 
+		filterFn: {
+			value: function(evt) {
+				return (evt.getHoursDuration() <= 24 && !evt.get(ALL_DAY));
+			}
+		},
+
 		headerDateFormat: {
 			value: '%d %A',
 			validator: isString
+		},
+
+		headerView: {
+			value: true,
+			validator: isBoolean
+		},
+
+		headerViewConfig: {
+			setter: function(val) {
+				var instance = this;
+
+				return A.merge(
+					{
+						displayDaysInterval: 1,
+						displayRows: 6,
+						filterFn: function(evt) {
+							return ((evt.getHoursDuration() > 24) || evt.get(ALL_DAY));
+						},
+						height: 'auto',
+						visible: true
+					},
+					val || {}
+				);
+			},
+			value: {}
 		},
 
 		name: {
@@ -201,6 +232,12 @@ var SchedulerDayView = A.Component.create({
 			instance[COLUMN_TIME] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_TABLE_COLTIME);
 			instance[GRID_CONTAINER] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_GRID_CONTAINER);
 			instance[MARKERS_NODE] = instance[TABLE_NODE].one(DOT+CSS_SCHEDULER_VIEW_DAY_MARKERS);
+
+			if (instance.get(HEADER_VIEW)) {
+				instance[HEADER_VIEW] = new A.SchedulerTableView(
+					instance.get(HEADER_VIEW_CONFIG)
+				);
+			}
 		},
 
 		renderUI: function() {
@@ -210,6 +247,12 @@ var SchedulerDayView = A.Component.create({
 			instance[MARKERS_NODE].setContent(instance[MARKERCELLS_NODE]);
 			instance[COL_DAYS_NODE].appendTo(instance[COLUMN_DATA]);
 			instance[COL_HEADER_DAYS_NODE].appendTo(instance[COLUMN_DAY_HEADER]);
+
+			if (instance[HEADER_VIEW]) {
+				instance[HEADER_VIEW].set(SCHEDULER, instance.get(SCHEDULER));
+
+				instance[HEADER_VIEW].render();
+			}
 		},
 
 		bindUI: function() {
@@ -225,6 +268,7 @@ var SchedulerDayView = A.Component.create({
 			instance.on('drag:end', instance._onEventDragEnd);
 			instance.on('drag:start', instance._onEventDragStart);
 			instance.on('drag:tickAlignY', instance._dragTickAlignY);
+			instance.on('schedulerChange', instance._onSchedulerChange);
 			instance.after('drag:align', instance._afterDragAlign);
 		},
 
@@ -244,8 +288,13 @@ var SchedulerDayView = A.Component.create({
 			instance.setStdModContent(
 				WidgetStdMod.BODY, instance[TABLE_NODE].getDOM());
 
-			instance.setStdModContent(
-				WidgetStdMod.HEADER, instance[HEADER_TABLE_NODE].getDOM());
+			var headerNodes = A.NodeList.create(instance[HEADER_TABLE_NODE]);
+
+			if (instance[HEADER_VIEW]) {
+				headerNodes.push(instance[HEADER_VIEW].get(BOUNDING_BOX));
+			}
+
+			instance.setStdModContent(WidgetStdMod.HEADER, headerNodes);
 		},
 
 		calculateEventHeight: function(duration) {
@@ -366,20 +415,35 @@ var SchedulerDayView = A.Component.create({
 		plotEvents: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
+			var filterFn = instance.get(FILTER_FN);
 
 			instance[COLUMN_SHIMS].each(function(colShimNode, i) {
 				var columnEvents = scheduler.getEventsByDay(instance.getDateByColumn(i), true);
+				var plottedEvents = [];
 
 				colShimNode.empty();
 
 				A.Array.each(columnEvents, function(evt) {
-					if (evt.getHoursDuration() <= 24) {
+					if (filterFn.apply(instance, [evt])) {
 						instance.plotEvent(evt);
+
+						plottedEvents.push(evt);
 					}
 				});
 
-				instance.syncEventsIntersectionUI(columnEvents);
+				instance.syncEventsIntersectionUI(plottedEvents);
 			});
+
+			if (instance[HEADER_VIEW]) {
+				instance[HEADER_VIEW].plotEvents();
+
+				var headerViewBB = instance[HEADER_VIEW].get(BOUNDING_BOX);
+				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
+
+				instance[HEADER_VIEW].set('height', headerViewData.get(OFFSET_HEIGHT));
+
+				instance._fillHeight();
+			}
 		},
 
 		syncColumnsUI: function() {
@@ -495,7 +559,7 @@ var SchedulerDayView = A.Component.create({
 			var group = [];
 
 			A.Array.each(events, function(evtCmp) {
-				if (!evt._filtered && evt.intersectHours(evtCmp) && (!evtCmp.isDayOverlapEvent() || evtCmp.isDayBoundaryEvent())) {
+				if (!evt._filtered && evt.intersectHours(evtCmp)) {
 					group.push(evtCmp);
 				}
 			});
@@ -721,6 +785,7 @@ var SchedulerDayView = A.Component.create({
 					var endDate = DateMath.add(startDate, DateMath.MINUTES, recorder.get(DURATION));
 
 					recorder.move(startDate);
+					recorder.set(ALL_DAY, false);
 					recorder.set(END_DATE, endDate);
 
 					instance[CREATION_START_DATE] = startDate;
@@ -811,6 +876,14 @@ var SchedulerDayView = A.Component.create({
 
 			instance._removeResizer();
 			instance.get(BOUNDING_BOX).selectable();
+		},
+
+		_onSchedulerChange: function(event) {
+			var instance = this;
+
+			if (instance[HEADER_VIEW]) {
+				instance[HEADER_VIEW].set(SCHEDULER, event.newVal);
+			}
 		},
 
 		_removeResizer: function() {

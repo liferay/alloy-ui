@@ -3,6 +3,7 @@ var L = A.Lang,
 	isObject = L.isObject,
 
 	ACTIVE_VIEW = 'activeView',
+	ALL_DAY = 'allDay',
 	ARROW = 'arrow',
 	BODY = 'body',
 	BODY_CONTENT = 'bodyContent',
@@ -102,6 +103,10 @@ var SchedulerEventRecorder = A.Component.create({
 	NAME: SCHEDULER_EVENT_RECORDER,
 
 	ATTRS: {
+		allDay: {
+			value: false
+		},
+
 		content: {
 			value: _EMPTY_STR
 		},
@@ -369,6 +374,7 @@ var SchedulerEventRecorder = A.Component.create({
 
 			if (!newEvt) {
 				newEvt = new (instance.get(EVENT_CLASS))({
+					allDay: instance.get(ALL_DAY),
 					endDate: instance.get(END_DATE),
 					scheduler: instance.get(SCHEDULER),
 					startDate: instance.get(START_DATE)

@@ -10,6 +10,12 @@ var SchedulerWeekView = A.Component.create({
 			value: 7
 		},
 
+		headerViewConfig: {
+			value: {
+				displayDaysInterval: WEEK_LENGTH
+			}
+		},
+
 		name: {
 			value: WEEK
 		}
