@@ -304,13 +304,17 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 
 	var view11 = new A.SchedulerDayView({
 		boundingBox: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-day',
-		srcNode: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-day-content'
+		srcNode: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-day-content',
+
+		headerView: true
 	});
 
 	var view12 = new A.SchedulerWeekView({
 		boundingBox: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-week',
 		srcNode: '#scheduler1 .yui3-widget-bd .aui-scheduler-view-week-content',
-		isoTime: true
+		isoTime: true,
+
+		headerView: true
 	});
 
 	var view13 = new A.SchedulerMonthView({

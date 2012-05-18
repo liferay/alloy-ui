@@ -86,6 +86,11 @@ var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
 
 	ATTRS: {
+		allDay: {
+			value: false,
+			validator: isBoolean
+		},
+
 		borderStyle: {
 			value: 'solid',
 			validator: isString
