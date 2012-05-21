@@ -88,8 +88,8 @@ var SchedulerEvent = A.Component.create({
 
 	ATTRS: {
 		allDay: {
-			value: false,
-			validator: isBoolean
+			setter: A.DataType.Boolean.parse,
+			value: false
 		},
 
 		borderStyle: {
