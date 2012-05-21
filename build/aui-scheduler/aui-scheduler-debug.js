@@ -1509,6 +1509,8 @@ var SchedulerDayView = A.Component.create({
 				paddingNode.hide();
 			}
 
+			evt.syncNodeUI();
+
 			instance.syncEventTopUI(evt);
 			instance.syncEventHeightUI(evt);
 		},
@@ -1658,8 +1660,6 @@ var SchedulerDayView = A.Component.create({
 
 				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
 				var height = Math.max(headerViewData.get(OFFSET_HEIGHT), 40);
-
-				console.log(height);
 
 				headerView.set(HEIGHT, height);
 
@@ -3017,6 +3017,7 @@ var Lang = A.Lang,
 	ICON = 'icon',
 	ICONS = 'icons',
 	ID = 'id',
+	INHERIT = 'inherit',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
 	NEVER = 'never',
@@ -3442,7 +3443,8 @@ var SchedulerEvent = A.Component.create({
 					borderWidth: instance.get(BORDER_WIDTH),
 					borderColor: borderColor,
 					backgroundColor: instance.get(COLOR),
-					borderStyle: instance.get(BORDER_STYLE)
+					borderStyle: instance.get(BORDER_STYLE),
+					color: INHERIT
 				};
 
 				node.setStyles(styles);
