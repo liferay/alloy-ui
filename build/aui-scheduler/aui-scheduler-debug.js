@@ -1647,8 +1647,6 @@ var SchedulerDayView = A.Component.create({
 		syncHeaderViewUI: function() {
 			var instance = this;
 
-
-
 			if (instance.get(HEADER_VIEW)) {
 				var headerView = instance[HEADER_VIEW];
 
