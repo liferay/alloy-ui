@@ -588,16 +588,23 @@ var SchedulerDayView = A.Component.create({
 		syncHeaderViewUI: function() {
 			var instance = this;
 
-			if (instance.get(HEADER_VIEW)) {
-				instance[HEADER_VIEW].plotEvents();
 
-				var headerViewBB = instance[HEADER_VIEW].get(BOUNDING_BOX);
+
+			if (instance.get(HEADER_VIEW)) {
+				var headerView = instance[HEADER_VIEW];
+
+				headerView.plotEvents();
+
+				var headerViewBB = headerView.get(BOUNDING_BOX);
 
 				headerViewBB.setStyle(MARGIN_RIGHT, getScrollbarWidth());
 
 				var headerViewData = headerViewBB.one(DOT+CSS_SVT_TABLE_DATA);
+				var height = Math.max(headerViewData.get(OFFSET_HEIGHT), 40);
 
-				instance[HEADER_VIEW].set(HEIGHT, headerViewData.get(OFFSET_HEIGHT));
+				console.log(height);
+
+				headerView.set(HEIGHT, height);
 
 				instance._fillHeight();
 			}
