@@ -64,32 +64,32 @@
 
 /* month */
 
-.aui-scheduler-view-month-header-day { text-align: center }
+.aui-scheduler-view-table-header-day { text-align: center }
 
-.aui-scheduler-view-month-header-table {
+.aui-scheduler-view-table-header-table {
     width: 100%;
     table-layout: fixed;
 }
 
-.aui-scheduler-view-month-content .yui3-widget-hd {
+.aui-scheduler-view-table-content .yui3-widget-hd {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     color: #555;
 }
 
-.aui-scheduler-view-month-header-day div {
+.aui-scheduler-view-table-header-day div {
     font-size: 11px;
     font-weight: normal;
 }
 
-.aui-scheduler-view-month-container {
+.aui-scheduler-view-table-container {
     height: 100%;
     position: relative;
     white-space: nowrap;
     line-height: 14px;
 }
 
-.aui-scheduler-view-month-row-container {
+.aui-scheduler-view-table-row-container {
     background: #fff;
     bottom: 0;
     left: 0;
@@ -99,16 +99,16 @@
     width: 100%;
 }
 
-.aui-scheduler-view-month-row {
+.aui-scheduler-view-table-row {
     left: 0;
     overflow: hidden;
     position: absolute;
     width: 100%;
 }
 
-.aui-scheduler-view-month-table-grid-first { border-top: 0 }
+.aui-scheduler-view-table-grid-first { border-top: 0 }
 
-.aui-scheduler-view-month-table-grid {
+.aui-scheduler-view-table-grid {
     height: 100%;
     left: 0;
     position: absolute;
@@ -117,39 +117,34 @@
     width: 100%;
 }
 
-.aui-scheduler-view-month-colgrid { border-left: 1px solid #ddd }
+.aui-scheduler-view-table-colgrid { border-left: 1px solid #ddd }
 
-.aui-scheduler-view-month-colgrid-first { border-left: 0 none }
+.aui-scheduler-view-table-colgrid-first { border-left: 0 none }
 
-.aui-scheduler-view-month-table-data {
+.aui-scheduler-view-table-data {
     width: 100%;
     table-layout: fixed;
     position: relative;
 }
 
-.aui-scheduler-view-month-table-data-col {
+.aui-scheduler-view-table-data-col {
     border-left: 0 none;
     padding: 1px 2px 0;
 }
 
-.aui-scheduler-view-month-table-data-col-title.aui-scheduler-view-month-table-data-col-nomonth {
-    background-color: #fff;
-    color: #aaa;
-}
-
-.aui-scheduler-view-month-table-data-col .aui-scheduler-event {
+.aui-scheduler-view-table-data-col .aui-scheduler-event {
     height: auto;
     position: relative;
     width: auto;
 }
 
-.aui-scheduler-view-month-table-data-col .aui-scheduler-event-content {
+.aui-scheduler-view-table-data-col .aui-scheduler-event-content {
     display: inline;
 }
 
-.aui-scheduler-view-month-table-data-first .aui-scheduler-view-month-table-data-col-title { border-top: 0 }
+.aui-scheduler-view-table-data-first .aui-scheduler-view-table-data-col-title { border-top: 0 }
 
-.aui-scheduler-view-month-table-data-col-title {
+.aui-scheduler-view-table-data-col-title {
     background-color: #F8F9FF;
     color: #666;
     line-height: 16px;
@@ -160,24 +155,24 @@
     border-top: 1px solid #ddd;
 }
 
-.aui-scheduler-view-month-table-data-col-title-down { border-top: 1px solid #FAD163 }
+.aui-scheduler-view-table-data-col-title-down { border-top: 1px solid #FAD163 }
 
-.aui-scheduler-view-month-colgrid-next,
-.aui-scheduler-view-month-table-data-col-title-first,
-.aui-scheduler-view-month-table-data-col-title-next { border-left: 0 }
+.aui-scheduler-view-table-colgrid-next,
+.aui-scheduler-view-table-data-col-title-first,
+.aui-scheduler-view-table-data-col-title-next { border-left: 0 }
 
-.aui-scheduler-view-month-colgrid-today {
+.aui-scheduler-view-table-colgrid-today {
     background-color: #FFF7D7;
     border-left: 1px solid #FAD163;
     border-right: 1px solid #FAD163;
 }
 
-.aui-scheduler-view-month-table-data-col-title-today {
+.aui-scheduler-view-table-data-col-title-today {
     background: #FAD163;
     border: 1px solid #FAD163;
 }
 
-.aui-scheduler-view-month-table-data-event {
+.aui-scheduler-view-table-data-event {
     color: #1D1D1D;
     cursor: pointer;
     margin-bottom: 1px;
@@ -186,30 +181,30 @@
     white-space: nowrap;
 }
 
-.aui-scheduler-view-month-table-data-event .aui-icon {
+.aui-scheduler-view-table-data-event .aui-icon {
     z-index: 500;
 }
 
-.aui-scheduler-view-month-table-data-event.aui-scheduler-view-month-table-data-event-left .aui-scheduler-event {
+.aui-scheduler-view-table-data-event.aui-scheduler-view-table-data-event-left .aui-scheduler-event {
     padding-left: 12px;
 }
 
-.aui-scheduler-view-month-table-data-event .aui-scheduler-event-content {
+.aui-scheduler-view-table-data-event .aui-scheduler-event-content {
     font-size: 11px;
 }
 
-.aui-scheduler-view-month-table-data-event-repeated {
+.aui-scheduler-view-table-data-event-repeated {
     background-color: transparent;
     color: #D96666;
 }
 
-.aui-scheduler-view-month-table-data-event .aui-icon-arrowstop-1-l {
+.aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-l {
     left: 0;
     position: absolute;
     top: 0;
 }
 
-.aui-scheduler-view-month-table-data-event .aui-icon-arrowstop-1-r {
+.aui-scheduler-view-table-data-event .aui-icon-arrowstop-1-r {
     position: absolute;
     right: 0;
     top: 0;
