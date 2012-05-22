@@ -43,6 +43,7 @@ var Lang = A.Lang,
 	ICON = 'icon',
 	ICONS = 'icons',
 	ID = 'id',
+	INHERIT = 'inherit',
 	ISO_TIME = 'isoTime',
 	LOCALE = 'locale',
 	NEVER = 'never',
@@ -86,6 +87,11 @@ var SchedulerEvent = A.Component.create({
 	NAME: SCHEDULER_EVENT,
 
 	ATTRS: {
+		allDay: {
+			setter: A.DataType.Boolean.parse,
+			value: false
+		},
+
 		borderStyle: {
 			value: 'solid',
 			validator: isString
@@ -463,7 +469,8 @@ var SchedulerEvent = A.Component.create({
 					borderWidth: instance.get(BORDER_WIDTH),
 					borderColor: borderColor,
 					backgroundColor: instance.get(COLOR),
-					borderStyle: instance.get(BORDER_STYLE)
+					borderStyle: instance.get(BORDER_STYLE),
+					color: INHERIT
 				};
 
 				node.setStyles(styles);

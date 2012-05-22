@@ -1,9 +1,10 @@
 .aui-scheduler-view-day-hidden,
+.aui-scheduler-view-month-hidden,
+.aui-scheduler-view-table-hidden,
 .aui-scheduler-view-week-hidden,
-.aui-scheduler-view-year-hidden,
-.aui-scheduler-view-month-hidden { display: none }
+.aui-scheduler-view-year-hidden { display: none }
 
-.aui-scheduler-view-table {
+.aui-scheduler-view-day-table {
     border: 0;
     clear: both;
     margin-top: -1px;
@@ -12,28 +13,28 @@
     height: 1251px;
 }
 
-.aui-scheduler-view-table-col {
+.aui-scheduler-view-day-table-col {
     border-left: 1px solid #ddd;
     vertical-align: top;
     padding: 0;
 }
 
-.aui-scheduler-view-table-col-shim {
+.aui-scheduler-view-day-table-col-shim {
     height: 1248px;
     margin-bottom: -1248px;
     position: relative;
 }
 
-.aui-scheduler-view-table-colblank { width: 60px }
+.aui-scheduler-view-day-table-colblank { width: 60px }
 
-.aui-scheduler-view-table-coltime {
+.aui-scheduler-view-day-table-coltime {
     border-left: 0;
     color: #555;
     text-align: right;
     width: 60px;
 }
 
-.aui-scheduler-view-table-time {
+.aui-scheduler-view-day-table-time {
     height: 52px;
     border-top: 1px solid #ddd;
     margin-top: -1px;
@@ -124,10 +125,43 @@
 
 .aui-scheduler-view-day-header-day { text-align: center }
 
+.aui-scheduler-view-day-header-view-label {
+    margin: 0 1px;
+    position: absolute;
+    text-align: right;
+    top: 26px;
+    width: 60px;
+}
+
 .aui-scheduler-view-day { background: #fff }
-.aui-scheduler-view-month-lasso {
+.aui-scheduler-view-table-lasso {
     background: #000;
     filter: alpha(opacity=4);
     opacity: 0.04;
     position: absolute;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table {
+    margin: 5px 15px 5px 62px;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .yui3-widget-hd {
+    display: none;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col {
+    padding-top: 4px;
+}
+
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-data-col-title {
+    display: none;
+}
+.aui-scheduler-view-day .aui-scheduler-view-table .aui-scheduler-view-table-grid {
+    border: 1px solid #DDDDDD;
+    border-left: none;
+}
+
+.aui-scheduler-view-month-table-data-col-nomonth {
+    background-color: #fff;
+    color: #aaa;
 }
