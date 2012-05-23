@@ -1464,21 +1464,6 @@ var Lang = A.Lang,
 		return Math.min(Math.max(value, min), max);
 	};
 
-A.DataTable.prototype.getColumn = (function (original) {
-	return function (seed) {
-		var cell;
-
-		if (A.instanceOf(seed, A.Node)) {
-			cell = this.getCell(seed);
-
-			seed = cell && (cell.get('className').match(
-				new RegExp(this.getClassName('col', '(\\w+)'))) || [])[1];
-		}
-
-		return original.call(this, seed);
-	};
-}(A.DataTable.prototype.getColumn));
-
 var DataTableSelection = function () {};
 
 DataTableSelection.ATTRS = {
@@ -1699,6 +1684,21 @@ A.mix(DataTableSelection.prototype, {
 A.DataTable.Selection = DataTableSelection;
 
 A.Base.mix(A.DataTable, [ DataTableSelection ]);
+
+A.DataTable.prototype.getColumn = (function (original) {
+	return function (seed) {
+		var cell;
+
+		if (A.instanceOf(seed, A.Node)) {
+			cell = this.getCell(seed);
+
+			seed = cell && (cell.get('className').match(
+				new RegExp(this.getClassName('col', '(\\w+)'))) || [])[1];
+		}
+
+		return original.call(this, seed);
+	};
+}(A.DataTable.prototype.getColumn));
 
 }, '@VERSION@' ,{skinnable:true, requires:['datatable-base']});
 
