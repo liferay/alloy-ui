@@ -792,12 +792,14 @@ A.mix(A.DataType.DateMath, {
 		var minutes = date.getMinutes();
 		var isPM = false;
 
-		if (hours > 12) {
+		if (hours >= 12) {
 			isPM = true;
-			hours -= 12;
-		}
 
-		if (hours === 0) {
+			if (hours > 12) {
+				hours -= 12;
+			}
+		}
+		else if (hours === 0) {
 			hours = 12;
 		}
 
