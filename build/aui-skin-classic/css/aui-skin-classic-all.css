@@ -192,7 +192,8 @@ hr, .separator {
 	/*Webkit and IE7 let clipped content change the scroll height of the page*/
 	/*Scale webkit to 0*/
 	-webkit-transform: scale(0);
-	-webkit-transform-origin: 0 0;
+	-webkit-transform-origin-x: 0px;
+	-webkit-transform-origin-y: 0px;
 	/*Change IE7 to using fixed*/
 	*position: fixed !important;
 	/*...And reset back to absolute for IE6*/
@@ -1623,7 +1624,7 @@ body {
 }
 /*
 Add your classname to the list below in order to have your element
-recieve a gracefully degrading chrome enhancement such as a drop 
+recieve a gracefully degrading chrome enhancement such as a drop
 shadow or rounded corners.
 */
 
@@ -1761,6 +1762,16 @@ shadow or rounded corners.
 	-moz-border-radius-bottomright: 4px;
 	-webkit-border-bottom-right-radius: 4px;
 	border-bottom-right-radius: 4px;
+}
+
+/* Animating background color */
+
+.aui-image-cropper-overlay {
+	-moz-transition: background-color 0.3s ease-out;
+	-ms-transition: background-color 0.3s ease-out;
+	-o-transition: background-color 0.3s ease-out;
+	-webkit-transition: background-color 0.3s ease-out;
+	transition: background-color 0.3s ease-out;
 }
 a {
 	color: #5b677d;
