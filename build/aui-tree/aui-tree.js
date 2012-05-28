@@ -787,7 +787,7 @@ var TreeData = A.Component.create(
 						// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 						// this is required on the render phase of the TreeNode (_createNodeContainer)
 						// to propagate the events callback (appendChild/expand)
-						if (!isTreeNode(instance)) {
+						if (isTreeNode(instance)) {
 							node.set(OWNER_TREE, instance);
 						}
 
@@ -809,7 +809,7 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
@@ -2624,7 +2624,7 @@ A.TreeNode.nodeTypes = {
 	io: A.TreeNodeIO
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-tree-data','aui-io','json','querystring-stringify']});
+}, '@VERSION@' ,{requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false});
 AUI.add('aui-tree-view', function(A) {
 /**
  * The TreeView Utility
@@ -3609,5 +3609,5 @@ A.TreeViewDD = TreeViewDD;
 }, '@VERSION@' ,{skinnable:true, requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy']});
 
 
-AUI.add('aui-tree', function(A){}, '@VERSION@' ,{use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true});
+AUI.add('aui-tree', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view']});
 

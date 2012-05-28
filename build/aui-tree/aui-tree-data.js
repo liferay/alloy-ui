@@ -787,7 +787,7 @@ var TreeData = A.Component.create(
 						// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
 						// this is required on the render phase of the TreeNode (_createNodeContainer)
 						// to propagate the events callback (appendChild/expand)
-						if (!isTreeNode(instance)) {
+						if (isTreeNode(instance)) {
 							node.set(OWNER_TREE, instance);
 						}
 
@@ -809,4 +809,4 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
