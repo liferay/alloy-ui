@@ -805,6 +805,9 @@ var TreeData = A.Component.create(
 						if (!isTreeNode(instance)) {
 							node.set(OWNER_TREE, instance);
 						}
+						else {
+							node.set(OWNER_TREE, instance.get(OWNER_TREE));
+						}
 
 						node._inheritOwnerTreeAttrs();
 						node.render();
