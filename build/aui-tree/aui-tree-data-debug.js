@@ -790,6 +790,9 @@ var TreeData = A.Component.create(
 						if (!isTreeNode(instance)) {
 							node.set(OWNER_TREE, instance);
 						}
+						else {
+							node.set(OWNER_TREE, instance.get(OWNER_TREE));
+						}
 
 						node._inheritOwnerTreeAttrs();
 						node.render();
@@ -809,4 +812,4 @@ var TreeData = A.Component.create(
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-base']});
+}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
