@@ -211,95 +211,47 @@ AUI().ready('aui-scheduler', 'aui-scheduler-calendar', function(A) {
 	});
 
 	var eduardoCalendar = new A.SchedulerCalendar({
-		events: [
-			{
-				content: 'eduardo 1',
-				startDate: new Date(2010, 9, 16)
-			},
-			{
-				startDate: new Date(2010, 9, 16, 12),
-				content: 'eduardo 2'
-			}
-		]
+
 	});
 
 	eduardoCalendar.addEvents([
-		{
-			startDate: new Date(2010, 9, 17, 12),
-			content: 'eduardo added via addEvents'
-		}
+
 	]);
 
 	var johnCalendar = new A.SchedulerCalendar({
-		events: [
-			{
-				content: 'john 1',
-				startDate: new Date(2010, 9, 15, 9),
-				endDate: new Date(2010, 9, 15, 15)
-			}
-		]
+
 	});
 
 	var events1 = [
-		eduardoCalendar,
-		johnCalendar,
-
-		new A.SchedulerEvent({
-			startDate: new Date(),
-			content: 'Event from A.SchedulerEvent'
-		}),
-
 		{
-			content: 'Large Event 1',
+			content: 'Event 1',
 			startDate: new Date(2010, 9, 13, 9),
 			endDate: new Date(2010, 9, 13, 12)
 		},
 
 		{
-			content: 'Very Large Event',
-			startDate: new Date(2010, 9, 1, 9),
-			endDate: new Date(2010, 9, 15, 23)
+			content: 'Event 2',
+			startDate: new Date(2010, 9, 13, 9),
+			endDate: new Date(2010, 9, 13, 12)
 		},
 
 		{
-			startDate: new Date(2010, 9, 12, 6),
-			endDate: new Date(2010, 9, 12, 7),
-			content: 'Simple JSON event',
-			// repeat: 'tuesThurs',
-			// repeat: 'dayly',
-			// repeat: A.SchedulerEventRepeat.dayly,
+			content: 'Event 3',
+			startDate: new Date(2010, 9, 13, 9),
+			endDate: new Date(2010, 9, 13, 12)
 		},
 
 		{
-			startDate: new Date(2010, 9, 12, 20),
-			endDate: new Date(2010, 9, 13, 0),
-			content: 'Day boundary event'
+			content: 'Event 4',
+			startDate: new Date(2010, 9, 13, 9),
+			endDate: new Date(2010, 9, 13, 12)
 		},
 
 		{
-			startDate: new Date(2010, 9, 12, 21),
-			endDate: new Date(2010, 9, 13, 15),
-			content: 'Overlap event'
-		},
-
-		{
-			startDate: new Date(2010, 9, 12, 7),
-			endDate: new Date(2010, 9, 12, 9),
-			content: 'Simple JSON event'
-		},
-
-		{
-			startDate: new Date(2010, 9, 5, 0),
-			endDate: new Date(2010, 9, 6, 1),
-			content: 'Bigger than 24hrs event'
-		},
-
-		new A.SchedulerCalendar({
-			events: [
-				{ startDate: new Date(2010, 9, 11, 7), endDate: new Date(2010, 9, 11, 11), content: 'Calendar event 1' },
-				{ startDate: new Date(2010, 9, 11, 14), content: 'Calendar event 2' }
-			]
-		})
+			content: 'Large Event',
+			startDate: new Date(2010, 9, 12, 9),
+			endDate: new Date(2010, 9, 14, 12)
+		}
 	];
 
 	var view11 = new A.SchedulerDayView({
