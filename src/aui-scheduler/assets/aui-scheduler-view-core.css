@@ -165,3 +165,36 @@
     background-color: #fff;
     color: #aaa;
 }
+
+.aui-scheduler-view-table-more {
+    display: inline-block;
+    margin-left: 3px;
+    text-decoration: none;
+}
+
+.aui-scheduler-view-table-events-container {
+    -moz-border-radius: 6px;
+    -moz-box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    background-color: #FFF;
+    border-radius: 6px;
+    border: 1px solid #BBBBBB;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.3);
+    padding: 6px;
+}
+
+.aui-scheduler-view-table-events-container-close {
+    display: block;
+    margin-top: 4px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.aui-scheduler-view-table-events-container .aui-scheduler-event {
+    margin: 2px;
+}
+
+.aui-scheduler-view-table-events-container .aui-scheduler-event-content {
+    display: inline;
+}
