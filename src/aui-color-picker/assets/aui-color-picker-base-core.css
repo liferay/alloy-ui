@@ -27,11 +27,14 @@
 }
 
 .aui-colorpicker-controls .aui-field-content .aui-field-label {
+	font-size: 12px;
 	margin-top: 0;
 	width: 20%;
 }
 
 .aui-colorpicker-controls .aui-field-content .aui-field-input-text {
+	font-size: 12px;
+	padding: 1px 1px;
 	width: 60%;
 }
 
@@ -109,7 +112,7 @@
 	width: 11px;
 }
 
-.aui-colorpicker-hue-slider-content {
+.aui-colorpicker-container .aui-colorpicker-hue-slider-content {
 	display: inline;
 	position: static;
 }
