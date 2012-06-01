@@ -283,6 +283,7 @@ var PortalLayout = A.Component.create(
 							A.merge(
 								{
 									bubbleTargets: instance,
+									groups: instance.get(GROUPS),
 									node: node
 								},
 								config
