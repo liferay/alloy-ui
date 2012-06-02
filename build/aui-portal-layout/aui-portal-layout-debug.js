@@ -284,6 +284,7 @@ var PortalLayout = A.Component.create(
 							A.merge(
 								{
 									bubbleTargets: instance,
+									groups: instance.get(GROUPS),
 									node: node
 								},
 								config
@@ -711,4 +712,4 @@ var PortalLayout = A.Component.create(
 
 A.PortalLayout = PortalLayout;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy']});
+}, '@VERSION@' ,{requires:['aui-base','dd-drag','dd-delegate','dd-drop','dd-proxy'], skinnable:true});
