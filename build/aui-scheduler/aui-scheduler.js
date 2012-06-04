@@ -773,7 +773,8 @@ var Lang = A.Lang,
 	EVENT_RECORDER = 'eventRecorder',
 	EVENT_WIDTH = 'eventWidth',
 	EVENTS = 'events',
-	EVENTS_CONTAINER = 'eventsContainer',
+	EVENTS_OVERLAY = 'eventsOverlay',
+	EVENTS_OVERLAY_NODE = 'eventsOverlayNode',
 	FILTER_FN = 'filterFn',
 	FIRST = 'first',
 	FIRST_DAY_OF_WEEK = 'firstDayOfWeek',
@@ -851,10 +852,10 @@ var Lang = A.Lang,
 	TABLE_ROWS = 'tableRows',
 	TBODY = 'tbody',
 	TD = 'td',
-	TL = 'tl',
 	TIME = 'time',
 	TIMES_NODE = 'timesNode',
 	TITLE = 'title',
+	TL = 'tl',
 	TODAY = 'today',
 	TOP = 'top',
 	TR = 'tr',
@@ -2168,9 +2169,9 @@ var CSS_ICON = getCN(ICON),
 	CSS_SVT_COLGRID_FIRST = getCN(SCHEDULER_VIEW, TABLE, COLGRID, FIRST),
 	CSS_SVT_COLGRID_TODAY = getCN(SCHEDULER_VIEW, TABLE, COLGRID, TODAY),
 	CSS_SVT_CONTAINER = getCN(SCHEDULER_VIEW, TABLE, CONTAINER),
-	CSS_SVT_EVENTS_CONTAINER = getCN(SCHEDULER_VIEW, TABLE, EVENTS, CONTAINER),
-	CSS_SVT_EVENTS_CONTAINER_BODY = getCN(SCHEDULER_VIEW, TABLE, EVENTS, CONTAINER, BODY),
-	CSS_SVT_EVENTS_CONTAINER_CLOSE = getCN(SCHEDULER_VIEW, TABLE, EVENTS, CONTAINER, CLOSE),
+	CSS_SVT_EVENTS_OVERLAY_NODE = getCN(SCHEDULER_VIEW, TABLE, EVENTS, OVERLAY, NODE),
+	CSS_SVT_EVENTS_OVERLAY_NODE_BODY = getCN(SCHEDULER_VIEW, TABLE, EVENTS, OVERLAY, NODE, BODY),
+	CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE = getCN(SCHEDULER_VIEW, TABLE, EVENTS, OVERLAY, NODE, CLOSE),
 	CSS_SVT_HEADER_COL = getCN(SCHEDULER_VIEW, TABLE, HEADER, COL),
 	CSS_SVT_HEADER_DAY = getCN(SCHEDULER_VIEW, TABLE, HEADER, DAY),
 	CSS_SVT_HEADER_TABLE = getCN(SCHEDULER_VIEW, TABLE, HEADER, TABLE),
@@ -2197,10 +2198,10 @@ var CSS_ICON = getCN(ICON),
 							'<div class="' + CSS_SVT_ROW_CONTAINER + '"></div>' +
 						'</div>',
 
-	TPL_SVT_EVENTS_CONTAINER =  '<div class="' + CSS_SVT_EVENTS_CONTAINER + '">' +
-									'<div class="' + CSS_SVT_EVENTS_CONTAINER_BODY + '"></div>' +
-									'<a href="javascript:;" class="' + CSS_SVT_EVENTS_CONTAINER_CLOSE + '">{label}</a>' +
-								'</div>',
+	TPL_SVT_EVENTS_OVERLAY_NODE =  '<div class="' + CSS_SVT_EVENTS_OVERLAY_NODE + '">' +
+										'<div class="' + CSS_SVT_EVENTS_OVERLAY_NODE_BODY + '"></div>' +
+										'<a href="javascript:;" class="' + CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE + '">{label}</a>' +
+									'</div>',
 
 	TPL_SVT_GRID_COLUMN = '<td class="' + CSS_SVT_COLGRID + '">&nbsp;</td>',
 
@@ -2272,8 +2273,8 @@ var SchedulerTableView = A.Component.create({
 
 		strings: {
 			value: {
-				'close': 'Close',
-				'showMore': 'Show more'
+				close: 'Close',
+				showMore: 'Show more'
 			}
 		},
 
@@ -2316,7 +2317,6 @@ var SchedulerTableView = A.Component.create({
 
 		initializer: function() {
 			var instance = this;
-			var strings = instance.get(STRINGS);
 
 			instance.evtDateStack = {};
 			instance.evtDataTableStack = {};
@@ -2325,20 +2325,10 @@ var SchedulerTableView = A.Component.create({
 			instance[HEADER_TABLE_NODE] = instance.get(HEADER_TABLE_NODE);
 			instance[ROWS_CONTAINER_NODE] = instance.get(ROWS_CONTAINER_NODE);
 			instance[TABLE_GRID_NODE] = instance.get(TABLE_GRID_NODE);
-
 			instance[COLUMN_DAY_HEADER] = instance.headerTableNode.one(DOT+CSS_SVT_HEADER_COL);
 			instance[COLUMN_TABLE_GRID] = A.NodeList.create();
 			instance[TABLE_ROW_CONTAINER] = instance[ROWS_CONTAINER_NODE].one(DOT+CSS_SVT_ROW_CONTAINER);
 			instance[TABLE_ROWS] = A.NodeList.create();
-
-			instance[EVENTS_CONTAINER] = A.Node.create(
-				Lang.sub(
-					TPL_SVT_EVENTS_CONTAINER,
-					{
-						label: strings[CLOSE]
-					}
-				)
-			);
 		},
 
 		bindUI: function() {
@@ -2356,7 +2346,6 @@ var SchedulerTableView = A.Component.create({
 				mouseup: A.bind(instance._onMouseUpGrid, instance)
 			});
 
-			instance[EVENTS_CONTAINER].delegate('click', A.bind(instance._hideEventsOverlay, instance), DOT+CSS_SVT_EVENTS_CONTAINER_CLOSE);
 			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), DOT+CSS_SVT_MORE);
 		},
 
@@ -2388,15 +2377,7 @@ var SchedulerTableView = A.Component.create({
 				instance[TABLE_ROWS].push(rowNode);
 			}
 
-			instance[OVERLAY] = new A.Overlay({
-				align: {
-					points: [ TL, TL ]
-				},
-				bodyContent: instance[EVENTS_CONTAINER],
-				visible: false,
-				width: 250,
-				zIndex: 400
-			});
+			instance._renderEventsOverlay();
 
 			instance[COL_HEADER_DAYS_NODE].appendTo(instance[COLUMN_DAY_HEADER]);
 			instance[TABLE_ROWS].appendTo(instance[TABLE_ROW_CONTAINER]);
@@ -2455,92 +2436,94 @@ var SchedulerTableView = A.Component.create({
 
 				tBody.append(firstRowNode);
 
-				var r;
+				var row;
 
-				for (r = 0; r < displayRows; r++) {
+				for (row = 0; row < displayRows; row++) {
 					var renderIndex = 0;
 					var rowNode = A.Node.create(TPL_SVT_TABLE_DATA_ROW);
 
 					instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
-						if (renderIndex <= index) {
-							var events = instance.getIntersectEvents(celDate), evt = events[r];
-							var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
+						if (renderIndex > index) {
+							return;
+						}
 
-							if ((r === displayRows - 1) && (events.length > displayRows)) {
-								var moreLink = A.Node.create(
-									Lang.sub(
-										TPL_SVT_MORE,
-										{
-											count: (events.length - (displayRows - 1)),
-											label: strings[SHOW_MORE]
-										}
-									)
-								);
+						var events = instance.getIntersectEvents(celDate);
+						var evt = events[row];
+						var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
+						var evtNodeContainer = evtColNode.one(DIV);
 
-								moreLink.setData(EVENTS, events);
-
-								evtColNode.append(moreLink);
-							}
-							else if (evt && filterFn.apply(instance, [evt])) {
-								var startDate = evt.get(START_DATE);
-
-								var isEventStartDateDay = !DateMath.isDayOverlap(startDate, celDate);
-								var isEventDateContinuation = DateMath.after(celDate, startDate) && !DateMath.isDayOverlap(celDate, rowStartDate);
-
-								if (isEventStartDateDay || isEventDateContinuation) {
-									var evtNodeList = evt.get(NODE);
-
-									var startDateFirstDayOfWeek = DateMath.getFirstDayOfWeek(new Date(Math.max(startDate, intervalStartDate)));
-									var paddingIndex = Math.floor(DateMath.getDayOffset(celDate, startDateFirstDayOfWeek) / WEEK_LENGTH);
-
-									if (evtNodeList.size() <= paddingIndex) {
-										evt.addPaddingNode();
+						if ((displayRows < events.length) && (row === (displayRows - 1))) {
+							var moreLink = A.Node.create(
+								Lang.sub(
+									TPL_SVT_MORE,
+									{
+										count: (events.length - (displayRows - 1)),
+										label: strings[SHOW_MORE]
 									}
+								)
+							);
 
-									var evtNode = evtNodeList.item(paddingIndex);
+							moreLink.setData(EVENTS, events);
 
-									evtNode.setStyles({
-										height: 'auto',
-										left: 0,
-										top: 0,
-										width: 'auto'
-									});
+							evtNodeContainer.append(moreLink);
+						}
+						else if (evt && filterFn.apply(instance, [evt])) {
+							var startDate = evt.get(START_DATE);
 
-									evt.syncNodeUI();
+							var isEventStartDateDay = !DateMath.isDayOverlap(startDate, celDate);
+							var isEventDateContinuation = DateMath.after(celDate, startDate) && !DateMath.isDayOverlap(celDate, rowStartDate);
 
-									var evtNodeContainer = evtColNode.one(DIV);
+							if (isEventStartDateDay || isEventDateContinuation) {
+								var evtNodeList = evt.get(NODE);
 
-									evtNode.appendTo(evtNodeContainer);
+								var startDateFirstDayOfWeek = DateMath.getFirstDayOfWeek(new Date(Math.max(startDate, intervalStartDate)));
+								var paddingIndex = Math.floor(DateMath.getDayOffset(celDate, startDateFirstDayOfWeek) / WEEK_LENGTH);
 
-									var splitInfo = instance._getEvtSplitInfo(evt, celDate, rowStartDate, rowEndDate);
-
-									evtColNode.attr(COLSPAN, splitInfo.colspan);
-									evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT);
-
-									if (splitInfo.left) {
-										evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_LEFT).prepend(TPL_SVT_EV_ICON_LEFT);
-									}
-
-									if (splitInfo.right) {
-										evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_RIGHT).append(TPL_SVT_EV_ICON_RIGHT);
-									}
-
-									if (evt.get(PARENT_EVENT)) {
-										evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_REPEATED);
-									}
-
-									renderIndex += splitInfo.colspan;
+								if (evtNodeList.size() <= paddingIndex) {
+									evt.addPaddingNode();
 								}
-								else {
-									renderIndex++;
+
+								var evtNode = evtNodeList.item(paddingIndex);
+
+								evtNode.setStyles({
+									height: 'auto',
+									left: 0,
+									top: 0,
+									width: 'auto'
+								});
+
+								evt.syncNodeUI();
+
+								evtNode.appendTo(evtNodeContainer);
+
+								var splitInfo = instance._getEvtSplitInfo(evt, celDate, rowStartDate, rowEndDate);
+
+								evtColNode.attr(COLSPAN, splitInfo.colspan);
+								evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT);
+
+								if (splitInfo.left) {
+									evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_LEFT).prepend(TPL_SVT_EV_ICON_LEFT);
 								}
+
+								if (splitInfo.right) {
+									evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_RIGHT).append(TPL_SVT_EV_ICON_RIGHT);
+								}
+
+								if (evt.get(PARENT_EVENT)) {
+									evtNodeContainer.addClass(CSS_SVT_TABLE_DATA_EVENT_REPEATED);
+								}
+
+								renderIndex += splitInfo.colspan;
 							}
 							else {
 								renderIndex++;
 							}
-
-							rowNode.append(evtColNode);
 						}
+						else {
+							renderIndex++;
+						}
+
+						rowNode.append(evtColNode);
 					});
 
 					tBody.append(rowNode);
@@ -2594,6 +2577,12 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.subtract(currentDate, DateMath.DAY, displayDaysInterval);
 		},
 
+		hideEventsOverlay: function() {
+			var instance = this;
+
+			instance[EVENTS_OVERLAY].set(VISIBLE, false);
+		},
+
 		loopDates: function(startDate, endDate, fn, incrementBy, factor) {
 			var instance = this;
 			var curDate = DateMath.clone(startDate);
@@ -2612,7 +2601,8 @@ var SchedulerTableView = A.Component.create({
 			var startDateRef = DateMath.safeClearTime(intervalStartDate);
 
 			instance.flushViewCache();
-			instance._hideEventsOverlay();
+
+			instance.hideEventsOverlay();
 
 			instance.bodyNode.all(DOT+CSS_SVT_TABLE_DATA).remove();
 
@@ -2826,12 +2816,6 @@ var SchedulerTableView = A.Component.create({
 			return tableGridNode;
 		},
 
-		_hideEventsOverlay: function() {
-			var instance = this;
-
-			instance[OVERLAY].set(VISIBLE, false);
-		},
-
 		_offsetXY: function(xy, sign) {
 			var instance = this;
 			var offsetXY = instance[ROWS_CONTAINER_NODE].getXY();
@@ -2844,7 +2828,6 @@ var SchedulerTableView = A.Component.create({
 
 			var target = event.target;
 			var events = target.getData(EVENTS);
-
 			var eventsNodeList = A.NodeList.create();
 
 			A.Array.each(events, function(evt) {
@@ -2863,11 +2846,9 @@ var SchedulerTableView = A.Component.create({
 				eventsNodeList.push(evtNode);
 			});
 
-			instance[EVENTS_CONTAINER].one(DOT+CSS_SVT_EVENTS_CONTAINER_BODY).setContent(eventsNodeList);
+			instance[EVENTS_OVERLAY].bodyNode.one(DOT+CSS_SVT_EVENTS_OVERLAY_NODE_BODY).setContent(eventsNodeList);
 
-			instance[OVERLAY].render(instance[ROWS_CONTAINER_NODE]);
-
-			instance[OVERLAY].setAttrs({
+			instance[EVENTS_OVERLAY].setAttrs({
 				visible: true,
 				xy: target.getXY()
 			});
@@ -2936,7 +2917,7 @@ var SchedulerTableView = A.Component.create({
 
 				recorder.showOverlay([event.pageX, event.pageY]);
 
-				instance._hideEventsOverlay();
+				instance.hideEventsOverlay();
 
 				instance._recording = false;
 			}
@@ -2949,6 +2930,29 @@ var SchedulerTableView = A.Component.create({
 			var j = Math.floor(xy[1] / instance.gridCellHeight);
 
 			return [i, j];
+		},
+
+		_renderEventsOverlay: function() {
+			var instance = this;
+			var strings = instance.get(STRINGS);
+
+			instance[EVENTS_OVERLAY] = new A.Overlay({
+				align: {
+					points: [ TL, TL ]
+				},
+				bodyContent: Lang.sub(
+					TPL_SVT_EVENTS_OVERLAY_NODE,
+					{
+						label: strings[CLOSE]
+					}
+				),
+				render: instance[ROWS_CONTAINER_NODE],
+				visible: false,
+				width: 250,
+				zIndex: 450
+			});
+
+			instance[EVENTS_OVERLAY].bodyNode.delegate('click', A.bind(instance.hideEventsOverlay, instance), DOT+CSS_SVT_EVENTS_OVERLAY_NODE_CLOSE);
 		},
 
 		_uiSetCurrentDate: function(val) {

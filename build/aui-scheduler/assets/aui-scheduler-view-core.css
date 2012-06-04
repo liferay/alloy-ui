@@ -172,7 +172,7 @@
     text-decoration: none;
 }
 
-.aui-scheduler-view-table-events-container {
+.aui-scheduler-view-table-events-overlay-node {
     -moz-border-radius: 6px;
     -moz-box-shadow: 0 1px 12px rgba(0,0,0,0.3);
     -webkit-border-radius: 6px;
@@ -184,17 +184,17 @@
     padding: 6px;
 }
 
-.aui-scheduler-view-table-events-container-close {
+.aui-scheduler-view-table-events-overlay-close {
     display: block;
     margin-top: 4px;
     text-align: center;
     text-decoration: none;
 }
 
-.aui-scheduler-view-table-events-container .aui-scheduler-event {
+.aui-scheduler-view-table-events-overlay-node .aui-scheduler-event {
     margin: 2px;
 }
 
-.aui-scheduler-view-table-events-container .aui-scheduler-event-content {
+.aui-scheduler-view-table-events-overlay-node .aui-scheduler-event-content {
     display: inline;
 }
