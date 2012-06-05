@@ -7,7 +7,7 @@ var Lang = A.Lang,
 	CSS_VIDEO = getClassName(NAME),
 	CSS_VIDEO_NODE = getClassName(NAME, 'node'),
 
-	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf',
+	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
 
 	DOC = A.config.doc,
 
