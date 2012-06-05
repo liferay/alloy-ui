@@ -7,7 +7,7 @@ var Lang = A.Lang,
 	CSS_VIDEO = getClassName(NAME),
 	CSS_VIDEO_NODE = getClassName(NAME, 'node'),
 
-	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf',
+	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
 
 	TPL_SOURCE_MP4 = '<source type="video/mp4;" />',
 	TPL_SOURCE_OGV = '<source type=\'video/ogg; codecs="theora, vorbis"\' />',
