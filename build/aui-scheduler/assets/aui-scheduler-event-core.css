@@ -182,7 +182,7 @@
 }
 
 .aui-scheduler-view-table-data-event .aui-icon {
-    z-index: 500;
+    z-index: 450;
 }
 
 .aui-scheduler-view-table-data-event.aui-scheduler-view-table-data-event-left .aui-scheduler-event {
