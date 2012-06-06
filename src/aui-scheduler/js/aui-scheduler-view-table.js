@@ -11,7 +11,6 @@ var CSS_ICON = getCN(ICON),
 	CSS_SVT_HEADER_COL = getCN(SCHEDULER_VIEW, TABLE, HEADER, COL),
 	CSS_SVT_HEADER_DAY = getCN(SCHEDULER_VIEW, TABLE, HEADER, DAY),
 	CSS_SVT_HEADER_TABLE = getCN(SCHEDULER_VIEW, TABLE, HEADER, TABLE),
-	CSS_SVT_LASSO = getCN(SCHEDULER_VIEW, TABLE, LASSO),
 	CSS_SVT_MORE = getCN(SCHEDULER_VIEW, TABLE, MORE),
 	CSS_SVT_ROW = getCN(SCHEDULER_VIEW, TABLE, ROW),
 	CSS_SVT_ROW_CONTAINER = getCN(SCHEDULER_VIEW, TABLE, ROW, CONTAINER),
@@ -48,8 +47,6 @@ var CSS_ICON = getCN(ICON),
 									'<tr class="' + CSS_SVT_HEADER_COL + '"></tr>' +
 								'</tbody>' +
 							'</table>',
-
-	TPL_SVT_LASSO = '<div class="' + CSS_SVT_LASSO + '"></div>',
 
 	TPL_SVT_MORE = '<a href="javascript:;" class="' + CSS_SVT_MORE + '">{label} {count}</a>',
 
@@ -171,18 +168,6 @@ var SchedulerTableView = A.Component.create({
 
 		bindUI: function() {
 			var instance = this;
-			var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
-
-			recorder.on({
-				cancel: A.bind(instance.removeLasso, instance),
-				save: A.bind(instance.removeLasso, instance)
-			});
-
-			instance[ROWS_CONTAINER_NODE].on({
-				mousedown: A.bind(instance._onMouseDownGrid, instance),
-				mousemove: A.bind(instance._onMouseMoveGrid, instance),
-				mouseup: A.bind(instance._onMouseUpGrid, instance)
-			});
 
 			instance[ROWS_CONTAINER_NODE].delegate('click', A.bind(instance._onClickMore, instance), DOT+CSS_SVT_MORE);
 		},
@@ -444,65 +429,6 @@ var SchedulerTableView = A.Component.create({
 			});
 		},
 
-		removeLasso: function() {
-			var instance = this;
-
-			if (instance.lasso) {
-				instance.lasso.remove();
-			}
-		},
-
-		renderLasso: function(startPos, endPos) {
-			var instance = this;
-
-			var minPos = startPos;
-			var maxPos = endPos;
-
-			if (startPos[1] > endPos[1]) {
-				minPos = endPos;
-				maxPos = startPos;
-			}
-
-			var imin = minPos[0], jmin = minPos[1],
-				imax = maxPos[0], jmax = maxPos[1];
-
-			instance.removeLasso();
-
-			instance.lasso = A.NodeList.create();
-
-			for (var j = jmin; j <= jmax; j++) {
-				var h = instance.gridCellHeight,
-					w = instance.gridCellWidth,
-					x = 0,
-					y = (h * j);
-
-				if (j === jmin) {
-					if (jmin === jmax) {
-						x += Math.min(imin, imax) * w;
-						w *= Math.abs(imax - imin) + 1;
-					}
-					else {
-						x += imin * w;
-						w *= WEEK_LENGTH - imin;
-					}
-				}
-				else if (j === jmax) {
-					w *= imax + 1;
-				}
-				else {
-					w *= WEEK_LENGTH;
-				}
-
-				var lassoNode = A.Node.create(TPL_SVT_LASSO);
-
-				instance.lasso.push(lassoNode);
-
-				instance[ROWS_CONTAINER_NODE].append(lassoNode);
-				lassoNode.sizeTo(w, h);
-				lassoNode.setXY(instance._offsetXY([x, y], 1));
-			}
-		},
-
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
@@ -581,12 +507,6 @@ var SchedulerTableView = A.Component.create({
 			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
 		},
 
-		_getCellIndex: function(position) {
-			var instance = this;
-
-			return position[1] * WEEK_LENGTH + position[0];
-		},
-
 		_getDisplayRowsCount: function() {
 			var instance = this;
 			var displayDaysInterval = instance.get(DISPLAY_DAYS_INTERVAL);
@@ -623,14 +543,6 @@ var SchedulerTableView = A.Component.create({
 			};
 
 			return info;
-		},
-
-		_getPositionDate: function(position) {
-			var instance = this;
-			var intervalStartDate = instance._findCurrentIntervalStart();
-			var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
-
-			return DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
 		},
 
 		_getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
@@ -679,13 +591,6 @@ var SchedulerTableView = A.Component.create({
 			return tableGridNode;
 		},
 
-		_offsetXY: function(xy, sign) {
-			var instance = this;
-			var offsetXY = instance[ROWS_CONTAINER_NODE].getXY();
-
-			return [ xy[0] + offsetXY[0]*sign, xy[1] + offsetXY[1]*sign ];
-		},
-
 		_onClickMore: function(event) {
 			var instance = this;
 
@@ -715,83 +620,6 @@ var SchedulerTableView = A.Component.create({
 				visible: true,
 				xy: target.getXY()
 			});
-		},
-
-		_onMouseDownGrid: function(event) {
-			var instance = this;
-			var target = event.target;
-
-			if (target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join(COMMA))) {
-				instance._recording = true;
-
-				var displayRowsCount = instance._getDisplayRowsCount();
-				var displayRowDaysCount = instance._getDisplayRowDaysCount();
-
-				instance.gridCellHeight = instance[ROWS_CONTAINER_NODE].get(OFFSET_HEIGHT) / displayRowsCount;
-				instance.gridCellWidth = instance[ROWS_CONTAINER_NODE].get(OFFSET_WIDTH) / displayRowDaysCount;
-
-				var eventXY = instance._offsetXY([event.pageX, event.pageY], -1);
-
-				instance.lassoStartPosition = instance.lassoLastPosition = instance._findPosition(eventXY);
-
-				instance.renderLasso(instance.lassoStartPosition, instance.lassoLastPosition);
-
-				instance[ROWS_CONTAINER_NODE].unselectable();
-			}
-		},
-
-		_onMouseMoveGrid: function(event) {
-			var instance = this;
-			var target = event.currentTarget;
-
-			var eventXY = instance._offsetXY([event.pageX, event.pageY], -1);
-			var lassoLastPosition = instance.lassoLastPosition || instance.lassoStartPosition;
-			var position = instance._findPosition(eventXY);
-			var changed = lassoLastPosition &&
-							((position[0] !== lassoLastPosition[0]) ||
-								(position[1] !== lassoLastPosition[1]));
-
-			if (changed && instance._recording) {
-				instance.lassoLastPosition = position;
-
-				instance.renderLasso(instance.lassoStartPosition, position);
-			}
-		},
-
-		_onMouseUpGrid: function(event) {
-			var instance = this;
-			var scheduler = instance.get(SCHEDULER);
-			var recorder = scheduler.get(EVENT_RECORDER);
-
-			if (recorder && instance._recording && !scheduler.get(DISABLED)) {
-				var startPositionDate = instance._getPositionDate(instance.lassoStartPosition);
-				var endPositionDate = instance._getPositionDate(instance.lassoLastPosition);
-
-				var startDate = new Date(Math.min(startPositionDate, endPositionDate));
-				startDate.setHours(0, 0, 0);
-
-				var endDate = new Date(Math.max(startPositionDate, endPositionDate));
-				endDate.setHours(23, 59, 59);
-
-				recorder.set(ALL_DAY, true);
-				recorder.set(END_DATE, endDate);
-				recorder.set(START_DATE, startDate);
-
-				recorder.showOverlay([event.pageX, event.pageY]);
-
-				instance.hideEventsOverlay();
-
-				instance._recording = false;
-			}
-		},
-
-		_findPosition: function(xy) {
-			var instance = this;
-
-			var i = Math.floor(xy[0] / instance.gridCellWidth);
-			var j = Math.floor(xy[1] / instance.gridCellHeight);
-
-			return [i, j];
 		},
 
 		_renderEventsOverlay: function() {
