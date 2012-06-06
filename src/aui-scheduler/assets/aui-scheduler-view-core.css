@@ -198,3 +198,14 @@
 .aui-scheduler-view-table-events-overlay-node .aui-scheduler-event-content {
     display: inline;
 }
+
+.aui-scheduler-view-table-dragging .aui-scheduler-view-table-data-event-left .aui-icon,
+.aui-scheduler-view-table-dragging .aui-scheduler-view-table-data-event-right .aui-icon {
+    display: none;
+}
+
+.aui-scheduler-view-table-proxy-node {
+    border: 1px solid;
+    font-size: 11px;
+    padding: 0 2px;
+}
