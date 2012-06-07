@@ -749,7 +749,7 @@ var FormValidator = A.Component.create({
 
 				var defaultRulesJoin = defaultRulesKeys.join('|');
 
-				var regex = getRegExp('aui-field-' + defaultRulesJoin, 'g');
+				var regex = getRegExp('aui-field-(' + defaultRulesJoin + ')', 'g');
 
 				var formEl = form.getDOM();
 				var inputs = formEl.elements;
