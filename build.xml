@@ -731,6 +731,32 @@
 		<antcall target="create-release" />
 	</target>
 
+	<target name="deploy" depends="release">
+		<if>
+			<isset property="portal.src.directory" />
+			<then>
+				<copy todir="${portal.src.directory}/portal-web/third-party" overwrite="true">
+					<fileset dir="${project.dir}">
+						<include name="${release.file.name}"/>
+					</fileset>
+				</copy>
+
+				<subant target="build-alloy">
+					<fileset
+						dir="${portal.src.directory}/portal-web"
+						includes="build.xml"
+					/>
+				</subant>
+			</then>
+			<else>
+				<echo>
+					Please add the following property to your build.${user.name}.properties file:
+					portal.src.directory=/path/to/liferay-portal
+				 </echo>
+			</else>
+		</if>
+	</target>
+
 	<target name="release" depends="release-minimal,clean-release" />
 
 	<target name="remove-whitespace">
