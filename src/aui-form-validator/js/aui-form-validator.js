@@ -810,7 +810,7 @@ var FormValidator = A.Component.create({
 
 					className.replace(regex, ruleMatcher);
 
-					if (ruleNameMatch) {
+					if (ruleNameMatch.length) {
 						var fieldRules = rules[fieldName];
 
 						if (!fieldRules) {
