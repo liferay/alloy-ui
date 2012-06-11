@@ -792,10 +792,16 @@ var FormValidator = A.Component.create({
 
 				var defaultRulesJoin = defaultRulesKeys.join('|');
 
-				var regex = getRegExp('aui-field-' + defaultRulesJoin, 'g');
+				var regex = getRegExp('aui-field-(' + defaultRulesJoin + ')', 'g');
 
 				var formEl = form.getDOM();
 				var inputs = formEl.elements;
+
+				var ruleNameMatch = [];
+
+				var ruleMatcher = function(m1, m2) {
+					ruleNameMatch.push(m2);
+				};
 
 				for (var i = 0, length = inputs.length; i < length; i++) {
 					var el = inputs[i];
@@ -803,20 +809,26 @@ var FormValidator = A.Component.create({
 					var className = el.className;
 					var fieldName = el.name;
 
-					var ruleNameMatch = className.match(regex);
+					className.replace(regex, ruleMatcher);
 
-					if (ruleNameMatch) {
-						if (!rules[fieldName]) {
-							rules[fieldName] = {};
+					if (ruleNameMatch.length) {
+						var fieldRules = rules[fieldName];
+
+						if (!fieldRules) {
+							fieldRules = {};
+
+							rules[fieldName] = fieldRules;
 						}
 
 						for (var j = 0, ruleNameLength = ruleNameMatch.length; j < ruleNameLength; j ++) {
 							var rule = ruleNameMatch[j];
 
-							if (!(rules[fieldName][rule] in ruleNameMatch)) {
-								rules[fieldName][rule] = true;
+							if (!(rule in fieldRules)) {
+								fieldRules[rule] = true;
 							}
 						}
+
+						ruleNameMatch.length = 0;
 					}
 				}
 			}

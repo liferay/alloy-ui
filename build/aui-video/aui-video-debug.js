@@ -8,7 +8,7 @@ var Lang = A.Lang,
 	CSS_VIDEO = getClassName(NAME),
 	CSS_VIDEO_NODE = getClassName(NAME, 'node'),
 
-	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf',
+	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
 
 	DOC = A.config.doc,
 
@@ -265,4 +265,4 @@ var Video = A.Component.create(
 
 A.Video = Video;
 
-}, '@VERSION@' ,{requires:['aui-base','querystring-stringify-simple'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-base','querystring-stringify-simple']});
