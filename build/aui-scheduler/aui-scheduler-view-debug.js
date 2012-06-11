@@ -2355,7 +2355,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	viewDDRenderUI: function() {
 		var instance = this;
 
-		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 	},
 
 	viewDDSyncUI: function() {
@@ -2369,8 +2368,16 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	removeLasso: function() {
 		var instance = this;
 
-		if (instance.lasso) {
-			instance.lasso.remove();
+		if (instance[LASSO]) {
+			instance[LASSO].remove();
+		}
+	},
+
+	removeProxy: function() {
+		var instance = this;
+
+		if (instance[PROXY_NODE]) {
+			instance[PROXY_NODE].remove();
 		}
 	},
 
@@ -2508,11 +2515,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
 
-			instance.removeLasso();
-
 			event.target.set(DRAG_NODE, instance.originalDragNode);
 
-			instance[PROXY_NODE].hide();
+			instance.removeLasso();
+			instance.removeProxy();
 
 			instance.get(SCHEDULER).syncEventsUI();
 		}
@@ -2550,8 +2556,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			instance.originalDragNode = event.target.get(DRAG_NODE);
 
 			event.target.set(DRAG_NODE, instance[PROXY_NODE]);
-
-			instance[PROXY_NODE].show();
 		}
 	},
 
@@ -2661,9 +2665,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
+			display: 'block',
 			width: '200px'
 		});
 
+		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 		instance[PROXY_NODE].setContent(evt.get(CONTENT));
 	}
 });
