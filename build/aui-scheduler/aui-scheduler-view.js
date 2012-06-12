@@ -2436,6 +2436,19 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 		var dd = event.target;
 
+		var bodyRegion = instance.bodyNode.get(REGION);
+
+		var mouseRegion = {
+			bottom: event.pageY,
+			left: event.pageX,
+			right: event.pageX,
+			top: event.pageY
+		};
+
+		if (!A.DOM.inRegion(null, bodyRegion, true, mouseRegion)) {
+			return;
+		}
+
 		var draggingEvent = instance[DRAGGING_EVENT];
 		var eventXY = [event.pageX, event.pageY];
 		var position = instance._findPosition(instance._offsetXY(eventXY, -1));
@@ -2443,13 +2456,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		if (draggingEvent && instance._hasLassoChanged(position)) {
 			instance.lassoLastPosition = position;
 
-			var endPosition = DateMath.add(
+			var endPositionDate = DateMath.add(
 				instance._getPositionDate(position),
 				DateMath.MINUTES,
 				draggingEvent.getMinutesDuration()
 			);
 
-			instance.renderLasso(position, instance._getDatePosition(endPosition));
+			instance.renderLasso(position, instance._getDatePosition(endPositionDate));
 		}
 	},
 
@@ -2487,7 +2500,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var intervalStartDate = instance._findCurrentIntervalStart();
 		var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
 
-		return DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
+		var date = DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
+
+		date.setHours(0, 0, 0, 0);
+
+		return date;
 	},
 
 	_hasLassoChanged: function(position) {
@@ -2537,13 +2554,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			var startPosition = instance._findPosition(instance._offsetXY(eventXY, -1));
 
-			var endPosition = DateMath.add(
+			var endPositionDate = DateMath.add(
 				instance._getPositionDate(startPosition),
 				DateMath.MINUTES,
 				draggingEvent.getMinutesDuration()
 			);
 
-			instance.renderLasso(startPosition, instance._getDatePosition(endPosition));
+			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
 			draggingEvent.set(VISIBLE, false);
 
