@@ -10,9 +10,9 @@ var Lang = A.Lang,
 
 	DEFAULT_PLAYER_PATH = A.config.base + 'aui-video/assets/player.swf?t=' + Lang.now(),
 
-	TPL_SOURCE_MP4 = '<source type="video/mp4;" />',
-	TPL_SOURCE_OGV = '<source type=\'video/ogg; codecs="theora, vorbis"\' />',
-	TPL_VIDEO = '<video id="{0}" width="100%" height="100%" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
+	DOC = A.config.doc,
+
+	TPL_VIDEO = '<video id="{0}" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
 	TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 var Video = A.Component.create(
@@ -74,6 +74,16 @@ var Video = A.Component.create(
 						fireOnce: true
 					}
 				);
+			},
+
+			_createSource: function(type) {
+				var instance = this;
+
+				var sourceNode = new A.Node(DOC.createElement('source'));
+
+				sourceNode.attr('type', type);
+
+				return sourceNode;
 			},
 
 			_renderSwf: function () {
@@ -172,7 +182,7 @@ var Video = A.Component.create(
 			_uiSetOgvUrl: function (val) {
 				var instance = this;
 
-				if (UA.gecko) {
+				if (UA.gecko || UA.opera) {
 					var video = instance._video;
 
 					var usingVideo = instance._usingVideo();
@@ -190,7 +200,7 @@ var Video = A.Component.create(
 						var sourceOgv = instance._sourceOgv;
 
 						if (!sourceOgv) {
-							sourceOgv = A.Node.create(TPL_SOURCE_OGV);
+							sourceOgv = instance._createSource('video/ogg; codecs="theora, vorbis"');
 
 							video.append(sourceOgv);
 
@@ -239,7 +249,7 @@ var Video = A.Component.create(
 				{
 					if (video || !ogvUrl) {
 						if (!sourceMp4) {
-							sourceMp4 = A.Node.create(TPL_SOURCE_MP4);
+							sourceMp4 = instance._createSource('video/mp4;');
 
 							video.append(sourceMp4);
 
