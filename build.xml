@@ -674,6 +674,97 @@
 			/>
 		</subant>
 		<!-- /End Patch for AUI-447 -->
+
+		<!-- Patch for AUI-672 -->
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[args[0] instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(args[0], Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[args[1] instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(args[1], Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[node instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(node, Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[refNode instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(refNode, Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[a instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(a, Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[b instanceof Y_Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(b, Y_Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[nodes instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(nodes, Y.Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node.js">
+			<replacetoken><![CDATA[nodes[0] instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(nodes[0], Y.Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node-region.js">
+			<replacetoken><![CDATA[node2 instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(node2, Y.Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/nodelist.js">
+			<replacetoken><![CDATA[nodes instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(nodes, Y.Node)]]></replacevalue>
+		</replace>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/nodelist.js">
+			<replacetoken><![CDATA[nodes[0] instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(nodes[0], Y.Node)]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/node"
+				includes="build.node.xml"
+			/>
+		</subant>
+
+		<replace file="${project.dir}/lib/yui3/src/node/js/node-screen.js">
+			<replacetoken><![CDATA[node2 instanceof Y.Node]]></replacetoken>
+			<replacevalue><![CDATA[Y.instanceOf(node2, Y.Node)]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/node"
+				includes="build.screen.xml"
+			/>
+		</subant>
+
+		<replace file="${project.dir}/lib/yui3/src/node-menunav/js/node-menunav.js">
+			<replacetoken><![CDATA[Y.message("Pause path");]]></replacetoken>
+			<replacevalue><![CDATA[//Y.message("Pause path");]]></replacevalue>
+		</replace>
+
+		<subant target="all" failonerror="false">
+			<property name="lint.skip" value="true"/>
+			<fileset
+				dir="${project.dir}/lib/yui3/src/node-menunav"
+				includes="build.xml"
+			/>
+		</subant>
+		<!-- /End Patch for AUI-672 -->
 	</target>
 
 	<target name="create-release">
