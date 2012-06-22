@@ -1392,7 +1392,7 @@ Y.extend(NodeMenuNav, Y.Plugin.Base, {
 	            //  submenu immediately.
 	            //  http://yuilibrary.com/projects/yui3/ticket/2528316
 	            
-	            Y.message("Pause path");
+	            //Y.message("Pause path");
 	            
 	            menuNav._hoverTimer = later(submenuShowDelay, menuNav, function () {
                     showSubmenu(0);

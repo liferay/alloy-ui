@@ -216,7 +216,7 @@ Y.Node.importMethod(Y.DOM, 'inViewportRegion');
  */
 Y.Node.prototype.intersect = function(node2, altRegion) {
     var node1 = Y.Node.getDOMNode(this);
-    if (node2 instanceof Y.Node) { // might be a region object
+    if (Y.instanceOf(node2, Y.Node)) { // might be a region object
         node2 = Y.Node.getDOMNode(node2);
     }
     return Y.DOM.intersect(node1, node2, altRegion); 
@@ -232,7 +232,7 @@ Y.Node.prototype.intersect = function(node2, altRegion) {
  */
 Y.Node.prototype.inRegion = function(node2, all, altRegion) {
     var node1 = Y.Node.getDOMNode(this);
-    if (node2 instanceof Y.Node) { // might be a region object
+    if (Y.instanceOf(node2, Y.Node)) { // might be a region object
         node2 = Y.Node.getDOMNode(node2);
     }
     return Y.DOM.inRegion(node1, node2, all, altRegion); 
