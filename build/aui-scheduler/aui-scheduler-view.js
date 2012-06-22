@@ -2355,7 +2355,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	viewDDRenderUI: function() {
 		var instance = this;
 
-		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 	},
 
 	viewDDSyncUI: function() {
@@ -2369,8 +2368,16 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 	removeLasso: function() {
 		var instance = this;
 
-		if (instance.lasso) {
-			instance.lasso.remove();
+		if (instance[LASSO]) {
+			instance[LASSO].remove();
+		}
+	},
+
+	removeProxy: function() {
+		var instance = this;
+
+		if (instance[PROXY_NODE]) {
+			instance[PROXY_NODE].remove();
 		}
 	},
 
@@ -2429,6 +2436,19 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 		var dd = event.target;
 
+		var bodyRegion = instance.bodyNode.get(REGION);
+
+		var mouseRegion = {
+			bottom: event.pageY,
+			left: event.pageX,
+			right: event.pageX,
+			top: event.pageY
+		};
+
+		if (!A.DOM.inRegion(null, bodyRegion, true, mouseRegion)) {
+			return;
+		}
+
 		var draggingEvent = instance[DRAGGING_EVENT];
 		var eventXY = [event.pageX, event.pageY];
 		var position = instance._findPosition(instance._offsetXY(eventXY, -1));
@@ -2436,13 +2456,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		if (draggingEvent && instance._hasLassoChanged(position)) {
 			instance.lassoLastPosition = position;
 
-			var endPosition = DateMath.add(
+			var endPositionDate = DateMath.add(
 				instance._getPositionDate(position),
 				DateMath.MINUTES,
 				draggingEvent.getMinutesDuration()
 			);
 
-			instance.renderLasso(position, instance._getDatePosition(endPosition));
+			instance.renderLasso(position, instance._getDatePosition(endPositionDate));
 		}
 	},
 
@@ -2480,7 +2500,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var intervalStartDate = instance._findCurrentIntervalStart();
 		var startDateRef = DateMath.safeClearTime(instance._findFirstDayOfWeek(intervalStartDate));
 
-		return DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
+		var date = DateMath.add(startDateRef, DateMath.DAY, instance._getCellIndex(position));
+
+		date.setHours(0, 0, 0, 0);
+
+		return date;
 	},
 
 	_hasLassoChanged: function(position) {
@@ -2508,11 +2532,10 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			instance[ROWS_CONTAINER_NODE].removeClass(CSS_SVT_DRAGGING).unselectable();
 
-			instance.removeLasso();
-
 			event.target.set(DRAG_NODE, instance.originalDragNode);
 
-			instance[PROXY_NODE].hide();
+			instance.removeLasso();
+			instance.removeProxy();
 
 			instance.get(SCHEDULER).syncEventsUI();
 		}
@@ -2531,13 +2554,13 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 			var startPosition = instance._findPosition(instance._offsetXY(eventXY, -1));
 
-			var endPosition = DateMath.add(
+			var endPositionDate = DateMath.add(
 				instance._getPositionDate(startPosition),
 				DateMath.MINUTES,
 				draggingEvent.getMinutesDuration()
 			);
 
-			instance.renderLasso(startPosition, instance._getDatePosition(endPosition));
+			instance.renderLasso(startPosition, instance._getDatePosition(endPositionDate));
 
 			draggingEvent.set(VISIBLE, false);
 
@@ -2550,8 +2573,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 			instance.originalDragNode = event.target.get(DRAG_NODE);
 
 			event.target.set(DRAG_NODE, instance[PROXY_NODE]);
-
-			instance[PROXY_NODE].show();
 		}
 	},
 
@@ -2661,9 +2682,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 		instance[PROXY_NODE].setStyles({
 			backgroundColor: eventNode.getStyle('backgroundColor'),
+			display: 'block',
 			width: '200px'
 		});
 
+		instance[PROXY_NODE].appendTo(instance[ROWS_CONTAINER_NODE]);
 		instance[PROXY_NODE].setContent(evt.get(CONTENT));
 	}
 });
