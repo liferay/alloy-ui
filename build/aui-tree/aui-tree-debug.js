@@ -2147,7 +2147,7 @@ var TreeNodeIO = A.Component.create(
 					}
 
 					var start = paginator.start;
-					var total = paginator.total;
+					var total = paginator.total || children.length;
 
 					var showPaginator = hasMoreData && (total > children.length);
 
