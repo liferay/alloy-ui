@@ -3038,10 +3038,12 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 		var instance = this;
 		var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
 
-		recorder.on({
-			cancel: A.bind(instance.removeLasso, instance),
-			save: A.bind(instance.removeLasso, instance)
-		});
+		if (recorder) {
+			recorder.on({
+				cancel: A.bind(instance.removeLasso, instance),
+				save: A.bind(instance.removeLasso, instance)
+			});
+		}
 
 		instance[ROWS_CONTAINER_NODE].on({
 			mousedown: A.bind(instance._onMouseDownGrid, instance),
@@ -3061,8 +3063,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 	viewDDSyncUI: function() {
 		var instance = this;
-
-		A.SchedulerTableView.superclass.syncUI.apply(this, arguments);
 
 		instance._setupDragDrop();
 	},
@@ -3280,9 +3280,11 @@ A.mix(A.SchedulerTableViewDD.prototype, {
 
 	_onMouseDownGrid: function(event) {
 		var instance = this;
+		var scheduler = instance.get(SCHEDULER);
+		var recorder = scheduler.get(EVENT_RECORDER);
 		var target = event.target;
 
-		if (target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join(COMMA))) {
+		if (recorder && target.test([DOT+CSS_SVT_COLGRID, DOT+CSS_SVT_TABLE_DATA_COL].join(COMMA))) {
 			instance._recording = true;
 
 			instance._syncCellDimensions();
