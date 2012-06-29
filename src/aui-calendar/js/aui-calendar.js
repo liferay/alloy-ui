@@ -74,11 +74,13 @@ var L = A.Lang,
 	PADDING_DAYS_END = 'paddingDaysEnd',
 	PADDING_DAYS_START = 'paddingDaysStart',
 	PREV = 'prev',
+	PREVIOUS = 'previous',
 	SELECT_MULTIPLE_DATES = 'selectMultipleDates',
 	SHOW_OTHER_MONTH = 'showOtherMonth',
 	SHOW_TODAY = 'showToday',
 	START = 'start',
 	STATE = 'state',
+	STRINGS = 'strings',
 	TITLE = 'title',
 	TODAY = 'today',
 	TODAY_LINK_NODE = 'todayLinkNode',
@@ -122,15 +124,15 @@ var L = A.Lang,
 	INT_MATRIX_DAYS_LENGTH = 42,
 	INT_MAX_PADDING_END = 14,
 
-	TPL_CALENDAR_NONE_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE)+'">None</a>',
+	TPL_CALENDAR_NONE_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_NONE ].join(SPACE)+'">{none}</a>',
 
-	TPL_CALENDAR_TODAY_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_TODAY ].join(SPACE)+'">Today</a>',
+	TPL_CALENDAR_TODAY_LINK = '<a href="#" class="'+[ CSS_CALENDAR_LINK, CSS_CALENDAR_LINK_TODAY ].join(SPACE)+'">{today}</a>',
 
 	TPL_CALENDAR_HEADER = '<div class="'+[ CSS_HEADER, CSS_STATE_DEFAULT, CSS_HELPER_CLEARFIX ].join(SPACE)+'"></div>',
 
-	TPL_CALENDAR_PREV = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(SPACE)+'">Back</a>',
+	TPL_CALENDAR_PREV = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_L, CSS_PREV ].join(SPACE)+'">{previous}</a>',
 
-	TPL_CALENDAR_NEXT = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE)+'">Prev</a>',
+	TPL_CALENDAR_NEXT = '<a href="" class="'+[ CSS_ICON, CSS_ICON_CIRCLE_TRIANGLE_R, CSS_NEXT ].join(SPACE)+'">{next}</a>',
 
 	TPL_CALENDAR_DAY_BLANK = '<div class="'+[ CSS_DAY_BLANK, CSS_HELPER_HIDDEN ].join(SPACE)+'"></div>',
 
@@ -342,7 +344,17 @@ var Calendar = A.Component.create(
 			 */
 			iconNextNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NEXT);
+					var instance = this;
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_NEXT,
+							{
+								next: strings[NEXT]
+							}
+						)
+					);
 				}
 			},
 
@@ -357,7 +369,17 @@ var Calendar = A.Component.create(
 			 */
 			iconPrevNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_PREV);
+					var instance = this;
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_PREV,
+							{
+								previous: strings[PREVIOUS]
+							}
+						)
+					);
 				}
 			},
 
@@ -426,7 +448,17 @@ var Calendar = A.Component.create(
 			 */
 			noneLinkNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_NONE_LINK);
+					var instance = this;
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_NONE_LINK,
+							{
+								none: strings[NONE]
+							}
+						)
+					);
 				}
 			},
 
@@ -508,6 +540,22 @@ var Calendar = A.Component.create(
 			},
 
 			/**
+			 * Strings for localization.
+			 *
+			 * @attribute strings
+			 * @default Localization object
+			 * @type Object
+			 */
+			strings: {
+				value: {
+					next: 'Next',
+					none: 'None',
+					prev: 'Prev',
+					today: 'Today'
+				}
+			},
+
+			/**
 			 * DOM node reference to be the "today" link of the Calendar. If not
 			 * specified try to query using HTML_PARSER an element inside
 			 * contentBox which matches <code>aui-calendar-title</code>.
@@ -518,7 +566,17 @@ var Calendar = A.Component.create(
 			 */
 			todayLinkNode: {
 				valueFn: function() {
-					return A.Node.create(TPL_CALENDAR_TODAY_LINK);
+					var instance = this;
+					var strings = instance.get(STRINGS);
+
+					return A.Node.create(
+						L.sub(
+							TPL_CALENDAR_TODAY_LINK,
+							{
+								today: strings[TODAY]
+							}
+						)
+					);
 				}
 			},
 
