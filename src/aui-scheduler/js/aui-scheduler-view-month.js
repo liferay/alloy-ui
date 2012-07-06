@@ -11,6 +11,22 @@ var SchedulerMonthView = A.Component.create({
 
 		name: {
 			value: MONTH
+		},
+
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%B %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		}
 	},
 

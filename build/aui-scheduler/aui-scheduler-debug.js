@@ -3,6 +3,7 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isArray = Lang.isArray,
 	isDate = Lang.isDate,
+	isFunction = Lang.isFunction,
 	isNumber = Lang.isNumber,
 	isObject = Lang.isObject,
 
@@ -55,7 +56,7 @@ var Lang = A.Lang,
 	NAME = 'name',
 	NAV = 'nav',
 	NAV_NODE = 'navNode',
-	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
+	NAVIGATION_DATE_FORMATTER = 'navigationDateFormatter',
 	NEXT = 'next',
 	NEXT_DATE = 'nextDate',
 	PREV = 'prev',
@@ -229,27 +230,25 @@ var SchedulerBase = A.Component.create({
 		},
 
 		/**
-		 * The default date format string which can be overriden for
-		 * localization support. The format must be valid according to
-		 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+		 * The function to format the navigation header date.
 		 *
-		 * @attribute dateFormat
+		 * @attribute navigationDateFormatter
 		 * @default %A - %d %b %Y
-		 * @type String
+		 * @type Function
 		 */
-		navigationDateFormat: {
-			getter: function(val) {
+		navigationDateFormatter: {
+			value: function(date) {
 				var instance = this;
-				var activeView = instance.get(ACTIVE_VIEW);
 
-				if (activeView) {
-					return activeView.get(NAVIGATION_DATE_FORMAT);
-				}
-
-				return val;
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%B %d, %Y',
+						locale: instance.get(LOCALE)
+					}
+				);
 			},
-			value: '%A - %d %b %Y',
-			validator: isString
+			validator: isFunction
 		},
 
 		views: {
@@ -676,23 +675,23 @@ var SchedulerBase = A.Component.create({
 		_uiSetCurrentDate: function(val) {
 			var instance = this;
 
-			var formatted = A.DataType.Date.format(val, {
-				format: instance.get(NAVIGATION_DATE_FORMAT),
-				locale: instance.get(LOCALE)
-			});
-
-			instance[CURRENT_DATE_NODE].html(formatted);
+			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
+			var navigationTitle = formatter.call(instance, val);
 
 			if (instance.get(RENDERED)) {
 				var activeView = instance.get(ACTIVE_VIEW);
 
 				if (activeView) {
 					activeView._uiSetCurrentDate(val);
+
+					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
+					navigationTitle = formatter.call(activeView, val);
 				}
+
+				instance[CURRENT_DATE_NODE].html(navigationTitle);
 
 				instance.syncEventsUI();
 			}
-
 		}
 	}
 });
@@ -788,7 +787,7 @@ var Lang = A.Lang,
 	GRIP = 'grip',
 	HD = 'hd',
 	HEADER = 'header',
-	HEADER_DATE_FORMAT = 'headerDateFormat',
+	HEADER_DATE_FORMATTER = 'headerDateFormatter',
 	HEADER_TABLE_NODE = 'headerTableNode',
 	HEADER_VIEW = 'headerView',
 	HEADER_VIEW_CONFIG = 'headerViewConfig',
@@ -876,6 +875,7 @@ var Lang = A.Lang,
 	DASH = '-',
 	DOT = '.',
 	EMPTY_STR = '',
+	MDASH = '&mdash;',
 	PERCENT = '%',
 	SPACE = ' ',
 
@@ -920,17 +920,23 @@ var SchedulerView = A.Component.create({
 		},
 
 		/**
-		 * The default date format string which can be overriden for
-         * localization support. The format must be valid according to
-         * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+		 * The function to format the navigation header date.
 		 *
-		 * @attribute dateFormat
+		 * @attribute navigationDateFormatter
 		 * @default %A - %d %b %Y
-		 * @type String
+		 * @type Function
 		 */
-		navigationDateFormat: {
-			value: '%A - %d %B, %Y',
-			validator: isString
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(date, {
+					format: '%A, %d %B, %Y',
+					locale: scheduler.get(LOCALE)
+				});
+			},
+			validator: isFunction
 		},
 
 		nextDate: {
@@ -1218,8 +1224,19 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
-		headerDateFormat: {
-			value: '%d %A',
+		headerDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%a %m/%d',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
 			validator: isString
 		},
 
@@ -1255,6 +1272,22 @@ var SchedulerDayView = A.Component.create({
 
 		name: {
 			value: DAY
+		},
+
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%A, %b %d, %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		},
 
 		strings: {
@@ -1571,22 +1604,17 @@ var SchedulerDayView = A.Component.create({
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
-			var dateFormat = instance.get(HEADER_DATE_FORMAT);
+			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 
 			instance[COL_HEADER_DAYS_NODE].all(ANCHOR).each(
 				function(columnNode, i) {
 					var columnDate = DateMath.add(currentDate, DateMath.DAY, i);
 
-					var formatted = A.DataType.Date.format(columnDate, {
-						format: dateFormat,
-						locale: locale
-					});
-
 					columnNode.toggleClass(
 						CSS_SCHEDULER_TODAY_HD, DateMath.isToday(columnDate));
 
-					columnNode.html(formatted);
+					columnNode.html(formatter.call(instance, columnDate));
 				}
 			);
 		},
@@ -2113,6 +2141,13 @@ var SchedulerWeekView = A.Component.create({
 
 		name: {
 			value: WEEK
+		},
+
+		navigationDateFormatter: {
+			valueFn: function() {
+				return this._valueNavigationDateFormatter;
+			},
+			validator: isFunction
 		}
 	},
 
@@ -2162,6 +2197,34 @@ var SchedulerWeekView = A.Component.create({
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
 			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
+		},
+
+		_valueNavigationDateFormatter: function(date) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+			var locale = scheduler.get(LOCALE);
+
+			var startDate = instance._firstDayOfWeek(date);
+
+			var startDateLabel = A.DataType.Date.format(
+				startDate,
+				{
+					format: '%b %d',
+					locale: locale
+				}
+			);
+
+			var endDate = DateMath.add(startDate, DateMath.DAY, instance.get(DAYS) - 1);
+
+			var endDateLabel = A.DataType.Date.format(
+				endDate,
+				{
+					format: (DateMath.isMonthOverlapWeek(date) ? '%b %d' : '%d') + ', %Y',
+					locale: locale
+				}
+			);
+
+			return [startDateLabel, MDASH, endDateLabel].join(SPACE);
 		}
 	}
 });
@@ -2265,8 +2328,20 @@ var SchedulerTableView = A.Component.create({
 			value: '%a'
 		},
 
-		navigationDateFormat: {
-			value: '%b %Y'
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%b %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		},
 
 		scrollable: {
@@ -2914,6 +2989,22 @@ var SchedulerMonthView = A.Component.create({
 
 		name: {
 			value: MONTH
+		},
+
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%B %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		}
 	},
 
