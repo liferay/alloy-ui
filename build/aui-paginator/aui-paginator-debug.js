@@ -13,6 +13,8 @@ var L = A.Lang,
 	isObject = L.isObject,
 	isString = L.isString,
 
+	toInt = L.toInt,
+
 	ALWAYS_VISIBLE = 'alwaysVisible',
 	BOUNDING_BOX = 'boundingBox',
 	CIRCULAR = 'circular',
@@ -65,10 +67,6 @@ var L = A.Lang,
 
 	isNodeList = function(v) {
 		return (v instanceof A.NodeList);
-	},
-
-	num = function(n) {
-		return parseInt(n, 10) || 0;
 	},
 
 	getCN = A.ClassNameManager.getClassName,
@@ -316,7 +314,7 @@ var Paginator = A.Component.create(
 			 * @type Number
 			 */
 			page: {
-				setter: num,
+				setter: toInt,
 				value: 1
 			},
 
@@ -467,7 +465,7 @@ var Paginator = A.Component.create(
 			 * @type Number
 			 */
 			rowsPerPage: {
-				setter: num,
+				setter: toInt,
 				value: 1
 			},
 

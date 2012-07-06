@@ -3,11 +3,9 @@ var Lang = A.Lang,
 	isBoolean = Lang.isBoolean,
 	isNumber = Lang.isNumber,
 
-	getClassName = A.ClassNameManager.getClassName,
+	toInt = Lang.toInt,
 
-	parseNumber = function(num) {
-		return parseInt(num, 10) || 0;
-	},
+	getClassName = A.ClassNameManager.getClassName,
 
 	NAME = 'image-cropper',
 
@@ -420,8 +418,8 @@ var ImageCropper = A.Component.create(
 
 				var cropNode = instance.cropNode;
 
-				instance.set('x', parseNumber(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
-				instance.set('y', parseNumber(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
+				instance.set('x', toInt(cropNode.getStyle('left')) + cropNode.getBorderWidth('l'));
+				instance.set('y', toInt(cropNode.getStyle('top')) + cropNode.getBorderWidth('t'));
 			},
 
 			_uiSetCropHeight: function(value) {

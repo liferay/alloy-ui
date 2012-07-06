@@ -17,9 +17,7 @@ var L = A.Lang,
 	isValue = L.isValue,
 	isNumber = L.isNumber,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	toInt = L.toInt,
 
 	DateMath = A.DataType.DateMath,
 	WidgetStdMod = A.WidgetStdMod,
@@ -771,7 +769,7 @@ var Calendar = A.Component.create(
 
 				var date = instance._normalizeYearMonth();
 
-				return DateMath.getDate(date.year + toNumber(offsetYear), date.month + toNumber(offsetMonth), date.day + toNumber(offsetDay));
+				return DateMath.getDate(date.year + toInt(offsetYear), date.month + toInt(offsetMonth), date.day + toInt(offsetDay));
 			},
 
 			/**
@@ -1166,7 +1164,7 @@ var Calendar = A.Component.create(
 					value = A.Attribute.INVALID_VALUE;
 				}
 				else {
-					value = toNumber(value);
+					value = toInt(value);
 				}
 
 				return value;
