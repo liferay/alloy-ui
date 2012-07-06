@@ -382,9 +382,15 @@ A.mix(
 		},
 
 		isGuid: function(id) {
-			var instance = this;
-
 			return String(id).indexOf(A.Env._guidp) === 0;
+		},
+
+		toFloat: function(value, defaultValue) {
+			return parseFloat(value) || defaultValue || 0;
+		},
+
+		toInt: function(value, radix, defaultValue) {
+			return parseInt(value, radix || 10) || defaultValue || 0;
 		}
 	}
 );
