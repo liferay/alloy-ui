@@ -161,11 +161,6 @@
     border-left: none;
 }
 
-.aui-scheduler-view-month-table-data-col-nomonth {
-    background-color: #fff;
-    color: #aaa;
-}
-
 .aui-scheduler-view-table-more {
     display: inline-block;
     margin-left: 3px;
