@@ -96,8 +96,20 @@ var SchedulerTableView = A.Component.create({
 			value: '%a'
 		},
 
-		navigationDateFormat: {
-			value: '%b %Y'
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%b %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		},
 
 		scrollable: {

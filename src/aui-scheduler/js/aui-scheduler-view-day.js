@@ -146,8 +146,19 @@ var SchedulerDayView = A.Component.create({
 			}
 		},
 
-		headerDateFormat: {
-			value: '%d %A',
+		headerDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%a %m/%d',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
 			validator: isString
 		},
 
@@ -183,6 +194,22 @@ var SchedulerDayView = A.Component.create({
 
 		name: {
 			value: DAY
+		},
+
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%A, %b %d, %Y',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isFunction
 		},
 
 		strings: {
@@ -499,22 +526,17 @@ var SchedulerDayView = A.Component.create({
 		syncDaysHeaderUI: function() {
 			var instance = this;
 			var currentDate = instance.get(SCHEDULER).get(CURRENT_DATE);
-			var dateFormat = instance.get(HEADER_DATE_FORMAT);
+			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 
 			instance[COL_HEADER_DAYS_NODE].all(ANCHOR).each(
 				function(columnNode, i) {
 					var columnDate = DateMath.add(currentDate, DateMath.DAY, i);
 
-					var formatted = A.DataType.Date.format(columnDate, {
-						format: dateFormat,
-						locale: locale
-					});
-
 					columnNode.toggleClass(
 						CSS_SCHEDULER_TODAY_HD, DateMath.isToday(columnDate));
 
-					columnNode.html(formatted);
+					columnNode.html(formatter.call(instance, columnDate));
 				}
 			);
 		},
