@@ -12,11 +12,9 @@ var Lang = A.Lang,
 	isArray = Lang.isArray,
 	isObject = Lang.isObject,
 
-	WidgetStdMod = A.WidgetStdMod,
+	toInt = Lang.toInt,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	WidgetStdMod = A.WidgetStdMod,
 
 	DOC = A.config.doc,
 
@@ -472,7 +470,7 @@ Dialog.prototype = {
 		var instance = this;
 		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
 
-		instance.move([ viewportRegion.left + toNumber(offsetLeft), viewportRegion.top + toNumber(offsetTop) ]);
+		instance.move([ viewportRegion.left + toInt(offsetLeft), viewportRegion.top + toInt(offsetTop) ]);
 	},
 
 	/**

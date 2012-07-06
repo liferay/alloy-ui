@@ -3,9 +3,7 @@ var Lang = A.Lang,
 	isObject = Lang.isObject,
 	isUndefined = Lang.isUndefined,
 
-	toNumber = function(val) {
-		return parseInt(val, 10) || 0;
-	},
+	toInt = Lang.toInt,
 
 	DASH = '-',
 	DOT = '.',
@@ -229,7 +227,7 @@ var Toggler = A.Component.create({
 				var content = instance.get(CONTENT);
 
 				var height = instance.getContentHeight();
-				var gutter = toNumber(content.getStyle(MARGIN_TOP));
+				var gutter = toInt(content.getStyle(MARGIN_TOP));
 
 				if (!instance.wrapped) {
 					content.wrap(TPL_CONTENT_WRAPPER);
