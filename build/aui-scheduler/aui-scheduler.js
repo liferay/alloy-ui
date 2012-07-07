@@ -2324,8 +2324,20 @@ var SchedulerTableView = A.Component.create({
 			value: TABLE
 		},
 
-		headerDateFormat: {
-			value: '%a'
+		headerDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%a',
+						locale: scheduler.get(LOCALE)
+					}
+				);
+			},
+			validator: isString
 		},
 
 		navigationDateFormatter: {
@@ -2677,16 +2689,15 @@ var SchedulerTableView = A.Component.create({
 			var instance = this;
 			var scheduler = instance.get(SCHEDULER);
 			var currentDate = scheduler.get(CURRENT_DATE);
-			var dateFormat = instance.get(HEADER_DATE_FORMAT);
+			var formatter = instance.get(HEADER_DATE_FORMATTER);
 			var locale = instance.get(LOCALE);
 			var firstDayOfWeekDt = instance._findFirstDayOfWeek(currentDate);
 
 			instance.colHeaderDaysNode.all(DIV).each(
 				function(columnNode, i) {
 					var columnDate = DateMath.add(firstDayOfWeekDt, DateMath.DAY, i);
-					var formatted = A.DataType.Date.format(columnDate, { format: dateFormat, locale: locale });
 
-					columnNode.html(formatted);
+					columnNode.html(formatter.call(instance, columnDate));
 				}
 			);
 		},
