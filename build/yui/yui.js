@@ -7198,7 +7198,7 @@ Y.Loader.prototype = {
             hasFilter = name && (name in this.filters),
             modFilter = hasFilter && this.filters[name],
 	    groupName = this.moduleInfo[name] ? this.moduleInfo[name].group:null;		
-	    if (groupName && this.groups[groupName].filter) {		
+	    if (groupName && this.groups[groupName] && this.groups[groupName].filter) {		
 	 	   modFilter = this.groups[groupName].filter;
 		   hasFilter = true;		
 	     };
