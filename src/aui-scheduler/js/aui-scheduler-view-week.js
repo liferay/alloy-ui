@@ -18,6 +18,13 @@ var SchedulerWeekView = A.Component.create({
 
 		name: {
 			value: WEEK
+		},
+
+		navigationDateFormatter: {
+			valueFn: function() {
+				return this._valueNavigationDateFormatter;
+			},
+			validator: isFunction
 		}
 	},
 
@@ -67,6 +74,34 @@ var SchedulerWeekView = A.Component.create({
 			var firstDayOfWeek = scheduler.get(FIRST_DAY_OF_WEEK);
 
 			return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
+		},
+
+		_valueNavigationDateFormatter: function(date) {
+			var instance = this;
+			var scheduler = instance.get(SCHEDULER);
+			var locale = scheduler.get(LOCALE);
+
+			var startDate = instance._firstDayOfWeek(date);
+
+			var startDateLabel = A.DataType.Date.format(
+				startDate,
+				{
+					format: '%b %d',
+					locale: locale
+				}
+			);
+
+			var endDate = DateMath.add(startDate, DateMath.DAY, instance.get(DAYS) - 1);
+
+			var endDateLabel = A.DataType.Date.format(
+				endDate,
+				{
+					format: (DateMath.isMonthOverlapWeek(date) ? '%b %d' : '%d') + ', %Y',
+					locale: locale
+				}
+			);
+
+			return [startDateLabel, MDASH, endDateLabel].join(SPACE);
 		}
 	}
 });
