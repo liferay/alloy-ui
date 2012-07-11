@@ -85,7 +85,7 @@ var Lang = A.Lang,
 	GRIP = 'grip',
 	HD = 'hd',
 	HEADER = 'header',
-	HEADER_DATE_FORMAT = 'headerDateFormat',
+	HEADER_DATE_FORMATTER = 'headerDateFormatter',
 	HEADER_TABLE_NODE = 'headerTableNode',
 	HEADER_VIEW = 'headerView',
 	HEADER_VIEW_CONFIG = 'headerViewConfig',
@@ -173,6 +173,7 @@ var Lang = A.Lang,
 	DASH = '-',
 	DOT = '.',
 	EMPTY_STR = '',
+	MDASH = '&mdash;',
 	PERCENT = '%',
 	SPACE = ' ',
 
@@ -217,17 +218,23 @@ var SchedulerView = A.Component.create({
 		},
 
 		/**
-		 * The default date format string which can be overriden for
-         * localization support. The format must be valid according to
-         * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+		 * The function to format the navigation header date.
 		 *
-		 * @attribute dateFormat
+		 * @attribute navigationDateFormatter
 		 * @default %A - %d %b %Y
-		 * @type String
+		 * @type Function
 		 */
-		navigationDateFormat: {
-			value: '%A - %d %B, %Y',
-			validator: isString
+		navigationDateFormatter: {
+			value: function(date) {
+				var instance = this;
+				var scheduler = instance.get(SCHEDULER);
+
+				return A.DataType.Date.format(date, {
+					format: '%A, %d %B, %Y',
+					locale: scheduler.get(LOCALE)
+				});
+			},
+			validator: isFunction
 		},
 
 		nextDate: {

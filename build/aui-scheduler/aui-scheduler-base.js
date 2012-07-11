@@ -3,6 +3,7 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	isArray = Lang.isArray,
 	isDate = Lang.isDate,
+	isFunction = Lang.isFunction,
 	isNumber = Lang.isNumber,
 	isObject = Lang.isObject,
 
@@ -55,7 +56,7 @@ var Lang = A.Lang,
 	NAME = 'name',
 	NAV = 'nav',
 	NAV_NODE = 'navNode',
-	NAVIGATION_DATE_FORMAT = 'navigationDateFormat',
+	NAVIGATION_DATE_FORMATTER = 'navigationDateFormatter',
 	NEXT = 'next',
 	NEXT_DATE = 'nextDate',
 	PREV = 'prev',
@@ -229,27 +230,25 @@ var SchedulerBase = A.Component.create({
 		},
 
 		/**
-		 * The default date format string which can be overriden for
-		 * localization support. The format must be valid according to
-		 * <a href="DataType.Date.html">A.DataType.Date.format</a>.
+		 * The function to format the navigation header date.
 		 *
-		 * @attribute dateFormat
+		 * @attribute navigationDateFormatter
 		 * @default %A - %d %b %Y
-		 * @type String
+		 * @type Function
 		 */
-		navigationDateFormat: {
-			getter: function(val) {
+		navigationDateFormatter: {
+			value: function(date) {
 				var instance = this;
-				var activeView = instance.get(ACTIVE_VIEW);
 
-				if (activeView) {
-					return activeView.get(NAVIGATION_DATE_FORMAT);
-				}
-
-				return val;
+				return A.DataType.Date.format(
+					date,
+					{
+						format: '%B %d, %Y',
+						locale: instance.get(LOCALE)
+					}
+				);
 			},
-			value: '%A - %d %b %Y',
-			validator: isString
+			validator: isFunction
 		},
 
 		views: {
@@ -676,23 +675,23 @@ var SchedulerBase = A.Component.create({
 		_uiSetCurrentDate: function(val) {
 			var instance = this;
 
-			var formatted = A.DataType.Date.format(val, {
-				format: instance.get(NAVIGATION_DATE_FORMAT),
-				locale: instance.get(LOCALE)
-			});
-
-			instance[CURRENT_DATE_NODE].html(formatted);
+			var formatter = instance.get(NAVIGATION_DATE_FORMATTER);
+			var navigationTitle = formatter.call(instance, val);
 
 			if (instance.get(RENDERED)) {
 				var activeView = instance.get(ACTIVE_VIEW);
 
 				if (activeView) {
 					activeView._uiSetCurrentDate(val);
+
+					formatter = activeView.get(NAVIGATION_DATE_FORMATTER);
+					navigationTitle = formatter.call(activeView, val);
 				}
+
+				instance[CURRENT_DATE_NODE].html(navigationTitle);
 
 				instance.syncEventsUI();
 			}
-
 		}
 	}
 });

@@ -155,6 +155,11 @@
     border-top: 1px solid #ddd;
 }
 
+.aui-scheduler-view-month-table-data-col-nomonth {
+    background-color: #fff;
+    color: #aaa;
+}
+
 .aui-scheduler-view-table-data-col-title-down { border-top: 1px solid #FAD163 }
 
 .aui-scheduler-view-table-colgrid-next,
