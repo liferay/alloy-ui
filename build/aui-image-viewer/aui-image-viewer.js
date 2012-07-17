@@ -2280,11 +2280,14 @@ AUI.add('aui-media-viewer-plugin', function(A) {
 var Lang = A.Lang,
 	Do = A.Do,
 
+	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',
 	STR_HREF = 'href',
 	STR_IMAGE = 'image',
 	STR_LOADING = 'loading',
 	STR_PROVIDERS = 'providers',
+	STR_PROVIDERS_IFRAME = 'iframe',
+	STR_SRC = 'src',
 
 	NAME = 'mediaViewerPlugin',
 
@@ -2371,6 +2374,10 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(source.attr('href'));
 
 				if (mediaType != STR_IMAGE) {
+					if (A.UA.ie == 9) {
+						instance._redirectIframe(STR_ABOUT_BLANK);
+					}
+
 					host.setStdModContent(STR_BODY, '');
 				}
 			},
@@ -2383,6 +2390,10 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(linkHref);
 
 				var result = true;
+
+				if (A.UA.ie == 9) {
+					instance._redirectIframe(STR_ABOUT_BLANK);
+				}
 
 				if (mediaType != STR_IMAGE) {
 					var providers = instance.get(STR_PROVIDERS)[mediaType];
@@ -2472,6 +2483,22 @@ var MediaViewerPlugin = A.Component.create(
 				);
 
 				return mediaType;
+			},
+
+			_redirectIframe: function(src) {
+				var instance = this;
+
+				var host = instance.get('host');
+
+				var node = host.bodyNode;
+
+				if (node) {
+					var iframe = node.one(STR_PROVIDERS_IFRAME);
+
+					if (iframe) {
+						iframe.set(STR_SRC, src);
+					}
+				}
 			},
 
 			_restoreMedia: function(event) {
