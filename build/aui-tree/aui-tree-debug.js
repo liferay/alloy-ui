@@ -24,6 +24,7 @@ var L = A.Lang,
 	PREV_SIBLING = 'prevSibling',
 	PREVIOUS_SIBLING = 'previousSibling',
 	TREE = 'tree',
+	TREE_NODE = 'tree-node',
 	TREE_DATA = 'tree-data',
 
 	isTreeNode = function(v) {
@@ -56,759 +57,754 @@ var L = A.Lang,
  * @constructor
  * @extends Base
  */
-var TreeData = A.Component.create(
-	{
-		/**
-		 * Static property provides a string to identify the class.
-		 *
-		 * @property TreeData.NAME
-		 * @type String
-		 * @static
-		 */
-		NAME: TREE_DATA,
 
-		/**
-		 * Static property used to define the default attribute
-		 * configuration for the TreeData.
-		 *
-		 * @property TreeData.ATTRS
-		 * @type Object
-		 * @static
-		 */
-		ATTRS: {
-			/**
-			 * Container to nest children nodes. If has cntainer it's not a leaf.
-			 *
-			 * @attribute container
-			 * @default null
-			 * @type Node | String
-			 */
-			container: {
-				setter: A.one
-			},
+var TreeData = function () {};
 
-			/**
-			 * Array of children (i.e. could be a JSON metadata object or a TreeNode instance).
-			 *
-			 * @attribute children
-			 * @default []
-			 * @type Array
-			 */
-			children: {
-				value: [],
-				validator: isArray,
-				setter: '_setChildren'
-			},
+TreeData.ATTRS = {
+    // selectionMode: for supporting multiple selection could be its own extension
 
-			/**
-			 * Index the nodes.
-			 *
-			 * @attribute index
-			 * @default {}
-			 * @type Object
-			 */
-			index: {
-				value: {}
+    selectionType: {
+        value: null, // Feature should not change base behavior by default
+        validator: '_validateSelectionType'
+    },
+
+    selection: {
+        setter: '_setSelection'
+    }
+};
+
+TreeData.ATTRS = {
+	/**
+	 * Container to nest children nodes. If has cntainer it's not a leaf.
+	 *
+	 * @attribute container
+	 * @default null
+	 * @type Node | String
+	 */
+	container: {
+		setter: A.one
+	},
+
+	/**
+	 * Array of children (i.e. could be a JSON metadata object or a TreeNode instance).
+	 *
+	 * @attribute children
+	 * @default []
+	 * @type Array
+	 */
+	children: {
+		value: [],
+		validator: isArray,
+		setter: '_setChildren'
+	},
+
+	/**
+	 * Index the nodes.
+	 *
+	 * @attribute index
+	 * @default {}
+	 * @type Object
+	 */
+	index: {
+		value: {}
+	}
+};
+
+A.mix(TreeData.prototype, {
+	/**
+	 * Construction logic executed during TreeData instantiation. Lifecycle.
+	 *
+	 * @method initializer
+	 * @protected
+	 */
+	initializer: function() {
+		var instance = this;
+
+		// binding on initializer, needed before .render() phase
+		instance.publish('move');
+		instance.publish('append', { defaultFn: instance._appendChild });
+		instance.publish('remove', { defaultFn: instance._removeChild });
+	},
+
+	/**
+	 * Descructor lifecycle implementation for the TreeData class.
+	 * Purges events attached to the node (and all child nodes).
+	 *
+	 * @method destructor
+	 * @protected
+	 */
+	destructor: function() {
+		var instance = this;
+
+		instance.eachChildren(function(node) {
+			node.destroy();
+		}, true);
+	},
+
+	/**
+	 * Get a TreeNode by id.
+	 *
+	 * @method getNodeById
+	 * @param {String} uid
+	 * @return {TreeNode}
+	 */
+	getNodeById: function(uid) {
+		var instance = this;
+
+		return instance.get(INDEX)[uid];
+	},
+
+	/**
+	 * Whether the TreeNode is registered on this TreeData.
+	 *
+	 * @method isRegistered
+	 * @param {TreeNode} node
+	 * @return {boolean}
+	 */
+	isRegistered: function(node) {
+		var instance = this;
+
+		return !!(instance.get(INDEX)[ node.get(ID) ]);
+	},
+
+	/**
+	 * Update the references of the passed TreeNode.
+	 *
+	 * @method updateReferences
+	 * @param {node} TreeNode
+	 * @param {parentNode} TreeNode
+	 * @param {ownerTree} TreeView
+	 */
+	updateReferences: function(node, parentNode, ownerTree) {
+		var instance = this;
+		var oldParent = node.get(PARENT_NODE);
+		var oldOwnerTree = node.get(OWNER_TREE);
+		var moved = oldParent && (oldParent !== parentNode);
+
+		if (oldParent) {
+			if (moved) {
+				// when moved update the oldParent children
+				var children = oldParent.get(CHILDREN);
+
+				A.Array.removeItem(children, node);
+
+				oldParent.set(CHILDREN, children);
 			}
-		},
 
-		prototype: {
-			/**
-			 * Construction logic executed during TreeData instantiation. Lifecycle.
-			 *
-			 * @method initializer
-			 * @protected
-			 */
-			initializer: function() {
-				var instance = this;
+			oldParent.unregisterNode(node);
+		}
 
-				// binding on initializer, needed before .render() phase
-				instance.publish('move');
-				instance.publish('append', { defaultFn: instance._appendChild });
-				instance.publish('remove', { defaultFn: instance._removeChild });
-			},
+		if (oldOwnerTree) {
+			oldOwnerTree.unregisterNode(node);
+		}
 
-			/**
-			 * Descructor lifecycle implementation for the TreeData class.
-			 * Purges events attached to the node (and all child nodes).
-			 *
-			 * @method destructor
-			 * @protected
-			 */
-			destructor: function() {
-				var instance = this;
+		// update parent reference when registered
+		node.set(PARENT_NODE, parentNode);
 
-				instance.eachChildren(function(node) {
-					node.destroy();
-				}, true);
-			},
+		// update the ownerTree of the node
+		node.set(OWNER_TREE, ownerTree);
 
-			/**
-			 * Get a TreeNode by id.
-			 *
-			 * @method getNodeById
-			 * @param {String} uid
-			 * @return {TreeNode}
-			 */
-			getNodeById: function(uid) {
-				var instance = this;
+		if (parentNode) {
+			// register the new node on the parentNode index
+			parentNode.registerNode(node);
+		}
 
-				return instance.get(INDEX)[uid];
-			},
+		if (ownerTree) {
+			// register the new node to the ownerTree index
+			ownerTree.registerNode(node);
+		}
 
-			/**
-			 * Whether the TreeNode is registered on this TreeData.
-			 *
-			 * @method isRegistered
-			 * @param {TreeNode} node
-			 * @return {boolean}
-			 */
-			isRegistered: function(node) {
-				var instance = this;
+		if (oldOwnerTree != ownerTree) {
+			// when change the OWNER_TREE update the children references also
+			node.eachChildren(function(child) {
+				instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
+			});
+		}
 
-				return !!(instance.get(INDEX)[ node.get(ID) ]);
-			},
+		// trigger move event
+		if (moved) {
+			var output = instance.getEventOutputMap(node);
 
-			/**
-			 * Update the references of the passed TreeNode.
-			 *
-			 * @method updateReferences
-			 * @param {node} TreeNode
-			 * @param {parentNode} TreeNode
-			 * @param {ownerTree} TreeView
-			 */
-			updateReferences: function(node, parentNode, ownerTree) {
-				var instance = this;
-				var oldParent = node.get(PARENT_NODE);
-				var oldOwnerTree = node.get(OWNER_TREE);
-				var moved = oldParent && (oldParent !== parentNode);
+			if (!oldParent.get('children').length) {
+				oldParent.collapse();
+				oldParent.hideHitArea();
+			}
 
-				if (oldParent) {
-					if (moved) {
-						// when moved update the oldParent children
-						var children = oldParent.get(CHILDREN);
+			output.tree.oldParent = oldParent;
+			output.tree.oldOwnerTree = oldOwnerTree;
 
-						A.Array.removeItem(children, node);
+			instance.bubbleEvent('move', output);
+		}
+	},
 
-						oldParent.set(CHILDREN, children);
-					}
+	/**
+	 * Refresh the index (i.e. re-index all nodes).
+	 *
+	 * @method refreshIndex
+	 */
+	refreshIndex: function() {
+		var instance = this;
 
-					oldParent.unregisterNode(node);
+		// reset index
+		instance.updateIndex({});
+
+		// get all descendent children - deep
+		instance.eachChildren(function(node) {
+			instance.registerNode(node);
+		}, true);
+	},
+
+	/**
+	 * Register the passed TreeNode on this TreeData.
+	 *
+	 * @method registerNode
+	 * @param {TreeNode} node
+	 */
+	registerNode: function(node) {
+		var instance = this;
+		var uid = node.get(ID);
+		var index = instance.get(INDEX);
+
+		if (uid) {
+			index[uid] = node;
+		}
+
+		if (isTreeView(instance)) {
+			node.addTarget(instance);
+		}
+
+		node._inheritOwnerTreeAttrs();
+
+		instance.updateIndex(index);
+	},
+
+	/**
+	 * Update the <a href="TreeData.html#config_index">index</a> attribute value.
+	 *
+	 * @method updateIndex
+	 * @param {Object} index
+	 */
+	updateIndex: function(index) {
+		var instance = this;
+
+		if (index) {
+			instance.set(INDEX, index);
+		}
+	},
+
+	/**
+	 * Unregister the passed TreeNode from this TreeData.
+	 *
+	 * @method unregisterNode
+	 * @param {TreeNode} node
+	 */
+	unregisterNode: function(node) {
+		var instance = this;
+		var index = instance.get(INDEX);
+
+		delete index[ node.get(ID) ];
+
+		if (isTreeView(instance)) {
+			node.removeTarget(instance);
+		}
+
+		instance.updateIndex(index);
+	},
+
+	/**
+	 * Collapse all children of the TreeData.
+	 *
+	 * @method collapseAll
+	 */
+	collapseAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(node) {
+			node.collapse();
+		}, true);
+	},
+
+	/**
+	 * Expand all children of the TreeData.
+	 *
+	 * @method expandAll
+	 */
+	expandAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(node) {
+			node.expand();
+		}, true);
+	},
+
+	/**
+	 * Select all children of the TreeData.
+	 *
+	 * @method selectAll
+	 */
+	selectAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(child) {
+			child.select();
+		}, true);
+	},
+
+	/**
+	 * Unselect all children of the TreeData.
+	 *
+	 * @method selectAll
+	 */
+	unselectAll: function() {
+		var instance = this;
+
+		instance.eachChildren(function(child) {
+			child.unselect();
+		}, true);
+	},
+
+	/**
+	 * Loop each children and execute the <code>fn</code> callback.
+	 *
+	 * @method eachChildren
+	 * @param {function} fn callback
+	 * @param {boolean} fn recursive
+	 */
+	eachChildren: function(fn, deep) {
+		var instance = this;
+		var children = instance.getChildren(deep);
+
+		A.Array.each(children, function(node) {
+			if (node) {
+				fn.apply(instance, arguments);
+			}
+		});
+	},
+
+	/**
+	 * Loop each parent node and execute the <code>fn</code> callback.
+	 *
+	 * @method eachChildren
+	 * @param {function} fn callback
+	 */
+	eachParent: function(fn) {
+		var instance = this;
+		var parentNode = instance.get(PARENT_NODE);
+
+		while (parentNode) {
+			if (parentNode) {
+				fn.apply(instance, [parentNode]);
+			}
+			parentNode = parentNode.get(PARENT_NODE);
+		}
+	},
+
+	/**
+	 * Bubble event to all parent nodes.
+	 *
+	 * @method bubbleEvent
+	 * @param {String} eventType
+	 * @param {Array} args
+	 * @param {boolean} cancelBubbling
+	 * @param {boolean} stopActionPropagation
+	 */
+	bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
+		var instance = this;
+
+		// event.stopActionPropagation === undefined, invoke the event native action
+		instance.fire(eventType, args);
+
+		if (!cancelBubbling) {
+			var parentNode = instance.get(PARENT_NODE);
+
+			// Avoid execution of the native action (private methods) while propagate
+			// for example: private _appendChild() is invoked only on the first level of the bubbling
+			// the intention is only invoke the user callback on parent nodes.
+			args = args || {};
+
+			if (isUndefined(stopActionPropagation)) {
+				stopActionPropagation = true;
+			}
+
+			args.stopActionPropagation = stopActionPropagation;
+
+			while(parentNode) {
+				parentNode.fire(eventType, args);
+				parentNode = parentNode.get(PARENT_NODE);
+			}
+		}
+	},
+
+	/**
+	 * Create a TreeNode instance.
+	 *
+	 * @method createNode
+	 * @param {Object} options
+	 * @return {TreeNode}
+	 */
+	createNode: function(options) {
+		var instance = this;
+		var classType = A.TreeNode.nodeTypes[ isObject(options) ? options.type : options ] || A.TreeNode;
+
+		return new classType(
+			isObject(options) ? options : {}
+		);
+	},
+
+	/**
+	 * Append a child node to the TreeData.
+	 *
+	 * @method appendChild
+	 * @param {TreeNode} node
+	 * @param {boolean} cancelBubbling
+	 */
+	appendChild: function(node, cancelBubbling) {
+		var instance = this;
+		var output = instance.getEventOutputMap(node);
+
+		instance.bubbleEvent('append', output, cancelBubbling);
+	},
+
+	/**
+	 * Append a child node to the TreeData.
+	 *
+	 * @method _appendChild
+	 * @param {TreeNode} node
+	 * @param {boolean} cancelBubbling
+	 * @protected
+	 */
+	_appendChild: function(event) {
+		// stopActionPropagation while bubbling
+		if (event.stopActionPropagation) {
+			return false;
+		}
+
+		var instance = this;
+		var node = event.tree.node;
+		var ownerTree = instance.get(OWNER_TREE);
+		var children = instance.get(CHILDREN);
+
+		// updateReferences first
+		instance.updateReferences(node, instance, ownerTree);
+		// and then set the children, to have the appendChild propagation
+		// the PARENT_NODE references should be updated
+		var length = children.push(node);
+		instance.set(CHILDREN, children);
+
+		// updating prev/nextSibling attributes
+		var prevIndex = length - 2;
+		var prevSibling = instance.item(prevIndex);
+
+		node.set(NEXT_SIBLING, null);
+		node.set(PREV_SIBLING, prevSibling);
+
+		// render node
+		node.render(instance.get(CONTAINER));
+	},
+
+	/**
+	 * Get a TreeNode children by index.
+	 *
+	 * @method item
+	 * @param {Number} index
+	 * @return {TreeNode}
+	 */
+	item: function(index) {
+		var instance = this;
+
+		return instance.get(CHILDREN)[index];
+	},
+
+	/**
+	 * Index of the passed TreeNode on the <a
+     * href="TreeData.html#config_children">children</a> attribute.
+	 *
+	 * @method indexOf
+	 * @param {TreeNode} node
+	 * @return {Number}
+	 */
+	indexOf: function(node) {
+		var instance = this;
+
+		return A.Array.indexOf( instance.get(CHILDREN), node );
+	},
+
+	/**
+	 * Whether the TreeData contains children or not.
+	 *
+	 * @method hasChildNodes
+	 * @return {boolean}
+	 */
+	hasChildNodes: function() {
+		return ( this.get(CHILDREN).length > 0 );
+	},
+
+	/**
+	 * Get an Array of the children nodes of the current TreeData.
+	 *
+	 * @method getChildren
+	 * @param {boolean} deep
+	 * @return {Array}
+	 */
+	getChildren: function(deep) {
+		var instance = this;
+		var cNodes = [];
+		var children = instance.get(CHILDREN);
+
+		cNodes = cNodes.concat(children);
+
+		if (deep) {
+			instance.eachChildren(function(child) {
+				cNodes = cNodes.concat( child.getChildren(deep) );
+			});
+		}
+
+		return cNodes;
+	},
+
+	/**
+	 * Get an object containing metadata for the custom events.
+	 *
+	 * @method getEventOutputMap
+	 * @param {TreeData} node
+	 * @return {Object}
+	 */
+	getEventOutputMap: function(node) {
+		var instance = this;
+
+		return {
+			tree: {
+				instance: instance,
+				node: node || instance
+			}
+		};
+	},
+
+	/**
+	 * Remove the passed <code>node</code> from the current TreeData.
+	 *
+	 * @method removeChild
+	 * @param {TreeData} node
+	 */
+	removeChild: function(node) {
+		var instance = this;
+		var output = instance.getEventOutputMap(node);
+
+		instance.bubbleEvent('remove', output);
+	},
+
+	/**
+	 * Remove the passed <code>node</code> from the current TreeData.
+	 *
+	 * @method _removeChild
+	 * @param {TreeData} node
+	 */
+	_removeChild: function(event) {
+		// stopActionPropagation while bubbling
+		if (event.stopActionPropagation) {
+			return false;
+		}
+
+		var instance = this;
+		var node = event.tree.node;
+		var ownerTree = instance.get(OWNER_TREE);
+
+		if (instance.isRegistered(node)) {
+			// update parent reference when removed
+			node.set(PARENT_NODE, null);
+
+			// unregister the node
+			instance.unregisterNode(node);
+
+			// no parent, no ownerTree
+			node.set(OWNER_TREE, null);
+
+			if (ownerTree) {
+				// unregister the removed node from the tree index
+				ownerTree.unregisterNode(node);
+			}
+
+			// remove child from the container
+			node.get(BOUNDING_BOX).remove();
+
+			var children = instance.get(CHILDREN);
+
+			A.Array.removeItem(children, node);
+			instance.set(CHILDREN, children);
+		}
+	},
+
+	/**
+	 * Delete all children of the current TreeData.
+	 *
+	 * @method empty
+	 */
+	empty: function() {
+		var instance = this;
+
+		instance.eachChildren(function(node) {
+			var parentNode = node.get(PARENT_NODE);
+
+			if (parentNode) {
+				parentNode.removeChild(node);
+			}
+		});
+	},
+
+	/**
+	 * Insert <code>treeNode</code> before or after the <code>refTreeNode</code>.
+	 *
+	 * @method insert
+	 * @param {TreeNode} treeNode
+	 * @param {TreeNode} refTreeNode
+	 * @param {TreeNode} where 'before' or 'after'
+	 */
+	insert: function(treeNode, refTreeNode, where) {
+		var instance = this;
+		refTreeNode = refTreeNode || this;
+
+		if (refTreeNode === treeNode) {
+			return false; // NOTE: return
+		}
+
+		var refParentTreeNode = refTreeNode.get(PARENT_NODE);
+
+		if (treeNode && refParentTreeNode) {
+			var nodeBoundingBox = treeNode.get(BOUNDING_BOX);
+			var refBoundingBox = refTreeNode.get(BOUNDING_BOX);
+			var ownerTree = refTreeNode.get(OWNER_TREE);
+
+			if (where === 'before') {
+				refBoundingBox.placeBefore(nodeBoundingBox);
+			}
+			else if (where === 'after') {
+				refBoundingBox.placeAfter(nodeBoundingBox);
+			}
+
+			var refSiblings = [];
+			// using the YUI selector to regenerate the index based on the real dom
+			// this avoid misscalculations on the nodes index number
+			var DOMChildren = refParentTreeNode.get(BOUNDING_BOX).all('> ul > li');
+
+			DOMChildren.each(function(child) {
+				refSiblings.push( child.getData(TREE_NODE) );
+			});
+
+			// updating prev/nextSibling attributes
+			var nextSiblingNode = nodeBoundingBox.get(NEXT_SIBLING);
+
+			treeNode.set(NEXT_SIBLING, nextSiblingNode && nextSiblingNode.getData(TREE_NODE));
+
+			var prevSiblingNode = nodeBoundingBox.get(PREVIOUS_SIBLING);
+
+			treeNode.set(PREV_SIBLING, prevSiblingNode && prevSiblingNode.getData(TREE_NODE));
+
+			// update all references
+			refTreeNode.updateReferences(treeNode, refParentTreeNode, ownerTree);
+
+			// updating refParentTreeNode childTreeNodes
+			refParentTreeNode.set(CHILDREN, refSiblings);
+		}
+
+		// render treeNode after it's inserted
+		treeNode.render();
+
+		// invoking insert event
+		var output = refTreeNode.getEventOutputMap(treeNode);
+
+		output.tree.refTreeNode = refTreeNode;
+
+		refTreeNode.bubbleEvent('insert', output);
+	},
+
+	/**
+	 * Insert <code>treeNode</code> after the <code>refTreeNode</code>.
+	 *
+	 * @method insertAfter
+	 * @param {TreeNode} treeNode
+	 * @param {TreeNode} refTreeNode
+	 */
+	insertAfter: function(treeNode, refTreeNode) {
+		var instance = this;
+
+		instance.insert(treeNode, refTreeNode, 'after');
+	},
+
+	/**
+	 * Insert <code>treeNode</code> before the <code>refTreeNode</code>.
+	 *
+	 * @method insertBefore
+	 * @param {TreeNode} treeNode
+	 * @param {TreeNode} refTreeNode
+	 */
+	insertBefore: function(treeNode, refTreeNode) {
+		var instance = this;
+
+		instance.insert(treeNode, refTreeNode, 'before');
+	},
+
+	/**
+	 * Get a TreeNode instance by a child DOM Node.
+	 *
+	 * @method getNodeByChild
+	 * @param {Node} child
+	 * @return {TreeNode}
+	 */
+	getNodeByChild: function(child) {
+		var instance = this;
+		var treeNodeEl = child.ancestor(DOT+CSS_TREE_NODE);
+
+		if (treeNodeEl) {
+			return treeNodeEl.getData(TREE_NODE);
+		}
+
+		return null;
+	},
+
+	_inheritOwnerTreeAttrs: L.emptyFn,
+
+	/**
+	 * Setter for <a href="TreeData.html#config_children">children</a>.
+	 *
+	 * @method _setChildren
+	 * @protected
+	 * @param {Array} v
+	 * @return {Array}
+	 */
+	_setChildren: function(v) {
+		var instance = this;
+		var childNodes = [];
+
+		A.Array.each(v, function(node) {
+			if (node) {
+				if (!isTreeNode(node) && isObject(node)) {
+					// creating node from json
+					node = instance.createNode(node);
 				}
 
-				if (oldOwnerTree) {
-					oldOwnerTree.unregisterNode(node);
+				// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
+				// this is required on the render phase of the TreeNode (_createNodeContainer)
+				// to propagate the events callback (appendChild/expand)
+				if (!isTreeNode(instance)) {
+					node.set(OWNER_TREE, instance);
 				}
-
-				// update parent reference when registered
-				node.set(PARENT_NODE, parentNode);
-
-				// update the ownerTree of the node
-				node.set(OWNER_TREE, ownerTree);
-
-				if (parentNode) {
-					// register the new node on the parentNode index
-					parentNode.registerNode(node);
-				}
-
-				if (ownerTree) {
-					// register the new node to the ownerTree index
-					ownerTree.registerNode(node);
-				}
-
-				if (oldOwnerTree != ownerTree) {
-					// when change the OWNER_TREE update the children references also
-					node.eachChildren(function(child) {
-						instance.updateReferences(child, child.get(PARENT_NODE), ownerTree);
-					});
-				}
-
-				// trigger move event
-				if (moved) {
-					var output = instance.getEventOutputMap(node);
-
-					if (!oldParent.get('children').length) {
-						oldParent.collapse();
-						oldParent.hideHitArea();
-					}
-
-					output.tree.oldParent = oldParent;
-					output.tree.oldOwnerTree = oldOwnerTree;
-
-					instance.bubbleEvent('move', output);
-				}
-			},
-
-			/**
-			 * Refresh the index (i.e. re-index all nodes).
-			 *
-			 * @method refreshIndex
-			 */
-			refreshIndex: function() {
-				var instance = this;
-
-				// reset index
-				instance.updateIndex({});
-
-				// get all descendent children - deep
-				instance.eachChildren(function(node) {
-					instance.registerNode(node);
-				}, true);
-			},
-
-			/**
-			 * Register the passed TreeNode on this TreeData.
-			 *
-			 * @method registerNode
-			 * @param {TreeNode} node
-			 */
-			registerNode: function(node) {
-				var instance = this;
-				var uid = node.get(ID);
-				var index = instance.get(INDEX);
-
-				if (uid) {
-					index[uid] = node;
-				}
-
-				if (isTreeView(instance)) {
-					node.addTarget(instance);
+				else {
+					node.set(OWNER_TREE, instance.get(OWNER_TREE));
 				}
 
 				node._inheritOwnerTreeAttrs();
+				node.render(instance.get(CONTAINER));
 
-				instance.updateIndex(index);
-			},
-
-			/**
-			 * Update the <a href="TreeData.html#config_index">index</a> attribute value.
-			 *
-			 * @method updateIndex
-			 * @param {Object} index
-			 */
-			updateIndex: function(index) {
-				var instance = this;
-
-				if (index) {
-					instance.set(INDEX, index);
+				// avoid duplicated children on the childNodes list
+				if (A.Array.indexOf(childNodes, node) === -1) {
+					childNodes.push(node);
 				}
-			},
-
-			/**
-			 * Unregister the passed TreeNode from this TreeData.
-			 *
-			 * @method unregisterNode
-			 * @param {TreeNode} node
-			 */
-			unregisterNode: function(node) {
-				var instance = this;
-				var index = instance.get(INDEX);
-
-				delete index[ node.get(ID) ];
-
-				if (isTreeView(instance)) {
-					node.removeTarget(instance);
-				}
-
-				instance.updateIndex(index);
-			},
-
-			/**
-			 * Collapse all children of the TreeData.
-			 *
-			 * @method collapseAll
-			 */
-			collapseAll: function() {
-				var instance = this;
-
-				instance.eachChildren(function(node) {
-					node.collapse();
-				}, true);
-			},
-
-			/**
-			 * Expand all children of the TreeData.
-			 *
-			 * @method expandAll
-			 */
-			expandAll: function() {
-				var instance = this;
-
-				instance.eachChildren(function(node) {
-					node.expand();
-				}, true);
-			},
-
-			/**
-			 * Select all children of the TreeData.
-			 *
-			 * @method selectAll
-			 */
-			selectAll: function() {
-				var instance = this;
-
-				instance.eachChildren(function(child) {
-					child.select();
-				}, true);
-			},
-
-			/**
-			 * Unselect all children of the TreeData.
-			 *
-			 * @method selectAll
-			 */
-			unselectAll: function() {
-				var instance = this;
-
-				instance.eachChildren(function(child) {
-					child.unselect();
-				}, true);
-			},
-
-			/**
-			 * Loop each children and execute the <code>fn</code> callback.
-			 *
-			 * @method eachChildren
-			 * @param {function} fn callback
-			 * @param {boolean} fn recursive
-			 */
-			eachChildren: function(fn, deep) {
-				var instance = this;
-				var children = instance.getChildren(deep);
-
-				A.Array.each(children, function(node) {
-					if (node) {
-						fn.apply(instance, arguments);
-					}
-				});
-			},
-
-			/**
-			 * Loop each parent node and execute the <code>fn</code> callback.
-			 *
-			 * @method eachChildren
-			 * @param {function} fn callback
-			 */
-			eachParent: function(fn) {
-				var instance = this;
-				var parentNode = instance.get(PARENT_NODE);
-
-				while (parentNode) {
-					if (parentNode) {
-						fn.apply(instance, [parentNode]);
-					}
-					parentNode = parentNode.get(PARENT_NODE);
-				}
-			},
-
-			/**
-			 * Bubble event to all parent nodes.
-			 *
-			 * @method bubbleEvent
-			 * @param {String} eventType
-			 * @param {Array} args
-			 * @param {boolean} cancelBubbling
-			 * @param {boolean} stopActionPropagation
-			 */
-			bubbleEvent: function(eventType, args, cancelBubbling, stopActionPropagation) {
-				var instance = this;
-
-				// event.stopActionPropagation === undefined, invoke the event native action
-				instance.fire(eventType, args);
-
-				if (!cancelBubbling) {
-					var parentNode = instance.get(PARENT_NODE);
-
-					// Avoid execution of the native action (private methods) while propagate
-					// for example: private _appendChild() is invoked only on the first level of the bubbling
-					// the intention is only invoke the user callback on parent nodes.
-					args = args || {};
-
-					if (isUndefined(stopActionPropagation)) {
-						stopActionPropagation = true;
-					}
-
-					args.stopActionPropagation = stopActionPropagation;
-
-					while(parentNode) {
-						parentNode.fire(eventType, args);
-						parentNode = parentNode.get(PARENT_NODE);
-					}
-				}
-			},
-
-			/**
-			 * Create a TreeNode instance.
-			 *
-			 * @method createNode
-			 * @param {Object} options
-			 * @return {TreeNode}
-			 */
-			createNode: function(options) {
-				var instance = this;
-				var classType = A.TreeNode.nodeTypes[ isObject(options) ? options.type : options ] || A.TreeNode;
-
-				return new classType(
-					isObject(options) ? options : {}
-				);
-			},
-
-			/**
-			 * Append a child node to the TreeData.
-			 *
-			 * @method appendChild
-			 * @param {TreeNode} node
-			 * @param {boolean} cancelBubbling
-			 */
-			appendChild: function(node, cancelBubbling) {
-				var instance = this;
-				var output = instance.getEventOutputMap(node);
-
-				instance.bubbleEvent('append', output, cancelBubbling);
-			},
-
-			/**
-			 * Append a child node to the TreeData.
-			 *
-			 * @method _appendChild
-			 * @param {TreeNode} node
-			 * @param {boolean} cancelBubbling
-			 * @protected
-			 */
-			_appendChild: function(event) {
-				// stopActionPropagation while bubbling
-				if (event.stopActionPropagation) {
-					return false;
-				}
-
-				var instance = this;
-				var node = event.tree.node;
-				var ownerTree = instance.get(OWNER_TREE);
-				var children = instance.get(CHILDREN);
-
-				// updateReferences first
-				instance.updateReferences(node, instance, ownerTree);
-				// and then set the children, to have the appendChild propagation
-				// the PARENT_NODE references should be updated
-				var length = children.push(node);
-				instance.set(CHILDREN, children);
-
-				// updating prev/nextSibling attributes
-				var prevIndex = length - 2;
-				var prevSibling = instance.item(prevIndex);
-
-				node.set(NEXT_SIBLING, null);
-				node.set(PREV_SIBLING, prevSibling);
-
-				instance.get(CONTAINER).append(
-					node.get(BOUNDING_BOX)
-				);
-
-				// render node after it's appended
-				node.render();
-			},
-
-			/**
-			 * Get a TreeNode children by index.
-			 *
-			 * @method item
-			 * @param {Number} index
-			 * @return {TreeNode}
-			 */
-			item: function(index) {
-				var instance = this;
-
-				return instance.get(CHILDREN)[index];
-			},
-
-			/**
-			 * Index of the passed TreeNode on the <a
-		     * href="TreeData.html#config_children">children</a> attribute.
-			 *
-			 * @method indexOf
-			 * @param {TreeNode} node
-			 * @return {Number}
-			 */
-			indexOf: function(node) {
-				var instance = this;
-
-				return A.Array.indexOf( instance.get(CHILDREN), node );
-			},
-
-			/**
-			 * Whether the TreeData contains children or not.
-			 *
-			 * @method hasChildNodes
-			 * @return {boolean}
-			 */
-			hasChildNodes: function() {
-				return ( this.get(CHILDREN).length > 0 );
-			},
-
-			/**
-			 * Get an Array of the children nodes of the current TreeData.
-			 *
-			 * @method getChildren
-			 * @param {boolean} deep
-			 * @return {Array}
-			 */
-			getChildren: function(deep) {
-				var instance = this;
-				var cNodes = [];
-				var children = instance.get(CHILDREN);
-
-				cNodes = cNodes.concat(children);
-
-				if (deep) {
-					instance.eachChildren(function(child) {
-						cNodes = cNodes.concat( child.getChildren(deep) );
-					});
-				}
-
-				return cNodes;
-			},
-
-			/**
-			 * Get an object containing metadata for the custom events.
-			 *
-			 * @method getEventOutputMap
-			 * @param {TreeData} node
-			 * @return {Object}
-			 */
-			getEventOutputMap: function(node) {
-				var instance = this;
-
-				return {
-					tree: {
-						instance: instance,
-						node: node || instance
-					}
-				};
-			},
-
-			/**
-			 * Remove the passed <code>node</code> from the current TreeData.
-			 *
-			 * @method removeChild
-			 * @param {TreeData} node
-			 */
-			removeChild: function(node) {
-				var instance = this;
-				var output = instance.getEventOutputMap(node);
-
-				instance.bubbleEvent('remove', output);
-			},
-
-			/**
-			 * Remove the passed <code>node</code> from the current TreeData.
-			 *
-			 * @method _removeChild
-			 * @param {TreeData} node
-			 */
-			_removeChild: function(event) {
-				// stopActionPropagation while bubbling
-				if (event.stopActionPropagation) {
-					return false;
-				}
-
-				var instance = this;
-				var node = event.tree.node;
-				var ownerTree = instance.get(OWNER_TREE);
-
-				if (instance.isRegistered(node)) {
-					// update parent reference when removed
-					node.set(PARENT_NODE, null);
-
-					// unregister the node
-					instance.unregisterNode(node);
-
-					// no parent, no ownerTree
-					node.set(OWNER_TREE, null);
-
-					if (ownerTree) {
-						// unregister the removed node from the tree index
-						ownerTree.unregisterNode(node);
-					}
-
-					// remove child from the container
-					node.get(BOUNDING_BOX).remove();
-
-					var children = instance.get(CHILDREN);
-
-					A.Array.removeItem(children, node);
-					instance.set(CHILDREN, children);
-				}
-			},
-
-			/**
-			 * Delete all children of the current TreeData.
-			 *
-			 * @method empty
-			 */
-			empty: function() {
-				var instance = this;
-
-				instance.eachChildren(function(node) {
-					var parentNode = node.get(PARENT_NODE);
-
-					if (parentNode) {
-						parentNode.removeChild(node);
-					}
-				});
-			},
-
-			/**
-			 * Insert <code>treeNode</code> before or after the <code>refTreeNode</code>.
-			 *
-			 * @method insert
-			 * @param {TreeNode} treeNode
-			 * @param {TreeNode} refTreeNode
-			 * @param {TreeNode} where 'before' or 'after'
-			 */
-			insert: function(treeNode, refTreeNode, where) {
-				var instance = this;
-				refTreeNode = refTreeNode || this;
-
-				if (refTreeNode === treeNode) {
-					return false; // NOTE: return
-				}
-				var refParentTreeNode = refTreeNode.get(PARENT_NODE);
-
-				if (treeNode && refParentTreeNode) {
-					var nodeBoundinBox = treeNode.get(BOUNDING_BOX);
-					var refBoundinBox = refTreeNode.get(BOUNDING_BOX);
-					var ownerTree = refTreeNode.get(OWNER_TREE);
-
-					if (where === 'before') {
-						refBoundinBox.placeBefore(nodeBoundinBox);
-					}
-					else if (where === 'after') {
-						refBoundinBox.placeAfter(nodeBoundinBox);
-					}
-
-					var refSiblings = [];
-					// using the YUI selector to regenerate the index based on the real dom
-					// this avoid misscalculations on the nodes index number
-					var DOMChildren = refParentTreeNode.get(BOUNDING_BOX).all('> ul > li');
-
-					DOMChildren.each(function(child) {
-						refSiblings.push( A.Widget.getByNode(child) );
-					});
-
-					// updating prev/nextSibling attributes
-					treeNode.set(
-						NEXT_SIBLING,
-						A.Widget.getByNode( nodeBoundinBox.get(NEXT_SIBLING) )
-					);
-					treeNode.set(
-						PREV_SIBLING,
-						A.Widget.getByNode( nodeBoundinBox.get(PREVIOUS_SIBLING) )
-					);
-
-					// update all references
-					refTreeNode.updateReferences(treeNode, refParentTreeNode, ownerTree);
-
-					// updating refParentTreeNode childTreeNodes
-					refParentTreeNode.set(CHILDREN, refSiblings);
-				}
-
-				// render treeNode after it's inserted
-				treeNode.render();
-
-				// invoking insert event
-				var output = refTreeNode.getEventOutputMap(treeNode);
-
-				output.tree.refTreeNode = refTreeNode;
-
-				refTreeNode.bubbleEvent('insert', output);
-			},
-
-			/**
-			 * Insert <code>treeNode</code> after the <code>refTreeNode</code>.
-			 *
-			 * @method insertAfter
-			 * @param {TreeNode} treeNode
-			 * @param {TreeNode} refTreeNode
-			 */
-			insertAfter: function(treeNode, refTreeNode) {
-				refTreeNode.insert(treeNode, refTreeNode, 'after');
-			},
-
-			/**
-			 * Insert <code>treeNode</code> before the <code>refTreeNode</code>.
-			 *
-			 * @method insertBefore
-			 * @param {TreeNode} treeNode
-			 * @param {TreeNode} refTreeNode
-			 */
-			insertBefore: function(treeNode, refTreeNode) {
-				refTreeNode.insert(treeNode, refTreeNode, 'before');
-			},
-
-			/**
-			 * Get a TreeNode instance by a child DOM Node.
-			 *
-			 * @method getNodeByChild
-			 * @param {Node} child
-			 * @return {TreeNode}
-			 */
-			getNodeByChild: function(child) {
-				var instance = this;
-				var treeNodeEl = child.ancestor(DOT+CSS_TREE_NODE);
-
-				if (treeNodeEl) {
-					return instance.getNodeById( treeNodeEl.attr(ID) );
-				}
-
-				return null;
-			},
-
-			_inheritOwnerTreeAttrs: L.emptyFn,
-
-			/**
-			 * Setter for <a href="TreeData.html#config_children">children</a>.
-			 *
-			 * @method _setChildren
-			 * @protected
-			 * @param {Array} v
-			 * @return {Array}
-			 */
-			_setChildren: function(v) {
-				var instance = this;
-				var childNodes = [];
-
-				A.Array.each(v, function(node) {
-					if (node) {
-						if (!isTreeNode(node) && isObject(node)) {
-							// creating node from json
-							node = instance.createNode(node);
-						}
-
-						// before render the node, make sure the PARENT_NODE and OWNER_TREE references are updated
-						// this is required on the render phase of the TreeNode (_createNodeContainer)
-						// to propagate the events callback (appendChild/expand)
-						if (!isTreeNode(instance)) {
-							node.set(OWNER_TREE, instance);
-						}
-						else {
-							node.set(OWNER_TREE, instance.get(OWNER_TREE));
-						}
-
-						node._inheritOwnerTreeAttrs();
-						node.render();
-
-						// avoid duplicated children on the childNodes list
-						if (A.Array.indexOf(childNodes, node) === -1) {
-							childNodes.push(node);
-						}
-					}
-				});
-
-				return childNodes;
 			}
-		}
+		});
+
+		return childNodes;
 	}
-);
+});
 
 A.TreeData = TreeData;
 
@@ -837,8 +833,8 @@ var L = A.Lang,
 	EXPANDED = 'expanded',
 	HELPER = 'helper',
 	HIDDEN = 'hidden',
-	HITAREA = 'hitarea',
 	HIT_AREA_EL = 'hitAreaEl',
+	HITAREA = 'hitarea',
 	ICON = 'icon',
 	ICON_EL = 'iconEl',
 	ID = 'id',
@@ -850,9 +846,10 @@ var L = A.Lang,
 	OVER = 'over',
 	OWNER_TREE = 'ownerTree',
 	PARENT_NODE = 'parentNode',
+	RADIO = 'radio',
+	RENDERED = 'rendered',
 	SELECTED = 'selected',
 	SPACE = ' ',
-	RADIO = 'radio',
 	TREE = 'tree',
 	TREE_NODE = 'tree-node',
 
@@ -873,11 +870,13 @@ var L = A.Lang,
 	CSS_HELPER_CLEARFIX = getCN(HELPER, CLEARFIX),
 	CSS_TREE_COLLAPSED = getCN(TREE, COLLAPSED),
 	CSS_TREE_CONTAINER = getCN(TREE, CONTAINER),
+	CSS_TREE_CONTENT_BOX = getCN(TREE, CONTENT_BOX),
 	CSS_TREE_EXPANDED = getCN(TREE, EXPANDED),
 	CSS_TREE_HIDDEN = getCN(TREE, HIDDEN),
 	CSS_TREE_HITAREA = getCN(TREE, HITAREA),
 	CSS_TREE_ICON = getCN(TREE, ICON),
 	CSS_TREE_LABEL = getCN(TREE, LABEL),
+	CSS_TREE_NODE = getCN(TREE, NODE),
 	CSS_TREE_NODE_CONTENT = getCN(TREE, NODE, CONTENT),
 	CSS_TREE_NODE_HIDDEN_HITAREA = getCN(TREE, NODE, HIDDEN, HITAREA),
 	CSS_TREE_NODE_LEAF = getCN(TREE, NODE, LEAF),
@@ -889,7 +888,7 @@ var L = A.Lang,
 	LABEL_TPL = '<div class="'+CSS_TREE_LABEL+'"></div>',
 	NODE_CONTAINER_TPL = '<ul></ul>',
 
-	NODE_BOUNDING_TEMPLATE = '<li></li>',
+	NODE_BOUNDING_TEMPLATE = '<li class="'+CSS_TREE_NODE+'"></li>',
 	NODE_CONTENT_TEMPLATE = '<div class="'+concat(CSS_HELPER_CLEARFIX, CSS_TREE_NODE_CONTENT)+'"></div>';
 
 /**
@@ -935,6 +934,19 @@ var TreeNode = A.Component.create(
 		 * @static
 		 */
 		ATTRS: {
+
+			boundingBox: {
+				valueFn: function() {
+					return A.Node.create(NODE_BOUNDING_TEMPLATE);
+				}
+			},
+
+			contentBox: {
+				valueFn: function() {
+					return A.Node.create(NODE_CONTENT_TEMPLATE);
+				}
+			},
+
 			/**
 			 * If true the TreeNode is draggable.
 			 *
@@ -1109,12 +1121,17 @@ var TreeNode = A.Component.create(
 
 			tabIndex: {
 				value: null
+			},
+
+			rendered: {
+				validator: isBoolean,
+				value: false
 			}
 		},
 
-		EXTENDS: A.TreeData,
+		AUGMENTS: [A.TreeData],
 
-		UI_ATTRS: [EXPANDED],
+		EXTENDS: A.Base,
 
 		prototype: {
 			/**
@@ -1142,9 +1159,14 @@ var TreeNode = A.Component.create(
 			 */
 			initializer: function() {
 				var instance = this;
+				var boundingBox = instance.get(BOUNDING_BOX);
+
+				boundingBox.setData(TREE_NODE, instance);
 
 				// Sync the Widget TreeNode id with the BOUNDING_BOX id
 				instance._syncTreeNodeBBId();
+
+				instance._uiSetExpanded(instance.get(EXPANDED));
 			},
 
 			/**
@@ -1157,21 +1179,25 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance.after('childrenChange', A.bind(instance._afterSetChildren, instance));
+				instance.after('expandedChange', A.bind(instance._afterExpandedChange, instance));
 				instance.after('idChange', instance._afterSetId, instance);
 			},
 
-			/**
-			 * Create the DOM structure for the TreeNode. Lifecycle. Overloading
-		     * private _renderUI, don't call this._renderBox method avoid render node on
-		     * the body.
-			 *
-			 * @method _renderUI
-			 * @protected
-			 */
-		    _renderUI: function(parentNode) {
-		        this._renderBoxClassNames();
-				// this._renderBox(parentNode);
-		    },
+			render: function(container) {
+				var instance = this;
+
+				if (!instance.get(RENDERED)) {
+					instance.renderUI();
+					instance.bindUI();
+					instance.syncUI();
+
+					instance.set(RENDERED, true);
+				}
+
+				if (container) {
+					instance.get(BOUNDING_BOX).appendTo(container);
+				}
+			},
 
 			/**
 			 * Create the DOM structure for the TreeNode. Lifecycle.
@@ -1196,6 +1222,12 @@ var TreeNode = A.Component.create(
 				var instance = this;
 
 				instance._syncHitArea( instance.get( CHILDREN ) );
+			},
+
+			_afterExpandedChange: function(event) {
+				var instance = this;
+
+				instance._uiSetExpanded(event.newVal);
 			},
 
 			/**
@@ -2265,9 +2297,14 @@ var TreeNodeCheck = A.Component.create(
 
 		EXTENDS: A.TreeNodeIO,
 
-		UI_ATTRS: [CHECKED],
-
 		prototype: {
+
+			initializer: function() {
+				var instance = this;
+
+				instance._uiSetChecked(instance.get(CHECKED));
+			},
+
 			/*
 			* Lifecycle
 			*/
@@ -2297,6 +2334,8 @@ var TreeNodeCheck = A.Component.create(
 				var labelEl = instance.get(LABEL_EL);
 
 				A.TreeNodeCheck.superclass.bindUI.apply(instance, arguments);
+
+				instance.after('checkedChange', A.bind(instance._afterCheckedChange, instance));
 
 				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_NODE_CHECKBOX_CONTAINER);
 				contentBox.delegate('click', A.bind(instance.toggleCheck, instance), DOT+CSS_TREE_LABEL);
@@ -2359,6 +2398,12 @@ var TreeNodeCheck = A.Component.create(
 				var instance = this;
 
 				return instance.get(CHECKED);
+			},
+
+			_afterCheckedChange: function(event) {
+				var instance = this;
+
+				instance._uiSetChecked(event.newVal);
 			},
 
 			_uiSetChecked: function(val) {
@@ -2659,6 +2704,7 @@ var L = A.Lang,
 	ROOT = 'root',
 	SPACE = ' ',
 	TREE = 'tree',
+	TREE_NODE = 'tree-node',
 	TREE_VIEW = 'tree-view',
 	TYPE = 'type',
 	VIEW = 'view',
@@ -2773,10 +2819,20 @@ var TreeView = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.TreeData,
+		AUGMENTS: [A.TreeData],
 
 		prototype: {
 			CONTENT_TEMPLATE: '<ul></ul>',
+
+			initializer: function() {
+				var instance = this;
+				var boundingBox = instance.get(BOUNDING_BOX);
+				var contentBox = instance.get(CONTENT_BOX);
+
+				instance.set(CONTAINER, contentBox);
+
+				boundingBox.setData(TREE_VIEW, instance);
+			},
 
 			/**
 			 * Bind the events on the TreeView UI. Lifecycle.
@@ -2862,10 +2918,14 @@ var TreeView = A.Component.create(
 
 					// find the parent TreeNode...
 					var parentNode = node.get(PARENT_NODE).get(PARENT_NODE);
-					var parentTreeNode = A.Widget.getByNode(parentNode);
+					var parentInstance = parentNode.getData(TREE_NODE);
+
+					if (!A.instanceOf(parentInstance, A.TreeNode)) {
+						parentInstance = parentNode.getData(TREE_VIEW);
+					}
 
 					// and simulate the appendChild.
-					parentTreeNode.appendChild(treeNode);
+					parentInstance.appendChild(treeNode);
 				});
 			},
 
@@ -2884,19 +2944,11 @@ var TreeView = A.Component.create(
 
 				contentBox.addClass(CSS_TREE_VIEW_CONTENT);
 
-				instance.set(CONTAINER, contentBox);
-
 				contentBox.addClass(
 					concat(CSS_TREE_TYPE, CSS_TREE_ROOT_CONTAINER)
 				);
 
-				if (children.length) {
-					// if has children appendChild them
-					instance.eachChildren(function(node) {
-						instance.appendChild(node, true);
-					});
-				}
-				else {
+				if (!children.length) {
 					// if children not specified try to create from markup
 					instance._createFromHTMLMarkup(contentBox);
 				}
@@ -3394,7 +3446,7 @@ var TreeViewDD = A.Component.create(
 				var nodeContent = drop.get(NODE);
 				var dropNode = nodeContent.get(PARENT_NODE);
 				var dragNode = drag.get(NODE).get(PARENT_NODE);
-				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
 
 				// reset the classNames from the last nodeContent
 				instance._resetState(instance.nodeContent);
@@ -3468,8 +3520,8 @@ var TreeViewDD = A.Component.create(
 				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
 
-				var dropTreeNode = A.Widget.getByNode(dropNode);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
+				var dragTreeNode = dragNode.getData(TREE_NODE);
 
 				var output = instance.getEventOutputMap(instance);
 
@@ -3539,7 +3591,7 @@ var TreeViewDD = A.Component.create(
 				var instance = this;
 				var drag = event.target;
 				var dragNode = drag.get(NODE).get(PARENT_NODE);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
+				var dragTreeNode = dragNode.getData(TREE_NODE);
 				var lastSelected = instance.get(LAST_SELECTED);
 
 				// select drag node
@@ -3585,7 +3637,7 @@ var TreeViewDD = A.Component.create(
 			 */
 			_onDropHit: function(event) {
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
 
 				if (!isTreeNode(dropTreeNode)) {
 					event.preventDefault();
