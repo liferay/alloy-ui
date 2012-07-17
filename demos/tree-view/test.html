@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" href="../../build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+</head>
+
+<style type="text/css" media="screen">
+
+	.aui-tree-view {
+		margin: 30px;
+		font-size: 12px;
+	}
+
+</style>
+
+<body>
+<h1>Alloy - TreeView</h1>
+
+<button id="expandAll">Expand All</button>
+<button id="collapseAll">Collapse All</button>
+
+<h1>A.TreeViewDD</h1>
+<div id="tree"></div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-tree-view', function(A) {
+	var children = [];
+
+	for (var i = 0; i < 50; i++) {
+		children[i] = {
+			children: [
+				{
+					label: 'Children ' + i + '-1'
+				},
+				{
+					label: 'Children ' + i + '-2'
+				}
+			],
+			expanded: true,
+			label: 'Folder ' + i
+		};
+	}
+
+	console.time('render');
+
+	var treeViewDD = new A.TreeViewDD({
+		width: 200,
+		type: 'normal',
+		boundingBox: '#tree',
+		children: children
+	})
+	.render();
+
+	console.timeEnd('render');
+
+	A.on('click', function() {
+		console.time('expandAll');
+
+		treeViewDD.expandAll();
+
+		console.timeEnd('expandAll');
+	}, '#expandAll');
+
+	A.on('click', function() {
+		console.time('collapseAll');
+
+		treeViewDD.collapseAll();
+
+		console.timeEnd('collapseAll');
+	}, '#collapseAll');
+});
+
+</script>
+
+</body>
+</html>
