@@ -2279,14 +2279,15 @@ AUI.add('aui-media-viewer-plugin', function(A) {
 
 var Lang = A.Lang,
 	Do = A.Do,
+	IE = A.UA.ie,
 
 	STR_ABOUT_BLANK = 'about:blank',
 	STR_BODY = 'body',
 	STR_HREF = 'href',
+	STR_IFRAME = 'iframe',
 	STR_IMAGE = 'image',
 	STR_LOADING = 'loading',
 	STR_PROVIDERS = 'providers',
-	STR_PROVIDERS_IFRAME = 'iframe',
 	STR_SRC = 'src',
 
 	NAME = 'mediaViewerPlugin',
@@ -2374,7 +2375,7 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(source.attr('href'));
 
 				if (mediaType != STR_IMAGE) {
-					if (A.UA.ie == 9) {
+					if (IE == 9) {
 						instance._redirectIframe(STR_ABOUT_BLANK);
 					}
 
@@ -2391,7 +2392,7 @@ var MediaViewerPlugin = A.Component.create(
 
 				var result = true;
 
-				if (A.UA.ie == 9) {
+				if (IE == 9) {
 					instance._redirectIframe(STR_ABOUT_BLANK);
 				}
 
@@ -2485,18 +2486,18 @@ var MediaViewerPlugin = A.Component.create(
 				return mediaType;
 			},
 
-			_redirectIframe: function(src) {
+			_redirectIframe: function(source) {
 				var instance = this;
 
 				var host = instance.get('host');
 
-				var node = host.bodyNode;
+				var bodyNode = host.bodyNode;
 
-				if (node) {
-					var iframe = node.one(STR_PROVIDERS_IFRAME);
+				if (bodyNode) {
+					var iframe = bodyNode.one(STR_IFRAME);
 
 					if (iframe) {
-						iframe.set(STR_SRC, src);
+						iframe.set(STR_SRC, source);
 					}
 				}
 			},
@@ -2578,5 +2579,5 @@ A.MediaViewer = A.ImageViewer;
 }, '@VERSION@' ,{requires:['aui-image-viewer-base'], skinnable:false});
 
 
-AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin'], skinnable:true});
+AUI.add('aui-image-viewer', function(A){}, '@VERSION@' ,{skinnable:true, use:['aui-image-viewer-base','aui-image-viewer-gallery','aui-media-viewer-plugin']});
 
