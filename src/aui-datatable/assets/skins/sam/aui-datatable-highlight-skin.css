@@ -1,0 +1,18 @@
+.yui3-skin-sam .yui3-datatable-odd.yui3-datatable-highlight .yui3-datatable-cell,
+.yui3-skin-sam .yui3-datatable-even.yui3-datatable-highlight .yui3-datatable-cell,
+
+.yui3-skin-sam .yui3-datatable-odd .yui3-datatable-cell.yui3-datatable-highlight,
+.yui3-skin-sam .yui3-datatable-even .yui3-datatable-cell.yui3-datatable-highlight {
+	background-color: #eff4fe;
+	color: #000;
+}
+
+.yui3-datatable-highlight-border {
+	position: absolute;
+	background-color: #89aff9;
+
+}
+.yui3-datatable-highlight-overlay-active .yui3-datatable-highlight-border {
+	position: absolute;
+	background-color: #5292F7;
+}
