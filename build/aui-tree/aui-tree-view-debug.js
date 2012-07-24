@@ -26,6 +26,7 @@ var L = A.Lang,
 	ROOT = 'root',
 	SPACE = ' ',
 	TREE = 'tree',
+	TREE_NODE = 'tree-node',
 	TREE_VIEW = 'tree-view',
 	TYPE = 'type',
 	VIEW = 'view',
@@ -140,10 +141,20 @@ var TreeView = A.Component.create(
 			}
 		},
 
-		EXTENDS: A.TreeData,
+		AUGMENTS: [A.TreeData],
 
 		prototype: {
 			CONTENT_TEMPLATE: '<ul></ul>',
+
+			initializer: function() {
+				var instance = this;
+				var boundingBox = instance.get(BOUNDING_BOX);
+				var contentBox = instance.get(CONTENT_BOX);
+
+				instance.set(CONTAINER, contentBox);
+
+				boundingBox.setData(TREE_VIEW, instance);
+			},
 
 			/**
 			 * Bind the events on the TreeView UI. Lifecycle.
@@ -229,10 +240,14 @@ var TreeView = A.Component.create(
 
 					// find the parent TreeNode...
 					var parentNode = node.get(PARENT_NODE).get(PARENT_NODE);
-					var parentTreeNode = A.Widget.getByNode(parentNode);
+					var parentInstance = parentNode.getData(TREE_NODE);
+
+					if (!A.instanceOf(parentInstance, A.TreeNode)) {
+						parentInstance = parentNode.getData(TREE_VIEW);
+					}
 
 					// and simulate the appendChild.
-					parentTreeNode.appendChild(treeNode);
+					parentInstance.appendChild(treeNode);
 				});
 			},
 
@@ -251,19 +266,11 @@ var TreeView = A.Component.create(
 
 				contentBox.addClass(CSS_TREE_VIEW_CONTENT);
 
-				instance.set(CONTAINER, contentBox);
-
 				contentBox.addClass(
 					concat(CSS_TREE_TYPE, CSS_TREE_ROOT_CONTAINER)
 				);
 
-				if (children.length) {
-					// if has children appendChild them
-					instance.eachChildren(function(node) {
-						instance.appendChild(node, true);
-					});
-				}
-				else {
+				if (!children.length) {
 					// if children not specified try to create from markup
 					instance._createFromHTMLMarkup(contentBox);
 				}
@@ -761,7 +768,7 @@ var TreeViewDD = A.Component.create(
 				var nodeContent = drop.get(NODE);
 				var dropNode = nodeContent.get(PARENT_NODE);
 				var dragNode = drag.get(NODE).get(PARENT_NODE);
-				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
 
 				// reset the classNames from the last nodeContent
 				instance._resetState(instance.nodeContent);
@@ -835,8 +842,8 @@ var TreeViewDD = A.Component.create(
 				var dragNode = event.drag.get(NODE).get(PARENT_NODE);
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
 
-				var dropTreeNode = A.Widget.getByNode(dropNode);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
+				var dragTreeNode = dragNode.getData(TREE_NODE);
 
 				var output = instance.getEventOutputMap(instance);
 
@@ -906,7 +913,7 @@ var TreeViewDD = A.Component.create(
 				var instance = this;
 				var drag = event.target;
 				var dragNode = drag.get(NODE).get(PARENT_NODE);
-				var dragTreeNode = A.Widget.getByNode(dragNode);
+				var dragTreeNode = dragNode.getData(TREE_NODE);
 				var lastSelected = instance.get(LAST_SELECTED);
 
 				// select drag node
@@ -952,7 +959,7 @@ var TreeViewDD = A.Component.create(
 			 */
 			_onDropHit: function(event) {
 				var dropNode = event.drop.get(NODE).get(PARENT_NODE);
-				var dropTreeNode = A.Widget.getByNode(dropNode);
+				var dropTreeNode = dropNode.getData(TREE_NODE);
 
 				if (!isTreeNode(dropTreeNode)) {
 					event.preventDefault();
