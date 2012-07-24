@@ -10,28 +10,6 @@
 	.example {
 		margin: 30px;
 	}
-
-	.yui3-datatable-selection {
-		outline: 0;
-	}
-
-	.yui3-skin-sam .yui3-datatable-odd.yui3-datatable-selected .yui3-datatable-cell,
-	.yui3-skin-sam .yui3-datatable-even.yui3-datatable-selected .yui3-datatable-cell,
-
-	.yui3-skin-sam .yui3-datatable-odd .yui3-datatable-cell.yui3-datatable-selected,
-	.yui3-skin-sam .yui3-datatable-even .yui3-datatable-cell.yui3-datatable-selected {
-		background-color: #68e;
-		color: #fff;
-	}
-
-	.yui3-skin-sam .yui3-datatable-odd.yui3-datatable-active .yui3-datatable-cell,
-	.yui3-skin-sam .yui3-datatable-even.yui3-datatable-active .yui3-datatable-cell,
-
-	.yui3-skin-sam .yui3-datatable-odd .yui3-datatable-cell.yui3-datatable-active,
-	.yui3-skin-sam .yui3-datatable-even .yui3-datatable-cell.yui3-datatable-active {
-		background-color: red;
-		color: #fff;
-	}
 	</style>
 </head>
 
@@ -51,20 +29,7 @@ AUI().use('aui-datatable', function(A) {
 		{name:"Joan B. Jones", address:"3271 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
 		{name:"Bob C. Uncle", address:"9996 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
 		{name:"John D. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
-		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"},
-		{name:"Bob F. Uncle", address:"9899 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["banana"], last_login:"1/23/2004"},
-		{name:"John G. Smith", address:"1723 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple"], last_login:"4/19/2007"},
-		{name:"Joan H. Jones", address:"3241 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["kiwi"], last_login:"2/15/2006"},
-		{name:"Bob I. Uncle", address:"9909 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple","banana"], last_login:"1/23/2004"},
-		{name:"John J. Smith", address:"1623 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["apple","cherry"], last_login:"4/19/2007"},
-		{name:"Joan K. Jones", address:"3721 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["banana"], last_login:"2/15/2006"},
-		{name:"Bob L. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["cherry"], last_login:"1/23/2004"},
-		{name:"John M. Smith", address:"1293 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["cherry"], last_login:"4/19/2007"},
-		{name:"Joan N. Jones", address:"3621 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
-		{name:"Bob O. Uncle", address:"9959 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["kiwi","cherry"], last_login:"1/23/2004"},
-		{name:"John P. Smith", address:"6123 Some Street", city:"San Francisco", state:"CA", amount:5, active:"yes", colors:["red"], fruit:["banana"], last_login:"4/19/2007"},
-		{name:"Joan Q. Jones", address:"3281 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple"], last_login:"2/15/2006"},
-		{name:"Bob R. Uncle", address:"9989 Random Road", city:"Los Angeles", state:"CA", amount:0, active:"maybe", colors:["green"], fruit:["apple"], last_login:"1/23/2004"}
+		{name:"Joan E. Jones", address:"3217 Another Ave", city:"New York", state:"NY", amount:3, active:"no", colors:["red","blue"], fruit:["apple","cherry"], last_login:"2/15/2006"}
 	];
 
 	var nestedCols = [
@@ -80,14 +45,14 @@ AUI().use('aui-datatable', function(A) {
 				{
 					label: "Information",
 					children: [
-						{ key:"address" },
-						{ key:"city" },
-						{ key:"state" },
-						{ key:"amount" },
-						{ key:"active" },
-						{ key:"colors" },
-						{ key:"fruit" },
-						{ key:"last_login" }
+						{ key: "address" },
+						{ key: "city" },
+						{ key: "state" },
+						{ key: "amount" },
+						{ key: "active" },
+						{ key: "colors" },
+						{ key: "fruit" },
+						{ key: "last_login" }
 					]
 				}
 			]
@@ -98,33 +63,33 @@ AUI().use('aui-datatable', function(A) {
 		columns: nestedCols,
 		data: data,
 		render: '#dt1',
-		after: {
-			activeCellChange: function(event) {
-				// console.log('activeCellChange', event.newVal.getDOM());
-
-				event.newVal.addClass('yui3-datatable-active');
-
-				if (event.prevVal && (event.prevVal !== event.newVal)) {
-					var prevRow = this.getRow(this.getCoord(event.prevVal)[0]);
-
-					event.prevVal.removeClass('yui3-datatable-active');
+		plugins: [
+			{
+				fn: A.Plugin.DataTableHighlight,
+				cfg: {
+					// highlightRange: false,
+					// type: 'rows',
+					// activeBorderWidth: 5,
+					// rangeBorderWidth: 1
 				}
-			},
-			selectionChange: function(event) {
-				// console.log('selectionChange', event.newVal);
-
-				A.Array.each(event.newVal.cells, function(node) {
-					node.addClass('yui3-datatable-selected');
-				});
 			}
+		],
+		after: {
+			// activeCellChange: function(event) {
+			// 	console.log(event.newVal);
+			// },
+
+			// selectionChange: function(event) {
+			// 	console.log(event.newVal);
+			// }
 		}
 	});
 
 	// table.set('selection', node);
-	table.set('selection', [0,0]);
-	table.set('selection', [[1,1]]);
-	table.set('selection', [[2,2], [3,3], [4,4]]);
-	table.set('selection', { start: [5,5], end: [7,7] });
+	// table.set('selection', [0,0]);
+	// table.set('selection', [[1,1]]);
+	table.set('selection', [[2,2], [2,3], [2, 4]]);
+	// table.set('selection', { start: [5,5], end: [7,7] });
 });
 
 </script>
