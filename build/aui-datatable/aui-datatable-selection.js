@@ -46,6 +46,7 @@ DataTableSelection.ATTRS = {
 A.mix(DataTableSelection.prototype, {
 	_capturing: false,
 	_selectionEnd: null,
+	_selectionSeed: null,
 	_selectionStart: null,
 
 	initializer: function() {
@@ -65,7 +66,7 @@ A.mix(DataTableSelection.prototype, {
 	destroy: function() {
 		var instance = this;
 
-		instance._keyHandler.detach();
+		instance._selectionKeyHandler.detach();
 	},
 
 	captureSelection: function(coords) {
@@ -89,8 +90,8 @@ A.mix(DataTableSelection.prototype, {
 		cols = A.Array.unique(cols);
 
 		for (i = 0; i < rows.length; i++) {
-			rows[i] = instance.getRow(i);
-			records[i] = instance.getRecord(i);
+			rows[i] = instance.getRow(rows[i]);
+			records[i] = instance.getRecord(rows[i]);
 		}
 
 		return {
@@ -115,11 +116,11 @@ A.mix(DataTableSelection.prototype, {
 		var instance = this,
 			classNames = instance[CLASS_NAMES_SELECTION];
 
-		instance._keyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:37,38,39,40');
+		instance._selectionKeyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:37,38,39,40');
 
+		instance.delegate(MOUSEUP, A.bind(instance._onSelectionMouseUp, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEDOWN, A.bind(instance._onSelectionMouseDown, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEENTER, A.bind(instance._onSelectionMouseEnter, instance), _DOT+classNames.cell);
-		instance.delegate(MOUSEUP, A.bind(instance._onSelectionMouseUp, instance), _DOT+classNames.cell);
 	},
 
 	_onSelectionMouseDown: function(event) {
@@ -130,20 +131,22 @@ A.mix(DataTableSelection.prototype, {
 		boundingBox.unselectable();
 
 		instance._capturing = true;
-
+		instance._selectionSeed = seed;
 		instance._selectionStart = instance._selectionEnd = instance.getCoord(seed);
 
 		instance.set(ACTIVE_CELL, seed);
 	},
 
 	_onSelectionMouseEnter: function(event) {
-		var instance = this;
+		var instance = this,
+			seed = event.currentTarget;
 
 		if (!instance._capturing) {
 			return;
 		}
 
-		instance._selectionEnd = instance.getCoord(event.currentTarget);
+		instance._selectionSeed = seed;
+		instance._selectionEnd = instance.getCoord(seed);
 
 		instance.set(SELECTION, {
 			start: instance._selectionStart,
@@ -152,17 +155,19 @@ A.mix(DataTableSelection.prototype, {
 	},
 
 	_onSelectionMouseUp: function(event) {
-		var instance = this;
+		var instance = this,
 			boundingBox = instance.get(BOUNDING_BOX);
 
+		if (instance.get(FOCUSED)) {
+			instance._selectionEnd = instance.getCoord(instance._selectionSeed);
+
+			instance.set(SELECTION, {
+				start: instance._selectionStart,
+				end: instance._selectionEnd
+			});
+		}
+
 		boundingBox.selectable();
-
-		instance._selectionEnd = instance.getCoord(event.currentTarget);
-
-		instance.set(SELECTION, {
-			start: instance._selectionStart,
-			end: instance._selectionEnd
-		});
 
 		instance._capturing = false;
 	},
@@ -201,7 +206,7 @@ A.mix(DataTableSelection.prototype, {
 			i = clamp(i, 0, imax-1);
 			j = clamp(j, 0, jmax-1);
 
-			instance.set(ACTIVE_CELL, instance.getCell([i, j]));
+			instance.set(ACTIVE_CELL, [i, j]);
 
 			instance.set(SELECTION, [i, j]);
 
