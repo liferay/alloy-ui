@@ -60,19 +60,6 @@ var L = A.Lang,
 var TreeData = function () {};
 
 TreeData.ATTRS = {
-    // selectionMode: for supporting multiple selection could be its own extension
-
-    selectionType: {
-        value: null, // Feature should not change base behavior by default
-        validator: '_validateSelectionType'
-    },
-
-    selection: {
-        setter: '_setSelection'
-    }
-};
-
-TreeData.ATTRS = {
 	/**
 	 * Container to nest children nodes. If has cntainer it's not a leaf.
 	 *
