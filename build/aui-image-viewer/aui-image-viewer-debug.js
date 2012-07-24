@@ -2375,9 +2375,7 @@ var MediaViewerPlugin = A.Component.create(
 				var mediaType = instance._getMediaType(source.attr('href'));
 
 				if (mediaType != STR_IMAGE) {
-					if (IE == 9) {
-						instance._redirectIframe(STR_ABOUT_BLANK);
-					}
+					instance._redirectIframe(STR_ABOUT_BLANK);
 
 					host.setStdModContent(STR_BODY, '');
 				}
@@ -2392,9 +2390,7 @@ var MediaViewerPlugin = A.Component.create(
 
 				var result = true;
 
-				if (IE == 9) {
-					instance._redirectIframe(STR_ABOUT_BLANK);
-				}
+				instance._redirectIframe(STR_ABOUT_BLANK);
 
 				if (mediaType != STR_IMAGE) {
 					var providers = instance.get(STR_PROVIDERS)[mediaType];
@@ -2489,15 +2485,13 @@ var MediaViewerPlugin = A.Component.create(
 			_redirectIframe: function(source) {
 				var instance = this;
 
-				var host = instance.get('host');
-
-				var bodyNode = host.bodyNode;
+				var bodyNode = instance.get('host.bodyNode');
 
 				if (bodyNode) {
 					var iframe = bodyNode.one(STR_IFRAME);
 
 					if (iframe) {
-						iframe.set(STR_SRC, source);
+						iframe.attr(STR_SRC, source);
 					}
 				}
 			},
