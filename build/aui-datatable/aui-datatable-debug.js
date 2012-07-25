@@ -1705,6 +1705,103 @@ A.DataTable.prototype.getColumn = (function (original) {
 	};
 }(A.DataTable.prototype.getColumn));
 
+// DataTable columns configuration breaks on n-depth cloning complex objects
+// See http://yuilibrary.com/projects/yui3/ticket/2532597
+
+A.DataTable.prototype._setColumns = function (val) {
+	var keys = {},
+		known = [],
+		knownCopies = [],
+		arrayIndex = A.Array.indexOf,
+		isString = A.Lang.isString,
+		isObject = A.Lang.isObject,
+		isArray = A.Lang.isArray;
+
+	function copyObj(o) {
+		var copy = {},
+			key, val, i;
+
+		known.push(o);
+		knownCopies.push(copy);
+
+		for (key in o) {
+			if (o.hasOwnProperty(key)) {
+				val = o[key];
+
+				if (isArray(val)) {
+					copy[key] = val.slice();
+				// Patch is right here, the second condition
+				} else if (isObject(val, true) && val.constructor === copy.constructor) {
+					i = arrayIndex(val, known);
+
+					copy[key] = i === -1 ? copyObj(val) : knownCopies[i];
+				} else {
+					copy[key] = o[key];
+				}
+			}
+		}
+
+		return copy;
+	}
+
+	function genId(name) {
+		// Sanitize the name for use in generated CSS classes.
+		// TODO: is there more to do for other uses of _id?
+		name = name.replace(/\s+/, '-');
+
+		if (keys[name]) {
+			name += (keys[name]++);
+		} else {
+			keys[name] = 1;
+		}
+
+		return name;
+	}
+
+	function process(cols, parent) {
+		var columns = [],
+			i, len, col, yuid;
+
+		for (i = 0, len = cols.length; i < len; ++i) {
+			columns[i] = // chained assignment
+			col = isString(cols[i]) ? { key: cols[i] } : copyObj(cols[i]);
+
+			yuid = A.stamp(col);
+
+			// For backward compatibility
+			if (!col.id) {
+				// Implementers can shoot themselves in the foot by setting
+				// this config property to a non-unique value
+				col.id = yuid;
+			}
+			if (col.field) {
+				// Field is now known as "name" to avoid confusion with data
+				// fields or schema.resultFields
+				col.name = col.field;
+			}
+
+			if (parent) {
+				col._parent = parent;
+			} else {
+				delete col._parent;
+			}
+
+			// Unique id based on the column's configured name or key,
+			// falling back to the yuid.  Duplicates will have a counter
+			// added to the end.
+			col._id = genId(col.name || col.key || col.id);
+
+			if (isArray(col.children)) {
+				col.children = process(col.children, col);
+			}
+		}
+
+		return columns;
+	}
+
+	return val && process(val);
+};
+
 }, '@VERSION@' ,{skinnable:true, requires:['datatable-base']});
 AUI.add('aui-datatable-highlight', function(A) {
 var Lang = A.Lang,
