@@ -8,17 +8,40 @@ build: nightly
 YUI.add('io-nodejs', function(Y) {
 
 /*global Y: false, Buffer: false, clearInterval: false, clearTimeout: false, console: false, exports: false, global: false, module: false, process: false, querystring: false, require: false, setInterval: false, setTimeout: false, __filename: false, __dirname: false */   
-
+    /**
+    * Node.js override for IO, methods are mixed into `Y.IO`
+    * @module io-nodejs
+    * @main io-nodejs
+    */
     /**
     * Passthru to the NodeJS <a href="https://github.com/mikeal/request">request</a> module.
     * This method is return of `require('request')` so you can use it inside NodeJS without
     * the IO abstraction.
     * @method request
     * @static
+    * @for IO
     */
     if (!Y.IO.request) {
         Y.IO.request = require('request');
     }
+
+    var codes = require('http').STATUS_CODES;
+    
+    /**
+    Flatten headers object
+    @method flatten
+    @protected
+    @for IO
+    @param {Object} o The headers object
+    @return {String} The flattened headers object
+    */
+    var flatten = function(o) {
+        var str = [];
+        Object.keys(o).forEach(function(name) {
+            str.push(name + ': ' + o[name]);
+        });
+        return str.join('\n');
+    };
 
     Y.log('Loading NodeJS Request Transport', 'info', 'io');
 
@@ -26,6 +49,7 @@ YUI.add('io-nodejs', function(Y) {
     NodeJS IO transport, uses the NodeJS <a href="https://github.com/mikeal/request">request</a>
     module under the hood to perform all network IO.
     @method transports.nodejs
+    @for IO
     @static
     @returns {Object} This object contains only a `send` method that accepts a
     `transaction object`, `uri` and the `config object`.
@@ -65,14 +89,6 @@ YUI.add('io-nodejs', function(Y) {
         });
     */
 
-    var flatten = function(o) {
-        var str = [];
-        Object.keys(o).forEach(function(name) {
-            str.push(name + ': ' + o[name]);
-        });
-        return str.join('\n');
-    };
-
     Y.IO.transports.nodejs = function() {
         return {
             send: function (transaction, uri, config) {
@@ -80,13 +96,28 @@ YUI.add('io-nodejs', function(Y) {
                 Y.log('Starting Request Transaction', 'info', 'io');
                 config.notify('start', transaction, config);
                 config.method = config.method || 'GET';
+                config.method = config.method.toUpperCase();
 
                 var rconf = {
                     method: config.method,
                     uri: uri
                 };
+
                 if (config.data) {
-                    rconf.body = config.data;
+                    if (Y.Lang.isObject(config.data)) {
+                        if (Y.QueryString && Y.QueryString.stringify) {
+                            Y.log('Stringifying config.data for request', 'info', 'io');
+                            rconf.body = Y.QueryString.stringify(config.data);
+                        } else {
+                            Y.log('Failed to stringify config.data object, likely because `querystring-stringify-simple` is missing.', 'warn', 'io');
+                        }
+                    } else if (Y.Lang.isString(config.data)) {
+                        rconf.body = config.data;
+                    }
+                    if (rconf.method === 'GET') {
+                        rconf.uri += (rconf.uri.indexOf('?') > -1 ? '&' : '?') + rconf.body;
+                        rconf.body = '';
+                    }
                 }
                 if (config.headers) {
                     rconf.headers = config.headers;
@@ -111,6 +142,7 @@ YUI.add('io-nodejs', function(Y) {
                         transaction.c = {
                             status: data.statusCode,
                             statusCode: data.statusCode,
+                            statusText: codes[data.statusCode],
                             headers: data.headers,
                             responseText: data.body,
                             responseXML: null,

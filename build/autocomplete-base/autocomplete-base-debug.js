@@ -1550,4 +1550,4 @@ AutoCompleteBase.UI_SRC = (Y.Widget && Y.Widget.UI_SRC) || 'ui';
 Y.AutoCompleteBase = AutoCompleteBase;
 
 
-}, '3.6.0pr1' ,{optional:['autocomplete-sources'], requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base']});
+}, '3.6.0pr1' ,{requires:['array-extras', 'base-build', 'escape', 'event-valuechange', 'node-base'], optional:['autocomplete-sources']});

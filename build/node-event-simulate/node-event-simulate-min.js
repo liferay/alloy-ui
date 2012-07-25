@@ -5,4 +5,4 @@ http://developer.yahoo.com/yui/license.html
 version: 3.6.0pr1
 build: nightly
 */
-YUI.add("node-event-simulate",function(a){a.Node.prototype.simulate=function(c,b){a.Event.simulate(a.Node.getDOMNode(this),c,b);};},"3.6.0pr1",{requires:["node-base","event-simulate"]});
+YUI.add("node-event-simulate",function(a){a.Node.prototype.simulate=function(c,b){a.Event.simulate(a.Node.getDOMNode(this),c,b);};a.Node.prototype.simulateGesture=function(d,c,b){a.Event.simulateGesture(this,d,c,b);};},"3.6.0pr1",{requires:["node-base","event-simulate","gesture-simulate"]});

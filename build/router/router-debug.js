@@ -21,6 +21,10 @@ var HistoryHash = Y.HistoryHash,
 
     win = Y.config.win,
 
+    // Holds all the active router instances. This supports the static
+    // `dispatch()` method which causes all routers to dispatch.
+    instances = [],
+
     // We have to queue up pushState calls to avoid race conditions, since the
     // popstate event doesn't actually provide any info on what URL it's
     // associated with.
@@ -82,6 +86,15 @@ Y.Router = Y.extend(Router, Y.Base, {
     @property _dispatching
     @type Boolean
     @default undefined
+    @protected
+    **/
+
+    /**
+    History event handle for the `history:change` or `hashchange` event
+    subscription.
+
+    @property _historyEvents
+    @type EventHandle
     @protected
     **/
 
@@ -154,10 +167,12 @@ Y.Router = Y.extend(Router, Y.Base, {
 
         // Set up a history instance or hashchange listener.
         if (self._html5) {
-            self._history = new Y.HistoryHTML5({force: true});
-            Y.after('history:change', self._afterHistoryChange, self);
+            self._history       = new Y.HistoryHTML5({force: true});
+            self._historyEvents =
+                    Y.after('history:change', self._afterHistoryChange, self);
         } else {
-            Y.on('hashchange', self._afterHistoryChange, win, self);
+            self._historyEvents =
+                    Y.on('hashchange', self._afterHistoryChange, win, self);
         }
 
         // Fire a `ready` event once we're ready to route. We wait first for all
@@ -177,14 +192,20 @@ Y.Router = Y.extend(Router, Y.Base, {
                 }, 20);
             });
         });
+
+        // Store this router in the collection of all active router instances.
+        instances.push(this);
     },
 
     destructor: function () {
-        if (this._html5) {
-            Y.detach('history:change', this._afterHistoryChange, this);
-        } else {
-            Y.detach('hashchange', this._afterHistoryChange, win);
+        var instanceIndex = Y.Array.indexOf(instances, this);
+
+        // Remove this router from the collection of active router instances.
+        if (instanceIndex > -1) {
+            instances.splice(instanceIndex, 1);
         }
+
+        this._historyEvents && this._historyEvents.detach();
     },
 
     // -- Public Methods -------------------------------------------------------
@@ -237,13 +258,19 @@ Y.Router = Y.extend(Router, Y.Base, {
       otherwise.
     **/
     hasRoute: function (url) {
+        var path;
+
         if (!this._hasSameOrigin(url)) {
             return false;
         }
 
-        url = this.removeQuery(this.removeRoot(url));
+        if (!this._html5) {
+            url = this._upgradeURL(url);
+        }
 
-        return !!this.match(url).length;
+        path = this.removeQuery(this.removeRoot(url));
+
+        return !!this.match(path).length;
     },
 
     /**
@@ -481,16 +508,16 @@ Y.Router = Y.extend(Router, Y.Base, {
             return false;
         }
 
-        // Get the full hash in all its glory!
-        var hash = HistoryHash.getHash();
+        // Get the resolve hash path.
+        var hashPath = this._getHashPath();
 
-        if (hash && hash.charAt(0) === '/') {
+        if (hashPath) {
             // This is an HTML5 browser and we have a hash-based path in the
             // URL, so we need to upgrade the URL to a non-hash URL. This
             // will trigger a `history:change` event, which will in turn
             // trigger a dispatch.
             this.once(EVT_READY, function () {
-                this.replace(hash);
+                this.replace(hashPath);
             });
 
             return true;
@@ -602,15 +629,24 @@ Y.Router = Y.extend(Router, Y.Base, {
     },
 
     /**
-    Gets the current path from the location hash, or an empty string if the
-    hash is empty.
+    Returns the resolved path from the hash fragment, or an empty string if the
+    hash is not path-like.
 
     @method _getHashPath
+    @param {String} [hash] Hash fragment to resolve into a path. By default this
+        will be the hash from the current URL.
     @return {String} Current hash path, or an empty string if the hash is empty.
     @protected
     **/
-    _getHashPath: function () {
-        return HistoryHash.getHash().replace(this._regexUrlQuery, '');
+    _getHashPath: function (hash) {
+        hash || (hash = HistoryHash.getHash());
+
+        // Make sure the `hash` is path-like.
+        if (hash && hash.charAt(0) === '/') {
+            return this._joinURL(hash);
+        }
+
+        return '';
     },
 
     /**
@@ -640,6 +676,32 @@ Y.Router = Y.extend(Router, Y.Base, {
                 Y.getLocation().pathname;
 
         return this.removeQuery(this.removeRoot(path));
+    },
+
+    /**
+    Returns the current path root after popping off the last path segment,
+    making it useful for resolving other URL paths against.
+
+    The path root will always begin and end with a '/'.
+
+    @method _getPathRoot
+    @return {String} The URL's path root.
+    @protected
+    @since 3.5.0
+    **/
+    _getPathRoot: function () {
+        var slash = '/',
+            path  = Y.getLocation().pathname,
+            segments;
+
+        if (path.charAt(path.length - 1) === slash) {
+            return path;
+        }
+
+        segments = path.split(slash);
+        segments.pop();
+
+        return segments.join(slash) + slash;
     },
 
     /**
@@ -802,6 +864,7 @@ Y.Router = Y.extend(Router, Y.Base, {
     _joinURL: function (url) {
         var root = this.get('root');
 
+        // Causes `url` to _always_ begin with a "/".
         url = this.removeRoot(url);
 
         if (url.charAt(0) === '/') {
@@ -811,6 +874,48 @@ Y.Router = Y.extend(Router, Y.Base, {
         return root && root.charAt(root.length - 1) === '/' ?
                 root + url :
                 root + '/' + url;
+    },
+
+    /**
+    Returns a normalized path, ridding it of any '..' segments and properly
+    handling leading and trailing slashes.
+
+    @method _normalizePath
+    @param {String} path URL path to normalize.
+    @return {String} Normalized path.
+    @protected
+    @since 3.5.0
+    **/
+    _normalizePath: function (path) {
+        var dots  = '..',
+            slash = '/',
+            i, len, normalized, segments, segment, stack;
+
+        if (!path || path === slash) {
+            return slash;
+        }
+
+        segments = path.split(slash);
+        stack    = [];
+
+        for (i = 0, len = segments.length; i < len; ++i) {
+            segment = segments[i];
+
+            if (segment === dots) {
+                stack.pop();
+            } else if (segment) {
+                stack.push(segment);
+            }
+        }
+
+        normalized = slash + stack.join(slash);
+
+        // Append trailing slash if necessary.
+        if (normalized !== slash && path.charAt(path.length - 1) === slash) {
+            normalized += slash;
+        }
+
+        return normalized;
     },
 
     /**
@@ -887,6 +992,79 @@ Y.Router = Y.extend(Router, Y.Base, {
     },
 
     /**
+    Returns the normalized result of resolving the `path` against the current
+    path. Falsy values for `path` will return just the current path.
+
+    @method _resolvePath
+    @param {String} path URL path to resolve.
+    @return {String} Resolved path.
+    @protected
+    @since 3.5.0
+    **/
+    _resolvePath: function (path) {
+        if (!path) {
+            return Y.getLocation().pathname;
+        }
+
+        if (path.charAt(0) !== '/') {
+            path = this._getPathRoot() + path;
+        }
+
+        return this._normalizePath(path);
+    },
+
+    /**
+    Resolves the specified URL against the current URL.
+
+    This method resolves URLs like a browser does and will always return an
+    absolute URL. When the specified URL is already absolute, it is assumed to
+    be fully resolved and is simply returned as is. Scheme-relative URLs are
+    prefixed with the current protocol. Relative URLs are giving the current
+    URL's origin and are resolved and normalized against the current path root.
+
+    @method _resolveURL
+    @param {String} url URL to resolve.
+    @return {String} Resolved URL.
+    @protected
+    @since 3.5.0
+    **/
+    _resolveURL: function (url) {
+        var parts    = url && url.match(this._regexURL),
+            origin, path, query, hash, resolved;
+
+        if (!parts) {
+            return this._getURL();
+        }
+
+        origin = parts[1];
+        path   = parts[2];
+        query  = parts[3];
+        hash   = parts[4];
+
+        // Absolute and scheme-relative URLs are assumed to be fully-resolved.
+        if (origin) {
+            // Prepend the current scheme for scheme-relative URLs.
+            if (origin.indexOf('//') === 0) {
+                origin = Y.getLocation().protocol + origin;
+            }
+
+            return origin + (path || '/') + (query || '') + (hash || '');
+        }
+
+        // Will default to the current origin and current path.
+        resolved = this._getOrigin() + this._resolvePath(path);
+
+        // A path or query for the specified URL trumps the current URL's.
+        if (path || query) {
+            return resolved + (query || '') + (hash || '');
+        }
+
+        query = this._getQuery();
+
+        return resolved + (query ? ('?' + query) : '') + (hash || '');
+    },
+
+    /**
     Saves a history entry using either `pushState()` or the location hash.
 
     This method enforces the same-origin security constraint; attempting to save
@@ -901,7 +1079,8 @@ Y.Router = Y.extend(Router, Y.Base, {
     @protected
     **/
     _save: function (url, replace) {
-        var urlIsString = typeof url === 'string';
+        var urlIsString = typeof url === 'string',
+            currentPath, root;
 
         // Perform same-origin check on the specified URL.
         if (urlIsString && !this._hasSameOrigin(url)) {
@@ -909,23 +1088,31 @@ Y.Router = Y.extend(Router, Y.Base, {
             return this;
         }
 
+        // Joins the `url` with the `root`.
+        urlIsString && (url = this._joinURL(url));
+
         // Force _ready to true to ensure that the history change is handled
         // even if _save is called before the `ready` event fires.
         this._ready = true;
 
         if (this._html5) {
-            this._history[replace ? 'replace' : 'add'](null, {
-                url: urlIsString ? this._joinURL(url) : url
-            });
+            this._history[replace ? 'replace' : 'add'](null, {url: url});
         } else {
-            // Remove the root from the URL before it's set as the hash.
-            urlIsString && (url = this.removeRoot(url));
+            currentPath = Y.getLocation().pathname;
+            root        = this.get('root');
+
+            // Determine if the `root` already exists in the current location's
+            // `pathname`, and if it does then we can exclude it from the
+            // hash-based path. No need to duplicate the info in the URL.
+            if (root === currentPath || root === this._getPathRoot()) {
+                url = this.removeRoot(url);
+            }
 
             // The `hashchange` event only fires when the new hash is actually
-            // different. This makes sure we'll always dequeue and dispatch,
-            // mimicking the HTML5 behavior.
+            // different. This makes sure we'll always dequeue and dispatch
+            // _all_ router instances, mimicking the HTML5 behavior.
             if (url === HistoryHash.getHash()) {
-                this._dispatch(this._getPath(), this._getURL());
+                Y.Router.dispatch();
             } else {
                 HistoryHash[replace ? 'replaceHash' : 'setHash'](url);
             }
@@ -950,6 +1137,47 @@ Y.Router = Y.extend(Router, Y.Base, {
         }, this);
 
         return this._routes.concat();
+    },
+
+    /**
+    Upgrades a hash-based URL to a full-path URL, if necessary.
+
+    The specified `url` will be upgraded if its of the same origin as the
+    current URL and has a path-like hash. URLs that don't need upgrading will be
+    returned as-is.
+
+    @example
+        app._upgradeURL('http://example.com/#/foo/'); // => 'http://example.com/foo/';
+
+    @method _upgradeURL
+    @param {String} url The URL to upgrade from hash-based to full-path.
+    @return {String} The upgraded URL, or the specified URL untouched.
+    @protected
+    @since 3.5.0
+    **/
+    _upgradeURL: function (url) {
+        // We should not try to upgrade paths for external URLs.
+        if (!this._hasSameOrigin(url)) {
+            return url;
+        }
+
+        var hash       = (url.match(/#(.*)$/) || [])[1] || '',
+            hashPrefix = Y.HistoryHash.hashPrefix,
+            hashPath;
+
+        // Strip any hash prefix, like hash-bangs.
+        if (hashPrefix && hash.indexOf(hashPrefix) === 0) {
+            hash = hash.replace(hashPrefix, '');
+        }
+
+        hash && (hashPath = this._getHashPath(hash));
+
+        // If the hash looks like a URL path, assume it is, and upgrade it!
+        if (hashPath) {
+            return this._resolveURL(hashPath);
+        }
+
+        return url;
     },
 
     // -- Protected Event Handlers ---------------------------------------------
@@ -1068,7 +1296,34 @@ Y.Router = Y.extend(Router, Y.Base, {
     },
 
     // Used as the default value for the `html5` attribute, and for testing.
-    html5: Y.HistoryBase.html5 && (!Y.UA.android || Y.UA.android >= 3)
+    html5: Y.HistoryBase.html5 && (!Y.UA.android || Y.UA.android >= 3),
+
+    // To make this testable.
+    _instances: instances,
+
+    /**
+    Dispatches to the first route handler that matches the specified `path` for
+    all active router instances.
+
+    This provides a mechanism to cause all active router instances to dispatch
+    to their route handlers without needing to change the URL or fire the
+    `history:change` or `hashchange` event.
+
+    @method dispatch
+    @static
+    @since 3.6.0
+    **/
+    dispatch: function () {
+        var i, len, router;
+
+        for (i = 0, len = instances.length; i < len; i += 1) {
+            router = instances[i];
+
+            if (router) {
+                router._dispatch(router._getPath(), router._getURL());
+            }
+        }
+    }
 });
 
 /**
@@ -1085,4 +1340,4 @@ version of YUI.
 Y.Controller = Y.Router;
 
 
-}, '3.6.0pr1' ,{requires:['array-extras', 'base-build', 'history'], optional:['querystring-parse']});
+}, '3.6.0pr1' ,{optional:['querystring-parse'], requires:['array-extras', 'base-build', 'history']});

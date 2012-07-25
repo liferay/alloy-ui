@@ -33,7 +33,7 @@ Y.each([
 
     /**
      * Document width 
-     * @config winHeight
+     * @config docWidth
      * @type {Int}
      */
     'docWidth',

@@ -418,5 +418,4 @@ Y.SliderValueRange = Y.mix( SliderValueRange, {
 }, true );
 
 
-
 }, '3.6.0pr1' ,{requires:['slider-base']});

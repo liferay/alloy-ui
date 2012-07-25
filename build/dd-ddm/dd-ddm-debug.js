@@ -128,4 +128,4 @@ YUI.add('dd-ddm', function(Y) {
 
 
 
-}, '3.6.0pr1' ,{requires:['dd-ddm-base', 'event-resize'], skinnable:false});
+}, '3.6.0pr1' ,{skinnable:false, requires:['dd-ddm-base', 'event-resize']});

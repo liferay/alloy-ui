@@ -81,8 +81,7 @@ Y.mix(ACBase.prototype, {
         // Private internal _sendRequest method that will be assigned to
         // ioSource.sendRequest once io-base and json-parse are available.
         function _sendRequest(request) {
-            var cacheKey = request.request,
-                query    = request.query;
+            var cacheKey = request.request;
 
             // Return immediately on a cached response.
             if (that._cache && cacheKey in that._cache) {
@@ -480,4 +479,4 @@ Y.mix(ACBase.SOURCE_TYPES, {
 }, true);
 
 
-}, '3.6.0pr1' ,{optional:['io-base', 'json-parse', 'jsonp', 'yql'], requires:['autocomplete-base']});
+}, '3.6.0pr1' ,{requires:['autocomplete-base'], optional:['io-base', 'json-parse', 'jsonp', 'yql']});

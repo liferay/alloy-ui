@@ -216,5 +216,4 @@ Y.ClickableRail = Y.mix(ClickableRail, {
 }, true);
 
 
-
 }, '3.6.0pr1' ,{requires:['slider-base']});

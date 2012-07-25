@@ -204,4 +204,4 @@ YUI.add('dd-plugin', function(Y) {
 
 
 
-}, '3.6.0pr1' ,{optional:['dd-constrain', 'dd-proxy'], requires:['dd-drag'], skinnable:false});
+}, '3.6.0pr1' ,{skinnable:false, optional:['dd-constrain', 'dd-proxy'], requires:['dd-drag']});

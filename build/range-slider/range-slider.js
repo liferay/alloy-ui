@@ -32,5 +32,4 @@ Y.Slider = Y.Base.build( 'slider', Y.SliderBase,
     [ Y.SliderValueRange, Y.ClickableRail ] );
 
 
-
 }, '3.6.0pr1' ,{requires:['slider-base', 'clickable-rail', 'slider-value-range']});
