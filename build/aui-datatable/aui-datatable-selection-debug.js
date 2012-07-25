@@ -106,7 +106,7 @@ A.mix(DataTableSelection.prototype, {
 	getCoord: function(seed) {
 		var instance = this,
 			cell = instance.getCell(seed),
-			tbody = instance.body.get(CONTAINER),
+			tbody = instance.body.tbodyNode,
 			rowIndexOffset = tbody.get('firstChild.rowIndex');
 
 		return [ cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get(CELL_INDEX) ];
@@ -175,12 +175,12 @@ A.mix(DataTableSelection.prototype, {
 	_onSelectionKey: function(event) {
 		var instance = this,
 			body = instance.body,
-			tbody = body.get(CONTAINER),
+			tbody = body.tbodyNode,
 			keyCode = event.keyCode,
 			activeCell = instance.get(ACTIVE_CELL),
 			activeCoord,
 			imax = tbody.get(CHILDREN).size(),
-			jmax = body.columns.length,
+			jmax = body.get('columns').length,
 			i,
 			j;
 
