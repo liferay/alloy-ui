@@ -8,6 +8,13 @@ var Lang = A.Lang,
 
 	NAME = 'ace-editor';
 
+var ACE_EDITOR_BASE_PATH = A.config.base + 'aui-ace-editor/ace';
+
+ace.config.set('modePath', ACE_EDITOR_BASE_PATH);
+ace.config.set('themePath', ACE_EDITOR_BASE_PATH);
+ace.config.set('workerPath', ACE_EDITOR_BASE_PATH);
+ace.config.set('packaged', true);
+
 var AceEditor = A.Component.create(
 	{
 		NAME: NAME,
@@ -92,7 +99,7 @@ var AceEditor = A.Component.create(
 				if (!instance.editor) {
 					var boundingBox = instance.get(BOUNDING_BOX);
 
-			        instance.editor = ace.edit(boundingBox.getDOM());
+					instance.editor = ace.edit(boundingBox.getDOM());
 				}
 
 				return instance.editor;
@@ -180,14 +187,7 @@ var AceEditor = A.Component.create(
 				var instance = this;
 
 				if (value) {
-					var Mode = require('ace/mode/' + value).Mode;
-
-					if (Mode !== undefined) {
-						instance.getSession().setMode(new Mode());
-					}
-					else {
-						throw new Error('The mode \'' + value + '\' is not available.');
-					}
+					instance.getSession().setMode('ace/mode/' + value);
 				}
 			},
 
