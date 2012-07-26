@@ -1979,6 +1979,10 @@ var DataTableHighlight = A.Base.create(
 				overlayActiveNode = instance.get(OVERLAY_ACTIVE_NODE),
 				classNames = instance.CLASS_NAMES;
 
+			if (!instance.get(TYPE)) {
+				return;
+			}
+
 			instance.clear();
 
 			if (event.prevVal) {
@@ -2001,11 +2005,15 @@ var DataTableHighlight = A.Base.create(
 				overlayNode = instance.get(OVERLAY_NODE),
 				rangeBorderWidth = instance.get(RANGE_BORDER_WIDTH);
 
+			if (!instance.get(TYPE)) {
+				return;
+			}
+
 			instance._clearHighlights();
 
 			nodes = instance._collectNodes(event.newVal);
 
-			if (highlightRange && (nodes.length > 1)) {
+			if (highlightRange && nodes && (nodes.length > 1)) {
 				instance._alignBorder(
 					overlayNode, instance.getSelectionRegion(), rangeBorderWidth);
 
@@ -2046,7 +2054,7 @@ var DataTableHighlight = A.Base.create(
 			var instance = this,
 				type = instance.get(TYPE);
 
-			if (!selection) {
+			if (!type || !selection) {
 				return null;
 			}
 
