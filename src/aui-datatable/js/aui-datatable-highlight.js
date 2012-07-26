@@ -6,9 +6,9 @@ var Lang = A.Lang,
 	ACTIVE = 'active',
 	ACTIVE_BORDER_WIDTH = 'activeBorderWidth',
 	ACTIVE_CELL = 'activeCell',
-	ACTIVE_CELL_CHANGE = 'activeCellChange',
+	ACTIVE_ROW = 'activeRow',
+	ACTIVE_ROW_CHANGE = 'activeRowChange',
 	BORDER = 'border',
-	BOUNDING_BOX = 'boundingBox',
 	CELL = 'cell',
 	CELLS = 'cells',
 	CHILDREN = 'children',
@@ -72,7 +72,7 @@ var DataTableHighlight = A.Base.create(
 				overlayActive: host.getClassName(HIGHLIGHT, OVERLAY, ACTIVE)
 			};
 
-			instance.afterHostEvent(ACTIVE_CELL_CHANGE, instance._afterActiveCellChange);
+			instance.afterHostEvent(ACTIVE_ROW_CHANGE, instance._afterActiveRowChange);
 			instance.afterHostEvent(SELECTION_CHANGE, instance._afterSelectionChange);
 		},
 
@@ -89,14 +89,22 @@ var DataTableHighlight = A.Base.create(
 			instance._clearHighlights();
 		},
 
-		getActiveCellRegion: function() {
+		getActiveRegion: function() {
 			var instance = this,
 				host = instance.get(HOST),
-				activeCell = host.get(ACTIVE_CELL),
-				region = null;
+				type = instance.get(TYPE),
+				region = null,
+				activeNode;
 
-			if (activeCell) {
-				region = activeCell.get(REGION);
+			if (type === ROWS) {
+				activeNode = host.get(ACTIVE_ROW);
+			}
+			else {
+				activeNode = host.get(ACTIVE_CELL);
+			}
+
+			if (activeNode) {
+				region = activeNode.get(REGION);
 			}
 
 			return region;
@@ -120,7 +128,7 @@ var DataTableHighlight = A.Base.create(
 			};
 		},
 
-		_afterActiveCellChange: function(event) {
+		_afterActiveRowChange: function(event) {
 			var instance = this,
 				activeBorderWidth = instance.get(ACTIVE_BORDER_WIDTH),
 				overlayActiveNode = instance.get(OVERLAY_ACTIVE_NODE),
@@ -134,7 +142,7 @@ var DataTableHighlight = A.Base.create(
 
 			if (event.newVal) {
 				instance._alignBorder(
-					overlayActiveNode, instance.getActiveCellRegion(),
+					overlayActiveNode, instance.getActiveRegion(),
 					activeBorderWidth);
 
 				event.newVal.addClass(classNames.activeCell);
@@ -164,10 +172,9 @@ var DataTableHighlight = A.Base.create(
 
 		_alignBorder: function(overlayNode, region, borderWidth) {
 			var instance = this,
-				host = instance.get(HOST),
-				boundingBox = host.get(BOUNDING_BOX);
+				host = instance.get(HOST);
 
-			boundingBox.appendChild(overlayNode);
+			host._tableNode.appendChild(overlayNode);
 
 			if (region) {
 				var borders = overlayNode.get(CHILDREN),

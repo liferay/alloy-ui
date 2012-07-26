@@ -1,24 +1,24 @@
 var Lang = A.Lang,
 	isArray = Lang.isArray,
-	isBoolean = Lang.isBoolean,
 	isString = Lang.isString,
 	isObject = Lang.isObject,
 
 	CLASS_NAMES_SELECTION = 'CLASS_NAMES_SELECTION',
 
 	ACTIVE_CELL = 'activeCell',
+	ACTIVE_CELL_CHANGE = 'activeCellChange',
+	ACTIVE_ROW = 'activeRow',
 	BOUNDING_BOX = 'boundingBox',
 	CELL = 'cell',
 	CELL_INDEX = 'cellIndex',
-	CONTAINER = 'container',
+	CHILDREN = 'children',
 	FOCUSED = 'focused',
 	KEY = 'key',
 	MOUSEDOWN = 'mousedown',
 	MOUSEENTER = 'mouseenter',
 	MOUSEUP = 'mouseup',
-	SELECTED = 'selected',
+	RENDER = 'render',
 	SELECTION = 'selection',
-	CHILDREN = 'children',
 
 	_DOT = '.',
 
@@ -31,6 +31,10 @@ var DataTableSelection = function () {};
 DataTableSelection.ATTRS = {
 	activeCell: {
 		setter: 'getCell'
+	},
+
+	activeRow: {
+		setter: 'getRow'
 	},
 
 	selection: {
@@ -60,6 +64,7 @@ A.mix(DataTableSelection.prototype, {
 		instance._bindSelectionUI();
 
 		boundingBox.addClass(instance[CLASS_NAMES_SELECTION].selection);
+
 	},
 
 	destroy: function() {
@@ -111,12 +116,26 @@ A.mix(DataTableSelection.prototype, {
 		return [ cell.get('parentNode.rowIndex') - rowIndexOffset, cell.get(CELL_INDEX) ];
 	},
 
+	_afterActiveCellChange: function(event) {
+		var instance = this;
+
+		instance.set(ACTIVE_ROW, event.newVal);
+	},
+
+	_afterRender: function(event) {
+		var instance = this;
+
+		instance.set(ACTIVE_ROW, instance.get(ACTIVE_CELL));
+	},
+
 	_bindSelectionUI: function() {
 		var instance = this,
 			classNames = instance[CLASS_NAMES_SELECTION];
 
 		instance._selectionKeyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:37,38,39,40');
 
+		instance.after(RENDER, instance._afterRender);
+		instance.after(ACTIVE_CELL_CHANGE, instance._afterActiveCellChange);
 		instance.delegate(MOUSEUP, A.bind(instance._onSelectionMouseUp, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEDOWN, A.bind(instance._onSelectionMouseDown, instance), _DOT+classNames.cell);
 		instance.delegate(MOUSEENTER, A.bind(instance._onSelectionMouseEnter, instance), _DOT+classNames.cell);
@@ -267,6 +286,28 @@ A.DataTable.prototype.getColumn = (function (original) {
 	};
 }(A.DataTable.prototype.getColumn));
 
+// Add support to get a row by seed on DataTable getRow
+// See http://yuilibrary.com/projects/yui3/ticket/2532605
+
+A.DataTable.prototype.getRow = (function (original) {
+	return function (seed) {
+		var instance = this,
+			tbody = instance.body.tbodyNode,
+			row;
+
+		if (A.instanceOf(seed, A.Node)) {
+			row = seed.ancestor(function (node) {
+				return node.get('parentNode').compareTo(tbody);
+			}, true);
+
+			return row;
+		}
+		else {
+			return original.call(this, seed);
+		}
+	};
+}(A.DataTable.prototype.getRow));
+
 // DataTable columns configuration breaks on n-depth cloning complex objects
 // See http://yuilibrary.com/projects/yui3/ticket/2532597
 
@@ -275,8 +316,6 @@ A.DataTable.prototype._setColumns = function (val) {
 		known = [],
 		knownCopies = [],
 		arrayIndex = A.Array.indexOf,
-		isString = A.Lang.isString,
-		isObject = A.Lang.isObject,
 		isArray = A.Lang.isArray;
 
 	function copyObj(o) {
