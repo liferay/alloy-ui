@@ -31,8 +31,9 @@ var Lang = A.Lang,
 	DESTROY_ON_CLOSE = 'destroyOnClose',
 	DIALOG = 'dialog',
 	DOT = '.',
-	DRAGGABLE = 'draggable',
+	DRAG_GUTTER = 5,
 	DRAG_INSTANCE = 'dragInstance',
+	DRAGGABLE = 'draggable',
 	FOOTER_CONTENT = 'footerContent',
 	HD = 'hd',
 	HEIGHT = 'height',
@@ -45,8 +46,8 @@ var Lang = A.Lang,
 	RESIZABLE = 'resizable',
 	RESIZABLE_INSTANCE = 'resizableInstance',
 	STACK = 'stack',
-	WIDTH = 'width',
 	VIEWPORT_REGION = 'viewportRegion',
+	WIDTH = 'width',
 
 	EV_RESIZE = 'resize:resize',
 	EV_RESIZE_END = 'resize:end',
@@ -306,6 +307,7 @@ Dialog.prototype = {
 	 */
 	initializer: function(config) {
 		var instance = this;
+
 		var icons = instance.get(ICONS);
 		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
@@ -359,6 +361,7 @@ Dialog.prototype = {
 	 */
 	destructor: function() {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		A.Event.purgeElement(boundingBox, true);
@@ -374,25 +377,10 @@ Dialog.prototype = {
      */
 	alignToViewport: function(offsetLeft, offsetTop) {
 		var instance = this;
+
 		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
 
 		instance.move([ viewportRegion.left + toInt(offsetLeft), viewportRegion.top + toInt(offsetTop) ]);
-	},
-
-	/**
-	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
-     * to invoke the
-     * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
-     * Performance reasons.
-	 *
-	 * @method _bindLazyComponents
-	 * @private
-	 */
-	_bindLazyComponents: function() {
-		var instance = this;
-		var boundingBox = instance.get(BOUNDING_BOX);
-
-		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
 	},
 
 	/**
@@ -421,6 +409,49 @@ Dialog.prototype = {
 	},
 
 	/**
+	 * Handles the drag start event
+	 * If "constrain2view" property is set to false this function will constrain the dialog to a region
+	 * in order to prevent moving it to unreachable position
+	 *
+	 * @method _afterDragStart
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDragStart: function(event) {
+		var instance = this;
+
+		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
+
+		if (!constrain2view) {
+			var dragInstance = instance.get(DRAG_INSTANCE);
+
+			var dragNode = dragInstance.get('dragNode');
+
+			var viewportRegion = dragNode.get(VIEWPORT_REGION);
+
+			var dragNodeRegion = dragNode.get('region');
+
+			var defaultOffset = [0, 0];
+
+			var deltaXY = dragInstance.deltaXY || defaultOffset;
+
+			var mouseXY = dragInstance.mouseXY || defaultOffset;
+
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain: {
+						bottom: viewportRegion.bottom + (dragNodeRegion.height - deltaXY[1]) - DRAG_GUTTER,
+						left: viewportRegion.left - deltaXY[0] + DRAG_GUTTER,
+						right: viewportRegion.right + (dragNodeRegion.right - mouseXY[0]) + DRAG_GUTTER,
+						top: viewportRegion.top - deltaXY[1] + DRAG_GUTTER
+					}
+				}
+			);
+		}
+	},
+
+	/**
 	 * Fires after the render phase. Invoke
      * <a href="Dialog.html#method__initButtons">_initButtons</a>.
 	 *
@@ -436,6 +467,23 @@ Dialog.prototype = {
 		// forcing lazyAdd:true attrs call the setter
 		instance.get(STACK);
 		instance.get(IO);
+	},
+
+	/**
+	 * Bind a <code>mouseenter</code> listener to the <code>boundingBox</code>
+     * to invoke the
+     * <a href="Dialog.html#config__initLazyComponents">_initLazyComponents</a>.
+     * Performance reasons.
+	 *
+	 * @method _bindLazyComponents
+	 * @private
+	 */
+	_bindLazyComponents: function() {
+		var instance = this;
+
+		var boundingBox = instance.get(BOUNDING_BOX);
+
+		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
 	},
 
 	/**
@@ -531,17 +579,12 @@ Dialog.prototype = {
 		var dragInstance = instance.get(DRAG_INSTANCE);
 
 		if (dragInstance) {
-			if (value) {
-				dragInstance.plug(
-					A.Plugin.DDConstrained,
-					{
-						constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
-					}
-				);
-			}
-			else {
-				dragInstance.unplug(A.Plugin.DDConstrained);
-			}
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain2view: value
+				}
+			);
 		}
 	},
 
@@ -556,6 +599,7 @@ Dialog.prototype = {
 	 */
 	_setDraggable: function(value) {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		var destroy = function() {
@@ -594,6 +638,8 @@ Dialog.prototype = {
 
 			instance.set(DRAG_INSTANCE, dragInstance);
 
+			dragInstance.after('start', instance._afterDragStart, instance);
+
 			instance.after('constrain2viewChange', instance._afterConstrain2viewChange, instance);
 
 			instance._setConstrain2view(instance.get('constrain2view'));
@@ -616,6 +662,7 @@ Dialog.prototype = {
 	 */
 	_setResizable: function(value) {
 		var instance = this;
+		
 		var resizableInstance = instance.get(RESIZABLE_INSTANCE);
 
 		var destroy = function() {
@@ -806,4 +853,4 @@ A.DialogManager = DialogManager;
  * @static
  */
 
-}, '@VERSION@' ,{requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize'], skinnable:true});
+}, '@VERSION@' ,{skinnable:true, requires:['aui-panel','dd-constrain','aui-button-item','aui-overlay-manager','aui-overlay-mask','aui-io-plugin','aui-resize']});
