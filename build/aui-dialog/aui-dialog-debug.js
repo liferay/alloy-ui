@@ -31,9 +31,10 @@ var Lang = A.Lang,
 	DESTROY_ON_CLOSE = 'destroyOnClose',
 	DIALOG = 'dialog',
 	DOT = '.',
-	DRAGGABLE = 'draggable',
 	DRAG_CONFIG = 'dragConfig',
+	DRAG_GUTTER = 5,
 	DRAG_INSTANCE = 'dragInstance',
+	DRAGGABLE = 'draggable',
 	FOOTER_CONTENT = 'footerContent',
 	HD = 'hd',
 	HEIGHT = 'height',
@@ -366,6 +367,7 @@ Dialog.prototype = {
 	 */
 	initializer: function(config) {
 		var instance = this;
+
 		var icons = instance.get(ICONS);
 		var close = instance.get(CLOSE);
 		var buttons = instance.get(BUTTONS);
@@ -402,6 +404,7 @@ Dialog.prototype = {
 		instance.addTarget(A.DialogManager);
 
 		instance.after('constrain2viewChange', instance._afterConstrain2viewChange);
+		instance.after('drag:start', instance._afterDragStart);
 		instance.after('draggableChange', instance._afterDraggableChange);
 		instance.after('dragInstanceChange', instance._afterDragInstanceChange);
 		instance.after('render', instance._afterRenderer);
@@ -454,6 +457,7 @@ Dialog.prototype = {
 	 */
 	destructor: function() {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		A.Event.purgeElement(boundingBox, true);
@@ -469,6 +473,7 @@ Dialog.prototype = {
      */
 	alignToViewport: function(offsetLeft, offsetTop) {
 		var instance = this;
+
 		var viewportRegion = A.getDoc().get(VIEWPORT_REGION);
 
 		instance.move([ viewportRegion.left + toInt(offsetLeft), viewportRegion.top + toInt(offsetTop) ]);
@@ -485,6 +490,7 @@ Dialog.prototype = {
 	 */
 	_bindLazyComponents: function() {
 		var instance = this;
+
 		var boundingBox = instance.get(BOUNDING_BOX);
 
 		boundingBox.on('mouseenter', A.bind(instance._initLazyComponents, instance));
@@ -687,27 +693,21 @@ Dialog.prototype = {
 	},
 
 	/**
-	 * Plug and Unplug A.Plugin.DDConstrained to the dragInstance depending on
-	 * the value of constrain2view attribute.
+	 * Set A.Plugin.DDConstrained constrain2view property to false or true
+	 * depending on the value of constrain2view attribute.
 	 *
 	 * @param {A.DD.Drag} dragInstance
 	 * @protected
 	 */
 	_updateDDConstrain2view: function(dragInstance) {
 		var instance = this;
-		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
 
-		if (constrain2view) {
-			dragInstance.plug(
-				A.Plugin.DDConstrained,
-				{
-					constrain2view: constrain2view
-				}
-			);
-		}
-		else {
-			dragInstance.unplug(A.Plugin.DDConstrained);
-		}
+		dragInstance.plug(
+			A.Plugin.DDConstrained,
+			{
+				constrain2view: instance.get(CONSTRAIN_TO_VIEWPORT)
+			}
+		);
 	},
 
 	/**
@@ -753,6 +753,49 @@ Dialog.prototype = {
 
 		if (event.prevVal) {
 			event.prevVal.destroy();
+		}
+	},
+
+	/**
+	 * Handles the drag start event
+	 * If "constrain2view" property is set to false this function will constrain the dialog to a region
+	 * in order to prevent moving it to unreachable position
+	 *
+	 * @method _afterDragStart
+	 * @param {EventFacade} event
+	 * @protected
+	 */
+	_afterDragStart: function(event) {
+		var instance = this;
+
+		var constrain2view = instance.get(CONSTRAIN_TO_VIEWPORT);
+
+		if (!constrain2view) {
+			var dragInstance = instance.get(DRAG_INSTANCE);
+
+			var dragNode = dragInstance.get('dragNode');
+
+			var viewportRegion = dragNode.get('viewportRegion');
+
+			var dragNodeRegion = dragNode.get('region');
+
+			var defaultOffset = [0, 0];
+
+			var deltaXY = dragInstance.deltaXY || defaultOffset;
+
+			var mouseXY = dragInstance.mouseXY || defaultOffset;
+
+			dragInstance.plug(
+				A.Plugin.DDConstrained,
+				{
+					constrain: {
+						bottom: viewportRegion.bottom + (dragNodeRegion.height - deltaXY[1]) - DRAG_GUTTER,
+						left: viewportRegion.left - deltaXY[0] + DRAG_GUTTER,
+						right: viewportRegion.right + (dragNodeRegion.right - mouseXY[0]) + DRAG_GUTTER,
+						top: viewportRegion.top - deltaXY[1] + DRAG_GUTTER
+					}
+				}
+			);
 		}
 	},
 
