@@ -20,12 +20,24 @@
 		height: 400px;
 		position: relative;
 	}
+	.controls {
+		margin-bottom: 1em;
+	}
 </style>
 <body>
 
 <div id="wrapper">
 	<h1>Alloy Ace Editor Wrapper</h1>
-
+	<div class="controls">
+		<label for="mode">Language Mode:</label>
+		<select id="mode">
+			<option>javascript</option>
+			<option>json</option>
+			<option>xml</option>
+			<option>php</option>
+		</select>
+		<label><input checked="checked" id="updateEditor" type="checkbox" />Update editor value for the selected language</label>
+	</div>
 	<div id="editor"></div>
 </div>
 <script type="text/javascript" charset="utf-8">
@@ -40,15 +52,46 @@ AUI().ready('aui-ace-editor', function(A) {
 			// useSoftTabs: true,
 			// useWrapMode: true,
 			// showPrintMargin: false,
-			value: 'Write something \nhere ...'
+			mode: 'javascript',
+			value: 'alert("Write something here...");'
 		}
 	).render();
 
 	// editor.getEditor().setTheme('ace/theme/cobalt');
 
-	editor.set('mode', 'javascript');
+	//editor.set('mode', 'javascript');
 	// editor.set('mode', 'json');
 	// editor.set('mode', 'xml');
+
+	var mode = A.one('#mode');
+	if (mode) {
+		var updateEditor = A.one('#updateEditor');
+
+		var contents = {
+			javascript: 'alert("Write something here...");',
+			php: '<?php echo "Write something here..."); ?>',
+			xml: '<value attr="something">Write something here...</value>',
+			json: '{"value": "Write something here..."}'
+		};
+
+		var currentMode = 'javascript';
+
+		var updateValue = function() {
+			if (updateEditor.attr('checked')) {
+				editor.set('value', contents[currentMode]);
+			}
+		};
+
+		updateEditor.on('change', updateValue);
+
+		mode.on('change', function(event) {
+			currentMode = this.val();
+
+			editor.set('mode', currentMode);
+
+			updateValue();
+		});
+	}
 
 	// editor.set('value', 'Change the original content');
 });
