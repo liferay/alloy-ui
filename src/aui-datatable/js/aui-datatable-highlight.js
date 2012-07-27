@@ -65,7 +65,7 @@ var DataTableHighlight = A.Base.create(
 				host = instance.get(HOST);
 
 			instance.CLASS_NAMES = {
-				activeCell: host.getClassName(ACTIVE, CELL),
+				active: host.getClassName(ACTIVE),
 				border: host.getClassName(HIGHLIGHT, BORDER),
 				highlight: host.getClassName(HIGHLIGHT),
 				overlay: host.getClassName(HIGHLIGHT, OVERLAY),
@@ -82,7 +82,7 @@ var DataTableHighlight = A.Base.create(
 				activeCell = host.get(ACTIVE_CELL);
 
 			if (activeCell) {
-				activeCell.removeClass(instance.CLASS_NAMES.activeCell);
+				activeCell.removeClass(instance.CLASS_NAMES.active);
 			}
 
 			instance._clearBorders();
@@ -141,7 +141,7 @@ var DataTableHighlight = A.Base.create(
 			instance.clear();
 
 			if (event.prevVal) {
-				event.prevVal.removeClass(classNames.activeCell);
+				event.prevVal.removeClass(classNames.active);
 			}
 
 			if (event.newVal) {
@@ -149,7 +149,7 @@ var DataTableHighlight = A.Base.create(
 					overlayActiveNode, instance.getActiveRegion(),
 					activeBorderWidth);
 
-				event.newVal.addClass(classNames.activeCell);
+				event.newVal.addClass(classNames.active);
 			}
 		},
 
