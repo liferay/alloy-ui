@@ -1,29 +1,99 @@
 var Lang = A.Lang,
 	isFunction = Lang.isFunction,
-	isObject = Lang.isObject,
 
+	ACTIVE_CELL_CHANGE = 'activeCellChange',
+	ACTIVE_ROW = 'activeRow',
 	AUTO = 'auto',
+	CELL = 'cell',
 	COLUMNS = 'columns',
 	DATA = 'data',
-	DATA_CHANGE = 'dataChange',
+	DATATABLE = 'datatable',
 	DBLCLICK = 'dblclick',
-	HEIGHT = 'height',
-	KEY = 'key',
+	ID = 'id',
+	INIT_VALUE = 'initValue',
 	NAME = 'name',
 	PROPERTY_NAME = 'propertyName',
-	SCROLL = 'scroll',
-	SELECTION = 'selection',
-	SORT = 'sort',
-	TD = 'td',
+	ROWS = 'rows',
 	VALUE = 'value',
-	WIDTH = 'width',
 
-	_EMPTY_STR = '',
-	_NAME = 'property-list';
+	_DOT = '.';
 
-var PropertyList = A.Component.create({
-	NAME: _NAME,
+A.PropertyList = A.Base.create(DATATABLE, A.DataTable, [], {
+	initializer: function(config) {
+		var instance = this;
 
+		instance.CLASS_NAMES_PROPERTY_LIST = {
+			cell: instance.getClassName(CELL)
+		};
+
+		instance._initHighlight();
+
+		instance.on(ACTIVE_CELL_CHANGE, instance._onActiveCellChange);
+		instance.after(instance._afterUITriggerSort, instance, '_onUITriggerSort');
+
+		// DataTable doesn't allow redefine the columns attribute in extended classes
+		// See http://yuilibrary.com/projects/yui3/ticket/2532599
+
+		if (!config.columns) {
+			this.set(COLUMNS, instance._state.get(COLUMNS, INIT_VALUE));
+		}
+	},
+
+	getDefaultEditor: function() {
+		return new A.TextCellEditor();
+	},
+
+	_afterUITriggerSort: function(event) {
+		var instance = this;
+
+		instance.highlight.clear();
+	},
+
+	_initHighlight: function() {
+		var instance = this;
+
+		instance.plug(A.Plugin.DataTableHighlight, {
+			highlightRange: false,
+			type: ROWS
+		});
+	},
+
+	_onActiveCellChange: function(event) {
+		var instance = this,
+			activeCell = event.newVal,
+			column;
+
+		if (activeCell) {
+			column = instance.getColumn(activeCell);
+
+			if (column && (column.key === NAME)) {
+				event.newVal = activeCell.next(_DOT+instance.CLASS_NAMES_PROPERTY_LIST.cell);
+			}
+		}
+	},
+
+	_onSelectionKey: function(event) {
+		var instance = this,
+			keyCode = event.keyCode;
+
+		if (keyCode === 13) {
+			instance._onEditCell(event);
+		}
+
+		A.PropertyList.superclass._onSelectionKey.apply(this, arguments);
+
+		instance._syncPropertyListScrollUI();
+	},
+
+	_syncPropertyListScrollUI: function() {
+		var instance = this,
+			activeRow = instance.get(ACTIVE_ROW);
+
+		if (activeRow && instance.scrollTo) {
+			instance.scrollTo(activeRow.get(ID));
+		}
+	}
+},{
 	ATTRS: {
 		columns: {
 			valueFn: function() {
@@ -41,6 +111,11 @@ var PropertyList = A.Component.create({
 						formatter: function(o) {
 							var instance = this;
 							var data = o.record.get(DATA);
+
+							if (!data) {
+								return;
+							}
+
 							var formatter = data.formatter;
 
 							if (isFunction(formatter)) {
@@ -52,36 +127,25 @@ var PropertyList = A.Component.create({
 						key: VALUE,
 						label: instance.getString(VALUE),
 						sortable: true,
-						width: 'auto'
+						width: AUTO
 					}
 				];
 			}
 		},
 
-		data: {
-			value: [{ name: _EMPTY_STR, value: _EMPTY_STR }]
+		scrollable: {
+			value: true
 		},
 
 		editEvent: {
 			value: DBLCLICK
 		},
 
-		scroll: {
-			value: {
-				width: AUTO
-			},
-			validator: isObject
-		},
+		// DataTable scroll breaks when width value is a number
+		// See http://yuilibrary.com/projects/yui3/ticket/2532600
 
-		selection: {
-			value: {
-				selectRow: true
-			},
-			validator: isObject
-		},
-
-		sort: {
-			validator: isObject
+		width: {
+			setter: String
 		},
 
 		strings: {
@@ -90,83 +154,5 @@ var PropertyList = A.Component.create({
 				value: 'Value'
 			}
 		}
-	},
-
-	EXTENDS: A.DataTable,
-
-	prototype: {
-		initializer: function() {
-			var instance = this;
-
-			instance.after(DATA_CHANGE, instance._plugDependencies);
-			instance.after(instance._syncScrollWidth, instance, '_uiSetWidth');
-			instance.after(instance._syncScrollHeight, instance, '_uiSetHeight');
-
-			instance._plugDependencies();
-		},
-
-		_editCell: function(event) {
-			var instance = this;
-			var columns = instance.get(COLUMNS);
-
-			if (event.column.get(KEY) === NAME) {
-				event.alignNode = event.cell.next(TD);
-				event.column = columns.keyHash[VALUE];
-			}
-
-			return A.PropertyList.superclass._editCell.call(this, event);
-		},
-
-		getDefaultEditor: function() {
-			return new A.TextCellEditor();
-		},
-
-		_onEditorSave: function(event) {
-			var instance = this;
-			var selection = instance.selection;
-
-			if (selection) {
-				selection.activeColumnIndex = 1;
-			}
-
-			return A.PropertyList.superclass._onEditorSave.call(this, event);
-		},
-
-		_plugDependencies: function() {
-			var instance = this;
-			var data = instance.get(DATA);
-
-			if (!data.hasPlugin(A.Plugin.RecordsetSort)) {
-				data.plug(A.Plugin.RecordsetSort, { dt: instance });
-		        data.sort.addTarget(instance);
-			}
-
-			instance.plug(
-				A.Plugin.DataTableSelection,
-				instance.get(SELECTION)
-			)
-			.plug(
-				A.DataTableSort,
-				instance.get(SORT)
-			)
-			.plug(
-				A.DataTableScroll,
-				instance.get(SCROLL)
-			);
-		},
-
-		_syncScrollHeight: function(height) {
-			var instance = this;
-
-			instance.scroll.set(HEIGHT, height);
-		},
-
-		_syncScrollWidth: function(width) {
-			var instance = this;
-
-			instance.scroll.set(WIDTH, width);
-		}
 	}
 });
-
-A.PropertyList = PropertyList;
