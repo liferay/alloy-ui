@@ -20,6 +20,7 @@ var Lang = A.Lang,
 	MOUSEUP = 'mouseup',
 	RENDER = 'render',
 	SELECTION = 'selection',
+	TABINDEX = 'tabindex',
 
 	_DOT = '.',
 
@@ -108,6 +109,18 @@ A.mix(DataTableSelection.prototype, {
 		};
 	},
 
+	getActiveColumn: function() {
+		var instance = this;
+
+		return instance.getColumn(instance.get(ACTIVE_CELL));
+	},
+
+	getActiveRecord: function() {
+		var instance = this;
+
+		return instance.getRecord(instance.get(ACTIVE_CELL));
+	},
+
 	getCoord: function(seed) {
 		var instance = this,
 			cell = instance.getCell(seed),
@@ -118,9 +131,14 @@ A.mix(DataTableSelection.prototype, {
 	},
 
 	_afterActiveCellChange: function(event) {
-		var instance = this;
+		var instance = this,
+			activeCell = event.newVal;
 
-		instance.set(ACTIVE_ROW, event.newVal);
+		instance.set(ACTIVE_ROW, activeCell);
+
+		if (activeCell) {
+			activeCell.setAttribute(TABINDEX, 0).focus();
+		}
 	},
 
 	_afterRender: function(event) {
@@ -133,7 +151,7 @@ A.mix(DataTableSelection.prototype, {
 		var instance = this,
 			classNames = instance[CLASS_NAMES_SELECTION];
 
-		instance._selectionKeyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:37,38,39,40');
+		instance._selectionKeyHandler = A.getDoc().on(KEY, A.bind(instance._onSelectionKey, instance), 'down:enter,37,38,39,40');
 
 		instance.after(RENDER, instance._afterRender);
 		instance.after(ACTIVE_CELL_CHANGE, instance._afterActiveCellChange);
