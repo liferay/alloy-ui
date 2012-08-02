@@ -82,7 +82,7 @@
 						'aui-toolbar': {requires:['aui-base','aui-button-item','aui-data-set','widget-parent'], skinnable:true},
 						'aui-tooltip': {requires:['aui-overlay-context-panel'], skinnable:true},
 						'aui-tpl-snippets': {submodules: {'aui-tpl-snippets-checkbox': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-textarea': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-input': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-select': {requires:['aui-tpl-snippets-base'], skinnable:false}, 'aui-tpl-snippets-base': {requires:['aui-template'], skinnable:false} }, use:['aui-tpl-snippets-base','aui-tpl-snippets-select','aui-tpl-snippets-input','aui-tpl-snippets-textarea','aui-tpl-snippets-checkbox'], skinnable:false},
-						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-drag','dd-drop','dd-proxy'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true},
+						'aui-tree': {submodules: {'aui-tree-view': {requires:['aui-tree-node','dd-delegate','dd-proxy'], skinnable:true}, 'aui-tree-node': {requires:['aui-tree-data','aui-io','json','querystring-stringify'], skinnable:false}, 'aui-tree-data': {requires:['aui-base'], skinnable:false} }, use:['aui-tree-data', 'aui-tree-node', 'aui-tree-view'], skinnable:true},
 						'aui-video': {requires:['aui-base','querystring-stringify-simple'], skinnable:true},
 						'aui-viewport': {requires:['aui-base'], skinnable:false}
 				}
