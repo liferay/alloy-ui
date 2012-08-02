@@ -30,7 +30,7 @@
 AUI().ready('aui-tree-view', function(A) {
 	var children = [];
 
-	for (var i = 0; i < 50; i++) {
+	for (var i = 0; i < 150; i++) {
 		children[i] = {
 			children: [
 				{
@@ -45,7 +45,7 @@ AUI().ready('aui-tree-view', function(A) {
 		};
 	}
 
-	console.time('render');
+	var startTime = (new Date()).getTime();
 
 	var treeViewDD = new A.TreeViewDD({
 		width: 200,
@@ -55,22 +55,16 @@ AUI().ready('aui-tree-view', function(A) {
 	})
 	.render();
 
-	console.timeEnd('render');
+	var endTime = (new Date()).getTime();
+
+	alert('Rendered in ' + (endTime - startTime) + ' ms')
 
 	A.on('click', function() {
-		console.time('expandAll');
-
 		treeViewDD.expandAll();
-
-		console.timeEnd('expandAll');
 	}, '#expandAll');
 
 	A.on('click', function() {
-		console.time('collapseAll');
-
 		treeViewDD.collapseAll();
-
-		console.timeEnd('collapseAll');
 	}, '#collapseAll');
 });
 
