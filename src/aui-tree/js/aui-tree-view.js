@@ -124,6 +124,11 @@ var TreeView = A.Component.create(
 				validator: isTreeNode
 			},
 
+			lazyLoad: {
+				validator: isBoolean,
+				value: true
+			},
+
 			/**
 			 * IO metadata for loading the children using ajax.
 			 *

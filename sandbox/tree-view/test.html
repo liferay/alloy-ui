@@ -19,53 +19,116 @@
 <body>
 <h1>Alloy - TreeView</h1>
 
-<button id="expandAll">Expand All</button>
-<button id="collapseAll">Collapse All</button>
-
 <h1>A.TreeViewDD</h1>
 <div id="tree"></div>
 
 <script type="text/javascript" charset="utf-8">
 
 AUI().ready('aui-tree-view', function(A) {
-	var children = [];
+	var Lang = A.Lang;
+	var now = Lang.now;
 
-	for (var i = 0; i < 150; i++) {
-		children[i] = {
-			children: [
-				{
-					label: 'Children ' + i + '-1'
-				},
-				{
-					label: 'Children ' + i + '-2'
+	var number_of_levels = 15;
+
+	var ts = now();
+	create_children = function(amount, level) {
+		amount = amount || 100;
+		if (level <= 3) {
+			return A.Array.map(new Array(amount).join('x').split('x'), function(n, i, c) {
+				var node = { label: 'test'+i };
+
+				if(level < 3 && (i % 4 === 0)){
+					node.children = create_children(amount, level + 1);
+					node.leaf = false;
+					node.expanded = true;
 				}
-			],
-			expanded: true,
-			label: 'Folder ' + i
-		};
+
+				return node;
+			});
+		}
+	};
+
+	var objSize = function(arr) {
+		var size = arr.length;
+
+		A.each(
+			arr,
+			function(item, index, collection) {
+				if (item.children) {
+					size += objSize(item.children);
+				}
+			}
+		);
+
+		return size;
+	};
+
+	var cache = 1;
+
+	var children = cache && !Lang.isUndefined(children) ? children : create_children(number_of_levels, 0);
+
+	var times = !Lang.isUndefined(times) ? times : [];
+
+	if (times.length === 0) {
+		console.log(
+			Lang.sub(
+				'Number of children nodes: {number}',
+				{
+					number: objSize(children)
+				}
+			)
+		);
 	}
 
-	var startTime = (new Date()).getTime();
+	var start = now();
 
-	var treeViewDD = new A.TreeViewDD({
-		width: 200,
-		type: 'normal',
-		boundingBox: '#tree',
-		children: children
-	})
-	.render();
+	new A.TreeViewDD({
+		label: 'ROOT',
+		id: 'root10',
+		expanded: true,
+		children: children,
+		lazyLoad: false
+	}).render();
 
-	var endTime = (new Date()).getTime();
+	var end = now();
+	var time = end - start;
+	times.push(time);
 
-	alert('Rendered in ' + (endTime - startTime) + ' ms')
+	console.log(
+		Lang.sub(
+			'Current time: {time}, all times: [{times}]',
+			{
+				time: time,
+				times: times.join(', ')
+			}
+		)
+	);
 
-	A.on('click', function() {
-		treeViewDD.expandAll();
-	}, '#expandAll');
+	var timesLength = times.length;
 
-	A.on('click', function() {
-		treeViewDD.collapseAll();
-	}, '#collapseAll');
+	if (timesLength === 3) {
+		var avg = A.Array.reduce(
+			times,
+			0,
+			function(prevVal, curVal, index, collection) {
+				return prevVal + curVal;
+			}
+		);
+
+		avg /= timesLength;
+
+		times.length = 0;
+
+		console.log(
+			Lang.sub(
+				'Average times across {timesLength} runs: {avg}',
+				{
+					avg: avg,
+					timesLength: timesLength
+				}
+			)
+		);
+	}
 });
 
 </script>
