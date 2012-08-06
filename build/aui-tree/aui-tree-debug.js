@@ -798,12 +798,12 @@ A.mix(TreeData.prototype, {
 					node = instance.createNode(node);
 
 					if (children && children.length) {
-						setTimeout(function() {
+						A.setTimeout(function() {
 							node.setAttrs({
 								leaf: false,
 								children: children
 							});
-						}, 50 * index);
+						}, 50);
 					}
 				}
 
@@ -826,7 +826,7 @@ A.mix(TreeData.prototype, {
 
 A.TreeData = TreeData;
 
-}, '@VERSION@' ,{requires:['aui-base'], skinnable:false});
+}, '@VERSION@' ,{requires:['aui-base','aui-task-manager'], skinnable:false});
 AUI.add('aui-tree-node', function(A) {
 /**
  * The TreeNode Utility
