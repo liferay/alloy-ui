@@ -797,12 +797,12 @@ A.mix(TreeData.prototype, {
 					node = instance.createNode(node);
 
 					if (children && children.length) {
-						setTimeout(function() {
+						A.setTimeout(function() {
 							node.setAttrs({
 								leaf: false,
 								children: children
 							});
-						}, 50 * index);
+						}, 50);
 					}
 				}
 
