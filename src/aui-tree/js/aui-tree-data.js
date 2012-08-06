@@ -7,6 +7,7 @@
 
 var L = A.Lang,
 	isArray = L.isArray,
+	isBoolean = L.isBoolean,
 	isObject = L.isObject,
 	isUndefined = L.isUndefined,
 
@@ -16,6 +17,8 @@ var L = A.Lang,
 	DOT = '.',
 	ID = 'id',
 	INDEX = 'index',
+	LAZY_LOAD = 'lazyLoad',
+	LEAF = 'leaf',
 	NEXT_SIBLING = 'nextSibling',
 	NODE = 'node',
 	OWNER_TREE = 'ownerTree',
@@ -785,34 +788,42 @@ A.mix(TreeData.prototype, {
 			ownerTree = instance.get(OWNER_TREE);
 		}
 
+		var hasOwnerTree = isTreeView(ownerTree);
+		var lazyLoad = true;
+
+		if (hasOwnerTree) {
+			lazyLoad = ownerTree.get(LAZY_LOAD);
+		}
+
 		instance.updateIndex({});
 
 		A.Array.each(v, function(node, index) {
 			if (node) {
 				if (!isTreeNode(node) && isObject(node)) {
-					node[OWNER_TREE] = ownerTree;
-					node[PARENT_NODE] = instance;
-
 					// cache and remove children to lazy add them later for
 					// performance reasons
 					var children = node[CHILDREN];
+					var hasChildren = children && children.length;
 
-					delete node[CHILDREN];
+					node[LEAF] = !hasChildren;
+					node[OWNER_TREE] = ownerTree;
+					node[PARENT_NODE] = instance;
+
+					if (hasChildren && lazyLoad) {
+						delete node[CHILDREN];
+					}
 
 					// creating node from json
 					node = instance.createNode(node);
 
-					if (children && children.length) {
+					if (hasChildren && lazyLoad) {
 						A.setTimeout(function() {
-							node.setAttrs({
-								leaf: false,
-								children: children
-							});
+							node.set(CHILDREN, children);
 						}, 50);
 					}
 				}
 
-				if (isTreeView(ownerTree)) {
+				if (hasOwnerTree) {
 					ownerTree.registerNode(node);
 				}
 
