@@ -85,7 +85,8 @@ TreeData.ATTRS = {
 	children: {
 		value: [],
 		validator: isArray,
-		setter: '_setChildren'
+		setter: '_setChildren',
+		lazyAdd: true
 	},
 
 	/**
@@ -1068,7 +1069,16 @@ var TreeNode = A.Component.create(
 			 * @type TreeNode
 			 */
 			nextSibling: {
-				getter: '_getSibling',
+				getter: function() {
+					var sibling = this._nextSibling;
+
+					if (sibling !== null && !isTreeNode(sibling)) {
+						sibling = null;
+						this._nextSibling = null;
+					}
+
+					return sibling;
+				},
 				value: null,
 				validator: isTreeNode
 			},
@@ -1081,7 +1091,16 @@ var TreeNode = A.Component.create(
 			 * @type TreeNode
 			 */
 			prevSibling: {
-				getter: '_getSibling',
+				getter: function() {
+					var sibling = this._prevSibling;
+
+					if (sibling !== null && !isTreeNode(sibling)) {
+						sibling = null;
+						this._prevSibling = null;
+					}
+
+					return sibling;
+				},
 				value: null,
 				validator: isTreeNode
 			},
@@ -1433,7 +1452,7 @@ var TreeNode = A.Component.create(
 			 * @return {boolean}
 			 */
 			contains: function(node) {
-				return node.isAncestor(this);
+		        return node.isAncestor(this);
 			},
 
 			/**
@@ -1627,20 +1646,6 @@ var TreeNode = A.Component.create(
 					ID,
 					instance.get(ID)
 				);
-			},
-
-			_getSibling: function(value, attrName) {
-				var instance = this;
-
-				var propName = '_' + attrName;
-				var sibling = instance[propName];
-
-				if (sibling !== null && !isTreeNode(sibling)) {
-					sibling = null;
-					instance[propName] = sibling;
-				}
-
-				return sibling;
 			},
 
 			_uiSetExpanded: function(val) {
@@ -2624,7 +2629,6 @@ AUI.add('aui-tree-view', function(A) {
  */
 
 var L = A.Lang,
-	isBoolean = L.isBoolean,
 	isString = L.isString,
 
 	BOUNDING_BOX = 'boundingBox',
@@ -3199,35 +3203,38 @@ var TreeViewDD = A.Component.create(
 				var instance = this;
 				var boundingBox = instance.get(BOUNDING_BOX);
 
-				instance._createDragInitHandler = function() {
-					instance.ddDelegate = new A.DD.Delegate(
-						{
-							bubbleTargets: instance,
-							container: boundingBox,
-							nodes: DOT+CSS_TREE_NODE_CONTENT,
-							target: true
-						}
-					);
+				instance._createDragInitHandler = A.bind(
+					function() {
+						instance.ddDelegate = new A.DD.Delegate(
+							{
+								bubbleTargets: instance,
+								container: boundingBox,
+								nodes: DOT+CSS_TREE_NODE_CONTENT,
+								target: true
+							}
+						);
 
-					var dd = instance.ddDelegate.dd;
+						var dd = instance.ddDelegate.dd;
 
-					dd.plug(A.Plugin.DDProxy, {
-						moveOnEnd: false,
-						positionProxy: false,
-						borderStyle: null
-					})
-					.plug(A.Plugin.DDNodeScroll, {
-						scrollDelay: instance.get(SCROLL_DELAY),
-						node: boundingBox
-					});
+						dd.plug(A.Plugin.DDProxy, {
+							moveOnEnd: false,
+							positionProxy: false,
+							borderStyle: null
+						})
+						.plug(A.Plugin.DDNodeScroll, {
+							scrollDelay: instance.get(SCROLL_DELAY),
+							node: boundingBox
+						});
 
-					dd.removeInvalid('a');
+						dd.removeInvalid('a');
 
-					dragInitHandle.detach();
-				};
+						boundingBox.detach('mouseenter', instance._createDragInitHandler);
+					},
+					instance
+				);
 
 				// only create the drag on the init elements if the user mouseover the boundingBox for init performance reasons
-				var dragInitHandle = boundingBox.on(['focus', 'mousedown', 'mousemove'], instance._createDragInitHandler);
+				boundingBox.on('mouseenter', instance._createDragInitHandler);
 
 				// drag & drop listeners
 				instance.on('drag:align', instance._onDragAlign);

@@ -85,7 +85,8 @@ TreeData.ATTRS = {
 	children: {
 		value: [],
 		validator: isArray,
-		setter: '_setChildren'
+		setter: '_setChildren',
+		lazyAdd: true
 	},
 
 	/**
