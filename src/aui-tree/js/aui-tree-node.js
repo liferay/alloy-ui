@@ -222,16 +222,7 @@ var TreeNode = A.Component.create(
 			 * @type TreeNode
 			 */
 			nextSibling: {
-				getter: function() {
-					var sibling = this._nextSibling;
-
-					if (sibling !== null && !isTreeNode(sibling)) {
-						sibling = null;
-						this._nextSibling = null;
-					}
-
-					return sibling;
-				},
+				getter: '_getSibling',
 				value: null,
 				validator: isTreeNode
 			},
@@ -244,16 +235,7 @@ var TreeNode = A.Component.create(
 			 * @type TreeNode
 			 */
 			prevSibling: {
-				getter: function() {
-					var sibling = this._prevSibling;
-
-					if (sibling !== null && !isTreeNode(sibling)) {
-						sibling = null;
-						this._prevSibling = null;
-					}
-
-					return sibling;
-				},
+				getter: '_getSibling',
 				value: null,
 				validator: isTreeNode
 			},
@@ -605,7 +587,7 @@ var TreeNode = A.Component.create(
 			 * @return {boolean}
 			 */
 			contains: function(node) {
-		        return node.isAncestor(this);
+				return node.isAncestor(this);
 			},
 
 			/**
@@ -799,6 +781,20 @@ var TreeNode = A.Component.create(
 					ID,
 					instance.get(ID)
 				);
+			},
+
+			_getSibling: function(value, attrName) {
+				var instance = this;
+
+				var propName = '_' + attrName;
+				var sibling = instance[propName];
+
+				if (sibling !== null && !isTreeNode(sibling)) {
+					sibling = null;
+					instance[propName] = sibling;
+				}
+
+				return sibling;
 			},
 
 			_uiSetExpanded: function(val) {
