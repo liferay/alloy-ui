@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('datatable-base-deprecated', function(Y) {
 
@@ -1707,4 +1707,4 @@ Y.extend(DTBase, Y.Widget, {
 Y.namespace("DataTable").Base = DTBase;
 
 
-}, '3.6.0pr1' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});
+}, '3.6.0' ,{requires:['recordset-base','widget','substitute','event-mouseenter']});

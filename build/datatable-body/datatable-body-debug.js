@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('datatable-body', function(Y) {
 
@@ -500,6 +500,7 @@ Y.namespace('DataTable').BodyView = Y.Base.create('tableBody', Y.View, [], {
 
         if (handles.dataChange) {
             handles.dataChange.detach();
+            delete handles.dataChange;
             this.bindUI();
         }
 
@@ -868,4 +869,4 @@ Y.namespace('DataTable').BodyView = Y.Base.create('tableBody', Y.View, [], {
 });
 
 
-}, '3.6.0pr1' ,{requires:['datatable-core', 'view', 'classnamemanager']});
+}, '3.6.0' ,{requires:['datatable-core', 'view', 'classnamemanager']});

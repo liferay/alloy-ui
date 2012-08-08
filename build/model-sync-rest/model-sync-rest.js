@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('model-sync-rest', function(Y) {
 
@@ -522,13 +522,14 @@ RESTSync.prototype = {
 
     @method _sendSyncIORequest
     @param {Object} config An object with the following properties:
-      @param {String} action The `sync()` action being performed.
-      @param {Function} [callback] Called when the sync operation finishes.
-      @param {String} [entity] The HTTP request entity body.
-      @param {Object} headers The HTTP request headers.
-      @param {String} method The HTTP request method.
-      @param {Number} [timeout] Time until the HTTP request is aborted.
-      @param {String} url The URL of the HTTP resource.
+      @param {String} config.action The `sync()` action being performed.
+      @param {Function} [config.callback] Called when the sync operation
+        finishes.
+      @param {String} [config.entity] The HTTP request entity body.
+      @param {Object} config.headers The HTTP request headers.
+      @param {String} config.method The HTTP request method.
+      @param {Number} [config.timeout] Time until the HTTP request is aborted.
+      @param {String} config.url The URL of the HTTP resource.
     @return {Object} The resulting `Y.io()` request object.
     @protected
     @since 3.6.0
@@ -604,9 +605,9 @@ RESTSync.prototype = {
     @method _onSyncIOEnd
     @param {String} txId The `Y.io` transaction id.
     @param {Object} details Extra details carried through from `sync()`:
-      @param {String} action The sync action performed.
-      @param {Function} [callback] The function to call after syncing.
-      @param {String} url The URL of the resource the request was made to.
+      @param {String} details.action The sync action performed.
+      @param {Function} [details.callback] The function to call after syncing.
+      @param {String} details.url The URL of the requested resource.
     @protected
     @since 3.6.0
     **/
@@ -622,9 +623,9 @@ RESTSync.prototype = {
     @param {String} txId The `Y.io` transaction id.
     @param {Object} res The `Y.io` response object.
     @param {Object} details Extra details carried through from `sync()`:
-      @param {String} action The sync action performed.
-      @param {Function} [callback] The function to call after syncing.
-      @param {String} url The URL of the resource the request was made to.
+      @param {String} details.action The sync action performed.
+      @param {Function} [details.callback] The function to call after syncing.
+      @param {String} details.url The URL of the requested resource.
     @protected
     @since 3.6.0
     **/
@@ -649,9 +650,9 @@ RESTSync.prototype = {
     @param {String} txId The `Y.io` transaction id.
     @param {Object} res The `Y.io` response object.
     @param {Object} details Extra details carried through from `sync()`:
-      @param {String} action The sync action performed.
-      @param {Function} [callback] The function to call after syncing.
-      @param {String} url The URL of the resource the request was made to.
+      @param {String} details.action The sync action performed.
+      @param {Function} [details.callback] The function to call after syncing.
+      @param {String} details.url The URL of the requested resource.
     @protected
     @since 3.6.0
     **/
@@ -671,9 +672,9 @@ RESTSync.prototype = {
     @method _onSyncIOStart
     @param {String} txId The `Y.io` transaction id.
     @param {Object} details Extra details carried through from `sync()`:
-      @param {String} action The sync action performed.
-      @param {Function} [callback] The function to call after syncing.
-      @param {String} url The URL of the resource the request was made to.
+      @param {String} detials.action The sync action performed.
+      @param {Function} [details.callback] The function to call after syncing.
+      @param {String} details.url The URL of the requested resource.
     @protected
     @since 3.6.0
     **/
@@ -685,4 +686,4 @@ RESTSync.prototype = {
 Y.namespace('ModelSync').REST = RESTSync;
 
 
-}, '3.6.0pr1' ,{requires:['model', 'io-base', 'json-stringify']});
+}, '3.6.0' ,{requires:['model', 'io-base', 'json-stringify']});

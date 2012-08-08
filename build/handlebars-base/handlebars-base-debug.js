@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('handlebars-base', function(Y) {
 
@@ -359,4 +359,4 @@ Converts a precompiled template into a renderable template function.
 */
 
 
-}, '3.6.0pr1' ,{requires:['escape']});
+}, '3.6.0' ,{requires:['escape']});

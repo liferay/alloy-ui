@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0pr1',
+        VERSION = '3.6.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -207,7 +207,11 @@ properties.
             }
         },
         getLoader = function(Y, o) {
-            var loader = Y.Env._loader;
+            var loader = Y.Env._loader,
+                lCore = [ 'loader-base' ],
+                G_ENV = YUI.Env,
+                mods = G_ENV.mods;
+
             if (loader) {
                 //loader._config(Y.config);
                 loader.ignoreRegistered = false;
@@ -219,7 +223,10 @@ properties.
                 loader = new Y.Loader(Y.config);
                 Y.Env._loader = loader;
             }
-            YUI.Env.core = Y.Array.dedupe([].concat(YUI.Env.core, [ 'loader-base', 'loader-rollup', 'loader-yui3' ]));
+            if (mods && mods.loader) {
+                lCore = [].concat(lCore, YUI.Env.loaderExtras);
+            }
+            YUI.Env.core = Y.Array.dedupe([].concat(YUI.Env.core, lCore));
 
             return loader;
         },
@@ -328,6 +335,7 @@ proto = {
         if (!Env) {
             Y.Env = {
                 core: ['get','features','intl-base','yui-log','yui-later'],
+                loaderExtras: ['loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
                 base: BASE,
@@ -494,7 +502,6 @@ proto = {
         var i, Y = this,
             core = [],
             mods = YUI.Env.mods,
-            //extras = Y.config.core || ['get','features','intl-base','yui-log','yui-later'];
             extras = Y.config.core || [].concat(YUI.Env.core); //Clone it..
 
         for (i = 0; i < extras.length; i++) {
@@ -1095,9 +1102,9 @@ with any configuration info required for the module.
             return Y;
         }
 
-        if (mods['loader'] && !Y.Loader) {
+        if ((mods.loader || mods['loader-base']) && !Y.Loader) {
             Y.log('Loader was found in meta, but it is not attached. Attaching..', 'info', 'yui');
-            Y._attach(['loader']);
+            Y._attach(['loader' + ((!mods.loader) ? '-base' : '')]);
         }
 
         // Y.log('before loader requirements: ' + args, 'info', 'yui');
@@ -3830,7 +3837,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0pr1' );
+}, '3.6.0' );
 YUI.add('get', function(Y) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
@@ -5098,7 +5105,7 @@ Transaction.prototype = {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -5433,7 +5440,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -5521,7 +5528,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -5631,7 +5638,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -5708,10 +5715,10 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.6.0pr1' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
+YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
 
 YUI.add('oop', function(Y) {
 
@@ -6102,7 +6109,7 @@ Y.rbind = function(f, c) {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -6437,7 +6444,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('dom-core', function(Y) {
 
 var NODE_TYPE = 'nodeType',
@@ -6810,7 +6817,7 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.6.0pr1' ,{requires:['oop','features']});
+}, '3.6.0' ,{requires:['oop','features']});
 YUI.add('dom-base', function(Y) {
 
 /**
@@ -7498,7 +7505,7 @@ Y.mix(Y.DOM, {
 });
 
 
-}, '3.6.0pr1' ,{requires:['dom-core']});
+}, '3.6.0' ,{requires:['dom-core']});
 YUI.add('dom-style', function(Y) {
 
 (function(Y) {
@@ -7825,7 +7832,7 @@ Y.Color = {
 
 
 
-}, '3.6.0pr1' ,{requires:['dom-base']});
+}, '3.6.0' ,{requires:['dom-base']});
 YUI.add('dom-style-ie', function(Y) {
 
 (function(Y) {
@@ -8131,7 +8138,7 @@ if (!testFeature('style', 'computedStyle')) {
 })(Y);
 
 
-}, '3.6.0pr1' ,{requires:['dom-style']});
+}, '3.6.0' ,{requires:['dom-style']});
 YUI.add('dom-screen', function(Y) {
 
 (function(Y) {
@@ -8742,7 +8749,7 @@ Y.mix(DOM, {
 })(Y);
 
 
-}, '3.6.0pr1' ,{requires:['dom-base', 'dom-style']});
+}, '3.6.0' ,{requires:['dom-base', 'dom-style']});
 YUI.add('selector-native', function(Y) {
 
 (function(Y) {
@@ -9117,13 +9124,13 @@ Y.mix(Y.Selector, Selector, true);
 })(Y);
 
 
-}, '3.6.0pr1' ,{requires:['dom-base']});
+}, '3.6.0' ,{requires:['dom-base']});
 YUI.add('selector', function(Y) {
 
 
 
 
-}, '3.6.0pr1' ,{requires:['selector-native']});
+}, '3.6.0' ,{requires:['selector-native']});
 YUI.add('event-custom-base', function(Y) {
 
 /**
@@ -11338,7 +11345,7 @@ for that signature.
 **/
 
 
-}, '3.6.0pr1' ,{requires:['oop']});
+}, '3.6.0' ,{requires:['oop']});
 YUI.add('event-custom-complex', function(Y) {
 
 
@@ -11837,7 +11844,7 @@ FACADE_KEYS = Y.Object.keys(FACADE);
 
 
 
-}, '3.6.0pr1' ,{requires:['event-custom-base']});
+}, '3.6.0' ,{requires:['event-custom-base']});
 YUI.add('node-core', function(Y) {
 
 /**
@@ -13433,7 +13440,7 @@ Y.NodeList.importMethod(Y.Node.prototype, [
 ]);
 
 
-}, '3.6.0pr1' ,{requires:['dom-core', 'selector']});
+}, '3.6.0' ,{requires:['dom-core', 'selector']});
 YUI.add('node-base', function(Y) {
 
 /**
@@ -14591,7 +14598,7 @@ Y.mix(Y.NodeList.prototype, {
 });
 
 
-}, '3.6.0pr1' ,{requires:['dom-base', 'node-core', 'event-base']});
+}, '3.6.0' ,{requires:['dom-base', 'node-core', 'event-base']});
 (function () {
 var GLOBAL_ENV = YUI.Env;
 
@@ -15968,7 +15975,7 @@ Y.Env.evt.plugins.contentready = {
 };
 
 
-}, '3.6.0pr1' ,{requires:['event-custom-base']});
+}, '3.6.0' ,{requires:['event-custom-base']});
 YUI.add('pluginhost-base', function(Y) {
 
     /**
@@ -16151,7 +16158,7 @@ YUI.add('pluginhost-base', function(Y) {
     Y.namespace("Plugin").Host = PluginHost;
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('pluginhost-config', function(Y) {
 
     /**
@@ -16281,7 +16288,7 @@ YUI.add('pluginhost-config', function(Y) {
     };
 
 
-}, '3.6.0pr1' ,{requires:['pluginhost-base']});
+}, '3.6.0' ,{requires:['pluginhost-base']});
 YUI.add('event-delegate', function(Y) {
 
 /**
@@ -16604,7 +16611,7 @@ delegate._applyFilter = function (filter, args, ce) {
 Y.delegate = Y.Event.delegate = delegate;
 
 
-}, '3.6.0pr1' ,{requires:['node-base']});
+}, '3.6.0' ,{requires:['node-base']});
 YUI.add('node-event-delegate', function(Y) {
 
 /**
@@ -16658,7 +16665,7 @@ Y.Node.prototype.delegate = function(type) {
 };
 
 
-}, '3.6.0pr1' ,{requires:['node-base', 'event-delegate']});
+}, '3.6.0' ,{requires:['node-base', 'event-delegate']});
 YUI.add('node-pluginhost', function(Y) {
 
 /**
@@ -16744,7 +16751,7 @@ Y.NodeList.prototype.unplug = function() {
 };
 
 
-}, '3.6.0pr1' ,{requires:['node-base', 'pluginhost']});
+}, '3.6.0' ,{requires:['node-base', 'pluginhost']});
 YUI.add('node-screen', function(Y) {
 
 /**
@@ -16984,7 +16991,7 @@ Y.Node.prototype.inRegion = function(node2, all, altRegion) {
 };
 
 
-}, '3.6.0pr1' ,{requires:['node-base', 'dom-screen']});
+}, '3.6.0' ,{requires:['node-base', 'dom-screen']});
 YUI.add('node-style', function(Y) {
 
 (function(Y) {
@@ -17090,7 +17097,7 @@ Y.NodeList.importMethod(Y.Node.prototype, ['getStyle', 'getComputedStyle', 'setS
 })(Y);
 
 
-}, '3.6.0pr1' ,{requires:['dom-style', 'node-base']});
+}, '3.6.0' ,{requires:['dom-style', 'node-base']});
 YUI.add('querystring-stringify-simple', function(Y) {
 
 /*global Y */
@@ -17151,7 +17158,7 @@ QueryString.stringify = function (obj, c) {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('io-base', function(Y) {
 
 /**
@@ -18147,7 +18154,7 @@ Y.mix(Y.IO.prototype, {
 
 
 
-}, '3.6.0pr1' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
+}, '3.6.0' ,{requires:['event-custom-base', 'querystring-stringify-simple']});
 YUI.add('json-parse', function(Y) {
 
 /**
@@ -18377,7 +18384,7 @@ if ( Native ) {
 Y.JSON.useNativeParse = useNative;
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('transition', function(Y) {
 
 /**
@@ -19078,7 +19085,7 @@ Transition.DEFAULT_TOGGLE = 'fade';
 
 
 
-}, '3.6.0pr1' ,{requires:['node-style']});
+}, '3.6.0' ,{requires:['node-style']});
 YUI.add('selector-css2', function(Y) {
 
 /**
@@ -19523,7 +19530,7 @@ if (Y.Selector.useNative && Y.config.doc.querySelector) {
 
 
 
-}, '3.6.0pr1' ,{requires:['selector-native']});
+}, '3.6.0' ,{requires:['selector-native']});
 YUI.add('selector-css3', function(Y) {
 
 /**
@@ -19675,7 +19682,7 @@ Y.Selector.combinators['~'] = {
 };
 
 
-}, '3.6.0pr1' ,{requires:['selector-native', 'selector-css2']});
+}, '3.6.0' ,{requires:['selector-native', 'selector-css2']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -19785,7 +19792,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('dump', function(Y) {
 
 /**
@@ -19890,15 +19897,10 @@ YUI.add('dump', function(Y) {
 
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('transition-timer', function(Y) {
 
-/*
-* The Transition Utility provides an API for creating advanced transitions.
-* @module transition
-*/
-
-/*
+/**
 * Provides the base Transition class, for animating numeric properties.
 *
 * @module transition
@@ -20229,12 +20231,12 @@ Transition.behaviors.top = Transition.behaviors.bottom = Transition.behaviors.ri
 Y.Transition = Transition;
 
 
-}, '3.6.0pr1' ,{requires:['transition']});
+}, '3.6.0' ,{requires:['transition']});
 YUI.add('simpleyui', function(Y) {
 
 // empty
 
 
 
-}, '3.6.0pr1' ,{use:['yui','oop','dom','event-custom-base','event-base','pluginhost','node','event-delegate','io-base','json-parse','transition','selector-css3','dom-style-ie','querystring-stringify-simple']});
+}, '3.6.0' ,{use:['yui','oop','dom','event-custom-base','event-base','pluginhost','node','event-delegate','io-base','json-parse','transition','selector-css3','dom-style-ie','querystring-stringify-simple']});
 var Y = YUI().use('*');

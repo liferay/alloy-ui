@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('autocomplete-highlighters', function(Y) {
 
@@ -203,4 +203,4 @@ Highlighters = Y.mix(Y.namespace('AutoCompleteHighlighters'), {
 });
 
 
-}, '3.6.0pr1' ,{requires:['array-extras', 'highlight-base']});
+}, '3.6.0' ,{requires:['array-extras', 'highlight-base']});

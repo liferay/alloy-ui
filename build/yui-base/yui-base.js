@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 /**
  * The YUI module contains the components required for building the YUI seed
@@ -160,7 +160,7 @@ properties.
 (function() {
 
     var proto, prop,
-        VERSION = '3.6.0pr1',
+        VERSION = '3.6.0',
         PERIOD = '.',
         BASE = 'http://yui.yahooapis.com/',
         /*
@@ -207,7 +207,11 @@ properties.
             }
         },
         getLoader = function(Y, o) {
-            var loader = Y.Env._loader;
+            var loader = Y.Env._loader,
+                lCore = [ 'loader-base' ],
+                G_ENV = YUI.Env,
+                mods = G_ENV.mods;
+
             if (loader) {
                 //loader._config(Y.config);
                 loader.ignoreRegistered = false;
@@ -219,7 +223,10 @@ properties.
                 loader = new Y.Loader(Y.config);
                 Y.Env._loader = loader;
             }
-            YUI.Env.core = Y.Array.dedupe([].concat(YUI.Env.core, [ 'loader-base', 'loader-rollup', 'loader-yui3' ]));
+            if (mods && mods.loader) {
+                lCore = [].concat(lCore, YUI.Env.loaderExtras);
+            }
+            YUI.Env.core = Y.Array.dedupe([].concat(YUI.Env.core, lCore));
 
             return loader;
         },
@@ -328,6 +335,7 @@ proto = {
         if (!Env) {
             Y.Env = {
                 core: ['get','features','intl-base','yui-log','yui-later'],
+                loaderExtras: ['loader-rollup', 'loader-yui3'],
                 mods: {}, // flat module map
                 versions: {}, // version module map
                 base: BASE,
@@ -494,7 +502,6 @@ proto = {
         var i, Y = this,
             core = [],
             mods = YUI.Env.mods,
-            //extras = Y.config.core || ['get','features','intl-base','yui-log','yui-later'];
             extras = Y.config.core || [].concat(YUI.Env.core); //Clone it..
 
         for (i = 0; i < extras.length; i++) {
@@ -1085,8 +1092,8 @@ with any configuration info required for the module.
             return Y;
         }
 
-        if (mods['loader'] && !Y.Loader) {
-            Y._attach(['loader']);
+        if ((mods.loader || mods['loader-base']) && !Y.Loader) {
+            Y._attach(['loader' + ((!mods.loader) ? '-base' : '')]);
         }
 
 
@@ -3811,7 +3818,7 @@ YUI.Env.aliases = {
 };
 
 
-}, '3.6.0pr1' );
+}, '3.6.0' );
 YUI.add('get', function(Y) {
 
 /*jslint boss:true, expr:true, laxbreak: true */
@@ -5062,7 +5069,7 @@ Transaction.prototype = {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('features', function(Y) {
 
 var feature_tests = {};
@@ -5396,7 +5403,7 @@ add('load', '17', {
 });
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('intl-base', function(Y) {
 
 /**
@@ -5484,7 +5491,7 @@ Y.mix(Y.namespace('Intl'), {
 });
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('yui-log', function(Y) {
 
 /**
@@ -5594,7 +5601,7 @@ INSTANCE.message = function() {
 };
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 YUI.add('yui-later', function(Y) {
 
 /**
@@ -5671,8 +5678,8 @@ Y.Lang.later = Y.later;
 
 
 
-}, '3.6.0pr1' ,{requires:['yui-base']});
+}, '3.6.0' ,{requires:['yui-base']});
 
 
-YUI.add('yui', function(Y){}, '3.6.0pr1' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
+YUI.add('yui', function(Y){}, '3.6.0' ,{use:['yui-base','get','features','intl-base','yui-log','yui-later']});
 

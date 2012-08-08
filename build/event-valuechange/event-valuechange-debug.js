@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('event-valuechange', function(Y) {
 
@@ -479,4 +479,4 @@ Y.Event.define('valueChange', config); // deprecated, but supported for backcomp
 Y.ValueChange = VC;
 
 
-}, '3.6.0pr1' ,{requires:['event-focus', 'event-synthetic']});
+}, '3.6.0' ,{requires:['event-focus', 'event-synthetic']});

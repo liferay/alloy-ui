@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('loader-base', function(Y) {
 
@@ -20,7 +20,7 @@ if (!YUI.Env[Y.version]) {
             BUILD = '/build/',
             ROOT = VERSION + BUILD,
             CDN_BASE = Y.Env.base,
-            GALLERY_VERSION = 'gallery-2012.07.18-13-22',
+            GALLERY_VERSION = 'gallery-2012.08.01-13-16',
             TNT = '2in3',
             TNT_VERSION = '4',
             YUI2_VERSION = '2.9.0',
@@ -2710,4 +2710,4 @@ Y.Loader.prototype = {
 
 
 
-}, '3.6.0pr1' ,{requires:['get', 'features']});
+}, '3.6.0' ,{requires:['get', 'features']});

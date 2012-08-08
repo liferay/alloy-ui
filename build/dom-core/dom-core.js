@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('dom-core', function(Y) {
 
@@ -377,4 +377,4 @@ Y_DOM = {
 Y.DOM = Y_DOM;
 
 
-}, '3.6.0pr1' ,{requires:['oop','features']});
+}, '3.6.0' ,{requires:['oop','features']});

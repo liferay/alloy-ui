@@ -2,7 +2,7 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
-YUI.add("get-nodejs",function(h){var g=require("path");h.config.base=g.join(__dirname,"../");console.log(h.config);YUI.add("get",function(){});var d=function(j,k,i){if(h.Lang.isFunction(j.onEnd)){j.onEnd.call(h,k,i);}},f=function(i){if(h.Lang.isFunction(i.onSuccess)){i.onSuccess.call(h,i);}d(i,"success","success");},c=function(i,j){if(h.Lang.isFunction(i.onFailure)){i.onFailure.call(h,j,i);}d(i,j,"fail");};h.Get=function(){};h.Get.script=function(p,k){var j=h.Array,q=j(p),n,o,m=q.length;for(o=0;o<m;o++){n=q[o];n=n.replace(/'/g,"%27");a(n,function(i){if(!h.config){h.config={debug:true};}if(i){if(i.stack){j.each(i.stack.split("\n"),function(l){});}else{console.log(i);}}else{f(k);}});}};var e=require("vm"),b=require("fs");var a=function(k,i){var l=b.readFileSync(k,"utf8");var j=e.createScript(l,k);var m={YUI:{add:function(){console.log("YUI in the sandbox");console.log(arguments);YUI.apply(YUI,arguments);i();}}};j.runInNewContext(m);};},"3.6.0pr1",{requires:["yui-base"]});
+YUI.add("get-nodejs",function(h){var g=require("path");h.config.base=g.join(__dirname,"../");console.log(h.config);YUI.add("get",function(){});var d=function(j,k,i){if(h.Lang.isFunction(j.onEnd)){j.onEnd.call(h,k,i);}},f=function(i){if(h.Lang.isFunction(i.onSuccess)){i.onSuccess.call(h,i);}d(i,"success","success");},c=function(i,j){if(h.Lang.isFunction(i.onFailure)){i.onFailure.call(h,j,i);}d(i,j,"fail");};h.Get=function(){};h.Get.script=function(p,k){var j=h.Array,q=j(p),n,o,m=q.length;for(o=0;o<m;o++){n=q[o];n=n.replace(/'/g,"%27");a(n,function(i){if(!h.config){h.config={debug:true};}if(i){if(i.stack){j.each(i.stack.split("\n"),function(l){});}else{console.log(i);}}else{f(k);}});}};var e=require("vm"),b=require("fs");var a=function(k,i){var l=b.readFileSync(k,"utf8");var j=e.createScript(l,k);var m={YUI:{add:function(){console.log("YUI in the sandbox");console.log(arguments);YUI.apply(YUI,arguments);i();}}};j.runInNewContext(m);};},"3.6.0",{requires:["yui-base"]});

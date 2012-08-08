@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('loader-yui3', function(Y) {
 
@@ -1384,13 +1384,6 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
             "yui-throttle"
         ]
     },
-    "gesture-simulate": {
-        "requires": [
-            "async-queue",
-            "event-simulate",
-            "node-screen"
-        ]
-    },
     "get": {
         "requires": [
             "yui-base"
@@ -1767,8 +1760,7 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
     "node-event-simulate": {
         "requires": [
             "node-base",
-            "event-simulate",
-            "gesture-simulate"
+            "event-simulate"
         ]
     },
     "node-flick": {
@@ -2467,4 +2459,4 @@ YUI.Env[Y.version].modules = YUI.Env[Y.version].modules || {
 YUI.Env[Y.version].md5 = '5a681478005a2bdc375c61ddfa610d1e';
 
 
-}, '3.6.0pr1' ,{requires:['loader-base']});
+}, '3.6.0' ,{requires:['loader-base']});

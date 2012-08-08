@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('app-transitions-native', function(Y) {
 
@@ -357,4 +357,4 @@ Y.App.TransitionsNative = AppTransitionsNative;
 Y.Base.mix(Y.App, [AppTransitionsNative]);
 
 
-}, '3.6.0pr1' ,{requires:['app-transitions', 'app-transitions-css', 'parallel', 'transition']});
+}, '3.6.0' ,{requires:['app-transitions', 'app-transitions-css', 'parallel', 'transition']});

@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('querystring-parse', function(Y) {
 
@@ -163,4 +163,4 @@ QueryString.unescape = function (s) {
 
 
 
-}, '3.6.0pr1' ,{requires:['array-extras', 'yui-base'], supersedes:['querystring-parse-simple']});
+}, '3.6.0' ,{requires:['array-extras', 'yui-base'], supersedes:['querystring-parse-simple']});

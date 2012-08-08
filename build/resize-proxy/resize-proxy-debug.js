@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('resize-proxy', function(Y) {
 
@@ -170,4 +170,4 @@ Y.namespace('Plugin');
 Y.Plugin.ResizeProxy = ResizeProxy;
 
 
-}, '3.6.0pr1' ,{requires:['resize-base', 'plugin'], skinnable:false});
+}, '3.6.0' ,{requires:['resize-base', 'plugin'], skinnable:false});

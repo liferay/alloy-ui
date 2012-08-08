@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('node-event-simulate', function(Y) {
 
@@ -27,24 +27,5 @@ Y.Node.prototype.simulate = function (type, options) {
 };
 
 
-/**
- * Simulates a gesture on the node. On desktop, single touch gestures
- * such as tap, flick are simulated by using mouse events. A gesture will 
- * generate a set of underlaying low level events asynchronously.
- * @param {String} type The type of supported gesture to simulate 
- *      (i.e., "tap", "flick").
- * @param {Object} options (Optional) Extra options are used to refine the 
- *      gesture behavior.
- * @param {Function} cb The callback to execute when the gesture simulation 
- *      is completed.  
- * @return {void}
- * @for Node
- * @method simulateGesture
- */
-Y.Node.prototype.simulateGesture = function (type, options, cb) {
 
-    Y.Event.simulateGesture(this, type, options, cb);
-};
-
-
-}, '3.6.0pr1' ,{requires:['node-base', 'event-simulate', 'gesture-simulate']});
+}, '3.6.0' ,{requires:['node-base', 'event-simulate']});

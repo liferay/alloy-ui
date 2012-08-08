@@ -2,8 +2,8 @@
 Copyright (c) 2010, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.com/yui/license.html
-version: 3.6.0pr1
-build: nightly
+version: 3.6.0
+build: 3.6.0
 */
 YUI.add('panel', function(Y) {
 
@@ -103,4 +103,4 @@ Y.Panel = Y.Base.create('panel', Y.Widget, [
 });
 
 
-}, '3.6.0pr1' ,{requires:['widget', 'widget-autohide', 'widget-buttons',  'widget-modality', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod'], skinnable:true});
+}, '3.6.0' ,{requires:['widget', 'widget-autohide', 'widget-buttons',  'widget-modality', 'widget-position', 'widget-position-align', 'widget-position-constrain', 'widget-stack', 'widget-stdmod'], skinnable:true});
