@@ -175,7 +175,7 @@ A.mix(TreeData.prototype, {
 				// when moved update the oldParent children
 				var children = oldParent.get(CHILDREN);
 
-				A.Array.removeItem(children, instance);
+				A.Array.removeItem(children, node);
 
 				oldParent.set(CHILDREN, children);
 			}
