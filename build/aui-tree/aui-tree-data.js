@@ -176,7 +176,7 @@ A.mix(TreeData.prototype, {
 				// when moved update the oldParent children
 				var children = oldParent.get(CHILDREN);
 
-				A.Array.removeItem(children, instance);
+				A.Array.removeItem(children, node);
 
 				oldParent.set(CHILDREN, children);
 			}
@@ -797,6 +797,10 @@ A.mix(TreeData.prototype, {
 
 		instance.updateIndex({});
 
+		if (v.length > 0) {
+			instance.set(LEAF, false);
+		}
+
 		A.Array.each(v, function(node, index) {
 			if (node) {
 				if (!isTreeNode(node) && isObject(node)) {
@@ -805,7 +809,6 @@ A.mix(TreeData.prototype, {
 					var children = node[CHILDREN];
 					var hasChildren = children && children.length;
 
-					node[LEAF] = !hasChildren;
 					node[OWNER_TREE] = ownerTree;
 					node[PARENT_NODE] = instance;
 
