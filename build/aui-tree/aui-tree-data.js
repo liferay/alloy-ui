@@ -392,7 +392,7 @@ A.mix(TreeData.prototype, {
 
 		while (parentNode) {
 			if (parentNode) {
-				fn.apply(instance, [parentNode]);
+				fn.call(instance, parentNode);
 			}
 			parentNode = parentNode.get(PARENT_NODE);
 		}
