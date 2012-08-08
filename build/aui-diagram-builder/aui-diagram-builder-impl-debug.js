@@ -29,6 +29,7 @@ var Lang = A.Lang,
 	CONTROLS_TOOLBAR = 'controlsToolbar',
 	CREATE_DOCUMENT_FRAGMENT = 'createDocumentFragment',
 	DATA = 'data',
+	DATA_NODE_ID = 'data-nodeId',
 	DELETE = 'delete',
 	DELETE_CONNECTORS_MESSAGE = 'deleteConnectorsMessage',
 	DELETE_NODES_MESSAGE = 'deleteNodesMessage',
@@ -334,11 +335,11 @@ var DiagramBuilder = A.Component.create({
 			var instance = this;
 
 			if (isString(diagramNode1)) {
-				diagramNode1 = A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(diagramNode1));
+				diagramNode1 = DiagramNode.getNodeByName(diagramNode1);
 			}
 
 			if (isString(diagramNode2)) {
-				diagramNode2 = A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(diagramNode2));
+				diagramNode2 = DiagramNode.getNodeByName(diagramNode2);
 			}
 
 			if (diagramNode1 && diagramNode2) {
@@ -1018,7 +1019,7 @@ var DiagramNode = A.Component.create({
 	SQUARE_POINTS: [ [5,5], [10,5], [15,5], [20,5] ,[25,5], [30,5], [35,5], [40,5], [50,5], [55,5], [60,5], [65, 5], [65,10], [65,15], [65,20], [65,25], [65,30], [65,35], [65,40], [65,45], [65,50], [65,55], [65, 60], [65, 65], [60,65], [55,65], [50,65], [45,65], [40,65], [35,65], [30,65], [25,65], [20,65], [15,65], [10,65], [5, 65], [5,60], [5,55], [5,50], [5,45], [5,40], [5,35], [5,30], [5,25], [5,20], [5,15], [5,10] ],
 
 	getNodeByName: function(name) {
-		return A.Widget.getByNode(_HASH+A.DiagramNode.buildNodeId(name));
+		return A.Widget.getByNode('[data-nodeId=' + DiagramNode.buildNodeId(name) + ']');
 	},
 
 	buildNodeId: function(id) {
@@ -1696,7 +1697,7 @@ var DiagramNode = A.Component.create({
 			var instance = this;
 			var boundingBox = instance.get(BOUNDING_BOX);
 
-			boundingBox.set(ID, A.DiagramNode.buildNodeId(val));
+			boundingBox.setAttribute(DATA_NODE_ID, DiagramNode.buildNodeId(val));
 
 			if (instance.get('rendered')) {
 				instance.labelNode.setContent(val);
@@ -1705,18 +1706,19 @@ var DiagramNode = A.Component.create({
 
 		_uiSetRequired: function(val) {
 			var instance = this;
-			var strings = instance.getStrings();
 			var controlsToolbar = instance.controlsToolbar;
+			var id = instance.get(ID);
+			var strings = instance.getStrings();
 
 			if (controlsToolbar) {
 				if (val) {
-					controlsToolbar.remove(CLOSE_EVENT);
+					controlsToolbar.remove(id + _UNDERLINE + CLOSE_EVENT);
 				}
 				else {
 					controlsToolbar.add({
 						handler: A.bind(instance._handleCloseEvent, instance),
 						icon: CANCEL,
-						id: CLOSE_EVENT,
+						id: id + _UNDERLINE + CLOSE_EVENT,
 						title: strings[CLOSE_MESSAGE]
 					});
 				}
@@ -1742,6 +1744,7 @@ var DiagramNode = A.Component.create({
 
 		_valueControlsToolbar: function(val) {
 			var instance = this;
+			var id = instance.get(ID);
 			var strings = instance.getStrings();
 
 			return {
@@ -1750,13 +1753,13 @@ var DiagramNode = A.Component.create({
 					{
 						handler: A.bind(instance._handleEditEvent, instance),
 						icon: PENCIL,
-						id: EDIT_EVENT,
+						id: id + _UNDERLINE + EDIT_EVENT,
 						title: strings[EDIT_MESSAGE]
 					},
 					{
 						handler: A.bind(instance._handleCloseEvent, instance),
 						icon: CANCEL,
-						id: CLOSE_EVENT,
+						id: id + _UNDERLINE + CLOSE_EVENT,
 						title: strings[CLOSE_MESSAGE]
 					}
 				]
